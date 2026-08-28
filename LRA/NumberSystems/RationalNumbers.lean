@@ -6,5 +6,7 @@ import LRA.NumberSystems.RationalNumbers.Interface.Signature.Definition
 import LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.LStructure
 import LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.Theory
 import LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.Model
+import LRA.NumberSystems.RationalNumbers.Interface.UniversalAlgebra
+import LRA.NumberSystems.RationalNumbers.Interface.Satisfaction
 import LRA.NumberSystems.RationalNumbers.ContinuedFractions
 import LRA.NumberSystems.RationalNumbers.Interop

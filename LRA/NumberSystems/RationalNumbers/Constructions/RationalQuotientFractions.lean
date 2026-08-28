@@ -6,3 +6,4 @@ import LRA.NumberSystems.RationalNumbers.Constructions.RationalQuotientFractions
 import LRA.NumberSystems.RationalNumbers.Constructions.RationalQuotientFractions.Laws
 import LRA.NumberSystems.RationalNumbers.Constructions.RationalQuotientFractions.Behavior
 import LRA.NumberSystems.RationalNumbers.Constructions.RationalQuotientFractions.Instances
+import LRA.NumberSystems.RationalNumbers.Constructions.RationalQuotientFractions.Satisfy_Generic

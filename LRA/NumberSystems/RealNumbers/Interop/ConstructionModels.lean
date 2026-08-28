@@ -1,15 +1,22 @@
 
 import LRA.UniversalAlgebra.Quotient.RepresentativeCompatibility
-import LRA.NumberSystems.Interface.ModelTheory.Model
+import LRA.NumberSystems.Integers.Interface.ModelTheory.Model
+import LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.Model
+import LRA.NumberSystems.RealNumbers.Interface.ModelTheory.Model
+import LRA.NumberSystems.RealNumbers.Interface.Definition
 import LRA.NumberSystems.RationalNumbers.Constructions.RationalQuotientFractions
 
 namespace LRA.NumberSystems.RealNumbers
 
-open LRA.NumberSystems.Interface.ModelTheory
+open LRA.NumberSystems.Integers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers.Interface.ModelTheory
+open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 
 end LRA.NumberSystems.RealNumbers
 namespace LRA.NumberSystems.RealNumbers.DedekindCuts
-open LRA.NumberSystems.Interface.ModelTheory
+open LRA.NumberSystems.Integers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers.Interface.ModelTheory
+open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 
 /--
 `Cut` TODO
@@ -114,17 +121,17 @@ structure Cut (RationalCarrier : Type)
 
 Predicate logic:
 
-  (∀ rational_model ∈ DenselyOrderedFieldModel), Nonempty RealModel
+  (∀ rational_model ∈ RationalModel), Nonempty RealModel
 
 Predicate logic (unfolded):
 
-  ∀ (a : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel), Nonempty LRA.NumberSystems.Interface.ModelTheory.RealModel
+  ∀ (a : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel
 
 Logical form (Lean):
 
 ```lean
 theorem real_model_exists
-    (rational_model : DenselyOrderedFieldModel) : Nonempty RealModel
+    (rational_model : RationalModel) : Nonempty RealModel
 ```
 
 Type-theoretic form:
@@ -147,7 +154,7 @@ Related proof moves: TODO
 
 -/
 theorem real_model_exists
-    (rational_model : DenselyOrderedFieldModel) : Nonempty RealModel := by
+    (rational_model : RationalModel) : Nonempty RealModel := by
   sorry
 
 /--
@@ -156,20 +163,20 @@ theorem real_model_exists
 Predicate logic:
 
   noncomputable def real_model
-    (rational_model : DenselyOrderedFieldModel) : RealModel :=
+    (rational_model : RationalModel) : RealModel :=
   Classical.choice (real_model_exists rational_model)
 
 Predicate logic (unfolded):
 
   noncomputable def real_model
-    (rational_model : DenselyOrderedFieldModel) : RealModel :=
+    (rational_model : RationalModel) : RealModel :=
   Classical.choice (real_model_exists rational_model) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
 noncomputable def real_model
-    (rational_model : DenselyOrderedFieldModel) : RealModel :=
+    (rational_model : RationalModel) : RealModel :=
   Classical.choice (real_model_exists rational_model)
 ```
 
@@ -193,7 +200,7 @@ Related proof moves: unfold
 
 -/
 noncomputable def real_model
-    (rational_model : DenselyOrderedFieldModel) : RealModel :=
+    (rational_model : RationalModel) : RealModel :=
   Classical.choice (real_model_exists rational_model)
 
 /--
@@ -201,17 +208,17 @@ noncomputable def real_model
 
 Predicate logic:
 
-  (∀ rational_model ∈ DenselyOrderedFieldModel), Nonempty (CofinalRealExtension rational_model)
+  (∀ rational_model ∈ RationalModel), Nonempty (CofinalRealExtension rational_model)
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel), Nonempty (LRA.NumberSystems.Interface.ModelTheory.CofinalRealExtension rational_model)
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty (LRA.NumberSystems.Interface.ModelTheory.CofinalRealExtension rational_model)
 
 Logical form (Lean):
 
 ```lean
 theorem real_extension_exists
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     Nonempty (CofinalRealExtension rational_model)
 ```
 
@@ -235,7 +242,7 @@ Related proof moves: TODO
 
 -/
 theorem real_extension_exists
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     Nonempty (CofinalRealExtension rational_model) := by
   sorry
 
@@ -245,14 +252,14 @@ theorem real_extension_exists
 Predicate logic:
 
   noncomputable def real_extension
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     CofinalRealExtension rational_model :=
   Classical.choice (real_extension_exists rational_model)
 
 Predicate logic (unfolded):
 
   noncomputable def real_extension
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     CofinalRealExtension rational_model :=
   Classical.choice (real_extension_exists rational_model) (source fallback; no compiled unfold data available)
 
@@ -260,7 +267,7 @@ Logical form (Lean):
 
 ```lean
 noncomputable def real_extension
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     CofinalRealExtension rational_model :=
   Classical.choice (real_extension_exists rational_model)
 ```
@@ -285,7 +292,7 @@ Related proof moves: unfold
 
 -/
 noncomputable def real_extension
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     CofinalRealExtension rational_model :=
   Classical.choice (real_extension_exists rational_model)
 
@@ -294,17 +301,17 @@ noncomputable def real_extension
 
 Predicate logic:
 
-  (∀ rational_model ∈ DenselyOrderedFieldModel), ∀ subset : (real_model rational_model).signature.carrier → Prop, (∃ member, subset member) → (∃ upper_bound, ∀ member, subset member → (real_model rational_model).signature.le member upper_bound) → ∃ supremum, (∀ member, subset member → (real_model rational_model).signature.le member supremum) ∧ (∀ upper_bound, (∀ member, subset member → (real_model rational_model).signature.le member upper_bound) → (real_model rational_model).signature.le supremum upper_bound)
+  (∀ rational_model ∈ RationalModel), ∀ subset : (real_model rational_model).signature.carrier → Prop, (∃ member, subset member) → (∃ upper_bound, ∀ member, subset member → (real_model rational_model).signature.le member upper_bound) → ∃ supremum, (∀ member, subset member → (real_model rational_model).signature.le member supremum) ∧ (∀ upper_bound, (∀ member, subset member → (real_model rational_model).signature.le member upper_bound) → (real_model rational_model).signature.le supremum upper_bound)
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel) (subset : (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.toCarrierBundle.1 → Prop), (Exists fun member => subset member ∧ Exists fun upper_bound => ∀ (member : (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.toCarrierBundle.1), subset member → (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.toOrderedRingConceptSignature.2 member upper_bound) → Exists fun supremum => (∀ (member : (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.toCarrierBundle.1), subset member → (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.toOrderedRingConceptSignature.2 member supremum ∧ ∀ (upper_bound : (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.toCarrierBundle.1), (∀ (member : (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.toCarrierBundle.1), subset member → (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.toOrderedRingConceptSignature.2 member upper_bound) → (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.toOrderedRingConceptSignature.2 supremum upper_bound)
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (subset : (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.toCarrierBundle.1 → Prop), (Exists fun member => subset member ∧ Exists fun upper_bound => ∀ (member : (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.toCarrierBundle.1), subset member → (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.toOrderedRingConceptSignature.2 member upper_bound) → Exists fun supremum => (∀ (member : (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.toCarrierBundle.1), subset member → (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.toOrderedRingConceptSignature.2 member supremum ∧ ∀ (upper_bound : (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.toCarrierBundle.1), (∀ (member : (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.toCarrierBundle.1), subset member → (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.toOrderedRingConceptSignature.2 member upper_bound) → (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.toOrderedRingConceptSignature.2 supremum upper_bound)
 
 Logical form (Lean):
 
 ```lean
 theorem reals_are_complete
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     ∀ subset : (real_model rational_model).signature.carrier → Prop,
       (∃ member, subset member) →
       (∃ upper_bound,
@@ -346,7 +353,7 @@ Related proof moves: intro, constructor, cases, rcases, use
 
 -/
 theorem reals_are_complete
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     ∀ subset : (real_model rational_model).signature.carrier → Prop,
       (∃ member, subset member) →
       (∃ upper_bound,
@@ -370,11 +377,15 @@ theorem reals_are_complete
 
 end LRA.NumberSystems.RealNumbers.DedekindCuts
 namespace LRA.NumberSystems.RealNumbers
-open LRA.NumberSystems.Interface.ModelTheory
+open LRA.NumberSystems.Integers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers.Interface.ModelTheory
+open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 
 end LRA.NumberSystems.RealNumbers
 namespace LRA.NumberSystems.RealNumbers.CauchySequences
-open LRA.NumberSystems.Interface.ModelTheory
+open LRA.NumberSystems.Integers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers.Interface.ModelTheory
+open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 
 /--
 `Sequence` TODO
@@ -552,17 +563,17 @@ theorem equivalent_is_equivalence_relation
 
 Predicate logic:
 
-  (∀ rational_model ∈ DenselyOrderedFieldModel), Nonempty RealModel
+  (∀ rational_model ∈ RationalModel), Nonempty RealModel
 
 Predicate logic (unfolded):
 
-  ∀ (a : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel), Nonempty LRA.NumberSystems.Interface.ModelTheory.RealModel
+  ∀ (a : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel
 
 Logical form (Lean):
 
 ```lean
 theorem real_model_exists
-    (rational_model : DenselyOrderedFieldModel) : Nonempty RealModel
+    (rational_model : RationalModel) : Nonempty RealModel
 ```
 
 Type-theoretic form:
@@ -585,7 +596,7 @@ Related proof moves: TODO
 
 -/
 theorem real_model_exists
-    (rational_model : DenselyOrderedFieldModel) : Nonempty RealModel := by
+    (rational_model : RationalModel) : Nonempty RealModel := by
   sorry
 
 /--
@@ -594,20 +605,20 @@ theorem real_model_exists
 Predicate logic:
 
   noncomputable def real_model
-    (rational_model : DenselyOrderedFieldModel) : RealModel :=
+    (rational_model : RationalModel) : RealModel :=
   Classical.choice (real_model_exists rational_model)
 
 Predicate logic (unfolded):
 
   noncomputable def real_model
-    (rational_model : DenselyOrderedFieldModel) : RealModel :=
+    (rational_model : RationalModel) : RealModel :=
   Classical.choice (real_model_exists rational_model) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
 noncomputable def real_model
-    (rational_model : DenselyOrderedFieldModel) : RealModel :=
+    (rational_model : RationalModel) : RealModel :=
   Classical.choice (real_model_exists rational_model)
 ```
 
@@ -631,7 +642,7 @@ Related proof moves: unfold
 
 -/
 noncomputable def real_model
-    (rational_model : DenselyOrderedFieldModel) : RealModel :=
+    (rational_model : RationalModel) : RealModel :=
   Classical.choice (real_model_exists rational_model)
 
 /--
@@ -639,17 +650,17 @@ noncomputable def real_model
 
 Predicate logic:
 
-  (∀ rational_model ∈ DenselyOrderedFieldModel), Nonempty (CofinalRealExtension rational_model)
+  (∀ rational_model ∈ RationalModel), Nonempty (CofinalRealExtension rational_model)
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel), Nonempty (LRA.NumberSystems.Interface.ModelTheory.CofinalRealExtension rational_model)
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty (LRA.NumberSystems.Interface.ModelTheory.CofinalRealExtension rational_model)
 
 Logical form (Lean):
 
 ```lean
 theorem real_extension_exists
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     Nonempty (CofinalRealExtension rational_model)
 ```
 
@@ -673,7 +684,7 @@ Related proof moves: TODO
 
 -/
 theorem real_extension_exists
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     Nonempty (CofinalRealExtension rational_model) := by
   sorry
 
@@ -683,14 +694,14 @@ theorem real_extension_exists
 Predicate logic:
 
   noncomputable def real_extension
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     CofinalRealExtension rational_model :=
   Classical.choice (real_extension_exists rational_model)
 
 Predicate logic (unfolded):
 
   noncomputable def real_extension
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     CofinalRealExtension rational_model :=
   Classical.choice (real_extension_exists rational_model) (source fallback; no compiled unfold data available)
 
@@ -698,7 +709,7 @@ Logical form (Lean):
 
 ```lean
 noncomputable def real_extension
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     CofinalRealExtension rational_model :=
   Classical.choice (real_extension_exists rational_model)
 ```
@@ -723,17 +734,21 @@ Related proof moves: unfold
 
 -/
 noncomputable def real_extension
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     CofinalRealExtension rational_model :=
   Classical.choice (real_extension_exists rational_model)
 
 end LRA.NumberSystems.RealNumbers.CauchySequences
 namespace LRA.NumberSystems.RealNumbers
-open LRA.NumberSystems.Interface.ModelTheory
+open LRA.NumberSystems.Integers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers.Interface.ModelTheory
+open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 
 end LRA.NumberSystems.RealNumbers
 namespace LRA.NumberSystems.RealNumbers.CantorNestedIntervals
-open LRA.NumberSystems.Interface.ModelTheory
+open LRA.NumberSystems.Integers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers.Interface.ModelTheory
+open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 
 /--
 `IntervalSequence` TODO
@@ -794,17 +809,17 @@ structure IntervalSequence (Index RationalCarrier : Type) where
 
 Predicate logic:
 
-  (∀ rational_model ∈ DenselyOrderedFieldModel), Nonempty RealModel
+  (∀ rational_model ∈ RationalModel), Nonempty RealModel
 
 Predicate logic (unfolded):
 
-  ∀ (a : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel), Nonempty LRA.NumberSystems.Interface.ModelTheory.RealModel
+  ∀ (a : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel
 
 Logical form (Lean):
 
 ```lean
 theorem real_model_exists
-    (rational_model : DenselyOrderedFieldModel) : Nonempty RealModel
+    (rational_model : RationalModel) : Nonempty RealModel
 ```
 
 Type-theoretic form:
@@ -827,7 +842,7 @@ Related proof moves: TODO
 
 -/
 theorem real_model_exists
-    (rational_model : DenselyOrderedFieldModel) : Nonempty RealModel := by
+    (rational_model : RationalModel) : Nonempty RealModel := by
   sorry
 
 /--
@@ -836,20 +851,20 @@ theorem real_model_exists
 Predicate logic:
 
   noncomputable def real_model
-    (rational_model : DenselyOrderedFieldModel) : RealModel :=
+    (rational_model : RationalModel) : RealModel :=
   Classical.choice (real_model_exists rational_model)
 
 Predicate logic (unfolded):
 
   noncomputable def real_model
-    (rational_model : DenselyOrderedFieldModel) : RealModel :=
+    (rational_model : RationalModel) : RealModel :=
   Classical.choice (real_model_exists rational_model) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
 noncomputable def real_model
-    (rational_model : DenselyOrderedFieldModel) : RealModel :=
+    (rational_model : RationalModel) : RealModel :=
   Classical.choice (real_model_exists rational_model)
 ```
 
@@ -873,7 +888,7 @@ Related proof moves: unfold
 
 -/
 noncomputable def real_model
-    (rational_model : DenselyOrderedFieldModel) : RealModel :=
+    (rational_model : RationalModel) : RealModel :=
   Classical.choice (real_model_exists rational_model)
 
 /--
@@ -881,17 +896,17 @@ noncomputable def real_model
 
 Predicate logic:
 
-  (∀ rational_model ∈ DenselyOrderedFieldModel), CauchySequences.equivalent interval_sequence.left_endpoint interval_sequence.left_endpoint
+  (∀ rational_model ∈ RationalModel), CauchySequences.equivalent interval_sequence.left_endpoint interval_sequence.left_endpoint
 
 Predicate logic (unfolded):
 
-  ∀ (a : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel) {Index RationalCarrier : Type} (interval_sequence : LRA.NumberSystems.RealNumbers.CantorNestedIntervals.IntervalSequence Index RationalCarrier) (index : Index), interval_sequence.1 index = interval_sequence.1 index
+  ∀ (a : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) {Index RationalCarrier : Type} (interval_sequence : LRA.NumberSystems.RealNumbers.CantorNestedIntervals.IntervalSequence Index RationalCarrier) (index : Index), interval_sequence.1 index = interval_sequence.1 index
 
 Logical form (Lean):
 
 ```lean
 theorem endpoint_sequences_determine_cauchy_class
-    (rational_model : DenselyOrderedFieldModel)
+    (rational_model : RationalModel)
     {Index RationalCarrier : Type}
     (interval_sequence : IntervalSequence Index RationalCarrier) :
     CauchySequences.equivalent
@@ -919,7 +934,7 @@ Related proof moves: TODO
 
 -/
 theorem endpoint_sequences_determine_cauchy_class
-    (rational_model : DenselyOrderedFieldModel)
+    (rational_model : RationalModel)
     {Index RationalCarrier : Type}
     (interval_sequence : IntervalSequence Index RationalCarrier) :
     CauchySequences.equivalent
@@ -929,11 +944,15 @@ theorem endpoint_sequences_determine_cauchy_class
 
 end LRA.NumberSystems.RealNumbers.CantorNestedIntervals
 namespace LRA.NumberSystems.RealNumbers
-open LRA.NumberSystems.Interface.ModelTheory
+open LRA.NumberSystems.Integers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers.Interface.ModelTheory
+open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 
 end LRA.NumberSystems.RealNumbers
 namespace LRA.NumberSystems.RealNumbers.PrimitiveIntervalQuotient
-open LRA.NumberSystems.Interface.ModelTheory
+open LRA.NumberSystems.Integers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers.Interface.ModelTheory
+open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 
 /--
 `RationalInterval` TODO
@@ -1260,17 +1279,17 @@ theorem quotient_multiplication_is_distributive
 
 Predicate logic:
 
-  (∀ rational_model ∈ DenselyOrderedFieldModel), Nonempty RealModel
+  (∀ rational_model ∈ RationalModel), Nonempty RealModel
 
 Predicate logic (unfolded):
 
-  ∀ (a : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel), Nonempty LRA.NumberSystems.Interface.ModelTheory.RealModel
+  ∀ (a : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel
 
 Logical form (Lean):
 
 ```lean
 theorem real_model_exists
-    (rational_model : DenselyOrderedFieldModel) : Nonempty RealModel
+    (rational_model : RationalModel) : Nonempty RealModel
 ```
 
 Type-theoretic form:
@@ -1293,7 +1312,7 @@ Related proof moves: TODO
 
 -/
 theorem real_model_exists
-    (rational_model : DenselyOrderedFieldModel) : Nonempty RealModel := by
+    (rational_model : RationalModel) : Nonempty RealModel := by
   sorry
 
 /--
@@ -1302,20 +1321,20 @@ theorem real_model_exists
 Predicate logic:
 
   noncomputable def real_model
-    (rational_model : DenselyOrderedFieldModel) : RealModel :=
+    (rational_model : RationalModel) : RealModel :=
   Classical.choice (real_model_exists rational_model)
 
 Predicate logic (unfolded):
 
   noncomputable def real_model
-    (rational_model : DenselyOrderedFieldModel) : RealModel :=
+    (rational_model : RationalModel) : RealModel :=
   Classical.choice (real_model_exists rational_model) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
 noncomputable def real_model
-    (rational_model : DenselyOrderedFieldModel) : RealModel :=
+    (rational_model : RationalModel) : RealModel :=
   Classical.choice (real_model_exists rational_model)
 ```
 
@@ -1339,16 +1358,20 @@ Related proof moves: unfold
 
 -/
 noncomputable def real_model
-    (rational_model : DenselyOrderedFieldModel) : RealModel :=
+    (rational_model : RationalModel) : RealModel :=
   Classical.choice (real_model_exists rational_model)
 
 end LRA.NumberSystems.RealNumbers.PrimitiveIntervalQuotient
 namespace LRA.NumberSystems.RealNumbers
-open LRA.NumberSystems.Interface.ModelTheory
+open LRA.NumberSystems.Integers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers.Interface.ModelTheory
+open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 
 end LRA.NumberSystems.RealNumbers
 namespace LRA.NumberSystems.RealNumbers.DyadicExpansions
-open LRA.NumberSystems.Interface.ModelTheory
+open LRA.NumberSystems.Integers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers.Interface.ModelTheory
+open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 
 /--
 `Expansion` TODO
@@ -1490,17 +1513,17 @@ theorem equivalent_is_equivalence_relation
 
 Predicate logic:
 
-  (∀ rational_model ∈ DenselyOrderedFieldModel), Nonempty RealModel
+  (∀ rational_model ∈ RationalModel), Nonempty RealModel
 
 Predicate logic (unfolded):
 
-  ∀ (a : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel), Nonempty LRA.NumberSystems.Interface.ModelTheory.RealModel
+  ∀ (a : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel
 
 Logical form (Lean):
 
 ```lean
 theorem real_model_exists
-    (rational_model : DenselyOrderedFieldModel) : Nonempty RealModel
+    (rational_model : RationalModel) : Nonempty RealModel
 ```
 
 Type-theoretic form:
@@ -1523,7 +1546,7 @@ Related proof moves: TODO
 
 -/
 theorem real_model_exists
-    (rational_model : DenselyOrderedFieldModel) : Nonempty RealModel := by
+    (rational_model : RationalModel) : Nonempty RealModel := by
   sorry
 
 /--
@@ -1532,20 +1555,20 @@ theorem real_model_exists
 Predicate logic:
 
   noncomputable def real_model
-    (rational_model : DenselyOrderedFieldModel) : RealModel :=
+    (rational_model : RationalModel) : RealModel :=
   Classical.choice (real_model_exists rational_model)
 
 Predicate logic (unfolded):
 
   noncomputable def real_model
-    (rational_model : DenselyOrderedFieldModel) : RealModel :=
+    (rational_model : RationalModel) : RealModel :=
   Classical.choice (real_model_exists rational_model) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
 noncomputable def real_model
-    (rational_model : DenselyOrderedFieldModel) : RealModel :=
+    (rational_model : RationalModel) : RealModel :=
   Classical.choice (real_model_exists rational_model)
 ```
 
@@ -1569,12 +1592,14 @@ Related proof moves: unfold
 
 -/
 noncomputable def real_model
-    (rational_model : DenselyOrderedFieldModel) : RealModel :=
+    (rational_model : RationalModel) : RealModel :=
   Classical.choice (real_model_exists rational_model)
 
 end LRA.NumberSystems.RealNumbers.DyadicExpansions
 namespace LRA.NumberSystems.RealNumbers
-open LRA.NumberSystems.Interface.ModelTheory
+open LRA.NumberSystems.Integers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers.Interface.ModelTheory
+open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 
 /--
 `ModelIsomorphism` TODO
@@ -1779,7 +1804,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (first_model : LRA.NumberSystems.Interface.ModelTheory.RealModel) (second_model : LRA.NumberSystems.Interface.ModelTheory.RealModel), Exists fun isomorphism => ∀ (other_isomorphism : LRA.NumberSystems.RealNumbers.ModelIsomorphism first_model second_model) (value : first_model.signature.toCarrierBundle.1), other_isomorphism.1 value = isomorphism.1 value
+  ∀ (first_model : LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel) (second_model : LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel), Exists fun isomorphism => ∀ (other_isomorphism : LRA.NumberSystems.RealNumbers.ModelIsomorphism first_model second_model) (value : first_model.signature.toCarrierBundle.1), other_isomorphism.1 value = isomorphism.1 value
 
 Logical form (Lean):
 
@@ -1826,17 +1851,17 @@ theorem complete_archimedean_ordered_fields_are_uniquely_isomorphic
 
 Predicate logic:
 
-  (∀ rational_model ∈ DenselyOrderedFieldModel), Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (CauchySequences.real_model rational_model))
+  (∀ rational_model ∈ RationalModel), Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (CauchySequences.real_model rational_model))
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel), Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
 
 Logical form (Lean):
 
 ```lean
 theorem dedekind_equiv_cauchy_exists
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     Nonempty
       (ModelIsomorphism
         (DedekindCuts.real_model rational_model)
@@ -1863,7 +1888,7 @@ Related proof moves: TODO
 
 -/
 theorem dedekind_equiv_cauchy_exists
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     Nonempty
       (ModelIsomorphism
         (DedekindCuts.real_model rational_model)
@@ -1876,7 +1901,7 @@ theorem dedekind_equiv_cauchy_exists
 Predicate logic:
 
   noncomputable def dedekind_equiv_cauchy
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     ModelIsomorphism
       (DedekindCuts.real_model rational_model)
       (CauchySequences.real_model rational_model) :=
@@ -1885,7 +1910,7 @@ Predicate logic:
 Predicate logic (unfolded):
 
   noncomputable def dedekind_equiv_cauchy
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     ModelIsomorphism
       (DedekindCuts.real_model rational_model)
       (CauchySequences.real_model rational_model) :=
@@ -1895,7 +1920,7 @@ Logical form (Lean):
 
 ```lean
 noncomputable def dedekind_equiv_cauchy
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     ModelIsomorphism
       (DedekindCuts.real_model rational_model)
       (CauchySequences.real_model rational_model) :=
@@ -1922,7 +1947,7 @@ Related proof moves: unfold
 
 -/
 noncomputable def dedekind_equiv_cauchy
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     ModelIsomorphism
       (DedekindCuts.real_model rational_model)
       (CauchySequences.real_model rational_model) :=
@@ -1933,17 +1958,17 @@ noncomputable def dedekind_equiv_cauchy
 
 Predicate logic:
 
-  (∀ rational_model ∈ DenselyOrderedFieldModel), Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (CauchySequences.real_model rational_model))
+  (∀ rational_model ∈ RationalModel), Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (CauchySequences.real_model rational_model))
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel), Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
 
 Logical form (Lean):
 
 ```lean
 theorem dedekind_and_cauchy_are_isomorphic
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     Nonempty
       (ModelIsomorphism
         (DedekindCuts.real_model rational_model)
@@ -1970,7 +1995,7 @@ Related proof moves: TODO
 
 -/
 theorem dedekind_and_cauchy_are_isomorphic
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     Nonempty
       (ModelIsomorphism
         (DedekindCuts.real_model rational_model)
@@ -1982,17 +2007,17 @@ theorem dedekind_and_cauchy_are_isomorphic
 
 Predicate logic:
 
-  (∀ rational_model ∈ DenselyOrderedFieldModel), Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (CantorNestedIntervals.real_model rational_model))
+  (∀ rational_model ∈ RationalModel), Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (CantorNestedIntervals.real_model rational_model))
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel), Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
 
 Logical form (Lean):
 
 ```lean
 theorem dedekind_equiv_cantor_exists
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     Nonempty
       (ModelIsomorphism
         (DedekindCuts.real_model rational_model)
@@ -2019,7 +2044,7 @@ Related proof moves: TODO
 
 -/
 theorem dedekind_equiv_cantor_exists
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     Nonempty
       (ModelIsomorphism
         (DedekindCuts.real_model rational_model)
@@ -2032,7 +2057,7 @@ theorem dedekind_equiv_cantor_exists
 Predicate logic:
 
   noncomputable def dedekind_equiv_cantor
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     ModelIsomorphism
       (DedekindCuts.real_model rational_model)
       (CantorNestedIntervals.real_model rational_model) :=
@@ -2041,7 +2066,7 @@ Predicate logic:
 Predicate logic (unfolded):
 
   noncomputable def dedekind_equiv_cantor
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     ModelIsomorphism
       (DedekindCuts.real_model rational_model)
       (CantorNestedIntervals.real_model rational_model) :=
@@ -2051,7 +2076,7 @@ Logical form (Lean):
 
 ```lean
 noncomputable def dedekind_equiv_cantor
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     ModelIsomorphism
       (DedekindCuts.real_model rational_model)
       (CantorNestedIntervals.real_model rational_model) :=
@@ -2078,7 +2103,7 @@ Related proof moves: unfold
 
 -/
 noncomputable def dedekind_equiv_cantor
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     ModelIsomorphism
       (DedekindCuts.real_model rational_model)
       (CantorNestedIntervals.real_model rational_model) :=
@@ -2089,17 +2114,17 @@ noncomputable def dedekind_equiv_cantor
 
 Predicate logic:
 
-  (∀ rational_model ∈ DenselyOrderedFieldModel), Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (CantorNestedIntervals.real_model rational_model))
+  (∀ rational_model ∈ RationalModel), Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (CantorNestedIntervals.real_model rational_model))
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel), Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
 
 Logical form (Lean):
 
 ```lean
 theorem dedekind_and_cantor_are_isomorphic
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     Nonempty
       (ModelIsomorphism
         (DedekindCuts.real_model rational_model)
@@ -2126,7 +2151,7 @@ Related proof moves: TODO
 
 -/
 theorem dedekind_and_cantor_are_isomorphic
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     Nonempty
       (ModelIsomorphism
         (DedekindCuts.real_model rational_model)
@@ -2138,17 +2163,17 @@ theorem dedekind_and_cantor_are_isomorphic
 
 Predicate logic:
 
-  (∀ rational_model ∈ DenselyOrderedFieldModel), Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (PrimitiveIntervalQuotient.real_model rational_model))
+  (∀ rational_model ∈ RationalModel), Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (PrimitiveIntervalQuotient.real_model rational_model))
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel), Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
 
 Logical form (Lean):
 
 ```lean
 theorem dedekind_equiv_interval_quotient_exists
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     Nonempty
       (ModelIsomorphism
         (DedekindCuts.real_model rational_model)
@@ -2175,7 +2200,7 @@ Related proof moves: TODO
 
 -/
 theorem dedekind_equiv_interval_quotient_exists
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     Nonempty
       (ModelIsomorphism
         (DedekindCuts.real_model rational_model)
@@ -2188,7 +2213,7 @@ theorem dedekind_equiv_interval_quotient_exists
 Predicate logic:
 
   noncomputable def dedekind_equiv_interval_quotient
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     ModelIsomorphism
       (DedekindCuts.real_model rational_model)
       (PrimitiveIntervalQuotient.real_model rational_model) :=
@@ -2197,7 +2222,7 @@ Predicate logic:
 Predicate logic (unfolded):
 
   noncomputable def dedekind_equiv_interval_quotient
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     ModelIsomorphism
       (DedekindCuts.real_model rational_model)
       (PrimitiveIntervalQuotient.real_model rational_model) :=
@@ -2207,7 +2232,7 @@ Logical form (Lean):
 
 ```lean
 noncomputable def dedekind_equiv_interval_quotient
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     ModelIsomorphism
       (DedekindCuts.real_model rational_model)
       (PrimitiveIntervalQuotient.real_model rational_model) :=
@@ -2234,7 +2259,7 @@ Related proof moves: unfold
 
 -/
 noncomputable def dedekind_equiv_interval_quotient
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     ModelIsomorphism
       (DedekindCuts.real_model rational_model)
       (PrimitiveIntervalQuotient.real_model rational_model) :=
@@ -2245,17 +2270,17 @@ noncomputable def dedekind_equiv_interval_quotient
 
 Predicate logic:
 
-  (∀ rational_model ∈ DenselyOrderedFieldModel), Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (PrimitiveIntervalQuotient.real_model rational_model))
+  (∀ rational_model ∈ RationalModel), Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (PrimitiveIntervalQuotient.real_model rational_model))
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel), Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
 
 Logical form (Lean):
 
 ```lean
 theorem dedekind_and_interval_quotient_are_isomorphic
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     Nonempty
       (ModelIsomorphism
         (DedekindCuts.real_model rational_model)
@@ -2282,7 +2307,7 @@ Related proof moves: TODO
 
 -/
 theorem dedekind_and_interval_quotient_are_isomorphic
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     Nonempty
       (ModelIsomorphism
         (DedekindCuts.real_model rational_model)
@@ -2294,17 +2319,17 @@ theorem dedekind_and_interval_quotient_are_isomorphic
 
 Predicate logic:
 
-  (∀ rational_model ∈ DenselyOrderedFieldModel), Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (DyadicExpansions.real_model rational_model))
+  (∀ rational_model ∈ RationalModel), Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (DyadicExpansions.real_model rational_model))
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel), Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
 
 Logical form (Lean):
 
 ```lean
 theorem dedekind_equiv_dyadic_exists
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     Nonempty
       (ModelIsomorphism
         (DedekindCuts.real_model rational_model)
@@ -2331,7 +2356,7 @@ Related proof moves: TODO
 
 -/
 theorem dedekind_equiv_dyadic_exists
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     Nonempty
       (ModelIsomorphism
         (DedekindCuts.real_model rational_model)
@@ -2344,7 +2369,7 @@ theorem dedekind_equiv_dyadic_exists
 Predicate logic:
 
   noncomputable def dedekind_equiv_dyadic
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     ModelIsomorphism
       (DedekindCuts.real_model rational_model)
       (DyadicExpansions.real_model rational_model) :=
@@ -2353,7 +2378,7 @@ Predicate logic:
 Predicate logic (unfolded):
 
   noncomputable def dedekind_equiv_dyadic
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     ModelIsomorphism
       (DedekindCuts.real_model rational_model)
       (DyadicExpansions.real_model rational_model) :=
@@ -2363,7 +2388,7 @@ Logical form (Lean):
 
 ```lean
 noncomputable def dedekind_equiv_dyadic
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     ModelIsomorphism
       (DedekindCuts.real_model rational_model)
       (DyadicExpansions.real_model rational_model) :=
@@ -2390,7 +2415,7 @@ Related proof moves: unfold
 
 -/
 noncomputable def dedekind_equiv_dyadic
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     ModelIsomorphism
       (DedekindCuts.real_model rational_model)
       (DyadicExpansions.real_model rational_model) :=
@@ -2401,17 +2426,17 @@ noncomputable def dedekind_equiv_dyadic
 
 Predicate logic:
 
-  (∀ rational_model ∈ DenselyOrderedFieldModel), Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (DyadicExpansions.real_model rational_model))
+  (∀ rational_model ∈ RationalModel), Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (DyadicExpansions.real_model rational_model))
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel), Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
 
 Logical form (Lean):
 
 ```lean
 theorem dedekind_and_dyadic_are_isomorphic
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     Nonempty
       (ModelIsomorphism
         (DedekindCuts.real_model rational_model)
@@ -2438,7 +2463,7 @@ Related proof moves: TODO
 
 -/
 theorem dedekind_and_dyadic_are_isomorphic
-    (rational_model : DenselyOrderedFieldModel) :
+    (rational_model : RationalModel) :
     Nonempty
       (ModelIsomorphism
         (DedekindCuts.real_model rational_model)

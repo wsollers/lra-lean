@@ -6,7 +6,9 @@ import LRA.NumberSystems.RealNumbers.Constructions.Cauchy.Behavior
 
 namespace LRA.NumberSystems.RealNumbers.Cauchy
 
-open LRA.NumberSystems.Interface.ModelTheory
+open LRA.NumberSystems.Integers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers.Interface.ModelTheory
+open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 open LRA.NumberSystems.RationalNumbers
 open LRA.AlgebraicStructures
 open LRA.Order
@@ -739,31 +741,31 @@ theorem quotient_completeness_cert
   sorry
 
 /--
-`CauchyRealizesDenselyOrderedFieldModel` TODO
+`CauchyRealizesRationalModel` TODO
 
 Predicate logic:
 
-  noncomputable def CauchyRealizesDenselyOrderedFieldModel
+  noncomputable def CauchyRealizesRationalModel
     (rationalSystem : RationalNumberSystem)
     (absolute_value_data : RationalMetricData rationalSystem) :
-    LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel where
+    LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel where
   Carrier
 
 Predicate logic (unfolded):
 
-  noncomputable def CauchyRealizesDenselyOrderedFieldModel
+  noncomputable def CauchyRealizesRationalModel
     (rationalSystem : RationalNumberSystem)
     (absolute_value_data : RationalMetricData rationalSystem) :
-    LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel where
+    LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel where
   Carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
-noncomputable def CauchyRealizesDenselyOrderedFieldModel
+noncomputable def CauchyRealizesRationalModel
     (rationalSystem : RationalNumberSystem)
     (absolute_value_data : RationalMetricData rationalSystem) :
-    LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel where
+    LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel where
   Carrier
 ```
 
@@ -786,10 +788,10 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-noncomputable def CauchyRealizesDenselyOrderedFieldModel
+noncomputable def CauchyRealizesRationalModel
     (rationalSystem : RationalNumberSystem)
     (absolute_value_data : RationalMetricData rationalSystem) :
-    LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel where
+    LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel where
   Carrier := Carrier rationalSystem absolute_value_data
   addInst := quotientCarrierAdd rationalSystem absolute_value_data
   mulInst := quotientCarrierMul rationalSystem absolute_value_data
@@ -811,7 +813,7 @@ Predicate logic:
   noncomputable def CauchyRealizesRealModel
     (rationalSystem : RationalNumberSystem)
     (absolute_value_data : RationalMetricData rationalSystem) :
-    LRA.NumberSystems.Interface.ModelTheory.RealModel where
+    LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel where
   Carrier
 
 Predicate logic (unfolded):
@@ -819,7 +821,7 @@ Predicate logic (unfolded):
   noncomputable def CauchyRealizesRealModel
     (rationalSystem : RationalNumberSystem)
     (absolute_value_data : RationalMetricData rationalSystem) :
-    LRA.NumberSystems.Interface.ModelTheory.RealModel where
+    LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel where
   Carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
@@ -828,7 +830,7 @@ Logical form (Lean):
 noncomputable def CauchyRealizesRealModel
     (rationalSystem : RationalNumberSystem)
     (absolute_value_data : RationalMetricData rationalSystem) :
-    LRA.NumberSystems.Interface.ModelTheory.RealModel where
+    LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel where
   Carrier
 ```
 
@@ -854,7 +856,7 @@ Related proof moves: unfold
 noncomputable def CauchyRealizesRealModel
     (rationalSystem : RationalNumberSystem)
     (absolute_value_data : RationalMetricData rationalSystem) :
-    LRA.NumberSystems.Interface.ModelTheory.RealModel where
+    LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel where
   Carrier := Carrier rationalSystem absolute_value_data
   addInst := quotientCarrierAdd rationalSystem absolute_value_data
   mulInst := quotientCarrierMul rationalSystem absolute_value_data
@@ -983,7 +985,7 @@ theorem cauchy_rational_embedding_preserves_and_reflects_order
 
 Predicate logic:
 
-  (∀ rationalSystem ∈ RationalNumberSystem), ∃ embedding ∈ LRA.NumberSystems.Interface.ModelTheory.DenseOrderedFieldEmbeddingIntoReal rationalSystem.FieldModel (CauchyRealizesRealModel rationalSystem absolute_value_data), True
+  (∀ rationalSystem ∈ RationalNumberSystem), ∃ embedding ∈ LRA.NumberSystems.RealNumbers.DenseOrderedFieldEmbeddingIntoReal rationalSystem.FieldModel (CauchyRealizesRealModel rationalSystem absolute_value_data), True
 
 Predicate logic (unfolded):
 
@@ -996,7 +998,7 @@ theorem cauchy_rational_embedding_exists
     (rationalSystem : RationalNumberSystem)
     (absolute_value_data : RationalMetricData rationalSystem) :
     ∃ embedding :
-        LRA.NumberSystems.Interface.ModelTheory.DenseOrderedFieldEmbeddingIntoReal
+        LRA.NumberSystems.RealNumbers.DenseOrderedFieldEmbeddingIntoReal
           rationalSystem.FieldModel
           (CauchyRealizesRealModel rationalSystem absolute_value_data),
       True
@@ -1025,7 +1027,7 @@ theorem cauchy_rational_embedding_exists
     (rationalSystem : RationalNumberSystem)
     (absolute_value_data : RationalMetricData rationalSystem) :
     ∃ embedding :
-        LRA.NumberSystems.Interface.ModelTheory.DenseOrderedFieldEmbeddingIntoReal
+        LRA.NumberSystems.RealNumbers.DenseOrderedFieldEmbeddingIntoReal
           rationalSystem.FieldModel
           (CauchyRealizesRealModel rationalSystem absolute_value_data),
       True := by
@@ -1039,7 +1041,7 @@ Predicate logic:
   noncomputable def cauchy_rational_embedding_data
     (rationalSystem : RationalNumberSystem)
     (absolute_value_data : RationalMetricData rationalSystem) :
-    LRA.NumberSystems.Interface.ModelTheory.DenseOrderedFieldEmbeddingIntoReal
+    LRA.NumberSystems.RealNumbers.DenseOrderedFieldEmbeddingIntoReal
       rationalSystem.FieldModel
       (CauchyRealizesRealModel rationalSystem absolute_value_data) :=
   Classical.choose
@@ -1050,7 +1052,7 @@ Predicate logic (unfolded):
   noncomputable def cauchy_rational_embedding_data
     (rationalSystem : RationalNumberSystem)
     (absolute_value_data : RationalMetricData rationalSystem) :
-    LRA.NumberSystems.Interface.ModelTheory.DenseOrderedFieldEmbeddingIntoReal
+    LRA.NumberSystems.RealNumbers.DenseOrderedFieldEmbeddingIntoReal
       rationalSystem.FieldModel
       (CauchyRealizesRealModel rationalSystem absolute_value_data) :=
   Classical.choose
@@ -1062,7 +1064,7 @@ Logical form (Lean):
 noncomputable def cauchy_rational_embedding_data
     (rationalSystem : RationalNumberSystem)
     (absolute_value_data : RationalMetricData rationalSystem) :
-    LRA.NumberSystems.Interface.ModelTheory.DenseOrderedFieldEmbeddingIntoReal
+    LRA.NumberSystems.RealNumbers.DenseOrderedFieldEmbeddingIntoReal
       rationalSystem.FieldModel
       (CauchyRealizesRealModel rationalSystem absolute_value_data) :=
   Classical.choose
@@ -1091,7 +1093,7 @@ Related proof moves: unfold
 noncomputable def cauchy_rational_embedding_data
     (rationalSystem : RationalNumberSystem)
     (absolute_value_data : RationalMetricData rationalSystem) :
-    LRA.NumberSystems.Interface.ModelTheory.DenseOrderedFieldEmbeddingIntoReal
+    LRA.NumberSystems.RealNumbers.DenseOrderedFieldEmbeddingIntoReal
       rationalSystem.FieldModel
       (CauchyRealizesRealModel rationalSystem absolute_value_data) :=
   Classical.choose
@@ -1105,7 +1107,7 @@ Predicate logic:
   noncomputable def CauchyRationalEmbedding
     (rationalSystem : RationalNumberSystem)
     (absolute_value_data : RationalMetricData rationalSystem) :
-    LRA.NumberSystems.Interface.ModelTheory.DenseOrderedFieldEmbeddingIntoReal
+    LRA.NumberSystems.RealNumbers.DenseOrderedFieldEmbeddingIntoReal
       rationalSystem.FieldModel
       (CauchyRealizesRealModel rationalSystem absolute_value_data) :=
   cauchy_rational_embedding_data rationalSystem absolute_value_data
@@ -1115,7 +1117,7 @@ Predicate logic (unfolded):
   noncomputable def CauchyRationalEmbedding
     (rationalSystem : RationalNumberSystem)
     (absolute_value_data : RationalMetricData rationalSystem) :
-    LRA.NumberSystems.Interface.ModelTheory.DenseOrderedFieldEmbeddingIntoReal
+    LRA.NumberSystems.RealNumbers.DenseOrderedFieldEmbeddingIntoReal
       rationalSystem.FieldModel
       (CauchyRealizesRealModel rationalSystem absolute_value_data) :=
   cauchy_rational_embedding_data rationalSystem absolute_value_data (source fallback; no compiled unfold data available)
@@ -1126,7 +1128,7 @@ Logical form (Lean):
 noncomputable def CauchyRationalEmbedding
     (rationalSystem : RationalNumberSystem)
     (absolute_value_data : RationalMetricData rationalSystem) :
-    LRA.NumberSystems.Interface.ModelTheory.DenseOrderedFieldEmbeddingIntoReal
+    LRA.NumberSystems.RealNumbers.DenseOrderedFieldEmbeddingIntoReal
       rationalSystem.FieldModel
       (CauchyRealizesRealModel rationalSystem absolute_value_data) :=
   cauchy_rational_embedding_data rationalSystem absolute_value_data
@@ -1154,7 +1156,7 @@ Related proof moves: unfold
 noncomputable def CauchyRationalEmbedding
     (rationalSystem : RationalNumberSystem)
     (absolute_value_data : RationalMetricData rationalSystem) :
-    LRA.NumberSystems.Interface.ModelTheory.DenseOrderedFieldEmbeddingIntoReal
+    LRA.NumberSystems.RealNumbers.DenseOrderedFieldEmbeddingIntoReal
       rationalSystem.FieldModel
       (CauchyRealizesRealModel rationalSystem absolute_value_data) :=
   cauchy_rational_embedding_data rationalSystem absolute_value_data
@@ -1220,7 +1222,7 @@ Predicate logic:
   noncomputable def CauchyRealizesCofinalRealExtension
     (rationalSystem : RationalNumberSystem)
     (absolute_value_data : RationalMetricData rationalSystem) :
-    LRA.NumberSystems.Interface.ModelTheory.CofinalRealExtension
+    LRA.NumberSystems.RealNumbers.CofinalRealExtension
       rationalSystem.FieldModel where
   RealModel := CauchyRealizesRealModel rationalSystem absolute_value_data
   DenseOrderedFieldEmbedding := CauchyRationalEmbedding rationalSystem absolute_value_data
@@ -1233,7 +1235,7 @@ Predicate logic (unfolded):
   noncomputable def CauchyRealizesCofinalRealExtension
     (rationalSystem : RationalNumberSystem)
     (absolute_value_data : RationalMetricData rationalSystem) :
-    LRA.NumberSystems.Interface.ModelTheory.CofinalRealExtension
+    LRA.NumberSystems.RealNumbers.CofinalRealExtension
       rationalSystem.FieldModel where
   RealModel := CauchyRealizesRealModel rationalSystem absolute_value_data
   DenseOrderedFieldEmbedding := CauchyRationalEmbedding rationalSystem absolute_value_data
@@ -1247,7 +1249,7 @@ Logical form (Lean):
 noncomputable def CauchyRealizesCofinalRealExtension
     (rationalSystem : RationalNumberSystem)
     (absolute_value_data : RationalMetricData rationalSystem) :
-    LRA.NumberSystems.Interface.ModelTheory.CofinalRealExtension
+    LRA.NumberSystems.RealNumbers.CofinalRealExtension
       rationalSystem.FieldModel where
   RealModel := CauchyRealizesRealModel rationalSystem absolute_value_data
   DenseOrderedFieldEmbedding := CauchyRationalEmbedding rationalSystem absolute_value_data
@@ -1278,7 +1280,7 @@ Related proof moves: unfold
 noncomputable def CauchyRealizesCofinalRealExtension
     (rationalSystem : RationalNumberSystem)
     (absolute_value_data : RationalMetricData rationalSystem) :
-    LRA.NumberSystems.Interface.ModelTheory.CofinalRealExtension
+    LRA.NumberSystems.RealNumbers.CofinalRealExtension
       rationalSystem.FieldModel where
   RealModel := CauchyRealizesRealModel rationalSystem absolute_value_data
   DenseOrderedFieldEmbedding := CauchyRationalEmbedding rationalSystem absolute_value_data

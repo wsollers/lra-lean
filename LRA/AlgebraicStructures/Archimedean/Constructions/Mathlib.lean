@@ -1,1 +1,1 @@
-import LRA.AlgebraicStructures.Archimedean.Constructions.Mathlib.Laws
+import LRA.AlgebraicStructures.Archimedean.Constructions.Mathlib.Satisfy_Generic

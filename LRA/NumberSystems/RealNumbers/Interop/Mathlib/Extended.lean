@@ -1,11 +1,15 @@
 
 import Mathlib.Data.EReal.Basic
 import LRA.NumberSystems.RealNumbers.Interop.Extended
-import LRA.NumberSystems.Interface.ModelTheory.Model
+import LRA.NumberSystems.Integers.Interface.ModelTheory.Model
+import LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.Model
+import LRA.NumberSystems.RealNumbers.Interface.ModelTheory.Model
 
 namespace LRA.NumberSystems.RealNumbers.Interop.Mathlib
 
-open LRA.NumberSystems.Interface.ModelTheory
+open LRA.NumberSystems.Integers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers.Interface.ModelTheory
+open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 open LRA.NumberSystems.RealNumbers.Extended
 
 /--

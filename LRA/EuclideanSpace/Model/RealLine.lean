@@ -2,7 +2,7 @@ import LRA.EuclideanSpace.Model.EuclideanN
 
 namespace LRA.EuclideanSpace
 
-open LRA.NumberSystems.Interface.ModelTheory
+open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 
 /--
 `R1` TODO

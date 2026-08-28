@@ -6,3 +6,4 @@ import LRA.NumberSystems.RealNumbers.Constructions.EffectiveCauchy.WellDefinedne
 import LRA.NumberSystems.RealNumbers.Constructions.EffectiveCauchy.Laws
 import LRA.NumberSystems.RealNumbers.Constructions.EffectiveCauchy.Behavior
 import LRA.NumberSystems.RealNumbers.Constructions.EffectiveCauchy.Instances
+import LRA.NumberSystems.RealNumbers.Constructions.EffectiveCauchy.Satisfy_Generic

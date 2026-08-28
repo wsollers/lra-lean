@@ -3,7 +3,7 @@ import LRA.NumberSystems.RealNumbers.Interop.ConstructionModels
 
 namespace LRA.EuclideanSpace
 
-open LRA.NumberSystems.Interface.ModelTheory
+open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 
 universe u
 

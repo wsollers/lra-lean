@@ -1,1 +1,1 @@
-import LRA.AlgebraicStructures.Lattice.Constructions.Mathlib.Laws
+import LRA.AlgebraicStructures.Lattice.Constructions.Mathlib.Satisfy_Generic

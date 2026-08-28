@@ -2,13 +2,13 @@
 import LRA.AlgebraicStructures
 import LRA.NumberSystems.RationalNumbers.Constructions.RationalQuotientFractions.Behavior
 import LRA.NumberSystems.RationalNumbers.Interface.Definition
-import LRA.NumberSystems.Interface.ModelTheory.Model
+import LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.Model
 
 namespace LRA.NumberSystems.RationalNumbers.RationalQuotientFractions
 
 open LRA.AlgebraicStructures
 open LRA.Order
-open LRA.NumberSystems.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers.Interface.ModelTheory
 
 noncomputable instance rationalCarrierAdd
     (rationalData : IntegerAndPositiveNaturalData) :
@@ -223,28 +223,28 @@ theorem RationalDenseOrderCert
   sorry
 
 /--
-`RationalQuotientFractionsRealizesDenselyOrderedFieldModel` TODO
+`RationalQuotientFractionsRealizesRationalModel` TODO
 
 Predicate logic:
 
-  noncomputable def RationalQuotientFractionsRealizesDenselyOrderedFieldModel
+  noncomputable def RationalQuotientFractionsRealizesRationalModel
     (rationalData : IntegerAndPositiveNaturalData) :
-    LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel where
+    LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel where
   Carrier
 
 Predicate logic (unfolded):
 
-  noncomputable def RationalQuotientFractionsRealizesDenselyOrderedFieldModel
+  noncomputable def RationalQuotientFractionsRealizesRationalModel
     (rationalData : IntegerAndPositiveNaturalData) :
-    LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel where
+    LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel where
   Carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
-noncomputable def RationalQuotientFractionsRealizesDenselyOrderedFieldModel
+noncomputable def RationalQuotientFractionsRealizesRationalModel
     (rationalData : IntegerAndPositiveNaturalData) :
-    LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel where
+    LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel where
   Carrier
 ```
 
@@ -267,9 +267,9 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-noncomputable def RationalQuotientFractionsRealizesDenselyOrderedFieldModel
+noncomputable def RationalQuotientFractionsRealizesRationalModel
     (rationalData : IntegerAndPositiveNaturalData) :
-    LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel where
+    LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel where
   Carrier := Carrier rationalData
   addInst := rationalCarrierAdd rationalData
   mulInst := rationalCarrierMul rationalData
@@ -384,7 +384,7 @@ Predicate logic:
     (rationalData : IntegerAndPositiveNaturalData) :
     OrderedRingEmbeddingIntoDenseOrderedField
       rationalData.integer_system.Model
-      (RationalQuotientFractionsRealizesDenselyOrderedFieldModel rationalData) where
+      (RationalQuotientFractionsRealizesRationalModel rationalData) where
   ToField := integer_embedding rationalData
   injective := (integer_embedding_properties rationalData).1
   PreservesZero := (integer_embedding_properties rationalData).2.1
@@ -400,7 +400,7 @@ Predicate logic (unfolded):
     (rationalData : IntegerAndPositiveNaturalData) :
     OrderedRingEmbeddingIntoDenseOrderedField
       rationalData.integer_system.Model
-      (RationalQuotientFractionsRealizesDenselyOrderedFieldModel rationalData) where
+      (RationalQuotientFractionsRealizesRationalModel rationalData) where
   ToField := integer_embedding rationalData
   injective := (integer_embedding_properties rationalData).1
   PreservesZero := (integer_embedding_properties rationalData).2.1
@@ -417,7 +417,7 @@ noncomputable def RationalIntegerEmbedding
     (rationalData : IntegerAndPositiveNaturalData) :
     OrderedRingEmbeddingIntoDenseOrderedField
       rationalData.integer_system.Model
-      (RationalQuotientFractionsRealizesDenselyOrderedFieldModel rationalData) where
+      (RationalQuotientFractionsRealizesRationalModel rationalData) where
   ToField := integer_embedding rationalData
   injective := (integer_embedding_properties rationalData).1
   PreservesZero := (integer_embedding_properties rationalData).2.1
@@ -451,7 +451,7 @@ noncomputable def RationalIntegerEmbedding
     (rationalData : IntegerAndPositiveNaturalData) :
     OrderedRingEmbeddingIntoDenseOrderedField
       rationalData.integer_system.Model
-      (RationalQuotientFractionsRealizesDenselyOrderedFieldModel rationalData) where
+      (RationalQuotientFractionsRealizesRationalModel rationalData) where
   ToField := integer_embedding rationalData
   injective := (integer_embedding_properties rationalData).1
   PreservesZero := (integer_embedding_properties rationalData).2.1
@@ -466,18 +466,18 @@ noncomputable def RationalIntegerEmbedding
 
 Predicate logic:
 
-  (∀ rationalData ∈ IntegerAndPositiveNaturalData), ∀ q : (RationalQuotientFractionsRealizesDenselyOrderedFieldModel rationalData).Carrier, ∃ numerator denominator ∈ rationalData.integer_system.Model.Carrier, denominator ≠ 0 ∧ q = (RationalIntegerEmbedding rationalData).ToField numerator * ((RationalIntegerEmbedding rationalData).ToField denominator)⁻¹
+  (∀ rationalData ∈ IntegerAndPositiveNaturalData), ∀ q : (RationalQuotientFractionsRealizesRationalModel rationalData).Carrier, ∃ numerator denominator ∈ rationalData.integer_system.Model.Carrier, denominator ≠ 0 ∧ q = (RationalIntegerEmbedding rationalData).ToField numerator * ((RationalIntegerEmbedding rationalData).ToField denominator)⁻¹
 
 Predicate logic (unfolded):
 
-  ∀ (rationalData : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData) (q : (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.RationalQuotientFractionsRealizesDenselyOrderedFieldModel rationalData).1), Exists fun numerator => Exists fun denominator => (denominator = rationalData.integer_system.Model.zeroInst.1 → False ∧ q = instHMul.1 ((LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.RationalIntegerEmbedding rationalData).1 numerator) ((LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.RationalQuotientFractionsRealizesDenselyOrderedFieldModel rationalData).invInst.1 ((LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.RationalIntegerEmbedding rationalData).1 denominator)))
+  ∀ (rationalData : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData) (q : (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.RationalQuotientFractionsRealizesRationalModel rationalData).1), Exists fun numerator => Exists fun denominator => (denominator = rationalData.integer_system.Model.zeroInst.1 → False ∧ q = instHMul.1 ((LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.RationalIntegerEmbedding rationalData).1 numerator) ((LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.RationalQuotientFractionsRealizesRationalModel rationalData).invInst.1 ((LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.RationalIntegerEmbedding rationalData).1 denominator)))
 
 Logical form (Lean):
 
 ```lean
 theorem RationalEveryElementIsIntegerFraction
     (rationalData : IntegerAndPositiveNaturalData) :
-    ∀ q : (RationalQuotientFractionsRealizesDenselyOrderedFieldModel rationalData).Carrier,
+    ∀ q : (RationalQuotientFractionsRealizesRationalModel rationalData).Carrier,
       ∃ numerator denominator : rationalData.integer_system.Model.Carrier,
         denominator ≠ 0 ∧
         q =
@@ -506,7 +506,7 @@ Related proof moves: intro, constructor, cases, rcases, use
 -/
 theorem RationalEveryElementIsIntegerFraction
     (rationalData : IntegerAndPositiveNaturalData) :
-    ∀ q : (RationalQuotientFractionsRealizesDenselyOrderedFieldModel rationalData).Carrier,
+    ∀ q : (RationalQuotientFractionsRealizesRationalModel rationalData).Carrier,
       ∃ numerator denominator : rationalData.integer_system.Model.Carrier,
         denominator ≠ 0 ∧
         q =
@@ -524,7 +524,7 @@ Predicate logic:
     LRA.NumberSystems.RationalNumbers.RationalNumberSystem where
   IntegerSystem := rationalData.integer_system
   FieldModel :=
-    RationalQuotientFractionsRealizesDenselyOrderedFieldModel rationalData
+    RationalQuotientFractionsRealizesRationalModel rationalData
   IntegerEmbedding := RationalIntegerEmbedding rationalData
   EveryElementIsIntegerFraction := RationalEveryElementIsIntegerFraction rationalData
 
@@ -535,7 +535,7 @@ Predicate logic (unfolded):
     LRA.NumberSystems.RationalNumbers.RationalNumberSystem where
   IntegerSystem := rationalData.integer_system
   FieldModel :=
-    RationalQuotientFractionsRealizesDenselyOrderedFieldModel rationalData
+    RationalQuotientFractionsRealizesRationalModel rationalData
   IntegerEmbedding := RationalIntegerEmbedding rationalData
   EveryElementIsIntegerFraction := RationalEveryElementIsIntegerFraction rationalData (source fallback; no compiled unfold data available)
 
@@ -547,7 +547,7 @@ noncomputable def RationalQuotientFractionsRealizesRationalNumberSystem
     LRA.NumberSystems.RationalNumbers.RationalNumberSystem where
   IntegerSystem := rationalData.integer_system
   FieldModel :=
-    RationalQuotientFractionsRealizesDenselyOrderedFieldModel rationalData
+    RationalQuotientFractionsRealizesRationalModel rationalData
   IntegerEmbedding := RationalIntegerEmbedding rationalData
   EveryElementIsIntegerFraction := RationalEveryElementIsIntegerFraction rationalData
 ```
@@ -576,7 +576,7 @@ noncomputable def RationalQuotientFractionsRealizesRationalNumberSystem
     LRA.NumberSystems.RationalNumbers.RationalNumberSystem where
   IntegerSystem := rationalData.integer_system
   FieldModel :=
-    RationalQuotientFractionsRealizesDenselyOrderedFieldModel rationalData
+    RationalQuotientFractionsRealizesRationalModel rationalData
   IntegerEmbedding := RationalIntegerEmbedding rationalData
   EveryElementIsIntegerFraction := RationalEveryElementIsIntegerFraction rationalData
 

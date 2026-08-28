@@ -1,15 +1,13 @@
-import LRA.NumberSystems.Interface.ModelTheory.LStructure
-import LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.Model
+import LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.LStructure
 
 namespace LRA.NumberSystems.RationalNumbers.Constructions.Mathlib
 
-open LRA.NumberSystems.Interface.ModelTheory
 open LRA.NumberSystems.RationalNumbers.Interface.ModelTheory
 
 abbrev Carrier := Rat
 
-def genericModel : DenselyOrderedFieldModel :=
-  mathlibDenselyOrderedFieldModel
+def genericModel : RationalModel :=
+  mathlibRationalModel
 
 theorem satisfiesGenericType : genericModel.Carrier = Carrier :=
   rfl

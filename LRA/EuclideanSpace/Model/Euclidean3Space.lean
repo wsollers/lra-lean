@@ -2,7 +2,7 @@ import LRA.EuclideanSpace.Model.CartesianPlane
 
 namespace LRA.EuclideanSpace
 
-open LRA.NumberSystems.Interface.ModelTheory
+open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 
 /--
 `R3` TODO

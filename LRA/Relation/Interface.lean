@@ -4,5 +4,9 @@ import LRA.Relation.Interface.Operations
 import LRA.Relation.Interface.Structures
 import LRA.Relation.Interface.Canonical
 import LRA.Relation.Interface.Calculus
+import LRA.Relation.Interface.Satisfy_Generic
+import LRA.Relation.Interface.Satisfy_ModelTheory
+import LRA.Relation.Interface.Satisfy_UniversalAlgebra
+import LRA.Relation.Interface.Satisfaction
 import LRA.Relation.Interface.ModelTheory
 import LRA.Relation.Interface.UniversalAlgebra

@@ -1,0 +1,3 @@
+import LRA.Relation.Interface.Satisfy_Generic
+import LRA.Relation.Interface.Satisfy_ModelTheory
+import LRA.Relation.Interface.Satisfy_UniversalAlgebra

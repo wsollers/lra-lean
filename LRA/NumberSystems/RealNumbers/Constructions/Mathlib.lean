@@ -1,9 +1,7 @@
-import LRA.NumberSystems.Interface.ModelTheory.LStructure
-import LRA.NumberSystems.RealNumbers.Interface.ModelTheory.Model
+import LRA.NumberSystems.RealNumbers.Interface.ModelTheory.LStructure
 
 namespace LRA.NumberSystems.RealNumbers.Constructions.Mathlib
 
-open LRA.NumberSystems.Interface.ModelTheory
 open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 
 abbrev Carrier := Real

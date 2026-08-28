@@ -1,1 +1,1 @@
-import LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Constructions.Mathlib.Laws
+import LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Constructions.Mathlib.Satisfy_Generic

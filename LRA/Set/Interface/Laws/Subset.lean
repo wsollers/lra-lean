@@ -90,8 +90,11 @@ Common confusions:
 Related proof moves: intro
 
 -/
-theorem SubsetReflexive : ∀ A : α, A ⊆ A :=
+theorem SubsetReflexive : ∀ A : α, A ⊆ A := by
   sorry
+
+
+
 
 /--
 `SubsetTransitive` TODO
@@ -172,5 +175,3 @@ theorem SetEqualityIffMutualSubset : ∀ A B : α, A = B ↔ A ⊆ B ∧ B ⊆ A
   sorry
 
 end LRA.Set
-
-

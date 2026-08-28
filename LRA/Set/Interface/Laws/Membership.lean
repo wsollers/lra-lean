@@ -419,6 +419,7 @@ theorem SetExtensionality
     [Membership Element SetObject] [ExtensionalityLaw Element SetObject]
     {A B : SetObject} (sameMembers : ∀ x : Element, x ∈ A ↔ x ∈ B) :
     A = B := by
+
   sorry
 
 /--
@@ -466,7 +467,8 @@ theorem EmptyMembership
     [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject]
     [MembershipLaws Element SetObject] :
     ∀ x : Element, x ∉ (∅ : SetObject) := by
-  sorry
+  intro elem
+  exact MembershipLaws.EmptyMembership elem
 
 /--
 `UnionMembership` TODO

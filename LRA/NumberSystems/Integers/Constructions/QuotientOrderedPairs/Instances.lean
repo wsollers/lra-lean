@@ -1,7 +1,6 @@
 
 import LRA.AlgebraicStructures
 import LRA.NumberSystems.Integers.Constructions.QuotientOrderedPairs.Behavior
-import LRA.NumberSystems.Interface.ModelTheory.Model
 import LRA.NumberSystems.Integers.Interface.Definition
 
 namespace LRA.NumberSystems.Integers.QuotientOrderedPairs
@@ -704,14 +703,14 @@ Predicate logic:
 
   noncomputable def QuotientOrderedPairsRealizesIntegerModel
     (whole_data : WholeNumberArithmeticForQuotientPairs) :
-    LRA.NumberSystems.Interface.ModelTheory.DiscretelyOrderedIntegralDomainModel where
+    LRA.NumberSystems.Integers.Interface.ModelTheory.IntegerModel where
   Carrier
 
 Predicate logic (unfolded):
 
   noncomputable def QuotientOrderedPairsRealizesIntegerModel
     (whole_data : WholeNumberArithmeticForQuotientPairs) :
-    LRA.NumberSystems.Interface.ModelTheory.DiscretelyOrderedIntegralDomainModel where
+    LRA.NumberSystems.Integers.Interface.ModelTheory.IntegerModel where
   Carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
@@ -719,7 +718,7 @@ Logical form (Lean):
 ```lean
 noncomputable def QuotientOrderedPairsRealizesIntegerModel
     (whole_data : WholeNumberArithmeticForQuotientPairs) :
-    LRA.NumberSystems.Interface.ModelTheory.DiscretelyOrderedIntegralDomainModel where
+    LRA.NumberSystems.Integers.Interface.ModelTheory.IntegerModel where
   Carrier
 ```
 
@@ -744,7 +743,7 @@ Related proof moves: unfold
 -/
 noncomputable def QuotientOrderedPairsRealizesIntegerModel
     (whole_data : WholeNumberArithmeticForQuotientPairs) :
-    LRA.NumberSystems.Interface.ModelTheory.DiscretelyOrderedIntegralDomainModel where
+    LRA.NumberSystems.Integers.Interface.ModelTheory.IntegerModel where
   Carrier := Carrier whole_data
   addInst := quotientCarrierAdd whole_data
   mulInst := quotientCarrierMul whole_data

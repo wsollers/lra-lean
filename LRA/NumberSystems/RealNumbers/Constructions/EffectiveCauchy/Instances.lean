@@ -4,7 +4,9 @@ import LRA.NumberSystems.RealNumbers.Constructions.EffectiveCauchy.Behavior
 
 namespace LRA.NumberSystems.RealNumbers.EffectiveCauchy
 
-open LRA.NumberSystems.Interface.ModelTheory
+open LRA.NumberSystems.Integers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers.Interface.ModelTheory
+open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 open LRA.NumberSystems.RationalNumbers
 open LRA.AlgebraicStructures
 open LRA.Order
@@ -707,28 +709,28 @@ theorem carrier_completeness_cert
   sorry
 
 /--
-`EffectiveCauchyRealizesDenselyOrderedFieldModel` TODO
+`EffectiveCauchyRealizesRationalModel` TODO
 
 Predicate logic:
 
-  noncomputable def EffectiveCauchyRealizesDenselyOrderedFieldModel
+  noncomputable def EffectiveCauchyRealizesRationalModel
     (rationalSystem : RationalNumberSystem) :
-    LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel where
+    LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel where
   Carrier
 
 Predicate logic (unfolded):
 
-  noncomputable def EffectiveCauchyRealizesDenselyOrderedFieldModel
+  noncomputable def EffectiveCauchyRealizesRationalModel
     (rationalSystem : RationalNumberSystem) :
-    LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel where
+    LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel where
   Carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
-noncomputable def EffectiveCauchyRealizesDenselyOrderedFieldModel
+noncomputable def EffectiveCauchyRealizesRationalModel
     (rationalSystem : RationalNumberSystem) :
-    LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel where
+    LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel where
   Carrier
 ```
 
@@ -751,9 +753,9 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-noncomputable def EffectiveCauchyRealizesDenselyOrderedFieldModel
+noncomputable def EffectiveCauchyRealizesRationalModel
     (rationalSystem : RationalNumberSystem) :
-    LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel where
+    LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel where
   Carrier := EffectiveCauchyReal rationalSystem
   addInst := CarrierAdd rationalSystem
   mulInst := CarrierMul rationalSystem
@@ -774,14 +776,14 @@ Predicate logic:
 
   noncomputable def EffectiveCauchyRealizesRealModel
     (rationalSystem : RationalNumberSystem) :
-    LRA.NumberSystems.Interface.ModelTheory.RealModel where
+    LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel where
   Carrier
 
 Predicate logic (unfolded):
 
   noncomputable def EffectiveCauchyRealizesRealModel
     (rationalSystem : RationalNumberSystem) :
-    LRA.NumberSystems.Interface.ModelTheory.RealModel where
+    LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel where
   Carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
@@ -789,7 +791,7 @@ Logical form (Lean):
 ```lean
 noncomputable def EffectiveCauchyRealizesRealModel
     (rationalSystem : RationalNumberSystem) :
-    LRA.NumberSystems.Interface.ModelTheory.RealModel where
+    LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel where
   Carrier
 ```
 
@@ -814,7 +816,7 @@ Related proof moves: unfold
 -/
 noncomputable def EffectiveCauchyRealizesRealModel
     (rationalSystem : RationalNumberSystem) :
-    LRA.NumberSystems.Interface.ModelTheory.RealModel where
+    LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel where
   Carrier := EffectiveCauchyReal rationalSystem
   addInst := CarrierAdd rationalSystem
   mulInst := CarrierMul rationalSystem

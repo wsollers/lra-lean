@@ -6,3 +6,4 @@ import LRA.NumberSystems.RealNumbers.Constructions.Dedekind.WellDefinedness
 import LRA.NumberSystems.RealNumbers.Constructions.Dedekind.Laws
 import LRA.NumberSystems.RealNumbers.Constructions.Dedekind.Behavior
 import LRA.NumberSystems.RealNumbers.Constructions.Dedekind.Instances
+import LRA.NumberSystems.RealNumbers.Constructions.Dedekind.Satisfy_Generic

@@ -1,1 +1,1 @@
-import LRA.AlgebraicStructures.JoinSemilattice.Constructions.Mathlib.Laws
+import LRA.AlgebraicStructures.JoinSemilattice.Constructions.Mathlib.Satisfy_Generic

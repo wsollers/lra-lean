@@ -1,60 +1,47 @@
-import LRA.NumberSystems.Integers.Interface.Definition
-import LRA.NumberSystems.Interface.ModelTheory.CanonicalEmbeddings
+import LRA.NumberSystems.Integers.Interface.ModelTheory.Theory
+import LRA.NumberSystems.Integers.Interface.ModelTheory.LStructure
+import LRA.NumberSystems.Integers.Interface.Satisfy_ModelTheory
+import LRA.UniversalAlgebra.Homomorphism.Definition
+import LRA.UniversalAlgebra.UniversalProperties.Basic.InitialObjects
 
 namespace LRA.NumberSystems.Integers
 
-open LRA.NumberSystems.Interface.ModelTheory
-open LRA.NumberSystems.Interface.ModelTheory.CanonicalEmbeddings
+open LRA.AlgebraicStructures.OrderedRing.Interface.ModelTheory
+open LRA.NumberSystems.Integers.Interface.ModelTheory
 
-universe u
+/-- A discretely-ordered integral domain realizing the ℤ signature: an
+`OrderedRingSignature` together with a proof that it satisfies
+`IntegersTheory`. -/
+abbrev DiscretelyOrderedIntegralDomain :=
+  {signature : OrderedRingSignature // IntegersTheory signature}
 
-/--
-`IntegerInitiality` TODO
+/-- Structure-preserving maps between discretely-ordered integral domains,
+realized as homomorphisms between the first-order models each signature
+induces. -/
+abbrev DiscretelyOrderedIntegralDomainArrow
+    (source target : DiscretelyOrderedIntegralDomain) :=
+  LRA.UniversalAlgebra.Homomorphism
+    (BuildOrderedRingModel source.val) (BuildOrderedRingModel target.val)
 
-Predicate logic:
+/-- ℤ (realized here by Mathlib's `Int`) is the initial discretely-ordered
+integral domain: every discretely-ordered integral domain `A` receives
+exactly one homomorphism from ℤ, namely `n ↦ n • 1_A`.
 
-  ∃! map : integerSystem.Model.Carrier → target.Carrier, EmbeddingPreservesOrderedRing integerSystem.Model.signature target.signature map
-
-Predicate logic (unfolded):
-
-  ∀ (integerSystem : LRA.NumberSystems.Integers.IntegerNumberSystem) (target : LRA.NumberSystems.Interface.ModelTheory.DiscretelyOrderedIntegralDomainModel), Exists fun x => ((fun map => LRA.NumberSystems.Interface.ModelTheory.CanonicalEmbeddings.EmbeddingPreservesOrderedRing { carrier := integerSystem.Model.1, zero := integerSystem.Model.zeroInst.1, one := integerSystem.Model.oneInst.1, add := fun x1 x2 => instHAdd.1 x1 x2, multiply := fun x1 x2 => instHMul.1 x1 x2, neg := fun x => integerSystem.Model.negInst.1 x, le := fun x1 x2 => integerSystem.Model.leInst.1 x1 x2, StrictOrder := fun x1 x2 => integerSystem.Model.ltInst.1 x1 x2 } { carrier := target.1, zero := target.zeroInst.1, one := target.oneInst.1, add := fun x1 x2 => instHAdd.1 x1 x2, multiply := fun x1 x2 => instHMul.1 x1 x2, neg := fun x => target.negInst.1 x, le := fun x1 x2 => target.leInst.1 x1 x2, StrictOrder := fun x1 x2 => target.ltInst.1 x1 x2 } map) x ∧ ∀ (y : integerSystem.Model.1 → target.1), LRA.NumberSystems.Interface.ModelTheory.CanonicalEmbeddings.EmbeddingPreservesOrderedRing { carrier := integerSystem.Model.1, zero := integerSystem.Model.zeroInst.1, one := integerSystem.Model.oneInst.1, add := fun x1 x2 => instHAdd.1 x1 x2, multiply := fun x1 x2 => instHMul.1 x1 x2, neg := fun x => integerSystem.Model.negInst.1 x, le := fun x1 x2 => integerSystem.Model.leInst.1 x1 x2, StrictOrder := fun x1 x2 => integerSystem.Model.ltInst.1 x1 x2 } { carrier := target.1, zero := target.zeroInst.1, one := target.oneInst.1, add := fun x1 x2 => instHAdd.1 x1 x2, multiply := fun x1 x2 => instHMul.1 x1 x2, neg := fun x => target.negInst.1 x, le := fun x1 x2 => target.leInst.1 x1 x2, StrictOrder := fun x1 x2 => target.ltInst.1 x1 x2 } y → y = x)
-
-Logical form (Lean):
+Logical form:
 
 ```lean
-theorem IntegerInitiality
-    (integerSystem : IntegerNumberSystem.{u})
-    (target : DiscretelyOrderedIntegralDomainModel.{u}) :
-    ∃! map : integerSystem.Model.Carrier → target.Carrier,
-      EmbeddingPreservesOrderedRing
-        integerSystem.Model.signature target.signature map
+theorem IntegersInitial :
+    LRA.UniversalAlgebra.UniversalProperties.Basic.InitialObject
+      DiscretelyOrderedIntegralDomain
+      DiscretelyOrderedIntegralDomainArrow
+      ⟨mathlibIntegerModel.signature, satisfiesModelTheory mathlibIntegerModel⟩
 ```
-
-Type-theoretic form:
-
-  TODO
-
-Proof use:
-
-  TODO
-
-After unfold / common proof state:
-
-  TODO
-
-Common confusions:
-
-  TODO
-
-Related proof moves: intro, use, rcases
-
 -/
-theorem IntegerInitiality
-    (integerSystem : IntegerNumberSystem.{u})
-    (target : DiscretelyOrderedIntegralDomainModel.{u}) :
-    ∃! map : integerSystem.Model.Carrier → target.Carrier,
-      EmbeddingPreservesOrderedRing
-        integerSystem.Model.signature target.signature map := by
+theorem IntegersInitial :
+    LRA.UniversalAlgebra.UniversalProperties.Basic.InitialObject
+      DiscretelyOrderedIntegralDomain
+      DiscretelyOrderedIntegralDomainArrow
+      ⟨mathlibIntegerModel.signature, satisfiesModelTheory mathlibIntegerModel⟩ := by
   sorry
 
 end LRA.NumberSystems.Integers

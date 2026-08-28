@@ -1,1 +1,1 @@
-import LRA.AlgebraicStructures.CommutativeMonoid.Constructions.Mathlib.Laws
+import LRA.AlgebraicStructures.CommutativeMonoid.Constructions.Mathlib.Satisfy_Generic

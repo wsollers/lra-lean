@@ -1,6 +1,6 @@
 import LRA.NumberSystems.ComplexNumbers.Interface.Signature.Definition
 import LRA.AlgebraicStructures.Field.Interface.ModelTheory.Model
-import LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs
+import LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.Operations
 
 namespace LRA.NumberSystems.ComplexNumbers.Interface.ModelTheory
 

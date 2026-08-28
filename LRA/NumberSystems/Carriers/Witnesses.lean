@@ -824,23 +824,23 @@ deferred — see the audit doc.)
 Predicate logic:
 
   noncomputable def landauDenselyOrderedFieldModel :
-    LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel :=
-  LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.RationalQuotientFractionsRealizesDenselyOrderedFieldModel
+    LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel :=
+  LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.RationalQuotientFractionsRealizesRationalModel
     landauIntegerAndPositiveNaturalData
 
 Predicate logic (unfolded):
 
   noncomputable def landauDenselyOrderedFieldModel :
-    LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel :=
-  LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.RationalQuotientFractionsRealizesDenselyOrderedFieldModel
+    LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel :=
+  LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.RationalQuotientFractionsRealizesRationalModel
     landauIntegerAndPositiveNaturalData (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
 noncomputable def landauDenselyOrderedFieldModel :
-    LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel :=
-  LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.RationalQuotientFractionsRealizesDenselyOrderedFieldModel
+    LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel :=
+  LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.RationalQuotientFractionsRealizesRationalModel
     landauIntegerAndPositiveNaturalData
 ```
 
@@ -864,8 +864,8 @@ Related proof moves: unfold
 
 -/
 noncomputable def landauDenselyOrderedFieldModel :
-    LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel :=
-  LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.RationalQuotientFractionsRealizesDenselyOrderedFieldModel
+    LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel :=
+  LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.RationalQuotientFractionsRealizesRationalModel
     landauIntegerAndPositiveNaturalData
 
 /--
@@ -916,20 +916,20 @@ abbrev R_Cantor :=
 Predicate logic:
 
   noncomputable def landauCantorRealModel :
-    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+    LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel :=
   LRA.NumberSystems.RealNumbers.Cantor.CantorRealizesRealModel landauDenselyOrderedFieldModel
 
 Predicate logic (unfolded):
 
   noncomputable def landauCantorRealModel :
-    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+    LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel :=
   LRA.NumberSystems.RealNumbers.Cantor.CantorRealizesRealModel landauDenselyOrderedFieldModel (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
 noncomputable def landauCantorRealModel :
-    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+    LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel :=
   LRA.NumberSystems.RealNumbers.Cantor.CantorRealizesRealModel landauDenselyOrderedFieldModel
 ```
 
@@ -953,7 +953,7 @@ Related proof moves: unfold
 
 -/
 noncomputable def landauCantorRealModel :
-    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+    LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel :=
   LRA.NumberSystems.RealNumbers.Cantor.CantorRealizesRealModel landauDenselyOrderedFieldModel
 
 /--
@@ -1004,20 +1004,20 @@ abbrev R_Dedekind :=
 Predicate logic:
 
   noncomputable def landauDedekindRealModel :
-    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+    LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel :=
   LRA.NumberSystems.RealNumbers.Dedekind.DedekindRealizesRealModel landauDenselyOrderedFieldModel
 
 Predicate logic (unfolded):
 
   noncomputable def landauDedekindRealModel :
-    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+    LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel :=
   LRA.NumberSystems.RealNumbers.Dedekind.DedekindRealizesRealModel landauDenselyOrderedFieldModel (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
 noncomputable def landauDedekindRealModel :
-    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+    LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel :=
   LRA.NumberSystems.RealNumbers.Dedekind.DedekindRealizesRealModel landauDenselyOrderedFieldModel
 ```
 
@@ -1041,7 +1041,7 @@ Related proof moves: unfold
 
 -/
 noncomputable def landauDedekindRealModel :
-    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+    LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel :=
   LRA.NumberSystems.RealNumbers.Dedekind.DedekindRealizesRealModel landauDenselyOrderedFieldModel
 
 /--
@@ -1092,14 +1092,14 @@ abbrev R_PrimitiveIntervals :=
 Predicate logic:
 
   noncomputable def landauPrimitiveIntervalsRealModel :
-    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+    LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel :=
   LRA.NumberSystems.RealNumbers.PrimitiveIntervals.PrimitiveIntervalsRealizesRealModel
     landauDenselyOrderedFieldModel
 
 Predicate logic (unfolded):
 
   noncomputable def landauPrimitiveIntervalsRealModel :
-    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+    LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel :=
   LRA.NumberSystems.RealNumbers.PrimitiveIntervals.PrimitiveIntervalsRealizesRealModel
     landauDenselyOrderedFieldModel (source fallback; no compiled unfold data available)
 
@@ -1107,7 +1107,7 @@ Logical form (Lean):
 
 ```lean
 noncomputable def landauPrimitiveIntervalsRealModel :
-    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+    LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel :=
   LRA.NumberSystems.RealNumbers.PrimitiveIntervals.PrimitiveIntervalsRealizesRealModel
     landauDenselyOrderedFieldModel
 ```
@@ -1132,7 +1132,7 @@ Related proof moves: unfold
 
 -/
 noncomputable def landauPrimitiveIntervalsRealModel :
-    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+    LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel :=
   LRA.NumberSystems.RealNumbers.PrimitiveIntervals.PrimitiveIntervalsRealizesRealModel
     landauDenselyOrderedFieldModel
 
@@ -1244,14 +1244,14 @@ abbrev R_EffectiveCauchy :=
 Predicate logic:
 
   noncomputable def landauEffectiveCauchyRealModel :
-    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+    LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel :=
   LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyRealizesRealModel
     landauRationalNumberSystem
 
 Predicate logic (unfolded):
 
   noncomputable def landauEffectiveCauchyRealModel :
-    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+    LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel :=
   LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyRealizesRealModel
     landauRationalNumberSystem (source fallback; no compiled unfold data available)
 
@@ -1259,7 +1259,7 @@ Logical form (Lean):
 
 ```lean
 noncomputable def landauEffectiveCauchyRealModel :
-    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+    LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel :=
   LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyRealizesRealModel
     landauRationalNumberSystem
 ```
@@ -1284,7 +1284,7 @@ Related proof moves: unfold
 
 -/
 noncomputable def landauEffectiveCauchyRealModel :
-    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+    LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel :=
   LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyRealizesRealModel
     landauRationalNumberSystem
 
@@ -1885,14 +1885,14 @@ abbrev R_Cauchy :=
 Predicate logic:
 
   noncomputable def landauCauchyRealModel :
-    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+    LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel :=
   LRA.NumberSystems.RealNumbers.Cauchy.CauchyRealizesRealModel
     landauRationalNumberSystem landauRationalMetricData
 
 Predicate logic (unfolded):
 
   noncomputable def landauCauchyRealModel :
-    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+    LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel :=
   LRA.NumberSystems.RealNumbers.Cauchy.CauchyRealizesRealModel
     landauRationalNumberSystem landauRationalMetricData (source fallback; no compiled unfold data available)
 
@@ -1900,7 +1900,7 @@ Logical form (Lean):
 
 ```lean
 noncomputable def landauCauchyRealModel :
-    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+    LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel :=
   LRA.NumberSystems.RealNumbers.Cauchy.CauchyRealizesRealModel
     landauRationalNumberSystem landauRationalMetricData
 ```
@@ -1925,7 +1925,7 @@ Related proof moves: unfold
 
 -/
 noncomputable def landauCauchyRealModel :
-    LRA.NumberSystems.Interface.ModelTheory.RealModel :=
+    LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel :=
   LRA.NumberSystems.RealNumbers.Cauchy.CauchyRealizesRealModel
     landauRationalNumberSystem landauRationalMetricData
 

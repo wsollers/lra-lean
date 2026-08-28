@@ -1,2 +1,4 @@
 import LRA.Relation.Constructions.LRA.ZFCSetRelation
+import LRA.Relation.Constructions.LRA.ZFCSetRelation.Satisfy_Generic
 import LRA.Relation.Constructions.Mathlib.PredicateSetRelation
+import LRA.Relation.Constructions.Mathlib.PredicateSetRelation.Satisfy_Generic

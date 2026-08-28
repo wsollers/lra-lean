@@ -1,2 +1,3 @@
 import LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs
 import LRA.NumberSystems.ComplexNumbers.Constructions.Mathlib
+import LRA.NumberSystems.ComplexNumbers.Constructions.Mathlib.Satisfy_Generic

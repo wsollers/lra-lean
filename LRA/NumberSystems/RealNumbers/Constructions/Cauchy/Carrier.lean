@@ -1,11 +1,15 @@
 
 import LRA.UniversalAlgebra.Quotient.RepresentativeCompatibility
 import LRA.NumberSystems.RationalNumbers.Interface.Definition
-import LRA.NumberSystems.Interface.ModelTheory.Model
+import LRA.NumberSystems.Integers.Interface.ModelTheory.Model
+import LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.Model
+import LRA.NumberSystems.RealNumbers.Interface.ModelTheory.Model
 
 namespace LRA.NumberSystems.RealNumbers.Cauchy
 
-open LRA.NumberSystems.Interface.ModelTheory
+open LRA.NumberSystems.Integers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers.Interface.ModelTheory
+open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 open LRA.NumberSystems.RationalNumbers
 
 /--

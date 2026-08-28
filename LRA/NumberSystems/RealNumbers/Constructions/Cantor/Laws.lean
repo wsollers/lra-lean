@@ -2,7 +2,9 @@ import LRA.NumberSystems.RealNumbers.Constructions.Cantor.WellDefinedness
 import LRA.Operation.Laws.QuotientCompatible.Definition
 
 namespace LRA.NumberSystems.RealNumbers.Cantor
-open LRA.NumberSystems.Interface.ModelTheory
+open LRA.NumberSystems.Integers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers.Interface.ModelTheory
+open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 open LRA.Operation.Laws.QuotientCompatible
 
 /--
@@ -11,7 +13,7 @@ open LRA.Operation.Laws.QuotientCompatible
 Predicate logic:
 
   noncomputable def addition
-    (fieldModel : DenselyOrderedFieldModel)
+    (fieldModel : RationalModel)
     (first second : NestedIntervalSequence fieldModel) :
     NestedIntervalSequence fieldModel where
   interval := representative_addition fieldModel first second
@@ -22,7 +24,7 @@ Predicate logic:
 Predicate logic (unfolded):
 
   noncomputable def addition
-    (fieldModel : DenselyOrderedFieldModel)
+    (fieldModel : RationalModel)
     (first second : NestedIntervalSequence fieldModel) :
     NestedIntervalSequence fieldModel where
   interval := representative_addition fieldModel first second
@@ -34,7 +36,7 @@ Logical form (Lean):
 
 ```lean
 noncomputable def addition
-    (fieldModel : DenselyOrderedFieldModel)
+    (fieldModel : RationalModel)
     (first second : NestedIntervalSequence fieldModel) :
     NestedIntervalSequence fieldModel where
   interval := representative_addition fieldModel first second
@@ -63,7 +65,7 @@ Related proof moves: unfold
 
 -/
 noncomputable def addition
-    (fieldModel : DenselyOrderedFieldModel)
+    (fieldModel : RationalModel)
     (first second : NestedIntervalSequence fieldModel) :
     NestedIntervalSequence fieldModel where
   interval := representative_addition fieldModel first second
@@ -76,17 +78,17 @@ noncomputable def addition
 
 Predicate logic:
 
-  (∀ fieldModel ∈ DenselyOrderedFieldModel), LRA.UniversalAlgebra.Quotient.binary_operation_respects (EndpointSetoid fieldModel) (addition fieldModel)
+  (∀ fieldModel ∈ RationalModel), LRA.UniversalAlgebra.Quotient.binary_operation_respects (EndpointSetoid fieldModel) (addition fieldModel)
 
 Predicate logic (unfolded):
 
-  ∀ (fieldModel : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel) (first_representative first_replacement second_representative second_replacement : LRA.NumberSystems.RealNumbers.Cantor.NestedIntervalSequence fieldModel), ((LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel).1 first_representative first_replacement ∧ (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel).1 second_representative second_replacement) → (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel).1 { interval := fun index => (Classical.indefiniteDescription (fun x => (LRA.NumberSystems.RealNumbers.Cantor.IsEndpointSum fieldModel (first_representative.interval index) (second_representative.interval index) x ∧ ∀ (other : LRA.NumberSystems.RealNumbers.Cantor.EndpointInterval fieldModel), LRA.NumberSystems.RealNumbers.Cantor.IsEndpointSum fieldModel (first_representative.interval index) (second_representative.interval index) other → other = x)) ⋯).val, nested := ⋯, widths_converge_to_zero := ⋯ } { interval := fun index => (Classical.indefiniteDescription (fun x => (LRA.NumberSystems.RealNumbers.Cantor.IsEndpointSum fieldModel (first_replacement.interval index) (second_replacement.interval index) x ∧ ∀ (other : LRA.NumberSystems.RealNumbers.Cantor.EndpointInterval fieldModel), LRA.NumberSystems.RealNumbers.Cantor.IsEndpointSum fieldModel (first_replacement.interval index) (second_replacement.interval index) other → other = x)) ⋯).val, nested := ⋯, widths_converge_to_zero := ⋯ }
+  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (first_representative first_replacement second_representative second_replacement : LRA.NumberSystems.RealNumbers.Cantor.NestedIntervalSequence fieldModel), ((LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel).1 first_representative first_replacement ∧ (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel).1 second_representative second_replacement) → (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel).1 { interval := fun index => (Classical.indefiniteDescription (fun x => (LRA.NumberSystems.RealNumbers.Cantor.IsEndpointSum fieldModel (first_representative.interval index) (second_representative.interval index) x ∧ ∀ (other : LRA.NumberSystems.RealNumbers.Cantor.EndpointInterval fieldModel), LRA.NumberSystems.RealNumbers.Cantor.IsEndpointSum fieldModel (first_representative.interval index) (second_representative.interval index) other → other = x)) ⋯).val, nested := ⋯, widths_converge_to_zero := ⋯ } { interval := fun index => (Classical.indefiniteDescription (fun x => (LRA.NumberSystems.RealNumbers.Cantor.IsEndpointSum fieldModel (first_replacement.interval index) (second_replacement.interval index) x ∧ ∀ (other : LRA.NumberSystems.RealNumbers.Cantor.EndpointInterval fieldModel), LRA.NumberSystems.RealNumbers.Cantor.IsEndpointSum fieldModel (first_replacement.interval index) (second_replacement.interval index) other → other = x)) ⋯).val, nested := ⋯, widths_converge_to_zero := ⋯ }
 
 Logical form (Lean):
 
 ```lean
 theorem representative_addition_respects_equivalence
-    (fieldModel : DenselyOrderedFieldModel) :
+    (fieldModel : RationalModel) :
     LRA.UniversalAlgebra.Quotient.binary_operation_respects
       (EndpointSetoid fieldModel) (addition fieldModel)
 ```
@@ -111,7 +113,7 @@ Related proof moves: TODO
 
 -/
 theorem representative_addition_respects_equivalence
-    (fieldModel : DenselyOrderedFieldModel) :
+    (fieldModel : RationalModel) :
     LRA.UniversalAlgebra.Quotient.binary_operation_respects
       (EndpointSetoid fieldModel) (addition fieldModel) := by
   sorry
@@ -121,17 +123,17 @@ theorem representative_addition_respects_equivalence
 
 Predicate logic:
 
-  (∀ fieldModel ∈ DenselyOrderedFieldModel), BinaryOperationIsProper (IsNestedAndShrinking fieldModel) (fun representative => representative.interval) (representative_addition fieldModel) (EndpointSetoid fieldModel) (addition fieldModel)
+  (∀ fieldModel ∈ RationalModel), BinaryOperationIsProper (IsNestedAndShrinking fieldModel) (fun representative => representative.interval) (representative_addition fieldModel) (EndpointSetoid fieldModel) (addition fieldModel)
 
 Predicate logic (unfolded):
 
-  ∀ (fieldModel : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel), LRA.Operation.Laws.QuotientCompatible.BinaryOperationIsProper (fun sequence => (∀ (index : Nat), (fieldModel.signature.toOrderedRingConceptSignature.2 (sequence index).1 (sequence (instHAdd.hAdd index 1)).1 ∧ fieldModel.signature.toOrderedRingConceptSignature.2 (sequence (instHAdd.hAdd index 1)).2 (sequence index).2) ∧ ∀ (positive_tolerance : fieldModel.signature.toCarrierBundle.1), fieldModel.signature.toOrderedRingSignature.2 fieldModel.signature.toZeroOneBundle.2 positive_tolerance → Exists fun index => fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (sequence index).2 (fieldModel.signature.toRingConceptSignature.2 (sequence index).1)) positive_tolerance)) (fun representative => representative.1) (fun first second index => (Classical.indefiniteDescription (fun x => (LRA.NumberSystems.RealNumbers.Cantor.IsEndpointSum fieldModel (first.interval index) (second.interval index) x ∧ ∀ (other : LRA.NumberSystems.RealNumbers.Cantor.EndpointInterval fieldModel), LRA.NumberSystems.RealNumbers.Cantor.IsEndpointSum fieldModel (first.interval index) (second.interval index) other → other = x)) ⋯).1) { r := fun first second => ∀ (tolerance : fieldModel.1), fieldModel.ltInst.1 fieldModel.zeroInst.1 tolerance → Exists fun index => (fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (first.interval index).1 (fieldModel.signature.toRingConceptSignature.2 (second.interval index).2)) tolerance ∧ fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (second.interval index).1 (fieldModel.signature.toRingConceptSignature.2 (first.interval index).2)) tolerance), iseqv := ⋯ } fun first second => { interval := fun index => (Classical.indefiniteDescription (fun x => (LRA.NumberSystems.RealNumbers.Cantor.IsEndpointSum fieldModel (first.interval index) (second.interval index) x ∧ ∀ (other : LRA.NumberSystems.RealNumbers.Cantor.EndpointInterval fieldModel), LRA.NumberSystems.RealNumbers.Cantor.IsEndpointSum fieldModel (first.interval index) (second.interval index) other → other = x)) ⋯).1, nested := ⋯, widths_converge_to_zero := ⋯ }
+  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), LRA.Operation.Laws.QuotientCompatible.BinaryOperationIsProper (fun sequence => (∀ (index : Nat), (fieldModel.signature.toOrderedRingConceptSignature.2 (sequence index).1 (sequence (instHAdd.hAdd index 1)).1 ∧ fieldModel.signature.toOrderedRingConceptSignature.2 (sequence (instHAdd.hAdd index 1)).2 (sequence index).2) ∧ ∀ (positive_tolerance : fieldModel.signature.toCarrierBundle.1), fieldModel.signature.toOrderedRingSignature.2 fieldModel.signature.toZeroOneBundle.2 positive_tolerance → Exists fun index => fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (sequence index).2 (fieldModel.signature.toRingConceptSignature.2 (sequence index).1)) positive_tolerance)) (fun representative => representative.1) (fun first second index => (Classical.indefiniteDescription (fun x => (LRA.NumberSystems.RealNumbers.Cantor.IsEndpointSum fieldModel (first.interval index) (second.interval index) x ∧ ∀ (other : LRA.NumberSystems.RealNumbers.Cantor.EndpointInterval fieldModel), LRA.NumberSystems.RealNumbers.Cantor.IsEndpointSum fieldModel (first.interval index) (second.interval index) other → other = x)) ⋯).1) { r := fun first second => ∀ (tolerance : fieldModel.1), fieldModel.ltInst.1 fieldModel.zeroInst.1 tolerance → Exists fun index => (fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (first.interval index).1 (fieldModel.signature.toRingConceptSignature.2 (second.interval index).2)) tolerance ∧ fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (second.interval index).1 (fieldModel.signature.toRingConceptSignature.2 (first.interval index).2)) tolerance), iseqv := ⋯ } fun first second => { interval := fun index => (Classical.indefiniteDescription (fun x => (LRA.NumberSystems.RealNumbers.Cantor.IsEndpointSum fieldModel (first.interval index) (second.interval index) x ∧ ∀ (other : LRA.NumberSystems.RealNumbers.Cantor.EndpointInterval fieldModel), LRA.NumberSystems.RealNumbers.Cantor.IsEndpointSum fieldModel (first.interval index) (second.interval index) other → other = x)) ⋯).1, nested := ⋯, widths_converge_to_zero := ⋯ }
 
 Logical form (Lean):
 
 ```lean
 theorem addition_is_proper
-    (fieldModel : DenselyOrderedFieldModel) :
+    (fieldModel : RationalModel) :
     BinaryOperationIsProper
       (IsNestedAndShrinking fieldModel)
       (fun representative => representative.interval)
@@ -160,7 +162,7 @@ Related proof moves: TODO
 
 -/
 theorem addition_is_proper
-    (fieldModel : DenselyOrderedFieldModel) :
+    (fieldModel : RationalModel) :
     BinaryOperationIsProper
       (IsNestedAndShrinking fieldModel)
       (fun representative => representative.interval)
@@ -175,7 +177,7 @@ theorem addition_is_proper
 Predicate logic:
 
   noncomputable def negation
-    (fieldModel : DenselyOrderedFieldModel)
+    (fieldModel : RationalModel)
     (sequence : NestedIntervalSequence fieldModel) :
     NestedIntervalSequence fieldModel where
   interval := representative_negation fieldModel sequence
@@ -186,7 +188,7 @@ Predicate logic:
 Predicate logic (unfolded):
 
   noncomputable def negation
-    (fieldModel : DenselyOrderedFieldModel)
+    (fieldModel : RationalModel)
     (sequence : NestedIntervalSequence fieldModel) :
     NestedIntervalSequence fieldModel where
   interval := representative_negation fieldModel sequence
@@ -198,7 +200,7 @@ Logical form (Lean):
 
 ```lean
 noncomputable def negation
-    (fieldModel : DenselyOrderedFieldModel)
+    (fieldModel : RationalModel)
     (sequence : NestedIntervalSequence fieldModel) :
     NestedIntervalSequence fieldModel where
   interval := representative_negation fieldModel sequence
@@ -227,7 +229,7 @@ Related proof moves: unfold
 
 -/
 noncomputable def negation
-    (fieldModel : DenselyOrderedFieldModel)
+    (fieldModel : RationalModel)
     (sequence : NestedIntervalSequence fieldModel) :
     NestedIntervalSequence fieldModel where
   interval := representative_negation fieldModel sequence
@@ -240,17 +242,17 @@ noncomputable def negation
 
 Predicate logic:
 
-  (∀ fieldModel ∈ DenselyOrderedFieldModel), LRA.UniversalAlgebra.Quotient.unary_operation_respects (EndpointSetoid fieldModel) (negation fieldModel)
+  (∀ fieldModel ∈ RationalModel), LRA.UniversalAlgebra.Quotient.unary_operation_respects (EndpointSetoid fieldModel) (negation fieldModel)
 
 Predicate logic (unfolded):
 
-  ∀ (fieldModel : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel) (first_representative second_representative : LRA.NumberSystems.RealNumbers.Cantor.NestedIntervalSequence fieldModel), (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel).1 first_representative second_representative → (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel).1 { interval := fun index => (Classical.indefiniteDescription (fun x => (LRA.NumberSystems.RealNumbers.Cantor.IsEndpointNegation fieldModel (first_representative.interval index) x ∧ ∀ (other : LRA.NumberSystems.RealNumbers.Cantor.EndpointInterval fieldModel), LRA.NumberSystems.RealNumbers.Cantor.IsEndpointNegation fieldModel (first_representative.interval index) other → other = x)) ⋯).val, nested := ⋯, widths_converge_to_zero := ⋯ } { interval := fun index => (Classical.indefiniteDescription (fun x => (LRA.NumberSystems.RealNumbers.Cantor.IsEndpointNegation fieldModel (second_representative.interval index) x ∧ ∀ (other : LRA.NumberSystems.RealNumbers.Cantor.EndpointInterval fieldModel), LRA.NumberSystems.RealNumbers.Cantor.IsEndpointNegation fieldModel (second_representative.interval index) other → other = x)) ⋯).val, nested := ⋯, widths_converge_to_zero := ⋯ }
+  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (first_representative second_representative : LRA.NumberSystems.RealNumbers.Cantor.NestedIntervalSequence fieldModel), (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel).1 first_representative second_representative → (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel).1 { interval := fun index => (Classical.indefiniteDescription (fun x => (LRA.NumberSystems.RealNumbers.Cantor.IsEndpointNegation fieldModel (first_representative.interval index) x ∧ ∀ (other : LRA.NumberSystems.RealNumbers.Cantor.EndpointInterval fieldModel), LRA.NumberSystems.RealNumbers.Cantor.IsEndpointNegation fieldModel (first_representative.interval index) other → other = x)) ⋯).val, nested := ⋯, widths_converge_to_zero := ⋯ } { interval := fun index => (Classical.indefiniteDescription (fun x => (LRA.NumberSystems.RealNumbers.Cantor.IsEndpointNegation fieldModel (second_representative.interval index) x ∧ ∀ (other : LRA.NumberSystems.RealNumbers.Cantor.EndpointInterval fieldModel), LRA.NumberSystems.RealNumbers.Cantor.IsEndpointNegation fieldModel (second_representative.interval index) other → other = x)) ⋯).val, nested := ⋯, widths_converge_to_zero := ⋯ }
 
 Logical form (Lean):
 
 ```lean
 theorem representative_negation_respects_equivalence
-    (fieldModel : DenselyOrderedFieldModel) :
+    (fieldModel : RationalModel) :
     LRA.UniversalAlgebra.Quotient.unary_operation_respects
       (EndpointSetoid fieldModel) (negation fieldModel)
 ```
@@ -275,7 +277,7 @@ Related proof moves: TODO
 
 -/
 theorem representative_negation_respects_equivalence
-    (fieldModel : DenselyOrderedFieldModel) :
+    (fieldModel : RationalModel) :
     LRA.UniversalAlgebra.Quotient.unary_operation_respects
       (EndpointSetoid fieldModel) (negation fieldModel) := by
   sorry
@@ -285,17 +287,17 @@ theorem representative_negation_respects_equivalence
 
 Predicate logic:
 
-  (∀ fieldModel ∈ DenselyOrderedFieldModel), UnaryOperationIsProper (IsNestedAndShrinking fieldModel) (fun representative => representative.interval) (representative_negation fieldModel) (EndpointSetoid fieldModel) (negation fieldModel)
+  (∀ fieldModel ∈ RationalModel), UnaryOperationIsProper (IsNestedAndShrinking fieldModel) (fun representative => representative.interval) (representative_negation fieldModel) (EndpointSetoid fieldModel) (negation fieldModel)
 
 Predicate logic (unfolded):
 
-  ∀ (fieldModel : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel), LRA.Operation.Laws.QuotientCompatible.UnaryOperationIsProper (fun sequence => (∀ (index : Nat), (fieldModel.signature.toOrderedRingConceptSignature.2 (sequence index).1 (sequence (instHAdd.hAdd index 1)).1 ∧ fieldModel.signature.toOrderedRingConceptSignature.2 (sequence (instHAdd.hAdd index 1)).2 (sequence index).2) ∧ ∀ (positive_tolerance : fieldModel.signature.toCarrierBundle.1), fieldModel.signature.toOrderedRingSignature.2 fieldModel.signature.toZeroOneBundle.2 positive_tolerance → Exists fun index => fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (sequence index).2 (fieldModel.signature.toRingConceptSignature.2 (sequence index).1)) positive_tolerance)) (fun representative => representative.1) (fun sequence index => (Classical.indefiniteDescription (fun x => (LRA.NumberSystems.RealNumbers.Cantor.IsEndpointNegation fieldModel (sequence.interval index) x ∧ ∀ (other : LRA.NumberSystems.RealNumbers.Cantor.EndpointInterval fieldModel), LRA.NumberSystems.RealNumbers.Cantor.IsEndpointNegation fieldModel (sequence.interval index) other → other = x)) ⋯).1) { r := fun first second => ∀ (tolerance : fieldModel.1), fieldModel.ltInst.1 fieldModel.zeroInst.1 tolerance → Exists fun index => (fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (first.interval index).1 (fieldModel.signature.toRingConceptSignature.2 (second.interval index).2)) tolerance ∧ fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (second.interval index).1 (fieldModel.signature.toRingConceptSignature.2 (first.interval index).2)) tolerance), iseqv := ⋯ } fun sequence => { interval := fun index => (Classical.indefiniteDescription (fun x => (LRA.NumberSystems.RealNumbers.Cantor.IsEndpointNegation fieldModel (sequence.interval index) x ∧ ∀ (other : LRA.NumberSystems.RealNumbers.Cantor.EndpointInterval fieldModel), LRA.NumberSystems.RealNumbers.Cantor.IsEndpointNegation fieldModel (sequence.interval index) other → other = x)) ⋯).1, nested := ⋯, widths_converge_to_zero := ⋯ }
+  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), LRA.Operation.Laws.QuotientCompatible.UnaryOperationIsProper (fun sequence => (∀ (index : Nat), (fieldModel.signature.toOrderedRingConceptSignature.2 (sequence index).1 (sequence (instHAdd.hAdd index 1)).1 ∧ fieldModel.signature.toOrderedRingConceptSignature.2 (sequence (instHAdd.hAdd index 1)).2 (sequence index).2) ∧ ∀ (positive_tolerance : fieldModel.signature.toCarrierBundle.1), fieldModel.signature.toOrderedRingSignature.2 fieldModel.signature.toZeroOneBundle.2 positive_tolerance → Exists fun index => fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (sequence index).2 (fieldModel.signature.toRingConceptSignature.2 (sequence index).1)) positive_tolerance)) (fun representative => representative.1) (fun sequence index => (Classical.indefiniteDescription (fun x => (LRA.NumberSystems.RealNumbers.Cantor.IsEndpointNegation fieldModel (sequence.interval index) x ∧ ∀ (other : LRA.NumberSystems.RealNumbers.Cantor.EndpointInterval fieldModel), LRA.NumberSystems.RealNumbers.Cantor.IsEndpointNegation fieldModel (sequence.interval index) other → other = x)) ⋯).1) { r := fun first second => ∀ (tolerance : fieldModel.1), fieldModel.ltInst.1 fieldModel.zeroInst.1 tolerance → Exists fun index => (fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (first.interval index).1 (fieldModel.signature.toRingConceptSignature.2 (second.interval index).2)) tolerance ∧ fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (second.interval index).1 (fieldModel.signature.toRingConceptSignature.2 (first.interval index).2)) tolerance), iseqv := ⋯ } fun sequence => { interval := fun index => (Classical.indefiniteDescription (fun x => (LRA.NumberSystems.RealNumbers.Cantor.IsEndpointNegation fieldModel (sequence.interval index) x ∧ ∀ (other : LRA.NumberSystems.RealNumbers.Cantor.EndpointInterval fieldModel), LRA.NumberSystems.RealNumbers.Cantor.IsEndpointNegation fieldModel (sequence.interval index) other → other = x)) ⋯).1, nested := ⋯, widths_converge_to_zero := ⋯ }
 
 Logical form (Lean):
 
 ```lean
 theorem negation_is_proper
-    (fieldModel : DenselyOrderedFieldModel) :
+    (fieldModel : RationalModel) :
     UnaryOperationIsProper
       (IsNestedAndShrinking fieldModel)
       (fun representative => representative.interval)
@@ -324,7 +326,7 @@ Related proof moves: TODO
 
 -/
 theorem negation_is_proper
-    (fieldModel : DenselyOrderedFieldModel) :
+    (fieldModel : RationalModel) :
     UnaryOperationIsProper
       (IsNestedAndShrinking fieldModel)
       (fun representative => representative.interval)
@@ -339,7 +341,7 @@ theorem negation_is_proper
 Predicate logic:
 
   noncomputable def multiplication
-    (fieldModel : DenselyOrderedFieldModel)
+    (fieldModel : RationalModel)
     (first second : NestedIntervalSequence fieldModel) :
     NestedIntervalSequence fieldModel where
   interval := representative_multiplication fieldModel first second
@@ -351,7 +353,7 @@ Predicate logic:
 Predicate logic (unfolded):
 
   noncomputable def multiplication
-    (fieldModel : DenselyOrderedFieldModel)
+    (fieldModel : RationalModel)
     (first second : NestedIntervalSequence fieldModel) :
     NestedIntervalSequence fieldModel where
   interval := representative_multiplication fieldModel first second
@@ -364,7 +366,7 @@ Logical form (Lean):
 
 ```lean
 noncomputable def multiplication
-    (fieldModel : DenselyOrderedFieldModel)
+    (fieldModel : RationalModel)
     (first second : NestedIntervalSequence fieldModel) :
     NestedIntervalSequence fieldModel where
   interval := representative_multiplication fieldModel first second
@@ -394,7 +396,7 @@ Related proof moves: unfold
 
 -/
 noncomputable def multiplication
-    (fieldModel : DenselyOrderedFieldModel)
+    (fieldModel : RationalModel)
     (first second : NestedIntervalSequence fieldModel) :
     NestedIntervalSequence fieldModel where
   interval := representative_multiplication fieldModel first second
@@ -408,17 +410,17 @@ noncomputable def multiplication
 
 Predicate logic:
 
-  (∀ fieldModel ∈ DenselyOrderedFieldModel), LRA.UniversalAlgebra.Quotient.binary_operation_respects (EndpointSetoid fieldModel) (multiplication fieldModel)
+  (∀ fieldModel ∈ RationalModel), LRA.UniversalAlgebra.Quotient.binary_operation_respects (EndpointSetoid fieldModel) (multiplication fieldModel)
 
 Predicate logic (unfolded):
 
-  ∀ (fieldModel : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel) (first_representative first_replacement second_representative second_replacement : LRA.NumberSystems.RealNumbers.Cantor.NestedIntervalSequence fieldModel), ((LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel).1 first_representative first_replacement ∧ (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel).1 second_representative second_replacement) → (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel).1 { interval := fun index => (Classical.indefiniteDescription (fun x => (LRA.NumberSystems.RealNumbers.Cantor.IsEndpointProduct fieldModel (first_representative.interval index) (second_representative.interval index) x ∧ ∀ (other : LRA.NumberSystems.RealNumbers.Cantor.EndpointInterval fieldModel), LRA.NumberSystems.RealNumbers.Cantor.IsEndpointProduct fieldModel (first_representative.interval index) (second_representative.interval index) other → other = x)) ⋯).val, nested := ⋯, widths_converge_to_zero := ⋯ } { interval := fun index => (Classical.indefiniteDescription (fun x => (LRA.NumberSystems.RealNumbers.Cantor.IsEndpointProduct fieldModel (first_replacement.interval index) (second_replacement.interval index) x ∧ ∀ (other : LRA.NumberSystems.RealNumbers.Cantor.EndpointInterval fieldModel), LRA.NumberSystems.RealNumbers.Cantor.IsEndpointProduct fieldModel (first_replacement.interval index) (second_replacement.interval index) other → other = x)) ⋯).val, nested := ⋯, widths_converge_to_zero := ⋯ }
+  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (first_representative first_replacement second_representative second_replacement : LRA.NumberSystems.RealNumbers.Cantor.NestedIntervalSequence fieldModel), ((LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel).1 first_representative first_replacement ∧ (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel).1 second_representative second_replacement) → (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel).1 { interval := fun index => (Classical.indefiniteDescription (fun x => (LRA.NumberSystems.RealNumbers.Cantor.IsEndpointProduct fieldModel (first_representative.interval index) (second_representative.interval index) x ∧ ∀ (other : LRA.NumberSystems.RealNumbers.Cantor.EndpointInterval fieldModel), LRA.NumberSystems.RealNumbers.Cantor.IsEndpointProduct fieldModel (first_representative.interval index) (second_representative.interval index) other → other = x)) ⋯).val, nested := ⋯, widths_converge_to_zero := ⋯ } { interval := fun index => (Classical.indefiniteDescription (fun x => (LRA.NumberSystems.RealNumbers.Cantor.IsEndpointProduct fieldModel (first_replacement.interval index) (second_replacement.interval index) x ∧ ∀ (other : LRA.NumberSystems.RealNumbers.Cantor.EndpointInterval fieldModel), LRA.NumberSystems.RealNumbers.Cantor.IsEndpointProduct fieldModel (first_replacement.interval index) (second_replacement.interval index) other → other = x)) ⋯).val, nested := ⋯, widths_converge_to_zero := ⋯ }
 
 Logical form (Lean):
 
 ```lean
 theorem representative_multiplication_respects_equivalence
-    (fieldModel : DenselyOrderedFieldModel) :
+    (fieldModel : RationalModel) :
     LRA.UniversalAlgebra.Quotient.binary_operation_respects
       (EndpointSetoid fieldModel) (multiplication fieldModel)
 ```
@@ -443,7 +445,7 @@ Related proof moves: TODO
 
 -/
 theorem representative_multiplication_respects_equivalence
-    (fieldModel : DenselyOrderedFieldModel) :
+    (fieldModel : RationalModel) :
     LRA.UniversalAlgebra.Quotient.binary_operation_respects
       (EndpointSetoid fieldModel) (multiplication fieldModel) := by
   sorry
@@ -453,17 +455,17 @@ theorem representative_multiplication_respects_equivalence
 
 Predicate logic:
 
-  (∀ fieldModel ∈ DenselyOrderedFieldModel), BinaryOperationIsProper (IsNestedAndShrinking fieldModel) (fun representative => representative.interval) (representative_multiplication fieldModel) (EndpointSetoid fieldModel) (multiplication fieldModel)
+  (∀ fieldModel ∈ RationalModel), BinaryOperationIsProper (IsNestedAndShrinking fieldModel) (fun representative => representative.interval) (representative_multiplication fieldModel) (EndpointSetoid fieldModel) (multiplication fieldModel)
 
 Predicate logic (unfolded):
 
-  ∀ (fieldModel : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel), LRA.Operation.Laws.QuotientCompatible.BinaryOperationIsProper (fun sequence => (∀ (index : Nat), (fieldModel.signature.toOrderedRingConceptSignature.2 (sequence index).1 (sequence (instHAdd.hAdd index 1)).1 ∧ fieldModel.signature.toOrderedRingConceptSignature.2 (sequence (instHAdd.hAdd index 1)).2 (sequence index).2) ∧ ∀ (positive_tolerance : fieldModel.signature.toCarrierBundle.1), fieldModel.signature.toOrderedRingSignature.2 fieldModel.signature.toZeroOneBundle.2 positive_tolerance → Exists fun index => fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (sequence index).2 (fieldModel.signature.toRingConceptSignature.2 (sequence index).1)) positive_tolerance)) (fun representative => representative.1) (fun first second index => (Classical.indefiniteDescription (fun x => (LRA.NumberSystems.RealNumbers.Cantor.IsEndpointProduct fieldModel (first.interval index) (second.interval index) x ∧ ∀ (other : LRA.NumberSystems.RealNumbers.Cantor.EndpointInterval fieldModel), LRA.NumberSystems.RealNumbers.Cantor.IsEndpointProduct fieldModel (first.interval index) (second.interval index) other → other = x)) ⋯).1) { r := fun first second => ∀ (tolerance : fieldModel.1), fieldModel.ltInst.1 fieldModel.zeroInst.1 tolerance → Exists fun index => (fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (first.interval index).1 (fieldModel.signature.toRingConceptSignature.2 (second.interval index).2)) tolerance ∧ fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (second.interval index).1 (fieldModel.signature.toRingConceptSignature.2 (first.interval index).2)) tolerance), iseqv := ⋯ } fun first second => { interval := fun index => (Classical.indefiniteDescription (fun x => (LRA.NumberSystems.RealNumbers.Cantor.IsEndpointProduct fieldModel (first.interval index) (second.interval index) x ∧ ∀ (other : LRA.NumberSystems.RealNumbers.Cantor.EndpointInterval fieldModel), LRA.NumberSystems.RealNumbers.Cantor.IsEndpointProduct fieldModel (first.interval index) (second.interval index) other → other = x)) ⋯).1, nested := ⋯, widths_converge_to_zero := ⋯ }
+  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), LRA.Operation.Laws.QuotientCompatible.BinaryOperationIsProper (fun sequence => (∀ (index : Nat), (fieldModel.signature.toOrderedRingConceptSignature.2 (sequence index).1 (sequence (instHAdd.hAdd index 1)).1 ∧ fieldModel.signature.toOrderedRingConceptSignature.2 (sequence (instHAdd.hAdd index 1)).2 (sequence index).2) ∧ ∀ (positive_tolerance : fieldModel.signature.toCarrierBundle.1), fieldModel.signature.toOrderedRingSignature.2 fieldModel.signature.toZeroOneBundle.2 positive_tolerance → Exists fun index => fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (sequence index).2 (fieldModel.signature.toRingConceptSignature.2 (sequence index).1)) positive_tolerance)) (fun representative => representative.1) (fun first second index => (Classical.indefiniteDescription (fun x => (LRA.NumberSystems.RealNumbers.Cantor.IsEndpointProduct fieldModel (first.interval index) (second.interval index) x ∧ ∀ (other : LRA.NumberSystems.RealNumbers.Cantor.EndpointInterval fieldModel), LRA.NumberSystems.RealNumbers.Cantor.IsEndpointProduct fieldModel (first.interval index) (second.interval index) other → other = x)) ⋯).1) { r := fun first second => ∀ (tolerance : fieldModel.1), fieldModel.ltInst.1 fieldModel.zeroInst.1 tolerance → Exists fun index => (fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (first.interval index).1 (fieldModel.signature.toRingConceptSignature.2 (second.interval index).2)) tolerance ∧ fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (second.interval index).1 (fieldModel.signature.toRingConceptSignature.2 (first.interval index).2)) tolerance), iseqv := ⋯ } fun first second => { interval := fun index => (Classical.indefiniteDescription (fun x => (LRA.NumberSystems.RealNumbers.Cantor.IsEndpointProduct fieldModel (first.interval index) (second.interval index) x ∧ ∀ (other : LRA.NumberSystems.RealNumbers.Cantor.EndpointInterval fieldModel), LRA.NumberSystems.RealNumbers.Cantor.IsEndpointProduct fieldModel (first.interval index) (second.interval index) other → other = x)) ⋯).1, nested := ⋯, widths_converge_to_zero := ⋯ }
 
 Logical form (Lean):
 
 ```lean
 theorem multiplication_is_proper
-    (fieldModel : DenselyOrderedFieldModel) :
+    (fieldModel : RationalModel) :
     BinaryOperationIsProper
       (IsNestedAndShrinking fieldModel)
       (fun representative => representative.interval)
@@ -492,7 +494,7 @@ Related proof moves: TODO
 
 -/
 theorem multiplication_is_proper
-    (fieldModel : DenselyOrderedFieldModel) :
+    (fieldModel : RationalModel) :
     BinaryOperationIsProper
       (IsNestedAndShrinking fieldModel)
       (fun representative => representative.interval)
@@ -506,17 +508,17 @@ theorem multiplication_is_proper
 
 Predicate logic:
 
-  (∀ fieldModel ∈ DenselyOrderedFieldModel ∀ value ∈ fieldModel.signature.carrier), fieldModel.signature.le value value
+  (∀ fieldModel ∈ RationalModel ∀ value ∈ fieldModel.signature.carrier), fieldModel.signature.le value value
 
 Predicate logic (unfolded):
 
-  ∀ (fieldModel : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel) (value : fieldModel.signature.toCarrierBundle.1), fieldModel.signature.toOrderedRingConceptSignature.2 value value
+  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (value : fieldModel.signature.toCarrierBundle.1), fieldModel.signature.toOrderedRingConceptSignature.2 value value
 
 Logical form (Lean):
 
 ```lean
 theorem constant_interval_lower_le_upper
-    (fieldModel : DenselyOrderedFieldModel)
+    (fieldModel : RationalModel)
     (value : fieldModel.signature.carrier) :
     fieldModel.signature.le value value
 ```
@@ -541,7 +543,7 @@ Related proof moves: TODO
 
 -/
 theorem constant_interval_lower_le_upper
-    (fieldModel : DenselyOrderedFieldModel)
+    (fieldModel : RationalModel)
     (value : fieldModel.signature.carrier) :
     fieldModel.signature.le value value := by
   sorry
@@ -552,7 +554,7 @@ theorem constant_interval_lower_le_upper
 Predicate logic:
 
   def constant_interval
-    (fieldModel : DenselyOrderedFieldModel)
+    (fieldModel : RationalModel)
     (value : fieldModel.signature.carrier) : EndpointInterval fieldModel where
   lower := value
   upper := value
@@ -561,7 +563,7 @@ Predicate logic:
 Predicate logic (unfolded):
 
   def constant_interval
-    (fieldModel : DenselyOrderedFieldModel)
+    (fieldModel : RationalModel)
     (value : fieldModel.signature.carrier) : EndpointInterval fieldModel where
   lower := value
   upper := value
@@ -571,7 +573,7 @@ Logical form (Lean):
 
 ```lean
 def constant_interval
-    (fieldModel : DenselyOrderedFieldModel)
+    (fieldModel : RationalModel)
     (value : fieldModel.signature.carrier) : EndpointInterval fieldModel where
   lower := value
   upper := value
@@ -598,7 +600,7 @@ Related proof moves: unfold
 
 -/
 def constant_interval
-    (fieldModel : DenselyOrderedFieldModel)
+    (fieldModel : RationalModel)
     (value : fieldModel.signature.carrier) : EndpointInterval fieldModel where
   lower := value
   upper := value
@@ -609,17 +611,17 @@ def constant_interval
 
 Predicate logic:
 
-  (∀ fieldModel ∈ DenselyOrderedFieldModel ∀ value ∈ fieldModel.signature.carrier), IsNestedAndShrinking fieldModel (fun _ => constant_interval fieldModel value)
+  (∀ fieldModel ∈ RationalModel ∀ value ∈ fieldModel.signature.carrier), IsNestedAndShrinking fieldModel (fun _ => constant_interval fieldModel value)
 
 Predicate logic (unfolded):
 
-  ∀ (fieldModel : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel) (value : fieldModel.signature.toCarrierBundle.1), (∀ (index : Nat), (fieldModel.signature.toOrderedRingConceptSignature.2 ((fun x => LRA.NumberSystems.RealNumbers.Cantor.constant_interval fieldModel value) index).1 ((fun x => LRA.NumberSystems.RealNumbers.Cantor.constant_interval fieldModel value) (instHAdd.hAdd index 1)).1 ∧ fieldModel.signature.toOrderedRingConceptSignature.2 ((fun x => LRA.NumberSystems.RealNumbers.Cantor.constant_interval fieldModel value) (instHAdd.hAdd index 1)).2 ((fun x => LRA.NumberSystems.RealNumbers.Cantor.constant_interval fieldModel value) index).2) ∧ ∀ (positive_tolerance : fieldModel.signature.toCarrierBundle.1), fieldModel.signature.toOrderedRingSignature.2 fieldModel.signature.toZeroOneBundle.2 positive_tolerance → Exists fun index => fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 ((fun x => LRA.NumberSystems.RealNumbers.Cantor.constant_interval fieldModel value) index).2 (fieldModel.signature.toRingConceptSignature.2 ((fun x => LRA.NumberSystems.RealNumbers.Cantor.constant_interval fieldModel value) index).1)) positive_tolerance)
+  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (value : fieldModel.signature.toCarrierBundle.1), (∀ (index : Nat), (fieldModel.signature.toOrderedRingConceptSignature.2 ((fun x => LRA.NumberSystems.RealNumbers.Cantor.constant_interval fieldModel value) index).1 ((fun x => LRA.NumberSystems.RealNumbers.Cantor.constant_interval fieldModel value) (instHAdd.hAdd index 1)).1 ∧ fieldModel.signature.toOrderedRingConceptSignature.2 ((fun x => LRA.NumberSystems.RealNumbers.Cantor.constant_interval fieldModel value) (instHAdd.hAdd index 1)).2 ((fun x => LRA.NumberSystems.RealNumbers.Cantor.constant_interval fieldModel value) index).2) ∧ ∀ (positive_tolerance : fieldModel.signature.toCarrierBundle.1), fieldModel.signature.toOrderedRingSignature.2 fieldModel.signature.toZeroOneBundle.2 positive_tolerance → Exists fun index => fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 ((fun x => LRA.NumberSystems.RealNumbers.Cantor.constant_interval fieldModel value) index).2 (fieldModel.signature.toRingConceptSignature.2 ((fun x => LRA.NumberSystems.RealNumbers.Cantor.constant_interval fieldModel value) index).1)) positive_tolerance)
 
 Logical form (Lean):
 
 ```lean
 theorem constant_sequence_is_nested_and_shrinking
-    (fieldModel : DenselyOrderedFieldModel)
+    (fieldModel : RationalModel)
     (value : fieldModel.signature.carrier) :
     IsNestedAndShrinking fieldModel (fun _ => constant_interval fieldModel value)
 ```
@@ -644,7 +646,7 @@ Related proof moves: TODO
 
 -/
 theorem constant_sequence_is_nested_and_shrinking
-    (fieldModel : DenselyOrderedFieldModel)
+    (fieldModel : RationalModel)
     (value : fieldModel.signature.carrier) :
     IsNestedAndShrinking fieldModel (fun _ => constant_interval fieldModel value) := by
   sorry
@@ -655,7 +657,7 @@ theorem constant_sequence_is_nested_and_shrinking
 Predicate logic:
 
   noncomputable def rational_embedding
-    (fieldModel : DenselyOrderedFieldModel)
+    (fieldModel : RationalModel)
     (value : fieldModel.signature.carrier) : NestedIntervalSequence fieldModel where
   interval := fun _ => constant_interval fieldModel value
   nested := (constant_sequence_is_nested_and_shrinking fieldModel value).1
@@ -665,7 +667,7 @@ Predicate logic:
 Predicate logic (unfolded):
 
   noncomputable def rational_embedding
-    (fieldModel : DenselyOrderedFieldModel)
+    (fieldModel : RationalModel)
     (value : fieldModel.signature.carrier) : NestedIntervalSequence fieldModel where
   interval := fun _ => constant_interval fieldModel value
   nested := (constant_sequence_is_nested_and_shrinking fieldModel value).1
@@ -676,7 +678,7 @@ Logical form (Lean):
 
 ```lean
 noncomputable def rational_embedding
-    (fieldModel : DenselyOrderedFieldModel)
+    (fieldModel : RationalModel)
     (value : fieldModel.signature.carrier) : NestedIntervalSequence fieldModel where
   interval := fun _ => constant_interval fieldModel value
   nested := (constant_sequence_is_nested_and_shrinking fieldModel value).1
@@ -704,7 +706,7 @@ Related proof moves: unfold
 
 -/
 noncomputable def rational_embedding
-    (fieldModel : DenselyOrderedFieldModel)
+    (fieldModel : RationalModel)
     (value : fieldModel.signature.carrier) : NestedIntervalSequence fieldModel where
   interval := fun _ => constant_interval fieldModel value
   nested := (constant_sequence_is_nested_and_shrinking fieldModel value).1
@@ -717,20 +719,20 @@ noncomputable def rational_embedding
 Predicate logic:
 
   noncomputable def zero
-    (fieldModel : DenselyOrderedFieldModel) : NestedIntervalSequence fieldModel :=
+    (fieldModel : RationalModel) : NestedIntervalSequence fieldModel :=
   rational_embedding fieldModel fieldModel.signature.zero
 
 Predicate logic (unfolded):
 
   noncomputable def zero
-    (fieldModel : DenselyOrderedFieldModel) : NestedIntervalSequence fieldModel :=
+    (fieldModel : RationalModel) : NestedIntervalSequence fieldModel :=
   rational_embedding fieldModel fieldModel.signature.zero (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
 noncomputable def zero
-    (fieldModel : DenselyOrderedFieldModel) : NestedIntervalSequence fieldModel :=
+    (fieldModel : RationalModel) : NestedIntervalSequence fieldModel :=
   rational_embedding fieldModel fieldModel.signature.zero
 ```
 
@@ -754,7 +756,7 @@ Related proof moves: unfold
 
 -/
 noncomputable def zero
-    (fieldModel : DenselyOrderedFieldModel) : NestedIntervalSequence fieldModel :=
+    (fieldModel : RationalModel) : NestedIntervalSequence fieldModel :=
   rational_embedding fieldModel fieldModel.signature.zero
 
 /--
@@ -763,20 +765,20 @@ noncomputable def zero
 Predicate logic:
 
   noncomputable def one
-    (fieldModel : DenselyOrderedFieldModel) : NestedIntervalSequence fieldModel :=
+    (fieldModel : RationalModel) : NestedIntervalSequence fieldModel :=
   rational_embedding fieldModel fieldModel.signature.one
 
 Predicate logic (unfolded):
 
   noncomputable def one
-    (fieldModel : DenselyOrderedFieldModel) : NestedIntervalSequence fieldModel :=
+    (fieldModel : RationalModel) : NestedIntervalSequence fieldModel :=
   rational_embedding fieldModel fieldModel.signature.one (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
 noncomputable def one
-    (fieldModel : DenselyOrderedFieldModel) : NestedIntervalSequence fieldModel :=
+    (fieldModel : RationalModel) : NestedIntervalSequence fieldModel :=
   rational_embedding fieldModel fieldModel.signature.one
 ```
 
@@ -800,7 +802,7 @@ Related proof moves: unfold
 
 -/
 noncomputable def one
-    (fieldModel : DenselyOrderedFieldModel) : NestedIntervalSequence fieldModel :=
+    (fieldModel : RationalModel) : NestedIntervalSequence fieldModel :=
   rational_embedding fieldModel fieldModel.signature.one
 
 /--
@@ -808,17 +810,17 @@ noncomputable def one
 
 Predicate logic:
 
-  ∀ (fieldModel : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel) (first second : LRA.NumberSystems.RealNumbers.Cantor.NestedIntervalSequence fieldModel), Exists fun index => fieldModel.signature.StrictOrder (first.interval index).upper (second.interval index).lower
+  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (first second : LRA.NumberSystems.RealNumbers.Cantor.NestedIntervalSequence fieldModel), Exists fun index => fieldModel.signature.StrictOrder (first.interval index).upper (second.interval index).lower
 
 Predicate logic (unfolded):
 
-  ∀ (fieldModel : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel) (first second : LRA.NumberSystems.RealNumbers.Cantor.NestedIntervalSequence fieldModel), Exists fun index => fieldModel.signature.toOrderedRingSignature.2 (first.interval index).2 (second.interval index).1
+  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (first second : LRA.NumberSystems.RealNumbers.Cantor.NestedIntervalSequence fieldModel), Exists fun index => fieldModel.signature.toOrderedRingSignature.2 (first.interval index).2 (second.interval index).1
 
 Logical form (Lean):
 
 ```lean
 def representative_strict_order
-    (fieldModel : DenselyOrderedFieldModel)
+    (fieldModel : RationalModel)
     (first second : NestedIntervalSequence fieldModel) : Prop :=
   ∃ index : Nat,
     fieldModel.signature.StrictOrder
@@ -845,7 +847,7 @@ Related proof moves: use, rcases, unfold
 
 -/
 def representative_strict_order
-    (fieldModel : DenselyOrderedFieldModel)
+    (fieldModel : RationalModel)
     (first second : NestedIntervalSequence fieldModel) : Prop :=
   ∃ index : Nat,
     fieldModel.signature.StrictOrder
@@ -856,17 +858,17 @@ def representative_strict_order
 
 Predicate logic:
 
-  (∀ fieldModel ∈ DenselyOrderedFieldModel), LRA.UniversalAlgebra.Quotient.relation_respects (EndpointSetoid fieldModel) (representative_strict_order fieldModel)
+  (∀ fieldModel ∈ RationalModel), LRA.UniversalAlgebra.Quotient.relation_respects (EndpointSetoid fieldModel) (representative_strict_order fieldModel)
 
 Predicate logic (unfolded):
 
-  ∀ (fieldModel : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel) (first_representative first_replacement second_representative second_replacement : LRA.NumberSystems.RealNumbers.Cantor.NestedIntervalSequence fieldModel), ((LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel).1 first_representative first_replacement ∧ (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel).1 second_representative second_replacement) → Exists fun index => fieldModel.signature.toOrderedRingSignature.2 (first_representative.interval index).2 (second_representative.interval index).1 ↔ Exists fun index => fieldModel.signature.toOrderedRingSignature.2 (first_replacement.interval index).2 (second_replacement.interval index).1
+  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (first_representative first_replacement second_representative second_replacement : LRA.NumberSystems.RealNumbers.Cantor.NestedIntervalSequence fieldModel), ((LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel).1 first_representative first_replacement ∧ (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel).1 second_representative second_replacement) → Exists fun index => fieldModel.signature.toOrderedRingSignature.2 (first_representative.interval index).2 (second_representative.interval index).1 ↔ Exists fun index => fieldModel.signature.toOrderedRingSignature.2 (first_replacement.interval index).2 (second_replacement.interval index).1
 
 Logical form (Lean):
 
 ```lean
 theorem representative_strict_order_respects_equivalence
-    (fieldModel : DenselyOrderedFieldModel) :
+    (fieldModel : RationalModel) :
     LRA.UniversalAlgebra.Quotient.relation_respects
       (EndpointSetoid fieldModel) (representative_strict_order fieldModel)
 ```
@@ -891,7 +893,7 @@ Related proof moves: TODO
 
 -/
 theorem representative_strict_order_respects_equivalence
-    (fieldModel : DenselyOrderedFieldModel) :
+    (fieldModel : RationalModel) :
     LRA.UniversalAlgebra.Quotient.relation_respects
       (EndpointSetoid fieldModel) (representative_strict_order fieldModel) := by
   sorry
@@ -901,17 +903,17 @@ theorem representative_strict_order_respects_equivalence
 
 Predicate logic:
 
-  (∀ fieldModel ∈ DenselyOrderedFieldModel), RelationIsProper (EndpointSetoid fieldModel) (representative_strict_order fieldModel)
+  (∀ fieldModel ∈ RationalModel), RelationIsProper (EndpointSetoid fieldModel) (representative_strict_order fieldModel)
 
 Predicate logic (unfolded):
 
-  ∀ (fieldModel : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel), LRA.Operation.Laws.QuotientCompatible.RelationIsProper { r := fun first second => ∀ (tolerance : fieldModel.1), fieldModel.ltInst.1 fieldModel.zeroInst.1 tolerance → Exists fun index => (fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (first.interval index).1 (fieldModel.signature.toRingConceptSignature.2 (second.interval index).2)) tolerance ∧ fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (second.interval index).1 (fieldModel.signature.toRingConceptSignature.2 (first.interval index).2)) tolerance), iseqv := ⋯ } fun first second => Exists fun index => fieldModel.signature.toOrderedRingSignature.2 (first.interval index).2 (second.interval index).1
+  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), LRA.Operation.Laws.QuotientCompatible.RelationIsProper { r := fun first second => ∀ (tolerance : fieldModel.1), fieldModel.ltInst.1 fieldModel.zeroInst.1 tolerance → Exists fun index => (fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (first.interval index).1 (fieldModel.signature.toRingConceptSignature.2 (second.interval index).2)) tolerance ∧ fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (second.interval index).1 (fieldModel.signature.toRingConceptSignature.2 (first.interval index).2)) tolerance), iseqv := ⋯ } fun first second => Exists fun index => fieldModel.signature.toOrderedRingSignature.2 (first.interval index).2 (second.interval index).1
 
 Logical form (Lean):
 
 ```lean
 theorem strict_order_is_proper
-    (fieldModel : DenselyOrderedFieldModel) :
+    (fieldModel : RationalModel) :
     RelationIsProper
       (EndpointSetoid fieldModel) (representative_strict_order fieldModel)
 ```
@@ -936,7 +938,7 @@ Related proof moves: TODO
 
 -/
 theorem strict_order_is_proper
-    (fieldModel : DenselyOrderedFieldModel) :
+    (fieldModel : RationalModel) :
     RelationIsProper
       (EndpointSetoid fieldModel) (representative_strict_order fieldModel) := by
   sorry

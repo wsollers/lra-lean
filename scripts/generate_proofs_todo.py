@@ -89,6 +89,7 @@ import argparse
 import csv
 import os
 import re
+import subprocess
 import sys
 import textwrap
 from collections import defaultdict, deque
@@ -910,22 +911,7 @@ def load_tsv(path: Path) -> dict[str, list[CompiledTheorem]]:
     """Returns compiled theorems grouped by module, each list in dump order
     (which is compilation order, i.e. source order, for same-kind
     declarations within one module)."""
-    by_module: dict[str, list[CompiledTheorem]] = defaultdict(list)
-    with path.open(encoding="utf-8", newline="") as stream:
-        reader = csv.DictReader(stream, delimiter="\t")
-        for row in reader:
-            by_module[row["module"]].append(
-                CompiledTheorem(
-                    fq_name=row["fq_name"],
-                    module=row["module"],
-                    kind=row.get("kind", "theorem").strip() or "theorem",
-                    uses_sorry=row["uses_sorry"].strip().lower() == "true",
-                    pretty_type_uncurried=row["pretty_type_uncurried"],
-                    pretty_type_unfolded=row["pretty_type_unfolded"],
-                    unfold_status=row["unfold_status"],
-                )
-            )
-    return by_module
+    return load_tsv_text(path.read_text(encoding="utf-8"))
 
 
 def synthesize_offline(modules: list[SourceModule]) -> dict[str, list[CompiledTheorem]]:
@@ -960,6 +946,7 @@ def synthesize_offline(modules: list[SourceModule]) -> dict[str, list[CompiledTh
 
 @dataclass
 class Entry:
+    fq_name: str
     name: str
     kind: str  # display label for declaration kind
     state: str
@@ -987,6 +974,13 @@ def display_kind(kind: str) -> str:
 
 def is_proof_family_kind(kind: str) -> bool:
     return kind in PROOF_KEYWORDS
+
+
+DISPLAY_THEOREM_FAMILY_KINDS = {"Theorem", "Lemma", "Proposition", "Corollary"}
+
+
+def is_counted_theorem_entry(entry: Entry) -> bool:
+    return entry.kind in DISPLAY_THEOREM_FAMILY_KINDS
 
 
 PROJECTION_WRAPPER_BODY_RE = re.compile(
@@ -1087,6 +1081,7 @@ def reconcile(
             predicate = choose_predicate_logic(row, theorem)
             entries.append(
                 Entry(
+                    fq_name=row.fq_name,
                     name=theorem.name,
                     kind=display_kind(theorem.kind if row.kind != "axiom" else row.kind),
                     state=state,
@@ -1137,6 +1132,7 @@ def reconcile(
                 predicate = row.pretty_type_uncurried.strip() or "(signature unavailable)"
                 entries.append(
                     Entry(
+                        fq_name=row.fq_name,
                         name=name,
                         kind=display_kind(row.kind),
                         state=state,
@@ -1154,6 +1150,115 @@ def reconcile(
         result.append((mod, entries))
 
     return result, warnings
+
+
+@dataclass
+class BaselineProgress:
+    ref: str
+    subject: str
+    total: int
+    completed: int
+    remaining: int
+    missing: int
+
+
+RESET_BASELINE_PATTERNS = (
+    re.compile(r"\bready for proving\b", re.IGNORECASE),
+    re.compile(r"\bmass-sorry\b", re.IGNORECASE),
+    re.compile(r"\breset proof inventory\b", re.IGNORECASE),
+)
+
+
+def git_capture(*args: str) -> str | None:
+    try:
+        result = subprocess.run(
+            ["git", "-c", "safe.directory=F:/repos/lra-lean", *args],
+            cwd=REPO_ROOT,
+            check=True,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+        )
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        return None
+    return result.stdout
+
+
+def load_tsv_text(text: str) -> dict[str, list[CompiledTheorem]]:
+    by_module: dict[str, list[CompiledTheorem]] = defaultdict(list)
+    reader = csv.DictReader(text.splitlines(), delimiter="\t")
+    for row in reader:
+        by_module[row["module"]].append(
+            CompiledTheorem(
+                fq_name=row["fq_name"],
+                module=row["module"],
+                kind=row.get("kind", "theorem").strip() or "theorem",
+                uses_sorry=row["uses_sorry"].strip().lower() == "true",
+                pretty_type_uncurried=row.get("pretty_type_uncurried", ""),
+                pretty_type_unfolded=row.get("pretty_type_unfolded", ""),
+                unfold_status=row.get("unfold_status", ""),
+            )
+        )
+    return by_module
+
+
+def detect_reset_baseline(scope_path: str) -> tuple[str, str] | None:
+    log_text = git_capture("log", "--format=%H%x09%s", "--", scope_path)
+    if not log_text:
+        return None
+    for line in log_text.splitlines():
+        if "\t" not in line:
+            continue
+        ref, subject = line.split("\t", 1)
+        if any(pattern.search(subject) for pattern in RESET_BASELINE_PATTERNS):
+            return ref, subject
+    return None
+
+
+def compiled_rows_for_scope_prefixes(
+    prefixes: list[str], tsv_by_module: dict[str, list[CompiledTheorem]]
+) -> list[CompiledTheorem]:
+    rows: list[CompiledTheorem] = []
+    for module, module_rows in tsv_by_module.items():
+        if any(module == prefix or module.startswith(prefix + ".") for prefix in prefixes):
+            rows.extend(module_rows)
+    return rows
+
+
+def compute_baseline_progress(
+    entries: list[Entry], prefixes: list[str], scope_path: str
+) -> BaselineProgress | None:
+    baseline = detect_reset_baseline(scope_path)
+    if baseline is None:
+        return None
+    ref, subject = baseline
+    baseline_tsv = git_capture("show", f"{ref}:build/proofs-todo-environment.tsv")
+    if not baseline_tsv:
+        return None
+    baseline_rows = compiled_rows_for_scope_prefixes(prefixes, load_tsv_text(baseline_tsv))
+    baseline_open = [row for row in baseline_rows if row.kind == "theorem" and row.uses_sorry]
+    if not baseline_open:
+        return None
+    current_by_name = {entry.fq_name: entry for entry in entries}
+    completed = 0
+    missing = 0
+    for row in baseline_open:
+        current = current_by_name.get(row.fq_name)
+        if current is None:
+            missing += 1
+            continue
+        if is_counted_theorem_entry(current) and current.state == "Completed":
+            completed += 1
+    total = len(baseline_open)
+    remaining = total - completed - missing
+    return BaselineProgress(
+        ref=ref[:8],
+        subject=subject,
+        total=total,
+        completed=completed,
+        remaining=remaining,
+        missing=missing,
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -1271,15 +1376,17 @@ def render_scope(
     ordered: list[tuple[SourceModule, list[Entry]]],
     offline: bool,
     globally_sorted: bool,
+    baseline_progress: BaselineProgress | None,
 ) -> str:
-    total = sum(len(entries) for _, entries in ordered)
-    completed = sum(
-        1 for _, entries in ordered for e in entries if e.state == "Completed"
-    )
-    sorry_count = sum(1 for _, entries in ordered for e in entries if e.state == "Sorry")
-    instance_count = sum(1 for _, entries in ordered for e in entries if e.kind == "Instance")
-    axiom_count = sum(1 for _, entries in ordered for e in entries if e.kind == "Axiom")
-    unknown_count = total - completed - sorry_count - axiom_count
+    all_entries = [entry for _, entries in ordered for entry in entries]
+    counted_entries = [entry for entry in all_entries if is_counted_theorem_entry(entry)]
+    total = len(counted_entries)
+    completed = sum(1 for entry in counted_entries if entry.state == "Completed")
+    sorry_count = sum(1 for entry in counted_entries if entry.state == "Sorry")
+    instance_count = sum(1 for entry in all_entries if entry.kind == "Instance")
+    axiom_count = sum(1 for entry in all_entries if entry.kind == "Axiom")
+    unknown_count = total - completed - sorry_count
+    proof_total = completed + sorry_count + unknown_count
     module_count = sum(1 for _, entries in ordered if entries)
 
     lines = [f"# {title}", ""]
@@ -1314,20 +1421,42 @@ def render_scope(
             "**not** a theorem-level semantic dependency graph across unrelated topics in",
             "the folder.",
         ]
+    lines += [""]
+    if baseline_progress is not None:
+        lines += [
+            f"**Progress:** {baseline_progress.completed}/{baseline_progress.total} theorem-family entr"
+            f"{'y' if baseline_progress.total == 1 else 'ies'} completed since reset baseline "
+            f"`{baseline_progress.ref}` ({baseline_progress.subject}).",
+            f"**Baseline reconciliation:** {baseline_progress.remaining} still match baseline as "
+            f"`sorry`; {baseline_progress.missing} baseline entr"
+            f"{'y' if baseline_progress.missing == 1 else 'ies'}"
+            " were moved, renamed, or removed and "
+            "are not auto-credited.",
+            "",
+        ]
     lines += [
+        f"**Snapshot:** {completed}/{proof_total} theorem-family entr"
+        f"{'y' if proof_total == 1 else 'ies'} currently completed"
+        + (
+            f" ({sorry_count} sorry, {unknown_count} unknown in offline preview)."
+            if offline
+            else f" ({sorry_count} sorry remaining)."
+        ),
         "",
-        f"**Inventory:** {total} entr{'y' if total == 1 else 'ies'} across {module_count} "
-        f"module(s) ({completed} completed, {sorry_count} sorry"
+        f"**Inventory:** {total} theorem/lemma/corollary/proposition entr"
+        f"{'y' if total == 1 else 'ies'} across {module_count} module(s) "
+        f"({completed} completed, {sorry_count} sorry"
         + (
             f", {unknown_count} unknown"
             if offline
             else ""
         )
-        + f", {axiom_count} axiomatic assumption{'s' if axiom_count != 1 else ''}), "
-        f"{instance_count} of which {'is' if instance_count == 1 else 'are'} an "
-        "`instance` law rather than a `theorem`/`lemma`.",
+        + ").",
+        f"**Excluded from counts:** {instance_count} `instance` entr"
+        f"{'y' if instance_count == 1 else 'ies'} and {axiom_count} `axiom` entr"
+        f"{'y' if axiom_count == 1 else 'ies'}.",
         "",
-    ] 
+    ]
 
     def render_field(label: str, value: str) -> list[str]:
         if "\n" not in value:
@@ -1411,12 +1540,20 @@ def render_scope(
 
 
 def render_folder(folder: Path, ordered: list[tuple[SourceModule, list[Entry]]], offline: bool) -> str:
+    baseline_progress = None
+    if not offline:
+        baseline_progress = compute_baseline_progress(
+            [entry for _, entries in ordered for entry in entries],
+            [folder_module_prefix(folder)],
+            (LRA_ROOT / folder.name).as_posix(),
+        )
     return render_scope(
         title=f"LRA/{folder.name} Proofs To Do",
         base_dir=folder,
         ordered=ordered,
         offline=offline,
         globally_sorted=False,
+        baseline_progress=baseline_progress,
     )
 
 
@@ -1502,6 +1639,13 @@ def process_global(
 
     ordered_modules = topological_modules(source_modules)
     ordered, warnings = reconcile(ordered_modules, compiled_by_module)
+    baseline_progress = None
+    if not offline:
+        baseline_progress = compute_baseline_progress(
+            [entry for _, entries in ordered for entry in entries],
+            prefixes,
+            LRA_ROOT.as_posix(),
+        )
     return (
         render_scope(
             title="LRA Proofs To Do",
@@ -1509,6 +1653,7 @@ def process_global(
             ordered=ordered,
             offline=offline,
             globally_sorted=True,
+            baseline_progress=baseline_progress,
         ),
         warnings,
     )

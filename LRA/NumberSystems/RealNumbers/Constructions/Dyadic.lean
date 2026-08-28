@@ -6,3 +6,4 @@ import LRA.NumberSystems.RealNumbers.Constructions.Dyadic.WellDefinedness
 import LRA.NumberSystems.RealNumbers.Constructions.Dyadic.Laws
 import LRA.NumberSystems.RealNumbers.Constructions.Dyadic.Behavior
 import LRA.NumberSystems.RealNumbers.Constructions.Dyadic.Instances
+import LRA.NumberSystems.RealNumbers.Constructions.Dyadic.Satisfy_Generic

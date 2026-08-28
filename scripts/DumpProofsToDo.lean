@@ -75,6 +75,10 @@ Run from the repository root:
 
 Writes `build/proofs-todo-environment.tsv`.
 
+To restrict the dump to one subject while keeping the same TSV schema:
+
+    lake env lean --run scripts/DumpProofsToDo.lean --prefix LRA.Set
+
 ## A note on confidence
 
 Unlike the rest of this repository's tooling, none of this file has been
@@ -353,6 +357,37 @@ private def discoveredLraImports : IO (Array Import) := do
   let sortedModules := modules.qsort (fun a b => a.toString < b.toString)
   pure <| sortedModules.map fun module => { module := module }
 
+private partial def parsePrefixes : List String → List String
+  | [] => []
+  | "--prefix" :: value :: rest => value :: parsePrefixes rest
+  | _ :: rest => parsePrefixes rest
+
+private def moduleMatchesPrefixes (moduleName : Name) (prefixes : List String) : Bool :=
+  if prefixes.isEmpty then
+    true
+  else
+    let rendered := moduleName.toString
+    prefixes.any (fun pref => rendered == pref || rendered.startsWith (pref ++ "."))
+
+private def modulePathExists (moduleName : Name) : IO Bool := do
+  let path : System.FilePath := moduleName.toString.replace "." "/" ++ ".lean"
+  path.pathExists
+
+private def selectedImports (prefixes : List String) : IO (Array Import) := do
+  if prefixes.isEmpty then
+    discoveredLraImports
+  else
+    let mut imports : Array Import := #[]
+    for pref in prefixes do
+      let moduleName := pref.toName
+      if ← modulePathExists moduleName then
+        imports := imports.push { module := moduleName }
+    if imports.isEmpty then
+      return (← discoveredLraImports).filter (fun importDecl =>
+        moduleMatchesPrefixes importDecl.module prefixes
+      )
+    return imports
+
 /--
 Recursively delta-unfolds every application of a definition not present in
 `unfoldDenyList`, repeating up to `fuel` times per position so an unfolded
@@ -470,8 +505,9 @@ private def propositionExprOfDefn (type value : Expr) : MetaM Expr := do
     let body ← Meta.whnf applied.headBeta
     Meta.mkForallFVars fvars body
 
-unsafe def main : IO Unit := do
-  let env ← importModules (← discoveredLraImports) {} (trustLevel := 0)
+unsafe def main (args : List String) : IO Unit := do
+  let prefixes := parsePrefixes args
+  let modules ← selectedImports prefixes
   let mut rows : Array String := #[]
   let mut theoremCount := 0
   let mut instanceCount := 0
@@ -480,17 +516,22 @@ unsafe def main : IO Unit := do
   let mut propTrueCount := 0
   let mut propFalseCount := 0
   let mut propErrorCount := 0
-  for h : moduleIndex in *...env.header.moduleNames.size do
-    let moduleName := env.header.moduleNames[moduleIndex]
-    let renderedModule := moduleName.toString
-    if renderedModule == "LRA" || renderedModule.startsWith "LRA." then
+  for importDecl in modules do
+    let env ← importModules #[importDecl] {} (trustLevel := 0)
+    for h : moduleIndex in *...env.header.moduleNames.size do
+      let moduleName := env.header.moduleNames[moduleIndex]
+      let renderedModule := moduleName.toString
+      if !(renderedModule == "LRA" || renderedModule.startsWith "LRA.") then
+        continue
+      if !moduleMatchesPrefixes moduleName prefixes then
+        continue
       let moduleData := env.header.moduleData[moduleIndex]!
       for h : constantIndex in *...moduleData.constNames.size do
-        let name := moduleData.constNames[constantIndex]
+        let name := moduleData.constNames[constantIndex]!
         let info := moduleData.constants[constantIndex]!
         if isGenerated env name then
           continue
-        if let .thmInfo thm := info then
+        if let ConstantInfo.thmInfo thm := info then
           let sorryUsed := usesSorry thm.value
           let (_plain, uncurried, unfolded, status) ← computeFolRenderings env thm.type
           theoremCount := theoremCount + 1
@@ -503,7 +544,7 @@ unsafe def main : IO Unit := do
             clean unfolded,
             status
           ]
-        else if let .axiomInfo ax := info then
+        else if let ConstantInfo.axiomInfo ax := info then
           let (_plain, uncurried, unfolded, status) ← computeFolRenderings env ax.type
           axiomCount := axiomCount + 1
           rows := rows.push <| String.intercalate "\t" [
@@ -515,7 +556,7 @@ unsafe def main : IO Unit := do
             clean unfolded,
             status
           ]
-        else if let .defnInfo defn := info then
+        else if let ConstantInfo.defnInfo defn := info then
           defnInfoCount := defnInfoCount + 1
           let isPropResult ← classifyDefn env defn.type
           match isPropResult with

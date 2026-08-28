@@ -1,1 +1,1 @@
-import LRA.AlgebraicStructures.Magma.Constructions.Mathlib.Laws
+import LRA.AlgebraicStructures.Magma.Constructions.Mathlib.Satisfy_Generic

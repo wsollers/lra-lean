@@ -1,15 +1,19 @@
 
-import LRA.NumberSystems.Interface.ModelTheory.Model
+import LRA.NumberSystems.Integers.Interface.ModelTheory.Model
+import LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.Model
+import LRA.NumberSystems.RealNumbers.Interface.ModelTheory.Model
 
 namespace LRA.NumberSystems.RealNumbers.Cantor
-open LRA.NumberSystems.Interface.ModelTheory
+open LRA.NumberSystems.Integers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers.Interface.ModelTheory
+open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 
 /--
 `EndpointInterval` TODO
 
 Predicate logic:
 
-  structure EndpointInterval (rational_model : DenselyOrderedFieldModel) where
+  structure EndpointInterval (rational_model : RationalModel) where
   lower : rational_model.signature.carrier
   upper : rational_model.signature.carrier
   lower_le_upper :
@@ -17,7 +21,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  structure EndpointInterval (rational_model : DenselyOrderedFieldModel) where
+  structure EndpointInterval (rational_model : RationalModel) where
   lower : rational_model.signature.carrier
   upper : rational_model.signature.carrier
   lower_le_upper :
@@ -26,7 +30,7 @@ Predicate logic (unfolded):
 Logical form (Lean):
 
 ```lean
-structure EndpointInterval (rational_model : DenselyOrderedFieldModel) where
+structure EndpointInterval (rational_model : RationalModel) where
   lower : rational_model.signature.carrier
   upper : rational_model.signature.carrier
   lower_le_upper :
@@ -52,7 +56,7 @@ Common confusions:
 Related proof moves: TODO
 
 -/
-structure EndpointInterval (rational_model : DenselyOrderedFieldModel) where
+structure EndpointInterval (rational_model : RationalModel) where
   lower : rational_model.signature.carrier
   upper : rational_model.signature.carrier
   lower_le_upper :
@@ -63,7 +67,7 @@ structure EndpointInterval (rational_model : DenselyOrderedFieldModel) where
 
 Predicate logic:
 
-  structure NestedIntervalSequence (rational_model : DenselyOrderedFieldModel) where
+  structure NestedIntervalSequence (rational_model : RationalModel) where
   interval : Nat → EndpointInterval rational_model
   nested :
     ∀ index : Nat,
@@ -83,7 +87,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  structure NestedIntervalSequence (rational_model : DenselyOrderedFieldModel) where
+  structure NestedIntervalSequence (rational_model : RationalModel) where
   interval : Nat → EndpointInterval rational_model
   nested :
     ∀ index : Nat,
@@ -104,7 +108,7 @@ Predicate logic (unfolded):
 Logical form (Lean):
 
 ```lean
-structure NestedIntervalSequence (rational_model : DenselyOrderedFieldModel) where
+structure NestedIntervalSequence (rational_model : RationalModel) where
   interval : Nat → EndpointInterval rational_model
   nested :
     ∀ index : Nat,
@@ -142,7 +146,7 @@ Common confusions:
 Related proof moves: intro, constructor, cases, rcases, use
 
 -/
-structure NestedIntervalSequence (rational_model : DenselyOrderedFieldModel) where
+structure NestedIntervalSequence (rational_model : RationalModel) where
   interval : Nat → EndpointInterval rational_model
   nested :
     ∀ index : Nat,

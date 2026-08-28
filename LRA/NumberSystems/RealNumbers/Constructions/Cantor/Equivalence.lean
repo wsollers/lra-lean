@@ -3,24 +3,26 @@ import LRA.NumberSystems.RealNumbers.Constructions.Cantor.Carrier
 
 namespace LRA.NumberSystems.RealNumbers.Cantor
 
-open LRA.NumberSystems.Interface.ModelTheory
+open LRA.NumberSystems.Integers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers.Interface.ModelTheory
+open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 
 /--
 `EndpointEquivalent` TODO
 
 Predicate logic:
 
-  ∀ (fieldModel : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel) (first second : LRA.NumberSystems.RealNumbers.Cantor.NestedIntervalSequence fieldModel) (tolerance : fieldModel.Carrier), fieldModel.ltInst.lt 0 tolerance → Exists fun index => (fieldModel.signature.StrictOrder (fieldModel.signature.add (first.interval index).lower (fieldModel.signature.neg (second.interval index).upper)) tolerance ∧ fieldModel.signature.StrictOrder (fieldModel.signature.add (second.interval index).lower (fieldModel.signature.neg (first.interval index).upper)) tolerance)
+  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (first second : LRA.NumberSystems.RealNumbers.Cantor.NestedIntervalSequence fieldModel) (tolerance : fieldModel.Carrier), fieldModel.ltInst.lt 0 tolerance → Exists fun index => (fieldModel.signature.StrictOrder (fieldModel.signature.add (first.interval index).lower (fieldModel.signature.neg (second.interval index).upper)) tolerance ∧ fieldModel.signature.StrictOrder (fieldModel.signature.add (second.interval index).lower (fieldModel.signature.neg (first.interval index).upper)) tolerance)
 
 Predicate logic (unfolded):
 
-  ∀ (fieldModel : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel) (first second : LRA.NumberSystems.RealNumbers.Cantor.NestedIntervalSequence fieldModel) (tolerance : fieldModel.1), fieldModel.ltInst.1 fieldModel.zeroInst.1 tolerance → Exists fun index => (fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (first.interval index).1 (fieldModel.signature.toRingConceptSignature.2 (second.interval index).2)) tolerance ∧ fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (second.interval index).1 (fieldModel.signature.toRingConceptSignature.2 (first.interval index).2)) tolerance)
+  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (first second : LRA.NumberSystems.RealNumbers.Cantor.NestedIntervalSequence fieldModel) (tolerance : fieldModel.1), fieldModel.ltInst.1 fieldModel.zeroInst.1 tolerance → Exists fun index => (fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (first.interval index).1 (fieldModel.signature.toRingConceptSignature.2 (second.interval index).2)) tolerance ∧ fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (second.interval index).1 (fieldModel.signature.toRingConceptSignature.2 (first.interval index).2)) tolerance)
 
 Logical form (Lean):
 
 ```lean
 def EndpointEquivalent
-    (fieldModel : DenselyOrderedFieldModel)
+    (fieldModel : RationalModel)
     (first second : NestedIntervalSequence fieldModel) : Prop :=
   ∀ tolerance : fieldModel.Carrier,
     0 < tolerance →
@@ -57,7 +59,7 @@ Related proof moves: intro, constructor, cases, rcases, use, unfold
 
 -/
 def EndpointEquivalent
-    (fieldModel : DenselyOrderedFieldModel)
+    (fieldModel : RationalModel)
     (first second : NestedIntervalSequence fieldModel) : Prop :=
   ∀ tolerance : fieldModel.Carrier,
     0 < tolerance →
@@ -78,17 +80,17 @@ def EndpointEquivalent
 
 Predicate logic:
 
-  (∀ fieldModel ∈ DenselyOrderedFieldModel), Equivalence (EndpointEquivalent fieldModel)
+  (∀ fieldModel ∈ RationalModel), Equivalence (EndpointEquivalent fieldModel)
 
 Predicate logic (unfolded):
 
-  ∀ (fieldModel : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel), Equivalence fun first second => ∀ (tolerance : fieldModel.1), fieldModel.ltInst.1 fieldModel.zeroInst.1 tolerance → Exists fun index => (fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (first.interval index).1 (fieldModel.signature.toRingConceptSignature.2 (second.interval index).2)) tolerance ∧ fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (second.interval index).1 (fieldModel.signature.toRingConceptSignature.2 (first.interval index).2)) tolerance)
+  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Equivalence fun first second => ∀ (tolerance : fieldModel.1), fieldModel.ltInst.1 fieldModel.zeroInst.1 tolerance → Exists fun index => (fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (first.interval index).1 (fieldModel.signature.toRingConceptSignature.2 (second.interval index).2)) tolerance ∧ fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (second.interval index).1 (fieldModel.signature.toRingConceptSignature.2 (first.interval index).2)) tolerance)
 
 Logical form (Lean):
 
 ```lean
 theorem EndpointEquivalentIsEquivalence
-    (fieldModel : DenselyOrderedFieldModel) :
+    (fieldModel : RationalModel) :
     Equivalence (EndpointEquivalent fieldModel)
 ```
 
@@ -112,7 +114,7 @@ Related proof moves: TODO
 
 -/
 theorem EndpointEquivalentIsEquivalence
-    (fieldModel : DenselyOrderedFieldModel) :
+    (fieldModel : RationalModel) :
     Equivalence (EndpointEquivalent fieldModel) := by
   sorry
 
@@ -121,14 +123,14 @@ theorem EndpointEquivalentIsEquivalence
 
 Predicate logic:
 
-  def EndpointSetoid (fieldModel : DenselyOrderedFieldModel) :
+  def EndpointSetoid (fieldModel : RationalModel) :
     Setoid (NestedIntervalSequence fieldModel) where
   r := EndpointEquivalent fieldModel
   iseqv := EndpointEquivalentIsEquivalence fieldModel
 
 Predicate logic (unfolded):
 
-  def EndpointSetoid (fieldModel : DenselyOrderedFieldModel) :
+  def EndpointSetoid (fieldModel : RationalModel) :
     Setoid (NestedIntervalSequence fieldModel) where
   r := EndpointEquivalent fieldModel
   iseqv := EndpointEquivalentIsEquivalence fieldModel (source fallback; no compiled unfold data available)
@@ -136,7 +138,7 @@ Predicate logic (unfolded):
 Logical form (Lean):
 
 ```lean
-def EndpointSetoid (fieldModel : DenselyOrderedFieldModel) :
+def EndpointSetoid (fieldModel : RationalModel) :
     Setoid (NestedIntervalSequence fieldModel) where
   r := EndpointEquivalent fieldModel
   iseqv := EndpointEquivalentIsEquivalence fieldModel
@@ -161,7 +163,7 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-def EndpointSetoid (fieldModel : DenselyOrderedFieldModel) :
+def EndpointSetoid (fieldModel : RationalModel) :
     Setoid (NestedIntervalSequence fieldModel) where
   r := EndpointEquivalent fieldModel
   iseqv := EndpointEquivalentIsEquivalence fieldModel
@@ -171,18 +173,18 @@ def EndpointSetoid (fieldModel : DenselyOrderedFieldModel) :
 
 Predicate logic:
 
-  abbrev Carrier (fieldModel : DenselyOrderedFieldModel) :=
+  abbrev Carrier (fieldModel : RationalModel) :=
   Quotient (EndpointSetoid fieldModel)
 
 Predicate logic (unfolded):
 
-  abbrev Carrier (fieldModel : DenselyOrderedFieldModel) :=
+  abbrev Carrier (fieldModel : RationalModel) :=
   Quotient (EndpointSetoid fieldModel) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
-abbrev Carrier (fieldModel : DenselyOrderedFieldModel) :=
+abbrev Carrier (fieldModel : RationalModel) :=
   Quotient (EndpointSetoid fieldModel)
 ```
 
@@ -205,7 +207,7 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-abbrev Carrier (fieldModel : DenselyOrderedFieldModel) :=
+abbrev Carrier (fieldModel : RationalModel) :=
   Quotient (EndpointSetoid fieldModel)
 
 end LRA.NumberSystems.RealNumbers.Cantor

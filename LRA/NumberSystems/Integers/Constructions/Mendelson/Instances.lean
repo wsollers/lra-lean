@@ -95,7 +95,7 @@ Related proof moves: use, rcases
 -/
 theorem MendelsonIntegersFormDiscretelyOrderedIntegralDomain
     (positiveData : PositiveNaturalPairData) :
-    ∃ model : LRA.NumberSystems.Interface.ModelTheory.DiscretelyOrderedIntegralDomainModel,
+    ∃ model : LRA.NumberSystems.Integers.Interface.ModelTheory.IntegerModel,
       model.Carrier = Carrier positiveData := by
   sorry
 

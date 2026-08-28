@@ -4,7 +4,9 @@ import LRA.NumberSystems.RealNumbers.Irrationals
 
 namespace LRA.NumberSystems.RealNumbers.ContinuedFractions
 
-open LRA.NumberSystems.Interface.ModelTheory
+open LRA.NumberSystems.Integers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers.Interface.ModelTheory
+open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 open LRA.Arithmetic.ContinuedFractions
 
 universe u
@@ -15,7 +17,7 @@ universe u
 Predicate logic:
 
   def FinitePrefix
-    {integerModel : DiscretelyOrderedIntegralDomainModel.{u}}
+    {integerModel : IntegerModel.{u}}
     (fraction : InfiniteSimpleContinuedFraction integerModel)
     (depth : Nat) : FiniteSimpleContinuedFraction integerModel where
   Head := fraction 0
@@ -24,7 +26,7 @@ Predicate logic:
 Predicate logic (unfolded):
 
   def FinitePrefix
-    {integerModel : DiscretelyOrderedIntegralDomainModel.{u}}
+    {integerModel : IntegerModel.{u}}
     (fraction : InfiniteSimpleContinuedFraction integerModel)
     (depth : Nat) : FiniteSimpleContinuedFraction integerModel where
   Head := fraction 0
@@ -34,7 +36,7 @@ Logical form (Lean):
 
 ```lean
 def FinitePrefix
-    {integerModel : DiscretelyOrderedIntegralDomainModel.{u}}
+    {integerModel : IntegerModel.{u}}
     (fraction : InfiniteSimpleContinuedFraction integerModel)
     (depth : Nat) : FiniteSimpleContinuedFraction integerModel where
   Head := fraction 0
@@ -61,7 +63,7 @@ Related proof moves: unfold
 
 -/
 def FinitePrefix
-    {integerModel : DiscretelyOrderedIntegralDomainModel.{u}}
+    {integerModel : IntegerModel.{u}}
     (fraction : InfiniteSimpleContinuedFraction integerModel)
     (depth : Nat) : FiniteSimpleContinuedFraction integerModel where
   Head := fraction 0

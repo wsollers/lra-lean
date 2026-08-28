@@ -1,0 +1,2 @@
+import LRA.AlgebraicStructures.Group.Interface.Satisfy_ModelTheory
+import LRA.AlgebraicStructures.Group.Interface.Satisfy_UniversalAlgebra

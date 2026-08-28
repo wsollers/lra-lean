@@ -1,1 +1,1 @@
-import LRA.AlgebraicStructures.AdditiveGroup.Constructions.Mathlib.Laws
+import LRA.AlgebraicStructures.AdditiveGroup.Constructions.Mathlib.Satisfy_Generic

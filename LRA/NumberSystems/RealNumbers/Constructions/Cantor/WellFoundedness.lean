@@ -2,24 +2,26 @@
 import LRA.NumberSystems.RealNumbers.Constructions.Cantor.Equivalence
 
 namespace LRA.NumberSystems.RealNumbers.Cantor
-open LRA.NumberSystems.Interface.ModelTheory
+open LRA.NumberSystems.Integers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers.Interface.ModelTheory
+open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 
 /--
 `InductionOnRepresentatives` TODO
 
 Predicate logic:
 
-  (∀ rational_model ∈ DenselyOrderedFieldModel), (Carrier rational_model → Prop ∧ ∀ representative : NestedIntervalSequence rational_model, motive (Quotient.mk _ representative)) → ∀ value : Carrier rational_model, motive value
+  (∀ rational_model ∈ RationalModel), (Carrier rational_model → Prop ∧ ∀ representative : NestedIntervalSequence rational_model, motive (Quotient.mk _ representative)) → ∀ value : Carrier rational_model, motive value
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel) (motive : Quot (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid rational_model).1 → Prop), (∀ (representative : LRA.NumberSystems.RealNumbers.Cantor.NestedIntervalSequence rational_model), motive (Quot.mk (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid rational_model).1 representative)) → ∀ (value : Quot (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid rational_model).1), motive value
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (motive : Quot (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid rational_model).1 → Prop), (∀ (representative : LRA.NumberSystems.RealNumbers.Cantor.NestedIntervalSequence rational_model), motive (Quot.mk (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid rational_model).1 representative)) → ∀ (value : Quot (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid rational_model).1), motive value
 
 Logical form (Lean):
 
 ```lean
 theorem InductionOnRepresentatives
-    (rational_model : DenselyOrderedFieldModel)
+    (rational_model : RationalModel)
     (motive : Carrier rational_model → Prop)
     (onRepresentative :
       ∀ representative : NestedIntervalSequence rational_model,
@@ -47,7 +49,7 @@ Related proof moves: intro
 
 -/
 theorem InductionOnRepresentatives
-    (rational_model : DenselyOrderedFieldModel)
+    (rational_model : RationalModel)
     (motive : Carrier rational_model → Prop)
     (onRepresentative :
       ∀ representative : NestedIntervalSequence rational_model,

@@ -3,3 +3,6 @@ import LRA.NumberSystems.WholeNumbers.Interface.Signature.Definition
 import LRA.NumberSystems.WholeNumbers.Interface.ModelTheory.LStructure
 import LRA.NumberSystems.WholeNumbers.Interface.ModelTheory.Theory
 import LRA.NumberSystems.WholeNumbers.Interface.ModelTheory.Model
+import LRA.NumberSystems.WholeNumbers.Interface.UniversalAlgebra
+import LRA.NumberSystems.WholeNumbers.Interface.Satisfaction
+import LRA.NumberSystems.WholeNumbers.Interface.UniversalAlgebra.UniversalProperty

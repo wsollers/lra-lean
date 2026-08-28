@@ -8,5 +8,8 @@ import LRA.NumberSystems.RealNumbers.Interface.Signature.Definition
 import LRA.NumberSystems.RealNumbers.Interface.ModelTheory.LStructure
 import LRA.NumberSystems.RealNumbers.Interface.ModelTheory.Theory
 import LRA.NumberSystems.RealNumbers.Interface.ModelTheory.Model
+import LRA.NumberSystems.RealNumbers.Interface.UniversalAlgebra
+import LRA.NumberSystems.RealNumbers.Interface.Satisfaction
+import LRA.NumberSystems.RealNumbers.Interface.UniversalProperty
 import LRA.NumberSystems.RealNumbers.Interop.ConstructionModels
 import LRA.NumberSystems.RealNumbers.Interop

@@ -1,0 +1,2 @@
+import LRA.NumberSystems.WholeNumbers.Interface.Satisfy_ModelTheory
+import LRA.NumberSystems.WholeNumbers.Interface.Satisfy_UniversalAlgebra

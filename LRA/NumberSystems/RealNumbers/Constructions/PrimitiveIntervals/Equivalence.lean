@@ -2,20 +2,22 @@
 import LRA.NumberSystems.RealNumbers.Constructions.PrimitiveIntervals.Carrier
 
 namespace LRA.NumberSystems.RealNumbers.PrimitiveIntervals
-open LRA.NumberSystems.Interface.ModelTheory
+open LRA.NumberSystems.Integers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers.Interface.ModelTheory
+open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 
-variable (rational_model : DenselyOrderedFieldModel)
+variable (rational_model : RationalModel)
 
 /--
 `equivalent` TODO
 
 Predicate logic:
 
-  ∀ (rational_model : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel) (first second : LRA.NumberSystems.RealNumbers.PrimitiveIntervals.Representative rational_model) (first_index second_index : Nat), LRA.NumberSystems.RealNumbers.PrimitiveIntervals.overlaps rational_model (first.interval first_index) (second.interval second_index)
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (first second : LRA.NumberSystems.RealNumbers.PrimitiveIntervals.Representative rational_model) (first_index second_index : Nat), LRA.NumberSystems.RealNumbers.PrimitiveIntervals.overlaps rational_model (first.interval first_index) (second.interval second_index)
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel) (first second : LRA.NumberSystems.RealNumbers.PrimitiveIntervals.Representative rational_model) (first_index second_index : Nat), Exists fun value => ((rational_model.signature.toOrderedRingConceptSignature.2 (first.interval first_index).1 value ∧ rational_model.signature.toOrderedRingConceptSignature.2 value (first.interval first_index).2) ∧ (rational_model.signature.toOrderedRingConceptSignature.2 (second.interval second_index).1 value ∧ rational_model.signature.toOrderedRingConceptSignature.2 value (second.interval second_index).2))
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (first second : LRA.NumberSystems.RealNumbers.PrimitiveIntervals.Representative rational_model) (first_index second_index : Nat), Exists fun value => ((rational_model.signature.toOrderedRingConceptSignature.2 (first.interval first_index).1 value ∧ rational_model.signature.toOrderedRingConceptSignature.2 value (first.interval first_index).2) ∧ (rational_model.signature.toOrderedRingConceptSignature.2 (second.interval second_index).1 value ∧ rational_model.signature.toOrderedRingConceptSignature.2 value (second.interval second_index).2))
 
 Logical form (Lean):
 
@@ -63,7 +65,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel), Equivalence fun first second => ∀ (first_index second_index : Nat), Exists fun value => ((rational_model.signature.toOrderedRingConceptSignature.2 (first.interval first_index).1 value ∧ rational_model.signature.toOrderedRingConceptSignature.2 value (first.interval first_index).2) ∧ (rational_model.signature.toOrderedRingConceptSignature.2 (second.interval second_index).1 value ∧ rational_model.signature.toOrderedRingConceptSignature.2 value (second.interval second_index).2))
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Equivalence fun first second => ∀ (first_index second_index : Nat), Exists fun value => ((rational_model.signature.toOrderedRingConceptSignature.2 (first.interval first_index).1 value ∧ rational_model.signature.toOrderedRingConceptSignature.2 value (first.interval first_index).2) ∧ (rational_model.signature.toOrderedRingConceptSignature.2 (second.interval second_index).1 value ∧ rational_model.signature.toOrderedRingConceptSignature.2 value (second.interval second_index).2))
 
 Logical form (Lean):
 
@@ -188,7 +190,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel) (value : rational_model.signature.toCarrierBundle.1), Exists fun representative => ∀ (index : Nat), representative.1 index = { left_endpoint := value, right_endpoint := value, endpoints_are_ordered := ⋯ }
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (value : rational_model.signature.toCarrierBundle.1), Exists fun representative => ∀ (index : Nat), representative.1 index = { left_endpoint := value, right_endpoint := value, endpoints_are_ordered := ⋯ }
 
 Logical form (Lean):
 
@@ -333,7 +335,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel) (first second : rational_model.signature.toCarrierBundle.1), Quot.mk (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.representative_setoid rational_model).1 (Classical.indefiniteDescription (fun x => ∀ (index : Nat), x.interval index = LRA.NumberSystems.RealNumbers.PrimitiveIntervals.degenerate_interval rational_model first) ⋯).1 = Quot.mk (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.representative_setoid rational_model).1 (Classical.indefiniteDescription (fun x => ∀ (index : Nat), x.interval index = LRA.NumberSystems.RealNumbers.PrimitiveIntervals.degenerate_interval rational_model second) ⋯).1 → first = second
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (first second : rational_model.signature.toCarrierBundle.1), Quot.mk (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.representative_setoid rational_model).1 (Classical.indefiniteDescription (fun x => ∀ (index : Nat), x.interval index = LRA.NumberSystems.RealNumbers.PrimitiveIntervals.degenerate_interval rational_model first) ⋯).1 = Quot.mk (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.representative_setoid rational_model).1 (Classical.indefiniteDescription (fun x => ∀ (index : Nat), x.interval index = LRA.NumberSystems.RealNumbers.PrimitiveIntervals.degenerate_interval rational_model second) ⋯).1 → first = second
 
 Logical form (Lean):
 

@@ -4,7 +4,9 @@ import LRA.NumberSystems.RealNumbers.Interface.Definition
 
 namespace LRA.NumberSystems.RealNumbers.Irrationals
 
-open LRA.NumberSystems.Interface.ModelTheory
+open LRA.NumberSystems.Integers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers.Interface.ModelTheory
+open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 open LRA.NumberSystems.RationalNumbers
 open LRA.NumberSystems.RealNumbers
 

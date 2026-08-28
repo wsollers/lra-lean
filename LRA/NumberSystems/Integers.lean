@@ -6,3 +6,5 @@ import LRA.NumberSystems.Integers.Interface.Signature.Definition
 import LRA.NumberSystems.Integers.Interface.ModelTheory.LStructure
 import LRA.NumberSystems.Integers.Interface.ModelTheory.Theory
 import LRA.NumberSystems.Integers.Interface.ModelTheory.Model
+import LRA.NumberSystems.Integers.Interface.UniversalAlgebra
+import LRA.NumberSystems.Integers.Interface.Satisfaction

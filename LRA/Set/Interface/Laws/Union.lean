@@ -115,8 +115,8 @@ Common confusions:
 Related proof moves: intro
 
 -/
-theorem UnionCommutative : ∀ A B : α, A ∪ B = B ∪ A :=
-  sorry
+theorem UnionCommutative : ∀ A B : α, A ∪ B = B ∪ A := by
+  exact UnionLaws.UnionCommutative
 
 /--
 `UnionAssociative` TODO
@@ -154,8 +154,8 @@ Common confusions:
 Related proof moves: intro
 
 -/
-theorem UnionAssociative : ∀ A B C : α, (A ∪ B) ∪ C = A ∪ (B ∪ C) :=
-  sorry
+theorem UnionAssociative : ∀ A B C : α, (A ∪ B) ∪ C = A ∪ (B ∪ C) := by
+  exact UnionLaws.UnionAssociative
 
 /--
 `EmptyUnion` TODO
@@ -193,8 +193,8 @@ Common confusions:
 Related proof moves: intro
 
 -/
-theorem EmptyUnion : ∀ A : α, (∅ : α) ∪ A = A :=
-  sorry
+theorem EmptyUnion : ∀ A : α, (∅ : α) ∪ A = A := by
+  exact UnionLaws.EmptyUnion
 
 /--
 `UnionEmpty` TODO
@@ -232,8 +232,8 @@ Common confusions:
 Related proof moves: intro
 
 -/
-theorem UnionEmpty : ∀ A : α, A ∪ (∅ : α) = A :=
-  sorry
+theorem UnionEmpty : ∀ A : α, A ∪ (∅ : α) = A := by
+  exact UnionLaws.UnionEmpty
 
 /--
 `UnionIdempotent` TODO
@@ -271,8 +271,8 @@ Common confusions:
 Related proof moves: intro
 
 -/
-theorem UnionIdempotent : ∀ A : α, A ∪ A = A :=
-  sorry
+theorem UnionIdempotent : ∀ A : α, A ∪ A = A := by
+  exact UnionLaws.UnionIdempotent
 
 /--
 `UnionMonotone` TODO
@@ -312,8 +312,12 @@ Related proof moves: intro
 
 -/
 theorem UnionMonotone :
-    ∀ A₁ A₂ B₁ B₂ : α, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∪ B₁ ⊆ A₂ ∪ B₂ :=
-  sorry
+    ∀ A₁ A₂ B₁ B₂ : α, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∪ B₁ ⊆ A₂ ∪ B₂ := by
+  intro A B C D
+  intro aSubsetB
+  intro cSubsetD
+  have monotoneChain := UnionLaws.UnionMonotone A B C D
+  exact monotoneChain aSubsetB cSubsetD
 
 /--
 `SubsetIffUnionEqRight` TODO
@@ -351,9 +355,9 @@ Common confusions:
 Related proof moves: intro, constructor, .mp, .mpr
 
 -/
-theorem SubsetIffUnionEqRight : ∀ A B : α, A ⊆ B ↔ A ∪ B = B :=
-  sorry
+theorem SubsetIffUnionEqRight : ∀ A B : α, A ⊆ B ↔ A ∪ B = B := by
+
+  intro A B
+  exact UnionLaws.SubsetIffUnionEqRight A B
 
 end LRA.Set
-
-

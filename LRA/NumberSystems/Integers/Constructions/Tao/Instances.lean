@@ -9,7 +9,7 @@ namespace LRA.NumberSystems.Integers.Tao
 
 Predicate logic:
 
-  (∀ wholeData ∈ WholeNumberArithmeticForTaoFormalDifferences), ∃ model ∈ LRA.NumberSystems.Interface.ModelTheory.DiscretelyOrderedIntegralDomainModel, model.Carrier = Carrier wholeData
+  (∀ wholeData ∈ WholeNumberArithmeticForTaoFormalDifferences), ∃ model ∈ LRA.NumberSystems.Integers.Interface.ModelTheory.IntegerModel, model.Carrier = Carrier wholeData
 
 Predicate logic (unfolded):
 
@@ -20,7 +20,7 @@ Logical form (Lean):
 ```lean
 theorem TaoIntegersFormDiscretelyOrderedIntegralDomain
     (wholeData : WholeNumberArithmeticForTaoFormalDifferences) :
-    ∃ model : LRA.NumberSystems.Interface.ModelTheory.DiscretelyOrderedIntegralDomainModel,
+    ∃ model : LRA.NumberSystems.Integers.Interface.ModelTheory.IntegerModel,
       model.Carrier = Carrier wholeData
 ```
 
@@ -45,7 +45,7 @@ Related proof moves: use, rcases
 -/
 theorem TaoIntegersFormDiscretelyOrderedIntegralDomain
     (wholeData : WholeNumberArithmeticForTaoFormalDifferences) :
-    ∃ model : LRA.NumberSystems.Interface.ModelTheory.DiscretelyOrderedIntegralDomainModel,
+    ∃ model : LRA.NumberSystems.Integers.Interface.ModelTheory.IntegerModel,
       model.Carrier = Carrier wholeData := by
   sorry
 

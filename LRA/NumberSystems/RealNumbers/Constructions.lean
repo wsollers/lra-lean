@@ -5,3 +5,4 @@ import LRA.NumberSystems.RealNumbers.Constructions.Dyadic
 import LRA.NumberSystems.RealNumbers.Constructions.PrimitiveIntervals
 import LRA.NumberSystems.RealNumbers.Constructions.EffectiveCauchy
 import LRA.NumberSystems.RealNumbers.Constructions.Mathlib
+import LRA.NumberSystems.RealNumbers.Constructions.Mathlib.Satisfy_Generic

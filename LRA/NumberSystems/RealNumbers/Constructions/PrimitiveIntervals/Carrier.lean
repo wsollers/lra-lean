@@ -1,12 +1,16 @@
 
 import LRA.UniversalAlgebra.Quotient.RepresentativeCompatibility
-import LRA.NumberSystems.Interface.ModelTheory.Model
+import LRA.NumberSystems.Integers.Interface.ModelTheory.Model
+import LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.Model
+import LRA.NumberSystems.RealNumbers.Interface.ModelTheory.Model
 
 namespace LRA.NumberSystems.RealNumbers.PrimitiveIntervals
 
-open LRA.NumberSystems.Interface.ModelTheory
+open LRA.NumberSystems.Integers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers.Interface.ModelTheory
+open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 
-variable (rational_model : DenselyOrderedFieldModel)
+variable (rational_model : RationalModel)
 
 /--
 `Rational` TODO
@@ -55,7 +59,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel) (value : rational_model.signature.toCarrierBundle.1), rational_model.signature.toOrderedRingConceptSignature.2 value value
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (value : rational_model.signature.toCarrierBundle.1), rational_model.signature.toOrderedRingConceptSignature.2 value value
 
 Logical form (Lean):
 
@@ -148,11 +152,11 @@ structure RationalInterval where
 
 Predicate logic:
 
-  ∀ (rational_model : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel) (interval : LRA.NumberSystems.RealNumbers.PrimitiveIntervals.RationalInterval rational_model) (value : LRA.NumberSystems.RealNumbers.PrimitiveIntervals.Rational rational_model), (rational_model.signature.le interval.left_endpoint value ∧ rational_model.signature.le value interval.right_endpoint)
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (interval : LRA.NumberSystems.RealNumbers.PrimitiveIntervals.RationalInterval rational_model) (value : LRA.NumberSystems.RealNumbers.PrimitiveIntervals.Rational rational_model), (rational_model.signature.le interval.left_endpoint value ∧ rational_model.signature.le value interval.right_endpoint)
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel) (interval : LRA.NumberSystems.RealNumbers.PrimitiveIntervals.RationalInterval rational_model) (value : rational_model.signature.toCarrierBundle.1), (rational_model.signature.toOrderedRingConceptSignature.2 interval.1 value ∧ rational_model.signature.toOrderedRingConceptSignature.2 value interval.2)
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (interval : LRA.NumberSystems.RealNumbers.PrimitiveIntervals.RationalInterval rational_model) (value : rational_model.signature.toCarrierBundle.1), (rational_model.signature.toOrderedRingConceptSignature.2 interval.1 value ∧ rational_model.signature.toOrderedRingConceptSignature.2 value interval.2)
 
 Logical form (Lean):
 
@@ -194,11 +198,11 @@ def contains
 
 Predicate logic:
 
-  ∀ (rational_model : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel) (inner outer : LRA.NumberSystems.RealNumbers.PrimitiveIntervals.RationalInterval rational_model), (rational_model.signature.le outer.left_endpoint inner.left_endpoint ∧ rational_model.signature.le inner.right_endpoint outer.right_endpoint)
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (inner outer : LRA.NumberSystems.RealNumbers.PrimitiveIntervals.RationalInterval rational_model), (rational_model.signature.le outer.left_endpoint inner.left_endpoint ∧ rational_model.signature.le inner.right_endpoint outer.right_endpoint)
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel) (inner outer : LRA.NumberSystems.RealNumbers.PrimitiveIntervals.RationalInterval rational_model), (rational_model.signature.toOrderedRingConceptSignature.2 outer.1 inner.1 ∧ rational_model.signature.toOrderedRingConceptSignature.2 inner.2 outer.2)
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (inner outer : LRA.NumberSystems.RealNumbers.PrimitiveIntervals.RationalInterval rational_model), (rational_model.signature.toOrderedRingConceptSignature.2 outer.1 inner.1 ∧ rational_model.signature.toOrderedRingConceptSignature.2 inner.2 outer.2)
 
 Logical form (Lean):
 
@@ -242,11 +246,11 @@ def subset
 
 Predicate logic:
 
-  ∀ (rational_model : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel) (first second : LRA.NumberSystems.RealNumbers.PrimitiveIntervals.RationalInterval rational_model), Exists fun value => (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.contains rational_model first value ∧ LRA.NumberSystems.RealNumbers.PrimitiveIntervals.contains rational_model second value)
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (first second : LRA.NumberSystems.RealNumbers.PrimitiveIntervals.RationalInterval rational_model), Exists fun value => (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.contains rational_model first value ∧ LRA.NumberSystems.RealNumbers.PrimitiveIntervals.contains rational_model second value)
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel) (first second : LRA.NumberSystems.RealNumbers.PrimitiveIntervals.RationalInterval rational_model), Exists fun value => ((rational_model.signature.toOrderedRingConceptSignature.2 first.1 value ∧ rational_model.signature.toOrderedRingConceptSignature.2 value first.2) ∧ (rational_model.signature.toOrderedRingConceptSignature.2 second.1 value ∧ rational_model.signature.toOrderedRingConceptSignature.2 value second.2))
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (first second : LRA.NumberSystems.RealNumbers.PrimitiveIntervals.RationalInterval rational_model), Exists fun value => ((rational_model.signature.toOrderedRingConceptSignature.2 first.1 value ∧ rational_model.signature.toOrderedRingConceptSignature.2 value first.2) ∧ (rational_model.signature.toOrderedRingConceptSignature.2 second.1 value ∧ rational_model.signature.toOrderedRingConceptSignature.2 value second.2))
 
 Logical form (Lean):
 

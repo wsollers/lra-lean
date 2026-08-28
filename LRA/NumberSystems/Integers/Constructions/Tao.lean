@@ -6,3 +6,4 @@ import LRA.NumberSystems.Integers.Constructions.Tao.WellDefinedness
 import LRA.NumberSystems.Integers.Constructions.Tao.Laws
 import LRA.NumberSystems.Integers.Constructions.Tao.Behavior
 import LRA.NumberSystems.Integers.Constructions.Tao.Instances
+import LRA.NumberSystems.Integers.Constructions.Tao.Satisfy_Generic

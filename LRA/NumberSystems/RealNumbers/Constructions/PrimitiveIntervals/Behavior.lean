@@ -5,7 +5,9 @@ import LRA.NumberSystems.RationalNumbers.Interface.Definition
 
 namespace LRA.NumberSystems.RealNumbers.PrimitiveIntervals
 
-open LRA.NumberSystems.Interface.ModelTheory
+open LRA.NumberSystems.Integers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers.Interface.ModelTheory
+open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 open LRA.NumberSystems.RationalNumbers
 
 variable (rationalSystem : RationalNumberSystem)

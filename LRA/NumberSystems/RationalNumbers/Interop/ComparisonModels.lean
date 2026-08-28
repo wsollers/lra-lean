@@ -1,26 +1,30 @@
 
 import LRA.UniversalAlgebra.Quotient.RepresentativeCompatibility
-import LRA.NumberSystems.Interface.ModelTheory.Model
+import LRA.NumberSystems.Integers.Interface.ModelTheory.Model
+import LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.Model
+import LRA.NumberSystems.RationalNumbers.Interface.Definition
 
 namespace LRA.NumberSystems.RationalNumbers
 
-open LRA.NumberSystems.Interface.ModelTheory
+open LRA.NumberSystems.Integers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers (ArchimedeanDenseOrderedFieldExtension)
 
 /--
 `is_order_complete` TODO
 
 Predicate logic:
 
-  ∀ (rational_model : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel) (subset : rational_model.signature.carrier → Prop), (Exists fun member => subset member ∧ Exists fun upper_bound => ∀ (member : rational_model.signature.carrier), subset member → rational_model.signature.le member upper_bound) → Exists fun supremum => (∀ (member : rational_model.signature.carrier), subset member → rational_model.signature.le member supremum ∧ ∀ (upper_bound : rational_model.signature.carrier), (∀ (member : rational_model.signature.carrier), subset member → rational_model.signature.le member upper_bound) → rational_model.signature.le supremum upper_bound)
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (subset : rational_model.signature.carrier → Prop), (Exists fun member => subset member ∧ Exists fun upper_bound => ∀ (member : rational_model.signature.carrier), subset member → rational_model.signature.le member upper_bound) → Exists fun supremum => (∀ (member : rational_model.signature.carrier), subset member → rational_model.signature.le member supremum ∧ ∀ (upper_bound : rational_model.signature.carrier), (∀ (member : rational_model.signature.carrier), subset member → rational_model.signature.le member upper_bound) → rational_model.signature.le supremum upper_bound)
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel) (subset : rational_model.signature.toCarrierBundle.1 → Prop), (Exists fun member => subset member ∧ Exists fun upper_bound => ∀ (member : rational_model.signature.toCarrierBundle.1), subset member → rational_model.signature.toOrderedRingConceptSignature.2 member upper_bound) → Exists fun supremum => (∀ (member : rational_model.signature.toCarrierBundle.1), subset member → rational_model.signature.toOrderedRingConceptSignature.2 member supremum ∧ ∀ (upper_bound : rational_model.signature.toCarrierBundle.1), (∀ (member : rational_model.signature.toCarrierBundle.1), subset member → rational_model.signature.toOrderedRingConceptSignature.2 member upper_bound) → rational_model.signature.toOrderedRingConceptSignature.2 supremum upper_bound)
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (subset : rational_model.signature.toCarrierBundle.1 → Prop), (Exists fun member => subset member ∧ Exists fun upper_bound => ∀ (member : rational_model.signature.toCarrierBundle.1), subset member → rational_model.signature.toOrderedRingConceptSignature.2 member upper_bound) → Exists fun supremum => (∀ (member : rational_model.signature.toCarrierBundle.1), subset member → rational_model.signature.toOrderedRingConceptSignature.2 member supremum ∧ ∀ (upper_bound : rational_model.signature.toCarrierBundle.1), (∀ (member : rational_model.signature.toCarrierBundle.1), subset member → rational_model.signature.toOrderedRingConceptSignature.2 member upper_bound) → rational_model.signature.toOrderedRingConceptSignature.2 supremum upper_bound)
 
 Logical form (Lean):
 
 ```lean
-def is_order_complete (rational_model : DenselyOrderedFieldModel) : Prop :=
+def is_order_complete (rational_model : RationalModel) : Prop :=
   ∀ subset : rational_model.signature.carrier → Prop,
     (∃ member, subset member) →
     (∃ upper_bound,
@@ -57,7 +61,7 @@ Common confusions:
 Related proof moves: intro, constructor, cases, rcases, use, unfold
 
 -/
-def is_order_complete (rational_model : DenselyOrderedFieldModel) : Prop :=
+def is_order_complete (rational_model : RationalModel) : Prop :=
   ∀ subset : rational_model.signature.carrier → Prop,
     (∃ member, subset member) →
     (∃ upper_bound,
@@ -76,7 +80,9 @@ def is_order_complete (rational_model : DenselyOrderedFieldModel) : Prop :=
 
 end LRA.NumberSystems.RationalNumbers
 namespace LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison
-open LRA.NumberSystems.Interface.ModelTheory
+open LRA.NumberSystems.Integers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers (ArchimedeanDenseOrderedFieldExtension)
 
 /--
 `Representative` TODO
@@ -354,17 +360,17 @@ theorem representative_multiplication_respects_equivalence
 
 Predicate logic:
 
-  (∀ integer_model ∈ DiscretelyOrderedIntegralDomainModel), Nonempty DenselyOrderedFieldModel
+  (∀ integer_model ∈ IntegerModel), Nonempty RationalModel
 
 Predicate logic (unfolded):
 
-  ∀ (a : LRA.NumberSystems.Interface.ModelTheory.DiscretelyOrderedIntegralDomainModel), Nonempty LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel
+  ∀ (a : LRA.NumberSystems.Integers.Interface.ModelTheory.IntegerModel), Nonempty LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel
 
 Logical form (Lean):
 
 ```lean
 theorem rational_model_exists
-    (integer_model : DiscretelyOrderedIntegralDomainModel) : Nonempty DenselyOrderedFieldModel
+    (integer_model : IntegerModel) : Nonempty RationalModel
 ```
 
 Type-theoretic form:
@@ -387,7 +393,7 @@ Related proof moves: TODO
 
 -/
 theorem rational_model_exists
-    (integer_model : DiscretelyOrderedIntegralDomainModel) : Nonempty DenselyOrderedFieldModel := by
+    (integer_model : IntegerModel) : Nonempty RationalModel := by
   sorry
 
 /--
@@ -396,20 +402,20 @@ theorem rational_model_exists
 Predicate logic:
 
   noncomputable def rational_model
-    (integer_model : DiscretelyOrderedIntegralDomainModel) : DenselyOrderedFieldModel :=
+    (integer_model : IntegerModel) : RationalModel :=
   Classical.choice (rational_model_exists integer_model)
 
 Predicate logic (unfolded):
 
   noncomputable def rational_model
-    (integer_model : DiscretelyOrderedIntegralDomainModel) : DenselyOrderedFieldModel :=
+    (integer_model : IntegerModel) : RationalModel :=
   Classical.choice (rational_model_exists integer_model) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
 noncomputable def rational_model
-    (integer_model : DiscretelyOrderedIntegralDomainModel) : DenselyOrderedFieldModel :=
+    (integer_model : IntegerModel) : RationalModel :=
   Classical.choice (rational_model_exists integer_model)
 ```
 
@@ -433,7 +439,7 @@ Related proof moves: unfold
 
 -/
 noncomputable def rational_model
-    (integer_model : DiscretelyOrderedIntegralDomainModel) : DenselyOrderedFieldModel :=
+    (integer_model : IntegerModel) : RationalModel :=
   Classical.choice (rational_model_exists integer_model)
 
 /--
@@ -441,17 +447,17 @@ noncomputable def rational_model
 
 Predicate logic:
 
-  (∀ integer_model ∈ DiscretelyOrderedIntegralDomainModel), Nonempty (ArchimedeanDenseOrderedFieldExtension integer_model)
+  (∀ integer_model ∈ IntegerModel), Nonempty (ArchimedeanDenseOrderedFieldExtension integer_model)
 
 Predicate logic (unfolded):
 
-  ∀ (integer_model : LRA.NumberSystems.Interface.ModelTheory.DiscretelyOrderedIntegralDomainModel), Nonempty (LRA.NumberSystems.Interface.ModelTheory.ArchimedeanDenseOrderedFieldExtension integer_model)
+  ∀ (integer_model : LRA.NumberSystems.Integers.Interface.ModelTheory.IntegerModel), Nonempty (LRA.NumberSystems.RationalNumbers.ArchimedeanDenseOrderedFieldExtension integer_model)
 
 Logical form (Lean):
 
 ```lean
 theorem rational_extension_exists
-    (integer_model : DiscretelyOrderedIntegralDomainModel) :
+    (integer_model : IntegerModel) :
     Nonempty (ArchimedeanDenseOrderedFieldExtension integer_model)
 ```
 
@@ -475,7 +481,7 @@ Related proof moves: TODO
 
 -/
 theorem rational_extension_exists
-    (integer_model : DiscretelyOrderedIntegralDomainModel) :
+    (integer_model : IntegerModel) :
     Nonempty (ArchimedeanDenseOrderedFieldExtension integer_model) := by
   sorry
 
@@ -485,14 +491,14 @@ theorem rational_extension_exists
 Predicate logic:
 
   noncomputable def rational_extension
-    (integer_model : DiscretelyOrderedIntegralDomainModel) :
+    (integer_model : IntegerModel) :
     ArchimedeanDenseOrderedFieldExtension integer_model :=
   Classical.choice (rational_extension_exists integer_model)
 
 Predicate logic (unfolded):
 
   noncomputable def rational_extension
-    (integer_model : DiscretelyOrderedIntegralDomainModel) :
+    (integer_model : IntegerModel) :
     ArchimedeanDenseOrderedFieldExtension integer_model :=
   Classical.choice (rational_extension_exists integer_model) (source fallback; no compiled unfold data available)
 
@@ -500,7 +506,7 @@ Logical form (Lean):
 
 ```lean
 noncomputable def rational_extension
-    (integer_model : DiscretelyOrderedIntegralDomainModel) :
+    (integer_model : IntegerModel) :
     ArchimedeanDenseOrderedFieldExtension integer_model :=
   Classical.choice (rational_extension_exists integer_model)
 ```
@@ -525,7 +531,7 @@ Related proof moves: unfold
 
 -/
 noncomputable def rational_extension
-    (integer_model : DiscretelyOrderedIntegralDomainModel) :
+    (integer_model : IntegerModel) :
     ArchimedeanDenseOrderedFieldExtension integer_model :=
   Classical.choice (rational_extension_exists integer_model)
 
@@ -534,17 +540,17 @@ noncomputable def rational_extension
 
 Predicate logic:
 
-  (∀ integer_model ∈ DiscretelyOrderedIntegralDomainModel), ¬ RationalNumbers.is_order_complete (rational_model integer_model)
+  (∀ integer_model ∈ IntegerModel), ¬ RationalNumbers.is_order_complete (rational_model integer_model)
 
 Predicate logic (unfolded):
 
-  ∀ (integer_model : LRA.NumberSystems.Interface.ModelTheory.DiscretelyOrderedIntegralDomainModel), (∀ (subset : (LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison.rational_model integer_model).signature.toCarrierBundle.1 → Prop), (Exists fun member => subset member) → (Exists fun upper_bound => ∀ (member : (LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison.rational_model integer_model).signature.toCarrierBundle.1), subset member → (LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison.rational_model integer_model).signature.toOrderedRingConceptSignature.2 member upper_bound) → Exists fun supremum => (∀ (member : (LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison.rational_model integer_model).signature.toCarrierBundle.1), subset member → (LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison.rational_model integer_model).signature.toOrderedRingConceptSignature.2 member supremum ∧ ∀ (upper_bound : (LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison.rational_model integer_model).signature.toCarrierBundle.1), (∀ (member : (LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison.rational_model integer_model).signature.toCarrierBundle.1), subset member → (LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison.rational_model integer_model).signature.toOrderedRingConceptSignature.2 member upper_bound) → (LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison.rational_model integer_model).signature.toOrderedRingConceptSignature.2 supremum upper_bound)) → False
+  ∀ (integer_model : LRA.NumberSystems.Integers.Interface.ModelTheory.IntegerModel), (∀ (subset : (LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison.rational_model integer_model).signature.toCarrierBundle.1 → Prop), (Exists fun member => subset member) → (Exists fun upper_bound => ∀ (member : (LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison.rational_model integer_model).signature.toCarrierBundle.1), subset member → (LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison.rational_model integer_model).signature.toOrderedRingConceptSignature.2 member upper_bound) → Exists fun supremum => (∀ (member : (LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison.rational_model integer_model).signature.toCarrierBundle.1), subset member → (LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison.rational_model integer_model).signature.toOrderedRingConceptSignature.2 member supremum ∧ ∀ (upper_bound : (LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison.rational_model integer_model).signature.toCarrierBundle.1), (∀ (member : (LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison.rational_model integer_model).signature.toCarrierBundle.1), subset member → (LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison.rational_model integer_model).signature.toOrderedRingConceptSignature.2 member upper_bound) → (LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison.rational_model integer_model).signature.toOrderedRingConceptSignature.2 supremum upper_bound)) → False
 
 Logical form (Lean):
 
 ```lean
 theorem is_not_order_complete
-    (integer_model : DiscretelyOrderedIntegralDomainModel) :
+    (integer_model : IntegerModel) :
     ¬ RationalNumbers.is_order_complete (rational_model integer_model)
 ```
 
@@ -568,17 +574,21 @@ Related proof moves: TODO
 
 -/
 theorem is_not_order_complete
-    (integer_model : DiscretelyOrderedIntegralDomainModel) :
+    (integer_model : IntegerModel) :
     ¬ RationalNumbers.is_order_complete (rational_model integer_model) := by
   sorry
 
 end LRA.NumberSystems.RationalNumbers.QuotientFractionsComparison
 namespace LRA.NumberSystems.RationalNumbers
-open LRA.NumberSystems.Interface.ModelTheory
+open LRA.NumberSystems.Integers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers (ArchimedeanDenseOrderedFieldExtension)
 
 end LRA.NumberSystems.RationalNumbers
 namespace LRA.NumberSystems.RationalNumbers.Reduced
-open LRA.NumberSystems.Interface.ModelTheory
+open LRA.NumberSystems.Integers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers (ArchimedeanDenseOrderedFieldExtension)
 
 /--
 `Representative` TODO
@@ -639,17 +649,17 @@ structure Representative
 
 Predicate logic:
 
-  (∀ integer_model ∈ DiscretelyOrderedIntegralDomainModel), Nonempty DenselyOrderedFieldModel
+  (∀ integer_model ∈ IntegerModel), Nonempty RationalModel
 
 Predicate logic (unfolded):
 
-  ∀ (a : LRA.NumberSystems.Interface.ModelTheory.DiscretelyOrderedIntegralDomainModel), Nonempty LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel
+  ∀ (a : LRA.NumberSystems.Integers.Interface.ModelTheory.IntegerModel), Nonempty LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel
 
 Logical form (Lean):
 
 ```lean
 theorem rational_model_exists
-    (integer_model : DiscretelyOrderedIntegralDomainModel) : Nonempty DenselyOrderedFieldModel
+    (integer_model : IntegerModel) : Nonempty RationalModel
 ```
 
 Type-theoretic form:
@@ -672,7 +682,7 @@ Related proof moves: TODO
 
 -/
 theorem rational_model_exists
-    (integer_model : DiscretelyOrderedIntegralDomainModel) : Nonempty DenselyOrderedFieldModel := by
+    (integer_model : IntegerModel) : Nonempty RationalModel := by
   sorry
 
 /--
@@ -681,20 +691,20 @@ theorem rational_model_exists
 Predicate logic:
 
   noncomputable def rational_model
-    (integer_model : DiscretelyOrderedIntegralDomainModel) : DenselyOrderedFieldModel :=
+    (integer_model : IntegerModel) : RationalModel :=
   Classical.choice (rational_model_exists integer_model)
 
 Predicate logic (unfolded):
 
   noncomputable def rational_model
-    (integer_model : DiscretelyOrderedIntegralDomainModel) : DenselyOrderedFieldModel :=
+    (integer_model : IntegerModel) : RationalModel :=
   Classical.choice (rational_model_exists integer_model) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
 noncomputable def rational_model
-    (integer_model : DiscretelyOrderedIntegralDomainModel) : DenselyOrderedFieldModel :=
+    (integer_model : IntegerModel) : RationalModel :=
   Classical.choice (rational_model_exists integer_model)
 ```
 
@@ -718,16 +728,20 @@ Related proof moves: unfold
 
 -/
 noncomputable def rational_model
-    (integer_model : DiscretelyOrderedIntegralDomainModel) : DenselyOrderedFieldModel :=
+    (integer_model : IntegerModel) : RationalModel :=
   Classical.choice (rational_model_exists integer_model)
 
 end LRA.NumberSystems.RationalNumbers.Reduced
 namespace LRA.NumberSystems.RationalNumbers
-open LRA.NumberSystems.Interface.ModelTheory
+open LRA.NumberSystems.Integers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers (ArchimedeanDenseOrderedFieldExtension)
 
 end LRA.NumberSystems.RationalNumbers
 namespace LRA.NumberSystems.RationalNumbers.FractionField
-open LRA.NumberSystems.Interface.ModelTheory
+open LRA.NumberSystems.Integers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers (ArchimedeanDenseOrderedFieldExtension)
 
 /--
 `IntegralDomainFractionFieldData` TODO
@@ -735,18 +749,18 @@ open LRA.NumberSystems.Interface.ModelTheory
 Predicate logic:
 
   structure IntegralDomainFractionFieldData where
-  integer_model : DiscretelyOrderedIntegralDomainModel
+  integer_model : IntegerModel
 
 Predicate logic (unfolded):
 
   structure IntegralDomainFractionFieldData where
-  integer_model : DiscretelyOrderedIntegralDomainModel (source fallback; no compiled unfold data available)
+  integer_model : IntegerModel (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
 structure IntegralDomainFractionFieldData where
-  integer_model : DiscretelyOrderedIntegralDomainModel
+  integer_model : IntegerModel
 ```
 
 Type-theoretic form:
@@ -769,25 +783,25 @@ Related proof moves: TODO
 
 -/
 structure IntegralDomainFractionFieldData where
-  integer_model : DiscretelyOrderedIntegralDomainModel
+  integer_model : IntegerModel
 
 /--
 `rational_model_exists` TODO
 
 Predicate logic:
 
-  (∀ fraction_field_data ∈ IntegralDomainFractionFieldData), Nonempty DenselyOrderedFieldModel
+  (∀ fraction_field_data ∈ IntegralDomainFractionFieldData), Nonempty RationalModel
 
 Predicate logic (unfolded):
 
-  ∀ (a : LRA.NumberSystems.Interface.ModelTheory.DiscretelyOrderedIntegralDomainModel), Nonempty LRA.NumberSystems.Interface.ModelTheory.DenselyOrderedFieldModel
+  ∀ (a : LRA.NumberSystems.Integers.Interface.ModelTheory.IntegerModel), Nonempty LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel
 
 Logical form (Lean):
 
 ```lean
 theorem rational_model_exists
     (fraction_field_data : IntegralDomainFractionFieldData) :
-    Nonempty DenselyOrderedFieldModel
+    Nonempty RationalModel
 ```
 
 Type-theoretic form:
@@ -811,7 +825,7 @@ Related proof moves: TODO
 -/
 theorem rational_model_exists
     (fraction_field_data : IntegralDomainFractionFieldData) :
-    Nonempty DenselyOrderedFieldModel := by
+    Nonempty RationalModel := by
   sorry
 
 /--
@@ -821,14 +835,14 @@ Predicate logic:
 
   noncomputable def rational_model
     (fraction_field_data : IntegralDomainFractionFieldData) :
-    DenselyOrderedFieldModel :=
+    RationalModel :=
   Classical.choice (rational_model_exists fraction_field_data)
 
 Predicate logic (unfolded):
 
   noncomputable def rational_model
     (fraction_field_data : IntegralDomainFractionFieldData) :
-    DenselyOrderedFieldModel :=
+    RationalModel :=
   Classical.choice (rational_model_exists fraction_field_data) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
@@ -836,7 +850,7 @@ Logical form (Lean):
 ```lean
 noncomputable def rational_model
     (fraction_field_data : IntegralDomainFractionFieldData) :
-    DenselyOrderedFieldModel :=
+    RationalModel :=
   Classical.choice (rational_model_exists fraction_field_data)
 ```
 
@@ -861,12 +875,14 @@ Related proof moves: unfold
 -/
 noncomputable def rational_model
     (fraction_field_data : IntegralDomainFractionFieldData) :
-    DenselyOrderedFieldModel :=
+    RationalModel :=
   Classical.choice (rational_model_exists fraction_field_data)
 
 end LRA.NumberSystems.RationalNumbers.FractionField
 namespace LRA.NumberSystems.RationalNumbers
-open LRA.NumberSystems.Interface.ModelTheory
+open LRA.NumberSystems.Integers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers (ArchimedeanDenseOrderedFieldExtension)
 
 /--
 `ModelIsomorphism` TODO
@@ -874,7 +890,7 @@ open LRA.NumberSystems.Interface.ModelTheory
 Predicate logic:
 
   structure ModelIsomorphism
-    (first_model second_model : DenselyOrderedFieldModel) where
+    (first_model second_model : RationalModel) where
   to_function :
     first_model.signature.carrier →
       second_model.signature.carrier
@@ -922,7 +938,7 @@ Predicate logic:
 Predicate logic (unfolded):
 
   structure ModelIsomorphism
-    (first_model second_model : DenselyOrderedFieldModel) where
+    (first_model second_model : RationalModel) where
   to_function :
     first_model.signature.carrier →
       second_model.signature.carrier
@@ -971,7 +987,7 @@ Logical form (Lean):
 
 ```lean
 structure ModelIsomorphism
-    (first_model second_model : DenselyOrderedFieldModel) where
+    (first_model second_model : RationalModel) where
   to_function :
     first_model.signature.carrier →
       second_model.signature.carrier
@@ -1037,7 +1053,7 @@ Related proof moves: intro, constructor, .mp, .mpr
 
 -/
 structure ModelIsomorphism
-    (first_model second_model : DenselyOrderedFieldModel) where
+    (first_model second_model : RationalModel) where
   to_function :
     first_model.signature.carrier →
       second_model.signature.carrier
@@ -1087,17 +1103,17 @@ structure ModelIsomorphism
 
 Predicate logic:
 
-  (∀ integer_model ∈ DiscretelyOrderedIntegralDomainModel), Nonempty (ModelIsomorphism (QuotientFractionsComparison.rational_model integer_model) (Reduced.rational_model integer_model))
+  (∀ integer_model ∈ IntegerModel), Nonempty (ModelIsomorphism (QuotientFractionsComparison.rational_model integer_model) (Reduced.rational_model integer_model))
 
 Predicate logic (unfolded):
 
-  ∀ (integer_model : LRA.NumberSystems.Interface.ModelTheory.DiscretelyOrderedIntegralDomainModel), Nonempty (LRA.NumberSystems.RationalNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
+  ∀ (integer_model : LRA.NumberSystems.Integers.Interface.ModelTheory.IntegerModel), Nonempty (LRA.NumberSystems.RationalNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
 
 Logical form (Lean):
 
 ```lean
 theorem rational_quotient_fractions_equiv_reduced_exists
-    (integer_model : DiscretelyOrderedIntegralDomainModel) :
+    (integer_model : IntegerModel) :
     Nonempty
       (ModelIsomorphism
         (QuotientFractionsComparison.rational_model integer_model)
@@ -1124,7 +1140,7 @@ Related proof moves: TODO
 
 -/
 theorem rational_quotient_fractions_equiv_reduced_exists
-    (integer_model : DiscretelyOrderedIntegralDomainModel) :
+    (integer_model : IntegerModel) :
     Nonempty
       (ModelIsomorphism
         (QuotientFractionsComparison.rational_model integer_model)
@@ -1137,7 +1153,7 @@ theorem rational_quotient_fractions_equiv_reduced_exists
 Predicate logic:
 
   noncomputable def rational_quotient_fractions_equiv_reduced
-    (integer_model : DiscretelyOrderedIntegralDomainModel) :
+    (integer_model : IntegerModel) :
     ModelIsomorphism
       (QuotientFractionsComparison.rational_model integer_model)
       (Reduced.rational_model integer_model) :=
@@ -1146,7 +1162,7 @@ Predicate logic:
 Predicate logic (unfolded):
 
   noncomputable def rational_quotient_fractions_equiv_reduced
-    (integer_model : DiscretelyOrderedIntegralDomainModel) :
+    (integer_model : IntegerModel) :
     ModelIsomorphism
       (QuotientFractionsComparison.rational_model integer_model)
       (Reduced.rational_model integer_model) :=
@@ -1156,7 +1172,7 @@ Logical form (Lean):
 
 ```lean
 noncomputable def rational_quotient_fractions_equiv_reduced
-    (integer_model : DiscretelyOrderedIntegralDomainModel) :
+    (integer_model : IntegerModel) :
     ModelIsomorphism
       (QuotientFractionsComparison.rational_model integer_model)
       (Reduced.rational_model integer_model) :=
@@ -1183,7 +1199,7 @@ Related proof moves: unfold
 
 -/
 noncomputable def rational_quotient_fractions_equiv_reduced
-    (integer_model : DiscretelyOrderedIntegralDomainModel) :
+    (integer_model : IntegerModel) :
     ModelIsomorphism
       (QuotientFractionsComparison.rational_model integer_model)
       (Reduced.rational_model integer_model) :=
@@ -1194,17 +1210,17 @@ noncomputable def rational_quotient_fractions_equiv_reduced
 
 Predicate logic:
 
-  (∀ integer_model ∈ DiscretelyOrderedIntegralDomainModel), Nonempty (ModelIsomorphism (QuotientFractionsComparison.rational_model integer_model) (Reduced.rational_model integer_model))
+  (∀ integer_model ∈ IntegerModel), Nonempty (ModelIsomorphism (QuotientFractionsComparison.rational_model integer_model) (Reduced.rational_model integer_model))
 
 Predicate logic (unfolded):
 
-  ∀ (integer_model : LRA.NumberSystems.Interface.ModelTheory.DiscretelyOrderedIntegralDomainModel), Nonempty (LRA.NumberSystems.RationalNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
+  ∀ (integer_model : LRA.NumberSystems.Integers.Interface.ModelTheory.IntegerModel), Nonempty (LRA.NumberSystems.RationalNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
 
 Logical form (Lean):
 
 ```lean
 theorem rational_quotient_fractions_and_reduced_are_isomorphic
-    (integer_model : DiscretelyOrderedIntegralDomainModel) :
+    (integer_model : IntegerModel) :
     Nonempty
       (ModelIsomorphism
         (QuotientFractionsComparison.rational_model integer_model)
@@ -1231,7 +1247,7 @@ Related proof moves: TODO
 
 -/
 theorem rational_quotient_fractions_and_reduced_are_isomorphic
-    (integer_model : DiscretelyOrderedIntegralDomainModel) :
+    (integer_model : IntegerModel) :
     Nonempty
       (ModelIsomorphism
         (QuotientFractionsComparison.rational_model integer_model)
@@ -1243,17 +1259,17 @@ theorem rational_quotient_fractions_and_reduced_are_isomorphic
 
 Predicate logic:
 
-  (∀ integer_model ∈ DiscretelyOrderedIntegralDomainModel), Nonempty (ModelIsomorphism (QuotientFractionsComparison.rational_model integer_model) (FractionField.rational_model ⟨integer_model⟩))
+  (∀ integer_model ∈ IntegerModel), Nonempty (ModelIsomorphism (QuotientFractionsComparison.rational_model integer_model) (FractionField.rational_model ⟨integer_model⟩))
 
 Predicate logic (unfolded):
 
-  ∀ (integer_model : LRA.NumberSystems.Interface.ModelTheory.DiscretelyOrderedIntegralDomainModel), Nonempty (LRA.NumberSystems.RationalNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
+  ∀ (integer_model : LRA.NumberSystems.Integers.Interface.ModelTheory.IntegerModel), Nonempty (LRA.NumberSystems.RationalNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
 
 Logical form (Lean):
 
 ```lean
 theorem rational_quotient_fractions_equiv_fraction_field_exists
-    (integer_model : DiscretelyOrderedIntegralDomainModel) :
+    (integer_model : IntegerModel) :
     Nonempty
       (ModelIsomorphism
         (QuotientFractionsComparison.rational_model integer_model)
@@ -1280,7 +1296,7 @@ Related proof moves: TODO
 
 -/
 theorem rational_quotient_fractions_equiv_fraction_field_exists
-    (integer_model : DiscretelyOrderedIntegralDomainModel) :
+    (integer_model : IntegerModel) :
     Nonempty
       (ModelIsomorphism
         (QuotientFractionsComparison.rational_model integer_model)
@@ -1293,7 +1309,7 @@ theorem rational_quotient_fractions_equiv_fraction_field_exists
 Predicate logic:
 
   noncomputable def rational_quotient_fractions_equiv_fraction_field
-    (integer_model : DiscretelyOrderedIntegralDomainModel) :
+    (integer_model : IntegerModel) :
     ModelIsomorphism
       (QuotientFractionsComparison.rational_model integer_model)
       (FractionField.rational_model ⟨integer_model⟩) :=
@@ -1302,7 +1318,7 @@ Predicate logic:
 Predicate logic (unfolded):
 
   noncomputable def rational_quotient_fractions_equiv_fraction_field
-    (integer_model : DiscretelyOrderedIntegralDomainModel) :
+    (integer_model : IntegerModel) :
     ModelIsomorphism
       (QuotientFractionsComparison.rational_model integer_model)
       (FractionField.rational_model ⟨integer_model⟩) :=
@@ -1312,7 +1328,7 @@ Logical form (Lean):
 
 ```lean
 noncomputable def rational_quotient_fractions_equiv_fraction_field
-    (integer_model : DiscretelyOrderedIntegralDomainModel) :
+    (integer_model : IntegerModel) :
     ModelIsomorphism
       (QuotientFractionsComparison.rational_model integer_model)
       (FractionField.rational_model ⟨integer_model⟩) :=
@@ -1339,7 +1355,7 @@ Related proof moves: unfold
 
 -/
 noncomputable def rational_quotient_fractions_equiv_fraction_field
-    (integer_model : DiscretelyOrderedIntegralDomainModel) :
+    (integer_model : IntegerModel) :
     ModelIsomorphism
       (QuotientFractionsComparison.rational_model integer_model)
       (FractionField.rational_model ⟨integer_model⟩) :=
@@ -1350,17 +1366,17 @@ noncomputable def rational_quotient_fractions_equiv_fraction_field
 
 Predicate logic:
 
-  (∀ integer_model ∈ DiscretelyOrderedIntegralDomainModel), Nonempty (ModelIsomorphism (QuotientFractionsComparison.rational_model integer_model) (FractionField.rational_model ⟨integer_model⟩))
+  (∀ integer_model ∈ IntegerModel), Nonempty (ModelIsomorphism (QuotientFractionsComparison.rational_model integer_model) (FractionField.rational_model ⟨integer_model⟩))
 
 Predicate logic (unfolded):
 
-  ∀ (integer_model : LRA.NumberSystems.Interface.ModelTheory.DiscretelyOrderedIntegralDomainModel), Nonempty (LRA.NumberSystems.RationalNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
+  ∀ (integer_model : LRA.NumberSystems.Integers.Interface.ModelTheory.IntegerModel), Nonempty (LRA.NumberSystems.RationalNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
 
 Logical form (Lean):
 
 ```lean
 theorem rational_quotient_fractions_and_fraction_field_are_isomorphic
-    (integer_model : DiscretelyOrderedIntegralDomainModel) :
+    (integer_model : IntegerModel) :
     Nonempty
       (ModelIsomorphism
         (QuotientFractionsComparison.rational_model integer_model)
@@ -1387,7 +1403,7 @@ Related proof moves: TODO
 
 -/
 theorem rational_quotient_fractions_and_fraction_field_are_isomorphic
-    (integer_model : DiscretelyOrderedIntegralDomainModel) :
+    (integer_model : IntegerModel) :
     Nonempty
       (ModelIsomorphism
         (QuotientFractionsComparison.rational_model integer_model)

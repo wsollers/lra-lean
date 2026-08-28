@@ -2,9 +2,13 @@
 import LRA.NumberSystems.RealNumbers.Extensions
 
 namespace LRA.NumberSystems.RealNumbers.IntervalArithmetic
-open LRA.NumberSystems.Interface.ModelTheory
+open LRA.NumberSystems.Integers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers.Interface.ModelTheory
+open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 
-open LRA.NumberSystems.Interface.ModelTheory
+open LRA.NumberSystems.Integers.Interface.ModelTheory
+open LRA.NumberSystems.RationalNumbers.Interface.ModelTheory
+open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 
 /--
 `Interval` TODO
@@ -57,11 +61,11 @@ structure Interval (real_model : RealModel) where
 
 Predicate logic:
 
-  ∀ (real_model : LRA.NumberSystems.Interface.ModelTheory.RealModel) (interval : LRA.NumberSystems.RealNumbers.IntervalArithmetic.Interval real_model), real_model.leInst.1 interval.lower interval.upper
+  ∀ (real_model : LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel) (interval : LRA.NumberSystems.RealNumbers.IntervalArithmetic.Interval real_model), real_model.leInst.1 interval.lower interval.upper
 
 Predicate logic (unfolded):
 
-  ∀ (real_model : LRA.NumberSystems.Interface.ModelTheory.RealModel) (interval : LRA.NumberSystems.RealNumbers.IntervalArithmetic.Interval real_model), real_model.leInst.1 interval.1 interval.2
+  ∀ (real_model : LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel) (interval : LRA.NumberSystems.RealNumbers.IntervalArithmetic.Interval real_model), real_model.leInst.1 interval.1 interval.2
 
 Logical form (Lean):
 
@@ -101,11 +105,11 @@ def valid
 
 Predicate logic:
 
-  ∀ (real_model : LRA.NumberSystems.Interface.ModelTheory.RealModel) (interval : LRA.NumberSystems.RealNumbers.IntervalArithmetic.Interval real_model) (value : real_model.signature.carrier), (real_model.signature.le interval.lower value ∧ real_model.signature.le value interval.upper)
+  ∀ (real_model : LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel) (interval : LRA.NumberSystems.RealNumbers.IntervalArithmetic.Interval real_model) (value : real_model.signature.carrier), (real_model.signature.le interval.lower value ∧ real_model.signature.le value interval.upper)
 
 Predicate logic (unfolded):
 
-  ∀ (real_model : LRA.NumberSystems.Interface.ModelTheory.RealModel) (interval : LRA.NumberSystems.RealNumbers.IntervalArithmetic.Interval real_model) (value : real_model.signature.toCarrierBundle.1), (real_model.signature.toOrderedRingConceptSignature.2 interval.1 value ∧ real_model.signature.toOrderedRingConceptSignature.2 value interval.2)
+  ∀ (real_model : LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel) (interval : LRA.NumberSystems.RealNumbers.IntervalArithmetic.Interval real_model) (value : real_model.signature.toCarrierBundle.1), (real_model.signature.toOrderedRingConceptSignature.2 interval.1 value ∧ real_model.signature.toOrderedRingConceptSignature.2 value interval.2)
 
 Logical form (Lean):
 
@@ -261,7 +265,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (real_model : LRA.NumberSystems.Interface.ModelTheory.RealModel) (first second : LRA.NumberSystems.RealNumbers.IntervalArithmetic.Interval real_model), (real_model.signature.toOrderedRingConceptSignature.2 first.1 first.2 ∧ real_model.signature.toOrderedRingConceptSignature.2 second.1 second.2) → real_model.signature.toOrderedRingConceptSignature.2 (LRA.NumberSystems.RealNumbers.IntervalArithmetic.enclosure_addition real_model first second).1 (LRA.NumberSystems.RealNumbers.IntervalArithmetic.enclosure_addition real_model first second).2
+  ∀ (real_model : LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel) (first second : LRA.NumberSystems.RealNumbers.IntervalArithmetic.Interval real_model), (real_model.signature.toOrderedRingConceptSignature.2 first.1 first.2 ∧ real_model.signature.toOrderedRingConceptSignature.2 second.1 second.2) → real_model.signature.toOrderedRingConceptSignature.2 (LRA.NumberSystems.RealNumbers.IntervalArithmetic.enclosure_addition real_model first second).1 (LRA.NumberSystems.RealNumbers.IntervalArithmetic.enclosure_addition real_model first second).2
 
 Logical form (Lean):
 
@@ -404,7 +408,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (real_model : LRA.NumberSystems.Interface.ModelTheory.RealModel), LRA.NumberSystems.RealNumbers.IntervalArithmetic.EnclosesBinaryOperation real_model (fun first second => { lower := real_model.signature.toBooleanRingOperationBundle.2 first.1 second.1, upper := real_model.signature.toBooleanRingOperationBundle.2 first.2 second.2 }) real_model.signature.toBooleanRingOperationBundle.2
+  ∀ (real_model : LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel), LRA.NumberSystems.RealNumbers.IntervalArithmetic.EnclosesBinaryOperation real_model (fun first second => { lower := real_model.signature.toBooleanRingOperationBundle.2 first.1 second.1, upper := real_model.signature.toBooleanRingOperationBundle.2 first.2 second.2 }) real_model.signature.toBooleanRingOperationBundle.2
 
 Logical form (Lean):
 
@@ -451,7 +455,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (real_model : LRA.NumberSystems.Interface.ModelTheory.RealModel), Exists fun interval => Exists fun expression_enclosure => Exists fun direct_enclosure => (∀ (value : real_model.signature.toCarrierBundle.1), (real_model.signature.toOrderedRingConceptSignature.2 direct_enclosure.1 value ∧ real_model.signature.toOrderedRingConceptSignature.2 value direct_enclosure.2) → (real_model.signature.toOrderedRingConceptSignature.2 expression_enclosure.1 value ∧ real_model.signature.toOrderedRingConceptSignature.2 value expression_enclosure.2) ∧ expression_enclosure = direct_enclosure → False)
+  ∀ (real_model : LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel), Exists fun interval => Exists fun expression_enclosure => Exists fun direct_enclosure => (∀ (value : real_model.signature.toCarrierBundle.1), (real_model.signature.toOrderedRingConceptSignature.2 direct_enclosure.1 value ∧ real_model.signature.toOrderedRingConceptSignature.2 value direct_enclosure.2) → (real_model.signature.toOrderedRingConceptSignature.2 expression_enclosure.1 value ∧ real_model.signature.toOrderedRingConceptSignature.2 value expression_enclosure.2) ∧ expression_enclosure = direct_enclosure → False)
 
 Logical form (Lean):
 
