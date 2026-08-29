@@ -3,6 +3,11 @@ import LRA.NumberSystems.Constructions
 import LRA.NumberSystems.Interop
 import LRA.NumberSystems.Examples
 import LRA.NumberSystems.PeanoSystem
+import LRA.NumberSystems.SuccessorArithmetic
+import LRA.NumberSystems.PresburgerArithmetic
+import LRA.NumberSystems.FirstOrderArithmetic
+import LRA.NumberSystems.ZeroBasedNaturals
+import LRA.NumberSystems.PositiveNaturals
 import LRA.NumberSystems.NaturalNumbers
 import LRA.NumberSystems.WholeNumbers
 import LRA.NumberSystems.IntegerStructure

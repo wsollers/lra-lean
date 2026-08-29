@@ -1,10 +1,15 @@
 import LRA.NumberSystems.WholeNumbers.Interface.ModelTheory.Model
+import LRA.NumberSystems.WholeNumbers.Definition
 
 namespace LRA.NumberSystems.WholeNumbers.Constructions.Mathlib
 
 open LRA.NumberSystems.WholeNumbers.Interface.ModelTheory
 
-abbrev Carrier := Nat
+abbrev LRA_MATHLIB_Carrier := LRA.NumberSystems.WholeNumbers.LRA_MATHLIB_W
+
+abbrev LRA_MathlibCarrier := LRA_MATHLIB_Carrier
+
+abbrev Carrier := LRA_MathlibCarrier
 
 def genericModel : WholeNumberModel :=
   mathlibWholeNumberModel

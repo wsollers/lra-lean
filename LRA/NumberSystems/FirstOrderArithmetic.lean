@@ -1,0 +1,12 @@
+import LRA.NumberSystems.FirstOrderArithmetic.Interface.Definition
+import LRA.NumberSystems.FirstOrderArithmetic.Constructions
+import LRA.NumberSystems.FirstOrderArithmetic.Interface.UniversalProperty
+import LRA.NumberSystems.FirstOrderArithmetic.Interface.Theorems
+import LRA.NumberSystems.FirstOrderArithmetic.Interface.Signature.Definition
+import LRA.NumberSystems.FirstOrderArithmetic.Interface.ModelTheory.LStructure
+import LRA.NumberSystems.FirstOrderArithmetic.Interface.ModelTheory.Theory
+import LRA.NumberSystems.FirstOrderArithmetic.Interface.ModelTheory.Model
+import LRA.NumberSystems.FirstOrderArithmetic.Interface.UniversalAlgebra
+import LRA.NumberSystems.FirstOrderArithmetic.Interface.Satisfaction
+import LRA.NumberSystems.FirstOrderArithmetic.Interop
+
