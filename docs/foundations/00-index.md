@@ -1,0 +1,60 @@
+# LRA Foundational Interludes — Index
+
+**Companion to:** `volumei-final-structure.md`, `omnibus-arithmetic-algebra-landau-style.md`, `zfc-axioms-l-sentences.md`.
+
+**Purpose.** One searchable table of contents over the full interlude arc (Set through Morphisms), each topic in its own file so it can be edited, cited, and eventually migrated into the Lean repository's `Definitions -> Theorems -> Constructions` template independently. Every file uses full predicate logic, geometric intuition before symbols, and no skipped steps, per project pedagogical requirements.
+
+## Governing chain
+
+```
+logic -> sets/products -> identity/equality -> relations -> equivalences -> maps/functions/operators
+      -> order -> operations (raw properties of a bare operation)
+      -> algebra.structures -> algebra.models (morphisms)
+      -> [OPEN: algebra.signatures -> numbersystemtower -> universalproperties]
+```
+
+## How to read the flags
+
+Every file below is tagged `[RECAP]`, `[NET NEW]`, `[REWORK]`, or a mix, matching the tags used inline within each file:
+
+- **`[RECAP]`** — restates already-established project content (from prior conversation turns or from `omnibus-arithmetic-algebra-landau-style.md` / `zfc-axioms-l-sentences.md` / the manifest documents). Cite it, don't re-derive it.
+- **`[NET NEW]`** — genuinely new theorems, definitions, or resolved placement-questions that did not exist anywhere in the project before this arc.
+- **`[REWORK]`** — content that existed in an earlier pass of this arc but has since been revised **in place** because a later decision changed its shape (e.g. the Operations transport theorems, originally stated informally, reworked once `Law`/`Satisfies` were introduced as first-class objects). A `[REWORK]` supersedes the earlier version — it is not an addition alongside old text, it replaces it.
+- **`[REWORK — CORRECTED PER AUDIT]`** — a stronger form of `[REWORK]`, triggered when a real audit against the `lra-lean` repository (see [`audit-results.md`](#note-on-audit-results), project knowledge) found that earlier speculative content was flat-out wrong, redundant, or aimed at the wrong target — not merely stated informally. The most significant instance so far: `06-operations.md` §6.7.3's originally-proposed `Law(S)`/`Satisfies` type was found to be unnecessary and less general than the repo's real `Signature`/`Model`/`Equation`/`SatisfiesEquation`/`IsVariety` machinery already in `LRA/UniversalAlgebra/Satisfaction/` — the section was rewritten to point at that real mechanism instead, and the cert-naming convention was repointed rather than discarded.
+
+A full grep-able index of every `[NET NEW]` item, with exact location, is in [`11-net-new-index.md`](11-net-new-index.md) — start there if you only want to see what's actually new.
+
+**Note on audit results.** A three-way audit (repo vs. exposition docs vs. manifest docs) has been run twice, covering the operation-law satisfaction machinery, product/quotient transport, algebraic structures, morphisms, and (Round 2) files 01–08 in full. Findings are recorded in `audit-results.md`/`aud-res.md` (project knowledge) and folded into the numbered files below. **Binding policy, established after Round 2 produced two false "planning-only" verdicts:** `ProofsToDo.md` files anywhere in the repo are never a valid audit source — they are personal proof-planning aids, regenerated on demand, and confirmed stale-by-design. Every implementation-status claim in this document arc is required to trace to actual `.lean` source and a real `sorry` count. See [`14-identity-audit.md`](14-identity-audit.md) for the incident that established this policy.
+
+## Files, in governing-chain order
+
+| # | File | Topic | Flags | One-line summary |
+|---|---|---|---|---|
+| 1 | [`01-set.md`](01-set.md) | Set | `[RECAP]` + `[NET NEW]` | ZFC axioms as ℒ-sentences, what each unlocks, De Morgan/duality, indexed families, the image-preimage asymmetry. **New §1.6:** the repo's six real Set backends, including two previously undocumented (`NBGSet`, `TypeSet`). |
+| 2 | [`02-relations.md`](02-relations.md) | Relations | `[RECAP]` | The sixteen-property alphabet, composite relation types (preorder → well-order), converse duality, indexed families of relations. |
+| 3 | [`03-equivalences.md`](03-equivalences.md) | Equivalences | `[RECAP]` + `[NET NEW]` + `[REWORK — CORRECTED, ROUND 2]` | Classes, partitions, the Fundamental Theorem, quotient universal property, general (structure-free) kernel — refinement lattice (meet/join/completeness); §3.4's join now flagged as resting on an unbuilt closure-operator citation, corrected. |
+| 4 | [`04-maps-functions-operators.md`](04-maps-functions-operators.md) | Maps, Functions, and Operators | `[RECAP]` — **audit-confirmed ALIGNED** | Fibers as the unifying lens for injective/surjective/bijective, `Fun(S,S)`/`Sym(S)` as monoid/group, the pointwise-vs-compositional clash, the image/preimage asymmetry in full generality. |
+| 5 | [`05-order.md`](05-order.md) | Order | `[RECAP]` + `[REWORK — CORRECTED, ROUND 2]` | Bounds, greatest/least vs. maximal/minimal, sup/inf, lattices, chains vs. directed sets, completeness — **closure-operator theorem (§5.3) flagged as genuinely unbuilt**, not merely uncited; DCPO remains a self-flagged forward reference. |
+| 6 | [`06-operations.md`](06-operations.md) | Operations | `[RECAP]` + `[REWORK — CORRECTED PER AUDIT]` | Arity, Laws, Identity, Inverses, Distributivity, Compatibility — **§6.7.3 corrected by audit**: the originally-proposed `Law`/`Satisfies` type was found unnecessary; replaced with the repo's real `Signature`/`Model`/`Equation`/`SatisfiesEquation`/`IsVariety` machinery, with cert-naming repointed at it. |
+| 6a | [`06a-satisfaction-certificates.md`](06a-satisfaction-certificates.md) | Satisfaction Certificates (ℕ, ℤ, ℚ, ℝ) | `[NET NEW]` + `[REWORK — CORRECTED PER AUDIT]` | The worked instance layer, corrected to repoint cert names at real repo objects and flag that `AlgebraicStructures/*` is already far more mature (e.g. `CompleteOrderedField/` exists by name) than originally assumed. |
+| 6b | [`06b-model-theory-boundary.md`](06b-model-theory-boundary.md) | Equational/Relational Boundary | `[NET NEW]` + `[REWORK — CORRECTED PER AUDIT]` | Content confirmed substantively correct by the audit; corrected only on the maturity claim — the repo already formalizes the equational side (`IsVariety`) at full signature generality, one `sorry` from complete. |
+| 7 | [`07-algebraic-structures.md`](07-algebraic-structures.md) | Algebraic Structures | `[RECAP]` | Magma → Semigroup → Monoid → Group → AbelianGroup; Semiring → Ring → IntegralDomain → Field; OrderedStructures; the ℕ/ℤ/ℚ/ℝ/ℂ instantiation table. |
+| 8 | [`08-morphisms.md`](08-morphisms.md) | Morphisms | `[RECAP]` + `[REWORK — CORRECTED, ROUND 2]` | Homomorphism, Embedding, Isomorphism, Substructure, algebraic Kernel, Quotient Structures, and the First Isomorphism Theorem — **§8.5's "fully discharged" claim corrected**: the real repo theorem is Signature/Model-generic (not group-specific) and carries ~20 sorries; the target sentence (ℝ²/ℤ²≅𝕋²) remains mathematically sound but is not yet Lean-complete. |
+| 9 | [`09-congruences-placement.md`](09-congruences-placement.md) | Placement Decision: Congruences | `[NET NEW]` (decision record) | Why "Congruences" is not a standalone topic after Equivalences — the three senses (logical / algebraic / kernel-induced) are correctly distributed across Identity, Operations, and Morphisms already. |
+| 10 | [`10-open-items.md`](10-open-items.md) | Open Foundational Items | `[RECAP]` | What's left in the governing chain: `Algebra.Signatures`, `NumberSystemTower`, `UniversalProperties`, plus the lighter flagged items (ZFC-as-theory scope, cardinality comparison). |
+| 11 | [`11-net-new-index.md`](11-net-new-index.md) | Net-New Content Index | — | Flat, grep-able table of every `[NET NEW]` item across all files, with exact location. |
+| 12 | [`12-audit-corrections.md`](12-audit-corrections.md) | Audit Corrections, Round 1 | `[REWORK — CORRECTED PER AUDIT]` | Summary of the first three-way audit — corrections to files 6/6a/6b, confirmed genuine gaps (two small transport lemmas, one Birkhoff sorry, ~120 sorries in `Operation/Laws/*`, an unresolved Morphism duplication). |
+| 13 | [`13-audit-round-2.md`](13-audit-round-2.md) | Audit Corrections, Round 2 | `[REWORK — CORRECTED PER AUDIT, ROUND 2]` | Full pass on files 01–08 (closing the gap Round 1 left open) — corrections to `08-morphisms.md`'s capstone claim, `05-order.md`/`03-equivalences.md`'s closure-operator citation, new Set-backend documentation in `01-set.md`, plus newly confirmed gaps. **Two rows in this file were themselves wrong** (sourced from stale `ProofsToDo.md` files) and are corrected in file 14. |
+| 14 | [`14-identity-audit.md`](14-identity-audit.md) | Identity: Direct-Inspection Findings | `[REWORK — CORRECTED]` | Corrects two Round 2 errors (Identity's logical congruence, Set's `MembershipSignature`) that were wrongly marked planning-only based on stale `ProofsToDo.md` files. Records the binding project-wide policy: `ProofsToDo.md` is never an audit source. Full direct-inspection confirmation that `Identity` is sorry-free, complete, and matches project memory. |
+| 15 | [`15-metamathematics-exposition.md`](15-metamathematics-exposition.md) | Metamathematics: Role, Necessity, and Restrictions | `[NET NEW]` | Not a definitions-and-theorems interlude — an exposition on what metamathematics *is*, why it's needed (the object-language/metalanguage split, forced by Tarski's undefinability of truth), what subject studies it (vs. model theory, vs. proof theory), and the five binding restrictions on its theorems given that the systems it studies (FOL, Takeuti) are still under construction. Grounded throughout in real incidents from this project's own `LRA/Metamathematics` build (the `Set`-to-`MetaCollection` reversion, the genuine `DecidableEq` derivation failure on `Term`, the honestly-withheld Takeuti soundness/completeness statements). Conceptually prior to file 1, written last. |
+| 16 | [`16-landau-cert-naming-history.md`](16-landau-cert-naming-history.md) | Landau-Style Generic Operation Proving: Design History | `[NET NEW]` | The reasoning trail behind `06-operations.md` §6.7.3 and `12-audit-corrections.md`, preserved as its own record: Landau's per-number-system repetition → Pattern A vs. Pattern B → the Birkhoff/HSP canonical check → why trichotomy and the triangle inequality don't fit the equational `Law` template → the `[REWORK]` tag and three-file split → the standardized cert-naming convention (`Cert_*`/`StructCert_*`/`_via_*`) → the audit finding that the naming convention survived even though its original referent (a bespoke `Law(S)` type) was discarded in favor of the repo's real `SatisfiesEquation`/`IsVariety` machinery. |
+
+## The single throughline, if you only remember one thing
+
+Every file above exists in service of one target sentence — **mathematically established** by the end of file 8, and, per the Round 2 audit correction, **substantially but not yet completely formalized in Lean**:
+
+> $\mathbb{R}^2/\mathbb{Z}^2 \;\cong\; \mathbb{T}^2$ **as groups** — every clause traceable through eight interludes back to the ZFC axioms.
+
+The repo's real, general-purpose version of the theorem this instantiates (`firstIsomorphismTheorem`, Signature/Model-generic) already exists and is well-scoped — it carries one `sorry` plus roughly twenty supporting sorries in its dependency chain, and the group-specific instantiation itself (subgroups, cosets, normal-subgroup vocabulary) has no Lean counterpart yet at all. See [`13-audit-round-2.md`](13-audit-round-2.md) for the full corrected status.
+
+The one deliberately unclosed gap beyond that is **topological** (compactness, connectedness, local-Euclidean-ness of that same quotient) — out of scope for this arc, reached later via Lee's *Topological Manifolds*, once the foundational reading sequence (Kossak → ... → Thurston) closes. See [`10-open-items.md`](10-open-items.md) for the full remaining roadmap.
