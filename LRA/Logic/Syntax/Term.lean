@@ -35,7 +35,6 @@ inductive Term (S : Signature) (Variable : Type) where
       (f : S.FunctionSymbol) ->
       (Fin (S.functionArity f) -> Term S Variable) ->
       Term S Variable
-  deriving DecidableEq
 ```
 
 Type-theoretic form:
@@ -64,6 +63,5 @@ inductive Term (S : Signature) (Variable : Type) where
       (f : S.FunctionSymbol) ->
       (Fin (S.functionArity f) -> Term S Variable) ->
       Term S Variable
-  deriving DecidableEq
 
 end LRA.Logic.FirstOrder
