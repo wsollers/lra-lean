@@ -51,9 +51,9 @@ LRA/Operation/Addition.lean
 LRA/Operation/Multiplication.lean
 ```
 
-### Optional interface subtree in Phase 2
+### Interface subtree shape for later promotion
 
-If interface artifacts are created immediately, use:
+If interface artifacts are created in the later subject-adoption phase, use:
 
 ```text
 Interface/
@@ -155,16 +155,17 @@ Required form:
 
 ### 6. Decide whether to add operator `Interface/` subtrees now
 
-- [ ] Inspect whether the six-file split is enough to express the intended
+- [x] Inspect whether the six-file split is enough to express the intended
   model-facing and equation-facing contracts.
-- [ ] If not, add `Interface/` under both operators with matching file shapes.
-- [ ] Record the decision in `DECISIONS.md`.
+- [x] Decide to defer the operator `Interface/` subtrees to Phase 3 rather than
+  adding them in Phase 2.
+- [x] Record the decision in `DECISIONS.md`.
 
 ### 7. Record resumable progress
 
 - [x] Update `docs/landau-satisfaction/status.md`.
 - [x] Update `docs/landau-satisfaction/ledger.json`.
-- [ ] Record any blocked item before ending the session.
+- [x] Record any blocked item before ending the session.
 
 ## Accepted Baseline Status
 
@@ -187,6 +188,7 @@ The current accepted Phase 2 baseline is:
 - `closure` remains owned by `Existence.lean` / `Realization.lean`.
 - `distributive` and other mixed-operator obligations remain deferred to the
   later arithmetic bridge phase.
+- operator `Interface/` subtrees are deferred to Phase 3
 
 ## Current Concrete Progress
 

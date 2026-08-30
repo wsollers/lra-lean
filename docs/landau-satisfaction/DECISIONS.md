@@ -122,13 +122,30 @@ phase documents unless superseded here.
 - This deferral is intentional because mixed laws depend on the unary operator
   realizations already being in place.
 
+### D0.12 Operator interface subtree timing
+
+- The six-file `Addition/` and `Multiplication/` base split is sufficient for
+  Phase 2.
+- Operator `Interface/` subtrees are deferred out of Phase 2 and become a
+  required deliverable of Phase 3.
+- Phase 3 owns the first-class model-facing and equation-facing surfaces for
+  promoted operators.
+
+### D0.13 Mixed-operator bridge placement
+
+- Mixed-operator bridge artifacts live under:
+  - `LRA/Operation/Arithmetic/`
+- Phase 5 should create at least:
+  - `LRA/Operation/Arithmetic.lean`
+  - `LRA/Operation/Arithmetic/Distributivity.lean`
+  - `LRA/Operation/Arithmetic/Absorbing.lean`
+  - `LRA/Operation/Arithmetic/Theorems.lean`
+- `LRA/Operation/Addition/*` and `LRA/Operation/Multiplication/*` may import
+  these later bridges but may not own mixed-law definitions directly.
+
 ## Deferred Decisions
 
 - Whether the top-level `LANDAU-SATISFACTION-PLAN.md` should be renamed or moved
   into this workspace.
-- Whether Phase 2 should create operator `Interface/` subtrees immediately or
-  stage them after the six-file base artifact split.
-- Where mixed-operator bridges such as distributivity should live if a shared
-  bridge file is introduced after Phase 2.
 - Whether a dedicated progress prompt bundle should be added under this
   workspace, similar to `docs/p0-repair/` or `docs/algebraic-structures-repair/`.

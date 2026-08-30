@@ -21,6 +21,13 @@ across top-level markdown files when implementation work starts.
 - `ledger.json`: resumable machine-readable progress ledger.
 - `phases/phase-01-generic-operation-laws.md`: executable Phase 1 checklist.
 - `phases/phase-02-generic-operations.md`: executable Phase 2 checklist.
+- `phases/phase-03-subject-interface-adoption.md`: executable Phase 3
+  checklist.
+- `phases/phase-04-concrete-construction-proofs.md`: executable Phase 4
+  checklist.
+- `phases/phase-05-arithmetic-bridges.md`: executable Phase 5 checklist.
+- `phases/phase-06-ua-restatements-and-cert-sync.md`: executable Phase 6
+  checklist.
 
 ## Historical / Supporting Inputs
 
@@ -39,3 +46,12 @@ across top-level markdown files when implementation work starts.
 3. Execute only the unchecked items in order unless a step explicitly permits
    parallel work.
 4. Update `status.md` and `ledger.json` after each completed or blocked step.
+
+## Workspace Status
+
+- The planning workspace itself is complete when every implementation phase has
+  a dedicated file under `phases/`, ownership decisions are recorded in
+  `DECISIONS.md`, and resumable progress can be tracked from `status.md` and
+  `ledger.json`.
+- Implementation work may still remain even after the planning workspace
+  reaches this state.

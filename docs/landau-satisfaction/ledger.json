@@ -1,7 +1,8 @@
 {
   "updated": "2026-08-30",
   "workstream": "landau-satisfaction",
-  "active_phase": "phase-02-generic-operations",
+  "planning_workspace_status": "complete_in_repo",
+  "active_phase": "phase-03-subject-interface-adoption",
   "items": [
     {
       "id": "step-0-decisions",
@@ -20,23 +21,37 @@
     {
       "id": "phase-02-generic-operations",
       "title": "Define generic addition and multiplication artifacts",
-      "status": "in_progress",
+      "status": "done",
       "owner_doc": "docs/landau-satisfaction/phases/phase-02-generic-operations.md",
-      "notes": "Router and file scaffolding are complete. Unary law export bundles are explicit by witness family. Landau naturals now realize baseline generic addition and multiplication packages; mixed arithmetic bridges remain next."
+      "notes": "Router and file scaffolding are complete. Unary law export bundles are explicit by witness family. Landau naturals realize baseline generic addition and multiplication packages. Operator interface promotion is deferred to Phase 3."
     },
     {
       "id": "phase-03-subject-interface-adoption",
       "title": "Adopt generic operators from subject interfaces",
       "status": "todo",
-      "owner_doc": "docs/landau-satisfaction/status.md",
-      "notes": ""
+      "owner_doc": "docs/landau-satisfaction/phases/phase-03-subject-interface-adoption.md",
+      "notes": "Next implementation phase. Promote addition and multiplication into subject-facing operator interfaces and route scalar-chain model contracts through them."
+    },
+    {
+      "id": "phase-04-concrete-construction-proofs",
+      "title": "Discharge concrete construction obligations",
+      "status": "todo",
+      "owner_doc": "docs/landau-satisfaction/phases/phase-04-concrete-construction-proofs.md",
+      "notes": "Package concrete operator realizations, structure-law bundles, and construction-local Satisfy_Generic bridges."
     },
     {
       "id": "phase-05-arithmetic-bridges",
       "title": "Add mixed-operator arithmetic bridge artifacts",
       "status": "todo",
-      "owner_doc": "docs/landau-satisfaction/status.md",
+      "owner_doc": "docs/landau-satisfaction/phases/phase-05-arithmetic-bridges.md",
       "notes": "Distributivity and similar mixed laws are intentionally deferred until unary operator realizations exist."
+    },
+    {
+      "id": "phase-06-ua-restatements-and-cert-sync",
+      "title": "Add UA restatements and synchronize cert documentation",
+      "status": "todo",
+      "owner_doc": "docs/landau-satisfaction/phases/phase-06-ua-restatements-and-cert-sync.md",
+      "notes": "Complete equation-level transport/restatement artifacts and synchronize the Landau and cert documentation."
     }
   ]
 }
