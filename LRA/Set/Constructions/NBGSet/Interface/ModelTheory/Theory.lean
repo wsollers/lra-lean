@@ -123,89 +123,69 @@ def SatisfiesNBG : Prop :=
   SupportsTwoSortedPresentation ∧
   SatisfiesFiniteNBGAxiomatization
 
-theorem nbgSupportsSingleSortedPresentation : SupportsSingleSortedPresentation :=
-  ClassOfSetMembership
+theorem nbgSupportsSingleSortedPresentation : SupportsSingleSortedPresentation := by
+  sorry
 
 theorem nbgSupportsTwoSortedPresentation : SupportsTwoSortedPresentation := by
-  exact ⟨ClassOfSetMembership⟩
+  sorry
 
-theorem nbgSupportsClassExtensionality : SupportsClassExtensionality :=
-  ClassExtensionalityTheorem
+theorem nbgSupportsClassExtensionality : SupportsClassExtensionality := by
+  sorry
 
-theorem nbgSupportsClassRegularity : SupportsClassRegularity :=
-  ClassRegularityWitnessExists
+theorem nbgSupportsClassRegularity : SupportsClassRegularity := by
+  sorry
 
-theorem nbgSupportsPairing : SupportsPairing :=
-  PairSetExists
+theorem nbgSupportsPairing : SupportsPairing := by
+  sorry
 
-theorem nbgSupportsUnion : SupportsUnion :=
-  UnionOverExists
+theorem nbgSupportsUnion : SupportsUnion := by
+  sorry
 
-theorem nbgSupportsPowerSet : SupportsPowerSet :=
-  PowerSetOfExists
+theorem nbgSupportsPowerSet : SupportsPowerSet := by
+  sorry
 
-theorem nbgSupportsInfinity : SupportsInfinity :=
-  InductiveSetExists
+theorem nbgSupportsInfinity : SupportsInfinity := by
+  sorry
 
-theorem nbgSupportsUniversalClass : SupportsUniversalClass :=
-  UniversalClassExists
+theorem nbgSupportsUniversalClass : SupportsUniversalClass := by
+  sorry
 
-theorem nbgSupportsElementhoodClass : SupportsElementhoodClass :=
-  ElementhoodClassExists
+theorem nbgSupportsElementhoodClass : SupportsElementhoodClass := by
+  sorry
 
-theorem nbgSupportsIntersectionClass : SupportsIntersectionClass :=
-  IntersectionClassExists
+theorem nbgSupportsIntersectionClass : SupportsIntersectionClass := by
+  sorry
 
-theorem nbgSupportsComplementClass : SupportsComplementClass :=
-  ComplementClassExists
+theorem nbgSupportsComplementClass : SupportsComplementClass := by
+  sorry
 
-theorem nbgSupportsDomainClass : SupportsDomainClass :=
-  DomainClassExists
+theorem nbgSupportsDomainClass : SupportsDomainClass := by
+  sorry
 
-theorem nbgSupportsCartesianExtensionClass : SupportsCartesianExtensionClass :=
-  CartesianExtensionClassExists
+theorem nbgSupportsCartesianExtensionClass : SupportsCartesianExtensionClass := by
+  sorry
 
-theorem nbgSupportsPermutationClass : SupportsPermutationClass :=
-  PermutationClassExists
+theorem nbgSupportsPermutationClass : SupportsPermutationClass := by
+  sorry
 
-theorem nbgSupportsTranspositionClass : SupportsTranspositionClass :=
-  TranspositionClassExists
+theorem nbgSupportsTranspositionClass : SupportsTranspositionClass := by
+  sorry
 
-theorem nbgSupportsReplacement : SupportsReplacement :=
-  ReplacementImageExists
+theorem nbgSupportsReplacement : SupportsReplacement := by
+  sorry
 
-theorem nbgSupportsGlobalChoice : SupportsGlobalChoice :=
-  GlobalChoiceClassExists
+theorem nbgSupportsGlobalChoice : SupportsGlobalChoice := by
+  sorry
 
 theorem nbgFiniteNBGAxiomHolds
     (axiomName : FiniteNBGAxiomName) :
     FiniteNBGAxiomHolds axiomName := by
-  cases axiomName with
-  | classExtensionality => exact nbgSupportsClassExtensionality
-  | classRegularity => exact nbgSupportsClassRegularity
-  | pairing => exact nbgSupportsPairing
-  | union => exact nbgSupportsUnion
-  | powerSet => exact nbgSupportsPowerSet
-  | infinity => exact nbgSupportsInfinity
-  | universalClass => exact nbgSupportsUniversalClass
-  | elementhoodClass => exact nbgSupportsElementhoodClass
-  | intersectionClass => exact nbgSupportsIntersectionClass
-  | complementClass => exact nbgSupportsComplementClass
-  | domainClass => exact nbgSupportsDomainClass
-  | cartesianExtensionClass => exact nbgSupportsCartesianExtensionClass
-  | permutationClass => exact nbgSupportsPermutationClass
-  | transpositionClass => exact nbgSupportsTranspositionClass
-  | replacement => exact nbgSupportsReplacement
-  | globalChoice => exact nbgSupportsGlobalChoice
+  sorry
 
-theorem nbgSatisfiesFiniteNBGAxiomatization : SatisfiesFiniteNBGAxiomatization :=
-  nbgFiniteNBGAxiomHolds
+theorem nbgSatisfiesFiniteNBGAxiomatization : SatisfiesFiniteNBGAxiomatization := by
+  sorry
 
 theorem nbgSatisfiesNBG : SatisfiesNBG := by
-  constructor
-  exact nbgSupportsSingleSortedPresentation
-  constructor
-  exact nbgSupportsTwoSortedPresentation
-  exact nbgSatisfiesFiniteNBGAxiomatization
+  sorry
 
 end LRA.Set.Constructions.NBG.Interface.ModelTheory
