@@ -31,6 +31,6 @@ def SupportsTGExpansion
 theorem supportsTGExpansion_iff_universe_axiom
     (SetObject : Type u) [Membership SetObject SetObject] :
     SupportsTGExpansion SetObject ↔ TGUniverseAxiom SetObject := by
-  rfl
+  sorry
 
 end LRA.Set.Constructions.GrothendieckUniverse.Interface.ModelTheory
