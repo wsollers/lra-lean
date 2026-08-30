@@ -37,8 +37,14 @@ jobs:
           echo '=== MATHLIB IMPORTS UNDER LOGIC ==='
           grep -RnE '^import[[:space:]]+Mathlib\.' LRA/Logic --include='*.lean' | sort || true
 
+          echo '=== DECIDABLEEQ ASSUMPTIONS UNDER LOGIC ==='
+          grep -RnF 'DecidableEq' LRA/Logic --include='*.lean' | sort || true
+
           echo '=== BARE SET REFERENCES IN SYNTAX OR LANGUAGE ==='
           grep -RnE '(^|[^A-Za-z0-9_.])Set([[:space:]]|\(|\{|$)' LRA/Logic/Syntax LRA/Logic/Language --include='*.lean' || true
 
-          echo '=== PROP-VALUED COLLECTION-SHAPED ARROWS IN SYNTAX OR LANGUAGE ==='
+          echo '=== ALL BARE SET REFERENCES UNDER LOGIC ==='
+          grep -RnE '(^|[^A-Za-z0-9_.])Set([[:space:]]|\(|\{|$)' LRA/Logic --include='*.lean' || true
+
+          echo '=== PROP-VALUED ARROWS IN SYNTAX OR LANGUAGE ==='
           grep -RnE '→[[:space:]]*Prop|->[[:space:]]*Prop' LRA/Logic/Syntax LRA/Logic/Language --include='*.lean' || true
