@@ -2,6 +2,8 @@ import LRA.Logic.Language.Symbols.Signature
 
 namespace LRA.Metamathematics.Notation
 
+open LRA.Logic
+
 /--
 `LogicalConnective` TODO
 
