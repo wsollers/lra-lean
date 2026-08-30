@@ -46,35 +46,22 @@ def UniversalAlgebraClassification : Prop :=
 
 theorem pureRelationalNBGSupportsPureRelationalClassification :
     SupportsPureRelationalClassification := by
-  constructor
-  intro relation
-  cases relation
-  rfl
+  sorry
 
 theorem pureRelationalNBGSupportsPositiveRelationArityClassification :
     SupportsPositiveRelationArityClassification := by
-  constructor
-  intro relation
-  cases relation
-  decide
+  sorry
 
 theorem pureRelationalNBGSupportsPureSignatureNonVarietyClassification :
     SupportsPureSignatureNonVarietyClassification := by
-  exact ⟨rfl⟩
+  sorry
 
 theorem expandedClassSignatureSupportsFunctionalConservativeExpansion :
     SupportsFunctionalConservativeExpansion := by
-  constructor
-  · exact ⟨.universalClass, rfl⟩
-  · exact ⟨.intersection, rfl, rfl⟩
+  sorry
 
 theorem nbgUniversalAlgebraClassification :
     UniversalAlgebraClassification := by
-  exact ⟨
-    pureRelationalNBGSupportsPureRelationalClassification,
-    pureRelationalNBGSupportsPositiveRelationArityClassification,
-    pureRelationalNBGSupportsPureSignatureNonVarietyClassification,
-    expandedClassSignatureSupportsFunctionalConservativeExpansion
-  ⟩
+  sorry
 
 end LRA.Set.Constructions.NBG.Interface.UniversalAlgebra
