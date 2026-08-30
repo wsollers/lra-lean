@@ -1,5 +1,5 @@
 import LRA.Logic.Language.FirstOrder.Signature
-import LRA.Logic.Language.Notation.LogicalSymbols
+import LRA.Metamathematics.Notation.LogicalSymbols
 import LRA.Identity.Interface.ModelTheory.Theory
 
 namespace LRA.Identity
@@ -18,7 +18,7 @@ abbrev PureEqualityLanguage := FirstOrderLanguage
 def pureEqualityLanguage : PureEqualityLanguage :=
   pureEqualitySignature
 
-abbrev EqualityLogicalSymbol := LRA.Logic.Language.Notation.LogicalEquality
+abbrev EqualityLogicalSymbol := LRA.Metamathematics.Notation.LogicalEquality
 
 def EqualityDiagonal (Carrier : Type u) : Carrier -> Carrier -> Prop :=
   fun left right => left = right

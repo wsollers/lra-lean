@@ -1,6 +1,6 @@
-import LRA.Logic.Language.Notation.LogicalSymbols
+import LRA.Metamathematics.Notation.LogicalSymbols
 
-namespace LRA.Logic.Language
+namespace LRA.Metamathematics
 
 /--
 `notationWiringTest` TODO
@@ -44,4 +44,4 @@ theorem notationWiringTest :
   intro proposition proof
   exact proof
 
-end LRA.Logic.Language
+end LRA.Metamathematics

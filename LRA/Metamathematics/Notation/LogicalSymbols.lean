@@ -1,6 +1,6 @@
 import LRA.Logic.Language.Symbols.Signature
 
-namespace LRA.Logic.Language.Notation
+namespace LRA.Metamathematics.Notation
 
 /--
 `LogicalConnective` TODO
@@ -111,7 +111,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  LRA.Logic.Language.Notation.LogicalConnectives.2 LRA.Logic.Language.Notation.LogicalConnective.neg = instOfNatNat 1.1
+  LRA.Metamathematics.Notation.LogicalConnectives.2 LRA.Metamathematics.Notation.LogicalConnective.neg = instOfNatNat 1.1
 
 Logical form (Lean):
 
@@ -151,7 +151,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  LRA.Logic.Language.Notation.LogicalConnectives.2 LRA.Logic.Language.Notation.LogicalConnective.impl = instOfNatNat 2.1
+  LRA.Metamathematics.Notation.LogicalConnectives.2 LRA.Metamathematics.Notation.LogicalConnective.impl = instOfNatNat 2.1
 
 Logical form (Lean):
 
@@ -283,7 +283,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  LRA.Logic.Language.Notation.LogicalEqualitySymbols.2 LRA.Logic.Language.Notation.LogicalEquality.eq = instOfNatNat 2.1
+  LRA.Metamathematics.Notation.LogicalEqualitySymbols.2 LRA.Metamathematics.Notation.LogicalEquality.eq = instOfNatNat 2.1
 
 Logical form (Lean):
 
@@ -356,4 +356,4 @@ Related proof moves: TODO
 inductive LogicalQuantifier where
   | forallQ
 
-end LRA.Logic.Language.Notation
+end LRA.Metamathematics.Notation
