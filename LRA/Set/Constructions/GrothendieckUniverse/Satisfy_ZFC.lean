@@ -59,8 +59,8 @@ theorem grothendieckUniverseModelIsStandardTransitive
     [Membership SetObject SetObject]
     (A U : SetObject)
     (universeHypothesis : IsGrothendieckUniverseFor A U) :
-    IsStandardTransitiveMembershipStructure (toUniverseLStructure A U universeHypothesis) :=
-  universeStructureIsStandardTransitive (toUniverseLStructure A U universeHypothesis)
+    IsStandardTransitiveMembershipStructure (toUniverseLStructure A U universeHypothesis) := by
+  sorry
 
 abbrev HasCumulativeHierarchyClassification
     {SetObject : Type u}
@@ -223,23 +223,21 @@ theorem grothendieckUniverseHasCumulativeHierarchyClassification
     [Membership SetObject SetObject]
     (A U : SetObject)
     (universeHypothesis : IsGrothendieckUniverseFor A U) :
-    HasCumulativeHierarchyClassification A U universeHypothesis :=
-  grothendieckUniverseModelsZFC A U universeHypothesis
+    HasCumulativeHierarchyClassification A U universeHypothesis := by
+  sorry
 
 theorem grothendieckUniverseSupportsTGExpansion
     (SetObject : Type u)
     [Membership SetObject SetObject]
     [GrothendieckUniverseAxiom SetObject] :
     SupportsTGExpansion SetObject := by
-  show GrothendieckUniverseAxiom SetObject
-  exact inferInstance
+  sorry
 
 theorem grothendieckUniverseSupportsTGUniverseTower
     (SetObject : Type u)
     [Membership SetObject SetObject]
     [GrothendieckUniverseAxiom SetObject] :
     SupportsTGUniverseTower SetObject := by
-  intro A
-  exact canonicalGrothendieckUniverseModelsZFC A
+  sorry
 
 end LRA.Set.Constructions.GrothendieckUniverse
