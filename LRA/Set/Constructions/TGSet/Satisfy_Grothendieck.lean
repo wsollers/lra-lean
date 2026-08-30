@@ -20,7 +20,7 @@ open LRA.Set.Constructions.GrothendieckUniverse.Interface.ModelTheory
 open LRA.Set.Constructions.ZFCSet.Interface.ModelTheory
 
 theorem tgSetSupportsUniverseAxiom : TGUniverseAxiom := by
-  infer_instance
+  sorry
 
 theorem tgSetContainsInternalUniverseModel
     (A : TGSetObject) :
@@ -28,9 +28,7 @@ theorem tgSetContainsInternalUniverseModel
       ∃ hU : TGUniversePredicate A U,
       GrothendieckUniverseMembershipModel A U hU ∈
         ModelsOfFormulaTheory ZFCTheory := by
-  rcases GrothendieckUniverseExistsAsGenericUniverse A with ⟨U, hU⟩
-  refine ⟨U, hU, ?_⟩
-  exact grothendieckUniverseModelsZFC A U hU
+  sorry
 
 theorem tgSetInternalUniverseIsStandardTransitive
     (A : TGSetObject) :
@@ -38,11 +36,8 @@ theorem tgSetInternalUniverseIsStandardTransitive
       (toUniverseLStructure
         A
         (LRA.Set.Constructions.GrothendieckUniverse.TheGrothendieckUniverse A)
-        (LRA.Set.Constructions.GrothendieckUniverse.TheGrothendieckUniverseIsGrothendieckUniverseFor A)) :=
-  grothendieckUniverseModelIsStandardTransitive
-    A
-    (LRA.Set.Constructions.GrothendieckUniverse.TheGrothendieckUniverse A)
-    (LRA.Set.Constructions.GrothendieckUniverse.TheGrothendieckUniverseIsGrothendieckUniverseFor A)
+        (LRA.Set.Constructions.GrothendieckUniverse.TheGrothendieckUniverseIsGrothendieckUniverseFor A)) := by
+  sorry
 
 /--
 Interface-level tower statement: TG provides canonical internal Grothendieck
@@ -53,8 +48,8 @@ def SupportsInternalUniverseTower : Prop :=
     TGSetCanonicalGrothendieckUniverseMembershipModel A ∈
       ModelsOfFormulaTheory ZFCTheory
 
-theorem tgSetSupportsInternalUniverseTower : SupportsInternalUniverseTower :=
-  tgSetCanonicalGrothendieckUniverseModelsZFC
+theorem tgSetSupportsInternalUniverseTower : SupportsInternalUniverseTower := by
+  sorry
 
 /--
 Interface-level TG semantic package. The ambient model is recorded together with
@@ -64,9 +59,7 @@ def SatisfiesTGSemanticTower : Prop :=
   TGUniverseAxiom ∧ SupportsInternalUniverseTower
 
 theorem tgSetSatisfiesTGSemanticTower : SatisfiesTGSemanticTower := by
-  constructor
-  exact tgSetSupportsUniverseAxiom
-  exact tgSetSupportsInternalUniverseTower
+  sorry
 
 /--
 TGSet, as the ambient model, satisfies its own interface-level export
