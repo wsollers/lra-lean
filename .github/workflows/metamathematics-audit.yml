@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: read
+  packages: read
 
 jobs:
   audit:
@@ -48,3 +49,30 @@ jobs:
 
           echo '=== PROP-VALUED ARROWS IN SYNTAX OR LANGUAGE ==='
           grep -RnE '→[[:space:]]*Prop|->[[:space:]]*Prop' LRA/Logic/Syntax LRA/Logic/Language --include='*.lean' || true
+
+  isolated-lean-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compute Lean environment image
+        run: |
+          env_hash="${{ hashFiles('Dockerfile', 'lean-toolchain', 'lake-manifest.json', 'docker/lakefile.env.lean') }}"
+          image="ghcr.io/${GITHUB_REPOSITORY,,}-lean-build:${env_hash}"
+          echo "LEAN_IMAGE=$image" >> "$GITHUB_ENV"
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Pull Lean environment
+        run: docker pull "$LEAN_IMAGE"
+      - name: Compile Logic metamathematics boundary directly
+        run: |
+          docker run --rm \
+            -v "${{ github.workspace }}/LRA:/workspace/LRA:ro" \
+            -v "${{ github.workspace }}/lakefile.lean:/workspace/lakefile.lean:ro" \
+            -v "${{ github.workspace }}/lake-manifest.json:/workspace/lake-manifest.json:ro" \
+            -w /workspace \
+            "$LEAN_IMAGE" \
+            bash -lc 'lake env lean LRA/Logic/Metamathematics.lean'
