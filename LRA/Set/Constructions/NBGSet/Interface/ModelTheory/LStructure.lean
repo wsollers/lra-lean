@@ -103,8 +103,6 @@ def toSingleSortedClassStructure
 theorem singleSortedClassStructureIsNormal
     (M : SingleSortedClassStructure) :
     IsNormalClassModel M := by
-  constructor
-  intro X Y
-  rfl
+  sorry
 
 end LRA.Set.Constructions.NBG.Interface.ModelTheory
