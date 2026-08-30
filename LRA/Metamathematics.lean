@@ -3,6 +3,7 @@ import LRA.Metamathematics.DeclarationKeywords
 import LRA.Metamathematics.SyntacticCategory
 import LRA.Metamathematics.StructuralIdentity
 import LRA.Metamathematics.ObjectMetaDistinction
+import LRA.Metamathematics.FiniteSyntacticCollection
 import LRA.Metamathematics.SubstitutionSafety
 import LRA.Metamathematics.MetatheoremTargets
 
@@ -35,6 +36,13 @@ Contents:
   itself: a `Formula` is a metatheoretic (Lean) object; the symbols it
   contains (e.g. `Formula.equal`'s `=`) are uninterpreted until a model
   supplies meaning.
+- `FiniteSyntacticCollection` -- `MetaCollection`, a deliberately
+  foundation-cheap `List`-backed stand-in for "a finite collection of
+  symbols," used so this subject never has to borrow `Mathlib`'s `Set`
+  (which presupposes impredicative comprehension) or `LRA.Set` (a full
+  object-level theory that itself depends on `LRA.Logic`, which would
+  make depending on it here circular in the conceptual sense) just to
+  state a free-variable-collection schema.
 - `SubstitutionSafety` -- the schema that a substitution operation must
   be paired with both a safety predicate AND a theorem that substituting
   under that predicate avoids variable capture; flags that

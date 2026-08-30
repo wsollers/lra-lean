@@ -1,4 +1,4 @@
-import Mathlib.Data.Set.Defs
+import LRA.Metamathematics.FiniteSyntacticCollection
 
 namespace LRA.Metamathematics
 
@@ -51,18 +51,21 @@ for `LRA.Logic.Syntax.FirstOrder`; `substitute` corresponds to what
 exists to make explicit that both must be supplied TOGETHER, with the
 theorem below as the connecting obligation.
 
-`freeVariablesOf` is typed `Expr → Set Variable` rather than `Finset
-Variable` deliberately, since this schema should not presuppose that
-every system's free-variable computation is finitary -- `LRA.Logic.Syntax
-.FirstOrder.freeVariables` happens to return a `Finset Variable`, and any
-future instantiation against it is expected to coerce (`↑`) into `Set
-Variable` at the instance site, not to change this schema's signature. -/
+`freeVariablesOf` is typed `Expr → MetaCollection Variable` (see
+`FiniteSyntacticCollection`) rather than `Mathlib`'s `Set Variable` or
+`LRA.Set`'s own ZFC-backed sets, deliberately: this file sits beneath
+both, and `MetaCollection` costs nothing beyond `List`, Lean's own core
+inductive type, with no comprehension principle borrowed from either.
+`LRA.Logic.Syntax.FirstOrder.freeVariables` happens to return a `Finset
+Variable`; any future instantiation against it is expected to convert
+via `Finset.toList` at the instance site, not to change this schema's
+signature. -/
 class SubstitutionSafety
     (Expr Variable Term : Type u)
     (IsSafe : Expr → Variable → Term → Prop)
     (substitute : Variable → Term → Expr → Expr)
     (variableOccursFreelyIn : Variable → Term → Prop)
-    (freeVariablesOf : Expr → Set Variable) where
+    (freeVariablesOf : Expr → MetaCollection Variable) where
   /-- The theorem every instance of this schema is required to supply:
   performing `substitute` under the `IsSafe` guard never introduces a
   free variable of `t` into a position where it was not already free (or
