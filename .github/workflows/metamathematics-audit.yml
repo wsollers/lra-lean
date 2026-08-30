@@ -1,0 +1,44 @@
+name: Temporary Metamathematics Audit
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Direct source audit
+        shell: bash
+        run: |
+          set -u
+          echo '=== LOGIC LEAN FILE COUNT ==='
+          find LRA/Logic -type f -name '*.lean' | sort | tee /tmp/logic-files.txt | wc -l
+
+          echo '=== SORRY COUNTS PER LOGIC FILE ==='
+          total=0
+          while IFS= read -r f; do
+            n=$(grep -Eow '\bsorry\b' "$f" | wc -l || true)
+            if [ "$n" -gt 0 ]; then
+              printf '%4d %s\n' "$n" "$f"
+              total=$((total+n))
+            fi
+          done < /tmp/logic-files.txt
+          echo "TOTAL_SORRY=$total"
+
+          echo '=== AXIOM DECLARATIONS UNDER LOGIC ==='
+          grep -RnE '^[[:space:]]*axiom[[:space:]]' LRA/Logic --include='*.lean' || true
+
+          echo '=== MATHLIB IMPORTS UNDER LOGIC ==='
+          grep -RnE '^import[[:space:]]+Mathlib\.' LRA/Logic --include='*.lean' | sort || true
+
+          echo '=== BARE SET REFERENCES IN SYNTAX OR LANGUAGE ==='
+          grep -RnE '(^|[^A-Za-z0-9_.])Set([[:space:]]|\(|\{|$)' LRA/Logic/Syntax LRA/Logic/Language --include='*.lean' || true
+
+          echo '=== PROP-VALUED COLLECTION-SHAPED ARROWS IN SYNTAX OR LANGUAGE ==='
+          grep -RnE '→[[:space:]]*Prop|->[[:space:]]*Prop' LRA/Logic/Syntax LRA/Logic/Language --include='*.lean' || true
