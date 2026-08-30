@@ -2,393 +2,369 @@
 
 Planning document produced in response to
 `docs/tool-prompts/landau-generic-operation-proving-plan.md`. **No `.lean`
-file was edited to produce this document.** It surveys the repo's current
-state against the foundations-docs design, extends the theorem crosswalk to
-Chapters II–V at a coarse level, and lays out an ordered plan for closing the
-gap between Landau's 301-theorem checklist and generically-proved, cert-cited
-Lean declarations.
+file was edited to produce this document.**
 
-Companion documents: [`LANDAU-THEOREMS.md`](LANDAU-THEOREMS.md) (the full
-checklist), [`LANDAU-CROSSWALK.md`](LANDAU-CROSSWALK.md) (Chapter I only, to
-be extended per this plan), [`docs/foundations/16-landau-cert-naming-history.md`](docs/foundations/16-landau-cert-naming-history.md)
-(the binding cert-naming convention).
+**Revision note.** The first version of this document organized itself
+around Landau's book-theorem numbering (a 36-row Chapter I table as the
+spine). That was the wrong spine. The actual ask — confirmed in discussion
+— is a **fixed, small cert vocabulary** (`Add_Commutative`, `Add_Associative`,
+`Add_HasIdentity`, ...) checked off, as the *same* columns, across four
+different levels: the generic law vocabulary itself, the named algebraic
+structures that bundle it, the generic (carrier-agnostic) number-system
+interfaces, and every concrete construction. Landau's theorem numbers are
+now a footnote layer (§6), not the organizing device. This version leads
+with a finding the theorem-number framing never surfaced: **there are
+currently three separate, non-communicating mechanisms in this repo that
+all claim to answer "does this carrier satisfy this law," and reconciling
+them — or deliberately not reconciling them — is the actual prerequisite
+decision for everything downstream.**
 
----
-
-## 1. Survey: generic machinery vs. what the foundations docs claim
-
-Verified by reading the actual `.lean` source, not `ProofsToDo.md` files
-(per the repo's own binding policy in `docs/foundations/13-audit-round-2.md`).
-
-| Claim in `docs/foundations/*` | Verified against repo | Status |
-|---|---|---|
-| `Equation`/`SatisfiesEquation`/`EquationalTheory`/`ModelsOfEquationalTheory`/`IsVariety` exist in `LRA/UniversalAlgebra/Satisfaction/Definition.lean`, Signature-and-Model level | Confirmed. `SatisfiesEquation` (line 97) is `∀ assignment, evaluateTerm M assignment lhs = evaluateTerm M assignment rhs`, exactly as documented. | **Matches doc** |
-| `modelsOfEquationalTheoryIsVariety` is "one `sorry` from complete" | Confirmed: single `sorry` at `Satisfaction/Definition.lean:312`, nothing else in the file. | **Matches doc** |
-| Product/quotient transport lemmas against `SatisfiesEquation` are "confirmed missing" | Confirmed absent. Grepped all of `LRA/UniversalAlgebra/` for `productModel_satisfies`, `ProductTransport`, `QuotientTransport` — zero hits. `productModel`/`piModel` (`Product/Definition.lean`) and `quotientModel`/`Congruence` (`Quotient/Definition.lean`) exist and are usable, but no lemma of the shape "if every factor/the source satisfies equation e, so does the product/quotient" exists anywhere. | **Matches doc — still genuinely missing** |
-| `equationTransportsAlongSurjection` exists (Round 2 finding, upgrade from Round 1) | Confirmed: `Homomorphism/Definition.lean:468`, one `sorry` at line 475. This is the **H**-side (homomorphic-image) transport; still no **P**-side (product) transport at all. | **Matches doc** |
-| `Operation/Laws/*` sorry debt ("~120 sorries, heaviest Inverse 26, Cancellation 23") | Recounted directly: Absorbing 9, Absorption 6, Associative 7, Cancellation 23, Closure 6, Commutative 7, Distributive 9, Idempotent 3, Identity 9, Inverse 26, Nilpotent 7, QuotientCompatible 0. Total **112** (doc says "~120" — close, roundable drift, not a real discrepancy). Inverse (26) and Cancellation (23) confirmed heaviest. | **Matches doc (minor recount drift only)** |
-| `AlgebraicStructures/*` already has granular, mostly-sorry-free directories for the full hierarchy through `CompleteOrderedField`, `Archimedean`, the lattice family | Confirmed: all named directories exist. Spot-checked `CompleteOrderedField/*.lean` — **zero** `sorry` in any of `Characterizations`, `Consequences`, `Definition`, `Examples`, `Laws`, `Relationships`, `Theorems`. This layer is real and mature, as the docs claim. | **Matches doc** |
-
-### 1.1 New findings, not previously documented anywhere in `docs/foundations/*`
-
-These are concrete, repo-verified gaps that the existing docs do not mention.
-They matter directly for sequencing the plan in §3.
-
-1. **Landau's own ℕ construction has no bridge into the number-system
-   interface layer at all.** `NaturalNumbers/Constructions/Landau/` has no
-   `Instances.lean` and no `Satisfy_Generic.lean` — unlike every sibling
-   construction checked (`WholeNumbers/Constructions/Landau`,
-   `RationalNumbers/Constructions/RationalQuotientFractions`,
-   `RealNumbers/Constructions/Dedekind`,
-   `ComplexNumbers/Constructions/OrderedPairs`,
-   `Integers/Constructions/{QuotientOrderedPairs,Tao,Mendelson}`, all of
-   which have both). Concretely: nothing anywhere constructs a
-   `NaturalNumberModel.ofCarrier` instance from the Landau ℕ carrier (which
-   would require a `CommutativeSemiringLaws` instance on it), and without
-   that there is no `LRA.Logic.FirstOrder.Model NaturalNumbersFirstOrderSignature`
-   for the Landau carrier — meaning `Cert_N0_Add_Commutative` etc. cannot
-   currently be phrased as an actual `SatisfiesEquation` fact against Landau's
-   ℕ at all. `06a-satisfaction-certificates.md` §1 implicitly assumes this
-   bridge exists ("proved directly by induction" reads as if the resulting
-   fact is at least statable against a `Model`); it is not yet, for this
-   specific construction. This is real, currently-unwritten wiring work, not
-   a proof debt on an existing declaration.
-
-2. **The two Signature types are not the ones you'd guess from the file
-   layout, and the number-system Interface layer has three different
-   "Signature" concepts in play.** `NaturalNumbers/Interface/UniversalAlgebra/Signature/Definition.lean`
-   defines `NaturalNumbersAlgebraicSignature : LRA.Identity.AlgebraicSignature`
-   — a *third*, distinct type from both `LRA.Logic.Signature` (what
-   `SatisfiesEquation`/`Model` actually require) and
-   `NaturalNumbersFirstOrderSignature : LRA.Logic.Signature`
-   (`Interface/Signature/Definition.lean`, which *is* the right type and is
-   what `NaturalNumberModel.firstOrderModel` in
-   `Interface/ModelTheory/Model.lean` already targets). Nothing under
-   `Interface/UniversalAlgebra/*` is used by the `SatisfiesEquation`
-   machinery anywhere the audit checked. This is the same shape of
-   naming ambiguity flagged as "Family D" in
-   `docs/interface-model-standardization-inventory.md`, just for a
-   different name pair, on a different refactor track (that inventory
-   document is about `Interface/ModelTheory/*` file-naming standardization,
-   not about the equational satisfaction machinery — the two projects are
-   independent and should stay that way, but a future reader of this plan
-   should import `NaturalNumbersFirstOrderSignature`, never
-   `NaturalNumbersAlgebraicSignature`, when building `SatisfiesEquation`
-   facts). Not proposing to fix the naming collision here — flagged so the
-   next implementer doesn't import the wrong one.
-
-3. **`06a-satisfaction-certificates.md` §2's worked ℤ example
-   (`ℤ := (ℕ₀×ℕ₀)/~`) does not describe this repo's `WholeNumbers/Constructions/Landau`.**
-   That construction (`WholeNumbers/Constructions/Landau/Carrier.lean`) is
-   *axiomatic*: it takes an abstract `NaturalArithmeticForWholeNumbers`
-   record (a `PeanoSystem` plus order-compatibility hypotheses stated as
-   fields) and is generic over any model of that interface — it does not
-   itself construct anything as a literal pair-quotient, so `productModel`/
-   `quotientModel` do not apply to it directly. The literal
-   `(ℕ₀×ℕ₀)/~`-shaped construction 06a describes lives in a **different**
-   top-level subject: `NumberSystems.Integers.Constructions.QuotientOrderedPairs`
-   (sibling constructions `Tao`, `Mendelson` also exist under
-   `NumberSystems.Integers`). This means: "the reused Landau construction for
-   integers" named in the task prompt (`WholeNumbers/Constructions/Landau`)
-   and "the construction the transport-theorem worked example is about"
-   (`Integers/Constructions/QuotientOrderedPairs`) are not the same Lean
-   declarations, even though both are legitimately "ℤ from Landau's
-   axioms" in different senses (`WholeNumbers` = ℤ realized via the
-   book's five-axiom natural-number data with a two-sided order and
-   subtraction bolted on; `Integers/QuotientOrderedPairs` = ℤ realized as
-   the literal ℕ₀×ℕ₀ quotient Landau's book actually uses for the fraction/cut
-   constructions' *shape*, though Landau's own book builds ℤ differently
-   again). **This is flagged as an open question in §4** — which
-   construction Chapter I/II crosswalk work and the transport theorems
-   should target is a real decision, not resolved by this survey.
+Companion documents: [`LANDAU-THEOREMS.md`](LANDAU-THEOREMS.md),
+[`LANDAU-CROSSWALK.md`](LANDAU-CROSSWALK.md),
+[`docs/foundations/16-landau-cert-naming-history.md`](docs/foundations/16-landau-cert-naming-history.md).
 
 ---
 
-## 2. Survey: Chapters II–V coarse crosswalk
+## 0. The central finding: three parallel satisfaction mechanisms
 
-Coarse, chapter-level only, per the task's own scope note. "Equational" =
-transport-theorem-eligible per the `06b-model-theory-boundary.md` template
-(pure `∀x̄ (t₁≈t₂)`, term-only, no `∨/∃/≠/≤`). "Relational" = must route
-through `Relations`/`Order`/`Operations §6.7.1 RespectsRelation`/general
-`Logic.Signature/Model` per the same boundary.
+Verified by reading the actual instance declarations, not inferred from
+naming.
 
-| Chapter | Theorem range | Natural Lean target construction(s) | Rough law-shaped (equational) fraction | Rough order/relational fraction | Notes |
-|---|---|---|---|---|---|
-| II — Fractions/ℚ | 37–115 (79 theorems) | `RationalNumbers/Constructions/RationalQuotientFractions` (already has `Satisfy_Generic.lean`, 0 sorries in that file; `Laws.lean` 8 sorries, `Behavior.lean` 12) | ~10 theorems (58,59,69,70,71,92,93,102,103,104 — the add/mul commutative/associative/distributive laws, repeated once for fractions and once for the derived rational numbers) | ~55 theorems (trichotomy 41,81; order-preservation-under-op 61,62,72,96,105; density 55,91; Archimedean 115 — second-sort, routes to many-sorted `Logic.Signature/Model` per `06b` §1, not the equational fragment) | ~14 theorems (37–39,78–80 equivalence-relation reflexive/symmetric/transitive; 67,77,101,110 existence-of-solution definitional theorems) don't cleanly fit either bucket — they're either equivalence-relation boilerplate (belongs in `Relations`/`03-equivalences.md`, not `Operations`) or definitional/uniqueness existence statements (belong as direct `Cert_*`-adjacent but non-equational lemmas, since they assert `∃!`, not a bare equation) |
-| III — Cuts/ℝ | 116–162 (47 theorems) | `RealNumbers/Constructions/Dedekind` (has `Satisfy_Generic.lean`, 0 sorries in that file; `Laws.lean` 8, `WellDefinedness.lean` 10) | ~6 theorems (130,131,142,143,144, plus 151 `ξ·1*=ξ` as an identity-element instance) | ~35 theorems (order/trichotomy 121–128,145–149,154; density 159) | 161 (unique square root, `∃!`) and 162 (irrationality of √2, a negative existence result) are neither — both are genuinely second-order/existential, route to the Henkin layer or stay as bespoke direct proofs, never `Cert_*` |
-| IV — Real Numbers | 163–205 (43 theorems) | `RealNumbers/Constructions/Dedekind` (same target as Ch. III — Landau's Ch. IV real numbers **are** his Ch. III cuts, re-presented as signed differences of positive cuts) | ~10 theorems (175,177,179,180,186,194,195,197,198,201 — commutativity/associativity/identity/sign-rule identities, the exact `SignNegationLaws`-shaped derivation chain `landaureview.md` §27 already recommends) | ~28 theorems (order/sign 166–173,182,183,188–191; trichotomy 167) | Theorem 205 (Dedekind's Fundamental Theorem — every two-class partition of ℝ has exactly one separating real) is the sharpest possible non-equational case in the entire checklist: it quantifies over *all partitions*, i.e. genuinely second-order, and must route to the Henkin second-order layer per `06b` §3 item 4, never treated as an equational or even ordinary-relational fact |
-| V — Complex Numbers | 206–301 (96 theorems) | `ComplexNumbers/Constructions/OrderedPairs` (has `Satisfy_Generic.lean`, 0 sorries there; `Laws.lean` 18 sorries — the largest single `Laws.lean` sorry count of any construction surveyed) | ~45–50 theorems — by far the highest equational fraction of any chapter: nearly all of the negation/subtraction identity block (210–239), the division identity block (240–256), and the conjugate-homomorphism block (257–263) are pure term equations over `+,·,−,÷,conj`; the power-law block (290–297) is equational once iteration is treated as a derived operation symbol | ~15 theorems (221 no-zero-divisors as an `↔`; 264–270,272–273 absolute-value inequalities — `\|·\|:ℂ→ℝ` is a genuine second sort, so **all** absolute-value theorems including 271/287 triangle inequality route to many-sorted `Logic.Signature/Model`, never the equational fragment, exactly as `06b` predicts for the triangle inequality generally) | 274 (pigeonhole for finite sets) and 275–289 (indexed sum/product family) are a self-contained sub-topic: recursively-defined finite iteration over a range, closer to `Operations §6.8`/iteration machinery than to either equational-law or order-relational buckets — worth scoping as its own small sub-plan rather than forcing it into this table's two columns |
+| # | Mechanism | What a "cert" actually is | Lives in | Confirmed users |
+|---|---|---|---|---|
+| **1** | **Equational satisfaction** | A value of type `SatisfiesEquation M equation` — `M : Logic.FirstOrder.Model S`, `equation : Equation S Variable` a pair of `Term`s. Generic over *any* `Logic.Signature`. | `LRA/UniversalAlgebra/Satisfaction/Definition.lean` | **Nothing in `NumberSystems/*` currently constructs a value of this type against any concrete carrier.** It underlies only `Interface/UniversalAlgebra/*` scaffolding (§3), which nothing else imports. |
+| **2** | **Bundled Lean typeclasses** | A value of type `CommutativeSemiringLaws R` — a `class abbrev` (Lean 4 typeclass conjunction) over raw `[Add R] [Mul R] [OfNat R 0] [OfNat R 1]` instances, bottoming out in hand-written classes like `class AdditiveCommutativeLaws (R) [Add R] : Prop where add_comm : ∀ a b, a + b = b + a`. No reference to `Logic.Signature`/`Model`/`Term` anywhere in the chain. | `LRA/AlgebraicStructures/*/Laws/Definition.lean` | **This is the one every generic number-system interface actually requires** — `NaturalNumberModel`, `PositiveNaturalsModel` need `CommutativeSemiringLaws`; `WholeNumberModel`, `ZeroBasedNaturalsModel` need `OrderedSemiringLaws`; `IntegerModel` (the `Integers` subject) needs `IntegralDomainLaws` + order laws; `RationalModel`/`RealModel` need `OrderedFieldLaws`; `ComplexNumberModel` needs `FieldLaws`. See Matrix 3. |
+| **3** | **Henkin second-order theory satisfaction** | A value of type `satisfiesTheory : PeanoTheory toHenkinModel` — `toHenkinModel : HenkinModel PeanoFirstOrderSignature`. Full first/second-order sentences, not equations. | `PeanoSystem/Interface/ModelTheory/Model.lean`, `IntegerStructure/Interface/ModelTheory/Model.lean` | `PeanoModel`, `IntegerStructureModel` — a **second, independent** integer-structure interface, distinct from `Integers.Interface.ModelTheory.IntegerModel` (mechanism 2). Also (a still-different signature, but the same shape of mechanism) `PresburgerArithmeticModel`, `FirstOrderArithmeticModel`, `SuccessorArithmeticModel` — these three are legitimately out of scope for mechanisms 1/2 regardless, since their whole point is a restricted signature without general multiplication. |
 
-**Overall reading:** the equational fraction rises sharply from Chapter II
-(~13%) to Chapter V (~50%), because the later chapters are dominated by
-*derived arithmetic identities* (sign rules, conjugate homomorphism laws,
-quotient algebra) of exactly the shape Landau proves by hand and
-`landaureview.md` §27–28 already flags as ideal transport/derivation-chain
-material, while the order/relational content shrinks as a fraction (though
-not in absolute count) because order and trichotomy are established once
-per number system rather than re-derived per operation.
+**Why this matters for "one small set of certs everywhere."** All of
+`docs/foundations/06-operations.md`, `06a`, `06b`, and this document's first
+draft implicitly assumed the cert-naming convention (`Cert_⟨Carrier⟩_⟨Op⟩_⟨Law⟩`)
+would point at mechanism 1 (`SatisfiesEquation`), because that's the
+Signature/Model-generic machinery the design-history doc (`16-...md`)
+describes. **But every number system that actually exists and works today
+gets its genericity from mechanism 2 instead** — plain Lean typeclasses,
+checked by ordinary instance resolution, no `Signature`/`Term`/`evaluateTerm`
+in sight. Mechanism 1 is real, sorry-light, and well-designed, but it is
+currently a generic layer with **zero concrete instances** anywhere in
+`NumberSystems/`. Mechanism 2 is the one actually load-bearing across ℕ,
+𝕎, ℤ, ℚ, ℝ, ℂ today. This is the single biggest thing the theorem-number
+framing hid: the "generic operation-proving" the project already has and
+uses is mechanism 2, not the one the design docs spent the most words on.
+
+**This plan's recommendation, stated up front (see §7 for the open
+question this still leaves).** Point `Cert_*`/`StructCert_*` at mechanism 2
+— the `AlgebraicStructures/*/Laws` typeclasses — as the primary, working
+cert layer, since that's what every generic interface actually consumes.
+Keep mechanism 1 (`SatisfiesEquation`) as a secondary, Signature-level
+restatement worth having for Birkhoff-style reasoning (varieties, HSP,
+the product/quotient transport theorems from the first draft — still real,
+still worth building, see §4), but stop treating it as *the* cert referent.
+Treat mechanism 3 (Henkin/`PeanoTheory`) as intentionally out of scope for
+the equational cert vocabulary — it's a strictly more expressive layer for
+axioms that aren't equations at all — and flag the `PeanoModel` /
+`IntegerModel` duplication as its own open question (§7.1), not something
+this plan resolves by picking one silently.
 
 ---
 
-## 3. Ordered plan
+## 1. Matrix 1 — The generic law vocabulary itself
 
-### 3.1 The two missing transport theorems — exact statement, location, name
+One row per law family in `LRA/Operation/Laws/*` — this is the alphabet
+every other matrix's columns are drawn from. "Equational?" is the `06b`
+boundary test (pure `∀x̄(t₁≈t₂)`, no `→/∨/∃`).
 
-Both go in `LRA/UniversalAlgebra/Satisfaction/`, as a new file
-`LRA/UniversalAlgebra/Satisfaction/Transport.lean` (new file, since neither
-`Product/Definition.lean` nor `Quotient/Definition.lean` currently imports
-`Satisfaction/Definition.lean` — the transport lemmas are the first thing to
-need both `Satisfaction` and `Product`/`Quotient` in the same file, so they
-should not be added to either existing file without also adding a
-possibly-unwanted new import edge in the wrong direction).
+| Law family | `Definition`/`Consequences` | Equational? | Sorry count (`Theorems`/`Relationships`/`FailureModes`) | Generic theorem this family owns |
+|---|---|---|---|---|
+| `Associative` | sorry-free | yes | 7 | generalized-associativity (any parenthesization agrees) |
+| `Commutative` | sorry-free | yes | 7 | commuting-factors (assoc+comm → any permutation agrees) |
+| `Identity` | sorry-free | yes (`e*x≈x ∧ x*e≈x`, packaged) | 9 | uniqueness (needs one left + one right, not two of the same side) |
+| `Inverse` | sorry-free | yes, relative to a witness constant | 26 (heaviest) | uniqueness (needs associativity, unlike Identity); inverse map is an involution; socks-and-shoes law |
+| `Cancellation` | sorry-free | **no** — `x*y=x*z → y=z` has a `→`, fails the template despite being operation-symbols-only | 23 (2nd heaviest) | — (flagged in the first draft's Theorem 8 discussion; the boundary consequence is general, not Landau-specific) |
+| `Distributive` | sorry-free | yes (binary-law, two operator symbols) | 9 | `0*x=0` as a theorem, not a primitive |
+| `Idempotent` | sorry-free | yes | 3 | — |
+| `Absorbing` | sorry-free | yes | 9 | dual to Identity (uniqueness, same proof shape) |
+| `Absorption` | sorry-free | yes (lattice-style self-interaction) | 6 | — |
+| `Nilpotent` | sorry-free | yes, but presupposes associativity for the usual meaning (flagged in `landaureview.md` §30) | 7 | — |
+| `Closure` | sorry-free | trivial/definitional (`S^n → S` typing) | 6 | — |
+| `QuotientCompatible` | **3 sorries in `Definition.lean` itself** | n/a — this is `RespectsRelation`/`RespectsEquivalence`, not a law | 0 (downstream) | well-defined-quotient-operation theorem |
 
-**Product transport.**
+**Total: 112 sorries** across the twelve families (recount of the docs'
+"~120" estimate). `QuotientCompatible` is flagged specially because it's
+the one family with sorry debt in its *definition*, not just downstream —
+worth prioritizing since `Operations §6.7.1`'s `RespectsRelation` machinery
+sits underneath everything that eventually needs a quotient certificate.
+
+---
+
+## 2. Matrix 2 — Algebraic structures → which certs they bundle
+
+One row per named structure in `LRA/AlgebraicStructures/`. Columns are the
+mechanism-2 cert vocabulary. A cell is **✓** if the structure's own
+`class abbrev` conjunction includes that law (verified directly for the
+structures marked *checked*; the rest are read off `07-algebraic-structures.md`'s
+formulas, which state the same conjunctions in prose — flagged where a
+row hasn't been independently re-verified against its `Laws/Definition.lean`).
+
+| Structure | Add Comm | Add Assoc | Add Id | Add Inv | Mul Comm | Mul Assoc | Mul Id | Mul Inv | Distrib | Order compat | Order complete |
+|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+| `Magma` | | | | | | | | | | | |
+| `Semigroup` | | ✓ | | | | | | | | | |
+| `CommutativeSemigroup` | ✓ | ✓ | | | | | | | | | |
+| `Monoid` | | ✓ | ✓ | | | | | | | | |
+| `CommutativeMonoid` | ✓ | ✓ | ✓ | | | | | | | | |
+| `Group` | | ✓ | ✓ | ✓ | | | | | | | |
+| `AbelianGroup` | ✓ | ✓ | ✓ | ✓ | | | | | | | |
+| `AdditiveSemigroup`/`AdditiveGroup`/`AdditiveMonoid`/`AdditiveCommutativeSemigroup` | *(the `Add`-flavored aliases of the four rows above — same cert content, different symbol convention; not separately re-verified)* | | | | | | | | | | |
+| `Semiring` | | ✓ | ✓ | | | ✓ | | | ✓ | | |
+| `CommutativeSemiring`✓*checked* | ✓ | ✓ | ✓ | | ✓ | ✓ | ✓ | | ✓ | | |
+| `CommutativeSemiringWithoutZero` | ✓ | ✓ | | | ✓ | ✓ | ✓ | | ✓ | | |
+| `Ring` | | ✓ | ✓ | ✓ | | ✓ | | | ✓ | | |
+| `CommutativeRing` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | | | ✓ | | |
+| `NontrivialRing` | *(`CommutativeRing` + `0≠1`, not a new cert column)* | | | | | | | | | | |
+| `IntegralDomain` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | | ✓ | | |
+| `DivisionRing` | ✓ | ✓ | ✓ | ✓ | | ✓ | ✓ | ✓ (nonzero) | ✓ | | |
+| `Field` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ (nonzero) | ✓ | | |
+| `OrderedGroup`/`LinearlyOrderedGroup` | ✓ | ✓ | ✓ | ✓ | | | | | | ✓ | |
+| `OrderedRing`/`LinearlyOrderedRing` | ✓ | ✓ | ✓ | ✓ | | ✓ | | | ✓ | ✓ | |
+| `OrderedSemiring`✓*checked (via `WholeNumberModel`)* | ✓ | ✓ | ✓ | | | ✓ | | | ✓ | ✓ | |
+| `OrderedField`✓*checked (via `RationalModel`/`RealModel`)* | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | |
+| `CompleteOrderedField` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| `Archimedean` | *(a property of an ordered field, not an independent cert column — needs a second sort, ∃n:ℕ; routes like `06b` §1's Archimedean row)* | | | | | | | | | | |
+| `Lattice`/`JoinSemilattice`/`MeetSemilattice`/`DistributiveLattice`/`BoundedLattice`/`BooleanAlgebra` | *(a genuinely separate cert vocabulary — join/meet, not add/mul; out of scope for this matrix's columns, would need its own matrix if pursued)* | | | | | | | | | | |
+
+**Reading this matrix.** Every row is a `StructCert_*` definition, and per
+the binding rule it must be a bare conjunction of the ✓ columns — nothing
+here should ever be a freshly-restated `∀x,y(...)`. The empty rows
+(`Magma`) are the base case with zero certs, correctly.
+
+---
+
+## 3. Matrix 3 — Generic number-system interfaces → required certs
+
+One row per `*/Interface/ModelTheory/Model.lean` structure — the
+carrier-agnostic contracts every concrete construction must satisfy to be
+usable as "the" ℕ, ℤ, ℚ, etc. anywhere else in the repo. This is the
+layer that actually determines which mechanism (§0) a number system's
+certs run through.
+
+| Interface | Mechanism | Required cert (Matrix&nbsp;2 row) | Extra requirements |
+|---|---|---|---|
+| `NaturalNumberModel` | 2 | `CommutativeSemiringLaws` | — |
+| `PositiveNaturalsModel` | 2 | `CommutativeSemiringLaws` | — |
+| `WholeNumberModel` | 2 | `OrderedSemiringLaws` | `StrictOrderCompatibilityLaw` |
+| `ZeroBasedNaturalsModel` | 2 | `OrderedSemiringLaws` | `StrictOrderCompatibilityLaw` |
+| `IntegerModel` (subject `Integers`) | 2 | `IntegralDomainLaws` + `LinearOrderLaws` | `StrictOrderCompatibilityLaw`, `AdditionRespectsOrderLaws`, `MultiplicationRespectsOrderLaws` |
+| `RationalModel` | 2 | `OrderedFieldLaws` | `StrictOrderCompatibilityLaw`, (dense order) |
+| `RealModel` | 2 | `OrderedFieldLaws` | `StrictOrderCompatibilityLaw`, `DenseOrderLaw`, `OrderCompletenessLaws` |
+| `ComplexNumberModel` | 2 | `FieldLaws` | — |
+| `PeanoModel` | **3** | *n/a — Henkin `PeanoTheory` satisfaction, not a Matrix&nbsp;2 cert at all* | — |
+| `IntegerStructureModel` (subject `IntegerStructure`) | **3** | *n/a — Henkin theory satisfaction* | — |
+| `PresburgerArithmeticModel` / `FirstOrderArithmeticModel` / `SuccessorArithmeticModel` | *(first-order theory satisfaction against a restricted signature — structurally like mechanism 3 but a different, smaller signature per subject; no general multiplication, so most Matrix 2 columns don't apply)* | n/a | — |
+| `GaussianIntegers` | **no `ModelTheory/Model.lean` found at all** | — | flagged gap, not evaluated further here |
+
+**Reading this matrix.** Everything using mechanism 2 (the top eight rows)
+already points at the *same eight-structure vocabulary* from Matrix 2 —
+this is the concrete evidence that "one small set of certs, every number
+system certifies against it" **already exists and already works**, for
+eight of the twelve number-system subjects. The two rows using mechanism 3
+(`PeanoModel`, `IntegerStructureModel`) are the ones that don't participate
+in that shared vocabulary at all — worth a real decision (§7.1), not a
+silent gap.
+
+---
+
+## 4. Matrix 4 — Concrete constructions → actually wired?
+
+One row per construction directory found under every `NumberSystems/*/Constructions/`.
+**SatGen** = has `Satisfy_Generic.lean` (wires this construction's carrier
+into its subject's `*Model` from Matrix 3). **Inst** = has `Instances.lean`.
+**Laws** = has a local `Laws.lean` proving the cert obligations by hand.
+Sorry counts are summed across every `.lean` file in the construction
+directory (so include non-cert sorries too — a coarse but honest signal of
+overall completeness, not a pure cert-debt count).
+
+| Subject | Construction | SatGen | Inst | Laws | Sorries | Note |
+|---|---|:-:|:-:|:-:|--:|---|
+| NaturalNumbers | **Landau** | ✗ | ✗ | ✓ | 4 | **Not wired to `NaturalNumberModel` at all** — §0's first-draft finding, confirmed again here as the one from-scratch ℕ construction with zero bridge |
+| NaturalNumbers | VonNeumann | ✗ | ✗ | ✗ | 8 | Not wired |
+| NaturalNumbers | Presburger *(subject-local, not the top-level `PresburgerArithmetic` subject)* | ✗ | ✓ | ✗ | 5 | Not wired |
+| NaturalNumbers | Mathlib | ✓ | — | — | 0 | Wired directly against Mathlib's own `Nat` instances — a legitimately different, zero-new-proof certification path (Mathlib already proves the typeclasses) |
+| PositiveNaturals | Mathlib | ✓ | — | — | 0 | Same pattern |
+| PositiveNaturals | LRAInHouse | ✓ | ✗ | ✗ | 0 | Wired with no local `Laws.lean` — likely derives instances from a shared source; not independently verified |
+| ZeroBasedNaturals | Mathlib / LRAInHouse | ✓ / ✓ | — / ✗ | — / ✗ | 0 / 0 | Same two patterns as above |
+| WholeNumbers | **Landau** | ✓ | ✓ | ✓ | 36 | Wired, but this is the axiomatic-interface construction (§0 of the first draft) — not the literal pair-quotient |
+| WholeNumbers | Mathlib | ✓ | — | — | 0 | — |
+| Integers | **QuotientOrderedPairs** | ✓ | ✓ | ✓ | 27 | The literal `(ℕ₀×ℕ₀)/~`-shaped construction |
+| Integers | Tao | ✓ | ✓ | ✓ | 9 | — |
+| Integers | Mendelson | ✓ | ✓ | ✓ | 8 | — |
+| Integers | Polish | ✗ | ✗ | ✗ | 0 | Not wired |
+| Integers | Mathlib | ✓ | — | — | 0 | — |
+| IntegerStructure | *(routes through mechanism 3 — no `Constructions/` directory shaped like the others was surveyed here; separate follow-up)* | — | — | — | — | — |
+| RationalNumbers | RationalQuotientFractions | ✓ | ✓ | ✓ | 31 | — |
+| RationalNumbers | Mathlib | ✓ | — | — | 0 | — |
+| RealNumbers | Dedekind | ✓ | ✓ | ✓ | 29 | — |
+| RealNumbers | Cauchy | ✓ | ✓ | ✓ | 33 | Heaviest ℝ construction |
+| RealNumbers | EffectiveCauchy | ✓ | ✓ | ✓ | 19 | — |
+| RealNumbers | Dyadic | ✓ | ✓ | ✓ | 12 | Lightest ℝ construction |
+| RealNumbers | Cantor | ✓ | ✓ | ✓ | 25 | — |
+| RealNumbers | PrimitiveIntervals | ✓ | ✓ | ✓ | 30 | — |
+| RealNumbers | Mathlib | ✓ | — | — | 0 | — |
+| ComplexNumbers | OrderedPairs | ✓ | ✓ | ✓ | 32 | — |
+| ComplexNumbers | Mathlib | ✓ | — | — | 0 | — |
+| GaussianIntegers | OrderedPairs | ✗ | ✓ | ✓ | 15 | Not wired — consistent with §3's finding that this subject has no `ModelTheory/Model.lean` at all yet |
+| PresburgerArithmetic / FirstOrderArithmetic / SuccessorArithmetic | Mathlib | ✓ | — | — | 0 | Wired against the restricted (mechanism-3-style) signature, not Matrix&nbsp;2's vocabulary — correctly out of scope for those columns |
+
+**Reading this matrix.** Every `Mathlib`-backed construction across every
+subject is wired with zero sorries — Mathlib's own proofs discharge the
+cert obligations for free once the carrier is identified with Mathlib's
+type. The real proof debt is concentrated entirely in the from-scratch
+LRA constructions (four ℕ/ℤ/ℚ/ℝ/ℂ families, 6 real ℝ constructions alone),
+totalling **~300 sorries** summed across the rows above (a materially
+larger number than the first draft's Chapter-I-scoped view suggested,
+because this view is per-construction-file, not per-Landau-theorem). Two
+constructions (`NaturalNumbers/Landau`, `Integers/Polish`) plus one whole
+subject (`GaussianIntegers`) are not wired to any generic interface at all.
+
+**What this matrix does *not* yet do — flagged, not silently skipped.**
+It records *whether* a construction is wired and *how much* sorry debt it
+carries in aggregate, not which specific Matrix&nbsp;2 columns (`Add_Commutative`
+vs. `Mul_Associative` vs. ...) are proved vs. `sorry` inside each
+construction's `Laws.lean`. Producing that finer breakdown means reading
+every `Laws.lean` file's individual declarations against the fixed
+vocabulary — real, valuable follow-up work, sized at roughly 20
+constructions × ~8 relevant cert columns each, not attempted in this pass.
+
+---
+
+## 5. The two missing generic theorems (mechanism 1, kept for Birkhoff-style reasoning)
+
+Unchanged from the first draft's technical content — still real, still
+worth building, still not blocking anything in Matrices&nbsp;1–4 (which run
+on mechanism 2). Both belong in a new file,
+`LRA/UniversalAlgebra/Satisfaction/Transport.lean`:
 
 ```lean
-import LRA.UniversalAlgebra.Satisfaction.Definition
-import LRA.UniversalAlgebra.Quotient.Definition  -- for productModel; actually in Product/Definition.lean
-
-namespace LRA.UniversalAlgebra
-
 theorem productModel_satisfiesEquation_of_both_satisfy
-    {S : Signature} {Variable : Type}
-    {M : Model.{u} S} {N : Model.{v} S}
+    {S : Signature} {Variable : Type} {M : Model.{u} S} {N : Model.{v} S}
     (equation : Equation S Variable)
     (satisfiesM : SatisfiesEquation M equation)
     (satisfiesN : SatisfiesEquation N equation) :
     SatisfiesEquation (productModel M N) equation
-```
 
-with the `Index`-indexed generalization against `piModel` stated alongside
-it (both, not just the binary case — `07-algebraic-structures.md`'s
-eventual `ℝ^n` and indexed-family use cases need the `piModel` form, and
-proving the binary case first as a warm-up then generalizing is the right
-order, not a reason to skip the general one):
-
-```lean
 theorem piModel_satisfiesEquation_of_all_satisfy
-    {S : Signature} {Variable : Type} {Index : Type w}
-    {family : Index → Model.{u} S}
+    {S : Signature} {Variable : Type} {Index : Type w} {family : Index → Model.{u} S}
     (equation : Equation S Variable)
     (allSatisfy : ∀ i, SatisfiesEquation (family i) equation) :
     SatisfiesEquation (piModel family) equation
-```
-
-Proof sketch (both): unfold `SatisfiesEquation`, take an arbitrary
-assignment into the product/pi domain, push `evaluateTerm` through
-`productModel`/`piModel`'s componentwise `interpretFunction` by induction on
-the `Term` structure (this needs a small helper lemma —
-`evaluateTerm_productModel` / `evaluateTerm_piModel`, stating that
-evaluating a term in the product model equals the pair of evaluating it in
-each factor — this helper does not currently exist either and should be
-proved first, as a `Consequences.lean`-level lemma in `Product/Consequences.lean`
-before the transport theorem itself, since the transport proof is otherwise
-not a one-liner induction but a re-derivation of it inline), then apply
-`satisfiesM`/`satisfiesN` (or `allSatisfy i`) pointwise and recombine.
-
-**Quotient transport.**
-
-```lean
-import LRA.UniversalAlgebra.Satisfaction.Definition
-import LRA.UniversalAlgebra.Quotient.Definition
-
-namespace LRA.UniversalAlgebra
 
 theorem quotientModel_satisfiesEquation_of_satisfies
-    {S : Signature} {Variable : Type}
-    {M : Model.{u} S} (congruence : Congruence M)
+    {S : Signature} {Variable : Type} {M : Model.{u} S} (congruence : Congruence M)
     (equation : Equation S Variable)
     (satisfiesM : SatisfiesEquation M equation) :
     SatisfiesEquation (quotientModel congruence) equation
 ```
 
-**Sequencing decision, flagged explicitly.** `quotientProjectionIsHomomorphism`
-(`Quotient/Definition.lean:205`) is itself `sorry`, and
-`equationTransportsAlongSurjection` (`Homomorphism/Definition.lean:468`) is
-also `sorry` — so *composing* those two general lemmas is not currently a
-route to a working quotient-transport proof. Recommend proving
-`quotientModel_satisfiesEquation_of_satisfies` **directly** against
-`Quot.mk`/`Quot.ind`/`Congruence.compatible` (every element of
-`Quot congruence.rel` is `Quot.mk _ x` for some `x` by `Quot.exists_rep`, so
-an arbitrary assignment into the quotient domain lifts along a section, and
-`Congruence.compatible` is exactly what's needed to show the operation on
-representatives descends) — a genuinely independent, ~20–30 line proof, not
-blocked on either of the two other `sorry`s. Once `equationTransportsAlongSurjection`
-and `quotientProjectionIsHomomorphism` are separately discharged (both are
-real proof debt worth closing on their own merits, since other things
-already cite them), a second, shorter proof of the same theorem via
-composition becomes possible and could replace the direct one if desired —
-but do not block the quotient-transport theorem on that.
-
-**Priority relative to Chapter I:** **not blocking.** ℕ is the base case
-(no transport target — see §1.1 finding 1, which is the actual blocker for
-Chapter I's citability, not these two lemmas). These two lemmas become
-load-bearing starting at Chapter II (whichever ℤ construction is chosen —
-see open question in §4) and should be sequenced as parallel, independent
-work, not gating Chapter I.
-
-### 3.2 Chapter I: per-theorem disposition
-
-Legend: **(a)** direct proof against the Landau/`PeanoSystem` carrier —
-either currently `sorry` (discharge it) or currently undeclared (add and
-prove it); **(b)** obtained as a `Cert_*_via_*` citation once §3.1's
-transport theorems exist — **not applicable to any Chapter I theorem**,
-since ℕ is the equational base case with nothing to transport from (noted
-per theorem below only where it might look tempting and isn't); **(c)**
-trivial consequence of an already-established (a)-theorem, not worth a
-separate `Cert_*` name.
-
-| # | Statement | Disposition | Cert / declaration name | Why (boundary justification) |
-|---|---|---|---|---|
-| 1 | x=y → x'=y' | (c) | none — cite `congrArg` directly | Not a named law at all; already correctly marked `n/a` in the crosswalk |
-| 2 | x'≠x | (a), discharge existing `sorry` | `NoObjectIsItsOwnSuccessor` (`PeanoSystem/Theorems/Successor.lean`) | Peano-axiom-level fact about the successor relation, not equational — stays a direct interface-generic proof |
-| 3 | x≠1 → ∃u, x=u' | (a), discharge existing `sorry` | `NonOneElementsHaveAPredecessor` / `PredecessorExistsUniqueAwayFromOne` | Existential, not equational; interface-generic |
-| 4 | + exists, uniquely defined by recursion clauses | (a), discharge 4 existing `sorry`s | `LandauAdditionClauses`, `LandauAdditionWellDefined`, `LandauAdditionWithOne`, `LandauAdditionSuccessorOnRight` | Definitional/existence groundwork — establishes the operation itself; nothing to transport an operation *from* |
-| 5 | (x+y)+z=x+(y+z) | (a), discharge `sorry` | **`Cert_N0_Add_Associative`** | Pure term equation, base case — proved by induction once, never transported (06a §1) |
-| 6 | x+y=y+x | (a), discharge `sorry` | **`Cert_N0_Add_Commutative`** | Same as 5 |
-| 7 | y+x≠x | (a) new declaration | descriptive name, e.g. `LandauAdditionNeverFixesArgument` — **no `Cert_*` name** | Uses `≠`; not equational. Once Theorem 18 (x+y>x) and irreflexivity of `<` exist, this becomes provable as a one-line corollary, but it is still a relational fact, not eligible for `Cert_*` |
-| 8 | y≠z → x+y≠x+z (cancellation) | (a) new declaration, instantiating `LRA/Operation/Laws/Cancellation`'s generic predicate at `LandauAddition` | e.g. `LandauAdditionIsLeftCancellative` — **no `Cert_*` name** | **Flagged boundary case.** Cancellativity is `∀x,y,z (x*y=x*z → y=z)` — the `→` disqualifies it from the equational template in `06b-model-theory-boundary.md` §1 even though every symbol involved is an operation symbol. This is a real, previously-unstated corollary of the boundary rule worth recording explicitly: **not every property built purely from operation symbols is equational** — implication-shaped operation properties (cancellation, and by the same argument left/right-inverse-existence-without-a-chosen-witness) also route outside `SatisfiesEquation`, alongside the relation-involving properties `06b` already lists |
-| 9 | exactly one of x=y, x=y+u, y=x+v | (c) | none needed | Underlies the definition of `LandauLessThan` itself; stating it separately would restate the definition, which the `StructCert_*` binding rule already forbids for structure certs and which is equally poor practice for a definitional lemma |
-| 10 | trichotomy of <,=,> | (a), discharge `sorry` | `LandauLessThanTrichotomous` — **no `Cert_*` name** | Textbook `06b` example of a relational property (needs `∨`,`¬`); explicitly not preserved under products even in the abstract (the `(ℤ,<)×(ℤ,<)` counterexample in `06b` §2), so it could never have been a transport target regardless of ℕ being the base case |
-| 11–14 | order-relation conversions (x>y↔y<x, etc.) | (c) | none needed — `Iff.symm`/`unfold` one-liners once `LandauLessThan`/`LandauGreaterThan` defs are in scope | Definitional unfolding, not independent theorems |
-| 15 | < transitive | (a), discharge `sorry` | `LandauLessThanTransitive` | Relational (`Relations`/`Order` territory per `06b` §3 item 1) |
-| 16 | mixed strict/non-strict transitivity | (c) | corollary of 15 + 13/14 | — |
-| 17 | ≤ transitive | (c) | corollary of 15 + strict/non-strict conversion | — |
-| 18 | x+y>x | (a) new declaration | e.g. `LandauAdditionStrictlyIncreasesArgument` | This is `RespectsRelation`/order-compatibility shaped (`Operations` §6.7.1), explicitly the kind of fact `06b` routes to `Operations`'s relation-vs-operation machinery rather than the equational fragment |
-| 19–20 | + preserves & reflects < (iff) | (a), discharge `sorry` | `LandauAdditionPreservesAndReflectsLandauLessThan` (one `Iff` covers both) | Same as 18 — `RespectsRelation` instance |
-| 21 | x>y ∧ z>u → x+z>y+u | (c) | corollary chaining 19/20 with itself | — |
-| 22–23 | mixed/non-strict variants of 21 | (c) | corollaries | — |
-| 24 | x≥1 | (c) or (a) short direct | corollary of Peano base case + order def | — |
-| 25–26 | y>x → y≥x+1; y<x+1 → y≤x | (c) | corollaries of 19/20 + successor behavior | — |
-| 27 | well-ordering | (a), discharge `sorry`, **plus the misfiling fix below** | `well_ordering` | Genuinely second-order (quantifies over arbitrary nonempty subsets) — correctly never treated as equational anywhere in the docs; stays a direct `Relations`/`Order`-style proof |
-| 28 | · exists, uniquely defined by recursion clauses | (a), discharge 4 existing `sorry`s | `LandauMultiplicationClauses`, `...WellDefined`, `...WithOne`, `...SuccessorOnRight` | Same shape as Theorem 4 |
-| 29 | xy=yx | (a), discharge `sorry` | **`Cert_N0_Mul_Commutative`** | Base case, direct |
-| 30 | x(y+z)=xy+xz | (a), discharge `sorry`(s) — 3 declarations currently share this theorem | **`Cert_N0_MulAdd_Distributive`** | Binary-law cert (two operators) per the naming table |
-| 31 | (xy)z=x(yz) | (a), discharge `sorry` | **`Cert_N0_Mul_Associative`** | Base case, direct |
-| 32–33 | · preserves & reflects < (iff) | (a), discharge `sorry` | `LandauMultiplicationPreservesAndReflectsLandauLessThan` | `RespectsRelation` instance, same reasoning as 19–20 |
-| 34 | x>y ∧ z>u → xz>yu | (c) | corollary chaining 32/33 | — |
-| 35–36 | mixed/non-strict variants of 34 | (c) | corollaries | — |
-
-**Resulting structure cert**, once 5/6/29/30/31 are proved (and only then —
-per the binding rule, this must be a bare conjunction):
-
-```
-StructCert_N0_CommutativeSemiring :=
-  [ Cert_N0_Add_Commutative, Cert_N0_Add_Associative,
-    Cert_N0_Mul_Commutative, Cert_N0_Mul_Associative,
-    Cert_N0_MulAdd_Distributive ]
-```
-
-named `CommutativeSemiring` rather than `CommutativeMonoid` (06a's name)
-because `AlgebraicStructures/CommutativeSemiringWithoutZero` is the
-structure `NaturalNumbers/Interface/Signature`'s own `NaturalNumbersFunctionSymbol`
-already points at (§1.1 finding 2) — prefer matching what the repo's
-existing signature wiring calls it over introducing a second name for the
-same target structure.
-
-**Blocking dependency, restated.** Theorems 16–17, 21–26, 34–36 (11
-consequence-only theorems) cannot be added until their prerequisites
-(15/19-20 and 32-33 respectively) are discharged — this is the concrete
-sense in which "the transport theorems and Peano-generic successor/predecessor
-theorems are currently blocking dependencies for most of Chapter I," except
-substitute "transport theorems" with §1.1 finding 1's `NaturalNumberModel`
-bridge for the handful of theorems (5/6/29/30/31) that need a `Cert_*` name
-to mean something citable rather than just a locally-scoped `Landau*` lemma.
-
-### 3.3 The Theorem 27 misfiling fix
-
-`well_ordering` currently lives at
-`LRA/NumberSystems/WholeNumbers/Constructions/Landau/Laws.lean:570` (with a
-duplicate-looking second declaration at line 597 — same pattern as the
-docstring/declaration pairing seen throughout this codebase's generated
-files, not a real duplicate). Landau's book states well-ordering as a
-Chapter I (natural-number) theorem. Fix: add a genuine
-`NaturalNumbers/Constructions/Landau/Laws.lean` (or a new file in that
-directory) declaration of `well_ordering` stated directly against the
-Landau ℕ carrier, proved independently (not by re-exporting the
-`WholeNumbers` one, since — per §1.1 finding 3 — `WholeNumbers`'s
-carrier is a different, more axiomatically-abstracted structure than plain
-Landau ℕ, so an import/re-export would be importing the wrong direction of
-generality). Leave the existing `WholeNumbers` declaration in place (it may
-still be independently useful there, restated for ℤ's ordering) rather than
-deleting it — this fix adds the correctly-placed ℕ declaration, it does not
-relocate the ℤ one. **Do not fold this into the Chapter I proof-discharge
-pass** — it's an independent structural fix the task explicitly asked to
-keep visible rather than silently bundled.
-
-### 3.4 Deviations from `docs/foundations/*` this plan requires, flagged
-
-1. **§1.1 finding 1** (no `NaturalNumberModel` bridge for Landau ℕ) means
-   `06a-satisfaction-certificates.md` §1's claim that ℕ's certs are simply
-   "proved directly by induction" understates the work: proving the
-   induction is necessary but not sufficient for the cert to be a citable
-   `SatisfiesEquation` fact — the bridge itself (a `CommutativeSemiringLaws`
-   instance + `NaturalNumberModel.ofCarrier` + a new
-   `Satisfy_Generic.lean`/`Instances.lean` pair for `NaturalNumbers/Constructions/Landau/`,
-   mirroring every sibling construction) is new work `06a` doesn't mention.
-2. **§1.1 finding 3** means this plan does **not** assume
-   `WholeNumbers/Constructions/Landau` is the transport-theorem worked
-   example from `06a` §2 — it isn't. Chapter II (and any future
-   "Chapter I but for ℤ") crosswalk work should target
-   `Integers/Constructions/QuotientOrderedPairs` for the literal quotient
-   construction the transport theorems apply to, and treat
-   `WholeNumbers/Constructions/Landau`'s relationship to that as an open
-   question (§4) rather than assumed identity.
-3. This plan does **not** attempt to resolve the `Interface/UniversalAlgebra/Signature`
-   vs. `Interface/Signature` naming ambiguity (§1.1 finding 2) — that is
-   squarely `docs/interface-model-standardization-inventory.md`'s track, a
-   different, already-scoped refactor effort, and mixing the two would
-   violate this task's own scope boundary.
+Proof sketch, sequencing, and the `quotientProjectionIsHomomorphism`
+dependency note are unchanged from the first draft — see git history of
+this file for the full writeup if mechanism 1 is picked up as real work.
+**Given §0's finding, these three theorems are useful independent of which
+mechanism wins the §7.1 decision** — they're the right shape regardless,
+and mechanism 2's mostly-hand-proved certs could in principle be
+*re-derived* via these once a bridge from typeclass-style laws to
+`Equation` values exists (itself a real, currently-unscoped piece of work,
+not assumed done by anything above).
 
 ---
 
-## 4. Open questions requiring a human call before implementation starts
+## 6. Landau's theorem numbers — a footnote layer, not the spine
 
-1. **Which ℤ construction does "Chapter I but for integers" actually
-   target?** `WholeNumbers/Constructions/Landau` (axiomatic, closer to what
-   the task prompt named) vs. `Integers/Constructions/QuotientOrderedPairs`
-   (literal quotient, matches `06a`'s worked transport example) vs.
-   `Integers/Constructions/{Tao,Mendelson}` (two more ℤ constructions found
-   during the survey, not evaluated here at all). This determines which
-   file the Chapter II crosswalk extension and the first real use of the
-   quotient-transport theorem should target, and it's a genuine design
-   choice, not a naming call — the four constructions are not proved
-   equivalent to each other in this repo (that itself would be a natural,
-   currently-absent theorem: "these four ℤ constructions are isomorphic
-   models of the same `IntegerStructure` interface").
-2. **Naming: `StructCert_N0_CommutativeSemiring` vs. `06a`'s
-   `StructCert_N0_CommutativeMonoid`.** §3.2 picked the former to match the
-   existing `NaturalNumbers/Interface/Signature` wiring; confirm this is
-   the intended resolution rather than updating `06a` instead, since `06a`
-   currently only bundles the additive monoid, not the full semiring.
-3. **Should cancellation (Theorem 8) and similar implication-shaped
-   operation properties get their own cert-naming sub-convention** (e.g.
-   `RelCert_*` for "relational-but-purely-operation-symbol" facts), or stay
-   uncertified proper nouns as this plan assumes? This is a real
-   documentation-convention gap `16-landau-cert-naming-history.md` doesn't
-   currently address — the existing four cert kinds (atomic/binary-law/
-   structure/transport) all presuppose the equational template.
-4. **Scope call: does this plan's Chapter II–V table (§2) need to become
-   theorem-by-theorem precision like Chapter I's**, extending
-   `LANDAU-CROSSWALK.md` fully, before implementation on those chapters
-   starts, or is chapter-level sizing (as delivered here) sufficient to
-   greenlight Chapter I implementation now and defer the fine-grained
-   Chapters II–V crosswalk to a follow-up planning pass once Chapter I is
-   actually closed out? This plan assumes the latter (Chapter I first,
-   fully) but that sequencing choice belongs to a human, not this survey.
-5. **Priority ordering between finishing `modelsOfEquationalTheoryIsVariety`'s
-   sorry, the `Operation/Laws/*` sorry burndown (112 sorries), and the
-   Chapter I discharge work in §3.2** — none of these strictly block each
-   other, so which gets a session's attention first is a scheduling call,
-   not a dependency-graph one. This plan recommends Chapter I first (it's
-   the smallest, most self-contained, and has the clearest existing
-   checklist), but does not assume that priority is obviously correct for
-   every future session's goals.
-6. **The `Operations/Iteration` / indexed-sum-product re-homing
-   `landaureview.md` §29 already recommended**, and this plan's §2 Chapter
-   V note that Theorems 274–289 are their own sub-topic, point at the same
-   underlying gap from two directions (algebraic-structures review and
-   Landau-crosswalk survey). Worth deciding whether that re-homing happens
-   as prerequisite infrastructure before Chapter V crosswalk work, or
-   whether Chapter V's iteration theorems get a bespoke treatment instead
-   of waiting on it.
+Landau's `LANDAU-THEOREMS.md`/`LANDAU-CROSSWALK.md` numbering still needs
+tracking, because it's the actual source-fidelity check against the book —
+but it should attach to Matrix&nbsp;2/3/4 cells as citations, not organize its
+own document section. Concretely: `LANDAU-CROSSWALK.md`'s existing
+Chapter&nbsp;I table should grow a **Cert** column pointing at Matrix&nbsp;2's
+vocabulary (e.g. Theorem&nbsp;6 → `Add_Commutative`, checked in the
+`NaturalNumbers/Landau` row of Matrix&nbsp;4 once that row is wired per §0),
+and theorems that don't correspond to any cert column (trichotomy,
+well-ordering, cancellation — see the first draft's full 36-row
+disposition, preserved below in the interest of not deleting real analysis
+work) get a plain descriptive Lean declaration name with no `Cert_*` at
+all, exactly as before. **The Chapter&nbsp;II–V coarse crosswalk (equational
+vs. relational fraction per chapter) from the first draft is unaffected by
+this restructuring and still stands as written** — it was already
+carrier/mechanism-agnostic sizing, not theorem-number bookkeeping.
+
+*(The full 36-theorem Chapter&nbsp;I disposition table and the Chapter&nbsp;II–V
+sizing table from the first draft are preserved in this repo's git history
+on this file, and should be re-attached here as Matrix&nbsp;2/3/4 citations
+once the mechanism-2-vs-1 decision in §7.1 is made — re-deriving them from
+scratch would be wasted work, they don't need to change, only their
+framing does.)*
+
+---
+
+## 7. Open questions
+
+### 7.1 The mechanism decision (new, and the most consequential one)
+
+**Does `Cert_*`/`StructCert_*` point at mechanism 2 (`AlgebraicStructures`
+typeclasses, what's actually used today) or mechanism 1
+(`SatisfiesEquation`, what the design docs assumed)?** This plan
+recommends mechanism 2 as primary (§0), but that's a real architectural
+call, not a survey finding — it means `docs/foundations/06a-satisfaction-certificates.md`'s
+entire worked cert tree (§0 there, `Cert_N0_Add_Commutative` framed as a
+`SatisfiesEquation` fact) would need updating to point at
+`CommutativeSemiringLaws`-shaped citations instead. Confirm before either
+this plan or `06a` gets treated as current.
+
+### 7.2 `PeanoModel`/`IntegerStructureModel` vs. mechanism 2's interfaces
+
+Two genuinely different formalizations of "what is ℤ" exist side by side
+(`Integers.Interface.ModelTheory.IntegerModel`, mechanism 2, vs.
+`IntegerStructure.Interface.ModelTheory.IntegerStructureModel`, mechanism 3)
+— and similarly `PeanoModel` (mechanism 3) has no mechanism-2 counterpart
+interface for ℕ at all; `NaturalNumberModel` is the only ℕ interface, and
+it's mechanism 2. Are these two subjects (`Integers` vs. `IntegerStructure`)
+meant to converge, stay permanently separate (one for equational
+reasoning, one for full first-order axiom statements like Peano's own),
+or is one simply stale? Not resolved by this survey.
+
+### 7.3 Which ℤ construction is "the" one (carried over from the first draft)
+
+`WholeNumbers/Constructions/Landau` (axiomatic) vs.
+`Integers/Constructions/QuotientOrderedPairs` (literal quotient) vs.
+`Tao`/`Mendelson` — four constructions, not proved equivalent to each
+other anywhere in the repo.
+
+### 7.4 Finer-grained Matrix 4
+
+Should the per-construction sorry-count view in Matrix&nbsp;4 be broken down
+per cert column (§4's "what this matrix does not yet do") before any
+implementation session starts, or is the coarse view enough to sequence
+work?
+
+### 7.5 Naming: `StructCert_N0_CommutativeSemiring` vs. `06a`'s `CommutativeMonoid`
+
+Carried over from the first draft, now sharpened: Matrix&nbsp;2 confirms
+`CommutativeSemiring` (not `CommutativeMonoid`) is the structure
+`NaturalNumberModel` actually requires — `06a` should be corrected to match,
+once §7.1 is settled.
+
+### 7.6 Cancellation and other implication-shaped operation properties
+
+Carried over unchanged: does `y≠z → x+y≠x+z` get its own cert
+sub-convention, or stay an uncertified proper noun? Neither mechanism 1
+nor mechanism 2's typeclass style naturally names these — worth deciding
+once, since it recurs across every number system's order-arithmetic
+theorems.
+
+### 7.7 The 12-subject scope
+
+This plan's matrices cover all 12 `NumberSystems/*` subjects found, wider
+than the first draft's ℕ/ℤ/ℚ/ℝ/ℂ scope. `GaussianIntegers` (no
+`ModelTheory/Model.lean`), `PresburgerArithmetic`/`FirstOrderArithmetic`/
+`SuccessorArithmetic` (restricted-signature, mechanism-3-style, correctly
+out of Matrix&nbsp;2's scope) and `IntegerStructure` (mechanism 3) were
+surveyed only enough to place them in Matrix&nbsp;3/4, not evaluated for
+whether they need cert coverage at all. Confirm scope before committing
+implementation effort to any of them.
