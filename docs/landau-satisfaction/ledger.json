@@ -1,0 +1,42 @@
+{
+  "updated": "2026-08-30",
+  "workstream": "landau-satisfaction",
+  "active_phase": "phase-02-generic-operations",
+  "items": [
+    {
+      "id": "step-0-decisions",
+      "title": "Resolve naming, placement, and ownership decisions",
+      "status": "done",
+      "owner_doc": "docs/landau-satisfaction/DECISIONS.md",
+      "notes": "Primary cert meaning, ownership split, generic operator placement, and placeholder policy are recorded."
+    },
+    {
+      "id": "phase-01-generic-operation-laws",
+      "title": "Define generic operation law predicates and bridge rules",
+      "status": "done",
+      "owner_doc": "docs/landau-satisfaction/phases/phase-01-generic-operation-laws.md",
+      "notes": "Accepted baseline recorded: unary law inventory, classifications, involution as derived theorem, and mixed-law deferral."
+    },
+    {
+      "id": "phase-02-generic-operations",
+      "title": "Define generic addition and multiplication artifacts",
+      "status": "in_progress",
+      "owner_doc": "docs/landau-satisfaction/phases/phase-02-generic-operations.md",
+      "notes": "Router and file scaffolding are complete. Unary law export bundles are explicit by witness family. Landau naturals now realize baseline generic addition and multiplication packages; mixed arithmetic bridges remain next."
+    },
+    {
+      "id": "phase-03-subject-interface-adoption",
+      "title": "Adopt generic operators from subject interfaces",
+      "status": "todo",
+      "owner_doc": "docs/landau-satisfaction/status.md",
+      "notes": ""
+    },
+    {
+      "id": "phase-05-arithmetic-bridges",
+      "title": "Add mixed-operator arithmetic bridge artifacts",
+      "status": "todo",
+      "owner_doc": "docs/landau-satisfaction/status.md",
+      "notes": "Distributivity and similar mixed laws are intentionally deferred until unary operator realizations exist."
+    }
+  ]
+}

@@ -1,5 +1,7 @@
 import LRA.Operation.Definition
 import LRA.Operation.Arity
+import LRA.Operation.Addition
+import LRA.Operation.Multiplication
 import LRA.Operation.Laws
 import LRA.Operation.Theorems
 import LRA.Operation.Relationships
