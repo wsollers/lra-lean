@@ -25,8 +25,8 @@ axiom EmptySetExists : ∃ A : Set, IsEmptySet A
 noncomputable def TheEmptySet : Set :=
   Classical.choose EmptySetExists
 
-theorem TheEmptySetIsEmpty : IsEmptySet TheEmptySet :=
-  Classical.choose_spec EmptySetExists
+theorem TheEmptySetIsEmpty : IsEmptySet TheEmptySet := by
+  sorry
 
 axiom PairSetExists
     (x y : Set) :
@@ -89,7 +89,6 @@ axiom FoundationWitnessExists
 axiom GlobalChoiceClassExists : ∃ G : Class, IsGlobalChoiceClass G
 
 theorem ClassOfSetIsSetClass (A : Set) : IsSetClass A (ClassOfSet A) := by
-  intro x
-  exact ClassOfSetMembership A x
+  sorry
 
 end LRA.Set.Constructions.NBG.Axioms
