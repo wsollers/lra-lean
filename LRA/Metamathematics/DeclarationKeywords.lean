@@ -117,7 +117,7 @@ Related proof moves: unfold
     stx.setKind ``Parser.Command.theorem
   pure <| stx.setKind ``Parser.Command.declaration
 
-namespace LRA.Meta.DeclarationKeywords.SmokeTest
+namespace LRA.Metamathematics.DeclarationKeywords.SmokeTest
 
 /--
 `corollary_smoke_test` TODO

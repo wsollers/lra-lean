@@ -44,6 +44,7 @@ The durable top-level subjects under `LRA/` are:
 
 | Subject | Purpose |
 |---|---|
+| `Metamathematics` | Syntactic/metatheoretic infrastructure prior to `Logic`'s own syntax and semantics: bare symbol-notation types (`Notation`) and declaration-command macros (`DeclarationKeywords`). Describes the language and its presentation, not facts proved within an object language. |
 | `Identity` | Equality and identity vocabulary. |
 | `Logic` | Propositional, first-order, second-order, model, satisfaction, syntax, semantics, and proof-system material. |
 | `Set` | Backend-agnostic set interface, set laws, set backends, set models, and set interop. `LRA.Set` itself selects no concrete set ontology. |
@@ -63,9 +64,11 @@ The durable top-level subjects under `LRA/` are:
 | `LinearAlgebra` | Vector spaces, linear maps, and linear-algebra abstractions. |
 
 Current transitional or auxiliary folders such as `Algebra`, `Carrier`,
-`Interop`, `Meta`, `Pilot`, `Spaces`, and `Volume*` should not be treated as
+`Interop`, `Pilot`, `Spaces`, and `Volume*` should not be treated as
 new ownership models. New durable mathematics should be filed under the
 canonical subjects above unless governance explicitly says otherwise.
+(`Meta` has been retired: its sole file, `DeclarationKeywords.lean`, moved
+to the canonical `Metamathematics` subject above.)
 
 ## Subject Layout
 

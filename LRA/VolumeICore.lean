@@ -1,7 +1,7 @@
 import LRA.Logic
 import LRA.Identity
 import LRA.Identity.Interface.ModelTheory.Model
-import LRA.Meta.DeclarationKeywords
+import LRA.Metamathematics
 import LRA.Set
 import LRA.Relation
 import LRA.Function
