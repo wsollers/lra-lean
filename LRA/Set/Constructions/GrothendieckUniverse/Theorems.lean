@@ -9,8 +9,8 @@ variable {SetObject : Type u} [Membership SetObject SetObject]
 theorem GrothendieckUniverseExists
     [GrothendieckUniverseAxiom SetObject]
     (A : SetObject) :
-    ∃ U : SetObject, IsGrothendieckUniverseFor A U :=
-  GrothendieckUniverseAxiom.universeExists A
+    ∃ U : SetObject, IsGrothendieckUniverseFor A U := by
+  sorry
 
 noncomputable def TheGrothendieckUniverse
     [GrothendieckUniverseAxiom SetObject]
@@ -20,44 +20,44 @@ noncomputable def TheGrothendieckUniverse
 theorem TheGrothendieckUniverseIsGrothendieckUniverseFor
     [GrothendieckUniverseAxiom SetObject]
     (A : SetObject) :
-    IsGrothendieckUniverseFor A (TheGrothendieckUniverse A) :=
-  Classical.choose_spec (GrothendieckUniverseExists A)
+    IsGrothendieckUniverseFor A (TheGrothendieckUniverse A) := by
+  sorry
 
 theorem GrothendieckUniverseContainsBase
     {A U : SetObject}
     (universeHypothesis : IsGrothendieckUniverseFor A U) :
-    A ∈ U :=
-  universeHypothesis.1
+    A ∈ U := by
+  sorry
 
 theorem GrothendieckUniverseIsTransitive
     {U : SetObject}
     (universeHypothesis : IsGrothendieckUniverse U) :
-    IsTransitiveUniverse U :=
-  universeHypothesis.1
+    IsTransitiveUniverse U := by
+  sorry
 
 theorem GrothendieckUniverseClosedUnderPairing
     {U : SetObject}
     (universeHypothesis : IsGrothendieckUniverse U) :
-    IsClosedUnderPairing U :=
-  universeHypothesis.2.1
+    IsClosedUnderPairing U := by
+  sorry
 
 theorem GrothendieckUniverseClosedUnderPowerSet
     {U : SetObject}
     (universeHypothesis : IsGrothendieckUniverse U) :
-    IsClosedUnderPowerSet U :=
-  universeHypothesis.2.2.1
+    IsClosedUnderPowerSet U := by
+  sorry
 
 theorem GrothendieckUniverseClosedUnderIndexedUnion
     {U : SetObject}
     (universeHypothesis : IsGrothendieckUniverse U) :
-    IsClosedUnderIndexedUnion U :=
-  universeHypothesis.2.2.2.1
+    IsClosedUnderIndexedUnion U := by
+  sorry
 
 theorem GrothendieckUniverseContainsInductiveSet
     {U : SetObject}
     (universeHypothesis : IsGrothendieckUniverse U) :
-    ContainsInductiveSet U :=
-  universeHypothesis.2.2.2.2
+    ContainsInductiveSet U := by
+  sorry
 
 theorem GrothendieckUniverseContainsEmptySet
     {U : SetObject}
