@@ -53,7 +53,7 @@ inductive LogicalConnective where
 
 Predicate logic:
 
-  def LogicalConnectives : ArityIndexedSymbols where
+  def LogicalConnectives : LRA.Logic.ArityIndexedSymbols where
   Symbol := LogicalConnective
   arity
     | .neg => 1
@@ -61,7 +61,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  def LogicalConnectives : ArityIndexedSymbols where
+  def LogicalConnectives : LRA.Logic.ArityIndexedSymbols where
   Symbol := LogicalConnective
   arity
     | .neg => 1
@@ -70,7 +70,7 @@ Predicate logic (unfolded):
 Logical form (Lean):
 
 ```lean
-def LogicalConnectives : ArityIndexedSymbols where
+def LogicalConnectives : LRA.Logic.ArityIndexedSymbols where
   Symbol := LogicalConnective
   arity
     | .neg => 1
@@ -96,7 +96,7 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-def LogicalConnectives : ArityIndexedSymbols where
+def LogicalConnectives : LRA.Logic.ArityIndexedSymbols where
   Symbol := LogicalConnective
   arity
     | .neg => 1
@@ -229,14 +229,14 @@ inductive LogicalEquality where
 
 Predicate logic:
 
-  def LogicalEqualitySymbols : ArityIndexedSymbols where
+  def LogicalEqualitySymbols : LRA.Logic.ArityIndexedSymbols where
   Symbol := LogicalEquality
   arity
     | .eq => 2
 
 Predicate logic (unfolded):
 
-  def LogicalEqualitySymbols : ArityIndexedSymbols where
+  def LogicalEqualitySymbols : LRA.Logic.ArityIndexedSymbols where
   Symbol := LogicalEquality
   arity
     | .eq => 2 (source fallback; no compiled unfold data available)
@@ -244,7 +244,7 @@ Predicate logic (unfolded):
 Logical form (Lean):
 
 ```lean
-def LogicalEqualitySymbols : ArityIndexedSymbols where
+def LogicalEqualitySymbols : LRA.Logic.ArityIndexedSymbols where
   Symbol := LogicalEquality
   arity
     | .eq => 2
@@ -269,7 +269,7 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-def LogicalEqualitySymbols : ArityIndexedSymbols where
+def LogicalEqualitySymbols : LRA.Logic.ArityIndexedSymbols where
   Symbol := LogicalEquality
   arity
     | .eq => 2
