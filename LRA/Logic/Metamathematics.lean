@@ -9,6 +9,19 @@ import LRA.Logic.Proof.System.Takeuti
 This file is the dependency boundary where concrete `LRA.Logic` syntax is
 checked against the repository-level metamathematical schemas. The schemas
 remain independent of Logic; Logic imports and satisfies them here.
+
+## Structural identity status
+
+A declaration-level `deriving DecidableEq` attempt was made for
+`FirstOrder.Term`. Lean 4.32.1 rejects the derivation because the `apply`
+constructor stores its arguments as a dependent function
+`Fin (S.functionArity f) → Term S Variable`; the generated equality procedure
+cannot synthesize the required decidable equalities. Consequently no
+`StructuralIdentity` instance is asserted here for first-order `Term` or
+`Formula`, and no classical fallback is used merely to make the schema appear
+satisfied. Takeuti has the same function-valued constructor shape and remains
+blocked for the same audit reason until a constructive equality implementation
+or a syntax representation better suited to structural comparison is supplied.
 -/
 
 namespace LRA.Logic
@@ -16,27 +29,6 @@ namespace LRA.Logic
 open LRA.Metamathematics
 
 namespace FirstOrder
-
-/-- First-order terms satisfy structural identity via the `DecidableEq`
-instance derived at the `Term` declaration itself. -/
-instance firstOrderTermStructuralIdentity
-    {S : Signature} {Variable : Type}
-    [DecidableEq Variable]
-    [DecidableEq S.FunctionSymbol]
-    [DecidableEq S.ConstantSymbol] :
-    StructuralIdentity (Term S Variable) where
-  decidableStructuralEquality := inferInstance
-
-/-- First-order formulas satisfy structural identity via the `DecidableEq`
-instance derived at the `Formula` declaration itself. -/
-instance firstOrderFormulaStructuralIdentity
-    {S : Signature} {Variable : Type}
-    [DecidableEq Variable]
-    [DecidableEq S.FunctionSymbol]
-    [DecidableEq S.ConstantSymbol]
-    [DecidableEq S.RelationSymbol] :
-    StructuralIdentity (Formula S Variable) where
-  decidableStructuralEquality := inferInstance
 
 /-- The first-order substitution operation is explicitly paired with the
 `SubstitutionSafety` schema. The remaining field is deliberately a visible
@@ -59,13 +51,5 @@ instance firstOrderSubstitutionSafety
     sorry
 
 end FirstOrder
-
-/-!
-Takeuti's structural-identity instances remain deliberately unwired here until
-its own `Term`, `FormulaArg`, and `Formula` declarations can derive decidable
-equality without importing a classical fallback. The declaration-level deriving
-attempt is handled separately so any genuine dependent-function obstruction is
-reported rather than hidden behind `sorry`.
--/
 
 end LRA.Logic
