@@ -1,0 +1,115 @@
+name: Volume I Build
+
+on:
+  push:
+    branches: [main, develop, standardization]
+    paths:
+      - 'LRA/VolumeI.lean'
+      - 'LRA/VolumeI/**'
+      - 'lakefile.lean'
+      - 'lean-toolchain'
+      - 'lake-manifest.json'
+      - 'Dockerfile'
+      - 'docker/lakefile.env.lean'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'LRA/VolumeI.lean'
+      - 'LRA/VolumeI/**'
+      - 'lakefile.lean'
+      - 'lean-toolchain'
+      - 'lake-manifest.json'
+      - 'Dockerfile'
+      - 'docker/lakefile.env.lean'
+  workflow_dispatch:
+
+concurrency:
+  group: volume-i-build-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  build:
+    name: Build LRAVolumeI
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Compute immutable Lean environment image
+        run: |
+          env_hash="${{ hashFiles('Dockerfile', 'lean-toolchain', 'lake-manifest.json', 'docker/lakefile.env.lean') }}"
+          image="ghcr.io/${GITHUB_REPOSITORY,,}-lean-build:${env_hash}"
+          echo "LEAN_ENV_HASH=$env_hash" >> "$GITHUB_ENV"
+          echo "LEAN_IMAGE=$image" >> "$GITHUB_ENV"
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Pull prebuilt Lean environment
+        run: |
+          docker pull "$LEAN_IMAGE" || {
+            echo "::error::Prebuilt Lean environment $LEAN_IMAGE is missing. Publish it with the Publish Lean Environment Image workflow."
+            exit 1
+          }
+
+      - name: Restore Volume I build cache
+        uses: actions/cache@v4
+        with:
+          path: .ci-lake-build
+          key: lra-volume-i-${{ runner.os }}-${{ env.LEAN_ENV_HASH }}-${{ github.ref_name }}-${{ github.sha }}
+          restore-keys: |
+            lra-volume-i-${{ runner.os }}-${{ env.LEAN_ENV_HASH }}-${{ github.ref_name }}-
+            lra-volume-i-${{ runner.os }}-${{ env.LEAN_ENV_HASH }}-
+            lra-project-${{ runner.os }}-${{ env.LEAN_ENV_HASH }}-${{ github.ref_name }}-
+            lra-project-${{ runner.os }}-${{ env.LEAN_ENV_HASH }}-
+
+      - name: Build Volume I
+        run: |
+          mkdir -p .ci-lake-build .ci-logs
+          rm -f .ci-logs/volume-i-build.log
+
+          docker run --rm \
+            -v "${{ github.workspace }}/LRA:/workspace/LRA:ro" \
+            -v "${{ github.workspace }}/lakefile.lean:/workspace/lakefile.lean:ro" \
+            -v "${{ github.workspace }}/lake-manifest.json:/workspace/lake-manifest.json:ro" \
+            -v "${{ github.workspace }}/.ci-lake-build:/workspace/.lake/build" \
+            -v "${{ github.workspace }}/.ci-logs:/logs" \
+            -w /workspace \
+            "$LEAN_IMAGE" \
+            bash -lc 'rm -f .lake/lakefile.olean .lake/lakefile.olean.trace
+              lake build LRAVolumeI > /logs/volume-i-build.log 2>&1 || {
+                status=$?
+                echo "Volume I build failed. Final diagnostics:"
+                tail -n 300 /logs/volume-i-build.log
+                exit $status
+              }
+              tail -n 120 /logs/volume-i-build.log'
+
+      - name: Report Volume I proof placeholders
+        continue-on-error: true
+        run: |
+          if grep -rn "\bsorry\b" \
+            LRA/VolumeI.lean \
+            LRA/VolumeI/ \
+            --include="*.lean"; then
+            echo "::warning::sorry found in Volume I."
+          else
+            echo "No sorry in Volume I"
+          fi
+
+      - name: Upload Volume I build diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: volume-i-build-diagnostics
+          path: .ci-logs/volume-i-build.log
+          if-no-files-found: warn
