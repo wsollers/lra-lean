@@ -30,17 +30,15 @@ abbrev ExpandedMembershipSignature := LRA.Set.ModelTheory.MembershipSignature
 
 theorem pureMembershipLanguageHasNoFunctionSymbols :
     IsEmpty PureMembershipFunctions.Symbol := by
-  change IsEmpty Empty
-  infer_instance
+  sorry
 
 theorem pureMembershipLanguageHasNoConstantSymbols :
     IsEmpty PureMembershipSignature.Constants := by
-  change IsEmpty Empty
-  infer_instance
+  sorry
 
 theorem pureMembershipRelationSymbolIsBinary :
     PureMembershipSignature.IsBinaryRelationSymbol .mem := by
-  rfl
+  sorry
 
 structure UniverseLStructure (SetObject : Type u) [Membership SetObject SetObject] where
   base : SetObject
@@ -62,8 +60,8 @@ theorem universeDomainNonempty
     {SetObject : Type u}
     [Membership SetObject SetObject]
     (structureData : UniverseLStructure SetObject) :
-    Nonempty (UniverseDomain structureData) :=
-  ⟨⟨structureData.base, structureData.carrierHypothesis.1⟩⟩
+    Nonempty (UniverseDomain structureData) := by
+  sorry
 
 def IsNormalMembershipStructure
     {SetObject : Type u}
@@ -84,16 +82,13 @@ theorem universeStructureIsNormal
     [Membership SetObject SetObject]
     (structureData : UniverseLStructure SetObject) :
     IsNormalMembershipStructure structureData := by
-  intro left right
-  rfl
+  sorry
 
 theorem universeStructureIsStandardTransitive
     {SetObject : Type u}
     [Membership SetObject SetObject]
     (structureData : UniverseLStructure SetObject) :
     IsStandardTransitiveMembershipStructure structureData := by
-  constructor
-  exact universeStructureIsNormal structureData
-  exact structureData.carrierHypothesis.2.1
+  sorry
 
 end LRA.Set.Constructions.GrothendieckUniverse.Interface.ModelTheory
