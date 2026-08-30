@@ -42,6 +42,7 @@ inductive Formula (S : Signature) (Variable : Type) where
   | neg : Formula S Variable -> Formula S Variable
   | impl : Formula S Variable -> Formula S Variable -> Formula S Variable
   | forallQ : Variable -> Formula S Variable -> Formula S Variable
+  deriving DecidableEq
 ```
 
 Type-theoretic form:
@@ -72,6 +73,7 @@ inductive Formula (S : Signature) (Variable : Type) where
   | neg : Formula S Variable -> Formula S Variable
   | impl : Formula S Variable -> Formula S Variable -> Formula S Variable
   | forallQ : Variable -> Formula S Variable -> Formula S Variable
+  deriving DecidableEq
 
 /--
 `Formula.and` TODO
