@@ -19,11 +19,7 @@ namespace FirstOrder
 
 /-- Structural equality for first-order terms, conditional only on decidable
 identity of the syntactic categories from which terms are built. -/
-deriving instance
-    [DecidableEq Variable]
-    [DecidableEq S.FunctionSymbol]
-    [DecidableEq S.ConstantSymbol] :
-    DecidableEq (Term S Variable)
+deriving instance DecidableEq for Term S Variable
 
 instance firstOrderTermStructuralIdentity
     {S : Signature} {Variable : Type}
@@ -35,12 +31,7 @@ instance firstOrderTermStructuralIdentity
 
 /-- Structural equality for first-order formulas, conditional only on
 structural equality of their variable and signature symbol categories. -/
-deriving instance
-    [DecidableEq Variable]
-    [DecidableEq S.FunctionSymbol]
-    [DecidableEq S.ConstantSymbol]
-    [DecidableEq S.RelationSymbol] :
-    DecidableEq (Formula S Variable)
+deriving instance DecidableEq for Formula S Variable
 
 instance firstOrderFormulaStructuralIdentity
     {S : Signature} {Variable : Type}
@@ -63,7 +54,7 @@ instance firstOrderSubstitutionSafety
       (Term S Variable)
       IsSubstitutable
       substitute
-      (fun variable term => variable ∈ freeVariablesInTerm term)
+      (fun candidateVariable term => candidateVariable ∈ freeVariablesInTerm term)
       (fun formula => (freeVariables formula).toList) where
   noCaptureUnderSafety := by
     -- TODO: prove the capture-avoidance theorem from `IsSubstitutable`.
@@ -77,10 +68,7 @@ namespace Proof.System.Takeuti
 
 /-- Takeuti terms also have structural equality once the alphabet categories
 used by the term grammar have decidable identity. -/
-deriving instance
-    [DecidableEq L.FreeVar]
-    [(n : Nat) → DecidableEq (L.FunctionSymbol n)] :
-    DecidableEq (Term L)
+deriving instance DecidableEq for Term L
 
 instance takeutiTermStructuralIdentity
     {L : Alphabet}
@@ -91,11 +79,7 @@ instance takeutiTermStructuralIdentity
 
 /-- `FormulaArg` is itself an inductive syntax type used inside Takeuti
 formulas, so it is audited alongside `Term` and `Formula`. -/
-deriving instance
-    [DecidableEq L.FreeVar]
-    [DecidableEq L.BoundVar]
-    [(n : Nat) → DecidableEq (L.FunctionSymbol n)] :
-    DecidableEq (FormulaArg L)
+deriving instance DecidableEq for FormulaArg L
 
 instance takeutiFormulaArgStructuralIdentity
     {L : Alphabet}
@@ -106,12 +90,7 @@ instance takeutiFormulaArgStructuralIdentity
   decidableStructuralEquality := inferInstance
 
 /-- Structural equality for Takeuti formulas. -/
-deriving instance
-    [DecidableEq L.FreeVar]
-    [DecidableEq L.BoundVar]
-    [(n : Nat) → DecidableEq (L.FunctionSymbol n)]
-    [(n : Nat) → DecidableEq (L.PredicateSymbol n)] :
-    DecidableEq (Formula L)
+deriving instance DecidableEq for Formula L
 
 instance takeutiFormulaStructuralIdentity
     {L : Alphabet}
