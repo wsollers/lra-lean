@@ -1,4 +1,4 @@
-import LRA.Set.Constructions.ZFCSet.Axioms.Axioms.EmptySet
+import LRA.Set.Constructions.ZFCSet.Axioms.EmptySet.Axiom
 import LRA.Set.Constructions.ZFCSet.Axioms.Definitions
 import LRA.Set.Constructions.ZFCSet.Axioms.Extensionality.Theorems
 
@@ -6,7 +6,7 @@ namespace LRA.Set.Constructions.ZFCSet.Axioms
 
 theorem EmptySetExists :
     ∃ A : Set, IsEmptySet A := by
-  sorry
+  exact  EmptySet
 
 theorem EmptySetIsUnique
     {A B : Set}

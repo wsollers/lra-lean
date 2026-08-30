@@ -5,6 +5,6 @@ namespace LRA.Set.Constructions.ZFCSet.Axioms
 
 theorem EmptySetExists :
     ∃ A : Set, IsEmptySet A := by
-  sorry
+  exact  EmptySet
 
 end LRA.Set.Constructions.ZFCSet.Axioms

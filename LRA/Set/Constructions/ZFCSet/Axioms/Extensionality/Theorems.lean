@@ -1,4 +1,4 @@
-import LRA.Set.Constructions.ZFCSet.Axioms.Axioms.Extensionality
+import LRA.Set.Constructions.ZFCSet.Axioms.Extensionality.Axiom
 
 namespace LRA.Set.Constructions.ZFCSet.Axioms
 

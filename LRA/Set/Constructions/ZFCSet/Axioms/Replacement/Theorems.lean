@@ -1,4 +1,4 @@
-import LRA.Set.Constructions.ZFCSet.Axioms.Axioms.Replacement
+import LRA.Set.Constructions.ZFCSet.Axioms.Replacement.Axiom
 import LRA.Set.Constructions.ZFCSet.Axioms.Definitions
 import LRA.Set.Constructions.ZFCSet.Axioms.Extensionality.Theorems
 

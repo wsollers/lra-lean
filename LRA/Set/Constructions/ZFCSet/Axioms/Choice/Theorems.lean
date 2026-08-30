@@ -1,4 +1,4 @@
-import LRA.Set.Constructions.ZFCSet.Axioms.Axioms.Choice
+import LRA.Set.Constructions.ZFCSet.Axioms.Choice.Axiom
 import LRA.Set.Constructions.ZFCSet.Axioms.Definitions
 
 namespace LRA.Set.Constructions.ZFCSet.Axioms

@@ -1,4 +1,4 @@
-import LRA.Set.Constructions.ZFCSet.Axioms.Axioms.Infinity
+import LRA.Set.Constructions.ZFCSet.Axioms.Infinity.Axiom
 import LRA.Set.Constructions.ZFCSet.Axioms.Definitions
 
 namespace LRA.Set.Constructions.ZFCSet.Axioms

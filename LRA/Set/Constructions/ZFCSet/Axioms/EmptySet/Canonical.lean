@@ -6,7 +6,7 @@ noncomputable def TheEmptySet : Set :=
   Classical.choose EmptySetExists
 
 theorem TheEmptySetIsEmpty :
-    IsEmptySet TheEmptySet := by
-  sorry
+    IsEmptySet TheEmptySet :=
+  Classical.choose_spec EmptySetExists
 
 end LRA.Set.Constructions.ZFCSet.Axioms

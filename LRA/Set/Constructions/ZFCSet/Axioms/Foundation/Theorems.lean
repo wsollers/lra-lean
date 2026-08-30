@@ -1,4 +1,4 @@
-import LRA.Set.Constructions.ZFCSet.Axioms.Axioms.Foundation
+import LRA.Set.Constructions.ZFCSet.Axioms.Foundation.Axiom
 import LRA.Set.Constructions.ZFCSet.Axioms.Definitions
 import LRA.Set.Constructions.ZFCSet.Axioms.Pairing.Theorems
 
