@@ -5,8 +5,7 @@ on:
     branches: [main, develop, standardization]
     paths:
       - '.github/workflows/volume-i-build.yml'
-      - 'LRA/VolumeI.lean'
-      - 'LRA/VolumeI/**'
+      - 'LRA/**'
       - 'lakefile.lean'
       - 'lean-toolchain'
       - 'lake-manifest.json'
@@ -16,8 +15,7 @@ on:
     branches: [main]
     paths:
       - '.github/workflows/volume-i-build.yml'
-      - 'LRA/VolumeI.lean'
-      - 'LRA/VolumeI/**'
+      - 'LRA/**'
       - 'lakefile.lean'
       - 'lean-toolchain'
       - 'lake-manifest.json'
