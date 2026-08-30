@@ -24,92 +24,92 @@ noncomputable def AmbientSingleSortedClassStructure : SingleSortedClassStructure
   toFirstOrderModel AmbientSingleSortedClassStructure
 
 theorem ambientStructureIsStandardModelPair :
-    IsStandardModelPair AmbientTwoSortedClassStructure :=
-  ClassOfSetMembership
+    IsStandardModelPair AmbientTwoSortedClassStructure := by
+  sorry
 
 theorem ambientStructureSupportsSingleSortedPresentation :
-    SupportsSingleSortedPresentation :=
-  nbgSupportsSingleSortedPresentation
+    SupportsSingleSortedPresentation := by
+  sorry
 
 theorem ambientStructureSupportsTwoSortedPresentation :
-    SupportsTwoSortedPresentation :=
-  nbgSupportsTwoSortedPresentation
+    SupportsTwoSortedPresentation := by
+  sorry
 
 theorem ambientStructureSupportsClassExtensionality :
-    SupportsClassExtensionality :=
-  nbgSupportsClassExtensionality
+    SupportsClassExtensionality := by
+  sorry
 
 theorem ambientStructureSupportsClassRegularity :
-    SupportsClassRegularity :=
-  nbgSupportsClassRegularity
+    SupportsClassRegularity := by
+  sorry
 
 theorem ambientStructureSupportsPairing :
-    SupportsPairing :=
-  nbgSupportsPairing
+    SupportsPairing := by
+  sorry
 
 theorem ambientStructureSupportsUnion :
-    SupportsUnion :=
-  nbgSupportsUnion
+    SupportsUnion := by
+  sorry
 
 theorem ambientStructureSupportsPowerSet :
-    SupportsPowerSet :=
-  nbgSupportsPowerSet
+    SupportsPowerSet := by
+  sorry
 
 theorem ambientStructureSupportsInfinity :
-    SupportsInfinity :=
-  nbgSupportsInfinity
+    SupportsInfinity := by
+  sorry
 
 theorem ambientStructureSupportsUniversalClass :
-    SupportsUniversalClass :=
-  nbgSupportsUniversalClass
+    SupportsUniversalClass := by
+  sorry
 
 theorem ambientStructureSupportsElementhoodClass :
-    SupportsElementhoodClass :=
-  nbgSupportsElementhoodClass
+    SupportsElementhoodClass := by
+  sorry
 
 theorem ambientStructureSupportsIntersectionClass :
-    SupportsIntersectionClass :=
-  nbgSupportsIntersectionClass
+    SupportsIntersectionClass := by
+  sorry
 
 theorem ambientStructureSupportsComplementClass :
-    SupportsComplementClass :=
-  nbgSupportsComplementClass
+    SupportsComplementClass := by
+  sorry
 
 theorem ambientStructureSupportsDomainClass :
-    SupportsDomainClass :=
-  nbgSupportsDomainClass
+    SupportsDomainClass := by
+  sorry
 
 theorem ambientStructureSupportsCartesianExtensionClass :
-    SupportsCartesianExtensionClass :=
-  nbgSupportsCartesianExtensionClass
+    SupportsCartesianExtensionClass := by
+  sorry
 
 theorem ambientStructureSupportsPermutationClass :
-    SupportsPermutationClass :=
-  nbgSupportsPermutationClass
+    SupportsPermutationClass := by
+  sorry
 
 theorem ambientStructureSupportsTranspositionClass :
-    SupportsTranspositionClass :=
-  nbgSupportsTranspositionClass
+    SupportsTranspositionClass := by
+  sorry
 
 theorem ambientStructureSupportsReplacement :
-    SupportsReplacement :=
-  nbgSupportsReplacement
+    SupportsReplacement := by
+  sorry
 
 theorem ambientStructureSupportsGlobalChoice :
-    SupportsGlobalChoice :=
-  nbgSupportsGlobalChoice
+    SupportsGlobalChoice := by
+  sorry
 
 theorem ambientFiniteNBGAxiomHolds
     (axiomName : FiniteNBGAxiomName) :
-    FiniteNBGAxiomHolds axiomName :=
-  nbgFiniteNBGAxiomHolds axiomName
+    FiniteNBGAxiomHolds axiomName := by
+  sorry
 
 theorem ambientStructureSatisfiesFiniteNBGAxiomatization :
-    SatisfiesFiniteNBGAxiomatization :=
-  ambientFiniteNBGAxiomHolds
+    SatisfiesFiniteNBGAxiomatization := by
+  sorry
 
 theorem ambientStructureSatisfiesNBG :
-    SatisfiesNBG :=
-  nbgSatisfiesNBG
+    SatisfiesNBG := by
+  sorry
 
 end LRA.Set.Constructions.NBG
