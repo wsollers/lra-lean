@@ -7,7 +7,7 @@ import LRA.Logic.Proof.System.Takeuti
 # Logic / Metamathematics wiring
 
 This file is the dependency boundary where concrete `LRA.Logic` syntax is
-checked against the repository-level metamathematical schemas.  The schemas
+checked against the repository-level metamathematical schemas. The schemas
 remain independent of Logic; Logic imports and satisfies them here.
 -/
 
@@ -17,10 +17,8 @@ open LRA.Metamathematics
 
 namespace FirstOrder
 
-/-- Structural equality for first-order terms, conditional only on decidable
-identity of the syntactic categories from which terms are built. -/
-deriving instance DecidableEq for Term S Variable
-
+/-- First-order terms satisfy structural identity via the `DecidableEq`
+instance derived at the `Term` declaration itself. -/
 instance firstOrderTermStructuralIdentity
     {S : Signature} {Variable : Type}
     [DecidableEq Variable]
@@ -29,10 +27,8 @@ instance firstOrderTermStructuralIdentity
     StructuralIdentity (Term S Variable) where
   decidableStructuralEquality := inferInstance
 
-/-- Structural equality for first-order formulas, conditional only on
-structural equality of their variable and signature symbol categories. -/
-deriving instance DecidableEq for Formula S Variable
-
+/-- First-order formulas satisfy structural identity via the `DecidableEq`
+instance derived at the `Formula` declaration itself. -/
 instance firstOrderFormulaStructuralIdentity
     {S : Signature} {Variable : Type}
     [DecidableEq Variable]
@@ -42,8 +38,8 @@ instance firstOrderFormulaStructuralIdentity
     StructuralIdentity (Formula S Variable) where
   decidableStructuralEquality := inferInstance
 
-/-- The first-order substitution operation is now explicitly paired with the
-`SubstitutionSafety` schema.  The remaining field is deliberately a visible
+/-- The first-order substitution operation is explicitly paired with the
+`SubstitutionSafety` schema. The remaining field is deliberately a visible
 proof obligation: `IsSubstitutable` and `substitute` were previously unrelated,
 and proving the no-capture theorem is larger than a mechanical wiring change. -/
 instance firstOrderSubstitutionSafety
@@ -64,43 +60,12 @@ instance firstOrderSubstitutionSafety
 
 end FirstOrder
 
-namespace Proof.System.Takeuti
-
-/-- Takeuti terms also have structural equality once the alphabet categories
-used by the term grammar have decidable identity. -/
-deriving instance DecidableEq for Term L
-
-instance takeutiTermStructuralIdentity
-    {L : Alphabet}
-    [DecidableEq L.FreeVar]
-    [(n : Nat) → DecidableEq (L.FunctionSymbol n)] :
-    StructuralIdentity (Term L) where
-  decidableStructuralEquality := inferInstance
-
-/-- `FormulaArg` is itself an inductive syntax type used inside Takeuti
-formulas, so it is audited alongside `Term` and `Formula`. -/
-deriving instance DecidableEq for FormulaArg L
-
-instance takeutiFormulaArgStructuralIdentity
-    {L : Alphabet}
-    [DecidableEq L.FreeVar]
-    [DecidableEq L.BoundVar]
-    [(n : Nat) → DecidableEq (L.FunctionSymbol n)] :
-    StructuralIdentity (FormulaArg L) where
-  decidableStructuralEquality := inferInstance
-
-/-- Structural equality for Takeuti formulas. -/
-deriving instance DecidableEq for Formula L
-
-instance takeutiFormulaStructuralIdentity
-    {L : Alphabet}
-    [DecidableEq L.FreeVar]
-    [DecidableEq L.BoundVar]
-    [(n : Nat) → DecidableEq (L.FunctionSymbol n)]
-    [(n : Nat) → DecidableEq (L.PredicateSymbol n)] :
-    StructuralIdentity (Formula L) where
-  decidableStructuralEquality := inferInstance
-
-end Proof.System.Takeuti
+/-!
+Takeuti's structural-identity instances remain deliberately unwired here until
+its own `Term`, `FormulaArg`, and `Formula` declarations can derive decidable
+equality without importing a classical fallback. The declaration-level deriving
+attempt is handled separately so any genuine dependent-function obstruction is
+reported rather than hidden behind `sorry`.
+-/
 
 end LRA.Logic
