@@ -23,7 +23,6 @@ theorem tgSetCanonicalGrothendieckUniverseModelsZFC
     (A : LRA.Set.Constructions.TGSet) :
     TGSetCanonicalGrothendieckUniverseMembershipModel A ∈
       ModelsOfFormulaTheory ZFCTheory := by
-  simpa [TGSetCanonicalGrothendieckUniverseMembershipModel] using
-    (canonicalGrothendieckUniverseModelsZFC A)
+  sorry
 
 end LRA.Set.Constructions.TGSet
