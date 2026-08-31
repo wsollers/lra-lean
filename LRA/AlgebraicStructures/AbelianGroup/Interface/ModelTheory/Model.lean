@@ -1,5 +1,6 @@
 import LRA.AlgebraicStructures.AbelianGroup.Interface.ModelTheory.Theory
 import LRA.AlgebraicStructures.AbelianGroup.Interface.ModelTheory.LStructure
+import LRA.AlgebraicStructures.AbelianGroup.Interface.Definitions.ConceptSignature
 import LRA.Operation.Addition.Interface.ModelTheory.Model
 
 namespace LRA.AlgebraicStructures.AbelianGroup.Interface.ModelTheory

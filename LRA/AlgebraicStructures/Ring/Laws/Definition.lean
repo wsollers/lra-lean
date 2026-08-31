@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.AbelianGroup.Laws.Definition
+import LRA.AlgebraicStructures.AbelianGroup.Interface.Laws.Definition
 import LRA.AlgebraicStructures.Semiring.Interface.Laws.Definition
 
 namespace LRA.AlgebraicStructures

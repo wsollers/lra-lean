@@ -1,5 +1,4 @@
 import LRA.AlgebraicStructures.AbelianGroup.Examples
-import LRA.AlgebraicStructures.AbelianGroup.Laws.Examples
 import LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Examples
 import LRA.AlgebraicStructures.AdditiveGroup.Examples
 import LRA.AlgebraicStructures.AdditiveMonoid.Examples

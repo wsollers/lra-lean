@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-30",
+  "generated_at": "2026-08-31",
   "repo": "F:/repos/lra-lean",
   "branch": "main",
   "source": "conversation: AlgebraicStructures reorg + axiom-audit request",
@@ -391,12 +391,13 @@
         "AdditiveCommutativeSemigroup",
         "AdditiveGroup"
       ],
-      "status": "reorg_in_progress",
+      "status": "reorg_done",
       "validator_path": "LRA/AlgebraicStructures/AbelianGroup",
       "build_target": "LRA.AlgebraicStructures.AbelianGroup",
       "notes": [
         "Landau Chunk 01 on 2026-08-30 advanced the existing Interface/ModelTheory surface instead of running the full per-subject queue pass: AbelianGroup/Interface/ModelTheory/Model.lean now packages the promoted AdditionModel surface for scalar-chain subject adoption.",
-        "No dedicated AbelianGroup validator/build gate was run in this chunk; this is partial mechanical alignment only, not a completed subject pass."
+        "Queue-local reorg completed on 2026-08-31 with no compat/shim layer left behind: the subject now routes through Interface/{Definitions,Laws,ModelTheory}; the actual concept-signature, first-order signature, and abelian-group law owners live under those interface paths; downstream imports in Ring, VolumeVICore, and VolumeVIExamplesFailures were retargeted directly; empty legacy AbelianGroup stub files and obsolete Laws/ files were deleted rather than wrapped.",
+        "validate_structure.py --path LRA/AlgebraicStructures/AbelianGroup and lake build LRA.AlgebraicStructures.AbelianGroup both pass after the reorg. Immediate import-route consumers `LRA.AlgebraicStructures.Ring`, `LRA.VolumeVICore`, and `LRA.VolumeVIExamplesFailures` were also rebuilt during the pass; the AbelianGroup audit/examples/constructions pass still remains before this item can be marked done."
       ]
     },
     {

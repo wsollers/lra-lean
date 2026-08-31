@@ -1,5 +1,5 @@
 import LRA.AlgebraicStructures
-import LRA.AlgebraicStructures.AbelianGroup.Laws
+import LRA.AlgebraicStructures.AbelianGroup.Interface.Laws
 import LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Interface.Laws
 import LRA.AlgebraicStructures.AdditiveGroup.Interface.Laws
 import LRA.AlgebraicStructures.AdditiveMonoid.Interface.Laws

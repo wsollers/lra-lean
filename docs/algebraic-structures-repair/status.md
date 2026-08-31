@@ -1,6 +1,6 @@
 # AlgebraicStructures Repair Status
 
-- Generated: 2026-08-30
+- Generated: 2026-08-31
 - Repo: `F:/repos/lra-lean`
 - Branch: `main`
 - Source: conversation — AlgebraicStructures reorg + axiom-purity audit
@@ -29,7 +29,7 @@
 | as-16 | 3 | BoundedLattice | **done** | Lattice | Checked `LRA/Order/` per user request — unlike `Lattice`'s own equivalence, no order-theoretic `BoundedLattice` or algebra↔order bridge exists anywhere yet; flagged as an explicit open item rather than built (no equivalence-of-definitions section was given this time). Audited: only half of each bound's conditions is stated as an axiom, verified by hand that the other halves are provable consequences (not a gap). Examples: power set, divisor lattice of `n` (fresh construction), extended reals. |
 | as-17 | 3 | DistributiveLattice | **done** | Lattice | Checked `LRA/Order/` again — unlike `BoundedLattice`, the order-theoretic definition (`LRA.Order.Lattices.DistributiveLattice`) already exists, but (like `BoundedLattice`) no algebra↔order bridge does; flagged as an open item. Audited: states both distributive identities as separate conjuncts even though the user's spec notes they're equivalent — confirmed deliberate non-minimal redundancy, not a bug. Examples: power sets, divisor lattice, chains — down-set lattices skipped for scope (needs a from-scratch poset construction). Clean on the first `lake build` attempt. |
 | as-18 | 4 | Semiring | reorg_done | AdditiveCommutativeSemigroup, AdditiveMonoid, Monoid | Landau Chunk 01 advanced the existing `Interface/ModelTheory` surface, and the 2026-08-31 queue pass completed the mechanical Semiring reorg: the subject now routes through `Interface/{Definitions,Laws,ModelTheory}`, the actual signature/law owners live under those interface paths, empty legacy stub files were deleted, and the Semiring validator/build gates pass. Audit/examples/constructions work still remains. |
-| as-19 | 4 | AbelianGroup | reorg_in_progress | AdditiveCommutativeSemigroup, AdditiveGroup | Landau Chunk 01 advanced the existing `Interface/ModelTheory` surface: `Model.lean` now packages promoted `AdditionModel`. No full subject-level queue pass or dedicated gate run yet. |
+| as-19 | 4 | AbelianGroup | reorg_done | AdditiveCommutativeSemigroup, AdditiveGroup | Landau Chunk 01 advanced the existing `Interface/ModelTheory` surface, and the 2026-08-31 queue pass completed the mechanical AbelianGroup reorg: the subject now routes through `Interface/{Definitions,Laws,ModelTheory}`, the actual concept-signature, first-order signature, and law owners live under those interface paths, empty legacy stub files were deleted, and the AbelianGroup validator/build gates pass. Audit/examples/constructions work still remains. |
 | as-20 | 4 | OrderedGroup | reorg_in_progress | Group | Landau Chunk 01 advanced the existing `Interface/ModelTheory` surface: `Model.lean` now packages promoted `MultiplicationModel`; a missing direct import of `OrderedGroup.Laws.Definition` was fixed when the downstream number-system gate exposed it. Full queue-local audit still pending. |
 | as-21 | 4 | BooleanAlgebra | not_started | BoundedLattice, DistributiveLattice | |
 | as-22 | 5 | CommutativeSemiring | reorg_in_progress | CommutativeSemigroup, Semiring | Landau Chunk 01 advanced the existing `Interface/ModelTheory` surface: `Model.lean` now packages promoted `AdditionModel`/`MultiplicationModel`, and the structure validator passed. Full queue-local reorg/audit/examples work is still pending. |
@@ -71,15 +71,15 @@ see each item's ledger notes for exactly what changed.
 
 **Cross-workstream note (2026-08-31):** Landau Chunk 01 mechanically advanced the
 existing `Interface/ModelTheory` surfaces for `as-18`, `as-19`, `as-20`, `as-22`, and
-`as-25` ahead of their full per-subject queue pass. `as-18` has now completed its
-queue-local reorg pass and is `reorg_done`; no audit/examples/constructions completion
-is claimed yet, and the canonical queue still resumes at the Semiring audit pass before
-moving on to later tier-4/5 items.
+`as-25` ahead of their full per-subject queue pass. `as-18` and `as-19` have now
+completed their queue-local reorg pass and are `reorg_done`; no
+audit/examples/constructions completion is claimed yet, and the canonical queue still
+resumes at the Semiring audit pass before moving on to later tier-4/5 items.
 
 **Next step:** resume the canonical per-subject queue at `as-18` `Semiring`'s audit
 pass, then continue tier order from there. `as-19` and `as-20` already have
-Landau-driven ModelTheory alignment in place, but they are not done. Tier 4 remains
-otherwise unblocked: `BooleanAlgebra` (as-21, needs BoundedLattice +
+Landau-driven ModelTheory alignment in place, and `as-19` now also has its full reorg
+shape in place, but they are not done. Tier 4 remains otherwise unblocked: `BooleanAlgebra` (as-21, needs BoundedLattice +
 DistributiveLattice, both done) has not been touched yet.
 
 **Open items, order-theoretic bridges (as-16, as-17):** neither `BoundedLattice` nor

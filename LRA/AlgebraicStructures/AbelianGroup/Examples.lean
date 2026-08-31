@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.AbelianGroup
+import LRA.AlgebraicStructures.AbelianGroup.Interface.Laws
 
 namespace LRA.AlgebraicStructures
 

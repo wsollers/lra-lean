@@ -1,5 +1,5 @@
-import LRA.AlgebraicStructures.AbelianGroup.Definition
-import LRA.AlgebraicStructures.AbelianGroup.Interface.Signature.Definition
+import LRA.AlgebraicStructures.AbelianGroup.Interface.Definitions.ConceptSignature
+import LRA.AlgebraicStructures.AbelianGroup.Interface.Definitions.Signature
 import LRA.Operation
 
 namespace LRA.AlgebraicStructures.AbelianGroup.Interface.ModelTheory
