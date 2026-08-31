@@ -1,5 +1,5 @@
 import LRA.AlgebraicStructures.CommutativeSemiring.Laws.Definition
-import LRA.AlgebraicStructures.Semiring.Definition
+import LRA.AlgebraicStructures.Semiring.Interface.Definitions.ConceptSignature
 
 namespace LRA.AlgebraicStructures
 

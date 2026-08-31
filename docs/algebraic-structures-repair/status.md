@@ -1,6 +1,6 @@
 # AlgebraicStructures Repair Status
 
-- Generated: 2026-08-26
+- Generated: 2026-08-30
 - Repo: `F:/repos/lra-lean`
 - Branch: `main`
 - Source: conversation — AlgebraicStructures reorg + axiom-purity audit
@@ -28,14 +28,14 @@
 | as-15 | 3 | CommutativeMonoid | **done** | CommutativeSemigroup, Monoid | Audited correct as-is. Examples: `(ℕ,+,0)` (reuses Monoid's carrier), `(ℕ,×,1)`, power set under union, Booleans under conjunction — the last a genuine find, free via Mathlib's existing `BooleanRing Bool` instance rather than built from scratch. Clean on the first `lake build` attempt. |
 | as-16 | 3 | BoundedLattice | **done** | Lattice | Checked `LRA/Order/` per user request — unlike `Lattice`'s own equivalence, no order-theoretic `BoundedLattice` or algebra↔order bridge exists anywhere yet; flagged as an explicit open item rather than built (no equivalence-of-definitions section was given this time). Audited: only half of each bound's conditions is stated as an axiom, verified by hand that the other halves are provable consequences (not a gap). Examples: power set, divisor lattice of `n` (fresh construction), extended reals. |
 | as-17 | 3 | DistributiveLattice | **done** | Lattice | Checked `LRA/Order/` again — unlike `BoundedLattice`, the order-theoretic definition (`LRA.Order.Lattices.DistributiveLattice`) already exists, but (like `BoundedLattice`) no algebra↔order bridge does; flagged as an open item. Audited: states both distributive identities as separate conjuncts even though the user's spec notes they're equivalent — confirmed deliberate non-minimal redundancy, not a bug. Examples: power sets, divisor lattice, chains — down-set lattices skipped for scope (needs a from-scratch poset construction). Clean on the first `lake build` attempt. |
-| as-18 | 4 | Semiring | not_started | AdditiveCommutativeSemigroup, AdditiveMonoid, Monoid | owns Laws/Distributive.lean |
-| as-19 | 4 | AbelianGroup | not_started | AdditiveCommutativeSemigroup, AdditiveGroup | |
-| as-20 | 4 | OrderedGroup | not_started | Group | |
+| as-18 | 4 | Semiring | reorg_done | AdditiveCommutativeSemigroup, AdditiveMonoid, Monoid | Landau Chunk 01 advanced the existing `Interface/ModelTheory` surface, and the 2026-08-31 queue pass completed the mechanical Semiring reorg: the subject now routes through `Interface/{Definitions,Laws,ModelTheory}`, the actual signature/law owners live under those interface paths, empty legacy stub files were deleted, and the Semiring validator/build gates pass. Audit/examples/constructions work still remains. |
+| as-19 | 4 | AbelianGroup | reorg_in_progress | AdditiveCommutativeSemigroup, AdditiveGroup | Landau Chunk 01 advanced the existing `Interface/ModelTheory` surface: `Model.lean` now packages promoted `AdditionModel`. No full subject-level queue pass or dedicated gate run yet. |
+| as-20 | 4 | OrderedGroup | reorg_in_progress | Group | Landau Chunk 01 advanced the existing `Interface/ModelTheory` surface: `Model.lean` now packages promoted `MultiplicationModel`; a missing direct import of `OrderedGroup.Laws.Definition` was fixed when the downstream number-system gate exposed it. Full queue-local audit still pending. |
 | as-21 | 4 | BooleanAlgebra | not_started | BoundedLattice, DistributiveLattice | |
-| as-22 | 5 | CommutativeSemiring | not_started | CommutativeSemigroup, Semiring | |
+| as-22 | 5 | CommutativeSemiring | reorg_in_progress | CommutativeSemigroup, Semiring | Landau Chunk 01 advanced the existing `Interface/ModelTheory` surface: `Model.lean` now packages promoted `AdditionModel`/`MultiplicationModel`, and the structure validator passed. Full queue-local reorg/audit/examples work is still pending. |
 | as-23 | 5 | CommutativeSemiringWithoutZero | not_started | (6 subjects, see ledger) | |
 | as-24 | 5 | Ring | not_started | AbelianGroup, Semiring | |
-| as-25 | 5 | OrderedSemiring | not_started | Semiring | |
+| as-25 | 5 | OrderedSemiring | reorg_in_progress | Semiring | Landau Chunk 01 advanced the existing `Interface/ModelTheory` surface: `Model.lean` now packages promoted `AdditionModel`/`MultiplicationModel`, and the structure validator passed. Full queue-local reorg/audit/examples work is still pending. |
 | as-26 | 5 | LinearlyOrderedGroup | not_started | OrderedGroup | |
 | as-27 | 6 | CommutativeRing | not_started | CommutativeSemigroup, Ring | |
 | as-28 | 6 | NontrivialRing | not_started | Ring | |
@@ -69,13 +69,18 @@ reverted retroactively. Everything proved in as-03 through as-06 and as-08's
 Constructions/Examples *was* reverted to `sorry` on 2026-08-26 to match this rule —
 see each item's ledger notes for exactly what changed.
 
-**Next step:** Tiers 1, 2, and 3 are all fully done (as-01 through as-17). Tier 4 is now
-unblocked: Semiring (as-18, needs AdditiveCommutativeSemigroup+AdditiveMonoid+Monoid, all
-done), AbelianGroup (as-19, needs AdditiveCommutativeSemigroup+AdditiveGroup, both done),
-OrderedGroup (as-20, needs Group, done — also depends on LRA.Order.Laws.{PartialOrder,
-OperationCompatibility}, outside this tree, not in scope to change), BooleanAlgebra
-(as-21, needs BoundedLattice+DistributiveLattice, both done) — all four unblocked, order
-among them doesn't matter.
+**Cross-workstream note (2026-08-31):** Landau Chunk 01 mechanically advanced the
+existing `Interface/ModelTheory` surfaces for `as-18`, `as-19`, `as-20`, `as-22`, and
+`as-25` ahead of their full per-subject queue pass. `as-18` has now completed its
+queue-local reorg pass and is `reorg_done`; no audit/examples/constructions completion
+is claimed yet, and the canonical queue still resumes at the Semiring audit pass before
+moving on to later tier-4/5 items.
+
+**Next step:** resume the canonical per-subject queue at `as-18` `Semiring`'s audit
+pass, then continue tier order from there. `as-19` and `as-20` already have
+Landau-driven ModelTheory alignment in place, but they are not done. Tier 4 remains
+otherwise unblocked: `BooleanAlgebra` (as-21, needs BoundedLattice +
+DistributiveLattice, both done) has not been touched yet.
 
 **Open items, order-theoretic bridges (as-16, as-17):** neither `BoundedLattice` nor
 `DistributiveLattice` has an algebra↔order bridge, unlike `Lattice`'s own (found pre-built

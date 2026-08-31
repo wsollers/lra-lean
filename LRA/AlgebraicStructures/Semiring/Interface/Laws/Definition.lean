@@ -1,12 +1,10 @@
 import LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Interface.Laws.Definition
 import LRA.AlgebraicStructures.AdditiveMonoid.Interface.Laws.Definition
 import LRA.AlgebraicStructures.Monoid.Interface.Laws.Definition
-import LRA.AlgebraicStructures.Semiring.Laws.Distributive
+import LRA.AlgebraicStructures.Semiring.Interface.Laws.Distributive
 import LRA.Operation
 
 namespace LRA.AlgebraicStructures
-
-universe u
 
 /--
 `ZeroAbsorbingLaws` TODO
@@ -205,3 +203,7 @@ Related proof moves: intro
 theorem MulZero [Mul R] [OfNat R 0] [ZeroAbsorbingLaws R] :
     ∀ a : R, a * 0 = 0 :=
   sorry
+
+end Wrappers
+
+end LRA.AlgebraicStructures

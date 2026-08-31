@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.Semiring.Laws.Definition
+import LRA.AlgebraicStructures.Semiring.Interface.Laws.Definition
 import LRA.Order.Laws.LinearOrder.Definition
 import LRA.Order.Laws.OperationCompatibility.Definition
 namespace LRA.AlgebraicStructures

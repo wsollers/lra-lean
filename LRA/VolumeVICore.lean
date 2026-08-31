@@ -32,8 +32,8 @@ import LRA.AlgebraicStructures.OrderedRing.Laws
 import LRA.AlgebraicStructures.OrderedSemiring.Laws
 import LRA.AlgebraicStructures.Ring.Laws
 import LRA.AlgebraicStructures.Semigroup.Interface.Laws
-import LRA.AlgebraicStructures.Semiring.Laws
-import LRA.AlgebraicStructures.Semiring.Laws.Distributive
+import LRA.AlgebraicStructures.Semiring.Interface.Laws
+import LRA.AlgebraicStructures.Semiring.Interface.Laws.Distributive
 import LRA.Algebra.LinearAlgebra
 import LRA.Algebra.LinearAlgebra.VectorSpace.Construction
 import LRA.Order

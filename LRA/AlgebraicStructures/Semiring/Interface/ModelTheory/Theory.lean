@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.Semiring.Interface.Signature.Definition
+import LRA.AlgebraicStructures.Semiring.Interface.Definitions.Signature
 
 namespace LRA.AlgebraicStructures.Semiring.Interface.ModelTheory
 

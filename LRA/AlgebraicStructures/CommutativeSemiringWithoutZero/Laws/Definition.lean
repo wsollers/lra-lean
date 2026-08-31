@@ -3,7 +3,7 @@ import LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Interface.Laws.Defin
 import LRA.AlgebraicStructures.Semigroup.Interface.Laws.Definition
 import LRA.AlgebraicStructures.Monoid.Interface.Laws.Definition
 import LRA.AlgebraicStructures.CommutativeSemigroup.Interface.Laws.Definition
-import LRA.AlgebraicStructures.Semiring.Laws.Distributive
+import LRA.AlgebraicStructures.Semiring.Interface.Laws.Distributive
 import LRA.Operation.Laws.Cancellation.Definition
 
 namespace LRA.AlgebraicStructures

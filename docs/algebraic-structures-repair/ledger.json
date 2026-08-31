@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-26",
+  "generated_at": "2026-08-30",
   "repo": "F:/repos/lra-lean",
   "branch": "main",
   "source": "conversation: AlgebraicStructures reorg + axiom-audit request",
@@ -373,11 +373,14 @@
         "AdditiveMonoid",
         "Monoid"
       ],
-      "status": "not_started",
+      "status": "reorg_done",
       "validator_path": "LRA/AlgebraicStructures/Semiring",
       "build_target": "LRA.AlgebraicStructures.Semiring",
       "notes": [
-        "Owns Laws/Distributive.lean, a standalone atomic mixin reused by several later tiers"
+        "Owns Interface/Laws/Distributive.lean, a standalone atomic mixin reused by several later tiers",
+        "Landau Chunk 01 on 2026-08-30 advanced the existing Interface/ModelTheory surface instead of running the full per-subject queue pass: Semiring/Interface/ModelTheory/Model.lean now packages promoted AdditionModel and MultiplicationModel surfaces, validate_structure.py passed on LRA/AlgebraicStructures/Semiring, and the downstream natural/whole-number model gates compiled through the semiring contract.",
+        "Queue-local reorg completed on 2026-08-31 with no compat/shim layer left behind: the subject now routes through Interface/{Definitions,Laws,ModelTheory}; the actual concept-signature, first-order signature, semiring law bundle, and distributive mixin owners live under those interface paths; downstream imports in Ring, OrderedSemiring, CommutativeSemiring, CommutativeSemiringWithoutZero, and VolumeVICore were retargeted directly; empty legacy Semiring stub files and obsolete Laws/ files were deleted rather than wrapped.",
+        "validate_structure.py --path LRA/AlgebraicStructures/Semiring and lake build LRA.AlgebraicStructures.Semiring both pass after the reorg. The Semiring audit/examples/constructions pass still remains before this item can be marked done."
       ]
     },
     {
@@ -388,10 +391,13 @@
         "AdditiveCommutativeSemigroup",
         "AdditiveGroup"
       ],
-      "status": "not_started",
+      "status": "reorg_in_progress",
       "validator_path": "LRA/AlgebraicStructures/AbelianGroup",
       "build_target": "LRA.AlgebraicStructures.AbelianGroup",
-      "notes": []
+      "notes": [
+        "Landau Chunk 01 on 2026-08-30 advanced the existing Interface/ModelTheory surface instead of running the full per-subject queue pass: AbelianGroup/Interface/ModelTheory/Model.lean now packages the promoted AdditionModel surface for scalar-chain subject adoption.",
+        "No dedicated AbelianGroup validator/build gate was run in this chunk; this is partial mechanical alignment only, not a completed subject pass."
+      ]
     },
     {
       "id": "as-20",
@@ -400,11 +406,13 @@
       "depends_on": [
         "Group"
       ],
-      "status": "not_started",
+      "status": "reorg_in_progress",
       "validator_path": "LRA/AlgebraicStructures/OrderedGroup",
       "build_target": "LRA.AlgebraicStructures.OrderedGroup",
       "notes": [
-        "Also depends on LRA.Order.Laws.{PartialOrder,OperationCompatibility}.Definition — outside this tree, not in scope to change"
+        "Also depends on LRA.Order.Laws.{PartialOrder,OperationCompatibility}.Definition — outside this tree, not in scope to change",
+        "Landau Chunk 01 on 2026-08-30 advanced the existing Interface/ModelTheory surface instead of running the full per-subject queue pass: OrderedGroup/Interface/ModelTheory/Model.lean now packages the promoted MultiplicationModel surface, and a missing direct import of OrderedGroup.Laws.Definition was fixed when the downstream number-system build exposed it.",
+        "The OrderedGroup model file then compiled as part of the downstream NaturalNumbers and WholeNumbers interface-model gates; full OrderedGroup queue-local audit/examples work is still pending."
       ]
     },
     {
@@ -415,10 +423,13 @@
         "BoundedLattice",
         "DistributiveLattice"
       ],
-      "status": "not_started",
+      "status": "reorg_in_progress",
       "validator_path": "LRA/AlgebraicStructures/BooleanAlgebra",
       "build_target": "LRA.AlgebraicStructures.BooleanAlgebra",
-      "notes": []
+      "notes": [
+        "Landau Chunk 01 on 2026-08-30 advanced the existing Interface/ModelTheory surface instead of running the full per-subject queue pass: CommutativeSemiring/Interface/ModelTheory/Model.lean now packages promoted AdditionModel and MultiplicationModel surfaces for scalar-chain subject adoption.",
+        "validate_structure.py passed on LRA/AlgebraicStructures/CommutativeSemiring during this chunk; full subject-level reorg/audit/examples work is still pending."
+      ]
     },
     {
       "id": "as-22",
@@ -428,10 +439,13 @@
         "CommutativeSemigroup",
         "Semiring"
       ],
-      "status": "not_started",
+      "status": "reorg_in_progress",
       "validator_path": "LRA/AlgebraicStructures/CommutativeSemiring",
       "build_target": "LRA.AlgebraicStructures.CommutativeSemiring",
-      "notes": []
+      "notes": [
+        "Landau Chunk 01 on 2026-08-30 advanced the existing Interface/ModelTheory surface instead of running the full per-subject queue pass: OrderedSemiring/Interface/ModelTheory/Model.lean now packages promoted AdditionModel and MultiplicationModel surfaces, and downstream WholeNumbers/ZeroBasedNaturals adoption now routes through those operators.",
+        "validate_structure.py passed on LRA/AlgebraicStructures/OrderedSemiring during this chunk; full subject-level reorg/audit/examples work is still pending."
+      ]
     },
     {
       "id": "as-23",

@@ -1,5 +1,5 @@
 import LRA.AlgebraicStructures.CommutativeSemigroup.Interface.Laws.Definition
-import LRA.AlgebraicStructures.Semiring.Laws.Definition
+import LRA.AlgebraicStructures.Semiring.Interface.Laws.Definition
 
 namespace LRA.AlgebraicStructures
 

@@ -147,3 +147,7 @@ Related proof moves: intro
 -/
 theorem RightDistributive : ∀ a b c : R, (a + b) * c = a * c + b * c :=
   sorry
+
+end Wrappers
+
+end LRA.AlgebraicStructures

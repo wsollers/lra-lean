@@ -1,5 +1,5 @@
-import LRA.AlgebraicStructures.Semiring.Interface.Signature.Definition
-import LRA.AlgebraicStructures.Semiring.Definition
+import LRA.AlgebraicStructures.Semiring.Interface.Definitions.Signature
+import LRA.AlgebraicStructures.Semiring.Interface.Definitions.ConceptSignature
 import LRA.Operation
 
 namespace LRA.AlgebraicStructures.Semiring.Interface.ModelTheory

@@ -42,8 +42,6 @@ import LRA.AlgebraicStructures.OrderedSemiring.Laws.Examples
 import LRA.AlgebraicStructures.Ring.Examples
 import LRA.AlgebraicStructures.Ring.Laws.Examples
 import LRA.AlgebraicStructures.Semigroup.Examples
-import LRA.AlgebraicStructures.Semiring.Examples
-import LRA.AlgebraicStructures.Semiring.Laws.Examples
 import LRA.Order.Interop.AlgebraicLattice
 import LRA.Order.Interop.Mathlib
 import LRA.Order.Examples
