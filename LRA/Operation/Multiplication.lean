@@ -2,6 +2,11 @@ import LRA.Operation.Multiplication.Definition
 import LRA.Operation.Multiplication.Existence
 import LRA.Operation.Multiplication.Uniqueness
 import LRA.Operation.Multiplication.Realization
+import LRA.Operation.Multiplication.Interface.Signature.Definition
+import LRA.Operation.Multiplication.Interface.ModelTheory.LStructure
+import LRA.Operation.Multiplication.Interface.ModelTheory.Theory
+import LRA.Operation.Multiplication.Interface.ModelTheory.Model
+import LRA.Operation.Multiplication.Interface.UniversalAlgebra.Signature.Definition
+import LRA.Operation.Multiplication.Interface.UniversalAlgebra.Satisfy_Generic
 import LRA.Operation.Multiplication.Laws
 import LRA.Operation.Multiplication.Theorems
-

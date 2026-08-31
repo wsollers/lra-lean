@@ -1,15 +1,39 @@
 {
-  "updated": "2026-08-30",
+  "updated": "2026-08-31",
   "workstream": "landau-satisfaction",
   "planning_workspace_status": "complete_in_repo",
   "active_phase": "phase-03-subject-interface-adoption",
+  "active_chunk": "chunk-02-natural-and-whole-to-rational",
+  "scope": {
+    "landau_theorem_range": "1-205",
+    "chapters_in_scope": [
+      "Chapter I - Natural Numbers",
+      "Chapter II - Fractions / rationals",
+      "Chapter III - Cuts / real construction",
+      "Chapter IV - Real Numbers"
+    ],
+    "algebraic_endpoint": "CompleteOrderedField",
+    "out_of_scope": [
+      "Chapter V - Complex Numbers",
+      "Complex-number completion beyond side-dependency notes"
+    ]
+  },
+  "companion_workstreams": [
+    {
+      "name": "algebraic-structures-repair",
+      "owner_doc": "docs/algebraic-structures-repair/README.md",
+      "status_doc": "docs/algebraic-structures-repair/status.md",
+      "ledger_doc": "docs/algebraic-structures-repair/ledger.json",
+      "notes": "Canonical per-subject queue for LRA/AlgebraicStructures/*; this workspace references its as-* ids rather than duplicating that queue."
+    }
+  ],
   "items": [
     {
       "id": "step-0-decisions",
       "title": "Resolve naming, placement, and ownership decisions",
       "status": "done",
       "owner_doc": "docs/landau-satisfaction/DECISIONS.md",
-      "notes": "Primary cert meaning, ownership split, generic operator placement, and placeholder policy are recorded."
+      "notes": "Primary cert meaning, ownership split, generic operator placement, scalar-chain theorem scope through Chapter IV, and proof placeholder policy are recorded."
     },
     {
       "id": "phase-01-generic-operation-laws",
@@ -28,30 +52,72 @@
     {
       "id": "phase-03-subject-interface-adoption",
       "title": "Adopt generic operators from subject interfaces",
-      "status": "todo",
+      "status": "in_progress",
       "owner_doc": "docs/landau-satisfaction/phases/phase-03-subject-interface-adoption.md",
-      "notes": "Next implementation phase. Promote addition and multiplication into subject-facing operator interfaces and route scalar-chain model contracts through them."
+      "notes": "In progress as of 2026-08-30. Chunk 01 added promoted Addition/Multiplication Interface subtrees, aligned the Semiring / CommutativeSemiring / OrderedSemiring / AbelianGroup / OrderedGroup Interface/ModelTheory model surfaces needed for the early scalar chain, and routed NaturalNumbers / WholeNumbers / PositiveNaturals / ZeroBasedNaturals model contracts through the promoted operator models. Later scalar-chain subjects through CompleteOrderedField remain pending."
     },
     {
       "id": "phase-04-concrete-construction-proofs",
       "title": "Discharge concrete construction obligations",
       "status": "todo",
       "owner_doc": "docs/landau-satisfaction/phases/phase-04-concrete-construction-proofs.md",
-      "notes": "Package concrete operator realizations, structure-law bundles, and construction-local Satisfy_Generic bridges."
+      "notes": "Package concrete operator realizations, structure-law bundles, and construction-local Satisfy_Generic bridges after the required scalar-chain algebraic structures are stable. Covers the concrete theorem and construction surface for Landau Chapters I–III."
     },
     {
       "id": "phase-05-arithmetic-bridges",
       "title": "Add mixed-operator arithmetic bridge artifacts",
       "status": "todo",
       "owner_doc": "docs/landau-satisfaction/phases/phase-05-arithmetic-bridges.md",
-      "notes": "Distributivity and similar mixed laws are intentionally deferred until unary operator realizations exist."
+      "notes": "Distributivity and similar mixed laws are intentionally deferred until unary operator realizations exist and the semiring/ring/field consumer structures are ready to absorb them. Covers the distributive theorem band across Chapters I–IV."
     },
     {
       "id": "phase-06-ua-restatements-and-cert-sync",
       "title": "Add UA restatements and synchronize cert documentation",
       "status": "todo",
       "owner_doc": "docs/landau-satisfaction/phases/phase-06-ua-restatements-and-cert-sync.md",
-      "notes": "Complete equation-level transport/restatement artifacts and synchronize the Landau and cert documentation."
+      "notes": "Complete equation-level transport/restatement artifacts, finish the scalar-chain AlgebraicStructures Interface/UniversalAlgebra surfaces, and synchronize the Landau and cert documentation for Chapters I–IV."
+    },
+    {
+      "id": "algebraic-structure-coupling",
+      "title": "Track Landau-critical algebraic-structure queue items",
+      "status": "in_progress",
+      "owner_doc": "docs/algebraic-structures-repair/ledger.json",
+      "notes": "Critical ids for this workspace are as-18, as-19, as-20, as-22, as-23, as-24, as-25, as-26, as-27, as-28, as-29, as-30, as-31, as-32, as-33, as-34, as-35; as-06 and as-07 remain side inputs. Chunk 01 on 2026-08-30 mechanically advanced as-18, as-19, as-20, as-22, and as-25 to reorg_in_progress in the canonical algebraic queue, but no full subject completion beyond those partial alignments is claimed here."
+    },
+    {
+      "id": "chunk-01-structures-and-operators-through-semiring",
+      "title": "Stabilize operator interfaces and early scalar structure prerequisites",
+      "status": "done",
+      "owner_doc": "docs/landau-satisfaction/chunks/chunk-01-structures-and-operators-through-semiring.md",
+      "notes": "Completed on 2026-08-30. Added/promoted LRA/Operation/Addition/Interface/* and LRA/Operation/Multiplication/Interface/*, aligned the Semiring / CommutativeSemiring / OrderedSemiring / AbelianGroup / OrderedGroup Interface/ModelTheory model surfaces needed by the early scalar chain, and routed NaturalNumbers / WholeNumbers / PositiveNaturals / ZeroBasedNaturals model contracts through those promoted operator interfaces. Validation gates for Semiring / CommutativeSemiring / OrderedSemiring plus the requested Operation and NumberSystems build targets all passed."
+    },
+    {
+      "id": "chunk-02-natural-and-whole-to-rational",
+      "title": "Populate the scalar chain from naturals through rationals",
+      "status": "in_progress",
+      "owner_doc": "docs/landau-satisfaction/chunks/chunk-02-natural-and-whole-to-rational.md",
+      "notes": "Started on 2026-08-30. Chapter I theorem-surface alignment resumed by adding `NaturalNumbers/Constructions/Landau/Laws.lean:LandauWellOrdering` so Theorem 27 now lives under the natural-number owner instead of only the whole-number analogue. Continued the same day by adding the remaining missing Chapter I theorem declarations under `NaturalNumbers/Constructions/Landau/Laws.lean`, bringing `LANDAU-CROSSWALK.md` coverage to Theorems 1-36 end to end. Natural/whole-number theorem surfaces remain unproved by design. Also recorded the Phase 3 subject-interface exception that `NaturalNumbers/Constructions/Landau/*` must not grow a construction-local `NaturalNumberModel` satisfaction file under the current contracts, because the Chapter I carrier is one-based while `NaturalNumberModel` is zero-bearing. That exception does not remove Landau naturals from the algebraic chain generally: they still export promoted generic operator artifacts and can support algebraic-law bundles that do not require additive identity on that carrier. On 2026-08-31, Chunk 02 added `NaturalNumbers/Constructions/Landau/Instances.lean` to package the one-based Landau carrier as a source of `AdditiveCancellativeLaws`, `MultiplicativeIdentityLaws`, `MultiplicativeCancellativeLaws`, and `CommutativeSemiringWithoutZeroLaws`. The same day, `WholeNumbers/Constructions/Landau/Instances.lean` gained `underlyingNaturalCommutativeSemiringWithoutZeroLawsOn` so the zero-adjoined whole-number construction can name its recovered Chapter I law bundle explicitly. `WholeNumbers/Constructions/Landau/Satisfy_Generic.lean` remains the first zero-bearing generic-model owner for that construction line. Also on 2026-08-31, `WholeNumbers/Constructions/Landau/Instances.lean:additionRespectsOrderLawsOn` was further normalized so its `AddLeAddRight` field now consumes the existing named theorem `addition_preserves_nonstrict_order`, and its `AddLeAddLeft` field consumes that same theorem plus additive commutativity on the whole-number carrier, instead of leaving either field as an anonymous placeholder. Also on 2026-08-31, `WholeNumbers/Constructions/Landau/Instances.lean:multiplicationRespectsOrderLawsOn` was normalized so its `MulNonneg` field now consumes the existing named theorem `multiplication_preserves_nonstrict_order` together with the existing zero-absorbing law package on the whole-number carrier, instead of an anonymous placeholder. Also on 2026-08-31, `WholeNumbers/Constructions/Landau/Instances.lean:distributiveLawsOn` was normalized so its second distributivity field now consumes the existing named distributive theorem from `semiring_structure` together with multiplicative commutativity on the whole-number carrier, instead of an anonymous placeholder. Also on 2026-08-31, `WholeNumbers/Constructions/Landau/Instances.lean:quotientOrderedPairsInput` was normalized so the `WholeNumberArithmeticForQuotientPairs.ofCarrier` handoff now consumes the existing named whole-number theorems `additive_structure` and `addition_preserves_and_reflects_nonstrict_order` instead of anonymous `by sorry` placeholders. These are bridge cleanups only and do not clear the integer/rational gate. Also on 2026-08-31, the existing integer and rational Chapter II owners were re-inspected to keep the Landau crosswalk honest without broadening scope: `Integers/Constructions/QuotientOrderedPairs/Laws.lean` already exposes quotient-level additive/distributive theorem stubs, and `RationalNumbers/Constructions/RationalQuotientFractions/Laws.lean` already exposes additive-group, field, strict-total-order, and ordered-field artifacts. That owner inspection does not clear the gate. Integer/rational construction alignment is still gated by the canonical algebraic queue because `as-31` `IntegralDomain` and `as-34` `OrderedField` are not yet marked `done` or explicitly sufficient for this phase. A cross-workstream documentation mismatch also remains on 2026-08-31: `docs/algebraic-structures-repair/status.md` says `as-21 = not_started`, `as-22 = reorg_in_progress`, and `as-25 = reorg_in_progress`, while `docs/algebraic-structures-repair/ledger.json` says `as-21 = reorg_in_progress`, `as-22 = reorg_in_progress` with note text that actually describes `OrderedSemiring`, and `as-25 = not_started`."
+    },
+    {
+      "id": "chunk-03-cuts-and-real-models",
+      "title": "Stabilize cuts and real model-theory surfaces",
+      "status": "todo",
+      "owner_doc": "docs/landau-satisfaction/chunks/chunk-03-cuts-and-real-models.md",
+      "notes": "Plan-mode chunk 3. Covers Landau Chapter III and the OrderedField/CompleteOrderedField endpoint."
+    },
+    {
+      "id": "chunk-04-real-number-operations-and-laws",
+      "title": "Populate real-number algebra and order theorems",
+      "status": "todo",
+      "owner_doc": "docs/landau-satisfaction/chunks/chunk-04-real-number-operations-and-laws.md",
+      "notes": "Plan-mode chunk 4. Covers Landau Chapter IV."
+    },
+    {
+      "id": "chunk-05-ua-and-crosswalk-sync",
+      "title": "Finish UA surfaces and synchronize theorem ownership docs",
+      "status": "todo",
+      "owner_doc": "docs/landau-satisfaction/chunks/chunk-05-ua-and-crosswalk-sync.md",
+      "notes": "Plan-mode chunk 5. Synchronization of Chapters I–IV after the scalar chain is populated."
     }
   ]
 }

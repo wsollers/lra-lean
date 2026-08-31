@@ -40,10 +40,18 @@ noncomputable def LandauAdditionBaseLawExports
     LRA.Operation.Addition.BaseLawExports Element where
   realization := LandauAdditionRealization model
   associative := LandauAdditionIsAssociative model
+
+/-- Landau naturals also export additive commutativity at the generic
+operation layer. -/
+noncomputable def LandauAdditionCommutativeLawExports
+    (model : PeanoSystem Element SetObject) :
+    LRA.Operation.Addition.CommutativeLawExports Element where
+  base := LandauAdditionBaseLawExports model
   commutative := LandauAdditionIsCommutative model
 
 /-- Phase 2 concrete pilot: Landau naturals discharge the baseline generic
-addition law bundle. -/
+addition law bundle, plus the optional commutativity package available at this
+layer. -/
 noncomputable abbrev landauAdditionSatisfiesGeneric
     (model : PeanoSystem Element SetObject) :
     LRA.Operation.Addition.LawExports Element :=

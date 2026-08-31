@@ -2,6 +2,11 @@ import LRA.Operation.Addition.Definition
 import LRA.Operation.Addition.Existence
 import LRA.Operation.Addition.Uniqueness
 import LRA.Operation.Addition.Realization
+import LRA.Operation.Addition.Interface.Signature.Definition
+import LRA.Operation.Addition.Interface.ModelTheory.LStructure
+import LRA.Operation.Addition.Interface.ModelTheory.Theory
+import LRA.Operation.Addition.Interface.ModelTheory.Model
+import LRA.Operation.Addition.Interface.UniversalAlgebra.Signature.Definition
+import LRA.Operation.Addition.Interface.UniversalAlgebra.Satisfy_Generic
 import LRA.Operation.Addition.Laws
 import LRA.Operation.Addition.Theorems
-

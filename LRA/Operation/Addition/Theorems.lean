@@ -15,10 +15,10 @@ theorem BaseLawExports.associative_law {Carrier : Type u}
     LRA.Operation.Laws.Associative.Associative laws.realization.spec.add :=
   laws.associative
 
-/-- Accessor theorem for the baseline addition commutativity export. -/
-theorem BaseLawExports.commutative_law {Carrier : Type u}
-    (laws : BaseLawExports Carrier) :
-    LRA.Operation.Laws.Commutative.Commutative laws.realization.spec.add :=
+/-- Accessor theorem for the optional addition commutativity export. -/
+theorem CommutativeLawExports.commutative_law {Carrier : Type u}
+    (laws : CommutativeLawExports Carrier) :
+    LRA.Operation.Laws.Commutative.Commutative laws.base.realization.spec.add :=
   laws.commutative
 
 /-- Accessor theorem for the addition identity witness export. -/

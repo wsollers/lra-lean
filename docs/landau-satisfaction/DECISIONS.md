@@ -143,6 +143,106 @@ phase documents unless superseded here.
 - `LRA/Operation/Addition/*` and `LRA/Operation/Multiplication/*` may import
   these later bridges but may not own mixed-law definitions directly.
 
+### D0.14 Baseline versus optional law symmetry
+
+- `Addition` and `Multiplication` must stay structurally symmetric about which
+  exported laws are baseline versus optional unless a later decision records an
+  explicit reason to diverge.
+- Baseline unary law exports should contain only the minimum law package needed
+  to represent the operator generically.
+- Operator families that can be present or absent across concrete realizations,
+  such as commutativity, must be exported through separate optional bundles
+  rather than baked into `BaseLawExports`.
+
+### D0.15 Canonical tracker split
+
+- `docs/algebraic-structures-repair/*` remains the canonical queue for
+  subject-by-subject work inside `LRA/AlgebraicStructures/*`.
+- `docs/landau-satisfaction/*` is the canonical orchestrator for the combined
+  scalar-chain buildout across `LRA/Operation/*`,
+  `LRA/AlgebraicStructures/*`, `LRA/NumberSystems/*`, and
+  `LRA/UniversalAlgebra/*`.
+- This workspace may summarize the relevant algebraic-structure dependencies by
+  `as-*` id, but it should not fork a second independent per-structure ledger.
+
+### D0.16 Scalar-chain algebraic-structure scope
+
+- The scalar arithmetic chain depends primarily on these algebraic-structure
+  subjects from `docs/algebraic-structures-repair/ledger.json`:
+  - `as-18` `Semiring`
+  - `as-19` `AbelianGroup`
+  - `as-20` `OrderedGroup`
+  - `as-22` `CommutativeSemiring`
+  - `as-23` `CommutativeSemiringWithoutZero`
+  - `as-24` `Ring`
+  - `as-25` `OrderedSemiring`
+  - `as-26` `LinearlyOrderedGroup`
+  - `as-27` `CommutativeRing`
+  - `as-28` `NontrivialRing`
+  - `as-29` `OrderedRing`
+  - `as-30` `DivisionRing`
+  - `as-31` `IntegralDomain`
+  - `as-32` `LinearlyOrderedRing`
+  - `as-33` `Field`
+  - `as-34` `OrderedField`
+  - `as-35` `CompleteOrderedField`
+- `as-21` `BooleanAlgebra` belongs to the broader algebraic-structures queue
+  but is not on the critical path for the scalar arithmetic number-system
+  interfaces in this plan.
+- `as-06` `Archimedean` and `as-07` `DiscreteInteger` remain relevant side
+  inputs for the ordered-number-system portion of the scalar chain.
+
+### D0.17 Cross-workstream sequencing rule
+
+- A Landau phase that consumes a scalar-chain algebraic structure may advance
+  only when the relevant upstream `as-*` subject has either:
+  - status `done`, or
+  - an explicit recorded exception saying the required interface files already
+    exist and do not need further rework for that phase.
+- Phase 3 is where the remaining scalar-chain
+  `AlgebraicStructures/*/Interface/ModelTheory/*` surfaces are aligned with the
+  new operator layer.
+- Phase 6 is where the remaining scalar-chain
+  `AlgebraicStructures/*/Interface/UniversalAlgebra/*` surfaces and UA
+  restatements are synchronized with the operator and number-system work.
+
+### D0.18 Landau theorem scope for this workspace
+
+- This workspace covers the scalar Landau chain through Chapter IV:
+  - Chapter I `Natural Numbers` (Theorems 1–36)
+  - Chapter II `Fractions` / rationals (Theorems 37–115)
+  - Chapter III `Cuts` / real construction (Theorems 116–162)
+  - Chapter IV `Real Numbers` (Theorems 163–205)
+- This workspace stops at the algebraic endpoint
+  `LRA.AlgebraicStructures.CompleteOrderedField`.
+- Chapter V `Complex Numbers` (Theorems 206–228) is not on this workspace's
+  critical path and should not be used to delay scalar-chain completion.
+
+### D0.19 Proof placeholder policy for this track
+
+- New theorem bodies and new proof-carrying `instance` declarations introduced
+  by this workstream are intentionally left as `sorry` for the user to prove.
+- This applies across `LRA/Operation/*`, `LRA/AlgebraicStructures/*`,
+  `LRA/NumberSystems/*`, and `LRA/UniversalAlgebra/*` when work is being done
+  under this Landau-satisfaction plan.
+- Definitions, routers, structure declarations, placement files, and other
+  non-proof scaffolding should remain sorry-free where possible.
+- This policy should be read in coordination with
+  `docs/algebraic-structures-repair/DECISIONS.md` D8.
+
+### D0.20 Chunk-first orchestration
+
+- The execution unit for plan-mode orchestration is a chunk under
+  `docs/landau-satisfaction/chunks/`, not an entire phase.
+- Each chunk must name:
+  - the theorem band in scope
+  - the algebraic-structure prerequisites by `as-*` id
+  - the operator / model-theory / UA files to touch
+  - the success gates to run before the chunk can be marked complete
+- Chunks must be ordered so that a dropped session can resume from
+  `status.md`, `ledger.json`, and the current chunk file without reconstructing
+  hidden context from chat history.
+
 ## Deferred Decisions
 
 - Whether the top-level `LANDAU-SATISFACTION-PLAN.md` should be renamed or moved

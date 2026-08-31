@@ -172,7 +172,8 @@ Required form:
 The current accepted Phase 2 baseline is:
 
 - `Addition/Laws.lean` exports separate packages for:
-  - baseline unary laws: associativity, commutativity
+  - baseline unary laws: associativity
+  - optional commutativity
   - identity-witness laws
   - inverse-witness laws
   - optional idempotence

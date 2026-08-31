@@ -15,7 +15,11 @@ universe u
 structure BaseLawExports (Carrier : Type u) where
   realization : Realization Carrier
   associative : LRA.Operation.Laws.Associative.Associative realization.spec.add
-  commutative : LRA.Operation.Laws.Commutative.Commutative realization.spec.add
+
+/-- Optional addition commutativity export. -/
+structure CommutativeLawExports (Carrier : Type u) where
+  base : BaseLawExports Carrier
+  commutative : LRA.Operation.Laws.Commutative.Commutative base.realization.spec.add
 
 /-- Addition identity export package using the canonical identity predicate. -/
 structure IdentityLawExports (Carrier : Type u) where
