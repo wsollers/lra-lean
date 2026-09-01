@@ -17,7 +17,7 @@ import LRA.AlgebraicStructures.DistributiveLattice.Interface.Laws
 import LRA.AlgebraicStructures.DivisionRing.Laws
 import LRA.AlgebraicStructures.Field.Laws
 import LRA.AlgebraicStructures.Group.Interface.Laws
-import LRA.AlgebraicStructures.IntegralDomain.Laws
+import LRA.AlgebraicStructures.IntegralDomain.Interface.Laws
 import LRA.AlgebraicStructures.JoinSemilattice.Interface.Laws
 import LRA.AlgebraicStructures.Lattice.Interface.Laws
 import LRA.AlgebraicStructures.LinearlyOrderedGroup.Laws

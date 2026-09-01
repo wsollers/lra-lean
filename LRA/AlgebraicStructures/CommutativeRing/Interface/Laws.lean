@@ -1,0 +1,1 @@
+import LRA.AlgebraicStructures.CommutativeRing.Interface.Laws.Definition

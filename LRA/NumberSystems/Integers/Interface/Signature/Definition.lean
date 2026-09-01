@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.OrderedRing.Interface.Signature.Definition
+import LRA.AlgebraicStructures.OrderedRing.Interface.Definitions.Signature
 
 namespace LRA.NumberSystems.Integers.Interface.Signature
 

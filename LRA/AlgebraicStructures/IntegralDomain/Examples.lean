@@ -1,5 +1,3 @@
-import LRA.AlgebraicStructures.IntegralDomain
-
-namespace LRA.AlgebraicStructures
-
-end LRA.AlgebraicStructures
+import LRA.AlgebraicStructures.IntegralDomain.Examples.Integers
+import LRA.AlgebraicStructures.IntegralDomain.Examples.Rationals
+import LRA.AlgebraicStructures.IntegralDomain.Examples.Reals

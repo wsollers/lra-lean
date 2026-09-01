@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.CommutativeRing.Interface.Signature.Definition
+import LRA.AlgebraicStructures.CommutativeRing.Interface.Definitions.Signature
 
 namespace LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory
 

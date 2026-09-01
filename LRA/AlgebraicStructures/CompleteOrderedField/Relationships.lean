@@ -1,6 +1,0 @@
-import LRA.AlgebraicStructures.CompleteOrderedField.Laws.Definition
-import LRA.AlgebraicStructures.CompleteOrderedField.Interface.ModelTheory.Model
-
-namespace LRA.AlgebraicStructures
-
-end LRA.AlgebraicStructures

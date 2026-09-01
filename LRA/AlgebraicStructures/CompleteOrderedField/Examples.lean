@@ -1,5 +1,1 @@
-import LRA.AlgebraicStructures.CompleteOrderedField
-
-namespace LRA.AlgebraicStructures
-
-end LRA.AlgebraicStructures
+import LRA.AlgebraicStructures.CompleteOrderedField.Examples.Reals

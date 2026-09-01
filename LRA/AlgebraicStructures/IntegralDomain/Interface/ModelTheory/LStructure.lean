@@ -1,5 +1,5 @@
 import LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory.Model
-import LRA.AlgebraicStructures.IntegralDomain.Interface.Signature.Definition
+import LRA.AlgebraicStructures.IntegralDomain.Interface.Definitions
 
 namespace LRA.AlgebraicStructures.IntegralDomain.Interface.ModelTheory
 

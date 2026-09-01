@@ -1,2 +1,1 @@
-import LRA.AlgebraicStructures.DivisionRing.Laws.Definition
-import LRA.AlgebraicStructures.DivisionRing.Laws.Consequences
+import LRA.AlgebraicStructures.DivisionRing.Interface.Laws

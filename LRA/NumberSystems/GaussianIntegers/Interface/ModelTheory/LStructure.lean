@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.IntegralDomain.Interface.ModelTheory.Model
+import LRA.AlgebraicStructures.IntegralDomain.Interface.ModelTheory
 import LRA.NumberSystems.GaussianIntegers.Interface.Signature.Definition
 import LRA.NumberSystems.Integers.Constructions.Polish
 import LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs

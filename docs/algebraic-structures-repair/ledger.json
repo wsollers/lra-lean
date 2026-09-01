@@ -543,10 +543,16 @@
       "depends_on": [
         "OrderedGroup"
       ],
-      "status": "not_started",
+      "status": "done",
       "validator_path": "LRA/AlgebraicStructures/LinearlyOrderedGroup",
       "build_target": "LRA.AlgebraicStructures.LinearlyOrderedGroup",
-      "notes": []
+      "notes": [
+        "Audit completed 2026-08-31: the existing `LinearlyOrderedGroupLaws` bundle is correct as-is (`GroupLaws R`, `LRA.Order.LinearOrderLaws R`, and `MultiplicativeOrderCompatibilityLaws R`), matching the intended total-order ordered-group contract without adding axioms or changing the established architecture.",
+        "Queue-local reorg completed 2026-08-31 with no compat/shim layer left behind: added `LinearlyOrderedGroup/Interface.lean` plus `Interface/{Definitions,Laws}` owners, retargeted the top-level subject and `Laws.lean` routers directly to those interface owners, added subject-local `Constructions` and `Examples` barrels, and deleted the legacy duplicate owner/stub files rather than leaving forwarding wrappers.",
+        "Added subject-local `Constructions/Mathlib/Laws.lean` with `instance {R : Type u} [_root_.CommGroup R] [_root_.LinearOrder R] [_root_.IsOrderedMonoid R] [Nonempty R] : LinearlyOrderedGroupLaws R := by sorry`, keeping the bridge local to the subject and proof-bearing as `sorry` per D8.",
+        "Added direct examples for `Multiplicative Int`, `Multiplicative Rat`, and `Multiplicative Real`; the `Int` and `Rat` witnesses remain `by sorry` because this Mathlib snapshot does not expose the exact `inferInstance` route there, while `Real` is routed through the subject-local bridge.",
+        "Re-verified 2026-08-31: `python scripts/validate_structure.py --path LRA/AlgebraicStructures/LinearlyOrderedGroup`, `lake build LRA.AlgebraicStructures.LinearlyOrderedGroup`, `lake build LRA.VolumeVICore`, and `lake build LRA.VolumeVIExamplesFailures` all pass."
+      ]
     },
     {
       "id": "as-27",
@@ -556,10 +562,17 @@
         "CommutativeSemigroup",
         "Ring"
       ],
-      "status": "not_started",
+      "status": "done",
       "validator_path": "LRA/AlgebraicStructures/CommutativeRing",
       "build_target": "LRA.AlgebraicStructures.CommutativeRing",
-      "notes": []
+      "notes": [
+        "Audit completed 2026-09-01: the existing `CommutativeRingLaws` bundle is correct as-is (ring + multiplicative commutativity), matching the intended commutative-ring contract without adding axioms or changing the established architecture.",
+        "Queue-local reorg completed 2026-09-01 with no compat/shim layer left behind: added `CommutativeRing/Interface.lean` plus `Interface/{Definitions,Laws,ModelTheory}` barrels, moved the concept-signature owner to `Interface/Definitions/ConceptSignature.lean`, moved the first-order signature owner to `Interface/Definitions/Signature.lean`, retargeted CommutativeRing's own barrels and direct consumers in `Field`, `IntegralDomain`, `MathlibAdapters`, `MathlibBridge`, `Set/Interop/AlgebraicRing`, and `VolumeVIExamplesFailures`, and deleted the legacy duplicate owner/stub files rather than leaving forwarding wrappers.",
+        "Added subject-local `Constructions/Mathlib/Laws.lean` with `instance {R : Type u} [_root_.CommRing R] [Nonempty R] : CommutativeRingLaws R := by sorry`, following the per-subject bridge pattern and D8's rule against proved bridge glue.",
+        "Removed the stale shared `CommutativeRingLaws` bridge instance from `LRA/AlgebraicStructures/MathlibBridge.lean` rather than leaving parallel bridge surfaces behind.",
+        "Added direct examples for `Int`, `Rat`, and `Real`; no wrapper carriers, compat shims, or duplicate owner surfaces were introduced.",
+        "Re-verified 2026-09-01: `python scripts/validate_structure.py --path LRA/AlgebraicStructures/CommutativeRing`, `lake build LRA.AlgebraicStructures.CommutativeRing`, `lake build LRA.VolumeVICore`, and `lake build LRA.VolumeVIExamplesFailures` all pass."
+      ]
     },
     {
       "id": "as-28",
@@ -568,10 +581,17 @@
       "depends_on": [
         "Ring"
       ],
-      "status": "not_started",
+      "status": "done",
       "validator_path": "LRA/AlgebraicStructures/NontrivialRing",
       "build_target": "LRA.AlgebraicStructures.NontrivialRing",
-      "notes": []
+      "notes": [
+        "Audit completed 2026-09-01: the existing `NontrivialRingLaws` bundle is correct as-is (`RingLaws R` plus `NontrivialityLaw R`), matching the intended nontrivial-ring contract without adding axioms or changing the established architecture.",
+        "Queue-local reorg completed 2026-09-01 with no compat/shim layer left behind: added `NontrivialRing/Interface.lean` plus `Interface/{Definitions,Laws}` barrels, moved the concept-signature owner to `Interface/Definitions/ConceptSignature.lean`, moved the law owner to `Interface/Laws/Definition.lean`, retargeted `NontrivialRing`'s own barrels and direct consumers in `DivisionRing` and `IntegralDomain`, and deleted the legacy duplicate owner/stub files rather than leaving forwarding wrappers.",
+        "Added subject-local `Constructions/Mathlib/Laws.lean` with `instance {R : Type u} [_root_.Ring R] [_root_.NeZero (1 : R)] [Nonempty R] : NontrivialRingLaws R := by sorry`, following the per-subject bridge pattern and D8's rule against proved bridge glue.",
+        "Removed the stale shared `NontrivialityLaw` bridge instance from `LRA/AlgebraicStructures/MathlibBridge.lean` and imported the subject-local bridge there instead, so later shared consumers still see the canonical surface without parallel bridge ownership.",
+        "Added direct examples for `Int`, `Rat`, and `Matrix (Fin (n + 1)) (Fin (n + 1)) Real`; the matrix example deliberately uses nonempty square matrices so the witness stays genuinely nontrivial.",
+        "Re-verified 2026-09-01: `python scripts/validate_structure.py --path LRA/AlgebraicStructures/NontrivialRing`, `lake build LRA.AlgebraicStructures.NontrivialRing`, `lake build LRA.VolumeVICore`, and `lake build LRA.VolumeVIExamplesFailures` all pass."
+      ]
     },
     {
       "id": "as-29",
@@ -580,10 +600,16 @@
       "depends_on": [
         "Ring"
       ],
-      "status": "not_started",
+      "status": "done",
       "validator_path": "LRA/AlgebraicStructures/OrderedRing",
       "build_target": "LRA.AlgebraicStructures.OrderedRing",
-      "notes": []
+      "notes": [
+        "Audit completed 2026-08-31: the existing `OrderedRingLaws` bundle is correct as-is (`RingLaws R`, `LRA.Order.PartialOrderLaws R`, `LRA.Order.AdditionRespectsOrderLaws R`, and `LRA.Order.MultiplicationRespectsOrderLaws R`), matching the intended ordered-ring contract without adding axioms or changing the established architecture.",
+        "Queue-local reorg completed 2026-08-31 with no compat/shim layer left behind: added `OrderedRing/Interface.lean` plus `Interface/{Definitions,Laws,ModelTheory}` barrels, moved the concept-signature owner to `Interface/Definitions/ConceptSignature.lean`, moved the first-order signature owner to `Interface/Definitions/Signature.lean`, retargeted `OrderedRing`'s own routers plus direct consumers in `LinearlyOrderedRing`, `NumberSystems/Integers.Interface.Signature`, and `VolumeVIExamplesFailures`, and deleted the legacy duplicate owner/stub files rather than leaving forwarding wrappers.",
+        "Added subject-local `Constructions/Mathlib/Laws.lean` with `instance {R : Type u} [_root_.Ring R] [_root_.PartialOrder R] [_root_.IsOrderedRing R] [Nonempty R] : OrderedRingLaws R := by sorry`, following the per-subject bridge pattern and D8's rule against proved bridge glue.",
+        "Added direct examples for `Int`, `Rat`, and `Real`; no wrapper carriers, compat shims, or duplicate owner surfaces were introduced.",
+        "Re-verified 2026-08-31: `python scripts/validate_structure.py --path LRA/AlgebraicStructures/OrderedRing`, `lake build LRA.AlgebraicStructures.OrderedRing`, `lake build LRA.VolumeVICore`, and `lake build LRA.VolumeVIExamplesFailures` all pass. Minimal extra consumer verification also passes for `lake build LRA.AlgebraicStructures.LinearlyOrderedRing` and `lake build LRA.NumberSystems.Integers.Interface.Signature.Definition`."
+      ]
     },
     {
       "id": "as-30",
@@ -592,10 +618,17 @@
       "depends_on": [
         "NontrivialRing"
       ],
-      "status": "not_started",
+      "status": "done",
       "validator_path": "LRA/AlgebraicStructures/DivisionRing",
       "build_target": "LRA.AlgebraicStructures.DivisionRing",
-      "notes": []
+      "notes": [
+        "Audit completed 2026-09-01: the existing `DivisionRingLaws` bundle is correct as-is (`RingLaws R`, `NontrivialityLaw R`, and `MultiplicativeInverseLaws R`), matching the intended division-ring contract in this tree without adding axioms or silently folding the separate `DivisionCompatibilityLaw` into the combined class.",
+        "Queue-local reorg completed 2026-09-01 with no compat/shim layer left behind: added `DivisionRing/Interface.lean` plus `Interface/{Definitions,Laws,ModelTheory}` barrels, moved the concept-signature owner to `Interface/Definitions/ConceptSignature.lean`, moved the first-order signature owner to `Interface/Definitions/Signature.lean`, retargeted `DivisionRing`'s own routers plus direct `Field` consumers, and deleted the legacy duplicate owner/stub files rather than leaving forwarding wrappers.",
+        "Fixed a real structural ownership bug during the reorg: `DivisionRingConceptSignature` no longer aliases `FieldConceptSignature` from the later `as-33` subject; `DivisionRing` now owns its own inverse-bearing ring concept signature directly, preserving the queue boundary and avoiding duplicate owner surfaces.",
+        "Added subject-local `Constructions/Mathlib/Laws.lean` with `instance {R : Type u} [_root_.DivisionRing R] [Nonempty R] : DivisionRingLaws R := by sorry`, keeping the bridge local to the subject and proof-bearing as `sorry` per D8.",
+        "Added direct examples for `Rat`, `Real`, and `ℍ[Real]`; the quaternion example gives a genuine noncommutative division-ring witness without introducing a wrapper carrier, compat shim, or duplicate ownership.",
+        "Re-verified 2026-09-01: `python scripts/validate_structure.py --path LRA/AlgebraicStructures/DivisionRing`, `lake build LRA.AlgebraicStructures.DivisionRing`, `lake build LRA.AlgebraicStructures.Field`, `lake build LRA.VolumeVICore`, and `lake build LRA.VolumeVIExamplesFailures` all pass."
+      ]
     },
     {
       "id": "as-31",
@@ -605,10 +638,17 @@
         "CommutativeRing",
         "NontrivialRing"
       ],
-      "status": "not_started",
+      "status": "done",
       "validator_path": "LRA/AlgebraicStructures/IntegralDomain",
       "build_target": "LRA.AlgebraicStructures.IntegralDomain",
-      "notes": []
+      "notes": [
+        "Audit completed 2026-08-31: the existing `IntegralDomainLaws` bundle is correct as-is (`CommutativeRingLaws R`, `NontrivialityLaw R`, and `NoZeroDivisorsLaw R`), matching the intended integral-domain contract without adding axioms or changing the established architecture.",
+        "Queue-local reorg completed 2026-08-31 with no compat/shim layer left behind: added `IntegralDomain/Interface.lean` plus `Interface/{Definitions,Laws,ModelTheory}` barrels, moved the concept-signature owner to `Interface/Definitions/ConceptSignature.lean`, moved the first-order signature owner to `Interface/Definitions/Signature.lean`, moved the law owner to `Interface/Laws/Definition.lean`, retargeted `IntegralDomain`'s own routers plus direct consumers in `GaussianIntegers`, `Integers.Interface.ModelTheory`, `VolumeVICore`, and `VolumeVIExamplesFailures`, and deleted the legacy duplicate owner/stub files rather than leaving forwarding wrappers.",
+        "Added subject-local `Constructions/Mathlib/Laws.lean` with `instance {R : Type u} [_root_.CommRing R] [_root_.IsDomain R] [Nonempty R] : IntegralDomainLaws R := by sorry`, following the per-subject bridge pattern and D8's rule against proved bridge glue.",
+        "Removed the stale shared `IntegralDomainLaws` bridge instance from `LRA/AlgebraicStructures/MathlibBridge.lean` rather than leaving parallel bridge surfaces behind.",
+        "Added direct examples for `Int`, `Rat`, and `Real`; no wrapper carriers, compat shims, or duplicate owner surfaces were introduced.",
+        "Re-verified 2026-08-31: `python scripts/validate_structure.py --path LRA/AlgebraicStructures/IntegralDomain`, `lake build LRA.AlgebraicStructures.IntegralDomain`, `lake build LRA.VolumeVICore`, and `lake build LRA.VolumeVIExamplesFailures` all pass."
+      ]
     },
     {
       "id": "as-32",
@@ -617,10 +657,16 @@
       "depends_on": [
         "OrderedRing"
       ],
-      "status": "not_started",
+      "status": "done",
       "validator_path": "LRA/AlgebraicStructures/LinearlyOrderedRing",
       "build_target": "LRA.AlgebraicStructures.LinearlyOrderedRing",
-      "notes": []
+      "notes": [
+        "Audit completed 2026-08-31: the existing `LinearlyOrderedRingLaws` bundle is correct as-is (`RingLaws R`, `LRA.Order.LinearOrderLaws R`, `LRA.Order.AdditionRespectsOrderLaws R`, and `LRA.Order.MultiplicationRespectsOrderLaws R`), matching the intended linearly ordered ring contract without adding axioms or changing the established architecture.",
+        "Queue-local reorg completed 2026-08-31 with no compat/shim layer left behind: added `LinearlyOrderedRing/Interface.lean` plus `Interface/{Definitions,Laws}` barrels, moved the concept-signature owner to `Interface/Definitions/ConceptSignature.lean`, retargeted `LinearlyOrderedRing`'s own routers to the interface owners, and deleted the legacy duplicate owner/stub files rather than leaving forwarding wrappers.",
+        "Added subject-local `Constructions/Mathlib/Laws.lean` with `instance {R : Type u} [_root_.Ring R] [_root_.LinearOrder R] [_root_.IsStrictOrderedRing R] [Nonempty R] : LinearlyOrderedRingLaws R := by sorry`, keeping the bridge local to the subject and proof-bearing as `sorry` per D8.",
+        "Added direct examples for `Int`, `Rat`, and `Real`; no wrapper carriers, compat shims, or duplicate owner surfaces were introduced.",
+        "Re-verified 2026-08-31: `python scripts/validate_structure.py --path LRA/AlgebraicStructures/LinearlyOrderedRing`, `lake build LRA.AlgebraicStructures.LinearlyOrderedRing`, `lake build LRA.VolumeVICore`, and `lake build LRA.VolumeVIExamplesFailures` all pass."
+      ]
     },
     {
       "id": "as-33",
@@ -630,10 +676,18 @@
         "DivisionRing",
         "CommutativeRing"
       ],
-      "status": "not_started",
+      "status": "done",
       "validator_path": "LRA/AlgebraicStructures/Field",
       "build_target": "LRA.AlgebraicStructures.Field",
-      "notes": []
+      "notes": [
+        "Audit completed 2026-08-31: the existing `FieldLaws` bundle is correct as-is (`DivisionRingLaws R` and `MultiplicativeCommutativeLaws R`), matching the intended field contract without adding axioms or changing the established architecture.",
+        "Queue-local reorg completed 2026-08-31 with no compat/shim layer left behind: added `Field/Interface.lean` plus `Interface/{Definitions,Laws,ModelTheory}` barrels, moved the concept-signature owner to `Interface/Definitions/ConceptSignature.lean`, moved the first-order signature owner to `Interface/Definitions/Signature.lean`, moved the law owner to `Interface/Laws/Definition.lean`, retargeted `Field`'s own routers plus direct consumers in `OrderedField`, `MathlibAdapters`, `MathlibBridge`, `ComplexNumbers`, and `VolumeVIExamplesFailures`, and deleted the legacy duplicate owner/stub files rather than leaving forwarding wrappers.",
+        "Added subject-local `Constructions/Mathlib/Laws.lean` with `instance {R : Type u} [_root_.Field R] [Nonempty R] : FieldLaws R := by sorry`, following the per-subject bridge pattern and D8's rule against proved bridge glue.",
+        "Removed the stale shared `FieldLaws` bridge instance from `LRA/AlgebraicStructures/MathlibBridge.lean` rather than leaving parallel bridge surfaces behind.",
+        "Added direct examples for `Rat`, `Real`, and `Complex`; no wrapper carriers, compat shims, or duplicate owner surfaces were introduced.",
+        "A required downstream build exposed an import leak in `LRA/AlgebraicStructures/DivisionRing/Examples/Quaternions.lean` after the minimal cycle-breaking import cleanup in `DivisionRing/Constructions/Mathlib/Laws.lean`; fixed it with the smallest direct `Mathlib.Data.Real.Basic` import, without reopening completed `DivisionRing` structure work.",
+        "Re-verified 2026-08-31: `python scripts/validate_structure.py --path LRA/AlgebraicStructures/Field`, `lake build LRA.AlgebraicStructures.Field`, `lake build LRA.VolumeVICore`, `lake build LRA.VolumeVIExamplesFailures`, `lake build LRA.AlgebraicStructures.OrderedField`, `lake build LRA.AlgebraicStructures.MathlibBridge`, `lake build LRA.AlgebraicStructures.MathlibAdapters`, and `lake build LRA.NumberSystems.ComplexNumbers.Interface.ModelTheory.LStructure` all pass."
+      ]
     },
     {
       "id": "as-34",
@@ -642,10 +696,17 @@
       "depends_on": [
         "Field"
       ],
-      "status": "not_started",
+      "status": "done",
       "validator_path": "LRA/AlgebraicStructures/OrderedField",
       "build_target": "LRA.AlgebraicStructures.OrderedField",
-      "notes": []
+      "notes": [
+        "Audit completed 2026-09-01: `OrderedFieldLaws` now reads as `FieldLaws R`, `LRA.Order.LinearOrderLaws R`, `LRA.Order.AdditionRespectsOrderLaws R`, and `LRA.Order.MultiplicationRespectsOrderLaws R`, matching the intended ordered-field contract without adding axioms or reopening lower-tier substance.",
+        "Queue-local reorg completed 2026-09-01 with no compat/shim layer left behind: added `OrderedField/Interface.lean` plus `Interface/{Definitions,Laws,ModelTheory}` barrels, moved the concept-signature owner to `Interface/Definitions/ConceptSignature.lean`, moved the first-order signature owner to `Interface/Definitions/Signature.lean`, moved the law owner to `Interface/Laws/Definition.lean`, added `Constructions` and `Examples` barrels, and deleted the legacy duplicate owner/stub files rather than leaving forwarding wrappers.",
+        "Added subject-local `Constructions/Mathlib/Laws.lean` with `instance {R : Type u} [_root_.Field R] [_root_.LinearOrder R] [_root_.IsStrictOrderedRing R] [Nonempty R] : OrderedFieldLaws R := by sorry`, following the per-subject bridge pattern and D8's rule against proved bridge glue.",
+        "Added direct examples for `Rat` and `Real`; no wrapper carriers, compat shims, or duplicate owner surfaces were introduced.",
+        "Retargeted only the minimal direct consumers exposed by the owner move: `CompleteOrderedField`, `MathlibBridge`, `RationalNumbers`, `RealNumbers`, and `VolumeVIExamplesFailures`.",
+        "Re-verified 2026-09-01: `python scripts/validate_structure.py --path LRA/AlgebraicStructures/OrderedField`, `lake build LRA.AlgebraicStructures.OrderedField`, `lake build LRA.VolumeVICore`, `lake build LRA.VolumeVIExamplesFailures`, `lake build LRA.AlgebraicStructures.CompleteOrderedField`, `lake build LRA.AlgebraicStructures.MathlibBridge`, `lake build LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.Model`, and `lake build LRA.NumberSystems.RealNumbers.Interface.ModelTheory.Model` all pass."
+      ]
     },
     {
       "id": "as-35",
@@ -654,11 +715,16 @@
       "depends_on": [
         "OrderedField"
       ],
-      "status": "not_started",
+      "status": "done",
       "validator_path": "LRA/AlgebraicStructures/CompleteOrderedField",
       "build_target": "LRA.AlgebraicStructures.CompleteOrderedField",
       "notes": [
-        "Uses def/abbrev Prop, not class abbrev — flagged in DECISIONS.md D6"
+        "Audit completed 2026-09-01: `CompleteOrderedFieldLaws` stays the established conjunction `OrderedFieldLaws R ∧ OrderCompletenessLaws R SetObject`, matching this tree's intended complete-ordered-field contract without converting it into a class abbrev or adding axioms.",
+        "Queue-local reorg completed 2026-09-01 with no compat/shim layer left behind: added `CompleteOrderedField/Interface.lean` plus `Interface/{Definitions,Laws,ModelTheory}` barrels, moved the concept-signature owner to `Interface/Definitions/ConceptSignature.lean`, moved the first-order signature owner to `Interface/Definitions/Signature.lean`, moved the law owner to `Interface/Laws/Definition.lean`, added `Constructions` and `Examples` barrels, and deleted the legacy duplicate owner/stub files rather than leaving forwarding wrappers.",
+        "Added subject-local `Constructions/Mathlib/Laws.lean` with `theorem ofConditionallyCompleteLinearOrder {R : Type u} [_root_.Field R] [_root_.ConditionallyCompleteLinearOrder R] [_root_.IsStrictOrderedRing R] [Nonempty R] : CompleteOrderedFieldLaws R (Set R) := by sorry`, keeping the bridge local to the subject and proof-bearing as `sorry` per D8. This remained a theorem rather than an instance because `CompleteOrderedFieldLaws` is a plain `abbrev` conjunction, not a typeclass surface.",
+        "Added a direct `Real` example routed through the subject-local bridge theorem and the local completeness witness import, with no wrapper carriers, compat shims, or duplicate owner surfaces introduced.",
+        "Retargeted only the minimal direct consumers exposed by the owner move: `LRA.AlgebraicStructures.MathlibBridge` and `LRA.VolumeVIExamplesFailures`.",
+        "Re-verified 2026-09-01: `python scripts/validate_structure.py --path LRA/AlgebraicStructures/CompleteOrderedField`, `lake build LRA.AlgebraicStructures.CompleteOrderedField`, `lake build LRA.VolumeVICore`, and `lake build LRA.VolumeVIExamplesFailures` all pass."
       ]
     }
   ]

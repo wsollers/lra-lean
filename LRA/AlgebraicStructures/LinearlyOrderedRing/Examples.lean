@@ -1,5 +1,3 @@
-import LRA.AlgebraicStructures.LinearlyOrderedRing.Definition
-
-namespace LRA.AlgebraicStructures
-
-end LRA.AlgebraicStructures
+import LRA.AlgebraicStructures.LinearlyOrderedRing.Examples.Integers
+import LRA.AlgebraicStructures.LinearlyOrderedRing.Examples.Rationals
+import LRA.AlgebraicStructures.LinearlyOrderedRing.Examples.Reals

@@ -1,6 +1,3 @@
-import LRA.AlgebraicStructures.NontrivialRing.Definition
-import LRA.AlgebraicStructures.NontrivialRing.Laws
-import LRA.AlgebraicStructures.NontrivialRing.Theorems
-import LRA.AlgebraicStructures.NontrivialRing.Characterizations
-import LRA.AlgebraicStructures.NontrivialRing.Consequences
-import LRA.AlgebraicStructures.NontrivialRing.Relationships
+import LRA.AlgebraicStructures.NontrivialRing.Interface
+import LRA.AlgebraicStructures.NontrivialRing.Constructions
+import LRA.AlgebraicStructures.NontrivialRing.Examples

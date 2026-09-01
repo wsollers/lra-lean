@@ -1,5 +1,5 @@
 import LRA.NumberSystems.Integers.Interface.ModelTheory.Theory
-import LRA.AlgebraicStructures.IntegralDomain.Laws.Definition
+import LRA.AlgebraicStructures.IntegralDomain.Interface.Laws.Definition
 import LRA.Order.Laws.LinearOrder.Definition
 import LRA.Order.Laws.StrictOrderCompatibility.Definition
 import LRA.Order.Laws.OperationCompatibility.Definition

@@ -1,5 +1,2 @@
-import LRA.AlgebraicStructures.OrderedField
-
-namespace LRA.AlgebraicStructures
-
-end LRA.AlgebraicStructures
+import LRA.AlgebraicStructures.OrderedField.Examples.Rationals
+import LRA.AlgebraicStructures.OrderedField.Examples.Reals

@@ -1,0 +1,1 @@
+import LRA.AlgebraicStructures.LinearlyOrderedRing.Interface.Laws.Definition

@@ -1,7 +1,6 @@
-
 import Mathlib.Algebra.Field.Defs
-import LRA.AlgebraicStructures.CommutativeRing.Laws.Definition
-import LRA.AlgebraicStructures.Field.Laws.Definition
+import LRA.AlgebraicStructures.CommutativeRing.Interface.Laws.Definition
+import LRA.AlgebraicStructures.Field.Interface.Laws.Definition
 import LRA.AlgebraicStructures.MathlibBridge
 
 namespace LRA.AlgebraicStructures

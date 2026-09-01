@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.OrderedField.Interface.Signature.Definition
+import LRA.AlgebraicStructures.OrderedField.Interface.Definitions.Signature
 import LRA.AlgebraicStructures.OrderedRing.Interface.ModelTheory.Model
 import LRA.Operation
 

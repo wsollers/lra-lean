@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.IntegralDomain.Interface.Signature.Definition
+import LRA.AlgebraicStructures.IntegralDomain.Interface.Definitions.Signature
 
 namespace LRA.NumberSystems.GaussianIntegers.Interface.Signature
 

@@ -1,0 +1,1 @@
+import LRA.AlgebraicStructures.IntegralDomain.Interface.Laws.Definition

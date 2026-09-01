@@ -1,2 +1,1 @@
-import LRA.AlgebraicStructures.LinearlyOrderedGroup.Laws.Definition
-import LRA.AlgebraicStructures.LinearlyOrderedGroup.Laws.Consequences
+import LRA.AlgebraicStructures.LinearlyOrderedGroup.Interface.Laws

@@ -1,5 +1,5 @@
 import LRA.NumberSystems.RealNumbers.Interface.ModelTheory.Theory
-import LRA.AlgebraicStructures.OrderedField.Laws.Definition
+import LRA.AlgebraicStructures.OrderedField.Interface.Laws.Definition
 import LRA.Order.Laws.StrictOrderCompatibility.Definition
 import LRA.Order.Density.DenseOrder.Definition
 import LRA.Order.Bounds.LeastUpperBoundProperty.CompletenessLaws

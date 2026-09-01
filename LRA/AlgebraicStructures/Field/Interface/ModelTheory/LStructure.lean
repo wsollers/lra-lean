@@ -1,5 +1,5 @@
-import LRA.AlgebraicStructures.Field.Interface.Signature.Definition
-import LRA.AlgebraicStructures.Field.Definition
+import LRA.AlgebraicStructures.Field.Interface.Definitions.Signature
+import LRA.AlgebraicStructures.Field.Interface.Definitions.ConceptSignature
 import LRA.Operation
 
 namespace LRA.AlgebraicStructures.Field.Interface.ModelTheory

@@ -1,0 +1,1 @@
+import LRA.AlgebraicStructures.NontrivialRing.Interface.Laws.Definition

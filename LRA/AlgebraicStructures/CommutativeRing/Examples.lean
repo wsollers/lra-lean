@@ -1,5 +1,3 @@
-import LRA.AlgebraicStructures.CommutativeRing
-
-namespace LRA.AlgebraicStructures
-
-end LRA.AlgebraicStructures
+import LRA.AlgebraicStructures.CommutativeRing.Examples.Integers
+import LRA.AlgebraicStructures.CommutativeRing.Examples.Rationals
+import LRA.AlgebraicStructures.CommutativeRing.Examples.Reals

@@ -1,5 +1,5 @@
 import LRA.Set.Constructions.TypeSet.Laws
-import LRA.AlgebraicStructures.CommutativeRing.Laws.Definition
+import LRA.AlgebraicStructures.CommutativeRing.Interface.Laws.Definition
 
 namespace LRA.Set.Interop.AlgebraicRing
 

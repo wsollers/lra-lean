@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.DivisionRing.Interface.Signature.Definition
+import LRA.AlgebraicStructures.DivisionRing.Interface.Definitions.Signature
 
 namespace LRA.AlgebraicStructures.DivisionRing.Interface.ModelTheory
 

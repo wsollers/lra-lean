@@ -1,6 +1,4 @@
-import LRA.AlgebraicStructures.LinearlyOrderedRing.Definition
+import LRA.AlgebraicStructures.LinearlyOrderedRing.Interface
+import LRA.AlgebraicStructures.LinearlyOrderedRing.Constructions
+import LRA.AlgebraicStructures.LinearlyOrderedRing.Examples
 import LRA.AlgebraicStructures.LinearlyOrderedRing.Laws
-import LRA.AlgebraicStructures.LinearlyOrderedRing.Theorems
-import LRA.AlgebraicStructures.LinearlyOrderedRing.Characterizations
-import LRA.AlgebraicStructures.LinearlyOrderedRing.Consequences
-import LRA.AlgebraicStructures.LinearlyOrderedRing.Relationships

@@ -1,5 +1,5 @@
-import LRA.AlgebraicStructures.OrderedRing.Interface.Signature.Definition
-import LRA.AlgebraicStructures.OrderedRing.Definition
+import LRA.AlgebraicStructures.OrderedRing.Interface.Definitions.Signature
+import LRA.AlgebraicStructures.OrderedRing.Interface.Definitions.ConceptSignature
 import LRA.Operation
 import LRA.Relation
 

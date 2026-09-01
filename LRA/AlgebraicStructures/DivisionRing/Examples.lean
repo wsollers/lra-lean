@@ -1,5 +1,3 @@
-import LRA.AlgebraicStructures.DivisionRing
-
-namespace LRA.AlgebraicStructures
-
-end LRA.AlgebraicStructures
+import LRA.AlgebraicStructures.DivisionRing.Examples.Rationals
+import LRA.AlgebraicStructures.DivisionRing.Examples.Reals
+import LRA.AlgebraicStructures.DivisionRing.Examples.Quaternions

@@ -1,5 +1,5 @@
 import LRA.AlgebraicStructures.Ring.Interface.ModelTheory.Model
-import LRA.AlgebraicStructures.CommutativeRing.Interface.Signature.Definition
+import LRA.AlgebraicStructures.CommutativeRing.Interface.Definitions
 
 namespace LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory
 
@@ -13,18 +13,18 @@ open LRA.AlgebraicStructures.CommutativeRing.Interface.Signature
 Predicate logic:
 
   abbrev CommutativeRingSignature :=
-  LRA.AlgebraicStructures.RingConceptSignature
+  LRA.AlgebraicStructures.CommutativeRingConceptSignature
 
 Predicate logic (unfolded):
 
   abbrev CommutativeRingSignature :=
-  LRA.AlgebraicStructures.RingConceptSignature (source fallback; no compiled unfold data available)
+  LRA.AlgebraicStructures.CommutativeRingConceptSignature (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
-abbrev CommutativeRingSignature :=
-  LRA.AlgebraicStructures.RingConceptSignature
+  abbrev CommutativeRingSignature :=
+  LRA.AlgebraicStructures.CommutativeRingConceptSignature
 ```
 
 Type-theoretic form:
@@ -47,7 +47,7 @@ Related proof moves: unfold
 
 -/
 abbrev CommutativeRingSignature :=
-  LRA.AlgebraicStructures.RingConceptSignature
+  LRA.AlgebraicStructures.CommutativeRingConceptSignature
 
 /--
 `BuildCommutativeRingModel` TODO

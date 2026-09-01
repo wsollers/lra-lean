@@ -1,5 +1,3 @@
-import LRA.AlgebraicStructures.NontrivialRing
-
-namespace LRA.AlgebraicStructures
-
-end LRA.AlgebraicStructures
+import LRA.AlgebraicStructures.NontrivialRing.Examples.Integers
+import LRA.AlgebraicStructures.NontrivialRing.Examples.Rationals
+import LRA.AlgebraicStructures.NontrivialRing.Examples.SquareMatrices

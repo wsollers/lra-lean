@@ -1,2 +1,1 @@
-import LRA.AlgebraicStructures.NontrivialRing.Laws.Definition
-import LRA.AlgebraicStructures.NontrivialRing.Laws.Consequences
+import LRA.AlgebraicStructures.NontrivialRing.Interface.Laws

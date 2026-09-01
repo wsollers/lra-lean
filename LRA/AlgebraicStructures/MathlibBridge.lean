@@ -5,10 +5,14 @@ import Mathlib.Data.Complex.Basic
 import Mathlib.Data.Rat.Defs
 import LRA.AlgebraicStructures.Semigroup.Constructions.Mathlib.Laws
 import LRA.AlgebraicStructures.AdditiveSemigroup.Constructions.Mathlib.Laws
+import LRA.AlgebraicStructures.CommutativeRing.Constructions.Mathlib.Laws
+import LRA.AlgebraicStructures.Field.Constructions.Mathlib.Laws
+import LRA.AlgebraicStructures.IntegralDomain.Constructions.Mathlib.Laws
+import LRA.AlgebraicStructures.NontrivialRing.Constructions.Mathlib.Laws
+import LRA.AlgebraicStructures.OrderedField.Constructions.Mathlib.Laws
 import LRA.AlgebraicStructures.CommutativeSemiring.Interface.Laws.Definition
-import LRA.AlgebraicStructures.CompleteOrderedField.Laws.Definition
+import LRA.AlgebraicStructures.CompleteOrderedField.Constructions.Mathlib.Laws
 import LRA.AlgebraicStructures.DiscreteInteger.Interface.Laws.Definition
-import LRA.AlgebraicStructures.IntegralDomain.Laws.Definition
 import LRA.Order.Interop.Mathlib.Certificates
 
 namespace LRA.AlgebraicStructures
@@ -55,10 +59,6 @@ instance {R : Type u} [MulZeroClass R] : ZeroAbsorbingLaws R where
   ZeroMul := zero_mul
   MulZero := mul_zero
 
-instance {R : Type u} [Zero R] [One R] [NeZero (1 : R)] :
-    NontrivialityLaw R where
-  OneNeZero := one_ne_zero
-
 instance {R : Type u} [MulZeroClass R] [NoZeroDivisors R] :
     NoZeroDivisorsLaw R where
   EqZeroOfMulEqZero := fun _ _ h => mul_eq_zero.mp h
@@ -74,22 +74,16 @@ instance {R : Type u} [Distrib R] : DistributiveLaws R where
   LeftDistributive := fun a b c => left_distrib a b c
   RightDistributive := fun a b c => right_distrib a b c
 
-instance {R : Type u} [CommRing R] : CommutativeRingLaws R := ⟨⟩
-
-instance {R : Type u} [CommRing R] [IsDomain R] : IntegralDomainLaws R := ⟨⟩
-
-instance {R : Type u} [Field R] : FieldLaws R := ⟨⟩
-
-instance {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R] :
-    OrderedFieldLaws R := ⟨⟩
-
 example : CommutativeRingLaws Int := inferInstance
 example : IntegralDomainLaws Int := inferInstance
 example : FieldLaws Rat := inferInstance
 example : OrderedFieldLaws Rat := inferInstance
 example : FieldLaws Real := inferInstance
 example : OrderedFieldLaws Real := inferInstance
-example : CompleteOrderedFieldLaws Real (Set Real) := ⟨inferInstance, inferInstance⟩
+example : CompleteOrderedFieldLaws Real (Set Real) :=
+  by
+    simpa using
+      (LRA.AlgebraicStructures.ofConditionallyCompleteLinearOrder (R := Real))
 example : FieldLaws Complex := inferInstance
 example : OrderDiscretenessLaw Int := inferInstance
 example : DenseOrderLaw Rat := inferInstance
