@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.Ring.Laws.Definition
+import LRA.AlgebraicStructures.Ring.Interface.Laws.Definition
 
 namespace LRA.AlgebraicStructures
 

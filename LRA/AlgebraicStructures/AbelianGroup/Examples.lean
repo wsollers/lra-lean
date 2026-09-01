@@ -1,5 +1,4 @@
-import LRA.AlgebraicStructures.AbelianGroup.Interface.Laws
-
-namespace LRA.AlgebraicStructures
-
-end LRA.AlgebraicStructures
+import LRA.AlgebraicStructures.AbelianGroup.Examples.IntegersUnderAddition
+import LRA.AlgebraicStructures.AbelianGroup.Examples.RationalsUnderAddition
+import LRA.AlgebraicStructures.AbelianGroup.Examples.RealVectorSpace
+import LRA.AlgebraicStructures.AbelianGroup.Examples.IntegersModuloN

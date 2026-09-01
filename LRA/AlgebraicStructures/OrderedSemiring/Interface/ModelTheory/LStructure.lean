@@ -1,5 +1,5 @@
-import LRA.AlgebraicStructures.OrderedSemiring.Interface.Signature.Definition
-import LRA.AlgebraicStructures.OrderedSemiring.Definition
+import LRA.AlgebraicStructures.OrderedSemiring.Interface.Definitions.Signature
+import LRA.AlgebraicStructures.OrderedSemiring.Interface.Definitions.ConceptSignature
 import LRA.Operation
 import LRA.Relation
 

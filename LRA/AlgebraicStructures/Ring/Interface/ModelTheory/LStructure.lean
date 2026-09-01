@@ -1,5 +1,5 @@
-import LRA.AlgebraicStructures.Ring.Interface.Signature.Definition
-import LRA.AlgebraicStructures.Ring.Definition
+import LRA.AlgebraicStructures.Ring.Interface.Definitions.Signature
+import LRA.AlgebraicStructures.Ring.Interface.Definitions.ConceptSignature
 import LRA.Operation
 
 namespace LRA.AlgebraicStructures.Ring.Interface.ModelTheory

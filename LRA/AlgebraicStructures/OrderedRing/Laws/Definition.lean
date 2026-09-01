@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.Ring.Laws.Definition
+import LRA.AlgebraicStructures.Ring.Interface.Laws.Definition
 import LRA.Order.Laws.PartialOrder.Definition
 import LRA.Order.Laws.OperationCompatibility.Definition
 namespace LRA.AlgebraicStructures

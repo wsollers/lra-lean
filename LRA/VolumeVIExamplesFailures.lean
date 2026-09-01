@@ -11,7 +11,7 @@ import LRA.AlgebraicStructures.CommutativeRing.Examples
 import LRA.AlgebraicStructures.CommutativeRing.Laws.Examples
 import LRA.AlgebraicStructures.CommutativeSemigroup.Examples
 import LRA.AlgebraicStructures.CommutativeSemiring.Examples
-import LRA.AlgebraicStructures.CommutativeSemiring.Laws.Examples
+import LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Examples
 import LRA.AlgebraicStructures.CompleteOrderedField.Examples
 import LRA.AlgebraicStructures.CompleteOrderedField.Laws.Examples
 import LRA.AlgebraicStructures.DiscreteInteger.Examples
@@ -37,10 +37,9 @@ import LRA.AlgebraicStructures.OrderedGroup.Examples
 import LRA.AlgebraicStructures.OrderedRing.Examples
 import LRA.AlgebraicStructures.OrderedRing.Laws.Examples
 import LRA.AlgebraicStructures.OrderedSemiring.Examples
-import LRA.AlgebraicStructures.OrderedSemiring.Laws.Examples
 import LRA.AlgebraicStructures.Ring.Examples
-import LRA.AlgebraicStructures.Ring.Laws.Examples
 import LRA.AlgebraicStructures.Semigroup.Examples
+import LRA.AlgebraicStructures.Semiring.Examples
 import LRA.Order.Interop.AlgebraicLattice
 import LRA.Order.Interop.Mathlib
 import LRA.Order.Examples

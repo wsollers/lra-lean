@@ -1,5 +1,3 @@
-import LRA.AlgebraicStructures.OrderedSemiring.Definition
-
-namespace LRA.AlgebraicStructures
-
-end LRA.AlgebraicStructures
+import LRA.AlgebraicStructures.OrderedSemiring.Examples.NaturalNumbers
+import LRA.AlgebraicStructures.OrderedSemiring.Examples.NonNegativeReals
+import LRA.AlgebraicStructures.OrderedSemiring.Examples.ExtendedReals

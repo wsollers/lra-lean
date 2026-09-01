@@ -1,5 +1,5 @@
 import LRA.NumberSystems.PositiveNaturals.Interface.ModelTheory.LStructure
-import LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Definition
+import LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.Definitions.ConceptSignature
 import LRA.Operation
 
 namespace LRA.NumberSystems.PositiveNaturals.Interface.ModelTheory

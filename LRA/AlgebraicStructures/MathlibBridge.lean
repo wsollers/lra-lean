@@ -5,7 +5,7 @@ import Mathlib.Data.Complex.Basic
 import Mathlib.Data.Rat.Defs
 import LRA.AlgebraicStructures.Semigroup.Constructions.Mathlib.Laws
 import LRA.AlgebraicStructures.AdditiveSemigroup.Constructions.Mathlib.Laws
-import LRA.AlgebraicStructures.CommutativeSemiring.Laws.Definition
+import LRA.AlgebraicStructures.CommutativeSemiring.Interface.Laws.Definition
 import LRA.AlgebraicStructures.CompleteOrderedField.Laws.Definition
 import LRA.AlgebraicStructures.DiscreteInteger.Interface.Laws.Definition
 import LRA.AlgebraicStructures.IntegralDomain.Laws.Definition
@@ -74,12 +74,6 @@ instance {R : Type u} [Distrib R] : DistributiveLaws R where
   LeftDistributive := fun a b c => left_distrib a b c
   RightDistributive := fun a b c => right_distrib a b c
 
-instance {R : Type u} [Semiring R] : SemiringLaws R := ⟨⟩
-
-instance {R : Type u} [CommSemiring R] : CommutativeSemiringLaws R := ⟨⟩
-
-instance {R : Type u} [Ring R] : RingLaws R := ⟨⟩
-
 instance {R : Type u} [CommRing R] : CommutativeRingLaws R := ⟨⟩
 
 instance {R : Type u} [CommRing R] [IsDomain R] : IntegralDomainLaws R := ⟨⟩
@@ -89,7 +83,6 @@ instance {R : Type u} [Field R] : FieldLaws R := ⟨⟩
 instance {R : Type u} [Field R] [LinearOrder R] [IsStrictOrderedRing R] :
     OrderedFieldLaws R := ⟨⟩
 
-example : CommutativeSemiringLaws Nat := inferInstance
 example : CommutativeRingLaws Int := inferInstance
 example : IntegralDomainLaws Int := inferInstance
 example : FieldLaws Rat := inferInstance

@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Definition
+import LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.Laws.Definition
 import LRA.NumberSystems.NaturalNumbers.Constructions.Landau.Operations.Builders
 
 namespace LRA.NumberSystems.NaturalNumbers.Constructions.Landau

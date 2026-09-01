@@ -1,5 +1,3 @@
-import LRA.AlgebraicStructures.CommutativeSemiring
-
-namespace LRA.AlgebraicStructures
-
-end LRA.AlgebraicStructures
+import LRA.AlgebraicStructures.CommutativeSemiring.Examples.NaturalNumbers
+import LRA.AlgebraicStructures.CommutativeSemiring.Examples.NonNegativeReals
+import LRA.AlgebraicStructures.CommutativeSemiring.Examples.ExtendedReals

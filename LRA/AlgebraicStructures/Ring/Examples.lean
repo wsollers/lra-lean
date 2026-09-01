@@ -1,5 +1,3 @@
-import LRA.AlgebraicStructures.Ring
-
-namespace LRA.AlgebraicStructures
-
-end LRA.AlgebraicStructures
+import LRA.AlgebraicStructures.Ring.Examples.Integers
+import LRA.AlgebraicStructures.Ring.Examples.Rationals
+import LRA.AlgebraicStructures.Ring.Examples.SquareMatrices

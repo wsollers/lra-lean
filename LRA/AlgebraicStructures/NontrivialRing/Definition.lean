@@ -1,5 +1,5 @@
 import LRA.AlgebraicStructures.NontrivialRing.Laws.Definition
-import LRA.AlgebraicStructures.Ring.Definition
+import LRA.AlgebraicStructures.Ring.Interface.Definitions.ConceptSignature
 
 namespace LRA.AlgebraicStructures
 

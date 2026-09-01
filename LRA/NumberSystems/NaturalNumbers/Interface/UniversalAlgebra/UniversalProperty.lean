@@ -1,6 +1,7 @@
 import LRA.NumberSystems.NaturalNumbers.Interface.ModelTheory.Theory
 import LRA.NumberSystems.NaturalNumbers.Interface.ModelTheory.LStructure
 import LRA.NumberSystems.NaturalNumbers.Interface.Satisfy_ModelTheory
+import LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.Definitions.ConceptSignature
 import LRA.UniversalAlgebra.Homomorphism.Definition
 import LRA.UniversalAlgebra.UniversalProperties.Basic.InitialObjects
 

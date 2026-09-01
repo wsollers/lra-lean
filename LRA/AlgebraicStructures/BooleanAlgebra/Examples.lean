@@ -1,5 +1,3 @@
-import LRA.AlgebraicStructures.BooleanAlgebra.Definition
-
-namespace LRA.AlgebraicStructures
-
-end LRA.AlgebraicStructures
+import LRA.AlgebraicStructures.BooleanAlgebra.Examples.PowerSetLattice
+import LRA.AlgebraicStructures.BooleanAlgebra.Examples.Propositions
+import LRA.AlgebraicStructures.BooleanAlgebra.Examples.Booleans

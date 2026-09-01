@@ -1,5 +1,3 @@
-import LRA.AlgebraicStructures.OrderedGroup
-
-namespace LRA.AlgebraicStructures
-
-end LRA.AlgebraicStructures
+import LRA.AlgebraicStructures.OrderedGroup.Examples.Integers
+import LRA.AlgebraicStructures.OrderedGroup.Examples.Rationals
+import LRA.AlgebraicStructures.OrderedGroup.Examples.Reals

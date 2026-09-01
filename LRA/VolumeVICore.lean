@@ -29,8 +29,8 @@ import LRA.AlgebraicStructures.NontrivialRing.Laws
 import LRA.AlgebraicStructures.OrderedField.Laws
 import LRA.AlgebraicStructures.OrderedGroup.Laws
 import LRA.AlgebraicStructures.OrderedRing.Laws
-import LRA.AlgebraicStructures.OrderedSemiring.Laws
-import LRA.AlgebraicStructures.Ring.Laws
+import LRA.AlgebraicStructures.OrderedSemiring.Interface.Laws
+import LRA.AlgebraicStructures.Ring.Interface.Laws
 import LRA.AlgebraicStructures.Semigroup.Interface.Laws
 import LRA.AlgebraicStructures.Semiring.Interface.Laws
 import LRA.AlgebraicStructures.Semiring.Interface.Laws.Distributive

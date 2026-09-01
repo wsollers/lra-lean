@@ -1,6 +1,6 @@
 import LRA.AlgebraicStructures.OrderedGroup.Interface.ModelTheory.Theory
 import LRA.AlgebraicStructures.OrderedGroup.Interface.ModelTheory.LStructure
-import LRA.AlgebraicStructures.OrderedGroup.Laws.Definition
+import LRA.AlgebraicStructures.OrderedGroup.Interface.Laws.Definition
 import LRA.Operation.Multiplication.Interface.ModelTheory.Model
 
 namespace LRA.AlgebraicStructures.OrderedGroup.Interface.ModelTheory

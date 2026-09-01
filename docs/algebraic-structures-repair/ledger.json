@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-31",
+  "generated_at": "2026-09-01",
   "repo": "F:/repos/lra-lean",
   "branch": "main",
   "source": "conversation: AlgebraicStructures reorg + axiom-audit request",
@@ -373,14 +373,19 @@
         "AdditiveMonoid",
         "Monoid"
       ],
-      "status": "reorg_done",
+      "status": "done",
       "validator_path": "LRA/AlgebraicStructures/Semiring",
       "build_target": "LRA.AlgebraicStructures.Semiring",
       "notes": [
         "Owns Interface/Laws/Distributive.lean, a standalone atomic mixin reused by several later tiers",
         "Landau Chunk 01 on 2026-08-30 advanced the existing Interface/ModelTheory surface instead of running the full per-subject queue pass: Semiring/Interface/ModelTheory/Model.lean now packages promoted AdditionModel and MultiplicationModel surfaces, validate_structure.py passed on LRA/AlgebraicStructures/Semiring, and the downstream natural/whole-number model gates compiled through the semiring contract.",
         "Queue-local reorg completed on 2026-08-31 with no compat/shim layer left behind: the subject now routes through Interface/{Definitions,Laws,ModelTheory}; the actual concept-signature, first-order signature, semiring law bundle, and distributive mixin owners live under those interface paths; downstream imports in Ring, OrderedSemiring, CommutativeSemiring, CommutativeSemiringWithoutZero, and VolumeVICore were retargeted directly; empty legacy Semiring stub files and obsolete Laws/ files were deleted rather than wrapped.",
-        "validate_structure.py --path LRA/AlgebraicStructures/Semiring and lake build LRA.AlgebraicStructures.Semiring both pass after the reorg. The Semiring audit/examples/constructions pass still remains before this item can be marked done."
+        "validate_structure.py --path LRA/AlgebraicStructures/Semiring and lake build LRA.AlgebraicStructures.Semiring both pass after the reorg.",
+        "AUDIT COMPLETED 2026-08-31: the existing `SemiringLaws` bundle is correct as-is (additive commutative monoid + multiplicative monoid + zero-absorbing + distributive); the concept-signature's reuse of `BooleanRingOperationBundle` is only an unfortunately named upstream bundle alias, not a semantic mismatch.",
+        "Added subject-local Constructions/Mathlib/Laws.lean with `instance {R} [_root_.Semiring R] [Nonempty R] : SemiringLaws R := by sorry`, following the per-subject bridge pattern and D8's rule against proved bridge glue.",
+        "Removed the stale shared `SemiringLaws` combining instance from `LRA/AlgebraicStructures/MathlibBridge.lean` rather than leaving parallel bridge surfaces behind.",
+        "Added direct examples for `Nat`, `NNReal`, and `ENNReal`; one initial false start imported `Mathlib.Algebra.Group.Nat.Defs`, which does not provide the semiring instance on `Nat`, then corrected to `Mathlib.Algebra.Ring.Nat` so the example is genuinely free via Mathlib's native semiring instance.",
+        "Re-verified 2026-08-31: `python scripts/validate_structure.py --path LRA/AlgebraicStructures/Semiring`, `lake build LRA.AlgebraicStructures.Semiring`, and `lake build LRA.VolumeVIExamplesFailures` all pass."
       ]
     },
     {
@@ -391,13 +396,17 @@
         "AdditiveCommutativeSemigroup",
         "AdditiveGroup"
       ],
-      "status": "reorg_done",
+      "status": "done",
       "validator_path": "LRA/AlgebraicStructures/AbelianGroup",
       "build_target": "LRA.AlgebraicStructures.AbelianGroup",
       "notes": [
         "Landau Chunk 01 on 2026-08-30 advanced the existing Interface/ModelTheory surface instead of running the full per-subject queue pass: AbelianGroup/Interface/ModelTheory/Model.lean now packages the promoted AdditionModel surface for scalar-chain subject adoption.",
         "Queue-local reorg completed on 2026-08-31 with no compat/shim layer left behind: the subject now routes through Interface/{Definitions,Laws,ModelTheory}; the actual concept-signature, first-order signature, and abelian-group law owners live under those interface paths; downstream imports in Ring, VolumeVICore, and VolumeVIExamplesFailures were retargeted directly; empty legacy AbelianGroup stub files and obsolete Laws/ files were deleted rather than wrapped.",
-        "validate_structure.py --path LRA/AlgebraicStructures/AbelianGroup and lake build LRA.AlgebraicStructures.AbelianGroup both pass after the reorg. Immediate import-route consumers `LRA.AlgebraicStructures.Ring`, `LRA.VolumeVICore`, and `LRA.VolumeVIExamplesFailures` were also rebuilt during the pass; the AbelianGroup audit/examples/constructions pass still remains before this item can be marked done."
+        "validate_structure.py --path LRA/AlgebraicStructures/AbelianGroup and lake build LRA.AlgebraicStructures.AbelianGroup both pass after the reorg. Immediate import-route consumers `LRA.AlgebraicStructures.Ring`, `LRA.VolumeVICore`, and `LRA.VolumeVIExamplesFailures` were also rebuilt during the pass.",
+        "AUDIT COMPLETED 2026-08-31: the existing `AbelianGroupLaws` bundle is correct as-is (additive semigroup + additive identity + additive inverse + additive commutativity), exactly the intended abelian-group contract.",
+        "Added subject-local Constructions/Mathlib/Laws.lean with `instance {R} [_root_.AddCommGroup R] [Nonempty R] : AbelianGroupLaws R := by sorry`, keeping the bridge local to the subject and proof-bearing as `sorry` per D8.",
+        "Added direct examples for `Int`, `Rat`, `Fin n -> Real`, and `ZMod n`; no wrapper carriers, compat shims, or shared-bridge fallbacks were introduced.",
+        "Re-verified 2026-08-31: `python scripts/validate_structure.py --path LRA/AlgebraicStructures/AbelianGroup`, `lake build LRA.AlgebraicStructures.AbelianGroup`, and `lake build LRA.VolumeVIExamplesFailures` all pass."
       ]
     },
     {
@@ -407,13 +416,19 @@
       "depends_on": [
         "Group"
       ],
-      "status": "reorg_in_progress",
+      "status": "done",
       "validator_path": "LRA/AlgebraicStructures/OrderedGroup",
       "build_target": "LRA.AlgebraicStructures.OrderedGroup",
       "notes": [
         "Also depends on LRA.Order.Laws.{PartialOrder,OperationCompatibility}.Definition — outside this tree, not in scope to change",
         "Landau Chunk 01 on 2026-08-30 advanced the existing Interface/ModelTheory surface instead of running the full per-subject queue pass: OrderedGroup/Interface/ModelTheory/Model.lean now packages the promoted MultiplicationModel surface, and a missing direct import of OrderedGroup.Laws.Definition was fixed when the downstream number-system build exposed it.",
-        "The OrderedGroup model file then compiled as part of the downstream NaturalNumbers and WholeNumbers interface-model gates; full OrderedGroup queue-local audit/examples work is still pending."
+        "QUEUE-LOCAL REORG COMPLETED 2026-08-31 with no compat/shim layer left behind: added OrderedGroup/Interface.lean plus Interface/{Definitions,Laws} owners, moved the concept-signature owner to Interface/Definitions/ConceptSignature.lean, moved the law owners to Interface/Laws/Definition.lean, retargeted OrderedGroup's own barrels plus LinearlyOrderedGroup and ModelTheory consumers, and deleted the legacy top-level OrderedGroup/Definition.lean and OrderedGroup/Laws/Definition.lean files rather than leaving forwarding wrappers.",
+        "First reorg build caught one remaining stale import in OrderedGroup/Laws/Consequences.lean; retargeted it directly to Interface/Laws/Definition.lean. After that, `python scripts/validate_structure.py --path LRA/AlgebraicStructures/OrderedGroup`, `lake build LRA.AlgebraicStructures.OrderedGroup`, `lake build LRA.AlgebraicStructures.LinearlyOrderedGroup`, and `lake build LRA.VolumeVICore` all passed on 2026-08-31.",
+        "AUDIT COMPLETED 2026-08-31: the existing `OrderedGroupLaws` bundle is correct as-is (`GroupLaws R`, `LRA.Order.PartialOrderLaws R`, and `MultiplicativeOrderCompatibilityLaws R`), matching the intended ordered-group contract without changing the owner layout established by the reorg.",
+        "Added subject-local `Constructions/Mathlib/Laws.lean` with `instance {R} [_root_.CommGroup R] [_root_.PartialOrder R] [_root_.IsOrderedMonoid R] [Nonempty R] : OrderedGroupLaws R := by sorry`, keeping the bridge local to the subject and proof-bearing as `sorry` per D8.",
+        "Added direct examples for `Multiplicative Int`, `Multiplicative Rat`, and `Multiplicative Real`, all free via the subject-local Mathlib bridge and without introducing custom wrapper carriers or compat shims.",
+        "Deleted the remaining empty OrderedGroup stub surfaces (`Characterizations.lean`, `Consequences.lean`, `Relationships.lean`, `Theorems.lean`, and `Laws/Consequences.lean`) per D3 rather than leaving duplicate empty owner surfaces behind.",
+        "Re-verified 2026-08-31: `python scripts/validate_structure.py --path LRA/AlgebraicStructures/OrderedGroup`, `lake build LRA.AlgebraicStructures.OrderedGroup`, `lake build LRA.AlgebraicStructures.LinearlyOrderedGroup`, and `lake build LRA.VolumeVICore` all pass."
       ]
     },
     {
@@ -424,12 +439,17 @@
         "BoundedLattice",
         "DistributiveLattice"
       ],
-      "status": "reorg_in_progress",
+      "status": "done",
       "validator_path": "LRA/AlgebraicStructures/BooleanAlgebra",
       "build_target": "LRA.AlgebraicStructures.BooleanAlgebra",
       "notes": [
-        "Landau Chunk 01 on 2026-08-30 advanced the existing Interface/ModelTheory surface instead of running the full per-subject queue pass: CommutativeSemiring/Interface/ModelTheory/Model.lean now packages promoted AdditionModel and MultiplicationModel surfaces for scalar-chain subject adoption.",
-        "validate_structure.py passed on LRA/AlgebraicStructures/CommutativeSemiring during this chunk; full subject-level reorg/audit/examples work is still pending."
+        "Reorg completed 2026-08-31 with no compat/shim layer left behind: added BooleanAlgebra/Interface.lean plus Interface/{Definitions,Laws} owners, moved the concept-signature owner to Interface/Definitions/ConceptSignature.lean, moved the law owner to Interface/Laws/Definition.lean, retargeted the top-level barrels directly to those interface owners, and deleted the legacy top-level BooleanAlgebra/Definition.lean plus BooleanAlgebra/Laws/Definition.lean rather than leaving forwarding wrappers.",
+        "AUDIT COMPLETED 2026-08-31: the existing `BooleanAlgebraLaws` bundle is correct as-is: `BoundedLatticeLaws join meet bottom top`, `DistributiveLatticeLaws join meet`, and the two complement equations. The duplicated lattice content coming from the reused bounded/distributive bundles is harmless redundancy, not a semantic bug, and matches the accepted non-minimal style already present in the lattice family.",
+        "Added subject-local `Constructions/Mathlib/Laws.lean` with `theorem ofBooleanAlgebra {R : Type u} [_root_.BooleanAlgebra R] : LRA.AlgebraicStructures.BooleanAlgebraLaws (Carrier := R) (· ⊔ ·) (· ⊓ ·) Compl.compl ⊥ ⊤ := by sorry`, keeping the bridge local to the subject and proof-bearing as `sorry` per D8.",
+        "Added direct examples for `Set α`, `Prop`, and `Bool`, all routed through the subject-local Mathlib bridge.",
+        "Checked `LRA/Order/` for an existing BooleanAlgebra-side bridge/definition before building new work. No LRA order-theoretic Boolean-algebra bridge was reused here; building one would be new order-theory content and stayed out of scope for this queue pass.",
+        "Deleted the remaining empty BooleanAlgebra stub surfaces (`Characterizations.lean`, `Consequences.lean`, `Relationships.lean`, `Theorems.lean`, and `Laws/Consequences.lean`) per D3 rather than leaving duplicate empty owner surfaces behind.",
+        "Re-verified 2026-08-31: `python scripts/validate_structure.py --path LRA/AlgebraicStructures/BooleanAlgebra`, `lake build LRA.AlgebraicStructures.BooleanAlgebra`, and `lake build LRA.VolumeVICore` all pass."
       ]
     },
     {
@@ -440,12 +460,17 @@
         "CommutativeSemigroup",
         "Semiring"
       ],
-      "status": "reorg_in_progress",
+      "status": "done",
       "validator_path": "LRA/AlgebraicStructures/CommutativeSemiring",
       "build_target": "LRA.AlgebraicStructures.CommutativeSemiring",
       "notes": [
-        "Landau Chunk 01 on 2026-08-30 advanced the existing Interface/ModelTheory surface instead of running the full per-subject queue pass: OrderedSemiring/Interface/ModelTheory/Model.lean now packages promoted AdditionModel and MultiplicationModel surfaces, and downstream WholeNumbers/ZeroBasedNaturals adoption now routes through those operators.",
-        "validate_structure.py passed on LRA/AlgebraicStructures/OrderedSemiring during this chunk; full subject-level reorg/audit/examples work is still pending."
+        "Landau Chunk 01 on 2026-08-30 advanced the existing Interface/ModelTheory surface instead of running the full per-subject queue pass: CommutativeSemiring/Interface/ModelTheory/Model.lean now packages the promoted AdditionModel and MultiplicationModel surfaces for downstream number-system consumers.",
+        "Queue-local reorg completed on 2026-08-31 with no compat/shim layer left behind: added CommutativeSemiring/Interface.lean plus Interface/{Definitions,Laws} owners, moved the concept-signature owner to Interface/Definitions/ConceptSignature.lean, retargeted top-level and model-theory imports directly to those interface owners, added subject-local Constructions and Examples barrels, and deleted the legacy top-level Definition/Laws owners and remaining empty stub files rather than leaving forwarding wrappers.",
+        "validate_structure.py --path LRA/AlgebraicStructures/CommutativeSemiring, lake build LRA.AlgebraicStructures.CommutativeSemiring, lake build LRA.VolumeVICore, and lake build LRA.VolumeVIExamplesFailures all pass after the reorg on 2026-08-31.",
+        "AUDIT COMPLETED 2026-08-31: the existing `CommutativeSemiringLaws` bundle is correct as-is (additive commutative monoid + multiplicative commutative monoid + zero-absorbing + distributive), matching the intended commutative-semiring contract without changing the already-promoted model-theory surface.",
+        "Added subject-local Constructions/Mathlib/Laws.lean with `instance {R} [_root_.CommSemiring R] [Nonempty R] : CommutativeSemiringLaws R := by sorry`, keeping the bridge local to the subject and proof-bearing as `sorry` per D8.",
+        "Removed the stale shared `CommutativeSemiringLaws` bridge instance from `LRA/AlgebraicStructures/MathlibBridge.lean` rather than leaving parallel bridge surfaces behind.",
+        "Added direct examples for `Nat`, `NNReal`, and `ENNReal`; no wrapper carriers, compat shims, or duplicate owner surfaces were introduced."
       ]
     },
     {
@@ -460,10 +485,17 @@
         "CommutativeSemigroup",
         "Semiring"
       ],
-      "status": "not_started",
+      "status": "done",
       "validator_path": "LRA/AlgebraicStructures/CommutativeSemiringWithoutZero",
       "build_target": "LRA.AlgebraicStructures.CommutativeSemiringWithoutZero",
-      "notes": []
+      "notes": [
+        "Audit confirmed the existing law bundle is correct as-is: `CommutativeSemiringWithoutZeroLaws` remains additive commutative semigroup + additive cancellation + multiplicative commutative monoid + multiplicative cancellation + distributive, matching the intended no-zero contract in this tree.",
+        "Queue-local reorg completed on 2026-08-31 with no compat/shim layer left behind: `CommutativeSemiringWithoutZeroConceptSignature` now lives at `Interface/Definitions/ConceptSignature.lean`, the cancellative and combined law owners now live at `Interface/Laws/Definition.lean`, the top-level subject now routes through `Interface.lean`, and the legacy duplicate owner files `Definition.lean` and `Laws/Definition.lean` were deleted rather than wrapped.",
+        "Direct consumers in `NaturalNumbers`, `PositiveNaturals`, and `CommutativeSemiringWithoutZero.Interface.ModelTheory.LStructure` were retargeted to the interface owners, preserving the existing `Interface/ModelTheory` surface without reopening earlier queue items.",
+        "Added direct examples for `PNat`, exposed from `Examples.lean`, with proof-bearing content left as `sorry` per D8.",
+        "No subject-local Mathlib bridge was added in this pass because there is no single exact Mathlib counterpart matching the without-zero contract without semantic weakening; that boundary was preserved instead of introducing an approximate bridge surface.",
+        "`python scripts/validate_structure.py --path LRA/AlgebraicStructures/CommutativeSemiringWithoutZero`, `lake build LRA.AlgebraicStructures.CommutativeSemiringWithoutZero`, `lake build LRA.NumberSystems.NaturalNumbers`, `lake build LRA.NumberSystems.PositiveNaturals`, `lake build LRA.VolumeVICore`, and `lake build LRA.VolumeVIExamplesFailures` all passed on 2026-08-31."
+      ]
     },
     {
       "id": "as-24",
@@ -473,10 +505,17 @@
         "AbelianGroup",
         "Semiring"
       ],
-      "status": "not_started",
+      "status": "done",
       "validator_path": "LRA/AlgebraicStructures/Ring",
       "build_target": "LRA.AlgebraicStructures.Ring",
-      "notes": []
+      "notes": [
+        "Audit completed 2026-09-01: the existing `RingLaws` bundle is correct as-is (abelian group + multiplicative monoid + zero-absorbing + distributive), matching the intended ring contract without adding axioms or changing the established architecture.",
+        "Queue-local reorg completed 2026-09-01 with no compat/shim layer left behind: added `Ring/Interface.lean` plus `Interface/{Definitions,Laws,ModelTheory}` barrels, moved the concept-signature owner to `Interface/Definitions/ConceptSignature.lean`, moved the first-order signature owner to `Interface/Definitions/Signature.lean`, retargeted Ring's own barrels and direct consumers in `CommutativeRing`, `NontrivialRing`, `OrderedRing`, `DiscreteInteger`, `VolumeVICore`, and `VolumeVIExamplesFailures`, and deleted the legacy duplicate owner/stub files rather than leaving forwarding wrappers.",
+        "Added subject-local `Constructions/Mathlib/Laws.lean` with `instance {R : Type u} [_root_.Ring R] [Nonempty R] : RingLaws R := by sorry`, following the per-subject bridge pattern and D8's rule against proved bridge glue.",
+        "Removed the stale shared `RingLaws` bridge instance from `LRA/AlgebraicStructures/MathlibBridge.lean` rather than leaving parallel bridge surfaces behind.",
+        "Added direct examples for `Int`, `Rat`, and `Matrix (Fin n) (Fin n) Real`; the matrix example keeps a standard noncommutative ring witness in scope without introducing wrapper carriers or duplicate ownership.",
+        "Re-verified 2026-09-01: `python scripts/validate_structure.py --path LRA/AlgebraicStructures/Ring`, `lake build LRA.AlgebraicStructures.Ring`, `lake build LRA.AlgebraicStructures.CommutativeRing`, `lake build LRA.AlgebraicStructures.OrderedRing`, `lake build LRA.AlgebraicStructures.NontrivialRing`, `lake build LRA.VolumeVICore`, and `lake build LRA.VolumeVIExamplesFailures` all pass."
+      ]
     },
     {
       "id": "as-25",
@@ -485,10 +524,17 @@
       "depends_on": [
         "Semiring"
       ],
-      "status": "not_started",
+      "status": "done",
       "validator_path": "LRA/AlgebraicStructures/OrderedSemiring",
       "build_target": "LRA.AlgebraicStructures.OrderedSemiring",
-      "notes": []
+      "notes": [
+        "Landau Chunk 01 on 2026-08-30 advanced the existing Interface/ModelTheory surface instead of running the full per-subject queue pass: OrderedSemiring/Interface/ModelTheory/Model.lean now packages the promoted AdditionModel and MultiplicationModel surfaces for downstream number-system consumers.",
+        "Queue-local reorg completed on 2026-09-01 with no compat/shim layer left behind: added OrderedSemiring/Interface.lean plus Interface/{Definitions,Laws,ModelTheory} barrels, moved the concept-signature owner to Interface/Definitions/ConceptSignature.lean, moved the first-order signature owner to Interface/Definitions/Signature.lean, retargeted OrderedSemiring's own model-theory imports plus direct WholeNumbers, ZeroBasedNaturals, VolumeVICore, and VolumeVIExamplesFailures consumers, and deleted the legacy top-level Definition/Laws owners and empty stub files rather than leaving forwarding wrappers.",
+        "validate_structure.py --path LRA/AlgebraicStructures/OrderedSemiring, lake build LRA.AlgebraicStructures.OrderedSemiring, lake build LRA.NumberSystems.WholeNumbers, lake build LRA.NumberSystems.ZeroBasedNaturals, lake build LRA.VolumeVICore, and lake build LRA.VolumeVIExamplesFailures all pass after the reorg on 2026-09-01.",
+        "AUDIT COMPLETED 2026-09-01: the existing OrderedSemiringLaws bundle is correct as-is (SemiringLaws + LinearOrderLaws + AdditionRespectsOrderLaws + MultiplicationRespectsOrderLaws), matching the intended total-order ordered-semiring contract already used by WholeNumbers and Landau.",
+        "Added subject-local Constructions/Mathlib/Laws.lean with `instance {R : Type u} [_root_.Semiring R] [_root_.LinearOrder R] [_root_.IsOrderedRing R] [Nonempty R] : OrderedSemiringLaws R := by sorry`, keeping the bridge local to the subject and proof-bearing as `sorry` per D8.",
+        "Added direct examples for Nat, NNReal, and ENNReal, all routed through the subject-local Mathlib bridge without introducing wrapper carriers, compat shims, or duplicate owner surfaces."
+      ]
     },
     {
       "id": "as-26",

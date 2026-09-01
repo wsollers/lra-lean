@@ -1,5 +1,5 @@
 import LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.Signature.Definition
-import LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Definition
+import LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.Definitions.ConceptSignature
 import LRA.Operation
 
 namespace LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.ModelTheory

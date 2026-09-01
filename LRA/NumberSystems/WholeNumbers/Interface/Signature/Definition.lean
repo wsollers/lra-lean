@@ -1,4 +1,4 @@
-import LRA.AlgebraicStructures.OrderedSemiring.Interface.Signature.Definition
+import LRA.AlgebraicStructures.OrderedSemiring.Interface.Definitions.Signature
 
 namespace LRA.NumberSystems.WholeNumbers.Interface.Signature
 
