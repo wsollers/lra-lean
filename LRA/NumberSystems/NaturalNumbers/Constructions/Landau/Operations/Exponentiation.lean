@@ -219,7 +219,7 @@ theorem LandauExponentiationWellDefined
 
 Predicate logic:
 
-  (∀ x ∈ Element), LandauExponentiation model x model.one = x
+  (∀ x ∈ Element), LandauExponentiation model x model.base = x
 
 Predicate logic (unfolded):
 
@@ -231,7 +231,7 @@ Logical form (Lean):
 theorem LandauExponentiationWithOne
     (model : PeanoSystem Element SetObject)
     (base : Element) :
-    LandauExponentiation model base model.one = base
+    LandauExponentiation model base model.base = base
 ```
 
 Type-theoretic form:
@@ -256,7 +256,7 @@ Related proof moves: TODO
 theorem LandauExponentiationWithOne
     (model : PeanoSystem Element SetObject)
     (base : Element) :
-    LandauExponentiation model base model.one = base := by
+    LandauExponentiation model base model.base = base := by
   sorry
 
 /--

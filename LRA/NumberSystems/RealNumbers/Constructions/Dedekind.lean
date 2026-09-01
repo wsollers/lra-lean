@@ -7,3 +7,4 @@ import LRA.NumberSystems.RealNumbers.Constructions.Dedekind.Laws
 import LRA.NumberSystems.RealNumbers.Constructions.Dedekind.Behavior
 import LRA.NumberSystems.RealNumbers.Constructions.Dedekind.Instances
 import LRA.NumberSystems.RealNumbers.Constructions.Dedekind.Satisfy_Generic
+import LRA.NumberSystems.RealNumbers.Constructions.Dedekind.Satisfy_AlgebraicStructures

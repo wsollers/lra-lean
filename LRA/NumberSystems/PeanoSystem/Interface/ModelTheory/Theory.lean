@@ -23,7 +23,7 @@ Logical form (Lean):
 def PeanoBaseNotSuccessorAxiom
     (M : PeanoLStructure) : Prop :=
   ∀ element : M.Domain,
-    M.interpretFunction .successor (fun _ => element) ≠ M.interpretConstant .one
+    M.interpretFunction .successor (fun _ => element) ≠ M.interpretConstant .base
 ```
 
 Type-theoretic form:
@@ -115,7 +115,7 @@ Logical form (Lean):
 def PeanoInductionAxiom
     (M : LRA.Logic.SecondOrderMonadic.HenkinModel PeanoFirstOrderSignature) : Prop :=
   ∀ subset ∈ M.SecondOrderDomain,
-    M.interpretConstant .one ∈ subset ->
+    M.interpretConstant .base ∈ subset ->
     (∀ element ∈ subset,
       M.interpretFunction .successor (fun _ => element) ∈ subset) ->
     ∀ element : M.Domain, element ∈ subset

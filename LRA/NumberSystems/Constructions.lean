@@ -1,8 +1,4 @@
 import LRA.NumberSystems.SuccessorArithmetic.Constructions
-import LRA.NumberSystems.PresburgerArithmetic.Constructions
-import LRA.NumberSystems.FirstOrderArithmetic.Constructions
-import LRA.NumberSystems.ZeroBasedNaturals.Constructions
-import LRA.NumberSystems.PositiveNaturals.Constructions
 import LRA.NumberSystems.NaturalNumbers.Constructions
 import LRA.NumberSystems.WholeNumbers.Constructions
 import LRA.NumberSystems.Integers.Constructions

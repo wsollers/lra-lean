@@ -5,3 +5,4 @@ import LRA.NumberSystems.Integers.Constructions.Tao
 import LRA.NumberSystems.Integers.Constructions.Pfefer
 import LRA.NumberSystems.Integers.Constructions.Mathlib
 import LRA.NumberSystems.Integers.Constructions.Mathlib.Satisfy_Generic
+import LRA.NumberSystems.Integers.Constructions.Mathlib.Satisfy_AlgebraicStructures

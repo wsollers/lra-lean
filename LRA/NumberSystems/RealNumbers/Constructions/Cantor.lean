@@ -7,3 +7,4 @@ import LRA.NumberSystems.RealNumbers.Constructions.Cantor.Laws
 import LRA.NumberSystems.RealNumbers.Constructions.Cantor.Behavior
 import LRA.NumberSystems.RealNumbers.Constructions.Cantor.Instances
 import LRA.NumberSystems.RealNumbers.Constructions.Cantor.Satisfy_Generic
+import LRA.NumberSystems.RealNumbers.Constructions.Cantor.Satisfy_AlgebraicStructures

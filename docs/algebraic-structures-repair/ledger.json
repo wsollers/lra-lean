@@ -726,6 +726,273 @@
         "Retargeted only the minimal direct consumers exposed by the owner move: `LRA.AlgebraicStructures.MathlibBridge` and `LRA.VolumeVIExamplesFailures`.",
         "Re-verified 2026-09-01: `python scripts/validate_structure.py --path LRA/AlgebraicStructures/CompleteOrderedField`, `lake build LRA.AlgebraicStructures.CompleteOrderedField`, `lake build LRA.VolumeVICore`, and `lake build LRA.VolumeVIExamplesFailures` all pass."
       ]
+    },
+    {
+      "id": "nsc-01",
+      "subject": "Naturals-family carrier ownership reset",
+      "tier": 1,
+      "depends_on": [
+        "as-35"
+      ],
+      "status": "done",
+      "validator_path": "LRA/NumberSystems",
+      "build_target": "LRA.NumberSystems",
+      "notes": [
+        "Added 2026-09-01 as the first post-`as-35` follow-on queue item for NumberSystems consolidation before algebraic bridge normalization.",
+        "Scope: make `NaturalNumbers` the owner of the naturals-family carrier choices (`Landau`, `VonNeumann`, `Presburger`, and `Mathlib`) and record the canonical carrier-swapping story explicitly, instead of treating `PositiveNaturals` and `ZeroBasedNaturals` as peer owner subjects.",
+        "This item should establish the surviving carrier story first, before any subject deletions or bridge-file normalization.",
+        "Completed 2026-09-01: `NaturalNumbers/Definition.lean` now owns the canonical `LRA_N_Landau`, `LRA_N_VonNeumann`, `LRA_N_Presburger`, and `LRA_MATHLIB_N` carrier choices directly and records the explicit carrier-swapping story for `PositiveNaturals`, `ZeroBasedNaturals`, `PresburgerArithmetic`, and `FirstOrderArithmetic`.",
+        "Retargeted the naturals-family peer subjects to consume those owner choices instead of declaring their own carrier surfaces: `PositiveNaturals.LRA_N1`, `ZeroBasedNaturals.LRA_N0`, `PresburgerArithmetic.StandardCarrier`, and `FirstOrderArithmetic.StandardCarrier` now point back to the canonical `NaturalNumbers` owner.",
+        "Kept `LRA/NumberSystems/Carriers` as a compatibility aggregator only, retargeted to the `NaturalNumbers` owner choices rather than importing the raw naturals constructions as the source of truth. One direct witness consumer (`Carriers/Witnesses.lean`) also needed an explicit `Landau.Laws` import after that transitive dependency was removed.",
+        "The pre-existing `PresburgerArithmetic.Constructions.Mathlib` surface was still `Nat`-backed; after the owner reset it no longer matched `PresburgerArithmetic.StandardCarrier`. Fixed within item scope by making that construction advertise its actual model carrier (`genericModel.signature.carrier`) instead of pretending to be the subject standard carrier, without introducing a wrapper or compat forwarding layer.",
+        "Re-verified 2026-09-01: `python scripts/validate_structure.py --path LRA/NumberSystems` and `lake build LRA.NumberSystems.NaturalNumbers LRA.NumberSystems.PositiveNaturals LRA.NumberSystems.ZeroBasedNaturals LRA.NumberSystems.PresburgerArithmetic LRA.NumberSystems.FirstOrderArithmetic LRA.NumberSystems.Carriers` both pass."
+      ]
+    },
+    {
+      "id": "nsc-02",
+      "subject": "Retire redundant successor-adjacent number-system subjects",
+      "tier": 2,
+      "depends_on": [
+        "nsc-01"
+      ],
+      "status": "done",
+      "validator_path": "LRA/NumberSystems",
+      "build_target": "LRA.NumberSystems",
+      "notes": [
+        "Added 2026-09-01 as the second post-`as-35` follow-on queue item for NumberSystems consolidation.",
+        "Scope: delete the redundant number-system subjects whose only live external usage is via aggregators or barrels: `FirstOrderArithmetic`, `PresburgerArithmetic`, `PositiveNaturals`, and `ZeroBasedNaturals`, after carrier ownership is reset.",
+        "This deletion step should not start until the surviving `NaturalNumbers` / `SuccessorArithmetic` / `PeanoSystem` owner story is explicit.",
+        "Completed 2026-09-01: deleted the redundant subject roots plus their internal `Constructions`, `Examples`, `Interface`, `Interop`, and `ProofOrder` surfaces for `FirstOrderArithmetic`, `PresburgerArithmetic`, `PositiveNaturals`, and `ZeroBasedNaturals`, with no wrappers, shims, or compat forwarding layers left behind.",
+        "Retargeted only the forced top-level aggregators that kept those subjects live: removed the redundant imports from `LRA/NumberSystems.lean`, `LRA/NumberSystems/Constructions.lean`, `LRA/NumberSystems/Examples.lean`, and `LRA/NumberSystems/Interop.lean` while leaving `NaturalNumbers` as the canonical naturals-family owner and `Carriers` as a compatibility aggregator pending `nsc-03`.",
+        "Re-verified 2026-09-01: `python scripts/validate_structure.py --path LRA/NumberSystems` and `lake build LRA.NumberSystems` both pass after the retirement."
+      ]
+    },
+    {
+      "id": "nsc-03",
+      "subject": "Import and aggregator cleanup after number-system retirement",
+      "tier": 3,
+      "depends_on": [
+        "nsc-02"
+      ],
+      "status": "done",
+      "validator_path": "LRA/NumberSystems",
+      "build_target": "LRA.NumberSystems",
+      "notes": [
+        "Added 2026-09-01 as the third post-`as-35` follow-on queue item for NumberSystems consolidation.",
+        "Scope: retarget and simplify top-level barrels, examples, constructions, and interop imports after the redundant subject deletions, preserving only the surviving canonical owner surfaces.",
+        "Completed 2026-09-01: kept the surviving top-level `LRA.NumberSystems` / `Constructions` / `Examples` / `Interop` routers limited to live subjects only, with no retired `FirstOrderArithmetic`, `PresburgerArithmetic`, `PositiveNaturals`, or `ZeroBasedNaturals` imports left behind.",
+        "Retargeted `LRA/NumberSystems/Carriers/Definition.lean` so the naturals-family compatibility aliases now consume `NaturalNumbers`' canonical owner aliases (`LRA_N_Landau`, `LRA_N_VonNeumann`, `LRA_N_Presburger`, `LRA_MATHLIB_N`) instead of treating the raw naturals construction modules as the source of truth.",
+        "Kept `LRA/NumberSystems/Carriers` as a compatibility aggregator rather than starting decomposition work, and added only the one explicit `NaturalNumbers.Constructions.Landau.Laws` import that `Carriers/Witnesses.lean` needs after the transitive cleanup.",
+        "Re-verified 2026-09-01: `python scripts/validate_structure.py --path LRA/NumberSystems` and `lake build LRA.NumberSystems` both pass."
+      ]
+    },
+    {
+      "id": "ags-01",
+      "subject": "Naturals-family construction algebraic bridges",
+      "tier": 4,
+      "depends_on": [
+        "nsc-03"
+      ],
+      "status": "done",
+      "validator_path": "LRA/NumberSystems",
+      "build_target": "LRA.NumberSystems",
+      "notes": [
+        "Added 2026-09-01 as the first algebraic-bridge item after the NumberSystems consolidation pre-pass.",
+        "Scope: add per-construction `Satisfy_AlgebraicStructures.lean` omnibus owners for the normalized `NaturalNumbers` constructions (`Landau`, `VonNeumann`, `Presburger`, `Mathlib`) where each construction surface is stable enough to own the bridge cleanly.",
+        "Inside each omnibus file, expose one named declaration per actual algebraic target (`satisfiesAdditiveMonoid`, `satisfiesSemiring`, etc.), not one monolithic theorem.",
+        "Per DECISIONS.md D9, this work is construction-local and does not add duplicate `Interface/Laws` theorems restating hierarchy inheritance.",
+        "Completed 2026-09-01: added `NaturalNumbers/Constructions/Landau/Satisfy_AlgebraicStructures.lean` with named construction-local bridges `satisfiesAdditiveCommutativeSemigroup`, `satisfiesCommutativeMonoid`, and `satisfiesCommutativeSemiringWithoutZero`, reusing the existing stable one-based arithmetic/law surface without moving any law ownership into `Interface/Laws`.",
+        "Completed 2026-09-01: added `NaturalNumbers/Constructions/Mathlib/Satisfy_AlgebraicStructures.lean` with named construction-local bridges `satisfiesAdditiveMonoid`, `satisfiesCommutativeMonoid`, `satisfiesSemiring`, `satisfiesCommutativeSemiring`, and `satisfiesOrderedSemiring` on the canonical `Nat`-backed construction surface.",
+        "Retargeted only the minimal construction barrels needed to expose those owners canonically: `NaturalNumbers/Constructions/Landau.lean` now imports its new bridge owner directly, and `NaturalNumbers/Constructions.lean` imports `Constructions/Mathlib/Satisfy_AlgebraicStructures.lean` alongside the pre-existing `Satisfy_Generic` owner, avoiding an inner-barrel import cycle.",
+        "Left `VonNeumann` and `Presburger` untouched intentionally: `VonNeumann` still stops at carrier/equivalence/well-foundedness, and `Presburger` currently exposes carrier/addition/first-order packaging but not a stable algebraic-law package comparable to `Landau` or `Mathlib`. Building that missing law surface would be new construction work, not algebraic-bridge normalization.",
+        "Re-verified 2026-09-01: `python scripts/validate_structure.py --path LRA/NumberSystems/NaturalNumbers` and `lake build LRA.NumberSystems.NaturalNumbers` both pass."
+      ]
+    },
+    {
+      "id": "ags-02",
+      "subject": "WholeNumbers and Integers construction algebraic bridges",
+      "tier": 5,
+      "depends_on": [
+        "ags-01"
+      ],
+      "status": "done",
+      "validator_path": "LRA/NumberSystems",
+      "build_target": "LRA.NumberSystems",
+      "notes": [
+        "Added 2026-09-01 as the second algebraic-bridge item after the NumberSystems consolidation pre-pass.",
+        "Scope: add or normalize construction-local `Satisfy_AlgebraicStructures.lean` owners for `WholeNumbers` and `Integers`, including the Landau and quotient/author constructions that already expose reusable operator/law packages.",
+        "Each construction should expose only the algebraic targets it canonically satisfies; do not force every implementation to present the same bridge set.",
+        "Completed 2026-09-01: added `WholeNumbers/Constructions/Landau/Satisfy_AlgebraicStructures.lean` with named construction-local bridges `satisfiesCommutativeSemiring` and `satisfiesOrderedSemiring`, reusing the existing stable `commutativeSemiringLawsOn` / `orderedSemiringLawsOn` surface without moving any law ownership into `Interface/Laws`.",
+        "Completed 2026-09-01: added `WholeNumbers/Constructions/Mathlib/Satisfy_AlgebraicStructures.lean` with named bridges `satisfiesAdditiveMonoid`, `satisfiesCommutativeMonoid`, `satisfiesSemiring`, `satisfiesCommutativeSemiring`, and `satisfiesOrderedSemiring` on the canonical `Nat`-backed whole-number construction surface.",
+        "Completed 2026-09-01: added `Integers/Constructions/Mathlib/Satisfy_AlgebraicStructures.lean` with named bridges `satisfiesAbelianGroup`, `satisfiesRing`, `satisfiesCommutativeRing`, `satisfiesIntegralDomain`, and `satisfiesOrderedRing` on the canonical `Int`-backed construction surface.",
+        "Completed 2026-09-01: added `Integers/Constructions/Polish/TwoSidedSuccessor/Satisfy_AlgebraicStructures.lean` with named bridges `satisfiesAbelianGroup`, `satisfiesRing`, `satisfiesCommutativeRing`, `satisfiesIntegralDomain`, and `satisfiesOrderedRing`, matching the stable proof-carrying instance surface already owned by that author construction.",
+        "Completed 2026-09-01: added `Integers/Constructions/QuotientOrderedPairs/Satisfy_AlgebraicStructures.lean` with named bridges `satisfiesIntegralDomain` and `satisfiesOrderedRing`, reusing the existing quotient carrier operators and law certificates rather than broadening the quotient construction.",
+        "Retargeted only the minimal construction barrels needed to expose those owners canonically: `WholeNumbers/Constructions/Landau.lean`, `WholeNumbers/Constructions.lean`, `Integers/Constructions/QuotientOrderedPairs.lean`, `Integers/Constructions/Polish.lean`, and `Integers/Constructions.lean` now import the new bridge owners directly.",
+        "Left `Tao`, `Mendelson`, and `Pfefer` untouched intentionally: `Tao` and `Mendelson` still stop at generic/integer-system existence surfaces rather than stable algebraic-law packages, and `Pfefer` remains a pending construction-plan stub. Building those missing law surfaces would be new construction work, not bridge normalization.",
+        "Re-verified 2026-09-01: `python scripts/validate_structure.py --path LRA/NumberSystems/WholeNumbers`, `python scripts/validate_structure.py --path LRA/NumberSystems/Integers`, `lake build LRA.NumberSystems.WholeNumbers`, and `lake build LRA.NumberSystems.Integers` all pass."
+      ]
+    },
+    {
+      "id": "ags-03",
+      "subject": "RationalNumbers and RealNumbers construction algebraic bridges",
+      "tier": 6,
+      "depends_on": [
+        "ags-02"
+      ],
+      "status": "done",
+      "validator_path": "LRA/NumberSystems",
+      "build_target": "LRA.NumberSystems",
+      "notes": [
+        "Added 2026-09-01 as the third algebraic-bridge item after the NumberSystems consolidation pre-pass.",
+        "Scope: add or normalize construction-local `Satisfy_AlgebraicStructures.lean` owners for `RationalNumbers` and `RealNumbers`, with one named declaration per actual algebraic target on each stable construction (`Field`, `OrderedField`, `CompleteOrderedField`, etc.).",
+        "This is the clearest scalar-chain target for the new pattern because downstream work frequently needs named bridges from concrete systems to generic algebraic theorem surfaces.",
+        "Completed 2026-09-01: added `Satisfy_AlgebraicStructures.lean` omnibus owners for RationalNumbers.Mathlib and RationalQuotientFractions, each exposing `satisfiesField` and `satisfiesOrderedField`.",
+        "Added corresponding real-number owners for Mathlib, Cauchy, Cantor, Dedekind, PrimitiveIntervals, and EffectiveCauchy; each exposes `satisfiesField`, `satisfiesOrderedField`, and `satisfiesCompleteOrderedField`.",
+        "Retargeted only the existing construction barrels. Dyadic remains intentionally deferred because its public construction package does not yet expose reusable ordered-field and completeness law certifications.",
+        "Verified with `python scripts/validate_structure.py --path LRA/NumberSystems/RationalNumbers`, `python scripts/validate_structure.py --path LRA/NumberSystems/RealNumbers`, `lake build LRA.NumberSystems.RationalNumbers`, and `lake build LRA.NumberSystems.RealNumbers`."
+      ]
+    },
+    {
+      "id": "ags-04",
+      "subject": "ComplexNumbers and GaussianIntegers construction algebraic bridges",
+      "tier": 6,
+      "depends_on": [
+        "ags-02"
+      ],
+      "status": "done",
+      "validator_path": "LRA/NumberSystems",
+      "build_target": "LRA.NumberSystems",
+      "notes": [
+        "Added 2026-09-01 as the fourth algebraic-bridge item after the NumberSystems consolidation pre-pass.",
+        "Scope: add or normalize construction-local `Satisfy_AlgebraicStructures.lean` owners for `ComplexNumbers` and `GaussianIntegers`, matching each construction only to the algebraic targets it canonically satisfies.",
+        "This item also closes part of the known NumberSystems variance that `ComplexNumbers` and `GaussianIntegers` remain thinner than the core scalar chain.",
+        "Completed 2026-09-01: added `ComplexNumbers/Constructions/Mathlib/Satisfy_AlgebraicStructures.lean` with `satisfiesField` for the canonical `Complex`-backed construction surface.",
+        "Completed 2026-09-01: added `ComplexNumbers/Constructions/OrderedPairs/Satisfy_AlgebraicStructures.lean` with `satisfiesCommutativeRing` and `satisfiesField`, reusing the existing proof-carrying ordered-pairs instance surface without moving any ownership into `Interface/Laws`.",
+        "Completed 2026-09-01: added `GaussianIntegers/Constructions/OrderedPairs/Satisfy_AlgebraicStructures.lean` with `satisfiesAbelianGroup`, `satisfiesRing`, and `satisfiesCommutativeRing`, matching the current stable public certificates and stopping short of stronger targets that would have required new construction development.",
+        "Retargeted only the minimal construction barrels needed to expose those owners canonically: `ComplexNumbers/Constructions.lean`, `ComplexNumbers/Constructions/OrderedPairs.lean`, and `GaussianIntegers/Constructions/OrderedPairs.lean` now import the new bridge owners directly.",
+        "Left `GaussianIntegers` generic-bridge completion deferred intentionally: the architecture audit already flags that subject as still lacking a full `Satisfy_Generic` surface for `OrderedPairs`, and closing that gap would be separate construction/generic normalization work rather than this algebraic-bridge pass.",
+        "Re-verified 2026-09-01: `python scripts/validate_structure.py --path LRA/NumberSystems`, `lake build LRA.NumberSystems.ComplexNumbers`, and `lake build LRA.NumberSystems.GaussianIntegers` all pass."
+      ]
+    },
+    {
+      "id": "ags-05",
+      "subject": "Late-tier model-theory reduct normalization",
+      "tier": 7,
+      "depends_on": [
+        "as-35"
+      ],
+      "status": "done",
+      "validator_path": "LRA/AlgebraicStructures",
+      "build_target": "LRA.AlgebraicStructures",
+      "notes": [
+        "Added 2026-09-01 as the model-theory half of the post-`as-35` follow-on queue.",
+        "Scope: add explicit `Interface/ModelTheory` reduct or forgetful surfaces where a richer late-tier algebraic model should visibly project to its immediate weaker predecessor across layers (`CompleteOrderedField -> OrderedField`, `OrderedField -> Field`, `Field -> DivisionRing`, `OrderedRing -> Ring`, `IntegralDomain -> CommutativeRing`, and any other direct predecessor pair whose model surfaces already exist).",
+        "Per DECISIONS.md D9, these named reducts belong in `Interface/ModelTheory`, not as duplicate inheritance theorems in `Interface/Laws`.",
+        "Completed 2026-09-01: filled the late-tier `Interface/ModelTheory/Model.lean` owner surfaces for `Ring`, `OrderedRing`, `CommutativeRing`, `IntegralDomain`, `DivisionRing`, `Field`, `OrderedField`, and `CompleteOrderedField` with promoted model packages based on the existing `AdditionModel` / `MultiplicationModel` pattern.",
+        "Added one named forgetful declaration per actual direct predecessor relation whose source and target model surfaces now exist: `CompleteOrderedFieldModel.toOrderedFieldModel`, `OrderedFieldModel.toFieldModel`, `FieldModel.toDivisionRingModel`, `DivisionRingModel.toRingModel`, `OrderedRingModel.toRingModel`, `CommutativeRingModel.toRingModel`, and `IntegralDomainModel.toCommutativeRingModel`.",
+        "Kept all ownership at `Interface/ModelTheory` and did not add wrapper shims, compat forwarding layers, duplicate owner surfaces, or duplicate inheritance theorems under `Interface/Laws`. `LinearlyOrderedRing` and `NontrivialRing` were intentionally left untouched because this queue item only covered predecessor pairs whose promoted model surfaces already existed.",
+        "Re-verified 2026-09-01: `lake build LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory.Model`, `lake build LRA.AlgebraicStructures.CompleteOrderedField.Interface.ModelTheory.Model`, and `lake build LRA.AlgebraicStructures` all pass. `python scripts/validate_structure.py --path LRA/AlgebraicStructures` still reports pre-existing quarantined `Examples` imports in core subject barrels, so it was not a discriminating ags-05 signal."
+      ]
+    },
+    {
+      "id": "nsc-04",
+      "subject": "Discuss Peano cleanup boundary",
+      "tier": 8,
+      "depends_on": [
+        "ags-05"
+      ],
+      "status": "done",
+      "validator_path": "LRA/NumberSystems",
+      "build_target": "LRA.NumberSystems",
+      "notes": [
+        "Added 2026-09-01 at the end of the follow-on queue to reserve the Peano cleanup discussion explicitly rather than folding it into the carrier-reset or algebraic-bridge implementation items.",
+        "Scope: settle the post-reorg boundary between `PeanoSystem` and `SuccessorArithmetic`: `PeanoSystem` owns primitive Peano machinery, `SuccessorArithmetic` owns pure successor/predecessor construction machinery, and no additive or multiplicative arithmetic surface should survive there unless intentionally justified.",
+        "Any remaining fallout for redundant arithmetic/naturals owner surfaces should be decided only after the carrier-reset (`nsc-01` through `nsc-03`) and construction/model-theory bridge (`ags-01` through `ags-05`) queue has landed.",
+        "Corrected 2026-09-01 after the user-approved architecture discussion: `PeanoSystem` is the canonical abstract owner of `base`, `successor`, induction, predecessor theory, recursion, and categoricity. `SuccessorArithmetic` consumes a Peano system, names `zero = base`, and derives `one = successor zero`.",
+        "Applied only the smallest coherent cleanup needed to make that boundary explicit: added an owner note to `LRA/NumberSystems/SuccessorArithmetic/Definition.lean`, removed the redundant empty/trivial surfaces `LRA/NumberSystems/SuccessorArithmetic/Interface/Definition.lean`, `LRA/NumberSystems/SuccessorArithmetic/Interface/Theorems.lean`, and `LRA/NumberSystems/SuccessorArithmetic/Interop.lean`, and dropped their imports from `LRA/NumberSystems/SuccessorArithmetic.lean`.",
+        "No wrappers, shims, compatibility forwarding layers, duplicate theorem owners, or additive/multiplicative arithmetic surfaces were introduced.",
+        "Re-verified 2026-09-01: `lake build LRA.NumberSystems.PeanoSystem LRA.NumberSystems.SuccessorArithmetic` passes after renaming the Peano primitive and deleting the duplicate successor-only signature/model-theory/universal-algebra surfaces."
+      ]
+    },
+    {
+      "id": "nsc-05",
+      "subject": "Peano-base downstream repair",
+      "tier": 9,
+      "depends_on": ["nsc-04"],
+      "status": "done",
+      "validator_path": "LRA/NumberSystems",
+      "build_target": "LRA.NumberSystems",
+      "notes": [
+        "Retarget all downstream consumers of the former `PeanoSystem.one` field to `base`; a subject-specific arithmetic one is always derived from the subject's own zero/base boundary rather than by restoring a Peano-side alias.",
+        "Began with the NaturalNumbers Landau workup and repaired the first live authored fallout cluster on 2026-09-01: `PeanoSystem/{Definition,Induction/Core,Recursion/Iterator,Theorems/{Successor,Predecessor},Categoricity}.lean`, `NaturalNumbers/Constructions/Landau/{Operations/{Builders,Addition,Multiplication,Exponentiation,GenericMultiplication},Laws,WellFoundedness}.lean`, `NaturalNumbers/Constructions/{VonNeumann/WellFoundedness,Presburger/{Carrier,WellFoundedness}}.lean`, `WholeNumbers/Constructions/Landau/Carrier.lean`, and `Carriers/Witnesses.lean` now retarget the removed field to `base` (or the subject-owned equivalent such as `some natural_data.model.base`) with no compatibility alias/shim/wrapper introduced.",
+        "Completed 2026-09-01: the final live consumer was `WholeNumbers/Constructions/Landau/WellFoundedness.lean`, whose `WholeNumbersPeanoSystem` record (and its embedded source renderings) now supplies `base := zero natural_data`. A clean post-churn `lake build LRA.NumberSystems` exits successfully; `python scripts/validate_structure.py --path LRA/NumberSystems` remains non-discriminating because of the pre-existing missing `SuccessorArithmetic/Interface/{ModelTheory,UniversalAlgebra}` files.",
+        "Every new theorem and proof-carrying instance is written with `sorry`."
+      ]
+    },
+    {
+      "id": "nsc-06",
+      "subject": "SuccessorArithmetic additive monoid",
+      "tier": 10,
+      "depends_on": ["nsc-05"],
+      "status": "not_started",
+      "validator_path": "LRA/NumberSystems/SuccessorArithmetic",
+      "build_target": "LRA.NumberSystems.SuccessorArithmetic",
+      "notes": [
+        "Move the one canonical Peano-recursive addition owner into SuccessorArithmetic with zero as identity, then retarget Landau to consume it instead of creating a parallel addition API.",
+        "Expose Add, OfNat 0, Nonempty, and additive-semigroup/identity/monoid law packages. Every new theorem and proof-carrying instance is `sorry`."
+      ]
+    },
+    {
+      "id": "nsc-07",
+      "subject": "Scalar carrier ownership completion",
+      "tier": 11,
+      "depends_on": ["nsc-05"],
+      "status": "not_started",
+      "validator_path": "LRA/NumberSystems",
+      "build_target": "LRA.NumberSystems",
+      "notes": [
+        "Move canonical and Mathlib aliases for N/W/Z/Q/R to their owning subject Definition modules; construction-local Carrier aliases remain construction-owned.",
+        "Retarget Carriers to compatibility re-exports only, and audit existing generic bridges without inventing new peer models."
+      ]
+    },
+    {
+      "id": "nsc-08",
+      "subject": "Generic signed and positive refinements",
+      "tier": 12,
+      "depends_on": ["nsc-07"],
+      "status": "not_started",
+      "validator_path": "LRA/NumberSystems",
+      "build_target": "LRA.NumberSystems",
+      "notes": [
+        "Add subject-local generic subtype refinements, not peer number-system models: N+; Z+/Z0+/Z-/Z0-; Q+/Q0+/Q-/Q0-; R+/R0+/R-/R0-.",
+        "Use + for strict positivity/negativity and 0+ or 0- for closed cones; expose only operations closed on each subtype. Every new theorem and proof-carrying instance is `sorry`."
+      ]
+    },
+    {
+      "id": "nsc-09",
+      "subject": "Mathlib refinement aliases and bridges",
+      "tier": 13,
+      "depends_on": ["nsc-08"],
+      "status": "not_started",
+      "validator_path": "LRA/NumberSystems",
+      "build_target": "LRA.NumberSystems",
+      "notes": [
+        "Alias Mathlib refinement carriers directly where they exist: PNat, Nat, NNRat, NNReal, and units for strictly-positive multiplicative surfaces.",
+        "Place construction-local bridges in Satisfy_Refinement rather than Satisfy_Generic, since a refinement is a derived parent-model carrier rather than an independent generic model. Every proof-carrying bridge is `sorry`."
+      ]
+    },
+    {
+      "id": "nsc-10",
+      "subject": "Extended-real consolidation",
+      "tier": 14,
+      "depends_on": ["nsc-09"],
+      "status": "not_started",
+      "validator_path": "LRA/NumberSystems",
+      "build_target": "LRA.NumberSystems",
+      "notes": [
+        "Settle one canonical owner for existing RealNumbers.Extended/nonnegative material versus the design-only ExtendedReal directory; do not maintain both.",
+        "Promote full, nonnegative, and nonpositive extended-real refinements with EReal/ENNReal aliases, order-first bridges, and named arithmetic failure modes. Every theorem and proof-carrying instance is `sorry`."
+      ]
     }
   ]
 }

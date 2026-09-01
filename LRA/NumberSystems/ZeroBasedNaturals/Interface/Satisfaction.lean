@@ -1,2 +1,0 @@
-import LRA.NumberSystems.ZeroBasedNaturals.Interface.Satisfy_ModelTheory
-import LRA.NumberSystems.ZeroBasedNaturals.Interface.Satisfy_UniversalAlgebra

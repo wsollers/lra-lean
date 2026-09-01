@@ -257,7 +257,7 @@ Predicate logic:
   def WholeNumbersPeanoSystem :
     LRA.NumberSystems.PeanoSystem.PeanoSystem
       (Carrier natural_data) (TypeSet (Carrier natural_data)) where
-  one := zero natural_data
+  base := zero natural_data
   successor := successor natural_data
   one_not_successor := zero_is_not_successor natural_data
   successor_injective := successor_is_injective natural_data
@@ -268,7 +268,7 @@ Predicate logic (unfolded):
   def WholeNumbersPeanoSystem :
     LRA.NumberSystems.PeanoSystem.PeanoSystem
       (Carrier natural_data) (TypeSet (Carrier natural_data)) where
-  one := zero natural_data
+  base := zero natural_data
   successor := successor natural_data
   one_not_successor := zero_is_not_successor natural_data
   successor_injective := successor_is_injective natural_data
@@ -280,7 +280,7 @@ Logical form (Lean):
 def WholeNumbersPeanoSystem :
     LRA.NumberSystems.PeanoSystem.PeanoSystem
       (Carrier natural_data) (TypeSet (Carrier natural_data)) where
-  one := zero natural_data
+  base := zero natural_data
   successor := successor natural_data
   one_not_successor := zero_is_not_successor natural_data
   successor_injective := successor_is_injective natural_data
@@ -309,7 +309,7 @@ Related proof moves: unfold
 def WholeNumbersPeanoSystem :
     LRA.NumberSystems.PeanoSystem.PeanoSystem
       (Carrier natural_data) (TypeSet (Carrier natural_data)) where
-  one := zero natural_data
+  base := zero natural_data
   successor := successor natural_data
   one_not_successor := zero_is_not_successor natural_data
   successor_injective := successor_is_injective natural_data

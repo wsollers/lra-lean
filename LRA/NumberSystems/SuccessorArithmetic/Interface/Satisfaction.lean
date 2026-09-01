@@ -1,3 +1,0 @@
-import LRA.NumberSystems.SuccessorArithmetic.Interface.Satisfy_ModelTheory
-import LRA.NumberSystems.SuccessorArithmetic.Interface.Satisfy_UniversalAlgebra
-

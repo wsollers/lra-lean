@@ -1,6 +1,6 @@
 # NumberSystems Architecture Audit
 
-Updated: 2026-08-29
+Updated: 2026-09-01
 
 ## Intended Architecture
 
@@ -10,6 +10,10 @@ Updated: 2026-08-29
   universal algebra, examples, interop, carriers, and construction aliases.
 - Each construction owns an explicit `Satisfy_Generic.lean` bridge when the
   generic subject interface exists.
+- Each construction that canonically realizes one or more generic algebraic
+  structures should also own one omnibus
+  `Satisfy_AlgebraicStructures.lean` bridge file, with one named declaration per
+  actual algebraic target.
 - Subject examples live under the concrete subject and present readable
   arithmetic checks on the subject-facing construction surface.
 
@@ -50,10 +54,22 @@ Updated: 2026-08-29
 
 - Decomposition of `LRA/NumberSystems/Carriers` into subject-owned carrier
   modules.
+- Naturals-family carrier ownership reset so `NaturalNumbers` owns the
+  canonical `Landau` / `VonNeumann` / `Presburger` / `Mathlib` carrier choices
+  directly, instead of keeping `PositiveNaturals` and `ZeroBasedNaturals` as
+  peer owner subjects.
+- Retirement of the redundant successor-adjacent subject layers whose current
+  external use is only through top-level barrels and aggregators:
+  `FirstOrderArithmetic`, `PresburgerArithmetic`, `PositiveNaturals`, and
+  `ZeroBasedNaturals`.
+- Import and aggregator cleanup after those subject retirements.
 - Full `UniversalAlgebra` and `Satisfy_*` normalization for
   `ComplexNumbers` and `GaussianIntegers`.
 - `Satisfy_Generic.lean` completion for every construction that still lacks a
   canonical generic bridge.
+- `Satisfy_AlgebraicStructures.lean` normalization for constructions whose
+  concrete arithmetic surface already stably supports named bridges into the
+  generic algebraic hierarchy.
 - Subject-local `Interop` ownership for every concrete subject.
 - One arithmetic example for each non-mathlib construction whose current
   public surface still lacks a stable subject-facing addition operation.

@@ -219,7 +219,7 @@ theorem LandauMultiplicationWellDefined
 
 Predicate logic:
 
-  (∀ x ∈ Element), LandauMultiplication model x model.one = x
+  (∀ x ∈ Element), LandauMultiplication model x model.base = x
 
 Predicate logic (unfolded):
 
@@ -231,7 +231,7 @@ Logical form (Lean):
 theorem LandauMultiplicationWithOne
     (model : PeanoSystem Element SetObject)
     (left : Element) :
-    LandauMultiplication model left model.one = left
+    LandauMultiplication model left model.base = left
 ```
 
 Type-theoretic form:
@@ -256,7 +256,7 @@ Related proof moves: TODO
 theorem LandauMultiplicationWithOne
     (model : PeanoSystem Element SetObject)
     (left : Element) :
-    LandauMultiplication model left model.one = left := by
+    LandauMultiplication model left model.base = left := by
   sorry
 
 /--

@@ -1,8 +1,6 @@
 import Mathlib.Data.Complex.Basic
 import Mathlib.Data.Real.Basic
-import LRA.NumberSystems.NaturalNumbers.Constructions.Landau
-import LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann
-import LRA.NumberSystems.NaturalNumbers.Constructions.Presburger
+import LRA.NumberSystems.NaturalNumbers.Definition
 import LRA.NumberSystems.Integers.Constructions.Polish
 import LRA.NumberSystems.GaussianIntegers.Interface.ModelTheory.LStructure
 import LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs
@@ -28,8 +26,7 @@ Predicate logic (unfolded):
 Logical form (Lean):
 
 ```lean
-abbrev N_Landau :=
-  LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauElement
+abbrev N_Landau := LRA.NumberSystems.NaturalNumbers.LRA_N_Landau
 ```
 
 Type-theoretic form:
@@ -70,8 +67,7 @@ Predicate logic (unfolded):
 Logical form (Lean):
 
 ```lean
-abbrev N_VonNeumann :=
-  LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.NaturalElement
+abbrev N_VonNeumann := LRA.NumberSystems.NaturalNumbers.LRA_N_VonNeumann
 ```
 
 Type-theoretic form:
@@ -112,8 +108,7 @@ Predicate logic (unfolded):
 Logical form (Lean):
 
 ```lean
-abbrev N_Presburger :=
-  LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.PresburgerElement
+abbrev N_Presburger := LRA.NumberSystems.NaturalNumbers.LRA_N_Presburger
 ```
 
 Type-theoretic form:
@@ -178,7 +173,7 @@ abbrev N := N_Landau
 
 abbrev N_LRA := N
 
-abbrev N_Mathlib := Nat
+abbrev N_Mathlib := LRA.NumberSystems.NaturalNumbers.LRA_MATHLIB_N
 
 /--
 `N_0` TODO

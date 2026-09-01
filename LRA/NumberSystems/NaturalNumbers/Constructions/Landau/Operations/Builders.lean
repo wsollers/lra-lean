@@ -19,18 +19,18 @@ variable [Membership Element SetObject]
 Predicate logic:
 
   def LandauOneOn (model : PeanoSystem Element SetObject) : OfNat Element 1 :=
-  ⟨model.one⟩
+  ⟨model.base⟩
 
 Predicate logic (unfolded):
 
   def LandauOneOn (model : PeanoSystem Element SetObject) : OfNat Element 1 :=
-  ⟨model.one⟩ (source fallback; no compiled unfold data available)
+  ⟨model.base⟩ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
 abbrev LandauOneOn (model : PeanoSystem Element SetObject) : OfNat Element 1 :=
-  ⟨model.one⟩
+  ⟨model.base⟩
 ```
 
 Type-theoretic form:
@@ -53,7 +53,7 @@ Related proof moves: unfold
 
 -/
 abbrev LandauOneOn (model : PeanoSystem Element SetObject) : OfNat Element 1 :=
-  ⟨model.one⟩
+  ⟨model.base⟩
 
 /--
 `LandauSuccOn` TODO

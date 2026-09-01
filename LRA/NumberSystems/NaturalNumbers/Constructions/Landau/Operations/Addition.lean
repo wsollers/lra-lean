@@ -221,7 +221,7 @@ theorem LandauAdditionWellDefined
 
 Predicate logic:
 
-  (∀ x ∈ Element), LandauAddition model x model.one = model.successor x
+  (∀ x ∈ Element), LandauAddition model x model.base = model.successor x
 
 Predicate logic (unfolded):
 
@@ -233,7 +233,7 @@ Logical form (Lean):
 theorem LandauAdditionWithOne
     (model : PeanoSystem Element SetObject)
     (left : Element) :
-    LandauAddition model left model.one = model.successor left
+    LandauAddition model left model.base = model.successor left
 ```
 
 Type-theoretic form:
@@ -258,7 +258,7 @@ Related proof moves: TODO
 theorem LandauAdditionWithOne
     (model : PeanoSystem Element SetObject)
     (left : Element) :
-    LandauAddition model left model.one = model.successor left := by
+    LandauAddition model left model.base = model.successor left := by
   sorry
 
 /--

@@ -402,7 +402,7 @@ theorem LandauAdditionNonstrictMonotoneInBothArguments
 theorem LandauEveryElementIsAtLeastOne
     (model : PeanoSystem Element SetObject) :
     ∀ x : Element,
-      LandauGreaterThanOrEqual model x model.one := by
+      LandauGreaterThanOrEqual model x model.base := by
   sorry
 
 /-- Landau Chapter I, Theorem 25. -/
@@ -412,14 +412,14 @@ theorem LandauStrictSuccessorLowerBound
       LandauGreaterThan model y x →
       LandauGreaterThanOrEqual model
         y
-        (LandauAddition model x model.one) := by
+        (LandauAddition model x model.base) := by
   sorry
 
 /-- Landau Chapter I, Theorem 26. -/
 theorem LandauSuccessorUpperBound
     (model : PeanoSystem Element SetObject) :
     ∀ x y : Element,
-      LandauLessThan model y (LandauAddition model x model.one) →
+      LandauLessThan model y (LandauAddition model x model.base) →
       LandauLessThanOrEqual model y x := by
   sorry
 

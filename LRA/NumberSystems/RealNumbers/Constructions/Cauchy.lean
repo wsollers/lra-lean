@@ -7,3 +7,4 @@ import LRA.NumberSystems.RealNumbers.Constructions.Cauchy.Laws
 import LRA.NumberSystems.RealNumbers.Constructions.Cauchy.Behavior
 import LRA.NumberSystems.RealNumbers.Constructions.Cauchy.Instances
 import LRA.NumberSystems.RealNumbers.Constructions.Cauchy.Satisfy_Generic
+import LRA.NumberSystems.RealNumbers.Constructions.Cauchy.Satisfy_AlgebraicStructures

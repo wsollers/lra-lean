@@ -102,7 +102,7 @@ abbrev IteratorDataOnPeanoSystem (ps : PeanoSystem Element SetObject) := Iterato
 
 Predicate logic:
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : target → target) (iterator_function : Element → target), (iterator_function ps.one = initial_value ∧ ∀ (element : Element), iterator_function (ps.successor element) = step_rule (iterator_function element))
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : target → target) (iterator_function : Element → target), (iterator_function ps.base = initial_value ∧ ∀ (element : Element), iterator_function (ps.successor element) = step_rule (iterator_function element))
 
 Predicate logic (unfolded):
 
@@ -117,7 +117,7 @@ def IteratorFunctionClauses
     (initial_value : target)
     (step_rule : target -> target)
     (iterator_function : Element -> target) : Prop :=
-  iterator_function ps.one = initial_value /\
+  iterator_function ps.base = initial_value /\
     forall element : Element,
       iterator_function (ps.successor element) =
         step_rule (iterator_function element)
@@ -148,7 +148,7 @@ def IteratorFunctionClauses
     (initial_value : target)
     (step_rule : target -> target)
     (iterator_function : Element -> target) : Prop :=
-  iterator_function ps.one = initial_value /\
+  iterator_function ps.base = initial_value /\
     forall element : Element,
       iterator_function (ps.successor element) =
         step_rule (iterator_function element)
@@ -158,7 +158,7 @@ def IteratorFunctionClauses
 
 Predicate logic:
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (data : LRA.NumberSystems.PeanoSystem.Recursion.IteratorData ps) (relation : Element → data.Target → Prop), (relation ps.one data.InitialValue ∧ ∀ (element : Element) (value : data.Target), relation element value → relation (ps.successor element) (data.StepRule value))
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (data : LRA.NumberSystems.PeanoSystem.Recursion.IteratorData ps) (relation : Element → data.Target → Prop), (relation ps.base data.InitialValue ∧ ∀ (element : Element) (value : data.Target), relation element value → relation (ps.successor element) (data.StepRule value))
 
 Predicate logic (unfolded):
 
@@ -171,7 +171,7 @@ def IteratorRelation
     (ps : PeanoSystem Element SetObject)
     (data : IteratorData ps)
     (relation : Element -> data.Target -> Prop) : Prop :=
-  relation ps.one data.InitialValue /\
+  relation ps.base data.InitialValue /\
     forall element : Element,
       forall value : data.Target,
         relation element value ->
@@ -201,7 +201,7 @@ def IteratorRelation
     (ps : PeanoSystem Element SetObject)
     (data : IteratorData ps)
     (relation : Element -> data.Target -> Prop) : Prop :=
-  relation ps.one data.InitialValue /\
+  relation ps.base data.InitialValue /\
     forall element : Element,
       forall value : data.Target,
         relation element value ->
@@ -791,7 +791,7 @@ noncomputable def IteratorGeneratedFunction
 
 Predicate logic:
 
-  (∀ initial_value ∈ target), IteratorGeneratedFunction ps fullInduction target initial_value step_rule ps.one = initial_value
+  (∀ initial_value ∈ target), IteratorGeneratedFunction ps fullInduction target initial_value step_rule ps.base = initial_value
 
 Predicate logic (unfolded):
 
@@ -806,7 +806,7 @@ theorem IteratorBaseValue
     (target : Type w)
     (initial_value : target)
     (step_rule : target -> target) :
-    IteratorGeneratedFunction ps fullInduction target initial_value step_rule ps.one = initial_value
+    IteratorGeneratedFunction ps fullInduction target initial_value step_rule ps.base = initial_value
 ```
 
 Type-theoretic form:
@@ -834,7 +834,7 @@ theorem IteratorBaseValue
     (target : Type w)
     (initial_value : target)
     (step_rule : target -> target) :
-    IteratorGeneratedFunction ps fullInduction target initial_value step_rule ps.one = initial_value := by
+    IteratorGeneratedFunction ps fullInduction target initial_value step_rule ps.base = initial_value := by
   sorry
 
 /--
@@ -1085,7 +1085,7 @@ def StageDependentStepRule
 
 Predicate logic:
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : LRA.NumberSystems.PeanoSystem.Recursion.StageDependentStepRule ps target) (recursive_function : Element → target), (recursive_function ps.one = initial_value ∧ ∀ (element : Element), recursive_function (ps.successor element) = step_rule element (recursive_function element))
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : LRA.NumberSystems.PeanoSystem.Recursion.StageDependentStepRule ps target) (recursive_function : Element → target), (recursive_function ps.base = initial_value ∧ ∀ (element : Element), recursive_function (ps.successor element) = step_rule element (recursive_function element))
 
 Predicate logic (unfolded):
 
@@ -1100,7 +1100,7 @@ def GeneralRecursiveFunctionClauses
     (initial_value : target)
     (step_rule : StageDependentStepRule ps target)
     (recursive_function : Element -> target) : Prop :=
-  recursive_function ps.one = initial_value /\
+  recursive_function ps.base = initial_value /\
     forall element : Element,
       recursive_function (ps.successor element) =
         step_rule element (recursive_function element)
@@ -1131,7 +1131,7 @@ def GeneralRecursiveFunctionClauses
     (initial_value : target)
     (step_rule : StageDependentStepRule ps target)
     (recursive_function : Element -> target) : Prop :=
-  recursive_function ps.one = initial_value /\
+  recursive_function ps.base = initial_value /\
     forall element : Element,
       recursive_function (ps.successor element) =
         step_rule element (recursive_function element)

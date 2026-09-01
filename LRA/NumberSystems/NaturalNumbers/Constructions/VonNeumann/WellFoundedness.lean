@@ -143,7 +143,7 @@ Predicate logic:
 
   noncomputable def VonNeumannPeanoSystem :
     LRA.NumberSystems.PeanoSystem.PeanoSystem NaturalElement LRA.Set.Constructions.ZFCSet where
-  one := NaturalZero
+  base := NaturalZero
   successor := NaturalSuccessor
   one_not_successor := NaturalZeroIsNotSuccessor
   successor_injective := NaturalSuccessorInjective
@@ -153,7 +153,7 @@ Predicate logic (unfolded):
 
   noncomputable def VonNeumannPeanoSystem :
     LRA.NumberSystems.PeanoSystem.PeanoSystem NaturalElement LRA.Set.Constructions.ZFCSet where
-  one := NaturalZero
+  base := NaturalZero
   successor := NaturalSuccessor
   one_not_successor := NaturalZeroIsNotSuccessor
   successor_injective := NaturalSuccessorInjective
@@ -164,7 +164,7 @@ Logical form (Lean):
 ```lean
 noncomputable def VonNeumannPeanoSystem :
     LRA.NumberSystems.PeanoSystem.PeanoSystem NaturalElement LRA.Set.Constructions.ZFCSet where
-  one := NaturalZero
+  base := NaturalZero
   successor := NaturalSuccessor
   one_not_successor := NaturalZeroIsNotSuccessor
   successor_injective := NaturalSuccessorInjective
@@ -192,7 +192,7 @@ Related proof moves: unfold
 -/
 noncomputable def VonNeumannPeanoSystem :
     LRA.NumberSystems.PeanoSystem.PeanoSystem NaturalElement LRA.Set.Constructions.ZFCSet where
-  one := NaturalZero
+  base := NaturalZero
   successor := NaturalSuccessor
   one_not_successor := NaturalZeroIsNotSuccessor
   successor_injective := NaturalSuccessorInjective

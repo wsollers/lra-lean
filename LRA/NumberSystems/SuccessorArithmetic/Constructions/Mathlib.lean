@@ -1,19 +1,22 @@
-import LRA.NumberSystems.SuccessorArithmetic.Interface.ModelTheory.Model
 import LRA.NumberSystems.SuccessorArithmetic.Definition
 
 namespace LRA.NumberSystems.SuccessorArithmetic.Constructions.Mathlib
 
-open LRA.NumberSystems.SuccessorArithmetic.Interface.ModelTheory
-
 abbrev Carrier := LRA.NumberSystems.SuccessorArithmetic.StandardCarrier
 
-def genericModel : SuccessorArithmeticModel :=
-  mathlibSuccessorArithmeticModel
+def genericArithmetic : SuccessorArithmetic Nat (Set Nat) where
+  peanoSystem :=
+    { base := 0
+      successor := Nat.succ
+      one_not_successor := by sorry
+      successor_injective := by sorry
+      induction := by sorry }
 
-theorem satisfiesGenericType : genericModel.signature.carrier = Carrier := by
+theorem satisfiesGenericType : genericArithmetic.peanoSystem.base = (0 : Carrier) := by
   rfl
 
-def firstOrderModel := BuildSuccessorArithmeticModel genericModel.signature
+abbrev zero := LRA.NumberSystems.SuccessorArithmetic.zero genericArithmetic
+
+abbrev one := LRA.NumberSystems.SuccessorArithmetic.one genericArithmetic
 
 end LRA.NumberSystems.SuccessorArithmetic.Constructions.Mathlib
-

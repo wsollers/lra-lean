@@ -14,7 +14,7 @@ Predicate logic:
   def PresburgerPeanoSystem :
     LRA.NumberSystems.PeanoSystem.PeanoSystem
       PresburgerElement (TypeSet PresburgerElement) where
-  one := PresburgerElement.zero
+  base := PresburgerElement.zero
   successor := PresburgerElement.succ
   one_not_successor := PresburgerZeroIsNotSuccessor
   successor_injective := PresburgerSuccessorInjective
@@ -25,7 +25,7 @@ Predicate logic (unfolded):
   def PresburgerPeanoSystem :
     LRA.NumberSystems.PeanoSystem.PeanoSystem
       PresburgerElement (TypeSet PresburgerElement) where
-  one := PresburgerElement.zero
+  base := PresburgerElement.zero
   successor := PresburgerElement.succ
   one_not_successor := PresburgerZeroIsNotSuccessor
   successor_injective := PresburgerSuccessorInjective
@@ -37,7 +37,7 @@ Logical form (Lean):
 def PresburgerPeanoSystem :
     LRA.NumberSystems.PeanoSystem.PeanoSystem
       PresburgerElement (TypeSet PresburgerElement) where
-  one := PresburgerElement.zero
+  base := PresburgerElement.zero
   successor := PresburgerElement.succ
   one_not_successor := PresburgerZeroIsNotSuccessor
   successor_injective := PresburgerSuccessorInjective
@@ -66,7 +66,7 @@ Related proof moves: unfold
 def PresburgerPeanoSystem :
     LRA.NumberSystems.PeanoSystem.PeanoSystem
       PresburgerElement (TypeSet PresburgerElement) where
-  one := PresburgerElement.zero
+  base := PresburgerElement.zero
   successor := PresburgerElement.succ
   one_not_successor := PresburgerZeroIsNotSuccessor
   successor_injective := PresburgerSuccessorInjective

@@ -1,3 +1,1 @@
 import LRA.NumberSystems.SuccessorArithmetic.Constructions.Mathlib
-import LRA.NumberSystems.SuccessorArithmetic.Constructions.Mathlib.Satisfy_Generic
-

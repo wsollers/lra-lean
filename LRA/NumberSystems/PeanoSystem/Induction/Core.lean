@@ -14,7 +14,7 @@ variable [Membership Element SetObject]
 
 Predicate logic:
 
-  (∀ A ∈ U), (ps.one ∈ A ∧ forall element : Element, element ∈ A -> (ps.successor element) ∈ A) → forall element : Element, element ∈ A
+  (∀ A ∈ U), (ps.base ∈ A ∧ forall element : Element, element ∈ A -> (ps.successor element) ∈ A) → forall element : Element, element ∈ A
 
 Predicate logic (unfolded):
 
@@ -26,7 +26,7 @@ Logical form (Lean):
 theorem PeanoSystemInductionPrinciple
     (ps : PeanoSystem Element SetObject)
     (subset : SetObject)
-    (base_case : ps.one ∈ subset)
+    (base_case : ps.base ∈ subset)
     (successor_step :
       forall element : Element,
         element ∈ subset ->
@@ -57,7 +57,7 @@ Related proof moves: intro
 theorem PeanoSystemInductionPrinciple
     (ps : PeanoSystem Element SetObject)
     (subset : SetObject)
-    (base_case : ps.one ∈ subset)
+    (base_case : ps.base ∈ subset)
     (successor_step :
       forall element : Element,
         element ∈ subset ->
@@ -71,7 +71,7 @@ theorem PeanoSystemInductionPrinciple
 
 Predicate logic:
 
-  (∀ A ∈ U), (ps.one ∈ A ∧ forall element : Element, element ∈ A -> (ps.successor element) ∈ A) → forall element : Element, element ∈ A
+  (∀ A ∈ U), (ps.base ∈ A ∧ forall element : Element, element ∈ A -> (ps.successor element) ∈ A) → forall element : Element, element ∈ A
 
 Predicate logic (unfolded):
 
@@ -83,7 +83,7 @@ Logical form (Lean):
 theorem InductionPrincipleForPeanoSystem
     (ps : PeanoSystem Element SetObject)
     (subset : SetObject)
-    (base_case : ps.one ∈ subset)
+    (base_case : ps.base ∈ subset)
     (successor_step :
       forall element : Element,
         element ∈ subset ->
@@ -114,7 +114,7 @@ Related proof moves: intro
 theorem InductionPrincipleForPeanoSystem
     (ps : PeanoSystem Element SetObject)
     (subset : SetObject)
-    (base_case : ps.one ∈ subset)
+    (base_case : ps.base ∈ subset)
     (successor_step :
       forall element : Element,
         element ∈ subset ->
@@ -285,7 +285,7 @@ theorem PeanoMinimality
 
 Predicate logic:
 
-  (∀ A ∈ U), (ps.one ∈ A) → ∀ element : Element, element ∈ A
+  (∀ A ∈ U), (ps.base ∈ A) → ∀ element : Element, element ∈ A
 
 Predicate logic (unfolded):
 
@@ -297,7 +297,7 @@ Logical form (Lean):
 theorem SuccessorClosedSubsetMinimality
     (ps : PeanoSystem Element SetObject)
     (subset : SetObject)
-    (contains_one : ps.one ∈ subset)
+    (contains_base : ps.base ∈ subset)
     (successor_closed : SuccessorClosedSubset ps subset) :
     ∀ element : Element, element ∈ subset
 ```
@@ -324,7 +324,7 @@ Related proof moves: intro
 theorem SuccessorClosedSubsetMinimality
     (ps : PeanoSystem Element SetObject)
     (subset : SetObject)
-    (contains_one : ps.one ∈ subset)
+    (contains_base : ps.base ∈ subset)
     (successor_closed : SuccessorClosedSubset ps subset) :
     ∀ element : Element, element ∈ subset := by
   sorry

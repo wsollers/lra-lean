@@ -12,7 +12,7 @@ variable [Membership Element SetObject]
 
 Predicate logic:
 
-  FullPredicateInduction second -> exists forward : Element -> SecondElement, exists backward : SecondElement -> Element, forward first.one = second.one ∧ backward second.one = first.one ∧ forall element ∈ Element, forward (first.successor element = second.successor (forward element)) ∧ forall element ∈ SecondElement, backward (second.successor element = first.successor (backward element)) ∧ forall element ∈ Element, backward (forward element = element) ∧ forall element ∈ SecondElement, forward (backward element = element)
+  FullPredicateInduction second -> exists forward : Element -> SecondElement, exists backward : SecondElement -> Element, forward first.base = second.base ∧ backward second.base = first.base ∧ forall element ∈ Element, forward (first.successor element = second.successor (forward element)) ∧ forall element ∈ SecondElement, backward (second.successor element = first.successor (backward element)) ∧ forall element ∈ Element, backward (forward element = element) ∧ forall element ∈ SecondElement, forward (backward element = element)
 
 Predicate logic (unfolded):
 
@@ -30,8 +30,8 @@ theorem UniquenessOfPeanoSystemsUpToIsomorphism
     FullPredicateInduction second ->
     exists forward : Element -> SecondElement,
       exists backward : SecondElement -> Element,
-        forward first.one = second.one /\
-        backward second.one = first.one /\
+        forward first.base = second.base /\
+        backward second.base = first.base /\
         (forall element : Element,
           forward (first.successor element) =
             second.successor (forward element)) /\
@@ -70,8 +70,8 @@ theorem UniquenessOfPeanoSystemsUpToIsomorphism
     FullPredicateInduction second ->
     exists forward : Element -> SecondElement,
       exists backward : SecondElement -> Element,
-        forward first.one = second.one /\
-        backward second.one = first.one /\
+        forward first.base = second.base /\
+        backward second.base = first.base /\
         (forall element : Element,
           forward (first.successor element) =
             second.successor (forward element)) /\

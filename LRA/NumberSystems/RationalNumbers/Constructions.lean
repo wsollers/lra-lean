@@ -1,3 +1,4 @@
 import LRA.NumberSystems.RationalNumbers.Constructions.RationalQuotientFractions
 import LRA.NumberSystems.RationalNumbers.Constructions.Mathlib
 import LRA.NumberSystems.RationalNumbers.Constructions.Mathlib.Satisfy_Generic
+import LRA.NumberSystems.RationalNumbers.Constructions.Mathlib.Satisfy_AlgebraicStructures

@@ -6,3 +6,4 @@ import LRA.NumberSystems.WholeNumbers.Constructions.Landau.Laws
 import LRA.NumberSystems.WholeNumbers.Constructions.Landau.Behavior
 import LRA.NumberSystems.WholeNumbers.Constructions.Landau.Instances
 import LRA.NumberSystems.WholeNumbers.Constructions.Landau.Satisfy_Generic
+import LRA.NumberSystems.WholeNumbers.Constructions.Landau.Satisfy_AlgebraicStructures

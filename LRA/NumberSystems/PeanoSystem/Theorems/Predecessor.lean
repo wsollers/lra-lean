@@ -202,7 +202,7 @@ theorem PredecessorUnique
 
 Predicate logic:
 
-  (∀ x ∈ Element), x ≠ ps.one -> exists predecessor : Element, ps.successor predecessor = x
+  (∀ x ∈ Element), x ≠ ps.base -> exists predecessor : Element, ps.successor predecessor = x
 
 Predicate logic (unfolded):
 
@@ -211,10 +211,10 @@ Predicate logic (unfolded):
 Logical form (Lean):
 
 ```lean
-theorem NonOneElementsHaveAPredecessor
+theorem NonBaseElementsHaveAPredecessor
     (ps : PeanoSystem Element SetObject)
     (element : Element) :
-    element ≠ ps.one ->
+    element ≠ ps.base ->
       exists predecessor : Element,
         ps.successor predecessor = element
 ```
@@ -241,7 +241,7 @@ Related proof moves: intro, use, rcases
 theorem NonOneElementsHaveAPredecessor
     (ps : PeanoSystem Element SetObject)
     (element : Element) :
-    element ≠ ps.one ->
+    element ≠ ps.base ->
       exists predecessor : Element,
         ps.successor predecessor = element := by
   sorry
@@ -251,7 +251,7 @@ theorem NonOneElementsHaveAPredecessor
 
 Predicate logic:
 
-  (∀ x ∈ Element), x ≠ ps.one -> UniquePredecessor ps x
+  (∀ x ∈ Element), x ≠ ps.base -> UniquePredecessor ps x
 
 Predicate logic (unfolded):
 
@@ -260,10 +260,10 @@ Predicate logic (unfolded):
 Logical form (Lean):
 
 ```lean
-theorem PredecessorExistsUniqueAwayFromOne
+theorem PredecessorExistsUniqueAwayFromBase
     (ps : PeanoSystem Element SetObject)
     (element : Element) :
-    element ≠ ps.one -> UniquePredecessor ps element
+    element ≠ ps.base -> UniquePredecessor ps element
 ```
 
 Type-theoretic form:
@@ -288,7 +288,7 @@ Related proof moves: intro
 theorem PredecessorExistsUniqueAwayFromOne
     (ps : PeanoSystem Element SetObject)
     (element : Element) :
-    element ≠ ps.one -> UniquePredecessor ps element := by
+    element ≠ ps.base -> UniquePredecessor ps element := by
   sorry
 
 /--
@@ -296,7 +296,7 @@ theorem PredecessorExistsUniqueAwayFromOne
 
 Predicate logic:
 
-  (∀ x ∈ Element), x ≠ ps.one <-> UniquePredecessor ps x
+  (∀ x ∈ Element), x ≠ ps.base <-> UniquePredecessor ps x
 
 Predicate logic (unfolded):
 
@@ -305,10 +305,10 @@ Predicate logic (unfolded):
 Logical form (Lean):
 
 ```lean
-theorem UniquePredecessorCharacterizationAwayFromOne
+theorem UniquePredecessorCharacterizationAwayFromBase
     (ps : PeanoSystem Element SetObject)
     (element : Element) :
-    element ≠ ps.one <-> UniquePredecessor ps element
+    element ≠ ps.base <-> UniquePredecessor ps element
 ```
 
 Type-theoretic form:
@@ -333,7 +333,7 @@ Related proof moves: intro, constructor, .mp, .mpr
 theorem UniquePredecessorCharacterizationAwayFromOne
     (ps : PeanoSystem Element SetObject)
     (element : Element) :
-    element ≠ ps.one <-> UniquePredecessor ps element := by
+    element ≠ ps.base <-> UniquePredecessor ps element := by
   sorry
 
 end LRA.NumberSystems.PeanoSystem

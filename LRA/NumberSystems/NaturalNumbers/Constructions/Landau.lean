@@ -4,3 +4,4 @@ import LRA.NumberSystems.NaturalNumbers.Constructions.Landau.WellFoundedness
 import LRA.NumberSystems.NaturalNumbers.Constructions.Landau.Operations
 import LRA.NumberSystems.NaturalNumbers.Constructions.Landau.Laws
 import LRA.NumberSystems.NaturalNumbers.Constructions.Landau.Instances
+import LRA.NumberSystems.NaturalNumbers.Constructions.Landau.Satisfy_AlgebraicStructures

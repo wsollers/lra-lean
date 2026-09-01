@@ -31,7 +31,7 @@ Logical form (Lean):
 ```lean
 structure PeanoSignature where
   carrier : Type u
-  one : LRA.Operation.NullaryOperation carrier
+  base : LRA.Operation.NullaryOperation carrier
   successor : LRA.Operation.UnaryOperation carrier
 ```
 
@@ -110,12 +110,12 @@ Predicate logic:
     (signature : PeanoSignature) :
     PeanoLStructure where
   Domain := signature.carrier
-  domainNonempty := ⟨signature.one⟩
+  domainNonempty := ⟨signature.base⟩
   interpretFunction
     | .successor, args => signature.successor (args ⟨0, by decide⟩)
   interpretRelation := fun RelationSymbol => nomatch RelationSymbol
   interpretConstant
-    | .one => signature.one
+    | .base => signature.base
 
 Predicate logic (unfolded):
 

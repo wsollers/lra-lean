@@ -57,7 +57,7 @@ theorem SuccessorInjective
 
 Predicate logic:
 
-  forall element : Element, ps.successor element ≠ ps.one
+  forall element : Element, ps.successor element ≠ ps.base
 
 Predicate logic (unfolded):
 
@@ -66,10 +66,10 @@ Predicate logic (unfolded):
 Logical form (Lean):
 
 ```lean
-theorem OneIsNotSuccessor
+theorem BaseIsNotSuccessor
     (ps : PeanoSystem Element SetObject) :
     forall element : Element,
-      ps.successor element ≠ ps.one
+      ps.successor element ≠ ps.base
 ```
 
 Type-theoretic form:
@@ -94,7 +94,7 @@ Related proof moves: intro
 theorem OneIsNotSuccessor
     (ps : PeanoSystem Element SetObject) :
     forall element : Element,
-      ps.successor element ≠ ps.one := by
+      ps.successor element ≠ ps.base := by
   sorry
 
 /--
@@ -194,7 +194,7 @@ theorem SuccessorInequalityReflection
 
 Predicate logic:
 
-  forall element : Element, element = ps.one ∨ exists predecessor : Element, ps.successor predecessor = element
+  forall element : Element, element = ps.base ∨ exists predecessor : Element, ps.successor predecessor = element
 
 Predicate logic (unfolded):
 
@@ -203,10 +203,10 @@ Predicate logic (unfolded):
 Logical form (Lean):
 
 ```lean
-theorem EveryElementIsOneOrASuccessor
+theorem EveryElementIsBaseOrASuccessor
     (ps : PeanoSystem Element SetObject) :
     forall element : Element,
-      element = ps.one \/
+      element = ps.base \/
         exists predecessor : Element,
           ps.successor predecessor = element
 ```
@@ -233,7 +233,7 @@ Related proof moves: intro, Or.inl, Or.inr, cases, rcases, use
 theorem EveryElementIsOneOrASuccessor
     (ps : PeanoSystem Element SetObject) :
     forall element : Element,
-      element = ps.one \/
+      element = ps.base \/
         exists predecessor : Element,
           ps.successor predecessor = element := by
   sorry
@@ -288,7 +288,7 @@ theorem NoObjectIsItsOwnSuccessor
 
 Predicate logic:
 
-  (∀ x ∈ Element), forall predecessor ∈ Element, ps.successor predecessor ≠ x <-> x = ps.one
+  (∀ x ∈ Element), forall predecessor ∈ Element, ps.successor predecessor ≠ x <-> x = ps.base
 
 Predicate logic (unfolded):
 
@@ -297,12 +297,12 @@ Predicate logic (unfolded):
 Logical form (Lean):
 
 ```lean
-theorem OneIsUniqueNonSuccessor
+theorem BaseIsUniqueNonSuccessor
     (ps : PeanoSystem Element SetObject)
     (element : Element) :
     (forall predecessor : Element,
       ps.successor predecessor ≠ element) <->
-    element = ps.one
+    element = ps.base
 ```
 
 Type-theoretic form:
@@ -329,7 +329,7 @@ theorem OneIsUniqueNonSuccessor
     (element : Element) :
     (forall predecessor : Element,
       ps.successor predecessor ≠ element) <->
-    element = ps.one := by
+    element = ps.base := by
   sorry
 
 /--

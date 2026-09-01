@@ -54,7 +54,7 @@ theorem LandauMultiplicationHasTwoSidedIdentity
     (model : PeanoSystem Element SetObject) :
     LRA.Operation.Laws.Identity.TwoSidedIdentity
       (LandauMultiplication model)
-      model.one := by
+      model.base := by
   sorry
 
 /-- Landau naturals export multiplicative identity through the generic
@@ -63,7 +63,7 @@ noncomputable def LandauMultiplicationIdentityLawExports
     (model : PeanoSystem Element SetObject) :
     LRA.Operation.Multiplication.IdentityLawExports Element where
   base := LandauMultiplicationBaseLawExports model
-  identity := model.one
+  identity := model.base
   twoSidedIdentity := LandauMultiplicationHasTwoSidedIdentity model
 
 /-- Phase 2 concrete pilot: Landau naturals discharge the baseline generic

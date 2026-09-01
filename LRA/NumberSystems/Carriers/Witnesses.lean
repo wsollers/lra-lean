@@ -1,4 +1,5 @@
 import LRA.NumberSystems.Carriers.Definition
+import LRA.NumberSystems.NaturalNumbers.Constructions.Landau.Laws
 import LRA.NumberSystems.WholeNumbers.Constructions.Landau
 import LRA.NumberSystems.Integers.Constructions.QuotientOrderedPairs
 import LRA.NumberSystems.Integers.Constructions.Tao
@@ -560,7 +561,7 @@ theorem landauEveryPositiveIntegerHasLandauDenominator :
 
 Predicate logic:
 
-  landauNaturalToInteger LandauPeanoSystem.one = 1
+  landauNaturalToInteger LandauPeanoSystem.base = 1
 
 Predicate logic (unfolded):
 
@@ -570,7 +571,7 @@ Logical form (Lean):
 
 ```lean
 theorem landauNaturalToIntegerOneMapsToOne :
-    landauNaturalToInteger LandauPeanoSystem.one = 1
+    landauNaturalToInteger LandauPeanoSystem.base = 1
 ```
 
 Type-theoretic form:
@@ -593,7 +594,7 @@ Related proof moves: TODO
 
 -/
 theorem landauNaturalToIntegerOneMapsToOne :
-    landauNaturalToInteger LandauPeanoSystem.one = 1 := by
+    landauNaturalToInteger LandauPeanoSystem.base = 1 := by
   sorry
 
 /--
@@ -650,7 +651,7 @@ Predicate logic:
     LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData where
   integer_system := landauIntegerNumberSystem
   natural_carrier := LandauElement
-  one := LandauPeanoSystem.one
+  one := LandauPeanoSystem.base
   multiplication := LandauMultiplication LandauPeanoSystem
   to_integer := landauNaturalToInteger
   denominator_is_positive := landauNaturalToIntegerIsPositive
@@ -664,7 +665,7 @@ Predicate logic (unfolded):
     LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData where
   integer_system := landauIntegerNumberSystem
   natural_carrier := LandauElement
-  one := LandauPeanoSystem.one
+  one := LandauPeanoSystem.base
   multiplication := LandauMultiplication LandauPeanoSystem
   to_integer := landauNaturalToInteger
   denominator_is_positive := landauNaturalToIntegerIsPositive
@@ -679,7 +680,7 @@ noncomputable def landauIntegerAndPositiveNaturalData :
     LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData where
   integer_system := landauIntegerNumberSystem
   natural_carrier := LandauElement
-  one := LandauPeanoSystem.one
+  one := LandauPeanoSystem.base
   multiplication := LandauMultiplication LandauPeanoSystem
   to_integer := landauNaturalToInteger
   denominator_is_positive := landauNaturalToIntegerIsPositive
@@ -711,7 +712,7 @@ noncomputable def landauIntegerAndPositiveNaturalData :
     LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData where
   integer_system := landauIntegerNumberSystem
   natural_carrier := LandauElement
-  one := LandauPeanoSystem.one
+  one := LandauPeanoSystem.base
   multiplication := LandauMultiplication LandauPeanoSystem
   to_integer := landauNaturalToInteger
   denominator_is_positive := landauNaturalToIntegerIsPositive

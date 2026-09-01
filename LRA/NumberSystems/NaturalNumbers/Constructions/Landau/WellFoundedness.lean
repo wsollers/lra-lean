@@ -142,7 +142,7 @@ Predicate logic:
   noncomputable def LandauPeanoSystem :
     LRA.NumberSystems.PeanoSystem.PeanoSystem
       LandauElement (TypeSet LandauElement) where
-  one := LandauOne
+  base := LandauOne
   successor := LandauSuccessor
   one_not_successor := LandauBaseNotSuccessor
   successor_injective := LandauSuccessorInjective
@@ -153,7 +153,7 @@ Predicate logic (unfolded):
   noncomputable def LandauPeanoSystem :
     LRA.NumberSystems.PeanoSystem.PeanoSystem
       LandauElement (TypeSet LandauElement) where
-  one := LandauOne
+  base := LandauOne
   successor := LandauSuccessor
   one_not_successor := LandauBaseNotSuccessor
   successor_injective := LandauSuccessorInjective
@@ -165,7 +165,7 @@ Logical form (Lean):
 noncomputable def LandauPeanoSystem :
     LRA.NumberSystems.PeanoSystem.PeanoSystem
       LandauElement (TypeSet LandauElement) where
-  one := LandauOne
+  base := LandauOne
   successor := LandauSuccessor
   one_not_successor := LandauBaseNotSuccessor
   successor_injective := LandauSuccessorInjective
@@ -194,7 +194,7 @@ Related proof moves: unfold
 noncomputable def LandauPeanoSystem :
     LRA.NumberSystems.PeanoSystem.PeanoSystem
       LandauElement (TypeSet LandauElement) where
-  one := LandauOne
+  base := LandauOne
   successor := LandauSuccessor
   one_not_successor := LandauBaseNotSuccessor
   successor_injective := LandauSuccessorInjective

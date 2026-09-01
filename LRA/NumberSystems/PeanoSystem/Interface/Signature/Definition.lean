@@ -99,7 +99,7 @@ Logical form (Lean):
 
 ```lean
 inductive PeanoConstantSymbol where
-  | one
+  | base
 ```
 
 Type-theoretic form:

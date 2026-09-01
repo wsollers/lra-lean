@@ -7,3 +7,4 @@ import LRA.NumberSystems.RealNumbers.Constructions.PrimitiveIntervals.Laws
 import LRA.NumberSystems.RealNumbers.Constructions.PrimitiveIntervals.Behavior
 import LRA.NumberSystems.RealNumbers.Constructions.PrimitiveIntervals.Instances
 import LRA.NumberSystems.RealNumbers.Constructions.PrimitiveIntervals.Satisfy_Generic
+import LRA.NumberSystems.RealNumbers.Constructions.PrimitiveIntervals.Satisfy_AlgebraicStructures

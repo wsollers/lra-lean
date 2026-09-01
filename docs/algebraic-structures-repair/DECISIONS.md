@@ -237,3 +237,28 @@ through as-06 and as-08's Constructions and Examples proofs were reverted to `so
 on 2026-08-26 to match this rule (see each item's ledger notes and `prompts/as-0N.md`
 addenda for exactly what changed). Any new subject from here on gets `sorry` in every
 proof from the start — don't wait to be told a second time.
+
+## D9 — Algebraic bridge normalization lives at construction/model boundaries, not in `Interface/Laws`
+
+Decided 2026-09-01 after the canonical `as-01` through `as-35` queue completed and the
+next follow-on work shifted from subject reorg to explicit cross-layer bridge surfaces.
+
+- Do **not** add duplicate `Interface/Laws` theorems whose only content is that a higher
+  algebraic structure already implies its immediate parent (`Group -> Monoid`,
+  `Field -> DivisionRing`, `OrderedField -> Field`, etc.). The `class abbrev` / `abbrev`
+  law hierarchy already expresses that mathematics canonically in this tree.
+- When a richer structure needs an explicit named forgetful surface for downstream use,
+  add it at `Interface/ModelTheory` as a reduct/forgetful map from richer models to weaker
+  ones. That is the mathematically meaningful place for explicit extension data.
+- When a concrete number-system construction needs to expose which generic algebraic
+  structures it satisfies, own that bridge in one omnibus file:
+  `Constructions/<Impl>/Satisfy_AlgebraicStructures.lean`
+  not one file per algebraic target.
+- Inside that omnibus file, expose granular named declarations per actual algebraic target
+  (`satisfiesAdditiveMonoid`, `satisfiesSemiring`, `satisfiesOrderedField`,
+  `satisfiesCompleteOrderedField`, etc.), not one vague monolithic declaration like
+  `satisfiesAlgebraicStructures`.
+- Existing `Constructions/*/Satisfy_Generic.lean` files stay in place for the
+  construction-to-subject generic interface packaging they already own; the new
+  `Satisfy_AlgebraicStructures.lean` surface is additive and narrower in purpose, not a
+  rename.

@@ -7,3 +7,4 @@ import LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.Laws
 import LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.Behavior
 import LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.Instances
 import LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.Satisfy_Generic
+import LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.Satisfy_AlgebraicStructures

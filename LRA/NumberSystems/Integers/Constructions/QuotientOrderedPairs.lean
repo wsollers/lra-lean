@@ -7,3 +7,4 @@ import LRA.NumberSystems.Integers.Constructions.QuotientOrderedPairs.Laws
 import LRA.NumberSystems.Integers.Constructions.QuotientOrderedPairs.Behavior
 import LRA.NumberSystems.Integers.Constructions.QuotientOrderedPairs.Instances
 import LRA.NumberSystems.Integers.Constructions.QuotientOrderedPairs.Satisfy_Generic
+import LRA.NumberSystems.Integers.Constructions.QuotientOrderedPairs.Satisfy_AlgebraicStructures

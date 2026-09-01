@@ -351,7 +351,7 @@ Predicate logic:
     {Element : Type u} {SetObject : Type v} [Membership Element SetObject]
     (model : PresburgerModel Element SetObject) :
     LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject where
-  one := model.zero
+  base := model.zero
   successor := model.successor
   one_not_successor := model.zero_not_successor
   successor_injective := model.successor_injective
@@ -363,7 +363,7 @@ Predicate logic (unfolded):
     {Element : Type u} {SetObject : Type v} [Membership Element SetObject]
     (model : PresburgerModel Element SetObject) :
     LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject where
-  one := model.zero
+  base := model.zero
   successor := model.successor
   one_not_successor := model.zero_not_successor
   successor_injective := model.successor_injective
@@ -376,7 +376,7 @@ def PresburgerModel.toPeanoSystem
     {Element : Type u} {SetObject : Type v} [Membership Element SetObject]
     (model : PresburgerModel Element SetObject) :
     LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject where
-  one := model.zero
+  base := model.zero
   successor := model.successor
   one_not_successor := model.zero_not_successor
   successor_injective := model.successor_injective
@@ -406,7 +406,7 @@ def PresburgerModel.toPeanoSystem
     {Element : Type u} {SetObject : Type v} [Membership Element SetObject]
     (model : PresburgerModel Element SetObject) :
     LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject where
-  one := model.zero
+  base := model.zero
   successor := model.successor
   one_not_successor := model.zero_not_successor
   successor_injective := model.successor_injective

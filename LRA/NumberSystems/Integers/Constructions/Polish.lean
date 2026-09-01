@@ -1,1 +1,2 @@
 import LRA.NumberSystems.Integers.Constructions.Polish.TwoSidedSuccessor
+import LRA.NumberSystems.Integers.Constructions.Polish.TwoSidedSuccessor.Satisfy_AlgebraicStructures

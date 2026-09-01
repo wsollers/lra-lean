@@ -1,1 +1,0 @@
-import LRA.NumberSystems.ZeroBasedNaturals.Examples.ConstructionArithmetic

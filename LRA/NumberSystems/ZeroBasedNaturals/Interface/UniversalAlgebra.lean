@@ -1,1 +1,0 @@
-import LRA.NumberSystems.ZeroBasedNaturals.Interface.UniversalAlgebra.Signature.Definition

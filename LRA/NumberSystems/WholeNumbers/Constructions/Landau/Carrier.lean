@@ -249,16 +249,16 @@ def zero : Carrier natural_data := none
 
 Predicate logic:
 
-  def one : Carrier natural_data := some natural_data.model.one
+  def one : Carrier natural_data := some natural_data.model.base
 
 Predicate logic (unfolded):
 
-  def one : Carrier natural_data := some natural_data.model.one (source fallback; no compiled unfold data available)
+  def one : Carrier natural_data := some natural_data.model.base (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
-def one : Carrier natural_data := some natural_data.model.one
+def one : Carrier natural_data := some natural_data.model.base
 ```
 
 Type-theoretic form:
@@ -280,7 +280,7 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-def one : Carrier natural_data := some natural_data.model.one
+def one : Carrier natural_data := some natural_data.model.base
 
 /--
 `naturalEmbedding` TODO
@@ -326,20 +326,20 @@ def naturalEmbedding (value : Element) : Carrier natural_data := some value
 Predicate logic:
 
   def successor : Carrier natural_data → Carrier natural_data
-  | none => some natural_data.model.one
+  | none => some natural_data.model.base
   | some value => some (natural_data.model.successor value)
 
 Predicate logic (unfolded):
 
   def successor : Carrier natural_data → Carrier natural_data
-  | none => some natural_data.model.one
+  | none => some natural_data.model.base
   | some value => some (natural_data.model.successor value) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
 def successor : Carrier natural_data → Carrier natural_data
-  | none => some natural_data.model.one
+  | none => some natural_data.model.base
   | some value => some (natural_data.model.successor value)
 ```
 
@@ -363,7 +363,7 @@ Related proof moves: intro, unfold
 
 -/
 def successor : Carrier natural_data → Carrier natural_data
-  | none => some natural_data.model.one
+  | none => some natural_data.model.base
   | some value => some (natural_data.model.successor value)
 
 /--
