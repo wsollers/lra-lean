@@ -88,7 +88,6 @@ Related proof moves: TODO
 theorem BooleanFalseIsTwoSidedAbsorbingForAnd :
     TwoSidedAbsorbing BooleanAndOperation false := by
   sorry
-
 /--
 `BooleanOrOperation` TODO
 
@@ -171,7 +170,6 @@ Related proof moves: TODO
 theorem BooleanTrueIsTwoSidedAbsorbingForOr :
     TwoSidedAbsorbing BooleanOrOperation true := by
   sorry
-
 end LRA.Operation.Laws.Absorbing
 
 namespace LRA.Operation.Laws.Absorption
@@ -302,7 +300,6 @@ Related proof moves: TODO
 theorem BooleanOrAndMutualAbsorption :
     MutualAbsorptionLaw BooleanOrOperation BooleanAndOperation := by
   sorry
-
 /--
 `NaturalMaxMinMutualAbsorption` TODO
 
@@ -343,7 +340,6 @@ Related proof moves: TODO
 theorem NaturalMaxMinMutualAbsorption :
     MutualAbsorptionLaw NaturalMaxOperation NaturalMinOperation := by
   sorry
-
 end LRA.Operation.Laws.Absorption
 
 namespace LRA.Operation.Laws.Associative
@@ -390,7 +386,6 @@ Related proof moves: TODO
 theorem NaturalAdditionAssociative :
     Associative NaturalAddition := by
   sorry
-
 end LRA.Operation.Laws.Associative
 
 namespace LRA.Operation.Laws.Cancellation
@@ -437,7 +432,6 @@ Related proof moves: TODO
 theorem NaturalAdditionTwoSidedCancellative :
     TwoSidedCancellative NaturalAddition := by
   sorry
-
 /--
 `NaturalMultiplicationForRestrictedCancellation` TODO
 
@@ -524,7 +518,6 @@ theorem NaturalMultiplicationLeftCancellativeOnNonzero :
       (fun fixed : Nat => fixed ≠ 0)
       NaturalMultiplicationForRestrictedCancellation := by
   sorry
-
 /--
 `NaturalMultiplicationRightCancellativeOnNonzero` TODO
 
@@ -569,7 +562,6 @@ theorem NaturalMultiplicationRightCancellativeOnNonzero :
       (fun fixed : Nat => fixed ≠ 0)
       NaturalMultiplicationForRestrictedCancellation := by
   sorry
-
 end LRA.Operation.Laws.Cancellation
 
 namespace LRA.Operation.Laws.Closure
@@ -616,7 +608,6 @@ Related proof moves: TODO
 theorem NaturalAdditionClosedOnFullCarrier :
     BinaryEndoClosedOn (fun _ : Nat => True) NaturalAddition := by
   sorry
-
 end LRA.Operation.Laws.Closure
 
 namespace LRA.Operation.Laws.Commutative
@@ -663,7 +654,6 @@ Related proof moves: TODO
 theorem NaturalAdditionCommutative :
     Commutative NaturalAddition := by
   sorry
-
 end LRA.Operation.Laws.Commutative
 
 namespace LRA.Operation.Laws.Distributive
@@ -710,7 +700,6 @@ Related proof moves: TODO
 theorem NaturalMultiplicationDistributesOverAddition :
     TwoSidedDistributive NaturalMultiplication NaturalAddition := by
   sorry
-
 end LRA.Operation.Laws.Distributive
 
 namespace LRA.Operation.Laws.Idempotent
@@ -799,7 +788,6 @@ Related proof moves: TODO
 theorem BooleanOrIdempotent :
     Idempotent BooleanOrOperation := by
   sorry
-
 /--
 `BooleanAndOperation` TODO
 
@@ -882,7 +870,6 @@ Related proof moves: TODO
 theorem BooleanAndIdempotent :
     Idempotent BooleanAndOperation := by
   sorry
-
 end LRA.Operation.Laws.Idempotent
 
 namespace LRA.Operation.Laws.Identity
@@ -971,7 +958,6 @@ Related proof moves: TODO
 theorem BooleanFalseIsTwoSidedIdentityForOr :
     TwoSidedIdentity BooleanOrOperation false := by
   sorry
-
 /--
 `BooleanAndOperation` TODO
 
@@ -1054,7 +1040,6 @@ Related proof moves: TODO
 theorem BooleanTrueIsTwoSidedIdentityForAnd :
     TwoSidedIdentity BooleanAndOperation true := by
   sorry
-
 end LRA.Operation.Laws.Identity
 
 namespace LRA.Operation.Laws.Inverse
@@ -1185,7 +1170,6 @@ Related proof moves: TODO
 theorem BooleanXorSelfInverse :
     TwoSidedInverse BooleanXorOperation false BooleanXorInverse := by
   sorry
-
 /--
 `IntegerAdditionForInverseExample` TODO
 
@@ -1310,7 +1294,6 @@ Related proof moves: TODO
 theorem IntegerAdditionNegationTwoSidedInverse :
     TwoSidedInverse IntegerAdditionForInverseExample 0 IntegerAdditiveInverse := by
   sorry
-
 end LRA.Operation.Laws.Inverse
 
 namespace LRA.Operation.Laws.Nilpotent
@@ -1399,5 +1382,4 @@ Related proof moves: TODO
 theorem NaturalZeroNilpotentUnderMultiplication :
     NilpotentElement NaturalMultiplicationForNilpotenceExample 0 0 := by
   sorry
-
 end LRA.Operation.Laws.Nilpotent

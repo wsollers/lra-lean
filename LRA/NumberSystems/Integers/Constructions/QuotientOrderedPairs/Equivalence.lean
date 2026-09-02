@@ -91,7 +91,6 @@ theorem equivalent_is_equivalence_relation
     (whole_data : WholeNumberArithmeticForQuotientPairs) :
     Equivalence (equivalent whole_data) := by
   sorry
-
 /--
 `representative_setoid` TODO
 

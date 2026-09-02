@@ -134,7 +134,6 @@ theorem closed_sets_in_topological_space
     (∀ C D : Set X, IsClosed C → IsClosed D → IsClosed (C ∪ D)) ∧
     IsClosed (univ : Set X) ∧ IsClosed (∅ : Set X) := by
   sorry
-
 /--
 `TopologyFromClosedSetAxioms` TODO
 
@@ -189,7 +188,6 @@ theorem TopologyFromClosedSetAxioms
     ∃ topologicalSpace : TopologicalSpace X,
       ∀ C : Set X, @IsClosed X topologicalSpace C ↔ C ∈ F := by
   sorry
-
 /--
 `TopologicalClosureDefinition` TODO
 
@@ -278,5 +276,4 @@ theorem TopologicalClosureMonotone
     (subset : A ⊆ B) :
     TopologicalClosureDefinition A ⊆ TopologicalClosureDefinition B := by
   sorry
-
 end LRA.Topology

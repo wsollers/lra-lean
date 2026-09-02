@@ -55,7 +55,6 @@ theorem Commutative.left_preservation_to_right_preservation {Carrier : Type u}
     (leftLaw : LeftTranslationPreservesRelation relation operation) :
     RightTranslationPreservesRelation relation operation := by
   sorry
-
 /--
 `Commutative.right_preservation_to_left_preservation` TODO
 
@@ -106,7 +105,6 @@ theorem Commutative.right_preservation_to_left_preservation {Carrier : Type u}
     (rightLaw : RightTranslationPreservesRelation relation operation) :
     LeftTranslationPreservesRelation relation operation := by
   sorry
-
 /--
 `PositiveRightTranslationPreservesRelation.to_right_preservation_on_positive` TODO
 
@@ -161,7 +159,6 @@ theorem PositiveRightTranslationPreservesRelation.to_right_preservation_on_posit
       forall left right, relation left right ->
         relation (operation left fixed) (operation right fixed) := by
   sorry
-
 /--
 `NegativeRightTranslationReversesRelation.to_right_reversal_on_negative` TODO
 
@@ -216,7 +213,6 @@ theorem NegativeRightTranslationReversesRelation.to_right_reversal_on_negative
       forall left right, relation left right ->
         relation (operation right fixed) (operation left fixed) := by
   sorry
-
 /--
 `CoordinatewisePreservesRelation.of_left_and_right_translation` TODO
 
@@ -269,7 +265,6 @@ theorem CoordinatewisePreservesRelation.of_left_and_right_translation
     (rightLaw : RightTranslationPreservesRelation relation operation) :
     CoordinatewisePreservesRelation relation operation := by
   sorry
-
 /--
 `AdditionRespectsOrderLaws.to_left_translation` TODO
 
@@ -314,7 +309,6 @@ theorem AdditionRespectsOrderLaws.to_left_translation
     LeftTranslationPreservesRelation (· <= · : R -> R -> Prop)
       (fun a b => a + b) := by
   sorry
-
 /--
 `AdditionRespectsOrderLaws.to_right_translation` TODO
 
@@ -359,5 +353,4 @@ theorem AdditionRespectsOrderLaws.to_right_translation
     RightTranslationPreservesRelation (· <= · : R -> R -> Prop)
       (fun a b => a + b) := by
   sorry
-
 end LRA.Order

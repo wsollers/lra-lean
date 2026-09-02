@@ -156,7 +156,6 @@ theorem isMetricIsometry_injective
     (isometry_preserves_distance : IsMetricIsometry isometricMap) :
     IsInjectiveMap isometricMap := by
   sorry
-
 /--
 `positiveOpenRay_isMetricIsometry_negativeOpenRay` TODO
 
@@ -205,7 +204,6 @@ theorem positiveOpenRay_isMetricIsometry_negativeOpenRay :
           exact neg_lt_zero.mpr (show 0 < (positivePoint : Real) from positivePoint.property)⟩ :
           Set.Iio (0 : Real))) := by
   sorry
-
 /--
 `IsometricCopy` TODO
 

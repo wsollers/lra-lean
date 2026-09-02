@@ -11,5 +11,4 @@ lattice one. -/
 theorem divisorLatticeIsDistributive :
     LRA.AlgebraicStructures.DistributiveLatticeLaws Nat.lcm Nat.gcd := by
   sorry
-
 end LRA.AlgebraicStructures.DistributiveLattice.Examples

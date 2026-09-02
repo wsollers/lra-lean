@@ -48,7 +48,6 @@ theorem StrictOrderIsIrreflexive
     (relationIsStrictOrder : LRA.Order.StrictOrder relation) :
     LRA.Relation.Irreflexive relation := by
   sorry
-
 /--
 `StrictOrderIsTransitive` TODO
 
@@ -95,7 +94,6 @@ theorem StrictOrderIsTransitive
     (relationIsStrictOrder : LRA.Order.StrictOrder relation) :
     LRA.Relation.Transitive relation := by
   sorry
-
 /--
 `StrictOrderIsAsymmetric` TODO
 
@@ -142,7 +140,6 @@ theorem StrictOrderIsAsymmetric
     (relationIsStrictOrder : LRA.Order.StrictOrder relation) :
     LRA.Relation.Asymmetric relation := by
   sorry
-
 /--
 `StrictOrderIsAntisymmetric` TODO
 
@@ -189,7 +186,6 @@ theorem StrictOrderIsAntisymmetric
     (relationIsStrictOrder : LRA.Order.StrictOrder relation) :
     LRA.Relation.Antisymmetric relation := by
   sorry
-
 /--
 `StrictOrderRelationIsIrreflexive` TODO
 
@@ -234,5 +230,4 @@ theorem StrictOrderRelationIsIrreflexive
     (order : StrictOrderRelation Carrier) :
     LRA.Relation.Irreflexive order.relation := by
   sorry
-
 end LRA.Order.OrderedSets.StrictOrder

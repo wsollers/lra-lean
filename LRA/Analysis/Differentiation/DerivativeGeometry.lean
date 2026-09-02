@@ -129,7 +129,6 @@ theorem NecessaryConditionExtremum (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
     (hext : IsRelativeMinimum f A c ∨ IsRelativeMaximum f A c) :
     ¬ IsDifferentiable f A c ∨ Derivative 0 f A c := by
   sorry
-
 /--
 `RelativeExtremumNecessaryCondition` TODO
 
@@ -174,7 +173,6 @@ theorem RelativeExtremumNecessaryCondition (f : ℝ → ℝ) (A : Set ℝ) (c : 
     (hext : IsRelativeMinimum f A c ∨ IsRelativeMaximum f A c) :
     Derivative 0 f A c ∨ ¬ IsDifferentiable f A c := by
   sorry
-
 /--
 `IsConvexOn` TODO
 

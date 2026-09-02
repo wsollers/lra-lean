@@ -47,7 +47,6 @@ theorem PointImageClassIsSingletonImage {X : Type u} {Y : Type v}
     (R : HeterogeneousBinaryRelation X Y) (x : X) :
     ImageClass R (fun z => z = x) = PointImageClass R x := by
   sorry
-
 /--
 `FiberClassIsSingletonPreimage` TODO
 
@@ -90,5 +89,4 @@ theorem FiberClassIsSingletonPreimage {X : Type u} {Y : Type v}
     (R : HeterogeneousBinaryRelation X Y) (y : Y) :
     PreimageClass R (fun z => z = y) = FiberClass R y := by
   sorry
-
 end LRA.Relation

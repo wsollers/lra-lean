@@ -48,7 +48,6 @@ theorem IdentityFunctionValue
     {Carrier : Type u} (input : Carrier) :
     IdentityFunction Carrier input = input := by
   sorry
-
 /--
 `IdentityFunctionInjective` TODO
 
@@ -89,7 +88,6 @@ Related proof moves: TODO
 theorem IdentityFunctionInjective {Carrier : Type u} :
     Injective (IdentityFunction Carrier) := by
   sorry
-
 /--
 `IdentityFunctionSurjective` TODO
 
@@ -130,7 +128,6 @@ Related proof moves: TODO
 theorem IdentityFunctionSurjective {Carrier : Type u} :
     Surjective (IdentityFunction Carrier) := by
   sorry
-
 /--
 `IdentityFunctionBijective` TODO
 
@@ -171,7 +168,6 @@ Related proof moves: TODO
 theorem IdentityFunctionBijective {Carrier : Type u} :
     Bijective (IdentityFunction Carrier) := by
   sorry
-
 /--
 `IdentityFunctionTwoSidedInverse` TODO
 
@@ -212,5 +208,4 @@ Related proof moves: TODO
 theorem IdentityFunctionTwoSidedInverse (Carrier : Type u) :
     TwoSidedInverse (IdentityFunction Carrier) (IdentityFunction Carrier) := by
   sorry
-
 end LRA.Function

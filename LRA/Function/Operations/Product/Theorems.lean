@@ -48,7 +48,6 @@ theorem CurryAfterUncurry
     (function : BinaryFunction Left Right Codomain) :
     Curry (Uncurry function) = function := by
   sorry
-
 /--
 `UncurryAfterCurry` TODO
 
@@ -93,7 +92,6 @@ theorem UncurryAfterCurry
     (function : ProductDomainFunction Left Right Codomain) :
     Uncurry (Curry function) = function := by
   sorry
-
 /--
 `FirstProjectionProductValue` TODO
 
@@ -144,7 +142,6 @@ theorem FirstProjectionProductValue
     FirstProjection LeftCodomain RightCodomain (Product left right input) =
       left input := by
   sorry
-
 /--
 `SecondProjectionProductValue` TODO
 
@@ -195,5 +192,4 @@ theorem SecondProjectionProductValue
     SecondProjection LeftCodomain RightCodomain (Product left right input) =
       right input := by
   sorry
-
 end LRA.Function

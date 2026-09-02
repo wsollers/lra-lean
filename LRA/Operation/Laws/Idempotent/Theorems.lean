@@ -52,5 +52,4 @@ theorem Idempotent.apply {Carrier : Type u}
     (element : Carrier) :
     operation element element = element := by
   sorry
-
 end LRA.Operation.Laws.Idempotent

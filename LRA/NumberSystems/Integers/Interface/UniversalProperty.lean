@@ -43,5 +43,4 @@ theorem IntegersInitial :
       DiscretelyOrderedIntegralDomainArrow
       ⟨mathlibIntegerModel.signature, satisfiesModelTheory mathlibIntegerModel⟩ := by
   sorry
-
 end LRA.NumberSystems.Integers

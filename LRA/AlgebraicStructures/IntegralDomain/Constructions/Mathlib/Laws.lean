@@ -10,5 +10,4 @@ universe u
 instance {R : Type u} [_root_.CommRing R] [_root_.IsDomain R] [Nonempty R] :
     IntegralDomainLaws R := by
   sorry
-
 end LRA.AlgebraicStructures

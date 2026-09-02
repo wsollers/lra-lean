@@ -154,7 +154,6 @@ theorem JoinOperationCommutative
     (isJoinOperation : IsJoinOperation relation joinOperation) :
     LRA.Operation.Laws.Commutative.Commutative joinOperation := by
   sorry
-
 /--
 `MeetOperationCommutative` TODO
 
@@ -205,7 +204,6 @@ theorem MeetOperationCommutative
     (isMeetOperation : IsMeetOperation relation meetOperation) :
     LRA.Operation.Laws.Commutative.Commutative meetOperation := by
   sorry
-
 /--
 `JoinOperationIdempotent` TODO
 
@@ -256,7 +254,6 @@ theorem JoinOperationIdempotent
     (isJoinOperation : IsJoinOperation relation joinOperation) :
     LRA.Operation.Laws.Idempotent.Idempotent joinOperation := by
   sorry
-
 /--
 `MeetOperationIdempotent` TODO
 
@@ -307,7 +304,6 @@ theorem MeetOperationIdempotent
     (isMeetOperation : IsMeetOperation relation meetOperation) :
     LRA.Operation.Laws.Idempotent.Idempotent meetOperation := by
   sorry
-
 /--
 `JoinOperationAssociative` TODO
 
@@ -358,7 +354,6 @@ theorem JoinOperationAssociative
     (isJoinOperation : IsJoinOperation relation joinOperation) :
     LRA.Operation.Laws.Associative.Associative joinOperation := by
   sorry
-
 /--
 `MeetOperationAssociative` TODO
 
@@ -409,7 +404,6 @@ theorem MeetOperationAssociative
     (isMeetOperation : IsMeetOperation relation meetOperation) :
     LRA.Operation.Laws.Associative.Associative meetOperation := by
   sorry
-
 /--
 `JoinMeetOperationAbsorption` TODO
 
@@ -464,7 +458,6 @@ theorem JoinMeetOperationAbsorption
     LRA.Operation.Laws.Absorption.AbsorptionLaw
       joinOperation meetOperation := by
   sorry
-
 /--
 `MeetJoinOperationAbsorption` TODO
 
@@ -519,7 +512,6 @@ theorem MeetJoinOperationAbsorption
     LRA.Operation.Laws.Absorption.AbsorptionLaw
       meetOperation joinOperation := by
   sorry
-
 /--
 `JoinMeetOperationMutualAbsorption` TODO
 
@@ -574,5 +566,4 @@ theorem JoinMeetOperationMutualAbsorption
     LRA.Operation.Laws.Absorption.MutualAbsorptionLaw
       joinOperation meetOperation := by
   sorry
-
 end LRA.Order

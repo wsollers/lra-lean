@@ -297,7 +297,6 @@ theorem Homomorphism.commutesWithTermEvaluation {S : Signature}
     homomorphism.map (evaluateTerm M assignment term) =
       evaluateTerm N (fun v => homomorphism.map (assignment v)) term := by
   sorry
-
 /--
 `termExtension` TODO
 
@@ -422,7 +421,6 @@ theorem termExtensionUnique {S : Signature}
     ∀ term : Term S Variable,
       homomorphism.map term = evaluateTerm M assignment term := by
   sorry
-
 /--
 `equationTransportsAlongSurjection` TODO
 
@@ -473,5 +471,4 @@ theorem equationTransportsAlongSurjection {S : Signature}
     (sourceSatisfies : SatisfiesEquation M equation) :
     SatisfiesEquation N equation := by
   sorry
-
 end LRA.UniversalAlgebra

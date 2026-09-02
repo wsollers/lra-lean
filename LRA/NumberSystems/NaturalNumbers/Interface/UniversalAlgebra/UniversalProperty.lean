@@ -46,5 +46,4 @@ theorem NaturalNumbersInitial :
       ⟨mathlibNaturalNumberModel.signature,
         satisfiesModelTheory mathlibNaturalNumberModel⟩ := by
   sorry
-
 end LRA.NumberSystems.NaturalNumbers.Interface.UniversalAlgebra

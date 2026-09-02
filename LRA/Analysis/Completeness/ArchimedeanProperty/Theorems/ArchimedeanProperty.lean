@@ -48,7 +48,6 @@ theorem ArchimedeanReciprocalForm {ε : ℝ}
     (positiveToleranceHypothesis : ε > 0) :
     ∃ n : ℕ, 0 < 1 / (n : ℝ) ∧ 1 / (n : ℝ) < ε := by
   sorry
-
 /--
 `ArchimedeanReciprocal` TODO
 
@@ -89,7 +88,6 @@ Related proof moves: TODO
 theorem ArchimedeanReciprocal :
     Filter.Tendsto (fun n : ℕ => 1 / (n : ℝ)) Filter.atTop (nhds 0) := by
   sorry
-
 /--
 `IntegerPartLemma` TODO
 
@@ -132,7 +130,6 @@ theorem IntegerPartLemma {x : ℝ}
     (nonnegativeHypothesis : x ≥ 0) :
     ∃! n : ℕ, (n : ℝ) ≤ x ∧ x < (n : ℝ) + 1 := by
   sorry
-
 /--
 `ArchimedeanIntegerPartLemma` TODO
 
@@ -173,7 +170,6 @@ Related proof moves: constructor, cases, rcases, use
 theorem ArchimedeanIntegerPartLemma (x : ℝ) :
     ∃! m : ℤ, (m : ℝ) ≤ x ∧ x < (m : ℝ) + 1 := by
   sorry
-
 /--
 `IntegerCeilingLemma` TODO
 
@@ -214,7 +210,6 @@ Related proof moves: constructor, cases, rcases, use
 theorem IntegerCeilingLemma (x : ℝ) :
     ∃! m : ℤ, (m : ℝ) - 1 < x ∧ x ≤ (m : ℝ) := by
   sorry
-
 /--
 `IntegerAboveLemma` TODO
 
@@ -255,7 +250,6 @@ Related proof moves: use, rcases
 theorem IntegerAboveLemma (x : ℝ) :
     ∃ n : ℕ, x < (n : ℝ) := by
   sorry
-
 /--
 `UnitLengthIntervalContainsInteger` TODO
 
@@ -296,7 +290,6 @@ Related proof moves: constructor, cases, rcases, use
 theorem UnitLengthIntervalContainsInteger (x : ℝ) :
     ∃ m : ℤ, x ≤ (m : ℝ) ∧ (m : ℝ) ≤ x + 1 := by
   sorry
-
 /--
 `NaturalsUnboundedAbove` TODO
 
@@ -337,5 +330,4 @@ Related proof moves: intro
 theorem NaturalsUnboundedAbove :
     ¬ BddAbove (Set.range ((↑) : ℕ → ℝ)) := by
   sorry
-
 end LRA.Analysis.Completeness

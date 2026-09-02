@@ -48,7 +48,6 @@ theorem TaoIntegersFormDiscretelyOrderedIntegralDomain
     ∃ model : LRA.NumberSystems.Integers.Interface.ModelTheory.IntegerModel,
       model.Carrier = Carrier wholeData := by
   sorry
-
 /--
 `TaoRealizesIntegerNumberSystem` TODO
 
@@ -93,5 +92,4 @@ theorem TaoRealizesIntegerNumberSystem
     ∃ integerSystem : LRA.NumberSystems.Integers.IntegerNumberSystem,
       integerSystem.Model.Carrier = Carrier wholeData := by
   sorry
-
 end LRA.NumberSystems.Integers.Tao

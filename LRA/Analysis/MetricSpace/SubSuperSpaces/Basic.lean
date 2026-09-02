@@ -338,7 +338,6 @@ Related proof moves: TODO
 theorem closedUnitInterval_isMetricSubspace :
     IsMetricSubspace (Set.Icc (0 : Real) 1) := by
   sorry
-
 /--
 `real_isMetricSuperspace_closedUnitInterval` TODO
 
@@ -379,5 +378,4 @@ Related proof moves: TODO
 theorem real_isMetricSuperspace_closedUnitInterval :
     IsMetricSuperspace Real (Set.Icc (0 : Real) 1) := by
   sorry
-
 end LRA.Analysis.MetricSpace.SubSuperSpaces

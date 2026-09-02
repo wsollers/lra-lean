@@ -1,5 +1,4 @@
 import LRA.Set.Interface
-import LRA.Set.Interface.ModelTheory
-import LRA.Set.Constructions
 import LRA.Set.SetClass
+import LRA.Set.Constructions
 import LRA.Set.Interop

@@ -59,7 +59,6 @@ theorem embed_preserves_addition
       embed whole_data (whole_data.addition first second) =
         addition (embed whole_data first) (embed whole_data second) := by
   sorry
-
 /--
 `embed_one_eq_one_representative_class` TODO
 
@@ -102,7 +101,6 @@ theorem embed_one_eq_one_representative_class
     (whole_data : WholeNumberArithmeticForQuotientPairs) :
     embed whole_data whole_data.one = Quotient.mk _ (one_representative whole_data) := by
   sorry
-
 /--
 `embed_zero_eq_zero_representative_class` TODO
 
@@ -145,5 +143,4 @@ theorem embed_zero_eq_zero_representative_class
     (whole_data : WholeNumberArithmeticForQuotientPairs) :
     embed whole_data whole_data.zero = Quotient.mk _ (zero_representative whole_data) := by
   sorry
-
 end LRA.NumberSystems.Integers.QuotientOrderedPairs

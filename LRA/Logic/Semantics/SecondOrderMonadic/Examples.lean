@@ -358,7 +358,6 @@ theorem richModel_satisfies_henkinTestFormula :
       richAssignment
       henkinTestFormula := by
   sorry
-
 /--
 `poorModel_not_satisfies_henkinTestFormula` TODO
 
@@ -403,5 +402,4 @@ theorem poorModel_not_satisfies_henkinTestFormula :
         poorAssignment
         henkinTestFormula := by
   sorry
-
 end LRA.Logic.SecondOrderMonadic

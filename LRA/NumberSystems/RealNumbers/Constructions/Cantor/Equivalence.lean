@@ -117,7 +117,6 @@ theorem EndpointEquivalentIsEquivalence
     (fieldModel : RationalModel) :
     Equivalence (EndpointEquivalent fieldModel) := by
   sorry
-
 /--
 `EndpointSetoid` TODO
 

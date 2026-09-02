@@ -167,9 +167,7 @@ Related proof moves: TODO
 -/
 theorem CauchyIntegralConstant (a b c : ℝ) (hab : a ≤ b) :
     HasCauchyIntegral (fun _ => c) a b (c * (b - a)) := by
-
   sorry
-
 /--
 `cauchy_integral_linearity` TODO
 
@@ -212,7 +210,6 @@ theorem cauchy_integral_linearity (hf : IsCauchyIntegrable f a b) (hg : IsCauchy
     (α β Lf Lg : ℝ) (hLf : HasCauchyIntegral f a b Lf) (hLg : HasCauchyIntegral g a b Lg) :
     HasCauchyIntegral (fun x => α * f x + β * g x) a b (α * Lf + β * Lg) := by
   sorry
-
 /--
 `cauchy_integral_monotonicity` TODO
 
@@ -253,7 +250,6 @@ Related proof moves: intro
 theorem cauchy_integral_monotonicity (Lf Lg : ℝ) (hLf : HasCauchyIntegral f a b Lf)
     (hLg : HasCauchyIntegral g a b Lg) (hle : ∀ x ∈ Set.Icc a b, f x ≤ g x) : Lf ≤ Lg := by
   sorry
-
 /--
 `cauchy_integral_bounds` TODO
 
@@ -300,7 +296,6 @@ theorem cauchy_integral_bounds (hab : a ≤ b)
     (hm : ∀ x ∈ Set.Icc a b, m ≤ f x) (hM : ∀ x ∈ Set.Icc a b, f x ≤ M) :
     m * (b - a) ≤ L ∧ L ≤ M * (b - a) := by
   sorry
-
 /--
 `cauchy_integral_triangle_inequality` TODO
 
@@ -341,7 +336,6 @@ Related proof moves: TODO
 theorem cauchy_integral_triangle_inequality (L L' : ℝ) (hL : HasCauchyIntegral f a b L)
     (hL' : HasCauchyIntegral (fun x => |f x|) a b L') : |L| ≤ L' := by
   sorry
-
 /--
 `cauchy_integral_interval_additivity` TODO
 
@@ -384,7 +378,6 @@ theorem cauchy_integral_interval_additivity (c : ℝ) (hac : a ≤ c) (hcb : c �
     (Lab Lac Lcb : ℝ) (hab' : HasCauchyIntegral f a b Lab) (hac' : HasCauchyIntegral f a c Lac)
     (hcb' : HasCauchyIntegral f c b Lcb) : Lab = Lac + Lcb := by
   sorry
-
 /--
 `IntervalOscillation` TODO
 
@@ -469,7 +462,6 @@ theorem continuous_cauchy_integrable (hab : a ≤ b)
     (hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) :
     IsCauchyIntegrable f a b := by
   sorry
-
 /--
 `cauchy_tag_independence` TODO
 
@@ -516,7 +508,6 @@ theorem cauchy_tag_independence (hab : a ≤ b)
     ∀ ε > 0, ∃ δ > 0, ∀ P : TaggedPartitionIntegration a b, PartitionMesh P.toIntegrationPartition < δ →
       |(∑ i : Fin P.n, f (P.tag i) * SubintervalWidth P.toIntegrationPartition i) - L| < ε := by
   sorry
-
 /--
 `cauchy_step_function_failure_witness` TODO
 
@@ -557,5 +548,4 @@ Related proof moves: TODO
 theorem cauchy_step_function_failure_witness :
     IsCauchyIntegrable (fun x => if x < (1:ℝ)/2 then (0:ℝ) else 1) 0 1 := by
   sorry
-
 end LRA.Analysis.Integration

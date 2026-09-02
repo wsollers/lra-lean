@@ -322,5 +322,4 @@ theorem SelectMathlibMetricSpaceDistanceInduced {X : Type u}
       SelectMathlibMetricSpace .inducedFromMetricDefinition metric
     dist x y = metric.distance x y := by
   sorry
-
 end LRA.Analysis.MetricSpace

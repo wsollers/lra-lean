@@ -52,7 +52,6 @@ theorem StrictOrderInducesPartialOrder
     (strictRelationIsStrictOrder : StrictOrder strictRelation) :
     PartialOrder (NonStrictFromStrict strictRelation) := by
   sorry
-
 /--
 `PartialOrderInducesStrictOrder` TODO
 
@@ -99,7 +98,6 @@ theorem PartialOrderInducesStrictOrder
     (nonStrictRelationIsPartialOrder : PartialOrder nonStrictRelation) :
     StrictOrder (StrictFromNonStrict nonStrictRelation) := by
   sorry
-
 /--
 `StrictLinearOrderInducesLinearOrder` TODO
 
@@ -146,7 +144,6 @@ theorem StrictLinearOrderInducesLinearOrder
     (strictRelationIsStrictLinearOrder : StrictLinearOrder strictRelation) :
     LinearOrder (NonStrictFromStrict strictRelation) := by
   sorry
-
 /--
 `StrictNonStrictInverseCorrespondence` TODO
 
@@ -193,7 +190,6 @@ theorem StrictNonStrictInverseCorrespondence
     (strictRelationIsIrreflexive : LRA.Relation.Irreflexive strictRelation) :
     StrictFromNonStrict (NonStrictFromStrict strictRelation) = strictRelation := by
   sorry
-
 /--
 `NonStrictStrictInverseCorrespondence` TODO
 
@@ -240,7 +236,6 @@ theorem NonStrictStrictInverseCorrespondence
     (nonStrictRelationIsReflexive : LRA.Relation.Reflexive nonStrictRelation) :
     NonStrictFromStrict (StrictFromNonStrict nonStrictRelation) = nonStrictRelation := by
   sorry
-
 /--
 `PosetOfStrictPosetOfPoset` TODO
 
@@ -281,7 +276,6 @@ Related proof moves: TODO
 theorem PosetOfStrictPosetOfPoset (poset : Poset) :
     PosetOfStrictPoset (StrictPosetOfPoset poset) = poset := by
   sorry
-
 /--
 `StrictPosetOfPosetOfStrictPoset` TODO
 
@@ -322,5 +316,4 @@ Related proof moves: TODO
 theorem StrictPosetOfPosetOfStrictPoset (strictPoset : StrictPoset) :
     StrictPosetOfPoset (PosetOfStrictPoset strictPoset) = strictPoset := by
   sorry
-
 end LRA.Order

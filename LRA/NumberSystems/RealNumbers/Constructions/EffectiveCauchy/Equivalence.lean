@@ -101,7 +101,6 @@ theorem EquivalentIsEquivalence
     (rationalSystem : RationalNumberSystem.{u}) :
     Equivalence (@Equivalent rationalSystem) := by
   sorry
-
 /--
 `ApproximationSetoid` TODO
 

@@ -156,7 +156,6 @@ Related proof moves: TODO
 theorem real_model_exists
     (rational_model : RationalModel) : Nonempty RealModel := by
   sorry
-
 /--
 `real_model` TODO
 
@@ -245,7 +244,6 @@ theorem real_extension_exists
     (rational_model : RationalModel) :
     Nonempty (CofinalRealExtension rational_model) := by
   sorry
-
 /--
 `real_extension` TODO
 
@@ -374,7 +372,6 @@ theorem reals_are_complete
           (real_model rational_model).signature.le
             supremum upper_bound) := by
   sorry
-
 end LRA.NumberSystems.RealNumbers.DedekindCuts
 namespace LRA.NumberSystems.RealNumbers
 open LRA.NumberSystems.Integers.Interface.ModelTheory
@@ -557,7 +554,6 @@ theorem equivalent_is_equivalence_relation
     {Index RationalCarrier : Type} :
     Equivalence (@equivalent Index RationalCarrier) := by
   sorry
-
 /--
 `real_model_exists` TODO
 
@@ -598,7 +594,6 @@ Related proof moves: TODO
 theorem real_model_exists
     (rational_model : RationalModel) : Nonempty RealModel := by
   sorry
-
 /--
 `real_model` TODO
 
@@ -687,7 +682,6 @@ theorem real_extension_exists
     (rational_model : RationalModel) :
     Nonempty (CofinalRealExtension rational_model) := by
   sorry
-
 /--
 `real_extension` TODO
 
@@ -844,7 +838,6 @@ Related proof moves: TODO
 theorem real_model_exists
     (rational_model : RationalModel) : Nonempty RealModel := by
   sorry
-
 /--
 `real_model` TODO
 
@@ -941,7 +934,6 @@ theorem endpoint_sequences_determine_cauchy_class
       interval_sequence.left_endpoint
       interval_sequence.left_endpoint := by
   sorry
-
 end LRA.NumberSystems.RealNumbers.CantorNestedIntervals
 namespace LRA.NumberSystems.RealNumbers
 open LRA.NumberSystems.Integers.Interface.ModelTheory
@@ -1098,7 +1090,6 @@ theorem equivalent_is_equivalence_relation
     {IntervalSequenceCarrier : Type} :
     Equivalence (@equivalent IntervalSequenceCarrier) := by
   sorry
-
 /--
 `representative_multiplication_respects_equivalence` TODO
 
@@ -1153,7 +1144,6 @@ theorem representative_multiplication_respects_equivalence
     LRA.UniversalAlgebra.Quotient.binary_operation_respects
       setoid representative_multiplication := by
   sorry
-
 /--
 `raw_interval_multiplication_is_not_distributive` TODO
 
@@ -1224,7 +1214,6 @@ theorem raw_interval_multiplication_is_not_distributive
           (representative_multiplication first second)
           (representative_multiplication first third) := by
   sorry
-
 /--
 `quotient_multiplication_is_distributive` TODO
 
@@ -1273,7 +1262,6 @@ theorem quotient_multiplication_is_distributive
       multiplication first (addition second third) =
         addition (multiplication first second) (multiplication first third) := by
   sorry
-
 /--
 `real_model_exists` TODO
 
@@ -1314,7 +1302,6 @@ Related proof moves: TODO
 theorem real_model_exists
     (rational_model : RationalModel) : Nonempty RealModel := by
   sorry
-
 /--
 `real_model` TODO
 
@@ -1507,7 +1494,6 @@ theorem equivalent_is_equivalence_relation
     {Digit : Type} :
     Equivalence (@equivalent Digit) := by
   sorry
-
 /--
 `real_model_exists` TODO
 
@@ -1548,7 +1534,6 @@ Related proof moves: TODO
 theorem real_model_exists
     (rational_model : RationalModel) : Nonempty RealModel := by
   sorry
-
 /--
 `real_model` TODO
 
@@ -1845,7 +1830,6 @@ theorem complete_archimedean_ordered_fields_are_uniquely_isomorphic
           other_isomorphism.to_function value =
             isomorphism.to_function value := by
   sorry
-
 /--
 `dedekind_equiv_cauchy_exists` TODO
 
@@ -1894,7 +1878,6 @@ theorem dedekind_equiv_cauchy_exists
         (DedekindCuts.real_model rational_model)
         (CauchySequences.real_model rational_model)) := by
   sorry
-
 /--
 `dedekind_equiv_cauchy` TODO
 
@@ -2001,7 +1984,6 @@ theorem dedekind_and_cauchy_are_isomorphic
         (DedekindCuts.real_model rational_model)
         (CauchySequences.real_model rational_model)) := by
   sorry
-
 /--
 `dedekind_equiv_cantor_exists` TODO
 
@@ -2050,7 +2032,6 @@ theorem dedekind_equiv_cantor_exists
         (DedekindCuts.real_model rational_model)
         (CantorNestedIntervals.real_model rational_model)) := by
   sorry
-
 /--
 `dedekind_equiv_cantor` TODO
 
@@ -2157,7 +2138,6 @@ theorem dedekind_and_cantor_are_isomorphic
         (DedekindCuts.real_model rational_model)
         (CantorNestedIntervals.real_model rational_model)) := by
   sorry
-
 /--
 `dedekind_equiv_interval_quotient_exists` TODO
 
@@ -2206,7 +2186,6 @@ theorem dedekind_equiv_interval_quotient_exists
         (DedekindCuts.real_model rational_model)
         (PrimitiveIntervalQuotient.real_model rational_model)) := by
   sorry
-
 /--
 `dedekind_equiv_interval_quotient` TODO
 
@@ -2313,7 +2292,6 @@ theorem dedekind_and_interval_quotient_are_isomorphic
         (DedekindCuts.real_model rational_model)
         (PrimitiveIntervalQuotient.real_model rational_model)) := by
   sorry
-
 /--
 `dedekind_equiv_dyadic_exists` TODO
 
@@ -2362,7 +2340,6 @@ theorem dedekind_equiv_dyadic_exists
         (DedekindCuts.real_model rational_model)
         (DyadicExpansions.real_model rational_model)) := by
   sorry
-
 /--
 `dedekind_equiv_dyadic` TODO
 
@@ -2469,5 +2446,4 @@ theorem dedekind_and_dyadic_are_isomorphic
         (DedekindCuts.real_model rational_model)
         (DyadicExpansions.real_model rational_model)) := by
   sorry
-
 end LRA.NumberSystems.RealNumbers

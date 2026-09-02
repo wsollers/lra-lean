@@ -174,5 +174,4 @@ Related proof moves: TODO
 theorem SameParityFailsUnarySubstitutionForSuccessor :
     FailsUnaryRelationSubstitution SameParity NaturalSuccessor := by
   sorry
-
 end LRA.UniversalAlgebra.Congruence

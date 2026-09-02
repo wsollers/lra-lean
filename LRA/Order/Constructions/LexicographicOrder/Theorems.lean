@@ -55,5 +55,4 @@ theorem LexicographicProductIsStrictLinearOrder
     (rightIsStrictLinear : StrictLinearOrder rightRelation) :
     StrictLinearOrder (LexicographicRelation leftRelation rightRelation) := by
   sorry
-
 end LRA.Order

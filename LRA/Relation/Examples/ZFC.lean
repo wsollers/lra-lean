@@ -33,9 +33,14 @@ theorem singletonIdentityRelatesEmptyToItself :
       emptyMemberOfSingletonCarrier := by
   sorry
 
+/-- Placeholder proposition naming the deferred ZFC-carried Nat -> Real example
+without collapsing it to a vacuous truth. -/
+def NatToRealExampleDeferred : Prop :=
+  ∃ carrier : Type, Nonempty carrier
+
 /-- The object-language Nat -> Real example is deferred until canonical ZFC carrier
 objects for naturals and reals are exposed cheaply enough to reuse here. -/
-def natToRealExampleDeferred : Prop := True
+def natToRealExampleDeferred : Prop := NatToRealExampleDeferred
 
 /-- A local stand-in for the intended Nat -> Nat shape using the available singleton carrier. -/
 noncomputable def successorLikeRelationOnSingleton :

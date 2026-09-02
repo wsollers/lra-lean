@@ -35,7 +35,6 @@ noncomputable instance : HasSuccessor Carrier where
 
 theorem nonempty : Nonempty Carrier := by
   sorry
-
 attribute [instance] nonempty
 
 def lessThan : Carrier → Carrier → Prop :=
@@ -55,35 +54,25 @@ noncomputable instance : Mul Carrier where
 
 theorem additiveSemigroupLaws : AdditiveSemigroupLaws Carrier := by
   sorry
-
 theorem additiveIdentityLaws : AdditiveIdentityLaws Carrier := by
   sorry
-
 theorem additiveCommutativeLaws : AdditiveCommutativeLaws Carrier := by
   sorry
-
 theorem additiveMonoidLaws : AdditiveMonoidLaws Carrier := by
   sorry
-
 theorem multiplicativeSemigroupLaws : MultiplicativeSemigroupLaws Carrier := by
   sorry
-
 theorem multiplicativeIdentityLaws : MultiplicativeIdentityLaws Carrier := by
   sorry
-
 theorem multiplicativeCommutativeLaws :
     MultiplicativeCommutativeLaws Carrier := by
   sorry
-
 theorem distributiveLaws : DistributiveLaws Carrier := by
   sorry
-
 theorem semiringLaws : SemiringLaws Carrier := by
   sorry
-
 theorem commutativeSemiringLaws : CommutativeSemiringLaws Carrier := by
   sorry
-
 attribute [instance]
   additiveSemigroupLaws
   additiveIdentityLaws

@@ -108,7 +108,6 @@ needed by bundled semigroup-style interfaces.
 theorem LandauNonemptyOn (model : PeanoSystem Element SetObject) :
     Nonempty Element := by
   sorry
-
 /--
 `LandauAddOn` TODO
 
@@ -255,7 +254,6 @@ theorem LandauAdditiveSemigroupLawsOn
     let _ : Nonempty Element := LandauNonemptyOn model
     AdditiveSemigroupLaws Element := by
   sorry
-
 /--
 `LandauAdditiveCommutativeLawsOn` TODO
 
@@ -307,7 +305,6 @@ theorem LandauAdditiveCommutativeLawsOn
     (model : PeanoSystem Element SetObject) :
     @AdditiveCommutativeLaws Element (LandauAddOn model) := by
   sorry
-
 /--
 `LandauMultiplicativeSemigroupLawsOn` TODO
 
@@ -362,7 +359,6 @@ theorem LandauMultiplicativeSemigroupLawsOn
     let _ : Nonempty Element := LandauNonemptyOn model
     MultiplicativeSemigroupLaws Element := by
   sorry
-
 /--
 `LandauMultiplicativeCommutativeLawsOn` TODO
 
@@ -414,7 +410,6 @@ theorem LandauMultiplicativeCommutativeLawsOn
     (model : PeanoSystem Element SetObject) :
     @MultiplicativeCommutativeLaws Element (LandauMulOn model) := by
   sorry
-
 /--
 `LandauDistributiveLawsOn` TODO
 
@@ -468,7 +463,6 @@ theorem LandauDistributiveLawsOn
     (model : PeanoSystem Element SetObject) :
     @DistributiveLaws Element (LandauAddOn model) (LandauMulOn model) := by
   sorry
-
 example (model : PeanoSystem Element SetObject) (a b c : Element) : True := by
   letI := LandauAddOn model
   letI := LandauNonemptyOn model

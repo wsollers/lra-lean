@@ -160,9 +160,8 @@ Related proof moves: intro
 
 -/
 theorem ZeroMul [Mul R] [OfNat R 0] [ZeroAbsorbingLaws R] :
-    ∀ a : R, 0 * a = 0 :=
+    ∀ a : R, 0 * a = 0 := by
   sorry
-
 /--
 `MulZero` TODO
 
@@ -201,9 +200,8 @@ Related proof moves: intro
 
 -/
 theorem MulZero [Mul R] [OfNat R 0] [ZeroAbsorbingLaws R] :
-    ∀ a : R, a * 0 = 0 :=
+    ∀ a : R, a * 0 = 0 := by
   sorry
-
 end Wrappers
 
 end LRA.AlgebraicStructures

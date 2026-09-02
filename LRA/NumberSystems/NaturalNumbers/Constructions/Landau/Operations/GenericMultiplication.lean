@@ -22,8 +22,7 @@ the carrier supports a generic multiplication specification. -/
 theorem LandauMultiplicationExistsOn
     (model : PeanoSystem Element SetObject) :
     LRA.Operation.Multiplication.ExistsOn Element := by
-  exact ⟨LandauMultiplicationSpecification model⟩
-
+  sorry
 /-- Landau's multiplication as a concrete realization of the generic
 multiplication layer. -/
 noncomputable def LandauMultiplicationRealization
@@ -56,7 +55,6 @@ theorem LandauMultiplicationHasTwoSidedIdentity
       (LandauMultiplication model)
       model.base := by
   sorry
-
 /-- Landau naturals export multiplicative identity through the generic
 multiplication identity-witness package. -/
 noncomputable def LandauMultiplicationIdentityLawExports

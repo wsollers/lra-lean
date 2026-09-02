@@ -13,5 +13,4 @@ the divisibility order `∣` on the positives. -/
 theorem gcdIsMeetSemilattice :
     LRA.AlgebraicStructures.MeetSemilatticeLaws Nat.gcd := by
   sorry
-
 end LRA.AlgebraicStructures.MeetSemilattice.Examples

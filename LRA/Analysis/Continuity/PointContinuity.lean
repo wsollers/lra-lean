@@ -163,7 +163,6 @@ Related proof moves: intro, constructor, .mp, .mpr
 theorem ContinuousAtPointIffNbhd (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) :
     ContinuousAtPoint f A c ↔ ContinuousAtPointNbhd f A c := by
   sorry
-
 /--
 `ContinuousAtPointSeq` TODO
 
@@ -248,7 +247,6 @@ Related proof moves: intro, constructor, .mp, .mpr
 theorem ContinuousAtPointIffSeq (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) (hc : c ∈ A) :
     ContinuousAtPoint f A c ↔ ContinuousAtPointSeq f A c := by
   sorry
-
 /--
 `PointOfDiscontinuity` TODO
 
@@ -373,7 +371,6 @@ Related proof moves: intro, constructor, .mp, .mpr
 theorem DiscontinuityIffSequential (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) :
     PointOfDiscontinuity f A c ↔ SequentialDiscontinuity f A c := by
   sorry
-
 /--
 `NeighborhoodDiscontinuity` TODO
 
@@ -454,7 +451,6 @@ Related proof moves: intro, constructor, .mp, .mpr
 theorem DiscontinuityIffNeighborhood (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) :
     PointOfDiscontinuity f A c ↔ NeighborhoodDiscontinuity f A c := by
   sorry
-
 /--
 `IsRemovableDiscontinuity` TODO
 
@@ -631,7 +627,6 @@ Related proof moves: intro
 theorem JumpDiscontinuityNotEssential (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
     (h : IsJumpDiscontinuity f A c) : ¬ IsEssentialDiscontinuity f A c := by
   sorry
-
 /--
 `OscillationOnSet` TODO
 
@@ -766,7 +761,6 @@ theorem ContinuousAtPointIffZeroOscillation (f : ℝ → ℝ) (A : Set ℝ) (c :
     (hc : c ∈ A) :
     ContinuousAtPoint f A c ↔ OscillationAtPoint f A c 0 := by
   sorry
-
 /--
 `DiscontinuitySetEqUnionOscillationBounded` TODO
 
@@ -811,5 +805,4 @@ theorem DiscontinuitySetEqUnionOscillationBounded (f : ℝ → ℝ) (A : Set ℝ
       ⋃ n : ℕ, {c ∈ A | ∃ ω : ℝ,
         OscillationAtPoint f A c ω ∧ 1 / (n + 1 : ℝ) ≤ ω} := by
   sorry
-
 end LRA.Analysis.Continuity

@@ -12,7 +12,6 @@ theorem mathlibZeroPlusZero :
     mathlibZero + mathlibZero =
       (0 : LRA.NumberSystems.ComplexNumbers.Constructions.Mathlib.Carrier) := by
   sorry
-
 end Mathlib
 
 section OrderedPairs
@@ -24,7 +23,6 @@ def orderedPairsZero : ComplexNumber Real := 0
 theorem orderedPairsZeroPlusZero :
     orderedPairsZero + orderedPairsZero = (0 : ComplexNumber Real) := by
   sorry
-
 end OrderedPairs
 
 end LRA.NumberSystems.ComplexNumbers.Examples

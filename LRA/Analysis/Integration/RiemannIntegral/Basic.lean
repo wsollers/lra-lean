@@ -172,7 +172,6 @@ theorem continuous_riemann_integrable (hab : a ≤ b)
     (hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) :
     IsRiemannIntegrable f a b := by
   sorry
-
 /--
 `thomae_riemann_integrable_zero` TODO
 
@@ -219,7 +218,6 @@ theorem thomae_riemann_integrable_zero (T : ℝ → ℝ)
       (∀ p q : ℕ, q > 0 → Nat.Coprime p q → x = (p : ℝ) / q → T x = 1 / q)) :
     HasRiemannIntegral T 0 1 0 := by
   sorry
-
 /--
 `riemann_integral_linearity` TODO
 
@@ -262,7 +260,6 @@ theorem riemann_integral_linearity (α β Lf Lg : ℝ) (hLf : HasRiemannIntegral
     (hLg : HasRiemannIntegral g a b Lg) :
     HasRiemannIntegral (fun x => α * f x + β * g x) a b (α * Lf + β * Lg) := by
   sorry
-
 /--
 `riemann_integral_monotonicity` TODO
 
@@ -303,7 +300,6 @@ Related proof moves: intro
 theorem riemann_integral_monotonicity (Lf Lg : ℝ) (hLf : HasRiemannIntegral f a b Lf)
     (hLg : HasRiemannIntegral g a b Lg) (hle : ∀ x ∈ Set.Icc a b, f x ≤ g x) : Lf ≤ Lg := by
   sorry
-
 /--
 `riemann_integral_triangle_inequality` TODO
 
@@ -348,7 +344,6 @@ theorem riemann_integral_triangle_inequality (hf : IsRiemannIntegrable f a b) :
     ∀ L L', HasRiemannIntegral f a b L → HasRiemannIntegral (fun x => |f x|) a b L' →
       |L| ≤ L' := by
   sorry
-
 /--
 `riemann_integral_interval_additivity` TODO
 
@@ -389,7 +384,6 @@ Related proof moves: constructor, .mp, .mpr, cases, rcases
 theorem riemann_integral_interval_additivity (c : ℝ) (hac : a ≤ c) (hcb : c ≤ b) :
     IsRiemannIntegrable f a b ↔ IsRiemannIntegrable f a c ∧ IsRiemannIntegrable f c b := by
   sorry
-
 /--
 `riemann_integral_interval_additivity_value` TODO
 
@@ -432,7 +426,6 @@ theorem riemann_integral_interval_additivity_value (c Lab Lac Lcb : ℝ) (hac : 
     (hab' : HasRiemannIntegral f a b Lab) (hac' : HasRiemannIntegral f a c Lac)
     (hcb' : HasRiemannIntegral f c b Lcb) : Lab = Lac + Lcb := by
   sorry
-
 /--
 `riemann_cauchy_criterion` TODO
 
@@ -481,5 +474,4 @@ theorem riemann_cauchy_criterion (hab : a ≤ b)
         PartitionMesh P.toIntegrationPartition < δ → PartitionMesh Q.toIntegrationPartition < δ →
         |RiemannSum f P - RiemannSum f Q| < ε := by
   sorry
-
 end LRA.Analysis.Integration

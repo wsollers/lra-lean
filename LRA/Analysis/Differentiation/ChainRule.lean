@@ -51,7 +51,6 @@ theorem CaratheodoryCharacterization (f : ℝ → ℝ) (A : Set ℝ) (c D : ℝ)
         LRA.Analysis.Continuity.ContinuousAtPoint φ A c ∧
         ∀ x ∈ A, f x - f c = (x - c) * φ x := by
   sorry
-
 /--
 `ChainRule` TODO
 
@@ -96,7 +95,6 @@ theorem ChainRule (f g : ℝ → ℝ) (A B : Set ℝ) (c Df Dg : ℝ)
     (hg : Derivative Dg g B (f c)) :
     Derivative (Dg * Df) (fun x => g (f x)) A c := by
   sorry
-
 /--
 `NthDerivativeAt` TODO
 
@@ -181,7 +179,6 @@ theorem LeibnizRule (f g : ℝ → ℝ) (fD gD hD : ℕ → ℝ → ℝ) (A : Se
     (hh : NthDerivativeAt (fun x => f x * g x) hD A n c) :
     hD n c = ∑ k ∈ Finset.range (n + 1), (n.choose k : ℝ) * fD k c * gD (n - k) c := by
   sorry
-
 /--
 `FaaDiBrunoSecondOrder` TODO
 
@@ -228,5 +225,4 @@ theorem FaaDiBrunoSecondOrder (f g : ℝ → ℝ) (fD gD hD : ℕ → ℝ → �
     (hh : NthDerivativeAt (fun x => g (f x)) hD A 2 c) :
     hD 2 c = gD 2 (f c) * (fD 1 c) ^ 2 + gD 1 (f c) * fD 2 c := by
   sorry
-
 end LRA.Analysis.Differentiation

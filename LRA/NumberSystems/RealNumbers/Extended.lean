@@ -42,7 +42,6 @@ def NonPositiveExtendedReal (real_model : RealModel) : Type _ :=
 theorem ZeroIsNonNegative (real_model : RealModel) :
     real_model.signature.le real_model.signature.zero real_model.signature.zero := by
   sorry
-
 def zero (real_model : RealModel) : NonNegativeReal real_model :=
   ⟨real_model.signature.zero, ZeroIsNonNegative real_model⟩
 
@@ -50,7 +49,6 @@ theorem PositiveInfinityIsNonNegative (real_model : RealModel) :
     nonstrict_order real_model
       (.finite real_model.signature.zero) (.positiveInfinity) := by
   sorry
-
 def infinity (real_model : RealModel) : NonNegativeExtendedReal real_model :=
   ⟨.positiveInfinity, PositiveInfinityIsNonNegative real_model⟩
 
@@ -58,7 +56,6 @@ theorem NegativeInfinityIsNonPositive (real_model : RealModel) :
     nonstrict_order real_model
       (.negativeInfinity) (.finite real_model.signature.zero) := by
   sorry
-
 def negativeInfinityElement
     (real_model : RealModel) : NonPositiveExtendedReal real_model :=
   ⟨.negativeInfinity, NegativeInfinityIsNonPositive real_model⟩
@@ -69,7 +66,6 @@ theorem FiniteIsNonNegativeExtended (real_model : RealModel)
     nonstrict_order real_model
       (.finite real_model.signature.zero) (.finite value) := by
   sorry
-
 def toExtended (real_model : RealModel)
     (value : NonNegativeReal real_model) : NonNegativeExtendedReal real_model :=
   ⟨.finite value.val, FiniteIsNonNegativeExtended real_model value.val value.property⟩
@@ -80,7 +76,6 @@ theorem FiniteIsNonPositiveExtended (real_model : RealModel)
     nonstrict_order real_model
       (.finite value) (.finite real_model.signature.zero) := by
   sorry
-
 def toExtendedNonPositive (real_model : RealModel)
     (value : { x : real_model.signature.carrier //
       real_model.signature.le x real_model.signature.zero }) :
@@ -95,7 +90,6 @@ theorem AdditionIsNonNegative (real_model : RealModel)
     real_model.signature.le real_model.signature.zero
       (real_model.signature.add first second) := by
   sorry
-
 def add (real_model : RealModel)
     (first second : NonNegativeReal real_model) : NonNegativeReal real_model :=
   ⟨real_model.signature.add first.val second.val,
@@ -109,7 +103,6 @@ theorem AdditionIsNonPositive (real_model : RealModel)
     real_model.signature.le
       (real_model.signature.add first second) real_model.signature.zero := by
   sorry
-
 def addNonPositive (real_model : RealModel)
     (first second : { x : real_model.signature.carrier //
       real_model.signature.le x real_model.signature.zero }) :
@@ -131,13 +124,11 @@ theorem positiveInfinityPlusNegativeInfinityUndefined
     ¬ ExtendedAdditionDefined real_model
       (.positiveInfinity) (.negativeInfinity) := by
   sorry
-
 theorem negativeInfinityPlusPositiveInfinityUndefined
     (real_model : RealModel) :
     ¬ ExtendedAdditionDefined real_model
       (.negativeInfinity) (.positiveInfinity) := by
   sorry
-
 def addExtendedRaw (real_model : RealModel) :
     ExtendedReal real_model → ExtendedReal real_model → ExtendedReal real_model
   | .positiveInfinity, _ => .positiveInfinity
@@ -156,7 +147,6 @@ theorem AddExtendedRawIsNonNegative (real_model : RealModel)
       (.finite real_model.signature.zero)
       (addExtendedRaw real_model first second) := by
   sorry
-
 def addExtended (real_model : RealModel)
     (first second : NonNegativeExtendedReal real_model) :
     NonNegativeExtendedReal real_model :=
@@ -174,7 +164,6 @@ theorem AddExtendedRawIsNonPositive (real_model : RealModel)
       (addExtendedRaw real_model first second)
       (.finite real_model.signature.zero) := by
   sorry
-
 def addExtendedNonPositive (real_model : RealModel)
     (first second : NonPositiveExtendedReal real_model) :
     NonPositiveExtendedReal real_model :=
@@ -221,7 +210,6 @@ theorem every_subset_has_supremum
     ∃ candidate : ExtendedReal real_model,
       supremum real_model subset candidate := by
   sorry
-
 structure PartialOperation
     (real_model : RealModel)
     (operation : ExtendedReal real_model → ExtendedReal real_model → ExtendedReal real_model) where
@@ -248,23 +236,19 @@ theorem zeroTimesPositiveInfinityUndefined
     ¬ ExtendedMultiplicationDefined real_model
       (.finite real_model.signature.zero) (.positiveInfinity) := by
   sorry
-
 theorem positiveInfinityTimesZeroUndefined
     (real_model : RealModel) :
     ¬ ExtendedMultiplicationDefined real_model
       (.positiveInfinity) (.finite real_model.signature.zero) := by
   sorry
-
 theorem zeroTimesNegativeInfinityUndefined
     (real_model : RealModel) :
     ¬ ExtendedMultiplicationDefined real_model
       (.finite real_model.signature.zero) (.negativeInfinity) := by
   sorry
-
 theorem negativeInfinityTimesZeroUndefined
     (real_model : RealModel) :
     ¬ ExtendedMultiplicationDefined real_model
       (.negativeInfinity) (.finite real_model.signature.zero) := by
   sorry
-
 end LRA.NumberSystems.RealNumbers.Extended

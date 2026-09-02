@@ -58,7 +58,6 @@ theorem LeftTranslationPreservesRelationIffMonotoneTranslations
         LRA.Order.Monotone relation relation
           (fun value => operation fixed value) := by
   sorry
-
 /--
 `RightTranslationPreservesRelationIffMonotoneTranslations` TODO
 
@@ -111,7 +110,6 @@ theorem RightTranslationPreservesRelationIffMonotoneTranslations
         LRA.Order.Monotone relation relation
           (fun value => operation value fixed) := by
   sorry
-
 /--
 `CoordinatewisePreservesRelation.left_translation` TODO
 
@@ -164,7 +162,6 @@ theorem CoordinatewisePreservesRelation.left_translation
       CoordinatewisePreservesRelation relation operation) :
     LeftTranslationPreservesRelation relation operation := by
   sorry
-
 /--
 `CoordinatewisePreservesRelation.right_translation` TODO
 
@@ -217,5 +214,4 @@ theorem CoordinatewisePreservesRelation.right_translation
       CoordinatewisePreservesRelation relation operation) :
     RightTranslationPreservesRelation relation operation := by
   sorry
-
 end LRA.Order

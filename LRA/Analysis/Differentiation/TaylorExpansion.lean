@@ -184,7 +184,6 @@ theorem TaylorTheoremLagrangeRemainder (f : ℝ → ℝ) (fD : ℕ → ℝ → �
       Derivative Dnp1 (fD n) (Set.Ioo a b) c ∧
       f x = TaylorPoly fD n a x + Dnp1 / (Nat.factorial (n + 1)) * (x - a) ^ (n + 1) := by
   sorry
-
 /--
 `TaylorExpansionPeanoRemainder` TODO
 
@@ -231,7 +230,6 @@ theorem TaylorExpansionPeanoRemainder (f : ℝ → ℝ) (fD : ℕ → ℝ → �
     Filter.Tendsto (fun x => (f x - TaylorPoly fD n a x) / (x - a) ^ n)
       (nhdsWithin a (I \ {a})) (nhds 0) := by
   sorry
-
 /--
 `FirstOrderPeanoRemainder` TODO
 
@@ -276,7 +274,6 @@ theorem FirstOrderPeanoRemainder (f : ℝ → ℝ) (A : Set ℝ) (c D : ℝ)
     Filter.Tendsto (fun h => (f (c + h) - f c - D * h) / h)
       (nhdsWithin 0 {h : ℝ | c + h ∈ A ∧ h ≠ 0}) (nhds 0) := by
   sorry
-
 /--
 `FlatFunction` TODO
 
@@ -359,7 +356,6 @@ theorem FlatFunctionProperties (fD : ℕ → ℝ → ℝ) (hfD0 : fD 0 = FlatFun
     (∀ n : ℕ, fD n 0 = 0) ∧
     ¬ IsClassCOmega FlatFunction fD Set.univ := by
   sorry
-
 /--
 `DifferentiableByDifferential` TODO
 
@@ -444,7 +440,6 @@ theorem DifferentialAndDerivativeAgree (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
     (hc : c ∈ interior A) :
     IsDifferentiable f A c ↔ DifferentiableByDifferential f c := by
   sorry
-
 /--
 `UniquenessOfTheDifferential` TODO
 
@@ -489,7 +484,6 @@ theorem UniquenessOfTheDifferential (f : ℝ → ℝ) (c : ℝ) (L₁ L₂ : ℝ
     (h₂ : Filter.Tendsto (fun h => (f (c + h) - f c - L₂ h) / h) (nhdsWithin 0 {0}ᶜ) (nhds 0)) :
     L₁ = L₂ := by
   sorry
-
 /--
 `DifferentialContinuityCriterion` TODO
 
@@ -532,7 +526,6 @@ theorem DifferentialContinuityCriterion (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ
     (h : DifferentiableByDifferential f c) :
     LRA.Analysis.Continuity.ContinuousAtPoint f A c := by
   sorry
-
 /--
 `ChainRuleForDifferentials` TODO
 
@@ -575,7 +568,6 @@ theorem ChainRuleForDifferentials (f g : ℝ → ℝ) (c : ℝ)
     (hf : DifferentiableByDifferential f c) (hg : DifferentiableByDifferential g (f c)) :
     DifferentiableByDifferential (fun x => g (f x)) c := by
   sorry
-
 /--
 `LinearityOfTheDifferential` TODO
 
@@ -618,5 +610,4 @@ theorem LinearityOfTheDifferential (f g : ℝ → ℝ) (c α β : ℝ)
     (hf : DifferentiableByDifferential f c) (hg : DifferentiableByDifferential g c) :
     DifferentiableByDifferential (fun x => α * f x + β * g x) c := by
   sorry
-
 end LRA.Analysis.Differentiation

@@ -49,7 +49,6 @@ theorem EuclideanDistanceIsAMetric :
     ∃ metric : MetricDefinition ℝ,
       ∀ a b : ℝ, metric.distance a b = |a - b| := by
   sorry
-
 /--
 `EmptySetIsAMetricSpace` TODO
 
@@ -90,7 +89,6 @@ Related proof moves: TODO
 theorem EmptySetIsAMetricSpace {X : Type u} :
     Nonempty (MetricDefinition (∅ : Set X)) := by
   sorry
-
 /--
 `SingletonSetIsAMetricSpace` TODO
 
@@ -131,7 +129,6 @@ Related proof moves: TODO
 theorem SingletonSetIsAMetricSpace {X : Type u} (point : X) :
     Nonempty (MetricDefinition ({point} : Set X)) := by
   sorry
-
 /--
 `ModulusIsAMetricOnTheComplexNumbers` TODO
 
@@ -174,7 +171,6 @@ theorem ModulusIsAMetricOnTheComplexNumbers :
     ∃ metric : MetricDefinition ℂ,
       ∀ a b : ℂ, metric.distance a b = ‖a - b‖ := by
   sorry
-
 /--
 `CircleAdmitsChordAsMetric` TODO
 
@@ -219,7 +215,6 @@ theorem CircleAdmitsChordAsMetric :
       ∃ metric : MetricDefinition {z : ℂ // ‖z - center‖ = radius},
         ∀ a b, metric.distance a b = ‖a.1 - b.1‖ := by
   sorry
-
 namespace MetricDefinition
 
 /--
@@ -262,7 +257,6 @@ Related proof moves: TODO
 theorem DistanceSelf {X : Type u} (metric : MetricDefinition X) (x : X) :
     metric.distance x x = 0 := by
   sorry
-
 /--
 `DistanceNonnegative` TODO
 
@@ -303,7 +297,6 @@ Related proof moves: TODO
 theorem DistanceNonnegative {X : Type u} (metric : MetricDefinition X) (x y : X) :
     0 ≤ metric.distance x y := by
   sorry
-
 /--
 `DistanceEqZeroIff` TODO
 
@@ -344,7 +337,6 @@ Related proof moves: constructor, .mp, .mpr
 theorem DistanceEqZeroIff {X : Type u} (metric : MetricDefinition X) (x y : X) :
     metric.distance x y = 0 ↔ x = y := by
   sorry
-
 /--
 `DistanceSymmetric` TODO
 
@@ -385,7 +377,6 @@ Related proof moves: TODO
 theorem DistanceSymmetric {X : Type u} (metric : MetricDefinition X) (x y : X) :
     metric.distance x y = metric.distance y x := by
   sorry
-
 /--
 `TriangleInequality` TODO
 
@@ -426,7 +417,6 @@ Related proof moves: TODO
 theorem TriangleInequality {X : Type u} (metric : MetricDefinition X) (x y z : X) :
     metric.distance x z ≤ metric.distance x y + metric.distance y z := by
   sorry
-
 /--
 `ReverseTriangleInequality` TODO
 
@@ -467,7 +457,6 @@ Related proof moves: TODO
 theorem ReverseTriangleInequality {X : Type u} (metric : MetricDefinition X) (x y z : X) :
     |metric.distance x z - metric.distance y z| ≤ metric.distance x y := by
   sorry
-
 end MetricDefinition
 
 /--
@@ -516,7 +505,6 @@ theorem RearrangementOfTriangleInequalityFromMetricDefinition
     (a b c : X) :
     |metric.distance a b - metric.distance b c| ≤ metric.distance a c := by
   sorry
-
 /--
 `rearrangement_of_triangle_inequality` TODO
 
@@ -563,5 +551,4 @@ theorem rearrangement_of_triangle_inequality
     (a b c : X) :
     |dist a b - dist b c| ≤ dist a c := by
   sorry
-
 end LRA.Analysis.MetricSpace

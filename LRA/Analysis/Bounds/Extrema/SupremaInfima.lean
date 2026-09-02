@@ -45,7 +45,6 @@ Related proof moves: TODO
 theorem SupremumIsUpperBound [Preorder S] {A : Set S} {s : S}
     (supremumHypothesis : IsSupremum s A) : IsUpperBound s A := by
   sorry
-
 /--
 `InfimumIsLowerBound` TODO
 
@@ -86,7 +85,6 @@ Related proof moves: TODO
 theorem InfimumIsLowerBound [Preorder S] {A : Set S} {i : S}
     (infimumHypothesis : IsInfimum i A) : IsLowerBound i A := by
   sorry
-
 /--
 `SubsetPreservesUpperBounds` TODO
 
@@ -129,7 +127,6 @@ theorem SubsetPreservesUpperBounds [Preorder S] {A B : Set S} {u : S}
     (subsetHypothesis : A ⊆ B) (upperBoundHypothesis : IsUpperBound u B) :
     IsUpperBound u A := by
   sorry
-
 /--
 `SubsetPreservesLowerBounds` TODO
 
@@ -172,7 +169,6 @@ theorem SubsetPreservesLowerBounds [Preorder S] {A B : Set S} {l : S}
     (subsetHypothesis : A ⊆ B) (lowerBoundHypothesis : IsLowerBound l B) :
     IsLowerBound l A := by
   sorry
-
 /--
 `SupremumMonotoneUnderInclusion` TODO
 
@@ -219,7 +215,6 @@ theorem SupremumMonotoneUnderInclusion [PartialOrder S] {A B : Set S} {sA sB : S
     (rightSupremum : IsSupremum sB B) :
     sA ≤ sB := by
   sorry
-
 /--
 `InfimumAntitoneUnderInclusion` TODO
 
@@ -266,7 +261,6 @@ theorem InfimumAntitoneUnderInclusion [PartialOrder S] {A B : Set S} {iA iB : S}
     (rightInfimum : IsInfimum iB B) :
     iB ≤ iA := by
   sorry
-
 /--
 `UpperBoundIffSupremumLe` TODO
 
@@ -309,7 +303,6 @@ theorem UpperBoundIffSupremumLe [PartialOrder S] {A : Set S} {s u : S}
     (supremumHypothesis : IsSupremum s A) :
     IsUpperBound u A ↔ s ≤ u := by
   sorry
-
 /--
 `LowerBoundIffLeInfimum` TODO
 
@@ -352,7 +345,6 @@ theorem LowerBoundIffLeInfimum [PartialOrder S] {A : Set S} {i l : S}
     (infimumHypothesis : IsInfimum i A) :
     IsLowerBound l A ↔ l ≤ i := by
   sorry
-
 /--
 `EveryElementLeSupremum` TODO
 
@@ -395,7 +387,6 @@ theorem EveryElementLeSupremum [Preorder S] {A : Set S} {s : S}
     (supremumHypothesis : IsSupremum s A) :
     ∀ x ∈ A, x ≤ s := by
   sorry
-
 /--
 `InfimumLeEveryElement` TODO
 
@@ -438,7 +429,6 @@ theorem InfimumLeEveryElement [Preorder S] {A : Set S} {i : S}
     (infimumHypothesis : IsInfimum i A) :
     ∀ x ∈ A, i ≤ x := by
   sorry
-
 /--
 `InfimumLeSupremum` TODO
 
@@ -481,7 +471,6 @@ theorem InfimumLeSupremum [PartialOrder S] {A : Set S} {i s : S}
     (infimumHypothesis : IsInfimum i A)
     (supremumHypothesis : IsSupremum s A) : i ≤ s := by
   sorry
-
 /--
 `SupremumNeedNotBelongToSet` TODO
 
@@ -522,7 +511,6 @@ Related proof moves: constructor, cases, rcases, use
 theorem SupremumNeedNotBelongToSet :
     ∃ (A : Set ℝ) (s : ℝ), A.Nonempty ∧ IsSupremum s A ∧ s ∉ A := by
   sorry
-
 /--
 `InfimumNeedNotBelongToSet` TODO
 
@@ -563,7 +551,6 @@ Related proof moves: constructor, cases, rcases, use
 theorem InfimumNeedNotBelongToSet :
     ∃ (A : Set ℝ) (i : ℝ), A.Nonempty ∧ IsInfimum i A ∧ i ∉ A := by
   sorry
-
 /--
 `SupremumComparisonByDominatingSet` TODO
 
@@ -608,7 +595,6 @@ theorem SupremumComparisonByDominatingSet [PartialOrder S] {A B : Set S} {sA sB 
     (rightSupremum : IsSupremum sB B)
     (dominationHypothesis : ∀ a ∈ A, ∃ b ∈ B, a ≤ b) : sA ≤ sB := by
   sorry
-
 /--
 `LubPropertyGivesSupremum` TODO
 
@@ -653,7 +639,6 @@ theorem LubPropertyGivesSupremum {A : Set ℝ}
     (boundedAboveHypothesis : ∃ u, IsUpperBound u A) :
     ∃! s : ℝ, IsSupremum s A := by
   sorry
-
 /--
 `GlbPropertyGivesInfimum` TODO
 
@@ -698,7 +683,6 @@ theorem GlbPropertyGivesInfimum {A : Set ℝ}
     (boundedBelowHypothesis : ∃ l, IsLowerBound l A) :
     ∃! i : ℝ, IsInfimum i A := by
   sorry
-
 /--
 `BoundedSetHasSupremumAndInfimum` TODO
 
@@ -743,5 +727,4 @@ theorem BoundedSetHasSupremumAndInfimum {A : Set ℝ}
     (boundedHypothesis : IsBounded A) :
     (∃! s : ℝ, IsSupremum s A) ∧ (∃! i : ℝ, IsInfimum i A) := by
   sorry
-
 end LRA.Analysis.Bounds.Extrema

@@ -304,7 +304,6 @@ theorem enclosure_addition_is_valid
     (second_valid : valid real_model second) :
     valid real_model (enclosure_addition real_model first second) := by
   sorry
-
 /--
 `EnclosesBinaryOperation` TODO
 
@@ -445,7 +444,6 @@ theorem addition_enclosure_is_sound
       (enclosure_addition real_model)
       real_model.signature.add := by
   sorry
-
 /--
 `dependency_can_make_enclosures_strict` TODO
 
@@ -496,5 +494,4 @@ theorem dependency_can_make_enclosures_strict
           contains real_model expression_enclosure value) ∧
         expression_enclosure ≠ direct_enclosure := by
   sorry
-
 end LRA.NumberSystems.RealNumbers.IntervalArithmetic

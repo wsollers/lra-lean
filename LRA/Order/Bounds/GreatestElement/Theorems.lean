@@ -60,7 +60,6 @@ theorem GreatestElementUnique
     (secondIsGreatest : GreatestElement relation subset second) :
     first = second := by
   sorry
-
 open scoped LRA.Set
 
 /--
@@ -121,7 +120,6 @@ theorem GreatestElementRetainedByIntersection
     (greatestIsRetained : greatest ∈ retainedBy) :
     GreatestElement relation (subset ∩ retainedBy) greatest := by
   sorry
-
 /--
 `GreatestElementRetainedByDifference` TODO
 
@@ -180,7 +178,6 @@ theorem GreatestElementRetainedByDifference
     (greatestIsNotRemoved : greatest ∉ removed) :
     GreatestElement relation (subset \ removed) greatest := by
   sorry
-
 /--
 `GreatestElementRetainedBySymmetricDifference` TODO
 
@@ -241,7 +238,6 @@ theorem GreatestElementRetainedBySymmetricDifference
     (greatestIsRetained : greatest ∈ (leftSubset ∆ rightSubset)) :
     GreatestElement relation (leftSubset ∆ rightSubset) greatest := by
   sorry
-
 /--
 `GreatestElementOfUnion` TODO
 
@@ -300,5 +296,4 @@ theorem GreatestElementOfUnion
     (greatestBoundsRight : UpperBound relation rightSubset greatest) :
     GreatestElement relation (leftSubset ∪ rightSubset) greatest := by
   sorry
-
 end LRA.Order

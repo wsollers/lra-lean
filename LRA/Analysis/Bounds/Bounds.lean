@@ -410,7 +410,6 @@ Related proof moves: TODO
 theorem MaximumIsSupremum [Preorder F] {m : F} {A : Set F}
     (maximum_hypothesis : IsMaximum m A) : IsSupremum m A := by
   sorry
-
 /--
 `SupremumUnique` TODO
 
@@ -453,7 +452,6 @@ theorem SupremumUnique [PartialOrder F] {s t : F} {A : Set F}
     (left_supremum : IsSupremum s A)
     (right_supremum : IsSupremum t A) : s = t := by
   sorry
-
 /--
 `InfimumUnique` TODO
 
@@ -496,7 +494,6 @@ theorem InfimumUnique [PartialOrder F] {s t : F} {A : Set F}
     (left_infimum : IsInfimum s A)
     (right_infimum : IsInfimum t A) : s = t := by
   sorry
-
 /--
 `SupremumIffIsLUB` TODO
 
@@ -537,7 +534,6 @@ Related proof moves: intro, constructor, .mp, .mpr
 theorem SupremumIffIsLUB [Preorder F] {s : F} {A : Set F} :
     IsSupremum s A <-> IsLUB A s := by
   sorry
-
 end LRA.Analysis.Bounds
 namespace LRA.Analysis.Bounds.Algebra
 open scoped Pointwise
@@ -592,7 +588,6 @@ theorem SupremumOfSum {sA sB : F} {A B : Set F}
     (right_supremum : IsSupremum sB B) :
     IsSupremum (sA + sB) (A + B) := by
   sorry
-
 /--
 `InfimumOfSum` TODO
 
@@ -641,7 +636,6 @@ theorem InfimumOfSum {iA iB : F} {A B : Set F}
     (right_infimum : IsInfimum iB B) :
     IsInfimum (iA + iB) (A + B) := by
   sorry
-
 /--
 `SupremumOfPositiveScale` TODO
 
@@ -688,7 +682,6 @@ theorem SupremumOfPositiveScale {a s : F} {A : Set F}
     (supremum_hypothesis : IsSupremum s A) :
     IsSupremum (a * s) ((fun x => a * x) '' A) := by
   sorry
-
 /--
 `NegationSwapsSupremumInfimum` TODO
 
@@ -729,7 +722,6 @@ Related proof moves: intro, constructor, .mp, .mpr
 theorem NegationSwapsSupremumInfimum {s : F} {A : Set F} :
     IsSupremum s A <-> IsInfimum (-s) (-A) := by
   sorry
-
 /--
 `SupremumMonotone` TODO
 
@@ -776,7 +768,6 @@ theorem SupremumMonotone {sA sB : F} {A B : Set F}
     (right_supremum : IsSupremum sB B) :
     sA <= sB := by
   sorry
-
 end LRA.Analysis.Bounds.Algebra
 namespace LRA.Analysis.Bounds
 open scoped Pointwise

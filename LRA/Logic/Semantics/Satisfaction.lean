@@ -121,9 +121,7 @@ theorem satisfiesAndIffSatisfiesBoth
     (φ ψ : Formula S Variable) :
     Satisfies M assignment (Formula.and φ ψ) ↔
       (Satisfies M assignment φ ∧ Satisfies M assignment ψ) := by
-  simp only [Formula.and, Satisfies]
-  tauto
-
+  sorry
 /--
 `satisfiesExistsIffSomeWitness` TODO
 
@@ -171,7 +169,5 @@ theorem satisfiesExistsIffSomeWitness
     (v : Variable) (φ : Formula S Variable) :
     Satisfies M assignment (Formula.existsQ v φ) ↔
       ∃ a : M.Domain, Satisfies M (updateAssignment assignment v a) φ := by
-  simp only [Formula.existsQ, Satisfies]
-  exact not_forall_not
-
+  sorry
 end LRA.Logic.FirstOrder

@@ -86,7 +86,6 @@ theorem ConvergenceOfTail (x : RealSequence) (m : ℕ) :
     ((∃ L, ConvergesTo x L) ↔ (∃ L, ConvergesTo (MTail x m) L)) ∧
       (∀ L, ConvergesTo x L → ConvergesTo (MTail x m) L) := by
   sorry
-
 /--
 `ConvergenceByDomination` TODO
 
@@ -131,7 +130,6 @@ theorem ConvergenceByDomination {x : RealSequence} {L : ℝ}
     (h : ∃ c > 0, ∃ m : ℕ, ∀ n ≥ m, |x n - L| ≤ c * a n) :
     ConvergesTo x L := by
   sorry
-
 /--
 `RatioLimitLessThanOneImpliesNull` TODO
 
@@ -176,5 +174,4 @@ theorem RatioLimitLessThanOneImpliesNull {x : RealSequence}
     (hratio : ConvergesTo (fun n => x (n + 1) / x n) L) (hL : L < 1) :
     ConvergesTo x 0 := by
   sorry
-
 end LRA.Analysis.Sequences

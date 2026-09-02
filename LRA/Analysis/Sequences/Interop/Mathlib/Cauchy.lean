@@ -44,5 +44,4 @@ Related proof moves: constructor, .mp, .mpr
 theorem IsCauchyIffCauchySeq (x : LRA.Analysis.Sequences.RealSequence) :
     LRA.Analysis.Sequences.IsCauchy x ↔ CauchySeq x := by
   sorry
-
 end LRA.Analysis.Sequences.Interop.Mathlib

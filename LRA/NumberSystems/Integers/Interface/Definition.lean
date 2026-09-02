@@ -64,7 +64,6 @@ theorem IntegerNumeralIsSurjective
       ∃ integer : Int,
         IntegerNumeral integerSystem.Model integer = value := by
   sorry
-
 /-- `IntegerNumeral` is injective on any `IntegerNumberSystem`'s carrier. -/
 theorem IntegerNumeralIsInjective
     (integerSystem : IntegerNumberSystem.{u}) :
@@ -73,5 +72,4 @@ theorem IntegerNumeralIsInjective
           IntegerNumeral integerSystem.Model second →
         first = second := by
   sorry
-
 end LRA.NumberSystems.Integers

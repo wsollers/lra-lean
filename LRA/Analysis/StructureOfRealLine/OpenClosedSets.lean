@@ -155,7 +155,6 @@ Related proof moves: TODO
 -/
 theorem OpenIntervalIsOpen (a b : ℝ) (hab : a < b) : IsOpenSet (Set.Ioo a b) := by
   sorry
-
 /--
 `OpenSetClosureOperations` TODO
 
@@ -200,7 +199,6 @@ theorem OpenSetClosureOperations :
     (∀ (ι : Type) (U : ι → Set ℝ), (∀ i, IsOpenSet (U i)) → IsOpenSet (⋃ i, U i)) ∧
     (∀ (n : ℕ) (U : Fin n → Set ℝ), (∀ i, IsOpenSet (U i)) → IsOpenSet (⋂ i, U i)) := by
   sorry
-
 /--
 `IsClosedSet` TODO
 
@@ -279,7 +277,6 @@ Related proof moves: intro, constructor, .mp, .mpr
 theorem ClosedIffContainsLimitPoints (F : Set ℝ) :
     IsClosedSet F ↔ ∀ x : ℝ, (∀ r > 0, (OpenBall x r \ {x}) ∩ F ≠ ∅) → x ∈ F := by
   sorry
-
 /--
 `IsInteriorPoint` TODO
 
@@ -556,5 +553,4 @@ theorem ClosedSetClosureOperations :
     (∀ (ι : Type) (F : ι → Set ℝ), (∀ i, IsClosedSet (F i)) → IsClosedSet (⋂ i, F i)) ∧
     (∀ (n : ℕ) (F : Fin n → Set ℝ), (∀ i, IsClosedSet (F i)) → IsClosedSet (⋃ i, F i)) := by
   sorry
-
 end LRA.Analysis.StructureOfRealLine

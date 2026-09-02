@@ -53,7 +53,6 @@ theorem PositiveClassesRecoverNaturalNumberModel
       (_ : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject),
       Nonempty Element := by
   sorry
-
 /--
 `MendelsonIntegersFormDiscretelyOrderedIntegralDomain` TODO
 
@@ -98,7 +97,6 @@ theorem MendelsonIntegersFormDiscretelyOrderedIntegralDomain
     ∃ model : LRA.NumberSystems.Integers.Interface.ModelTheory.IntegerModel,
       model.Carrier = Carrier positiveData := by
   sorry
-
 /--
 `MendelsonRealizesIntegerNumberSystem` TODO
 
@@ -143,5 +141,4 @@ theorem MendelsonRealizesIntegerNumberSystem
     ∃ integerSystem : LRA.NumberSystems.Integers.IntegerNumberSystem,
       integerSystem.Model.Carrier = Carrier positiveData := by
   sorry
-
 end LRA.NumberSystems.Integers.Mendelson

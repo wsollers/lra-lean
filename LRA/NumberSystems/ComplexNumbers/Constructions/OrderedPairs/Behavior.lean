@@ -51,7 +51,6 @@ Related proof moves: TODO
 -/
 theorem of_real_preserves_zero : of_real (0 : R) = (0 : ComplexNumber R) := by
   sorry
-
 /--
 `of_real_preserves_one` TODO
 
@@ -90,7 +89,6 @@ Related proof moves: TODO
 -/
 theorem of_real_preserves_one : of_real (1 : R) = (1 : ComplexNumber R) := by
   sorry
-
 /--
 `of_real_preserves_addition` TODO
 
@@ -131,7 +129,6 @@ Related proof moves: TODO
 theorem of_real_preserves_addition (first second : R) :
     of_real (first + second) = of_real first + of_real second := by
   sorry
-
 /--
 `of_real_preserves_negation` TODO
 
@@ -172,7 +169,6 @@ Related proof moves: TODO
 theorem of_real_preserves_negation (value : R) :
     of_real (-value) = -(of_real value) := by
   sorry
-
 /--
 `of_real_preserves_multiplication` TODO
 
@@ -213,7 +209,6 @@ Related proof moves: TODO
 theorem of_real_preserves_multiplication (first second : R) :
     of_real (first * second) = of_real first * of_real second := by
   sorry
-
 /--
 `of_real_is_injective` TODO
 
@@ -254,7 +249,6 @@ Related proof moves: TODO
 theorem of_real_is_injective (first second : R)
     (images_equal : of_real first = of_real second) : first = second := by
   sorry
-
 end EmbeddingTheorems
 
 /--
@@ -451,5 +445,4 @@ theorem algebraic_closure_obligation
     ∃ root : ComplexNumber R,
       Polynomial.evaluate polynomial root = (0 : ComplexNumber R) := by
   sorry
-
 end LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs

@@ -93,7 +93,6 @@ theorem StepFunctionApproximation (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b)
     ∀ ε > 0, ∃ g : ℝ → ℝ, IsStepFunction g a b ∧
       ∀ x ∈ Set.Icc a b, |f x - g x| < ε := by
   sorry
-
 /--
 `IsPiecewiseLinear` TODO
 
@@ -184,7 +183,6 @@ theorem PiecewiseLinearApproximation (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ 
     ∀ ε > 0, ∃ g : ℝ → ℝ, IsPiecewiseLinear g a b ∧
       ∀ x ∈ Set.Icc a b, |f x - g x| < ε := by
   sorry
-
 /--
 `WeierstrassApproximation` TODO
 
@@ -227,7 +225,6 @@ theorem WeierstrassApproximation (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b)
     (hf : ContinuousOn' f (Set.Icc a b)) :
     ∀ ε > 0, ∃ p : Polynomial ℝ, ∀ x ∈ Set.Icc a b, |f x - p.eval x| < ε := by
   sorry
-
 /--
 `BernsteinPolynomial` TODO
 
@@ -324,5 +321,4 @@ theorem BernsteinApproximation (f : ℝ → ℝ) (hf : ContinuousOn' f (Set.Icc 
     ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, ∀ x ∈ Set.Icc (0:ℝ) 1,
       |f x - (BernsteinPolynomial f n).eval x| < ε := by
   sorry
-
 end LRA.Analysis.Continuity

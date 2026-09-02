@@ -52,5 +52,4 @@ theorem JoinSemilatticeHasJoin
     (left right : Alpha) :
     exists join, Join relation left right join := by
   sorry
-
 end LRA.Order

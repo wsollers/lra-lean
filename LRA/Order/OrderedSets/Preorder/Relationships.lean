@@ -146,7 +146,6 @@ theorem PreorderEquivalenceIsEquivalence
     (preorder : PreorderRelation Carrier) :
     LRA.Relation.EquivalenceRelation (PreorderEquivalence preorder) := by
   sorry
-
 /--
 `PreorderSetoid` TODO
 
@@ -347,5 +346,4 @@ theorem PreorderQuotientRelationIsPartialOrder
     (preorder : PreorderRelation Carrier) :
     LRA.Order.PartialOrder (PreorderQuotientRelation preorder) := by
   sorry
-
 end LRA.Order.OrderedSets.Preorder

@@ -47,5 +47,4 @@ theorem IntegerNumberSystemIsCountable
     (integerSystem : IntegerNumberSystem.{u}) :
     LRA.Carrier.IsCountable integerSystem.Model.Carrier := by
   sorry
-
 end LRA.NumberSystems.Integers

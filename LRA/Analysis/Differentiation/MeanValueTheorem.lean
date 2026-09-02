@@ -52,7 +52,6 @@ theorem RollesTheorem (f : ℝ → ℝ) (a b : ℝ) (hab : a < b)
     (hfab : f a = f b) :
     ∃ c ∈ Set.Ioo a b, Derivative 0 f (Set.Ioo a b) c := by
   sorry
-
 /--
 `MeanValueTheorem` TODO
 
@@ -97,7 +96,6 @@ theorem MeanValueTheorem (f : ℝ → ℝ) (a b : ℝ) (hab : a < b)
     (hdiff : ∀ x ∈ Set.Ioo a b, IsDifferentiable f (Set.Ioo a b) x) :
     ∃ c ∈ Set.Ioo a b, Derivative ((f b - f a) / (b - a)) f (Set.Ioo a b) c := by
   sorry
-
 /--
 `CauchyMeanValueTheorem` TODO
 
@@ -152,7 +150,6 @@ theorem CauchyMeanValueTheorem (f g : ℝ → ℝ) (a b : ℝ) (hab : a < b)
       Derivative Dg g (Set.Ioo a b) c ∧
       Df * (g b - g a) = Dg * (f b - f a) := by
   sorry
-
 /--
 `NondecreasingIffNonnegDerivative` TODO
 
@@ -195,7 +192,6 @@ theorem NondecreasingIffNonnegDerivative (f : ℝ → ℝ) (I : Set ℝ) (hI : I
     (hdiff : ∀ x ∈ I, IsDifferentiable f I x) :
     MonotoneOn f I ↔ ∀ x ∈ I, ∀ D, Derivative D f I x → D ≥ 0 := by
   sorry
-
 /--
 `DerivativeBoundImpliesLipschitz` TODO
 
@@ -240,5 +236,4 @@ theorem DerivativeBoundImpliesLipschitz (f : ℝ → ℝ) (I : Set ℝ) (hI : I.
     (hbound : ∀ x ∈ I, ∀ D, Derivative D f I x → |D| ≤ M) :
     LRA.Analysis.Continuity.IsLipschitzOn f I M := by
   sorry
-
 end LRA.Analysis.Differentiation

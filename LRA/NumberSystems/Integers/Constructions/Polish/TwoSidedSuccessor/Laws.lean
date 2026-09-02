@@ -43,7 +43,6 @@ Related proof moves: TODO
 -/
 theorem add_zero (x : Z) : x + Z.zero = x := by
   sorry
-
 /--
 `succ_pred_comm` TODO
 
@@ -82,7 +81,6 @@ Related proof moves: TODO
 -/
 theorem succ_pred_comm (w : Z) : succ (pred w) = pred (succ w) := by
   sorry
-
 /--
 `zero_add` TODO
 
@@ -121,7 +119,6 @@ Related proof moves: TODO
 -/
 theorem zero_add (x : Z) : Z.zero + x = x := by
   sorry
-
 /--
 `succ_add` TODO
 
@@ -160,7 +157,6 @@ Related proof moves: TODO
 -/
 theorem succ_add (x y : Z) : succ x + y = succ (x + y) := by
   sorry
-
 /--
 `pred_add` TODO
 
@@ -199,7 +195,6 @@ Related proof moves: TODO
 -/
 theorem pred_add (x y : Z) : pred x + y = pred (x + y) := by
   sorry
-
 /--
 `add_comm` TODO
 
@@ -238,7 +233,6 @@ Related proof moves: TODO
 -/
 theorem add_comm (x y : Z) : x + y = y + x := by
   sorry
-
 /--
 `add_assoc` TODO
 
@@ -277,7 +271,6 @@ Related proof moves: TODO
 -/
 theorem add_assoc (x y z : Z) : (x + y) + z = x + (y + z) := by
   sorry
-
 /--
 `neg_zero` TODO
 
@@ -316,7 +309,6 @@ Related proof moves: TODO
 -/
 theorem neg_zero : (-Z.zero : Z) = Z.zero := by
   sorry
-
 /--
 `neg_succ` TODO
 
@@ -355,7 +347,6 @@ Related proof moves: TODO
 -/
 theorem neg_succ (x : Z) : -(succ x) = pred (-x) := by
   sorry
-
 /--
 `neg_pred` TODO
 
@@ -394,7 +385,6 @@ Related proof moves: TODO
 -/
 theorem neg_pred (x : Z) : -(pred x) = succ (-x) := by
   sorry
-
 /--
 `neg_neg` TODO
 
@@ -433,7 +423,6 @@ Related proof moves: TODO
 -/
 theorem neg_neg (x : Z) : -(-x) = x := by
   sorry
-
 /--
 `add_neg_self` TODO
 
@@ -472,7 +461,6 @@ Related proof moves: TODO
 -/
 theorem add_neg_self (x : Z) : x + (-x) = Z.zero := by
   sorry
-
 /--
 `neg_add_self` TODO
 
@@ -511,7 +499,6 @@ Related proof moves: TODO
 -/
 theorem neg_add_self (x : Z) : (-x) + x = Z.zero := by
   sorry
-
 /--
 `neg_add` TODO
 
@@ -550,7 +537,6 @@ Related proof moves: TODO
 -/
 theorem neg_add (x y : Z) : -(x + y) = (-x) + (-y) := by
   sorry
-
 /--
 `mul_succ` TODO
 
@@ -589,7 +575,6 @@ Related proof moves: TODO
 -/
 theorem mul_succ (x y : Z) : x * succ y = x * y + x := by
   sorry
-
 /--
 `mul_pred` TODO
 
@@ -628,7 +613,6 @@ Related proof moves: TODO
 -/
 theorem mul_pred (x y : Z) : x * pred y = x * y + (-x) := by
   sorry
-
 /--
 `zero_mul` TODO
 
@@ -667,7 +651,6 @@ Related proof moves: TODO
 -/
 theorem zero_mul (x : Z) : Z.zero * x = Z.zero := by
   sorry
-
 /--
 `add_one` TODO
 
@@ -706,7 +689,6 @@ Related proof moves: TODO
 -/
 theorem add_one (x : Z) : x + one = succ x := by
   sorry
-
 /--
 `neg_one_eq` TODO
 
@@ -745,7 +727,6 @@ Related proof moves: TODO
 -/
 theorem neg_one_eq : (-one : Z) = pred Z.zero := by
   sorry
-
 /--
 `add_neg_one` TODO
 
@@ -784,7 +765,6 @@ Related proof moves: TODO
 -/
 theorem add_neg_one (x : Z) : x + (-one) = pred x := by
   sorry
-
 /--
 `one_mul` TODO
 
@@ -823,7 +803,6 @@ Related proof moves: TODO
 -/
 theorem one_mul (x : Z) : one * x = x := by
   sorry
-
 /--
 `succ_mul` TODO
 
@@ -862,7 +841,6 @@ Related proof moves: TODO
 -/
 theorem succ_mul (x y : Z) : succ x * y = x * y + y := by
   sorry
-
 /--
 `pred_mul` TODO
 
@@ -901,7 +879,6 @@ Related proof moves: TODO
 -/
 theorem pred_mul (x y : Z) : pred x * y = x * y + (-y) := by
   sorry
-
 /--
 `mul_comm` TODO
 
@@ -940,7 +917,6 @@ Related proof moves: TODO
 -/
 theorem mul_comm (x y : Z) : x * y = y * x := by
   sorry
-
 /--
 `add_add_comm` TODO
 
@@ -979,7 +955,6 @@ Related proof moves: TODO
 -/
 theorem add_add_comm (a b c d : Z) : (a + b) + (c + d) = (a + c) + (b + d) := by
   sorry
-
 /--
 `distrib_right` TODO
 
@@ -1018,7 +993,6 @@ Related proof moves: TODO
 -/
 theorem distrib_right (a b c : Z) : (a + b) * c = a * c + b * c := by
   sorry
-
 /--
 `distrib_left` TODO
 
@@ -1057,7 +1031,6 @@ Related proof moves: TODO
 -/
 theorem distrib_left (a b c : Z) : a * (b + c) = a * b + a * c := by
   sorry
-
 /--
 `mul_neg` TODO
 
@@ -1096,7 +1069,6 @@ Related proof moves: TODO
 -/
 theorem mul_neg (x y : Z) : x * (-y) = -(x * y) := by
   sorry
-
 /--
 `neg_mul` TODO
 
@@ -1135,7 +1107,6 @@ Related proof moves: TODO
 -/
 theorem neg_mul (x y : Z) : (-x) * y = -(x * y) := by
   sorry
-
 /--
 `mul_assoc` TODO
 
@@ -1174,7 +1145,6 @@ Related proof moves: TODO
 -/
 theorem mul_assoc (x y z : Z) : (x * y) * z = x * (y * z) := by
   sorry
-
 /--
 `Pos` TODO
 
@@ -1289,7 +1259,6 @@ Related proof moves: TODO
 -/
 theorem not_pos_zero : ¬ Pos Z.zero := by
   sorry
-
 /--
 `not_isNeg_zero` TODO
 
@@ -1328,7 +1297,6 @@ Related proof moves: TODO
 -/
 theorem not_isNeg_zero : ¬ IsNeg Z.zero := by
   sorry
-
 /--
 `not_pos_and_isNeg` TODO
 
@@ -1367,7 +1335,6 @@ Related proof moves: constructor, cases, rcases
 -/
 theorem not_pos_and_isNeg (z : Z) : ¬ (Pos z ∧ IsNeg z) := by
   sorry
-
 /--
 `trichotomy` TODO
 
@@ -1406,7 +1373,6 @@ Related proof moves: Or.inl, Or.inr, cases, rcases
 -/
 theorem trichotomy (z : Z) : z = Z.zero ∨ Pos z ∨ IsNeg z := by
   sorry
-
 /--
 `pos_add` TODO
 
@@ -1445,7 +1411,6 @@ Related proof moves: TODO
 -/
 theorem pos_add {x y : Z} (leftPositive : Pos x) (rightPositive : Pos y) : Pos (x + y) := by
   sorry
-
 /--
 `isNeg_neg_of_pos` TODO
 
@@ -1484,7 +1449,6 @@ Related proof moves: TODO
 -/
 theorem isNeg_neg_of_pos {x : Z} (positiveInput : Pos x) : IsNeg (-x) := by
   sorry
-
 /--
 `pos_neg_of_isNeg` TODO
 
@@ -1523,7 +1487,6 @@ Related proof moves: TODO
 -/
 theorem pos_neg_of_isNeg {x : Z} (negativeInput : IsNeg x) : Pos (-x) := by
   sorry
-
 /--
 `pos_neg_iff_isNeg` TODO
 
@@ -1562,7 +1525,6 @@ Related proof moves: constructor, .mp, .mpr
 -/
 theorem pos_neg_iff_isNeg (x : Z) : Pos (-x) ↔ IsNeg x := by
   sorry
-
 /--
 `lt` TODO
 
@@ -1683,7 +1645,6 @@ Related proof moves: constructor, .mp, .mpr
 -/
 theorem lt_def (x y : Z) : x < y ↔ Pos (y + (-x)) := by
   sorry
-
 /--
 `pos_of_zero_lt` TODO
 
@@ -1722,7 +1683,6 @@ Related proof moves: intro
 -/
 theorem pos_of_zero_lt (x : Z) : Z.zero < x → Pos x := by
   sorry
-
 /--
 `lt_irrefl` TODO
 
@@ -1761,7 +1721,6 @@ Related proof moves: TODO
 -/
 theorem lt_irrefl (x : Z) : ¬ x < x := by
   sorry
-
 /--
 `lt_trans` TODO
 
@@ -1800,7 +1759,6 @@ Related proof moves: TODO
 -/
 theorem lt_trans {x y z : Z} (firstLessSecond : x < y) (secondLessThird : y < z) : x < z := by
   sorry
-
 /--
 `lt_trichotomy` TODO
 
@@ -1839,7 +1797,6 @@ Related proof moves: Or.inl, Or.inr, cases, rcases
 -/
 theorem lt_trichotomy (x y : Z) : x < y ∨ x = y ∨ y < x := by
   sorry
-
 /--
 `lt_succ_self` TODO
 
@@ -1878,7 +1835,6 @@ Related proof moves: TODO
 -/
 theorem lt_succ_self (x : Z) : x < succ x := by
   sorry
-
 /--
 `pred_lt_self` TODO
 
@@ -1917,7 +1873,6 @@ Related proof moves: TODO
 -/
 theorem pred_lt_self (x : Z) : pred x < x := by
   sorry
-
 /--
 `add_lt_add_right` TODO
 
@@ -1956,7 +1911,6 @@ Related proof moves: TODO
 -/
 theorem add_lt_add_right {x y : Z} (firstLessSecond : x < y) (z : Z) : x + z < y + z := by
   sorry
-
 /--
 `le_iff` TODO
 
@@ -1995,7 +1949,6 @@ Related proof moves: constructor, .mp, .mpr, Or.inl, Or.inr, cases, rcases
 -/
 theorem le_iff (x y : Z) : x ≤ y ↔ x = y ∨ x < y := by
   sorry
-
 /--
 `le_refl` TODO
 
@@ -2034,7 +1987,6 @@ Related proof moves: TODO
 -/
 theorem le_refl (x : Z) : x ≤ x := by
   sorry
-
 /--
 `lt_of_le_of_lt` TODO
 
@@ -2075,7 +2027,6 @@ Related proof moves: TODO
 theorem lt_of_le_of_lt {x y z : Z} (firstLeSecond : x ≤ y) (secondLessThird : y < z) :
     x < z := by
   sorry
-
 /--
 `le_antisymm` TODO
 
@@ -2114,7 +2065,6 @@ Related proof moves: TODO
 -/
 theorem le_antisymm {x y : Z} (firstLeSecond : x ≤ y) (secondLeFirst : y ≤ x) : x = y := by
   sorry
-
 /--
 `pos_mul` TODO
 
@@ -2153,7 +2103,6 @@ Related proof moves: TODO
 -/
 theorem pos_mul {x y : Z} (leftPositive : Pos x) (rightPositive : Pos y) : Pos (x * y) := by
   sorry
-
 /--
 `mul_lt_mul_pos_right` TODO
 
@@ -2194,5 +2143,4 @@ Related proof moves: TODO
 theorem mul_lt_mul_pos_right {x y z : Z} (firstLessSecond : x < y) (multiplierPositive : Pos z) :
     x * z < y * z := by
   sorry
-
 end LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor

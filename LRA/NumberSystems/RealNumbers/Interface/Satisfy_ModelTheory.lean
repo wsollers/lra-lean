@@ -21,5 +21,4 @@ def genericTheory (M : RealModel) : Prop :=
 carry the laws `RealNumbersTheory` states. -/
 theorem satisfiesModelTheory (M : RealModel) : genericTheory M := by
   sorry
-
 end LRA.NumberSystems.RealNumbers.Interface.ModelTheory

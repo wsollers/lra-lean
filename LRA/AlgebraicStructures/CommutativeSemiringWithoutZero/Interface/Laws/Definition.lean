@@ -165,13 +165,11 @@ section Wrappers
 variable {R : Type u}
 
 theorem AddCancellative [Add R] [AdditiveCancellativeLaws R] :
-    LRA.Operation.Laws.Cancellation.TwoSidedCancellative (fun a b : R => a + b) :=
+    LRA.Operation.Laws.Cancellation.TwoSidedCancellative (fun a b : R => a + b) := by
   sorry
-
 theorem MulCancellative [Mul R] [MultiplicativeCancellativeLaws R] :
-    LRA.Operation.Laws.Cancellation.TwoSidedCancellative (fun a b : R => a * b) :=
+    LRA.Operation.Laws.Cancellation.TwoSidedCancellative (fun a b : R => a * b) := by
   sorry
-
 end Wrappers
 
 end LRA.AlgebraicStructures

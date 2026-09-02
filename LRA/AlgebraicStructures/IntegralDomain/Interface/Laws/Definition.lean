@@ -135,9 +135,8 @@ Related proof moves: intro, Or.inl, Or.inr, cases, rcases
 
 -/
 theorem EqZeroOfMulEqZero [Mul R] [OfNat R 0] [NoZeroDivisorsLaw R] :
-    ∀ a b : R, a * b = 0 → a = 0 ∨ b = 0 :=
+    ∀ a b : R, a * b = 0 → a = 0 ∨ b = 0 := by
   sorry
-
 end Wrappers
 
 end LRA.AlgebraicStructures

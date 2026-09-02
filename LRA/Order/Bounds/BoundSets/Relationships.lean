@@ -64,7 +64,6 @@ theorem SubsetOfLowerBoundsOfUpperBounds
     (subset : SetObject) :
     subset ⊆ LowerBounds relation (UpperBounds relation subset) := by
   sorry
-
 /--
 `SubsetOfUpperBoundsOfLowerBounds` TODO
 
@@ -109,7 +108,6 @@ theorem SubsetOfUpperBoundsOfLowerBounds
     (subset : SetObject) :
     subset ⊆ UpperBounds relation (LowerBounds relation subset) := by
   sorry
-
 /--
 `UpperBoundsLowerBoundsUpperBounds` TODO
 
@@ -158,7 +156,6 @@ theorem UpperBoundsLowerBoundsUpperBounds
         (LowerBounds relation (UpperBounds relation subset)) =
       UpperBounds relation subset := by
   sorry
-
 /--
 `LowerBoundsUpperBoundsLowerBounds` TODO
 
@@ -207,7 +204,6 @@ theorem LowerBoundsUpperBoundsLowerBounds
         (UpperBounds relation (LowerBounds relation subset)) =
       LowerBounds relation subset := by
   sorry
-
 /--
 `LowerUpperClosureIsExtensive` TODO
 
@@ -252,7 +248,6 @@ theorem LowerUpperClosureIsExtensive
     (subset : SetObject) :
     subset ⊆ LowerUpperClosure relation subset := by
   sorry
-
 /--
 `LowerUpperClosureIsMonotone` TODO
 
@@ -301,7 +296,6 @@ theorem LowerUpperClosureIsMonotone
     LowerUpperClosure relation smaller ⊆
       LowerUpperClosure relation larger := by
   sorry
-
 /--
 `LowerUpperClosureIsIdempotent` TODO
 
@@ -348,7 +342,6 @@ theorem LowerUpperClosureIsIdempotent
     LowerUpperClosure relation (LowerUpperClosure relation subset) =
       LowerUpperClosure relation subset := by
   sorry
-
 /--
 `UpperLowerClosureIsExtensive` TODO
 
@@ -393,7 +386,6 @@ theorem UpperLowerClosureIsExtensive
     (subset : SetObject) :
     subset ⊆ UpperLowerClosure relation subset := by
   sorry
-
 /--
 `UpperLowerClosureIsMonotone` TODO
 
@@ -442,7 +434,6 @@ theorem UpperLowerClosureIsMonotone
     UpperLowerClosure relation smaller ⊆
       UpperLowerClosure relation larger := by
   sorry
-
 /--
 `UpperLowerClosureIsIdempotent` TODO
 
@@ -489,7 +480,6 @@ theorem UpperLowerClosureIsIdempotent
     UpperLowerClosure relation (UpperLowerClosure relation subset) =
       UpperLowerClosure relation subset := by
   sorry
-
 end GaloisRelationships
 
 end LRA.Order

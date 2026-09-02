@@ -180,7 +180,6 @@ theorem EquivalenceClassExists
     ∃ classSet : SetObject,
       IsEquivalenceClassOf classSet ambient relation representative := by
   sorry
-
 /--
 `EquivalenceClassUnique` TODO
 
@@ -232,7 +231,6 @@ theorem EquivalenceClassUnique
       (fun classSet : SetObject =>
         IsEquivalenceClassOf classSet ambient relation representative) := by
   sorry
-
 /--
 `EquivalenceClassExistsAndUnique` TODO
 
@@ -284,7 +282,6 @@ theorem EquivalenceClassExistsAndUnique
       (fun classSet : SetObject =>
         IsEquivalenceClassOf classSet ambient relation representative) := by
   sorry
-
 /--
 `EquivalenceClassMembershipIff` TODO
 
@@ -333,7 +330,6 @@ theorem EquivalenceClassMembershipIff
     candidate ∈ EquivalenceClass ambient relation representative ↔
       candidate ∈ ambient ∧ relation candidate representative := by
   sorry
-
 /--
 `RelatedRepresentativesHaveSameEquivalenceClass` TODO
 
@@ -388,7 +384,6 @@ theorem RelatedRepresentativesHaveSameEquivalenceClass
       EquivalenceClass ambient relation firstRepresentative =
         EquivalenceClass ambient relation secondRepresentative := by
   sorry
-
 end Laws
 end WithSeparation
 end EquivalenceClasses

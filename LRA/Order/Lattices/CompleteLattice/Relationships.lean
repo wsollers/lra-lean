@@ -53,5 +53,4 @@ theorem ConverseIsCompleteLatticeIff
     CompleteLattice SetObject (LRA.Relation.Converse relation) ↔
       CompleteLattice SetObject relation := by
   sorry
-
 end LRA.Order

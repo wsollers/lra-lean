@@ -51,7 +51,6 @@ theorem IsOrderDenseSubsetMonotone {S : Type*} [Preorder S] {D D' : Set S}
     (denseHypothesis : IsOrderDenseSubset D) :
     IsOrderDenseSubset D' := by
   sorry
-
 /--
 `IsOrderDenseSubsetUnion` TODO
 
@@ -94,7 +93,6 @@ theorem IsOrderDenseSubsetUnion {S : Type*} [Preorder S] {D : Set S} (E : Set S)
     (denseHypothesis : IsOrderDenseSubset D) :
     IsOrderDenseSubset (D ∪ E) := by
   sorry
-
 /--
 `IsOrderDenseSubsetUnivIffDenseOrderLaw` TODO
 
@@ -135,7 +133,6 @@ Related proof moves: constructor, .mp, .mpr
 theorem IsOrderDenseSubsetUnivIffDenseOrderLaw {S : Type*} [Preorder S] :
     IsOrderDenseSubset (Set.univ : Set S) ↔ LRA.Order.DenseOrderLaw S := by
   sorry
-
 /--
 `DensityOfRationalsInReals` TODO
 
@@ -178,7 +175,6 @@ theorem DensityOfRationalsInReals {a b : ℝ}
     (intervalHypothesis : a < b) :
     ∃ q : ℚ, a < (q : ℝ) ∧ (q : ℝ) < b := by
   sorry
-
 /--
 `DensityOfIrrationalsInReals` TODO
 
@@ -221,7 +217,6 @@ theorem DensityOfIrrationalsInReals {a b : ℝ}
     (intervalHypothesis : a < b) :
     ∃ s : ℝ, ¬ IsRational s ∧ a < s ∧ s < b := by
   sorry
-
 /--
 `IrrationalBetweenAnyTwoRationals` TODO
 
@@ -264,7 +259,6 @@ theorem IrrationalBetweenAnyTwoRationals {r s : ℚ}
     (rationalIntervalHypothesis : r < s) :
     ∃ x : ℝ, ¬ IsRational x ∧ (r : ℝ) < x ∧ x < (s : ℝ) := by
   sorry
-
 /--
 `RationalBetweenAnyTwoIrrationals` TODO
 
@@ -311,7 +305,6 @@ theorem RationalBetweenAnyTwoIrrationals {x y : ℝ}
     (intervalHypothesis : x < y) :
     ∃ q : ℚ, x < (q : ℝ) ∧ (q : ℝ) < y := by
   sorry
-
 /--
 `SmallIrrationalPositiveNumber` TODO
 
@@ -354,7 +347,6 @@ theorem SmallIrrationalPositiveNumber {ε : ℝ}
     (positiveToleranceHypothesis : ε > 0) :
     ∃ η : ℝ, ¬ IsRational η ∧ 0 < η ∧ η < ε := by
   sorry
-
 /--
 `NoAdjacentRealNumbers` TODO
 
@@ -397,7 +389,6 @@ theorem NoAdjacentRealNumbers {a b : ℝ}
     (intervalHypothesis : a < b) :
     ∃ c : ℝ, a < c ∧ c < b := by
   sorry
-
 /--
 `NoImmediateSuccessorsInReals` TODO
 
@@ -438,7 +429,6 @@ Related proof moves: intro, constructor, cases, rcases, use
 theorem NoImmediateSuccessorsInReals (a : ℝ) :
     ¬ ∃ m : ℝ, a < m ∧ ∀ x : ℝ, a < x → m ≤ x := by
   sorry
-
 /--
 `NoImmediatePredecessorsInReals` TODO
 
@@ -479,7 +469,6 @@ Related proof moves: intro, constructor, cases, rcases, use
 theorem NoImmediatePredecessorsInReals (a : ℝ) :
     ¬ ∃ m : ℝ, m < a ∧ ∀ x : ℝ, x < a → x ≤ m := by
   sorry
-
 /--
 `EveryOpenIntervalContainsRationalAndIrrational` TODO
 
@@ -524,7 +513,6 @@ theorem EveryOpenIntervalContainsRationalAndIrrational {a b : ℝ}
     (∃ q : ℚ, a < (q : ℝ) ∧ (q : ℝ) < b) ∧
       ∃ s : ℝ, ¬ IsRational s ∧ a < s ∧ s < b := by
   sorry
-
 /--
 `InfinitelyManyRationalsAndIrrationalsInOpenInterval` TODO
 
@@ -569,5 +557,4 @@ theorem InfinitelyManyRationalsAndIrrationalsInOpenInterval {a b : ℝ}
     {q : ℚ | a < (q : ℝ) ∧ (q : ℝ) < b}.Infinite ∧
       {s : ℝ | ¬ IsRational s ∧ a < s ∧ s < b}.Infinite := by
   sorry
-
 end LRA.Analysis.Completeness

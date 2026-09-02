@@ -310,5 +310,4 @@ theorem modelsOfEquationalTheoryIsVariety {S : Signature}
     (theory : EquationalTheory S Nat) :
     IsVariety (ModelsOfEquationalTheory.{u} theory) := by
   sorry
-
 end LRA.UniversalAlgebra

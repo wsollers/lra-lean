@@ -95,7 +95,6 @@ theorem NaturalAdditionRightTranslationPreservesLessEqual :
       (fun left right : Nat => left <= right)
       NaturalAdditionForOrderCompatibility := by
   sorry
-
 /--
 `NaturalSubtractionForOrderCompatibilityExample` TODO
 
@@ -186,7 +185,6 @@ theorem NaturalSubtractionRightTranslationPreservesLessEqual :
       (fun left right : Nat => left <= right)
       NaturalSubtractionForOrderCompatibilityExample := by
   sorry
-
 end LRA.Order
 
 namespace LRA.Order.OrderedSets.PartialOrder
@@ -231,7 +229,6 @@ Related proof moves: TODO
 theorem NaturalNumberLessEqualIsPartialOrder :
     LRA.Order.PartialOrder (fun left right : Nat => left <= right) := by
   sorry
-
 /--
 `NaturalNumberNonStrictPartialOrder` TODO
 
@@ -327,7 +324,6 @@ Related proof moves: TODO
 theorem BooleanEqualityIsPartialOrder :
     LRA.Order.PartialOrder (fun left right : Bool => left = right) := by
   sorry
-
 /--
 `BooleanEqualityNonStrictPartialOrder` TODO
 
@@ -425,7 +421,6 @@ theorem DivisibilityIsPartialOrder :
     LRA.Order.PartialOrder
       (fun left right : Nat => left ∣ right) := by
   sorry
-
 /--
 `PredicateSetInclusionIsPartialOrder` TODO
 
@@ -468,7 +463,6 @@ theorem PredicateSetInclusionIsPartialOrder (Alpha : Type u) :
     LRA.Order.PartialOrder
       (fun left right : Set Alpha => left ⊆ right) := by
   sorry
-
 end LRA.Order.OrderedSets.PartialOrder
 
 namespace LRA.Order.OrderedSets.Poset
@@ -513,7 +507,6 @@ Related proof moves: TODO
 theorem NaturalNumberOrderIsPartialOrder :
     LRA.Order.PartialOrder (fun left right : Nat => left <= right) := by
   sorry
-
 /--
 `NaturalNumberPoset` TODO
 
@@ -612,7 +605,6 @@ Related proof moves: TODO
 theorem BooleanUniversalRelationIsPreorder :
     LRA.Order.Preorder (fun _ _ : Bool => True) := by
   sorry
-
 /--
 `BooleanUniversalPreorder` TODO
 
@@ -706,7 +698,6 @@ Related proof moves: TODO
 theorem NaturalNumberLessThanIsStrictOrder :
     LRA.Order.StrictOrder (fun left right : Nat => left < right) := by
   sorry
-
 /--
 `NaturalNumberStrictOrder` TODO
 

@@ -54,5 +54,4 @@ theorem NilpotentElement.respects_element_equality {Carrier : Type u}
     (law : NilpotentElement operation zero first) :
     NilpotentElement operation zero second := by
   sorry
-
 end LRA.Operation.Laws.Nilpotent

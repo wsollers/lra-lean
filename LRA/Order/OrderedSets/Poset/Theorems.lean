@@ -46,7 +46,6 @@ theorem PosetElementRelatesToItself
     (element : poset.Carrier) :
     poset.NonStrictOrder element element := by
   sorry
-
 /--
 `PosetMutualOrderImpliesEqual` TODO
 
@@ -95,7 +94,6 @@ theorem PosetMutualOrderImpliesEqual
     (rightBelowLeft : poset.NonStrictOrder right left) :
     left = right := by
   sorry
-
 /--
 `PosetOrderTrans` TODO
 
@@ -144,5 +142,4 @@ theorem PosetOrderTrans
     (secondBelowThird : poset.NonStrictOrder second third) :
     poset.NonStrictOrder first third := by
   sorry
-
 end LRA.Order.OrderedSets.Poset

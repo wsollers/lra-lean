@@ -41,5 +41,4 @@ theorem RationalNumbersInitial :
       DenselyOrderedFieldArrow
       ⟨mathlibRationalModel.signature, satisfiesModelTheory mathlibRationalModel⟩ := by
   sorry
-
 end LRA.NumberSystems.RationalNumbers

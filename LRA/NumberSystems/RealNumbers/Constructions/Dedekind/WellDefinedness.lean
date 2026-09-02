@@ -48,7 +48,6 @@ Related proof moves: TODO
 theorem rational_lower_ray_is_cut (value : Rational rational_model) :
     IsCut rational_model (rational_lower_ray rational_model value) := by
   sorry
-
 /--
 `rational_embedding` TODO
 
@@ -149,7 +148,6 @@ theorem rational_embedding_is_order_embedding :
           (rational_embedding rational_model first)
           (rational_embedding rational_model second)) := by
   sorry
-
 /--
 `addition_lower_set_is_cut` TODO
 
@@ -190,7 +188,6 @@ Related proof moves: TODO
 theorem addition_lower_set_is_cut (first second : Cut rational_model) :
     IsCut rational_model (addition_lower_set rational_model first second) := by
   sorry
-
 /--
 `addition` TODO
 
@@ -319,7 +316,6 @@ Related proof moves: TODO
 theorem negation_lower_set_is_cut (cut : Cut rational_model) :
     IsCut rational_model (negation_lower_set rational_model cut) := by
   sorry
-
 /--
 `negation` TODO
 
@@ -494,7 +490,6 @@ theorem nonnegative_product_is_cut
     IsCut rational_model
       (nonnegative_product_lower_set rational_model first second) := by
   sorry
-
 /--
 `nonnegative_multiplication` TODO
 
@@ -703,7 +698,6 @@ theorem product_exists_uniquely (first second : Cut rational_model) :
       IsProduct rational_model first second product ∧
       ∀ other, IsProduct rational_model first second other → other = product := by
   sorry
-
 /--
 `multiplication` TODO
 
@@ -882,7 +876,6 @@ theorem reciprocal_exists_uniquely
       IsReciprocal rational_model cut reciprocal ∧
       ∀ other, IsReciprocal rational_model cut other → other = reciprocal := by
   sorry
-
 /--
 `inverse` TODO
 
@@ -983,7 +976,6 @@ theorem inverse_correct
     IsReciprocal rational_model cut
       (inverse rational_model cut cut_nonzero) := by
   sorry
-
 /--
 `family_union_is_cut` TODO
 
@@ -1036,7 +1028,6 @@ theorem family_union_is_cut
           family cut → nonstrict_order rational_model cut upper) :
     IsCut rational_model (family_union rational_model family) := by
   sorry
-
 /--
 `family_supremum` TODO
 
@@ -1189,5 +1180,4 @@ theorem family_union_is_supremum
           family_nonempty family_bounded)
         upper) := by
   sorry
-
 end LRA.NumberSystems.RealNumbers.Dedekind

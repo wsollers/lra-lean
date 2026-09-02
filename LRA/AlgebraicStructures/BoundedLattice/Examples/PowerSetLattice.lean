@@ -13,5 +13,4 @@ theorem powerSetIsBoundedLattice {α : Type u} :
       (Inter.inter : LRA.Set.LRA_Set α → LRA.Set.LRA_Set α → LRA.Set.LRA_Set α)
       (∅ : LRA.Set.LRA_Set α) (Set.univ : LRA.Set.LRA_Set α) := by
   sorry
-
 end LRA.AlgebraicStructures.BoundedLattice.Examples

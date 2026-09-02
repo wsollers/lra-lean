@@ -129,7 +129,6 @@ theorem quotient_addition_spec
           (Quotient.mk _ first) (Quotient.mk _ second) =
         Quotient.mk _ (addition rationalSystem absolute_value_data first second) := by
   sorry
-
 /--
 `quotient_multiplication` TODO
 
@@ -246,7 +245,6 @@ theorem quotient_multiplication_spec
           (Quotient.mk _ first) (Quotient.mk _ second) =
         Quotient.mk _ (multiplication rationalSystem absolute_value_data first second) := by
   sorry
-
 /--
 `quotient_negation` TODO
 
@@ -463,7 +461,6 @@ theorem quotient_strict_order_spec
           (Quotient.mk _ first) (Quotient.mk _ second) ↔
         representative_strict_order rationalSystem absolute_value_data first second := by
   sorry
-
 /--
 `quotient_nonstrict_order` TODO
 
@@ -602,7 +599,6 @@ theorem quotient_field_cert
     (absolute_value_data : RationalMetricData rationalSystem) :
     OrderedFieldLaws (Carrier rationalSystem absolute_value_data) := by
   sorry
-
 /--
 `quotient_strict_order_cert` TODO
 
@@ -647,7 +643,6 @@ theorem quotient_strict_order_cert
     (absolute_value_data : RationalMetricData rationalSystem) :
     StrictOrderCompatibilityLaw (Carrier rationalSystem absolute_value_data) := by
   sorry
-
 /--
 `quotient_dense_order_cert` TODO
 
@@ -692,7 +687,6 @@ theorem quotient_dense_order_cert
     (absolute_value_data : RationalMetricData rationalSystem) :
     DenseOrderLaw (Carrier rationalSystem absolute_value_data) := by
   sorry
-
 /--
 `quotient_completeness_cert` TODO
 
@@ -739,7 +733,6 @@ theorem quotient_completeness_cert
     OrderCompletenessLaws (Carrier rationalSystem absolute_value_data)
       (Set (Carrier rationalSystem absolute_value_data)) := by
   sorry
-
 /--
 `CauchyRealizesRationalModel` TODO
 
@@ -979,7 +972,6 @@ theorem cauchy_rational_embedding_preserves_and_reflects_order
           quotient_rational_embedding rationalSystem absolute_value_data second ↔
         rationalSystem.FieldModel.signature.le first second := by
   sorry
-
 /--
 `cauchy_rational_embedding_exists` TODO
 
@@ -1032,7 +1024,6 @@ theorem cauchy_rational_embedding_exists
           (CauchyRealizesRealModel rationalSystem absolute_value_data),
       True := by
   sorry
-
 /--
 `cauchy_rational_embedding_data` TODO
 
@@ -1213,7 +1204,6 @@ theorem cauchy_dense_ordered_field_embedding_is_cofinal
         realValue <
           (CauchyRationalEmbedding rationalSystem absolute_value_data).ToReal rationalValue := by
   sorry
-
 /--
 `CauchyRealizesCofinalRealExtension` TODO
 
@@ -1408,5 +1398,4 @@ theorem CauchyRealizesRationalRealExtension
       realExtension.RealModel.Carrier =
         Carrier rationalSystem absoluteValueData := by
   sorry
-
 end LRA.NumberSystems.RealNumbers.Cauchy

@@ -309,8 +309,8 @@ Related proof moves: TODO
 
 -/
 theorem monoidSignature.mulIsBinary :
-    monoidSignature.IsBinaryFunctionSymbol .mul := rfl
-
+    monoidSignature.IsBinaryFunctionSymbol .mul := by
+  sorry
 /--
 `AdditiveMonoidFunctionSymbol` TODO
 
@@ -617,8 +617,8 @@ Related proof moves: TODO
 
 -/
 theorem additiveMonoidSignature.addIsBinary :
-    additiveMonoidSignature.IsBinaryFunctionSymbol .add := rfl
-
+    additiveMonoidSignature.IsBinaryFunctionSymbol .add := by
+  sorry
 /--
 `OrderedRingFunctionSymbol` TODO
 
@@ -953,8 +953,8 @@ Related proof moves: TODO
 
 -/
 theorem orderedRingSignature.addIsBinary :
-    orderedRingSignature.IsBinaryFunctionSymbol .add := rfl
-
+    orderedRingSignature.IsBinaryFunctionSymbol .add := by
+  sorry
 /--
 `orderedRingSignature.mulIsBinary` TODO
 
@@ -993,8 +993,8 @@ Related proof moves: TODO
 
 -/
 theorem orderedRingSignature.mulIsBinary :
-    orderedRingSignature.IsBinaryFunctionSymbol .mul := rfl
-
+    orderedRingSignature.IsBinaryFunctionSymbol .mul := by
+  sorry
 /--
 `orderedRingSignature.negIsUnary` TODO
 
@@ -1033,8 +1033,8 @@ Related proof moves: TODO
 
 -/
 theorem orderedRingSignature.negIsUnary :
-    orderedRingSignature.IsUnaryFunctionSymbol .neg := rfl
-
+    orderedRingSignature.IsUnaryFunctionSymbol .neg := by
+  sorry
 /--
 `orderedRingSignature.ltIsBinary` TODO
 
@@ -1073,6 +1073,6 @@ Related proof moves: TODO
 
 -/
 theorem orderedRingSignature.ltIsBinary :
-    orderedRingSignature.IsBinaryRelationSymbol .lt := rfl
-
+    orderedRingSignature.IsBinaryRelationSymbol .lt := by
+  sorry
 end LRA.Logic

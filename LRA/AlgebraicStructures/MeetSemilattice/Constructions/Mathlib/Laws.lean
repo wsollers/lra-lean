@@ -13,5 +13,4 @@ being registered as anyone's `Mul`/`Add`. -/
 theorem ofSemilatticeInf {R : Type u} [SemilatticeInf R] :
     MeetSemilatticeLaws (Carrier := R) (· ⊓ ·) := by
   sorry
-
 end LRA.AlgebraicStructures

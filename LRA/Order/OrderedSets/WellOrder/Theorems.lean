@@ -58,7 +58,6 @@ theorem WellOrderingPrinciple
     (subsetIsNonempty : exists element : Element, element ∈ subset) :
     exists leastElement, LeastElement nonStrictRelation subset leastElement := by
   sorry
-
 /--
 `WellOrderHasImmediateSuccessor` TODO
 
@@ -129,5 +128,4 @@ theorem WellOrderHasImmediateSuccessor
           StrictPart relation element candidate ->
             relation successor candidate := by
   sorry
-
 end LRA.Order

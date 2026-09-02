@@ -5,10 +5,10 @@ import LRA.Set.Constructions.ZFCSet.Axioms.Union.Theorems
 import LRA.Set.Constructions.ZFCSet.Axioms.PowerSet.Theorems
 import LRA.Set.Constructions.ZFCSet.Axioms.Infinity.Theorems
 import LRA.Set.Constructions.ZFCSet.Axioms.Separation.Theorems
-import LRA.Set.Constructions.ZFCSet.Axioms.OrderedPair.Theorems
 import LRA.Set.Constructions.ZFCSet.Axioms.Replacement.Theorems
 import LRA.Set.Constructions.ZFCSet.Axioms.Foundation.Theorems
 import LRA.Set.Constructions.ZFCSet.Axioms.Choice.Theorems
+import LRA.Set.Constructions.ZFCSet.Axioms.OrderedPair.Theorems
 import LRA.Set.Constructions.ZFCSet.Axioms.RelativeComplement.Theorems
 import LRA.Set.Constructions.ZFCSet.Axioms.Intersection.Theorems
 import LRA.Set.Constructions.ZFCSet.Axioms.SymmetricDifference.Theorems

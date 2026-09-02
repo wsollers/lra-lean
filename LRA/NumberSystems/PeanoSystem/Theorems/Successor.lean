@@ -51,7 +51,6 @@ theorem SuccessorInjective
     forall first second : Element,
       ps.successor first = ps.successor second -> first = second := by
   sorry
-
 /--
 `OneIsNotSuccessor` TODO
 
@@ -96,7 +95,6 @@ theorem OneIsNotSuccessor
     forall element : Element,
       ps.successor element ≠ ps.base := by
   sorry
-
 /--
 `SuccessorPreservesInequality` TODO
 
@@ -143,7 +141,6 @@ theorem SuccessorPreservesInequality
     (elements_not_equal : first_element ≠ second_element) :
     ps.successor first_element ≠ ps.successor second_element := by
   sorry
-
 /--
 `SuccessorInequalityReflection` TODO
 
@@ -188,7 +185,6 @@ theorem SuccessorInequalityReflection
     (first second : Element) :
     ps.successor first ≠ ps.successor second -> first ≠ second := by
   sorry
-
 /--
 `EveryElementIsOneOrASuccessor` TODO
 
@@ -237,7 +233,6 @@ theorem EveryElementIsOneOrASuccessor
         exists predecessor : Element,
           ps.successor predecessor = element := by
   sorry
-
 /--
 `NoObjectIsItsOwnSuccessor` TODO
 
@@ -282,7 +277,6 @@ theorem NoObjectIsItsOwnSuccessor
     forall element : Element,
       ps.successor element ≠ element := by
   sorry
-
 /--
 `OneIsUniqueNonSuccessor` TODO
 
@@ -331,7 +325,6 @@ theorem OneIsUniqueNonSuccessor
       ps.successor predecessor ≠ element) <->
     element = ps.base := by
   sorry
-
 /--
 `OneIsTheUniqueNonSuccessor` TODO
 

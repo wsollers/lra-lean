@@ -58,7 +58,6 @@ theorem InjectiveIffFibersSubsingleton
         FiberClass function output right →
         left = right := by
   sorry
-
 /--
 `SurjectiveIffFibersNonempty` TODO
 
@@ -105,7 +104,6 @@ theorem SurjectiveIffFibersNonempty
     Surjective function ↔
       ∀ output, ∃ input, FiberClass function output input := by
   sorry
-
 /--
 `InjectiveIffConverseSingleValued` TODO
 
@@ -152,7 +150,6 @@ theorem InjectiveIffConverseSingleValued
     Injective function ↔
       SingleValued (LRA.Relation.Converse (Graph function)) := by
   sorry
-
 /--
 `SurjectiveIffConverseTotal` TODO
 
@@ -199,7 +196,6 @@ theorem SurjectiveIffConverseTotal
     Surjective function ↔
       Total (LRA.Relation.Converse (Graph function)) := by
   sorry
-
 /--
 `BijectiveIffConverseIsFunctionRelation` TODO
 
@@ -246,7 +242,6 @@ theorem BijectiveIffConverseIsFunctionRelation
     Bijective function ↔
       IsFunctionRelation (LRA.Relation.Converse (Graph function)) := by
   sorry
-
 /--
 `GraphIsFunctionRelation` TODO
 
@@ -291,7 +286,6 @@ theorem GraphIsFunctionRelation
     (function : LRA.Function Domain Codomain) :
     IsFunctionRelation (Graph function) := by
   sorry
-
 /--
 `InjectiveIffStandard` TODO
 
@@ -334,7 +328,6 @@ theorem InjectiveIffStandard {Domain : Type u} {Codomain : Type v}
     (function : LRA.Function Domain Codomain) :
     Injective function ↔ ∀ left right, function left = function right → left = right := by
   sorry
-
 /--
 `SurjectiveIffStandard` TODO
 
@@ -377,7 +370,6 @@ theorem SurjectiveIffStandard {Domain : Type u} {Codomain : Type v}
     (function : LRA.Function Domain Codomain) :
     Surjective function ↔ ∀ output, ∃ input, function input = output := by
   sorry
-
 /--
 `SurjectiveIffRangeCoversCodomain` TODO
 
@@ -420,5 +412,4 @@ theorem SurjectiveIffRangeCoversCodomain {Domain : Type u} {Codomain : Type v}
     (function : LRA.Function Domain Codomain) :
     Surjective function ↔ ∀ output : Codomain, RangeClass function output := by
   sorry
-
 end LRA.Function

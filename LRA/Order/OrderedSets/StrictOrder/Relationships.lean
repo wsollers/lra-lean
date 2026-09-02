@@ -100,7 +100,6 @@ theorem ReflexiveClosureIff
     ReflexiveClosure order left right <->
       order.relation left right \/ left = right := by
   sorry
-
 /--
 `ReflexiveClosureRelationIsPartialOrder` TODO
 
@@ -145,7 +144,6 @@ theorem ReflexiveClosureRelationIsPartialOrder
     (order : StrictOrderRelation Carrier) :
     LRA.Order.PartialOrder (ReflexiveClosure order) := by
   sorry
-
 /--
 `ReflexiveClosureAsPartialOrder` TODO
 
@@ -248,7 +246,6 @@ theorem ReflexiveClosureIsPartialOrder
     (order : StrictOrderRelation Carrier) :
     LRA.Order.PartialOrder (ReflexiveClosure order) := by
   sorry
-
 /--
 `StrictPartOfReflexiveClosureIff` TODO
 
@@ -299,7 +296,6 @@ theorem StrictPartOfReflexiveClosureIff
       (ReflexiveClosureAsPartialOrder order) left right <->
       order.relation left right := by
   sorry
-
 /--
 `ReflexiveClosureOfStrictPartIff` TODO
 
@@ -354,5 +350,4 @@ theorem ReflexiveClosureOfStrictPartIff
           order) left right <->
       order.relation left right := by
   sorry
-
 end LRA.Order.OrderedSets.StrictOrder

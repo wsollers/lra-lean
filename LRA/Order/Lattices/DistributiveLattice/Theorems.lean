@@ -50,7 +50,6 @@ theorem DistributiveLatticeIsLattice
     (relationIsDistributiveLattice : DistributiveLattice relation) :
     Lattice relation := by
   sorry
-
 /--
 `JoinDistributesOverMeet` TODO
 
@@ -109,7 +108,6 @@ theorem JoinDistributesOverMeet
     (rightSideIsMeet : Meet relation aJoinB aJoinC rightSide) :
     leftSide = rightSide := by
   sorry
-
 /--
 `MeetDistributesOverJoin` TODO
 
@@ -168,5 +166,4 @@ theorem MeetDistributesOverJoin
     (rightSideIsJoin : Join relation aMeetB aMeetC rightSide) :
     leftSide = rightSide := by
   sorry
-
 end LRA.Order

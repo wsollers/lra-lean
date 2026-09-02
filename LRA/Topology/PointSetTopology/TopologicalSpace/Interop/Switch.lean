@@ -322,5 +322,4 @@ theorem SelectMathlibTopologicalSpaceIsOpenInduced {X : Type u}
       SelectMathlibTopologicalSpace .inducedFromTopologyDefinition topology
     _root_.IsOpen U ↔ topology.IsOpen U := by
   sorry
-
 end LRA.Topology

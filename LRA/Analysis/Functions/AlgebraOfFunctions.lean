@@ -200,7 +200,6 @@ Related proof moves: intro
 theorem CompositionInjective {f : A → B} {g : B → C}
     (hf : IsInjectiveOn f) (hg : IsInjectiveOn g) : IsInjectiveOn (g ∘ f) := by
   sorry
-
 /--
 `CompositionSurjective` TODO
 
@@ -243,7 +242,6 @@ theorem CompositionSurjective {f : A → B} {g : B → C}
     (hf : IsSurjectiveOn f) (hg : IsSurjectiveOn g) :
     IsSurjectiveOn (g ∘ f) := by
   sorry
-
 /--
 `CompositionBijective` TODO
 
@@ -284,7 +282,6 @@ Related proof moves: intro
 theorem CompositionBijective {f : A → B} {g : B → C}
     (hf : IsBijectiveOn f) (hg : IsBijectiveOn g) : IsBijectiveOn (g ∘ f) := by
   sorry
-
 /--
 `InverseBijection` TODO
 
@@ -325,7 +322,6 @@ Related proof moves: intro, constructor, cases, rcases, use
 theorem InverseBijection {f : A → B} (hf : IsBijectiveOn f) :
     ∃ g : B → A, IsInverseFunctionOf g f ∧ IsBijectiveOn g := by
   sorry
-
 /--
 `PreimageUnionIntersection` TODO
 
@@ -370,5 +366,4 @@ theorem PreimageUnionIntersection {f : A → B} (S T : Set B) :
       f ⁻¹' (S ∩ T) = f ⁻¹' S ∩ f ⁻¹' T ∧
       f ⁻¹' Sᶜ = (f ⁻¹' S)ᶜ := by
   sorry
-
 end LRA.Analysis.Functions

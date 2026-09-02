@@ -47,5 +47,4 @@ theorem one_one_not_positive_class
     ¬ positive_class positive_data
       { left := positive_data.one, right := positive_data.one } := by
   sorry
-
 end LRA.NumberSystems.Integers.Mendelson

@@ -71,7 +71,6 @@ theorem AntitoneCompAntitoneIsMonotone
     Monotone sourceRelation targetRelation
       (fun element => secondMap (firstMap element)) := by
   sorry
-
 /--
 `AntitoneThenMonotoneIsAntitone` TODO
 
@@ -128,7 +127,6 @@ theorem AntitoneThenMonotoneIsAntitone
     Antitone sourceRelation targetRelation
       (fun element => secondMap (firstMap element)) := by
   sorry
-
 /--
 `MonotoneThenAntitoneIsAntitone` TODO
 
@@ -185,7 +183,6 @@ theorem MonotoneThenAntitoneIsAntitone
     Antitone sourceRelation targetRelation
       (fun element => secondMap (firstMap element)) := by
   sorry
-
 open LRA.Set
 
 variable {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x}
@@ -246,7 +243,6 @@ theorem AntitoneSendsUpperBoundToImageLowerBound
     (boundIsUpper : UpperBound sourceRelation subset bound)
     : LowerBound targetRelation imageSet (map bound) := by
   sorry
-
 /--
 `AntitoneSendsLowerBoundToImageUpperBound` TODO
 
@@ -299,7 +295,6 @@ theorem AntitoneSendsLowerBoundToImageUpperBound
     (boundIsLower : LowerBound sourceRelation subset bound)
     : UpperBound targetRelation imageSet (map bound) := by
   sorry
-
 /--
 `AntitoneImageUpperBoundsIntoLowerBounds` TODO
 
@@ -356,7 +351,6 @@ theorem AntitoneImageUpperBoundsIntoLowerBounds
         (fun input => UpperBound sourceRelation subset input) output)
     : LowerBound targetRelation imageSet output := by
   sorry
-
 /--
 `AntitoneUpperBoundsPreimageLowerBoundsContainment` TODO
 
@@ -411,7 +405,6 @@ theorem AntitoneUpperBoundsPreimageLowerBoundsContainment
     : LRA.Function.PreimageClass map
       (fun output => LowerBound targetRelation imageSet output) bound := by
   sorry
-
 /--
 `AntitoneImageLowerBoundsIntoUpperBounds` TODO
 
@@ -468,7 +461,6 @@ theorem AntitoneImageLowerBoundsIntoUpperBounds
         (fun input => LowerBound sourceRelation subset input) output)
     : UpperBound targetRelation imageSet output := by
   sorry
-
 /--
 `AntitoneLowerBoundsPreimageUpperBoundsContainment` TODO
 
@@ -523,5 +515,4 @@ theorem AntitoneLowerBoundsPreimageUpperBoundsContainment
     : LRA.Function.PreimageClass map
       (fun output => UpperBound targetRelation imageSet output) bound := by
   sorry
-
 end LRA.Order

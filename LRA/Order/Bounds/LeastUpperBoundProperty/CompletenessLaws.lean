@@ -106,7 +106,6 @@ theorem Completeness [LE R] [Membership R SetObject]
     LRA.Order.LeastUpperBoundProperty
       SetObject (fun a b : R => a <= b) := by
   sorry
-
 end Wrappers
 
 end LRA.Order

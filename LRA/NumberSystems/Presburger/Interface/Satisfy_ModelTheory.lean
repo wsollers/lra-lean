@@ -8,5 +8,4 @@ def genericTheory (M : PresburgerModel) : Prop :=
 
 theorem satisfiesModelTheory (M : PresburgerModel) : genericTheory M := by
   sorry
-
 end LRA.NumberSystems.Presburger.Interface.ModelTheory

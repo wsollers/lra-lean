@@ -10,5 +10,4 @@ universe u
 instance {R : Type u} [_root_.Field R] [Nonempty R] :
     FieldLaws R := by
   sorry
-
 end LRA.AlgebraicStructures

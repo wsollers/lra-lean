@@ -52,5 +52,4 @@ theorem MutualAbsorptionLaw.idempotent_pair {Carrier : Type u}
     LRA.Operation.Laws.Idempotent.Idempotent first ∧
       LRA.Operation.Laws.Idempotent.Idempotent second := by
   sorry
-
 end LRA.Operation.Laws.Absorption

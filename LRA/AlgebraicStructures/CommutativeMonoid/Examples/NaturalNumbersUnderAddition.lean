@@ -13,9 +13,7 @@ associative, so this is the same example promoted from "monoid" to
 instance :
     LRA.AlgebraicStructures.MultiplicativeCommutativeLaws NaturalNumbersUnderAddition := by
   sorry
-
 instance :
     LRA.AlgebraicStructures.CommutativeMonoidLaws NaturalNumbersUnderAddition := by
   sorry
-
 end LRA.AlgebraicStructures.CommutativeMonoid.Examples

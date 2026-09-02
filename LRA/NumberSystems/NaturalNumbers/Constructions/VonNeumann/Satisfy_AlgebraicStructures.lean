@@ -13,7 +13,6 @@ theorem satisfiesAdditiveMonoid :
     let _ : Nonempty NaturalElement := VonNeumannNonemptyOn
     AdditiveMonoidLaws NaturalElement := by
   sorry
-
 /-- The concrete von Neumann construction canonically realizes multiplicative
 commutative monoid structure. -/
 theorem satisfiesCommutativeMonoid :
@@ -22,7 +21,6 @@ theorem satisfiesCommutativeMonoid :
     let _ : Nonempty NaturalElement := VonNeumannNonemptyOn
     CommutativeMonoidLaws NaturalElement := by
   sorry
-
 /-- The concrete von Neumann construction canonically realizes semiring
 structure. -/
 theorem satisfiesSemiring :
@@ -33,7 +31,6 @@ theorem satisfiesSemiring :
     let _ : Nonempty NaturalElement := VonNeumannNonemptyOn
     SemiringLaws NaturalElement := by
   sorry
-
 /-- The concrete von Neumann construction canonically realizes commutative
 semiring structure. -/
 theorem satisfiesCommutativeSemiring :
@@ -44,5 +41,4 @@ theorem satisfiesCommutativeSemiring :
     let _ : Nonempty NaturalElement := VonNeumannNonemptyOn
     CommutativeSemiringLaws NaturalElement := by
   sorry
-
 end LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann

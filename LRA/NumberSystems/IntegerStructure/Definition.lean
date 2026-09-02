@@ -438,9 +438,7 @@ theorem FullTwoSidedPredicateInductionOfComprehensionAdequacy
     (is : IntegerStructure Element SetObject)
     (adequacy : PredicateSetComprehensionAdequacy Element SetObject) :
     FullTwoSidedPredicateInduction is := by
-
   sorry
-
 end
 
 end LRA.NumberSystems.IntegerStructure

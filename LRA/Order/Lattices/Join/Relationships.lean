@@ -54,5 +54,4 @@ theorem JoinOfConverseIffMeet
     Join (LRA.Relation.Converse relation) left right candidate ↔
       Meet relation left right candidate := by
   sorry
-
 end LRA.Order

@@ -12,5 +12,4 @@ theorem intersectionIsMeetSemilattice {α : Type u} :
     LRA.AlgebraicStructures.MeetSemilatticeLaws
       (Inter.inter : LRA.Set.LRA_Set α → LRA.Set.LRA_Set α → LRA.Set.LRA_Set α) := by
   sorry
-
 end LRA.AlgebraicStructures.MeetSemilattice.Examples

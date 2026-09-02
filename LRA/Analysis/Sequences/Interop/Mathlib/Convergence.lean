@@ -45,7 +45,6 @@ Related proof moves: constructor, .mp, .mpr
 theorem ConvergesToIffTendsto (x : LRA.Analysis.Sequences.RealSequence) (L : ℝ) :
     LRA.Analysis.Sequences.ConvergesTo x L ↔ Filter.Tendsto x Filter.atTop (nhds L) := by
   sorry
-
 /--
 `IsNullIffTendstoZero` TODO
 
@@ -86,5 +85,4 @@ Related proof moves: constructor, .mp, .mpr
 theorem IsNullIffTendstoZero (x : LRA.Analysis.Sequences.RealSequence) :
     LRA.Analysis.Sequences.IsNull x ↔ Filter.Tendsto x Filter.atTop (nhds 0) := by
   sorry
-
 end LRA.Analysis.Sequences.Interop.Mathlib

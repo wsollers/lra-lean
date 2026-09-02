@@ -23,9 +23,8 @@ section Wrappers
 variable {R : Type u}
 
 theorem MulCommutative [Mul R] [MultiplicativeCommutativeLaws R] :
-    ∀ a b : R, a * b = b * a :=
+    ∀ a b : R, a * b = b * a := by
   sorry
-
 end Wrappers
 
 /-- A commutative semigroup: `(R, *)` where `*` is both associative and

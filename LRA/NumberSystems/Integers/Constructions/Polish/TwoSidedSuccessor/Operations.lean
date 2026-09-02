@@ -128,7 +128,6 @@ Related proof moves: TODO
 -/
 theorem add_succ (x y : Z) : x + succ y = succ (x + y) := by
   sorry
-
 /--
 `add_pred` TODO
 
@@ -167,7 +166,6 @@ Related proof moves: TODO
 -/
 theorem add_pred (x y : Z) : x + pred y = pred (x + y) := by
   sorry
-
 /--
 `negZ` TODO
 
@@ -376,7 +374,6 @@ Related proof moves: TODO
 -/
 theorem mul_zero (x : Z) : x * zero = zero := by
   sorry
-
 /--
 `mul_pos_succZero` TODO
 
@@ -415,7 +412,6 @@ Related proof moves: TODO
 -/
 theorem mul_pos_succZero (x : Z) : x * pos P.succZero = x := by
   sorry
-
 /--
 `mul_pos_succ` TODO
 
@@ -454,7 +450,6 @@ Related proof moves: TODO
 -/
 theorem mul_pos_succ (x : Z) (p : P) : x * pos (P.succ p) = x * pos p + x := by
   sorry
-
 /--
 `mul_neg_predZero` TODO
 
@@ -493,7 +488,6 @@ Related proof moves: TODO
 -/
 theorem mul_neg_predZero (x : Z) : x * neg N.predZero = -x := by
   sorry
-
 /--
 `mul_neg_pred` TODO
 
@@ -532,5 +526,4 @@ Related proof moves: TODO
 -/
 theorem mul_neg_pred (x : Z) (n : N) : x * neg (N.pred n) = x * neg n + -x := by
   sorry
-
 end LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor

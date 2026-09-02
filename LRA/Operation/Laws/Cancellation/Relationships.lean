@@ -56,7 +56,6 @@ theorem Commutative.left_cancellative_to_right_cancellative {Carrier : Type u}
     (leftLaw : LeftCancellative operation) :
     RightCancellative operation := by
   sorry
-
 /--
 `Commutative.right_cancellative_to_left_cancellative` TODO
 
@@ -105,7 +104,6 @@ theorem Commutative.right_cancellative_to_left_cancellative {Carrier : Type u}
     (rightLaw : RightCancellative operation) :
     LeftCancellative operation := by
   sorry
-
 /--
 `LeftCancellative.left_regular` TODO
 
@@ -152,7 +150,6 @@ theorem LeftCancellative.left_regular {Carrier : Type u}
     (fixed : Carrier) :
     LeftRegular operation fixed := by
   sorry
-
 /--
 `RightCancellative.right_regular` TODO
 
@@ -199,7 +196,6 @@ theorem RightCancellative.right_regular {Carrier : Type u}
     (fixed : Carrier) :
     RightRegular operation fixed := by
   sorry
-
 /--
 `LeftCancellative.to_left_cancellative_on` TODO
 
@@ -246,7 +242,6 @@ theorem LeftCancellative.to_left_cancellative_on {Carrier : Type u}
     (law : LeftCancellative operation) :
     LeftCancellativeOn eligible operation := by
   sorry
-
 /--
 `RightCancellative.to_right_cancellative_on` TODO
 
@@ -293,7 +288,6 @@ theorem RightCancellative.to_right_cancellative_on {Carrier : Type u}
     (law : RightCancellative operation) :
     RightCancellativeOn eligible operation := by
   sorry
-
 /--
 `LeftAbsorbing.not_left_regular_of_distinct` TODO
 
@@ -344,5 +338,4 @@ theorem LeftAbsorbing.not_left_regular_of_distinct {Carrier : Type u}
     (distinct : first ≠ second) :
     Not (LeftRegular operation absorber) := by
   sorry
-
 end LRA.Operation.Laws.Cancellation

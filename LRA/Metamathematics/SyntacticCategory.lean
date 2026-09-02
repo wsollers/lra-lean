@@ -61,5 +61,4 @@ theorem SyntacticCategory.decidableEquality_unique
       @Decidable.decide (x = y) (inst1.decidableEquality x y) =
       @Decidable.decide (x = y) (inst2.decidableEquality x y) := by
   sorry
-
 end LRA.Metamathematics

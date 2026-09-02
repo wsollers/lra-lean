@@ -406,7 +406,6 @@ theorem reciprocal_exists_uniquely
       value * reciprocal = (1 : Carrier fieldModel) ∧
       ∀ other, value * other = (1 : Carrier fieldModel) → other = reciprocal := by
   sorry
-
 /--
 `inverse` TODO
 
@@ -566,7 +565,6 @@ theorem carrier_field_cert
     (fieldModel : RationalModel) :
     OrderedFieldLaws (Carrier fieldModel) := by
   sorry
-
 /--
 `carrier_strict_order_cert` TODO
 
@@ -609,7 +607,6 @@ theorem carrier_strict_order_cert
     (fieldModel : RationalModel) :
     StrictOrderCompatibilityLaw (Carrier fieldModel) := by
   sorry
-
 /--
 `carrier_dense_order_cert` TODO
 
@@ -652,7 +649,6 @@ theorem carrier_dense_order_cert
     (fieldModel : RationalModel) :
     DenseOrderLaw (Carrier fieldModel) := by
   sorry
-
 /--
 `carrier_completeness_cert` TODO
 
@@ -695,7 +691,6 @@ theorem carrier_completeness_cert
     (fieldModel : RationalModel) :
     OrderCompletenessLaws (Carrier fieldModel) (Set (Carrier fieldModel)) := by
   sorry
-
 /--
 `CantorRealizesRationalModel` TODO
 
@@ -865,5 +860,4 @@ theorem CantorRealizesRationalRealExtension
         LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem,
       realExtension.RealModel.Carrier = Carrier rationalSystem.FieldModel := by
   sorry
-
 end LRA.NumberSystems.RealNumbers.Cantor

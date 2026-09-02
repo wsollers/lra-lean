@@ -50,7 +50,6 @@ theorem LeftTotalIffConverseRightTotal
     (relation : HeterogeneousBinaryRelation Alpha Beta) :
     LeftTotal relation ↔ RightTotal (Converse relation) := by
   sorry
-
 /--
 `RightTotalIffConverseLeftTotal` TODO
 
@@ -95,7 +94,6 @@ theorem RightTotalIffConverseLeftTotal
     (relation : HeterogeneousBinaryRelation Alpha Beta) :
     RightTotal relation ↔ LeftTotal (Converse relation) := by
   sorry
-
 /--
 `RightUniqueIffConverseLeftUnique` TODO
 
@@ -140,7 +138,6 @@ theorem RightUniqueIffConverseLeftUnique
     (relation : HeterogeneousBinaryRelation Alpha Beta) :
     RightUnique relation ↔ LeftUnique (Converse relation) := by
   sorry
-
 /--
 `LeftUniqueIffConverseRightUnique` TODO
 
@@ -185,7 +182,6 @@ theorem LeftUniqueIffConverseRightUnique
     (relation : HeterogeneousBinaryRelation Alpha Beta) :
     LeftUnique relation ↔ RightUnique (Converse relation) := by
   sorry
-
 /--
 `ConverseInvolutive` TODO
 
@@ -230,7 +226,6 @@ theorem ConverseInvolutive
     (relation : Endorelation Alpha) :
     Converse (Converse relation) = relation := by
   sorry
-
 /--
 `ReflexiveConverseIff` TODO
 
@@ -275,7 +270,6 @@ theorem ReflexiveConverseIff
     (relation : Endorelation Alpha) :
     Reflexive (Converse relation) ↔ Reflexive relation := by
   sorry
-
 /--
 `IrreflexiveConverseIff` TODO
 
@@ -320,7 +314,6 @@ theorem IrreflexiveConverseIff
     (relation : Endorelation Alpha) :
     Irreflexive (Converse relation) ↔ Irreflexive relation := by
   sorry
-
 /--
 `TransitiveConverseIff` TODO
 
@@ -365,7 +358,6 @@ theorem TransitiveConverseIff
     (relation : Endorelation Alpha) :
     Transitive (Converse relation) ↔ Transitive relation := by
   sorry
-
 /--
 `AntisymmetricConverseIff` TODO
 
@@ -410,7 +402,6 @@ theorem AntisymmetricConverseIff
     (relation : Endorelation Alpha) :
     Antisymmetric (Converse relation) ↔ Antisymmetric relation := by
   sorry
-
 /--
 `TotalConverseIff` TODO
 
@@ -455,7 +446,6 @@ theorem TotalConverseIff
     (relation : Endorelation Alpha) :
     Total (Converse relation) ↔ Total relation := by
   sorry
-
 /--
 `DenseConverseIff` TODO
 
@@ -500,5 +490,4 @@ theorem DenseConverseIff
     (relation : Endorelation Alpha) :
     Dense (Converse relation) ↔ Dense relation := by
   sorry
-
 end LRA.Relation

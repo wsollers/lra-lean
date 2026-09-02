@@ -11,14 +11,12 @@ theorem satisfiesField
     (absoluteValueData : RationalMetricData rationalSystem) :
     FieldLaws (Carrier rationalSystem absoluteValueData) := by
   sorry
-
 /-- The Cauchy-sequence construction canonically realizes ordered field structure. -/
 theorem satisfiesOrderedField
     (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem)
     (absoluteValueData : RationalMetricData rationalSystem) :
     OrderedFieldLaws (Carrier rationalSystem absoluteValueData) := by
   sorry
-
 /-- The Cauchy-sequence construction canonically realizes complete ordered field structure. -/
 theorem satisfiesCompleteOrderedField
     (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem)
@@ -27,5 +25,4 @@ theorem satisfiesCompleteOrderedField
       (Carrier rationalSystem absoluteValueData)
       (Set (Carrier rationalSystem absoluteValueData)) := by
   sorry
-
 end LRA.NumberSystems.RealNumbers.Cauchy

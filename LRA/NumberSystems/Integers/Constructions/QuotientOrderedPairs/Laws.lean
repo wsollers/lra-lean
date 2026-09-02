@@ -59,7 +59,6 @@ theorem quotient_addition_is_associative
       addition (addition first second) third =
         addition first (addition second third) := by
   sorry
-
 /--
 `quotient_addition_is_commutative` TODO
 
@@ -114,7 +113,6 @@ theorem quotient_addition_is_commutative
     ∀ first second,
       addition first second = addition second first := by
   sorry
-
 /--
 `quotient_negation_is_additive_inverse` TODO
 
@@ -181,7 +179,6 @@ theorem quotient_negation_is_additive_inverse
       addition value (negation value) =
         Quotient.mk _ (zero_representative whole_data) := by
   sorry
-
 /--
 `quotient_multiplication_distributes_over_addition` TODO
 
@@ -246,5 +243,4 @@ theorem quotient_multiplication_distributes_over_addition
       multiplication first (addition second third) =
         addition (multiplication first second) (multiplication first third) := by
   sorry
-
 end LRA.NumberSystems.Integers.QuotientOrderedPairs

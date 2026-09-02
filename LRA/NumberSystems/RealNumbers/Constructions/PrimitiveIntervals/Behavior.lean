@@ -66,5 +66,4 @@ theorem PersistentOverlapIffEndpointDifferenceIsNull
             (first.interval index).left_endpoint
             (second.interval index).left_endpoint) := by
   sorry
-
 end LRA.NumberSystems.RealNumbers.PrimitiveIntervals

@@ -87,7 +87,6 @@ Related proof moves: intro
 theorem iterate_succ' {α : Type u} (f : α → α) (n : Nat) (x : α) :
     iterate f (n + 1) x = f (iterate f n x) := by
   sorry
-
 /--
 `iterate_comm` TODO
 
@@ -128,7 +127,6 @@ Related proof moves: intro
 theorem iterate_comm {α : Type u} (f : α → α) (n : Nat) (x : α) :
     f (iterate f n x) = iterate f n (f x) := by
   sorry
-
 /--
 `iterate_succ_apply` TODO
 
@@ -169,7 +167,6 @@ Related proof moves: intro
 theorem iterate_succ_apply {α : Type u} (f : α → α) (n : Nat) (x : α) :
     iterate f (n + 1) x = iterate f n (f x) := by
   sorry
-
 /--
 `iterate_add` TODO
 
@@ -210,7 +207,6 @@ Related proof moves: intro
 theorem iterate_add {α : Type u} (f : α → α) (m n : Nat) (x : α) :
     iterate f (m + n) x = iterate f m (iterate f n x) := by
   sorry
-
 /--
 `Injective` TODO
 
@@ -510,7 +506,6 @@ Related proof moves: TODO
 -/
 theorem rep_zero : S.rep 0 = S.zero := by
   sorry
-
 attribute [simp] rep_zero
 
 /--
@@ -552,9 +547,7 @@ Related proof moves: TODO
 -/
 theorem pred_iterate_succ_iterate (n : Nat) (x : S.carrier) :
     iterate S.pred n (iterate S.succ n x) = x := by
-
   sorry
-
 /--
 `succ_iterate_pred_iterate` TODO
 
@@ -595,7 +588,6 @@ Related proof moves: TODO
 theorem succ_iterate_pred_iterate (n : Nat) (x : S.carrier) :
     iterate S.succ n (iterate S.pred n x) = x := by
   sorry
-
 /--
 `aperiodic_pred` TODO
 
@@ -636,7 +628,6 @@ Related proof moves: TODO
 theorem aperiodic_pred (n : Nat) (h : 0 < n) :
     iterate S.pred n S.zero ≠ S.zero := by
   sorry
-
 /--
 `iterate_succ_injective` TODO
 
@@ -677,7 +668,6 @@ Related proof moves: TODO
 theorem iterate_succ_injective (n : Nat) :
     _root_.Function.Injective (iterate S.succ n) := by
   sorry
-
 /--
 `iterate_pred_injective` TODO
 
@@ -718,7 +708,6 @@ Related proof moves: TODO
 theorem iterate_pred_injective (n : Nat) :
     _root_.Function.Injective (iterate S.pred n) := by
   sorry
-
 /--
 `no_forward_collision` TODO
 
@@ -763,7 +752,6 @@ theorem no_forward_collision
     (h : iterate S.succ m S.zero = iterate S.succ n S.zero) :
     m = n := by
   sorry
-
 /--
 `no_backward_collision` TODO
 
@@ -808,7 +796,6 @@ theorem no_backward_collision
     (h : iterate S.pred m S.zero = iterate S.pred n S.zero) :
     m = n := by
   sorry
-
 /--
 `no_mixed_collision` TODO
 
@@ -853,7 +840,6 @@ theorem no_mixed_collision
     (h : iterate S.succ m S.zero = iterate S.pred (n + 1) S.zero) :
     False := by
   sorry
-
 /--
 `rep_injective` TODO
 
@@ -892,7 +878,6 @@ Related proof moves: TODO
 -/
 theorem rep_injective : _root_.Function.Injective S.rep := by
   sorry
-
 /--
 `rep_succ` TODO
 
@@ -931,7 +916,6 @@ Related proof moves: TODO
 -/
 theorem rep_succ (n : Int) : S.rep (n + 1) = S.succ (S.rep n) := by
   sorry
-
 /--
 `rep_pred` TODO
 
@@ -970,7 +954,6 @@ Related proof moves: TODO
 -/
 theorem rep_pred (n : Int) : S.rep (n - 1) = S.pred (S.rep n) := by
   sorry
-
 /--
 `rep_surjective` TODO
 
@@ -1009,7 +992,6 @@ Related proof moves: TODO
 -/
 theorem rep_surjective : _root_.Function.Surjective S.rep := by
   sorry
-
 /--
 `rep_bijective` TODO
 
@@ -1050,7 +1032,6 @@ Related proof moves: constructor, cases, rcases
 theorem rep_bijective :
     _root_.Function.Injective S.rep ∧ _root_.Function.Surjective S.rep := by
   sorry
-
 /--
 `categoricity` TODO
 
@@ -1095,7 +1076,6 @@ theorem categoricity :
       S.rep 0 = S.zero ∧
       ∀ n : Int, S.rep (n + 1) = S.succ (S.rep n) := by
   sorry
-
 end LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure
 namespace LRA.NumberSystems.IntegerStructure.Bundled
 

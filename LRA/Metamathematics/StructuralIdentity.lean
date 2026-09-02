@@ -58,5 +58,4 @@ theorem StructuralIdentity.isPropositionalEquality
     {Expr : Type u} [StructuralIdentity Expr] (e1 e2 : Expr) :
     (decide (e1 = e2) = true) ↔ e1 = e2 := by
   sorry
-
 end LRA.Metamathematics

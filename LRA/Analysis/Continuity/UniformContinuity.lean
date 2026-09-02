@@ -87,7 +87,6 @@ theorem UcAdd (f g : ℝ → ℝ) (A : Set ℝ)
     (hf : IsUniformlyContinuous f A) (hg : IsUniformlyContinuous g A) :
     IsUniformlyContinuous (fun x => f x + g x) A := by
   sorry
-
 /--
 `UcMulOfBounded` TODO
 
@@ -132,7 +131,6 @@ theorem UcMulOfBounded (f g : ℝ → ℝ) (A : Set ℝ)
     (hfB : BoundedOnSet f A) (hgB : BoundedOnSet g A) :
     IsUniformlyContinuous (fun x => f x * g x) A := by
   sorry
-
 /--
 `UcComp` TODO
 
@@ -177,7 +175,6 @@ theorem UcComp (f g : ℝ → ℝ) (A B : Set ℝ)
     (hg : IsUniformlyContinuous g B) :
     IsUniformlyContinuous (fun x => g (f x)) A := by
   sorry
-
 /--
 `UcIffSequential` TODO
 
@@ -224,7 +221,6 @@ theorem UcIffSequential (f : ℝ → ℝ) (A : Set ℝ) :
         (∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, |xs n - ys n| < ε) →
         ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, |f (xs n) - f (ys n)| < ε := by
   sorry
-
 /--
 `UcMapsCauchyToCauchy` TODO
 
@@ -269,7 +265,6 @@ theorem UcMapsCauchyToCauchy (f : ℝ → ℝ) (A : Set ℝ)
     (hCauchy : ∀ ε > 0, ∃ N : ℕ, ∀ m ≥ N, ∀ n ≥ N, |xs m - xs n| < ε) :
     ∀ ε > 0, ∃ N : ℕ, ∀ m ≥ N, ∀ n ≥ N, |f (xs m) - f (xs n)| < ε := by
   sorry
-
 /--
 `IsLipschitzOn` TODO
 
@@ -350,7 +345,6 @@ Related proof moves: intro
 theorem LipschitzImpliesUc (f : ℝ → ℝ) (A : Set ℝ) (K : ℝ)
     (hf : IsLipschitzOn f A K) : IsUniformlyContinuous f A := by
   sorry
-
 /--
 `IsBiLipschitzOn` TODO
 
@@ -437,7 +431,6 @@ theorem BiLipschitzInverseIsLipschitz (f : ℝ → ℝ) (A : Set ℝ) (α K : �
     (hfinv : ∀ x ∈ A, finv (f x) = x) :
     IsLipschitzOn finv (f '' A) (1 / α) := by
   sorry
-
 /--
 `SqrtUcNotLipschitz` TODO
 
@@ -480,5 +473,4 @@ theorem SqrtUcNotLipschitz :
     IsUniformlyContinuous Real.sqrt (Set.Icc (0:ℝ) 1) ∧
     ¬ ∃ K, IsLipschitzOn Real.sqrt (Set.Icc (0:ℝ) 1) K := by
   sorry
-
 end LRA.Analysis.Continuity

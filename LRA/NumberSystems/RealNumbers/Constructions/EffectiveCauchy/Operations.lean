@@ -61,7 +61,6 @@ theorem representative_addition_cauchy_at_precision
         -PrecisionRadius rationalSystem precision < difference ∧
           difference < PrecisionRadius rationalSystem precision := by
   sorry
-
 /--
 `representative_addition` TODO
 
@@ -176,7 +175,6 @@ theorem representative_negation_cauchy_at_precision
         -PrecisionRadius rationalSystem precision < difference ∧
           difference < PrecisionRadius rationalSystem precision := by
   sorry
-
 /--
 `representative_negation` TODO
 
@@ -291,7 +289,6 @@ theorem representative_multiplication_cauchy_at_precision
         -PrecisionRadius rationalSystem precision < difference ∧
           difference < PrecisionRadius rationalSystem precision := by
   sorry
-
 /--
 `representative_multiplication` TODO
 

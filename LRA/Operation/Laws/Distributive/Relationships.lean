@@ -55,7 +55,6 @@ theorem Commutative.left_distributive_to_right_distributive {Carrier : Type u}
     (leftLaw : LeftDistributive outer inner) :
     RightDistributive outer inner := by
   sorry
-
 /--
 `Commutative.right_distributive_to_left_distributive` TODO
 
@@ -104,5 +103,4 @@ theorem Commutative.right_distributive_to_left_distributive {Carrier : Type u}
     (rightLaw : RightDistributive outer inner) :
     LeftDistributive outer inner := by
   sorry
-
 end LRA.Operation.Laws.Distributive

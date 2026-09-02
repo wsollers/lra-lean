@@ -18,7 +18,6 @@ theorem predicateSetRelation_interpret_eq_toEndorelation
     {Carrier : Type u}
     (relation : PredicateSetRelation Carrier) :
     LRA.Relation.interpret relation =
-      PredicateSetRelation.toEndorelation relation :=
-  rfl
-
+      PredicateSetRelation.toEndorelation relation := by
+  sorry
 end LRA.Relation.Constructions.Mathlib

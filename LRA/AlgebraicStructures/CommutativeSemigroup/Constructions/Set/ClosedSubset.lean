@@ -19,5 +19,4 @@ theorem ClosedSubsetCommutativeSemigroupLaws {A : Type u} [Mul A] [Nonempty A]
     letI := LRA.AlgebraicStructures.Magma.Constructions.ClosedSubsetMul closed
     CommutativeSemigroupLaws {x // x ∈ S} := by
   sorry
-
 end LRA.AlgebraicStructures.CommutativeSemigroup.Constructions

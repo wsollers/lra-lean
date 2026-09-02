@@ -51,5 +51,4 @@ theorem CompletenessGivesRealSupremum {A : Set ℝ}
     (boundedAboveHypothesis : ∃ u, IsUpperBound u A) :
     ∃ s, IsSupremum s A := by
   sorry
-
 end LRA.Analysis.Completeness

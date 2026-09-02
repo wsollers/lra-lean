@@ -58,7 +58,6 @@ theorem BinaryOperationCongruence.left {Carrier : Type u}
       relation left₁ left₂ ->
         relation (operation left₁ right) (operation left₂ right) := by
   sorry
-
 /--
 `BinaryOperationCongruence.right` TODO
 
@@ -111,5 +110,4 @@ theorem BinaryOperationCongruence.right {Carrier : Type u}
       relation right₁ right₂ ->
         relation (operation left right₁) (operation left right₂) := by
   sorry
-
 end LRA.UniversalAlgebra.Congruence

@@ -238,5 +238,4 @@ theorem EveryRationalHasUniqueCanonicalFiniteSimpleContinuedFraction
             rationalSystem other value →
           other = fraction := by
   sorry
-
 end LRA.NumberSystems.RationalNumbers.ContinuedFractions

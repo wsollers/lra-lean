@@ -48,7 +48,6 @@ theorem NonStrictRelatesSelf
     (element : Carrier) :
     order.relation element element := by
   sorry
-
 /--
 `NonStrictMutualRelationImpliesEqual` TODO
 
@@ -99,7 +98,6 @@ theorem NonStrictMutualRelationImpliesEqual
     (rightRelatedToLeft : order.relation right left) :
     left = right := by
   sorry
-
 /--
 `PartialOrderHasNoNontrivialTwoElementCycles` TODO
 
@@ -150,5 +148,4 @@ theorem PartialOrderHasNoNontrivialTwoElementCycles
     (rightRelatedToLeft : order.relation right left) :
     left = right := by
   sorry
-
 end LRA.Order.OrderedSets.PartialOrder

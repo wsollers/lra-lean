@@ -86,7 +86,6 @@ Related proof moves: intro, constructor, .mp, .mpr, use, rcases
 theorem DifferentiableIffHasLinearApproximation (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) :
     IsDifferentiable f A c ↔ ∃ L, HasLinearApproximation f c L := by
   sorry
-
 /--
 `LinearApproximationSlopeEqDerivative` TODO
 
@@ -129,5 +128,4 @@ theorem LinearApproximationSlopeEqDerivative (f : ℝ → ℝ) (A : Set ℝ) (c 
     (hD : Derivative D f A c) (L : ℝ) (hL : HasLinearApproximation f c L) :
     L = D := by
   sorry
-
 end LRA.Analysis.Differentiation

@@ -8,6 +8,6 @@ universe u
 `Semigroup`. So the bridge is as low as the floor gets: any nonempty type with a `Mul`
 instance already satisfies `MagmaLaws`, which (now that nonemptiness is a parameter,
 not a field) is the entire content of being a magma. -/
-instance {M : Type u} [Mul M] [Nonempty M] : MagmaLaws M := ⟨⟩
-
+instance {M : Type u} [Mul M] [Nonempty M] : MagmaLaws M := by
+  sorry
 end LRA.AlgebraicStructures

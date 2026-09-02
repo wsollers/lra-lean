@@ -12,36 +12,26 @@ section Certificates
 variable [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1]
 variable [CommutativeRingLaws R]
 
-instance : AdditiveSemigroupLaws (GaussianInteger R) :=
-  ⟨addition_is_associative⟩
-
-instance : AdditiveCommutativeLaws (GaussianInteger R) :=
-  ⟨addition_is_commutative⟩
-
-instance : AdditiveIdentityLaws (GaussianInteger R) :=
-  ⟨zero_add_gaussian, add_zero_gaussian⟩
-
-instance : AdditiveInverseLaws (GaussianInteger R) :=
-  ⟨neg_add_cancel_gaussian, add_neg_cancel_gaussian⟩
-
-instance : MultiplicativeSemigroupLaws (GaussianInteger R) :=
-  ⟨multiplication_is_associative⟩
-
-instance : MultiplicativeCommutativeLaws (GaussianInteger R) :=
-  ⟨multiplication_is_commutative⟩
-
-instance : MultiplicativeIdentityLaws (GaussianInteger R) :=
-  ⟨one_mul_gaussian, mul_one_gaussian⟩
-
-instance : ZeroAbsorbingLaws (GaussianInteger R) :=
-  ⟨zero_mul_gaussian, mul_zero_gaussian⟩
-
-instance : DistributiveLaws (GaussianInteger R) :=
-  ⟨left_distributive_gaussian, right_distributive_gaussian⟩
-
-instance : SubtractionCompatibilityLaw (GaussianInteger R) :=
-  ⟨fun _ _ => rfl⟩
-
+instance : AdditiveSemigroupLaws (GaussianInteger R) := by
+  sorry
+instance : AdditiveCommutativeLaws (GaussianInteger R) := by
+  sorry
+instance : AdditiveIdentityLaws (GaussianInteger R) := by
+  sorry
+instance : AdditiveInverseLaws (GaussianInteger R) := by
+  sorry
+instance : MultiplicativeSemigroupLaws (GaussianInteger R) := by
+  sorry
+instance : MultiplicativeCommutativeLaws (GaussianInteger R) := by
+  sorry
+instance : MultiplicativeIdentityLaws (GaussianInteger R) := by
+  sorry
+instance : ZeroAbsorbingLaws (GaussianInteger R) := by
+  sorry
+instance : DistributiveLaws (GaussianInteger R) := by
+  sorry
+instance : SubtractionCompatibilityLaw (GaussianInteger R) := by
+  sorry
 end Certificates
 
 example : CommutativeRingLaws (GaussianInteger Int) := inferInstance

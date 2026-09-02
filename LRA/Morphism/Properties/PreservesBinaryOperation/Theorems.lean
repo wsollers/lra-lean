@@ -56,5 +56,4 @@ theorem PreservesBinaryOperation.apply {Source : Type u} {Target : Type v}
     function (sourceOperation left right) =
       targetOperation (function left) (function right) := by
   sorry
-
 end LRA.Morphism

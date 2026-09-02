@@ -134,7 +134,8 @@ Related proof moves: intro
 
 -/
 theorem DoubleComplement : ∀ A : α, Aᶜᶜ = A :=
-  ComplementLaws.DoubleComplement
+  by
+  sorry
 
 /--
 `ComplementEmpty` TODO
@@ -173,7 +174,8 @@ Related proof moves: TODO
 
 -/
 theorem ComplementEmpty : (∅ : α)ᶜ = (𝒰 : α) :=
-  ComplementLaws.ComplementEmpty
+  by
+  sorry
 
 /--
 `ComplementUniversal` TODO
@@ -212,7 +214,8 @@ Related proof moves: TODO
 
 -/
 theorem ComplementUniversal : (𝒰 : α)ᶜ = (∅ : α) :=
-  ComplementLaws.ComplementUniversal
+  by
+  sorry
 
 /--
 `UnionComplement` TODO
@@ -251,7 +254,8 @@ Related proof moves: intro
 
 -/
 theorem UnionComplement : ∀ A : α, A ∪ Aᶜ = (𝒰 : α) :=
-  ComplementLaws.UnionComplement
+  by
+  sorry
 
 /--
 `IntersectionComplement` TODO
@@ -290,7 +294,8 @@ Related proof moves: intro
 
 -/
 theorem IntersectionComplement : ∀ A : α, A ∩ Aᶜ = (∅ : α) :=
-  ComplementLaws.IntersectionComplement
+  by
+  sorry
 
 /--
 `DeMorganUnion` TODO
@@ -329,7 +334,8 @@ Related proof moves: intro
 
 -/
 theorem DeMorganUnion : ∀ A B : α, (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ :=
-  ComplementLaws.DeMorganUnion
+  by
+  sorry
 
 /--
 `DeMorganIntersection` TODO
@@ -368,7 +374,8 @@ Related proof moves: intro
 
 -/
 theorem DeMorganIntersection : ∀ A B : α, (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ :=
-  ComplementLaws.DeMorganIntersection
+  by
+  sorry
 
 /--
 `DifferenceAsIntersectionComplement` TODO
@@ -409,7 +416,8 @@ Related proof moves: intro
 -/
 theorem DifferenceAsIntersectionComplement :
     ∀ A B : α, A \ B = A ∩ Bᶜ :=
-  ComplementLaws.DifferenceAsIntersectionComplement
+  by
+  sorry
 
 /--
 `DifferenceUniversal` TODO
@@ -448,7 +456,8 @@ Related proof moves: intro
 
 -/
 theorem DifferenceUniversal : ∀ A : α, A \ (𝒰 : α) = (∅ : α) :=
-  ComplementLaws.DifferenceUniversal
+  by
+  sorry
 
 /--
 `UniversalDifference` TODO
@@ -487,7 +496,8 @@ Related proof moves: intro
 
 -/
 theorem UniversalDifference : ∀ A : α, (𝒰 : α) \ A = Aᶜ :=
-  ComplementLaws.UniversalDifference
+  by
+  sorry
 
 /--
 `Dual` TODO

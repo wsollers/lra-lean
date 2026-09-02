@@ -54,7 +54,6 @@ theorem LeftRightAbsorbersCoincide {Carrier : Type u}
     (rightLaw : RightAbsorbing operation rightAbsorber) :
     leftAbsorber = rightAbsorber := by
   sorry
-
 /--
 `TwoSidedAbsorbingUnique` TODO
 
@@ -103,5 +102,4 @@ theorem TwoSidedAbsorbingUnique {Carrier : Type u}
     (secondLaw : TwoSidedAbsorbing operation secondAbsorber) :
     firstAbsorber = secondAbsorber := by
   sorry
-
 end LRA.Operation.Laws.Absorbing

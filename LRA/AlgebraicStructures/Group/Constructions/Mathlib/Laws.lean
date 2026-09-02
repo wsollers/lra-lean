@@ -8,5 +8,4 @@ universe u
 
 instance {R : Type u} [_root_.Group R] [Nonempty R] : GroupLaws R := by
   sorry
-
 end LRA.AlgebraicStructures

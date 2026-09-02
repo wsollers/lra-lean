@@ -27,9 +27,10 @@ from pathlib import Path
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-ORDER_ROOT = REPO_ROOT / "LRA" / "VolumeI" / "Order"
-DEFAULT_OUTPUT = ORDER_ROOT / "ProofOrder.md"
-MODULE_PREFIX = "LRA.VolumeI.Order."
+SOURCE_ROOT = REPO_ROOT / "LRA" / "Order"
+OUTPUT_ROOT = REPO_ROOT / "LRA" / "VolumeI" / "Order"
+DEFAULT_OUTPUT = OUTPUT_ROOT / "ProofOrder.md"
+MODULE_PREFIX = "LRA.Order."
 
 
 @dataclass(frozen=True)
@@ -179,11 +180,11 @@ def parse_module(path: Path) -> Module:
     source = path.read_text(encoding="utf-8")
     imports = tuple(
         match.group(1)
-        for match in re.finditer(r"(?m)^import\s+(LRA\.VolumeI\.Order\.[\w.]+)", source)
+        for match in re.finditer(r"(?m)^import\s+(LRA\.Order\.[\w.]+)", source)
     )
     return Module(
         path=path,
-        relative_path=path.relative_to(ORDER_ROOT).as_posix(),
+        relative_path=path.relative_to(SOURCE_ROOT).as_posix(),
         import_name=module_name(path),
         imports=imports,
         theorems=parse_theorems(path),
@@ -312,7 +313,7 @@ def generate(output: Path, refresh_prose: bool) -> str:
     existing_prose, preferred_order = existing_guide(output)
     modules = [
         parse_module(path)
-        for path in sorted(ORDER_ROOT.rglob("*.lean"))
+        for path in sorted(SOURCE_ROOT.rglob("*.lean"))
         if path.name != "ProofOrder.lean"
     ]
     modules = [module for module in modules if module.theorems]
@@ -322,7 +323,7 @@ def generate(output: Path, refresh_prose: bool) -> str:
     lines = [
         "# Volume I Order Proof Order",
         "",
-        "This checklist contains every Lean `theorem` declaration recursively under `LRA/VolumeI/Order`. Modules are ordered by their import dependencies, and theorems within each module retain source order.",
+        "This checklist contains every Lean `theorem` declaration recursively under `LRA/Order`. Modules are ordered by their import dependencies, and theorems within each module retain source order.",
         "",
         "Each entry is a human mathematical statement rather than a repetition of the Lean declaration. The prose introduces the ambient sets and structures with “Let …” and states the mathematical claim in ordinary terminology. The source link remains available for the exact formal signature and implementation-level capabilities.",
         "",

@@ -63,7 +63,6 @@ theorem representative_addition_respects_equivalence
       (ApproximationSetoid rationalSystem)
       (representative_addition (rationalSystem := rationalSystem)) := by
   sorry
-
 /--
 `addition_is_proper` TODO
 
@@ -116,7 +115,6 @@ theorem addition_is_proper
       (ApproximationSetoid rationalSystem)
       (representative_addition (rationalSystem := rationalSystem)) := by
   sorry
-
 /--
 `representative_negation_respects_equivalence` TODO
 
@@ -163,7 +161,6 @@ theorem representative_negation_respects_equivalence
       (ApproximationSetoid rationalSystem)
       (representative_negation (rationalSystem := rationalSystem)) := by
   sorry
-
 /--
 `negation_is_proper` TODO
 
@@ -216,7 +213,6 @@ theorem negation_is_proper
       (ApproximationSetoid rationalSystem)
       (representative_negation (rationalSystem := rationalSystem)) := by
   sorry
-
 /--
 `representative_multiplication_respects_equivalence` TODO
 
@@ -263,7 +259,6 @@ theorem representative_multiplication_respects_equivalence
       (ApproximationSetoid rationalSystem)
       (representative_multiplication (rationalSystem := rationalSystem)) := by
   sorry
-
 /--
 `multiplication_is_proper` TODO
 

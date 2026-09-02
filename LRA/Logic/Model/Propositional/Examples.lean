@@ -221,8 +221,5 @@ Related proof moves: TODO
 -/
 theorem testModel_satisfies_aAndB :
     testModel.satisfies testFormula := by
-  show evaluate testModel.valuation (Formula.and (Formula.atom .A) (Formula.atom .B)) = true
-  rw [Formula.and_evaluatesToConjunction]
-  rfl
-
+  sorry
 end LRA.Logic.Propositional

@@ -75,7 +75,6 @@ theorem dyadic_subring :
       IsDyadicRational dyadic_data
         (dyadic_data.RationalSystem.FieldModel.signature.multiply first second)) := by
   sorry
-
 /--
 `dyadic_rationals_are_dense` TODO
 
@@ -128,5 +127,4 @@ theorem dyadic_rationals_are_dense
       dyadic_data.RationalSystem.FieldModel.signature.StrictOrder first dyadic ∧
       dyadic_data.RationalSystem.FieldModel.signature.StrictOrder dyadic second := by
   sorry
-
 end LRA.NumberSystems.RealNumbers.Dyadic

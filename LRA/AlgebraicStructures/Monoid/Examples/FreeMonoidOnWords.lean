@@ -22,7 +22,14 @@ instance {Alphabet : Type u} : OfNat (Words Alphabet) 1 := ⟨⟨[]⟩⟩
 instance {Alphabet : Type u} : Nonempty (Words Alphabet) := ⟨⟨[]⟩⟩
 
 instance {Alphabet : Type u} :
-    LRA.AlgebraicStructures.MonoidLaws (Words Alphabet) := by
-  sorry
-
+    LRA.AlgebraicStructures.MonoidLaws (Words Alphabet) where
+  MulAssociative := by
+    intro a b c
+    sorry
+  OneMul := by
+    intro a
+    sorry
+  MulOne := by
+    intro a
+    sorry
 end LRA.AlgebraicStructures.Monoid.Examples

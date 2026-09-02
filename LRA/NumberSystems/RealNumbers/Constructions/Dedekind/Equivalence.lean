@@ -186,5 +186,4 @@ Related proof moves: TODO
 -/
 theorem strict_total_order : StrictTotalOrder rational_model := by
   sorry
-
 end LRA.NumberSystems.RealNumbers.Dedekind

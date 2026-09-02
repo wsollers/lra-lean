@@ -73,7 +73,6 @@ theorem UpperBoundsOfIndexedUnion
       HasIndexedIntersection.indexedIntersection
         (fun index => UpperBounds relation (family index)) := by
   sorry
-
 /--
 `LowerBoundsOfIndexedUnion` TODO
 
@@ -124,7 +123,6 @@ theorem LowerBoundsOfIndexedUnion
       HasIndexedIntersection.indexedIntersection
         (fun index => LowerBounds relation (family index)) := by
   sorry
-
 /--
 `IndexedUnionOfUpperBoundsContainedInUpperBoundsOfIntersection` TODO
 
@@ -177,7 +175,6 @@ theorem IndexedUnionOfUpperBoundsContainedInUpperBoundsOfIntersection
       UpperBounds relation
         (HasIndexedIntersection.indexedIntersection family) := by
   sorry
-
 /--
 `IndexedUnionOfLowerBoundsContainedInLowerBoundsOfIntersection` TODO
 
@@ -230,7 +227,6 @@ theorem IndexedUnionOfLowerBoundsContainedInLowerBoundsOfIntersection
       LowerBounds relation
         (HasIndexedIntersection.indexedIntersection family) := by
   sorry
-
 end IndexedBoundSets
 
 end LRA.Order

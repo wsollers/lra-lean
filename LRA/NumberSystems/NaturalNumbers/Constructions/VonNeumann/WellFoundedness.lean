@@ -45,7 +45,6 @@ Related proof moves: intro
 theorem NaturalZeroIsNotSuccessor :
     ∀ element : NaturalElement, NaturalSuccessor element ≠ NaturalZero := by
   sorry
-
 /--
 `NaturalSuccessorInjective` TODO
 
@@ -88,7 +87,6 @@ theorem NaturalSuccessorInjective :
     ∀ first second : NaturalElement,
       NaturalSuccessor first = NaturalSuccessor second → first = second := by
   sorry
-
 /--
 `NaturalInductionPrinciple` TODO
 
@@ -135,7 +133,6 @@ theorem NaturalInductionPrinciple :
       (∀ element : NaturalElement, element ∈ subset → NaturalSuccessor element ∈ subset) →
       ∀ element : NaturalElement, element ∈ subset := by
   sorry
-
 /--
 `VonNeumannPeanoSystem` TODO
 

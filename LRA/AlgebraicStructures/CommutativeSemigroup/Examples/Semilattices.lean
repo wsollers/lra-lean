@@ -18,9 +18,13 @@ instance {α : Type u} : Mul (UnionSemilattice α) := ⟨fun a b => ⟨a.val ∪
 instance {α : Type u} : Nonempty (UnionSemilattice α) := ⟨⟨∅⟩⟩
 
 instance {α : Type u} :
-    LRA.AlgebraicStructures.CommutativeSemigroupLaws (UnionSemilattice α) := by
-  sorry
-
+    LRA.AlgebraicStructures.CommutativeSemigroupLaws (UnionSemilattice α) where
+  MulAssociative := by
+    intro a b c
+    sorry
+  MulCommutative := by
+    intro a b
+    sorry
 structure IntersectionSemilattice (α : Type u) where
   val : LRA.Set.LRA_Set α
 
@@ -29,7 +33,11 @@ instance {α : Type u} : Mul (IntersectionSemilattice α) :=
 instance {α : Type u} : Nonempty (IntersectionSemilattice α) := ⟨⟨∅⟩⟩
 
 instance {α : Type u} :
-    LRA.AlgebraicStructures.CommutativeSemigroupLaws (IntersectionSemilattice α) := by
-  sorry
-
+    LRA.AlgebraicStructures.CommutativeSemigroupLaws (IntersectionSemilattice α) where
+  MulAssociative := by
+    intro a b c
+    sorry
+  MulCommutative := by
+    intro a b
+    sorry
 end LRA.AlgebraicStructures.CommutativeSemigroup.Examples

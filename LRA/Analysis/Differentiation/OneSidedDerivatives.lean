@@ -130,5 +130,4 @@ theorem DifferentiableIffOneSidedDerivativesAgree (f : ℝ → ℝ) (A : Set ℝ
     IsDifferentiable f A c ↔
       ∃ D, LeftDerivative D f A c ∧ RightDerivative D f A c := by
   sorry
-
 end LRA.Analysis.Differentiation

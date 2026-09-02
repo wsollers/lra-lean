@@ -45,7 +45,6 @@ Related proof moves: intro, constructor, .mp, .mpr, use, rcases
 theorem IoEvDichotomy (P : ℕ → Prop) :
     (∀ N, ∃ n ≥ N, P n) ↔ ¬ (∃ N, ∀ n ≥ N, ¬ P n) := by
   sorry
-
 /--
 `MonotoneSubsequence` TODO
 
@@ -86,7 +85,6 @@ Related proof moves: intro, constructor, cases, rcases, Or.inl, Or.inr, use
 theorem MonotoneSubsequence (x : ℕ → ℝ) :
     ∃ φ : ℕ → ℕ, StrictMono φ ∧ (Monotone (x ∘ φ) ∨ Antitone (x ∘ φ)) := by
   sorry
-
 /--
 `BwBisection` TODO
 
@@ -129,5 +127,4 @@ theorem BwBisection (x : ℕ → ℝ) (hbdd : ∃ M, ∀ n, |x n| ≤ M) :
     ∃ φ : ℕ → ℕ, StrictMono φ ∧
       ∃ L : ℝ, Filter.Tendsto (x ∘ φ) Filter.atTop (nhds L) := by
   sorry
-
 end LRA.Analysis.RealAnalysis

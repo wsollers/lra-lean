@@ -65,7 +65,6 @@ theorem PeanoSystemInductionPrinciple
     forall element : Element,
       element ∈ subset := by
   sorry
-
 /--
 `InductionPrincipleForPeanoSystem` TODO
 
@@ -122,7 +121,6 @@ theorem InductionPrincipleForPeanoSystem
     forall element : Element,
       element ∈ subset := by
   sorry
-
 /--
 `SubsetBasedInductionPrinciple` TODO
 
@@ -171,7 +169,6 @@ theorem SubsetBasedInductionPrinciple
     forall element : Element,
       element ∈ subset := by
   sorry
-
 /--
 `StrongInductionOnPeanoSystem` TODO
 
@@ -232,7 +229,6 @@ theorem StrongInductionOnPeanoSystem
     forall element : Element,
       element ∈ subset := by
   sorry
-
 /--
 `PeanoMinimality` TODO
 
@@ -279,7 +275,6 @@ theorem PeanoMinimality
     (subset_is_inductive : InductiveSubsetOfPeanoSystem ps subset) :
     ∀ element : Element, element ∈ subset := by
   sorry
-
 /--
 `SuccessorClosedSubsetMinimality` TODO
 
@@ -328,5 +323,4 @@ theorem SuccessorClosedSubsetMinimality
     (successor_closed : SuccessorClosedSubset ps subset) :
     ∀ element : Element, element ∈ subset := by
   sorry
-
 end LRA.NumberSystems.PeanoSystem.Induction

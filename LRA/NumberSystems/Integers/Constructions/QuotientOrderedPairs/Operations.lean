@@ -439,5 +439,4 @@ theorem embedding_is_injective
     ∀ first second,
       embed whole_data first = embed whole_data second → first = second := by
   sorry
-
 end LRA.NumberSystems.Integers.QuotientOrderedPairs

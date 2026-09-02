@@ -168,7 +168,6 @@ theorem TranslationPreservesUpperBounds {A : Set ℝ} {c u : ℝ}
       LRA.Analysis.Bounds.IsUpperBound u A) :
     LRA.Analysis.Bounds.IsUpperBound (u + c) (Displace A c) := by
   sorry
-
 /--
 `TranslationPreservesLowerBounds` TODO
 
@@ -213,7 +212,6 @@ theorem TranslationPreservesLowerBounds {A : Set ℝ} {c l : ℝ}
       LRA.Analysis.Bounds.IsLowerBound l A) :
     LRA.Analysis.Bounds.IsLowerBound (l + c) (Displace A c) := by
   sorry
-
 /--
 `PositiveDilationPreservesUpperBounds` TODO
 
@@ -262,7 +260,6 @@ theorem PositiveDilationPreservesUpperBounds {A : Set ℝ} {scale u : ℝ}
     LRA.Analysis.Bounds.IsUpperBound
       (scale * u) (Dilate A scale) := by
   sorry
-
 /--
 `PositiveDilationPreservesLowerBounds` TODO
 
@@ -311,7 +308,6 @@ theorem PositiveDilationPreservesLowerBounds {A : Set ℝ} {scale l : ℝ}
     LRA.Analysis.Bounds.IsLowerBound
       (scale * l) (Dilate A scale) := by
   sorry
-
 /--
 `NegativeDilationSendsLowerToUpperBounds` TODO
 
@@ -360,7 +356,6 @@ theorem NegativeDilationSendsLowerToUpperBounds {A : Set ℝ} {scale l : ℝ}
     LRA.Analysis.Bounds.IsUpperBound
       (scale * l) (Dilate A scale) := by
   sorry
-
 /--
 `NegativeDilationSendsUpperToLowerBounds` TODO
 
@@ -409,7 +404,6 @@ theorem NegativeDilationSendsUpperToLowerBounds {A : Set ℝ} {scale u : ℝ}
     LRA.Analysis.Bounds.IsLowerBound
       (scale * u) (Dilate A scale) := by
   sorry
-
 /--
 `ReflectionSwapsUpperBoundsToLowerBounds` TODO
 
@@ -452,7 +446,6 @@ theorem ReflectionSwapsUpperBoundsToLowerBounds {A : Set ℝ} {b : ℝ} :
     LRA.Analysis.Bounds.IsUpperBound b A ↔
       LRA.Analysis.Bounds.IsLowerBound (-b) (Reflect A) := by
   sorry
-
 /--
 `ReflectionSwapsLowerBoundsToUpperBounds` TODO
 
@@ -495,5 +488,4 @@ theorem ReflectionSwapsLowerBoundsToUpperBounds {A : Set ℝ} {b : ℝ} :
     LRA.Analysis.Bounds.IsLowerBound b A ↔
       LRA.Analysis.Bounds.IsUpperBound (-b) (Reflect A) := by
   sorry
-
 end LRA.Analysis.Bounds.Algebra

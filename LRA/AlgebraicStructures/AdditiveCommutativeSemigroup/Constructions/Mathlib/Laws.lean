@@ -9,5 +9,4 @@ universe u
 instance {R : Type u} [_root_.AddCommSemigroup R] [Nonempty R] :
     AdditiveCommutativeSemigroupLaws R := by
   sorry
-
 end LRA.AlgebraicStructures

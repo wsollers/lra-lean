@@ -81,7 +81,6 @@ Related proof moves: TODO
 -/
 theorem AbsoluteValueNonneg (a : ℝ) : AbsR a ≥ 0 := by
   sorry
-
 /--
 `AbsoluteValueZeroIffZero` TODO
 
@@ -120,7 +119,6 @@ Related proof moves: constructor, .mp, .mpr
 -/
 theorem AbsoluteValueZeroIffZero (a : ℝ) : AbsR a = 0 ↔ a = 0 := by
   sorry
-
 /--
 `AbsoluteValueSelfOrNeg` TODO
 
@@ -159,7 +157,6 @@ Related proof moves: Or.inl, Or.inr, cases, rcases
 -/
 theorem AbsoluteValueSelfOrNeg (a : ℝ) : AbsR a = a ∨ AbsR a = -a := by
   sorry
-
 /--
 `AbsoluteValueSymmetric` TODO
 
@@ -198,7 +195,6 @@ Related proof moves: TODO
 -/
 theorem AbsoluteValueSymmetric (a : ℝ) : AbsR (-a) = AbsR a := by
   sorry
-
 /--
 `AbsoluteValueProduct` TODO
 
@@ -237,7 +233,6 @@ Related proof moves: TODO
 -/
 theorem AbsoluteValueProduct (a b : ℝ) : AbsR (a * b) = AbsR a * AbsR b := by
   sorry
-
 /--
 `AbsoluteValueQuotient` TODO
 
@@ -278,7 +273,6 @@ Related proof moves: TODO
 theorem AbsoluteValueQuotient (a b : ℝ) (hb : b ≠ 0) :
     AbsR (a / b) = AbsR a / AbsR b := by
   sorry
-
 /--
 `AbsoluteValueBounds` TODO
 
@@ -317,7 +311,6 @@ Related proof moves: constructor, cases, rcases
 -/
 theorem AbsoluteValueBounds (a : ℝ) : -AbsR a ≤ a ∧ a ≤ AbsR a := by
   sorry
-
 /--
 `AbsoluteValueLeIff` TODO
 
@@ -358,7 +351,6 @@ Related proof moves: constructor, .mp, .mpr, cases, rcases
 theorem AbsoluteValueLeIff (a r : ℝ) (hr : r ≥ 0) :
     AbsR a ≤ r ↔ -r ≤ a ∧ a ≤ r := by
   sorry
-
 /--
 `AbsoluteValueLtIff` TODO
 
@@ -399,7 +391,6 @@ Related proof moves: constructor, .mp, .mpr, cases, rcases
 theorem AbsoluteValueLtIff (a r : ℝ) (hr : r > 0) :
     AbsR a < r ↔ -r < a ∧ a < r := by
   sorry
-
 /--
 `ReverseTriangleInequality` TODO
 
@@ -440,7 +431,6 @@ Related proof moves: TODO
 theorem ReverseTriangleInequality (a b : ℝ) :
     AbsR (AbsR a - AbsR b) ≤ AbsR (a - b) := by
   sorry
-
 /--
 `AbsoluteValueSumBound` TODO
 
@@ -481,5 +471,4 @@ Related proof moves: intro
 theorem AbsoluteValueSumBound (n : ℕ) (a : Fin n → ℝ) :
     AbsR (Finset.univ.sum a) ≤ Finset.univ.sum (fun i => AbsR (a i)) := by
   sorry
-
 end LRA.Analysis.RealAnalysis

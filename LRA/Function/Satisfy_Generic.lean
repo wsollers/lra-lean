@@ -44,7 +44,6 @@ theorem toFunction_graph
     (function : FunctionObject)
     (satisfiesGeneric : genericTheory function)
     (input : Domain) :
-    interpret function input (toFunction function satisfiesGeneric input) :=
-  Classical.choose_spec (satisfiesGeneric.1 input)
-
+    interpret function input (toFunction function satisfiesGeneric input) := by
+  sorry
 end LRA.Function

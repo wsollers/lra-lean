@@ -90,7 +90,6 @@ Related proof moves: intro
 theorem activeSetAlgebraMembersAreSubsets (Point : Type) :
     ∀ A : ActiveSet Point, True → A ⊆ Set.univ := by
   sorry
-
 /--
 `activeSetAlgebraUnionIsMember` TODO
 
@@ -131,7 +130,6 @@ Related proof moves: intro
 theorem activeSetAlgebraUnionIsMember (Point : Type) :
     ∀ A B : ActiveSet Point, True → True → True := by
   sorry
-
 /--
 `activeSetAlgebraIntersectionIsMember` TODO
 
@@ -172,7 +170,6 @@ Related proof moves: intro
 theorem activeSetAlgebraIntersectionIsMember (Point : Type) :
     ∀ A B : ActiveSet Point, True → True → True := by
   sorry
-
 /--
 `activeSetAlgebraDifferenceIsMember` TODO
 
@@ -213,7 +210,6 @@ Related proof moves: intro
 theorem activeSetAlgebraDifferenceIsMember (Point : Type) :
     ∀ A B : ActiveSet Point, True → True → True := by
   sorry
-
 /--
 `activeSetAlgebraSymmetricDifferenceIsMember` TODO
 
@@ -254,7 +250,6 @@ Related proof moves: intro
 theorem activeSetAlgebraSymmetricDifferenceIsMember (Point : Type) :
     ∀ A B : ActiveSet Point, True → True → True := by
   sorry
-
 /--
 `activeSetAlgebra` TODO
 
@@ -369,7 +364,6 @@ Related proof moves: intro, Or.inl, Or.inr, cases, rcases
 theorem emptyUniversalSetAlgebraMembersAreSubsets (Point : Type) :
     ∀ A : ActiveSet Point, (A = ∅ ∨ A = Set.univ) → A ⊆ Set.univ := by
   sorry
-
 /--
 `emptyUniversalSetAlgebraEmptyIsMember` TODO
 
@@ -410,7 +404,6 @@ Related proof moves: Or.inl, Or.inr, cases, rcases
 theorem emptyUniversalSetAlgebraEmptyIsMember (Point : Type) :
     ((∅ : ActiveSet Point) = ∅ ∨ (∅ : ActiveSet Point) = Set.univ) := by
   sorry
-
 /--
 `emptyUniversalSetAlgebraUnionIsMember` TODO
 
@@ -457,7 +450,6 @@ theorem emptyUniversalSetAlgebraUnionIsMember (Point : Type) :
       (B = ∅ ∨ B = Set.univ) →
       (A ∪ B = ∅ ∨ A ∪ B = Set.univ) := by
   sorry
-
 /--
 `emptyUniversalSetAlgebraIntersectionIsMember` TODO
 
@@ -504,7 +496,6 @@ theorem emptyUniversalSetAlgebraIntersectionIsMember (Point : Type) :
       (B = ∅ ∨ B = Set.univ) →
       (A ∩ B = ∅ ∨ A ∩ B = Set.univ) := by
   sorry
-
 /--
 `emptyUniversalSetAlgebraDifferenceIsMember` TODO
 
@@ -551,7 +542,6 @@ theorem emptyUniversalSetAlgebraDifferenceIsMember (Point : Type) :
       (B = ∅ ∨ B = Set.univ) →
       (A \ B = ∅ ∨ A \ B = Set.univ) := by
   sorry
-
 /--
 `emptyUniversalSetAlgebraSymmetricDifferenceIsMember` TODO
 
@@ -598,7 +588,6 @@ theorem emptyUniversalSetAlgebraSymmetricDifferenceIsMember (Point : Type) :
       (B = ∅ ∨ B = Set.univ) →
       (A ∆ B = ∅ ∨ A ∆ B = Set.univ) := by
   sorry
-
 /--
 `emptyUniversalSetAlgebraAmbientIsMember` TODO
 
@@ -641,7 +630,6 @@ theorem emptyUniversalSetAlgebraAmbientIsMember (Point : Type) :
     ((Set.univ : ActiveSet Point) = ∅ ∨
       (Set.univ : ActiveSet Point) = Set.univ) := by
   sorry
-
 /--
 `emptyUniversalSetAlgebra` TODO
 
@@ -766,7 +754,6 @@ theorem activeSigmaAlgebraCountableUnionIsMember (Point : Type) :
         (activeSetAlgebra Point).IsMember
           (HasCountableUnion.countableUnion family) := by
   sorry
-
 /--
 `activeSigmaAlgebra` TODO
 
@@ -859,7 +846,6 @@ theorem lraSetAlgebraMembersAreSubsets (Point : Type) :
     ∀ A : LRA.Set.Constructions.TypeSet Point, True →
       A ⊆ LRA.Set.Constructions.TypeSet.Universal Point := by
   sorry
-
 /--
 `lraSetAlgebraUnionIsMember` TODO
 
@@ -900,7 +886,6 @@ Related proof moves: intro
 theorem lraSetAlgebraUnionIsMember (Point : Type) :
     ∀ A B : LRA.Set.Constructions.TypeSet Point, True → True → True := by
   sorry
-
 /--
 `lraSetAlgebraIntersectionIsMember` TODO
 
@@ -941,7 +926,6 @@ Related proof moves: intro
 theorem lraSetAlgebraIntersectionIsMember (Point : Type) :
     ∀ A B : LRA.Set.Constructions.TypeSet Point, True → True → True := by
   sorry
-
 /--
 `lraSetAlgebraDifferenceIsMember` TODO
 
@@ -982,7 +966,6 @@ Related proof moves: intro
 theorem lraSetAlgebraDifferenceIsMember (Point : Type) :
     ∀ A B : LRA.Set.Constructions.TypeSet Point, True → True → True := by
   sorry
-
 /--
 `lraSetAlgebraSymmetricDifferenceIsMember` TODO
 
@@ -1023,7 +1006,6 @@ Related proof moves: intro
 theorem lraSetAlgebraSymmetricDifferenceIsMember (Point : Type) :
     ∀ A B : LRA.Set.Constructions.TypeSet Point, True → True → True := by
   sorry
-
 /--
 `lraSetAlgebra` TODO
 

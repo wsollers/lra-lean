@@ -48,7 +48,6 @@ theorem CommonMaximumGivesSumMaximum (f g : ℝ → ℝ) (A : Set ℝ) (x₀ : �
     (hf : ∀ x ∈ A, f x ≤ f x₀) (hg : ∀ x ∈ A, g x ≤ g x₀) :
     ∀ x ∈ A, f x + g x ≤ f x₀ + g x₀ := by
   sorry
-
 /--
 `CommonMinimumGivesSumMinimum` TODO
 
@@ -93,7 +92,6 @@ theorem CommonMinimumGivesSumMinimum (f g : ℝ → ℝ) (A : Set ℝ) (x₀ : �
     (hf : ∀ x ∈ A, f x₀ ≤ f x) (hg : ∀ x ∈ A, g x₀ ≤ g x) :
     ∀ x ∈ A, f x₀ + g x₀ ≤ f x + g x := by
   sorry
-
 /--
 `CommonExtremumConverseFails` TODO
 
@@ -138,7 +136,6 @@ theorem CommonExtremumConverseFails :
       (∀ x ∈ A, f x + g x ≤ f x₀ + g x₀) ∧
       ¬ (∀ x ∈ A, f x ≤ f x₀) := by
   sorry
-
 /--
 `FunctionMaximumPoint` TODO
 
@@ -221,7 +218,6 @@ theorem MaximumPointCharacterizedBySupremum (f : ℝ → ℝ) (A : Set ℝ) (x�
     (hx₀ : x₀ ∈ A) (hA : A.Nonempty) (hbdd : ∃ M, ∀ x ∈ A, f x ≤ M) :
     FunctionMaximumPoint f A x₀ ↔ IsLUB (f '' A) (f x₀) := by
   sorry
-
 /--
 `FunctionMinimumPoint` TODO
 
@@ -304,7 +300,6 @@ theorem MinimumPointCharacterizedByInfimum (f : ℝ → ℝ) (A : Set ℝ) (x₀
     (hx₀ : x₀ ∈ A) (hA : A.Nonempty) (hbdd : ∃ m, ∀ x ∈ A, m ≤ f x) :
     FunctionMinimumPoint f A x₀ ↔ IsGLB (f '' A) (f x₀) := by
   sorry
-
 /--
 `FunctionExtremumValuesAreUnique` TODO
 
@@ -347,5 +342,4 @@ theorem FunctionExtremumValuesAreUnique (f : ℝ → ℝ) (A : Set ℝ)
     (x₁ x₂ : ℝ) (h₁ : FunctionMaximumPoint f A x₁)
     (h₂ : FunctionMaximumPoint f A x₂) : f x₁ = f x₂ := by
   sorry
-
 end LRA.Analysis.Functions

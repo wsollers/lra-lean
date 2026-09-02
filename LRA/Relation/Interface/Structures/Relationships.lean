@@ -43,7 +43,6 @@ Related proof moves: TODO
 theorem EquivalenceImpliesPartialEquivalence {α : Type u} {R : Endorelation α}
     (h : EquivalenceRelation R) : PartialEquivalenceRelation R := by
   sorry
-
 /--
 `EquivalenceImpliesTolerance` TODO
 
@@ -84,5 +83,4 @@ Related proof moves: TODO
 theorem EquivalenceImpliesTolerance {α : Type u} {R : Endorelation α}
     (h : EquivalenceRelation R) : ToleranceRelation R := by
   sorry
-
 end LRA.Relation

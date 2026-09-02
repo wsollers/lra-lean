@@ -256,7 +256,6 @@ Related proof moves: intro, constructor, .mp, .mpr, cases, rcases
 theorem DerivativeEquivalence (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) :
     Derivative D f A c ↔ DerivativeNeighborhood D f A c ∧ DerivativeSequential D f A c := by
   sorry
-
 /--
 `DerivativeHFormEquivalence` TODO
 
@@ -301,7 +300,6 @@ theorem DerivativeHFormEquivalence (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c 
       (∀ ε > 0, ∃ δ > 0, ∀ x ∈ A, 0 < |x - c| → |x - c| < δ →
         |(f x - f c) / (x - c) - D| < ε) := by
   sorry
-
 /--
 `DifferentiableImpliesContinuous` TODO
 
@@ -344,7 +342,6 @@ theorem DifferentiableImpliesContinuous (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ
     (h : IsDifferentiable f A c) :
     LRA.Analysis.Continuity.ContinuousAtPoint f A c := by
   sorry
-
 /--
 `DerivativeUnique` TODO
 
@@ -387,5 +384,4 @@ theorem DerivativeUnique (f : ℝ → ℝ) (A : Set ℝ) (c D₁ D₂ : ℝ)
     (hacc : ∃ xs : ℕ → ℝ, LRA.Analysis.Limits.ApproachesButNotEqual xs A c)
     (h₁ : Derivative D₁ f A c) (h₂ : Derivative D₂ f A c) : D₁ = D₂ := by
   sorry
-
 end LRA.Analysis.Differentiation

@@ -18,18 +18,14 @@ def NonzeroReals : LRA.Set.LRA_Set Real := {x | x ≠ 0}
 theorem nonzeroRealsClosedUnderMultiplication :
     ∀ a b, a ∈ NonzeroReals → b ∈ NonzeroReals → a * b ∈ NonzeroReals := by
   sorry
-
 theorem oneIsNonzero : (1 : Real) ∈ NonzeroReals := by
   sorry
-
 theorem nonzeroRealsClosedUnderInverse :
     ∀ a, a ∈ NonzeroReals → a⁻¹ ∈ NonzeroReals := by
   sorry
-
 theorem nonzeroRealsInverseCancel :
     ∀ a, a ∈ NonzeroReals → a⁻¹ * a = 1 ∧ a * a⁻¹ = 1 := by
   sorry
-
 noncomputable instance : Mul {x // x ∈ NonzeroReals} :=
   LRA.AlgebraicStructures.Magma.Constructions.ClosedSubsetMul
     nonzeroRealsClosedUnderMultiplication
@@ -45,9 +41,6 @@ noncomputable instance : Nonempty {x // x ∈ NonzeroReals} :=
   LRA.AlgebraicStructures.Monoid.Constructions.ClosedSubsetNonempty oneIsNonzero
 
 noncomputable instance :
-    LRA.AlgebraicStructures.GroupLaws {x // x ∈ NonzeroReals} :=
-  LRA.AlgebraicStructures.Group.Constructions.ClosedSubsetGroupLaws
-    nonzeroRealsClosedUnderMultiplication oneIsNonzero nonzeroRealsClosedUnderInverse
-    nonzeroRealsInverseCancel
-
+    LRA.AlgebraicStructures.GroupLaws {x // x ∈ NonzeroReals} := by
+  sorry
 end LRA.AlgebraicStructures.Group.Examples

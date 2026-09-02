@@ -14,5 +14,4 @@ theorem unionIsJoinSemilattice {α : Type u} :
     LRA.AlgebraicStructures.JoinSemilatticeLaws
       (Union.union : LRA.Set.LRA_Set α → LRA.Set.LRA_Set α → LRA.Set.LRA_Set α) := by
   sorry
-
 end LRA.AlgebraicStructures.JoinSemilattice.Examples

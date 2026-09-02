@@ -60,5 +60,4 @@ theorem NonemptyChainIsDirected
     (subsetIsNonempty : exists element : Element, element ∈ subset) :
     Directed relation subset := by
   sorry
-
 end LRA.Order

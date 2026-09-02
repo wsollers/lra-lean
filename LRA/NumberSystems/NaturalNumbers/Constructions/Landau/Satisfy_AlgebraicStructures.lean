@@ -19,7 +19,6 @@ theorem satisfiesAdditiveCommutativeSemigroup
     let _ : Nonempty Element := LandauNonemptyOn model
     AdditiveCommutativeSemigroupLaws Element := by
   sorry
-
 /-- The one-based Landau construction canonically realizes multiplicative
 commutative monoid structure. -/
 theorem satisfiesCommutativeMonoid
@@ -29,7 +28,6 @@ theorem satisfiesCommutativeMonoid
     let _ : Nonempty Element := LandauNonemptyOn model
     CommutativeMonoidLaws Element := by
   sorry
-
 /-- The one-based Landau construction canonically realizes the positive-naturals
 endpoint of the algebraic hierarchy: a commutative semiring without zero. -/
 theorem satisfiesCommutativeSemiringWithoutZero
@@ -40,5 +38,4 @@ theorem satisfiesCommutativeSemiringWithoutZero
     let _ : Nonempty Element := LandauNonemptyOn model
     CommutativeSemiringWithoutZeroLaws Element := by
   sorry
-
 end LRA.NumberSystems.NaturalNumbers.Constructions.Landau

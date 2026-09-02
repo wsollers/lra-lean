@@ -56,7 +56,6 @@ theorem OrderSeparationBySupremum {A B : Set ℝ}
     (∃ u, IsUpperBound u A) ∧ (∃ l, IsLowerBound l B) ∧
       ∃ c : ℝ, IsSupremum c A ∧ (∀ a ∈ A, ∀ b ∈ B, a ≤ c ∧ c ≤ b) := by
   sorry
-
 /--
 `SupremumLeInfimumOfOrderSeparatedSets` TODO
 
@@ -109,7 +108,6 @@ theorem SupremumLeInfimumOfOrderSeparatedSets {A B : Set ℝ}
     (infimumHypothesis : IsInfimum i B) :
     s ≤ i := by
   sorry
-
 /--
 `DedekindCutProperty` TODO
 
@@ -160,7 +158,6 @@ theorem DedekindCutProperty {L U : Set ℝ}
     (strictSeparationHypothesis : ∀ l ∈ L, ∀ u ∈ U, l < u) :
     (∃ m, IsMaximum m L) ∨ (∃ n, IsMinimum n U) := by
   sorry
-
 /--
 `NoGapsInReals` TODO
 
@@ -213,5 +210,4 @@ theorem NoGapsInReals {L U : Set ℝ}
     ∃! c : ℝ, (L = {x : ℝ | x < c} ∧ U = {x : ℝ | c ≤ x}) ∨
       (L = {x : ℝ | x ≤ c} ∧ U = {x : ℝ | c < x}) := by
   sorry
-
 end LRA.Analysis.Completeness

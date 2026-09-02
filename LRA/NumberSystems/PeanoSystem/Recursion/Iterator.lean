@@ -305,7 +305,6 @@ theorem MinimalIteratorRelationIsIteratorRelation
     IteratorRelation ps data
       (MinimalIteratorRelation ps data) := by
   sorry
-
 /--
 `IteratorRelationConsistency` TODO
 
@@ -350,7 +349,6 @@ theorem IteratorRelationConsistency
     (data : IteratorData ps) :
     IteratorRelation ps data (MinimalIteratorRelation ps data) := by
   sorry
-
 /--
 `MinimalIteratorRelationComplete` TODO
 
@@ -400,9 +398,7 @@ theorem MinimalIteratorRelationComplete
     forall element : Element,
       exists value : data.Target,
         MinimalIteratorRelation ps data element value := by
-
   sorry
-
 /--
 `MinimalIteratorRelationDeterministic` TODO
 
@@ -456,9 +452,7 @@ theorem MinimalIteratorRelationDeterministic
         MinimalIteratorRelation ps data element first_value ->
         MinimalIteratorRelation ps data element second_value ->
         first_value = second_value := by
-
   sorry
-
 /--
 `ForcedValuesAreUnique` TODO
 
@@ -512,9 +506,7 @@ theorem ForcedValuesAreUnique
         MinimalIteratorRelation ps data element first_value ->
         MinimalIteratorRelation ps data element second_value ->
         first_value = second_value := by
-
   sorry
-
 /--
 `ExistenceOfIteratorFunction` TODO
 
@@ -576,9 +568,7 @@ theorem ExistenceOfIteratorFunction
         initial_value
         step_rule
         iterator_function := by
-
   sorry
-
 /--
 `UniquenessOfIteratorFunctions` TODO
 
@@ -634,9 +624,7 @@ theorem UniquenessOfIteratorFunctions
     IteratorFunctionClauses ps target initial_value step_rule first_iterator ->
       IteratorFunctionClauses ps target initial_value step_rule second_iterator ->
       first_iterator = second_iterator := by
-
   sorry
-
 /--
 `IteratorFunctionWellDefined` TODO
 
@@ -714,9 +702,7 @@ theorem IteratorFunctionWellDefined
           step_rule
           other_iterator ->
         other_iterator = iterator_function := by
-
   sorry
-
 /--
 `IteratorGeneratedFunction` TODO
 
@@ -836,7 +822,6 @@ theorem IteratorBaseValue
     (step_rule : target -> target) :
     IteratorGeneratedFunction ps fullInduction target initial_value step_rule ps.base = initial_value := by
   sorry
-
 /--
 `IteratorSuccessorStep` TODO
 
@@ -891,7 +876,6 @@ theorem IteratorSuccessorStep
     IteratorGeneratedFunction ps fullInduction target initial_value step_rule (ps.successor element) =
       step_rule (IteratorGeneratedFunction ps fullInduction target initial_value step_rule element) := by
   sorry
-
 /--
 `IterationOfASelfMap` TODO
 
@@ -1027,9 +1011,7 @@ theorem PeanoIteratorTheorem
           step_rule
           other_iterator ->
         other_iterator = iterator_function := by
-
   sorry
-
 /--
 `StageDependentStepRule` TODO
 
@@ -1247,9 +1229,7 @@ theorem UniquenessOfGeneralRecursiveFunctions
     GeneralRecursiveFunctionClauses
       ps target initial_value step_rule second_recursive_function ->
     first_recursive_function = second_recursive_function := by
-
   sorry
-
 /--
 `GeneralRecursionByStateEncoding` TODO
 
@@ -1303,9 +1283,7 @@ theorem GeneralRecursionByStateEncoding
     exists recursive_function : Element -> target,
       GeneralRecursiveFunctionClauses
         ps target initial_value step_rule recursive_function := by
-
   sorry
-
 /--
 `GeneralRecursionTheoremForPeanoSystem` TODO
 
@@ -1367,7 +1345,5 @@ theorem GeneralRecursionTheoremForPeanoSystem
         GeneralRecursiveFunctionClauses
           ps target initial_value step_rule other_recursive_function ->
         other_recursive_function = recursive_function := by
-
   sorry
-
 end LRA.NumberSystems.PeanoSystem.Recursion

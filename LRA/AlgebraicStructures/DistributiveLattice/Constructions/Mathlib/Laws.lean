@@ -12,5 +12,4 @@ theorem ofDistribLattice {R : Type u} [_root_.DistribLattice R] :
     LRA.AlgebraicStructures.DistributiveLatticeLaws
       (Carrier := R) (· ⊔ ·) (· ⊓ ·) := by
   sorry
-
 end LRA.AlgebraicStructures

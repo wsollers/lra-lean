@@ -46,7 +46,6 @@ theorem HasJumpAtImpliesLimitDoesNotExist (f : ℝ → ℝ) (A : Set ℝ) (c : �
     (h : HasJumpAt f A c) :
     LimitDoesNotExist f A c := by
   sorry
-
 /--
 `OscillatesImpliesLimitDoesNotExist` TODO
 
@@ -89,7 +88,6 @@ theorem OscillatesImpliesLimitDoesNotExist (f : ℝ → ℝ) (A : Set ℝ) (c : 
     (h : Oscillates f A c) :
     LimitDoesNotExist f A c := by
   sorry
-
 /--
 `DivergesToInftyAtImpliesLimitDoesNotExist` TODO
 
@@ -134,7 +132,6 @@ theorem DivergesToInftyAtImpliesLimitDoesNotExist (f : ℝ → ℝ) (A : Set ℝ
     (h : DivergesToInftyAt f A c) :
     LimitDoesNotExist f A c := by
   sorry
-
 /--
 `StepFunctionHasJumpAtZero` TODO
 
@@ -175,7 +172,6 @@ Related proof moves: TODO
 theorem StepFunctionHasJumpAtZero :
     HasJumpAt (fun x : ℝ => if x < 0 then (0 : ℝ) else 1) Set.univ 0 := by
   sorry
-
 /--
 `SinOfReciprocalOscillatesAtZero` TODO
 
@@ -216,5 +212,4 @@ Related proof moves: TODO
 theorem SinOfReciprocalOscillatesAtZero :
     Oscillates (fun x : ℝ => Real.sin (1 / x)) {x : ℝ | x ≠ 0} 0 := by
   sorry
-
 end LRA.Analysis.Limits

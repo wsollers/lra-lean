@@ -10,5 +10,4 @@ universe u
 instance {R : Type u} [_root_.CommSemiring R] [Nonempty R] :
     CommutativeSemiringLaws R := by
   sorry
-
 end LRA.AlgebraicStructures

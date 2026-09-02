@@ -106,9 +106,8 @@ Common confusions:
 Related proof moves: intro
 
 -/
-theorem LeftDistributive : ∀ a b c : R, a * (b + c) = a * b + a * c :=
+theorem LeftDistributive : ∀ a b c : R, a * (b + c) = a * b + a * c := by
   sorry
-
 /--
 `RightDistributive` TODO
 
@@ -145,9 +144,8 @@ Common confusions:
 Related proof moves: intro
 
 -/
-theorem RightDistributive : ∀ a b c : R, (a + b) * c = a * c + b * c :=
+theorem RightDistributive : ∀ a b c : R, (a + b) * c = a * c + b * c := by
   sorry
-
 end Wrappers
 
 end LRA.AlgebraicStructures

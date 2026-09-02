@@ -64,7 +64,6 @@ theorem embedded_rationals_are_dense
       strict_order rationalSystem.FieldModel
         (rational_embedding rationalSystem.FieldModel rational) second := by
   sorry
-
 /--
 `archimedean_property` TODO
 
@@ -123,7 +122,6 @@ theorem archimedean_property
         (rational_embedding rationalSystem.FieldModel
           (rationalSystem.IntegerEmbedding.ToField integer)) := by
   sorry
-
 /--
 `ReferenceRealNumberConstruction` TODO
 
@@ -226,5 +224,4 @@ Related proof moves: TODO
 theorem reference_real_number_construction :
     ReferenceRealNumberConstruction rationalSystem := by
   sorry
-
 end LRA.NumberSystems.RealNumbers.Dedekind

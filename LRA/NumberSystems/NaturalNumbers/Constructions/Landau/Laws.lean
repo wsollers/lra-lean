@@ -127,7 +127,6 @@ theorem LandauLessThanTrichotomous
     ∀ x y : Element,
       LandauLessThan model x y ∨ x = y ∨ LandauLessThan model y x := by
   sorry
-
 /--
 `LandauLessThanTransitive` TODO
 
@@ -174,7 +173,6 @@ theorem LandauLessThanTransitive
       LandauLessThan model x y → LandauLessThan model y z →
         LandauLessThan model x z := by
   sorry
-
 /--
 `LandauAdditionPreservesAndReflectsLandauLessThan` TODO
 
@@ -223,7 +221,6 @@ theorem LandauAdditionPreservesAndReflectsLandauLessThan
         LandauLessThan model
           (LandauAddition model x z) (LandauAddition model y z) := by
   sorry
-
 /--
 `LandauMultiplicationPreservesAndReflectsLandauLessThan` TODO
 
@@ -272,13 +269,11 @@ theorem LandauMultiplicationPreservesAndReflectsLandauLessThan
         LandauLessThan model
           (LandauMultiplication model x z) (LandauMultiplication model y z) := by
   sorry
-
 /-- Landau Chapter I, Theorem 7. -/
 theorem LandauAdditionDoesNotCollapseOnRight
     (model : PeanoSystem Element SetObject) :
     ∀ x y : Element, LandauAddition model y x ≠ x := by
   sorry
-
 /-- Landau Chapter I, Theorem 8. -/
 theorem LandauAdditionLeftCancellation
     (model : PeanoSystem Element SetObject) :
@@ -286,7 +281,6 @@ theorem LandauAdditionLeftCancellation
       y ≠ z →
       LandauAddition model x y ≠ LandauAddition model x z := by
   sorry
-
 /-- Landau Chapter I, Theorem 9. -/
 theorem LandauOrderCasesByAddition
     (model : PeanoSystem Element SetObject) :
@@ -295,7 +289,6 @@ theorem LandauOrderCasesByAddition
       (∃ u : Element, LandauAddition model y u = x) ∨
       ∃ v : Element, LandauAddition model x v = y := by
   sorry
-
 /-- Landau Chapter I, Theorem 11. -/
 theorem LandauGreaterThanImpliesReverseLessThan
     (model : PeanoSystem Element SetObject) :
@@ -303,7 +296,6 @@ theorem LandauGreaterThanImpliesReverseLessThan
       LandauGreaterThan model x y →
       LandauLessThan model y x := by
   sorry
-
 /-- Landau Chapter I, Theorem 12. -/
 theorem LandauLessThanImpliesReverseGreaterThan
     (model : PeanoSystem Element SetObject) :
@@ -311,7 +303,6 @@ theorem LandauLessThanImpliesReverseGreaterThan
       LandauLessThan model x y →
       LandauGreaterThan model y x := by
   sorry
-
 /-- Landau Chapter I, Theorem 13. -/
 theorem LandauEqualityImpliesLandauLessThanOrEqual
     (model : PeanoSystem Element SetObject) :
@@ -319,7 +310,6 @@ theorem LandauEqualityImpliesLandauLessThanOrEqual
       x = y →
       LandauLessThanOrEqual model y x := by
   sorry
-
 /-- Landau Chapter I, Theorem 14. -/
 theorem LandauEqualityImpliesLandauGreaterThanOrEqual
     (model : PeanoSystem Element SetObject) :
@@ -327,7 +317,6 @@ theorem LandauEqualityImpliesLandauGreaterThanOrEqual
       x = y →
       LandauGreaterThanOrEqual model y x := by
   sorry
-
 /-- Landau Chapter I, Theorem 16, covering both mixed strict/non-strict
 transitivity directions. -/
 theorem LandauLessThanMixedTransitivity
@@ -341,7 +330,6 @@ theorem LandauLessThanMixedTransitivity
       LandauLessThan model y z →
       LandauLessThan model x z) := by
   sorry
-
 /-- Landau Chapter I, Theorem 17. -/
 theorem LandauLessThanOrEqualTransitive
     (model : PeanoSystem Element SetObject) :
@@ -350,14 +338,12 @@ theorem LandauLessThanOrEqualTransitive
       LandauLessThanOrEqual model y z →
       LandauLessThanOrEqual model x z := by
   sorry
-
 /-- Landau Chapter I, Theorem 18. -/
 theorem LandauAdditionCreatesGreaterElement
     (model : PeanoSystem Element SetObject) :
     ∀ x y : Element,
       LandauGreaterThan model (LandauAddition model x y) x := by
   sorry
-
 /-- Landau Chapter I, Theorem 21. -/
 theorem LandauAdditionStrictMonotoneInBothArguments
     (model : PeanoSystem Element SetObject) :
@@ -368,7 +354,6 @@ theorem LandauAdditionStrictMonotoneInBothArguments
         (LandauAddition model x z)
         (LandauAddition model y u) := by
   sorry
-
 /-- Landau Chapter I, Theorem 22, covering both mixed strict/non-strict
 addition monotonicity directions. -/
 theorem LandauAdditionMixedMonotoneInBothArguments
@@ -386,7 +371,6 @@ theorem LandauAdditionMixedMonotoneInBothArguments
         (LandauAddition model x z)
         (LandauAddition model y u)) := by
   sorry
-
 /-- Landau Chapter I, Theorem 23. -/
 theorem LandauAdditionNonstrictMonotoneInBothArguments
     (model : PeanoSystem Element SetObject) :
@@ -397,14 +381,12 @@ theorem LandauAdditionNonstrictMonotoneInBothArguments
         (LandauAddition model x z)
         (LandauAddition model y u) := by
   sorry
-
 /-- Landau Chapter I, Theorem 24. -/
 theorem LandauEveryElementIsAtLeastOne
     (model : PeanoSystem Element SetObject) :
     ∀ x : Element,
       LandauGreaterThanOrEqual model x model.base := by
   sorry
-
 /-- Landau Chapter I, Theorem 25. -/
 theorem LandauStrictSuccessorLowerBound
     (model : PeanoSystem Element SetObject) :
@@ -414,7 +396,6 @@ theorem LandauStrictSuccessorLowerBound
         y
         (LandauAddition model x model.base) := by
   sorry
-
 /-- Landau Chapter I, Theorem 26. -/
 theorem LandauSuccessorUpperBound
     (model : PeanoSystem Element SetObject) :
@@ -422,7 +403,6 @@ theorem LandauSuccessorUpperBound
       LandauLessThan model y (LandauAddition model x model.base) →
       LandauLessThanOrEqual model y x := by
   sorry
-
 /-- Landau Chapter I, Theorem 34. -/
 theorem LandauMultiplicationStrictMonotoneInBothArguments
     (model : PeanoSystem Element SetObject) :
@@ -433,7 +413,6 @@ theorem LandauMultiplicationStrictMonotoneInBothArguments
         (LandauMultiplication model x z)
         (LandauMultiplication model y u) := by
   sorry
-
 /-- Landau Chapter I, Theorem 35, covering both mixed strict/non-strict
 multiplication monotonicity directions. -/
 theorem LandauMultiplicationMixedMonotoneInBothArguments
@@ -451,7 +430,6 @@ theorem LandauMultiplicationMixedMonotoneInBothArguments
         (LandauMultiplication model x z)
         (LandauMultiplication model y u)) := by
   sorry
-
 /-- Landau Chapter I, Theorem 36. -/
 theorem LandauMultiplicationNonstrictMonotoneInBothArguments
     (model : PeanoSystem Element SetObject) :
@@ -462,7 +440,6 @@ theorem LandauMultiplicationNonstrictMonotoneInBothArguments
         (LandauMultiplication model x z)
         (LandauMultiplication model y u) := by
   sorry
-
 /--
 `LandauWellOrdering` TODO
 
@@ -497,5 +474,4 @@ theorem LandauWellOrdering
       ∀ value, subset value →
         least = value ∨ LandauLessThan model least value := by
   sorry
-
 end LRA.NumberSystems.NaturalNumbers.Constructions.Landau

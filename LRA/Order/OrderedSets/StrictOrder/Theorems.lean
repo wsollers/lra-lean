@@ -48,7 +48,6 @@ theorem StrictOrderDoesNotRelateSelf
     (element : Carrier) :
     Not (order.relation element element) := by
   sorry
-
 /--
 `StrictOrderHasNoTwoElementCycles` TODO
 
@@ -97,5 +96,4 @@ theorem StrictOrderHasNoTwoElementCycles
     (leftRelatedToRight : order.relation left right) :
     Not (order.relation right left) := by
   sorry
-
 end LRA.Order.OrderedSets.StrictOrder

@@ -60,5 +60,4 @@ theorem cantor_reals_are_isomorphic_to_cauchy_reals
         Cauchy.Carrier rationalSystem metric_data,
       LRA.Function.Bijective comparison := by
   sorry
-
 end LRA.NumberSystems.RealNumbers.Cantor

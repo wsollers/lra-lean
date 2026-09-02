@@ -16,7 +16,20 @@ instance : OfNat IntegersUnderAddition 1 := ⟨⟨0⟩⟩
 instance : Nonempty IntegersUnderAddition := ⟨⟨0⟩⟩
 
 instance :
-    LRA.AlgebraicStructures.GroupLaws IntegersUnderAddition := by
-  sorry
-
+    LRA.AlgebraicStructures.GroupLaws IntegersUnderAddition where
+  MulAssociative := by
+    intro a b c
+    sorry
+  OneMul := by
+    intro a
+    sorry
+  MulOne := by
+    intro a
+    sorry
+  InvMulCancel := by
+    intro a
+    sorry
+  MulInvCancel := by
+    intro a
+    sorry
 end LRA.AlgebraicStructures.Group.Examples

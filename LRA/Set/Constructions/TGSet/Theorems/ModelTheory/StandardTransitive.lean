@@ -10,9 +10,8 @@ open LRA.Set.ModelTheory
 open LRA.Set.Constructions.GrothendieckUniverse
 open LRA.Set.Constructions.ZFCSet.Interface.ModelTheory
 
-instance : GrothendieckUniverseAxiom LRA.Set.Constructions.TGSet where
-  universeExists A :=
-    LRA.Set.Constructions.TGSet.GrothendieckUniverseExistsAsGenericUniverse A
+instance : GrothendieckUniverseAxiom LRA.Set.Constructions.TGSet := by
+  sorry
 
 @[reducible] noncomputable def TGSetCanonicalGrothendieckUniverseMembershipModel
     (A : LRA.Set.Constructions.TGSet) :

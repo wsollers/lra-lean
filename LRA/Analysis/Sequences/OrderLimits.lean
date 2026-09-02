@@ -53,7 +53,6 @@ theorem IncreasingSequenceLimitAsSupremum {x : RealSequence} {S : ℝ}
     (hinc : IsIncreasing x) (hbdd : BoundedAboveSeq x)
     (hS : IsSupremum S (Set.range x)) : ConvergesTo x S := by
   sorry
-
 /--
 `DecreasingSequenceLimitAsInfimum` TODO
 
@@ -96,7 +95,6 @@ theorem DecreasingSequenceLimitAsInfimum {x : RealSequence} {I : ℝ}
     (hdec : IsDecreasing x) (hbdd : BoundedBelowSeq x)
     (hI : IsInfimum I (Set.range x)) : ConvergesTo x I := by
   sorry
-
 /--
 `TailSupremaInfimaConverge` TODO
 
@@ -139,7 +137,6 @@ theorem TailSupremaInfimaConverge {x : RealSequence} (h : BoundedSeq x) :
     (∃ hSup : BoundedAboveSeq x, ∃ S : ℝ, ConvergesTo (TailSupSeq x hSup) S) ∧
       (∃ hInf : BoundedBelowSeq x, ∃ I : ℝ, ConvergesTo (TailInfSeq x hInf) I) := by
   sorry
-
 /--
 `BoundedSequenceLimsupLiminf` TODO
 
@@ -180,5 +177,4 @@ Related proof moves: constructor, cases, rcases, use
 theorem BoundedSequenceLimsupLiminf {x : RealSequence} (h : BoundedSeq x) :
     (∃ S : ℝ, LimsupSeq x S) ∧ (∃ I : ℝ, LiminfSeq x I) := by
   sorry
-
 end LRA.Analysis.Sequences

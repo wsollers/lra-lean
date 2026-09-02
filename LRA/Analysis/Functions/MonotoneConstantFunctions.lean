@@ -124,7 +124,6 @@ Related proof moves: intro
 theorem StrictlyIncreasingImpliesIncreasing (f : ℝ → ℝ) (A : Set ℝ)
     (h : FunctionStrictlyIncreasing f A) : FunctionIncreasing f A := by
   sorry
-
 /--
 `FunctionDecreasing` TODO
 
@@ -245,7 +244,6 @@ Related proof moves: intro
 theorem StrictlyDecreasingImpliesDecreasing (f : ℝ → ℝ) (A : Set ℝ)
     (h : FunctionStrictlyDecreasing f A) : FunctionDecreasing f A := by
   sorry
-
 /--
 `FunctionMonotone` TODO
 
@@ -328,7 +326,6 @@ theorem NegationReversesMonotonicity (f : ℝ → ℝ) (A : Set ℝ) :
     (FunctionIncreasing f A ↔ FunctionDecreasing (fun x => -f x) A) ∧
       (FunctionDecreasing f A ↔ FunctionIncreasing (fun x => -f x) A) := by
   sorry
-
 /--
 `PositiveScalarMultiplesPreserveMonotonicity` TODO
 
@@ -373,7 +370,6 @@ theorem PositiveScalarMultiplesPreserveMonotonicity (f : ℝ → ℝ) (A : Set �
     (FunctionIncreasing f A ↔ FunctionIncreasing (fun x => lam * f x) A) ∧
       (FunctionDecreasing f A ↔ FunctionDecreasing (fun x => lam * f x) A) := by
   sorry
-
 /--
 `MonotoneNeedNotBeStrict` TODO
 
@@ -416,7 +412,6 @@ theorem MonotoneNeedNotBeStrict :
     ∃ (A : Set ℝ) (f : ℝ → ℝ), FunctionIncreasing f A ∧
       ¬ FunctionStrictlyIncreasing f A := by
   sorry
-
 /--
 `FunctionConstant` TODO
 
@@ -497,7 +492,6 @@ Related proof moves: intro, constructor, .mp, .mpr, cases, rcases
 theorem ConstantFunctionCharacterization (f : ℝ → ℝ) (A : Set ℝ) :
     FunctionConstant f A ↔ (FunctionIncreasing f A ∧ FunctionDecreasing f A) := by
   sorry
-
 /--
 `ConstantFunctionsAreBounded` TODO
 
@@ -538,7 +532,6 @@ Related proof moves: intro, use, rcases
 theorem ConstantFunctionsAreBounded (f : ℝ → ℝ) (A : Set ℝ)
     (h : FunctionConstant f A) : ∃ B > 0, ∀ x ∈ A, |f x| ≤ B := by
   sorry
-
 /--
 `ConstantFunctionsAreMonotone` TODO
 
@@ -579,7 +572,6 @@ Related proof moves: intro
 theorem ConstantFunctionsAreMonotone (f : ℝ → ℝ) (A : Set ℝ)
     (h : FunctionConstant f A) : FunctionMonotone f A := by
   sorry
-
 /--
 `MonotoneFunctionAlgebra` TODO
 
@@ -638,7 +630,6 @@ theorem MonotoneFunctionAlgebra (f g : ℝ → ℝ) (A : Set ℝ) :
       (∀ x ∈ A, 0 ≤ f x) → (∀ x ∈ A, 0 ≤ g x) →
       FunctionDecreasing (fun x => f x * g x) A) := by
   sorry
-
 /--
 `StrictlyMonotoneImpliesInjective` TODO
 
@@ -681,7 +672,6 @@ theorem StrictlyMonotoneImpliesInjective (f : ℝ → ℝ) (A : Set ℝ)
     (h : FunctionStrictlyIncreasing f A ∨ FunctionStrictlyDecreasing f A) :
     ∀ x ∈ A, ∀ y ∈ A, f x = f y → x = y := by
   sorry
-
 /--
 `MonotonicityRestriction` TODO
 
@@ -728,7 +718,6 @@ theorem MonotonicityRestriction (f : ℝ → ℝ) (S A : Set ℝ) (hS : S ⊆ A)
     (FunctionStrictlyIncreasing f A → FunctionStrictlyIncreasing f S) ∧
     (FunctionStrictlyDecreasing f A → FunctionStrictlyDecreasing f S) := by
   sorry
-
 /--
 `CompositionOfMonotoneFunctions` TODO
 
@@ -785,7 +774,6 @@ theorem CompositionOfMonotoneFunctions (f g : ℝ → ℝ) (A B : Set ℝ)
     (FunctionDecreasing f A → FunctionIncreasing g B →
       FunctionDecreasing (g ∘ f) A) := by
   sorry
-
 /--
 `InverseOfStrictlyMonotoneBijectionIsStrictlyMonotone` TODO
 
@@ -834,5 +822,4 @@ theorem InverseOfStrictlyMonotoneBijectionIsStrictlyMonotone
     (FunctionStrictlyIncreasing f A → FunctionStrictlyIncreasing f' B) ∧
     (FunctionStrictlyDecreasing f A → FunctionStrictlyDecreasing f' B) := by
   sorry
-
 end LRA.Analysis.Functions

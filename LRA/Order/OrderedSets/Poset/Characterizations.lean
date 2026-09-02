@@ -45,7 +45,6 @@ theorem PosetOrderIsPartialOrder
     (poset : LRA.Order.Poset) :
     LRA.Order.PartialOrder poset.NonStrictOrder := by
   sorry
-
 /--
 `PosetOrderIsReflexive` TODO
 
@@ -88,7 +87,6 @@ theorem PosetOrderIsReflexive
     (poset : LRA.Order.Poset) :
     LRA.Relation.Reflexive poset.NonStrictOrder := by
   sorry
-
 /--
 `PosetOrderIsAntisymmetric` TODO
 
@@ -131,7 +129,6 @@ theorem PosetOrderIsAntisymmetric
     (poset : LRA.Order.Poset) :
     LRA.Relation.Antisymmetric poset.NonStrictOrder := by
   sorry
-
 /--
 `PosetOrderIsTransitive` TODO
 
@@ -174,5 +171,4 @@ theorem PosetOrderIsTransitive
     (poset : LRA.Order.Poset) :
     LRA.Relation.Transitive poset.NonStrictOrder := by
   sorry
-
 end LRA.Order.OrderedSets.Poset

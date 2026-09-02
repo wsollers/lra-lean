@@ -139,7 +139,6 @@ theorem AlgebraicLatticeJoinOrderIsOrderLattice
     (laws : LRA.AlgebraicStructures.LatticeLaws join meet) :
     LRA.Order.Lattice (OrderFromJoin join) := by
   sorry
-
 /--
 `AlgebraicLatticeMeetOrderIsOrderLattice` TODO
 
@@ -186,7 +185,6 @@ theorem AlgebraicLatticeMeetOrderIsOrderLattice
     (laws : LRA.AlgebraicStructures.LatticeLaws join meet) :
     LRA.Order.Lattice (OrderFromMeet meet) := by
   sorry
-
 /--
 `OrderLatticeOperationsAreAlgebraic` TODO
 
@@ -243,5 +241,4 @@ theorem OrderLatticeOperationsAreAlgebraic
       forall left right : Carrier, LRA.Order.Meet relation left right (meet left right)) :
     LRA.AlgebraicStructures.LatticeLaws join meet := by
   sorry
-
 end LRA.Order.Interop.AlgebraicLattice

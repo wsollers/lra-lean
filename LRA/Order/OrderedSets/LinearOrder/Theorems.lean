@@ -50,7 +50,6 @@ theorem TotalImpliesReflexive
     (relationIsTotal : LRA.Relation.Total relation) :
     LRA.Relation.Reflexive relation := by
   sorry
-
 /--
 `LinearOrderIsPartialOrder` TODO
 
@@ -97,7 +96,6 @@ theorem LinearOrderIsPartialOrder
     (relationIsLinearOrder : LinearOrder relation) :
     PartialOrder relation := by
   sorry
-
 /--
 `LinearOrderIsTotal` TODO
 
@@ -144,5 +142,4 @@ theorem LinearOrderIsTotal
     (relationIsLinearOrder : LinearOrder relation) :
     LRA.Relation.Total relation := by
   sorry
-
 end LRA.Order

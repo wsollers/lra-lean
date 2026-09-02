@@ -194,7 +194,6 @@ theorem archimedean_integer_part
         (real_extension.DenseOrderedFieldEmbedding.ToReal
           (rational_extension.IntegerEmbedding.ToField upper)) := by
   sorry
-
 /--
 `nth_root_exists_for_nonnegative_reals` TODO
 
@@ -251,7 +250,6 @@ theorem nth_root_exists_for_nonnegative_reals
       real_model.signature.le real_model.signature.zero root ∧
         is_nth_root real_model degree root radicand := by
   sorry
-
 /--
 `complete_archimedean_ordered_field_unique` TODO
 
@@ -300,5 +298,4 @@ theorem complete_archimedean_ordered_field_unique
         first.signature second.signature comparison ∧
       LRA.Function.Surjective comparison := by
   sorry
-
 end LRA.NumberSystems.RealNumbers.Extensions

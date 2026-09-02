@@ -362,7 +362,6 @@ theorem MonotoneConvergenceTheoremIncreasing {x : RealSequence}
     (hinc : IsIncreasing x) (hbdd : BoundedAboveSeq x) :
     ∃ L, ConvergesTo x L ∧ IsSupremum L (Set.range x) := by
   sorry
-
 /--
 `MonotoneConvergenceTheoremDecreasing` TODO
 
@@ -405,7 +404,6 @@ theorem MonotoneConvergenceTheoremDecreasing {x : RealSequence}
     (hdec : IsDecreasing x) (hbdd : BoundedBelowSeq x) :
     ∃ L, ConvergesTo x L ∧ IsInfimum L (Set.range x) := by
   sorry
-
 /--
 `StrictIncreasingImpliesIncreasing` TODO
 
@@ -446,7 +444,6 @@ Related proof moves: TODO
 theorem StrictIncreasingImpliesIncreasing {x : RealSequence}
     (h : IsStrictlyIncreasing x) : IsIncreasing x := by
   sorry
-
 /--
 `StrictDecreasingImpliesDecreasing` TODO
 
@@ -487,7 +484,6 @@ Related proof moves: TODO
 theorem StrictDecreasingImpliesDecreasing {x : RealSequence}
     (h : IsStrictlyDecreasing x) : IsDecreasing x := by
   sorry
-
 /--
 `BoundedMonotoneSequenceEquivalencesIncr` TODO
 
@@ -530,7 +526,6 @@ theorem BoundedMonotoneSequenceEquivalencesIncr {x : RealSequence}
     (h : IsIncreasing x) :
     (∃ L, ConvergesTo x L) ↔ BoundedAboveSeq x := by
   sorry
-
 /--
 `BoundedMonotoneSequenceEquivalencesDecr` TODO
 
@@ -573,7 +568,6 @@ theorem BoundedMonotoneSequenceEquivalencesDecr {x : RealSequence}
     (h : IsDecreasing x) :
     (∃ L, ConvergesTo x L) ↔ BoundedBelowSeq x := by
   sorry
-
 /--
 `IncreasingBoundedBelowByFirstTerm` TODO
 
@@ -614,7 +608,6 @@ Related proof moves: intro
 theorem IncreasingBoundedBelowByFirstTerm {x : RealSequence}
     (h : IsIncreasing x) : ∀ n, x 0 ≤ x n := by
   sorry
-
 /--
 `DecreasingBoundedAboveByFirstTerm` TODO
 
@@ -655,7 +648,6 @@ Related proof moves: intro
 theorem DecreasingBoundedAboveByFirstTerm {x : RealSequence}
     (h : IsDecreasing x) : ∀ n, x n ≤ x 0 := by
   sorry
-
 /--
 `BoundedMonotoneSequenceEquivalences` TODO
 
@@ -698,7 +690,6 @@ theorem BoundedMonotoneSequenceEquivalences {x : RealSequence}
     (h : IsMonotoneSeq x) :
     (∃ L, ConvergesTo x L) ↔ BoundedSeq x := by
   sorry
-
 /--
 `EventuallyMonotoneConvergenceTheoremIncr` TODO
 
@@ -741,7 +732,6 @@ theorem EventuallyMonotoneConvergenceTheoremIncr {x : RealSequence}
     (h : IsEventuallyIncreasing x) (hbdd : BoundedAboveSeq x) :
     ∃ L, ConvergesTo x L := by
   sorry
-
 /--
 `EventuallyMonotoneConvergenceTheoremDecr` TODO
 
@@ -784,7 +774,6 @@ theorem EventuallyMonotoneConvergenceTheoremDecr {x : RealSequence}
     (h : IsEventuallyDecreasing x) (hbdd : BoundedBelowSeq x) :
     ∃ L, ConvergesTo x L := by
   sorry
-
 /--
 `EventuallyMonotoneConvergenceTheorem` TODO
 
@@ -827,7 +816,6 @@ theorem EventuallyMonotoneConvergenceTheorem {x : RealSequence}
     (h : IsEventuallyMonotone x) (hbdd : BoundedSeq x) :
     ∃ L, ConvergesTo x L := by
   sorry
-
 /--
 `UnboundedMonotoneDivergencePos` TODO
 
@@ -870,7 +858,6 @@ theorem UnboundedMonotoneDivergencePos {x : RealSequence}
     (hinc : IsIncreasing x) (hunbdd : ¬ BoundedAboveSeq x) :
     DivergesToPosInf x := by
   sorry
-
 /--
 `UnboundedMonotoneDivergenceNeg` TODO
 
@@ -913,7 +900,6 @@ theorem UnboundedMonotoneDivergenceNeg {x : RealSequence}
     (hdec : IsDecreasing x) (hunbdd : ¬ BoundedBelowSeq x) :
     DivergesToNegInf x := by
   sorry
-
 /--
 `TranslationPreservesIncreasing` TODO
 
@@ -954,7 +940,6 @@ Related proof moves: TODO
 theorem TranslationPreservesIncreasing {x : RealSequence} {c : ℝ}
     (h : IsIncreasing x) : IsIncreasing (fun n => x n + c) := by
   sorry
-
 /--
 `TranslationPreservesDecreasing` TODO
 
@@ -995,7 +980,6 @@ Related proof moves: TODO
 theorem TranslationPreservesDecreasing {x : RealSequence} {c : ℝ}
     (h : IsDecreasing x) : IsDecreasing (fun n => x n + c) := by
   sorry
-
 /--
 `PositiveScalarPreservesIncreasing` TODO
 
@@ -1036,7 +1020,6 @@ Related proof moves: TODO
 theorem PositiveScalarPreservesIncreasing {x : RealSequence} {α : ℝ}
     (h : IsIncreasing x) (hα : α > 0) : IsIncreasing (fun n => α * x n) := by
   sorry
-
 /--
 `NegativeScalarReversesIncreasing` TODO
 
@@ -1077,7 +1060,6 @@ Related proof moves: TODO
 theorem NegativeScalarReversesIncreasing {x : RealSequence} {α : ℝ}
     (h : IsIncreasing x) (hα : α < 0) : IsDecreasing (fun n => α * x n) := by
   sorry
-
 /--
 `NegationReversesIncreasing` TODO
 
@@ -1118,7 +1100,6 @@ Related proof moves: TODO
 theorem NegationReversesIncreasing {x : RealSequence}
     (h : IsIncreasing x) : IsDecreasing (fun n => -x n) := by
   sorry
-
 /--
 `NegationReversesDecreasing` TODO
 
@@ -1159,5 +1140,4 @@ Related proof moves: TODO
 theorem NegationReversesDecreasing {x : RealSequence}
     (h : IsDecreasing x) : IsIncreasing (fun n => -x n) := by
   sorry
-
 end LRA.Analysis.Sequences

@@ -101,7 +101,6 @@ Related proof moves: TODO
 -/
 theorem additive_group_laws (rational_data : IntegerAndPositiveNaturalData) : AdditiveGroupLaws rational_data := by
   sorry
-
 /--
 `MultiplicativeAndDistributiveLaws` TODO
 
@@ -206,7 +205,6 @@ Related proof moves: TODO
 theorem multiplicative_and_distributive_laws (rational_data : IntegerAndPositiveNaturalData) :
     MultiplicativeAndDistributiveLaws rational_data := by
   sorry
-
 /--
 `IsReciprocal` TODO
 
@@ -297,7 +295,6 @@ theorem reciprocal_exists_uniquely (rational_data : IntegerAndPositiveNaturalDat
       IsReciprocal rational_data value reciprocal ∧
       ∀ other, IsReciprocal rational_data value other → other = reciprocal := by
   sorry
-
 /--
 `inverse` TODO
 
@@ -386,7 +383,6 @@ theorem inverse_is_two_sided (rational_data : IntegerAndPositiveNaturalData)
     (value : Carrier rational_data) (value_nonzero : value ≠ zero rational_data) :
     IsReciprocal rational_data value (inverse rational_data value value_nonzero) := by
   sorry
-
 /--
 `FieldStructure` TODO
 
@@ -473,7 +469,6 @@ Related proof moves: TODO
 -/
 theorem field_structure (rational_data : IntegerAndPositiveNaturalData) : FieldStructure rational_data := by
   sorry
-
 /--
 `StrictTotalOrder` TODO
 
@@ -566,7 +561,6 @@ Related proof moves: TODO
 -/
 theorem strict_total_order (rational_data : IntegerAndPositiveNaturalData) : StrictTotalOrder rational_data := by
   sorry
-
 /--
 `OrderedFieldCompatibility` TODO
 
@@ -663,7 +657,6 @@ Related proof moves: TODO
 theorem ordered_field_compatibility (rational_data : IntegerAndPositiveNaturalData) :
     OrderedFieldCompatibility rational_data := by
   sorry
-
 /--
 `OrderedFieldStructure` TODO
 
@@ -742,5 +735,4 @@ Related proof moves: TODO
 -/
 theorem ordered_field_structure (rational_data : IntegerAndPositiveNaturalData) : OrderedFieldStructure rational_data := by
   sorry
-
 end LRA.NumberSystems.RationalNumbers.RationalQuotientFractions

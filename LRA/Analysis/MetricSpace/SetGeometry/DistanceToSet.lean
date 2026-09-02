@@ -159,7 +159,6 @@ theorem distanceSet_nonempty
     (set_nonempty : S.Nonempty) :
     (distanceSet x S).Nonempty := by
   sorry
-
 /--
 `distanceSet_bddBelow` TODO
 
@@ -208,7 +207,6 @@ theorem distanceSet_bddBelow
     (S : Set X) :
     BddBelow (distanceSet x S) := by
   sorry
-
 /--
 `distanceToSet_isGLB` TODO
 
@@ -259,7 +257,6 @@ theorem distanceToSet_isGLB
     (set_nonempty : S.Nonempty) :
     IsGLB (distanceSet x S) (distanceToSet x S) := by
   sorry
-
 /--
 `distanceToSet_le_distance_to_point_of_mem` TODO
 
@@ -312,7 +309,6 @@ theorem distanceToSet_le_distance_to_point_of_mem
     (point_in_set : a ∈ A) :
     distanceToSet x A ≤ dist x a := by
   sorry
-
 /--
 `distanceToSet_eq_zero_of_mem` TODO
 
@@ -363,5 +359,4 @@ theorem distanceToSet_eq_zero_of_mem
     (point_in_set : x ∈ A) :
     distanceToSet x A = 0 := by
   sorry
-
 end LRA.Analysis.MetricSpace

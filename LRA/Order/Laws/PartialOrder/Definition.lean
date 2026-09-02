@@ -94,7 +94,6 @@ Related proof moves: intro
 -/
 theorem LeRefl [LE R] [PartialOrderLaws R] : forall a : R, a <= a := by
   sorry
-
 /--
 `LeAntisymm` TODO
 
@@ -135,7 +134,6 @@ Related proof moves: intro
 theorem LeAntisymm [LE R] [PartialOrderLaws R] :
     forall a b : R, a <= b -> b <= a -> a = b := by
   sorry
-
 /--
 `LeTrans` TODO
 
@@ -176,7 +174,6 @@ Related proof moves: intro
 theorem LeTrans [LE R] [PartialOrderLaws R] :
     forall a b c : R, a <= b -> b <= c -> a <= c := by
   sorry
-
 end Wrappers
 
 end LRA.Order

@@ -151,7 +151,6 @@ theorem diameterSet_mono
     (set_inclusion : A ⊆ B) :
     diameterSet A ⊆ diameterSet B := by
   sorry
-
 /--
 `diameter_monotone_under_inclusion` TODO
 
@@ -204,5 +203,4 @@ theorem diameter_monotone_under_inclusion
     (B_diameterSet_bddAbove : BddAbove (diameterSet B)) :
     diameter A ≤ diameter B := by
   sorry
-
 end LRA.Analysis.MetricSpace

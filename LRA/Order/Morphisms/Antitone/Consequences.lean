@@ -63,5 +63,4 @@ theorem Antitone.comp_antitone_is_monotone
     Monotone sourceRelation targetRelation
       (fun input => second (first input)) := by
   sorry
-
 end LRA.Order

@@ -48,5 +48,4 @@ theorem PreorderRelatesSelf
     (element : Carrier) :
     preorder.relation element element := by
   sorry
-
 end LRA.Order.OrderedSets.Preorder

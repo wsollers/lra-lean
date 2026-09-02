@@ -11,5 +11,4 @@ universe u
 instance {R : Type u} [_root_.CommGroup R] [_root_.PartialOrder R]
     [_root_.IsOrderedMonoid R] [Nonempty R] : OrderedGroupLaws R := by
   sorry
-
 end LRA.AlgebraicStructures

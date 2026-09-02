@@ -96,7 +96,6 @@ Related proof moves: TODO
 theorem equivalent_is_equivalence_relation :
     Equivalence (equivalent rational_model) := by
   sorry
-
 /--
 `representative_setoid` TODO
 
@@ -229,7 +228,6 @@ theorem constant_degenerate_sequence_is_admissible
         representative.interval index =
           degenerate_interval rational_model value := by
   sorry
-
 /--
 `rational_representative` TODO
 
@@ -372,5 +370,4 @@ theorem rational_embedding_is_injective :
         rational_embedding rational_model second →
       first = second := by
   sorry
-
 end LRA.NumberSystems.RealNumbers.PrimitiveIntervals

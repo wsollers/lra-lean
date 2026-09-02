@@ -168,9 +168,7 @@ Related proof moves: intro
 -/
 theorem MonotoneBoundedVariation (α : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b)
     (hmono : MonotoneOn α (Set.Icc a b)) : HasBoundedVariation α a b := by
-
   sorry
-
 /--
 `HasRiemannStieltjesIntegral` TODO
 
@@ -299,7 +297,6 @@ theorem rs_continuous_bv_existence (hab : a ≤ b)
     (hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b))
     (hbv : HasBoundedVariation α a b) : IsRiemannStieltjesIntegrable f α a b := by
   sorry
-
 /--
 `rs_bilinearity` TODO
 
@@ -346,7 +343,6 @@ theorem rs_bilinearity (Lfα Lgα : ℝ) (hf : HasRiemannStieltjesIntegral f α 
     (∀ Lfβ : ℝ, HasRiemannStieltjesIntegral f β a b Lfβ →
       HasRiemannStieltjesIntegral f (fun x => lam * α x + μ * β x) a b (lam * Lfα + μ * Lfβ)) := by
   sorry
-
 /--
 `rs_interval_additivity` TODO
 
@@ -391,7 +387,6 @@ theorem rs_interval_additivity (c Lab Lac Lcb : ℝ) (hac : a ≤ c) (hcb : c �
     (hac' : HasRiemannStieltjesIntegral f α a c Lac)
     (hcb' : HasRiemannStieltjesIntegral f α c b Lcb) : Lab = Lac + Lcb := by
   sorry
-
 /--
 `rs_integration_by_parts` TODO
 
@@ -432,7 +427,6 @@ Related proof moves: constructor, cases, rcases, use
 theorem rs_integration_by_parts (L : ℝ) (hL : HasRiemannStieltjesIntegral f α a b L) :
     ∃ L', HasRiemannStieltjesIntegral α f a b L' ∧ L + L' = f b * α b - f a * α a := by
   sorry
-
 /--
 `rs_c1_reduction` TODO
 
@@ -479,7 +473,6 @@ theorem rs_c1_reduction (hab : a ≤ b)
     (hLint : HasRiemannIntegral (fun x => f x * αD x) a b Lint) :
     HasRiemannStieltjesIntegral f α a b Lint := by
   sorry
-
 /--
 `rs_step_integrator_finite_sum` TODO
 
@@ -528,7 +521,6 @@ theorem rs_step_integrator_finite_sum (n : ℕ) (c : Fin n → ℝ) (hc : ∀ i,
     (hcont : ∀ i, LRA.Analysis.Continuity.ContinuousAtPoint f (Set.Icc a b) (c i)) :
     HasRiemannStieltjesIntegral f α a b (∑ i, f (c i) * jump i) := by
   sorry
-
 /--
 `rs_shared_jump_failure_witness` TODO
 
@@ -571,5 +563,4 @@ theorem rs_shared_jump_failure_witness (c : ℝ) (hc : c ∈ Set.Ioo (0:ℝ) 1) 
     ¬ IsRiemannStieltjesIntegrable (fun x => if x ≥ c then (1:ℝ) else 0)
       (fun x => if x ≥ c then (1:ℝ) else 0) 0 1 := by
   sorry
-
 end LRA.Analysis.Integration

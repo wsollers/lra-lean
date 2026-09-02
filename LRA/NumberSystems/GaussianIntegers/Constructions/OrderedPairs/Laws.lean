@@ -52,7 +52,6 @@ Related proof moves: TODO
 theorem addition_is_associative (a b c : GaussianInteger R) :
     (a + b) + c = a + (b + c) := by
   sorry
-
 /--
 `addition_is_commutative` TODO
 
@@ -93,7 +92,6 @@ Related proof moves: TODO
 theorem addition_is_commutative (a b : GaussianInteger R) :
     a + b = b + a := by
   sorry
-
 /--
 `zero_add_gaussian` TODO
 
@@ -132,7 +130,6 @@ Related proof moves: TODO
 -/
 theorem zero_add_gaussian (a : GaussianInteger R) : 0 + a = a := by
   sorry
-
 /--
 `add_zero_gaussian` TODO
 
@@ -171,7 +168,6 @@ Related proof moves: TODO
 -/
 theorem add_zero_gaussian (a : GaussianInteger R) : a + 0 = a := by
   sorry
-
 /--
 `neg_add_cancel_gaussian` TODO
 
@@ -210,7 +206,6 @@ Related proof moves: TODO
 -/
 theorem neg_add_cancel_gaussian (a : GaussianInteger R) : -a + a = 0 := by
   sorry
-
 /--
 `add_neg_cancel_gaussian` TODO
 
@@ -249,7 +244,6 @@ Related proof moves: TODO
 -/
 theorem add_neg_cancel_gaussian (a : GaussianInteger R) : a + -a = 0 := by
   sorry
-
 /--
 `multiplication_is_associative` TODO
 
@@ -290,7 +284,6 @@ Related proof moves: TODO
 theorem multiplication_is_associative (a b c : GaussianInteger R) :
     (a * b) * c = a * (b * c) := by
   sorry
-
 /--
 `multiplication_is_commutative` TODO
 
@@ -331,7 +324,6 @@ Related proof moves: TODO
 theorem multiplication_is_commutative (a b : GaussianInteger R) :
     a * b = b * a := by
   sorry
-
 /--
 `one_mul_gaussian` TODO
 
@@ -370,7 +362,6 @@ Related proof moves: TODO
 -/
 theorem one_mul_gaussian (a : GaussianInteger R) : 1 * a = a := by
   sorry
-
 /--
 `mul_one_gaussian` TODO
 
@@ -409,7 +400,6 @@ Related proof moves: TODO
 -/
 theorem mul_one_gaussian (a : GaussianInteger R) : a * 1 = a := by
   sorry
-
 /--
 `zero_mul_gaussian` TODO
 
@@ -448,7 +438,6 @@ Related proof moves: TODO
 -/
 theorem zero_mul_gaussian (a : GaussianInteger R) : 0 * a = 0 := by
   sorry
-
 /--
 `mul_zero_gaussian` TODO
 
@@ -487,7 +476,6 @@ Related proof moves: TODO
 -/
 theorem mul_zero_gaussian (a : GaussianInteger R) : a * 0 = 0 := by
   sorry
-
 /--
 `left_distributive_gaussian` TODO
 
@@ -528,7 +516,6 @@ Related proof moves: TODO
 theorem left_distributive_gaussian (a b c : GaussianInteger R) :
     a * (b + c) = a * b + a * c := by
   sorry
-
 /--
 `right_distributive_gaussian` TODO
 
@@ -569,7 +556,6 @@ Related proof moves: TODO
 theorem right_distributive_gaussian (a b c : GaussianInteger R) :
     (a + b) * c = a * c + b * c := by
   sorry
-
 /--
 `imaginary_unit_squared` TODO
 
@@ -610,7 +596,6 @@ Related proof moves: TODO
 theorem imaginary_unit_squared :
     imaginaryUnit * imaginaryUnit = -(1 : GaussianInteger R) := by
   sorry
-
 end RingTheorems
 
 end LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs

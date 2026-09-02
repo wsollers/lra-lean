@@ -51,7 +51,6 @@ theorem UnionPreservesUpperBounds [LE S] {A B : Set S} {u : S}
     (rightUpperBound : IsUpperBound u B) :
     IsUpperBound u (A ∪ B) := by
   sorry
-
 /--
 `UnionPreservesLowerBounds` TODO
 
@@ -96,7 +95,6 @@ theorem UnionPreservesLowerBounds [LE S] {A B : Set S} {l : S}
     (rightLowerBound : IsLowerBound l B) :
     IsLowerBound l (A ∪ B) := by
   sorry
-
 /--
 `UnionBoundedAboveIffPiecesBoundedAbove` TODO
 
@@ -137,7 +135,6 @@ Related proof moves: constructor, .mp, .mpr, cases, rcases
 theorem UnionBoundedAboveIffPiecesBoundedAbove [LE S] {A B : Set S} :
     IsBoundedAbove (A ∪ B) ↔ IsBoundedAbove A ∧ IsBoundedAbove B := by
   sorry
-
 /--
 `UnionBoundedBelowIffPiecesBoundedBelow` TODO
 
@@ -178,7 +175,6 @@ Related proof moves: constructor, .mp, .mpr, cases, rcases
 theorem UnionBoundedBelowIffPiecesBoundedBelow [LE S] {A B : Set S} :
     IsBoundedBelow (A ∪ B) ↔ IsBoundedBelow A ∧ IsBoundedBelow B := by
   sorry
-
 /--
 `UnionBoundedIffPiecesBounded` TODO
 
@@ -219,7 +215,6 @@ Related proof moves: constructor, .mp, .mpr, cases, rcases
 theorem UnionBoundedIffPiecesBounded [LE S] {A B : Set S} :
     IsBounded (A ∪ B) ↔ IsBounded A ∧ IsBounded B := by
   sorry
-
 /--
 `SubsetsPreserveUpperBounds` TODO
 
@@ -264,7 +259,6 @@ theorem SubsetsPreserveUpperBounds [Preorder S] {C A : Set S} {u : S}
     (upperBoundHypothesis : IsUpperBound u A) :
     IsUpperBound u C := by
   sorry
-
 /--
 `SubsetsPreserveLowerBounds` TODO
 
@@ -309,7 +303,6 @@ theorem SubsetsPreserveLowerBounds [Preorder S] {C A : Set S} {l : S}
     (lowerBoundHypothesis : IsLowerBound l A) :
     IsLowerBound l C := by
   sorry
-
 /--
 `IntersectionsInheritUpperBounds` TODO
 
@@ -352,7 +345,6 @@ theorem IntersectionsInheritUpperBounds [LE S] {A B : Set S} {u : S}
     (upperBoundHypothesis : IsUpperBound u A) :
     IsUpperBound u (A ∩ B) := by
   sorry
-
 /--
 `IntersectionsInheritLowerBounds` TODO
 
@@ -395,7 +387,6 @@ theorem IntersectionsInheritLowerBounds [LE S] {A B : Set S} {l : S}
     (lowerBoundHypothesis : IsLowerBound l A) :
     IsLowerBound l (A ∩ B) := by
   sorry
-
 /--
 `DifferencesInheritUpperBounds` TODO
 
@@ -438,7 +429,6 @@ theorem DifferencesInheritUpperBounds [LE S] {A B : Set S} {u : S}
     (upperBoundHypothesis : IsUpperBound u A) :
     IsUpperBound u (A \ B) := by
   sorry
-
 /--
 `DifferencesInheritLowerBounds` TODO
 
@@ -481,7 +471,6 @@ theorem DifferencesInheritLowerBounds [LE S] {A B : Set S} {l : S}
     (lowerBoundHypothesis : IsLowerBound l A) :
     IsLowerBound l (A \ B) := by
   sorry
-
 /--
 `ComplementsInheritUpperBounds` TODO
 
@@ -524,7 +513,6 @@ theorem ComplementsInheritUpperBounds [LE S] {A T : Set S} {u : S}
     (upperBoundHypothesis : IsUpperBound u T) :
     IsUpperBound u (T \ A) := by
   sorry
-
 /--
 `ComplementsInheritLowerBounds` TODO
 
@@ -567,5 +555,4 @@ theorem ComplementsInheritLowerBounds [LE S] {A T : Set S} {l : S}
     (lowerBoundHypothesis : IsLowerBound l T) :
     IsLowerBound l (T \ A) := by
   sorry
-
 end LRA.Analysis.Bounds.Algebra

@@ -48,7 +48,6 @@ theorem KPeriodicity (a : ℕ → ℝ) (k : ℕ) (hk : 2 ≤ k) (L : ℝ) :
     Filter.Tendsto a Filter.atTop (nhds L) ↔
       ∀ r < k, Filter.Tendsto (fun n => a (k * n + r)) Filter.atTop (nhds L) := by
   sorry
-
 /--
 `ResidueDivergence` TODO
 
@@ -95,7 +94,6 @@ theorem ResidueDivergence (a : ℕ → ℝ) (k r s : ℕ) (hr : r < k) (hs : s <
     (hM : Filter.Tendsto (fun n => a (k * n + s)) Filter.atTop (nhds M)) :
     ¬ ∃ N, Filter.Tendsto a Filter.atTop (nhds N) := by
   sorry
-
 /--
 `AlternatingSeriesTest` TODO
 
@@ -144,5 +142,4 @@ theorem AlternatingSeriesTest (a : ℕ → ℝ)
       (fun n => ∑ i ∈ Finset.range n, (-1 : ℝ) ^ i * a (i + 1))
       Filter.atTop (nhds L) := by
   sorry
-
 end LRA.Analysis.RealAnalysis

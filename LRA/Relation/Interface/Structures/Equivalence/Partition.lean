@@ -160,7 +160,6 @@ theorem PartitionBlockContained
     candidate ∈ EquivalenceClass ambient relation representative.1 ->
       candidate ∈ ambient := by
   sorry
-
 /--
 `EquivalenceClassesCoverAmbient` TODO
 
@@ -215,7 +214,6 @@ theorem EquivalenceClassesCoverAmbient
       ∃ representative : { candidate : Element // candidate ∈ ambient },
         element ∈ EquivalenceClass ambient relation representative.1 := by
   sorry
-
 /--
 `EquivalenceClassBlocksNonempty` TODO
 
@@ -270,7 +268,6 @@ theorem EquivalenceClassBlocksNonempty
       ∃ candidate : Element,
         candidate ∈ EquivalenceClass ambient relation representative.1 := by
   sorry
-
 /--
 `EquivalenceClassBlocksDisjointOrEqual` TODO
 
@@ -331,7 +328,6 @@ theorem EquivalenceClassBlocksDisjointOrEqual
         EquivalenceClass ambient relation first.1 =
           EquivalenceClass ambient relation second.1 := by
   sorry
-
 /--
 `PartitionFromEquivalence` TODO
 

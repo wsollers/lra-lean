@@ -1,5 +1,7 @@
 namespace LRA.Metamathematics
 
+universe u v
+
 /-!
 `MetatheoremTargets` states, once, generically, and independently of any
 particular proof system or semantics, the SHAPE of the two theorems every
@@ -59,6 +61,19 @@ def IsComplete {Formula : Type u} {Theory : Type v}
     (pairing : ProofSemanticsPairing Formula Theory) : Prop :=
   ∀ (Γ : Theory) (φ : Formula), pairing.Satisfies Γ φ → pairing.Provable Γ φ
 
+/-- A named, non-vacuous proposition standing for the eventual Takeuti
+soundness instance. Kept abstract here because the concrete proof-system and
+semantic carriers are not yet wired into this generic owner. -/
+def TakeutiSoundnessObligation : Prop :=
+  ∃ (Formula : Type u) (Theory : Type v) (pairing : ProofSemanticsPairing Formula Theory),
+    IsSound pairing
+
+/-- A named, non-vacuous proposition standing for the eventual Takeuti
+completeness instance. -/
+def TakeutiCompletenessObligation : Prop :=
+  ∃ (Formula : Type u) (Theory : Type v) (pairing : ProofSemanticsPairing Formula Theory),
+    IsComplete pairing
+
 /-- Named forward reference, not yet dischargeable: the soundness
 obligation for `LRA.Logic.Proof.System.Takeuti`'s sequent calculus (LK or
 LJ) paired against `LRA.Logic.Semantics.Satisfaction`, once Takeuti's
@@ -67,16 +82,14 @@ own derivation/judgement machinery is far enough along to instantiate
 not as a claim that it currently holds or has been attempted -- Takeuti
 is explicitly work-in-progress, and this theorem should remain `sorry`
 until that system stabilizes enough to state the instantiation precisely. -/
-theorem takeutiSoundnessObligation : True := by
+theorem takeutiSoundnessObligation : TakeutiSoundnessObligation := by
   sorry
-
 /-- Named forward reference, not yet dischargeable: the corresponding
 completeness obligation. Flagged separately from soundness because,
 historically and in general, completeness is the harder and more
 system-specific of the two directions, and because (per the doc-comment
 on `IsComplete` above) it may not even be the right target for every
 semantics this repository eventually supports. -/
-theorem takeutiCompletenessObligation : True := by
+theorem takeutiCompletenessObligation : TakeutiCompletenessObligation := by
   sorry
-
 end LRA.Metamathematics

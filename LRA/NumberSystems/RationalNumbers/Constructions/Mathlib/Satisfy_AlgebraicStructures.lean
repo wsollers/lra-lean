@@ -9,10 +9,8 @@ open LRA.AlgebraicStructures
 theorem satisfiesField :
     FieldLaws Carrier := by
   sorry
-
 /-- The `Rat`-backed rational construction canonically realizes ordered field structure. -/
 theorem satisfiesOrderedField :
     OrderedFieldLaws Carrier := by
   sorry
-
 end LRA.NumberSystems.RationalNumbers.Constructions.Mathlib

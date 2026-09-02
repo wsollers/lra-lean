@@ -503,7 +503,6 @@ theorem landauNaturalToIntegerIsPositive :
     ∀ denominator : LandauElement,
       0 < landauNaturalToInteger denominator := by
   sorry
-
 /--
 `landauEveryPositiveIntegerHasLandauDenominator` TODO
 
@@ -550,7 +549,6 @@ theorem landauEveryPositiveIntegerHasLandauDenominator :
       ∃ denominator : LandauElement,
         landauNaturalToInteger denominator = integer := by
   sorry
-
 /--
 `landauNaturalToIntegerOneMapsToOne` TODO
 
@@ -591,7 +589,6 @@ Related proof moves: TODO
 theorem landauNaturalToIntegerOneMapsToOne :
     landauNaturalToInteger LandauPeanoSystem.base = 1 := by
   sorry
-
 /--
 `landauNaturalToIntegerPreservesMultiplication` TODO
 
@@ -636,7 +633,6 @@ theorem landauNaturalToIntegerPreservesMultiplication :
       landauNaturalToInteger (LandauMultiplication LandauPeanoSystem first second) =
         landauNaturalToInteger first * landauNaturalToInteger second := by
   sorry
-
 /--
 `landauIntegerAndPositiveNaturalData` TODO
 
@@ -1361,7 +1357,6 @@ theorem landauRationalAbsoluteValueZero :
     landauRationalAbsoluteValue landauRationalNumberSystem.FieldModel.signature.zero =
       landauRationalNumberSystem.FieldModel.signature.zero := by
   sorry
-
 /--
 `landauRationalAbsoluteValueNegation` TODO
 
@@ -1408,7 +1403,6 @@ theorem landauRationalAbsoluteValueNegation :
           (landauRationalNumberSystem.FieldModel.signature.neg value) =
         landauRationalAbsoluteValue value := by
   sorry
-
 /--
 `landauRationalTriangleInequality` TODO
 
@@ -1461,7 +1455,6 @@ theorem landauRationalTriangleInequality :
           (landauRationalAbsoluteValue first)
           (landauRationalAbsoluteValue second)) := by
   sorry
-
 /--
 `landauRationalAbsoluteValueNonnegative` TODO
 
@@ -1508,7 +1501,6 @@ theorem landauRationalAbsoluteValueNonnegative :
         landauRationalNumberSystem.FieldModel.signature.zero
         (landauRationalAbsoluteValue value) := by
   sorry
-
 /--
 `landauRationalAbsoluteValueEqZeroIff` TODO
 
@@ -1555,7 +1547,6 @@ theorem landauRationalAbsoluteValueEqZeroIff :
           landauRationalNumberSystem.FieldModel.signature.zero ↔
         value = landauRationalNumberSystem.FieldModel.signature.zero := by
   sorry
-
 /--
 `landauRationalAbsoluteValueMultiplication` TODO
 
@@ -1606,7 +1597,6 @@ theorem landauRationalAbsoluteValueMultiplication :
           (landauRationalAbsoluteValue first)
           (landauRationalAbsoluteValue second) := by
   sorry
-
 /--
 `landauRationalAbsoluteValueSelfOrNeg` TODO
 
@@ -1653,7 +1643,6 @@ theorem landauRationalAbsoluteValueSelfOrNeg :
         landauRationalAbsoluteValue value =
           landauRationalNumberSystem.FieldModel.signature.neg value := by
   sorry
-
 /--
 `landauRationalEpsilonSplit` TODO
 
@@ -1710,7 +1699,6 @@ theorem landauRationalEpsilonSplit :
           (landauRationalNumberSystem.FieldModel.signature.add smaller smaller)
           epsilon := by
   sorry
-
 /--
 `landauRationalMetricData` TODO
 
@@ -2021,5 +2009,5 @@ Related proof moves: TODO
 
 -/
 theorem landauCauchyCarrierEq :
-    landauRationalRealExtension.RealModel.Carrier = R_Cauchy :=
+    landauRationalRealExtension.RealModel.Carrier = R_Cauchy := by
   sorry

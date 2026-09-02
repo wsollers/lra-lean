@@ -58,5 +58,4 @@ theorem MinimalElementPrinciple
     ∃ minimalElement,
       MinimalElement strictRelation subset minimalElement := by
   sorry
-
 end LRA.Relation

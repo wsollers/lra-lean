@@ -181,5 +181,4 @@ theorem isomorphic_symm {S : Signature}
     {M : Model.{u} S} {N : Model.{v} S} :
     Isomorphic M N → Isomorphic N M := by
   sorry
-
 end LRA.UniversalAlgebra

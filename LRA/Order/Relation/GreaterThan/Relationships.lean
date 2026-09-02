@@ -52,7 +52,6 @@ theorem GreaterThanIsPartialOrderIff
     (relation : LRA.Relation.Endorelation Alpha) :
     PartialOrder (GreaterThan relation) ↔ PartialOrder relation := by
   sorry
-
 /--
 `GreaterThanIsStrictOrderIff` TODO
 
@@ -97,7 +96,6 @@ theorem GreaterThanIsStrictOrderIff
     (relation : LRA.Relation.Endorelation Alpha) :
     StrictOrder (GreaterThan relation) ↔ StrictOrder relation := by
   sorry
-
 /--
 `GreaterThanIsLinearOrderIff` TODO
 
@@ -142,7 +140,6 @@ theorem GreaterThanIsLinearOrderIff
     (relation : LRA.Relation.Endorelation Alpha) :
     LinearOrder (GreaterThan relation) ↔ LinearOrder relation := by
   sorry
-
 /--
 `GreaterThanIsStrictLinearOrderIff` TODO
 
@@ -187,5 +184,4 @@ theorem GreaterThanIsStrictLinearOrderIff
     (relation : LRA.Relation.Endorelation Alpha) :
     StrictLinearOrder (GreaterThan relation) ↔ StrictLinearOrder relation := by
   sorry
-
 end LRA.Order

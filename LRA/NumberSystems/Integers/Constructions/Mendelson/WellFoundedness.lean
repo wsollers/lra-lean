@@ -53,5 +53,4 @@ theorem induction_on_representatives
         motive (Quotient.mk _ representative)) :
     ∀ value : Carrier positive_data, motive value := by
   sorry
-
 end LRA.NumberSystems.Integers.Mendelson

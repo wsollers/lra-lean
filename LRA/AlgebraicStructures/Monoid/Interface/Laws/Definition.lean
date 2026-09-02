@@ -25,13 +25,11 @@ section Wrappers
 variable {R : Type u}
 
 theorem OneMul [Mul R] [OfNat R 1] [MultiplicativeIdentityLaws R] :
-    ∀ a : R, 1 * a = a :=
+    ∀ a : R, 1 * a = a := by
   sorry
-
 theorem MulOne [Mul R] [OfNat R 1] [MultiplicativeIdentityLaws R] :
-    ∀ a : R, a * 1 = a :=
+    ∀ a : R, a * 1 = a := by
   sorry
-
 end Wrappers
 
 end LRA.AlgebraicStructures

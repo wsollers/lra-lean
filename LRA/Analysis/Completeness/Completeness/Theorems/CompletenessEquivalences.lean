@@ -55,7 +55,6 @@ theorem LubPropertyImpliesIncreasingProcessConvergence
     (leastUpperBoundProperty : HasLeastUpperBoundProperty F) :
     IncreasingBoundedProcessesConverge F := by
   sorry
-
 /--
 `LubPropertyImpliesDecreasingProcessConvergence` TODO
 
@@ -100,7 +99,6 @@ theorem LubPropertyImpliesDecreasingProcessConvergence
     (leastUpperBoundProperty : HasLeastUpperBoundProperty F) :
     DecreasingBoundedProcessesConverge F := by
   sorry
-
 /--
 `MonotoneProcessConvergenceImpliesLubProperty` TODO
 
@@ -147,5 +145,4 @@ theorem MonotoneProcessConvergenceImpliesLubProperty
     (monotoneProcessConvergenceHypothesis : IncreasingBoundedProcessesConverge F) :
     HasLeastUpperBoundProperty F := by
   sorry
-
 end LRA.Analysis.Completeness

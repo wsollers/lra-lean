@@ -151,7 +151,6 @@ theorem GeneratedSigmaAlgebraMembersAreSubsets
     ∀ A, GeneratedSigmaAlgebraCollection ambient generator A →
       A ⊆ ambient := by
   sorry
-
 /--
 `GeneratedSigmaAlgebraEmptyIsMember` TODO
 
@@ -194,7 +193,6 @@ theorem GeneratedSigmaAlgebraEmptyIsMember
     (ambient : SetObject) (generator : SetObject → Prop) :
     GeneratedSigmaAlgebraCollection ambient generator (∅ : SetObject) := by
   sorry
-
 /--
 `GeneratedSigmaAlgebraUnionIsMember` TODO
 
@@ -243,7 +241,6 @@ theorem GeneratedSigmaAlgebraUnionIsMember
       GeneratedSigmaAlgebraCollection ambient generator B →
       GeneratedSigmaAlgebraCollection ambient generator (A ∪ B) := by
   sorry
-
 /--
 `GeneratedSigmaAlgebraIntersectionIsMember` TODO
 
@@ -292,7 +289,6 @@ theorem GeneratedSigmaAlgebraIntersectionIsMember
       GeneratedSigmaAlgebraCollection ambient generator B →
       GeneratedSigmaAlgebraCollection ambient generator (A ∩ B) := by
   sorry
-
 /--
 `GeneratedSigmaAlgebraDifferenceIsMember` TODO
 
@@ -341,7 +337,6 @@ theorem GeneratedSigmaAlgebraDifferenceIsMember
       GeneratedSigmaAlgebraCollection ambient generator B →
       GeneratedSigmaAlgebraCollection ambient generator (A \ B) := by
   sorry
-
 /--
 `GeneratedSigmaAlgebraSymmetricDifferenceIsMember` TODO
 
@@ -390,7 +385,6 @@ theorem GeneratedSigmaAlgebraSymmetricDifferenceIsMember
       GeneratedSigmaAlgebraCollection ambient generator B →
       GeneratedSigmaAlgebraCollection ambient generator (A ∆ B) := by
   sorry
-
 /--
 `GeneratedSigmaAlgebraAmbientIsMember` TODO
 
@@ -433,7 +427,6 @@ theorem GeneratedSigmaAlgebraAmbientIsMember
     (ambient : SetObject) (generator : SetObject → Prop) :
     GeneratedSigmaAlgebraCollection ambient generator ambient := by
   sorry
-
 /--
 `GeneratedSigmaAlgebraCountableUnionIsMember` TODO
 
@@ -484,7 +477,6 @@ theorem GeneratedSigmaAlgebraCountableUnionIsMember
         GeneratedSigmaAlgebraCollection ambient generator
           (HasCountableUnion.countableUnion family) := by
   sorry
-
 /--
 `GeneratedSigmaAlgebra` TODO
 
@@ -597,7 +589,6 @@ theorem GeneratedSigmaAlgebraContainsGenerator
     (G : SetObject) (GIsGenerator : generator G) :
     (GeneratedSigmaAlgebra ambient generator admissible).IsMember G := by
   sorry
-
 /--
 `GeneratedSigmaAlgebraMinimal` TODO
 
@@ -648,7 +639,6 @@ theorem GeneratedSigmaAlgebraMinimal
     ∀ A, (GeneratedSigmaAlgebra ambient generator admissible).IsMember A →
       sigma.IsMember A := by
   sorry
-
 /--
 `BorelSigmaAlgebra` TODO
 

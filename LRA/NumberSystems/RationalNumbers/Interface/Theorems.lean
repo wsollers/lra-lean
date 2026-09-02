@@ -48,5 +48,4 @@ theorem RationalNumberSystemIsCountable
     (rationalSystem : RationalNumberSystem.{u}) :
     LRA.Carrier.IsCountable rationalSystem.FieldModel.Carrier := by
   sorry
-
 end LRA.NumberSystems.RationalNumbers

@@ -50,7 +50,6 @@ Related proof moves: TODO
 theorem RestrictionRestrictsTo :
     RestrictsTo (Restriction original inclusion) original inclusion := by
   sorry
-
 /--
 `RestrictionEqualsCompose` TODO
 
@@ -91,7 +90,6 @@ Related proof moves: TODO
 theorem RestrictionEqualsCompose :
     Restriction original inclusion = Compose original inclusion := by
   sorry
-
 /--
 `RestrictionInjective` TODO
 
@@ -136,7 +134,6 @@ theorem RestrictionInjective
     (inclusionInjective : Injective inclusion) :
     Injective (Restriction original inclusion) := by
   sorry
-
 /--
 `RestrictionSurjectiveOfSurjective` TODO
 
@@ -181,5 +178,4 @@ theorem RestrictionSurjectiveOfSurjective
     (inclusionSurjective : Surjective inclusion) :
     Surjective (Restriction original inclusion) := by
   sorry
-
 end LRA.Function

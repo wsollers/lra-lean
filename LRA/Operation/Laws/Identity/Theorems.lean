@@ -54,7 +54,6 @@ theorem LeftIdentity.apply {Carrier : Type u}
     (element : Carrier) :
     operation identity element = element := by
   sorry
-
 /--
 `RightIdentity.apply` TODO
 
@@ -103,7 +102,6 @@ theorem RightIdentity.apply {Carrier : Type u}
     (element : Carrier) :
     operation element identity = element := by
   sorry
-
 /--
 `TwoSidedIdentity.left` TODO
 
@@ -150,7 +148,6 @@ theorem TwoSidedIdentity.left {Carrier : Type u}
     (law : TwoSidedIdentity operation identity) :
     LeftIdentity operation identity := by
   sorry
-
 /--
 `TwoSidedIdentity.right` TODO
 
@@ -197,7 +194,6 @@ theorem TwoSidedIdentity.right {Carrier : Type u}
     (law : TwoSidedIdentity operation identity) :
     RightIdentity operation identity := by
   sorry
-
 /--
 `TwoSidedIdentity.of_left_right` TODO
 
@@ -246,5 +242,4 @@ theorem TwoSidedIdentity.of_left_right {Carrier : Type u}
     (rightLaw : RightIdentity operation identity) :
     TwoSidedIdentity operation identity := by
   sorry
-
 end LRA.Operation.Laws.Identity

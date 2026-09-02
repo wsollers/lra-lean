@@ -14,8 +14,6 @@ restating per subset. -/
 
 noncomputable instance :
     LRA.AlgebraicStructures.AdditiveCommutativeSemigroupLaws
-      {n // n ∈ PositiveEvenNaturals} :=
-  LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Constructions.ClosedSubsetAdditiveCommutativeSemigroupLaws
-    positiveEvenNaturalsClosedUnderAddition
-
+      {n // n ∈ PositiveEvenNaturals} := by
+  sorry
 end LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Examples

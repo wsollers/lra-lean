@@ -207,5 +207,4 @@ theorem quotientProjectionIsHomomorphism {S : Signature}
     ∃ projection : Homomorphism M (quotientModel congruence),
       ∀ element, projection.map element = Quot.mk _ element := by
   sorry
-
 end LRA.UniversalAlgebra

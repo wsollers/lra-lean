@@ -52,7 +52,6 @@ theorem LatticeHasJoin
     (left right : Alpha) :
     exists join, Join relation left right join := by
   sorry
-
 /--
 `LatticeHasMeet` TODO
 
@@ -101,7 +100,6 @@ theorem LatticeHasMeet
     (left right : Alpha) :
     exists meet, Meet relation left right meet := by
   sorry
-
 /--
 `JoinEqualsRightIffRelated` TODO
 
@@ -150,7 +148,6 @@ theorem JoinEqualsRightIffRelated
     (left right : Alpha) :
     Join relation left right right ↔ relation left right := by
   sorry
-
 /--
 `MeetEqualsLeftIffRelated` TODO
 
@@ -199,7 +196,6 @@ theorem MeetEqualsLeftIffRelated
     (left right : Alpha) :
     Meet relation left right left ↔ relation left right := by
   sorry
-
 /--
 `MeetWithJoinAbsorbs` TODO
 
@@ -252,7 +248,6 @@ theorem MeetWithJoinAbsorbs
     (meetIsMeet : Meet relation left join meet) :
     meet = left := by
   sorry
-
 /--
 `JoinWithMeetAbsorbs` TODO
 
@@ -305,7 +300,6 @@ theorem JoinWithMeetAbsorbs
     (joinIsJoin : Join relation left meet join) :
     join = left := by
   sorry
-
 /--
 `JoinOfMeetsRelatedToMeetWithJoin` TODO
 
@@ -364,7 +358,6 @@ theorem JoinOfMeetsRelatedToMeetWithJoin
     (joinOfMeetsIsJoin : Join relation aMeetB aMeetC joinOfMeets) :
     relation joinOfMeets aMeetBJoinC := by
   sorry
-
 /--
 `JoinWithMeetRelatedToMeetOfJoins` TODO
 
@@ -423,5 +416,4 @@ theorem JoinWithMeetRelatedToMeetOfJoins
     (meetOfJoinsIsMeet : Meet relation aJoinB aJoinC meetOfJoins) :
     relation aJoinBMeetC meetOfJoins := by
   sorry
-
 end LRA.Order

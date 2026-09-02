@@ -17,7 +17,14 @@ instance : OfNat NaturalNumbersUnderAddition 1 := ⟨⟨0⟩⟩
 instance : Nonempty NaturalNumbersUnderAddition := ⟨⟨0⟩⟩
 
 instance :
-    LRA.AlgebraicStructures.MonoidLaws NaturalNumbersUnderAddition := by
-  sorry
-
+    LRA.AlgebraicStructures.MonoidLaws NaturalNumbersUnderAddition where
+  MulAssociative := by
+    intro a b c
+    sorry
+  OneMul := by
+    intro a
+    sorry
+  MulOne := by
+    intro a
+    sorry
 end LRA.AlgebraicStructures.Monoid.Examples

@@ -130,5 +130,4 @@ Related proof moves: TODO
 theorem NaturalSubtractionFailsAssociative :
     FailsAssociative NaturalSubtraction := by
   sorry
-
 end LRA.Operation.Laws.Associative

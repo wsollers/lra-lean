@@ -57,7 +57,6 @@ theorem rational_embedding_cauchy_at_precision
         -PrecisionRadius rationalSystem precision < difference ∧
           difference < PrecisionRadius rationalSystem precision := by
   sorry
-
 /--
 `rational_embedding` TODO
 
@@ -308,7 +307,6 @@ theorem representative_strict_order_respects_equivalence
       (ApproximationSetoid rationalSystem)
       (representative_strict_order (rationalSystem := rationalSystem)) := by
   sorry
-
 /--
 `strict_order_is_proper` TODO
 

@@ -9,5 +9,4 @@ theorem mathlibSuccessorBase :
     LRA.NumberSystems.SuccessorArithmetic.Constructions.Mathlib.successor mathlibBase =
       (1 : LRA.NumberSystems.SuccessorArithmetic.Constructions.Mathlib.Carrier) := by
   sorry
-
 end LRA.NumberSystems.SuccessorArithmetic.Examples

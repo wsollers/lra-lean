@@ -8,5 +8,4 @@ def genericTheory (M : VonNeumannModel) : Prop :=
 
 theorem satisfiesModelTheory (M : VonNeumannModel) : genericTheory M := by
   sorry
-
 end LRA.NumberSystems.VonNeumann.Interface.ModelTheory

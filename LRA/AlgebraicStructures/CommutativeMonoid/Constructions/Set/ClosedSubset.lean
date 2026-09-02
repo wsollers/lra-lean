@@ -22,5 +22,4 @@ theorem ClosedSubsetCommutativeMonoidLaws {A : Type u} [Mul A] [OfNat A 1] [None
     letI := LRA.AlgebraicStructures.Monoid.Constructions.ClosedSubsetNonempty hOne
     CommutativeMonoidLaws {x // x ∈ S} := by
   sorry
-
 end LRA.AlgebraicStructures.CommutativeMonoid.Constructions

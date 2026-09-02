@@ -69,5 +69,4 @@ theorem LeastUpperBoundPropertyGivesUniqueSupremum
         forall other,
           Supremum relation subset other -> other = supremum := by
   sorry
-
 end LRA.Order

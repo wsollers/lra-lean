@@ -136,7 +136,6 @@ Related proof moves: intro
 theorem PresburgerZeroIsNotSuccessor :
     ∀ n : PresburgerElement, PresburgerElement.succ n ≠ PresburgerElement.zero := by
   sorry
-
 /--
 `PresburgerSuccessorInjective` TODO
 
@@ -179,7 +178,6 @@ theorem PresburgerSuccessorInjective :
     ∀ m n : PresburgerElement,
       PresburgerElement.succ m = PresburgerElement.succ n → m = n := by
   sorry
-
 /--
 `PresburgerInductionPrinciple` TODO
 
@@ -225,9 +223,7 @@ theorem PresburgerInductionPrinciple :
       PresburgerElement.zero ∈ subset →
       (∀ n : PresburgerElement, n ∈ subset → PresburgerElement.succ n ∈ subset) →
       ∀ n : PresburgerElement, n ∈ subset := by
-
   sorry
-
 /--
 `PresburgerModel` TODO
 

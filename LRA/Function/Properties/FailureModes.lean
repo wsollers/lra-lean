@@ -172,7 +172,6 @@ theorem HasCollisionIffNotInjective {Domain : Type u} {Codomain : Type v}
     (function : LRA.Function Domain Codomain) :
     HasCollision function ↔ ¬ Injective function := by
   sorry
-
 /--
 `MissesValueIffNotSurjective` TODO
 
@@ -215,5 +214,4 @@ theorem MissesValueIffNotSurjective {Domain : Type u} {Codomain : Type v}
     (function : LRA.Function Domain Codomain) :
     MissesValue function ↔ ¬ Surjective function := by
   sorry
-
 end LRA.Function

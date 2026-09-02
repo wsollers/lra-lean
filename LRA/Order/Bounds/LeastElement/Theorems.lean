@@ -60,7 +60,6 @@ theorem LeastElementUnique
     (secondIsLeast : LeastElement relation subset second) :
     first = second := by
   sorry
-
 open scoped LRA.Set
 
 /--
@@ -121,7 +120,6 @@ theorem LeastElementRetainedByIntersection
     (leastIsRetained : least ∈ retainedBy) :
     LeastElement relation (subset ∩ retainedBy) least := by
   sorry
-
 /--
 `LeastElementRetainedByDifference` TODO
 
@@ -180,7 +178,6 @@ theorem LeastElementRetainedByDifference
     (leastIsNotRemoved : least ∉ removed) :
     LeastElement relation (subset \ removed) least := by
   sorry
-
 /--
 `LeastElementRetainedBySymmetricDifference` TODO
 
@@ -241,7 +238,6 @@ theorem LeastElementRetainedBySymmetricDifference
     (leastIsRetained : least ∈ (leftSubset ∆ rightSubset)) :
     LeastElement relation (leftSubset ∆ rightSubset) least := by
   sorry
-
 /--
 `LeastElementOfUnion` TODO
 
@@ -300,5 +296,4 @@ theorem LeastElementOfUnion
     (leastBoundsRight : LowerBound relation rightSubset least) :
     LeastElement relation (leftSubset ∪ rightSubset) least := by
   sorry
-
 end LRA.Order

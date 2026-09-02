@@ -88,5 +88,4 @@ theorem IsBoundedIffAbsBound [AddCommGroup F] [LinearOrder F] [IsOrderedAddMonoi
     (A : Set F) :
     IsBounded A ↔ ∃ M, 0 ≤ M ∧ ∀ a ∈ A, |a| ≤ M := by
   sorry
-
 end LRA.Analysis.Bounds.Extrema

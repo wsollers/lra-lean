@@ -129,7 +129,6 @@ theorem LittleOImpliesBigOAt
     (ho : ∀ ε > 0, ∃ δ > 0, ∀ x, 0 < |x - a| → |x - a| < δ → |f x| ≤ ε * |g x|) :
     IsBigOAt f g a := by
   sorry
-
 /--
 `LittleOImpliesBigOAtTop` TODO
 
@@ -174,7 +173,6 @@ theorem LittleOImpliesBigOAtTop
     (ho : ∀ ε > 0, ∃ R > 0, ∀ x, x > R → |f x| ≤ ε * |g x|) :
     IsBigOAtTop f g := by
   sorry
-
 /--
 `YoungsInequality` TODO
 
@@ -219,7 +217,6 @@ theorem YoungsInequality
     (p q : ℝ) (hp : 1 < p) (hq : 1 < q) (hpq : 1 / p + 1 / q = 1) :
     a * b ≤ a ^ p / p + b ^ q / q := by
   sorry
-
 /--
 `IsConvexOnR` TODO
 
@@ -312,5 +309,4 @@ theorem JensensInequalityFinite
     φ (Finset.univ.sum (fun i => lam i * x i))
       ≤ Finset.univ.sum (fun i => lam i * φ (x i)) := by
   sorry
-
 end LRA.Analysis.RealAnalysis

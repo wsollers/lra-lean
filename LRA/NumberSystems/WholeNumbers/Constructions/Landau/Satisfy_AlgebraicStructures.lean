@@ -21,7 +21,6 @@ theorem satisfiesCommutativeSemiring
     let _ : Nonempty (Carrier natural_data) := nonemptyOn natural_data
     CommutativeSemiringLaws (Carrier natural_data) := by
   sorry
-
 /-- The Landau whole-number construction canonically realizes ordered semiring
 structure. -/
 theorem satisfiesOrderedSemiring
@@ -34,5 +33,4 @@ theorem satisfiesOrderedSemiring
     let _ : Nonempty (Carrier natural_data) := nonemptyOn natural_data
     OrderedSemiringLaws (Carrier natural_data) := by
   sorry
-
 end LRA.NumberSystems.WholeNumbers.Constructions.Landau

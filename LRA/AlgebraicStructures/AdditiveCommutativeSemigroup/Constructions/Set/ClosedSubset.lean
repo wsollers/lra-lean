@@ -18,5 +18,4 @@ theorem ClosedSubsetAdditiveCommutativeSemigroupLaws {A : Type u} [Add A] [Nonem
     letI := LRA.AlgebraicStructures.AdditiveSemigroup.Constructions.ClosedSubsetAdd closed
     AdditiveCommutativeSemigroupLaws {x // x ∈ S} := by
   sorry
-
 end LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Constructions

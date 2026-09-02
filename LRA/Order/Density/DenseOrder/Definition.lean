@@ -137,7 +137,6 @@ Related proof moves: intro, constructor, cases, rcases, use
 theorem ExistsBetween [LT R] [DenseOrderLaw R] :
     forall a b : R, a < b -> exists middle : R, a < middle /\ middle < b := by
   sorry
-
 end Wrappers
 
 end LRA.Order

@@ -130,5 +130,4 @@ Related proof moves: TODO
 theorem NaturalSubtractionFailsCommutative :
     FailsCommutative NaturalSubtraction := by
   sorry
-
 end LRA.Operation.Laws.Commutative

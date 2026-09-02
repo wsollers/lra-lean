@@ -211,7 +211,6 @@ theorem whole_embedding_is_injective
       whole_embedding whole_data first = whole_embedding whole_data second →
         first = second := by
   sorry
-
 /--
 `representative_addition` TODO
 

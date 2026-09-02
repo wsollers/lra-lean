@@ -13,5 +13,4 @@ being registered as anyone's `Mul`/`Add`. -/
 theorem ofSemilatticeSup {R : Type u} [SemilatticeSup R] :
     JoinSemilatticeLaws (Carrier := R) (· ⊔ ·) := by
   sorry
-
 end LRA.AlgebraicStructures

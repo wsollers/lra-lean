@@ -199,9 +199,8 @@ Related proof moves: intro
 -/
 theorem MulInvCancel [Mul R] [Inv R] [OfNat R 0] [OfNat R 1]
     [MultiplicativeInverseLaws R] :
-    ∀ a : R, a ≠ 0 → a * a⁻¹ = 1 :=
+    ∀ a : R, a ≠ 0 → a * a⁻¹ = 1 := by
   sorry
-
 /--
 `InvZero` TODO
 
@@ -242,9 +241,8 @@ Related proof moves: TODO
 -/
 theorem InvZero [Mul R] [Inv R] [OfNat R 0] [OfNat R 1]
     [MultiplicativeInverseLaws R] :
-    (0 : R)⁻¹ = 0 :=
+    (0 : R)⁻¹ = 0 := by
   sorry
-
 /--
 `DivEqMulInv` TODO
 
@@ -285,9 +283,8 @@ Related proof moves: intro
 -/
 theorem DivEqMulInv [Div R] [Mul R] [Inv R]
     [DivisionCompatibilityLaw R] :
-    ∀ a b : R, a / b = a * b⁻¹ :=
+    ∀ a b : R, a / b = a * b⁻¹ := by
   sorry
-
 end Wrappers
 
 end LRA.AlgebraicStructures

@@ -56,5 +56,4 @@ theorem PreservesRelation.apply {Source : Type u} {Target : Type v}
     (related : sourceRelation left right) :
     targetRelation (function left) (function right) := by
   sorry
-
 end LRA.Morphism

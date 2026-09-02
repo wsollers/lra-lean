@@ -69,7 +69,6 @@ theorem OrderEmbeddingInjective
     (mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map) :
     Function.Injective map := by
   sorry
-
 /--
 `OrderEmbeddingComp` TODO
 
@@ -126,7 +125,6 @@ theorem OrderEmbeddingComp
     OrderEmbedding sourceRelation targetRelation
       (fun element => secondMap (firstMap element)) := by
   sorry
-
 open LRA.Set
 
 variable {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x}
@@ -187,7 +185,6 @@ theorem OrderEmbeddingSendsUpperBoundToImageUpperBound
     (boundIsUpper : UpperBound sourceRelation subset bound)
     : UpperBound targetRelation imageSet (map bound) := by
   sorry
-
 /--
 `OrderEmbeddingSendsLowerBoundToImageLowerBound` TODO
 
@@ -240,7 +237,6 @@ theorem OrderEmbeddingSendsLowerBoundToImageLowerBound
     (boundIsLower : LowerBound sourceRelation subset bound)
     : LowerBound targetRelation imageSet (map bound) := by
   sorry
-
 /--
 `OrderEmbeddingUpperBoundsPreimageIff` TODO
 
@@ -295,7 +291,6 @@ theorem OrderEmbeddingUpperBoundsPreimageIff
       LRA.Function.PreimageClass map
         (fun output => UpperBound targetRelation imageSet output) bound := by
   sorry
-
 /--
 `OrderEmbeddingLowerBoundsPreimageIff` TODO
 
@@ -350,7 +345,6 @@ theorem OrderEmbeddingLowerBoundsPreimageIff
       LRA.Function.PreimageClass map
         (fun output => LowerBound targetRelation imageSet output) bound := by
   sorry
-
 /--
 `OrderEmbeddingPreservesGreatestElement` TODO
 
@@ -403,7 +397,6 @@ theorem OrderEmbeddingPreservesGreatestElement
     (greatestIsGreatest : GreatestElement sourceRelation subset greatest)
     : GreatestElement targetRelation imageSet (map greatest) := by
   sorry
-
 /--
 `OrderEmbeddingPreservesLeastElement` TODO
 
@@ -456,5 +449,4 @@ theorem OrderEmbeddingPreservesLeastElement
     (leastIsLeast : LeastElement sourceRelation subset least)
     : LeastElement targetRelation imageSet (map least) := by
   sorry
-
 end LRA.Order

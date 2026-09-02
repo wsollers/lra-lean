@@ -45,5 +45,4 @@ Related proof moves: TODO
 theorem IdentityRelationIsEquivalenceRelation {α : Type u} :
     EquivalenceRelation (IdentityRelation α) := by
   sorry
-
 end LRA.Relation

@@ -184,5 +184,4 @@ theorem OddNaturalAdditionFailsClosure :
       OddNaturalCarrier
       NaturalAdditionForClosureFailure := by
   sorry
-
 end LRA.Operation.Laws.Closure

@@ -47,7 +47,6 @@ theorem RelationIncludedInTransitiveClosure
     {Alpha : Type u} (relation : Endorelation Alpha) :
     RelationIncluded relation (TransitiveClosure relation) := by
   sorry
-
 /--
 `TransitiveClosureIsTransitive` TODO
 
@@ -90,7 +89,6 @@ theorem TransitiveClosureIsTransitive
     {Alpha : Type u} (relation : Endorelation Alpha) :
     Transitive (TransitiveClosure relation) := by
   sorry
-
 /--
 `TransitiveClosureIsLeast` TODO
 
@@ -137,5 +135,4 @@ theorem TransitiveClosureIsLeast
     (targetTransitive : Transitive target) :
     RelationIncluded (TransitiveClosure relation) target := by
   sorry
-
 end LRA.Relation

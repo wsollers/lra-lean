@@ -52,7 +52,6 @@ theorem center_mem_ball
     (radius_positive : 0 < r) :
     x ∈ Metric.ball x r := by
   sorry
-
 /--
 `ball_subset_ball` TODO
 
@@ -99,7 +98,6 @@ theorem ball_subset_ball
     (radius_le : r ≤ s) :
     Metric.ball x r ⊆ Metric.ball x s := by
   sorry
-
 /--
 `ball_subset_closedBall` TODO
 
@@ -144,7 +142,6 @@ theorem ball_subset_closedBall
     (r : Real) :
     Metric.ball x r ⊆ Metric.closedBall x r := by
   sorry
-
 /--
 `ball_subset_ball_of_mem` TODO
 
@@ -191,5 +188,4 @@ theorem ball_subset_ball_of_mem
     (pointInBall : y ∈ Metric.ball x r) :
     ∃ ε > 0, Metric.ball y ε ⊆ Metric.ball x r := by
   sorry
-
 end LRA.Analysis.MetricSpace

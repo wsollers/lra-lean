@@ -46,7 +46,6 @@ Related proof moves: constructor, .mp, .mpr
 theorem IsFiniteCongr (A : Type u) (B : Type v)
     (equinumerous : Equinumerous A B) : IsFinite A ↔ IsFinite B := by
   sorry
-
 /--
 `NotBothFiniteAndInfinite` TODO
 
@@ -87,7 +86,6 @@ Related proof moves: constructor, cases, rcases
 theorem NotBothFiniteAndInfinite (A : Type u) :
     ¬ (IsFinite A ∧ IsInfinite A) := by
   sorry
-
 /--
 `FiniteImpliesDedekindFinite` TODO
 
@@ -128,7 +126,6 @@ Related proof moves: TODO
 theorem FiniteImpliesDedekindFinite (A : Type u)
     (finite : IsFinite A) : IsDedekindFinite A := by
   sorry
-
 /--
 `DedekindInfiniteImpliesInfinite` TODO
 
@@ -169,7 +166,6 @@ Related proof moves: TODO
 theorem DedekindInfiniteImpliesInfinite (A : Type u)
     (dedekindInfinite : IsDedekindInfinite A) : IsInfinite A := by
   sorry
-
 /--
 `DominatesOfFiniteInfinite` TODO
 
@@ -210,5 +206,4 @@ Related proof moves: TODO
 theorem DominatesOfFiniteInfinite (A : Type u) (B : Type v)
     (finiteA : IsFinite A) (infiniteB : IsInfinite B) : Dominates A B := by
   sorry
-
 end LRA.Cardinality

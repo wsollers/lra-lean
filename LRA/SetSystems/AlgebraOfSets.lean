@@ -106,7 +106,6 @@ theorem RelativeComplementIsMember
     (A : SetObject) (AIsMember : algebra.IsMember A) :
     algebra.IsMember (ambient \ A) := by
   sorry
-
 end AlgebraOfSets
 
 end LRA.SetSystems

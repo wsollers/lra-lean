@@ -104,7 +104,6 @@ Related proof moves: TODO
 -/
 theorem strict_total_order : StrictTotalOrder rational_model := by
   sorry
-
 /--
 `OrderCompatibility` TODO
 
@@ -203,7 +202,6 @@ Related proof moves: TODO
 -/
 theorem order_compatibility : OrderCompatibility rational_model := by
   sorry
-
 /--
 `raw_interval_subdistributivity` TODO
 
@@ -256,7 +254,6 @@ theorem raw_interval_subdistributivity
         (interval_multiplication rational_model first second)
         (interval_multiplication rational_model first third)) := by
   sorry
-
 /--
 `raw_interval_distributivity_can_fail` TODO
 
@@ -321,7 +318,6 @@ theorem raw_interval_distributivity_can_fail :
         (interval_multiplication rational_model first
           (interval_addition rational_model second third)) := by
   sorry
-
 /--
 `distributive_defect_vanishes` TODO
 
@@ -374,7 +370,6 @@ theorem distributive_defect_vanishes
         (representative_multiplication rational_model first second)
         (representative_multiplication rational_model first third)) := by
   sorry
-
 /--
 `quotient_distributivity` TODO
 
@@ -425,7 +420,6 @@ theorem quotient_distributivity
         (multiplication rational_model first second)
         (multiplication rational_model first third) := by
   sorry
-
 /--
 `nonzero_eventually_separated_from_zero` TODO
 
@@ -500,7 +494,6 @@ theorem nonzero_eventually_separated_from_zero
               (representative.interval index).right_endpoint
               (rational_model.signature.neg delta))) := by
   sorry
-
 /--
 `IsReciprocalInterval` TODO
 
@@ -603,7 +596,6 @@ theorem reciprocal_exists_uniquely
         multiplication rational_model value other = one rational_model →
         other = inverse_value := by
   sorry
-
 /--
 `inverse` TODO
 
@@ -764,5 +756,4 @@ Related proof moves: TODO
 -/
 theorem least_upper_bound_property : LeastUpperBoundProperty rational_model := by
   sorry
-
 end LRA.NumberSystems.RealNumbers.PrimitiveIntervals

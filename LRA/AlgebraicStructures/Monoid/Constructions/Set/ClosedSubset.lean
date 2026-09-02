@@ -18,9 +18,8 @@ universe u
 canonical element to point to without an identity axiom), a submonoid always
 has this witness available. -/
 theorem ClosedSubsetNonempty {A : Type u} [OfNat A 1] {S : LRA.Set.LRA_Set A}
-    (hOne : (1 : A) ∈ S) : Nonempty {x // x ∈ S} :=
-  ⟨⟨1, hOne⟩⟩
-
+    (hOne : (1 : A) ∈ S) : Nonempty {x // x ∈ S} := by
+  sorry
 /-- Associativity and the identity both transfer for free through a closed
 subset that also contains `1`: the subtype's operation and its `1` are just
 the ambient ones repackaged. Builds on `Semigroup.Constructions.
@@ -34,5 +33,4 @@ theorem ClosedSubsetMonoidLaws {A : Type u} [Mul A] [OfNat A 1] [Nonempty A]
     letI := ClosedSubsetNonempty hOne
     MonoidLaws {x // x ∈ S} := by
   sorry
-
 end LRA.AlgebraicStructures.Monoid.Constructions

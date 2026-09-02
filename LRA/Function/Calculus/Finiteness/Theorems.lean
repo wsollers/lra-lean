@@ -56,7 +56,6 @@ theorem FiniteImageIffEnumerable {Domain : Type u} {Codomain : Type v}
         (fun output : Codomain => ∃ input : Domain,
           source input ∧ function input = output) := by
   sorry
-
 /--
 `FiniteRangeIffFiniteImageOfUniversal` TODO
 
@@ -101,5 +100,4 @@ theorem FiniteRangeIffFiniteImageOfUniversal {Domain : Type u} {Codomain : Type 
     FiniteRange function ↔
       FiniteImage function (SetClass.Universal : SetClass Domain) := by
   sorry
-
 end LRA.Function

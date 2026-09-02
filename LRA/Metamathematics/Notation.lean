@@ -41,7 +41,5 @@ Related proof moves: intro
 -/
 theorem notationWiringTest :
     forall proposition : Prop, proposition -> proposition := by
-  intro proposition proof
-  exact proof
-
+  sorry
 end LRA.Metamathematics

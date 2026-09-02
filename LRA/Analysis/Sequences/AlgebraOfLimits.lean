@@ -471,7 +471,6 @@ Related proof moves: TODO
 theorem LimitOfScalarMultiple {x : RealSequence} {L α : ℝ}
     (h : ConvergesTo x L) : ConvergesTo (ScalarMultiple α x) (α * L) := by
   sorry
-
 /--
 `LimitOfASum` TODO
 
@@ -514,7 +513,6 @@ theorem LimitOfASum {x y : RealSequence} {L M : ℝ}
     (hx : ConvergesTo x L) (hy : ConvergesTo y M) :
     ConvergesTo (PointwiseSum x y) (L + M) := by
   sorry
-
 /--
 `LimitOfANegation` TODO
 
@@ -555,7 +553,6 @@ Related proof moves: TODO
 theorem LimitOfANegation {x : RealSequence} {L : ℝ}
     (h : ConvergesTo x L) : ConvergesTo (PointwiseNegation x) (-L) := by
   sorry
-
 /--
 `LimitOfADifference` TODO
 
@@ -598,7 +595,6 @@ theorem LimitOfADifference {x y : RealSequence} {L M : ℝ}
     (hx : ConvergesTo x L) (hy : ConvergesTo y M) :
     ConvergesTo (PointwiseDifference x y) (L - M) := by
   sorry
-
 /--
 `LimitOfAProduct` TODO
 
@@ -641,7 +637,6 @@ theorem LimitOfAProduct {x y : RealSequence} {L M : ℝ}
     (hx : ConvergesTo x L) (hy : ConvergesTo y M) :
     ConvergesTo (PointwiseProduct x y) (L * M) := by
   sorry
-
 /--
 `NonzeroLimitEventuallyNonzero` TODO
 
@@ -682,7 +677,6 @@ Related proof moves: intro, use, rcases
 theorem NonzeroLimitEventuallyNonzero {x : RealSequence} {L : ℝ}
     (hL : L ≠ 0) (h : ConvergesTo x L) : ∃ N : ℕ, ∀ n ≥ N, x n ≠ 0 := by
   sorry
-
 /--
 `LimitOfAReciprocal` TODO
 
@@ -725,7 +719,6 @@ theorem LimitOfAReciprocal {x : RealSequence} (hx : ∀ n, x n ≠ 0)
     {L : ℝ} (hL : L ≠ 0) (h : ConvergesTo x L) :
     ConvergesTo (ReciprocalSeq x) (1 / L) := by
   sorry
-
 /--
 `LimitOfAQuotient` TODO
 
@@ -768,7 +761,6 @@ theorem LimitOfAQuotient {x y : RealSequence} (hy : ∀ n, y n ≠ 0)
     {L M : ℝ} (hM : M ≠ 0) (hx : ConvergesTo x L) (hy' : ConvergesTo y M) :
     ConvergesTo (PointwiseQuotient x y) (L / M) := by
   sorry
-
 /--
 `LimitOfASquare` TODO
 
@@ -809,7 +801,6 @@ Related proof moves: TODO
 theorem LimitOfASquare {x : RealSequence} {L : ℝ}
     (h : ConvergesTo x L) : ConvergesTo (SquareSeq x) (L ^ 2) := by
   sorry
-
 /--
 `LimitOfAnAbsoluteValue` TODO
 
@@ -850,7 +841,6 @@ Related proof moves: TODO
 theorem LimitOfAnAbsoluteValue {x : RealSequence} {L : ℝ}
     (h : ConvergesTo x L) : ConvergesTo (AbsSeq x) |L| := by
   sorry
-
 /--
 `PositiveLimitEventuallyPositive` TODO
 
@@ -891,7 +881,6 @@ Related proof moves: intro, use, rcases
 theorem PositiveLimitEventuallyPositive {x : RealSequence} {L : ℝ}
     (hL : L > 0) (h : ConvergesTo x L) : ∃ N : ℕ, ∀ n ≥ N, 0 < x n := by
   sorry
-
 /--
 `LimitOfASquareRoot` TODO
 
@@ -934,7 +923,6 @@ theorem LimitOfASquareRoot {x : RealSequence} (hx : ∀ n, 0 ≤ x n)
     {L : ℝ} (h : ConvergesTo x L) :
     0 ≤ L ∧ ConvergesTo (SqrtSeq x) (Real.sqrt L) := by
   sorry
-
 /--
 `PolynomialSequenceLimit` TODO
 
@@ -977,7 +965,6 @@ theorem PolynomialSequenceLimit {x : RealSequence} {L : ℝ}
     (p : Polynomial ℝ) (h : ConvergesTo x L) :
     ConvergesTo (fun n => p.eval (x n)) (p.eval L) := by
   sorry
-
 /--
 `RationalSequenceLimit` TODO
 
@@ -1022,5 +1009,4 @@ theorem RationalSequenceLimit {x : RealSequence} {L : ℝ}
     (h : ConvergesTo x L) :
     ConvergesTo (fun n => p.eval (x n) / q.eval (x n)) (p.eval L / q.eval L) := by
   sorry
-
 end LRA.Analysis.Sequences

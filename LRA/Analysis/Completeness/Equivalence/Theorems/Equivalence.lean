@@ -58,7 +58,6 @@ theorem HasLeastUpperBoundPropertyIffHasGreatestLowerBoundProperty
     [TopologicalSpace F] [OrderTopology F] :
     HasLeastUpperBoundProperty F ↔ HasGreatestLowerBoundProperty F := by
   sorry
-
 /--
 `HasLeastUpperBoundPropertyIffNestedIntervalProperty` TODO
 
@@ -103,7 +102,6 @@ theorem HasLeastUpperBoundPropertyIffNestedIntervalProperty
     [TopologicalSpace F] [OrderTopology F] :
     HasLeastUpperBoundProperty F ↔ NestedIntervalProperty F := by
   sorry
-
 /--
 `HasLeastUpperBoundPropertyIffBolzanoWeierstrassProperty` TODO
 
@@ -148,7 +146,6 @@ theorem HasLeastUpperBoundPropertyIffBolzanoWeierstrassProperty
     [TopologicalSpace F] [OrderTopology F] :
     HasLeastUpperBoundProperty F ↔ BolzanoWeierstrassProperty F := by
   sorry
-
 /--
 `LubPropertyEquivalentToMonotoneProcessConvergence` TODO
 
@@ -197,7 +194,6 @@ theorem LubPropertyEquivalentToMonotoneProcessConvergence
       IncreasingBoundedProcessesConverge F,
       DecreasingBoundedProcessesConverge F].TFAE := by
   sorry
-
 /--
 `LubPropertyEquivalentToNestedIntervalProperty` TODO
 
@@ -242,7 +238,6 @@ theorem LubPropertyEquivalentToNestedIntervalProperty
     [TopologicalSpace F] [OrderTopology F] :
     [HasLeastUpperBoundProperty F, NestedIntervalProperty F].TFAE := by
   sorry
-
 /--
 `StandardCompletenessEquivalences` TODO
 
@@ -297,5 +292,4 @@ theorem StandardCompletenessEquivalences
       NestedIntervalProperty F,
       BolzanoWeierstrassProperty F].TFAE := by
   sorry
-
 end LRA.Analysis.Completeness

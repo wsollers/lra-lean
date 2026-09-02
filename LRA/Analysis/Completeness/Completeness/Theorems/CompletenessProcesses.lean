@@ -65,7 +65,6 @@ theorem IncreasingBoundedProcessHasLimit
     (boundedAboveHypothesis : ∃ u, IsUpperBound u (Set.range a)) :
     ∃ L, IsSupremum L (Set.range a) ∧ Filter.Tendsto a Filter.atTop (nhds L) := by
   sorry
-
 /--
 `DecreasingBoundedProcessHasLimit` TODO
 
@@ -116,7 +115,6 @@ theorem DecreasingBoundedProcessHasLimit
     (boundedBelowHypothesis : ∃ l, IsLowerBound l (Set.range a)) :
     ∃ L, IsInfimum L (Set.range a) ∧ Filter.Tendsto a Filter.atTop (nhds L) := by
   sorry
-
 /--
 `ShrinkingNestedIntervalProcessHasUniqueLimit` TODO
 
@@ -169,7 +167,6 @@ theorem ShrinkingNestedIntervalProcessHasUniqueLimit
       Filter.Tendsto a Filter.atTop (nhds x) ∧
         Filter.Tendsto b Filter.atTop (nhds x) := by
   sorry
-
 /--
 `ArchimedeanReciprocalProcessTendsToZero` TODO
 
@@ -214,7 +211,6 @@ theorem ArchimedeanReciprocalProcessTendsToZero
     [TopologicalSpace F] [OrderTopology F] :
     ArchimedeanReciprocalProperty F := by
   sorry
-
 /--
 `LeastUpperBoundPropertyImpliesArchimedeanReciprocalProperty` TODO
 
@@ -261,5 +257,4 @@ theorem LeastUpperBoundPropertyImpliesArchimedeanReciprocalProperty
     (leastUpperBoundProperty : HasLeastUpperBoundProperty F) :
     ArchimedeanReciprocalProperty F := by
   sorry
-
 end LRA.Analysis.Completeness

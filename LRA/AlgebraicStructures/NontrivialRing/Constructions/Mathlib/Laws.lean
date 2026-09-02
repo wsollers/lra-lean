@@ -9,5 +9,4 @@ universe u
 instance {R : Type u} [_root_.Ring R] [_root_.NeZero (1 : R)] [Nonempty R] :
     NontrivialRingLaws R := by
   sorry
-
 end LRA.AlgebraicStructures

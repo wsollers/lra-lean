@@ -182,7 +182,6 @@ theorem NaturalAdditionFailsConstantZeroInverse :
       0
       ConstantZeroNaturalInverseCandidate := by
   sorry
-
 /--
 `NaturalAdditionHasNoTwoSidedInverseOperation` TODO
 
@@ -227,5 +226,4 @@ theorem NaturalAdditionHasNoTwoSidedInverseOperation :
       (∃ inverse : UnaryEndoOperation Nat,
         TwoSidedInverse NaturalAdditionForInverseFailure 0 inverse) := by
   sorry
-
 end LRA.Operation.Laws.Inverse

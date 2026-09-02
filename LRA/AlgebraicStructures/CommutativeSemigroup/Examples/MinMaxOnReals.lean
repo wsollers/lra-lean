@@ -16,16 +16,24 @@ structure RealsUnderMin where
 instance : Mul RealsUnderMin := ⟨fun a b => ⟨min a.val b.val⟩⟩
 instance : Nonempty RealsUnderMin := ⟨⟨0⟩⟩
 
-instance : LRA.AlgebraicStructures.CommutativeSemigroupLaws RealsUnderMin := by
-  sorry
-
+instance : LRA.AlgebraicStructures.CommutativeSemigroupLaws RealsUnderMin where
+  MulAssociative := by
+    intro a b c
+    sorry
+  MulCommutative := by
+    intro a b
+    sorry
 structure RealsUnderMax where
   val : Real
 
 instance : Mul RealsUnderMax := ⟨fun a b => ⟨max a.val b.val⟩⟩
 instance : Nonempty RealsUnderMax := ⟨⟨0⟩⟩
 
-instance : LRA.AlgebraicStructures.CommutativeSemigroupLaws RealsUnderMax := by
-  sorry
-
+instance : LRA.AlgebraicStructures.CommutativeSemigroupLaws RealsUnderMax where
+  MulAssociative := by
+    intro a b c
+    sorry
+  MulCommutative := by
+    intro a b
+    sorry
 end LRA.AlgebraicStructures.CommutativeSemigroup.Examples

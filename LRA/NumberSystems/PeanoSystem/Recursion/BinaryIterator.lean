@@ -133,7 +133,6 @@ theorem ExistenceOfBinaryIteratorOperation
         stepRuleForParameter
         operation := by
   sorry
-
 /--
 `UniquenessOfBinaryIteratorOperations` TODO
 
@@ -214,7 +213,6 @@ theorem UniquenessOfBinaryIteratorOperations
       secondOperation ->
     firstOperation = secondOperation := by
   sorry
-
 /--
 `BinaryIteratorOperationWellDefined` TODO
 
@@ -295,5 +293,4 @@ theorem BinaryIteratorOperationWellDefined
           otherOperation ->
         otherOperation = operation := by
   sorry
-
 end LRA.NumberSystems.PeanoSystem.Recursion

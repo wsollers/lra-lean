@@ -192,7 +192,6 @@ theorem upperBound_iff_mem_upperBounds
     UpperBound (fun left right : Alpha => left ≤ right) subset candidate ↔
       candidate ∈ upperBounds subset := by
   sorry
-
 /--
 `lowerBound_iff_mem_lowerBounds` TODO
 
@@ -237,7 +236,6 @@ theorem lowerBound_iff_mem_lowerBounds
     LowerBound (fun left right : Alpha => left ≤ right) subset candidate ↔
       candidate ∈ lowerBounds subset := by
   sorry
-
 /--
 `leastElement_iff_isLeast` TODO
 
@@ -282,7 +280,6 @@ theorem leastElement_iff_isLeast
     LeastElement (fun left right : Alpha => left ≤ right) subset candidate ↔
       IsLeast subset candidate := by
   sorry
-
 /--
 `greatestElement_iff_isGreatest` TODO
 
@@ -327,7 +324,6 @@ theorem greatestElement_iff_isGreatest
     GreatestElement (fun left right : Alpha => left ≤ right) subset candidate ↔
       IsGreatest subset candidate := by
   sorry
-
 /--
 `supremum_iff_isLUB` TODO
 
@@ -372,7 +368,6 @@ theorem supremum_iff_isLUB
     Supremum (fun left right : Alpha => left ≤ right) subset candidate ↔
       IsLUB subset candidate := by
   sorry
-
 /--
 `infimum_iff_isGLB` TODO
 
@@ -417,7 +412,6 @@ theorem infimum_iff_isGLB
     Infimum (fun left right : Alpha => left ≤ right) subset candidate ↔
       IsGLB subset candidate := by
   sorry
-
 /--
 `boundedAbove_iff_bddAbove` TODO
 
@@ -462,7 +456,6 @@ theorem boundedAbove_iff_bddAbove
     BoundedAbove (fun left right : Alpha => left ≤ right) subset ↔
       BddAbove subset := by
   sorry
-
 /--
 `boundedBelow_iff_bddBelow` TODO
 
@@ -507,5 +500,4 @@ theorem boundedBelow_iff_bddBelow
     BoundedBelow (fun left right : Alpha => left ≤ right) subset ↔
       BddBelow subset := by
   sorry
-
 end LRA.Interop.Mathlib.Order

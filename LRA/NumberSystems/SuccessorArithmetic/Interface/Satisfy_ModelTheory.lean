@@ -8,5 +8,4 @@ def genericTheory (M : SuccessorArithmeticModel) : Prop :=
 
 theorem satisfiesModelTheory (M : SuccessorArithmeticModel) : genericTheory M := by
   sorry
-
 end LRA.NumberSystems.SuccessorArithmetic.Interface.ModelTheory

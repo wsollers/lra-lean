@@ -202,7 +202,6 @@ Related proof moves: intro, constructor, .mp, .mpr, cases, rcases
 theorem EuclideanRMetricPositive :
     ∀ a b : ℝ, 0 ≤ |a - b| ∧ (|a - b| = 0 ↔ a = b) := by
   sorry
-
 /--
 `EuclideanRMetricSymmetric` TODO
 
@@ -243,7 +242,6 @@ Related proof moves: intro
 theorem EuclideanRMetricSymmetric :
     ∀ a b : ℝ, |a - b| = |b - a| := by
   sorry
-
 /--
 `EuclideanRMetricTriangle` TODO
 
@@ -284,7 +282,6 @@ Related proof moves: intro
 theorem EuclideanRMetricTriangle :
     ∀ a b c : ℝ, |a - c| ≤ |a - b| + |b - c| := by
   sorry
-
 /--
 `EuclideanRMetric` TODO
 
@@ -436,7 +433,6 @@ Related proof moves: intro, constructor, .mp, .mpr, cases, rcases
 theorem ComplexModulusMetricPositive :
     ∀ a b : ℂ, 0 ≤ ‖a - b‖ ∧ (‖a - b‖ = 0 ↔ a = b) := by
   sorry
-
 /--
 `ComplexModulusMetricSymmetric` TODO
 
@@ -477,7 +473,6 @@ Related proof moves: intro
 theorem ComplexModulusMetricSymmetric :
     ∀ a b : ℂ, ‖a - b‖ = ‖b - a‖ := by
   sorry
-
 /--
 `ComplexModulusMetricTriangle` TODO
 
@@ -518,7 +513,6 @@ Related proof moves: intro
 theorem ComplexModulusMetricTriangle :
     ∀ a b c : ℂ, ‖a - c‖ ≤ ‖a - b‖ + ‖b - c‖ := by
   sorry
-
 /--
 `ComplexModulusMetric` TODO
 
@@ -686,7 +680,6 @@ theorem ComplexCircleChordMetricPositive
     ∀ a b : {z : ℂ // ‖z - center‖ = radius},
       0 ≤ ‖a.1 - b.1‖ ∧ (‖a.1 - b.1‖ = 0 ↔ a = b) := by
   sorry
-
 /--
 `ComplexCircleChordMetricSymmetric` TODO
 
@@ -731,7 +724,6 @@ theorem ComplexCircleChordMetricSymmetric
     ∀ a b : {z : ℂ // ‖z - center‖ = radius},
       ‖a.1 - b.1‖ = ‖b.1 - a.1‖ := by
   sorry
-
 /--
 `ComplexCircleChordMetricTriangle` TODO
 
@@ -776,7 +768,6 @@ theorem ComplexCircleChordMetricTriangle
     ∀ a b c : {z : ℂ // ‖z - center‖ = radius},
       ‖a.1 - c.1‖ ≤ ‖a.1 - b.1‖ + ‖b.1 - c.1‖ := by
   sorry
-
 /--
 `ComplexCircleChordMetric` TODO
 

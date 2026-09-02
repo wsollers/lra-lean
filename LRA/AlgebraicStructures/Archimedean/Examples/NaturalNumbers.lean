@@ -12,5 +12,4 @@ general cofinality argument at all. -/
 theorem naturalNumbersAreArchimedean :
     LRA.AlgebraicStructures.ArchimedeanLaw Nat := by
   sorry
-
 end LRA.AlgebraicStructures.Archimedean.Examples

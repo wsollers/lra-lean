@@ -46,5 +46,4 @@ theorem StrictPosetDoesNotRelateSelf
     (element : poset.Carrier) :
     Not (poset.StrictRelation element element) := by
   sorry
-
 end LRA.Order.OrderedSets.StrictPoset

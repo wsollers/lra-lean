@@ -9,5 +9,4 @@ def orderedPairsZero : GaussianInteger Int := 0
 theorem orderedPairsZeroPlusZero :
     orderedPairsZero + orderedPairsZero = (0 : GaussianInteger Int) := by
   sorry
-
 end LRA.NumberSystems.GaussianIntegers.Examples

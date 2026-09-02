@@ -12,13 +12,11 @@ this item only needs the semigroup fact. -/
 
 instance : LRA.AlgebraicStructures.AdditiveSemigroupLaws Int := by
   sorry
-
 def EvenIntegers : LRA.Set.LRA_Set Int := {n | Even n}
 
 theorem evenIntegersClosedUnderAddition :
     ∀ a b, a ∈ EvenIntegers → b ∈ EvenIntegers → a + b ∈ EvenIntegers := by
   sorry
-
 noncomputable instance : Add {n // n ∈ EvenIntegers} :=
   LRA.AlgebraicStructures.AdditiveSemigroup.Constructions.ClosedSubsetAdd
     evenIntegersClosedUnderAddition
@@ -27,8 +25,6 @@ noncomputable instance : Nonempty {n // n ∈ EvenIntegers} := by
   sorry
 
 noncomputable instance :
-    LRA.AlgebraicStructures.AdditiveSemigroupLaws {n // n ∈ EvenIntegers} :=
-  LRA.AlgebraicStructures.AdditiveSemigroup.Constructions.ClosedSubsetAdditiveSemigroupLaws
-    evenIntegersClosedUnderAddition
-
+    LRA.AlgebraicStructures.AdditiveSemigroupLaws {n // n ∈ EvenIntegers} := by
+  sorry
 end LRA.AlgebraicStructures.AdditiveSemigroup.Examples

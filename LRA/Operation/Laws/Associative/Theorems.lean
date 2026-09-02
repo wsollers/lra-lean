@@ -54,7 +54,6 @@ theorem Associative.apply {Carrier : Type u}
     operation (operation first second) third =
       operation first (operation second third) := by
   sorry
-
 /--
 `Associative.reassociate_left` TODO
 
@@ -103,7 +102,6 @@ theorem Associative.reassociate_left {Carrier : Type u}
     operation (operation first second) third =
       operation first (operation second third) := by
   sorry
-
 /--
 `Associative.reassociate_right` TODO
 
@@ -152,7 +150,6 @@ theorem Associative.reassociate_right {Carrier : Type u}
     operation first (operation second third) =
       operation (operation first second) third := by
   sorry
-
 /--
 `Associative.four_left` TODO
 
@@ -201,7 +198,6 @@ theorem Associative.four_left {Carrier : Type u}
     operation (operation (operation first second) third) fourth =
       operation first (operation second (operation third fourth)) := by
   sorry
-
 /--
 `Associative.four_right` TODO
 
@@ -250,5 +246,4 @@ theorem Associative.four_right {Carrier : Type u}
     operation first (operation second (operation third fourth)) =
       operation (operation (operation first second) third) fourth := by
   sorry
-
 end LRA.Operation.Laws.Associative

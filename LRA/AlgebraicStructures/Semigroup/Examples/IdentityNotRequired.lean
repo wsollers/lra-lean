@@ -13,5 +13,4 @@ theorem positiveIntegersHaveNoIdentity :
     ¬ ∃ e : {n // n ∈ PositiveIntegers},
         TwoSidedIdentity (fun a b : {n // n ∈ PositiveIntegers} => a * b) e := by
   sorry
-
 end LRA.AlgebraicStructures.Semigroup.Examples

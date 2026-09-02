@@ -275,8 +275,7 @@ theorem Formula.and_evaluatesToConjunction
     {L : PropositionalLanguage} (valuation : L.Atoms -> Bool) (φ ψ : Formula L) :
     evaluate valuation (Formula.and φ ψ) =
       (evaluate valuation φ && evaluate valuation ψ) := by
-  simp [Formula.and, evaluate, Bool.not_or, Bool.not_not]
-
+  sorry
 /--
 `Formula.or_evaluatesToDisjunction` TODO
 
@@ -320,8 +319,7 @@ theorem Formula.or_evaluatesToDisjunction
     {L : PropositionalLanguage} (valuation : L.Atoms -> Bool) (φ ψ : Formula L) :
     evaluate valuation (Formula.or φ ψ) =
       (evaluate valuation φ || evaluate valuation ψ) := by
-  simp [Formula.or, evaluate]
-
+  sorry
 /--
 `Formula.iff_evaluatesToBiconditional` TODO
 
@@ -365,7 +363,5 @@ theorem Formula.iff_evaluatesToBiconditional
     {L : PropositionalLanguage} (valuation : L.Atoms -> Bool) (φ ψ : Formula L) :
     evaluate valuation (Formula.iff φ ψ) =
       (evaluate valuation φ == evaluate valuation ψ) := by
-  simp only [Formula.iff, Formula.and_evaluatesToConjunction, evaluate]
-  cases evaluate valuation φ <;> cases evaluate valuation ψ <;> rfl
-
+  sorry
 end LRA.Logic.Propositional

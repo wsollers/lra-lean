@@ -132,5 +132,4 @@ Related proof moves: TODO
 theorem NaturalOneFailsNilpotentUnderMultiplication :
     FailsNilpotentElement NaturalMultiplicationForNilpotenceFailure 0 1 := by
   sorry
-
 end LRA.Operation.Laws.Nilpotent

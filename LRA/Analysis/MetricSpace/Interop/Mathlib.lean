@@ -216,7 +216,6 @@ theorem ToMathlibDistance {X : Type u} (metric : MetricDefinition X) (x y : X) :
     letI : MetricSpace X := metric.ToMathlibMetricSpace
     dist x y = metric.distance x y := by
   sorry
-
 /--
 `FromMathlibMetric` TODO
 
@@ -348,7 +347,6 @@ theorem FromMathlibMetricIsCompatibleWithMathlibMetric
     {X : Type u} [MetricSpace X] :
     IsCompatibleWithMathlibMetric (MetricDefinition.FromMathlibMetric X) := by
   sorry
-
 /--
 `ReverseTriangleInequalityFromMathlibCompatibility` TODO
 
@@ -397,7 +395,6 @@ theorem ReverseTriangleInequalityFromMathlibCompatibility
     (x y z : X) :
     |metric.distance x z - metric.distance y z| ≤ metric.distance x y := by
   sorry
-
 namespace MetricSpaceDefinition
 
 /--

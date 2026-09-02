@@ -46,7 +46,6 @@ Related proof moves: TODO
 theorem FiniteImpliesCountable (A : Type u)
     (finite : IsFinite A) : IsCountable A := by
   sorry
-
 /--
 `CountablyInfiniteImpliesCountable` TODO
 
@@ -87,7 +86,6 @@ Related proof moves: TODO
 theorem CountablyInfiniteImpliesCountable (A : Type u)
     (countablyInfinite : IsCountablyInfinite A) : IsCountable A := by
   sorry
-
 /--
 `CountablyInfiniteImpliesInfinite` TODO
 
@@ -128,7 +126,6 @@ Related proof moves: TODO
 theorem CountablyInfiniteImpliesInfinite (A : Type u)
     (countablyInfinite : IsCountablyInfinite A) : IsInfinite A := by
   sorry
-
 /--
 `IsCountableCongr` TODO
 
@@ -169,7 +166,6 @@ Related proof moves: constructor, .mp, .mpr
 theorem IsCountableCongr (A : Type u) (B : Type v)
     (equinumerous : Equinumerous A B) : IsCountable A ↔ IsCountable B := by
   sorry
-
 /--
 `DominatesCountableIsCountable` TODO
 
@@ -212,7 +208,6 @@ theorem DominatesCountableIsCountable (A : Type u) (B : Type v)
     (dominatesB : Dominates A B) (countableB : IsCountable B) :
     IsCountable A := by
   sorry
-
 /--
 `CountableSigmaOfCountableIndexCountableFibers` TODO
 
@@ -259,5 +254,4 @@ theorem CountableSigmaOfCountableIndexCountableFibers
     (countableFibers : ∀ index : Index, IsCountable (family index)) :
     IsCountable (Sigma family) := by
   sorry
-
 end LRA.Cardinality

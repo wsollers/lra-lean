@@ -98,5 +98,4 @@ theorem kernelRelationIsEquivalence {S : Signature}
     (homomorphism : Homomorphism M N) :
     Equivalence (kernelRelation homomorphism) := by
   sorry
-
 end LRA.UniversalAlgebra

@@ -94,7 +94,6 @@ Related proof moves: TODO
 theorem NewtonApproximationSqrtTwo :
     ConvergesTo NewtonSeqSqrtTwo (Real.sqrt 2) := by
   sorry
-
 /--
 `FactorialPartialSums` TODO
 
@@ -177,7 +176,6 @@ Related proof moves: TODO
 theorem FactorialPartialSumsApproximateE :
     ConvergesTo FactorialPartialSums (Real.exp 1) := by
   sorry
-
 /--
 `CompoundInterestSeq` TODO
 
@@ -260,7 +258,6 @@ Related proof moves: TODO
 theorem CompoundInterestApproximationE :
     ConvergesTo CompoundInterestSeq (Real.exp 1) := by
   sorry
-
 /--
 `DecimalTruncationSeq` TODO
 
@@ -343,5 +340,4 @@ Related proof moves: TODO
 theorem DecimalTruncationsConverge (α : ℝ) :
     ConvergesTo (DecimalTruncationSeq α) α := by
   sorry
-
 end LRA.Analysis.Sequences

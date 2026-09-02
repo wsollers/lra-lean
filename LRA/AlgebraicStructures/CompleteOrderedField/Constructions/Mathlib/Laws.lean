@@ -13,5 +13,4 @@ theorem ofConditionallyCompleteLinearOrder {R : Type u} [_root_.Field R]
     [_root_.IsStrictOrderedRing R] [Nonempty R] :
     CompleteOrderedFieldLaws R (Set R) := by
   sorry
-
 end LRA.AlgebraicStructures

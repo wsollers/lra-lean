@@ -123,7 +123,6 @@ theorem DistanceIsAMetric :
     (∀ x y : ℝ, dist' x y = dist' y x) ∧
     (∀ x y z : ℝ, dist' x z ≤ dist' x y + dist' y z) := by
   sorry
-
 /--
 `RealLineStructuralOrderFacts` TODO
 
@@ -164,7 +163,6 @@ Related proof moves: intro, use, rcases
 theorem RealLineStructuralOrderFacts :
     (∀ A : Set ℝ, A.Nonempty → BddAbove A → ∃ s, IsLUB A s) := by
   sorry
-
 /--
 `MinOfPositiveIsPositive` TODO
 
@@ -205,7 +203,6 @@ Related proof moves: TODO
 theorem MinOfPositiveIsPositive (a b : ℝ) (ha : a > 0) (hb : b > 0) :
     min a b > 0 := by
   sorry
-
 /--
 `HalfEpsilonIsPositive` TODO
 
@@ -244,7 +241,6 @@ Related proof moves: TODO
 -/
 theorem HalfEpsilonIsPositive (ε : ℝ) (hε : ε > 0) : ε / 2 > 0 := by
   sorry
-
 /--
 `EpsilonSplitting` TODO
 
@@ -283,7 +279,6 @@ Related proof moves: TODO
 -/
 theorem EpsilonSplitting (ε : ℝ) (hε : ε > 0) : ε / 2 + ε / 2 = ε := by
   sorry
-
 /--
 `PositiveMinimumBound` TODO
 
@@ -324,7 +319,6 @@ Related proof moves: TODO
 theorem PositiveMinimumBound (δ a b : ℝ) (h1 : 0 < δ) (h2 : δ ≤ a) (h3 : δ ≤ b) :
     δ ≤ min a b := by
   sorry
-
 /--
 `ChoosingSmallerPositive` TODO
 
@@ -365,7 +359,6 @@ Related proof moves: constructor, cases, rcases, use
 theorem ChoosingSmallerPositive (ε c : ℝ) (hε : ε > 0) (hc : c > 0) :
     ∃ δ, 0 < δ ∧ δ < ε ∧ δ < c := by
   sorry
-
 /--
 `AbsIsDistanceToZero` TODO
 
@@ -404,7 +397,6 @@ Related proof moves: TODO
 -/
 theorem AbsIsDistanceToZero (x : ℝ) : |x| = dist' x 0 := by
   sorry
-
 /--
 `IsBoundedSubset` TODO
 
@@ -483,5 +475,4 @@ Related proof moves: intro
 theorem IntervalSetOpsAreOrdinarySetOps :
     forall A B : Set ℝ, A ∪ B = B ∪ A := by
   sorry
-
 end LRA.Analysis.StructureOfRealLine

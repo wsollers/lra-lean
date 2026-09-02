@@ -153,7 +153,6 @@ theorem darboux_refinement_squeeze (P P' : IntegrationPartition a b) (h : Refine
     LowerDarbouxSum f P' ≤ UpperDarbouxSum f P' ∧
     UpperDarbouxSum f P' ≤ UpperDarbouxSum f P := by
   sorry
-
 /--
 `IsDarbouxIntegrable` TODO
 
@@ -236,7 +235,6 @@ theorem darboux_criterion (hbdd : LRA.Analysis.Continuity.BoundedOnSet f (Set.Ic
     IsDarbouxIntegrable f a b ↔
       ∀ ε > 0, ∃ P : IntegrationPartition a b, UpperDarbouxSum f P - LowerDarbouxSum f P < ε := by
   sorry
-
 /--
 `riemann_darboux_equivalence` TODO
 
@@ -279,7 +277,6 @@ theorem riemann_darboux_equivalence (hab : a ≤ b)
     (hbdd : LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) :
     IsRiemannIntegrable f a b ↔ IsDarbouxIntegrable f a b := by
   sorry
-
 /--
 `continuous_darboux_integrable` TODO
 
@@ -322,7 +319,6 @@ theorem continuous_darboux_integrable (hab : a ≤ b)
     (hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) :
     IsDarbouxIntegrable f a b := by
   sorry
-
 /--
 `monotone_darboux_integrable` TODO
 
@@ -363,7 +359,6 @@ Related proof moves: TODO
 theorem monotone_darboux_integrable (hab : a ≤ b) (hmono : MonotoneOn f (Set.Icc a b)) :
     IsDarbouxIntegrable f a b := by
   sorry
-
 /--
 `finite_discontinuities_darboux_integrable` TODO
 
@@ -408,7 +403,6 @@ theorem finite_discontinuities_darboux_integrable (hab : a ≤ b)
     (hfin : {x ∈ Set.Icc a b | LRA.Analysis.Continuity.PointOfDiscontinuity f (Set.Icc a b) x}.Finite) :
     IsDarbouxIntegrable f a b := by
   sorry
-
 /--
 `darboux_integrable_linear_combinations` TODO
 
@@ -451,7 +445,6 @@ theorem darboux_integrable_linear_combinations (hf : IsDarbouxIntegrable f a b)
     (hg : IsDarbouxIntegrable g a b) (α β : ℝ) :
     IsDarbouxIntegrable (fun x => α * f x + β * g x) a b := by
   sorry
-
 /--
 `darboux_integrable_products` TODO
 
@@ -492,7 +485,6 @@ Related proof moves: TODO
 theorem darboux_integrable_products (hf : IsDarbouxIntegrable f a b) (hg : IsDarbouxIntegrable g a b) :
     IsDarbouxIntegrable (fun x => f x * g x) a b := by
   sorry
-
 /--
 `darboux_integrable_absolute_value` TODO
 
@@ -533,7 +525,6 @@ Related proof moves: TODO
 theorem darboux_integrable_absolute_value (hf : IsDarbouxIntegrable f a b) :
     IsDarbouxIntegrable (fun x => |f x|) a b := by
   sorry
-
 /--
 `darboux_integrable_continuous_composition` TODO
 
@@ -580,7 +571,6 @@ theorem darboux_integrable_continuous_composition (hf : IsDarbouxIntegrable f a 
     (hφ : LRA.Analysis.Continuity.ContinuousOn' φ J) :
     IsDarbouxIntegrable (fun x => φ (f x)) a b := by
   sorry
-
 /--
 `dirichlet_not_darboux_integrable` TODO
 
@@ -627,5 +617,4 @@ theorem dirichlet_not_darboux_integrable :
         classical
         exact if LRA.Analysis.Completeness.IsIrrational x then (0 : ℝ) else 1) 0 1 := by
   sorry
-
 end LRA.Analysis.Integration

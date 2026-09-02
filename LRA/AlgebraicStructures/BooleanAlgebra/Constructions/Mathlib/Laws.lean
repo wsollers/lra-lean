@@ -13,5 +13,4 @@ theorem ofBooleanAlgebra {R : Type u} [_root_.BooleanAlgebra R] :
     LRA.AlgebraicStructures.BooleanAlgebraLaws
       (Carrier := R) (· ⊔ ·) (· ⊓ ·) Compl.compl ⊥ ⊤ := by
   sorry
-
 end LRA.AlgebraicStructures

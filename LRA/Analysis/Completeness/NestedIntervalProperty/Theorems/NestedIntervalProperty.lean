@@ -59,7 +59,6 @@ theorem NestedClosedIntervalsHaveOrderedEndpoints
     (indexOrderHypothesis : n ≤ m) :
     a n ≤ a m ∧ a m ≤ b m ∧ b m ≤ b n := by
   sorry
-
 /--
 `LeftEndpointsOfNestedIntervalsIncrease` TODO
 
@@ -104,7 +103,6 @@ theorem LeftEndpointsOfNestedIntervalsIncrease
     (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)) :
     ∀ n, a n ≤ a (n + 1) := by
   sorry
-
 /--
 `RightEndpointsOfNestedIntervalsDecrease` TODO
 
@@ -149,7 +147,6 @@ theorem RightEndpointsOfNestedIntervalsDecrease
     (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)) :
     ∀ n, b (n + 1) ≤ b n := by
   sorry
-
 /--
 `LeftEndpointsAreBoundedAboveByRightEndpoints` TODO
 
@@ -194,7 +191,6 @@ theorem LeftEndpointsAreBoundedAboveByRightEndpoints
     (nestedHypothesis : ∀ n, Set.Icc (a (n + 1)) (b (n + 1)) ⊆ Set.Icc (a n) (b n)) :
     ∀ m n, a n ≤ b m := by
   sorry
-
 /--
 `EndpointSupremumLeEndpointInfimum` TODO
 
@@ -245,7 +241,6 @@ theorem EndpointSupremumLeEndpointInfimum
     (rightInfimumHypothesis : IsInfimum rightEndpointLimit (Set.range b)) :
     leftEndpointLimit ≤ rightEndpointLimit := by
   sorry
-
 /--
 `NestedIntervalTheorem` TODO
 
@@ -300,7 +295,6 @@ theorem NestedIntervalTheorem
       (⋂ n, Set.Icc (a n) (b n)).Nonempty ∧
         ∃ x : ℝ, ∀ n, a n ≤ x ∧ x ≤ b n := by
   sorry
-
 /--
 `NestedIntervalIntersectionContainsEndpointSupremum` TODO
 
@@ -351,7 +345,6 @@ theorem NestedIntervalIntersectionContainsEndpointSupremum
     (∀ n, a n ≤ leftEndpointLimit ∧ leftEndpointLimit ≤ b n) ∧
       leftEndpointLimit ∈ ⋂ n, Set.Icc (a n) (b n) := by
   sorry
-
 /--
 `NestedIntervalIntersectionContainsEndpointInfimum` TODO
 
@@ -402,7 +395,6 @@ theorem NestedIntervalIntersectionContainsEndpointInfimum
     (∀ n, a n ≤ rightEndpointLimit ∧ rightEndpointLimit ≤ b n) ∧
       rightEndpointLimit ∈ ⋂ n, Set.Icc (a n) (b n) := by
   sorry
-
 /--
 `NestedIntervalsWithVanishingLengthHaveUniquePoint` TODO
 
@@ -453,7 +445,6 @@ theorem NestedIntervalsWithVanishingLengthHaveUniquePoint
     ∃! x : ℝ, (∀ n, a n ≤ x ∧ x ≤ b n) ∧
       IsSupremum x (Set.range a) ∧ IsInfimum x (Set.range b) := by
   sorry
-
 /--
 `NestedIntervalsWithVanishingLengthHaveEqualEndpointLimits` TODO
 
@@ -502,7 +493,6 @@ theorem NestedIntervalsWithVanishingLengthHaveEqualEndpointLimits
     ∃ x : ℝ, Filter.Tendsto a Filter.atTop (nhds x) ∧
       Filter.Tendsto b Filter.atTop (nhds x) := by
   sorry
-
 /--
 `UniquePointInNestedIntervalsIsEndpointLimit` TODO
 
@@ -553,7 +543,6 @@ theorem UniquePointInNestedIntervalsIsEndpointLimit
     Filter.Tendsto a Filter.atTop (nhds x) ∧
       Filter.Tendsto b Filter.atTop (nhds x) := by
   sorry
-
 /--
 `IsNestedClosedIntervalFamilyIffMonotoneAntitone` TODO
 
@@ -594,7 +583,6 @@ Related proof moves: intro, constructor, .mp, .mpr, cases, rcases
 theorem IsNestedClosedIntervalFamilyIffMonotoneAntitone (a b : ℕ → ℝ) :
     IsNestedClosedIntervalFamily a b ↔ Monotone a ∧ Antitone b ∧ ∀ n, a n ≤ b n := by
   sorry
-
 /--
 `RealsSatisfyNestedIntervalProperty` TODO
 
@@ -633,5 +621,4 @@ Related proof moves: TODO
 -/
 theorem RealsSatisfyNestedIntervalProperty : NestedIntervalProperty ℝ := by
   sorry
-
 end LRA.Analysis.Completeness

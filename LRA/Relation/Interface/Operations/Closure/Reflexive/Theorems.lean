@@ -47,7 +47,6 @@ theorem RelationIncludedInReflexiveClosure
     {Alpha : Type u} (relation : Endorelation Alpha) :
     RelationIncluded relation (ReflexiveClosure relation) := by
   sorry
-
 /--
 `ReflexiveClosureIsReflexive` TODO
 
@@ -90,7 +89,6 @@ theorem ReflexiveClosureIsReflexive
     {Alpha : Type u} (relation : Endorelation Alpha) :
     Reflexive (ReflexiveClosure relation) := by
   sorry
-
 /--
 `ReflexiveClosureIsLeast` TODO
 
@@ -137,5 +135,4 @@ theorem ReflexiveClosureIsLeast
     (targetReflexive : Reflexive target) :
     RelationIncluded (ReflexiveClosure relation) target := by
   sorry
-
 end LRA.Relation

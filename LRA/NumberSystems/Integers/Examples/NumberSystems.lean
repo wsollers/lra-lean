@@ -9,7 +9,6 @@ theorem mathlib_every_element_is_integer_numeral :
     ∀ value : mathlibIntegerModel.Carrier,
       ∃ integer : Int, IntegerNumeral mathlibIntegerModel integer = value := by
   sorry
-
 noncomputable def MathlibIntegerNumberSystem : IntegerNumberSystem where
   Model := mathlibIntegerModel
   EveryElementIsIntegerNumeral := mathlib_every_element_is_integer_numeral

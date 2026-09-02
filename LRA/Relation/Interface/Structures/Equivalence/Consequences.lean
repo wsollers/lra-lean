@@ -50,7 +50,6 @@ theorem EquivalenceRelation.reflexive
     (equivalence : EquivalenceRelation relation) :
     Reflexive relation := by
   sorry
-
 /--
 `EquivalenceRelation.symmetric` TODO
 
@@ -97,7 +96,6 @@ theorem EquivalenceRelation.symmetric
     (equivalence : EquivalenceRelation relation) :
     Symmetric relation := by
   sorry
-
 /--
 `EquivalenceRelation.transitive` TODO
 
@@ -144,5 +142,4 @@ theorem EquivalenceRelation.transitive
     (equivalence : EquivalenceRelation relation) :
     Transitive relation := by
   sorry
-
 end LRA.Relation

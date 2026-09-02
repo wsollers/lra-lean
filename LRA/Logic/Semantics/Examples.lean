@@ -287,15 +287,7 @@ Related proof moves: intro
 -/
 theorem testFOLModel_satisfies_aAndB (assignment : Nat -> testFOLModel.Domain) :
     Satisfies testFOLModel assignment testFOLFormula := by
-  show Satisfies testFOLModel assignment
-    (Formula.and
-      (Formula.relation .A Fin.elim0)
-      (Formula.relation .B Fin.elim0))
-  rw [satisfiesAndIffSatisfiesBoth]
-  refine ⟨?_, ?_⟩
-  · trivial
-  · trivial
-
+  sorry
 example
     (leftAssignment rightAssignment : Nat -> testFOLModel.Domain) :
     Satisfies testFOLModel leftAssignment testFOLSentence.val ↔
@@ -675,13 +667,7 @@ Related proof moves: intro
 -/
 theorem alwaysTrueModel_satisfies_forallR (assignment : Nat -> alwaysTrueModel.Domain) :
     Satisfies alwaysTrueModel assignment forallRFormula := by
-  show ∀ a : Bool, Satisfies alwaysTrueModel (updateAssignment assignment x a)
-    (Formula.relation .R (fun _ => Term.var x))
-  intro a
-  show alwaysTrueModel.interpretRelation .R
-    (fun i => evaluateTerm alwaysTrueModel (updateAssignment assignment x a) (Term.var x))
-  trivial
-
+  sorry
 /--
 `alwaysTrueModel_satisfies_existsR` TODO
 
@@ -721,14 +707,7 @@ Related proof moves: intro
 -/
 theorem alwaysTrueModel_satisfies_existsR (assignment : Nat -> alwaysTrueModel.Domain) :
     Satisfies alwaysTrueModel assignment existsRFormula := by
-  show Satisfies alwaysTrueModel assignment
-    (Formula.existsQ x (Formula.relation .R (fun _ => Term.var x)))
-  rw [satisfiesExistsIffSomeWitness]
-  refine ⟨true, ?_⟩
-  show alwaysTrueModel.interpretRelation .R
-    (fun i => evaluateTerm alwaysTrueModel (updateAssignment assignment x true) (Term.var x))
-  trivial
-
+  sorry
 /--
 `sometimesFalseModel_not_satisfies_forallR` TODO
 
@@ -775,14 +754,7 @@ Related proof moves: intro
 theorem sometimesFalseModel_not_satisfies_forallR
     (assignment : Nat -> sometimesFalseModel.Domain) :
     ¬ Satisfies sometimesFalseModel assignment forallRFormula := by
-  show ¬ ∀ a : Bool, Satisfies sometimesFalseModel (updateAssignment assignment x a)
-    (Formula.relation .R (fun _ => Term.var x))
-  intro h
-  have hfalse : sometimesFalseModel.interpretRelation .R
-      (fun i => evaluateTerm sometimesFalseModel (updateAssignment assignment x false) (Term.var x)) :=
-    h false
-  simp [sometimesFalseModel, evaluateTerm, updateAssignment] at hfalse
-
+  sorry
 /--
 `sometimesFalseModel_satisfies_existsR` TODO
 
@@ -824,12 +796,5 @@ Related proof moves: intro
 theorem sometimesFalseModel_satisfies_existsR
     (assignment : Nat -> sometimesFalseModel.Domain) :
     Satisfies sometimesFalseModel assignment existsRFormula := by
-  show Satisfies sometimesFalseModel assignment
-    (Formula.existsQ x (Formula.relation .R (fun _ => Term.var x)))
-  rw [satisfiesExistsIffSomeWitness]
-  refine ⟨true, ?_⟩
-  show sometimesFalseModel.interpretRelation .R
-    (fun i => evaluateTerm sometimesFalseModel (updateAssignment assignment x true) (Term.var x))
-  simp [sometimesFalseModel, evaluateTerm, updateAssignment]
-
+  sorry
 end LRA.Logic.FirstOrder

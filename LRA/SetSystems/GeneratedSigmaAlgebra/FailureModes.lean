@@ -103,7 +103,6 @@ theorem NonAdmissibleGeneratorMakesGeneratedCollectionVacuous
     (notAdmissible : ¬ GeneratorAdmissible ambient generator) :
     GeneratedSigmaAlgebraCollectionVacuous ambient generator := by
   sorry
-
 /--
 `EmptyNatAmbient` TODO
 
@@ -260,7 +259,6 @@ Related proof moves: TODO
 theorem EmptyAmbientZeroGeneratorIsNotAdmissible :
     ¬ GeneratorAdmissible EmptyNatAmbient ZeroSingletonGenerator := by
   sorry
-
 /--
 `EmptyAmbientZeroGeneratorRealizesVacuityFailure` TODO
 
@@ -305,5 +303,4 @@ theorem EmptyAmbientZeroGeneratorRealizesVacuityFailure :
         EmptyNatAmbient ZeroSingletonGenerator ZeroSingleton ∧
       ¬ ZeroSingleton ⊆ EmptyNatAmbient := by
   sorry
-
 end LRA.SetSystems

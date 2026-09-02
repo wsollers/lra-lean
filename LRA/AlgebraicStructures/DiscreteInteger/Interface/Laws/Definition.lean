@@ -75,52 +75,43 @@ section Wrappers
 variable {R : Type u}
 
 theorem PredSucc [HasSuccessor R] [HasPredecessor R] [SuccessorLaws R] :
-    ∀ a : R, Pred (Succ a) = a :=
+    ∀ a : R, Pred (Succ a) = a := by
   sorry
-
 theorem SuccPred [HasSuccessor R] [HasPredecessor R] [SuccessorLaws R] :
-    ∀ a : R, Succ (Pred a) = a :=
+    ∀ a : R, Succ (Pred a) = a := by
   sorry
-
 theorem SuccInjective [HasSuccessor R] [HasPredecessor R]
     [SuccessorLaws R] :
-    ∀ a b : R, Succ a = Succ b → a = b :=
+    ∀ a b : R, Succ a = Succ b → a = b := by
   sorry
-
 theorem PredInjective [HasSuccessor R] [HasPredecessor R]
     [SuccessorLaws R] :
-    ∀ a b : R, Pred a = Pred b → a = b :=
+    ∀ a b : R, Pred a = Pred b → a = b := by
   sorry
-
 theorem SuccEqAddOne [HasSuccessor R] [Add R] [OfNat R 1]
     [SuccessorAdditionLaw R] :
-    ∀ a : R, Succ a = a + 1 :=
+    ∀ a : R, Succ a = a + 1 := by
   sorry
-
 theorem MulSucc [HasSuccessor R] [HasPredecessor R]
     [Add R] [Mul R] [Neg R] [SuccessorMultiplicationLaws R] :
-    ∀ a b : R, a * Succ b = a * b + a :=
+    ∀ a b : R, a * Succ b = a * b + a := by
   sorry
-
 theorem MulPred [HasSuccessor R] [HasPredecessor R]
     [Add R] [Mul R] [Neg R] [SuccessorMultiplicationLaws R] :
-    ∀ a b : R, a * Pred b = a * b + -a :=
+    ∀ a b : R, a * Pred b = a * b + -a := by
   sorry
-
 theorem SuccAperiodic [HasSuccessor R] [HasPredecessor R] [OfNat R 0]
     [DiscretenessLaw R] :
-    ∀ (x : R) (n : Nat), 0 < n → SuccIterate n x ≠ x :=
+    ∀ (x : R) (n : Nat), 0 < n → SuccIterate n x ≠ x := by
   sorry
-
 theorem TwoSidedInduction [HasSuccessor R] [HasPredecessor R]
     [OfNat R 0] [DiscretenessLaw R] :
     ∀ (motive : R → Prop),
       motive 0 →
       (∀ a, motive a → motive (Succ a)) →
       (∀ a, motive a → motive (Pred a)) →
-      ∀ a, motive a :=
+      ∀ a, motive a := by
   sorry
-
 end Wrappers
 
 end LRA.AlgebraicStructures

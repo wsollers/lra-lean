@@ -220,7 +220,6 @@ theorem BooleanFirstProjectionLeftAbsorbingButNotRightAbsorbing :
     LeftAbsorbing BooleanFirstProjection false ∧
       FailsRightAbsorbing BooleanFirstProjection false := by
   sorry
-
 /--
 `BooleanSecondProjectionRightAbsorbingButNotLeftAbsorbing` TODO
 
@@ -263,5 +262,4 @@ theorem BooleanSecondProjectionRightAbsorbingButNotLeftAbsorbing :
     RightAbsorbing BooleanSecondProjection false ∧
       FailsLeftAbsorbing BooleanSecondProjection false := by
   sorry
-
 end LRA.Operation.Laws.Absorbing

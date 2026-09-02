@@ -1,11 +1,11 @@
+import LRA.Set.Interface.Laws.Membership
+import LRA.Set.Interface.Laws.Pairing
 import LRA.Set.Interface.Laws.Union
 import LRA.Set.Interface.Laws.Intersection
 import LRA.Set.Interface.Laws.Subset
 import LRA.Set.Interface.Laws.Difference
 import LRA.Set.Interface.Laws.SymmetricDifference
 import LRA.Set.Interface.Laws.Distributivity
-import LRA.Set.Interface.Laws.Membership
-import LRA.Set.Interface.Laws.Pairing
 import LRA.Set.Interface.Laws.Indexed
 import LRA.Set.Interface.Laws.Families
 import LRA.Set.Interface.Laws.Complement

@@ -74,7 +74,6 @@ theorem RelationGraphMemberCoordinates
       left ∈ relation.triple.leftDomain ∧
       right ∈ relation.triple.rightDomain := by
   sorry
-
 /--
 `EvaluationExists` TODO
 
@@ -141,7 +140,6 @@ theorem EvaluationExists
       output ∈ setFunction.triple.codomain ∧
       Relates setFunction.triple.graph input output := by
   sorry
-
 /--
 `EvaluationUnique` TODO
 
@@ -208,7 +206,6 @@ theorem EvaluationUnique
     (secondEvaluation : Relates setFunction.triple.graph input secondOutput) :
     firstOutput = secondOutput := by
   sorry
-
 /--
 `SetTheoreticFunctionExt` TODO
 
@@ -273,5 +270,4 @@ Related proof moves: TODO
     (sameGraph : left.triple.graph = right.triple.graph) :
     left = right := by
   sorry
-
 end LRA.Function.SetTheoretic

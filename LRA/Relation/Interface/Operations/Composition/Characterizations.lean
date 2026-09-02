@@ -51,5 +51,4 @@ theorem Transitive.iff_square_included
     Transitive relation ↔
       RelationIncluded (RelationComposition relation relation) relation := by
   sorry
-
 end LRA.Relation

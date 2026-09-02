@@ -59,5 +59,4 @@ theorem BottomElementIffRelationToEvery
     BottomElement (SetObject := SetObject) relation bottom <->
       forall element : Element, relation bottom element := by
   sorry
-
 end LRA.Order

@@ -45,7 +45,6 @@ theorem RealOrderTrichotomy (a b : ℝ) :
     (a < b ∧ a ≠ b ∧ ¬ a > b) ∨ (a = b ∧ ¬ a < b ∧ ¬ a > b) ∨
     (a > b ∧ a ≠ b ∧ ¬ a < b) := by
   sorry
-
 /--
 `IneqAddBothSides` TODO
 
@@ -84,7 +83,6 @@ Related proof moves: intro
 -/
 theorem IneqAddBothSides (a b c : ℝ) : a < b → a + c < b + c := by
   sorry
-
 /--
 `IneqNonstrictAddBothSides` TODO
 
@@ -123,7 +121,6 @@ Related proof moves: intro
 -/
 theorem IneqNonstrictAddBothSides (a b c : ℝ) : a ≤ b → a + c ≤ b + c := by
   sorry
-
 /--
 `IneqAddInequalities` TODO
 
@@ -164,7 +161,6 @@ Related proof moves: intro, constructor, cases, rcases
 theorem IneqAddInequalities (a b c d : ℝ) :
     a < b ∧ c < d → a + c < b + d := by
   sorry
-
 /--
 `IneqNonstrictAddInequalities` TODO
 
@@ -205,7 +201,6 @@ Related proof moves: intro, constructor, cases, rcases
 theorem IneqNonstrictAddInequalities (a b c d : ℝ) :
     a ≤ b ∧ c ≤ d → a + c ≤ b + d := by
   sorry
-
 /--
 `PositiveSum` TODO
 
@@ -244,7 +239,6 @@ Related proof moves: intro
 -/
 theorem PositiveSum (a b : ℝ) : a > 0 → b > 0 → a + b > 0 := by
   sorry
-
 /--
 `SubtractionOfInequalitiesNotValid` TODO
 
@@ -285,7 +279,6 @@ Related proof moves: constructor, cases, rcases, use
 theorem SubtractionOfInequalitiesNotValid :
     ∃ a b c d : ℝ, a > b ∧ c > d ∧ ¬ (a - c > b - d) ∧ ¬ (c - a > d - b) := by
   sorry
-
 /--
 `IneqMixedAdd` TODO
 
@@ -324,7 +317,6 @@ Related proof moves: intro, constructor, cases, rcases
 -/
 theorem IneqMixedAdd (a b c d : ℝ) : a ≤ b ∧ c < d → a + c < b + d := by
   sorry
-
 /--
 `IneqMultiplyPositive` TODO
 
@@ -363,7 +355,6 @@ Related proof moves: intro, constructor, cases, rcases
 -/
 theorem IneqMultiplyPositive (a b c : ℝ) : a < b ∧ 0 < c → a * c < b * c := by
   sorry
-
 /--
 `IneqMultiplyNegative` TODO
 
@@ -402,7 +393,6 @@ Related proof moves: intro, constructor, cases, rcases
 -/
 theorem IneqMultiplyNegative (a b c : ℝ) : a < b ∧ c < 0 → a * c > b * c := by
   sorry
-
 /--
 `IneqNonstrictMultiplyPositive` TODO
 
@@ -443,7 +433,6 @@ Related proof moves: intro, constructor, cases, rcases
 theorem IneqNonstrictMultiplyPositive (a b c : ℝ) :
     a ≤ b ∧ 0 < c → a * c ≤ b * c := by
   sorry
-
 /--
 `IneqNonstrictMultiplyNonneg` TODO
 
@@ -484,7 +473,6 @@ Related proof moves: intro, constructor, cases, rcases
 theorem IneqNonstrictMultiplyNonneg (a b c : ℝ) :
     a ≤ b ∧ 0 ≤ c → a * c ≤ b * c := by
   sorry
-
 /--
 `PositiveProduct` TODO
 
@@ -523,7 +511,6 @@ Related proof moves: intro
 -/
 theorem PositiveProduct (a b : ℝ) : a > 0 → b > 0 → a * b > 0 := by
   sorry
-
 /--
 `NegativeTimesNegativeIsPositive` TODO
 
@@ -564,7 +551,6 @@ Related proof moves: intro
 theorem NegativeTimesNegativeIsPositive (a b : ℝ) :
     a < 0 → b < 0 → a * b > 0 := by
   sorry
-
 /--
 `PositiveTimesNegativeIsNegative` TODO
 
@@ -605,7 +591,6 @@ Related proof moves: intro
 theorem PositiveTimesNegativeIsNegative (a b : ℝ) :
     a > 0 → b < 0 → a * b < 0 := by
   sorry
-
 /--
 `NegativeTimesPositiveIsNegative` TODO
 
@@ -646,7 +631,6 @@ Related proof moves: intro
 theorem NegativeTimesPositiveIsNegative (a b : ℝ) :
     a < 0 → b > 0 → a * b < 0 := by
   sorry
-
 /--
 `OrderAndSubtraction` TODO
 
@@ -685,7 +669,6 @@ Related proof moves: constructor, .mp, .mpr
 -/
 theorem OrderAndSubtraction (a b : ℝ) : a < b ↔ b - a > 0 := by
   sorry
-
 /--
 `NonStrictOrderAndSubtraction` TODO
 
@@ -724,7 +707,6 @@ Related proof moves: constructor, .mp, .mpr
 -/
 theorem NonStrictOrderAndSubtraction (a b : ℝ) : a ≤ b ↔ b - a ≥ 0 := by
   sorry
-
 /--
 `DivisionByPositivePreservesOrder` TODO
 
@@ -765,7 +747,6 @@ Related proof moves: intro
 theorem DivisionByPositivePreservesOrder (a b c : ℝ) :
     a < b → c > 0 → a / c < b / c := by
   sorry
-
 /--
 `DivisionByNegativeReversesOrder` TODO
 
@@ -806,7 +787,6 @@ Related proof moves: intro
 theorem DivisionByNegativeReversesOrder (a b c : ℝ) :
     a < b → c < 0 → b / c < a / c := by
   sorry
-
 /--
 `PositiveMultiplicationCancellation` TODO
 
@@ -847,7 +827,6 @@ Related proof moves: intro
 theorem PositiveMultiplicationCancellation (a b c : ℝ) :
     c > 0 → a * c < b * c → a < b := by
   sorry
-
 /--
 `DivisionOfInequalitiesNotValid` TODO
 
@@ -890,7 +869,6 @@ theorem DivisionOfInequalitiesNotValid :
     ∃ a b c d : ℝ, a ≠ 0 ∧ b ≠ 0 ∧ c ≠ 0 ∧ d ≠ 0 ∧ a > b ∧ c > d ∧
       ¬ (a / c > b / d) ∧ ¬ (c / a > d / b) := by
   sorry
-
 /--
 `IneqSqueeze` TODO
 
@@ -929,7 +907,6 @@ Related proof moves: intro, constructor, cases, rcases
 -/
 theorem IneqSqueeze (a b c : ℝ) : a ≤ b ∧ b ≤ c ∧ a = c → b = a := by
   sorry
-
 /--
 `IneqTransitivityStrict` TODO
 
@@ -968,7 +945,6 @@ Related proof moves: intro, constructor, cases, rcases
 -/
 theorem IneqTransitivityStrict (a b c : ℝ) : a < b ∧ b < c → a < c := by
   sorry
-
 /--
 `IneqTransitivityMixed` TODO
 
@@ -1007,7 +983,6 @@ Related proof moves: intro, constructor, cases, rcases
 -/
 theorem IneqTransitivityMixed (a b c : ℝ) : a ≤ b ∧ b < c → a < c := by
   sorry
-
 /--
 `IneqReciprocalPositive` TODO
 
@@ -1048,7 +1023,6 @@ Related proof moves: intro, constructor, cases, rcases
 theorem IneqReciprocalPositive (a b : ℝ) :
     0 < a ∧ a < b → 0 < 1 / b ∧ 1 / b < 1 / a := by
   sorry
-
 /--
 `IneqReciprocalFlip` TODO
 
@@ -1089,5 +1063,4 @@ Related proof moves: constructor, .mp, .mpr
 theorem IneqReciprocalFlip (a b : ℝ) (ha : a > 0) (hb : b > 0) :
     a < b ↔ 1 / b < 1 / a := by
   sorry
-
 end LRA.Analysis.RealAnalysis

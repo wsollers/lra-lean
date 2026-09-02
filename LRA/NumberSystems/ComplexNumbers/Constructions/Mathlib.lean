@@ -9,9 +9,8 @@ abbrev Carrier := Complex
 noncomputable def genericModel : ComplexNumberModel :=
   mathlibComplexNumberModel
 
-theorem satisfiesGenericType : genericModel.Carrier = Carrier :=
-  rfl
-
+theorem satisfiesGenericType : genericModel.Carrier = Carrier := by
+  sorry
 noncomputable def firstOrderModel := genericModel.firstOrderModel
 
 end LRA.NumberSystems.ComplexNumbers.Constructions.Mathlib

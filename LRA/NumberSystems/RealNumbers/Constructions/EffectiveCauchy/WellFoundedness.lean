@@ -56,5 +56,4 @@ theorem InductionOnRepresentatives
         motive (Quotient.mk (ApproximationSetoid rationalSystem) representative)) :
     ∀ value : EffectiveCauchyReal rationalSystem, motive value := by
   sorry
-
 end LRA.NumberSystems.RealNumbers.EffectiveCauchy

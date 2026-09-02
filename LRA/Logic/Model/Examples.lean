@@ -111,8 +111,8 @@ Related proof moves: TODO
 theorem natMulMonoidModel.mulComputesMultiplication
     (a b : Nat) :
     natMulMonoidModel.interpretFunction .mul
-      (fun i => if i.val = 0 then a else b) = a * b := rfl
-
+      (fun i => if i.val = 0 then a else b) = a * b := by
+  sorry
 /--
 `natMulMonoidModel.oneComputesOne` TODO
 
@@ -151,8 +151,8 @@ Related proof moves: TODO
 
 -/
 theorem natMulMonoidModel.oneComputesOne :
-    natMulMonoidModel.interpretConstant .one = (1 : Nat) := rfl
-
+    natMulMonoidModel.interpretConstant .one = (1 : Nat) := by
+  sorry
 /--
 `natAddMonoidModel` TODO
 
@@ -261,8 +261,8 @@ Related proof moves: TODO
 theorem natAddMonoidModel.addComputesAddition
     (a b : Nat) :
     natAddMonoidModel.interpretFunction .add
-      (fun i => if i.val = 0 then a else b) = a + b := rfl
-
+      (fun i => if i.val = 0 then a else b) = a + b := by
+  sorry
 /--
 `natAddMonoidModel.zeroComputesZero` TODO
 
@@ -301,8 +301,8 @@ Related proof moves: TODO
 
 -/
 theorem natAddMonoidModel.zeroComputesZero :
-    natAddMonoidModel.interpretConstant .zero = (0 : Nat) := rfl
-
+    natAddMonoidModel.interpretConstant .zero = (0 : Nat) := by
+  sorry
 /--
 `intOrderedRingModel` TODO
 
@@ -427,8 +427,8 @@ Related proof moves: TODO
 theorem intOrderedRingModel.addComputesAddition
     (a b : Int) :
     intOrderedRingModel.interpretFunction .add
-      (fun i => if i.val = 0 then a else b) = a + b := rfl
-
+      (fun i => if i.val = 0 then a else b) = a + b := by
+  sorry
 /--
 `intOrderedRingModel.mulComputesMultiplication` TODO
 
@@ -471,8 +471,8 @@ Related proof moves: TODO
 theorem intOrderedRingModel.mulComputesMultiplication
     (a b : Int) :
     intOrderedRingModel.interpretFunction .mul
-      (fun i => if i.val = 0 then a else b) = a * b := rfl
-
+      (fun i => if i.val = 0 then a else b) = a * b := by
+  sorry
 /--
 `intOrderedRingModel.negComputesNegation` TODO
 
@@ -513,8 +513,8 @@ Related proof moves: TODO
 -/
 theorem intOrderedRingModel.negComputesNegation
     (a : Int) :
-    intOrderedRingModel.interpretFunction .neg (fun _ => a) = -a := rfl
-
+    intOrderedRingModel.interpretFunction .neg (fun _ => a) = -a := by
+  sorry
 /--
 `intOrderedRingModel.ltComputesLessThan` TODO
 
@@ -557,8 +557,8 @@ Related proof moves: TODO
 theorem intOrderedRingModel.ltComputesLessThan
     (a b : Int) :
     intOrderedRingModel.interpretRelation .lt
-      (fun i => if i.val = 0 then a else b) = (a < b) := rfl
-
+      (fun i => if i.val = 0 then a else b) = (a < b) := by
+  sorry
 /--
 `intOrderedRingModel.zeroComputesZero` TODO
 
@@ -597,8 +597,8 @@ Related proof moves: TODO
 
 -/
 theorem intOrderedRingModel.zeroComputesZero :
-    intOrderedRingModel.interpretConstant .zero = (0 : Int) := rfl
-
+    intOrderedRingModel.interpretConstant .zero = (0 : Int) := by
+  sorry
 /--
 `intOrderedRingModel.oneComputesOne` TODO
 
@@ -637,6 +637,6 @@ Related proof moves: TODO
 
 -/
 theorem intOrderedRingModel.oneComputesOne :
-    intOrderedRingModel.interpretConstant .one = (1 : Int) := rfl
-
+    intOrderedRingModel.interpretConstant .one = (1 : Int) := by
+  sorry
 end LRA.Logic.FirstOrder

@@ -201,7 +201,6 @@ theorem QuotientSetExists
     ∃ quotient : Collection,
       IsQuotientSetOf quotient ambient relation := by
   sorry
-
 /--
 `QuotientSetUnique` TODO
 
@@ -251,7 +250,6 @@ theorem QuotientSetUnique
       (fun quotient : Collection =>
         IsQuotientSetOf quotient ambient relation) := by
   sorry
-
 /--
 `QuotientSetExistsAndUnique` TODO
 
@@ -301,7 +299,6 @@ theorem QuotientSetExistsAndUnique
       (fun quotient : Collection =>
         IsQuotientSetOf quotient ambient relation) := by
   sorry
-
 /--
 `QuotientSetMembership` TODO
 
@@ -356,7 +353,6 @@ theorem QuotientSetMembership
           representative ∈ ambient ∧
             candidate = EquivalenceClass ambient relation representative := by
   sorry
-
 end Laws
 end WithCollectionSeparation
 end WithPowerset
@@ -526,7 +522,6 @@ theorem QuotientProjectionWellDefined
     QuotientProjection ambient relation firstRepresentative =
       QuotientProjection ambient relation secondRepresentative := by
   sorry
-
 /--
 `QuotientClassElementWellDefined` TODO
 
@@ -579,7 +574,6 @@ theorem QuotientClassElementWellDefined
     QuotientClassElement ambient relation firstRepresentative =
       QuotientClassElement ambient relation secondRepresentative := by
   sorry
-
 end WellDefined
 end QuotientSets
 

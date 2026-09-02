@@ -135,5 +135,4 @@ theorem firstIsomorphismTheorem {S : Signature}
       ∀ target : N.Domain, ∃ source, homomorphism.map source = target) :
     Isomorphic (quotientModel (kernelCongruence homomorphism)) N := by
   sorry
-
 end LRA.UniversalAlgebra

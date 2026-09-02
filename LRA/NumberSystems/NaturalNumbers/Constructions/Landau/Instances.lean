@@ -18,7 +18,6 @@ theorem LandauAdditiveCancellativeLawsOn
     let _ : Add Element := LandauAddOn model
     AdditiveCancellativeLaws Element := by
   sorry
-
 /-- Landau multiplication on the Chapter I carrier has `1` as a two-sided
 identity. -/
 theorem LandauMultiplicativeIdentityLawsOn
@@ -27,7 +26,6 @@ theorem LandauMultiplicativeIdentityLawsOn
     let _ : OfNat Element 1 := LandauOneOn model
     MultiplicativeIdentityLaws Element := by
   sorry
-
 /-- The one-based Landau multiplication law package is cancellative on the
 positive carrier. -/
 theorem LandauMultiplicativeCancellativeLawsOn
@@ -35,7 +33,6 @@ theorem LandauMultiplicativeCancellativeLawsOn
     let _ : Mul Element := LandauMulOn model
     MultiplicativeCancellativeLaws Element := by
   sorry
-
 /-- Combined one-based semiring-without-zero package for the Landau Chapter I
 carrier. This is the natural algebraic endpoint for the construction before a
 zero is adjoined in the whole-number layer. -/
@@ -47,5 +44,4 @@ theorem LandauCommutativeSemiringWithoutZeroLawsOn
     let _ : Nonempty Element := LandauNonemptyOn model
     CommutativeSemiringWithoutZeroLaws Element := by
   sorry
-
 end LRA.NumberSystems.NaturalNumbers.Constructions.Landau

@@ -67,7 +67,6 @@ theorem NonemptyFiniteSubsetHasMaximalElement
     (subsetIsNonempty : exists element, element ∈ subset) :
     exists maximal, MaximalElement (StrictPart relation) subset maximal := by
   sorry
-
 /--
 `NonemptyFiniteSubsetHasGreatestElement` TODO
 
@@ -120,7 +119,6 @@ theorem NonemptyFiniteSubsetHasGreatestElement
     (subsetIsNonempty : exists element, element ∈ subset) :
     exists greatest, GreatestElement relation subset greatest := by
   sorry
-
 /--
 `NonemptyFiniteSubsetHasMinimalElement` TODO
 
@@ -173,7 +171,6 @@ theorem NonemptyFiniteSubsetHasMinimalElement
     (subsetIsNonempty : exists element, element ∈ subset) :
     exists minimal, MinimalElement (StrictPart relation) subset minimal := by
   sorry
-
 /--
 `NonemptyFiniteSubsetHasLeastElement` TODO
 
@@ -226,7 +223,6 @@ theorem NonemptyFiniteSubsetHasLeastElement
     (subsetIsNonempty : exists element, element ∈ subset) :
     exists least, LeastElement relation subset least := by
   sorry
-
 /--
 `FiniteLatticeIsComplete` TODO
 
@@ -273,7 +269,6 @@ theorem FiniteLatticeIsComplete
     (relationIsLattice : Lattice relation) :
     CompleteLattice (Set Alpha) relation := by
   sorry
-
 /--
 `FiniteLinearOrderIsWellOrder` TODO
 
@@ -320,5 +315,4 @@ theorem FiniteLinearOrderIsWellOrder
     (relationIsLinearOrder : LinearOrder relation) :
     WellOrder (Set Alpha) relation := by
   sorry
-
 end LRA.Order

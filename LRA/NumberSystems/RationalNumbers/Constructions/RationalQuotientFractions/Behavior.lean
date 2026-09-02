@@ -221,7 +221,6 @@ theorem integer_embedding_properties (rational_data : IntegerAndPositiveNaturalD
       strict_order rational_data (integer_embedding rational_data first) (integer_embedding rational_data second) ↔
         rational_data.integer_system.Model.signature.StrictOrder first second) := by
   sorry
-
 /--
 `IsReduced` TODO
 
@@ -316,7 +315,6 @@ theorem reduced_representative_exists
     ∃ representative : Representative rational_data.toIntegerAndPositiveNaturalData,
       IsReduced rational_data representative ∧ Quotient.mk _ representative = value := by
   sorry
-
 /--
 `reduced_representative_unique` TODO
 
@@ -377,7 +375,6 @@ theorem reduced_representative_unique
     first.numerator = second.numerator ∧
     first.denominator = second.denominator := by
   sorry
-
 /--
 `unique_lowest_term_form` TODO
 
@@ -436,7 +433,6 @@ theorem unique_lowest_term_form
         other.numerator = representative.numerator ∧
         other.denominator = representative.denominator := by
   sorry
-
 /--
 `density` TODO
 
@@ -483,7 +479,6 @@ theorem density (rational_data : IntegerAndPositiveNaturalData)
     ∃ middle,
       strict_order rational_data first middle ∧ strict_order rational_data middle second := by
   sorry
-
 /--
 `archimedean_property` TODO
 
@@ -528,7 +523,6 @@ theorem archimedean_property (rational_data : IntegerAndPositiveNaturalData) (va
       strict_order rational_data value
         (integer_embedding rational_data (rational_data.to_integer natural)) := by
   sorry
-
 /--
 `integer_part_bounds` TODO
 
@@ -579,7 +573,6 @@ theorem integer_part_bounds (rational_data : IntegerAndPositiveNaturalData) (val
           (rational_data.integer_system.Model.signature.add
             integer rational_data.integer_system.Model.signature.one)) := by
   sorry
-
 /--
 `square_root_two_cut` TODO
 
@@ -678,7 +671,6 @@ theorem square_root_two_cut_nonempty_bounded (rational_data : IntegerAndPositive
         square_root_two_cut rational_data value →
         nonstrict_order rational_data value upper) := by
   sorry
-
 /--
 `no_rational_square_root_two` TODO
 
@@ -719,7 +711,6 @@ Related proof moves: use, rcases
 theorem no_rational_square_root_two (rational_data : IntegerAndPositiveNaturalData) :
     ¬ ∃ value, multiplication rational_data value value = two rational_data := by
   sorry
-
 /--
 `square_root_two_cut_has_no_supremum` TODO
 
@@ -776,7 +767,6 @@ theorem square_root_two_cut_has_no_supremum (rational_data : IntegerAndPositiveN
           nonstrict_order rational_data value upper) →
         nonstrict_order rational_data supremum upper) := by
   sorry
-
 /--
 `NotOrderComplete` TODO
 
@@ -871,7 +861,6 @@ Related proof moves: TODO
 -/
 theorem not_order_complete (rational_data : IntegerAndPositiveNaturalData) : NotOrderComplete rational_data := by
   sorry
-
 /--
 `StructureOfTheRationals` TODO
 
@@ -962,5 +951,4 @@ Related proof moves: TODO
 theorem structure_of_the_rationals (rational_data : IntegerAndPositiveNaturalData) :
     StructureOfTheRationals rational_data := by
   sorry
-
 end LRA.NumberSystems.RationalNumbers.RationalQuotientFractions

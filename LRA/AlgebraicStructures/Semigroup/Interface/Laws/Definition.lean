@@ -16,9 +16,8 @@ section Wrappers
 variable {R : Type u}
 
 theorem MulAssociative [Mul R] [Nonempty R] [MultiplicativeSemigroupLaws R] :
-    ∀ a b c : R, (a * b) * c = a * (b * c) :=
+    ∀ a b c : R, (a * b) * c = a * (b * c) := by
   sorry
-
 end Wrappers
 
 end LRA.AlgebraicStructures

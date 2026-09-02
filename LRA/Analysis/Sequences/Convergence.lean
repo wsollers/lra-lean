@@ -88,5 +88,4 @@ theorem EquivalenceOfConvergenceFormulations (x : RealSequence) (L : ℝ) :
       (ConvergesTo x L ↔ ∀ ε > 0, ∃ K : ℕ, ∀ n ≥ K, L - ε < x n ∧ x n < L + ε) ∧
       (ConvergesTo x L ↔ ConvergesToNbhd x L) := by
   sorry
-
 end LRA.Analysis.Sequences

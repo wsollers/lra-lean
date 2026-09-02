@@ -121,9 +121,7 @@ theorem MathlibRationalSystemUsesMathlibIntegers
         LRA.NumberSystems.Integers.Examples.MathlibIntegerNumberSystem) :
     (MathlibRationalSystem rationalData usesMathlibIntegers).IntegerSystem =
       LRA.NumberSystems.Integers.Examples.MathlibIntegerNumberSystem := by
-
   sorry
-
 end MathlibIntegers
 
 section TaoIntegers
@@ -289,9 +287,7 @@ theorem TaoRationalSystemUsesTaoIntegers
       rationalData.integer_system = TaoIntegerNumberSystem wholeData) :
     (TaoRationalSystem wholeData rationalData usesTaoIntegers).IntegerSystem =
       TaoIntegerNumberSystem wholeData := by
-
   sorry
-
 end TaoIntegers
 
 section MendelsonIntegers
@@ -455,9 +451,7 @@ theorem MendelsonRationalSystemUsesMendelsonIntegers
     (MendelsonRationalSystem positiveData rationalData
       usesMendelsonIntegers).IntegerSystem =
         MendelsonIntegerNumberSystem positiveData := by
-
   sorry
-
 end MendelsonIntegers
 
 end LRA.NumberSystems.RationalNumbers.Examples

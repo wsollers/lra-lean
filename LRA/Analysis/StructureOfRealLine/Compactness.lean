@@ -165,7 +165,6 @@ Related proof moves: intro, constructor, cases, rcases, use
 theorem CompactImpliesClosedBounded (K : Set ℝ) (hK : IsCompactSet K) :
     IsClosedSet K ∧ ∃ M > 0, ∀ x ∈ K, |x| ≤ M := by
   sorry
-
 /--
 `ClosedBoundedIntervalCompact` TODO
 
@@ -206,7 +205,6 @@ Related proof moves: TODO
 theorem ClosedBoundedIntervalCompact (a b : ℝ) (hab : a ≤ b) :
     IsCompactSet (Set.Icc a b) := by
   sorry
-
 /--
 `IsCompactSetIffIsCompactR` TODO
 
@@ -245,7 +243,6 @@ Related proof moves: constructor, .mp, .mpr
 -/
 theorem IsCompactSetIffIsCompactR (K : Set ℝ) : IsCompactSet K ↔ IsCompactR K := by
   sorry
-
 /--
 `IsClosedSetIffIsClosedR` TODO
 
@@ -284,7 +281,6 @@ Related proof moves: constructor, .mp, .mpr
 -/
 theorem IsClosedSetIffIsClosedR (F : Set ℝ) : IsClosedSet F ↔ IsClosedR F := by
   sorry
-
 /--
 `HeineBorel` TODO
 
@@ -325,5 +321,4 @@ Related proof moves: intro, constructor, .mp, .mpr, cases, rcases, use
 theorem HeineBorel (K : Set ℝ) :
     IsCompactSet K ↔ IsClosedSet K ∧ ∃ M > 0, ∀ x ∈ K, |x| ≤ M := by
   sorry
-
 end LRA.Analysis.StructureOfRealLine

@@ -56,5 +56,4 @@ theorem LowerBoundOfConverseIffUpperBound
     LowerBound (LRA.Relation.Converse relation) subset bound ↔
       UpperBound relation subset bound := by
   sorry
-
 end LRA.Order

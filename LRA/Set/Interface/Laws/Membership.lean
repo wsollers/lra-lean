@@ -467,8 +467,7 @@ theorem EmptyMembership
     [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject]
     [MembershipLaws Element SetObject] :
     ∀ x : Element, x ∉ (∅ : SetObject) := by
-  intro elem
-  exact MembershipLaws.EmptyMembership elem
+  sorry
 
 /--
 `UnionMembership` TODO

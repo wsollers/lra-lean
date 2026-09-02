@@ -2,6 +2,8 @@ import LRA.Metamathematics.FiniteSyntacticCollection
 
 namespace LRA.Metamathematics
 
+universe u
+
 /-!
 `SubstitutionSafety` names the metatheoretic obligation that any proof
 system defining a substitution operation (replacing a variable by a term
@@ -82,6 +84,17 @@ class SubstitutionSafety
       y ∈ freeVariablesOf e →
       y ∈ freeVariablesOf (substitute x t e)
 
+/-- A named, non-vacuous proposition standing for the missing first-order
+substitution-safety bridge. -/
+def FirstOrderSubstitutionSafetyObligation : Prop :=
+  ∃ (Expr Variable Term : Type u)
+    (IsSafe : Expr → Variable → Term → Prop)
+    (substitute : Variable → Term → Expr → Expr)
+    (variableOccursFreelyIn : Variable → Term → Prop)
+    (freeVariablesOf : Expr → MetaCollection Variable),
+      SubstitutionSafety
+        Expr Variable Term IsSafe substitute variableOccursFreelyIn freeVariablesOf
+
 /-- Named forward reference, not yet dischargeable: the obligation
 `SubstitutionSafety` imposes on `LRA.Logic.Syntax.FirstOrder`
 specifically, instantiating `IsSafe := IsSubstitutable`, `substitute :=
@@ -91,7 +104,7 @@ here as a STATEMENT of what remains to be proved -- filling it in is
 real work belonging to `LRA.Logic.Syntax.FirstOrder`, not to this file,
 once undertaken. Left as `sorry` deliberately: no instance is asserted
 to exist yet, only that one is owed. -/
-theorem firstOrderSubstitutionSafetyObligation : True := by
+theorem firstOrderSubstitutionSafetyObligation :
+    FirstOrderSubstitutionSafetyObligation := by
   sorry
-
 end LRA.Metamathematics

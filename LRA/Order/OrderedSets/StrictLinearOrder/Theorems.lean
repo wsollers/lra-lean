@@ -52,7 +52,6 @@ theorem ExactlyTrichotomousImpliesIrreflexive
       LRA.Relation.ExactlyTrichotomous relation) :
     LRA.Relation.Irreflexive relation := by
   sorry
-
 /--
 `StrictLinearOrderIsStrictOrder` TODO
 
@@ -99,7 +98,6 @@ theorem StrictLinearOrderIsStrictOrder
     (relationIsStrictLinearOrder : StrictLinearOrder relation) :
     StrictOrder relation := by
   sorry
-
 /--
 `StrictLinearOrderIsExactlyTrichotomous` TODO
 
@@ -146,5 +144,4 @@ theorem StrictLinearOrderIsExactlyTrichotomous
     (relationIsStrictLinearOrder : StrictLinearOrder relation) :
     LRA.Relation.ExactlyTrichotomous relation := by
   sorry
-
 end LRA.Order

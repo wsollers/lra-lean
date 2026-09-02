@@ -80,7 +80,5 @@ theorem UniquenessOfPeanoSystemsUpToIsomorphism
             first.successor (backward element)) /\
         (forall element : Element, backward (forward element) = element) /\
         (forall element : SecondElement, forward (backward element) = element) := by
-
   sorry
-
 end LRA.NumberSystems.PeanoSystem

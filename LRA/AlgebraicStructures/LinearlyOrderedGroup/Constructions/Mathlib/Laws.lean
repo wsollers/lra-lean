@@ -10,5 +10,4 @@ instance {R : Type u} [_root_.CommGroup R] [_root_.LinearOrder R]
     [_root_.IsOrderedMonoid R] [Nonempty R] :
     LinearlyOrderedGroupLaws R := by
   sorry
-
 end LRA.AlgebraicStructures

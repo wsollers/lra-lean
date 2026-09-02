@@ -14,9 +14,8 @@ abbrev Carrier := LRA_MathlibCarrier
 def genericModel : RationalModel :=
   mathlibRationalModel
 
-theorem satisfiesGenericType : genericModel.Carrier = Carrier :=
-  rfl
-
+theorem satisfiesGenericType : genericModel.Carrier = Carrier := by
+  sorry
 def firstOrderModel := rationalNumbersModel genericModel
 
 end LRA.NumberSystems.RationalNumbers.Constructions.Mathlib

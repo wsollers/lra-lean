@@ -49,5 +49,4 @@ theorem OrderArithmetic (a b c d y : ℝ) :
     (a ≤ b ∧ c < 0 → a * c ≥ b * c) ∧
     (y ≥ 0 → (|a| ≤ y ↔ -y ≤ a ∧ a ≤ y)) := by
   sorry
-
 end LRA.Analysis.RealAnalysis

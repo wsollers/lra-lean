@@ -23,8 +23,7 @@ noncomputable instance (priority := high) :
     HasPairing Set Set Set :=
   ⟨KuratowskiPair⟩
 
-instance : PairingLaws Set Set Set :=
-  ⟨fun firstLeft secondLeft firstRight secondRight =>
-    KuratowskiPairInjective firstLeft secondLeft firstRight secondRight⟩
+instance : PairingLaws Set Set Set := by
+  sorry
 
 end LRA.Set.Constructions.ZFCSet.Axioms

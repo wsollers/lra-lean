@@ -23,7 +23,6 @@ theorem landauStrictOrderCompatibilityLawOn
     letI : LE (Carrier natural_data) := leOn natural_data
     StrictOrderCompatibilityLaw (Carrier natural_data) := by
   sorry
-
 /-- The Landau (successor-axiom) construction satisfies the generic 𝕎
 interface: for any Landau-style natural-number arithmetic data, its carrier
 is a `WholeNumberModel`.

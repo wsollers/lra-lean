@@ -672,7 +672,6 @@ Related proof moves: intro
 theorem AddLeAddLeft [Add R] [LE R] [AdditionRespectsOrderLaws R] :
     forall a b : R, a <= b -> forall c : R, c + a <= c + b := by
   sorry
-
 /--
 `AddLeAddRight` TODO
 
@@ -713,7 +712,6 @@ Related proof moves: intro
 theorem AddLeAddRight [Add R] [LE R] [AdditionRespectsOrderLaws R] :
     forall a b : R, a <= b -> forall c : R, a + c <= b + c := by
   sorry
-
 /--
 `MulNonneg` TODO
 
@@ -756,7 +754,6 @@ theorem MulNonneg [Mul R] [LE R] [OfNat R 0]
     [MultiplicationRespectsOrderLaws R] :
     forall a b : R, 0 <= a -> 0 <= b -> 0 <= a * b := by
   sorry
-
 end Wrappers
 
 end LRA.Order

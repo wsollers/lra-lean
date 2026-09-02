@@ -59,5 +59,4 @@ theorem InductionOnRepresentatives
         motive (Quotient.mk _ representative)) :
     ∀ value : Carrier rationalSystem absolute_value_data, motive value := by
   sorry
-
 end LRA.NumberSystems.RealNumbers.Cauchy

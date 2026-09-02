@@ -11,7 +11,6 @@ theorem mathlibZeroPlusZero :
     mathlibZero + mathlibZero =
       (0 : LRA.NumberSystems.WholeNumbers.Constructions.Mathlib.Carrier) := by
   sorry
-
 end Mathlib
 
 end LRA.NumberSystems.WholeNumbers.Examples

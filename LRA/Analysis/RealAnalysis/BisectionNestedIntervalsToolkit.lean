@@ -49,7 +49,6 @@ theorem NestedIntervalProperty (a b : ℕ → ℝ)
     (hnest : ∀ n, a n ≤ a (n + 1) ∧ b (n + 1) ≤ b n) :
     ∃ x : ℝ, ∀ n, a n ≤ x ∧ x ≤ b n := by
   sorry
-
 /--
 `IvtBisection` TODO
 
@@ -94,7 +93,6 @@ theorem IvtBisection (f : ℝ → ℝ) (a b L : ℝ) (hab : a < b)
     (hL : (f a < L ∧ L < f b) ∨ (f a > L ∧ L > f b)) :
     ∃ c ∈ Set.Ioo a b, f c = L := by
   sorry
-
 /--
 `RUncountable` TODO
 
@@ -133,5 +131,4 @@ Related proof moves: intro, use, rcases
 -/
 theorem RUncountable : ¬ ∃ x : ℕ → ℝ, Function.Surjective x := by
   sorry
-
 end LRA.Analysis.RealAnalysis

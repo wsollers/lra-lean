@@ -54,7 +54,6 @@ theorem LeftTranslationPreservesRelation.apply {Carrier : Type u}
     (related : relation left right) :
     relation (operation fixed left) (operation fixed right) := by
   sorry
-
 /--
 `RightTranslationPreservesRelation.apply` TODO
 
@@ -105,7 +104,6 @@ theorem RightTranslationPreservesRelation.apply {Carrier : Type u}
     (related : relation left right) :
     relation (operation left fixed) (operation right fixed) := by
   sorry
-
 /--
 `CoordinatewisePreservesRelation.apply` TODO
 
@@ -158,7 +156,6 @@ theorem CoordinatewisePreservesRelation.apply {Carrier : Type u}
     (right_related : relation right₁ right₂) :
     relation (operation left₁ right₁) (operation left₂ right₂) := by
   sorry
-
 /--
 `LeftTranslationReversesRelation.apply` TODO
 
@@ -209,7 +206,6 @@ theorem LeftTranslationReversesRelation.apply {Carrier : Type u}
     (related : relation left right) :
     relation (operation fixed right) (operation fixed left) := by
   sorry
-
 /--
 `RightTranslationReversesRelation.apply` TODO
 
@@ -260,7 +256,6 @@ theorem RightTranslationReversesRelation.apply {Carrier : Type u}
     (related : relation left right) :
     relation (operation right fixed) (operation left fixed) := by
   sorry
-
 /--
 `PositiveRightTranslationPreservesRelation.apply` TODO
 
@@ -315,7 +310,6 @@ theorem PositiveRightTranslationPreservesRelation.apply {Carrier : Type u}
     (related : relation left right) :
     relation (operation left fixed) (operation right fixed) := by
   sorry
-
 /--
 `PositiveLeftTranslationPreservesRelation.apply` TODO
 
@@ -370,7 +364,6 @@ theorem PositiveLeftTranslationPreservesRelation.apply {Carrier : Type u}
     (related : relation left right) :
     relation (operation fixed left) (operation fixed right) := by
   sorry
-
 /--
 `NegativeRightTranslationReversesRelation.apply` TODO
 
@@ -425,7 +418,6 @@ theorem NegativeRightTranslationReversesRelation.apply {Carrier : Type u}
     (related : relation left right) :
     relation (operation right fixed) (operation left fixed) := by
   sorry
-
 /--
 `NegativeLeftTranslationReversesRelation.apply` TODO
 
@@ -480,5 +472,4 @@ theorem NegativeLeftTranslationReversesRelation.apply {Carrier : Type u}
     (related : relation left right) :
     relation (operation fixed right) (operation fixed left) := by
   sorry
-
 end LRA.Order

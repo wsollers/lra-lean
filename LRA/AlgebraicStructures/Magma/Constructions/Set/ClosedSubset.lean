@@ -21,8 +21,6 @@ theorem ClosedSubsetMagmaLaws {A : Type u} [Mul A] {S : LRA.Set.LRA_Set A}
     (closed : ∀ a b, a ∈ S → b ∈ S → a * b ∈ S)
     [Nonempty {x // x ∈ S}] :
     letI := ClosedSubsetMul closed
-    MagmaLaws {x // x ∈ S} :=
-  letI := ClosedSubsetMul closed
-  ⟨⟩
-
+    MagmaLaws {x // x ∈ S} := by
+  sorry
 end LRA.AlgebraicStructures.Magma.Constructions

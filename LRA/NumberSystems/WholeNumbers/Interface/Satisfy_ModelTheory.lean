@@ -21,5 +21,4 @@ def genericTheory (M : WholeNumberModel) : Prop :=
 strict-order-compatibility laws that `WholeNumbersTheory` states. -/
 theorem satisfiesModelTheory (M : WholeNumberModel) : genericTheory M := by
   sorry
-
 end LRA.NumberSystems.WholeNumbers.Interface.ModelTheory

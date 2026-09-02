@@ -271,5 +271,4 @@ theorem cut_extensionality (first second : Cut rational_model) :
         contains rational_model first value ↔
         contains rational_model second value := by
   sorry
-
 end LRA.NumberSystems.RealNumbers.Dedekind

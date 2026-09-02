@@ -15,10 +15,7 @@ isn't part of this subject's own law set. -/
 
 instance : LRA.AlgebraicStructures.AdditiveCommutativeLaws Nat := by
   sorry
-
 noncomputable instance :
-    LRA.AlgebraicStructures.AdditiveCommutativeSemigroupLaws {n // n ∈ PositiveNaturals} :=
-  LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Constructions.ClosedSubsetAdditiveCommutativeSemigroupLaws
-    positiveNaturalsClosedUnderAddition
-
+    LRA.AlgebraicStructures.AdditiveCommutativeSemigroupLaws {n // n ∈ PositiveNaturals} := by
+  sorry
 end LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Examples

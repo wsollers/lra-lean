@@ -154,9 +154,8 @@ theorem BinaryOperationIsProper.induced_operation_exists
       ∀ first second : Representative,
         quotient_operation
             (Quotient.mk setoid first) (Quotient.mk setoid second) =
-          Quotient.mk setoid (operation first second) :=
+          Quotient.mk setoid (operation first second) := by
   sorry
-
 /--
 `BinaryOperationIsProper.induced_operation_unique` TODO
 
@@ -235,7 +234,6 @@ theorem BinaryOperationIsProper.induced_operation_unique
           Quotient.mk setoid (operation first second)) :
     first_candidate = second_candidate := by
   sorry
-
 /--
 `UnaryOperationIsProper` TODO
 
@@ -494,5 +492,5 @@ theorem RelationIsProper.induced_relation_exists
       ∀ first second : Representative,
         quotient_relation
             (Quotient.mk setoid first) (Quotient.mk setoid second) ↔
-          relation first second :=
+          relation first second := by
   sorry

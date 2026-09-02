@@ -44,7 +44,6 @@ Related proof moves: intro, constructor, .mp, .mpr, cases, rcases
 theorem TendstoIffOneSidedAgree (f : ℝ → ℝ) (A : Set ℝ) (c L : ℝ) :
     TendsTo f A c L ↔ TendsToLeft f A c L ∧ TendsToRight f A c L := by
   sorry
-
 /--
 `SequentialCriterionTendsto` TODO
 
@@ -89,7 +88,6 @@ theorem SequentialCriterionTendsto (f : ℝ → ℝ) (A : Set ℝ) (c L : ℝ) :
       ∀ xs : ℕ → ℝ, ApproachesButNotEqual xs A c →
         ∀ ε > 0, ∃ N : ℕ, ∀ n ≥ N, |f (xs n) - L| < ε := by
   sorry
-
 /--
 `TendstoIffNeighbourhood` TODO
 
@@ -138,7 +136,6 @@ theorem TendstoIffNeighbourhood (f : ℝ → ℝ) (A : Set ℝ) (c L : ℝ) :
           (∃ δ > 0, δNbhd = Set.Ioo (c - δ) (c + δ) \ {c}) ∧
             ∀ x ∈ δNbhd ∩ A, f x ∈ εNbhd := by
   sorry
-
 /--
 `TendstoCharacterizationsTFAE` TODO
 
@@ -193,5 +190,4 @@ theorem TendstoCharacterizationsTFAE (f : ℝ → ℝ) (A : Set ℝ) (c L : ℝ)
           (∃ δ > 0, δNbhd = Set.Ioo (c - δ) (c + δ) \ {c}) ∧
             ∀ x ∈ δNbhd ∩ A, f x ∈ εNbhd].TFAE := by
   sorry
-
 end LRA.Analysis.Limits

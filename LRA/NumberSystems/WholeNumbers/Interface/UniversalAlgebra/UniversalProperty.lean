@@ -43,5 +43,4 @@ theorem WholeNumbersInitial :
       ⟨mathlibWholeNumberModel.signature,
         satisfiesModelTheory mathlibWholeNumberModel⟩ := by
   sorry
-
 end LRA.NumberSystems.WholeNumbers.Interface.UniversalAlgebra

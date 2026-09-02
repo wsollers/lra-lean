@@ -138,7 +138,6 @@ theorem PresburgerAdditionClauses
       (fun _ value => model.successor value)
       (PresburgerAddition model) := by
   sorry
-
 /--
 `PresburgerAdditionWellDefined` TODO
 
@@ -213,30 +212,25 @@ theorem PresburgerAdditionWellDefined
           otherAddition ->
         otherAddition = addition := by
   sorry
-
 theorem PresburgerAdditionWithZero
     (model : PresburgerModel Element SetObject)
     (left : Element) :
     PresburgerAddition model left model.zero = left := by
   sorry
-
 theorem PresburgerAdditionSuccessorOnRight
     (model : PresburgerModel Element SetObject)
     (left right : Element) :
     PresburgerAddition model left (model.successor right) =
       model.successor (PresburgerAddition model left right) := by
   sorry
-
 theorem PresburgerAdditionIsAssociative
     (model : PresburgerModel Element SetObject) :
     LRA.Operation.Laws.Associative.Associative
       (PresburgerAddition model) := by
   sorry
-
 theorem PresburgerAdditionIsCommutative
     (model : PresburgerModel Element SetObject) :
     LRA.Operation.Laws.Commutative.Commutative
       (PresburgerAddition model) := by
   sorry
-
 end LRA.NumberSystems.NaturalNumbers.Constructions.Presburger

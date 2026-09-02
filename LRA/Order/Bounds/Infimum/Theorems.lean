@@ -65,7 +65,6 @@ theorem InfimumUnique
     (secondIsInfimum : Infimum relation subset second) :
     first = second := by
   sorry
-
 /--
 `InfimumOfSingleton` TODO
 
@@ -122,7 +121,6 @@ theorem InfimumOfSingleton
         candidate ∈ ({element} : SetObject) ↔ candidate = element) :
     Infimum relation ({element} : SetObject) element := by
   sorry
-
 /--
 `InfimumIsLowerBound` TODO
 
@@ -173,7 +171,6 @@ theorem InfimumIsLowerBound
     (infimumIsInfimum : Infimum relation subset infimum) :
     LowerBound relation subset infimum := by
   sorry
-
 /--
 `EveryLowerBoundRelatedToInfimum` TODO
 
@@ -226,7 +223,6 @@ theorem EveryLowerBoundRelatedToInfimum
     (boundIsLowerBound : LowerBound relation subset bound) :
     relation bound infimum := by
   sorry
-
 /--
 `LowerBoundIffRelatedToInfimum` TODO
 
@@ -279,7 +275,6 @@ theorem LowerBoundIffRelatedToInfimum
     (infimumIsInfimum : Infimum relation subset infimum) :
     LowerBound relation subset bound ↔ relation bound infimum := by
   sorry
-
 /--
 `InfimumMonotoneUnderInclusion` TODO
 
@@ -334,7 +329,6 @@ theorem InfimumMonotoneUnderInclusion
     (largerInfimumIsInfimum : Infimum relation larger largerInfimum) :
     relation largerInfimum smallerInfimum := by
   sorry
-
 /--
 `InfimaCompareUnderPointwiseDomination` TODO
 
@@ -395,7 +389,6 @@ theorem InfimaCompareUnderPointwiseDomination
     (rightInfimumIsInfimum : Infimum relation rightSubset rightInfimum) :
     relation rightInfimum leftInfimum := by
   sorry
-
 /--
 `InfimumInSubsetIsLeastElement` TODO
 
@@ -448,7 +441,6 @@ theorem InfimumInSubsetIsLeastElement
     (infimumBelongs : infimum ∈ subset) :
     LeastElement relation subset infimum := by
   sorry
-
 open scoped LRA.Set
 
 /--
@@ -515,7 +507,6 @@ theorem InfimumOfUnion
     (unionInfimumIsMeet : Meet relation leftInfimum rightInfimum unionInfimum) :
     Infimum relation (leftSubset ∪ rightSubset) unionInfimum := by
   sorry
-
 /--
 `ContainingInfimumRelatedToInfimumOfIntersection` TODO
 
@@ -576,7 +567,6 @@ theorem ContainingInfimumRelatedToInfimumOfIntersection
     (containingIsInfimum : Infimum relation containingSubset containingInfimum) :
     relation containingInfimum intersectionInfimum := by
   sorry
-
 /--
 `ContainingInfimumRelatedToInfimumOfDifference` TODO
 
@@ -635,7 +625,6 @@ theorem ContainingInfimumRelatedToInfimumOfDifference
     (subsetIsInfimum : Infimum relation subset subsetInfimum) :
     relation subsetInfimum differenceInfimum := by
   sorry
-
 /--
 `UnionInfimumRelatedToInfimumOfSymmetricDifference` TODO
 
@@ -698,7 +687,6 @@ theorem UnionInfimumRelatedToInfimumOfSymmetricDifference
     (unionIsInfimum : Infimum relation (leftSubset ∪ rightSubset) unionInfimum) :
     relation unionInfimum differenceInfimum := by
   sorry
-
 /--
 `InfimumOfIndexedUnion` TODO
 
@@ -765,5 +753,4 @@ theorem InfimumOfIndexedUnion
       (forall index, relation bound (memberInfimum index)) -> relation bound familyInfimum) :
     Infimum relation (LRA.Set.HasIndexedUnion.indexedUnion family) familyInfimum := by
   sorry
-
 end LRA.Order

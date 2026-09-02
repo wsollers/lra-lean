@@ -264,7 +264,6 @@ theorem PointwiseOperationEvaluation {n : ℕ} (Φ : (Fin n → ℝ) → ℝ)
     (f : Fin n → (ℝ → ℝ)) (A : Set ℝ) :
     ∀ x ∈ A, PointwiseOperationOnSet Φ f x = AtPointOperation Φ f x := by
   sorry
-
 /--
 `PointwiseRelationEvaluation` TODO
 
@@ -307,7 +306,6 @@ theorem PointwiseRelationEvaluation {n : ℕ} (R : (Fin n → ℝ) → Prop)
     (f : Fin n → (ℝ → ℝ)) (A : Set ℝ) :
     PointwiseRelationOnSet R f A ↔ ∀ x ∈ A, AtPointRelation R f x := by
   sorry
-
 /--
 `PointwiseRelationNearUnpacking` TODO
 
@@ -352,5 +350,4 @@ theorem PointwiseRelationNearUnpacking {n : ℕ} (R : (Fin n → ℝ) → Prop)
     PointwiseRelationNearPoint R f c A ↔
       ∃ δ > 0, ∀ x ∈ A, (0 < |x - c| ∧ |x - c| < δ) → R (fun i => f i x) := by
   sorry
-
 end LRA.Analysis.Functions

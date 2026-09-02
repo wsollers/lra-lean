@@ -61,7 +61,6 @@ theorem LeastElementIsMinimal
     (leastIsLeast : LeastElement relation subset least) :
     MinimalElement (StrictPart relation) subset least := by
   sorry
-
 /--
 `LeastElementIsUniqueMinimalElement` TODO
 
@@ -116,7 +115,6 @@ theorem LeastElementIsUniqueMinimalElement
     (minimalIsMinimal : MinimalElement (StrictPart relation) subset minimal) :
     minimal = least := by
   sorry
-
 /--
 `MinimalElementIsLeastInLinearOrder` TODO
 
@@ -169,7 +167,6 @@ theorem MinimalElementIsLeastInLinearOrder
     (minimalIsMinimal : MinimalElement (StrictPart relation) subset minimal) :
     LeastElement relation subset minimal := by
   sorry
-
 /--
 `LeastElementIsInfimum` TODO
 
@@ -220,7 +217,6 @@ theorem LeastElementIsInfimum
     (leastIsLeast : LeastElement relation subset least) :
     Infimum relation subset least := by
   sorry
-
 /--
 `LeastElementIffInfimumAndMembership` TODO
 
@@ -273,5 +269,4 @@ theorem LeastElementIffInfimumAndMembership
     LeastElement relation subset candidate ↔
       Infimum relation subset candidate /\ candidate ∈ subset := by
   sorry
-
 end LRA.Order

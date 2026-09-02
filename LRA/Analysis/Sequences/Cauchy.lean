@@ -87,7 +87,6 @@ Related proof moves: use, rcases
 theorem ConvergentSequencesAreCauchy {x : RealSequence}
     (h : ∃ L : ℝ, ConvergesTo x L) : IsCauchy x := by
   sorry
-
 /--
 `CauchySequencesAreBounded` TODO
 
@@ -128,7 +127,6 @@ Related proof moves: TODO
 theorem CauchySequencesAreBounded {x : RealSequence} (h : IsCauchy x) :
     BoundedSeq x := by
   sorry
-
 /--
 `CauchyConvergentSubsequenceConverges` TODO
 
@@ -171,7 +169,6 @@ theorem CauchyConvergentSubsequenceConverges {x : RealSequence} {L : ℝ}
     (hcauchy : IsCauchy x) (hsub : IsSubsequentialLimit x L) :
     ConvergesTo x L := by
   sorry
-
 /--
 `CauchyCriterionRealSequences` TODO
 
@@ -212,7 +209,6 @@ Related proof moves: constructor, .mp, .mpr, use, rcases
 theorem CauchyCriterionRealSequences {x : RealSequence} :
     (∃ L : ℝ, ConvergesTo x L) ↔ IsCauchy x := by
   sorry
-
 /--
 `CauchyCriterionViaTails` TODO
 
@@ -253,7 +249,6 @@ Related proof moves: intro, constructor, .mp, .mpr, use, rcases
 theorem CauchyCriterionViaTails {x : RealSequence} :
     IsCauchy x ↔ ∀ ε > 0, ∃ N : ℕ, ∀ p q : ℕ, |x (N + p) - x (N + q)| < ε := by
   sorry
-
 /--
 `CauchyTailDiameterCriterion` TODO
 
@@ -296,7 +291,6 @@ theorem CauchyTailDiameterCriterion {x : RealSequence} :
     IsCauchy x ↔
       ∀ ε > 0, ∃ N₀ : ℕ, ∀ N ≥ N₀, ∀ m ≥ N, ∀ n ≥ N, |x m - x n| < ε := by
   sorry
-
 /--
 `CauchySuccessiveDifferencesVanish` TODO
 
@@ -337,7 +331,6 @@ Related proof moves: TODO
 theorem CauchySuccessiveDifferencesVanish {x : RealSequence}
     (h : IsCauchy x) : IsNull (fun n => |x (n + 1) - x n|) := by
   sorry
-
 /--
 `ScalarMultipleCauchySequence` TODO
 
@@ -378,7 +371,6 @@ Related proof moves: TODO
 theorem ScalarMultipleCauchySequence {x : RealSequence} {α : ℝ}
     (h : IsCauchy x) : IsCauchy (fun n => α * x n) := by
   sorry
-
 /--
 `SumCauchySequences` TODO
 
@@ -419,7 +411,6 @@ Related proof moves: TODO
 theorem SumCauchySequences {x y : RealSequence}
     (hx : IsCauchy x) (hy : IsCauchy y) : IsCauchy (fun n => x n + y n) := by
   sorry
-
 /--
 `DifferenceCauchySequences` TODO
 
@@ -460,7 +451,6 @@ Related proof moves: TODO
 theorem DifferenceCauchySequences {x y : RealSequence}
     (hx : IsCauchy x) (hy : IsCauchy y) : IsCauchy (fun n => x n - y n) := by
   sorry
-
 /--
 `LinearCombinationCauchySequences` TODO
 
@@ -503,7 +493,6 @@ theorem LinearCombinationCauchySequences {x y : RealSequence} {α β : ℝ}
     (hx : IsCauchy x) (hy : IsCauchy y) :
     IsCauchy (fun n => α * x n + β * y n) := by
   sorry
-
 /--
 `ProductCauchySequences` TODO
 
@@ -544,7 +533,6 @@ Related proof moves: TODO
 theorem ProductCauchySequences {x y : RealSequence}
     (hx : IsCauchy x) (hy : IsCauchy y) : IsCauchy (fun n => x n * y n) := by
   sorry
-
 /--
 `ReciprocalCauchySequence` TODO
 
@@ -587,7 +575,6 @@ theorem ReciprocalCauchySequence {x : RealSequence}
     (hx : IsCauchy x) (h : ∃ c > 0, ∃ N₀ : ℕ, ∀ n ≥ N₀, c ≤ |x n|) :
     IsCauchy (fun n => 1 / x n) := by
   sorry
-
 /--
 `QuotientCauchySequences` TODO
 
@@ -632,7 +619,6 @@ theorem QuotientCauchySequences {x y : RealSequence}
     (h : ∃ c > 0, ∃ N₀ : ℕ, ∀ n ≥ N₀, c ≤ |y n|) :
     IsCauchy (fun n => x n / y n) := by
   sorry
-
 /--
 `AbsoluteValueCauchySequence` TODO
 
@@ -673,5 +659,4 @@ Related proof moves: TODO
 theorem AbsoluteValueCauchySequence {x : RealSequence} (h : IsCauchy x) :
     IsCauchy (fun n => |x n|) := by
   sorry
-
 end LRA.Analysis.Sequences

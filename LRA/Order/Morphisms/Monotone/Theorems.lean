@@ -58,7 +58,6 @@ theorem MonotoneIdentity
     (relation : LRA.Relation.Endorelation Alpha) :
     Monotone relation relation (fun element => element) := by
   sorry
-
 /--
 `MonotoneComp` TODO
 
@@ -113,7 +112,6 @@ theorem MonotoneComp
     (secondMapIsMonotone : Monotone middleRelation targetRelation secondMap) :
     Monotone sourceRelation targetRelation (fun x => secondMap (firstMap x)) := by
   sorry
-
 open LRA.Set
 
 variable {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x}
@@ -174,7 +172,6 @@ theorem MonotoneSendsUpperBoundToImageUpperBound
     (boundIsUpper : UpperBound sourceRelation subset bound)
     : UpperBound targetRelation imageSet (map bound) := by
   sorry
-
 /--
 `MonotoneSendsLowerBoundToImageLowerBound` TODO
 
@@ -227,7 +224,6 @@ theorem MonotoneSendsLowerBoundToImageLowerBound
     (boundIsLower : LowerBound sourceRelation subset bound)
     : LowerBound targetRelation imageSet (map bound) := by
   sorry
-
 /--
 `MonotoneImageUpperBoundsContainment` TODO
 
@@ -284,7 +280,6 @@ theorem MonotoneImageUpperBoundsContainment
         (fun input => UpperBound sourceRelation subset input) output)
     : UpperBound targetRelation imageSet output := by
   sorry
-
 /--
 `MonotoneUpperBoundsPreimageContainment` TODO
 
@@ -339,7 +334,6 @@ theorem MonotoneUpperBoundsPreimageContainment
     : LRA.Function.PreimageClass map
       (fun output => UpperBound targetRelation imageSet output) bound := by
   sorry
-
 /--
 `MonotoneImageLowerBoundsContainment` TODO
 
@@ -396,7 +390,6 @@ theorem MonotoneImageLowerBoundsContainment
         (fun input => LowerBound sourceRelation subset input) output)
     : LowerBound targetRelation imageSet output := by
   sorry
-
 /--
 `MonotoneLowerBoundsPreimageContainment` TODO
 
@@ -451,5 +444,4 @@ theorem MonotoneLowerBoundsPreimageContainment
     : LRA.Function.PreimageClass map
       (fun output => LowerBound targetRelation imageSet output) bound := by
   sorry
-
 end LRA.Order

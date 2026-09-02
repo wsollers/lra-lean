@@ -191,5 +191,4 @@ Related proof moves: TODO
 theorem SomeEmbeddingRealizesEmptyIndexedIntersectionImageFailure :
     EmptyIndexedIntersectionImageFailure (fun n : Nat => some n) := by
   sorry
-
 end LRA.Function

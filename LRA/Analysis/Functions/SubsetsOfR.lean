@@ -168,7 +168,6 @@ theorem ClusterPointSequential (c : ℝ) (A : Set ℝ) :
       ∃ a : ℕ → ℝ, (∀ n, a n ∈ A \ {c}) ∧
         Filter.Tendsto a Filter.atTop (nhds c) := by
   sorry
-
 /--
 `IsAdherentPointR` TODO
 
@@ -485,7 +484,6 @@ Related proof moves: constructor, .mp, .mpr
 theorem AdherentPointsAreClosurePoints (x : ℝ) (X : Set ℝ) :
     x ∈ ClosureR X ↔ IsAdherentPointR x X := by
   sorry
-
 /--
 `IsolatedPointsAreNonclusterAdherentPoints` TODO
 
@@ -528,7 +526,6 @@ theorem IsolatedPointsAreNonclusterAdherentPoints (x : ℝ) (X : Set ℝ)
     (hx : x ∈ X) :
     IsIsolatedPointR x X ↔ IsAdherentPointR x X ∧ ¬ IsClusterPointR x X := by
   sorry
-
 /--
 `InteriorMembershipCharacterization` TODO
 
@@ -569,7 +566,6 @@ Related proof moves: constructor, .mp, .mpr
 theorem InteriorMembershipCharacterization (x : ℝ) (X : Set ℝ) :
     x ∈ InteriorR X ↔ IsInteriorPointR x X := by
   sorry
-
 /--
 `InteriorIsContainedInSet` TODO
 
@@ -608,7 +604,6 @@ Related proof moves: TODO
 -/
 theorem InteriorIsContainedInSet (X : Set ℝ) : InteriorR X ⊆ X := by
   sorry
-
 /--
 `IsClosedR` TODO
 
@@ -689,7 +684,6 @@ theorem ClosureIsSmallestClosedSuperset (X : Set ℝ) :
     X ⊆ ClosureR X ∧ IsClosedR (ClosureR X) ∧
       ∀ C : Set ℝ, IsClosedR C → X ⊆ C → ClosureR X ⊆ C := by
   sorry
-
 /--
 `BoundaryAsClosureMinusInterior` TODO
 
@@ -730,7 +724,6 @@ Related proof moves: TODO
 theorem BoundaryAsClosureMinusInterior (X : Set ℝ) :
     BoundaryR X = ClosureR X \ InteriorR X := by
   sorry
-
 /--
 `ClosureElementary` TODO
 
@@ -777,7 +770,6 @@ theorem ClosureElementary (X Y : Set ℝ) :
       ClosureR (X ∩ Y) ⊆ ClosureR X ∩ ClosureR Y ∧
       (X ⊆ Y → ClosureR X ⊆ ClosureR Y) := by
   sorry
-
 /--
 `ClosedIffSeqLimits` TODO
 
@@ -822,7 +814,6 @@ theorem ClosedIffSeqLimits (X : Set ℝ) :
       ∀ a : ℕ → ℝ, (∀ n, a n ∈ X) →
         ∀ x : ℝ, Filter.Tendsto a Filter.atTop (nhds x) → x ∈ X := by
   sorry
-
 /--
 `IntervalAllLimitPoints` TODO
 
@@ -863,7 +854,6 @@ Related proof moves: intro
 theorem IntervalAllLimitPoints (I : Set ℝ) (hI : I.OrdConnected) (hnontrivial : I.Nontrivial) :
     ∀ x ∈ I, IsClusterPointR x I := by
   sorry
-
 /--
 `IsBoundedSetR` TODO
 
@@ -948,7 +938,6 @@ theorem HeineBorelSubsetsRealLine (X : Set ℝ) :
         ∃ φ : ℕ → ℕ, StrictMono φ ∧
           ∃ L ∈ X, Filter.Tendsto (a ∘ φ) Filter.atTop (nhds L) := by
   sorry
-
 /--
 `TrueNear` TODO
 
@@ -1031,7 +1020,6 @@ theorem TrueNearStableUnderShrinking (Q : ℝ → Prop) (x₀ : ℝ)
     (h : TrueNear Q x₀) :
     ∃ η > 0, ∀ x : ℝ, 0 < |x - x₀| ∧ |x - x₀| < η → Q x := by
   sorry
-
 /--
 `TrueNearStableUnderConjunction` TODO
 
@@ -1074,7 +1062,6 @@ theorem TrueNearStableUnderConjunction (P Q : ℝ → Prop) (x₀ : ℝ)
     (hP : TrueNear P x₀) (hQ : TrueNear Q x₀) :
     TrueNear (fun x => P x ∧ Q x) x₀ := by
   sorry
-
 /--
 `IsOpenR` TODO
 
@@ -1153,7 +1140,6 @@ Related proof moves: constructor, .mp, .mpr
 theorem OpenIffComplementClosed (X : Set ℝ) :
     IsOpenR X ↔ IsClosedR Xᶜ := by
   sorry
-
 /--
 `FiniteSetIsClosed` TODO
 
@@ -1194,5 +1180,4 @@ Related proof moves: intro, constructor, cases, rcases
 theorem FiniteSetIsClosed (X : Set ℝ) (hX : X.Finite) :
     (∀ x : ℝ, ¬ IsClusterPointR x X) ∧ IsClosedR X := by
   sorry
-
 end LRA.Analysis.Functions

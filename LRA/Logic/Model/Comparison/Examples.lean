@@ -134,8 +134,8 @@ Related proof moves: TODO
 theorem qOrderedRingModel.addComputesAddition
     (a b : Rat) :
     qOrderedRingModel.interpretFunction .add
-      (fun i => if i.val = 0 then a else b) = a + b := rfl
-
+      (fun i => if i.val = 0 then a else b) = a + b := by
+  sorry
 /--
 `qOrderedRingModel.zeroComputesZero` TODO
 
@@ -174,8 +174,8 @@ Related proof moves: TODO
 
 -/
 theorem qOrderedRingModel.zeroComputesZero :
-    qOrderedRingModel.interpretConstant .zero = (0 : Rat) := rfl
-
+    qOrderedRingModel.interpretConstant .zero = (0 : Rat) := by
+  sorry
 /--
 `qOrderedRingModel.oneComputesOne` TODO
 
@@ -214,8 +214,8 @@ Related proof moves: TODO
 
 -/
 theorem qOrderedRingModel.oneComputesOne :
-    qOrderedRingModel.interpretConstant .one = (1 : Rat) := rfl
-
+    qOrderedRingModel.interpretConstant .one = (1 : Rat) := by
+  sorry
 /--
 `rOrderedRingModel` TODO
 
@@ -340,8 +340,8 @@ Related proof moves: TODO
 theorem rOrderedRingModel.addComputesAddition
     (a b : Real) :
     rOrderedRingModel.interpretFunction .add
-      (fun i => if i.val = 0 then a else b) = a + b := rfl
-
+      (fun i => if i.val = 0 then a else b) = a + b := by
+  sorry
 /--
 `rOrderedRingModel.zeroComputesZero` TODO
 
@@ -380,8 +380,8 @@ Related proof moves: TODO
 
 -/
 theorem rOrderedRingModel.zeroComputesZero :
-    rOrderedRingModel.interpretConstant .zero = (0 : Real) := rfl
-
+    rOrderedRingModel.interpretConstant .zero = (0 : Real) := by
+  sorry
 /--
 `rOrderedRingModel.oneComputesOne` TODO
 
@@ -420,8 +420,8 @@ Related proof moves: TODO
 
 -/
 theorem rOrderedRingModel.oneComputesOne :
-    rOrderedRingModel.interpretConstant .one = (1 : Real) := rfl
-
+    rOrderedRingModel.interpretConstant .one = (1 : Real) := by
+  sorry
 /--
 `zToQEmbedding` TODO
 
@@ -708,6 +708,6 @@ Related proof moves: intro
 
 -/
 theorem qToQIsomorphism.toFunIsIdentity :
-    qToQIsomorphism.toFun = (id : Rat -> Rat) := rfl
-
+    qToQIsomorphism.toFun = (id : Rat -> Rat) := by
+  sorry
 end LRA.Logic.FirstOrder

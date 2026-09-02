@@ -61,7 +61,6 @@ theorem GreatestElementIsMaximal
     (greatestIsGreatest : GreatestElement relation subset greatest) :
     MaximalElement (StrictPart relation) subset greatest := by
   sorry
-
 /--
 `GreatestElementIsUniqueMaximalElement` TODO
 
@@ -116,7 +115,6 @@ theorem GreatestElementIsUniqueMaximalElement
     (maximalIsMaximal : MaximalElement (StrictPart relation) subset maximal) :
     maximal = greatest := by
   sorry
-
 /--
 `MaximalElementIsGreatestInLinearOrder` TODO
 
@@ -169,7 +167,6 @@ theorem MaximalElementIsGreatestInLinearOrder
     (maximalIsMaximal : MaximalElement (StrictPart relation) subset maximal) :
     GreatestElement relation subset maximal := by
   sorry
-
 /--
 `GreatestElementIsSupremum` TODO
 
@@ -220,7 +217,6 @@ theorem GreatestElementIsSupremum
     (greatestIsGreatest : GreatestElement relation subset greatest) :
     Supremum relation subset greatest := by
   sorry
-
 /--
 `GreatestElementIffSupremumAndMembership` TODO
 
@@ -273,5 +269,4 @@ theorem GreatestElementIffSupremumAndMembership
     GreatestElement relation subset candidate ↔
       Supremum relation subset candidate /\ candidate ∈ subset := by
   sorry
-
 end LRA.Order

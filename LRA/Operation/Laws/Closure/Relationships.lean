@@ -52,5 +52,4 @@ theorem BinaryEndoClosedOn.iff_binary_closed_under {Ambient : Type u}
     BinaryEndoClosedOn carrier operation ↔
       BinaryClosedUnder carrier carrier carrier operation := by
   sorry
-
 end LRA.Operation.Laws.Closure

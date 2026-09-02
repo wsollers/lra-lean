@@ -10,5 +10,4 @@ universe u
 instance {R : Type u} [_root_.CommRing R] [Nonempty R] :
     CommutativeRingLaws R := by
   sorry
-
 end LRA.AlgebraicStructures

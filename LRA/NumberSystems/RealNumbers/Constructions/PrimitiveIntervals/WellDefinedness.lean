@@ -58,7 +58,6 @@ theorem interval_sum_exists_uniquely
         IsIntervalSum rational_model first second other →
         other = result := by
   sorry
-
 /--
 `interval_addition` TODO
 
@@ -159,7 +158,6 @@ theorem interval_negation_exists_uniquely
         IsIntervalNegation rational_model interval other →
         other = result := by
   sorry
-
 /--
 `interval_negation` TODO
 
@@ -264,7 +262,6 @@ theorem interval_product_exists_uniquely
         IsIntervalProduct rational_model first second other →
         other = result := by
   sorry
-
 /--
 `interval_multiplication` TODO
 
@@ -369,7 +366,6 @@ theorem addition_preserves_admissibility
           interval_addition rational_model
             (first.interval index) (second.interval index) := by
   sorry
-
 /--
 `negation_preserves_admissibility` TODO
 
@@ -420,7 +416,6 @@ theorem negation_preserves_admissibility
           interval_negation rational_model
             (representative.interval index) := by
   sorry
-
 /--
 `admissible_representatives_are_uniformly_bounded` TODO
 
@@ -471,7 +466,6 @@ theorem admissible_representatives_are_uniformly_bounded
         rational_model.signature.le lower value ∧
         rational_model.signature.le value upper := by
   sorry
-
 /--
 `multiplication_preserves_admissibility` TODO
 
@@ -522,7 +516,6 @@ theorem multiplication_preserves_admissibility
           interval_multiplication rational_model
             (first.interval index) (second.interval index) := by
   sorry
-
 /--
 `representative_addition` TODO
 
@@ -741,7 +734,6 @@ theorem representative_operations_respect_equivalence :
         (representative_setoid rational_model)
         (representative_multiplication rational_model) := by
   sorry
-
 /--
 `addition` TODO
 
@@ -852,7 +844,6 @@ theorem quotient_negation_exists :
           Quotient.mk _
             (representative_negation rational_model representative) := by
   sorry
-
 /--
 `negation` TODO
 
@@ -1005,7 +996,6 @@ theorem representative_strict_order_respects_equivalence :
       (representative_setoid rational_model)
       (representative_strict_order rational_model) := by
   sorry
-
 /--
 `strict_order` TODO
 

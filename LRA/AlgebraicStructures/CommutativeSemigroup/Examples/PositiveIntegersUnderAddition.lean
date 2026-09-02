@@ -13,10 +13,7 @@ well as associative, so this is the same example promoted from "semigroup" to
 
 instance : LRA.AlgebraicStructures.MultiplicativeCommutativeLaws NaturalsUnderAddition := by
   sorry
-
 noncomputable instance :
-    LRA.AlgebraicStructures.CommutativeSemigroupLaws {n // n ∈ PositiveIntegers} :=
-  LRA.AlgebraicStructures.CommutativeSemigroup.Constructions.ClosedSubsetCommutativeSemigroupLaws
-    positiveIntegersClosedUnderAddition
-
+    LRA.AlgebraicStructures.CommutativeSemigroupLaws {n // n ∈ PositiveIntegers} := by
+  sorry
 end LRA.AlgebraicStructures.CommutativeSemigroup.Examples

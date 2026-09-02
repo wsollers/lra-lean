@@ -9,5 +9,4 @@ universe u
 
 instance {R : Type u} [_root_.Semiring R] [Nonempty R] : SemiringLaws R := by
   sorry
-
 end LRA.AlgebraicStructures

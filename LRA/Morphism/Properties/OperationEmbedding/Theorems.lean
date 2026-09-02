@@ -54,7 +54,6 @@ theorem BinaryOperationEmbedding.injective
     (law : BinaryOperationEmbedding function sourceOperation targetOperation) :
     LRA.Function.Injective function := by
   sorry
-
 /--
 `BinaryOperationEmbedding.preserves` TODO
 
@@ -97,7 +96,6 @@ theorem BinaryOperationEmbedding.preserves
     (law : BinaryOperationEmbedding function sourceOperation targetOperation) :
     PreservesBinaryOperation function sourceOperation targetOperation := by
   sorry
-
 end OperationEmbedding
 
 end LRA.Morphism

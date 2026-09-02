@@ -49,7 +49,6 @@ theorem endpoint_sum_exists_uniquely (first second : EndpointInterval fieldModel
     ∃ result, IsEndpointSum fieldModel first second result ∧
       ∀ other, IsEndpointSum fieldModel first second other → other = result := by
   sorry
-
 /--
 `endpoint_addition` TODO
 
@@ -138,7 +137,6 @@ theorem endpoint_negation_exists_uniquely (interval : EndpointInterval fieldMode
     ∃ result, IsEndpointNegation fieldModel interval result ∧
       ∀ other, IsEndpointNegation fieldModel interval other → other = result := by
   sorry
-
 /--
 `endpoint_negation` TODO
 
@@ -227,7 +225,6 @@ theorem endpoint_product_exists_uniquely (first second : EndpointInterval fieldM
     ∃ result, IsEndpointProduct fieldModel first second result ∧
       ∀ other, IsEndpointProduct fieldModel first second other → other = result := by
   sorry
-
 /--
 `endpoint_multiplication` TODO
 
@@ -476,7 +473,6 @@ theorem representative_addition_is_nested_and_shrinking
     IsNestedAndShrinking fieldModel
       (representative_addition fieldModel first second) := by
   sorry
-
 /--
 `representative_negation_is_nested_and_shrinking` TODO
 
@@ -521,7 +517,6 @@ theorem representative_negation_is_nested_and_shrinking
     IsNestedAndShrinking fieldModel
       (representative_negation fieldModel sequence) := by
   sorry
-
 /--
 `representative_multiplication_is_nested_and_shrinking` TODO
 
@@ -566,5 +561,4 @@ theorem representative_multiplication_is_nested_and_shrinking
     IsNestedAndShrinking fieldModel
       (representative_multiplication fieldModel first second) := by
   sorry
-
 end LRA.NumberSystems.RealNumbers.Cantor

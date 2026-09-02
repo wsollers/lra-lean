@@ -47,7 +47,6 @@ theorem TendstoOrderLe (hfg : ∀ x ∈ A, f x ≤ g x)
     (hf : TendsTo f A c Lf) (hg : TendsTo g A c Lg) :
     Lf ≤ Lg := by
   sorry
-
 /--
 `TendstoStrictOrderNear` TODO
 
@@ -90,7 +89,6 @@ theorem TendstoStrictOrderNear (hf : TendsTo f A c Lf) (hg : TendsTo g A c Lg)
     (hLfg : Lf < Lg) :
     ∃ δ > 0, ∀ x ∈ A, 0 < |x - c| → |x - c| < δ → f x < g x := by
   sorry
-
 /--
 `TendstoBoundedNear` TODO
 
@@ -131,7 +129,6 @@ Related proof moves: intro, use, rcases
 theorem TendstoBoundedNear (hf : TendsTo f A c L) :
     ∃ δ > 0, ∃ M : ℝ, ∀ x ∈ A, 0 < |x - c| → |x - c| < δ → |f x| ≤ M := by
   sorry
-
 /--
 `TendstoSameSignNear` TODO
 
@@ -172,5 +169,4 @@ Related proof moves: intro, use, rcases
 theorem TendstoSameSignNear (hf : TendsTo f A c L) (hL : L ≠ 0) :
     ∃ δ > 0, ∀ x ∈ A, 0 < |x - c| → |x - c| < δ → 0 < L * f x := by
   sorry
-
 end LRA.Analysis.Limits

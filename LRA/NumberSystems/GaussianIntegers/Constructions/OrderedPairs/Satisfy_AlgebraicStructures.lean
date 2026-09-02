@@ -15,7 +15,6 @@ theorem satisfiesAbelianGroup
     [CommutativeRingLaws R] :
     AbelianGroupLaws (GaussianInteger R) := by
   sorry
-
 /-- The ordered-pairs Gaussian-integer construction canonically realizes ring
 structure over a commutative-ring base. -/
 theorem satisfiesRing
@@ -24,7 +23,6 @@ theorem satisfiesRing
     [CommutativeRingLaws R] :
     RingLaws (GaussianInteger R) := by
   sorry
-
 /-- The ordered-pairs Gaussian-integer construction canonically realizes
 commutative ring structure over a commutative-ring base. -/
 theorem satisfiesCommutativeRing
@@ -33,5 +31,4 @@ theorem satisfiesCommutativeRing
     [CommutativeRingLaws R] :
     CommutativeRingLaws (GaussianInteger R) := by
   sorry
-
 end LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs

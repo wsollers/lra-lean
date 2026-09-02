@@ -54,5 +54,4 @@ theorem Associative.preserves_left_nested_shape {Carrier : Type u}
     operation (operation first second) third =
       operation first (operation second third) := by
   sorry
-
 end LRA.Operation.Laws.Associative

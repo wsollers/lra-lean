@@ -130,7 +130,6 @@ Related proof moves: TODO
 theorem sentence_hasNoFreeVariables
     {S : Signature} {Variable : Type} [DecidableEq Variable]
     (sentence : Sentence S Variable) :
-    freeVariables sentence.val = ∅ :=
-  sentence.property
-
+    freeVariables sentence.val = ∅ := by
+  sorry
 end LRA.Logic.FirstOrder

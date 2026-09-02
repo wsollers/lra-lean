@@ -106,7 +106,6 @@ Related proof moves: TODO
 -/
 theorem additive_group_structure : AdditiveGroupStructure rational_model := by
   sorry
-
 /--
 `MultiplicativeAndDistributiveLaws` TODO
 
@@ -211,7 +210,6 @@ Related proof moves: TODO
 theorem multiplicative_and_distributive_laws :
     MultiplicativeAndDistributiveLaws rational_model := by
   sorry
-
 /--
 `FieldStructure` TODO
 
@@ -298,7 +296,6 @@ Related proof moves: TODO
 -/
 theorem field_structure : FieldStructure rational_model := by
   sorry
-
 /--
 `translation_invariance` TODO
 
@@ -347,7 +344,6 @@ theorem translation_invariance
       (addition rational_model first translation)
       (addition rational_model second translation) := by
   sorry
-
 /--
 `positive_products_are_positive` TODO
 
@@ -396,7 +392,6 @@ theorem positive_products_are_positive
     IsPositive rational_model
       (multiplication rational_model first second) := by
   sorry
-
 /--
 `OrderedFieldStructure` TODO
 
@@ -497,7 +492,6 @@ Related proof moves: TODO
 -/
 theorem ordered_field_structure : OrderedFieldStructure rational_model := by
   sorry
-
 /--
 `LeastUpperBoundProperty` TODO
 
@@ -598,7 +592,6 @@ Related proof moves: TODO
 -/
 theorem least_upper_bound_property : LeastUpperBoundProperty rational_model := by
   sorry
-
 /--
 `CompleteOrderedFieldStructure` TODO
 
@@ -679,5 +672,4 @@ Related proof moves: TODO
 theorem complete_ordered_field_structure :
     CompleteOrderedFieldStructure rational_model := by
   sorry
-
 end LRA.NumberSystems.RealNumbers.Dedekind

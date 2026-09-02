@@ -65,7 +65,6 @@ theorem MaximalElementOfDirectedSubsetIsGreatest
       MaximalElement (StrictPart relation) subset maximal) :
     GreatestElement relation subset maximal := by
   sorry
-
 /--
 `ProductOfDirectedSubsetsIsDirected` TODO
 
@@ -134,5 +133,4 @@ theorem ProductOfDirectedSubsetsIsDirected
     (rightIsDirected : Directed rightRelation rightSubset) :
     Directed (ProductRelation leftRelation rightRelation) productSubset := by
   sorry
-
 end LRA.Order

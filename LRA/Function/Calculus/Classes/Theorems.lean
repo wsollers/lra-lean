@@ -50,7 +50,6 @@ theorem EveryInputInDomainClass {Domain : Type u} {Codomain : Type v}
     (function : LRA.Function Domain Codomain) (input : Domain) :
     DomainClass function input := by
   sorry
-
 /--
 `KernelRelationIsEquivalenceRelation` TODO
 
@@ -95,7 +94,6 @@ theorem KernelRelationIsEquivalenceRelation
     (function : LRA.Function Domain Codomain) :
     LRA.Relation.EquivalenceRelation (KernelRelation function) := by
   sorry
-
 /--
 `InjectiveIffKernelIsIdentityRelation` TODO
 
@@ -142,7 +140,6 @@ theorem InjectiveIffKernelIsIdentityRelation
     Injective function ↔
       KernelRelation function = LRA.Relation.IdentityRelation Domain := by
   sorry
-
 section FunctionalPreimageLaws
 
 open LRA.Set
@@ -193,7 +190,6 @@ theorem PreimageClassIntersection (left right : SetClass Codomain) :
       SetClass.Intersection (PreimageClass function left)
         (PreimageClass function right) := by
   sorry
-
 /--
 `PreimageClassDifference` TODO
 
@@ -238,7 +234,6 @@ theorem PreimageClassDifference (left right : SetClass Codomain) :
       SetClass.Difference (PreimageClass function left)
         (PreimageClass function right) := by
   sorry
-
 /--
 `PreimageClassComplement` TODO
 
@@ -281,7 +276,6 @@ theorem PreimageClassComplement (target : SetClass Codomain) :
     PreimageClass function (SetClass.Complement target) =
       SetClass.Complement (PreimageClass function target) := by
   sorry
-
 /--
 `PreimageClassSymmetricDifference` TODO
 
@@ -336,7 +330,6 @@ theorem PreimageClassSymmetricDifference (left right : SetClass Codomain) :
         (SetClass.Difference (PreimageClass function right)
           (PreimageClass function left)) := by
   sorry
-
 /--
 `PreimageClassDifferenceUnion` TODO
 
@@ -385,7 +378,6 @@ theorem PreimageClassDifferenceUnion (left middle right : SetClass Codomain) :
         (SetClass.Union (PreimageClass function middle)
           (PreimageClass function right)) := by
   sorry
-
 /--
 `PreimageClassUniversal` TODO
 
@@ -428,7 +420,6 @@ theorem PreimageClassUniversal :
     PreimageClass function (SetClass.Universal : SetClass Codomain) =
       (SetClass.Universal : SetClass Domain) := by
   sorry
-
 /--
 `PreimageClassIndexedIntersection` TODO
 
@@ -473,7 +464,6 @@ theorem PreimageClassIndexedIntersection {Index : Type w}
     PreimageClass function (fun output => ∀ index, family index output) =
       (fun input => ∀ index, PreimageClass function (family index) input) := by
   sorry
-
 /--
 `PreimageClassCountableIntersection` TODO
 
@@ -516,7 +506,6 @@ theorem PreimageClassCountableIntersection (family : Nat → SetClass Codomain) 
     PreimageClass function (fun output => ∀ index, family index output) =
       (fun input => ∀ index, PreimageClass function (family index) input) := by
   sorry
-
 end FunctionalPreimageLaws
 
 section ImagePreimageAdjunction
@@ -569,7 +558,6 @@ theorem ImagePreimageAdjunction
     SetClass.Included source (PreimageClass function target) ↔
       SetClass.Included (ImageClass function source) target := by
   sorry
-
 /--
 `ImageOfPreimageClassIncluded` TODO
 
@@ -612,7 +600,6 @@ theorem ImageOfPreimageClassIncluded (target : SetClass Codomain) :
     SetClass.Included
       (ImageClass function (PreimageClass function target)) target := by
   sorry
-
 /--
 `SourceIncludedInPreimageOfImageClass` TODO
 
@@ -655,7 +642,6 @@ theorem SourceIncludedInPreimageOfImageClass (source : SetClass Domain) :
     SetClass.Included source
       (PreimageClass function (ImageClass function source)) := by
   sorry
-
 /--
 `ImageOfPreimageClassEqualsMeetWithRange` TODO
 
@@ -698,7 +684,6 @@ theorem ImageOfPreimageClassEqualsMeetWithRange (target : SetClass Codomain) :
     ImageClass function (PreimageClass function target) =
       SetClass.Intersection target (RangeClass function) := by
   sorry
-
 /--
 `ImageOfPreimageClassOfIncludedInRange` TODO
 
@@ -741,7 +726,6 @@ theorem ImageOfPreimageClassOfIncludedInRange (target : SetClass Codomain)
     (insideRange : SetClass.Included target (RangeClass function)) :
     ImageClass function (PreimageClass function target) = target := by
   sorry
-
 /--
 `MapsIntoClassIffImageIncluded` TODO
 
@@ -786,7 +770,6 @@ theorem MapsIntoClassIffImageIncluded
     MapsIntoClass function source target ↔
       SetClass.Included (ImageClass function source) target := by
   sorry
-
 /--
 `MapsIntoClassIffIncludedInPreimage` TODO
 
@@ -831,7 +814,6 @@ theorem MapsIntoClassIffIncludedInPreimage
     MapsIntoClass function source target ↔
       SetClass.Included source (PreimageClass function target) := by
   sorry
-
 end ImagePreimageAdjunction
 
 section InjectiveAndSurjectiveLaws
@@ -886,7 +868,6 @@ theorem ImageClassIntersectionOfInjective
       SetClass.Intersection (ImageClass function left)
         (ImageClass function right) := by
   sorry
-
 /--
 `ImageClassDifferenceOfInjective` TODO
 
@@ -933,7 +914,6 @@ theorem ImageClassDifferenceOfInjective
       SetClass.Difference (ImageClass function left)
         (ImageClass function right) := by
   sorry
-
 /--
 `ImageClassIndexedIntersectionOfInjective` TODO
 
@@ -978,7 +958,6 @@ theorem ImageClassIndexedIntersectionOfInjective {Index : Type w} [Nonempty Inde
     ImageClass function (fun input => ∀ index, family index input) =
       (fun output => ∀ index, ImageClass function (family index) output) := by
   sorry
-
 /--
 `ImageClassCountableIntersectionOfInjective` TODO
 
@@ -1023,7 +1002,6 @@ theorem ImageClassCountableIntersectionOfInjective
     ImageClass function (fun input => ∀ index, family index input) =
       (fun output => ∀ index, ImageClass function (family index) output) := by
   sorry
-
 /--
 `ImageClassWitnessUniqueOfInjective` TODO
 
@@ -1072,7 +1050,6 @@ theorem ImageClassWitnessUniqueOfInjective
     (secondWitness : source secondInput ∧ function secondInput = output) :
     firstInput = secondInput := by
   sorry
-
 /--
 `PreimageOfImageClassOfInjective` TODO
 
@@ -1115,7 +1092,6 @@ theorem PreimageOfImageClassOfInjective
     (injective : Injective function) (source : SetClass Domain) :
     PreimageClass function (ImageClass function source) = source := by
   sorry
-
 /--
 `ImageOfPreimageClassOfSurjective` TODO
 
@@ -1158,7 +1134,6 @@ theorem ImageOfPreimageClassOfSurjective
     (surjective : Surjective function) (target : SetClass Codomain) :
     ImageClass function (PreimageClass function target) = target := by
   sorry
-
 /--
 `SurjectiveOfImageClassCoversCodomain` TODO
 
@@ -1203,7 +1178,6 @@ theorem SurjectiveOfImageClassCoversCodomain
       ImageClass function (SetClass.Universal : SetClass Domain) output) :
     Surjective function := by
   sorry
-
 end InjectiveAndSurjectiveLaws
 
 section KernelLaws
@@ -1256,7 +1230,6 @@ theorem FiberClassOverValueIffKernelRelated
     FiberClass function (function representative) input ↔
       KernelRelation function input representative := by
   sorry
-
 /--
 `FiberClassSaturatedBy` TODO
 
@@ -1297,7 +1270,6 @@ Related proof moves: TODO
 theorem FiberClassSaturatedBy (output : Codomain) :
     SaturatedBy (FiberClass function output) function := by
   sorry
-
 /--
 `FiberClassEqualsKernelEquivalenceClass` TODO
 
@@ -1342,7 +1314,6 @@ theorem FiberClassEqualsKernelEquivalenceClass
     FiberClass function (function representative) =
       (fun input => KernelRelation function input representative) := by
   sorry
-
 /--
 `KernelClassMapsTo` TODO
 
@@ -1429,7 +1400,6 @@ theorem KernelClassMapsToRepresentativeValue
     KernelClassMapsTo function
       (FiberClass function (function representative)) (function representative) := by
   sorry
-
 /--
 `KernelClassMapsToOutputUnique` TODO
 
@@ -1478,7 +1448,6 @@ theorem KernelClassMapsToOutputUnique
     (secondMapsTo : KernelClassMapsTo function classOfInputs secondOutput) :
     firstOutput = secondOutput := by
   sorry
-
 /--
 `KernelClassMapsToExistsOfRangeMember` TODO
 
@@ -1525,7 +1494,6 @@ theorem KernelClassMapsToExistsOfRangeMember
       (∃ input, classOfInputs input) ∧
         KernelClassMapsTo function classOfInputs output := by
   sorry
-
 /--
 `KernelQuotientProjectionWellDefined` TODO
 
@@ -1570,7 +1538,6 @@ theorem KernelQuotientProjectionWellDefined
     (kernelRelated : KernelRelation function leftInput rightInput) :
     function leftInput = function rightInput := by
   sorry
-
 end KernelLaws
 
 end LRA.Function

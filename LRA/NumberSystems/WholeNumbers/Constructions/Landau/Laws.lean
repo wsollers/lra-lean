@@ -68,7 +68,6 @@ theorem additive_structure :
       addition natural_data first common = addition natural_data second common →
       first = second) := by
   sorry
-
 /--
 `semiring_structure` TODO
 
@@ -147,7 +146,6 @@ theorem semiring_structure :
       multiplication natural_data first second = zero natural_data →
       first = zero natural_data ∨ second = zero natural_data) := by
   sorry
-
 /--
 `ordered_semiring_structure` TODO
 
@@ -222,7 +220,6 @@ theorem ordered_semiring_structure :
           (multiplication natural_data first positive)
           (multiplication natural_data second positive))) := by
   sorry
-
 /--
 `nonstrict_order_refl` TODO
 
@@ -262,9 +259,7 @@ Related proof moves: intro
 -/
 theorem nonstrict_order_refl :
     ∀ value, nonstrictOrder natural_data value value := by
-
   sorry
-
 /--
 `nonstrict_order_trans` TODO
 
@@ -311,7 +306,6 @@ theorem nonstrict_order_trans :
       nonstrictOrder natural_data second third →
       nonstrictOrder natural_data first third := by
   sorry
-
 /--
 `nonstrict_order_antisymm` TODO
 
@@ -358,7 +352,6 @@ theorem nonstrict_order_antisymm :
       nonstrictOrder natural_data second first →
       first = second := by
   sorry
-
 /--
 `nonstrict_order_total` TODO
 
@@ -403,7 +396,6 @@ theorem nonstrict_order_total :
       nonstrictOrder natural_data first second ∨
         nonstrictOrder natural_data second first := by
   sorry
-
 /--
 `addition_preserves_nonstrict_order` TODO
 
@@ -452,7 +444,6 @@ theorem addition_preserves_nonstrict_order :
           (addition natural_data first translation)
           (addition natural_data second translation) := by
   sorry
-
 /--
 `addition_preserves_and_reflects_nonstrict_order` TODO
 
@@ -501,7 +492,6 @@ theorem addition_preserves_and_reflects_nonstrict_order :
         (addition natural_data second translation) ↔
       nonstrictOrder natural_data first second := by
   sorry
-
 /--
 `multiplication_preserves_nonstrict_order` TODO
 
@@ -552,7 +542,6 @@ theorem multiplication_preserves_nonstrict_order :
           (multiplication natural_data first positive)
           (multiplication natural_data second positive) := by
   sorry
-
 /--
 `well_ordering` TODO
 
@@ -601,5 +590,4 @@ theorem well_ordering
       subset least ∧
       ∀ value, subset value → nonstrictOrder natural_data least value := by
   sorry
-
 end LRA.NumberSystems.WholeNumbers.Constructions.Landau

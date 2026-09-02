@@ -55,7 +55,6 @@ theorem ComposeValue
     (input : Domain) :
     Compose outer inner input = outer (inner input) := by
   sorry
-
 /--
 `ComposeLeftIdentity` TODO
 
@@ -98,7 +97,6 @@ theorem ComposeLeftIdentity {Domain : Type u} {Codomain : Type v}
     (function : LRA.Function Domain Codomain) :
     Compose (IdentityFunction Codomain) function = function := by
   sorry
-
 /--
 `ComposeRightIdentity` TODO
 
@@ -141,7 +139,6 @@ theorem ComposeRightIdentity {Domain : Type u} {Codomain : Type v}
     (function : LRA.Function Domain Codomain) :
     Compose function (IdentityFunction Domain) = function := by
   sorry
-
 /--
 `ComposeAssociative` TODO
 
@@ -190,7 +187,6 @@ theorem ComposeAssociative {Domain : Type u} {Middle : Type v}
     (inner : LRA.Function Domain Middle) :
     Compose outer (Compose middle inner) = Compose (Compose outer middle) inner := by
   sorry
-
 section CompositionProperties
 
 variable {Domain : Type u} {Middle : Type v} {Codomain : Type w}
@@ -239,7 +235,6 @@ theorem ComposeInjective
     (outerInjective : Injective outer) (innerInjective : Injective inner) :
     Injective (Compose outer inner) := by
   sorry
-
 /--
 `ComposeSurjective` TODO
 
@@ -282,7 +277,6 @@ theorem ComposeSurjective
     (outerSurjective : Surjective outer) (innerSurjective : Surjective inner) :
     Surjective (Compose outer inner) := by
   sorry
-
 /--
 `ComposeBijective` TODO
 
@@ -325,7 +319,6 @@ theorem ComposeBijective
     (outerBijective : Bijective outer) (innerBijective : Bijective inner) :
     Bijective (Compose outer inner) := by
   sorry
-
 /--
 `ComposeInjectiveGivesInnerInjective` TODO
 
@@ -368,7 +361,6 @@ theorem ComposeInjectiveGivesInnerInjective
     (compositeInjective : Injective (Compose outer inner)) :
     Injective inner := by
   sorry
-
 /--
 `ComposeSurjectiveGivesOuterSurjective` TODO
 
@@ -411,7 +403,6 @@ theorem ComposeSurjectiveGivesOuterSurjective
     (compositeSurjective : Surjective (Compose outer inner)) :
     Surjective outer := by
   sorry
-
 end CompositionProperties
 
 section CompositionInverses
@@ -466,7 +457,6 @@ theorem ComposeLeftInverse
     (innerLeftInverse : LeftInverse inner innerInverse) :
     LeftInverse (Compose outer inner) (Compose innerInverse outerInverse) := by
   sorry
-
 /--
 `ComposeRightInverse` TODO
 
@@ -511,7 +501,6 @@ theorem ComposeRightInverse
     (innerRightInverse : RightInverse inner innerInverse) :
     RightInverse (Compose outer inner) (Compose innerInverse outerInverse) := by
   sorry
-
 /--
 `ComposeTwoSidedInverse` TODO
 
@@ -556,7 +545,6 @@ theorem ComposeTwoSidedInverse
     (innerTwoSided : TwoSidedInverse inner innerInverse) :
     TwoSidedInverse (Compose outer inner) (Compose innerInverse outerInverse) := by
   sorry
-
 end CompositionInverses
 
 end LRA.Function

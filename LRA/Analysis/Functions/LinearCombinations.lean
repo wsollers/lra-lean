@@ -81,7 +81,6 @@ Related proof moves: intro
 theorem LinearCombinationClosure (f g : ℝ → ℝ) (a b : ℝ) (A : Set ℝ) :
     ∀ x ∈ A, LinearCombo a b f g x = a * f x + b * g x := by
   sorry
-
 /--
 `BoundedLinearCombination` TODO
 
@@ -124,7 +123,6 @@ theorem BoundedLinearCombination (f g : ℝ → ℝ) (A : Set ℝ) (a b : ℝ)
     (hf : ∃ B > 0, ∀ x ∈ A, |f x| ≤ B) (hg : ∃ B > 0, ∀ x ∈ A, |g x| ≤ B) :
     ∃ B > 0, ∀ x ∈ A, |LinearCombo a b f g x| ≤ B := by
   sorry
-
 /--
 `IsClosedUnderLinearCombinations` TODO
 
@@ -251,7 +249,6 @@ theorem RealLinearRuleTest (C : Set (ℝ → ℝ))
       ((∀ f g, f ∈ C → g ∈ C → T (fun x => f x + g x) = T f + T g) ∧
         (∀ f, f ∈ C → ∀ a : ℝ, T (fun x => a * f x) = a * T f)) := by
   sorry
-
 /--
 `RealLinearRuleBasicValues` TODO
 
@@ -296,5 +293,4 @@ theorem RealLinearRuleBasicValues (C : Set (ℝ → ℝ))
     (hT : IsRealLinearRule C T) (h0 : (fun _ : ℝ => (0 : ℝ)) ∈ C) :
     T (fun _ => 0) = 0 ∧ ∀ f, f ∈ C → T (fun x => -f x) = -T f := by
   sorry
-
 end LRA.Analysis.Functions

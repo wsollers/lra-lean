@@ -20,7 +20,6 @@ theorem zfcSetRelation_interpret_eq_toEndorelation
     {carrierObject : LRA.Set.Interop.Providers.LRA.ZFC.ZFCSet}
     (relation : ZFCSetRelation carrierObject) :
     LRA.Relation.interpret relation =
-      ZFCSetRelation.toEndorelation relation :=
-  rfl
-
+      ZFCSetRelation.toEndorelation relation := by
+  sorry
 end LRA.Relation.Constructions.LRA

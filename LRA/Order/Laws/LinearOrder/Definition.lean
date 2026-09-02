@@ -132,7 +132,6 @@ Related proof moves: intro, Or.inl, Or.inr, cases, rcases
 theorem LeTotal [LE R] [TotalOrderLaw R] :
     forall a b : R, a <= b \/ b <= a := by
   sorry
-
 end Wrappers
 
 end LRA.Order

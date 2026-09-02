@@ -91,7 +91,6 @@ theorem equivalent_is_equivalence_relation
     (whole_data : WholeNumberArithmeticForTaoFormalDifferences) :
     Equivalence (equivalent whole_data) := by
   sorry
-
 /--
 `setoid` TODO
 

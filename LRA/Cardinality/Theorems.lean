@@ -43,7 +43,6 @@ Related proof moves: TODO
 -/
 theorem EquinumerousReflexive (A : Type u) : Equinumerous A A := by
   sorry
-
 /--
 `EquinumerousSymmetric` TODO
 
@@ -84,7 +83,6 @@ Related proof moves: TODO
 theorem EquinumerousSymmetric (A : Type u) (B : Type v)
     (equinumerous : Equinumerous A B) : Equinumerous B A := by
   sorry
-
 /--
 `EquinumerousTransitive` TODO
 
@@ -127,7 +125,6 @@ theorem EquinumerousTransitive (A : Type u) (B : Type v) (C : Type w)
     (firstEquinumerous : Equinumerous A B)
     (secondEquinumerous : Equinumerous B C) : Equinumerous A C := by
   sorry
-
 /--
 `DominatesReflexive` TODO
 
@@ -166,7 +163,6 @@ Related proof moves: TODO
 -/
 theorem DominatesReflexive (A : Type u) : Dominates A A := by
   sorry
-
 /--
 `DominatesTransitive` TODO
 
@@ -209,7 +205,6 @@ theorem DominatesTransitive (A : Type u) (B : Type v) (C : Type w)
     (firstDominates : Dominates A B)
     (secondDominates : Dominates B C) : Dominates A C := by
   sorry
-
 /--
 `DominatesOfEquinumerous` TODO
 
@@ -250,7 +245,6 @@ Related proof moves: TODO
 theorem DominatesOfEquinumerous (A : Type u) (B : Type v)
     (equinumerous : Equinumerous A B) : Dominates A B := by
   sorry
-
 /--
 `CantorSchroederBernstein` TODO
 
@@ -293,7 +287,6 @@ theorem CantorSchroederBernstein (A : Type u) (B : Type v)
     (firstDominates : Dominates A B) (secondDominates : Dominates B A) :
     Equinumerous A B := by
   sorry
-
 /--
 `CantorTheorem` TODO
 
@@ -334,7 +327,6 @@ Related proof moves: intro, use, rcases
 theorem CantorTheorem (A : Type u) :
     ¬ ∃ f : A → (A → Prop), LRA.Function.Surjective f := by
   sorry
-
 /--
 `StrictlyDominatesPowerset` TODO
 
@@ -375,5 +367,4 @@ Related proof moves: intro
 theorem StrictlyDominatesPowerset (A : Type u) :
     StrictlyDominates A (A → Prop) := by
   sorry
-
 end LRA.Cardinality

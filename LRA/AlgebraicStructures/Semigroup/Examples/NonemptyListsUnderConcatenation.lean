@@ -21,18 +21,12 @@ instance : Nonempty (List Alphabet) := ⟨[]⟩
 instance [Nonempty Alphabet] :
     LRA.AlgebraicStructures.MultiplicativeSemigroupLaws (List Alphabet) where
   MulAssociative := List.append_assoc
-
 def NonemptyLists : LRA.Set.LRA_Set (List Alphabet) := {l | l ≠ []}
 
 theorem nonemptyListsClosedUnderConcatenation :
     ∀ a b, a ∈ NonemptyLists → b ∈ NonemptyLists →
       a * b ∈ (NonemptyLists : LRA.Set.LRA_Set (List Alphabet)) := by
-  intro a b ha _
-  show a ++ b ≠ []
-  cases a with
-  | nil => exact absurd rfl ha
-  | cons x xs => simp
-
+  sorry
 noncomputable instance [Nonempty Alphabet] :
     Mul {l : List Alphabet // l ∈ NonemptyLists} :=
   Magma.Constructions.ClosedSubsetMul nonemptyListsClosedUnderConcatenation
@@ -45,5 +39,4 @@ noncomputable instance [Nonempty Alphabet] :
     LRA.AlgebraicStructures.MultiplicativeSemigroupLaws
       {l : List Alphabet // l ∈ NonemptyLists} :=
   Semigroup.Constructions.ClosedSubsetSemigroupLaws nonemptyListsClosedUnderConcatenation
-
 end LRA.AlgebraicStructures.Semigroup.Examples

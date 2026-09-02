@@ -175,7 +175,6 @@ theorem NonincreasingIffNonposDerivative (f : ℝ → ℝ) (I : Set ℝ) (hI : I
     (hdiff : ∀ x ∈ I, IsDifferentiable f I x) :
     OrderReversing f I ↔ ∀ x ∈ I, ∀ D, Derivative D f I x → D ≤ 0 := by
   sorry
-
 /--
 `ZeroDerivativeImpliesConstant` TODO
 
@@ -218,7 +217,6 @@ theorem ZeroDerivativeImpliesConstant (f : ℝ → ℝ) (I : Set ℝ) (hI : I.Or
     (hdiff : ∀ x ∈ I, Derivative 0 f I x) :
     ∃ k : ℝ, ∀ x ∈ I, f x = k := by
   sorry
-
 /--
 `EqualDerivativesConstantDifference` TODO
 
@@ -261,7 +259,6 @@ theorem EqualDerivativesConstantDifference (f g : ℝ → ℝ) (I : Set ℝ) (hI
     (hdiff : ∀ x ∈ I, ∀ D, Derivative D f I x ↔ Derivative D g I x) :
     ∃ k : ℝ, ∀ x ∈ I, f x - g x = k := by
   sorry
-
 /--
 `FirstDerivativeTestMaximum` TODO
 
@@ -308,7 +305,6 @@ theorem FirstDerivativeTestMaximum (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
     (hneg : ∃ δ > 0, ∀ x ∈ A, c < x → x < c + δ → ∀ D, Derivative D f A x → D < 0) :
     IsRelativeMaximum f A c := by
   sorry
-
 /--
 `FirstDerivativeTestMinimum` TODO
 
@@ -355,7 +351,6 @@ theorem FirstDerivativeTestMinimum (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
     (hpos : ∃ δ > 0, ∀ x ∈ A, c < x → x < c + δ → ∀ D, Derivative D f A x → D > 0) :
     IsRelativeMinimum f A c := by
   sorry
-
 /--
 `SecondDerivative` TODO
 
@@ -482,7 +477,6 @@ theorem SecondDerivativeConvexityTest (f fD1 fD2 : ℝ → ℝ) (I : Set ℝ) (h
     (hpos : ∀ x ∈ I, fD2 x ≥ 0) :
     IsConvexOn f I := by
   sorry
-
 /--
 `SecondDerivativeConcavityTest` TODO
 
@@ -529,7 +523,6 @@ theorem SecondDerivativeConcavityTest (f fD1 fD2 : ℝ → ℝ) (I : Set ℝ) (h
     (hneg : ∀ x ∈ I, fD2 x ≤ 0) :
     IsConcaveOn f I := by
   sorry
-
 /--
 `SecondDerivativeTest` TODO
 
@@ -574,7 +567,6 @@ theorem SecondDerivativeTest (f fD1 fD2 : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
     (hD1 : ∀ x ∈ A, Derivative (fD1 x) f A x) (hD2c : Derivative (fD2 c) fD1 A c) :
     (fD2 c > 0 → IsRelativeMinimum f A c) ∧ (fD2 c < 0 → IsRelativeMaximum f A c) := by
   sorry
-
 /--
 `InflectionPointNecessaryCondition` TODO
 
@@ -621,7 +613,6 @@ theorem InflectionPointNecessaryCondition (f fD1 fD2 : ℝ → ℝ) (A : Set ℝ
     (hcont : LRA.Analysis.Continuity.ContinuousAtPoint fD2 A c) :
     fD2 c = 0 := by
   sorry
-
 /--
 `darboux` TODO
 
@@ -668,7 +659,6 @@ theorem darboux (f : ℝ → ℝ) (a b : ℝ) (hab : a < b)
     (k : ℝ) (hk : (Da < k ∧ k < Db) ∨ (Db < k ∧ k < Da)) :
     ∃ c ∈ Set.Ioo a b, Derivative k f (Set.Icc a b) c := by
   sorry
-
 /--
 `IsClassC1` TODO
 
@@ -879,7 +869,6 @@ theorem SmoothnessTower (I : Set ℝ) (hI : I.Nontrivial) :
     (∀ f fD k, IsClassCk f fD I (k + 1) → IsClassCk f fD I k) ∧
     (∀ f fD, IsClassCOmega f fD I → IsClassCInfty f fD I) := by
   sorry
-
 /--
 `IsClassC11` TODO
 
@@ -962,7 +951,6 @@ Related proof moves: intro
 theorem C11Placement (I : Set ℝ) (hI : I.Nontrivial) :
     (∀ f fD1, IsClassC11 f fD1 I → IsClassC1 f fD1 I) := by
   sorry
-
 /--
 `BoundedSecondDerivativeImpliesC11` TODO
 
@@ -1007,5 +995,4 @@ theorem BoundedSecondDerivativeImpliesC11 (f fD1 fD2 : ℝ → ℝ) (I : Set ℝ
     (hbound : ∀ x ∈ I, |fD2 x| ≤ M) :
     IsClassC11 f fD1 I ∧ LRA.Analysis.Continuity.IsLipschitzOn fD1 I M := by
   sorry
-
 end LRA.Analysis.Differentiation

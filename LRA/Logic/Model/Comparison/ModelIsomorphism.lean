@@ -88,7 +88,6 @@ Related proof moves: TODO
 -/
 theorem ModelIsomorphism.bijective
     {S : Signature} {M₁ M₂ : Model S} (iso : ModelIsomorphism M₁ M₂) :
-    Function.Bijective iso.toFun :=
-  ⟨iso.injective, iso.surjective⟩
-
+    Function.Bijective iso.toFun := by
+  sorry
 end LRA.Logic.FirstOrder

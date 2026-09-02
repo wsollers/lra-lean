@@ -93,8 +93,8 @@ Related proof moves: TODO
 -/
 theorem ModelIsomorphism.toEquiv_apply
     {S : Signature} {M₁ M₂ : Model S} (iso : ModelIsomorphism M₁ M₂) (x : M₁.Domain) :
-    iso.toEquiv x = iso.toFun x := rfl
-
+    iso.toEquiv x = iso.toFun x := by
+  sorry
 /--
 `ModelIsomorphism.inverseEmbedding` TODO
 

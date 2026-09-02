@@ -18,9 +18,8 @@ def EvenIntegers : LRA.Set.LRA_Set Int := {n | Even n}
 theorem evenIntegersClosedUnderMultiplication :
     ∀ a b, a ∈ EvenIntegers → b ∈ EvenIntegers → a * b ∈ EvenIntegers := by
   intro a b ha _
-  obtain ⟨r, hr⟩ := ha
-  exact ⟨r * b, by rw [hr]; ring⟩
-
+  obtain ⟨r, hr⟩ := by
+  sorry
 noncomputable instance : Mul {n // n ∈ EvenIntegers} :=
   Magma.Constructions.ClosedSubsetMul evenIntegersClosedUnderMultiplication
 
@@ -28,7 +27,6 @@ noncomputable instance : Nonempty {n // n ∈ EvenIntegers} :=
   ⟨0, ⟨0, by ring⟩⟩
 
 noncomputable instance :
-    LRA.AlgebraicStructures.MultiplicativeSemigroupLaws {n // n ∈ EvenIntegers} :=
-  Semigroup.Constructions.ClosedSubsetSemigroupLaws evenIntegersClosedUnderMultiplication
-
+    LRA.AlgebraicStructures.MultiplicativeSemigroupLaws {n // n ∈ EvenIntegers} := by
+  sorry
 end LRA.AlgebraicStructures.Semigroup.Examples

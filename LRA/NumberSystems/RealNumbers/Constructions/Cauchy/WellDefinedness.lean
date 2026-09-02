@@ -55,7 +55,6 @@ theorem representative_addition_is_cauchy
     is_cauchy rationalSystem absolute_value_data
       (representative_addition rationalSystem absolute_value_data first second) := by
   sorry
-
 /--
 `representative_negation_is_cauchy` TODO
 
@@ -104,7 +103,6 @@ theorem representative_negation_is_cauchy
     is_cauchy rationalSystem absolute_value_data
       (representative_negation rationalSystem absolute_value_data representative) := by
   sorry
-
 /--
 `representative_multiplication_is_cauchy` TODO
 
@@ -153,7 +151,6 @@ theorem representative_multiplication_is_cauchy
     is_cauchy rationalSystem absolute_value_data
       (representative_multiplication rationalSystem absolute_value_data first second) := by
   sorry
-
 /--
 `representative_addition_respects_equivalence` TODO
 
@@ -208,7 +205,6 @@ theorem representative_addition_respects_equivalence
           representative_addition_is_cauchy
             rationalSystem absolute_value_data first second⟩) := by
   sorry
-
 /--
 `representative_multiplication_respects_equivalence` TODO
 
@@ -263,7 +259,6 @@ theorem representative_multiplication_respects_equivalence
           representative_multiplication_is_cauchy
             rationalSystem absolute_value_data first second⟩) := by
   sorry
-
 /--
 `representative_negation_respects_equivalence` TODO
 
@@ -318,5 +313,4 @@ theorem representative_negation_respects_equivalence
           representative_negation_is_cauchy
             rationalSystem absolute_value_data representative⟩) := by
   sorry
-
 end LRA.NumberSystems.RealNumbers.Cauchy

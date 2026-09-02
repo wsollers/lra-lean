@@ -66,7 +66,6 @@ theorem CompleteLatticeHasBottomAndTop
     (exists bottom, forall element, relation bottom element) /\
       (exists top, forall element, relation element top) := by
   sorry
-
 /--
 `AllSupremaImplyCompleteLattice` TODO
 
@@ -131,7 +130,6 @@ theorem AllSupremaImplyCompleteLattice
         exists supremum, Supremum relation subset supremum) :
     CompleteLattice SetObject relation := by
   sorry
-
 /--
 `AllInfimaImplyCompleteLattice` TODO
 
@@ -196,7 +194,6 @@ theorem AllInfimaImplyCompleteLattice
         exists infimum, Infimum relation subset infimum) :
     CompleteLattice SetObject relation := by
   sorry
-
 /--
 `CompleteLatticeIsLattice` TODO
 
@@ -255,5 +252,4 @@ theorem CompleteLatticeIsLattice
     (relationIsCompleteLattice : CompleteLattice SetObject relation) :
     Lattice relation := by
   sorry
-
 end LRA.Order

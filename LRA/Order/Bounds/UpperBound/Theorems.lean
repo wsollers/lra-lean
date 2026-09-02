@@ -62,7 +62,6 @@ theorem UpperBoundOfEmpty
     (bound : Element) :
     UpperBound relation (∅ : SetObject) bound := by
   sorry
-
 /--
 `UpperBoundOfSubcollection` TODO
 
@@ -115,7 +114,6 @@ theorem UpperBoundOfSubcollection
     (boundIsUpperForLarger : UpperBound relation larger bound) :
     UpperBound relation smaller bound := by
   sorry
-
 /--
 `UpperBoundOfUnion` TODO
 
@@ -174,7 +172,6 @@ theorem UpperBoundOfUnion
     (boundIsUpperForRight : UpperBound relation rightSubset bound) :
     UpperBound relation (leftSubset ∪ rightSubset) bound := by
   sorry
-
 /--
 `UpperBoundOfUnionIff` TODO
 
@@ -233,7 +230,6 @@ theorem UpperBoundOfUnionIff
       UpperBound relation leftSubset bound /\
         UpperBound relation rightSubset bound := by
   sorry
-
 /--
 `UpperBoundOfIntersection` TODO
 
@@ -294,7 +290,6 @@ theorem UpperBoundOfIntersection
         UpperBound relation rightSubset bound) :
     UpperBound relation (leftSubset ∩ rightSubset) bound := by
   sorry
-
 /--
 `UpperBoundOfDifference` TODO
 
@@ -351,7 +346,6 @@ theorem UpperBoundOfDifference
     (boundIsUpperForSubset : UpperBound relation subset bound) :
     UpperBound relation (subset \ removed) bound := by
   sorry
-
 /--
 `UpperBoundOfSymmetricDifference` TODO
 
@@ -414,7 +408,6 @@ theorem UpperBoundOfSymmetricDifference
     (boundIsUpperForRight : UpperBound relation rightSubset bound) :
     UpperBound relation (leftSubset ∆ rightSubset) bound := by
   sorry
-
 /--
 `UpperBoundOfIndexedUnionIff` TODO
 
@@ -471,7 +464,6 @@ theorem UpperBoundOfIndexedUnionIff
     UpperBound relation (LRA.Set.HasIndexedUnion.indexedUnion family) bound ↔
       forall index, UpperBound relation (family index) bound := by
   sorry
-
 /--
 `UpperBoundOfIndexedIntersection` TODO
 
@@ -530,5 +522,4 @@ theorem UpperBoundOfIndexedIntersection
     UpperBound relation
       (LRA.Set.HasIndexedIntersection.indexedIntersection family) bound := by
   sorry
-
 end LRA.Order

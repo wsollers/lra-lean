@@ -11,14 +11,10 @@ instance : LRA.AlgebraicStructures.HasPredecessor Int := ⟨fun x => x - 1⟩
 
 instance : LRA.AlgebraicStructures.SuccessorLaws Int := by
   sorry
-
 instance : LRA.AlgebraicStructures.SuccessorAdditionLaw Int := by
   sorry
-
 instance : LRA.AlgebraicStructures.SuccessorMultiplicationLaws Int := by
   sorry
-
 instance : LRA.AlgebraicStructures.DiscretenessLaw Int := by
   sorry
-
 end LRA.AlgebraicStructures.DiscreteInteger.Examples

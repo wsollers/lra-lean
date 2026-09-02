@@ -14,5 +14,4 @@ risk since nothing here is registered as anyone's `Mul`/`Add`. -/
 theorem ofLattice {R : Type u} [_root_.Lattice R] :
     LatticeLaws (Carrier := R) (· ⊔ ·) (· ⊓ ·) := by
   sorry
-
 end LRA.AlgebraicStructures

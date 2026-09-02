@@ -48,7 +48,6 @@ theorem EpsCharSup (S : Set ℝ) (s : ℝ) (hne : S.Nonempty)
     (hbdd : BddAbove S) (hs : IsLUB S s) :
     ∀ ε > 0, ∃ x ∈ S, x > s - ε := by
   sorry
-
 /--
 `InductiveSelection` TODO
 
@@ -93,7 +92,6 @@ theorem InductiveSelection (S : Set ℝ) (s : ℝ) (hne : S.Nonempty)
     ∃ x : ℕ → ℝ, (∀ n, x n ∈ S) ∧ StrictMono x ∧
       Filter.Tendsto x Filter.atTop (nhds s) := by
   sorry
-
 /--
 `MonotoneApproxBounds` TODO
 
@@ -142,5 +140,4 @@ theorem MonotoneApproxBounds (S : Set ℝ) (hne : S.Nonempty)
     (∃ y : ℕ → ℝ, (∀ n, y n ∈ S) ∧ Antitone y ∧
       Filter.Tendsto y Filter.atTop (nhds (sInf S))) := by
   sorry
-
 end LRA.Analysis.RealAnalysis

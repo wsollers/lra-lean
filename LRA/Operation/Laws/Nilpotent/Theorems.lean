@@ -54,7 +54,6 @@ theorem NilpotentElement.apply {Carrier : Type u}
     ∃ positiveExponent : Nat,
       PositivePower operation element positiveExponent = zero := by
   sorry
-
 /--
 `PositivePower.first` TODO
 
@@ -99,7 +98,6 @@ theorem PositivePower.first {Carrier : Type u}
     (element : Carrier) :
     PositivePower operation element 0 = element := by
   sorry
-
 /--
 `PositivePower.succ` TODO
 
@@ -148,7 +146,6 @@ theorem PositivePower.succ {Carrier : Type u}
     PositivePower operation element (Nat.succ exponent) =
       operation (PositivePower operation element exponent) element := by
   sorry
-
 /--
 `OperationPower.one` TODO
 
@@ -193,7 +190,6 @@ theorem OperationPower.one {Carrier : Type u}
     (identity element : Carrier) :
     OperationPower operation identity element 1 = operation identity element := by
   sorry
-
 /--
 `OperationPower.succ` TODO
 
@@ -242,5 +238,4 @@ theorem OperationPower.succ {Carrier : Type u}
     OperationPower operation identity element (Nat.succ exponent) =
       operation (OperationPower operation identity element exponent) element := by
   sorry
-
 end LRA.Operation.Laws.Nilpotent

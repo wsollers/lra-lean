@@ -52,5 +52,4 @@ theorem GreaterThanOrEqualIsConverseOfLessThanOrEqual
     GreaterThanOrEqual strictRelation =
       LRA.Relation.Converse (LessThanOrEqual strictRelation) := by
   sorry
-
 end LRA.Order

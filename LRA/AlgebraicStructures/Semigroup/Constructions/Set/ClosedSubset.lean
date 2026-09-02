@@ -16,8 +16,6 @@ theorem ClosedSubsetSemigroupLaws {A : Type u} [Mul A] [Nonempty A]
     (closed : ∀ a b, a ∈ S → b ∈ S → a * b ∈ S)
     [Nonempty {x // x ∈ S}] :
     letI := LRA.AlgebraicStructures.Magma.Constructions.ClosedSubsetMul closed
-    MultiplicativeSemigroupLaws {x // x ∈ S} :=
-  letI := LRA.AlgebraicStructures.Magma.Constructions.ClosedSubsetMul closed
-  { MulAssociative := fun a b c => Subtype.ext (MulAssociative a.1 b.1 c.1) }
-
+    MultiplicativeSemigroupLaws {x // x ∈ S} := by
+  sorry
 end LRA.AlgebraicStructures.Semigroup.Constructions

@@ -66,7 +66,6 @@ theorem IncreasingImagePreservesSuprema {I A : Set ℝ}
     (continuityHypothesis : ContinuousWithinAt f I s) :
     IsSupremum (f s) (f '' A) := by
   sorry
-
 /--
 `IncreasingImagePreservesInfima` TODO
 
@@ -123,7 +122,6 @@ theorem IncreasingImagePreservesInfima {I A : Set ℝ}
     (continuityHypothesis : ContinuousWithinAt f I i) :
     IsInfimum (f i) (f '' A) := by
   sorry
-
 /--
 `DecreasingImageSendsInfimaToSuprema` TODO
 
@@ -180,7 +178,6 @@ theorem DecreasingImageSendsInfimaToSuprema {I A : Set ℝ}
     (continuityHypothesis : ContinuousWithinAt f I i) :
     IsSupremum (f i) (f '' A) := by
   sorry
-
 /--
 `DecreasingImageSendsSupremaToInfima` TODO
 
@@ -237,7 +234,6 @@ theorem DecreasingImageSendsSupremaToInfima {I A : Set ℝ}
     (continuityHypothesis : ContinuousWithinAt f I s) :
     IsInfimum (f s) (f '' A) := by
   sorry
-
 /--
 `IncreasingInversePreservesSuprema` TODO
 
@@ -298,7 +294,6 @@ theorem IncreasingInversePreservesSuprema {I J B : Set ℝ}
     (inverseContinuityHypothesis : ContinuousWithinAt g J u) :
     IsSupremum (g u) (g '' B) := by
   sorry
-
 /--
 `IncreasingInversePreservesInfima` TODO
 
@@ -359,7 +354,6 @@ theorem IncreasingInversePreservesInfima {I J B : Set ℝ}
     (inverseContinuityHypothesis : ContinuousWithinAt g J v) :
     IsInfimum (g v) (g '' B) := by
   sorry
-
 /--
 `DecreasingInverseSendsInfimaToSuprema` TODO
 
@@ -420,7 +414,6 @@ theorem DecreasingInverseSendsInfimaToSuprema {I J B : Set ℝ}
     (inverseContinuityHypothesis : ContinuousWithinAt g J v) :
     IsSupremum (g v) (g '' B) := by
   sorry
-
 /--
 `DecreasingInverseSendsSupremaToInfima` TODO
 
@@ -481,5 +474,4 @@ theorem DecreasingInverseSendsSupremaToInfima {I J B : Set ℝ}
     (inverseContinuityHypothesis : ContinuousWithinAt g J u) :
     IsInfimum (g u) (g '' B) := by
   sorry
-
 end LRA.Analysis.Bounds.Algebra

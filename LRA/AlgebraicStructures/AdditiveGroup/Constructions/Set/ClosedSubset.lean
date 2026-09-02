@@ -37,5 +37,4 @@ theorem ClosedSubsetAdditiveGroupLaws {A : Type u} [Add A] [Neg A] [OfNat A 0] [
     letI := LRA.AlgebraicStructures.AdditiveMonoid.Constructions.ClosedSubsetNonempty hZero
     AdditiveGroupLaws {x // x ∈ S} := by
   sorry
-
 end LRA.AlgebraicStructures.AdditiveGroup.Constructions

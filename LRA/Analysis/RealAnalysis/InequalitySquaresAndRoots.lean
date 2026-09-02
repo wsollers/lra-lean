@@ -43,7 +43,6 @@ Related proof moves: TODO
 -/
 theorem SquareNonnegative (a : ℝ) : a ^ 2 ≥ 0 := by
   sorry
-
 /--
 `RealSquareRootFunction` TODO
 
@@ -84,7 +83,6 @@ Related proof moves: constructor, cases, rcases, use
 theorem RealSquareRootFunction (a : ℝ) (ha : a ≥ 0) :
     ∃! b : ℝ, b ≥ 0 ∧ b ^ 2 = a := by
   sorry
-
 /--
 `SqrtNonnegative` TODO
 
@@ -123,7 +121,6 @@ Related proof moves: TODO
 -/
 theorem SqrtNonnegative (a : ℝ) (ha : a ≥ 0) : Real.sqrt a ≥ 0 := by
   sorry
-
 /--
 `SqrtSquare` TODO
 
@@ -162,7 +159,6 @@ Related proof moves: TODO
 -/
 theorem SqrtSquare (a : ℝ) (ha : a ≥ 0) : Real.sqrt a ^ 2 = a := by
   sorry
-
 /--
 `SqrtZeroOne` TODO
 
@@ -201,7 +197,6 @@ Related proof moves: constructor, cases, rcases
 -/
 theorem SqrtZeroOne : Real.sqrt 0 = 0 ∧ Real.sqrt 1 = 1 := by
   sorry
-
 /--
 `SqrtPositive` TODO
 
@@ -240,7 +235,6 @@ Related proof moves: TODO
 -/
 theorem SqrtPositive (a : ℝ) (ha : a > 0) : Real.sqrt a > 0 := by
   sorry
-
 /--
 `SqrtOfSquareAbsoluteValue` TODO
 
@@ -279,7 +273,6 @@ Related proof moves: TODO
 -/
 theorem SqrtOfSquareAbsoluteValue (a : ℝ) : Real.sqrt (a ^ 2) = |a| := by
   sorry
-
 /--
 `SqrtProduct` TODO
 
@@ -320,7 +313,6 @@ Related proof moves: TODO
 theorem SqrtProduct (a b : ℝ) (ha : a ≥ 0) (hb : b ≥ 0) :
     Real.sqrt (a * b) = Real.sqrt a * Real.sqrt b := by
   sorry
-
 /--
 `SqrtQuotient` TODO
 
@@ -361,7 +353,6 @@ Related proof moves: TODO
 theorem SqrtQuotient (a b : ℝ) (ha : a ≥ 0) (hb : b > 0) :
     Real.sqrt (a / b) = Real.sqrt a / Real.sqrt b := by
   sorry
-
 /--
 `IneqSquareRootStrictMonotone` TODO
 
@@ -402,7 +393,6 @@ Related proof moves: intro, constructor, cases, rcases
 theorem IneqSquareRootStrictMonotone (a b : ℝ) :
     0 ≤ a ∧ a < b → Real.sqrt a < Real.sqrt b := by
   sorry
-
 /--
 `PositivePowersArePositive` TODO
 
@@ -441,7 +431,6 @@ Related proof moves: TODO
 -/
 theorem PositivePowersArePositive (x : ℝ) (n : ℕ) (hx : x > 0) : x ^ n > 0 := by
   sorry
-
 /--
 `PowersPreserveOrderForPositiveNumbers` TODO
 
@@ -482,7 +471,6 @@ Related proof moves: intro, constructor, cases, rcases
 theorem PowersPreserveOrderForPositiveNumbers (x y : ℝ) (n : ℕ) :
     0 < x ∧ x < y → x ^ n < y ^ n := by
   sorry
-
 /--
 `IneqSquareMonotone` TODO
 
@@ -521,7 +509,6 @@ Related proof moves: intro, constructor, cases, rcases
 -/
 theorem IneqSquareMonotone (a b : ℝ) : 0 ≤ a ∧ a < b → a ^ 2 < b ^ 2 := by
   sorry
-
 /--
 `IneqSquareRootMonotone` TODO
 
@@ -562,7 +549,6 @@ Related proof moves: intro, constructor, cases, rcases
 theorem IneqSquareRootMonotone (a b : ℝ) :
     0 ≤ a ∧ a ≤ b → Real.sqrt a ≤ Real.sqrt b := by
   sorry
-
 /--
 `PositiveSquareComparison` TODO
 
@@ -603,7 +589,6 @@ Related proof moves: TODO
 theorem PositiveSquareComparison (a b : ℝ) (ha : a > 0) (hb : b > 0)
     (h : a ^ 2 < b ^ 2) : a < b := by
   sorry
-
 /--
 `UnitIntervalSquareBounds` TODO
 
@@ -644,5 +629,4 @@ Related proof moves: intro, constructor, cases, rcases
 theorem UnitIntervalSquareBounds (a : ℝ) :
     (0 < a ∧ a < 1 → a ^ 2 < a) ∧ (a > 1 → a ^ 2 > a) := by
   sorry
-
 end LRA.Analysis.RealAnalysis

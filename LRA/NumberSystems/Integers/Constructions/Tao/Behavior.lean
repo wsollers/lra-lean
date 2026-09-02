@@ -55,7 +55,6 @@ theorem whole_embedding_preserves_addition
             (whole_embedding_representative whole_data first)
             (whole_embedding_representative whole_data second)) := by
   sorry
-
 /--
 `whole_embedding_zero_eq_zero_representative_class` TODO
 
@@ -100,5 +99,4 @@ theorem whole_embedding_zero_eq_zero_representative_class
     whole_embedding whole_data whole_data.zero =
       Quotient.mk (setoid whole_data) (zero_representative whole_data) := by
   sorry
-
 end LRA.NumberSystems.Integers.Tao

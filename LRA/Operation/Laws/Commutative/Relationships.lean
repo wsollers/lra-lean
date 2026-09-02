@@ -56,7 +56,6 @@ theorem Commutative.left_identity_to_right_identity {Carrier : Type u}
     (leftIdentity : LRA.Operation.Laws.Identity.LeftIdentity operation identity) :
     LRA.Operation.Laws.Identity.RightIdentity operation identity := by
   sorry
-
 /--
 `Commutative.right_identity_to_left_identity` TODO
 
@@ -105,7 +104,6 @@ theorem Commutative.right_identity_to_left_identity {Carrier : Type u}
     (rightIdentity : LRA.Operation.Laws.Identity.RightIdentity operation identity) :
     LRA.Operation.Laws.Identity.LeftIdentity operation identity := by
   sorry
-
 /--
 `Commutative.left_absorbing_to_right_absorbing` TODO
 
@@ -154,7 +152,6 @@ theorem Commutative.left_absorbing_to_right_absorbing {Carrier : Type u}
     (leftAbsorbing : LRA.Operation.Laws.Absorbing.LeftAbsorbing operation absorber) :
     LRA.Operation.Laws.Absorbing.RightAbsorbing operation absorber := by
   sorry
-
 /--
 `Commutative.right_absorbing_to_left_absorbing` TODO
 
@@ -203,5 +200,4 @@ theorem Commutative.right_absorbing_to_left_absorbing {Carrier : Type u}
     (rightAbsorbing : LRA.Operation.Laws.Absorbing.RightAbsorbing operation absorber) :
     LRA.Operation.Laws.Absorbing.LeftAbsorbing operation absorber := by
   sorry
-
 end LRA.Operation.Laws.Commutative

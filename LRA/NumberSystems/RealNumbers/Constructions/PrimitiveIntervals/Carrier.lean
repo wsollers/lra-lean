@@ -92,7 +92,6 @@ theorem nonstrict_order_reflexive
     (value : Rational rational_model) :
     rational_model.signature.le value value := by
   sorry
-
 /--
 `RationalInterval` TODO
 

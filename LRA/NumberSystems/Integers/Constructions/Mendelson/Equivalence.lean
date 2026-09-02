@@ -91,7 +91,6 @@ theorem equivalent_is_equivalence_relation
     (positive_data : PositiveNaturalPairData) :
     Equivalence (equivalent positive_data) := by
   sorry
-
 /--
 `setoid` TODO
 

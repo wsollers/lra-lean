@@ -53,7 +53,6 @@ theorem BijectiveHasTwoSidedInverse
     ∃ inverse : LRA.Function Codomain Domain,
       TwoSidedInverse function inverse := by
   sorry
-
 /--
 `TwoSidedInverseGivesBijective` TODO
 
@@ -102,7 +101,6 @@ theorem TwoSidedInverseGivesBijective
     (twoSided : TwoSidedInverse function inverse) :
     Bijective function := by
   sorry
-
 /--
 `TwoSidedInverseUnique` TODO
 
@@ -153,7 +151,6 @@ theorem TwoSidedInverseUnique
     (secondIsInverse : TwoSidedInverse function second) :
     ∀ output, first output = second output := by
   sorry
-
 section SubsetRelativeInverses
 
 open LRA.Set
@@ -203,7 +200,6 @@ theorem LeftInverseGivesLeftInverseOn
     (leftInverse : LeftInverse function inverse) (source : SetClass Domain) :
     LeftInverseOn function inverse source := by
   sorry
-
 /--
 `RightInverseGivesRightInverseOn` TODO
 
@@ -246,7 +242,6 @@ theorem RightInverseGivesRightInverseOn
     (rightInverse : RightInverse function inverse) (target : SetClass Codomain) :
     RightInverseOn function inverse target := by
   sorry
-
 /--
 `TwoSidedInverseGivesTwoSidedInverseOn` TODO
 
@@ -291,7 +286,6 @@ theorem TwoSidedInverseGivesTwoSidedInverseOn
     (source : SetClass Domain) (target : SetClass Codomain) :
     TwoSidedInverseOn function inverse source target := by
   sorry
-
 /--
 `RightInverseOnImageOfLeftInverseOn` TODO
 
@@ -336,7 +330,6 @@ theorem RightInverseOnImageOfLeftInverseOn
     (leftInverse : LeftInverseOn function inverse source) :
     RightInverseOn function inverse (ImageClass function source) := by
   sorry
-
 /--
 `TwoSidedInverseOnImageOfLeftInverseOn` TODO
 
@@ -381,7 +374,6 @@ theorem TwoSidedInverseOnImageOfLeftInverseOn
     (leftInverse : LeftInverseOn function inverse source) :
     TwoSidedInverseOn function inverse source (ImageClass function source) := by
   sorry
-
 /--
 `PreimageClassEqualsImageClassOfInverse` TODO
 
@@ -424,7 +416,6 @@ theorem PreimageClassEqualsImageClassOfInverse
     (twoSided : TwoSidedInverse function inverse) (target : SetClass Codomain) :
     PreimageClass function target = ImageClass inverse target := by
   sorry
-
 end SubsetRelativeInverses
 
 section OneSidedConsequences
@@ -473,7 +464,6 @@ Related proof moves: TODO
 theorem InjectiveOfLeftInverse
     (leftInverse : LeftInverse function inverse) : Injective function := by
   sorry
-
 /--
 `SurjectiveOfRightInverse` TODO
 
@@ -514,7 +504,6 @@ Related proof moves: TODO
 theorem SurjectiveOfRightInverse
     (rightInverse : RightInverse function inverse) : Surjective function := by
   sorry
-
 /--
 `TwoSidedInverseIsBijective` TODO
 
@@ -555,7 +544,6 @@ Related proof moves: TODO
 theorem TwoSidedInverseIsBijective
     (twoSided : TwoSidedInverse function inverse) : Bijective inverse := by
   sorry
-
 end OneSidedConsequences
 
 end LRA.Function

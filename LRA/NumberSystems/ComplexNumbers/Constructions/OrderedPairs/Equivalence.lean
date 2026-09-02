@@ -51,5 +51,4 @@ theorem ext {first second : ComplexNumber R}
       first.imaginary_part = second.imaginary_part) :
     first = second := by
   sorry
-
 end LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs

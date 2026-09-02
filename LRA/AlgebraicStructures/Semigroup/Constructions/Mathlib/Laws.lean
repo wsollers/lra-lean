@@ -7,5 +7,4 @@ universe u
 
 instance {R : Type u} [_root_.Semigroup R] [Nonempty R] : MultiplicativeSemigroupLaws R where
   MulAssociative := mul_assoc
-
 end LRA.AlgebraicStructures

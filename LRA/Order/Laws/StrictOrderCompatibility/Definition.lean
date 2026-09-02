@@ -88,7 +88,6 @@ Related proof moves: intro, constructor, .mp, .mpr, cases, rcases
 theorem LtIffLeNotLe [LT R] [LE R] [StrictOrderCompatibilityLaw R] :
     forall a b : R, a < b <-> a <= b /\ Not (b <= a) := by
   sorry
-
 end Wrappers
 
 end LRA.Order

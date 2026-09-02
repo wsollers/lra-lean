@@ -13,10 +13,5 @@ theorem satisfiesGeneric
     {Domain : Type u} {Codomain : Type v}
     (function : LRA.Function Domain Codomain) :
     LRA.Function.genericTheory function := by
-  constructor
-  · intro input
-    exact ⟨function input, rfl⟩
-  · intro input firstOutput secondOutput firstEval secondEval
-    exact firstEval.symm.trans secondEval
-
+  sorry
 end LRA.Function.Constructions.Mathlib.NativeFunction

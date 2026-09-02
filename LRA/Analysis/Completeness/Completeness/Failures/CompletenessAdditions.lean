@@ -50,7 +50,6 @@ theorem RationalsLackLubProperty :
       (∃ u : ℚ, ∀ x ∈ RationalCutLowerAtSqrtTwo, x ≤ u) ∧
       ¬ ∃ s : ℚ, IsLUB RationalCutLowerAtSqrtTwo s := by
   sorry
-
 /--
 `RationalsDoNotHaveLeastUpperBoundProperty` TODO
 
@@ -131,7 +130,6 @@ Related proof moves: TODO
 theorem RationalSqrtTwoCutProvesRationalsDoNotHaveLeastUpperBoundProperty :
     RationalsDoNotHaveLeastUpperBoundProperty := by
   sorry
-
 /--
 `RationalDedekindCutAtSqrtTwoHasAGap` TODO
 
@@ -178,7 +176,6 @@ theorem RationalDedekindCutAtSqrtTwoHasAGap :
     (¬ ∃ m ∈ RationalCutUpperAtSqrtTwo,
         ∀ x ∈ RationalCutUpperAtSqrtTwo, m ≤ x) := by
   sorry
-
 end RationalLeastUpperBoundFailure
 
 end LRA.Analysis.Completeness

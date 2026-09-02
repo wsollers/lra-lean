@@ -54,7 +54,6 @@ theorem LeftCancellative.apply {Carrier : Type u}
     (equal_products : operation fixed first = operation fixed second) :
     first = second := by
   sorry
-
 /--
 `RightCancellative.apply` TODO
 
@@ -103,7 +102,6 @@ theorem RightCancellative.apply {Carrier : Type u}
     (equal_products : operation first fixed = operation second fixed) :
     first = second := by
   sorry
-
 /--
 `LeftRegular.apply` TODO
 
@@ -154,7 +152,6 @@ theorem LeftRegular.apply {Carrier : Type u}
     (equal_products : operation fixed first = operation fixed second) :
     first = second := by
   sorry
-
 /--
 `RightRegular.apply` TODO
 
@@ -205,7 +202,6 @@ theorem RightRegular.apply {Carrier : Type u}
     (equal_products : operation first fixed = operation second fixed) :
     first = second := by
   sorry
-
 /--
 `LeftCancellativeOn.apply` TODO
 
@@ -256,7 +252,6 @@ theorem LeftCancellativeOn.apply {Carrier : Type u}
     (eligible_fixed : eligible fixed) :
     LeftRegular operation fixed := by
   sorry
-
 /--
 `RightCancellativeOn.apply` TODO
 
@@ -307,7 +302,6 @@ theorem RightCancellativeOn.apply {Carrier : Type u}
     (eligible_fixed : eligible fixed) :
     RightRegular operation fixed := by
   sorry
-
 /--
 `TwoSidedCancellativeOn.left` TODO
 
@@ -354,7 +348,6 @@ theorem TwoSidedCancellativeOn.left {Carrier : Type u}
     (law : TwoSidedCancellativeOn eligible operation) :
     LeftCancellativeOn eligible operation := by
   sorry
-
 /--
 `TwoSidedCancellativeOn.right` TODO
 
@@ -401,7 +394,6 @@ theorem TwoSidedCancellativeOn.right {Carrier : Type u}
     (law : TwoSidedCancellativeOn eligible operation) :
     RightCancellativeOn eligible operation := by
   sorry
-
 /--
 `TwoSidedCancellativeOn.of_left_right` TODO
 
@@ -450,7 +442,6 @@ theorem TwoSidedCancellativeOn.of_left_right {Carrier : Type u}
     (rightLaw : RightCancellativeOn eligible operation) :
     TwoSidedCancellativeOn eligible operation := by
   sorry
-
 /--
 `TwoSidedCancellative.left` TODO
 
@@ -495,7 +486,6 @@ theorem TwoSidedCancellative.left {Carrier : Type u}
     (law : TwoSidedCancellative operation) :
     LeftCancellative operation := by
   sorry
-
 /--
 `TwoSidedCancellative.right` TODO
 
@@ -540,7 +530,6 @@ theorem TwoSidedCancellative.right {Carrier : Type u}
     (law : TwoSidedCancellative operation) :
     RightCancellative operation := by
   sorry
-
 /--
 `TwoSidedCancellative.of_left_right` TODO
 
@@ -587,5 +576,4 @@ theorem TwoSidedCancellative.of_left_right {Carrier : Type u}
     (rightLaw : RightCancellative operation) :
     TwoSidedCancellative operation := by
   sorry
-
 end LRA.Operation.Laws.Cancellation

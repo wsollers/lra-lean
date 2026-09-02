@@ -17,7 +17,14 @@ instance {S : Type u} : OfNat (Transformations S) 1 := ⟨⟨id⟩⟩
 instance {S : Type u} : Nonempty (Transformations S) := ⟨⟨id⟩⟩
 
 instance {S : Type u} :
-    LRA.AlgebraicStructures.MonoidLaws (Transformations S) := by
-  sorry
-
+    LRA.AlgebraicStructures.MonoidLaws (Transformations S) where
+  MulAssociative := by
+    intro a b c
+    sorry
+  OneMul := by
+    intro a
+    sorry
+  MulOne := by
+    intro a
+    sorry
 end LRA.AlgebraicStructures.Monoid.Examples

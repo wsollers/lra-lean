@@ -102,7 +102,6 @@ theorem StrictPartIff
     StrictPart order left right <->
       order.relation left right /\ left ≠ right := by
   sorry
-
 /--
 `StrictPartIffNotConverse` TODO
 
@@ -151,7 +150,6 @@ theorem StrictPartIffNotConverse
     StrictPart order left right <->
       order.relation left right /\ Not (order.relation right left) := by
   sorry
-
 /--
 `StrictPartRelationIsStrictOrder` TODO
 
@@ -196,7 +194,6 @@ theorem StrictPartRelationIsStrictOrder
     (order : NonStrictPartialOrder Carrier) :
     LRA.Order.StrictOrder (StrictPart order) := by
   sorry
-
 /--
 `StrictPartAsStrictOrder` TODO
 
@@ -299,7 +296,6 @@ theorem StrictPartIsStrictOrder
     (order : NonStrictPartialOrder Carrier) :
     LRA.Order.StrictOrder (StrictPart order) := by
   sorry
-
 /--
 `DualRelationIsPartialOrder` TODO
 
@@ -346,7 +342,6 @@ theorem DualRelationIsPartialOrder
     LRA.Order.PartialOrder
       (LRA.Relation.Converse order.relation) := by
   sorry
-
 /--
 `Dual` TODO
 
@@ -451,5 +446,4 @@ theorem DualIsPartialOrder
     LRA.Order.PartialOrder
       (LRA.Relation.Converse order.relation) := by
   sorry
-
 end LRA.Order.OrderedSets.PartialOrder

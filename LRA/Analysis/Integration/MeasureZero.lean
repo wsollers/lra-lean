@@ -133,5 +133,4 @@ theorem lebesgue_criterion_riemann_integrability (f : ℝ → ℝ) (a b : ℝ) (
     IsRiemannIntegrable f a b ↔
       IsMeasureZero {x ∈ Set.Icc a b | ∃ ω : ℝ, 0 < ω ∧ PointOscillation f a b x ω} := by
   sorry
-
 end LRA.Analysis.Integration

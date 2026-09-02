@@ -299,7 +299,6 @@ theorem TranslationPreservesSuprema {A : Set ℝ}
     {s : ℝ} (supremumHypothesis : IsSupremum s A) (c : ℝ) :
     IsSupremum (s + c) (A + {c}) := by
   sorry
-
 /--
 `TranslationPreservesInfima` TODO
 
@@ -344,7 +343,6 @@ theorem TranslationPreservesInfima {A : Set ℝ}
     {i : ℝ} (infimumHypothesis : IsInfimum i A) (c : ℝ) :
     IsInfimum (i + c) (A + {c}) := by
   sorry
-
 /--
 `PositiveScalarMultiplicationPreservesSuprema` TODO
 
@@ -391,7 +389,6 @@ theorem PositiveScalarMultiplicationPreservesSuprema {A : Set ℝ}
     (positiveScaleHypothesis : scale > 0) :
     IsSupremum (scale * s) (ScalarImage scale A) := by
   sorry
-
 /--
 `PositiveScalarMultiplicationPreservesInfima` TODO
 
@@ -438,7 +435,6 @@ theorem PositiveScalarMultiplicationPreservesInfima {A : Set ℝ}
     (positiveScaleHypothesis : scale > 0) :
     IsInfimum (scale * i) (ScalarImage scale A) := by
   sorry
-
 /--
 `NegativeScalarMultiplicationSendsInfimaToSuprema` TODO
 
@@ -485,7 +481,6 @@ theorem NegativeScalarMultiplicationSendsInfimaToSuprema {A : Set ℝ}
     (negativeScaleHypothesis : scale < 0) :
     IsSupremum (scale * i) (ScalarImage scale A) := by
   sorry
-
 /--
 `NegativeScalarMultiplicationSendsSupremaToInfima` TODO
 
@@ -532,7 +527,6 @@ theorem NegativeScalarMultiplicationSendsSupremaToInfima {A : Set ℝ}
     (negativeScaleHypothesis : scale < 0) :
     IsInfimum (scale * s) (ScalarImage scale A) := by
   sorry
-
 /--
 `NegationExchangesInfimaAndSuprema` TODO
 
@@ -577,7 +571,6 @@ theorem NegationExchangesInfimaAndSuprema {A : Set ℝ}
     (infimumHypothesis : IsInfimum i A) :
     IsSupremum (-i) (-A) := by
   sorry
-
 /--
 `SupremumOfPointwiseSum` TODO
 
@@ -628,7 +621,6 @@ theorem SupremumOfPointwiseSum {A B : Set ℝ}
     (rightSupremumHypothesis : IsSupremum sB B) :
     IsSupremum (sA + sB) (A + B) := by
   sorry
-
 /--
 `InfimumOfPointwiseSum` TODO
 
@@ -679,7 +671,6 @@ theorem InfimumOfPointwiseSum {A B : Set ℝ}
     (rightInfimumHypothesis : IsInfimum iB B) :
     IsInfimum (iA + iB) (A + B) := by
   sorry
-
 /--
 `SupremumOfPointwiseDifference` TODO
 
@@ -730,7 +721,6 @@ theorem SupremumOfPointwiseDifference {A B : Set ℝ}
     (rightInfimumHypothesis : IsInfimum iB B) :
     IsSupremum (sA - iB) (A - B) := by
   sorry
-
 /--
 `InfimumOfPointwiseDifference` TODO
 
@@ -781,7 +771,6 @@ theorem InfimumOfPointwiseDifference {A B : Set ℝ}
     (rightSupremumHypothesis : IsSupremum sB B) :
     IsInfimum (iA - sB) (A - B) := by
   sorry
-
 /--
 `SupremumOfDilation` TODO
 
@@ -836,7 +825,6 @@ theorem SupremumOfDilation {A : Set ℝ}
       (if scale > 0 then scale * s else if scale = 0 then 0 else scale * i)
       (ScalarImage scale A) := by
   sorry
-
 /--
 `SupremumOfAbsoluteValueImage` TODO
 
@@ -883,7 +871,6 @@ theorem SupremumOfAbsoluteValueImage {A : Set ℝ}
     (infimumHypothesis : IsInfimum i A) :
     IsSupremum (max |i| |s|) (abs '' A) := by
   sorry
-
 /--
 `SupremumOfReciprocalSet` TODO
 
@@ -936,7 +923,6 @@ theorem SupremumOfReciprocalSet {A : Set ℝ}
     (separatedFromZeroHypothesis : 0 < i ∨ s < 0) :
     IsSupremum i⁻¹ (Reciprocal A) := by
   sorry
-
 /--
 `InfimumOfReciprocalSet` TODO
 
@@ -989,7 +975,6 @@ theorem InfimumOfReciprocalSet {A : Set ℝ}
     (separatedFromZeroHypothesis : 0 < i ∨ s < 0) :
     IsInfimum s⁻¹ (Reciprocal A) := by
   sorry
-
 /--
 `SupremumOfPointwiseProduct` TODO
 
@@ -1048,7 +1033,6 @@ theorem SupremumOfPointwiseProduct {A B : Set ℝ}
       (max (max (iA * iB) (iA * sB)) (max (sA * iB) (sA * sB)))
       (A * B) := by
   sorry
-
 /--
 `InfimumOfPointwiseProduct` TODO
 
@@ -1107,7 +1091,6 @@ theorem InfimumOfPointwiseProduct {A B : Set ℝ}
       (min (min (iA * iB) (iA * sB)) (min (sA * iB) (sA * sB)))
       (A * B) := by
   sorry
-
 /--
 `SupremumOfQuotientSet` TODO
 
@@ -1168,7 +1151,6 @@ theorem SupremumOfQuotientSet {A B : Set ℝ}
       (max (max (iA / iB) (iA / sB)) (max (sA / iB) (sA / sB)))
       (A * Reciprocal B) := by
   sorry
-
 /--
 `InfimumOfQuotientSet` TODO
 
@@ -1229,7 +1211,6 @@ theorem InfimumOfQuotientSet {A B : Set ℝ}
       (min (min (iA / iB) (iA / sB)) (min (sA / iB) (sA / sB)))
       (A * Reciprocal B) := by
   sorry
-
 /--
 `PointwiseSumPreservesUpperBounds` TODO
 
@@ -1274,7 +1255,6 @@ theorem PointwiseSumPreservesUpperBounds {A B : Set ℝ} {uA uB : ℝ}
     (rightUpperBoundHypothesis : IsUpperBound uB B) :
     IsUpperBound (uA + uB) (A + B) := by
   sorry
-
 /--
 `PointwiseSumPreservesLowerBounds` TODO
 
@@ -1319,7 +1299,6 @@ theorem PointwiseSumPreservesLowerBounds {A B : Set ℝ} {lA lB : ℝ}
     (rightLowerBoundHypothesis : IsLowerBound lB B) :
     IsLowerBound (lA + lB) (A + B) := by
   sorry
-
 /--
 `RelativeUpperBoundsRespectAmbientOrder` TODO
 
@@ -1366,7 +1345,6 @@ theorem RelativeUpperBoundsRespectAmbientOrder [Preorder P] {A S T : Set P}
     {u | IsRelativeUpperBound S u A} =
       S ∩ {u | IsRelativeUpperBound T u A} := by
   sorry
-
 /--
 `RelativeSupremaCanDependOnAmbientSet` TODO
 
@@ -1411,7 +1389,6 @@ theorem RelativeSupremaCanDependOnAmbientSet :
       ∃ sS sT : ℝ,
         IsRelativeSupremum S sS A ∧ IsRelativeSupremum T sT A ∧ sS ≠ sT := by
   sorry
-
 /--
 `RelativeSupremumExistenceCanDependOnAmbientSet` TODO
 
@@ -1456,7 +1433,6 @@ theorem RelativeSupremumExistenceCanDependOnAmbientSet :
       (∃ s, IsRelativeSupremum T s A) ∧
         ¬(∃ s, IsRelativeUpperBound S s A) := by
   sorry
-
 /--
 `RationalSquareRootGapHasNoRationalSupremum` TODO
 
@@ -1501,5 +1477,4 @@ theorem RationalSquareRootGapHasNoRationalSupremum :
       (∃ u : ℚ, IsUpperBound u {q : ℚ | q ^ 2 < 2}) ∧
         ¬(∃ s : ℚ, IsSupremum s {q : ℚ | q ^ 2 < 2}) := by
   sorry
-
 end LRA.Analysis.Bounds.Algebra

@@ -58,7 +58,6 @@ theorem MeetUnique
     (secondIsMeet : Meet relation left right second) :
     first = second := by
   sorry
-
 /--
 `MeetCommutes` TODO
 
@@ -105,7 +104,6 @@ theorem MeetCommutes
     (left right meet : Alpha) :
     Meet relation left right meet ↔ Meet relation right left meet := by
   sorry
-
 /--
 `MeetIdempotent` TODO
 
@@ -154,7 +152,6 @@ theorem MeetIdempotent
     (element : Alpha) :
     Meet relation element element element := by
   sorry
-
 /--
 `MeetAssociative` TODO
 
@@ -213,5 +210,4 @@ theorem MeetAssociative
     (secondAssociationIsMeet : Meet relation left middleRight secondAssociation) :
     firstAssociation = secondAssociation := by
   sorry
-
 end LRA.Order

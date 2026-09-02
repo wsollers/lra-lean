@@ -148,7 +148,6 @@ theorem algebraicSignatureIsAlgebraic
     (Functions : ArityIndexedSymbols) (Constants : Type) :
     (algebraicSignature Functions Constants).IsAlgebraic := by
   sorry
-
 /--
 `termAlgebra` TODO
 
@@ -263,5 +262,4 @@ theorem termAlgebraEvaluatesToItself
     (term : Term S Variable) :
     evaluateTerm (termAlgebra S Variable) Term.var term = term := by
   sorry
-
 end LRA.UniversalAlgebra

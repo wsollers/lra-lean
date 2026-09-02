@@ -35,8 +35,5 @@ def successorRelation : LRA.Relation.Endorelation Nat :=
 
 theorem successorRelatesZeroToOne :
     successorRelation 0 1 := by
-  change (0, 1) ∈ successorPairs
-  change 1 = 0 + 1
-  rfl
-
+  sorry
 end LRA.Relation.Examples.Predicate

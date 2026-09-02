@@ -209,9 +209,7 @@ Related proof moves: intro, use, rcases
 -/
 theorem CousinsLemma (a b : ℝ) (hab : a ≤ b) (δ : ℝ → ℝ) (hδ : IsGaugeOn a b δ) :
     ∃ P : TaggedPartitionIntegration a b, IsHKDeltaFine P δ := by
-
   sorry
-
 /--
 `riemann_integrable_implies_hk_integrable` TODO
 
@@ -252,7 +250,6 @@ Related proof moves: TODO
 theorem riemann_integrable_implies_hk_integrable (hab : a ≤ b) (L : ℝ)
     (hR : HasRiemannIntegral f a b L) : HasHKIntegral f a b L := by
   sorry
-
 /--
 `hk_straddle` TODO
 
@@ -297,7 +294,6 @@ theorem hk_straddle (F : ℝ → ℝ) (ξ : ℝ) (Dξ : ℝ)
     ∀ ε > 0, ∃ δξ > 0, ∀ u v : ℝ, u ≤ ξ → ξ ≤ v → u ∈ Set.Ioo (ξ - δξ) (ξ + δξ) →
       v ∈ Set.Ioo (ξ - δξ) (ξ + δξ) → |F v - F u - Dξ * (v - u)| ≤ ε * (v - u) := by
   sorry
-
 /--
 `hk_fundamental_theorem` TODO
 
@@ -340,7 +336,6 @@ theorem hk_fundamental_theorem (F FD : ℝ → ℝ) (hab : a ≤ b)
     (hF : ∀ x ∈ Set.Icc a b, LRA.Analysis.Differentiation.Derivative (FD x) F Set.univ x) :
     HasHKIntegral FD a b (F b - F a) := by
   sorry
-
 /--
 `continuous_hk_integrable` TODO
 
@@ -383,5 +378,4 @@ theorem continuous_hk_integrable (hab : a ≤ b)
     (hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) :
     IsHKIntegrable f a b := by
   sorry
-
 end LRA.Analysis.Integration

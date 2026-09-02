@@ -66,7 +66,6 @@ theorem basic_decomposition (value : Carrier natural_data) :
       value = naturalEmbedding natural_data second →
       first = second) := by
   sorry
-
 /--
 `zero_is_not_successor` TODO
 
@@ -107,7 +106,6 @@ Related proof moves: TODO
 theorem zero_is_not_successor (value : Carrier natural_data) :
     successor natural_data value ≠ zero natural_data := by
   sorry
-
 /--
 `successor_is_injective` TODO
 
@@ -150,7 +148,6 @@ theorem successor_is_injective :
     ∀ first second,
       successor natural_data first = successor natural_data second → first = second := by
   sorry
-
 /--
 `induction_from_zero` TODO
 
@@ -197,7 +194,6 @@ theorem induction_from_zero
     (successor_case : ∀ value, predicate value → predicate (successor natural_data value)) :
     ∀ value, predicate value := by
   sorry
-
 /--
 `strong_induction` TODO
 
@@ -248,7 +244,6 @@ theorem strong_induction
         predicate value) :
     ∀ value, predicate value := by
   sorry
-
 /--
 `WholeNumbersPeanoSystem` TODO
 

@@ -58,5 +58,4 @@ theorem WellOrderIffLinearAndStrictPartWellFounded
         LRA.Relation.WellFounded SetObject
           (StrictPart nonStrictRelation) := by
   sorry
-
 end LRA.Order

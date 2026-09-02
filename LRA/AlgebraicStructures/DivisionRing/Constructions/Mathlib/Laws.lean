@@ -10,5 +10,4 @@ universe u
 instance {R : Type u} [_root_.DivisionRing R] [Nonempty R] :
     DivisionRingLaws R := by
   sorry
-
 end LRA.AlgebraicStructures

@@ -130,5 +130,4 @@ Related proof moves: TODO
 theorem NaturalAdditionFailsIdempotent :
     FailsIdempotent NaturalAddition := by
   sorry
-
 end LRA.Operation.Laws.Idempotent

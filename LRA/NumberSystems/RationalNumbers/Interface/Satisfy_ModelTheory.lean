@@ -22,5 +22,4 @@ def genericTheory (M : RationalModel) : Prop :=
 `RationalNumbersTheory` states. -/
 theorem satisfiesModelTheory (M : RationalModel) : genericTheory M := by
   sorry
-
 end LRA.NumberSystems.RationalNumbers.Interface.ModelTheory

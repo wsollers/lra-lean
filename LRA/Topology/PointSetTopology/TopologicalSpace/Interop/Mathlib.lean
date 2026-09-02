@@ -108,7 +108,6 @@ theorem ToMathlibIsOpen {X : Type u} (topology : TopologyDefinition X) (U : Set 
     letI : _root_.TopologicalSpace X := topology.ToMathlibTopologicalSpace
     _root_.IsOpen U ↔ topology.IsOpen U := by
   sorry
-
 /--
 `FromMathlibTopologicalSpace` TODO
 
@@ -331,5 +330,4 @@ theorem FromMathlibTopologicalSpaceIsCompatibleWithMathlibTopologicalSpace
     IsCompatibleWithMathlibTopologicalSpace
       (TopologyDefinition.FromMathlibTopologicalSpace X) := by
   sorry
-
 end LRA.Topology

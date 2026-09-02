@@ -45,7 +45,6 @@ theorem HorizontalAsymptoteIsObliqueWithZeroSlopeAtPosInfty (f : ℝ → ℝ) (X
     (h : HasHorizontalAsymptoteAtPosInfty f X L) :
     HasObliqueAsymptoteAtPosInfty f X 0 L := by
   sorry
-
 /--
 `HorizontalAsymptoteIsObliqueWithZeroSlopeAtNegInfty` TODO
 
@@ -88,7 +87,6 @@ theorem HorizontalAsymptoteIsObliqueWithZeroSlopeAtNegInfty (f : ℝ → ℝ) (X
     (h : HasHorizontalAsymptoteAtNegInfty f X L) :
     HasObliqueAsymptoteAtNegInfty f X 0 L := by
   sorry
-
 /--
 `ObliqueAsymptoteIffSlopeAndInterceptLimits` TODO
 
@@ -131,7 +129,6 @@ theorem ObliqueAsymptoteIffSlopeAndInterceptLimits (f : ℝ → ℝ) (X : Set �
     HasObliqueAsymptoteAtPosInfty f X m b ↔
       TendsToInfty (fun x => f x / x) X m ∧ TendsToInfty (fun x => f x - m * x) X b := by
   sorry
-
 /--
 `ReciprocalHasHorizontalAndVerticalAsymptotes` TODO
 
@@ -176,5 +173,4 @@ theorem ReciprocalHasHorizontalAndVerticalAsymptotes :
       HasHorizontalAsymptoteAtNegInfty (fun x : ℝ => 1 / x) {x : ℝ | x < 0} 0 ∧
       HasVerticalAsymptoteAt (fun x : ℝ => 1 / x) {x : ℝ | x ≠ 0} 0 := by
   sorry
-
 end LRA.Analysis.Limits

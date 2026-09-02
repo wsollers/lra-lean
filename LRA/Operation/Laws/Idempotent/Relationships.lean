@@ -52,5 +52,4 @@ theorem Idempotent.fixed_by_self_operation {Carrier : Type u}
     (element : Carrier) :
     operation element element = element := by
   sorry
-
 end LRA.Operation.Laws.Idempotent

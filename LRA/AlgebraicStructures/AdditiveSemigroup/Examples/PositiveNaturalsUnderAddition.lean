@@ -12,13 +12,11 @@ core lemmas rather than through the Mathlib bridge, since neither `Nat` nor
 
 instance : LRA.AlgebraicStructures.AdditiveSemigroupLaws Nat := by
   sorry
-
 def PositiveNaturals : LRA.Set.LRA_Set Nat := {n | 0 < n}
 
 theorem positiveNaturalsClosedUnderAddition :
     ∀ a b, a ∈ PositiveNaturals → b ∈ PositiveNaturals → a + b ∈ PositiveNaturals := by
   sorry
-
 noncomputable instance : Add {n // n ∈ PositiveNaturals} :=
   LRA.AlgebraicStructures.AdditiveSemigroup.Constructions.ClosedSubsetAdd
     positiveNaturalsClosedUnderAddition
@@ -27,8 +25,6 @@ noncomputable instance : Nonempty {n // n ∈ PositiveNaturals} := by
   sorry
 
 noncomputable instance :
-    LRA.AlgebraicStructures.AdditiveSemigroupLaws {n // n ∈ PositiveNaturals} :=
-  LRA.AlgebraicStructures.AdditiveSemigroup.Constructions.ClosedSubsetAdditiveSemigroupLaws
-    positiveNaturalsClosedUnderAddition
-
+    LRA.AlgebraicStructures.AdditiveSemigroupLaws {n // n ∈ PositiveNaturals} := by
+  sorry
 end LRA.AlgebraicStructures.AdditiveSemigroup.Examples

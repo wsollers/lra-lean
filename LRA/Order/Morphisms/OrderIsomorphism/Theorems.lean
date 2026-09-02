@@ -72,7 +72,6 @@ theorem OrderIsomorphismPreservesJoin
     (joinIsJoin : Join sourceRelation left right join) :
     Join targetRelation (forward left) (forward right) (forward join) := by
   sorry
-
 /--
 `OrderIsomorphismPreservesMeet` TODO
 
@@ -129,7 +128,6 @@ theorem OrderIsomorphismPreservesMeet
     (meetIsMeet : Meet sourceRelation left right meet) :
     Meet targetRelation (forward left) (forward right) (forward meet) := by
   sorry
-
 /--
 `OrderIsomorphismInverse` TODO
 
@@ -182,7 +180,6 @@ theorem OrderIsomorphismInverse
       OrderIsomorphism sourceRelation targetRelation forward inverse) :
     OrderIsomorphism targetRelation sourceRelation inverse forward := by
   sorry
-
 /--
 `OrderIsomorphismComp` TODO
 
@@ -251,7 +248,6 @@ theorem OrderIsomorphismComp
       (fun element => secondForward (firstForward element))
       (fun element => firstInverse (secondInverse element)) := by
   sorry
-
 open LRA.Set
 
 variable {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x}
@@ -316,7 +312,6 @@ theorem OrderIsomorphismPreservesUpperBound
     (boundIsUpper : UpperBound sourceRelation subset bound)
     : UpperBound targetRelation imageSet (map bound) := by
   sorry
-
 /--
 `OrderIsomorphismPreservesLowerBound` TODO
 
@@ -373,7 +368,6 @@ theorem OrderIsomorphismPreservesLowerBound
     (boundIsLower : LowerBound sourceRelation subset bound)
     : LowerBound targetRelation imageSet (map bound) := by
   sorry
-
 /--
 `OrderIsomorphismPreservesSupremum` TODO
 
@@ -430,7 +424,6 @@ theorem OrderIsomorphismPreservesSupremum
     (supremumIsSupremum : Supremum sourceRelation subset supremum)
     : Supremum targetRelation imageSet (map supremum) := by
   sorry
-
 /--
 `OrderIsomorphismPreservesInfimum` TODO
 
@@ -487,7 +480,6 @@ theorem OrderIsomorphismPreservesInfimum
     (infimumIsInfimum : Infimum sourceRelation subset infimum)
     : Infimum targetRelation imageSet (map infimum) := by
   sorry
-
 /--
 `OrderIsomorphismToConverseSendsSupremumToInfimum` TODO
 
@@ -544,7 +536,6 @@ theorem OrderIsomorphismToConverseSendsSupremumToInfimum
     (supremumIsSupremum : Supremum sourceRelation subset supremum)
     : Infimum targetRelation imageSet (map supremum) := by
   sorry
-
 /--
 `OrderIsomorphismToConverseSendsInfimumToSupremum` TODO
 
@@ -601,5 +592,4 @@ theorem OrderIsomorphismToConverseSendsInfimumToSupremum
     (infimumIsInfimum : Infimum sourceRelation subset infimum)
     : Supremum targetRelation imageSet (map infimum) := by
   sorry
-
 end LRA.Order

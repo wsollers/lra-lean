@@ -53,7 +53,6 @@ theorem representative_operations_respect_equivalence (rational_data : IntegerAn
     LRA.UniversalAlgebra.Quotient.unary_operation_respects
         (representative_setoid rational_data) (representative_negation rational_data) := by
   sorry
-
 /--
 `addition` TODO
 
@@ -224,7 +223,6 @@ theorem negation_exists (rational_data : IntegerAndPositiveNaturalData) :
         negation (Quotient.mk _ representative) =
           Quotient.mk _ (representative_negation rational_data representative) := by
   sorry
-
 /--
 `negation` TODO
 
@@ -311,7 +309,6 @@ theorem representative_strict_order_respects_equivalence (rational_data : Intege
       (representative_setoid rational_data)
       (representative_strict_order rational_data) := by
   sorry
-
 /--
 `strict_order` TODO
 

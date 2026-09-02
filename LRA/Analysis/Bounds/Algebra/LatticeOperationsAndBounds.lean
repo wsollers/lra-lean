@@ -137,7 +137,6 @@ theorem SupremumOfPairwiseMaximumSet {A B : Set ℝ}
     (rightSupremumHypothesis : IsSupremum sB B) :
     IsSupremum (max sA sB) (PairwiseMax A B) := by
   sorry
-
 /--
 `InfimumOfPairwiseMaximumSet` TODO
 
@@ -188,7 +187,6 @@ theorem InfimumOfPairwiseMaximumSet {A B : Set ℝ}
     (rightInfimumHypothesis : IsInfimum iB B) :
     IsInfimum (max iA iB) (PairwiseMax A B) := by
   sorry
-
 /--
 `SupremumOfPairwiseMinimumSet` TODO
 
@@ -239,7 +237,6 @@ theorem SupremumOfPairwiseMinimumSet {A B : Set ℝ}
     (rightSupremumHypothesis : IsSupremum sB B) :
     IsSupremum (min sA sB) (PairwiseMin A B) := by
   sorry
-
 /--
 `InfimumOfPairwiseMinimumSet` TODO
 
@@ -290,5 +287,4 @@ theorem InfimumOfPairwiseMinimumSet {A B : Set ℝ}
     (rightInfimumHypothesis : IsInfimum iB B) :
     IsInfimum (min iA iB) (PairwiseMin A B) := by
   sorry
-
 end LRA.Analysis.Bounds.Algebra

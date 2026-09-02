@@ -9,86 +9,43 @@ PairingLaws).
 
 namespace LRA.Set.Constructions.TGSet
 
-instance : ExtensionalityLaw Set Set where
-  SetExtensionality := fun {A B} h => LRA.Set.Constructions.TGSet.SetExtensionality A B h
+instance : ExtensionalityLaw Set Set := by
+  sorry
 
-instance : MembershipLaws Set Set where
-  EmptyMembership := LRA.Set.Constructions.TGSet.TheEmptySetIsEmpty
-  UnionMembership := LRA.Set.Constructions.TGSet.TheUnionMembership
-  IntersectionMembership := LRA.Set.Constructions.TGSet.TheIntersectionMembership
-  DifferenceMembership := LRA.Set.Constructions.TGSet.TheRelativeComplementMembership
-  SubsetIffAllMembers := SubsetIffAllMembers
+instance : MembershipLaws Set Set := by
+  sorry
 
-instance : SeparationLaws Set Set where
-  SeparationMembership := LRA.Set.Constructions.TGSet.TheSeparatedSubsetIsSeparatedSubset
+instance : SeparationLaws Set Set := by
+  sorry
 
-instance : SymmDiffMembershipLaws Set Set where
-  SymmetricDifferenceMembership := LRA.Set.Constructions.TGSet.TheSymmetricDifferenceMembership
+instance : SymmDiffMembershipLaws Set Set := by
+  sorry
 
-instance : PowersetMembershipLaws Set Set where
-  PowersetMembership := LRA.Set.Constructions.TGSet.ThePowerSetIsPowerSetOf
+instance : PowersetMembershipLaws Set Set := by
+  sorry
 
-instance : CollectionMembershipLaws Set Set Set where
-  CollectionUnionMembership := fun C x => LRA.Set.Constructions.TGSet.TheUnionOverIsUnionOf C x
-  CollectionIntersectionMembership := fun C x h =>
-    LRA.Set.Constructions.TGSet.TheIntersectionOverMembership C x h
+instance : CollectionMembershipLaws Set Set Set := by
+  sorry
 
-instance : UnionLaws Set where
-  UnionCommutative := UnionCommutative
-  UnionAssociative := UnionAssociative
-  EmptyUnion := EmptyUnion
-  UnionEmpty := UnionEmpty
-  UnionIdempotent := UnionIdempotent
-  UnionMonotone := UnionMonotone
-  SubsetIffUnionEqRight := SubsetIffUnionEqRight
+instance : UnionLaws Set := by
+  sorry
 
-instance : IntersectionLaws Set where
-  IntersectionCommutative := IntersectionCommutative
-  IntersectionAssociative := IntersectionAssociative
-  IntersectionIdempotent := IntersectionIdempotent
-  EmptyIntersection := EmptyIntersection
-  IntersectionEmpty := IntersectionEmpty
-  IntersectionMonotone := IntersectionMonotone
-  SubsetIffIntersectionEqLeft := SubsetIffIntersectionEqLeft
+instance : IntersectionLaws Set := by
+  sorry
 
-instance : SubsetLaws Set where
-  SubsetReflexive := SubsetReflexive
-  SubsetTransitive := SubsetTransitive
-  SetEqualityIffMutualSubset := SetEqualityIffMutualSubset
+instance : SubsetLaws Set := by
+  sorry
 
-instance : DifferenceLaws Set where
-  DifferenceMonotoneLeft := DifferenceMonotoneLeft
-  DifferenceAntitoneRight := DifferenceAntitoneRight
-  DifferenceEmpty := DifferenceEmpty
-  EmptyDifference := EmptyDifference
-  DifferenceSelf := DifferenceSelf
-  DifferenceUnion := DifferenceUnion
-  DifferenceIntersection := DifferenceIntersection
-  UnionDifferenceDistributes := UnionDifferenceDistributes
-  IntersectionDifferenceDistributes := IntersectionDifferenceDistributes
-  DifferenceSubsetLeft := DifferenceSubsetLeft
-  DifferenceDisjointRight := DifferenceDisjointRight
+instance : DifferenceLaws Set := by
+  sorry
 
-instance : SymmDiffLaws Set where
-  SymmetricDifferenceAsUnionDifferences := SymmetricDifferenceAsUnionDifferences
-  SymmetricDifferenceAsUnionDifferenceIntersection :=
-    SymmetricDifferenceAsUnionDifferenceIntersection
-  SymmetricDifferenceCommutative := SymmetricDifferenceCommutative
-  SymmetricDifferenceAssociative := SymmetricDifferenceAssociative
-  SymmetricDifferenceEmpty := SymmetricDifferenceEmpty
-  EmptySymmetricDifference := EmptySymmetricDifference
-  SymmetricDifferenceSelf := SymmetricDifferenceSelf
-  SymmetricDifferenceEqEmptyIff := SymmetricDifferenceEqEmptyIff
-  SymmetricDifferenceSubsetUnion := SymmetricDifferenceSubsetUnion
+instance : SymmDiffLaws Set := by
+  sorry
 
-instance : DistributivityLaws Set where
-  IntersectionDistributesOverUnion := IntersectionDistributesOverUnion
-  UnionDistributesOverIntersection := UnionDistributesOverIntersection
-  AbsorptionUnionIntersection := AbsorptionUnionIntersection
-  AbsorptionIntersectionUnion := AbsorptionIntersectionUnion
+instance : DistributivityLaws Set := by
+  sorry
 
-instance : PairingLaws Set Set Set :=
-  ⟨fun firstLeft secondLeft firstRight secondRight =>
-    KuratowskiPairInjective firstLeft secondLeft firstRight secondRight⟩
+instance : PairingLaws Set Set Set := by
+  sorry
 
 end LRA.Set.Constructions.TGSet

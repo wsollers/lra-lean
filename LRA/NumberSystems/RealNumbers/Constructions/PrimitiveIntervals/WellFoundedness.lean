@@ -56,5 +56,4 @@ theorem InductionOnRepresentatives
         motive (Quotient.mk _ representative)) :
     ∀ value : Carrier rational_model, motive value := by
   sorry
-
 end LRA.NumberSystems.RealNumbers.PrimitiveIntervals

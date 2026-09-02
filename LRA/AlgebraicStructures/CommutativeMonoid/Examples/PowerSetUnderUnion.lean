@@ -20,7 +20,17 @@ instance {α : Type u} : OfNat (PowerSetUnderUnion α) 1 := ⟨⟨∅⟩⟩
 instance {α : Type u} : Nonempty (PowerSetUnderUnion α) := ⟨⟨∅⟩⟩
 
 instance {α : Type u} :
-    LRA.AlgebraicStructures.CommutativeMonoidLaws (PowerSetUnderUnion α) := by
-  sorry
-
+    LRA.AlgebraicStructures.CommutativeMonoidLaws (PowerSetUnderUnion α) where
+  MulAssociative := by
+    intro a b c
+    sorry
+  OneMul := by
+    intro a
+    sorry
+  MulOne := by
+    intro a
+    sorry
+  MulCommutative := by
+    intro a b
+    sorry
 end LRA.AlgebraicStructures.CommutativeMonoid.Examples

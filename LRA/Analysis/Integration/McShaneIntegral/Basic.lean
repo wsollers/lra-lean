@@ -223,5 +223,4 @@ theorem riemann_mcshane_hk_inclusions (hab : a ≤ b) (L : ℝ) :
     (HasRiemannIntegral f a b L → HasMcShaneIntegral f a b L) ∧
     (HasMcShaneIntegral f a b L → HasHKIntegral f a b L) := by
   sorry
-
 end LRA.Analysis.Integration

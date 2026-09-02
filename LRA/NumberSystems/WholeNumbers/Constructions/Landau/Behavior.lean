@@ -100,5 +100,4 @@ theorem natural_embedding_preserves_structure :
           (naturalEmbedding natural_data second) ↔
         natural_data.strictOrder first second) := by
   sorry
-
 end LRA.NumberSystems.WholeNumbers.Constructions.Landau

@@ -27,7 +27,6 @@ instance : HasSuccessor Carrier where
 
 theorem nonempty : Nonempty Carrier := by
   sorry
-
 def lessThan : Carrier → Carrier → Prop := PresburgerLessThan
 
 def concreteConstructionModel :
@@ -48,16 +47,12 @@ noncomputable instance : Add Carrier where
 
 theorem additiveSemigroupLaws : AdditiveSemigroupLaws Carrier := by
   sorry
-
 theorem additiveIdentityLaws : AdditiveIdentityLaws Carrier := by
   sorry
-
 theorem additiveCommutativeLaws : AdditiveCommutativeLaws Carrier := by
   sorry
-
 theorem additiveMonoidLaws : AdditiveMonoidLaws Carrier := by
   sorry
-
 abbrev StandardCarrier := Carrier
 
 end LRA.NumberSystems.Presburger

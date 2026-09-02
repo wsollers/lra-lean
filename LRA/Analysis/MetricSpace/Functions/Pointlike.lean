@@ -92,7 +92,6 @@ Related proof moves: TODO
 theorem coe_pointFunction (z x : X) :
     ((pointFunction z x : NNReal) : Real) = dist z x := by
   sorry
-
 /--
 `pointFunction_self` TODO
 
@@ -135,7 +134,6 @@ Related proof moves: TODO
 theorem pointFunction_self (z : X) :
     pointFunction z z = 0 := by
   sorry
-
 /--
 `pointFunctions` TODO
 
@@ -260,7 +258,6 @@ Related proof moves: TODO
 theorem pointFunction_mem_pointFunctions (z : X) :
     pointFunction z ∈ pointFunctions X := by
   sorry
-
 /--
 `point_functions_identify_points` TODO
 
@@ -305,7 +302,6 @@ theorem point_functions_identify_points :
       (fun z : X => (⟨pointFunction z, pointFunction_mem_pointFunctions z⟩ :
         {u : X → NNReal // u ∈ pointFunctions X})) := by
   sorry
-
 /--
 `point_function_inequalities` TODO
 
@@ -354,7 +350,6 @@ theorem point_function_inequalities
         dist a b ≤ (pointFunction z b : Real) + (pointFunction z a : Real)) ∧
       pointFunction z z = 0 := by
   sorry
-
 /--
 `pointFunction_pointlike` TODO
 
@@ -395,7 +390,6 @@ Related proof moves: TODO
 theorem pointFunction_pointlike (z : X) :
     Pointlike (pointFunction z) := by
   sorry
-
 /--
 `pointlike_eq_pointFunction_of_zero` TODO
 
@@ -444,7 +438,6 @@ theorem pointlike_eq_pointFunction_of_zero
     (zero_at_w : u w = 0) :
     u = pointFunction w := by
   sorry
-
 /--
 `pointlike_zero_point_function` TODO
 
@@ -487,7 +480,6 @@ theorem pointlike_zero_point_function
     (u : X → NNReal) :
     u ∈ pointFunctions X ↔ Pointlike u ∧ 0 ∈ Set.range u := by
   sorry
-
 /--
 `pointlike_zero_unique` TODO
 
@@ -538,5 +530,4 @@ theorem pointlike_zero_unique
     (zero_at_w₂ : u w₂ = 0) :
     w₁ = w₂ := by
   sorry
-
 end LRA.Analysis.MetricSpace

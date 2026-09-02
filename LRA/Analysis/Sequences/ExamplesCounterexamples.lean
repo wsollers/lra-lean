@@ -47,7 +47,6 @@ Related proof moves: TODO
 theorem ExampleConstantSequence (c : ℝ) :
     ConvergesTo (fun _ : ℕ => c) c := by
   sorry
-
 /--
 `ExampleReciprocalSequence` TODO
 
@@ -92,7 +91,6 @@ theorem ExampleReciprocalSequence :
       (∀ n : ℕ, 0 ≤ 1 / ((n : ℝ) + 1)) ∧
       ConvergesTo (fun n : ℕ => 1 / ((n : ℝ) + 1)) 0 := by
   sorry
-
 /--
 `ExampleAlternatingNullSequence` TODO
 
@@ -135,7 +133,6 @@ theorem ExampleAlternatingNullSequence :
     ¬ Monotone (fun n : ℕ => (-1 : ℝ) ^ n / (n + 1)) ∧
       ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ n / (n + 1)) 0 := by
   sorry
-
 /--
 `ExampleOscillatingSequence` TODO
 
@@ -182,7 +179,6 @@ theorem ExampleOscillatingSequence :
       ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ (2 * n)) 1 ∧
       ConvergesTo (fun n : ℕ => (-1 : ℝ) ^ (2 * n + 1)) (-1) := by
   sorry
-
 /--
 `ExampleGeometricSequence` TODO
 
@@ -229,7 +225,6 @@ theorem ExampleGeometricSequence :
       IsOscillatory (fun n : ℕ => (-1 : ℝ) ^ n) ∧
       (∀ r : ℝ, |r| > 1 → ¬ BoundedSeq (fun n : ℕ => r ^ n)) := by
   sorry
-
 /--
 `ExampleBoundedNotConvergent` TODO
 
@@ -272,7 +267,6 @@ theorem ExampleBoundedNotConvergent :
     BoundedSeq (fun n : ℕ => (-1 : ℝ) ^ n) ∧
       IsDivergent (fun n : ℕ => (-1 : ℝ) ^ n) := by
   sorry
-
 /--
 `ExampleVanishingDifferencesNotCauchy` TODO
 
@@ -315,5 +309,4 @@ theorem ExampleVanishingDifferencesNotCauchy :
     ConvergesTo (fun n : ℕ => 1 / ((n : ℝ) + 2)) 0 ∧
       ¬ BoundedSeq (fun n : ℕ => ∑ k ∈ Finset.range (n + 1), 1 / ((k : ℝ) + 1)) := by
   sorry
-
 end LRA.Analysis.Sequences

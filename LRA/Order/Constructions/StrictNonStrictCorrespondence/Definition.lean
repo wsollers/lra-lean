@@ -137,7 +137,6 @@ Related proof moves: TODO
 theorem StrictRelationOfPosetIsStrictOrder (poset : Poset) :
     LRA.Order.StrictOrder (StrictFromNonStrict poset.NonStrictOrder) := by
   sorry
-
 /--
 `StrictPosetOfPoset` TODO
 
@@ -232,7 +231,6 @@ theorem NonStrictRelationOfStrictPosetIsPartialOrder
     LRA.Order.PartialOrder
       (NonStrictFromStrict strictPoset.StrictRelation) := by
   sorry
-
 /--
 `PosetOfStrictPoset` TODO
 

@@ -16,5 +16,4 @@ theorem ofBoundedOrder {R : Type u} [_root_.Lattice R] [_root_.BoundedOrder R] :
     LRA.AlgebraicStructures.BoundedLatticeLaws
       (Carrier := R) (· ⊔ ·) (· ⊓ ·) ⊥ ⊤ := by
   sorry
-
 end LRA.AlgebraicStructures

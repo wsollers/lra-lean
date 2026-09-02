@@ -49,5 +49,4 @@ theorem ArchimedeanProperty {x y : ℝ}
     (positiveTargetHypothesis : y > 0) :
     ∃ n : ℕ, (n : ℝ) * x > y := by
   sorry
-
 end LRA.Analysis.Completeness

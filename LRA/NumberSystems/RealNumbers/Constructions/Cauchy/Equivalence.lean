@@ -99,7 +99,6 @@ theorem representative_equivalent_is_equivalence
     Equivalence
       (representative_equivalent rationalSystem absolute_value_data) := by
   sorry
-
 /--
 `representative_setoid` TODO
 

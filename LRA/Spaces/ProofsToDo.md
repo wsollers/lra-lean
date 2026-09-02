@@ -11,6 +11,9 @@ references. That gives a conservative repo-local work sequence, but it is
 **not** a theorem-level semantic dependency graph across unrelated topics in
 the folder.
 
-**Inventory:** 0 entries across 0 module(s) (0 completed, 0 sorry, 0 axiomatic assumptions), 0 of which are an `instance` law rather than a `theorem`/`lemma`.
+**Snapshot:** 0/0 theorem-family entries currently completed (0 sorry remaining).
+
+**Inventory:** 0 theorem/lemma/corollary/proposition entries across 0 module(s) (0 completed, 0 sorry).
+**Excluded from counts:** 0 `instance` entries and 0 `axiom` entries.
 
 No proof or axiom declarations found under this scope yet.

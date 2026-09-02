@@ -54,7 +54,6 @@ theorem LatticeIffJoinAndMeetSemilattice
     (relation : LRA.Relation.Endorelation Alpha) :
     Lattice relation ↔ JoinSemilattice relation /\ MeetSemilattice relation := by
   sorry
-
 /--
 `ConverseIsLatticeIff` TODO
 
@@ -99,7 +98,6 @@ theorem ConverseIsLatticeIff
     (relation : LRA.Relation.Endorelation Alpha) :
     Lattice (LRA.Relation.Converse relation) ↔ Lattice relation := by
   sorry
-
 /--
 `JoinIffMeetOfDual` TODO
 
@@ -150,7 +148,6 @@ theorem JoinIffMeetOfDual
       Meet (LRA.Order.OrderedSets.PartialOrder.Dual order).relation
         left right value := by
   sorry
-
 /--
 `MeetIffJoinOfDual` TODO
 
@@ -201,5 +198,4 @@ theorem MeetIffJoinOfDual
       Join (LRA.Order.OrderedSets.PartialOrder.Dual order).relation
         left right value := by
   sorry
-
 end LRA.Order

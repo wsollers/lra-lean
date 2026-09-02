@@ -49,7 +49,6 @@ theorem representative_addition_respects_equivalence
       (representative_setoid whole_data)
       (representative_addition whole_data) := by
   sorry
-
 /--
 `representative_negation_respects_equivalence` TODO
 
@@ -96,7 +95,6 @@ theorem representative_negation_respects_equivalence
       (representative_setoid whole_data)
       (representative_negation whole_data) := by
   sorry
-
 /--
 `representative_multiplication_respects_equivalence` TODO
 
@@ -143,7 +141,6 @@ theorem representative_multiplication_respects_equivalence
       (representative_setoid whole_data)
       (representative_multiplication whole_data) := by
   sorry
-
 /--
 `representative_order_respects_equivalence` TODO
 
@@ -190,7 +187,6 @@ theorem representative_order_respects_equivalence
       (representative_setoid whole_data)
       (representative_nonstrict_order whole_data) := by
   sorry
-
 /--
 `quotient_addition_exists` TODO
 
@@ -239,7 +235,6 @@ theorem quotient_addition_exists
         addition (Quotient.mk _ first) (Quotient.mk _ second) =
           Quotient.mk _ (representative_addition whole_data first second) := by
   sorry
-
 /--
 `quotient_multiplication_exists` TODO
 
@@ -288,7 +283,6 @@ theorem quotient_multiplication_exists
         multiplication (Quotient.mk _ first) (Quotient.mk _ second) =
           Quotient.mk _ (representative_multiplication whole_data first second) := by
   sorry
-
 /--
 `quotient_order_exists` TODO
 
@@ -337,5 +331,4 @@ theorem quotient_order_exists
         nonstrict_order (Quotient.mk _ first) (Quotient.mk _ second) ↔
           representative_nonstrict_order whole_data first second := by
   sorry
-
 end LRA.NumberSystems.Integers.QuotientOrderedPairs

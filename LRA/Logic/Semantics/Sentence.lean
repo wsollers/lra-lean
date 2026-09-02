@@ -54,11 +54,7 @@ theorem satisfies_iff_of_isClosedFormula
     (closedFormula : IsClosedFormula formula) :
     Satisfies M leftAssignment formula ↔
       Satisfies M rightAssignment formula := by
-  apply satisfies_iff_of_agrees_on_freeVariables
-  intro candidateVariable candidateVariableIsFree
-  rw [closedFormula] at candidateVariableIsFree
-  simp at candidateVariableIsFree
-
+  sorry
 /--
 `satisfies_sentence_iff` TODO
 
@@ -107,7 +103,6 @@ theorem satisfies_sentence_iff
     {leftAssignment rightAssignment : Variable -> M.Domain}
     (sentence : Sentence S Variable) :
     Satisfies M leftAssignment sentence.val ↔
-      Satisfies M rightAssignment sentence.val :=
-  satisfies_iff_of_isClosedFormula M sentence.val sentence.property
-
+      Satisfies M rightAssignment sentence.val := by
+  sorry
 end LRA.Logic.FirstOrder

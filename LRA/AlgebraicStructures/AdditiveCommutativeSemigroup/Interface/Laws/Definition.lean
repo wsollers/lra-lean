@@ -23,9 +23,8 @@ section Wrappers
 variable {R : Type u}
 
 theorem AddCommutative [Add R] [AdditiveCommutativeLaws R] :
-    ∀ a b : R, a + b = b + a :=
+    ∀ a b : R, a + b = b + a := by
   sorry
-
 end Wrappers
 
 /-- An additive commutative semigroup: `(R, +)` where `+` is both associative

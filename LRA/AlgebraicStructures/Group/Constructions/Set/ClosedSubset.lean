@@ -38,5 +38,4 @@ theorem ClosedSubsetGroupLaws {A : Type u} [Mul A] [Inv A] [OfNat A 1] [Nonempty
     letI := LRA.AlgebraicStructures.Monoid.Constructions.ClosedSubsetNonempty hOne
     GroupLaws {x // x ∈ S} := by
   sorry
-
 end LRA.AlgebraicStructures.Group.Constructions

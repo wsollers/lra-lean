@@ -44,5 +44,4 @@ theorem PosetOrderIsPreorder
     (poset : LRA.Order.Poset) :
     LRA.Order.Preorder poset.NonStrictOrder := by
   sorry
-
 end LRA.Order.OrderedSets.Poset

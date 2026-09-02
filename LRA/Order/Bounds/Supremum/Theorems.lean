@@ -64,7 +64,6 @@ theorem SupremumUnique
     (secondIsSupremum : Supremum relation subset second) :
     first = second := by
   sorry
-
 /--
 `SupremumOfSingleton` TODO
 
@@ -121,7 +120,6 @@ theorem SupremumOfSingleton
         candidate ∈ ({element} : SetObject) ↔ candidate = element) :
     Supremum relation ({element} : SetObject) element := by
   sorry
-
 /--
 `SupremumIsUpperBound` TODO
 
@@ -172,7 +170,6 @@ theorem SupremumIsUpperBound
     (supremumIsSupremum : Supremum relation subset supremum) :
     UpperBound relation subset supremum := by
   sorry
-
 /--
 `SupremumRelatedToEveryUpperBound` TODO
 
@@ -225,7 +222,6 @@ theorem SupremumRelatedToEveryUpperBound
     (boundIsUpperBound : UpperBound relation subset bound) :
     relation supremum bound := by
   sorry
-
 /--
 `UpperBoundIffSupremumRelated` TODO
 
@@ -278,7 +274,6 @@ theorem UpperBoundIffSupremumRelated
     (supremumIsSupremum : Supremum relation subset supremum) :
     UpperBound relation subset bound ↔ relation supremum bound := by
   sorry
-
 /--
 `SupremumMonotoneUnderInclusion` TODO
 
@@ -337,7 +332,6 @@ theorem SupremumMonotoneUnderInclusion
       Supremum relation larger largerSupremum) :
     relation smallerSupremum largerSupremum := by
   sorry
-
 /--
 `SupremaCompareUnderPointwiseDomination` TODO
 
@@ -400,7 +394,6 @@ theorem SupremaCompareUnderPointwiseDomination
       Supremum relation rightSubset rightSupremum) :
     relation leftSupremum rightSupremum := by
   sorry
-
 /--
 `SupremumInSubsetIsGreatestElement` TODO
 
@@ -453,7 +446,6 @@ theorem SupremumInSubsetIsGreatestElement
     (supremumBelongs : supremum ∈ subset) :
     GreatestElement relation subset supremum := by
   sorry
-
 open scoped LRA.Set
 
 /--
@@ -520,7 +512,6 @@ theorem SupremumOfUnion
     (unionSupremumIsJoin : Join relation leftSupremum rightSupremum unionSupremum) :
     Supremum relation (leftSubset ∪ rightSubset) unionSupremum := by
   sorry
-
 /--
 `SupremumOfIntersectionRelatedToContainingSupremum` TODO
 
@@ -581,7 +572,6 @@ theorem SupremumOfIntersectionRelatedToContainingSupremum
     (containingIsSupremum : Supremum relation containingSubset containingSupremum) :
     relation intersectionSupremum containingSupremum := by
   sorry
-
 /--
 `SupremumOfDifferenceRelatedToContainingSupremum` TODO
 
@@ -640,7 +630,6 @@ theorem SupremumOfDifferenceRelatedToContainingSupremum
     (subsetIsSupremum : Supremum relation subset subsetSupremum) :
     relation differenceSupremum subsetSupremum := by
   sorry
-
 /--
 `SupremumOfSymmetricDifferenceRelatedToUnionSupremum` TODO
 
@@ -703,7 +692,6 @@ theorem SupremumOfSymmetricDifferenceRelatedToUnionSupremum
     (unionIsSupremum : Supremum relation (leftSubset ∪ rightSubset) unionSupremum) :
     relation differenceSupremum unionSupremum := by
   sorry
-
 /--
 `SupremumOfIndexedUnion` TODO
 
@@ -770,5 +758,4 @@ theorem SupremumOfIndexedUnion
       (forall index, relation (memberSupremum index) bound) -> relation familySupremum bound) :
     Supremum relation (LRA.Set.HasIndexedUnion.indexedUnion family) familySupremum := by
   sorry
-
 end LRA.Order

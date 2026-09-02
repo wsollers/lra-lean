@@ -28,7 +28,6 @@ theorem NonNegativeRealMathlibBridgeExists :
         toNNReal (add mathlibRealModel first second) =
           toNNReal first + toNNReal second) := by
   sorry
-
 /--
 `ExtendedRealMathlibBridgeExists` TODO
 
@@ -81,7 +80,6 @@ theorem ExtendedRealMathlibBridgeExists :
         nonstrict_order mathlibRealModel first second ↔
           toEReal first ≤ toEReal second) := by
   sorry
-
 /--
 `NonNegativeExtendedRealMathlibBridgeExists` TODO
 -/
@@ -96,5 +94,4 @@ theorem NonNegativeExtendedRealMathlibBridgeExists :
         toENNReal (addExtended mathlibRealModel first second) =
           toENNReal first + toENNReal second) := by
   sorry
-
 end LRA.NumberSystems.RealNumbers.Interop.Mathlib

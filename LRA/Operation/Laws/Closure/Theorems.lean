@@ -58,7 +58,6 @@ theorem UnaryClosedUnder.apply {Domain : Type u} {Codomain : Type v}
     (input_mem : domainCarrier input) :
     codomainCarrier (operation input) := by
   sorry
-
 /--
 `BinaryClosedUnder.apply` TODO
 
@@ -117,7 +116,6 @@ theorem BinaryClosedUnder.apply {Left : Type u} {Right : Type v} {Codomain : Typ
     (right_mem : rightCarrier right) :
     resultCarrier (operation left right) := by
   sorry
-
 /--
 `BinaryEndoClosedOn.apply` TODO
 
@@ -170,7 +168,6 @@ theorem BinaryEndoClosedOn.apply {Ambient : Type u}
     (right_mem : carrier right) :
     carrier (operation left right) := by
   sorry
-
 /--
 `BinaryEndoOperation.closed_on_full_carrier` TODO
 
@@ -213,5 +210,4 @@ theorem BinaryEndoOperation.closed_on_full_carrier {Carrier : Type u}
     (operation : BinaryEndoOperation Carrier) :
     BinaryEndoClosedOn (fun _ : Carrier => True) operation := by
   sorry
-
 end LRA.Operation.Laws.Closure

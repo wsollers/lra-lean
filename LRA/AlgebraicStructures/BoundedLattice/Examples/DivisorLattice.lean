@@ -15,10 +15,8 @@ def Divisors (n : Nat) : Type := {d : Nat // d ∣ n}
 
 theorem lcmStaysDivisor (a b : Divisors n) : Nat.lcm a.1 b.1 ∣ n := by
   sorry
-
 theorem gcdStaysDivisor (a b : Divisors n) : Nat.gcd a.1 b.1 ∣ n := by
   sorry
-
 def divisorJoin (a b : Divisors n) : Divisors n := ⟨Nat.lcm a.1 b.1, lcmStaysDivisor a b⟩
 def divisorMeet (a b : Divisors n) : Divisors n := ⟨Nat.gcd a.1 b.1, gcdStaysDivisor a b⟩
 
@@ -27,5 +25,4 @@ theorem divisorLatticeIsBounded :
       (divisorJoin (n := n)) (divisorMeet (n := n))
       (⟨1, one_dvd n⟩ : Divisors n) (⟨n, dvd_refl n⟩ : Divisors n) := by
   sorry
-
 end LRA.AlgebraicStructures.BoundedLattice.Examples

@@ -58,7 +58,6 @@ theorem InfimumOfConverseIffSupremum
     Infimum (LRA.Relation.Converse relation) subset candidate ↔
       Supremum relation subset candidate := by
   sorry
-
 /--
 `InfimumOfEmptyIffTop` TODO
 
@@ -115,7 +114,6 @@ theorem InfimumOfEmptyIffTop
     Infimum relation (∅ : SetObject) candidate ↔
       forall element, relation element candidate := by
   sorry
-
 /--
 `InfimumIffSupremumOfLowerBounds` TODO
 
@@ -174,5 +172,4 @@ theorem InfimumIffSupremumOfLowerBounds
     Infimum relation subset candidate ↔
       Supremum relation (LowerBounds relation subset) candidate := by
   sorry
-
 end LRA.Order

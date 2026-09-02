@@ -272,5 +272,4 @@ Related proof moves: constructor, cases, rcases, use
 theorem common_refinement_partitions {a b : ℝ} (P Q : IntegrationPartition a b) :
     ∃ R : IntegrationPartition a b, RefinesPartition R P ∧ RefinesPartition R Q := by
   sorry
-
 end LRA.Analysis.Integration

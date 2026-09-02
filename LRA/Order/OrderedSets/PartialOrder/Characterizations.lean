@@ -48,7 +48,6 @@ theorem PartialOrderIsReflexive
     (relationIsPartialOrder : LRA.Order.PartialOrder relation) :
     LRA.Relation.Reflexive relation := by
   sorry
-
 /--
 `PartialOrderIsAntisymmetric` TODO
 
@@ -95,7 +94,6 @@ theorem PartialOrderIsAntisymmetric
     (relationIsPartialOrder : LRA.Order.PartialOrder relation) :
     LRA.Relation.Antisymmetric relation := by
   sorry
-
 /--
 `PartialOrderIsTransitive` TODO
 
@@ -142,7 +140,6 @@ theorem PartialOrderIsTransitive
     (relationIsPartialOrder : LRA.Order.PartialOrder relation) :
     LRA.Relation.Transitive relation := by
   sorry
-
 /--
 `PartialOrderRelationIsReflexive` TODO
 
@@ -187,7 +184,6 @@ theorem PartialOrderRelationIsReflexive
     (order : PartialOrderRelation Carrier) :
     LRA.Relation.Reflexive order.relation := by
   sorry
-
 /--
 `PartialOrderRelationIsAntisymmetric` TODO
 
@@ -232,7 +228,6 @@ theorem PartialOrderRelationIsAntisymmetric
     (order : PartialOrderRelation Carrier) :
     LRA.Relation.Antisymmetric order.relation := by
   sorry
-
 /--
 `PartialOrderRelationIsTransitive` TODO
 
@@ -277,5 +272,4 @@ theorem PartialOrderRelationIsTransitive
     (order : PartialOrderRelation Carrier) :
     LRA.Relation.Transitive order.relation := by
   sorry
-
 end LRA.Order.OrderedSets.PartialOrder

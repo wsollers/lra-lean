@@ -45,7 +45,6 @@ Related proof moves: TODO
 theorem IneqAmGmTwo (a b : ℝ) (ha : a ≥ 0) (hb : b ≥ 0) :
     Real.sqrt (a * b) ≤ (a + b) / 2 := by
   sorry
-
 /--
 `ArithmeticMean` TODO
 
@@ -212,7 +211,6 @@ Related proof moves: intro
 theorem IneqAmGm (n : ℕ) (hn : 0 < n) (a : Fin n → ℝ) (ha : ∀ i, a i > 0) :
     GeometricMean n a ≤ ArithmeticMean n a := by
   sorry
-
 /--
 `IneqAmGmHm` TODO
 
@@ -253,7 +251,6 @@ Related proof moves: intro, constructor, cases, rcases
 theorem IneqAmGmHm (n : ℕ) (hn : 0 < n) (a : Fin n → ℝ) (ha : ∀ i, a i > 0) :
     HarmonicMean n a ≤ GeometricMean n a ∧ GeometricMean n a ≤ ArithmeticMean n a := by
   sorry
-
 /--
 `IneqCauchySchwarz` TODO
 
@@ -298,7 +295,6 @@ theorem IneqCauchySchwarz (n : ℕ) (a b : Fin n → ℝ) :
       Real.sqrt (Finset.univ.sum (fun j => a j ^ 2)) *
         Real.sqrt (Finset.univ.sum (fun j => b j ^ 2)) := by
   sorry
-
 /--
 `IneqChebyshevSum` TODO
 
@@ -343,7 +339,6 @@ theorem IneqChebyshevSum (n : ℕ) (hn : 0 < n) (a b : Fin n → ℝ)
     (ArithmeticMean n a) * (ArithmeticMean n b) ≤
       ArithmeticMean n (fun j => a j * b j) := by
   sorry
-
 /--
 `IneqRearrangement` TODO
 
@@ -392,7 +387,6 @@ theorem IneqRearrangement (n : ℕ) (a b : Fin n → ℝ) (ha : Monotone a) (hb 
     Finset.univ.sum (fun j => a j * b (σ j)) ≤
       Finset.univ.sum (fun j => a j * b j) := by
   sorry
-
 /--
 `IneqHolder` TODO
 
@@ -439,7 +433,6 @@ theorem IneqHolder (n : ℕ) (p q : ℝ) (hp : p > 1) (hq : q > 1)
       (Finset.univ.sum (fun j => |a j| ^ p)) ^ (1 / p) *
         (Finset.univ.sum (fun j => |b j| ^ q)) ^ (1 / q) := by
   sorry
-
 /--
 `IneqMinkowski` TODO
 
@@ -484,7 +477,6 @@ theorem IneqMinkowski (n : ℕ) (p : ℝ) (hp : p ≥ 1) (a b : Fin n → ℝ) :
       (Finset.univ.sum (fun j => |a j| ^ p)) ^ (1 / p) +
         (Finset.univ.sum (fun j => |b j| ^ p)) ^ (1 / p) := by
   sorry
-
 /--
 `IneqBernoulli` TODO
 
@@ -525,5 +517,4 @@ Related proof moves: TODO
 theorem IneqBernoulli (x : ℝ) (n : ℕ) (hx : x ≥ -1) :
     (1 + x) ^ n ≥ 1 + n * x := by
   sorry
-
 end LRA.Analysis.RealAnalysis

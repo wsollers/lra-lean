@@ -31,7 +31,6 @@ theorem underlyingNaturalCommutativeSemiringWithoutZeroLawsOn :
       LandauNonemptyOn natural_data.model
     CommutativeSemiringWithoutZeroLaws Element := by
   sorry
-
 /--
 `zeroOn` TODO
 
@@ -154,10 +153,8 @@ abbrev succOn : HasSuccessor (Carrier natural_data) :=
 `nonemptyOn` packages the distinguished `one` element as the witness required
 by semigroup-strength and stronger bundled interfaces.
 -/
-theorem nonemptyOn : Nonempty (Carrier natural_data) :=
-  by
-    sorry
-
+theorem nonemptyOn : Nonempty (Carrier natural_data) := by
+  sorry
 /--
 `addOn` TODO
 
@@ -372,7 +369,6 @@ theorem additiveSemigroupLawsOn
     let _ : Nonempty (Carrier natural_data) := nonemptyOn natural_data
     AdditiveSemigroupLaws (Carrier natural_data) := by
   sorry
-
 /--
 `additiveCommutativeLawsOn` TODO
 
@@ -420,7 +416,6 @@ Related proof moves: unfold
 theorem additiveCommutativeLawsOn :
     @AdditiveCommutativeLaws (Carrier natural_data) (addOn natural_data) := by
   sorry
-
 /--
 `additiveIdentityLawsOn` TODO
 
@@ -476,7 +471,6 @@ theorem additiveIdentityLawsOn :
     @AdditiveIdentityLaws (Carrier natural_data)
       (addOn natural_data) (zeroOn natural_data) := by
   sorry
-
 /--
 `multiplicativeSemigroupLawsOn` TODO
 
@@ -531,7 +525,6 @@ theorem multiplicativeSemigroupLawsOn
     let _ : Nonempty (Carrier natural_data) := nonemptyOn natural_data
     MultiplicativeSemigroupLaws (Carrier natural_data) := by
   sorry
-
 /--
 `multiplicativeCommutativeLawsOn` TODO
 
@@ -579,7 +572,6 @@ Related proof moves: unfold
 theorem multiplicativeCommutativeLawsOn :
     @MultiplicativeCommutativeLaws (Carrier natural_data) (mulOn natural_data) := by
   sorry
-
 /--
 `multiplicativeIdentityLawsOn` TODO
 
@@ -635,7 +627,6 @@ theorem multiplicativeIdentityLawsOn :
     @MultiplicativeIdentityLaws (Carrier natural_data)
       (mulOn natural_data) (oneOn natural_data) := by
   sorry
-
 /--
 `zeroAbsorbingLawsOn` TODO
 
@@ -691,7 +682,6 @@ theorem zeroAbsorbingLawsOn :
     @ZeroAbsorbingLaws (Carrier natural_data)
       (mulOn natural_data) (zeroOn natural_data) := by
   sorry
-
 /--
 `nontrivialityLawOn` TODO
 
@@ -745,7 +735,6 @@ theorem nontrivialityLawOn :
     @NontrivialityLaw (Carrier natural_data)
       (zeroOn natural_data) (oneOn natural_data) := by
   sorry
-
 /--
 `noZeroDivisorsLawOn` TODO
 
@@ -799,7 +788,6 @@ theorem noZeroDivisorsLawOn :
     @NoZeroDivisorsLaw (Carrier natural_data)
       (mulOn natural_data) (zeroOn natural_data) := by
   sorry
-
 /--
 `distributiveLawsOn` TODO
 
@@ -855,7 +843,6 @@ theorem distributiveLawsOn :
     @DistributiveLaws (Carrier natural_data)
       (addOn natural_data) (mulOn natural_data) := by
   sorry
-
 /--
 `commutativeSemiringLawsOn` TODO
 
@@ -909,7 +896,6 @@ theorem commutativeSemiringLawsOn :
     let _ : Nonempty (Carrier natural_data) := nonemptyOn natural_data
     CommutativeSemiringLaws (Carrier natural_data) := by
   sorry
-
 /--
 `partialOrderLawsOn` TODO
 
@@ -960,10 +946,8 @@ Related proof moves: unfold
 
 -/
 theorem partialOrderLawsOn :
-    @PartialOrderLaws (Carrier natural_data) (leOn natural_data) :=
-  by
-    sorry
-
+    @PartialOrderLaws (Carrier natural_data) (leOn natural_data) := by
+  sorry
 /--
 `totalOrderLawOn` TODO
 
@@ -1010,10 +994,8 @@ Related proof moves: unfold
 
 -/
 theorem totalOrderLawOn :
-    @TotalOrderLaw (Carrier natural_data) (leOn natural_data) :=
-  by
-    sorry
-
+    @TotalOrderLaw (Carrier natural_data) (leOn natural_data) := by
+  sorry
 /--
 `additionRespectsOrderLawsOn` TODO
 
@@ -1063,7 +1045,6 @@ theorem additionRespectsOrderLawsOn :
     @AdditionRespectsOrderLaws (Carrier natural_data)
       (addOn natural_data) (leOn natural_data) := by
   sorry
-
 /--
 `multiplicationRespectsOrderLawsOn` TODO
 
@@ -1113,7 +1094,6 @@ theorem multiplicationRespectsOrderLawsOn :
     @MultiplicationRespectsOrderLaws (Carrier natural_data)
       (mulOn natural_data) (leOn natural_data) (zeroOn natural_data) := by
   sorry
-
 /--
 `orderedSemiringLawsOn` TODO
 
@@ -1175,13 +1155,11 @@ theorem orderedSemiringLawsOn :
     let _ : Nonempty (Carrier natural_data) := nonemptyOn natural_data
     OrderedSemiringLaws (Carrier natural_data) := by
   sorry
-
 theorem quotientOrderedPairsAdditionCancellativeOn :
     let _ : Add (Carrier natural_data) := addOn natural_data
     ∀ first second common : Carrier natural_data,
       first + common = second + common → first = second := by
   sorry
-
 theorem quotientOrderedPairsAdditionPreservesAndReflectsOrderOn :
     let _ : Add (Carrier natural_data) := addOn natural_data
     let _ : LE (Carrier natural_data) := leOn natural_data
@@ -1189,7 +1167,6 @@ theorem quotientOrderedPairsAdditionPreservesAndReflectsOrderOn :
       first + translation ≤ second + translation ↔
         first ≤ second := by
   sorry
-
 /--
 `quotientOrderedPairsInput` TODO
 

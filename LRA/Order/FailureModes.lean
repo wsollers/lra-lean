@@ -115,7 +115,6 @@ theorem IntegerSingletonsWitnessUpperBoundsIntersectionFailure :
       (fun left right : Int => left ≤ right)
       (fun index : Bool => if index then ({1} : Set Int) else {0}) := by
   sorry
-
 /--
 `LowerBoundsFailToPreserveIndexedIntersectionsAsUnions` TODO
 
@@ -216,7 +215,6 @@ theorem IntegerSingletonsWitnessLowerBoundsIntersectionFailure :
       (fun left right : Int => left ≤ right)
       (fun index : Bool => if index then ({1} : Set Int) else {0}) := by
   sorry
-
 /--
 `EmptyIndexedIntersectionCreatesVacuousBounds` TODO
 
@@ -323,7 +321,6 @@ theorem DisjointIntegerSingletonsCreateVacuousBounds :
       (fun left right : Int => left ≤ right)
       (fun index : Bool => if index then ({1} : Set Int) else {0}) := by
   sorry
-
 end LRA.Order
 
 namespace LRA.Order
@@ -420,7 +417,6 @@ Related proof moves: TODO
 theorem IntegerUniverseFailsBounded :
     FailsBounded (fun left right : Int => left ≤ right) (Set.univ : Set Int) := by
   sorry
-
 end IntegerUniverse
 
 /--
@@ -523,7 +519,6 @@ theorem EveryBoundedRealSetHasUnboundedComplement
     ComplementDestroysTwoSidedBoundedness
       (fun left right : Real => left ≤ right) subset := by
   sorry
-
 end LRA.Order
 
 namespace LRA.Order
@@ -618,7 +613,6 @@ Related proof moves: TODO
 theorem IntegerUniverseFailsBoundedAbove :
     FailsBoundedAbove (fun left right : Int => left ≤ right) (Set.univ : Set Int) := by
   sorry
-
 end IntegerUniverse
 
 end LRA.Order
@@ -715,7 +709,6 @@ Related proof moves: TODO
 theorem IntegerUniverseFailsBoundedBelow :
     FailsBoundedBelow (fun left right : Int => left ≤ right) (Set.univ : Set Int) := by
   sorry
-
 end IntegerUniverse
 
 end LRA.Order
@@ -814,7 +807,6 @@ theorem OneFailsGreatestElementOfOpenUnitInterval :
     FailsGreatestElement
       (fun left right : Real => left ≤ right) (Set.Ioo 0 1) 1 := by
   sorry
-
 end RealOpenUnitInterval
 
 end LRA.Order
@@ -911,7 +903,6 @@ theorem RationalOrderFailsGreatestLowerBoundProperty :
     FailsGreatestLowerBoundProperty (Set Rat)
       (fun left right : Rat => left ≤ right) := by
   sorry
-
 end RationalOrder
 
 end LRA.Order
@@ -1008,7 +999,6 @@ Related proof moves: TODO
 theorem EmptyIntegerSetFailsInfimum :
     FailsInfimum (fun left right : Int => left ≤ right) (∅ : Set Int) := by
   sorry
-
 end IntegerEmptySet
 
 /--
@@ -1103,7 +1093,6 @@ theorem IntegerSingletonComplementHasNoInfimum :
     ComplementInfimumFormulaFails
       (fun left right : Int => left ≤ right) Set.compl ({0} : Set Int) := by
   sorry
-
 /--
 `DifferenceInfimumFormulaFails` TODO
 
@@ -1200,7 +1189,6 @@ theorem IntegerSingletonDifferenceHasNoInfimum :
       (fun left right : Int => left ≤ right)
       ({0} : Set Int) ({0} : Set Int) := by
   sorry
-
 end LRA.Order
 
 namespace LRA.Order
@@ -1297,7 +1285,6 @@ theorem ZeroFailsLeastElementOfOpenUnitInterval :
     FailsLeastElement
       (fun left right : Real => left ≤ right) (Set.Ioo 0 1) 0 := by
   sorry
-
 end RealOpenUnitInterval
 
 end LRA.Order
@@ -1394,7 +1381,6 @@ theorem RationalOrderFailsLeastUpperBoundProperty :
     FailsLeastUpperBoundProperty (Set Rat)
       (fun left right : Rat => left ≤ right) := by
   sorry
-
 end RationalOrder
 
 end LRA.Order
@@ -1491,7 +1477,6 @@ Related proof moves: TODO
 theorem OneFailsLowerBoundOfOpenUnitInterval :
     FailsLowerBound (fun left right : Real => left ≤ right) (Set.Ioo 0 1) 1 := by
   sorry
-
 end RealOpenUnitInterval
 
 end LRA.Order
@@ -1604,7 +1589,6 @@ theorem BooleanAntichainHasDistinctMaximalElementsButNoGreatest :
         (Set.univ : Set Bool) true /\
       false ≠ true := by
   sorry
-
 end LRA.Order
 
 namespace LRA.Order
@@ -1715,7 +1699,6 @@ theorem BooleanAntichainHasDistinctMinimalElementsButNoLeast :
         (Set.univ : Set Bool) true /\
       false ≠ true := by
   sorry
-
 end LRA.Order
 
 namespace LRA.Order
@@ -1818,7 +1801,6 @@ theorem SupremaNeedNotBeUniqueInPreorder :
       FailsSupremumUniqueness
         (fun _ _ : Bool => True) (Set.univ : Set Bool) := by
   sorry
-
 /--
 `ComplementSupremumFormulaFails` TODO
 
@@ -1911,7 +1893,6 @@ theorem IntegerSingletonComplementHasNoSupremum :
     ComplementSupremumFormulaFails
       (fun left right : Int => left ≤ right) Set.compl ({0} : Set Int) := by
   sorry
-
 /--
 `DifferenceSupremumFormulaFails` TODO
 
@@ -2008,7 +1989,6 @@ theorem IntegerSingletonDifferenceHasNoSupremum :
       (fun left right : Int => left ≤ right)
       ({0} : Set Int) ({0} : Set Int) := by
   sorry
-
 end LRA.Order
 
 namespace LRA.Order
@@ -2103,7 +2083,6 @@ Related proof moves: TODO
 theorem ZeroFailsUpperBoundOfOpenUnitInterval :
     FailsUpperBound (fun left right : Real => left ≤ right) (Set.Ioo 0 1) 0 := by
   sorry
-
 end RealOpenUnitInterval
 
 end LRA.Order
@@ -2202,7 +2181,6 @@ theorem ProductOfLinearOrdersNeedNotBeLinear :
       (fun left right : Nat => left ≤ right)
       (fun left right : Nat => left ≤ right) := by
   sorry
-
 end LRA.Order
 
 namespace LRA.Order
@@ -2291,7 +2269,6 @@ Related proof moves: TODO
 theorem IntegerStrictOrderIsNotDenseLinearOrder :
     FailsDenseLinearOrder (fun left right : Int => left < right) := by
   sorry
-
 end LRA.Order
 
 namespace LRA.Order
@@ -2384,7 +2361,6 @@ theorem ReflexiveRelationIsRawDense
     {relation : LRA.Relation.Endorelation Alpha} :
     ReflexivityMakesRawDensityVacuous relation := by
   sorry
-
 end LRA.Order
 
 namespace LRA.Order
@@ -2481,7 +2457,6 @@ theorem TwoAndThreeFailDivisibilityChain :
     FailsChain (fun left right : Nat => left ∣ right)
       ({number | number = 2 \/ number = 3} : Set Nat) := by
   sorry
-
 end NaturalDivisibility
 
 end LRA.Order
@@ -2632,7 +2607,6 @@ theorem DirectedDoesNotImplyChain :
     DirectednessFailsToImplyChain
       (fun left right : Nat => left ∣ right) subset := by
   sorry
-
 /--
 `SubsetOfDirectedSetNeedNotBeDirected` TODO
 
@@ -2679,7 +2653,6 @@ theorem SubsetOfDirectedSetNeedNotBeDirected :
     let subset : Set Nat := {element | element = 2 \/ element = 3}
     DirectednessFailsUnderSubset relation ambient subset := by
   sorry
-
 end LRA.Order
 
 namespace LRA.Order
@@ -2774,7 +2747,6 @@ theorem IntegerLeastUpperBoundPropertyDoesNotImplyCompleteLattice :
       FailsCompleteLattice (Set Int)
         (fun left right : Int => left ≤ right) := by
   sorry
-
 end LRA.Order
 
 namespace LRA.Order
@@ -2947,7 +2919,6 @@ Related proof moves: TODO
 theorem M3IsNondistributiveLattice :
     FailsDistributiveLattice M3Relation := by
   sorry
-
 /--
 `N5IsNondistributiveLattice` TODO
 
@@ -2988,7 +2959,6 @@ Related proof moves: TODO
 theorem N5IsNondistributiveLattice :
     FailsDistributiveLattice N5Relation := by
   sorry
-
 end LRA.Order
 
 namespace LRA.Order
@@ -3081,7 +3051,6 @@ Related proof moves: TODO
 theorem TwoFailsJoinOfTwoAndThree :
     FailsJoin (fun left right : Nat => left ≤ right) 2 3 2 := by
   sorry
-
 end NaturalNumbers
 
 end LRA.Order
@@ -3174,7 +3143,6 @@ Related proof moves: TODO
 theorem BooleanEqualityFailsJoinSemilattice :
     FailsJoinSemilattice (fun left right : Bool => left = right) := by
   sorry
-
 end BooleanAntichain
 
 end LRA.Order
@@ -3267,7 +3235,6 @@ Related proof moves: TODO
 theorem BooleanEqualityFailsLattice :
     FailsLattice (fun left right : Bool => left = right) := by
   sorry
-
 end BooleanAntichain
 
 end LRA.Order
@@ -3362,7 +3329,6 @@ Related proof moves: TODO
 theorem ThreeFailsMeetOfTwoAndThree :
     FailsMeet (fun left right : Nat => left ≤ right) 2 3 3 := by
   sorry
-
 end NaturalNumbers
 
 end LRA.Order
@@ -3455,7 +3421,6 @@ Related proof moves: TODO
 theorem BooleanEqualityFailsMeetSemilattice :
     FailsMeetSemilattice (fun left right : Bool => left = right) := by
   sorry
-
 end BooleanAntichain
 
 end LRA.Order
@@ -3640,7 +3605,6 @@ theorem NaturalSubtractionFailsLeftTranslationPreservesLessEqual :
       (fun left right : Nat => left <= right)
       NaturalSubtractionForOrderCompatibilityFailure := by
   sorry
-
 end LRA.Order
 
 namespace LRA.Order
@@ -3741,7 +3705,6 @@ theorem NaturalIdentityFailsAntitone :
       (fun left right : Nat => left ≤ right)
       (fun value => value) := by
   sorry
-
 end NaturalNumbers
 
 end LRA.Order
@@ -3844,7 +3807,6 @@ theorem IntegerNegationFailsMonotone :
       (fun left right : Int => left ≤ right)
       (fun value => -value) := by
   sorry
-
 end Integers
 
 end LRA.Order
@@ -3993,7 +3955,6 @@ theorem MonotoneBijectionNeedNotHaveMonotoneInverse :
         (fun left right : Bool => left = right)
         BooleanChainRelation (fun value => value) := by
   sorry
-
 end LRA.Order
 
 namespace LRA.Order
@@ -4094,7 +4055,6 @@ theorem BooleanConstantMapsFailOrderIsomorphism :
       (fun left right : Bool => left = false \/ right = true)
       (fun _ => false) (fun _ => false) := by
   sorry
-
 end Booleans
 
 end LRA.Order
@@ -4187,7 +4147,6 @@ theorem BooleanEqualityPartialOrderFailsTotality :
     FailsTotality
       LRA.Order.OrderedSets.PartialOrder.BooleanEqualityNonStrictPartialOrder.relation := by
   sorry
-
 /--
 `NaturalDivisibilityIsNotLinearOrder` TODO
 
@@ -4228,7 +4187,6 @@ Related proof moves: TODO
 theorem NaturalDivisibilityIsNotLinearOrder :
     FailsTotality (fun left right : Nat => left ∣ right) := by
   sorry
-
 end LRA.Order.OrderedSets.LinearOrder
 
 namespace LRA.Order.OrderedSets.Preorder
@@ -4413,7 +4371,6 @@ theorem ImmediateSuccessorOrEqualFailsPreorder :
         ImmediateSuccessorOrEqualRelation) /\
       FailsPreorder ImmediateSuccessorOrEqualRelation := by
   sorry
-
 /--
 `NatStrictOrderFailsPreorder` TODO
 
@@ -4460,7 +4417,6 @@ theorem NatStrictOrderFailsPreorder :
         (fun left right : Nat => left < right)) /\
       FailsPreorder (fun left right : Nat => left < right) := by
   sorry
-
 /--
 `StrictPartConstructionsDifferOnUniversalPreorder` TODO
 
@@ -4501,7 +4457,6 @@ Related proof moves: TODO
 theorem StrictPartConstructionsDifferOnUniversalPreorder :
     StrictPartConstructionsFailToAgree BooleanUniversalPreorder := by
   sorry
-
 end LRA.Order.OrderedSets.Preorder
 
 namespace LRA.Order.OrderedSets.PartialOrder
@@ -4652,7 +4607,6 @@ theorem ImmediateSuccessorOrEqualFailsTransitivity :
       FailsNonStrictPartialOrder
         LRA.Order.OrderedSets.Preorder.ImmediateSuccessorOrEqualRelation := by
   sorry
-
 /--
 `NatStrictOrderFailsNonStrictPartialOrder` TODO
 
@@ -4705,7 +4659,6 @@ theorem NatStrictOrderFailsNonStrictPartialOrder :
         (fun left right : Nat => left < right) /\
       FailsNonStrictPartialOrder (fun left right : Nat => left < right) := by
   sorry
-
 /--
 `BooleanUniversalRelationFailsNonStrictPartialOrder` TODO
 
@@ -4754,7 +4707,6 @@ theorem BooleanUniversalRelationFailsNonStrictPartialOrder :
       LRA.Relation.Transitive (fun _ _ : Bool => True) /\
       FailsNonStrictPartialOrder (fun _ _ : Bool => True) := by
   sorry
-
 /--
 `IntegerDivisibilityIsPreorderButNotPartialOrder` TODO
 
@@ -4799,7 +4751,6 @@ theorem IntegerDivisibilityIsPreorderButNotPartialOrder :
       FailsNonStrictPartialOrder
         (fun left right : Int => left ∣ right) := by
   sorry
-
 end LRA.Order.OrderedSets.PartialOrder
 
 namespace LRA.Order.OrderedSets.Poset
@@ -4886,7 +4837,6 @@ Related proof moves: TODO
 theorem NatStrictOrderFailsPosetLaws :
     FailsPosetLaws (fun left right : Nat => left < right) := by
   sorry
-
 end LRA.Order.OrderedSets.Poset
 
 namespace LRA.Order
@@ -4977,7 +4927,6 @@ Related proof moves: TODO
 theorem BooleanEqualityFailsStrictLinearOrder :
     FailsStrictLinearOrder (fun left right : Bool => left = right) := by
   sorry
-
 end Booleans
 
 end LRA.Order
@@ -5076,7 +5025,6 @@ theorem NatNonStrictOrderFailsStrictOrder :
         (fun left right : Nat => left <= right)) /\
       FailsStrictOrder (fun left right : Nat => left <= right) := by
   sorry
-
 /--
 `ImmediateSuccessorRelation` TODO
 
@@ -5161,7 +5109,6 @@ theorem ImmediateSuccessorFailsStrictOrder :
       Not (LRA.Relation.Transitive ImmediateSuccessorRelation) /\
       FailsStrictOrder ImmediateSuccessorRelation := by
   sorry
-
 end LRA.Order.OrderedSets.StrictOrder
 
 namespace LRA.Order
@@ -5252,5 +5199,4 @@ Related proof moves: TODO
 theorem IntegersAreNotWellOrdered :
     FailsWellOrder (Set Int) (fun left right : Int => left ≤ right) := by
   sorry
-
 end LRA.Order

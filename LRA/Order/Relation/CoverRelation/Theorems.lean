@@ -52,5 +52,4 @@ theorem CoverRelationImpliesStrictRelation
     (lowerIsCoveredByUpper : CoverRelation strictRelation lower upper) :
     strictRelation lower upper := by
   sorry
-
 end LRA.Order

@@ -11,5 +11,4 @@ instance {R : Type u} [_root_.Field R] [_root_.LinearOrder R]
     [_root_.IsStrictOrderedRing R] [Nonempty R] :
     OrderedFieldLaws R := by
   sorry
-
 end LRA.AlgebraicStructures

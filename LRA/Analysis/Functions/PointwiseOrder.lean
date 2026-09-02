@@ -161,7 +161,6 @@ theorem PointwiseOrderLaws (A : Set ℝ) :
       (∀ f g : ℝ → ℝ, PointwiseLe f g A → PointwiseLe g f A → PointwiseEq f g A) ∧
       (∀ f g h : ℝ → ℝ, PointwiseLe f g A → PointwiseLe g h A → PointwiseLe f h A) := by
   sorry
-
 /--
 `StrictPointwiseOrderImpliesWeak` TODO
 
@@ -202,7 +201,6 @@ Related proof moves: intro
 theorem StrictPointwiseOrderImpliesWeak (f g : ℝ → ℝ) (A : Set ℝ)
     (h : PointwiseLt f g A) : PointwiseLe f g A := by
   sorry
-
 /--
 `PointwiseOrderArithmetic` TODO
 
@@ -257,7 +255,6 @@ theorem PointwiseOrderArithmetic (f g h f₂ g₂ : ℝ → ℝ) (A : Set ℝ)
         PointwiseLe (fun x => lam * g x) (fun x => lam * f x) A) ∧
       PointwiseLe (fun x => f x + f₂ x) (fun x => g x + g₂ x) A := by
   sorry
-
 /--
 `PointwiseProductOrderNonnegative` TODO
 
@@ -302,7 +299,6 @@ theorem PointwiseProductOrderNonnegative (f₁ g₁ f₂ g₂ : ℝ → ℝ) (A 
     (h₂ : ∀ x ∈ A, 0 ≤ f₂ x ∧ f₂ x ≤ g₂ x) :
     PointwiseLe (fun x => f₁ x * f₂ x) (fun x => g₁ x * g₂ x) A := by
   sorry
-
 /--
 `ReciprocalOrderReversal` TODO
 
@@ -345,7 +341,6 @@ theorem ReciprocalOrderReversal (f g : ℝ → ℝ) (A : Set ℝ)
     (h : ∀ x ∈ A, 0 < f x ∧ f x ≤ g x) :
     PointwiseLe (fun x => 1 / g x) (fun x => 1 / f x) A := by
   sorry
-
 /--
 `QuotientOrderSignControlled` TODO
 
@@ -390,7 +385,6 @@ theorem QuotientOrderSignControlled (f₁ g₁ f₂ g₂ : ℝ → ℝ) (A : Set
     (h₂ : ∀ x ∈ A, 0 < f₂ x ∧ f₂ x ≤ g₂ x) :
     PointwiseLe (fun x => f₁ x / g₂ x) (fun x => g₁ x / f₂ x) A := by
   sorry
-
 /--
 `NoUnconditionalQuotientOrderLaw` TODO
 
@@ -435,5 +429,4 @@ theorem NoUnconditionalQuotientOrderLaw :
         PointwiseLe f₁ g₁ A → PointwiseLe f₂ g₂ A →
         PointwiseLe (fun x => f₁ x / f₂ x) (fun x => g₁ x / g₂ x) A := by
   sorry
-
 end LRA.Analysis.Functions

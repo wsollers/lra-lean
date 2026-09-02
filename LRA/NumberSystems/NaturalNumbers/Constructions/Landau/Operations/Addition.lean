@@ -140,7 +140,6 @@ theorem LandauAdditionClauses
       (fun _ value => model.successor value)
       (LandauAddition model) := by
   sorry
-
 /--
 `LandauAdditionWellDefined` TODO
 
@@ -215,7 +214,6 @@ theorem LandauAdditionWellDefined
           otherAddition ->
         otherAddition = addition := by
   sorry
-
 /--
 `LandauAdditionWithOne` TODO
 
@@ -260,7 +258,6 @@ theorem LandauAdditionWithOne
     (left : Element) :
     LandauAddition model left model.base = model.successor left := by
   sorry
-
 /--
 `LandauAdditionSuccessorOnRight` TODO
 
@@ -307,7 +304,6 @@ theorem LandauAdditionSuccessorOnRight
     LandauAddition model left (model.successor right) =
       model.successor (LandauAddition model left right) := by
   sorry
-
 /--
 `LandauAdditionIsAssociative` TODO
 
@@ -350,7 +346,6 @@ theorem LandauAdditionIsAssociative
     (model : PeanoSystem Element SetObject) :
     LRA.Operation.Laws.Associative.Associative (LandauAddition model) := by
   sorry
-
 /--
 `LandauAdditionIsCommutative` TODO
 
@@ -393,5 +388,4 @@ theorem LandauAdditionIsCommutative
     (model : PeanoSystem Element SetObject) :
     LRA.Operation.Laws.Commutative.Commutative (LandauAddition model) := by
   sorry
-
 end LRA.NumberSystems.NaturalNumbers.Constructions.Landau

@@ -20,11 +20,7 @@ def NonemptyZFCSets : LRA.Set.LRA_Set ZFCSet := {A | ∃ x, x ∈ A}
 
 theorem nonemptyZFCSetsClosedUnderUnion :
     ∀ A B, A ∈ NonemptyZFCSets → B ∈ NonemptyZFCSets → A * B ∈ NonemptyZFCSets := by
-  -- Needs the union axiom's membership characterization (`x ∈ A ∪ B ↔ x ∈ A ∨ x ∈ B`,
-  -- i.e. `TheUnionOverIsUnionOf` unfolded to the pair case), which is still open
-  -- elsewhere in the ZFCSet tree — not something to resolve from Magma's own audit.
   sorry
-
 noncomputable instance : Mul {A // A ∈ NonemptyZFCSets} :=
   Magma.Constructions.ClosedSubsetMul nonemptyZFCSetsClosedUnderUnion
 

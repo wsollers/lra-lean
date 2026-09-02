@@ -317,7 +317,6 @@ Related proof moves: TODO
 theorem ConstantSequenceConverges (c : ℝ) :
     ConvergesTo (fun _ : ℕ => c) c := by
   sorry
-
 /--
 `ReciprocalSequenceConvergesToZero` TODO
 
@@ -358,7 +357,6 @@ Related proof moves: TODO
 theorem ReciprocalSequenceConvergesToZero :
     ConvergesTo (fun n : ℕ => 1 / (n : ℝ)) 0 := by
   sorry
-
 /--
 `NaturalNumberSequenceDiverges` TODO
 
@@ -399,5 +397,4 @@ Related proof moves: TODO
 theorem NaturalNumberSequenceDiverges :
     DivergesToPosInf (fun n : ℕ => (n : ℝ)) := by
   sorry
-
 end LRA.Analysis.Sequences

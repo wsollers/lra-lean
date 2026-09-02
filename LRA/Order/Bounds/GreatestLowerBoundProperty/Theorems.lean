@@ -69,5 +69,4 @@ theorem GreatestLowerBoundPropertyGivesUniqueInfimum
         forall other,
           Infimum relation subset other -> other = infimum := by
   sorry
-
 end LRA.Order

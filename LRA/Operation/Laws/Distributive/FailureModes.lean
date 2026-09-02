@@ -218,7 +218,6 @@ theorem NaturalAdditionFailsLeftDistributiveOverMultiplication :
       NaturalAdditionForDistributiveFailure
       NaturalMultiplicationForDistributiveFailure := by
   sorry
-
 /--
 `NaturalAdditionFailsRightDistributiveOverMultiplication` TODO
 
@@ -263,5 +262,4 @@ theorem NaturalAdditionFailsRightDistributiveOverMultiplication :
       NaturalAdditionForDistributiveFailure
       NaturalMultiplicationForDistributiveFailure := by
   sorry
-
 end LRA.Operation.Laws.Distributive

@@ -21,5 +21,4 @@ def genericTheory (M : NaturalNumberModel) : Prop :=
 positive-commutative-semiring laws `NaturalNumbersTheory` states. -/
 theorem satisfiesModelTheory (M : NaturalNumberModel) : genericTheory M := by
   sorry
-
 end LRA.NumberSystems.NaturalNumbers.Interface.ModelTheory

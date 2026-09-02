@@ -23,7 +23,6 @@ abbrev PresburgerSuccOn (model : PresburgerModel Element SetObject) :
 theorem PresburgerNonemptyOn (model : PresburgerModel Element SetObject) :
     Nonempty Element := by
   sorry
-
 noncomputable abbrev PresburgerAddOn (model : PresburgerModel Element SetObject) :
     Add Element :=
   ⟨PresburgerAddition model⟩
@@ -34,20 +33,17 @@ theorem PresburgerAdditiveSemigroupLawsOn
     let _ : Nonempty Element := PresburgerNonemptyOn model
     AdditiveSemigroupLaws Element := by
   sorry
-
 theorem PresburgerAdditiveIdentityLawsOn
     (model : PresburgerModel Element SetObject) :
     let _ : Add Element := PresburgerAddOn model
     let _ : OfNat Element 0 := PresburgerZeroOn model
     AdditiveIdentityLaws Element := by
   sorry
-
 theorem PresburgerAdditiveCommutativeLawsOn
     (model : PresburgerModel Element SetObject) :
     let _ : Add Element := PresburgerAddOn model
     AdditiveCommutativeLaws Element := by
   sorry
-
 theorem PresburgerAdditiveMonoidLawsOn
     (model : PresburgerModel Element SetObject) :
     let _ : Add Element := PresburgerAddOn model
@@ -55,5 +51,4 @@ theorem PresburgerAdditiveMonoidLawsOn
     let _ : Nonempty Element := PresburgerNonemptyOn model
     AdditiveMonoidLaws Element := by
   sorry
-
 end LRA.NumberSystems.NaturalNumbers.Constructions.Presburger

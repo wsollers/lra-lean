@@ -126,5 +126,4 @@ Related proof moves: TODO
 theorem SameParityAdditionCongruence :
     BinaryOperationCongruence SameParityForCongruenceExample NaturalAddition := by
   sorry
-
 end LRA.UniversalAlgebra.Congruence

@@ -53,5 +53,4 @@ theorem induction_on_representatives
         motive (Quotient.mk _ representative)) :
     ∀ value : Carrier rational_data, motive value := by
   sorry
-
 end LRA.NumberSystems.RationalNumbers.RationalQuotientFractions

@@ -44,7 +44,6 @@ Related proof moves: constructor, .mp, .mpr
 theorem DivergesToPosInfIffTendstoAtTop (x : LRA.Analysis.Sequences.RealSequence) :
     LRA.Analysis.Sequences.DivergesToPosInf x ↔ Filter.Tendsto x Filter.atTop Filter.atTop := by
   sorry
-
 /--
 `DivergesToNegInfIffTendstoAtBot` TODO
 
@@ -85,5 +84,4 @@ Related proof moves: constructor, .mp, .mpr
 theorem DivergesToNegInfIffTendstoAtBot (x : LRA.Analysis.Sequences.RealSequence) :
     LRA.Analysis.Sequences.DivergesToNegInf x ↔ Filter.Tendsto x Filter.atTop Filter.atBot := by
   sorry
-
 end LRA.Analysis.Sequences.Interop.Mathlib

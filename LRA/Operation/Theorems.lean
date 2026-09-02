@@ -52,7 +52,6 @@ theorem EndomapCompositionAssociative (Carrier : Type u) :
     LRA.Operation.Laws.Associative.Associative
       (EndomapComposition Carrier) := by
   sorry
-
 /--
 `EndomapCompositionIdentity` TODO
 
@@ -97,7 +96,6 @@ theorem EndomapCompositionIdentity (Carrier : Type u) :
       (EndomapComposition Carrier)
       (EndomapIdentity Carrier) := by
   sorry
-
 /--
 `BijectiveEndomapHasCompositionInverse` TODO
 
@@ -148,7 +146,6 @@ theorem BijectiveEndomapHasCompositionInverse
       EndomapComposition Carrier inverse map = EndomapIdentity Carrier ∧
         EndomapComposition Carrier map inverse = EndomapIdentity Carrier := by
   sorry
-
 end EndomapComposition
 
 section PointwiseOperations
@@ -203,7 +200,6 @@ theorem PointwiseAssociative
     LRA.Operation.Laws.Associative.Associative
       (PointwiseBinaryOperation (Domain := Domain) operation) := by
   sorry
-
 /--
 `PointwiseTwoSidedIdentity` TODO
 
@@ -256,7 +252,6 @@ theorem PointwiseTwoSidedIdentity
       (PointwiseBinaryOperation (Domain := Domain) operation)
       (fun _input : Domain => identity) := by
   sorry
-
 /--
 `PointwiseTwoSidedInverse` TODO
 
@@ -315,7 +310,6 @@ theorem PointwiseTwoSidedInverse
       (fun _input : Domain => identity)
       (PointwiseUnaryOperation (Domain := Domain) inverse) := by
   sorry
-
 end PointwiseOperations
 
 end LRA.Operation

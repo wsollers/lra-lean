@@ -47,7 +47,6 @@ theorem RelationIncludedInSymmetricClosure
     {Alpha : Type u} (relation : Endorelation Alpha) :
     RelationIncluded relation (SymmetricClosure relation) := by
   sorry
-
 /--
 `SymmetricClosureIsSymmetric` TODO
 
@@ -90,7 +89,6 @@ theorem SymmetricClosureIsSymmetric
     {Alpha : Type u} (relation : Endorelation Alpha) :
     Symmetric (SymmetricClosure relation) := by
   sorry
-
 /--
 `SymmetricClosureIsLeast` TODO
 
@@ -137,5 +135,4 @@ theorem SymmetricClosureIsLeast
     (targetSymmetric : Symmetric target) :
     RelationIncluded (SymmetricClosure relation) target := by
   sorry
-
 end LRA.Relation

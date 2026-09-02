@@ -50,7 +50,6 @@ theorem MonotoneHasOneSidedLimits (f : ℝ → ℝ) (I : Set ℝ)
     (∃ L, ∀ ε > 0, ∃ δ > 0, ∀ x ∈ I, c - δ < x → x < c → |f x - L| < ε) ∧
     (∃ L, ∀ ε > 0, ∃ δ > 0, ∀ x ∈ I, c < x → x < c + δ → |f x - L| < ε) := by
   sorry
-
 /--
 `MonotoneContinuousIffOneSidedLimitsAgree` TODO
 
@@ -97,7 +96,6 @@ theorem MonotoneContinuousIffOneSidedLimitsAgree (f : ℝ → ℝ) (I : Set ℝ)
       (∀ ε > 0, ∃ δ > 0, ∀ x ∈ I, c - δ < x → x < c → |f x - f c| < ε) ∧
       (∀ ε > 0, ∃ δ > 0, ∀ x ∈ I, c < x → x < c + δ → |f x - f c| < ε) := by
   sorry
-
 /--
 `JumpOf` TODO
 
@@ -188,7 +186,6 @@ theorem MonotoneDiscontinuitiesAreJumps (f : ℝ → ℝ) (I : Set ℝ)
     (hdisc : PointOfDiscontinuity f I c) :
     ∃ J > 0, JumpOf f I c J := by
   sorry
-
 /--
 `JumpIntervalsDisjoint` TODO
 
@@ -241,7 +238,6 @@ theorem JumpIntervalsDisjoint (f : ℝ → ℝ) (I : Set ℝ)
       (Set.Ioc c₁ (c₁ + J₁))
       (Set.Ioc c₂ (c₂ + J₂)) := by
   sorry
-
 /--
 `MonotoneDiscontinuitiesCountable` TODO
 
@@ -284,7 +280,6 @@ theorem MonotoneDiscontinuitiesCountable (f : ℝ → ℝ) (I : Set ℝ)
     (hI : I.OrdConnected) (hmono : MonotoneOn f I) :
     Set.Countable {c : ℝ | c ∈ I ∧ PointOfDiscontinuity f I c} := by
   sorry
-
 /--
 `ContinuousInjectiveIffStrictMono` TODO
 
@@ -327,7 +322,6 @@ theorem ContinuousInjectiveIffStrictMono (f : ℝ → ℝ) (I : Set ℝ)
     (hI : I.OrdConnected) (hf : ContinuousOn' f I) :
     Set.InjOn f I ↔ StrictMonoOn f I ∨ StrictAntiOn f I := by
   sorry
-
 /--
 `ContinuousInverseTheorem` TODO
 
@@ -372,7 +366,6 @@ theorem ContinuousInverseTheorem (f : ℝ → ℝ) (I : Set ℝ)
     (finv : ℝ → ℝ) (hfinv : ∀ x ∈ I, finv (f x) = x) :
     ContinuousOn' finv (f '' I) := by
   sorry
-
 /--
 `LimsupAt` TODO
 
@@ -507,7 +500,6 @@ theorem TendstoIffLimsupAndLiminf (f : ℝ → ℝ) (A : Set ℝ) (c L : ℝ) :
     (∀ ε > 0, ∃ δ > 0, ∀ x ∈ A, 0 < |x - c| → |x - c| < δ → |f x - L| < ε) ↔
       LimsupAt f A c L ∧ LiminfAt f A c L := by
   sorry
-
 /--
 `LiminfLeLimsup` TODO
 
@@ -550,5 +542,4 @@ theorem LiminfLeLimsup (f : ℝ → ℝ) (A : Set ℝ) (c L₁ L₂ : ℝ)
     (hInf : LiminfAt f A c L₁) (hSup : LimsupAt f A c L₂) :
     L₁ ≤ L₂ := by
   sorry
-
 end LRA.Analysis.Continuity

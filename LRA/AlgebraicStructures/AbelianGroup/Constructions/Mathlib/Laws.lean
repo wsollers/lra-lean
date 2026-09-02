@@ -9,5 +9,4 @@ universe u
 
 instance {R : Type u} [_root_.AddCommGroup R] [Nonempty R] : AbelianGroupLaws R := by
   sorry
-
 end LRA.AlgebraicStructures

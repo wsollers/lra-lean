@@ -55,7 +55,6 @@ theorem DenseOrderOfStrictPartIffDense
     DenseOrder (StrictPart relation) ↔
       LRA.Relation.Dense (StrictPart relation) := by
   sorry
-
 /--
 `DenseOrderHasNoCovers` TODO
 
@@ -102,5 +101,4 @@ theorem DenseOrderHasNoCovers
     (strictRelationIsDenseOrder : DenseOrder strictRelation) :
     forall lower upper, Not (CoverRelation strictRelation lower upper) := by
   sorry
-
 end LRA.Order

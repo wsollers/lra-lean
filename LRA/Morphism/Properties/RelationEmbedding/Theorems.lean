@@ -55,7 +55,6 @@ theorem PreservesAndReflectsRelation.preserves
     (law : PreservesAndReflectsRelation function sourceRelation targetRelation) :
     PreservesRelation function sourceRelation targetRelation := by
   sorry
-
 /--
 `PreservesAndReflectsRelation.reflects` TODO
 
@@ -98,7 +97,6 @@ theorem PreservesAndReflectsRelation.reflects
     (law : PreservesAndReflectsRelation function sourceRelation targetRelation) :
     ReflectsRelation function sourceRelation targetRelation := by
   sorry
-
 /--
 `RelationEmbedding.injective` TODO
 
@@ -141,7 +139,6 @@ theorem RelationEmbedding.injective
     (embedding : RelationEmbedding function sourceRelation targetRelation) :
     LRA.Function.Injective function := by
   sorry
-
 /--
 `RelationEmbedding.preserves_and_reflects` TODO
 
@@ -184,7 +181,6 @@ theorem RelationEmbedding.preserves_and_reflects
     (embedding : RelationEmbedding function sourceRelation targetRelation) :
     PreservesAndReflectsRelation function sourceRelation targetRelation := by
   sorry
-
 /--
 `RelationEmbedding.preserves` TODO
 
@@ -227,7 +223,6 @@ theorem RelationEmbedding.preserves
     (embedding : RelationEmbedding function sourceRelation targetRelation) :
     PreservesRelation function sourceRelation targetRelation := by
   sorry
-
 /--
 `RelationEmbedding.reflects` TODO
 
@@ -270,7 +265,6 @@ theorem RelationEmbedding.reflects
     (embedding : RelationEmbedding function sourceRelation targetRelation) :
     ReflectsRelation function sourceRelation targetRelation := by
   sorry
-
 end RelationEmbedding
 
 end LRA.Morphism

@@ -10,5 +10,4 @@ candidate fails to be even a *left* identity, let alone two-sided. -/
 theorem rpsHasNoIdentity :
     ¬ ∃ e : RPS, TwoSidedIdentity (fun a b : RPS => a * b) e := by
   sorry
-
 end LRA.AlgebraicStructures.Magma.Examples

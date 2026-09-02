@@ -138,7 +138,6 @@ theorem LandauExponentiationClauses
       (fun base value => LandauMultiplication model value base)
       (LandauExponentiation model) := by
   sorry
-
 /--
 `LandauExponentiationWellDefined` TODO
 
@@ -213,7 +212,6 @@ theorem LandauExponentiationWellDefined
           otherExponentiation ->
         otherExponentiation = exponentiation := by
   sorry
-
 /--
 `LandauExponentiationWithOne` TODO
 
@@ -258,7 +256,6 @@ theorem LandauExponentiationWithOne
     (base : Element) :
     LandauExponentiation model base model.base = base := by
   sorry
-
 /--
 `LandauExponentiationSuccessorOnRight` TODO
 
@@ -305,5 +302,4 @@ theorem LandauExponentiationSuccessorOnRight
     LandauExponentiation model base (model.successor exponent) =
       LandauMultiplication model (LandauExponentiation model base exponent) base := by
   sorry
-
 end LRA.NumberSystems.NaturalNumbers.Constructions.Landau

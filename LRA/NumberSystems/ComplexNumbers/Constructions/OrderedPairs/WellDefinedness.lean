@@ -54,7 +54,6 @@ theorem norm_squared_ne_zero_of_nonzero
     (value : ComplexNumber R) (value_nonzero : value ≠ 0) :
     normSquared value ≠ (0 : R) := by
   sorry
-
 end FieldTheorems
 
 end LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs

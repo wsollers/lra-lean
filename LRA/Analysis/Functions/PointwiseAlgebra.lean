@@ -397,7 +397,6 @@ theorem FunctionAlgebraClosure (f g : ℝ → ℝ) (lam : ℝ) (A : Set ℝ) :
       (∀ x ∈ A, PointwiseMax f g x = max (f x) (g x)) ∧
       (∀ x ∈ A, PointwiseMin f g x = min (f x) (g x)) := by
   sorry
-
 /--
 `FunctionQuotientClosure` TODO
 
@@ -438,7 +437,6 @@ Related proof moves: intro
 theorem FunctionQuotientClosure (f g : ℝ → ℝ) (A : Set ℝ)
     (h : ∀ x ∈ A, g x ≠ 0) : ∀ x ∈ A, PointwiseQuotient f g x = f x / g x := by
   sorry
-
 /--
 `PointwiseMaxMinAbsoluteValueFormulas` TODO
 
@@ -481,7 +479,6 @@ theorem PointwiseMaxMinAbsoluteValueFormulas (f g : ℝ → ℝ) (A : Set ℝ) :
     ∀ x ∈ A, PointwiseMax f g x = (f x + g x + |f x - g x|) / 2 ∧
       PointwiseMin f g x = (f x + g x - |f x - g x|) / 2 := by
   sorry
-
 /--
 `PointwiseMaxMinBounds` TODO
 
@@ -524,7 +521,6 @@ theorem PointwiseMaxMinBounds (f g : ℝ → ℝ) (A : Set ℝ) :
     ∀ x ∈ A, PointwiseMin f g x ≤ f x ∧ f x ≤ PointwiseMax f g x ∧
       PointwiseMin f g x ≤ g x ∧ g x ≤ PointwiseMax f g x := by
   sorry
-
 /--
 `QuotientUndefinedWhenDenominatorVanishes` TODO
 
@@ -567,5 +563,4 @@ theorem QuotientUndefinedWhenDenominatorVanishes (f g : ℝ → ℝ)
     (A : Set ℝ) (x₀ : ℝ) (hx₀ : x₀ ∈ A) (hg : g x₀ = 0) :
     ¬ (∀ x ∈ A, g x ≠ 0) := by
   sorry
-
 end LRA.Analysis.Functions

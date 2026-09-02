@@ -481,5 +481,4 @@ Related proof moves: TODO
 theorem OrderedFieldIsomorphismHolds :
     OrderedFieldIsomorphism dyadicData := by
   sorry
-
 end LRA.NumberSystems.RealNumbers.Dyadic

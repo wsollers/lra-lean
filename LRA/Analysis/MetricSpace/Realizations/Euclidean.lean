@@ -129,7 +129,6 @@ Related proof moves: intro
 theorem MathlibRnExt {n : ℕ} {x y : MathlibRn n}
     (h : ∀ i : Fin n, coordinates x i = coordinates y i) : x = y := by
   sorry
-
 /--
 `EuclideanRnMetric` TODO
 

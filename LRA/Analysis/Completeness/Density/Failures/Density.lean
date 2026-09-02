@@ -52,5 +52,4 @@ theorem IntersectionOfDenseRationalsAndIrrationalsIsNotOrderDense :
       ¬ IsOrderDenseSubset
           (Set.range ((↑) : ℚ → ℝ) ∩ {x : ℝ | ¬ IsRational x}) := by
   sorry
-
 end LRA.Analysis.Completeness

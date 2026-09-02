@@ -168,7 +168,6 @@ theorem LittleOQuotientCharacterization (f g : ℝ → ℝ) (a : ℝ)
     IsLittleOAt f g a ↔
       Filter.Tendsto (fun x => f x / g x) (nhdsWithin a {a}ᶜ) (nhds 0) := by
   sorry
-
 /--
 `LittleOSumRule` TODO
 
@@ -211,7 +210,6 @@ theorem LittleOSumRule (f1 f2 g : ℝ → ℝ) (a : ℝ)
     (h1 : IsLittleOAt f1 g a) (h2 : IsLittleOAt f2 g a) :
     IsLittleOAt (fun x => f1 x + f2 x) g a := by
   sorry
-
 /--
 `LittleOBoundedFactorRule` TODO
 
@@ -256,5 +254,4 @@ theorem LittleOBoundedFactorRule (f g m : ℝ → ℝ) (a : ℝ)
     (hm : ∃ M > 0, ∃ η > 0, ∀ x, 0 < |x - a| → |x - a| < η → |m x| ≤ M) :
     IsLittleOAt (fun x => m x * f x) g a := by
   sorry
-
 end LRA.Analysis.RealAnalysis

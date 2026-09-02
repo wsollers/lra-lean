@@ -23,5 +23,4 @@ def genericTheory (M : IntegerModel) : Prop :=
 `IntegersTheory` states. -/
 theorem satisfiesModelTheory (M : IntegerModel) : genericTheory M := by
   sorry
-
 end LRA.NumberSystems.Integers.Interface.ModelTheory

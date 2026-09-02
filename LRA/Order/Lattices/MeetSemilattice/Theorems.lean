@@ -52,5 +52,4 @@ theorem MeetSemilatticeHasMeet
     (left right : Alpha) :
     exists meet, Meet relation left right meet := by
   sorry
-
 end LRA.Order

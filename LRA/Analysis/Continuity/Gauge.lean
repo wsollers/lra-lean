@@ -233,7 +233,6 @@ theorem CousinsTheorem (a b : ℝ) (hab : a ≤ b) (δ : ℝ → ℝ)
     (hδ : IsGauge a b δ) :
     ∃ P : TaggedPartition a b, IsDeltaFine P δ := by
   sorry
-
 /--
 `MeshOf` TODO
 
@@ -396,7 +395,6 @@ Related proof moves: TODO
 theorem CommonRefinementExists {a b : ℝ} (P₁ P₂ : IntervalPartition a b) :
     HasCommonRefinement P₁ P₂ := by
   sorry
-
 /--
 `EveryPointCoveredByTag` TODO
 
@@ -437,5 +435,4 @@ Related proof moves: intro, use, rcases
 theorem EveryPointCoveredByTag {a b : ℝ} (P : TaggedPartition a b) :
     ∀ x ∈ Set.Icc a b, ∃ i : Fin P.n, x ∈ Set.Icc (P.points i.castSucc) (P.points i.succ) := by
   sorry
-
 end LRA.Analysis.Continuity

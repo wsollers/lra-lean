@@ -50,7 +50,6 @@ theorem Asymmetric.implies_irreflexive
     (asymmetric : Asymmetric relation) :
     Irreflexive relation := by
   sorry
-
 /--
 `Irreflexive.transitive_implies_asymmetric` TODO
 
@@ -99,7 +98,6 @@ theorem Irreflexive.transitive_implies_asymmetric
     (transitive : Transitive relation) :
     Asymmetric relation := by
   sorry
-
 /--
 `Asymmetric.implies_antisymmetric` TODO
 
@@ -146,7 +144,6 @@ theorem Asymmetric.implies_antisymmetric
     (asymmetric : Asymmetric relation) :
     Antisymmetric relation := by
   sorry
-
 /--
 `Symmetric.antisymmetric_related_implies_equal` TODO
 
@@ -199,7 +196,6 @@ theorem Symmetric.antisymmetric_related_implies_equal
     (related : relation left right) :
     left = right := by
   sorry
-
 /--
 `Reflexive.asymmetric_contradiction_at` TODO
 
@@ -250,5 +246,4 @@ theorem Reflexive.asymmetric_contradiction_at
     (element : Alpha) :
     False := by
   sorry
-
 end LRA.Relation

@@ -14,5 +14,4 @@ laws still hold throughout `ℕ`). -/
 theorem divisibilityIsLattice :
     LRA.AlgebraicStructures.LatticeLaws Nat.lcm Nat.gcd := by
   sorry
-
 end LRA.AlgebraicStructures.Lattice.Examples

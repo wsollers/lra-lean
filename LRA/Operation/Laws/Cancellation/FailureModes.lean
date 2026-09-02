@@ -172,7 +172,6 @@ Related proof moves: TODO
 theorem NaturalMultiplicationFailsLeftCancellative :
     FailsLeftCancellative NaturalMultiplication := by
   sorry
-
 /--
 `NaturalMultiplicationFailsRightCancellative` TODO
 
@@ -213,7 +212,6 @@ Related proof moves: TODO
 theorem NaturalMultiplicationFailsRightCancellative :
     FailsRightCancellative NaturalMultiplication := by
   sorry
-
 /--
 `FailsLeftRegular` TODO
 
@@ -342,7 +340,6 @@ Related proof moves: TODO
 theorem NaturalZeroFailsLeftRegularUnderMultiplication :
     FailsLeftRegular NaturalMultiplication 0 := by
   sorry
-
 /--
 `NaturalZeroFailsRightRegularUnderMultiplication` TODO
 
@@ -383,5 +380,4 @@ Related proof moves: TODO
 theorem NaturalZeroFailsRightRegularUnderMultiplication :
     FailsRightRegular NaturalMultiplication 0 := by
   sorry
-
 end LRA.Operation.Laws.Cancellation

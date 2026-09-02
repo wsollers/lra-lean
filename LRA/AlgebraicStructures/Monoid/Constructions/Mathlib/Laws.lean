@@ -8,5 +8,4 @@ universe u
 
 instance {R : Type u} [_root_.Monoid R] [Nonempty R] : MonoidLaws R := by
   sorry
-
 end LRA.AlgebraicStructures

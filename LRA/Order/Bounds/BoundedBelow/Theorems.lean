@@ -61,7 +61,6 @@ theorem BoundedBelowOfSubcollection
     (largerIsBoundedBelow : BoundedBelow relation larger) :
     BoundedBelow relation smaller := by
   sorry
-
 /--
 `UnionBoundedBelowIffPiecesBoundedBelow` TODO
 
@@ -124,7 +123,6 @@ theorem UnionBoundedBelowIffPiecesBoundedBelow
       BoundedBelow relation leftSubset /\
         BoundedBelow relation rightSubset := by
   sorry
-
 /--
 `IntersectionBoundedBelow` TODO
 
@@ -185,7 +183,6 @@ theorem IntersectionBoundedBelow
         BoundedBelow relation rightSubset) :
     BoundedBelow relation (leftSubset ∩ rightSubset) := by
   sorry
-
 /--
 `DifferenceBoundedBelow` TODO
 
@@ -242,7 +239,6 @@ theorem DifferenceBoundedBelow
     (subsetIsBoundedBelow : BoundedBelow relation subset) :
     BoundedBelow relation (subset \ removed) := by
   sorry
-
 /--
 `SymmetricDifferenceBoundedBelow` TODO
 
@@ -305,5 +301,4 @@ theorem SymmetricDifferenceBoundedBelow
     (rightIsBoundedBelow : BoundedBelow relation rightSubset) :
     BoundedBelow relation (leftSubset ∆ rightSubset) := by
   sorry
-
 end LRA.Order

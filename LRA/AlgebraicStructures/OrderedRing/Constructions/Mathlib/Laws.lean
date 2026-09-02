@@ -10,5 +10,4 @@ universe u
 instance {R : Type u} [_root_.Ring R] [_root_.PartialOrder R]
     [_root_.IsOrderedRing R] [Nonempty R] : OrderedRingLaws R := by
   sorry
-
 end LRA.AlgebraicStructures

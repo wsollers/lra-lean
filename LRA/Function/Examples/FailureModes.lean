@@ -41,7 +41,6 @@ Related proof moves: TODO
 -/
 theorem CollapseHasCollision : HasCollision collapse := by
   sorry
-
 /--
 `CollapseNotInjective` TODO
 
@@ -80,7 +79,6 @@ Related proof moves: TODO
 -/
 theorem CollapseNotInjective : ¬ Injective collapse := by
   sorry
-
 /--
 `ShiftMissesZero` TODO
 
@@ -119,7 +117,6 @@ Related proof moves: TODO
 -/
 theorem ShiftMissesZero : MissesValue shift := by
   sorry
-
 /--
 `ShiftNotSurjective` TODO
 
@@ -158,5 +155,4 @@ Related proof moves: TODO
 -/
 theorem ShiftNotSurjective : ¬ Surjective shift := by
   sorry
-
 end LRA.Function.Examples

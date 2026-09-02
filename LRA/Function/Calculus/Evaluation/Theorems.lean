@@ -46,7 +46,6 @@ theorem GraphRelatesValue {Domain : Type u} {Codomain : Type v}
     (function : LRA.Function Domain Codomain) (input : Domain) :
     Graph function input (function input) := by
   sorry
-
 /--
 `GraphOutputEqualsValue` TODO
 
@@ -93,7 +92,6 @@ theorem GraphOutputEqualsValue {Domain : Type u} {Codomain : Type v}
     (related : Graph function input output) :
     output = function input := by
   sorry
-
 /--
 `PointImageClassIffValue` TODO
 
@@ -140,7 +138,6 @@ theorem PointImageClassIffValue
     (input : Domain) (output : Codomain) :
     PointImageClass function input output ↔ output = function input := by
   sorry
-
 /--
 `FiberClassIffValue` TODO
 
@@ -187,7 +184,6 @@ theorem FiberClassIffValue
     (output : Codomain) (input : Domain) :
     FiberClass function output input ↔ output = function input := by
   sorry
-
 /--
 `RangeClassIffValue` TODO
 
@@ -236,7 +232,6 @@ theorem RangeClassIffValue
     RangeClass function output ↔
       ∃ input, output = function input := by
   sorry
-
 /--
 `ImageClassIffValue` TODO
 
@@ -287,7 +282,6 @@ theorem ImageClassIffValue
     ImageClass function source output ↔
       ∃ input, source input ∧ output = function input := by
   sorry
-
 /--
 `PreimageClassIffValue` TODO
 
@@ -338,5 +332,4 @@ theorem PreimageClassIffValue
     PreimageClass function target input ↔
       target (function input) := by
   sorry
-
 end LRA.Function

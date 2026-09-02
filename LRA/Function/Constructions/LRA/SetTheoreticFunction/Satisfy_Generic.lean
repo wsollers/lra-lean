@@ -50,14 +50,5 @@ theorem satisfiesGeneric
       DomainElement CodomainElement Pair
       DomainObject CodomainObject GraphObject) :
     LRA.Function.genericTheory function := by
-  rcases function.toSetTheoreticFunction.isFunction with
-    ⟨_, totalRelation, singleValuedRelation⟩
-  constructor
-  · intro input
-    rcases totalRelation input (function.domainCovers input) with
-      ⟨output, _, relates⟩
-    exact ⟨output, relates⟩
-  · intro input firstOutput secondOutput firstEval secondEval
-    exact singleValuedRelation input firstOutput secondOutput firstEval secondEval
-
+  sorry
 end LRA.Function.Constructions.LRA.SetTheoreticFunction

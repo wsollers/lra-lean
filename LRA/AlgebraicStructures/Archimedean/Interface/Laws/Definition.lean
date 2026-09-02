@@ -41,7 +41,6 @@ theorem MultiplesAreCofinal
     [Add R] [LT R] [OfNat R 0] [ArchimedeanLaw R] :
     forall x : R, 0 < x -> LRA.Order.Cofinal (· < · : R → R → Prop) (Multiples x) := by
   sorry
-
 end Wrappers
 
 end LRA.AlgebraicStructures

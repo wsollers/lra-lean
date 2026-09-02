@@ -41,7 +41,5 @@ Related proof moves: intro
 -/
 theorem symbolsWiringTest :
     forall Symbol : Type, Nonempty Symbol -> Nonempty Symbol := by
-  intro Symbol symbolIsNonempty
-  exact symbolIsNonempty
-
+  sorry
 end LRA.Logic.Language

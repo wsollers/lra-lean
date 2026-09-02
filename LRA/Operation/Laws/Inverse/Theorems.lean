@@ -56,7 +56,6 @@ theorem LeftInverse.apply {Carrier : Type u}
     (element : Carrier) :
     operation (inverse element) element = identity := by
   sorry
-
 /--
 `RightInverse.apply` TODO
 
@@ -107,7 +106,6 @@ theorem RightInverse.apply {Carrier : Type u}
     (element : Carrier) :
     operation element (inverse element) = identity := by
   sorry
-
 /--
 `LeftInverseOf.apply` TODO
 
@@ -154,7 +152,6 @@ theorem LeftInverseOf.apply {Carrier : Type u}
     (law : LeftInverseOf operation identity element inverse) :
     operation inverse element = identity := by
   sorry
-
 /--
 `RightInverseOf.apply` TODO
 
@@ -201,7 +198,6 @@ theorem RightInverseOf.apply {Carrier : Type u}
     (law : RightInverseOf operation identity element inverse) :
     operation element inverse = identity := by
   sorry
-
 /--
 `TwoSidedInverseOf.left` TODO
 
@@ -248,7 +244,6 @@ theorem TwoSidedInverseOf.left {Carrier : Type u}
     (law : TwoSidedInverseOf operation identity element inverse) :
     LeftInverseOf operation identity element inverse := by
   sorry
-
 /--
 `TwoSidedInverseOf.right` TODO
 
@@ -295,7 +290,6 @@ theorem TwoSidedInverseOf.right {Carrier : Type u}
     (law : TwoSidedInverseOf operation identity element inverse) :
     RightInverseOf operation identity element inverse := by
   sorry
-
 /--
 `TwoSidedInverseOf.of_left_right` TODO
 
@@ -344,7 +338,6 @@ theorem TwoSidedInverseOf.of_left_right {Carrier : Type u}
     (rightLaw : RightInverseOf operation identity element inverse) :
     TwoSidedInverseOf operation identity element inverse := by
   sorry
-
 /--
 `LeftInvertibleOn.apply` TODO
 
@@ -395,7 +388,6 @@ theorem LeftInvertibleOn.apply {Carrier : Type u}
     (eligible_element : eligible element) :
     ∃ inverse, LeftInverseOf operation identity element inverse := by
   sorry
-
 /--
 `RightInvertibleOn.apply` TODO
 
@@ -446,7 +438,6 @@ theorem RightInvertibleOn.apply {Carrier : Type u}
     (eligible_element : eligible element) :
     ∃ inverse, RightInverseOf operation identity element inverse := by
   sorry
-
 /--
 `TwoSidedInvertibleOn.apply` TODO
 
@@ -497,7 +488,6 @@ theorem TwoSidedInvertibleOn.apply {Carrier : Type u}
     (eligible_element : eligible element) :
     ∃ inverse, TwoSidedInverseOf operation identity element inverse := by
   sorry
-
 /--
 `TwoSidedInverse.left` TODO
 
@@ -546,7 +536,6 @@ theorem TwoSidedInverse.left {Carrier : Type u}
     (law : TwoSidedInverse operation identity inverse) :
     LeftInverse operation identity inverse := by
   sorry
-
 /--
 `TwoSidedInverse.right` TODO
 
@@ -595,7 +584,6 @@ theorem TwoSidedInverse.right {Carrier : Type u}
     (law : TwoSidedInverse operation identity inverse) :
     RightInverse operation identity inverse := by
   sorry
-
 /--
 `TwoSidedInverse.of_left_right` TODO
 
@@ -646,5 +634,4 @@ theorem TwoSidedInverse.of_left_right {Carrier : Type u}
     (rightLaw : RightInverse operation identity inverse) :
     TwoSidedInverse operation identity inverse := by
   sorry
-
 end LRA.Operation.Laws.Inverse

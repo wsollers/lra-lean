@@ -15,7 +15,6 @@ theorem satisfiesCommutativeRing
     [CommutativeRingLaws R] :
     CommutativeRingLaws (ComplexNumber R) := by
   sorry
-
 /-- The ordered-pairs complex-number construction canonically realizes field
 structure over an ordered-field base. -/
 theorem satisfiesField
@@ -24,5 +23,4 @@ theorem satisfiesField
     [OrderedFieldLaws R] :
     FieldLaws (ComplexNumber R) := by
   sorry
-
 end LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs

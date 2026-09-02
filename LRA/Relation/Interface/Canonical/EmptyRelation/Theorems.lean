@@ -45,5 +45,4 @@ Related proof moves: TODO
 theorem EmptyRelationIsRightUnique {Domain : Type u} {Codomain : Type v} :
     RightUnique (fun _input : Domain => fun _output : Codomain => False) := by
   sorry
-
 end LRA.Relation

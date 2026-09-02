@@ -140,8 +140,8 @@ Related proof moves: TODO
 
 -/
 theorem LogicalConnectives.negIsUnary :
-    LogicalConnectives.IsUnary .neg := rfl
-
+    LogicalConnectives.IsUnary .neg := by
+  sorry
 /--
 `LogicalConnectives.implIsBinary` TODO
 
@@ -180,8 +180,8 @@ Related proof moves: TODO
 
 -/
 theorem LogicalConnectives.implIsBinary :
-    LogicalConnectives.IsBinary .impl := rfl
-
+    LogicalConnectives.IsBinary .impl := by
+  sorry
 /--
 `LogicalEquality` TODO
 
@@ -312,8 +312,8 @@ Related proof moves: TODO
 
 -/
 theorem LogicalEqualitySymbols.eqIsBinary :
-    LogicalEqualitySymbols.IsBinary .eq := rfl
-
+    LogicalEqualitySymbols.IsBinary .eq := by
+  sorry
 /--
 `LogicalQuantifier` TODO
 

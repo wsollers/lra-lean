@@ -43,7 +43,6 @@ Related proof moves: TODO
 -/
 theorem pred_succ (x : Z) : pred (succ x) = x := by
   sorry
-
 /--
 `succ_pred` TODO
 
@@ -82,7 +81,6 @@ Related proof moves: TODO
 -/
 theorem succ_pred (x : Z) : succ (pred x) = x := by
   sorry
-
 /--
 `recP` TODO
 
@@ -265,7 +263,6 @@ Related proof moves: intro
 theorem recZ_zero {α : Type} (a0 : α) (stepSucc stepPred : α → α) :
     recZ a0 stepSucc stepPred zero = a0 := by
   sorry
-
 /--
 `recZ_succ` TODO
 
@@ -310,7 +307,6 @@ theorem recZ_succ {α : Type} (a0 : α) (stepSucc stepPred : α → α)
     ∀ x : Z, recZ a0 stepSucc stepPred (succ x) =
       stepSucc (recZ a0 stepSucc stepPred x) := by
   sorry
-
 /--
 `recZ_pred` TODO
 
@@ -355,7 +351,6 @@ theorem recZ_pred {α : Type} (a0 : α) (stepSucc stepPred : α → α)
     ∀ x : Z, recZ a0 stepSucc stepPred (pred x) =
       stepPred (recZ a0 stepSucc stepPred x) := by
   sorry
-
 /--
 `recursion_exists` TODO
 
@@ -406,7 +401,6 @@ theorem recursion_exists {α : Type} (a0 : α) (stepSucc stepPred : α → α)
       (∀ x, h (succ x) = stepSucc (h x)) ∧
       (∀ x, h (pred x) = stepPred (h x)) := by
   sorry
-
 /--
 `succ_injective` TODO
 
@@ -445,7 +439,6 @@ Related proof moves: TODO
 -/
 theorem succ_injective {x y : Z} (successorEquality : succ x = succ y) : x = y := by
   sorry
-
 /--
 `pred_injective` TODO
 
@@ -484,7 +477,6 @@ Related proof moves: TODO
 -/
 theorem pred_injective {x y : Z} (predecessorEquality : pred x = pred y) : x = y := by
   sorry
-
 /--
 `twoSidedInduction` TODO
 
@@ -533,7 +525,6 @@ theorem twoSidedInduction
     (predStep : ∀ x, A x → A (pred x)) :
     ∀ x, A x := by
   sorry
-
 /--
 `recursion_unique` TODO
 
@@ -592,5 +583,4 @@ theorem recursion_unique {α : Type}
     (secondFunction_pred : ∀ x, secondFunction (pred x) = stepPred (secondFunction x)) :
     ∀ x, firstFunction x = secondFunction x := by
   sorry
-
 end LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor

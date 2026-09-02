@@ -17,7 +17,6 @@ theorem satisfiesAdditiveCommutativeSemigroup
     let _ : Nonempty Element := PresburgerNonemptyOn model
     AdditiveCommutativeSemigroupLaws Element := by
   sorry
-
 /-- The 0-based Presburger construction canonically realizes additive monoid
 structure. -/
 theorem satisfiesAdditiveMonoid
@@ -27,5 +26,4 @@ theorem satisfiesAdditiveMonoid
     let _ : Nonempty Element := PresburgerNonemptyOn model
     AdditiveMonoidLaws Element := by
   sorry
-
 end LRA.NumberSystems.NaturalNumbers.Constructions.Presburger

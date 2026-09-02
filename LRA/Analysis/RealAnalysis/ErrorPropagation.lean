@@ -121,7 +121,6 @@ theorem AbsoluteErrorSum (x y xTilde yTilde : ℝ) :
     AbsoluteError (x + y) (xTilde + yTilde) ≤
       AbsoluteError x xTilde + AbsoluteError y yTilde := by
   sorry
-
 /--
 `AbsoluteErrorProduct` TODO
 
@@ -166,7 +165,6 @@ theorem AbsoluteErrorProduct (x y xTilde yTilde : ℝ) :
       |xTilde| * AbsoluteError y yTilde + |yTilde| * AbsoluteError x xTilde +
       AbsoluteError x xTilde * AbsoluteError y yTilde := by
   sorry
-
 /--
 `AbsoluteErrorQuotient` TODO
 
@@ -215,7 +213,6 @@ theorem AbsoluteErrorQuotient (x y xTilde yTilde : ℝ)
       (|xTilde| * AbsoluteError y yTilde + |yTilde| * AbsoluteError x xTilde)
         / yTilde ^ 2 * (1 / (1 - RelativeError y yTilde)) := by
   sorry
-
 /--
 `RelativeErrorProduct` TODO
 
@@ -262,7 +259,6 @@ theorem RelativeErrorProduct (x y xTilde yTilde : ℝ)
       RelativeError x xTilde + RelativeError y yTilde +
       RelativeError x xTilde * RelativeError y yTilde := by
   sorry
-
 /--
 `RelativeErrorQuotient` TODO
 
@@ -311,5 +307,4 @@ theorem RelativeErrorQuotient (x y xTilde yTilde : ℝ)
       (RelativeError x xTilde + RelativeError y yTilde) /
         (1 - RelativeError y yTilde) := by
   sorry
-
 end LRA.Analysis.RealAnalysis

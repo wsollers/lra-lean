@@ -53,7 +53,6 @@ theorem FractionalPartialSumsAreCauchy
       dyadicData.AbsoluteValueData
       (FractionalPartialSum dyadicData digits) := by
   sorry
-
 /--
 `FractionalValue` TODO
 
@@ -322,7 +321,6 @@ theorem RepresentationExists
     ∃ expansion : Expansion,
       Value dyadicData expansion = realValue := by
   sorry
-
 /--
 `ValueIsInjective` TODO
 
@@ -365,7 +363,6 @@ theorem ValueIsInjective :
     ∀ first second : Expansion,
       Value dyadicData first = Value dyadicData second → first = second := by
   sorry
-
 /--
 `ValueIsBijective` TODO
 
@@ -414,7 +411,6 @@ theorem ValueIsBijective :
     (∀ first second : Expansion,
       Value dyadicData first = Value dyadicData second → first = second) := by
   sorry
-
 /--
 `Bijection` TODO
 
@@ -513,7 +509,6 @@ theorem BinaryRealBijectionExists :
       ∀ expansion : Expansion,
         bridge.Forward expansion = Value dyadicData expansion := by
   sorry
-
 /--
 `BinaryRealBijection` TODO
 

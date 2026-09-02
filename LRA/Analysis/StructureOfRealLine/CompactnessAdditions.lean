@@ -171,7 +171,6 @@ theorem ClosedSubsetOfCompactIsCompact
     (F K : Set ℝ) (hFK : F ⊆ K) (hF : IsClosedR F) (hK : IsCompactR K) :
     IsCompactR F := by
   sorry
-
 /--
 `IsSeqCompactR` TODO
 
@@ -256,5 +255,4 @@ Related proof moves: constructor, .mp, .mpr
 theorem SequentialCompactnessIffOpenCoverCompactness (K : Set ℝ) :
     IsSeqCompactR K ↔ IsCompactR K := by
   sorry
-
 end LRA.Analysis.StructureOfRealLine

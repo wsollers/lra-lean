@@ -47,7 +47,6 @@ Related proof moves: TODO
 theorem TendstoAdd (hf : TendsTo f A c Lf) (hg : TendsTo g A c Lg) :
     TendsTo (fun x => f x + g x) A c (Lf + Lg) := by
   sorry
-
 /--
 `TendstoSub` TODO
 
@@ -88,7 +87,6 @@ Related proof moves: TODO
 theorem TendstoSub (hf : TendsTo f A c Lf) (hg : TendsTo g A c Lg) :
     TendsTo (fun x => f x - g x) A c (Lf - Lg) := by
   sorry
-
 /--
 `TendstoScalar` TODO
 
@@ -129,7 +127,6 @@ Related proof moves: TODO
 theorem TendstoScalar (hf : TendsTo f A c Lf) (α : ℝ) :
     TendsTo (fun x => α * f x) A c (α * Lf) := by
   sorry
-
 /--
 `TendstoMul` TODO
 
@@ -170,7 +167,6 @@ Related proof moves: TODO
 theorem TendstoMul (hf : TendsTo f A c Lf) (hg : TendsTo g A c Lg) :
     TendsTo (fun x => f x * g x) A c (Lf * Lg) := by
   sorry
-
 /--
 `TendstoDiv` TODO
 
@@ -213,7 +209,6 @@ theorem TendstoDiv (hf : TendsTo f A c Lf) (hg : TendsTo g A c Lg)
     (hLg : Lg ≠ 0) :
     TendsTo (fun x => f x / g x) A c (Lf / Lg) := by
   sorry
-
 end AlgebraOfLimits
 
 /--
@@ -260,5 +255,4 @@ theorem SqueezeFunctionLimits (f g h : ℝ → ℝ) (A : Set ℝ) (c L : ℝ)
     (hf : TendsTo f A c L) (hh : TendsTo h A c L) :
     TendsTo g A c L := by
   sorry
-
 end LRA.Analysis.Limits

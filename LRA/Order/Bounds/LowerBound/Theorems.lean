@@ -62,7 +62,6 @@ theorem LowerBoundOfEmpty
     (bound : Element) :
     LowerBound relation (∅ : SetObject) bound := by
   sorry
-
 /--
 `LowerBoundOfSubcollection` TODO
 
@@ -115,7 +114,6 @@ theorem LowerBoundOfSubcollection
     (boundIsLowerForLarger : LowerBound relation larger bound) :
     LowerBound relation smaller bound := by
   sorry
-
 /--
 `LowerBoundOfUnion` TODO
 
@@ -174,7 +172,6 @@ theorem LowerBoundOfUnion
     (boundIsLowerForRight : LowerBound relation rightSubset bound) :
     LowerBound relation (leftSubset ∪ rightSubset) bound := by
   sorry
-
 /--
 `LowerBoundOfUnionIff` TODO
 
@@ -233,7 +230,6 @@ theorem LowerBoundOfUnionIff
       LowerBound relation leftSubset bound /\
         LowerBound relation rightSubset bound := by
   sorry
-
 /--
 `LowerBoundOfIntersection` TODO
 
@@ -294,7 +290,6 @@ theorem LowerBoundOfIntersection
         LowerBound relation rightSubset bound) :
     LowerBound relation (leftSubset ∩ rightSubset) bound := by
   sorry
-
 /--
 `LowerBoundOfDifference` TODO
 
@@ -351,7 +346,6 @@ theorem LowerBoundOfDifference
     (boundIsLowerForSubset : LowerBound relation subset bound) :
     LowerBound relation (subset \ removed) bound := by
   sorry
-
 /--
 `LowerBoundOfSymmetricDifference` TODO
 
@@ -414,7 +408,6 @@ theorem LowerBoundOfSymmetricDifference
     (boundIsLowerForRight : LowerBound relation rightSubset bound) :
     LowerBound relation (leftSubset ∆ rightSubset) bound := by
   sorry
-
 /--
 `LowerBoundOfIndexedUnionIff` TODO
 
@@ -471,7 +464,6 @@ theorem LowerBoundOfIndexedUnionIff
     LowerBound relation (LRA.Set.HasIndexedUnion.indexedUnion family) bound ↔
       forall index, LowerBound relation (family index) bound := by
   sorry
-
 /--
 `LowerBoundOfIndexedIntersection` TODO
 
@@ -530,5 +522,4 @@ theorem LowerBoundOfIndexedIntersection
     LowerBound relation
       (LRA.Set.HasIndexedIntersection.indexedIntersection family) bound := by
   sorry
-
 end LRA.Order

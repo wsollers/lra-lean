@@ -52,5 +52,4 @@ theorem PreservesNullaryOperation.apply {Source : Type u} {Target : Type v}
     (law : PreservesNullaryOperation function sourceElement targetElement) :
     function sourceElement = targetElement := by
   sorry
-
 end LRA.Morphism

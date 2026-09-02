@@ -54,7 +54,6 @@ theorem LeftRightIdentitiesCoincide {Carrier : Type u}
     (rightLaw : RightIdentity operation rightIdentity) :
     leftIdentity = rightIdentity := by
   sorry
-
 /--
 `TwoSidedIdentityUnique` TODO
 
@@ -103,5 +102,4 @@ theorem TwoSidedIdentityUnique {Carrier : Type u}
     (secondLaw : TwoSidedIdentity operation secondIdentity) :
     firstIdentity = secondIdentity := by
   sorry
-
 end LRA.Operation.Laws.Identity

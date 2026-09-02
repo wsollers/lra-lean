@@ -60,7 +60,6 @@ theorem RelationComposition.associative
       RelationComposition
         (RelationComposition thirdRelation secondRelation) firstRelation := by
   sorry
-
 /--
 `RelationComposition.identity_left` TODO
 
@@ -105,7 +104,6 @@ theorem RelationComposition.identity_left
     (relation : HeterogeneousBinaryRelation Alpha Beta) :
     RelationComposition (IdentityRelation Beta) relation = relation := by
   sorry
-
 /--
 `RelationComposition.identity_right` TODO
 
@@ -150,7 +148,6 @@ theorem RelationComposition.identity_right
     (relation : HeterogeneousBinaryRelation Alpha Beta) :
     RelationComposition relation (IdentityRelation Alpha) = relation := by
   sorry
-
 /--
 `Converse.relationComposition` TODO
 
@@ -197,5 +194,4 @@ theorem Converse.relationComposition
     Converse (RelationComposition rightRelation leftRelation) =
       RelationComposition (Converse leftRelation) (Converse rightRelation) := by
   sorry
-
 end LRA.Relation

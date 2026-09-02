@@ -41,5 +41,4 @@ theorem satisfiesModelTheory
   reflexive := reflexive
   symmetric := symmetric
   transitive := transitive
-
 end LRA.Relation

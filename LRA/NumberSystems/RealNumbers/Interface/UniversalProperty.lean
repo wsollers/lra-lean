@@ -40,5 +40,4 @@ theorem CompleteOrderedFieldUnique (first second : CompleteOrderedField) :
       (∃ hom : CompleteOrderedFieldArrow first second, hom.map = comparison) ∧
         Function.Bijective comparison := by
   sorry
-
 end LRA.NumberSystems.RealNumbers

@@ -59,7 +59,6 @@ theorem ProperInfiniteSimpleContinuedFractionConverges
     ∃ limit : realExtension.RealModel.Carrier,
       ConvergentsConvergeTo rationalSystem realExtension fraction limit := by
   sorry
-
 /--
 `QuadraticIrrationalIffEventuallyPeriodicContinuedFraction` TODO
 
@@ -114,5 +113,4 @@ theorem QuadraticIrrationalIffEventuallyPeriodicContinuedFraction
           rationalSystem realExtension fraction value ∧
         IsEventuallyPeriodic fraction := by
   sorry
-
 end LRA.NumberSystems.RealNumbers.ContinuedFractions

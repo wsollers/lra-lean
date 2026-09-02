@@ -124,7 +124,6 @@ theorem addition_is_proper
       (representative_setoid rationalSystem absolute_value_data)
       (addition rationalSystem absolute_value_data) := by
   sorry
-
 /--
 `negation` TODO
 
@@ -241,7 +240,6 @@ theorem negation_is_proper
       (representative_setoid rationalSystem absolute_value_data)
       (negation rationalSystem absolute_value_data) := by
   sorry
-
 /--
 `multiplication` TODO
 
@@ -362,7 +360,6 @@ theorem multiplication_is_proper
       (representative_setoid rationalSystem absolute_value_data)
       (multiplication rationalSystem absolute_value_data) := by
   sorry
-
 open Classical in
 
 /--
@@ -483,7 +480,6 @@ theorem representative_inverse_is_cauchy
     is_cauchy rationalSystem absolute_value_data
       (representative_inverse rationalSystem absolute_value_data representative) := by
   sorry
-
 /--
 `inverse` TODO
 
@@ -600,7 +596,6 @@ theorem representative_inverse_respects_equivalence
           representative_inverse_is_cauchy
             rationalSystem absolute_value_data representative⟩) := by
   sorry
-
 /--
 `inverse_is_proper` TODO
 
@@ -655,7 +650,6 @@ theorem inverse_is_proper
       (representative_setoid rationalSystem absolute_value_data)
       (inverse rationalSystem absolute_value_data) := by
   sorry
-
 /--
 `constant_sequence` TODO
 
@@ -754,7 +748,6 @@ theorem constant_sequence_is_cauchy
     is_cauchy rationalSystem absolute_value_data
       (constant_sequence rationalSystem value) := by
   sorry
-
 /--
 `rational_embedding` TODO
 
@@ -903,7 +896,6 @@ theorem zero_sequence_is_cauchy
     (absolute_value_data : RationalMetricData rationalSystem) :
     is_cauchy rationalSystem absolute_value_data (zero_sequence rationalSystem) := by
   sorry
-
 /--
 `zero` TODO
 
@@ -1044,7 +1036,6 @@ theorem one_sequence_is_cauchy
     (absolute_value_data : RationalMetricData rationalSystem) :
     is_cauchy rationalSystem absolute_value_data (one_sequence rationalSystem) := by
   sorry
-
 /--
 `one` TODO
 
@@ -1209,7 +1200,6 @@ theorem representative_strict_order_trichotomous
         representative_equivalent rationalSystem absolute_value_data first second ∨
         representative_strict_order rationalSystem absolute_value_data second first := by
   sorry
-
 /--
 `representative_strict_order_transitive` TODO
 
@@ -1260,7 +1250,6 @@ theorem representative_strict_order_transitive
       representative_strict_order rationalSystem absolute_value_data second third →
       representative_strict_order rationalSystem absolute_value_data first third := by
   sorry
-
 /--
 `representative_addition_preserves_and_reflects_strict_order` TODO
 
@@ -1313,7 +1302,6 @@ theorem representative_addition_preserves_and_reflects_strict_order
           (addition rationalSystem absolute_value_data first translation)
           (addition rationalSystem absolute_value_data second translation) := by
   sorry
-
 /--
 `representative_strict_order_respects_equivalence` TODO
 
@@ -1362,7 +1350,6 @@ theorem representative_strict_order_respects_equivalence
       (representative_setoid rationalSystem absolute_value_data)
       (representative_strict_order rationalSystem absolute_value_data) := by
   sorry
-
 /--
 `strict_order_is_proper` TODO
 

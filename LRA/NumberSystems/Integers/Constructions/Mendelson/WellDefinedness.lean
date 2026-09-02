@@ -77,5 +77,4 @@ theorem representative_operations_respect_equivalence
           (representative_multiplication positive_data first₁ second₁)
           (representative_multiplication positive_data first₂ second₂)) := by
   sorry
-
 end LRA.NumberSystems.Integers.Mendelson

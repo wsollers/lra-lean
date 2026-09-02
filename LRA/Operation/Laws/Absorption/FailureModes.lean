@@ -301,7 +301,6 @@ theorem NaturalAdditionMultiplicationFailAbsorption :
     FailsAbsorptionLaw NaturalAdditionOperation NaturalMultiplicationOperation ∧
       FailsAbsorptionLaw NaturalMultiplicationOperation NaturalAdditionOperation := by
   sorry
-
 /--
 `NaturalMultiplicationHasAbsorberButFailsAbsorption` TODO
 
@@ -348,7 +347,6 @@ theorem NaturalMultiplicationHasAbsorberButFailsAbsorption :
       FailsAbsorptionLaw NaturalMultiplicationOperation
         NaturalAdditionOperation := by
   sorry
-
 /--
 `NaturalMaxHasNoAbsorbingElement` TODO
 
@@ -397,5 +395,4 @@ theorem NaturalMaxHasNoAbsorbingElement :
           LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing
             NaturalMaxOperation absorber) := by
   sorry
-
 end LRA.Operation.Laws.Absorption

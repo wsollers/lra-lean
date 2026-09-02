@@ -44,7 +44,6 @@ Related proof moves: constructor, cases, rcases, use
 theorem ExistsUniqueNonnegSqrt (a : ℝ) (ha : 0 ≤ a) :
     ∃! b : ℝ, 0 ≤ b ∧ b ^ 2 = a := by
   sorry
-
 /--
 `RealDedekindCutAtSqrtTwoHasNoGap` TODO
 
@@ -89,7 +88,6 @@ theorem RealDedekindCutAtSqrtTwoHasNoGap :
     (Real.sqrt 2 ∈ RealCutUpperAtSqrtTwo ∧
       ∀ x ∈ RealCutUpperAtSqrtTwo, Real.sqrt 2 ≤ x) := by
   sorry
-
 /--
 `BisectionStepsTowardSqrtTwo` TODO
 
@@ -134,5 +132,4 @@ theorem BisectionStepsTowardSqrtTwo :
     (1.4 : ℝ) < Real.sqrt 2 ∧ Real.sqrt 2 < 1.5 ∧
     (1.41 : ℝ) < Real.sqrt 2 ∧ Real.sqrt 2 < 1.42 := by
   sorry
-
 end LRA.Analysis.Completeness

@@ -17,7 +17,6 @@ theorem satisfiesIntegralDomain
     let _ : Nonempty (Carrier whole_data) := ⟨0⟩
     IntegralDomainLaws (Carrier whole_data) := by
   sorry
-
 /-- The quotient-of-ordered-pairs construction canonically realizes ordered
 ring structure. -/
 theorem satisfiesOrderedRing
@@ -31,5 +30,4 @@ theorem satisfiesOrderedRing
     let _ : Nonempty (Carrier whole_data) := ⟨0⟩
     OrderedRingLaws (Carrier whole_data) := by
   sorry
-
 end LRA.NumberSystems.Integers.QuotientOrderedPairs

@@ -147,7 +147,6 @@ theorem SuccessorsHaveUniquePredecessors
     (element : Element) :
     UniquePredecessor ps (ps.successor element) := by
   sorry
-
 /--
 `PredecessorUnique` TODO
 
@@ -196,7 +195,6 @@ theorem PredecessorUnique
     PredecessorInPeanoSystem ps second_predecessor element ->
     first_predecessor = second_predecessor := by
   sorry
-
 /--
 `NonOneElementsHaveAPredecessor` TODO
 
@@ -245,7 +243,6 @@ theorem NonOneElementsHaveAPredecessor
       exists predecessor : Element,
         ps.successor predecessor = element := by
   sorry
-
 /--
 `PredecessorExistsUniqueAwayFromOne` TODO
 
@@ -290,7 +287,6 @@ theorem PredecessorExistsUniqueAwayFromOne
     (element : Element) :
     element ≠ ps.base -> UniquePredecessor ps element := by
   sorry
-
 /--
 `UniquePredecessorCharacterizationAwayFromOne` TODO
 
@@ -335,5 +331,4 @@ theorem UniquePredecessorCharacterizationAwayFromOne
     (element : Element) :
     element ≠ ps.base <-> UniquePredecessor ps element := by
   sorry
-
 end LRA.NumberSystems.PeanoSystem

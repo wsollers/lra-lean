@@ -24,20 +24,17 @@ abbrev one : Carrier := successor zero
 theorem zeroIsNotSuccessor :
     ∀ element : Carrier, successor element ≠ zero := by
   sorry
-
 theorem successorInjective :
     ∀ first second : Carrier,
       successor first = successor second →
       first = second := by
   sorry
-
 theorem successorInduction :
     ∀ subset : Set Carrier,
       zero ∈ subset →
       (∀ element : Carrier, element ∈ subset → successor element ∈ subset) →
       ∀ element : Carrier, element ∈ subset := by
   sorry
-
 def concretePeanoSystem :
     LRA.NumberSystems.PeanoSystem.PeanoSystem Carrier (Set Carrier) where
   base := zero

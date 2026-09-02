@@ -54,7 +54,6 @@ theorem ZeroOverZeroIsIndeterminate :
       TendsTo (fun x => f x / g x) {x : ℝ | x ≠ c} c L ∧
       TendsTo (fun x => f' x / g' x) {x : ℝ | x ≠ c} c L' := by
   sorry
-
 /--
 `OneToTheInftyIsIndeterminate` TODO
 
@@ -101,5 +100,4 @@ theorem OneToTheInftyIsIndeterminate :
       TendsToInfty (fun x => (f x) ^ x) X L ∧
       TendsToInfty (fun x => (f' x) ^ x) X L' := by
   sorry
-
 end LRA.Analysis.Limits

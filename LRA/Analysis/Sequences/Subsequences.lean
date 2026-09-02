@@ -207,7 +207,6 @@ Related proof moves: intro
 theorem SubsequenceIndicesDominateIdentity {σ : ℕ → ℕ}
     (h : IsStrictlyIncreasingIndexMap σ) : ∀ k, k ≤ σ k := by
   sorry
-
 /--
 `SubsequencesPreserveLimits` TODO
 
@@ -250,7 +249,6 @@ theorem SubsequencesPreserveLimits {x : RealSequence} {L : ℝ} {σ : ℕ → �
     (hx : ConvergesTo x L) (hσ : IsStrictlyIncreasingIndexMap σ) :
     ConvergesTo (fun k => x (σ k)) L := by
   sorry
-
 /--
 `SubsequentialLimitOfConvergentSequence` TODO
 
@@ -293,7 +291,6 @@ theorem SubsequentialLimitOfConvergentSequence {x : RealSequence}
     {L K : ℝ} (hL : ConvergesTo x L) (hK : IsSubsequentialLimit x K) :
     K = L := by
   sorry
-
 /--
 `DivergenceByTwoSubsequentialLimits` TODO
 
@@ -336,7 +333,6 @@ theorem DivergenceByTwoSubsequentialLimits {x : RealSequence}
     {L K : ℝ} (hL : IsSubsequentialLimit x L) (hK : IsSubsequentialLimit x K)
     (hLK : L ≠ K) : IsDivergent x := by
   sorry
-
 /--
 `BoundednessPassesToSubsequences` TODO
 
@@ -379,7 +375,6 @@ theorem BoundednessPassesToSubsequences {x : RealSequence} {σ : ℕ → ℕ}
     (hx : BoundedSeq x) (hσ : IsStrictlyIncreasingIndexMap σ) :
     BoundedSeq (fun k => x (σ k)) := by
   sorry
-
 /--
 `MonotonicityPassesToSubsequencesIncr` TODO
 
@@ -422,7 +417,6 @@ theorem MonotonicityPassesToSubsequencesIncr {x : RealSequence}
     {σ : ℕ → ℕ} (hx : IsIncreasing x) (hσ : IsStrictlyIncreasingIndexMap σ) :
     IsIncreasing (fun k => x (σ k)) := by
   sorry
-
 /--
 `MonotonicityPassesToSubsequencesDecr` TODO
 
@@ -465,7 +459,6 @@ theorem MonotonicityPassesToSubsequencesDecr {x : RealSequence}
     {σ : ℕ → ℕ} (hx : IsDecreasing x) (hσ : IsStrictlyIncreasingIndexMap σ) :
     IsDecreasing (fun k => x (σ k)) := by
   sorry
-
 /--
 `SubsequenceOfSubsequence` TODO
 
@@ -508,7 +501,6 @@ theorem SubsequenceOfSubsequence {x : RealSequence} {σ τ : ℕ → ℕ}
     (hσ : IsStrictlyIncreasingIndexMap σ) (hτ : IsStrictlyIncreasingIndexMap τ) :
     IsSubsequenceOf (fun k => x (σ (τ k))) x := by
   sorry
-
 /--
 `EventualPropertiesPassToSubsequences` TODO
 
@@ -551,7 +543,6 @@ theorem EventualPropertiesPassToSubsequences {P : ℕ → Prop} {σ : ℕ → �
     (h : ∃ N : ℕ, ∀ n ≥ N, P n) (hσ : IsStrictlyIncreasingIndexMap σ) :
     ∃ K : ℕ, ∀ k ≥ K, P (σ k) := by
   sorry
-
 /--
 `FrequentPropertiesYieldSubsequences` TODO
 
@@ -594,7 +585,6 @@ theorem FrequentPropertiesYieldSubsequences {P : ℕ → Prop}
     (h : ∀ N : ℕ, ∃ n ≥ N, P n) :
     ∃ σ : ℕ → ℕ, IsStrictlyIncreasingIndexMap σ ∧ ∀ k, P (σ k) := by
   sorry
-
 /--
 `SubsequentialLimitsRespectBounds` TODO
 
@@ -637,7 +627,6 @@ theorem SubsequentialLimitsRespectBounds {x : RealSequence} {L m M : ℝ}
     (hL : IsSubsequentialLimit x L) (h : ∀ n, m ≤ x n ∧ x n ≤ M) :
     m ≤ L ∧ L ≤ M := by
   sorry
-
 /--
 `SqueezePassesToSubsequences` TODO
 
@@ -682,7 +671,6 @@ theorem SqueezePassesToSubsequences {a x b : RealSequence} {σ : ℕ → ℕ}
     (hσ : IsStrictlyIncreasingIndexMap σ) :
     ∃ K : ℕ, ∀ k ≥ K, a (σ k) ≤ x (σ k) ∧ x (σ k) ≤ b (σ k) := by
   sorry
-
 /--
 `MonotoneSubsequenceTheorem` TODO
 
@@ -725,7 +713,6 @@ theorem MonotoneSubsequenceTheorem (x : RealSequence) :
     ∃ σ : ℕ → ℕ, IsStrictlyIncreasingIndexMap σ ∧
       (IsIncreasing (fun k => x (σ k)) ∨ IsDecreasing (fun k => x (σ k))) := by
   sorry
-
 /--
 `BolzanoWeierstrassSequences` TODO
 
@@ -766,7 +753,6 @@ Related proof moves: TODO
 theorem BolzanoWeierstrassSequences {x : RealSequence} (h : BoundedSeq x) :
     HasConvergentSubsequence x := by
   sorry
-
 /--
 `SequentialCompactnessClosedBoundedInterval` TODO
 
@@ -811,7 +797,6 @@ theorem SequentialCompactnessClosedBoundedInterval {a b : ℝ} {x : RealSequence
     ∃ σ : ℕ → ℕ, ∃ L : ℝ, IsStrictlyIncreasingIndexMap σ ∧
       ConvergesTo (fun k => x (σ k)) L ∧ a ≤ L ∧ L ≤ b := by
   sorry
-
 /--
 `SubsequencePrinciple` TODO
 
@@ -858,7 +843,6 @@ theorem SubsequencePrinciple {x : RealSequence} {L : ℝ} :
         ∃ τ : ℕ → ℕ, IsStrictlyIncreasingIndexMap τ ∧
           ConvergesTo (fun k => x (σ (τ k))) L := by
   sorry
-
 /--
 `BoundedSequenceConvergesIffUniqueSubsequentialLimit` TODO
 
@@ -903,5 +887,4 @@ theorem BoundedSequenceConvergesIffUniqueSubsequentialLimit
     ConvergesTo x L ↔
       (IsSubsequentialLimit x L ∧ ∀ K, IsSubsequentialLimit x K → K = L) := by
   sorry
-
 end LRA.Analysis.Sequences

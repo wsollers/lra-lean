@@ -324,7 +324,6 @@ Related proof moves: intro, constructor, .mp, .mpr
 theorem BoundedIffAbsoluteValueBoundedAbove (f : ℝ → ℝ) (A : Set ℝ) :
     FunctionBounded f A ↔ FunctionBoundedAbove (fun x => |f x|) A := by
   sorry
-
 /--
 `BoundednessRestriction` TODO
 
@@ -365,7 +364,6 @@ Related proof moves: intro
 theorem BoundednessRestriction (f : ℝ → ℝ) (S A : Set ℝ) (hS : S ⊆ A)
     (h : FunctionBounded f A) : FunctionBounded f S := by
   sorry
-
 /--
 `BoundednessNotPreservedUnderExtension` TODO
 
@@ -410,7 +408,6 @@ theorem BoundednessNotPreservedUnderExtension :
       A ⊆ B ∧ FunctionBounded f A ∧ (∀ x ∈ A, g x = f x) ∧
         ¬ FunctionBounded g B := by
   sorry
-
 /--
 `BoundedAwayFromZeroImpliesNonzero` TODO
 
@@ -451,7 +448,6 @@ Related proof moves: intro
 theorem BoundedAwayFromZeroImpliesNonzero (f : ℝ → ℝ) (A : Set ℝ)
     (h : FunctionBoundedAwayFromZero f A) : ∀ x ∈ A, f x ≠ 0 := by
   sorry
-
 /--
 `BoundedAwayFromZeroNearImpliesNonzeroNear` TODO
 
@@ -494,7 +490,6 @@ theorem BoundedAwayFromZeroNearImpliesNonzeroNear (f : ℝ → ℝ)
     (c : ℝ) (A : Set ℝ) (h : FunctionBoundedAwayFromZeroNear f c A) :
     ∃ δ > 0, ∀ x ∈ A, 0 < |x - c| ∧ |x - c| < δ → f x ≠ 0 := by
   sorry
-
 /--
 `BoundedAwayFromZeroGivesBoundedReciprocal` TODO
 
@@ -537,7 +532,6 @@ theorem BoundedAwayFromZeroGivesBoundedReciprocal (f : ℝ → ℝ) (A : Set ℝ
     (h : FunctionBoundedAwayFromZero f A) :
     FunctionBounded (fun x => 1 / f x) A := by
   sorry
-
 /--
 `LocalBoundedAwayFromZeroGivesLocalBoundedReciprocal` TODO
 
@@ -580,7 +574,6 @@ theorem LocalBoundedAwayFromZeroGivesLocalBoundedReciprocal
     (f : ℝ → ℝ) (c : ℝ) (A : Set ℝ) (h : FunctionBoundedAwayFromZeroNear f c A) :
     FunctionBoundedNear (fun x => 1 / f x) c A := by
   sorry
-
 /--
 `UniformBoundednessTransferUnderPointwiseLimit` TODO
 
@@ -627,7 +620,6 @@ theorem UniformBoundednessTransferUnderPointwiseLimit
     (hlim : ∀ x ∈ A, Filter.Tendsto (fun n => f n x) Filter.atTop (nhds (F x))) :
     FunctionBounded F A := by
   sorry
-
 /--
 `BoundedFunctionAlgebraClosure` TODO
 
@@ -682,7 +674,6 @@ theorem BoundedFunctionAlgebraClosure (f g : ℝ → ℝ) (A : Set ℝ) (lam : �
       FunctionBounded (fun x => max (f x) (g x)) A ∧
       FunctionBounded (fun x => min (f x) (g x)) A := by
   sorry
-
 /--
 `BoundedSum` TODO
 
@@ -725,7 +716,6 @@ theorem BoundedSum (f g : ℝ → ℝ) (A : Set ℝ)
     (hf : FunctionBounded f A) (hg : FunctionBounded g A) :
     FunctionBounded (fun x => f x + g x) A := by
   sorry
-
 /--
 `BoundedDifference` TODO
 
@@ -768,7 +758,6 @@ theorem BoundedDifference (f g : ℝ → ℝ) (A : Set ℝ)
     (hf : FunctionBounded f A) (hg : FunctionBounded g A) :
     FunctionBounded (fun x => f x - g x) A := by
   sorry
-
 /--
 `BoundedProduct` TODO
 
@@ -811,7 +800,6 @@ theorem BoundedProduct (f g : ℝ → ℝ) (A : Set ℝ)
     (hf : FunctionBounded f A) (hg : FunctionBounded g A) :
     FunctionBounded (fun x => f x * g x) A := by
   sorry
-
 /--
 `BoundedScalarMultiple` TODO
 
@@ -852,7 +840,6 @@ Related proof moves: intro
 theorem BoundedScalarMultiple (f : ℝ → ℝ) (A : Set ℝ) (lam : ℝ)
     (hf : FunctionBounded f A) : FunctionBounded (fun x => lam * f x) A := by
   sorry
-
 /--
 `BoundedAbsoluteValue` TODO
 
@@ -893,7 +880,6 @@ Related proof moves: intro
 theorem BoundedAbsoluteValue (f : ℝ → ℝ) (A : Set ℝ)
     (hf : FunctionBounded f A) : FunctionBounded (fun x => |f x|) A := by
   sorry
-
 /--
 `BoundedMaxMin` TODO
 
@@ -938,7 +924,6 @@ theorem BoundedMaxMin (f g : ℝ → ℝ) (A : Set ℝ)
     FunctionBounded (fun x => max (f x) (g x)) A ∧
       FunctionBounded (fun x => min (f x) (g x)) A := by
   sorry
-
 /--
 `BoundedFunctionsFormCommutativeRing` TODO
 
@@ -989,7 +974,6 @@ theorem BoundedFunctionsFormCommutativeRing (A : Set ℝ) :
         FunctionBounded (fun _ => (0 : ℝ)) A ∧
         FunctionBounded (fun _ => (1 : ℝ)) A := by
   sorry
-
 /--
 `BoundedFunctionsFormRealVectorSpace` TODO
 
@@ -1038,7 +1022,6 @@ theorem BoundedFunctionsFormRealVectorSpace (A : Set ℝ) :
         FunctionBounded (fun x => lam * f x) A ∧
         FunctionBounded (fun _ => (0 : ℝ)) A := by
   sorry
-
 /--
 `BoundedAwayQuotient` TODO
 
@@ -1081,7 +1064,6 @@ theorem BoundedAwayQuotient (f g : ℝ → ℝ) (A : Set ℝ)
     (hf : FunctionBounded f A) (hg : FunctionBoundedAwayFromZero g A) :
     FunctionBounded (fun x => f x / g x) A := by
   sorry
-
 /--
 `BoundedQuotientByBoundedAwayDenominator` TODO
 
@@ -1124,5 +1106,4 @@ theorem BoundedQuotientByBoundedAwayDenominator (f g : ℝ → ℝ) (A : Set ℝ
     (hf : FunctionBounded f A) (hg : FunctionBoundedAwayFromZero g A) :
     FunctionBounded (fun x => f x / g x) A := by
   sorry
-
 end LRA.Analysis.Functions

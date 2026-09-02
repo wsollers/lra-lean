@@ -56,5 +56,4 @@ theorem DyadicRealizesRationalRealExtension
           dyadicData.RationalSystem,
       realExtension.RealModel.Carrier = Expansion := by
   sorry
-
 end LRA.NumberSystems.RealNumbers.Dyadic

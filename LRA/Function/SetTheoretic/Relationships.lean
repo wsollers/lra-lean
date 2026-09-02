@@ -77,7 +77,6 @@ theorem SingleValuedOfIsSetTheoreticFunction
       triple) :
     IsSingleValued DomainElement CodomainElement triple.graph := by
   sorry
-
 /--
 `BundledSingleValued` TODO
 
@@ -138,7 +137,6 @@ theorem BundledSingleValued
       DomainObject CodomainObject GraphObject) :
     IsSingleValued DomainElement CodomainElement function.triple.graph := by
   sorry
-
 /--
 `TypedFunctionGraphRepresentation` TODO
 
@@ -255,5 +253,4 @@ theorem TypedFunctionGraphRepresentation
         Relates represented.triple.graph
           (encodeDomain input) (encodeCodomain (function input)) := by
   sorry
-
 end LRA.Function.SetTheoretic

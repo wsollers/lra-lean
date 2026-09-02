@@ -151,7 +151,6 @@ theorem cut_field_cert
     (rational_model : RationalModel) :
     OrderedFieldLaws (Cut rational_model) := by
   sorry
-
 /--
 `cut_strict_order_cert` TODO
 
@@ -194,7 +193,6 @@ theorem cut_strict_order_cert
     (rational_model : RationalModel) :
     StrictOrderCompatibilityLaw (Cut rational_model) := by
   sorry
-
 /--
 `cut_dense_order_cert` TODO
 
@@ -237,7 +235,6 @@ theorem cut_dense_order_cert
     (rational_model : RationalModel) :
     DenseOrderLaw (Cut rational_model) := by
   sorry
-
 /--
 `cut_completeness_cert` TODO
 
@@ -280,7 +277,6 @@ theorem cut_completeness_cert
     (rational_model : RationalModel) :
     OrderCompletenessLaws (Cut rational_model) (Set (Cut rational_model)) := by
   sorry
-
 /--
 `DedekindRealizesRationalModel` TODO
 
@@ -450,5 +446,4 @@ theorem DedekindRealizesRationalRealExtension
         LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem,
       realExtension.RealModel.Carrier = Cut rationalSystem.FieldModel := by
   sorry
-
 end LRA.NumberSystems.RealNumbers.Dedekind

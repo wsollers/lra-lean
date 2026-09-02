@@ -19,7 +19,7 @@ DECL_RE = re.compile(
     r"(?ms)^\s*(?P<kind>noncomputable\s+def|def|abbrev|structure|inductive|class|"
     r"theorem|lemma|proposition|corollary)\s+(?P<name>[A-Za-z_][A-Za-z0-9_'.]*)"
     r"(?P<body>.*?)(?=^\s*(?:noncomputable\s+def|def|abbrev|structure|inductive|class|"
-    r"theorem|lemma|proposition|corollary|namespace|end)\b|\Z)"
+    r"theorem|lemma|proposition|corollary|instance|axiom|example|namespace|end)\b|\Z)"
 )
 
 PROOF_KINDS = {"theorem", "lemma", "proposition", "corollary"}

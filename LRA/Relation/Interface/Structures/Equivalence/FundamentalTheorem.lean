@@ -118,5 +118,4 @@ theorem FundamentalTheoremOfEquivalenceRelations
             first second ↔
           relation first second) := by
   sorry
-
 end LRA.Relation

@@ -91,7 +91,6 @@ Related proof moves: TODO
 theorem equivalent_is_equivalence_relation (rational_data : IntegerAndPositiveNaturalData) :
     Equivalence (equivalent rational_data) := by
   sorry
-
 /--
 `representative_setoid` TODO
 

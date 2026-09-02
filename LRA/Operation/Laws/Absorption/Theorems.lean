@@ -51,7 +51,6 @@ theorem MutualAbsorptionLaw.first_idempotent {Carrier : Type u}
     (law : MutualAbsorptionLaw first second) :
     LRA.Operation.Laws.Idempotent.Idempotent first := by
   sorry
-
 /--
 `MutualAbsorptionLaw.second_idempotent` TODO
 
@@ -96,5 +95,4 @@ theorem MutualAbsorptionLaw.second_idempotent {Carrier : Type u}
     (law : MutualAbsorptionLaw first second) :
     LRA.Operation.Laws.Idempotent.Idempotent second := by
   sorry
-
 end LRA.Operation.Laws.Absorption

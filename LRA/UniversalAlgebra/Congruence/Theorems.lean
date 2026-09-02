@@ -56,7 +56,6 @@ theorem UnaryOperationCongruence.apply {Carrier : Type u}
     (related_inputs : relation left right) :
     relation (operation left) (operation right) := by
   sorry
-
 /--
 `BinaryOperationCongruence.apply` TODO
 
@@ -109,7 +108,6 @@ theorem BinaryOperationCongruence.apply {Carrier : Type u}
     (related_right_inputs : relation right₁ right₂) :
     relation (operation left₁ right₁) (operation left₂ right₂) := by
   sorry
-
 /--
 `UnaryOperationRelationRequirements.relation_is_equivalence` TODO
 
@@ -156,7 +154,6 @@ theorem UnaryOperationRelationRequirements.relation_is_equivalence {Carrier : Ty
     (requirements : UnaryOperationRelationRequirements relation operation) :
     LRA.Relation.EquivalenceRelation relation := by
   sorry
-
 /--
 `UnaryOperationRelationRequirements.operation_congruence` TODO
 
@@ -203,7 +200,6 @@ theorem UnaryOperationRelationRequirements.operation_congruence {Carrier : Type 
     (requirements : UnaryOperationRelationRequirements relation operation) :
     UnaryOperationCongruence relation operation := by
   sorry
-
 /--
 `BinaryOperationRelationRequirements.relation_is_equivalence` TODO
 
@@ -250,7 +246,6 @@ theorem BinaryOperationRelationRequirements.relation_is_equivalence {Carrier : T
     (requirements : BinaryOperationRelationRequirements relation operation) :
     LRA.Relation.EquivalenceRelation relation := by
   sorry
-
 /--
 `BinaryOperationRelationRequirements.operation_congruence` TODO
 
@@ -297,5 +292,4 @@ theorem BinaryOperationRelationRequirements.operation_congruence {Carrier : Type
     (requirements : BinaryOperationRelationRequirements relation operation) :
     BinaryOperationCongruence relation operation := by
   sorry
-
 end LRA.UniversalAlgebra.Congruence

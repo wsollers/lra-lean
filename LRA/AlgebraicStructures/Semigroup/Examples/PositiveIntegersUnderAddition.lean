@@ -22,13 +22,11 @@ instance : Nonempty NaturalsUnderAddition := ⟨⟨0⟩⟩
 instance : LRA.AlgebraicStructures.MultiplicativeSemigroupLaws NaturalsUnderAddition where
   MulAssociative := fun a b c =>
     congrArg NaturalsUnderAddition.mk (Nat.add_assoc a.val b.val c.val)
-
 def PositiveIntegers : LRA.Set.LRA_Set NaturalsUnderAddition := {n | 0 < n.val}
 
 theorem positiveIntegersClosedUnderAddition :
-    ∀ a b, a ∈ PositiveIntegers → b ∈ PositiveIntegers → a * b ∈ PositiveIntegers :=
-  fun _ _ ha hb => Nat.add_pos_left ha _
-
+    ∀ a b, a ∈ PositiveIntegers → b ∈ PositiveIntegers → a * b ∈ PositiveIntegers := by
+  sorry
 noncomputable instance : Mul {n // n ∈ PositiveIntegers} :=
   Magma.Constructions.ClosedSubsetMul positiveIntegersClosedUnderAddition
 
@@ -38,5 +36,4 @@ noncomputable instance : Nonempty {n // n ∈ PositiveIntegers} :=
 noncomputable instance :
     LRA.AlgebraicStructures.MultiplicativeSemigroupLaws {n // n ∈ PositiveIntegers} :=
   Semigroup.Constructions.ClosedSubsetSemigroupLaws positiveIntegersClosedUnderAddition
-
 end LRA.AlgebraicStructures.Semigroup.Examples

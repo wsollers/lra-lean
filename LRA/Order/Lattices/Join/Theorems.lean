@@ -58,7 +58,6 @@ theorem JoinUnique
     (secondIsJoin : Join relation left right second) :
     first = second := by
   sorry
-
 /--
 `JoinCommutes` TODO
 
@@ -105,7 +104,6 @@ theorem JoinCommutes
     (left right join : Alpha) :
     Join relation left right join ↔ Join relation right left join := by
   sorry
-
 /--
 `JoinIdempotent` TODO
 
@@ -154,7 +152,6 @@ theorem JoinIdempotent
     (element : Alpha) :
     Join relation element element element := by
   sorry
-
 /--
 `JoinAssociative` TODO
 
@@ -213,5 +210,4 @@ theorem JoinAssociative
     (secondAssociationIsJoin : Join relation left middleRight secondAssociation) :
     firstAssociation = secondAssociation := by
   sorry
-
 end LRA.Order

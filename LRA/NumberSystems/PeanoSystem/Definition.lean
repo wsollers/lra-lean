@@ -415,9 +415,7 @@ theorem FullPredicateInductionOfComprehensionAdequacy
     (ps : PeanoSystem Element SetObject)
     (adequacy : PredicateSetComprehensionAdequacy Element SetObject) :
     FullPredicateInduction ps := by
-
   sorry
-
 end
 
 end LRA.NumberSystems.PeanoSystem

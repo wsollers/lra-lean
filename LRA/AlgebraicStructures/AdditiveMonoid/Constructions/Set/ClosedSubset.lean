@@ -15,9 +15,8 @@ universe u
 /-- The identity's own membership gives nonemptiness for free — same reasoning
 as `Monoid.Constructions.ClosedSubsetNonempty`. -/
 theorem ClosedSubsetNonempty {A : Type u} [OfNat A 0] {S : LRA.Set.LRA_Set A}
-    (hZero : (0 : A) ∈ S) : Nonempty {x // x ∈ S} :=
-  ⟨⟨0, hZero⟩⟩
-
+    (hZero : (0 : A) ∈ S) : Nonempty {x // x ∈ S} := by
+  sorry
 /-- Associativity and the identity both transfer for free through a closed
 subset that also contains `0`: the subtype's operation and its `0` are just
 the ambient ones repackaged. Builds on `AdditiveSemigroup.Constructions.
@@ -31,5 +30,4 @@ theorem ClosedSubsetAdditiveMonoidLaws {A : Type u} [Add A] [OfNat A 0] [Nonempt
     letI := ClosedSubsetNonempty hZero
     AdditiveMonoidLaws {x // x ∈ S} := by
   sorry
-
 end LRA.AlgebraicStructures.AdditiveMonoid.Constructions

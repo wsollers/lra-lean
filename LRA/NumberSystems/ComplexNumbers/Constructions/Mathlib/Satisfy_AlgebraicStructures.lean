@@ -10,5 +10,4 @@ structure. -/
 theorem satisfiesField :
     FieldLaws Carrier := by
   sorry
-
 end LRA.NumberSystems.ComplexNumbers.Constructions.Mathlib

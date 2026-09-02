@@ -46,7 +46,6 @@ theorem PreorderRelationIsReflexive
     (preorder : PreorderRelation Carrier) :
     LRA.Relation.Reflexive preorder.relation := by
   sorry
-
 /--
 `PreorderRelationIsTransitive` TODO
 
@@ -91,5 +90,4 @@ theorem PreorderRelationIsTransitive
     (preorder : PreorderRelation Carrier) :
     LRA.Relation.Transitive preorder.relation := by
   sorry
-
 end LRA.Order.OrderedSets.Preorder

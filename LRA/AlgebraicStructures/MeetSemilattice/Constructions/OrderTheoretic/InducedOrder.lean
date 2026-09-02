@@ -21,7 +21,6 @@ theorem inducedOrder_isPartialOrder {Carrier : Type u}
     (h : MeetSemilatticeLaws meet) :
     LRA.Order.PartialOrder (InducedOrder meet) := by
   sorry
-
 /-- `meet left right` is genuinely the greatest lower bound under
 `InducedOrder` — the other direction of the equivalence the algebraic and
 order-theoretic definitions of a meet-semilattice describe. -/
@@ -30,14 +29,12 @@ theorem inducedOrder_hasMeets {Carrier : Type u}
     (h : MeetSemilatticeLaws meet) :
     ∀ left right, ∃ m, LRA.Order.Meet (InducedOrder meet) left right m := by
   sorry
-
 /-- The equivalence itself: an algebraic meet-semilattice's induced order is an
 order-theoretic meet-semilattice — matching `LRA.Order.MeetSemilattice`
 directly, so both definitions of this subject are now actually connected. -/
 theorem toOrderTheoreticMeetSemilattice {Carrier : Type u}
     {meet : LRA.Operation.BinaryEndoOperation Carrier}
     (h : MeetSemilatticeLaws meet) :
-    LRA.Order.MeetSemilattice (InducedOrder meet) :=
-  ⟨inducedOrder_isPartialOrder h, inducedOrder_hasMeets h⟩
-
+    LRA.Order.MeetSemilattice (InducedOrder meet) := by
+  sorry
 end LRA.AlgebraicStructures.MeetSemilattice.Constructions

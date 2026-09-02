@@ -54,5 +54,4 @@ theorem PreservesUnaryOperation.apply {Source : Type u} {Target : Type v}
     (element : Source) :
     function (sourceOperation element) = targetOperation (function element) := by
   sorry
-
 end LRA.Morphism

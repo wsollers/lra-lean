@@ -46,7 +46,6 @@ Related proof moves: Or.inl, Or.inr, cases, rcases
 theorem DivergenceToInfinityImpliesRealDivergence {x : RealSequence}
     (h : DivergesToPosInf x ∨ DivergesToNegInf x) : IsDivergent x := by
   sorry
-
 /--
 `TwoSubsequentialLimitsForceDivergence` TODO
 
@@ -89,7 +88,6 @@ theorem TwoSubsequentialLimitsForceDivergence {x : RealSequence}
     {L K : ℝ} (hLK : L ≠ K) (hL : IsSubsequentialLimit x L)
     (hK : IsSubsequentialLimit x K) : IsDivergent x := by
   sorry
-
 /--
 `UnboundedAboveHasPositiveInfinitySubsequence` TODO
 
@@ -134,7 +132,6 @@ theorem UnboundedAboveHasPositiveInfinitySubsequence {x : RealSequence}
     ∃ σ : ℕ → ℕ, IsStrictlyIncreasingIndexMap σ ∧
       DivergesToPosInf (fun k => x (σ k)) := by
   sorry
-
 /--
 `UnboundedBelowHasNegativeInfinitySubsequence` TODO
 
@@ -179,7 +176,6 @@ theorem UnboundedBelowHasNegativeInfinitySubsequence {x : RealSequence}
     ∃ σ : ℕ → ℕ, IsStrictlyIncreasingIndexMap σ ∧
       DivergesToNegInf (fun k => x (σ k)) := by
   sorry
-
 /--
 `BoundedDivergenceProducesTwoSubsequentialLimits` TODO
 
@@ -222,5 +218,4 @@ theorem BoundedDivergenceProducesTwoSubsequentialLimits {x : RealSequence}
     (hbdd : BoundedSeq x) (hdiv : IsDivergent x) :
     ∃ L K : ℝ, L ≠ K ∧ IsSubsequentialLimit x L ∧ IsSubsequentialLimit x K := by
   sorry
-
 end LRA.Analysis.Sequences

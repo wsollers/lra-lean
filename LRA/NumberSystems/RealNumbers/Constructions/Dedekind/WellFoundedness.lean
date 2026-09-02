@@ -56,5 +56,4 @@ theorem InductionOnCuts
         motive ⟨lower_set, isCut⟩) :
     ∀ cut : Cut rational_model, motive cut := by
   sorry
-
 end LRA.NumberSystems.RealNumbers.Dedekind

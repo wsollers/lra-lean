@@ -24,5 +24,4 @@ theorem ClosedSubsetAdditiveSemigroupLaws {A : Type u} [Add A] [Nonempty A]
     letI := ClosedSubsetAdd closed
     AdditiveSemigroupLaws {x // x ∈ S} := by
   sorry
-
 end LRA.AlgebraicStructures.AdditiveSemigroup.Constructions

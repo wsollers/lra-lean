@@ -19,10 +19,10 @@ instance : HasSuccessor Z := ⟨succ⟩
 
 instance : HasPredecessor Z := ⟨pred⟩
 
-instance : AdditiveSemigroupLaws Z := ⟨add_assoc⟩
-
-instance : AdditiveCommutativeLaws Z := ⟨add_comm⟩
-
+instance : AdditiveSemigroupLaws Z := by
+  sorry
+instance : AdditiveCommutativeLaws Z := by
+  sorry
 /--
 `z_sub_eq_add_neg` TODO
 
@@ -62,21 +62,19 @@ Related proof moves: TODO
 -/
 theorem z_sub_eq_add_neg (firstInteger secondInteger : Z) :
     firstInteger - secondInteger = firstInteger + -secondInteger := by
-
   sorry
-
-instance : AdditiveIdentityLaws Z := ⟨zero_add, add_zero⟩
-
-instance : AdditiveInverseLaws Z := ⟨neg_add_self, add_neg_self⟩
-
-instance : SubtractionCompatibilityLaw Z := ⟨z_sub_eq_add_neg⟩
-
-instance : MultiplicativeSemigroupLaws Z := ⟨mul_assoc⟩
-
-instance : MultiplicativeCommutativeLaws Z := ⟨mul_comm⟩
-
-instance : MultiplicativeIdentityLaws Z := ⟨one_mul, mul_pos_succZero⟩
-
+instance : AdditiveIdentityLaws Z := by
+  sorry
+instance : AdditiveInverseLaws Z := by
+  sorry
+instance : SubtractionCompatibilityLaw Z := by
+  sorry
+instance : MultiplicativeSemigroupLaws Z := by
+  sorry
+instance : MultiplicativeCommutativeLaws Z := by
+  sorry
+instance : MultiplicativeIdentityLaws Z := by
+  sorry
 /--
 `z_mul_zero` TODO
 
@@ -115,11 +113,10 @@ Related proof moves: TODO
 -/
 theorem z_mul_zero (integer : Z) : integer * Z.zero = Z.zero := by
   sorry
-
-instance : ZeroAbsorbingLaws Z := ⟨zero_mul, z_mul_zero⟩
-
-instance : DistributiveLaws Z := ⟨distrib_left, distrib_right⟩
-
+instance : ZeroAbsorbingLaws Z := by
+  sorry
+instance : DistributiveLaws Z := by
+  sorry
 /--
 `z_one_ne_zero` TODO
 
@@ -158,9 +155,8 @@ Related proof moves: TODO
 -/
 theorem z_one_ne_zero : (one : Z) ≠ Z.zero := by
   sorry
-
-instance : NontrivialityLaw Z := ⟨z_one_ne_zero⟩
-
+instance : NontrivialityLaw Z := by
+  sorry
 /--
 `z_eq_zero_of_mul_eq_zero` TODO
 
@@ -203,9 +199,8 @@ theorem z_eq_zero_of_mul_eq_zero (firstInteger secondInteger : Z) :
     firstInteger * secondInteger = Z.zero ->
       firstInteger = Z.zero ∨ secondInteger = Z.zero := by
   sorry
-
-instance : NoZeroDivisorsLaw Z := ⟨z_eq_zero_of_mul_eq_zero⟩
-
+instance : NoZeroDivisorsLaw Z := by
+  sorry
 /--
 `z_le_trans` TODO
 
@@ -248,7 +243,6 @@ theorem z_le_trans (firstInteger secondInteger thirdInteger : Z) :
     firstInteger ≤ secondInteger ->
       secondInteger ≤ thirdInteger -> firstInteger ≤ thirdInteger := by
   sorry
-
 /--
 `z_le_antisymm` TODO
 
@@ -290,11 +284,9 @@ Related proof moves: intro
 theorem z_le_antisymm (firstInteger secondInteger : Z) :
     firstInteger ≤ secondInteger ->
       secondInteger ≤ firstInteger -> firstInteger = secondInteger := by
-
   sorry
-
-instance : PartialOrderLaws Z := ⟨le_refl, z_le_antisymm, z_le_trans⟩
-
+instance : PartialOrderLaws Z := by
+  sorry
 /--
 `z_le_total` TODO
 
@@ -335,9 +327,8 @@ Related proof moves: Or.inl, Or.inr, cases, rcases
 theorem z_le_total (firstInteger secondInteger : Z) :
     firstInteger ≤ secondInteger ∨ secondInteger ≤ firstInteger := by
   sorry
-
-instance : TotalOrderLaw Z := ⟨z_le_total⟩
-
+instance : TotalOrderLaw Z := by
+  sorry
 /--
 `z_lt_iff_le_not_le` TODO
 
@@ -380,9 +371,8 @@ theorem z_lt_iff_le_not_le (firstInteger secondInteger : Z) :
     firstInteger < secondInteger ↔
       firstInteger ≤ secondInteger ∧ ¬ secondInteger ≤ firstInteger := by
   sorry
-
-instance : StrictOrderCompatibilityLaw Z := ⟨z_lt_iff_le_not_le⟩
-
+instance : StrictOrderCompatibilityLaw Z := by
+  sorry
 /--
 `z_add_le_add_left` TODO
 
@@ -425,7 +415,6 @@ theorem z_add_le_add_left (firstInteger secondInteger : Z) :
     firstInteger ≤ secondInteger -> ∀ translation : Z,
       translation + firstInteger ≤ translation + secondInteger := by
   sorry
-
 /--
 `z_add_le_add_right` TODO
 
@@ -468,9 +457,8 @@ theorem z_add_le_add_right (firstInteger secondInteger : Z) :
     firstInteger ≤ secondInteger -> ∀ translation : Z,
       firstInteger + translation ≤ secondInteger + translation := by
   sorry
-
-instance : AdditionRespectsOrderLaws Z := ⟨z_add_le_add_left, z_add_le_add_right⟩
-
+instance : AdditionRespectsOrderLaws Z := by
+  sorry
 /--
 `z_mul_nonneg` TODO
 
@@ -511,9 +499,8 @@ Related proof moves: intro
 theorem z_mul_nonneg (firstInteger secondInteger : Z) :
     Z.zero ≤ firstInteger -> Z.zero ≤ secondInteger -> Z.zero ≤ firstInteger * secondInteger := by
   sorry
-
-instance : MultiplicationRespectsOrderLaws Z := ⟨z_mul_nonneg⟩
-
+instance : MultiplicationRespectsOrderLaws Z := by
+  sorry
 /--
 `z_no_strict_between_add_one` TODO
 
@@ -554,9 +541,8 @@ Related proof moves: constructor, cases, rcases, use
 theorem z_no_strict_between_add_one (integer : Z) :
     ¬ ∃ middle : Z, integer < middle ∧ middle < integer + 1 := by
   sorry
-
-instance : OrderDiscretenessLaw Z := ⟨z_no_strict_between_add_one⟩
-
+instance : OrderDiscretenessLaw Z := by
+  sorry
 /--
 `z_succ_injective` TODO
 
@@ -596,9 +582,7 @@ Related proof moves: intro
 -/
 theorem z_succ_injective (firstInteger secondInteger : Z) :
     Succ firstInteger = Succ secondInteger -> firstInteger = secondInteger := by
-
   sorry
-
 /--
 `z_pred_injective` TODO
 
@@ -638,11 +622,9 @@ Related proof moves: intro
 -/
 theorem z_pred_injective (firstInteger secondInteger : Z) :
     Pred firstInteger = Pred secondInteger -> firstInteger = secondInteger := by
-
   sorry
-
-instance : SuccessorLaws Z := ⟨pred_succ, succ_pred, z_succ_injective, z_pred_injective⟩
-
+instance : SuccessorLaws Z := by
+  sorry
 /--
 `z_succ_eq_add_one` TODO
 
@@ -681,13 +663,10 @@ Related proof moves: TODO
 -/
 theorem z_succ_eq_add_one (integer : Z) : succ integer = integer + one := by
   sorry
-
 instance : SuccessorAdditionLaw Z := by
-
   sorry
-
-instance : SuccessorMultiplicationLaws Z := ⟨mul_succ, mul_pred⟩
-
+instance : SuccessorMultiplicationLaws Z := by
+  sorry
 /--
 `z_succ_aperiodic` TODO
 
@@ -728,7 +707,6 @@ Related proof moves: intro
 theorem z_succ_aperiodic (iterationCount : Nat) :
     0 < iterationCount -> SuccIterate iterationCount (0 : Z) ≠ 0 := by
   sorry
-
 /--
 `z_succ_aperiodic_all` is the bundled discreteness witness in the shape
 required by `DiscretenessLaw`.
@@ -736,7 +714,6 @@ required by `DiscretenessLaw`.
 theorem z_succ_aperiodic_all (integer : Z) (iterationCount : Nat) :
     0 < iterationCount -> SuccIterate iterationCount integer ≠ integer := by
   sorry
-
 /--
 `z_two_sided_induction` TODO
 
@@ -783,9 +760,8 @@ theorem z_two_sided_induction (motive : Z → Prop) :
       (∀ integer, motive integer -> motive (Pred integer)) ->
       ∀ integer, motive integer := by
   sorry
-
-instance : DiscretenessLaw Z := ⟨z_succ_aperiodic_all, z_two_sided_induction⟩
-
+instance : DiscretenessLaw Z := by
+  sorry
 example : CommutativeRingLaws Z := inferInstance
 example : RingLaws Z := inferInstance
 example : IntegralDomainLaws Z := inferInstance
@@ -843,9 +819,7 @@ theorem polish_integer_structure_induction
       (∀ element : Z, element ∈ subset -> succ element ∈ subset) ->
       (∀ element : Z, element ∈ subset -> pred element ∈ subset) ->
       ∀ element : Z, element ∈ subset := by
-
   sorry
-
 /--
 `polish_integer_structure_aperiodic` TODO
 
@@ -888,7 +862,6 @@ theorem polish_integer_structure_aperiodic :
     ∀ iterations : Nat, 0 < iterations ->
       LRA.NumberSystems.IntegerStructure.iterate succ iterations Z.zero ≠ Z.zero := by
   sorry
-
 /--
 `PolishRealizesIntegerStructure` TODO
 

@@ -52,7 +52,6 @@ theorem Commutative.apply {Carrier : Type u}
     (first second : Carrier) :
     operation first second = operation second first := by
   sorry
-
 /--
 `Commutative.symm_apply` TODO
 
@@ -99,5 +98,4 @@ theorem Commutative.symm_apply {Carrier : Type u}
     (first second : Carrier) :
     operation second first = operation first second := by
   sorry
-
 end LRA.Operation.Laws.Commutative

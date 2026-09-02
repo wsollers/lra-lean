@@ -55,5 +55,4 @@ theorem ProductOfPartialOrdersIsPartialOrder
     (rightIsPartialOrder : PartialOrder rightRelation) :
     PartialOrder (ProductRelation leftRelation rightRelation) := by
   sorry
-
 end LRA.Order

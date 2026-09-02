@@ -54,7 +54,6 @@ theorem LeftDistributive.apply {Carrier : Type u}
     outer left (inner right third) =
       inner (outer left right) (outer left third) := by
   sorry
-
 /--
 `RightDistributive.apply` TODO
 
@@ -103,7 +102,6 @@ theorem RightDistributive.apply {Carrier : Type u}
     outer (inner left right) third =
       inner (outer left third) (outer right third) := by
   sorry
-
 /--
 `TwoSidedDistributive.left` TODO
 
@@ -148,7 +146,6 @@ theorem TwoSidedDistributive.left {Carrier : Type u}
     (law : TwoSidedDistributive outer inner) :
     LeftDistributive outer inner := by
   sorry
-
 /--
 `TwoSidedDistributive.right` TODO
 
@@ -193,7 +190,6 @@ theorem TwoSidedDistributive.right {Carrier : Type u}
     (law : TwoSidedDistributive outer inner) :
     RightDistributive outer inner := by
   sorry
-
 /--
 `TwoSidedDistributive.of_left_right` TODO
 
@@ -240,5 +236,4 @@ theorem TwoSidedDistributive.of_left_right {Carrier : Type u}
     (rightLaw : RightDistributive outer inner) :
     TwoSidedDistributive outer inner := by
   sorry
-
 end LRA.Operation.Laws.Distributive

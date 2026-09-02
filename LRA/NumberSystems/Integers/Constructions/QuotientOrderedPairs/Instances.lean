@@ -103,9 +103,7 @@ theorem quotient_addition_spec
     ∀ first second,
       quotient_addition whole_data (Quotient.mk _ first) (Quotient.mk _ second) =
         Quotient.mk _ (representative_addition whole_data first second) := by
-
   sorry
-
 /--
 `quotient_multiplication` TODO
 
@@ -201,9 +199,7 @@ theorem quotient_multiplication_spec
     ∀ first second,
       quotient_multiplication whole_data (Quotient.mk _ first) (Quotient.mk _ second) =
         Quotient.mk _ (representative_multiplication whole_data first second) := by
-
   sorry
-
 /--
 `quotient_negation` TODO
 
@@ -363,9 +359,7 @@ theorem quotient_nonstrict_order_spec
     ∀ first second,
       quotient_nonstrict_order whole_data (Quotient.mk _ first) (Quotient.mk _ second) ↔
         representative_nonstrict_order whole_data first second := by
-
   sorry
-
 /--
 `quotient_strict_order` TODO
 
@@ -480,7 +474,6 @@ theorem quotient_domain_cert
     (whole_data : WholeNumberArithmeticForQuotientPairs) :
     IntegralDomainLaws (Carrier whole_data) := by
   sorry
-
 /--
 `quotient_linear_order_cert` TODO
 
@@ -523,7 +516,6 @@ theorem quotient_linear_order_cert
     (whole_data : WholeNumberArithmeticForQuotientPairs) :
     LinearOrderLaws (Carrier whole_data) := by
   sorry
-
 /--
 `quotient_strict_order_cert` TODO
 
@@ -566,7 +558,6 @@ theorem quotient_strict_order_cert
     (whole_data : WholeNumberArithmeticForQuotientPairs) :
     StrictOrderCompatibilityLaw (Carrier whole_data) := by
   sorry
-
 /--
 `quotient_addition_order_cert` TODO
 
@@ -609,7 +600,6 @@ theorem quotient_addition_order_cert
     (whole_data : WholeNumberArithmeticForQuotientPairs) :
     AdditionRespectsOrderLaws (Carrier whole_data) := by
   sorry
-
 /--
 `quotient_multiplication_order_cert` TODO
 
@@ -652,7 +642,6 @@ theorem quotient_multiplication_order_cert
     (whole_data : WholeNumberArithmeticForQuotientPairs) :
     MultiplicationRespectsOrderLaws (Carrier whole_data) := by
   sorry
-
 /--
 `quotient_discrete_order_cert` TODO
 
@@ -695,7 +684,6 @@ theorem quotient_discrete_order_cert
     (whole_data : WholeNumberArithmeticForQuotientPairs) :
     OrderDiscretenessLaw (Carrier whole_data) := by
   sorry
-
 /--
 `QuotientOrderedPairsRealizesIntegerModel` TODO
 
@@ -807,7 +795,6 @@ theorem quotient_every_element_is_integer_numeral
         LRA.NumberSystems.Integers.IntegerNumeral
           (QuotientOrderedPairsRealizesIntegerModel whole_data) integer = value := by
   sorry
-
 /--
 `QuotientOrderedPairsRealizesIntegerNumberSystem` TODO
 

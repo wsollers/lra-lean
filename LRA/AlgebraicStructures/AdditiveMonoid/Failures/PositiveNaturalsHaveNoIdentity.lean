@@ -19,5 +19,4 @@ theorem positiveNaturalsHaveNoIdentity :
           (fun a b : {n // n ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveNaturals} =>
             a + b) e := by
   sorry
-
 end LRA.AlgebraicStructures.AdditiveMonoid.Failures

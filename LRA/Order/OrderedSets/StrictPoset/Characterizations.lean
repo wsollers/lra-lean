@@ -45,7 +45,6 @@ theorem StrictPosetRelationIsStrictOrder
     (poset : LRA.Order.StrictPoset) :
     LRA.Order.StrictOrder poset.StrictRelation := by
   sorry
-
 /--
 `StrictPosetRelationIsIrreflexive` TODO
 
@@ -88,7 +87,6 @@ theorem StrictPosetRelationIsIrreflexive
     (poset : LRA.Order.StrictPoset) :
     LRA.Relation.Irreflexive poset.StrictRelation := by
   sorry
-
 /--
 `StrictPosetRelationIsTransitive` TODO
 
@@ -131,5 +129,4 @@ theorem StrictPosetRelationIsTransitive
     (poset : LRA.Order.StrictPoset) :
     LRA.Relation.Transitive poset.StrictRelation := by
   sorry
-
 end LRA.Order.OrderedSets.StrictPoset

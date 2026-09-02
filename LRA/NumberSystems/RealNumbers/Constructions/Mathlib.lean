@@ -14,9 +14,8 @@ abbrev Carrier := LRA_MathlibCarrier
 noncomputable def genericModel : RealModel :=
   mathlibRealModel
 
-theorem satisfiesGenericType : genericModel.Carrier = Carrier :=
-  rfl
-
+theorem satisfiesGenericType : genericModel.Carrier = Carrier := by
+  sorry
 noncomputable def firstOrderModel := realNumbersModel genericModel
 
 end LRA.NumberSystems.RealNumbers.Constructions.Mathlib

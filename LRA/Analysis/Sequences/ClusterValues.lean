@@ -88,7 +88,6 @@ Related proof moves: constructor, .mp, .mpr
 theorem ClusterValuesAreSubsequentialLimits {x : RealSequence} {L : ℝ} :
     IsClusterValueOf x L ↔ IsSubsequentialLimit x L := by
   sorry
-
 /--
 `BoundedSequencesHaveClusterValues` TODO
 
@@ -129,7 +128,6 @@ Related proof moves: use, rcases
 theorem BoundedSequencesHaveClusterValues {x : RealSequence}
     (h : BoundedSeq x) : ∃ L : ℝ, IsClusterValueOf x L := by
   sorry
-
 /--
 `LimsupLiminfExtremalClusterValues` TODO
 
@@ -174,5 +172,4 @@ theorem LimsupLiminfExtremalClusterValues {x : RealSequence}
     (IsClusterValueOf x S ∧ ∀ L, IsClusterValueOf x L → L ≤ S) ∧
     (IsClusterValueOf x I ∧ ∀ L, IsClusterValueOf x L → I ≤ L) := by
   sorry
-
 end LRA.Analysis.Sequences

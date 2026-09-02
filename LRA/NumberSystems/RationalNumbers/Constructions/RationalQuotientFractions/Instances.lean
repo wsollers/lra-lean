@@ -135,7 +135,6 @@ theorem RationalFieldCert
     (rationalData : IntegerAndPositiveNaturalData) :
     OrderedFieldLaws (Carrier rationalData) := by
   sorry
-
 /--
 `RationalStrictOrderCert` TODO
 
@@ -178,7 +177,6 @@ theorem RationalStrictOrderCert
     (rationalData : IntegerAndPositiveNaturalData) :
     StrictOrderCompatibilityLaw (Carrier rationalData) := by
   sorry
-
 /--
 `RationalDenseOrderCert` TODO
 
@@ -221,7 +219,6 @@ theorem RationalDenseOrderCert
     (rationalData : IntegerAndPositiveNaturalData) :
     DenseOrderLaw (Carrier rationalData) := by
   sorry
-
 /--
 `RationalQuotientFractionsRealizesRationalModel` TODO
 
@@ -327,7 +324,6 @@ theorem RationalIntegerEmbeddingPreservesNegation
     ∀ value : rationalData.integer_system.Model.Carrier,
       integer_embedding rationalData (-value) = -(integer_embedding rationalData value) := by
   sorry
-
 /--
 `RationalIntegerEmbeddingPreservesOrder` TODO
 
@@ -374,7 +370,6 @@ theorem RationalIntegerEmbeddingPreservesOrder
       integer_embedding rationalData first ≤ integer_embedding rationalData second ↔
         first ≤ second := by
   sorry
-
 /--
 `RationalIntegerEmbedding` TODO
 
@@ -513,7 +508,6 @@ theorem RationalEveryElementIsIntegerFraction
           (RationalIntegerEmbedding rationalData).ToField numerator *
             ((RationalIntegerEmbedding rationalData).ToField denominator)⁻¹ := by
   sorry
-
 /--
 `RationalQuotientFractionsRealizesRationalNumberSystem` TODO
 

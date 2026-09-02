@@ -153,5 +153,4 @@ theorem DivisibilityPreorder
       LRA.Operation.Laws.Identity.TwoSidedIdentity multiplication identity) :
     LRA.Order.Preorder (Divides multiplication) := by
   sorry
-
 end LRA.Operation

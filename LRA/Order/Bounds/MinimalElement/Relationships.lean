@@ -58,5 +58,4 @@ theorem MinimalElementOfConverseIffMaximalElement
         subset candidate ↔
       MaximalElement strictRelation subset candidate := by
   sorry
-
 end LRA.Order

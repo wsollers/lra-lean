@@ -196,7 +196,6 @@ theorem carrier_field_cert
     (rational_model : RationalModel) :
     OrderedFieldLaws (Carrier rational_model) := by
   sorry
-
 /--
 `carrier_strict_order_cert` TODO
 
@@ -239,7 +238,6 @@ theorem carrier_strict_order_cert
     (rational_model : RationalModel) :
     StrictOrderCompatibilityLaw (Carrier rational_model) := by
   sorry
-
 /--
 `carrier_dense_order_cert` TODO
 
@@ -282,7 +280,6 @@ theorem carrier_dense_order_cert
     (rational_model : RationalModel) :
     DenseOrderLaw (Carrier rational_model) := by
   sorry
-
 /--
 `carrier_completeness_cert` TODO
 
@@ -325,7 +322,6 @@ theorem carrier_completeness_cert
     (rational_model : RationalModel) :
     OrderCompletenessLaws (Carrier rational_model) (Set (Carrier rational_model)) := by
   sorry
-
 /--
 `PrimitiveIntervalsRealizesRationalModel` TODO
 
@@ -495,5 +491,4 @@ theorem PrimitiveIntervalsRealizesRationalRealExtension
         LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem,
       realExtension.RealModel.Carrier = Carrier rationalSystem.FieldModel := by
   sorry
-
 end LRA.NumberSystems.RealNumbers.PrimitiveIntervals

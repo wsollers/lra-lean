@@ -26,13 +26,11 @@ section Wrappers
 variable {R : Type u}
 
 theorem ZeroAdd [Add R] [OfNat R 0] [AdditiveIdentityLaws R] :
-    ∀ a : R, 0 + a = a :=
+    ∀ a : R, 0 + a = a := by
   sorry
-
 theorem AddZero [Add R] [OfNat R 0] [AdditiveIdentityLaws R] :
-    ∀ a : R, a + 0 = a :=
+    ∀ a : R, a + 0 = a := by
   sorry
-
 end Wrappers
 
 end LRA.AlgebraicStructures

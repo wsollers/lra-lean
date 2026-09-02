@@ -155,7 +155,7 @@ Common confusions:
 Related proof moves: TODO
 
 -/
-corollary corollary_smoke_test (a : Nat) : a + 0 = a :=
+corollary corollary_smoke_test (a : Nat) : a + 0 = a := by
   sorry
-proposition proposition_smoke_test (a b : Nat) : a + b = b + a :=
+proposition proposition_smoke_test (a b : Nat) : a + b = b + a := by
   sorry

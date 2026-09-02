@@ -10,5 +10,4 @@ instance {R : Type u} [_root_.Ring R] [_root_.LinearOrder R]
     [_root_.IsStrictOrderedRing R] [Nonempty R] :
     LinearlyOrderedRingLaws R := by
   sorry
-
 end LRA.AlgebraicStructures

@@ -117,7 +117,6 @@ theorem representative_addition_respects_equivalence
     LRA.UniversalAlgebra.Quotient.binary_operation_respects
       (EndpointSetoid fieldModel) (addition fieldModel) := by
   sorry
-
 /--
 `addition_is_proper` TODO
 
@@ -170,7 +169,6 @@ theorem addition_is_proper
       (EndpointSetoid fieldModel)
       (addition fieldModel) := by
   sorry
-
 /--
 `negation` TODO
 
@@ -281,7 +279,6 @@ theorem representative_negation_respects_equivalence
     LRA.UniversalAlgebra.Quotient.unary_operation_respects
       (EndpointSetoid fieldModel) (negation fieldModel) := by
   sorry
-
 /--
 `negation_is_proper` TODO
 
@@ -334,7 +331,6 @@ theorem negation_is_proper
       (EndpointSetoid fieldModel)
       (negation fieldModel) := by
   sorry
-
 /--
 `multiplication` TODO
 
@@ -449,7 +445,6 @@ theorem representative_multiplication_respects_equivalence
     LRA.UniversalAlgebra.Quotient.binary_operation_respects
       (EndpointSetoid fieldModel) (multiplication fieldModel) := by
   sorry
-
 /--
 `multiplication_is_proper` TODO
 
@@ -502,7 +497,6 @@ theorem multiplication_is_proper
       (EndpointSetoid fieldModel)
       (multiplication fieldModel) := by
   sorry
-
 /--
 `constant_interval_lower_le_upper` TODO
 
@@ -547,7 +541,6 @@ theorem constant_interval_lower_le_upper
     (value : fieldModel.signature.carrier) :
     fieldModel.signature.le value value := by
   sorry
-
 /--
 `constant_interval` TODO
 
@@ -650,7 +643,6 @@ theorem constant_sequence_is_nested_and_shrinking
     (value : fieldModel.signature.carrier) :
     IsNestedAndShrinking fieldModel (fun _ => constant_interval fieldModel value) := by
   sorry
-
 /--
 `rational_embedding` TODO
 
@@ -897,7 +889,6 @@ theorem representative_strict_order_respects_equivalence
     LRA.UniversalAlgebra.Quotient.relation_respects
       (EndpointSetoid fieldModel) (representative_strict_order fieldModel) := by
   sorry
-
 /--
 `strict_order_is_proper` TODO
 

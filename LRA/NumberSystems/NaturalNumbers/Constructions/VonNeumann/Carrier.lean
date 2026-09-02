@@ -86,7 +86,6 @@ Related proof moves: TODO
 theorem TheInfinityWitnessIsInductiveSet :
     IsInductiveSet TheInfinityWitness := by
   sorry
-
 /--
 `VonNeumannSuccessor` TODO
 
@@ -169,7 +168,6 @@ Related proof moves: TODO
 theorem VonNeumannSuccessorIsSuccessorOf (x : LRA.Set.Constructions.ZFCSet) :
     IsSuccessorOf x (VonNeumannSuccessor x) := by
   sorry
-
 /--
 `Omega` TODO
 
@@ -254,7 +252,6 @@ Related proof moves: TODO
 -/
 theorem OmegaIsInductiveSet : IsInductiveSet Omega := by
   sorry
-
 /--
 `TheEmptySetInOmega` TODO
 
@@ -293,7 +290,6 @@ Related proof moves: TODO
 -/
 theorem TheEmptySetInOmega : TheEmptySet ∈ Omega := by
   sorry
-
 /--
 `OmegaClosedUnderSuccessor` TODO
 
@@ -334,7 +330,6 @@ Related proof moves: intro
 theorem OmegaClosedUnderSuccessor :
     ∀ x : LRA.Set.Constructions.ZFCSet, x ∈ Omega → VonNeumannSuccessor x ∈ Omega := by
   sorry
-
 /--
 `NaturalElement` TODO
 

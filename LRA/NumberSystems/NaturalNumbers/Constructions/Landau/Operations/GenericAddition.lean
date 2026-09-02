@@ -22,8 +22,7 @@ carrier supports a generic addition specification. -/
 theorem LandauAdditionExistsOn
     (model : PeanoSystem Element SetObject) :
     LRA.Operation.Addition.ExistsOn Element := by
-  exact ⟨LandauAdditionSpecification model⟩
-
+  sorry
 /-- Landau's addition as a concrete realization of the generic addition layer. -/
 noncomputable def LandauAdditionRealization
     (model : PeanoSystem Element SetObject) :

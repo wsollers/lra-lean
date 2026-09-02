@@ -138,7 +138,6 @@ theorem LandauMultiplicationClauses
       (fun left value => LandauAddition model value left)
       (LandauMultiplication model) := by
   sorry
-
 /--
 `LandauMultiplicationWellDefined` TODO
 
@@ -213,7 +212,6 @@ theorem LandauMultiplicationWellDefined
           otherMultiplication ->
         otherMultiplication = multiplication := by
   sorry
-
 /--
 `LandauMultiplicationWithOne` TODO
 
@@ -258,7 +256,6 @@ theorem LandauMultiplicationWithOne
     (left : Element) :
     LandauMultiplication model left model.base = left := by
   sorry
-
 /--
 `LandauMultiplicationSuccessorOnRight` TODO
 
@@ -305,7 +302,6 @@ theorem LandauMultiplicationSuccessorOnRight
     LandauMultiplication model left (model.successor right) =
       LandauAddition model (LandauMultiplication model left right) left := by
   sorry
-
 /--
 `LandauMultiplicationDistributesOverAddition` TODO
 
@@ -352,7 +348,6 @@ theorem LandauMultiplicationDistributesOverAddition
       (LandauMultiplication model)
       (LandauAddition model) := by
   sorry
-
 /--
 `LandauLeftDistributivityOfMultiplicationOverAddition` TODO
 
@@ -399,7 +394,6 @@ theorem LandauLeftDistributivityOfMultiplicationOverAddition
       (LandauMultiplication model)
       (LandauAddition model) := by
   sorry
-
 /--
 `LandauMultiplicationDistributesOverAdditionBothSides` TODO
 
@@ -446,7 +440,6 @@ theorem LandauMultiplicationDistributesOverAdditionBothSides
       (LandauMultiplication model)
       (LandauAddition model) := by
   sorry
-
 /--
 `LandauMultiplicationIsAssociative` TODO
 
@@ -489,7 +482,6 @@ theorem LandauMultiplicationIsAssociative
     (model : PeanoSystem Element SetObject) :
     LRA.Operation.Laws.Associative.Associative (LandauMultiplication model) := by
   sorry
-
 /--
 `LandauMultiplicationIsCommutative` TODO
 
@@ -532,5 +524,4 @@ theorem LandauMultiplicationIsCommutative
     (model : PeanoSystem Element SetObject) :
     LRA.Operation.Laws.Commutative.Commutative (LandauMultiplication model) := by
   sorry
-
 end LRA.NumberSystems.NaturalNumbers.Constructions.Landau

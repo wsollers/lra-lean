@@ -19,5 +19,4 @@ theorem positiveIntegersHaveNoIdentity :
           (fun a b : {n // n ∈ LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegers} =>
             a * b) e := by
   sorry
-
 end LRA.AlgebraicStructures.Monoid.Failures

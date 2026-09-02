@@ -13,5 +13,4 @@ theorem powerSetIsDistributiveLattice {α : Type u} :
       (Union.union : LRA.Set.LRA_Set α → LRA.Set.LRA_Set α → LRA.Set.LRA_Set α)
       (Inter.inter : LRA.Set.LRA_Set α → LRA.Set.LRA_Set α → LRA.Set.LRA_Set α) := by
   sorry
-
 end LRA.AlgebraicStructures.DistributiveLattice.Examples

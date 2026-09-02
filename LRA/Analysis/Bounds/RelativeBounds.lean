@@ -210,7 +210,6 @@ theorem OrdinarySupremumInSIsRelativeSupremum
     (A S : Set T) (s : T) (hs : IsLUB A s) (hsS : s ∈ S) :
     IsRelativeSupremum s A S := by
   sorry
-
 /--
 `OrdinaryInfimumInSIsRelativeInfimum` TODO
 
@@ -253,7 +252,6 @@ theorem OrdinaryInfimumInSIsRelativeInfimum
     (A S : Set T) (i : T) (hi : IsGLB A i) (hiS : i ∈ S) :
     IsRelativeInfimum i A S := by
   sorry
-
 /--
 `RationalsWithSquareLessThanTwoInR` TODO
 
@@ -336,7 +334,6 @@ theorem NoRelativeSupremumOfRationalsExample :
     ¬ ∃ s : ℝ, IsRelativeSupremum s RationalsWithSquareLessThanTwoInR
       (Set.range ((↑) : ℚ → ℝ)) := by
   sorry
-
 /--
 `RelativeSupremumOfRationalsInRExample` TODO
 
@@ -379,5 +376,4 @@ theorem RelativeSupremumOfRationalsInRExample :
     IsRelativeSupremum (Real.sqrt 2) RationalsWithSquareLessThanTwoInR
       (Set.univ : Set ℝ) := by
   sorry
-
 end LRA.Analysis.Bounds

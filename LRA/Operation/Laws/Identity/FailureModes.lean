@@ -220,7 +220,6 @@ theorem BooleanSecondProjectionLeftIdentityButNotRightIdentity :
     LeftIdentity BooleanSecondProjection false ∧
       FailsRightIdentity BooleanSecondProjection false := by
   sorry
-
 /--
 `BooleanFirstProjectionRightIdentityButNotLeftIdentity` TODO
 
@@ -263,5 +262,4 @@ theorem BooleanFirstProjectionRightIdentityButNotLeftIdentity :
     RightIdentity BooleanFirstProjection false ∧
       FailsLeftIdentity BooleanFirstProjection false := by
   sorry
-
 end LRA.Operation.Laws.Identity

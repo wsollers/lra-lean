@@ -412,7 +412,6 @@ theorem reciprocal_exists_uniquely
       value * reciprocal = (1 : EffectiveCauchyReal rationalSystem) ∧
       ∀ other, value * other = (1 : EffectiveCauchyReal rationalSystem) → other = reciprocal := by
   sorry
-
 /--
 `inverse` TODO
 
@@ -576,7 +575,6 @@ theorem carrier_field_cert
     (rationalSystem : RationalNumberSystem) :
     OrderedFieldLaws (EffectiveCauchyReal rationalSystem) := by
   sorry
-
 /--
 `carrier_strict_order_cert` TODO
 
@@ -619,7 +617,6 @@ theorem carrier_strict_order_cert
     (rationalSystem : RationalNumberSystem) :
     StrictOrderCompatibilityLaw (EffectiveCauchyReal rationalSystem) := by
   sorry
-
 /--
 `carrier_dense_order_cert` TODO
 
@@ -662,7 +659,6 @@ theorem carrier_dense_order_cert
     (rationalSystem : RationalNumberSystem) :
     DenseOrderLaw (EffectiveCauchyReal rationalSystem) := by
   sorry
-
 /--
 `carrier_completeness_cert` TODO
 
@@ -707,7 +703,6 @@ theorem carrier_completeness_cert
     OrderCompletenessLaws (EffectiveCauchyReal rationalSystem)
       (Set (EffectiveCauchyReal rationalSystem)) := by
   sorry
-
 /--
 `EffectiveCauchyRealizesRationalModel` TODO
 

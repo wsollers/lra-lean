@@ -54,7 +54,6 @@ theorem LeftAbsorbing.apply {Carrier : Type u}
     (element : Carrier) :
     operation absorber element = absorber := by
   sorry
-
 /--
 `RightAbsorbing.apply` TODO
 
@@ -103,7 +102,6 @@ theorem RightAbsorbing.apply {Carrier : Type u}
     (element : Carrier) :
     operation element absorber = absorber := by
   sorry
-
 /--
 `TwoSidedAbsorbing.left` TODO
 
@@ -150,7 +148,6 @@ theorem TwoSidedAbsorbing.left {Carrier : Type u}
     (law : TwoSidedAbsorbing operation absorber) :
     LeftAbsorbing operation absorber := by
   sorry
-
 /--
 `TwoSidedAbsorbing.right` TODO
 
@@ -197,7 +194,6 @@ theorem TwoSidedAbsorbing.right {Carrier : Type u}
     (law : TwoSidedAbsorbing operation absorber) :
     RightAbsorbing operation absorber := by
   sorry
-
 /--
 `TwoSidedAbsorbing.of_left_right` TODO
 
@@ -246,5 +242,4 @@ theorem TwoSidedAbsorbing.of_left_right {Carrier : Type u}
     (rightLaw : RightAbsorbing operation absorber) :
     TwoSidedAbsorbing operation absorber := by
   sorry
-
 end LRA.Operation.Laws.Absorbing

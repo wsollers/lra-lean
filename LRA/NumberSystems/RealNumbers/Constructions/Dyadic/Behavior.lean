@@ -75,7 +75,6 @@ theorem BinaryTailAmbiguity
                 FractionalPartialSumsAreCauchy dyadicData digits⟩ →
         other = terminating := by
   sorry
-
 /--
 `CanonicalFractionalUniqueness` TODO
 
@@ -120,5 +119,4 @@ theorem CanonicalFractionalUniqueness
     FractionalValue dyadicData first = FractionalValue dyadicData second ↔
       first = second := by
   sorry
-
 end LRA.NumberSystems.RealNumbers.Dyadic

@@ -41,19 +41,16 @@ variable {R : Type u}
 
 theorem NegAddCancel [Add R] [Neg R] [OfNat R 0]
     [AdditiveInverseLaws R] :
-    ∀ a : R, -a + a = 0 :=
+    ∀ a : R, -a + a = 0 := by
   sorry
-
 theorem AddNegCancel [Add R] [Neg R] [OfNat R 0]
     [AdditiveInverseLaws R] :
-    ∀ a : R, a + -a = 0 :=
+    ∀ a : R, a + -a = 0 := by
   sorry
-
 theorem SubEqAddNeg [Sub R] [Add R] [Neg R]
     [SubtractionCompatibilityLaw R] :
-    ∀ a b : R, a - b = a + -b :=
+    ∀ a b : R, a - b = a + -b := by
   sorry
-
 end Wrappers
 
 end LRA.AlgebraicStructures

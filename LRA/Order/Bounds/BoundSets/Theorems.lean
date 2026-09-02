@@ -68,7 +68,6 @@ theorem UpperBoundsMembership
     bound ∈ UpperBounds relation subset ↔
       UpperBound relation subset bound := by
   sorry
-
 /--
 `LowerBoundsMembership` TODO
 
@@ -115,7 +114,6 @@ theorem LowerBoundsMembership
     bound ∈ LowerBounds relation subset ↔
       LowerBound relation subset bound := by
   sorry
-
 /--
 `UpperBoundsAntitoneUnderInclusion` TODO
 
@@ -162,7 +160,6 @@ theorem UpperBoundsAntitoneUnderInclusion
     (smallerIsContained : smaller ⊆ larger) :
     UpperBounds relation larger ⊆ UpperBounds relation smaller := by
   sorry
-
 /--
 `LowerBoundsAntitoneUnderInclusion` TODO
 
@@ -209,7 +206,6 @@ theorem LowerBoundsAntitoneUnderInclusion
     (smallerIsContained : smaller ⊆ larger) :
     LowerBounds relation larger ⊆ LowerBounds relation smaller := by
   sorry
-
 /--
 `UpperBoundsOfEmpty` TODO
 
@@ -254,7 +250,6 @@ theorem UpperBoundsOfEmpty
     UpperBounds relation (∅ : SetObject) =
       (HasUniversal.universal : SetObject) := by
   sorry
-
 /--
 `LowerBoundsOfEmpty` TODO
 
@@ -299,7 +294,6 @@ theorem LowerBoundsOfEmpty
     LowerBounds relation (∅ : SetObject) =
       (HasUniversal.universal : SetObject) := by
   sorry
-
 end GenericBoundSets
 
 end LRA.Order

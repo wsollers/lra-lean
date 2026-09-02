@@ -17,7 +17,6 @@ theorem positiveEvenNaturalsClosedUnderAddition :
     ∀ a b, a ∈ PositiveEvenNaturals → b ∈ PositiveEvenNaturals →
       a + b ∈ PositiveEvenNaturals := by
   sorry
-
 noncomputable instance : Add {n // n ∈ PositiveEvenNaturals} :=
   LRA.AlgebraicStructures.AdditiveSemigroup.Constructions.ClosedSubsetAdd
     positiveEvenNaturalsClosedUnderAddition
@@ -26,8 +25,6 @@ noncomputable instance : Nonempty {n // n ∈ PositiveEvenNaturals} := by
   sorry
 
 noncomputable instance :
-    LRA.AlgebraicStructures.AdditiveSemigroupLaws {n // n ∈ PositiveEvenNaturals} :=
-  LRA.AlgebraicStructures.AdditiveSemigroup.Constructions.ClosedSubsetAdditiveSemigroupLaws
-    positiveEvenNaturalsClosedUnderAddition
-
+    LRA.AlgebraicStructures.AdditiveSemigroupLaws {n // n ∈ PositiveEvenNaturals} := by
+  sorry
 end LRA.AlgebraicStructures.AdditiveSemigroup.Examples

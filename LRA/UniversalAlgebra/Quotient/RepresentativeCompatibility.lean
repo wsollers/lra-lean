@@ -271,7 +271,6 @@ theorem binary_operation_respects_iff_left_and_right
       binary_operation_respects_left setoid operation ∧
       binary_operation_respects_right setoid operation := by
   sorry
-
 /--
 `commutative_operation_respects_of_respects_left` TODO
 
@@ -328,7 +327,6 @@ theorem commutative_operation_respects_of_respects_left
       binary_operation_respects_left setoid operation) :
     binary_operation_respects setoid operation := by
   sorry
-
 /--
 `induced_binary_operation_exists` TODO
 
@@ -397,7 +395,6 @@ theorem induced_binary_operation_exists
               first_representative
               second_representative) := by
   sorry
-
 /--
 `predicate_respects` TODO
 
@@ -558,7 +555,6 @@ theorem compatible_predicate_has_constant_truth_on_classes
       setoid.r first_representative second_representative) :
     predicate first_representative ↔ predicate second_representative := by
   sorry
-
 /--
 `induced_relation_exists` TODO
 
@@ -623,5 +619,4 @@ theorem induced_relation_exists
             first_representative
             second_representative := by
   sorry
-
 end LRA.UniversalAlgebra.Quotient

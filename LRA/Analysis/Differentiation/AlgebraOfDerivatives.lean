@@ -49,7 +49,6 @@ Related proof moves: TODO
 theorem ConstantMultipleRule (hf : Derivative Df f A c) (α : ℝ) :
     Derivative (α * Df) (fun x => α * f x) A c := by
   sorry
-
 /--
 `SumRule` TODO
 
@@ -90,7 +89,6 @@ Related proof moves: TODO
 theorem SumRule (hf : Derivative Df f A c) (hg : Derivative Dg g A c) :
     Derivative (Df + Dg) (fun x => f x + g x) A c := by
   sorry
-
 /--
 `ProductRule` TODO
 
@@ -131,7 +129,6 @@ Related proof moves: TODO
 theorem ProductRule (hf : Derivative Df f A c) (hg : Derivative Dg g A c) :
     Derivative (Df * g c + f c * Dg) (fun x => f x * g x) A c := by
   sorry
-
 /--
 `QuotientRule` TODO
 
@@ -174,7 +171,6 @@ theorem QuotientRule (hf : Derivative Df f A c) (hg : Derivative Dg g A c)
     (hgc : g c ≠ 0) :
     Derivative ((Df * g c - f c * Dg) / (g c) ^ 2) (fun x => f x / g x) A c := by
   sorry
-
 /--
 `FiniteSumRule` TODO
 
@@ -217,7 +213,6 @@ theorem FiniteSumRule (n : ℕ) (fs : Fin n → ℝ → ℝ) (αs : Fin n → �
     (hfs : ∀ i, Derivative (Ds i) (fs i) A c) :
     Derivative (∑ i, αs i * Ds i) (fun x => ∑ i, αs i * fs i x) A c := by
   sorry
-
 /--
 `ExtendedProductRule` TODO
 
@@ -262,7 +257,6 @@ theorem ExtendedProductRule (n : ℕ) (fs : Fin n → ℝ → ℝ) (Ds : Fin n �
     Derivative (∑ k, Ds k * ∏ i ∈ Finset.univ.erase k, fs i c)
       (fun x => ∏ i, fs i x) A c := by
   sorry
-
 /--
 `PowerRuleSpecialCase` TODO
 
@@ -303,7 +297,6 @@ Related proof moves: TODO
 theorem PowerRuleSpecialCase (hf : Derivative Df f A c) (n : ℕ) :
     Derivative (n * (f c) ^ (n - 1) * Df) (fun x => (f x) ^ n) A c := by
   sorry
-
 /--
 `FiniteLinearCombinationRule` TODO
 
@@ -346,7 +339,6 @@ theorem FiniteLinearCombinationRule (n : ℕ) (fs : Fin n → ℝ → ℝ) (αs 
     (Ds : Fin n → ℝ) (hfs : ∀ i, Derivative (Ds i) (fs i) A c) :
     Derivative (∑ i, αs i * Ds i) (fun x => ∑ i, αs i * fs i x) A c := by
   sorry
-
 /--
 `IntervalFormsOfAlgebraRules` TODO
 
@@ -395,7 +387,6 @@ theorem IntervalFormsOfAlgebraRules (I : Set ℝ) (hI : I.OrdConnected)
     (∀ x ∈ I, Derivative (fD x + gD x) (fun y => f y + g y) I x) ∧
     (∀ x ∈ I, Derivative (fD x * g x + f x * gD x) (fun y => f y * g y) I x) := by
   sorry
-
 /--
 `InverseFunctionTheoremOneVariable` TODO
 
@@ -446,7 +437,6 @@ theorem InverseFunctionTheoremOneVariable (f fD1 : ℝ → ℝ) (I : Set ℝ) (h
         ∃ gD1 : ℝ → ℝ, IsClassC1 g gD1 V ∧
           ∀ y ∈ V, ∃ x ∈ U, f x = y ∧ gD1 y * fD1 x = 1 := by
   sorry
-
 /--
 `InverseFunctionDerivative` TODO
 
@@ -493,7 +483,6 @@ theorem InverseFunctionDerivative (f g fD1 : ℝ → ℝ) (U V : Set ℝ)
     (hinv : ∀ x ∈ U, g (f x) = x) (hinv' : ∀ y ∈ V, f (g y) = y) :
     ∀ y ∈ V, Derivative (1 / fD1 (g y)) g V y := by
   sorry
-
 open LRA.Analysis.Limits in
 
 /--
@@ -550,7 +539,6 @@ theorem LhopitalZeroOverZero (f g : ℝ → ℝ) (a b : ℝ) (hab : a < b)
     (L : ℝ) (hL : TendsToRight (fun x => fD x / gD x) (Set.Ioo a b) a L) :
     TendsToRight (fun x => f x / g x) (Set.Ioo a b) a L := by
   sorry
-
 open LRA.Analysis.Limits in
 
 /--
@@ -607,5 +595,4 @@ theorem LhopitalInfinityOverInfinity (f g : ℝ → ℝ) (a b : ℝ) (hab : a < 
     (L : ℝ) (hL : TendsToRight (fun x => fD x / gD x) (Set.Ioo a b) a L) :
     TendsToRight (fun x => f x / g x) (Set.Ioo a b) a L := by
   sorry
-
 end LRA.Analysis.Differentiation

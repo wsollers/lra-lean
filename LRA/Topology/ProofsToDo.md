@@ -11,87 +11,12 @@ references. That gives a conservative repo-local work sequence, but it is
 **not** a theorem-level semantic dependency graph across unrelated topics in
 the folder.
 
-**Inventory:** 6 entries across 3 module(s) (0 completed, 6 sorry, 0 axiomatic assumptions), 0 of which are an `instance` law rather than a `theorem`/`lemma`.
+**Progress:** 0/6 theorem-family entries completed since reset baseline `4e5dfb4e` (ready for proving).
+**Baseline reconciliation:** 0 still match baseline as `sorry`; 6 baseline entries were moved, renamed, or removed and are not auto-credited.
 
-## Open Work Queue
+**Snapshot:** 0/0 theorem-family entries currently completed (0 sorry remaining).
 
-Unfinished entries (`Sorry`, or `Unknown` in offline preview) are listed first so
-this section can be used as the actual proof queue.
+**Inventory:** 0 theorem/lemma/corollary/proposition entries across 0 module(s) (0 completed, 0 sorry).
+**Excluded from counts:** 0 `instance` entries and 0 `axiom` entries.
 
-Name: closed_sets_in_topological_space
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ {X : Type u} [TopologicalSpace X], (∀ S : Set (Set X), (∀ C ∈ S, IsClosed C) → IsClosed (⋂₀ S)) ∧ (∀ C D : Set X, IsClosed C → IsClosed D → IsClosed (C ∪ D)) ∧ IsClosed (univ : Set X) ∧ IsClosed (∅ : Set X)
-Predicate logic (unfolded): ∀ {X : Type u} [inst : TopologicalSpace X], (∀ (S : Set (Set X)), (∀ (C : Set X), Set.instMembership.mem S C → IsClosed C) → IsClosed S.sInter ∧ (∀ (C D : Set X), IsClosed C → IsClosed D → IsClosed (Set.instUnion.union C D) ∧ (IsClosed Set.univ ∧ IsClosed Set.instEmptyCollection.emptyCollection)))
-Transliterated theorem: ∀ S ∈ Set (Set X, (∀ C ∈ S, IsClosed C) → IsClosed (⋂₀ S)) ∧ ∀ C D ∈ Set X, IsClosed C → IsClosed D → IsClosed (C ∪ D) ∧ IsClosed univ ∈ Set X ∧ IsClosed ∅ ∈ Set X
-Logical form (Lean): {X : Type u} [TopologicalSpace X] : (∀ S : Set (Set X), (∀ C ∈ S, IsClosed C) → IsClosed (⋂₀ S)) ∧ (∀ C D : Set X, IsClosed C → IsClosed D → IsClosed (C ∪ D)) ∧ IsClosed (univ : Set X) ∧ IsClosed (∅ : Set X)
-Source: ./PointSetTopology/TopologicalSpace/Definition/Theorems.lean#L69
-
-
-
-Name: TopologyFromClosedSetAxioms
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ {X : Type u} (F : Set (Set X)) (closedUnderArbitraryIntersections : ∀ S ⊆ F, ⋂₀ S ∈ F) (closedUnderFiniteUnions : ∀ C ∈ F, ∀ D ∈ F, C ∪ D ∈ F) (_wholeSpaceMem : univ ∈ F) (emptyMem : ∅ ∈ F), ∃ topologicalSpace : TopologicalSpace X, ∀ C : Set X, @IsClosed X topologicalSpace C ↔ C ∈ F
-Predicate logic (unfolded): ∀ {X : Type u} (F : Set (Set X)), (∀ (S : Set (Set X)), Set.instLE.le S F → Set.instMembership.mem F S.sInter ∧ (∀ (C : Set X), Set.instMembership.mem F C → ∀ (D : Set X), Set.instMembership.mem F D → Set.instMembership.mem F (Set.instUnion.union C D) ∧ (Set.instMembership.mem F Set.univ ∧ Set.instMembership.mem F Set.instEmptyCollection.emptyCollection))) → Exists fun topologicalSpace => ∀ (C : Set X), IsClosed C ↔ Set.instMembership.mem F C
-Transliterated theorem: (∀ S ⊆ F, ⋂₀ S ∈ F ∧ ∀ C ∈ F, ∀ D ∈ F, C ∪ D ∈ F ∧ univ ∈ F ∧ ∅ ∈ F) → ∃ topologicalSpace ∈ TopologicalSpace X, ∀ C : Set X, @IsClosed X topologicalSpace C ↔ C ∈ F
-Logical form (Lean): {X : Type u} (F : Set (Set X)) (closedUnderArbitraryIntersections : ∀ S ⊆ F, ⋂₀ S ∈ F) (closedUnderFiniteUnions : ∀ C ∈ F, ∀ D ∈ F, C ∪ D ∈ F) (_wholeSpaceMem : univ ∈ F) (emptyMem : ∅ ∈ F) : ∃ topologicalSpace : TopologicalSpace X, ∀ C : Set X, @IsClosed X topologicalSpace C ↔ C ∈ F
-Source: ./PointSetTopology/TopologicalSpace/Definition/Theorems.lean#L99
-
-
-
-Name: TopologicalClosureMonotone
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ {X : Type u} [inst : TopologicalSpace X] {A B : Set X},   Set.instLE.le A B →     Set.instLE.le (LRA.Topology.TopologicalClosureDefinition A) (LRA.Topology.TopologicalClosureDefinition B)
-Predicate logic (unfolded): ∀ {X : Type u} [inst : TopologicalSpace X] {A B : Set X}, Set.instLE.le A B → Set.instLE.le (LRA.Topology.TopologicalClosureDefinition A) (LRA.Topology.TopologicalClosureDefinition B)
-Transliterated theorem: TopologicalClosureDefinition A ⊆ TopologicalClosureDefinition B
-Logical form (Lean): {X : Type u} [TopologicalSpace X] {A B : Set X} (subset : A ⊆ B) : TopologicalClosureDefinition A ⊆ TopologicalClosureDefinition B
-Source: ./PointSetTopology/TopologicalSpace/Definition/Theorems.lean#L147
-
-
-
-Name: ToMathlibIsOpen
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ {X : Type u} (topology : TopologyDefinition X) (U : Set X), letI : _root_.TopologicalSpace X
-Predicate logic (unfolded): ∀ {X : Type u} (topology : LRA.Topology.TopologyDefinition X) (U : Set X), IsOpen U ↔ topology.IsOpen U
-Transliterated theorem: letI : _root_.TopologicalSpace X
-Logical form (Lean): {X : Type u} (topology : TopologyDefinition X) (U : Set X) : letI : _root_.TopologicalSpace X
-Source: ./PointSetTopology/TopologicalSpace/Interop/Mathlib.lean#L45
-
-
-
-Name: FromMathlibTopologicalSpaceIsCompatibleWithMathlibTopologicalSpace
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ {X : Type u} [inst : TopologicalSpace X],   LRA.Topology.IsCompatibleWithMathlibTopologicalSpace (LRA.Topology.TopologyDefinition.FromMathlibTopologicalSpace X)
-Predicate logic (unfolded): ∀ {X : Type u} [inst : TopologicalSpace X], LRA.Topology.IsCompatibleWithMathlibTopologicalSpace (LRA.Topology.TopologyDefinition.FromMathlibTopologicalSpace X)
-Transliterated theorem: IsCompatibleWithMathlibTopologicalSpace (TopologyDefinition.FromMathlibTopologicalSpace X)
-Logical form (Lean): {X : Type u} [_root_.TopologicalSpace X] : IsCompatibleWithMathlibTopologicalSpace (TopologyDefinition.FromMathlibTopologicalSpace X)
-Source: ./PointSetTopology/TopologicalSpace/Interop/Mathlib.lean#L131
-
-
-
-Name: SelectMathlibTopologicalSpaceIsOpenInduced
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ {X : Type u} (topology : TopologyDefinition X) [_root_.TopologicalSpace X] (U : Set X), letI : _root_.TopologicalSpace X
-Predicate logic (unfolded): ∀ {X : Type u} (topology : LRA.Topology.TopologyDefinition X) [inst : TopologicalSpace X] (U : Set X), IsOpen U ↔ topology.IsOpen U
-Transliterated theorem: letI : _root_.TopologicalSpace X
-Logical form (Lean): {X : Type u} (topology : TopologyDefinition X) [_root_.TopologicalSpace X] (U : Set X) : letI : _root_.TopologicalSpace X
-Source: ./PointSetTopology/TopologicalSpace/Interop/Switch.lean#L129
-
-## Axioms / Assumptions
-
-Declarations written as `axiom` are recorded here for audit context, but they are
-excluded from the active proof queue because there is no proof obligation to discharge.
-
-No axiomatic assumptions are currently present in this scope.
-
-## Completed Inventory
-
-Completed entries are retained below for full-fresh regeneration and audit context,
-but they are not part of the active proof queue.
-
-No completed theorem declarations are currently present in this scope.
+No proof or axiom declarations found under this scope yet.

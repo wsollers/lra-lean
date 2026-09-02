@@ -48,7 +48,6 @@ theorem IdentityRelationIsReflexive
     {Alpha : Type u} :
     Reflexive (IdentityRelation Alpha) := by
   sorry
-
 /--
 `IdentityRelationIsSymmetric` TODO
 
@@ -91,7 +90,6 @@ theorem IdentityRelationIsSymmetric
     {Alpha : Type u} :
     Symmetric (IdentityRelation Alpha) := by
   sorry
-
 /--
 `IdentityRelationIsTransitive` TODO
 
@@ -134,5 +132,4 @@ theorem IdentityRelationIsTransitive
     {Alpha : Type u} :
     Transitive (IdentityRelation Alpha) := by
   sorry
-
 end LRA.Relation
