@@ -12,11 +12,2414 @@ references. That gives a conservative repo-local work sequence, but it is
 the folder.
 
 **Progress:** 0/59 theorem-family entries completed since reset baseline `4e5dfb4e` (ready for proving).
-**Baseline reconciliation:** 0 still match baseline as `sorry`; 59 baseline entries were moved, renamed, or removed and are not auto-credited.
+**Baseline reconciliation:** 59 still match baseline as `sorry`; 0 baseline entries were moved, renamed, or removed and are not auto-credited.
 
-**Snapshot:** 0/0 theorem-family entries currently completed (0 sorry remaining).
+**Snapshot:** 1/64 theorem-family entries currently completed (63 sorry remaining).
 
-**Inventory:** 0 theorem/lemma/corollary/proposition entries across 0 module(s) (0 completed, 0 sorry).
-**Excluded from counts:** 0 `instance` entries and 0 `axiom` entries.
+**Inventory:** 64 theorem/lemma/corollary/proposition entries across 43 module(s) (1 completed, 63 sorry).
+**Excluded from counts:** 74 `instance` entries and 0 `axiom` entries.
 
-No proof or axiom declarations found under this scope yet.
+## Open Work Queue
+
+Unfinished entries (`Sorry`, or `Unknown` in offline preview) are listed first so
+this section can be used as the actual proof queue.
+
+Name: LeftTotalIffConverseRightTotal
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {Beta : Type v} (relation : HeterogeneousBinaryRelation Alpha Beta), LeftTotal relation ↔ RightTotal (Converse relation)
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta)
+  Objects
+    relation : HeterogeneousBinaryRelation Alpha Beta
+  Prove
+    LeftTotal relation ↔ RightTotal (Converse relation)
+Transliterated theorem: LeftTotal relation ↔ RightTotal (Converse relation)
+Logical form (Lean): {Alpha : Type u} {Beta : Type v} (relation : HeterogeneousBinaryRelation Alpha Beta) : LeftTotal relation ↔ RightTotal (Converse relation)
+Source: ./Interface/Operations/Converse/Theorems.lean#L48
+
+
+
+Name: RightTotalIffConverseLeftTotal
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {Beta : Type v} (relation : HeterogeneousBinaryRelation Alpha Beta), RightTotal relation ↔ LeftTotal (Converse relation)
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta)
+  Objects
+    relation : HeterogeneousBinaryRelation Alpha Beta
+  Prove
+    RightTotal relation ↔ LeftTotal (Converse relation)
+Transliterated theorem: RightTotal relation ↔ LeftTotal (Converse relation)
+Logical form (Lean): {Alpha : Type u} {Beta : Type v} (relation : HeterogeneousBinaryRelation Alpha Beta) : RightTotal relation ↔ LeftTotal (Converse relation)
+Source: ./Interface/Operations/Converse/Theorems.lean#L92
+
+
+
+Name: RightUniqueIffConverseLeftUnique
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {Beta : Type v} (relation : HeterogeneousBinaryRelation Alpha Beta), RightUnique relation ↔ LeftUnique (Converse relation)
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta)
+  Objects
+    relation : HeterogeneousBinaryRelation Alpha Beta
+  Prove
+    RightUnique relation ↔ LeftUnique (Converse relation)
+Transliterated theorem: RightUnique relation ↔ LeftUnique (Converse relation)
+Logical form (Lean): {Alpha : Type u} {Beta : Type v} (relation : HeterogeneousBinaryRelation Alpha Beta) : RightUnique relation ↔ LeftUnique (Converse relation)
+Source: ./Interface/Operations/Converse/Theorems.lean#L136
+
+
+
+Name: LeftUniqueIffConverseRightUnique
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {Beta : Type v} (relation : HeterogeneousBinaryRelation Alpha Beta), LeftUnique relation ↔ RightUnique (Converse relation)
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta)
+  Objects
+    relation : HeterogeneousBinaryRelation Alpha Beta
+  Prove
+    LeftUnique relation ↔ RightUnique (Converse relation)
+Transliterated theorem: LeftUnique relation ↔ RightUnique (Converse relation)
+Logical form (Lean): {Alpha : Type u} {Beta : Type v} (relation : HeterogeneousBinaryRelation Alpha Beta) : LeftUnique relation ↔ RightUnique (Converse relation)
+Source: ./Interface/Operations/Converse/Theorems.lean#L180
+
+
+
+Name: ConverseInvolutive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} (relation : Endorelation Alpha), Converse (Converse relation) = relation
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+  Prove
+    fun y x => relation y x = relation
+Transliterated theorem: Converse (Converse relation) = relation
+Logical form (Lean): {Alpha : Type u} (relation : Endorelation Alpha) : Converse (Converse relation) = relation
+Source: ./Interface/Operations/Converse/Theorems.lean#L224
+
+
+
+Name: ReflexiveConverseIff
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} (relation : Endorelation Alpha), Reflexive (Converse relation) ↔ Reflexive relation
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+  Prove
+    Reflexive (Converse relation) ↔ Reflexive relation
+Transliterated theorem: Reflexive (Converse relation) ↔ Reflexive relation
+Logical form (Lean): {Alpha : Type u} (relation : Endorelation Alpha) : Reflexive (Converse relation) ↔ Reflexive relation
+Source: ./Interface/Operations/Converse/Theorems.lean#L268
+
+
+
+Name: IrreflexiveConverseIff
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} (relation : Endorelation Alpha), Irreflexive (Converse relation) ↔ Irreflexive relation
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+  Prove
+    Irreflexive (Converse relation) ↔ Irreflexive relation
+Transliterated theorem: Irreflexive (Converse relation) ↔ Irreflexive relation
+Logical form (Lean): {Alpha : Type u} (relation : Endorelation Alpha) : Irreflexive (Converse relation) ↔ Irreflexive relation
+Source: ./Interface/Operations/Converse/Theorems.lean#L312
+
+
+
+Name: TransitiveConverseIff
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} (relation : Endorelation Alpha), Transitive (Converse relation) ↔ Transitive relation
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+  Prove
+    Transitive (Converse relation) ↔ Transitive relation
+Transliterated theorem: Transitive (Converse relation) ↔ Transitive relation
+Logical form (Lean): {Alpha : Type u} (relation : Endorelation Alpha) : Transitive (Converse relation) ↔ Transitive relation
+Source: ./Interface/Operations/Converse/Theorems.lean#L356
+
+
+
+Name: AntisymmetricConverseIff
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} (relation : Endorelation Alpha), Antisymmetric (Converse relation) ↔ Antisymmetric relation
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+  Prove
+    Antisymmetric (Converse relation) ↔ Antisymmetric relation
+Transliterated theorem: Antisymmetric (Converse relation) ↔ Antisymmetric relation
+Logical form (Lean): {Alpha : Type u} (relation : Endorelation Alpha) : Antisymmetric (Converse relation) ↔ Antisymmetric relation
+Source: ./Interface/Operations/Converse/Theorems.lean#L400
+
+
+
+Name: TotalConverseIff
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} (relation : Endorelation Alpha), Total (Converse relation) ↔ Total relation
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+  Prove
+    Total (Converse relation) ↔ Total relation
+Transliterated theorem: Total (Converse relation) ↔ Total relation
+Logical form (Lean): {Alpha : Type u} (relation : Endorelation Alpha) : Total (Converse relation) ↔ Total relation
+Source: ./Interface/Operations/Converse/Theorems.lean#L444
+
+
+
+Name: DenseConverseIff
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} (relation : Endorelation Alpha), Dense (Converse relation) ↔ Dense relation
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+  Prove
+    Dense (Converse relation) ↔ Dense relation
+Transliterated theorem: Dense (Converse relation) ↔ Dense relation
+Logical form (Lean): {Alpha : Type u} (relation : Endorelation Alpha) : Dense (Converse relation) ↔ Dense relation
+Source: ./Interface/Operations/Converse/Theorems.lean#L488
+
+
+
+Name: Asymmetric.implies_irreflexive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha},   LRA.Relation.Asymmetric relation → LRA.Relation.Irreflexive relation
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+    asymmetric : Asymmetric relation
+  Prove
+    (∀ (x y : Alpha), relation x y → relation y x → False) → ∀ (x : Alpha), relation x x → False
+Transliterated theorem: Irreflexive relation
+Logical form (Lean): {Alpha : Type u} {relation : Endorelation Alpha} (asymmetric : Asymmetric relation) : Irreflexive relation
+Source: ./Interface/Laws/Consequences.lean#L47
+
+
+
+Name: Irreflexive.transitive_implies_asymmetric
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {relation : Endorelation Alpha} (irreflexive : Irreflexive relation) (transitive : Transitive relation), Asymmetric relation
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+    irreflexive : Irreflexive relation
+    transitive : Transitive relation
+  Prove
+    ((∀ (x : Alpha), relation x x → False) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z)) → ∀ (x y : Alpha), (relation x y ∧ relation y x) → False
+Transliterated theorem: Asymmetric relation
+Logical form (Lean): {Alpha : Type u} {relation : Endorelation Alpha} (irreflexive : Irreflexive relation) (transitive : Transitive relation) : Asymmetric relation
+Source: ./Interface/Laws/Consequences.lean#L94
+
+
+
+Name: Asymmetric.implies_antisymmetric
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha},   LRA.Relation.Asymmetric relation → LRA.Relation.Antisymmetric relation
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+    asymmetric : Asymmetric relation
+  Prove
+    (∀ (x y : Alpha), relation x y → relation y x → False) → ∀ (x y : Alpha), (relation x y ∧ relation y x) → x = y
+Transliterated theorem: Antisymmetric relation
+Logical form (Lean): {Alpha : Type u} {relation : Endorelation Alpha} (asymmetric : Asymmetric relation) : Antisymmetric relation
+Source: ./Interface/Laws/Consequences.lean#L141
+
+
+
+Name: Symmetric.antisymmetric_related_implies_equal
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {relation : Endorelation Alpha} (symmetric : Symmetric relation) (antisymmetric : Antisymmetric relation) {left right : Alpha} (related : relation left right), left = right
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+    symmetric : Symmetric relation
+    antisymmetric : Antisymmetric relation
+    left right : Alpha
+    related : relation left right
+  Prove
+    ((∀ (x y : Alpha), relation x y → relation y x) ∧ (∀ (x y : Alpha), relation x y → relation y x → x = y)) → ∀ {left right : Alpha}, relation left right → left = right
+Transliterated theorem: left = right
+Logical form (Lean): {Alpha : Type u} {relation : Endorelation Alpha} (symmetric : Symmetric relation) (antisymmetric : Antisymmetric relation) {left right : Alpha} (related : relation left right) : left = right
+Source: ./Interface/Laws/Consequences.lean#L190
+
+
+
+Name: Reflexive.asymmetric_contradiction_at
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha},   LRA.Relation.Reflexive relation → LRA.Relation.Asymmetric relation → ∀ (element : Alpha), False
+Predicate logic (unfolded): ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha},   LRA.Relation.Reflexive relation → LRA.Relation.Asymmetric relation → ∀ (element : Alpha), False [unfold error: unavailable]
+Transliterated theorem: (∀ element ∈ Alpha), False
+Logical form (Lean): {Alpha : Type u} {relation : Endorelation Alpha} (reflexive : Reflexive relation) (asymmetric : Asymmetric relation) (element : Alpha) : False
+Source: ./Interface/Laws/Consequences.lean#L241
+
+
+
+Name: MinimalElementPrinciple
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {strictRelation : Endorelation Element} (strictRelationIsWellFounded : WellFounded SetObject strictRelation) (subset : SetObject) (subsetIsNonempty : ∃ element : Element, element ∈ subset), ∃ minimalElement, MinimalElement strictRelation subset minimalElement
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    strictRelation : Endorelation Element
+    strictRelationIsWellFounded : WellFounded SetObject strictRelation
+    subset : SetObject
+  Prove
+    (∀ (subset : SetObject), (Exists fun element => subset ≤ element) → Exists fun minimum => (subset ≤ minimum ∧ (∀ (element : Element), subset ≤ element → strictRelation element minimum → False))) → ∀ (subset : SetObject), (Exists fun element => subset ≤ element) → Exists fun minimalElement => (subset ≤ minimalElement ∧ (∀ (element : Element), subset ≤ element → strictRelation element minimalElement → False))
+Transliterated theorem: (∀ A ∈ U), (∃ element ∈ Element, element ∈ A) → ∃ minimalElement, MinimalElement strictRelation A minimalElement
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {strictRelation : Endorelation Element} (strictRelationIsWellFounded : WellFounded SetObject strictRelation) (subset : SetObject) (subsetIsNonempty : ∃ element : Element, element ∈ subset) : ∃ minimalElement, MinimalElement strictRelation subset minimalElement
+Source: ./Interface/Laws/WellFounded/Theorems.lean#L51
+
+
+
+Name: Transitive.iff_square_included
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} (relation : Endorelation Alpha), Transitive relation ↔ RelationIncluded (RelationComposition relation relation) relation
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+  Prove
+    Transitive relation ↔ RelationIncluded (RelationComposition relation relation) relation
+Transliterated theorem: Transitive relation ↔ RelationIncluded (RelationComposition relation relation) relation
+Logical form (Lean): {Alpha : Type u} (relation : Endorelation Alpha) : Transitive relation ↔ RelationIncluded (RelationComposition relation relation) relation
+Source: ./Interface/Operations/Composition/Characterizations.lean#L48
+
+
+
+Name: RelationComposition.associative
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {Beta : Type v} {Gamma : Type w} {Delta : Type x} (firstRelation : HeterogeneousBinaryRelation Alpha Beta) (secondRelation : HeterogeneousBinaryRelation Beta Gamma) (thirdRelation : HeterogeneousBinaryRelation Gamma Delta), RelationComposition thirdRelation (RelationComposition secondRelation firstRelation) = RelationComposition (RelationComposition thirdRelation secondRelation) firstRelation
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta, Gamma, Delta)
+  Objects
+    firstRelation : HeterogeneousBinaryRelation Alpha Beta
+    secondRelation : HeterogeneousBinaryRelation Beta Gamma
+    thirdRelation : HeterogeneousBinaryRelation Gamma Delta
+  Prove
+    fun first third => Exists fun middle => ((Exists fun middle_1 => (firstRelation first middle_1 ∧ secondRelation middle_1 middle)) ∧ thirdRelation middle third) = funfirst third => Exists fun middle => (firstRelation first middle ∧ (Exists fun middle_1 => (secondRelation middle middle_1 ∧ thirdRelation middle_1 third)))
+Transliterated theorem: RelationComposition thirdRelation (RelationComposition secondRelation firstRelation) = RelationComposition (RelationComposition thirdRelation secondRelation) firstRelation
+Logical form (Lean): {Alpha : Type u} {Beta : Type v} {Gamma : Type w} {Delta : Type x} (firstRelation : HeterogeneousBinaryRelation Alpha Beta) (secondRelation : HeterogeneousBinaryRelation Beta Gamma) (thirdRelation : HeterogeneousBinaryRelation Gamma Delta) : RelationComposition thirdRelation (RelationComposition secondRelation firstRelation) = RelationComposition (RelationComposition thirdRelation secondRelation) firstRelation
+Source: ./Interface/Operations/Composition/Consequences.lean#L53
+
+
+
+Name: RelationComposition.identity_left
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {Beta : Type v} (relation : HeterogeneousBinaryRelation Alpha Beta), RelationComposition (IdentityRelation Beta) relation = relation
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta)
+  Objects
+    relation : HeterogeneousBinaryRelation Alpha Beta
+  Prove
+    fun first third => Exists fun middle => (relation first middle ∧ middle = third) = relation
+Transliterated theorem: RelationComposition (IdentityRelation Beta) relation = relation
+Logical form (Lean): {Alpha : Type u} {Beta : Type v} (relation : HeterogeneousBinaryRelation Alpha Beta) : RelationComposition (IdentityRelation Beta) relation = relation
+Source: ./Interface/Operations/Composition/Consequences.lean#L102
+
+
+
+Name: RelationComposition.identity_right
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {Beta : Type v} (relation : HeterogeneousBinaryRelation Alpha Beta), RelationComposition relation (IdentityRelation Alpha) = relation
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta)
+  Objects
+    relation : HeterogeneousBinaryRelation Alpha Beta
+  Prove
+    fun first third => Exists fun middle => (first = middle ∧ relation middle third) = relation
+Transliterated theorem: RelationComposition relation (IdentityRelation Alpha) = relation
+Logical form (Lean): {Alpha : Type u} {Beta : Type v} (relation : HeterogeneousBinaryRelation Alpha Beta) : RelationComposition relation (IdentityRelation Alpha) = relation
+Source: ./Interface/Operations/Composition/Consequences.lean#L146
+
+
+
+Name: Converse.relationComposition
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} (leftRelation rightRelation : Endorelation Alpha), Converse (RelationComposition rightRelation leftRelation) = RelationComposition (Converse leftRelation) (Converse rightRelation)
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    leftRelation rightRelation : Endorelation Alpha
+  Prove
+    fun y x => Exists fun middle => (leftRelation x middle ∧ rightRelation middle y) = funfirst third => Exists fun middle => (rightRelation middle first ∧ leftRelation third middle)
+Transliterated theorem: Converse (RelationComposition rightRelation leftRelation) = RelationComposition (Converse leftRelation) (Converse rightRelation)
+Logical form (Lean): {Alpha : Type u} (leftRelation rightRelation : Endorelation Alpha) : Converse (RelationComposition rightRelation leftRelation) = RelationComposition (Converse leftRelation) (Converse rightRelation)
+Source: ./Interface/Operations/Composition/Consequences.lean#L191
+
+
+
+Name: RelationIncludedInReflexiveClosure
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha),   LRA.Relation.RelationIncluded relation (LRA.Relation.ReflexiveClosure relation)
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+  Prove
+    relation x y → Or (relation x y) (x = y)
+Transliterated theorem: RelationIncluded relation (ReflexiveClosure relation)
+Logical form (Lean): {Alpha : Type u} (relation : Endorelation Alpha) : RelationIncluded relation (ReflexiveClosure relation)
+Source: ./Interface/Operations/Closure/Reflexive/Theorems.lean#L46
+
+
+
+Name: ReflexiveClosureIsReflexive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha),   LRA.Relation.Reflexive (LRA.Relation.ReflexiveClosure relation)
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+  Prove
+    Or (relation x x) (x = x)
+Transliterated theorem: Reflexive (ReflexiveClosure relation)
+Logical form (Lean): {Alpha : Type u} (relation : Endorelation Alpha) : Reflexive (ReflexiveClosure relation)
+Source: ./Interface/Operations/Closure/Reflexive/Theorems.lean#L88
+
+
+
+Name: ReflexiveClosureIsLeast
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} (relation target : Endorelation Alpha) (relationIncluded : RelationIncluded relation target) (targetReflexive : Reflexive target), RelationIncluded (ReflexiveClosure relation) target
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation target : Endorelation Alpha
+    relationIncluded : RelationIncluded relation target
+    targetReflexive : Reflexive target
+  Prove
+    ((∀ (x y : Alpha), relation x y → target x y) ∧ (∀ (x : Alpha), target x x)) → ∀ (x y : Alpha), Or (relation x y) (x = y) → target x y
+Transliterated theorem: RelationIncluded (ReflexiveClosure relation) target
+Logical form (Lean): {Alpha : Type u} (relation target : Endorelation Alpha) (relationIncluded : RelationIncluded relation target) (targetReflexive : Reflexive target) : RelationIncluded (ReflexiveClosure relation) target
+Source: ./Interface/Operations/Closure/Reflexive/Theorems.lean#L132
+
+
+
+Name: RelationIncludedInSymmetricClosure
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha),   LRA.Relation.RelationIncluded relation (LRA.Relation.SymmetricClosure relation)
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+  Prove
+    relation x y → Or (relation x y) (relation y x)
+Transliterated theorem: RelationIncluded relation (SymmetricClosure relation)
+Logical form (Lean): {Alpha : Type u} (relation : Endorelation Alpha) : RelationIncluded relation (SymmetricClosure relation)
+Source: ./Interface/Operations/Closure/Symmetric/Theorems.lean#L46
+
+
+
+Name: SymmetricClosureIsSymmetric
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha),   LRA.Relation.Symmetric (LRA.Relation.SymmetricClosure relation)
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+  Prove
+    Or (relation x y) (relation y x) → Or (relation y x) (relation x y)
+Transliterated theorem: Symmetric (SymmetricClosure relation)
+Logical form (Lean): {Alpha : Type u} (relation : Endorelation Alpha) : Symmetric (SymmetricClosure relation)
+Source: ./Interface/Operations/Closure/Symmetric/Theorems.lean#L88
+
+
+
+Name: SymmetricClosureIsLeast
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} (relation target : Endorelation Alpha) (relationIncluded : RelationIncluded relation target) (targetSymmetric : Symmetric target), RelationIncluded (SymmetricClosure relation) target
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation target : Endorelation Alpha
+    relationIncluded : RelationIncluded relation target
+    targetSymmetric : Symmetric target
+  Prove
+    ((∀ (x y : Alpha), relation x y → target x y) ∧ (∀ (x y : Alpha), target x y → target y x)) → ∀ (x y : Alpha), Or (relation x y) (relation y x) → target x y
+Transliterated theorem: RelationIncluded (SymmetricClosure relation) target
+Logical form (Lean): {Alpha : Type u} (relation target : Endorelation Alpha) (relationIncluded : RelationIncluded relation target) (targetSymmetric : Symmetric target) : RelationIncluded (SymmetricClosure relation) target
+Source: ./Interface/Operations/Closure/Symmetric/Theorems.lean#L132
+
+
+
+Name: RelationIncludedInTransitiveClosure
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha),   LRA.Relation.RelationIncluded relation (LRA.Relation.TransitiveClosure relation)
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+  Prove
+    relation x y → LRA.Relation.TransitiveClosure relation x y
+Transliterated theorem: RelationIncluded relation (TransitiveClosure relation)
+Logical form (Lean): {Alpha : Type u} (relation : Endorelation Alpha) : RelationIncluded relation (TransitiveClosure relation)
+Source: ./Interface/Operations/Closure/Transitive/Theorems.lean#L46
+
+
+
+Name: TransitiveClosureIsTransitive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha),   LRA.Relation.Transitive (LRA.Relation.TransitiveClosure relation)
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+  Prove
+    (LRA.Relation.TransitiveClosure relation x y ∧ LRA.Relation.TransitiveClosure relation y z) → LRA.Relation.TransitiveClosure relation x z
+Transliterated theorem: Transitive (TransitiveClosure relation)
+Logical form (Lean): {Alpha : Type u} (relation : Endorelation Alpha) : Transitive (TransitiveClosure relation)
+Source: ./Interface/Operations/Closure/Transitive/Theorems.lean#L88
+
+
+
+Name: TransitiveClosureIsLeast
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} (relation target : Endorelation Alpha) (relationIncluded : RelationIncluded relation target) (targetTransitive : Transitive target), RelationIncluded (TransitiveClosure relation) target
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation target : Endorelation Alpha
+    relationIncluded : RelationIncluded relation target
+    targetTransitive : Transitive target
+  Prove
+    ((∀ (x y : Alpha), relation x y → target x y) ∧ (∀ (x y z : Alpha), target x y → target y z → target x z)) → ∀ (x y : Alpha), LRA.Relation.TransitiveClosure relation x y → target x y
+Transliterated theorem: RelationIncluded (TransitiveClosure relation) target
+Logical form (Lean): {Alpha : Type u} (relation target : Endorelation Alpha) (relationIncluded : RelationIncluded relation target) (targetTransitive : Transitive target) : RelationIncluded (TransitiveClosure relation) target
+Source: ./Interface/Operations/Closure/Transitive/Theorems.lean#L132
+
+
+
+Name: EquivalenceImpliesPartialEquivalence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {α : Type u} {R : LRA.Relation.Endorelation α},   LRA.Relation.EquivalenceRelation R → LRA.Relation.PartialEquivalenceRelation R
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    R : Endorelation α
+    h : EquivalenceRelation R
+  Prove
+    ((∀ (x : α), R x x) ∧ ((∀ (x y : α), R x y → R y x) ∧ (∀ (x y z : α), R x y → R y z → R x z))) → ((∀ (x y : α), R x y → R y x) ∧ (∀ (x y z : α), R x y → R y z → R x z))
+Transliterated theorem: PartialEquivalenceRelation R
+Logical form (Lean): {α : Type u} {R : Endorelation α} (h : EquivalenceRelation R) : PartialEquivalenceRelation R
+Source: ./Interface/Structures/Relationships.lean#L43
+
+
+
+Name: EquivalenceImpliesTolerance
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {α : Type u} {R : LRA.Relation.Endorelation α}, LRA.Relation.EquivalenceRelation R → LRA.Relation.ToleranceRelation R
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    R : Endorelation α
+    h : EquivalenceRelation R
+  Prove
+    ((∀ (x : α), R x x) ∧ ((∀ (x y : α), R x y → R y x) ∧ (∀ (x y z : α), R x y → R y z → R x z))) → ((∀ (x : α), R x x) ∧ (∀ (x y : α), R x y → R y x))
+Transliterated theorem: ToleranceRelation R
+Logical form (Lean): {α : Type u} {R : Endorelation α} (h : EquivalenceRelation R) : ToleranceRelation R
+Source: ./Interface/Structures/Relationships.lean#L83
+
+
+
+Name: IdentityRelationIsEquivalenceRelation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {α : Type u}, LRA.Relation.EquivalenceRelation (LRA.Relation.IdentityRelation α)
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : α), x = x) ∧ ((∀ (x y : α), x = y → y = x) ∧ (∀ (x y z : α), x = y → y = z → x = z)))
+Transliterated theorem: EquivalenceRelation (IdentityRelation α)
+Logical form (Lean): {α : Type u} : EquivalenceRelation (IdentityRelation α)
+Source: ./Interface/Structures/Equivalence/Relationships.lean#L45
+
+
+
+Name: EquivalenceClassExists
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (ambient : SetObject) (relation : Endorelation Element) (representative : Element), ∃ classSet : SetObject, IsEquivalenceClassOf classSet ambient relation representative
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ambient : SetObject
+    relation : Endorelation Element
+    representative : Element
+  Prove
+    (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject) → ∀ (ambient : SetObject) (relation : Element → Element → Prop) (representative : Element), Exists fun classSet => ∀ (candidate : Element), classSet ≤ candidate ↔ (ambient ≤ candidate ∧ relation candidate representative)
+Transliterated theorem: (∀ A ∈ U ∀ x ∈ Element), ∃ classSet ∈ SetObject, IsEquivalenceClassOf classSet A relation x
+Logical form (Lean): (ambient : SetObject) (relation : Endorelation Element) (representative : Element) : ∃ classSet : SetObject, IsEquivalenceClassOf classSet ambient relation representative
+Source: ./Interface/Structures/Equivalence/EquivalenceClass.lean#L176
+
+
+
+Name: EquivalenceClassUnique
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (ambient : SetObject) (relation : Endorelation Element) (representative : Element), LRA.Identity.AtMostOne (fun classSet : SetObject => IsEquivalenceClassOf classSet ambient relation representative)
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ambient : SetObject
+    relation : Endorelation Element
+    representative : Element
+  Prove
+    (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject) → ∀ (ambient : SetObject) (relation : Element → Element → Prop) (representative : Element) (left right : SetObject), ((∀ (candidate : Element), left ≤ candidate ↔ (ambient ≤ candidate ∧ relation candidate representative)) ∧ (∀ (candidate : Element), right ≤ candidate ↔ (ambient ≤ candidate ∧ relation candidate representative))) → (LRA.Identity.Construction.Mathlib.instIdentityRelation SetObject).1 left right
+Transliterated theorem: (∀ A ∈ U ∀ x ∈ Element), LRA.Identity.AtMostOne fun classSet ∈ SetObject => IsEquivalenceClassOf classSet A relation x
+Logical form (Lean): (ambient : SetObject) (relation : Endorelation Element) (representative : Element) : LRA.Identity.AtMostOne (fun classSet : SetObject => IsEquivalenceClassOf classSet ambient relation representative)
+Source: ./Interface/Structures/Equivalence/EquivalenceClass.lean#L226
+
+
+
+Name: EquivalenceClassExistsAndUnique
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (ambient : SetObject) (relation : Endorelation Element) (representative : Element), LRA.Identity.ExactlyOne (fun classSet : SetObject => IsEquivalenceClassOf classSet ambient relation representative)
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ambient : SetObject
+    relation : Endorelation Element
+    representative : Element
+  Prove
+    (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject) → ∀ (ambient : SetObject) (relation : Element → Element → Prop) (representative : Element), ((Exists fun x => (fun classSet => ∀ (candidate : Element), classSet ≤ candidate ↔ (ambient ≤ candidate ∧ relation candidate representative)) x) ∧ (∀ (left right : SetObject), (∀ (candidate : Element), left ≤ candidate ↔ (ambient ≤ candidate ∧ relation candidate representative)) → (∀ (candidate : Element), right ≤ candidate ↔ (ambient ≤ candidate ∧ relation candidate representative)) → (LRA.Identity.Construction.Mathlib.instIdentityRelation SetObject).1 left right))
+Transliterated theorem: (∀ A ∈ U ∀ x ∈ Element), LRA.Identity.ExactlyOne fun classSet ∈ SetObject => IsEquivalenceClassOf classSet A relation x
+Logical form (Lean): (ambient : SetObject) (relation : Endorelation Element) (representative : Element) : LRA.Identity.ExactlyOne (fun classSet : SetObject => IsEquivalenceClassOf classSet ambient relation representative)
+Source: ./Interface/Structures/Equivalence/EquivalenceClass.lean#L277
+
+
+
+Name: EquivalenceClassMembershipIff
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (ambient : SetObject) (relation : Endorelation Element) (representative candidate : Element), candidate ∈ EquivalenceClass ambient relation representative ↔ candidate ∈ ambient ∧ relation candidate representative
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ambient : SetObject
+    relation : Endorelation Element
+    representative candidate : Element
+  Prove
+    candidate ∈ EquivalenceClass ambient relation representative ↔ candidate ∈ ambient ∧ relation candidate representative
+Transliterated theorem: (∀ A ∈ U ∀ x y ∈ Element), y ∈ EquivalenceClass A relation x ↔ y ∈ A ∧ relation y x
+Logical form (Lean): (ambient : SetObject) (relation : Endorelation Element) (representative candidate : Element) : candidate ∈ EquivalenceClass ambient relation representative ↔ candidate ∈ ambient ∧ relation candidate representative
+Source: ./Interface/Structures/Equivalence/EquivalenceClass.lean#L326
+
+
+
+Name: RelatedRepresentativesHaveSameEquivalenceClass
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {relation : Endorelation Element} (relationIsEquivalence : EquivalenceRelation relation) {firstRepresentative secondRepresentative : Element} (representativesRelated : relation firstRepresentative secondRepresentative), ∀ ambient : SetObject, EquivalenceClass ambient relation firstRepresentative = EquivalenceClass ambient relation secondRepresentative
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : Endorelation Element
+    relationIsEquivalence : EquivalenceRelation relation
+    firstRepresentative secondRepresentative : Element
+    representativesRelated : relation firstRepresentative secondRepresentative
+  Prove
+    (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject) → ∀ {relation : Element → Element → Prop}, ((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) → ∀ {firstRepresentative secondRepresentative : Element}, relation firstRepresentative secondRepresentative → ∀ (ambient : SetObject), ambient ≤ funcandidate => relation candidate firstRepresentative = ambient ≤ funcandidate => relation candidate secondRepresentative
+Transliterated theorem: (∀ x y ∈ Element), ∀ ambient : SetObject, EquivalenceClass ambient relation x = EquivalenceClass ambient relation y
+Logical form (Lean): {relation : Endorelation Element} (relationIsEquivalence : EquivalenceRelation relation) {firstRepresentative secondRepresentative : Element} (representativesRelated : relation firstRepresentative secondRepresentative) : ∀ ambient : SetObject, EquivalenceClass ambient relation firstRepresentative = EquivalenceClass ambient relation secondRepresentative
+Source: ./Interface/Structures/Equivalence/EquivalenceClass.lean#L377
+
+
+
+Name: PartitionBlockContained
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [HasSeparation Element SetObject] [SeparationLaws Element SetObject] [ExtensionalityLaw Element SetObject] (ambient : SetObject) (relation : Endorelation Element) (relationIsEquivalence : EquivalenceRelation relation) (representative : { element : Element // element ∈ ambient }) (candidate : Element), candidate ∈ EquivalenceClass ambient relation representative.1 -> candidate ∈ ambient
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ambient : SetObject
+    relation : Endorelation Element
+    relationIsEquivalence : EquivalenceRelation relation
+    candidate : Element
+  Prove
+    (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject) → ∀ (ambient : SetObject) (relation : Element → Element → Prop), ((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) → ∀ (representative : Subtype fun element => ambient ≤ element)(candidate : Element), ambient ≤ funcandidate => relation candidate representative.1 ≤ candidate → ambient ≤ candidate
+Transliterated theorem: (∀ A ∈ U ∀ x ∈ Element), ({ element : Element // element ∈ A }) → x ∈ EquivalenceClass A relation representative.1 -> x ∈ A
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [HasSeparation Element SetObject] [SeparationLaws Element SetObject] [ExtensionalityLaw Element SetObject] (ambient : SetObject) (relation : Endorelation Element) (relationIsEquivalence : EquivalenceRelation relation) (representative : { element : Element // element ∈ ambient }) (candidate : Element) : candidate ∈ EquivalenceClass ambient relation representative.1 -> candidate ∈ ambient
+Source: ./Interface/Structures/Equivalence/Partition.lean#L152
+
+
+
+Name: EquivalenceClassesCoverAmbient
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [HasSeparation Element SetObject] [SeparationLaws Element SetObject] [ExtensionalityLaw Element SetObject] (ambient : SetObject) (relation : Endorelation Element) (relationIsEquivalence : EquivalenceRelation relation), ∀ element : Element, element ∈ ambient -> ∃ representative : { candidate : Element // candidate ∈ ambient }, element ∈ EquivalenceClass ambient relation representative.1
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ambient : SetObject
+    relation : Endorelation Element
+    relationIsEquivalence : EquivalenceRelation relation
+  Prove
+    (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject) → ∀ (ambient : SetObject) (relation : Element → Element → Prop), ((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) → ∀ (element : Element), ambient ≤ element → Exists fun representative => ambient ≤ funcandidate => relation candidate representative.1 ≤ element
+Transliterated theorem: (∀ A ∈ U), ∀ element : Element, element ∈ A -> ∃ representative ∈ { candidate ∈ Element // candidate ∈ A }, element ∈ EquivalenceClass A relation representative.1
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [HasSeparation Element SetObject] [SeparationLaws Element SetObject] [ExtensionalityLaw Element SetObject] (ambient : SetObject) (relation : Endorelation Element) (relationIsEquivalence : EquivalenceRelation relation) : ∀ element : Element, element ∈ ambient -> ∃ representative : { candidate : Element // candidate ∈ ambient }, element ∈ EquivalenceClass ambient relation representative.1
+Source: ./Interface/Structures/Equivalence/Partition.lean#L207
+
+
+
+Name: EquivalenceClassBlocksNonempty
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [HasSeparation Element SetObject] [SeparationLaws Element SetObject] [ExtensionalityLaw Element SetObject] (ambient : SetObject) (relation : Endorelation Element) (relationIsEquivalence : EquivalenceRelation relation), ∀ representative : { element : Element // element ∈ ambient }, ∃ candidate : Element, candidate ∈ EquivalenceClass ambient relation representative.1
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ambient : SetObject
+    relation : Endorelation Element
+    relationIsEquivalence : EquivalenceRelation relation
+  Prove
+    (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject) → ∀ (ambient : SetObject) (relation : Element → Element → Prop), ((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) → ∀ (representative : Subtype fun element => ambient ≤ element), Exists fun candidate => ambient ≤ funcandidate => relation candidate representative.1 ≤ candidate
+Transliterated theorem: (∀ A ∈ U), ∀ representative : { element : Element // element ∈ A }, ∃ candidate ∈ Element, candidate ∈ EquivalenceClass A relation representative.1
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [HasSeparation Element SetObject] [SeparationLaws Element SetObject] [ExtensionalityLaw Element SetObject] (ambient : SetObject) (relation : Endorelation Element) (relationIsEquivalence : EquivalenceRelation relation) : ∀ representative : { element : Element // element ∈ ambient }, ∃ candidate : Element, candidate ∈ EquivalenceClass ambient relation representative.1
+Source: ./Interface/Structures/Equivalence/Partition.lean#L261
+
+
+
+Name: EquivalenceClassBlocksDisjointOrEqual
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [HasSeparation Element SetObject] [SeparationLaws Element SetObject] [ExtensionalityLaw Element SetObject] (ambient : SetObject) (relation : Endorelation Element) (relationIsEquivalence : EquivalenceRelation relation), ∀ first second : { element : Element // element ∈ ambient }, (∃ candidate : Element, candidate ∈ EquivalenceClass ambient relation first.1 /\ candidate ∈ EquivalenceClass ambient relation second.1) -> EquivalenceClass ambient relation first.1 = EquivalenceClass ambient relation second.1
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ambient : SetObject
+    relation : Endorelation Element
+    relationIsEquivalence : EquivalenceRelation relation
+  Prove
+    (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject) → ∀ (ambient : SetObject) (relation : Element → Element → Prop), ((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) → ∀ (first second : Subtype fun element => ambient ≤ element), (Exists fun candidate => (ambient ≤ funcandidate => relation candidate first.1 ≤ candidate ∧ ambient ≤ funcandidate => relation candidate second.1 ≤ candidate)) → ambient ≤ funcandidate => relation candidate first.1 = ambient ≤ funcandidate => relation candidate second.1
+Transliterated theorem: (∀ A ∈ U), ∀ first second : { element : Element // element ∈ A }, ∃ candidate ∈ Element, candidate ∈ EquivalenceClass A relation first.1 ∧ candidate ∈ EquivalenceClass A relation second.1 -> EquivalenceClass A relation first.1 = EquivalenceClass A relation second.1
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [HasSeparation Element SetObject] [SeparationLaws Element SetObject] [ExtensionalityLaw Element SetObject] (ambient : SetObject) (relation : Endorelation Element) (relationIsEquivalence : EquivalenceRelation relation) : ∀ first second : { element : Element // element ∈ ambient }, (∃ candidate : Element, candidate ∈ EquivalenceClass ambient relation first.1 /\ candidate ∈ EquivalenceClass ambient relation second.1) -> EquivalenceClass ambient relation first.1 = EquivalenceClass ambient relation second.1
+Source: ./Interface/Structures/Equivalence/Partition.lean#L318
+
+
+
+Name: QuotientSetExists
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (ambient : SetObject) (relation : Endorelation Element), ∃ quotient : Collection, IsQuotientSetOf quotient ambient relation
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, Collection, ∈)
+  Objects
+    ambient : SetObject
+    relation : Endorelation Element
+  Prove
+    (LRA.Set.SeparationLaws SetObject Collection ∧ LRA.Set.ExtensionalityLaw SetObject Collection) → ∀ [inst_5 : HasSubset SetObject], (LRA.Set.PowersetMembershipLaws SetObject Collection ∧ (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject)) → ∀ (ambient : SetObject) (relation : Element → Element → Prop), Exists fun quotient => ∀ (candidate : SetObject), quotient ≤ candidate ↔ (ambient ≤ ≤candidate ∧ (Exists fun representative => (ambient ≤ representative ∧ candidate = ambient ≤ funcandidate => relation candidate representative)))
+Transliterated theorem: (∀ A ∈ U), ∃ quotient ∈ Collection, IsQuotientSetOf quotient A relation
+Logical form (Lean): (ambient : SetObject) (relation : Endorelation Element) : ∃ quotient : Collection, IsQuotientSetOf quotient ambient relation
+Source: ./Interface/Structures/Equivalence/QuotientSet.lean#L198
+
+
+
+Name: QuotientSetUnique
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (ambient : SetObject) (relation : Endorelation Element), LRA.Identity.AtMostOne (fun quotient : Collection => IsQuotientSetOf quotient ambient relation)
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, Collection, ∈)
+  Objects
+    ambient : SetObject
+    relation : Endorelation Element
+  Prove
+    (LRA.Set.SeparationLaws SetObject Collection ∧ LRA.Set.ExtensionalityLaw SetObject Collection) → ∀ [inst_5 : HasSubset SetObject], (LRA.Set.PowersetMembershipLaws SetObject Collection ∧ (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject)) → ∀ (ambient : SetObject) (relation : Element → Element → Prop) (left right : Collection), ((∀ (candidate : SetObject), left ≤ candidate ↔ (ambient ≤ ≤candidate ∧ (Exists fun representative => (ambient ≤ representative ∧ candidate = ambient ≤ funcandidate => relation candidate representative)))) ∧ (∀ (candidate : SetObject), right ≤ candidate ↔ (ambient ≤ ≤candidate ∧ (Exists fun representative => (ambient ≤ representative ∧ candidate = ambient ≤ funcandidate => relation candidate representative))))) → (LRA.Identity.Construction.Mathlib.instIdentityRelation Collection).1 left right
+Transliterated theorem: (∀ A ∈ U), LRA.Identity.AtMostOne fun quotient ∈ Collection => IsQuotientSetOf quotient A relation
+Logical form (Lean): (ambient : SetObject) (relation : Endorelation Element) : LRA.Identity.AtMostOne (fun quotient : Collection => IsQuotientSetOf quotient ambient relation)
+Source: ./Interface/Structures/Equivalence/QuotientSet.lean#L246
+
+
+
+Name: QuotientSetExistsAndUnique
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (ambient : SetObject) (relation : Endorelation Element), LRA.Identity.ExactlyOne (fun quotient : Collection => IsQuotientSetOf quotient ambient relation)
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, Collection, ∈)
+  Objects
+    ambient : SetObject
+    relation : Endorelation Element
+  Prove
+    (LRA.Set.SeparationLaws SetObject Collection ∧ LRA.Set.ExtensionalityLaw SetObject Collection) → ∀ [inst_5 : HasSubset SetObject], (LRA.Set.PowersetMembershipLaws SetObject Collection ∧ (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject)) → ∀ (ambient : SetObject) (relation : Element → Element → Prop), ((Exists fun x => (fun quotient => ∀ (candidate : SetObject), quotient ≤ candidate ↔ (ambient ≤ ≤candidate ∧ (Exists fun representative => (ambient ≤ representative ∧ candidate = ambient ≤ funcandidate => relation candidate representative)))) x) ∧ (∀ (left right : Collection), (∀ (candidate : SetObject), left ≤ candidate ↔ (ambient ≤ ≤candidate ∧ (Exists fun representative => (ambient ≤ representative ∧ candidate = ambient ≤ funcandidate => relation candidate representative)))) → (∀ (candidate : SetObject), right ≤ candidate ↔ (ambient ≤ ≤candidate ∧ (Exists fun representative => (ambient ≤ representative ∧ candidate = ambient ≤ funcandidate => relation candidate representative)))) → (LRA.Identity.Construction.Mathlib.instIdentityRelation Collection).1 left right))
+Transliterated theorem: (∀ A ∈ U), LRA.Identity.ExactlyOne fun quotient ∈ Collection => IsQuotientSetOf quotient A relation
+Logical form (Lean): (ambient : SetObject) (relation : Endorelation Element) : LRA.Identity.ExactlyOne (fun quotient : Collection => IsQuotientSetOf quotient ambient relation)
+Source: ./Interface/Structures/Equivalence/QuotientSet.lean#L295
+
+
+
+Name: QuotientSetMembership
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (ambient : SetObject) (relation : Endorelation Element) (candidate : SetObject), candidate ∈ QuotientSet (Collection := Collection) ambient relation ↔ candidate ∈ (HasPowerset.powerset ambient : Collection) ∧ ∃ representative : Element, representative ∈ ambient ∧ candidate = EquivalenceClass ambient relation representative
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, Collection, ∈)
+  Objects
+    ambient : SetObject
+    relation : Endorelation Element
+    candidate : SetObject
+  Prove
+    candidate ∈ QuotientSet (Collection := Collection) ambient relation ↔ candidate ∈ (HasPowerset.powerset ambient : Collection) ∧ ∃ representative : Element, representative ∈ ambient ∧ candidate = EquivalenceClass ambient relation representative
+Transliterated theorem: (∀ A ∈ U ∀ B ∈ U), B ∈ QuotientSet Collection ∈ = Collection A relation ↔ B ∈ HasPowerset.powerset A ∈ Collection ∧ ∃ representative ∈ Element, representative ∈ A ∧ B = EquivalenceClass A relation representative
+Logical form (Lean): (ambient : SetObject) (relation : Endorelation Element) (candidate : SetObject) : candidate ∈ QuotientSet (Collection := Collection) ambient relation ↔ candidate ∈ (HasPowerset.powerset ambient : Collection) ∧ ∃ representative : Element, representative ∈ ambient ∧ candidate = EquivalenceClass ambient relation representative
+Source: ./Interface/Structures/Equivalence/QuotientSet.lean#L346
+
+
+
+Name: QuotientProjectionWellDefined
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {ambient : SetObject} {relation : Endorelation Element} (relationIsEquivalence : EquivalenceRelation relation) {firstRepresentative secondRepresentative : Element} (representativesRelated : relation firstRepresentative secondRepresentative), QuotientProjection ambient relation firstRepresentative = QuotientProjection ambient relation secondRepresentative
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, Collection, ∈)
+  Objects
+    ambient : SetObject
+    relation : Endorelation Element
+    relationIsEquivalence : EquivalenceRelation relation
+    firstRepresentative secondRepresentative : Element
+    representativesRelated : relation firstRepresentative secondRepresentative
+  Prove
+    (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject) → ∀ {ambient : SetObject} {relation : Element → Element → Prop}, ((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) → ∀ {firstRepresentative secondRepresentative : Element}, relation firstRepresentative secondRepresentative → ambient ≤ funcandidate => relation candidate firstRepresentative = ambient ≤ funcandidate => relation candidate secondRepresentative
+Transliterated theorem: (∀ A ∈ U ∀ x y ∈ Element), QuotientProjection A relation x = QuotientProjection A relation y
+Logical form (Lean): {ambient : SetObject} {relation : Endorelation Element} (relationIsEquivalence : EquivalenceRelation relation) {firstRepresentative secondRepresentative : Element} (representativesRelated : relation firstRepresentative secondRepresentative) : QuotientProjection ambient relation firstRepresentative = QuotientProjection ambient relation secondRepresentative
+Source: ./Interface/Structures/Equivalence/QuotientSet.lean#L516
+
+
+
+Name: QuotientClassElementWellDefined
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {ambient : SetObject} {relation : Endorelation Element} (relationIsEquivalence : EquivalenceRelation relation) {firstRepresentative secondRepresentative : Element} (representativesRelated : relation firstRepresentative secondRepresentative), QuotientClassElement ambient relation firstRepresentative = QuotientClassElement ambient relation secondRepresentative
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, Collection, ∈)
+  Objects
+    ambient : SetObject
+    relation : Endorelation Element
+    relationIsEquivalence : EquivalenceRelation relation
+    firstRepresentative secondRepresentative : Element
+    representativesRelated : relation firstRepresentative secondRepresentative
+  Prove
+    (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject) → ∀ {ambient : SetObject} {relation : Element → Element → Prop}, ((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) → ∀ {firstRepresentative secondRepresentative : Element}, relation firstRepresentative secondRepresentative → ambient ≤ funcandidate => relation candidate firstRepresentative = ambient ≤ funcandidate => relation candidate secondRepresentative
+Transliterated theorem: (∀ A ∈ U ∀ x y ∈ Element), QuotientClassElement A relation x = QuotientClassElement A relation y
+Logical form (Lean): {ambient : SetObject} {relation : Endorelation Element} (relationIsEquivalence : EquivalenceRelation relation) {firstRepresentative secondRepresentative : Element} (representativesRelated : relation firstRepresentative secondRepresentative) : QuotientClassElement ambient relation firstRepresentative = QuotientClassElement ambient relation secondRepresentative
+Source: ./Interface/Structures/Equivalence/QuotientSet.lean#L568
+
+
+
+Name: FundamentalTheoremOfEquivalenceRelations
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [HasSeparation Element SetObject] [SeparationLaws Element SetObject] [ExtensionalityLaw Element SetObject] (ambient : SetObject) (relation : Endorelation Element) (relationIsEquivalence : EquivalenceRelation relation), ∀ first second, first ∈ ambient -> second ∈ ambient -> (EquivalenceFromPartition (PartitionFromEquivalence ambient relation relationIsEquivalence) first second ↔ relation first second)
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ambient : SetObject
+    relation : Endorelation Element
+    relationIsEquivalence : EquivalenceRelation relation
+  Prove
+    ∀ first second, first ∈ ambient -> second ∈ ambient -> (EquivalenceFromPartition (PartitionFromEquivalence ambient relation relationIsEquivalence) first second ↔ relation first second)
+Transliterated theorem: (∀ A ∈ U), ∀ first second, first ∈ A -> second ∈ A -> (EquivalenceFromPartition (PartitionFromEquivalence A relation relationIsEquivalence) first second ↔ relation first second)
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [HasSeparation Element SetObject] [SeparationLaws Element SetObject] [ExtensionalityLaw Element SetObject] (ambient : SetObject) (relation : Endorelation Element) (relationIsEquivalence : EquivalenceRelation relation) : ∀ first second, first ∈ ambient -> second ∈ ambient -> (EquivalenceFromPartition (PartitionFromEquivalence ambient relation relationIsEquivalence) first second ↔ relation first second)
+Source: ./Interface/Structures/Equivalence/FundamentalTheorem.lean#L107
+
+
+
+Name: EquivalenceRelation.reflexive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha},   LRA.Relation.EquivalenceRelation relation → LRA.Relation.Reflexive relation
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+    equivalence : EquivalenceRelation relation
+  Prove
+    ((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) → ∀ (x : Alpha), relation x x
+Transliterated theorem: Reflexive relation
+Logical form (Lean): {Alpha : Type u} {relation : Endorelation Alpha} (equivalence : EquivalenceRelation relation) : Reflexive relation
+Source: ./Interface/Structures/Equivalence/Consequences.lean#L47
+
+
+
+Name: EquivalenceRelation.symmetric
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha},   LRA.Relation.EquivalenceRelation relation → LRA.Relation.Symmetric relation
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+    equivalence : EquivalenceRelation relation
+  Prove
+    ((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) → ∀ (x y : Alpha), relation x y → relation y x
+Transliterated theorem: Symmetric relation
+Logical form (Lean): {Alpha : Type u} {relation : Endorelation Alpha} (equivalence : EquivalenceRelation relation) : Symmetric relation
+Source: ./Interface/Structures/Equivalence/Consequences.lean#L93
+
+
+
+Name: EquivalenceRelation.transitive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha},   LRA.Relation.EquivalenceRelation relation → LRA.Relation.Transitive relation
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+    equivalence : EquivalenceRelation relation
+  Prove
+    ((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) → ∀ (x y z : Alpha), (relation x y ∧ relation y z) → relation x z
+Transliterated theorem: Transitive relation
+Logical form (Lean): {Alpha : Type u} {relation : Endorelation Alpha} (equivalence : EquivalenceRelation relation) : Transitive relation
+Source: ./Interface/Structures/Equivalence/Consequences.lean#L139
+
+
+
+Name: EmptyRelationIsRightUnique
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Domain : Type u} {Codomain : Type v}, LRA.Relation.RightUnique fun _input _output => False
+Predicate logic (unfolded):
+  Ambient
+    (Domain, Codomain)
+  Objects
+    (none)
+  Prove
+    (False ∧ False) → y₁ = y₂
+Transliterated theorem: RightUnique fun _input ∈ Domain => fun _output : Codomain => False
+Logical form (Lean): {Domain : Type u} {Codomain : Type v} : RightUnique (fun _input : Domain => fun _output : Codomain => False)
+Source: ./Interface/Canonical/EmptyRelation/Theorems.lean#L45
+
+
+
+Name: IdentityRelationIsReflexive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u}, LRA.Relation.Reflexive (LRA.Relation.IdentityRelation Alpha)
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    x = x
+Transliterated theorem: Reflexive (IdentityRelation Alpha)
+Logical form (Lean): {Alpha : Type u} : Reflexive (IdentityRelation Alpha)
+Source: ./Interface/Canonical/IdentityRelation/Theorems.lean#L47
+
+
+
+Name: IdentityRelationIsSymmetric
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u}, LRA.Relation.Symmetric (LRA.Relation.IdentityRelation Alpha)
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    x = y → y = x
+Transliterated theorem: Symmetric (IdentityRelation Alpha)
+Logical form (Lean): {Alpha : Type u} : Symmetric (IdentityRelation Alpha)
+Source: ./Interface/Canonical/IdentityRelation/Theorems.lean#L89
+
+
+
+Name: IdentityRelationIsTransitive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u}, LRA.Relation.Transitive (LRA.Relation.IdentityRelation Alpha)
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    (x = y ∧ y = z) → x = z
+Transliterated theorem: Transitive (IdentityRelation Alpha)
+Logical form (Lean): {Alpha : Type u} : Transitive (IdentityRelation Alpha)
+Source: ./Interface/Canonical/IdentityRelation/Theorems.lean#L131
+
+
+
+Name: PointImageClassIsSingletonImage
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {X : Type u} {Y : Type v} (R : HeterogeneousBinaryRelation X Y) (x : X), ImageClass R (fun z => z = x) = PointImageClass R x
+Predicate logic (unfolded):
+  Ambient
+    (X, Y)
+  Objects
+    R : HeterogeneousBinaryRelation X Y
+    x : X
+  Prove
+    fun y => Exists fun x_1 => ((fun z => z = x)x_1 ∧ R x_1 y) = funy => R x y
+Transliterated theorem: (∀ x ∈ X), ImageClass R (fun z => z = x) = PointImageClass R x
+Logical form (Lean): {X : Type u} {Y : Type v} (R : HeterogeneousBinaryRelation X Y) (x : X) : ImageClass R (fun z => z = x) = PointImageClass R x
+Source: ./Interface/Calculus/Classes/Theorems.lean#L46
+
+
+
+Name: FiberClassIsSingletonPreimage
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {X : Type u} {Y : Type v} (R : HeterogeneousBinaryRelation X Y) (y : Y), PreimageClass R (fun z => z = y) = FiberClass R y
+Predicate logic (unfolded):
+  Ambient
+    (X, Y)
+  Objects
+    R : HeterogeneousBinaryRelation X Y
+    y : Y
+  Prove
+    fun x => Exists fun y_1 => ((fun z => z = y)y_1 ∧ R x y_1) = funx => R x y
+Transliterated theorem: (∀ y ∈ Y), PreimageClass R (fun z => z = y) = FiberClass R y
+Logical form (Lean): {X : Type u} {Y : Type v} (R : HeterogeneousBinaryRelation X Y) (y : Y) : PreimageClass R (fun z => z = y) = FiberClass R y
+Source: ./Interface/Calculus/Classes/Theorems.lean#L88
+
+
+
+Name: zfcSetRelation_interpret_eq_toEndorelation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {carrierObject : LRA.Set.Interop.Providers.LRA.ZFC.ZFCSet} (relation : ZFCSetRelation carrierObject), LRA.Relation.interpret relation = ZFCSetRelation.toEndorelation relation
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    carrierObject : LRA.Set.Interop.Providers.LRA.ZFC.ZFCSet
+    relation : ZFCSetRelation carrierObject
+  Prove
+    LRA.Relation.Constructions.LRA.instGenericSemanticsZFCSetRelationCarrierOfSet.1 relation = funleft right => LRA.Set.Constructions.instMembershipZFCSet.1 relation.1 (LRA.Set.Constructions.ZFCSet.Axioms.instHasPairingSet.1 left.1 right.1)
+Transliterated theorem: LRA.Relation.interpret relation = ZFCSetRelation.toEndorelation relation
+Logical form (Lean): {carrierObject : LRA.Set.Interop.Providers.LRA.ZFC.ZFCSet} (relation : ZFCSetRelation carrierObject) : LRA.Relation.interpret relation = ZFCSetRelation.toEndorelation relation
+Source: ./Constructions/LRA/ZFCSetRelation/Satisfy_Generic.lean#L19
+
+
+
+Name: predicateSetRelation_interpret_eq_toEndorelation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (relation : PredicateSetRelation Carrier), LRA.Relation.interpret relation = PredicateSetRelation.toEndorelation relation
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : PredicateSetRelation Carrier
+  Prove
+    LRA.Relation.Constructions.Mathlib.instGenericSemanticsPredicateSetRelation.1 relation = funleft right => { fst := left, snd := right } ∈ relation
+Transliterated theorem: LRA.Relation.interpret relation = PredicateSetRelation.toEndorelation relation
+Logical form (Lean): {Carrier : Type u} (relation : PredicateSetRelation Carrier) : LRA.Relation.interpret relation = PredicateSetRelation.toEndorelation relation
+Source: ./Constructions/Mathlib/PredicateSetRelation/Satisfy_Generic.lean#L17
+
+
+
+Name: successorRelatesZeroToOne
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Relation.Examples.Predicate.successorRelation 0 1
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    { fst := 0, snd := 1 } ∈ LRA.Relation.Examples.Predicate.successorPairs
+Transliterated theorem: successorRelation 0 1
+Logical form (Lean): : successorRelation 0 1
+Source: ./Examples/Predicate.lean#L36
+
+
+
+Name: singletonIdentityRelatesEmptyToItself
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Relation.Examples.ZFC.singletonIdentityEndorelation LRA.Relation.Examples.ZFC.emptyMemberOfSingletonCarrier   LRA.Relation.Examples.ZFC.emptyMemberOfSingletonCarrier
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.instMembershipZFCSet.1 LRA.Relation.Examples.ZFC.singletonIdentityRelation.1 (LRA.Set.Constructions.ZFCSet.Axioms.instHasPairingSet.1 LRA.Relation.Examples.ZFC.emptyMemberOfSingletonCarrier.1 LRA.Relation.Examples.ZFC.emptyMemberOfSingletonCarrier.1)
+Transliterated theorem: singletonIdentityEndorelation emptyMemberOfSingletonCarrier emptyMemberOfSingletonCarrier
+Logical form (Lean): : singletonIdentityEndorelation emptyMemberOfSingletonCarrier emptyMemberOfSingletonCarrier
+Source: ./Examples/ZFC.lean#L30
+
+## Axioms / Assumptions
+
+Declarations written as `axiom` are recorded here for audit context, but they are
+excluded from the active proof queue because there is no proof obligation to discharge.
+
+No axiomatic assumptions are currently present in this scope.
+
+## Completed Inventory
+
+Completed entries are retained below for full-fresh regeneration and audit context,
+but they are not part of the active proof queue.
+
+Name: RelationIncluded
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {α : Type u} (R S : LRA.Relation.Endorelation α) (x y : α), R x y → S x y
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    R x y → S x y
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Definitions/Core.lean
+
+
+
+Name: RelationProperlyIncluded
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {α : Type u} (R S : LRA.Relation.Endorelation α), And (LRA.Relation.RelationIncluded R S) (Ne R S)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x y : α), R x y → S x y) ∧ (R = S → False))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Definitions/Core.lean
+
+
+
+Name: RightUnique
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {α : Type u} {β : Type v} (R : LRA.Relation.HeterogeneousBinaryRelation α β) (x : α) (y₁ y₂ : β),   And (R x y₁) (R x y₂) → Eq y₁ y₂
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (R x y₁ ∧ R x y₂) → y₁ = y₂
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Laws/Definition.lean
+
+
+
+Name: RightTotal
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {α : Type u} {β : Type v} (R : LRA.Relation.HeterogeneousBinaryRelation α β) (y : β), Exists fun x => R x y
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun x => R x y
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Laws/Definition.lean
+
+
+
+Name: LeftTotal
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {α : Type u} {β : Type v} (R : LRA.Relation.HeterogeneousBinaryRelation α β) (x : α), Exists fun y => R x y
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun y => R x y
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Laws/Definition.lean
+
+
+
+Name: Symmetric
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {α : Type u} (R : LRA.Relation.Endorelation α) (x y : α), R x y → R y x
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    R x y → R y x
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Laws/Definition.lean
+
+
+
+Name: ExactlyTrichotomous
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {α : Type u} (R : LRA.Relation.Endorelation α) (x y : α), LRA.Relation.ExactlyOneOfThree (R x y) (Eq x y) (R y x)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or ((R x y ∧ ((x = y → False) ∧ (R y x → False)))) (Or ((x = y ∧ ((R x y → False) ∧ (R y x → False)))) ((R y x ∧ ((R x y → False) ∧ (x = y → False)))))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Laws/Definition.lean
+
+
+
+Name: LeftUnique
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {α : Type u} {β : Type v} (R : LRA.Relation.HeterogeneousBinaryRelation α β) (y : β) (x₁ x₂ : α),   And (R x₁ y) (R x₂ y) → Eq x₁ x₂
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (R x₁ y ∧ R x₂ y) → x₁ = x₂
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Laws/Definition.lean
+
+
+
+Name: Reflexive
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {α : Type u} (R : LRA.Relation.Endorelation α) (x : α), R x x
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    R x x
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Laws/Definition.lean
+
+
+
+Name: LeftEuclidean
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {α : Type u} (R : LRA.Relation.Endorelation α) (z x y : α), And (R x z) (R y z) → R x y
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (R x z ∧ R y z) → R x y
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Laws/Definition.lean
+
+
+
+Name: Antisymmetric
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {α : Type u} (R : LRA.Relation.Endorelation α) (x y : α), And (R x y) (R y x) → Eq x y
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (R x y ∧ R y x) → x = y
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Laws/Definition.lean
+
+
+
+Name: Connex
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {α : Type u} (R : LRA.Relation.Endorelation α) (x y : α), Or (R x y) (R y x)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (R x y) (R y x)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Laws/Definition.lean
+
+
+
+Name: Trichotomous
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {α : Type u} (R : LRA.Relation.Endorelation α) (x y : α), Or (R x y) (Or (Eq x y) (R y x))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (R x y) (Or (x = y)(R y x))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Laws/Definition.lean
+
+
+
+Name: MinimalElement
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (minimum : Element),   And (inst.mem subset minimum) (∀ (element : Element), inst.mem subset element → Not (relation element minimum))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (subset ≤ minimum ∧ (∀ (element : Element), subset ≤ element → relation element minimum → False))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Laws/Definition.lean
+
+
+
+Name: RightEuclidean
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {α : Type u} (R : LRA.Relation.Endorelation α) (z x y : α), And (R z x) (R z y) → R x y
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (R z x ∧ R z y) → R x y
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Laws/Definition.lean
+
+
+
+Name: Total
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {α : Type u} (R : LRA.Relation.Endorelation α) (x y : α), Or (R x y) (R y x)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (R x y) (R y x)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Laws/Definition.lean
+
+
+
+Name: MaximalElement
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (maximum : Element),   And (inst.mem subset maximum) (∀ (element : Element), inst.mem subset element → Not (relation maximum element))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (subset ≤ maximum ∧ (∀ (element : Element), subset ≤ element → relation maximum element → False))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Laws/Definition.lean
+
+
+
+Name: Irreflexive
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {α : Type u} (R : LRA.Relation.Endorelation α) (x : α), Not (R x x)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    R x x → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Laws/Definition.lean
+
+
+
+Name: Transitive
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {α : Type u} (R : LRA.Relation.Endorelation α) (x y z : α), And (R x y) (R y z) → R x z
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (R x y ∧ R y z) → R x z
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Laws/Definition.lean
+
+
+
+Name: ExactlyOneOfThree
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (P Q S : Prop), Or (And P (And (Not Q) (Not S))) (Or (And Q (And (Not P) (Not S))) (And S (And (Not P) (Not Q))))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or ((P ∧ ((Q → False) ∧ (S → False)))) (Or ((Q ∧ ((P → False) ∧ (S → False)))) ((S ∧ ((P → False) ∧ (Q → False)))))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Laws/Definition.lean
+
+
+
+Name: Asymmetric
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {α : Type u} (R : LRA.Relation.Endorelation α) (x y : α), R x y → Not (R y x)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (R x y ∧ R y x) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Laws/Definition.lean
+
+
+
+Name: Dense
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {α : Type u} (R : LRA.Relation.Endorelation α) (x y : α), R x y → Exists fun z => And (R x z) (R z y)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    R x y → Exists fun z => (R x z ∧ R z y)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Laws/Definition.lean
+
+
+
+Name: Converse
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {α : Type u} {β : Type v} (R : LRA.Relation.HeterogeneousBinaryRelation α β) (a : β) (a_1 : α), R a_1 a
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    R a_1 a
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Operations/Converse/Definition.lean
+
+
+
+Name: IdentityRelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (α : Type u) (a a_1 : α), Eq a a_1
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    a = a_1
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Canonical/IdentityRelation/Definition.lean
+
+
+
+Name: ProperlyPartial
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (relation : LRA.Relation.HeterogeneousBinaryRelation Domain Codomain),   And (LRA.Relation.RightUnique relation) (Not (LRA.Relation.LeftTotal relation))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Domain) (y₁ y₂ : Codomain), relation x y₁ → relation x y₂ → y₁ = y₂) ∧ ((∀ (x : Domain), Exists fun y => relation x y) → False))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Laws/FailureModes.lean
+
+
+
+Name: ProperlyMultivalued
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (relation : LRA.Relation.HeterogeneousBinaryRelation Domain Codomain),   And (LRA.Relation.LeftTotal relation) (Not (LRA.Relation.RightUnique relation))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Domain), Exists fun y => relation x y) ∧ ((∀ (x : Domain) (y₁ y₂ : Codomain), relation x y₁ → relation x y₂ → y₁ = y₂) → False))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Laws/FailureModes.lean
+
+
+
+Name: WellFounded
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} (SetObject : Type v) [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element) (subset : SetObject),   (Exists fun element => inst.mem subset element) →     Exists fun minimum => LRA.Relation.MinimalElement relation subset minimum
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun element => subset ≤ element) → Exists fun minimum => (subset ≤ minimum ∧ (∀ (element : Element), subset ≤ element → relation element minimum → False))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Laws/WellFounded/Definition.lean
+
+
+
+Name: RelationUnion
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {α : Type u} (R S : LRA.Relation.Endorelation α) (a a_1 : α), Or (R a a_1) (S a a_1)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (R a a_1) (S a a_1)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Operations/Boolean/Definition.lean
+
+
+
+Name: RelationSymmetricDifference
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {α : Type u} (R S : LRA.Relation.Endorelation α) (a a_1 : α),   Or (And (R a a_1) (Not (S a a_1))) (And (S a a_1) (Not (R a a_1)))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or ((R a a_1 ∧ (S a a_1 → False))) ((S a a_1 ∧ (R a a_1 → False)))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Operations/Boolean/Definition.lean
+
+
+
+Name: RelationComplement
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {α : Type u} (R : LRA.Relation.Endorelation α) (a a_1 : α), R a a_1 → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    R a a_1 → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Operations/Boolean/Definition.lean
+
+
+
+Name: RelationIntersection
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {α : Type u} (R S : LRA.Relation.Endorelation α) (a a_1 : α), And (R a a_1) (S a a_1)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (R a a_1 ∧ S a a_1)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Operations/Boolean/Definition.lean
+
+
+
+Name: RelationDifference
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {α : Type u} (R S : LRA.Relation.Endorelation α) (a a_1 : α), And (R a a_1) (Not (S a a_1))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (R a a_1 ∧ (S a a_1 → False))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Operations/Boolean/Definition.lean
+
+
+
+Name: RelationComposition
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Alpha : Type u} {Beta : Type v} {Gamma : Type w}   (rightRelation : LRA.Relation.HeterogeneousBinaryRelation Beta Gamma)   (leftRelation : LRA.Relation.HeterogeneousBinaryRelation Alpha Beta) (a : Alpha) (a_1 : Gamma),   Exists fun middle => And (leftRelation a middle) (rightRelation middle a_1)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun middle => (leftRelation a middle ∧ rightRelation middle a_1)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Operations/Composition/Definition.lean
+
+
+
+Name: ReflexiveClosure
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha) (a a_1 : Alpha),   Or (relation a a_1) (LRA.Relation.IdentityRelation Alpha a a_1)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (relation a a_1) (a = a_1)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Operations/Closure/Reflexive/Definition.lean
+
+
+
+Name: SymmetricClosure
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha) (a a_1 : Alpha),   Or (relation a a_1) (LRA.Relation.Converse relation a a_1)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (relation a a_1) (relation a_1 a)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Operations/Closure/Symmetric/Definition.lean
+
+
+
+Name: RestrictCodomain
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {X : Type u} {Y : Type v} (R : LRA.Relation.HeterogeneousBinaryRelation X Y) (B : LRA.Set.SetClass Y) (a : X)   (a_1 : Y), And (R a a_1) (B a_1)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (R a a_1 ∧ B a_1)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Operations/Restriction/Definition.lean
+
+
+
+Name: Restrict
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {X : Type u} {Y : Type v} (R : LRA.Relation.HeterogeneousBinaryRelation X Y) (A : LRA.Set.SetClass X)   (B : LRA.Set.SetClass Y) (a : X) (a_1 : Y), And (A a) (And (R a a_1) (B a_1))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (A a ∧ (R a a_1 ∧ B a_1))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Operations/Restriction/Definition.lean
+
+
+
+Name: RestrictDomain
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {X : Type u} {Y : Type v} (R : LRA.Relation.HeterogeneousBinaryRelation X Y) (A : LRA.Set.SetClass X) (a : X)   (a_1 : Y), And (A a) (R a a_1)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (A a ∧ R a a_1)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Operations/Restriction/Definition.lean
+
+
+
+Name: PartialEquivalenceRelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {α : Type u} (R : LRA.Relation.Endorelation α), And (LRA.Relation.Symmetric R) (LRA.Relation.Transitive R)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x y : α), R x y → R y x) ∧ (∀ (x y z : α), R x y → R y z → R x z))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Structures/Definition.lean
+
+
+
+Name: CompatibilityRelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {α : Type u} (R : LRA.Relation.Endorelation α), And (LRA.Relation.Reflexive R) (LRA.Relation.Symmetric R)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : α), R x x) ∧ (∀ (x y : α), R x y → R y x))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Structures/Definition.lean
+
+
+
+Name: EquivalenceRelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {α : Type u} (R : LRA.Relation.Endorelation α),   And (LRA.Relation.Reflexive R) (And (LRA.Relation.Symmetric R) (LRA.Relation.Transitive R))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : α), R x x) ∧ ((∀ (x y : α), R x y → R y x) ∧ (∀ (x y z : α), R x y → R y z → R x z)))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Structures/Definition.lean
+
+
+
+Name: ToleranceRelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {α : Type u} (R : LRA.Relation.Endorelation α), And (LRA.Relation.Reflexive R) (LRA.Relation.Symmetric R)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : α), R x x) ∧ (∀ (x y : α), R x y → R y x))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Structures/Definition.lean
+
+
+
+Name: PartialFunctionRelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (relation : LRA.Relation.HeterogeneousBinaryRelation Domain Codomain)   (x : Domain) (y₁ y₂ : Codomain), And (relation x y₁) (relation x y₂) → Eq y₁ y₂
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (relation x y₁ ∧ relation x y₂) → y₁ = y₂
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Structures/PartialFunction/Definition.lean
+
+
+
+Name: IsEquivalenceClassOf
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (classSet ambient : SetObject)   (relation : LRA.Relation.Endorelation Element) (representative candidate : Element),   Iff (inst.mem classSet candidate) (And (inst.mem ambient candidate) (relation candidate representative))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    classSet ≤ candidate ↔ (ambient ≤ candidate ∧ relation candidate representative)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Structures/Equivalence/EquivalenceClass.lean
+
+
+
+Name: IsQuotientSetOf
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} {Collection : Type w} [inst : Membership Element SetObject]   [inst_1 : Membership SetObject Collection] [inst_2 : LRA.Set.HasSeparation Element SetObject]   [inst_3 : LRA.Set.HasPowerset SetObject Collection] (quotient : Collection) (ambient : SetObject)   (relation : LRA.Relation.Endorelation Element) (candidate : SetObject),   Iff (inst_1.mem quotient candidate)     (And (inst_1.mem (inst_3.powerset ambient) candidate)       (Exists fun representative =>         And (inst.mem ambient representative)           (Eq candidate (LRA.Relation.EquivalenceClass ambient relation representative))))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    quotient ≤ candidate ↔ (ambient ≤ ≤candidate ∧ (Exists fun representative => (ambient ≤ representative ∧ candidate = ambient ≤ funcandidate => relation candidate representative)))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Structures/Equivalence/QuotientSet.lean
+
+
+
+Name: EquivalenceFromPartition
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (partition : LRA.Relation.Partition Element SetObject) (a a_1 : Element),   Exists fun index => And (inst.mem (partition.Block index) a) (inst.mem (partition.Block index) a_1)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun index => (partition.3 index ≤ a ∧ partition.3 index ≤ a_1)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Structures/Equivalence/FundamentalTheorem.lean
+
+
+
+Name: EmptyRelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (α : Type u) (a a : α), False
+Predicate logic (unfolded): ∀ (α : Type u) (a a : α), False [unfold error: unavailable]
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Canonical/EmptyRelation/Definition.lean
+
+
+
+Name: UniversalRelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (α : Type u) (a a : α), True
+Predicate logic (unfolded): ∀ (α : Type u) (a a : α), True [unfold error: unavailable]
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Canonical/UniversalRelation/Definition.lean
+
+
+
+Name: DiversityRelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (α : Type u) (a a_1 : α), Eq a a_1 → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    a = a_1 → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Canonical/DiversityRelation/Definition.lean
+
+
+
+Name: PointImageClass
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {X : Type u} {Y : Type v} (R : LRA.Relation.HeterogeneousBinaryRelation X Y) (x : X) (a : Y), R x a
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    R x a
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Calculus/Classes/Definition.lean
+
+
+
+Name: PreimageClass
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {X : Type u} {Y : Type v} (R : LRA.Relation.HeterogeneousBinaryRelation X Y) (B : LRA.Set.SetClass Y) (a : X),   Exists fun y => And (B y) (R a y)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun y => (B y ∧ R a y)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Calculus/Classes/Definition.lean
+
+
+
+Name: DomainClass
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {X : Type u} {Y : Type v} (R : LRA.Relation.HeterogeneousBinaryRelation X Y) (a : X), Exists fun y => R a y
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun y => R a y
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Calculus/Classes/Definition.lean
+
+
+
+Name: ImageClass
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {X : Type u} {Y : Type v} (R : LRA.Relation.HeterogeneousBinaryRelation X Y) (A : LRA.Set.SetClass X) (a : Y),   Exists fun x => And (A x) (R x a)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun x => (A x ∧ R x a)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Calculus/Classes/Definition.lean
+
+
+
+Name: RightSectionClass
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {X : Type u} {Y : Type v} (R : LRA.Relation.HeterogeneousBinaryRelation X Y) (x : X) (a : Y), R x a
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    R x a
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Calculus/Classes/Definition.lean
+
+
+
+Name: LeftSectionClass
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {X : Type u} {Y : Type v} (R : LRA.Relation.HeterogeneousBinaryRelation X Y) (y : Y) (a : X), R a y
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    R a y
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Calculus/Classes/Definition.lean
+
+
+
+Name: RangeClass
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {X : Type u} {Y : Type v} (R : LRA.Relation.HeterogeneousBinaryRelation X Y) (a : Y), Exists fun x => R x a
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun x => R x a
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Calculus/Classes/Definition.lean
+
+
+
+Name: FiberClass
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {X : Type u} {Y : Type v} (R : LRA.Relation.HeterogeneousBinaryRelation X Y) (y : Y) (a : X), R a y
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    R a y
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Calculus/Classes/Definition.lean
+
+
+
+Name: interpret
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {RelationObject : Type v} {Carrier : Type u} [inst : LRA.Relation.GenericSemantics RelationObject Carrier]   (relation : RelationObject) (a a_1 : Carrier), inst.1 relation a a_1
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    relation ≤ aa_1
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Satisfy_Generic.lean
+
+
+
+Name: satisfiesModelTheory
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (relation : Endorelation Carrier) (reflexive : LRA.Relation.Reflexive relation) (symmetric : LRA.Relation.Symmetric relation) (transitive : LRA.Relation.Transitive relation), LRA.Relation.ModelTheory.RelationTheory relation where reflexive
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : Endorelation Carrier
+    reflexive : LRA.Relation.Reflexive relation
+    symmetric : LRA.Relation.Symmetric relation
+    transitive : LRA.Relation.Transitive relation
+  Prove
+    ((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z))) → LRA.Relation.ModelTheory.RelationTheory relation
+Transliterated theorem: LRA.Relation.ModelTheory.RelationTheory relation where reflexive
+Logical form (Lean): {Carrier : Type u} (relation : Endorelation Carrier) (reflexive : LRA.Relation.Reflexive relation) (symmetric : LRA.Relation.Symmetric relation) (transitive : LRA.Relation.Transitive relation) : LRA.Relation.ModelTheory.RelationTheory relation where reflexive
+Source: ./Interface/Satisfy_ModelTheory.lean#L34
+
+
+
+Name: genericTheory
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {RelationObject : Type v} {Carrier : Type u} [inst : LRA.Relation.GenericSemantics RelationObject Carrier]   (relation : RelationObject), LRA.Relation.ModelTheory.RelationTheory (LRA.Relation.interpret relation)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Relation.ModelTheory.RelationTheory (inst.1 relation)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interface/Satisfy_ModelTheory.lean
+
+
+
+Name: toEndorelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {carrierObject : LRA.Set.Interop.Providers.LRA.ZFC.ZFCSet}   (relation : LRA.Relation.Constructions.LRA.ZFCSetRelation carrierObject)   (a a_1 : LRA.Relation.Constructions.LRA.CarrierOfSet carrierObject),   LRA.Set.Constructions.ZFCMembership (LRA.Set.OrderedPair a.val a_1.val) relation.val
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.ZFCMembership (LRA.Set.Constructions.ZFCSet.Axioms.instHasPairingSet.1 a.1 a_1.1) relation.1
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Constructions/LRA/ZFCSetRelation.lean
+
+
+
+Name: toEndorelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (a : LRA.Relation.Constructions.Mathlib.PredicateSetRelation Carrier) (a_1 a_2 : Carrier),   a { fst := a_1, snd := a_2 }
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    a { fst := a_1, snd := a_2 }
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Constructions/Mathlib/PredicateSetRelation.lean
+
+
+
+Name: ofEndorelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (a : LRA.Relation.Endorelation Carrier) (a_1 : Prod Carrier Carrier), a a_1.fst a_1.snd
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    a a_1.1 a_1.2
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Constructions/Mathlib/PredicateSetRelation.lean
+
+
+
+Name: evenNaturalsAsUnaryRelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (a : Nat), Eq (instHMod.hMod a 2) 0
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    instHMod.1 a 2 = 0
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Examples/Predicate.lean
+
+
+
+Name: lessThanOrEqualPairs
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (a : Prod Nat Nat), a.fst.le a.snd
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    a.1.le a.2
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Examples/Predicate.lean
+
+
+
+Name: successorPairs
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (a : Prod Nat Nat), Eq a.snd (instHAdd.hAdd a.fst 1)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    a.2 = { hAdd := fun a b => instAddNat.add a b }.hAdd a.1 1
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Examples/Predicate.lean
+
+
+
+Name: natToRealInclusionPairs
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (a : Prod (Sum Nat Real) (Sum Nat Real)),   Sum.rec (motive := fun t =>     (Nat.hasNotBit 1 t.ctorIdx → (fun x => (fun x x_1 => Prop) x a.snd) t) → (fun x => (fun x x_1 => Prop) x a.snd) t)     (fun val «else» =>       (fun val =>           LRA.Relation.Examples.Predicate.natToRealInclusionPairs._sparseCasesOn_2 a.snd             (fun val_1 => (fun n r => Eq r n.cast) val val_1) fun h => (fun x x_1 => False) (Sum.inl val) a.snd)         val)     (fun val «else» => «else» ⋯) a.fst fun h => (fun x x_1 => False) a.fst a.snd
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Sum.rec (motive := fun t => ((Nat.bitwise Bool.and 1 (Nat.shiftRight 1 (Sum.rec (fun val => (fun val => 0) val) (fun val => (fun val => 1) val) t)) = 1 → False) → (fun x => (fun x x_1 => Prop) x a.2) t) → (fun x => (fun x x_1 => Prop) x a.2) t) (fun val «else» => (fun val => Sum.rec (motive := fun t => ((Nat.bitwise Bool.and 1 (Nat.shiftRight 2 (Sum.casesOn t (fun val => 0) fun val => 1)) = 1 → False) → (fun x => (fun x x_1 => Prop) (Sum.inl val) x) t) → (fun x => (fun x x_1 => Prop) (Sum.inl val) x) t) (fun val_1 «else» => «else» ⋯) (fun val_1 «else» => (fun val_2 => (fun n r => r = Real.instNatCast.1 n) val val_2) val_1) a.2 fun h => (fun x x_1 => False) (Sum.inl val) a.2) val) (fun val «else» => «else» ⋯) a.1 fun h => (fun x x_1 => False) a.1 a.2
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Examples/Predicate.lean
+
+
+
+Name: successorRelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (a a_1 : Nat), Eq { fst := a, snd := a_1 }.snd (instHAdd.hAdd { fst := a, snd := a_1 }.fst 1)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    { fst := a, snd := a_1 }.2 = { hAdd := fun a b => instAddNat.add a b }.hAdd { fst := a, snd := a_1 }.1 1
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Examples/Predicate.lean
+
+
+
+Name: evenNaturals
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (a : Nat), Eq (instHMod.hMod a 2) 0
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    instHMod.1 a 2 = 0
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Examples/Predicate.lean
+
+
+
+Name: lessThanOrEqualRelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (a a_1 : Nat), { fst := a, snd := a_1 }.fst.le { fst := a, snd := a_1 }.snd
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    { fst := a, snd := a_1 }.1.le { fst := a, snd := a_1 }.2
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Examples/Predicate.lean
+
+
+
+Name: natToRealInclusionRelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (a a_1 : Sum Nat Real),   Sum.rec (motive := fun t =>     (Nat.hasNotBit 1 t.ctorIdx → (fun x => (fun x x_1 => Prop) x { fst := a, snd := a_1 }.snd) t) →       (fun x => (fun x x_1 => Prop) x { fst := a, snd := a_1 }.snd) t)     (fun val «else» =>       (fun val =>           LRA.Relation.Examples.Predicate.natToRealInclusionPairs._sparseCasesOn_2 { fst := a, snd := a_1 }.snd             (fun val_1 => (fun n r => Eq r n.cast) val val_1) fun h =>             (fun x x_1 => False) (Sum.inl val) { fst := a, snd := a_1 }.snd)         val)     (fun val «else» => «else» ⋯) { fst := a, snd := a_1 }.fst fun h =>     (fun x x_1 => False) { fst := a, snd := a_1 }.fst { fst := a, snd := a_1 }.snd
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Sum.rec (motive := fun t => ((Nat.bitwise Bool.and 1 (Nat.shiftRight 1 (Sum.rec (fun val => (fun val => 0) val) (fun val => (fun val => 1) val) t)) = 1 → False) → (fun x => (fun x x_1 => Prop) x { fst := a, snd := a_1 }.2) t) → (fun x => (fun x x_1 => Prop) x { fst := a, snd := a_1 }.2) t) (fun val «else» => (fun val => Sum.rec (motive := fun t => ((Nat.bitwise Bool.and 1 (Nat.shiftRight 2 (Sum.casesOn t (fun val => 0) fun val => 1)) = 1 → False) → (fun x => (fun x x_1 => Prop) (Sum.inl val) x) t) → (fun x => (fun x x_1 => Prop) (Sum.inl val) x) t) (fun val_1 «else» => «else» ⋯) (fun val_1 «else» => (fun val_2 => (fun n r => r = Real.instNatCast.1 n) val val_2) val_1) { fst := a, snd := a_1 }.2 fun h => (fun x x_1 => False) (Sum.inl val) { fst := a, snd := a_1 }.2) val) (fun val «else» => «else» ⋯) { fst := a, snd := a_1 }.1 fun h => (fun x x_1 => False) { fst := a, snd := a_1 }.1 { fst := a, snd := a_1 }.2
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Examples/Predicate.lean
+
+
+
+Name: singletonIdentityEndorelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (a a_1 : LRA.Relation.Constructions.LRA.CarrierOfSet LRA.Relation.Examples.ZFC.singletonCarrierObject),   LRA.Set.Constructions.ZFCMembership (LRA.Set.OrderedPair a.val a_1.val)     LRA.Relation.Examples.ZFC.singletonIdentityRelation.val
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.ZFCMembership (LRA.Set.Constructions.ZFCSet.Axioms.instHasPairingSet.1 a.1 a_1.1) LRA.Relation.Examples.ZFC.singletonIdentityRelation.1
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Examples/ZFC.lean
+
+
+
+Name: successorLikeRelationOnSingleton
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (a a_1 : LRA.Relation.Constructions.LRA.CarrierOfSet LRA.Relation.Examples.ZFC.singletonCarrierObject),   LRA.Set.Constructions.ZFCMembership (LRA.Set.OrderedPair a.val a_1.val)     LRA.Relation.Examples.ZFC.singletonIdentityRelation.val
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.ZFCMembership (LRA.Set.Constructions.ZFCSet.Axioms.instHasPairingSet.1 a.1 a_1.1) LRA.Relation.Examples.ZFC.singletonIdentityRelation.1
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Examples/ZFC.lean
+
+
+
+Name: NatToRealExampleDeferred
+Kind: Instance
+State: Completed
+Predicate logic: Exists fun carrier => Nonempty carrier
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun carrier => Nonempty carrier
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Examples/ZFC.lean
+
+
+
+Name: natToRealExampleDeferred
+Kind: Instance
+State: Completed
+Predicate logic: Exists fun carrier => Nonempty carrier
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun carrier => Nonempty carrier
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Examples/ZFC.lean

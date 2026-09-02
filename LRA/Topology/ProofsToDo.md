@@ -12,11 +12,195 @@ references. That gives a conservative repo-local work sequence, but it is
 the folder.
 
 **Progress:** 0/6 theorem-family entries completed since reset baseline `4e5dfb4e` (ready for proving).
-**Baseline reconciliation:** 0 still match baseline as `sorry`; 6 baseline entries were moved, renamed, or removed and are not auto-credited.
+**Baseline reconciliation:** 6 still match baseline as `sorry`; 0 baseline entries were moved, renamed, or removed and are not auto-credited.
 
-**Snapshot:** 0/0 theorem-family entries currently completed (0 sorry remaining).
+**Snapshot:** 0/6 theorem-family entries currently completed (6 sorry remaining).
 
-**Inventory:** 0 theorem/lemma/corollary/proposition entries across 0 module(s) (0 completed, 0 sorry).
-**Excluded from counts:** 0 `instance` entries and 0 `axiom` entries.
+**Inventory:** 6 theorem/lemma/corollary/proposition entries across 3 module(s) (0 completed, 6 sorry).
+**Excluded from counts:** 4 `instance` entries and 0 `axiom` entries.
 
-No proof or axiom declarations found under this scope yet.
+## Open Work Queue
+
+Unfinished entries (`Sorry`, or `Unknown` in offline preview) are listed first so
+this section can be used as the actual proof queue.
+
+Name: closed_sets_in_topological_space
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {X : Type u} [TopologicalSpace X], (∀ S : Set (Set X), (∀ C ∈ S, IsClosed C) → IsClosed (⋂₀ S)) ∧ (∀ C D : Set X, IsClosed C → IsClosed D → IsClosed (C ∪ D)) ∧ IsClosed (univ : Set X) ∧ IsClosed (∅ : Set X)
+Predicate logic (unfolded):
+  Ambient
+    (X)
+  Objects
+    (none)
+  Prove
+    ((∀ (S : (X → Prop) → Prop), (∀ (C : X → Prop), C ∈ S → IsClosed C) → IsClosed (Set.instInfSet.1 S)) ∧ ((∀ (C D : X → Prop), IsClosed C → IsClosed D → IsClosed (C ∪ D)) ∧ (IsClosed fun _a => True ∧ IsClosed Set.instEmptyCollection.1)))
+Transliterated theorem: ∀ S ∈ Set (Set X, (∀ C ∈ S, IsClosed C) → IsClosed (⋂₀ S)) ∧ ∀ C D ∈ Set X, IsClosed C → IsClosed D → IsClosed (C ∪ D) ∧ IsClosed univ ∈ Set X ∧ IsClosed ∅ ∈ Set X
+Logical form (Lean): {X : Type u} [TopologicalSpace X] : (∀ S : Set (Set X), (∀ C ∈ S, IsClosed C) → IsClosed (⋂₀ S)) ∧ (∀ C D : Set X, IsClosed C → IsClosed D → IsClosed (C ∪ D)) ∧ IsClosed (univ : Set X) ∧ IsClosed (∅ : Set X)
+Source: ./PointSetTopology/TopologicalSpace/Definition/Theorems.lean#L130
+
+
+
+Name: TopologyFromClosedSetAxioms
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {X : Type u} (F : Set (Set X)) (closedUnderArbitraryIntersections : ∀ S ⊆ F, ⋂₀ S ∈ F) (closedUnderFiniteUnions : ∀ C ∈ F, ∀ D ∈ F, C ∪ D ∈ F) (_wholeSpaceMem : univ ∈ F) (emptyMem : ∅ ∈ F), ∃ topologicalSpace : TopologicalSpace X, ∀ C : Set X, @IsClosed X topologicalSpace C ↔ C ∈ F
+Predicate logic (unfolded):
+  Ambient
+    (X)
+  Objects
+    F : Set (Set X)
+  Prove
+    ∃ topologicalSpace : TopologicalSpace X, ∀ C : Set X, @IsClosed X topologicalSpace C ↔ C ∈ F
+Transliterated theorem: (∀ S ⊆ F, ⋂₀ S ∈ F ∧ ∀ C ∈ F, ∀ D ∈ F, C ∪ D ∈ F ∧ univ ∈ F ∧ ∅ ∈ F) → ∃ topologicalSpace ∈ TopologicalSpace X, ∀ C : Set X, @IsClosed X topologicalSpace C ↔ C ∈ F
+Logical form (Lean): {X : Type u} (F : Set (Set X)) (closedUnderArbitraryIntersections : ∀ S ⊆ F, ⋂₀ S ∈ F) (closedUnderFiniteUnions : ∀ C ∈ F, ∀ D ∈ F, C ∪ D ∈ F) (_wholeSpaceMem : univ ∈ F) (emptyMem : ∅ ∈ F) : ∃ topologicalSpace : TopologicalSpace X, ∀ C : Set X, @IsClosed X topologicalSpace C ↔ C ∈ F
+Source: ./PointSetTopology/TopologicalSpace/Definition/Theorems.lean#L181
+
+
+
+Name: TopologicalClosureMonotone
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {X : Type u} [inst : TopologicalSpace X] {A B : Set X},   Set.instLE.le A B →     Set.instLE.le (LRA.Topology.TopologicalClosureDefinition A) (LRA.Topology.TopologicalClosureDefinition B)
+Predicate logic (unfolded):
+  Ambient
+    (X)
+  Objects
+    A B : Set X
+    subset : A ⊆ B
+  Prove
+    { le := fun s₁ s₂ => ∀ ⦃a : X⦄, a ∈ s₁ → a ∈ s₂}.le A B → { le := fun s₁ s₂ => ∀ ⦃a : X⦄, a ∈ s₁ → a ∈ s₂}.le (Set.instInfSet.1 fun K => (({ le := fun s₁ s₂ => ∀ ⦃a : X⦄, a ∈ s₁ → a ∈ s₂}.le A K) ∧ IsClosed K)) (Set.instInfSet.1 fun K => (({ le := fun s₁ s₂ => ∀ ⦃a : X⦄, a ∈ s₁ → a ∈ s₂}.le B K) ∧ IsClosed K))
+Transliterated theorem: TopologicalClosureDefinition A ⊆ TopologicalClosureDefinition B
+Logical form (Lean): {X : Type u} [TopologicalSpace X] {A B : Set X} (subset : A ⊆ B) : TopologicalClosureDefinition A ⊆ TopologicalClosureDefinition B
+Source: ./PointSetTopology/TopologicalSpace/Definition/Theorems.lean#L272
+
+
+
+Name: ToMathlibIsOpen
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {X : Type u} (topology : TopologyDefinition X) (U : Set X), letI : _root_.TopologicalSpace X
+Predicate logic (unfolded):
+  Ambient
+    (X)
+  Objects
+    topology : TopologyDefinition X
+    U : Set X
+  Prove
+    topology.ToMathlibTopologicalSpace.1 U ↔ topology.1 U
+Transliterated theorem: letI : _root_.TopologicalSpace X
+Logical form (Lean): {X : Type u} (topology : TopologyDefinition X) (U : Set X) : letI : _root_.TopologicalSpace X
+Source: ./PointSetTopology/TopologicalSpace/Interop/Mathlib.lean#L107
+
+
+
+Name: FromMathlibTopologicalSpaceIsCompatibleWithMathlibTopologicalSpace
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {X : Type u} [inst : TopologicalSpace X],   LRA.Topology.IsCompatibleWithMathlibTopologicalSpace (LRA.Topology.TopologyDefinition.FromMathlibTopologicalSpace X)
+Predicate logic (unfolded):
+  Ambient
+    (X)
+  Objects
+    (none)
+  Prove
+    (LRA.Topology.TopologyDefinition.FromMathlibTopologicalSpace X).1 U ↔ inst.1 U
+Transliterated theorem: IsCompatibleWithMathlibTopologicalSpace (TopologyDefinition.FromMathlibTopologicalSpace X)
+Logical form (Lean): {X : Type u} [_root_.TopologicalSpace X] : IsCompatibleWithMathlibTopologicalSpace (TopologyDefinition.FromMathlibTopologicalSpace X)
+Source: ./PointSetTopology/TopologicalSpace/Interop/Mathlib.lean#L328
+
+
+
+Name: SelectMathlibTopologicalSpaceIsOpenInduced
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {X : Type u} (topology : TopologyDefinition X) [_root_.TopologicalSpace X] (U : Set X), letI : _root_.TopologicalSpace X
+Predicate logic (unfolded):
+  Ambient
+    (X)
+  Objects
+    topology : TopologyDefinition X
+    U : Set X
+  Prove
+    (LRA.Topology.SelectMathlibTopologicalSpace LRA.Topology.TopologicalSpaceBackend.inducedFromTopologyDefinition topology).1 U ↔ topology.1 U
+Transliterated theorem: letI : _root_.TopologicalSpace X
+Logical form (Lean): {X : Type u} (topology : TopologyDefinition X) [_root_.TopologicalSpace X] (U : Set X) : letI : _root_.TopologicalSpace X
+Source: ./PointSetTopology/TopologicalSpace/Interop/Switch.lean#L317
+
+## Axioms / Assumptions
+
+Declarations written as `axiom` are recorded here for audit context, but they are
+excluded from the active proof queue because there is no proof obligation to discharge.
+
+No axiomatic assumptions are currently present in this scope.
+
+## Completed Inventory
+
+Completed entries are retained below for full-fresh regeneration and audit context,
+but they are not part of the active proof queue.
+
+Name: ClosedSetDefinition
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {X : Type u} [inst : TopologicalSpace X] (E : Set X), inst.1 (Set.instCompl.compl E)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    inst.1 (Set.instCompl.1 E)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./PointSetTopology/TopologicalSpace/Definition/Theorems.lean
+
+
+
+Name: TopologicalClosureDefinition
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {X : Type u} [inst : TopologicalSpace X] (E : Set X) (a : X) (t : Set X),   Set.instMembership.mem (setOf fun K => And (Set.instLE.le E K) (IsClosed K)) t → Set.instMembership.mem t a
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    t ∈ fun K => (({ le := fun s₁ s₂ => ∀ ⦃a : X⦄, a ∈ s₁ → a ∈ s₂}.le E K) ∧ IsClosed K) → a ∈ t
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./PointSetTopology/TopologicalSpace/Definition/Theorems.lean
+
+
+
+Name: ClosedSetFamilyOfTopology
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (X : Type u) [inst : TopologicalSpace X] (a : Set X), inst.1 (Set.instCompl.compl a)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    inst.1 (Set.instCompl.1 a)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./PointSetTopology/TopologicalSpace/Definition/Theorems.lean
+
+
+
+Name: IsCompatibleWithMathlibTopologicalSpace
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {X : Type u} [inst : TopologicalSpace X] (topology : LRA.Topology.TopologyDefinition X) (U : Set X),   Iff (topology.IsOpen U) (IsOpen U)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    topology.1 U ↔ inst.1 U
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./PointSetTopology/TopologicalSpace/Interop/Mathlib.lean

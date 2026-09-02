@@ -12,11 +12,9620 @@ references. That gives a conservative repo-local work sequence, but it is
 the folder.
 
 **Progress:** 0/374 theorem-family entries completed since reset baseline `73e79b40` (Mass-sorry non-Logic proofs and regenerate todos).
-**Baseline reconciliation:** 0 still match baseline as `sorry`; 374 baseline entries were moved, renamed, or removed and are not auto-credited.
+**Baseline reconciliation:** 374 still match baseline as `sorry`; 0 baseline entries were moved, renamed, or removed and are not auto-credited.
 
-**Snapshot:** 0/0 theorem-family entries currently completed (0 sorry remaining).
+**Snapshot:** 8/385 theorem-family entries currently completed (377 sorry remaining).
 
-**Inventory:** 0 theorem/lemma/corollary/proposition entries across 0 module(s) (0 completed, 0 sorry).
-**Excluded from counts:** 0 `instance` entries and 0 `axiom` entries.
+**Inventory:** 385 theorem/lemma/corollary/proposition entries across 135 module(s) (8 completed, 377 sorry).
+**Excluded from counts:** 130 `instance` entries and 0 `axiom` entries.
 
-No proof or axiom declarations found under this scope yet.
+## Open Work Queue
+
+Unfinished entries (`Sorry`, or `Unknown` in offline preview) are listed first so
+this section can be used as the actual proof queue.
+
+Name: PreorderRelationIsReflexive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (preorder : LRA.Order.OrderedSets.Preorder.PreorderRelation Carrier),   LRA.Relation.Reflexive preorder.relation
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    preorder : PreorderRelation Carrier
+  Prove
+    preorder.1 x x
+Transliterated theorem: LRA.Relation.Reflexive preorder.relation
+Logical form (Lean): {Carrier : Type u} (preorder : PreorderRelation Carrier) : LRA.Relation.Reflexive preorder.relation
+Source: ./OrderedSets/Preorder/Characterizations.lean#L44
+
+
+
+Name: PreorderRelationIsTransitive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (preorder : LRA.Order.OrderedSets.Preorder.PreorderRelation Carrier),   LRA.Relation.Transitive preorder.relation
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    preorder : PreorderRelation Carrier
+  Prove
+    (preorder.1 x y ∧ preorder.1 y z) → preorder.1 x z
+Transliterated theorem: LRA.Relation.Transitive preorder.relation
+Logical form (Lean): {Carrier : Type u} (preorder : PreorderRelation Carrier) : LRA.Relation.Transitive preorder.relation
+Source: ./OrderedSets/Preorder/Characterizations.lean#L88
+
+
+
+Name: PreorderRelatesSelf
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (preorder : LRA.Order.OrderedSets.Preorder.PreorderRelation Carrier) (element : Carrier),   preorder.relation element element
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    preorder : PreorderRelation Carrier
+    element : Carrier
+  Prove
+    preorder.1 element element
+Transliterated theorem: (∀ element ∈ Carrier), preorder.relation element element
+Logical form (Lean): {Carrier : Type u} (preorder : PreorderRelation Carrier) (element : Carrier) : preorder.relation element element
+Source: ./OrderedSets/Preorder/Theorems.lean#L45
+
+
+
+Name: PreorderEquivalenceIsEquivalence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (preorder : LRA.Order.OrderedSets.Preorder.PreorderRelation Carrier),   LRA.Relation.EquivalenceRelation (LRA.Order.OrderedSets.Preorder.PreorderEquivalence preorder)
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    preorder : PreorderRelation Carrier
+  Prove
+    ((∀ (x : Carrier), (preorder.1 x x ∧ preorder.1 x x)) ∧ ((∀ (x y : Carrier), (preorder.1 x y ∧ preorder.1 y x) → (preorder.1 y x ∧ preorder.1 x y)) ∧ (∀ (x y z : Carrier), (preorder.1 x y ∧ preorder.1 y x) → (preorder.1 y z ∧ preorder.1 z y) → (preorder.1 x z ∧ preorder.1 z x))))
+Transliterated theorem: LRA.Relation.EquivalenceRelation (PreorderEquivalence preorder)
+Logical form (Lean): {Carrier : Type u} (preorder : PreorderRelation Carrier) : LRA.Relation.EquivalenceRelation (PreorderEquivalence preorder)
+Source: ./OrderedSets/Preorder/Relationships.lean#L144
+
+
+
+Name: PreorderQuotientRelationIsPartialOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (preorder : LRA.Order.OrderedSets.Preorder.PreorderRelation Carrier),   LRA.Order.PartialOrder (LRA.Order.OrderedSets.Preorder.PreorderQuotientRelation preorder)
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    preorder : PreorderRelation Carrier
+  Prove
+    ((∀ (x : Quot (LRA.Order.OrderedSets.Preorder.PreorderSetoid preorder).1), Quot.lift (fun a₁ => Quotient.lift (preorder.relation a₁) ⋯ x) ⋯ x) ∧ ((∀ (x y : Quot (LRA.Order.OrderedSets.Preorder.PreorderSetoid preorder).1), Quot.lift (fun a₁ => Quotient.lift (preorder.relation a₁) ⋯ y) ⋯ x → Quot.lift (fun a₁ => Quotient.lift (preorder.relation a₁) ⋯ x) ⋯ y → x = y) ∧ (∀ (x y z : Quot (LRA.Order.OrderedSets.Preorder.PreorderSetoid preorder).1), Quot.lift (fun a₁ => Quotient.lift (preorder.relation a₁) ⋯ y) ⋯ x → Quot.lift (fun a₁ => Quotient.lift (preorder.relation a₁) ⋯ z) ⋯ y → Quot.lift (fun a₁ => Quotient.lift (preorder.relation a₁) ⋯ z) ⋯ x)))
+Transliterated theorem: LRA.Order.PartialOrder (PreorderQuotientRelation preorder)
+Logical form (Lean): {Carrier : Type u} (preorder : PreorderRelation Carrier) : LRA.Order.PartialOrder (PreorderQuotientRelation preorder)
+Source: ./OrderedSets/Preorder/Relationships.lean#L344
+
+
+
+Name: PreorderQuotientRelation
+Kind: Instance
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (preorder : LRA.Order.OrderedSets.Preorder.PreorderRelation Carrier)   (a a_1 : LRA.Order.OrderedSets.Preorder.PreorderQuotient preorder),   Quot.lift (fun a₁ => Quotient.lift (preorder.relation a₁) ⋯ a_1) ⋯ a
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Quot.lift (fun a₁ => Quot.lift (preorder.1 a₁) ⋯ a_1) ⋯ a
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./OrderedSets/Preorder/Relationships.lean
+
+
+
+Name: PartialOrderIsReflexive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (relation : LRA.Order.OrderedSets.OrderRelation Carrier),   LRA.Order.PartialOrder relation → LRA.Relation.Reflexive relation
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Order.OrderedSets.OrderRelation Carrier
+    relationIsPartialOrder : LRA.Order.PartialOrder relation
+  Prove
+    ((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x → x = y) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z))) → ∀ (x : Carrier), relation x x
+Transliterated theorem: LRA.Relation.Reflexive relation
+Logical form (Lean): {Carrier : Type u} (relation : LRA.Order.OrderedSets.OrderRelation Carrier) (relationIsPartialOrder : LRA.Order.PartialOrder relation) : LRA.Relation.Reflexive relation
+Source: ./OrderedSets/PartialOrder/Characterizations.lean#L45
+
+
+
+Name: PartialOrderIsAntisymmetric
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (relation : LRA.Order.OrderedSets.OrderRelation Carrier),   LRA.Order.PartialOrder relation → LRA.Relation.Antisymmetric relation
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Order.OrderedSets.OrderRelation Carrier
+    relationIsPartialOrder : LRA.Order.PartialOrder relation
+  Prove
+    ((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x → x = y) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z))) → ∀ (x y : Carrier), (relation x y ∧ relation y x) → x = y
+Transliterated theorem: LRA.Relation.Antisymmetric relation
+Logical form (Lean): {Carrier : Type u} (relation : LRA.Order.OrderedSets.OrderRelation Carrier) (relationIsPartialOrder : LRA.Order.PartialOrder relation) : LRA.Relation.Antisymmetric relation
+Source: ./OrderedSets/PartialOrder/Characterizations.lean#L91
+
+
+
+Name: PartialOrderIsTransitive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (relation : LRA.Order.OrderedSets.OrderRelation Carrier),   LRA.Order.PartialOrder relation → LRA.Relation.Transitive relation
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Order.OrderedSets.OrderRelation Carrier
+    relationIsPartialOrder : LRA.Order.PartialOrder relation
+  Prove
+    ((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x → x = y) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z))) → ∀ (x y z : Carrier), (relation x y ∧ relation y z) → relation x z
+Transliterated theorem: LRA.Relation.Transitive relation
+Logical form (Lean): {Carrier : Type u} (relation : LRA.Order.OrderedSets.OrderRelation Carrier) (relationIsPartialOrder : LRA.Order.PartialOrder relation) : LRA.Relation.Transitive relation
+Source: ./OrderedSets/PartialOrder/Characterizations.lean#L137
+
+
+
+Name: PartialOrderRelationIsReflexive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.PartialOrderRelation Carrier),   LRA.Relation.Reflexive order.relation
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    order : PartialOrderRelation Carrier
+  Prove
+    order.1 x x
+Transliterated theorem: LRA.Relation.Reflexive order.relation
+Logical form (Lean): {Carrier : Type u} (order : PartialOrderRelation Carrier) : LRA.Relation.Reflexive order.relation
+Source: ./OrderedSets/PartialOrder/Characterizations.lean#L182
+
+
+
+Name: PartialOrderRelationIsAntisymmetric
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.PartialOrderRelation Carrier),   LRA.Relation.Antisymmetric order.relation
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    order : PartialOrderRelation Carrier
+  Prove
+    (order.1 x y ∧ order.1 y x) → x = y
+Transliterated theorem: LRA.Relation.Antisymmetric order.relation
+Logical form (Lean): {Carrier : Type u} (order : PartialOrderRelation Carrier) : LRA.Relation.Antisymmetric order.relation
+Source: ./OrderedSets/PartialOrder/Characterizations.lean#L226
+
+
+
+Name: PartialOrderRelationIsTransitive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.PartialOrderRelation Carrier),   LRA.Relation.Transitive order.relation
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    order : PartialOrderRelation Carrier
+  Prove
+    (order.1 x y ∧ order.1 y z) → order.1 x z
+Transliterated theorem: LRA.Relation.Transitive order.relation
+Logical form (Lean): {Carrier : Type u} (order : PartialOrderRelation Carrier) : LRA.Relation.Transitive order.relation
+Source: ./OrderedSets/PartialOrder/Characterizations.lean#L270
+
+
+
+Name: NonStrictRelatesSelf
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier) (element : Carrier),   order.relation element element
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    element : Carrier
+  Prove
+    order.1 element element
+Transliterated theorem: (∀ element ∈ Carrier), (NonStrictPartialOrder Carrier) → order.relation element element
+Logical form (Lean): {Carrier : Type u} (order : NonStrictPartialOrder Carrier) (element : Carrier) : order.relation element element
+Source: ./OrderedSets/PartialOrder/Theorems.lean#L45
+
+
+
+Name: NonStrictMutualRelationImpliesEqual
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (order : NonStrictPartialOrder Carrier) (left right : Carrier) (leftRelatedToRight : order.relation left right) (rightRelatedToLeft : order.relation right left), left = right
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    left right : Carrier
+    leftRelatedToRight : order.relation left right
+    rightRelatedToLeft : order.relation right left
+  Prove
+    (order.1 left right ∧ order.1 right left) → left = right
+Transliterated theorem: (∀ left right ∈ Carrier), (NonStrictPartialOrder Carrier) → left = right
+Logical form (Lean): {Carrier : Type u} (order : NonStrictPartialOrder Carrier) (left right : Carrier) (leftRelatedToRight : order.relation left right) (rightRelatedToLeft : order.relation right left) : left = right
+Source: ./OrderedSets/PartialOrder/Theorems.lean#L93
+
+
+
+Name: PartialOrderHasNoNontrivialTwoElementCycles
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (order : NonStrictPartialOrder Carrier) (left right : Carrier) (leftRelatedToRight : order.relation left right) (rightRelatedToLeft : order.relation right left), left = right
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    left right : Carrier
+    leftRelatedToRight : order.relation left right
+    rightRelatedToLeft : order.relation right left
+  Prove
+    (order.1 left right ∧ order.1 right left) → left = right
+Transliterated theorem: (∀ left right ∈ Carrier), (NonStrictPartialOrder Carrier) → left = right
+Logical form (Lean): {Carrier : Type u} (order : NonStrictPartialOrder Carrier) (left right : Carrier) (leftRelatedToRight : order.relation left right) (rightRelatedToLeft : order.relation right left) : left = right
+Source: ./OrderedSets/PartialOrder/Theorems.lean#L143
+
+
+
+Name: StrictPartIff
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (order : NonStrictPartialOrder Carrier) (left right : Carrier), StrictPart order left right <-> order.relation left right /\ left ≠ right
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    left right : Carrier
+  Prove
+    (order.1 left right ∧ (left = right → False)) ↔ (order.1 left right ∧ (left = right → False))
+Transliterated theorem: (∀ left right ∈ Carrier), (NonStrictPartialOrder Carrier) → StrictPart order left right <-> order.relation left right ∧ left ≠ right
+Logical form (Lean): {Carrier : Type u} (order : NonStrictPartialOrder Carrier) (left right : Carrier) : StrictPart order left right <-> order.relation left right /\ left ≠ right
+Source: ./OrderedSets/PartialOrder/Relationships.lean#L98
+
+
+
+Name: StrictPartIffNotConverse
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (order : NonStrictPartialOrder Carrier) (left right : Carrier), StrictPart order left right <-> order.relation left right /\ Not (order.relation right left)
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    left right : Carrier
+  Prove
+    (order.1 left right ∧ (left = right → False)) ↔ (order.1 left right ∧ (order.1 right left → False))
+Transliterated theorem: (∀ left right ∈ Carrier), (NonStrictPartialOrder Carrier) → StrictPart order left right <-> order.relation left right ∧ Not (order.relation right left)
+Logical form (Lean): {Carrier : Type u} (order : NonStrictPartialOrder Carrier) (left right : Carrier) : StrictPart order left right <-> order.relation left right /\ Not (order.relation right left)
+Source: ./OrderedSets/PartialOrder/Relationships.lean#L146
+
+
+
+Name: StrictPartRelationIsStrictOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier),   LRA.Order.StrictOrder (LRA.Order.OrderedSets.PartialOrder.StrictPart order)
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Carrier), (order.1 x x ∧ ¬ x = x) → False) ∧ (∀ (x y z : Carrier), (order.1 x y ∧ (x = y → False)) → (order.1 y z ∧ (y = z → False)) → (order.1 x z ∧ (x = z → False))))
+Transliterated theorem: (NonStrictPartialOrder Carrier) → LRA.Order.StrictOrder (StrictPart order)
+Logical form (Lean): {Carrier : Type u} (order : NonStrictPartialOrder Carrier) : LRA.Order.StrictOrder (StrictPart order)
+Source: ./OrderedSets/PartialOrder/Relationships.lean#L192
+
+
+
+Name: StrictPartIsStrictOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier),   LRA.Order.StrictOrder (LRA.Order.OrderedSets.PartialOrder.StrictPart order)
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Carrier), (order.1 x x ∧ ¬ x = x) → False) ∧ (∀ (x y z : Carrier), (order.1 x y ∧ (x = y → False)) → (order.1 y z ∧ (y = z → False)) → (order.1 x z ∧ (x = z → False))))
+Transliterated theorem: (NonStrictPartialOrder Carrier) → LRA.Order.StrictOrder (StrictPart order)
+Logical form (Lean): {Carrier : Type u} (order : NonStrictPartialOrder Carrier) : LRA.Order.StrictOrder (StrictPart order)
+Source: ./OrderedSets/PartialOrder/Relationships.lean#L294
+
+
+
+Name: DualRelationIsPartialOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier),   LRA.Order.PartialOrder (LRA.Relation.Converse order.relation)
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Carrier), order.1 x x) ∧ ((∀ (x y : Carrier), order.1 y x → order.1 x y → x = y) ∧ (∀ (x y z : Carrier), order.1 y x → order.1 z y → order.1 z x)))
+Transliterated theorem: (NonStrictPartialOrder Carrier) → LRA.Order.PartialOrder (LRA.Relation.Converse order.relation)
+Logical form (Lean): {Carrier : Type u} (order : NonStrictPartialOrder Carrier) : LRA.Order.PartialOrder (LRA.Relation.Converse order.relation)
+Source: ./OrderedSets/PartialOrder/Relationships.lean#L339
+
+
+
+Name: DualIsPartialOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier),   LRA.Order.PartialOrder (LRA.Relation.Converse order.relation)
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Carrier), order.1 x x) ∧ ((∀ (x y : Carrier), order.1 y x → order.1 x y → x = y) ∧ (∀ (x y z : Carrier), order.1 y x → order.1 z y → order.1 z x)))
+Transliterated theorem: (NonStrictPartialOrder Carrier) → LRA.Order.PartialOrder (LRA.Relation.Converse order.relation)
+Logical form (Lean): {Carrier : Type u} (order : NonStrictPartialOrder Carrier) : LRA.Order.PartialOrder (LRA.Relation.Converse order.relation)
+Source: ./OrderedSets/PartialOrder/Relationships.lean#L443
+
+
+
+Name: PosetOrderIsPartialOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (poset : LRA.Order.Poset), LRA.Order.PartialOrder poset.NonStrictOrder
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    poset : LRA.Order.Poset
+  Prove
+    ((∀ (x : poset.1), poset.2 x x) ∧ ((∀ (x y : poset.1), poset.2 x y → poset.2 y x → x = y) ∧ (∀ (x y z : poset.1), poset.2 x y → poset.2 y z → poset.2 x z)))
+Transliterated theorem: (∀ poset ∈ LRA.Order.Poset), LRA.Order.PartialOrder poset.NonStrictOrder
+Logical form (Lean): (poset : LRA.Order.Poset) : LRA.Order.PartialOrder poset.NonStrictOrder
+Source: ./OrderedSets/Poset/Characterizations.lean#L44
+
+
+
+Name: PosetOrderIsReflexive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (poset : LRA.Order.Poset), LRA.Relation.Reflexive poset.NonStrictOrder
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    poset : LRA.Order.Poset
+  Prove
+    poset.2 x x
+Transliterated theorem: (∀ poset ∈ LRA.Order.Poset), LRA.Relation.Reflexive poset.NonStrictOrder
+Logical form (Lean): (poset : LRA.Order.Poset) : LRA.Relation.Reflexive poset.NonStrictOrder
+Source: ./OrderedSets/Poset/Characterizations.lean#L86
+
+
+
+Name: PosetOrderIsAntisymmetric
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (poset : LRA.Order.Poset), LRA.Relation.Antisymmetric poset.NonStrictOrder
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    poset : LRA.Order.Poset
+  Prove
+    (poset.2 x y ∧ poset.2 y x) → x = y
+Transliterated theorem: (∀ poset ∈ LRA.Order.Poset), LRA.Relation.Antisymmetric poset.NonStrictOrder
+Logical form (Lean): (poset : LRA.Order.Poset) : LRA.Relation.Antisymmetric poset.NonStrictOrder
+Source: ./OrderedSets/Poset/Characterizations.lean#L128
+
+
+
+Name: PosetOrderIsTransitive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (poset : LRA.Order.Poset), LRA.Relation.Transitive poset.NonStrictOrder
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    poset : LRA.Order.Poset
+  Prove
+    (poset.2 x y ∧ poset.2 y z) → poset.2 x z
+Transliterated theorem: (∀ poset ∈ LRA.Order.Poset), LRA.Relation.Transitive poset.NonStrictOrder
+Logical form (Lean): (poset : LRA.Order.Poset) : LRA.Relation.Transitive poset.NonStrictOrder
+Source: ./OrderedSets/Poset/Characterizations.lean#L170
+
+
+
+Name: PosetOrderIsPreorder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (poset : LRA.Order.Poset), LRA.Order.Preorder poset.NonStrictOrder
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    poset : LRA.Order.Poset
+  Prove
+    ((∀ (x : poset.1), poset.2 x x) ∧ (∀ (x y z : poset.1), poset.2 x y → poset.2 y z → poset.2 x z))
+Transliterated theorem: (∀ poset ∈ LRA.Order.Poset), LRA.Order.Preorder poset.NonStrictOrder
+Logical form (Lean): (poset : LRA.Order.Poset) : LRA.Order.Preorder poset.NonStrictOrder
+Source: ./OrderedSets/Poset/Relationships.lean#L43
+
+
+
+Name: PosetElementRelatesToItself
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (poset : LRA.Order.Poset) (element : poset.Carrier), poset.NonStrictOrder element element
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    poset : LRA.Order.Poset
+    element : poset.Carrier
+  Prove
+    poset.2 element element
+Transliterated theorem: (∀ poset ∈ LRA.Order.Poset ∀ element ∈ poset.Carrier), poset.NonStrictOrder element element
+Logical form (Lean): (poset : LRA.Order.Poset) (element : poset.Carrier) : poset.NonStrictOrder element element
+Source: ./OrderedSets/Poset/Theorems.lean#L44
+
+
+
+Name: PosetMutualOrderImpliesEqual
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (poset : LRA.Order.Poset) (left right : poset.Carrier) (leftBelowRight : poset.NonStrictOrder left right) (rightBelowLeft : poset.NonStrictOrder right left), left = right
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    poset : LRA.Order.Poset
+    left right : poset.Carrier
+    leftBelowRight : poset.NonStrictOrder left right
+    rightBelowLeft : poset.NonStrictOrder right left
+  Prove
+    (poset.2 left right ∧ poset.2 right left) → left = right
+Transliterated theorem: (∀ poset ∈ LRA.Order.Poset ∀ left right ∈ poset.Carrier), left = right
+Logical form (Lean): (poset : LRA.Order.Poset) (left right : poset.Carrier) (leftBelowRight : poset.NonStrictOrder left right) (rightBelowLeft : poset.NonStrictOrder right left) : left = right
+Source: ./OrderedSets/Poset/Theorems.lean#L90
+
+
+
+Name: PosetOrderTrans
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (poset : LRA.Order.Poset) (first second third : poset.Carrier) (firstBelowSecond : poset.NonStrictOrder first second) (secondBelowThird : poset.NonStrictOrder second third), poset.NonStrictOrder first third
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    poset : LRA.Order.Poset
+    first second third : poset.Carrier
+    firstBelowSecond : poset.NonStrictOrder first second
+    secondBelowThird : poset.NonStrictOrder second third
+  Prove
+    (poset.2 first second ∧ poset.2 second third) → poset.2 first third
+Transliterated theorem: (∀ poset ∈ LRA.Order.Poset ∀ first second third ∈ poset.Carrier), poset.NonStrictOrder first third
+Logical form (Lean): (poset : LRA.Order.Poset) (first second third : poset.Carrier) (firstBelowSecond : poset.NonStrictOrder first second) (secondBelowThird : poset.NonStrictOrder second third) : poset.NonStrictOrder first third
+Source: ./OrderedSets/Poset/Theorems.lean#L138
+
+
+
+Name: TotalImpliesReflexive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha},   LRA.Relation.Total relation → LRA.Relation.Reflexive relation
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsTotal : LRA.Relation.Total relation
+  Prove
+    (∀ (x y : Alpha), Or (relation x y) (relation y x)) → ∀ (x : Alpha), relation x x
+Transliterated theorem: LRA.Relation.Reflexive relation
+Logical form (Lean): {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsTotal : LRA.Relation.Total relation) : LRA.Relation.Reflexive relation
+Source: ./OrderedSets/LinearOrder/Theorems.lean#L47
+
+
+
+Name: LinearOrderIsPartialOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha},   LRA.Order.LinearOrder relation → LRA.Order.PartialOrder relation
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsLinearOrder : LinearOrder relation
+  Prove
+    (((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) ∧ (∀ (x y : Alpha), Or (relation x y) (relation y x))) → ((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z)))
+Transliterated theorem: PartialOrder relation
+Logical form (Lean): {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsLinearOrder : LinearOrder relation) : PartialOrder relation
+Source: ./OrderedSets/LinearOrder/Theorems.lean#L93
+
+
+
+Name: LinearOrderIsTotal
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha},   LRA.Order.LinearOrder relation → LRA.Relation.Total relation
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsLinearOrder : LinearOrder relation
+  Prove
+    (((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) ∧ (∀ (x y : Alpha), Or (relation x y) (relation y x))) → ∀ (x y : Alpha), Or (relation x y) (relation y x)
+Transliterated theorem: LRA.Relation.Total relation
+Logical form (Lean): {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsLinearOrder : LinearOrder relation) : LRA.Relation.Total relation
+Source: ./OrderedSets/LinearOrder/Theorems.lean#L139
+
+
+
+Name: StrictOrderIsIrreflexive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (relation : LRA.Order.OrderedSets.OrderRelation Carrier),   LRA.Order.StrictOrder relation → LRA.Relation.Irreflexive relation
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Order.OrderedSets.OrderRelation Carrier
+    relationIsStrictOrder : LRA.Order.StrictOrder relation
+  Prove
+    ((∀ (x : Carrier), relation x x → False) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z)) → ∀ (x : Carrier), relation x x → False
+Transliterated theorem: LRA.Relation.Irreflexive relation
+Logical form (Lean): {Carrier : Type u} (relation : LRA.Order.OrderedSets.OrderRelation Carrier) (relationIsStrictOrder : LRA.Order.StrictOrder relation) : LRA.Relation.Irreflexive relation
+Source: ./OrderedSets/StrictOrder/Characterizations.lean#L45
+
+
+
+Name: StrictOrderIsTransitive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (relation : LRA.Order.OrderedSets.OrderRelation Carrier),   LRA.Order.StrictOrder relation → LRA.Relation.Transitive relation
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Order.OrderedSets.OrderRelation Carrier
+    relationIsStrictOrder : LRA.Order.StrictOrder relation
+  Prove
+    ((∀ (x : Carrier), relation x x → False) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z)) → ∀ (x y z : Carrier), (relation x y ∧ relation y z) → relation x z
+Transliterated theorem: LRA.Relation.Transitive relation
+Logical form (Lean): {Carrier : Type u} (relation : LRA.Order.OrderedSets.OrderRelation Carrier) (relationIsStrictOrder : LRA.Order.StrictOrder relation) : LRA.Relation.Transitive relation
+Source: ./OrderedSets/StrictOrder/Characterizations.lean#L91
+
+
+
+Name: StrictOrderIsAsymmetric
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (relation : LRA.Order.OrderedSets.OrderRelation Carrier),   LRA.Order.StrictOrder relation → LRA.Relation.Asymmetric relation
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Order.OrderedSets.OrderRelation Carrier
+    relationIsStrictOrder : LRA.Order.StrictOrder relation
+  Prove
+    ((∀ (x : Carrier), relation x x → False) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z)) → ∀ (x y : Carrier), (relation x y ∧ relation y x) → False
+Transliterated theorem: LRA.Relation.Asymmetric relation
+Logical form (Lean): {Carrier : Type u} (relation : LRA.Order.OrderedSets.OrderRelation Carrier) (relationIsStrictOrder : LRA.Order.StrictOrder relation) : LRA.Relation.Asymmetric relation
+Source: ./OrderedSets/StrictOrder/Characterizations.lean#L137
+
+
+
+Name: StrictOrderIsAntisymmetric
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (relation : LRA.Order.OrderedSets.OrderRelation Carrier),   LRA.Order.StrictOrder relation → LRA.Relation.Antisymmetric relation
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Order.OrderedSets.OrderRelation Carrier
+    relationIsStrictOrder : LRA.Order.StrictOrder relation
+  Prove
+    ((∀ (x : Carrier), relation x x → False) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z)) → ∀ (x y : Carrier), (relation x y ∧ relation y x) → x = y
+Transliterated theorem: LRA.Relation.Antisymmetric relation
+Logical form (Lean): {Carrier : Type u} (relation : LRA.Order.OrderedSets.OrderRelation Carrier) (relationIsStrictOrder : LRA.Order.StrictOrder relation) : LRA.Relation.Antisymmetric relation
+Source: ./OrderedSets/StrictOrder/Characterizations.lean#L183
+
+
+
+Name: StrictOrderRelationIsIrreflexive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.StrictOrder.StrictOrderRelation Carrier),   LRA.Relation.Irreflexive order.relation
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    order : StrictOrderRelation Carrier
+  Prove
+    order.1 x x → False
+Transliterated theorem: LRA.Relation.Irreflexive order.relation
+Logical form (Lean): {Carrier : Type u} (order : StrictOrderRelation Carrier) : LRA.Relation.Irreflexive order.relation
+Source: ./OrderedSets/StrictOrder/Characterizations.lean#L228
+
+
+
+Name: StrictOrderDoesNotRelateSelf
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (order : StrictOrderRelation Carrier) (element : Carrier), Not (order.relation element element)
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    order : StrictOrderRelation Carrier
+    element : Carrier
+  Prove
+    order.1 element element → False
+Transliterated theorem: (∀ element ∈ Carrier), Not (order.relation element element)
+Logical form (Lean): {Carrier : Type u} (order : StrictOrderRelation Carrier) (element : Carrier) : Not (order.relation element element)
+Source: ./OrderedSets/StrictOrder/Theorems.lean#L45
+
+
+
+Name: StrictOrderHasNoTwoElementCycles
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (order : StrictOrderRelation Carrier) (left right : Carrier) (leftRelatedToRight : order.relation left right), Not (order.relation right left)
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    order : StrictOrderRelation Carrier
+    left right : Carrier
+    leftRelatedToRight : order.relation left right
+  Prove
+    (order.1 left right ∧ order.1 right left) → False
+Transliterated theorem: (∀ left right ∈ Carrier), Not (order.relation right left)
+Logical form (Lean): {Carrier : Type u} (order : StrictOrderRelation Carrier) (left right : Carrier) (leftRelatedToRight : order.relation left right) : Not (order.relation right left)
+Source: ./OrderedSets/StrictOrder/Theorems.lean#L92
+
+
+
+Name: ReflexiveClosureIff
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (order : StrictOrderRelation Carrier) (left right : Carrier), ReflexiveClosure order left right <-> order.relation left right \/ left = right
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    order : StrictOrderRelation Carrier
+    left right : Carrier
+  Prove
+    Or (order.1 left right) (left = right) ↔ Or (order.1 left right) (left = right)
+Transliterated theorem: (∀ left right ∈ Carrier), ReflexiveClosure order left right <-> order.relation left right ∨ left = right
+Logical form (Lean): {Carrier : Type u} (order : StrictOrderRelation Carrier) (left right : Carrier) : ReflexiveClosure order left right <-> order.relation left right \/ left = right
+Source: ./OrderedSets/StrictOrder/Relationships.lean#L96
+
+
+
+Name: ReflexiveClosureRelationIsPartialOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.StrictOrder.StrictOrderRelation Carrier),   LRA.Order.PartialOrder (LRA.Order.OrderedSets.StrictOrder.ReflexiveClosure order)
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    order : StrictOrderRelation Carrier
+  Prove
+    ((∀ (x : Carrier), Or (order.1 x x) (x = x)) ∧ ((∀ (x y : Carrier), Or (order.1 x y) (x = y) → Or (order.1 y x) (y = x) → x = y) ∧ (∀ (x y z : Carrier), Or (order.1 x y) (x = y) → Or (order.1 y z) (y = z) → Or (order.1 x z) (x = z))))
+Transliterated theorem: LRA.Order.PartialOrder (ReflexiveClosure order)
+Logical form (Lean): {Carrier : Type u} (order : StrictOrderRelation Carrier) : LRA.Order.PartialOrder (ReflexiveClosure order)
+Source: ./OrderedSets/StrictOrder/Relationships.lean#L142
+
+
+
+Name: ReflexiveClosureIsPartialOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.StrictOrder.StrictOrderRelation Carrier),   LRA.Order.PartialOrder (LRA.Order.OrderedSets.StrictOrder.ReflexiveClosure order)
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    order : StrictOrderRelation Carrier
+  Prove
+    ((∀ (x : Carrier), Or (order.1 x x) (x = x)) ∧ ((∀ (x y : Carrier), Or (order.1 x y) (x = y) → Or (order.1 y x) (y = x) → x = y) ∧ (∀ (x y z : Carrier), Or (order.1 x y) (x = y) → Or (order.1 y z) (y = z) → Or (order.1 x z) (x = z))))
+Transliterated theorem: LRA.Order.PartialOrder (ReflexiveClosure order)
+Logical form (Lean): {Carrier : Type u} (order : StrictOrderRelation Carrier) : LRA.Order.PartialOrder (ReflexiveClosure order)
+Source: ./OrderedSets/StrictOrder/Relationships.lean#L244
+
+
+
+Name: StrictPartOfReflexiveClosureIff
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (order : StrictOrderRelation Carrier) (left right : Carrier), LRA.Order.OrderedSets.PartialOrder.StrictPart (ReflexiveClosureAsPartialOrder order) left right <-> order.relation left right
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    order : StrictOrderRelation Carrier
+    left right : Carrier
+  Prove
+    ((LRA.Order.OrderedSets.StrictOrder.ReflexiveClosureAsPartialOrder order).1 left right ∧ (left = right → False)) ↔ order.1 left right
+Transliterated theorem: (∀ left right ∈ Carrier), LRA.Order.OrderedSets.PartialOrder.StrictPart (ReflexiveClosureAsPartialOrder order) left right <-> order.relation left right
+Logical form (Lean): {Carrier : Type u} (order : StrictOrderRelation Carrier) (left right : Carrier) : LRA.Order.OrderedSets.PartialOrder.StrictPart (ReflexiveClosureAsPartialOrder order) left right <-> order.relation left right
+Source: ./OrderedSets/StrictOrder/Relationships.lean#L291
+
+
+
+Name: ReflexiveClosureOfStrictPartIff
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier) (left right : Carrier), ReflexiveClosure (LRA.Order.OrderedSets.PartialOrder.StrictPartAsStrictOrder order) left right <-> order.relation left right
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier
+    left right : Carrier
+  Prove
+    Or ((LRA.Order.OrderedSets.PartialOrder.StrictPartAsStrictOrder order).1 left right) (left = right) ↔ order.1 left right
+Transliterated theorem: (∀ left right ∈ Carrier), ReflexiveClosure (LRA.Order.OrderedSets.PartialOrder.StrictPartAsStrictOrder order) left right <-> order.relation left right
+Logical form (Lean): {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier) (left right : Carrier) : ReflexiveClosure (LRA.Order.OrderedSets.PartialOrder.StrictPartAsStrictOrder order) left right <-> order.relation left right
+Source: ./OrderedSets/StrictOrder/Relationships.lean#L343
+
+
+
+Name: StrictPosetRelationIsStrictOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (poset : LRA.Order.StrictPoset), LRA.Order.StrictOrder poset.StrictRelation
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    poset : LRA.Order.StrictPoset
+  Prove
+    ((∀ (x : poset.1), poset.2 x x → False) ∧ (∀ (x y z : poset.1), poset.2 x y → poset.2 y z → poset.2 x z))
+Transliterated theorem: (∀ poset ∈ LRA.Order.StrictPoset), LRA.Order.StrictOrder poset.StrictRelation
+Logical form (Lean): (poset : LRA.Order.StrictPoset) : LRA.Order.StrictOrder poset.StrictRelation
+Source: ./OrderedSets/StrictPoset/Characterizations.lean#L44
+
+
+
+Name: StrictPosetRelationIsIrreflexive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (poset : LRA.Order.StrictPoset), LRA.Relation.Irreflexive poset.StrictRelation
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    poset : LRA.Order.StrictPoset
+  Prove
+    poset.2 x x → False
+Transliterated theorem: (∀ poset ∈ LRA.Order.StrictPoset), LRA.Relation.Irreflexive poset.StrictRelation
+Logical form (Lean): (poset : LRA.Order.StrictPoset) : LRA.Relation.Irreflexive poset.StrictRelation
+Source: ./OrderedSets/StrictPoset/Characterizations.lean#L86
+
+
+
+Name: StrictPosetRelationIsTransitive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (poset : LRA.Order.StrictPoset), LRA.Relation.Transitive poset.StrictRelation
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    poset : LRA.Order.StrictPoset
+  Prove
+    (poset.2 x y ∧ poset.2 y z) → poset.2 x z
+Transliterated theorem: (∀ poset ∈ LRA.Order.StrictPoset), LRA.Relation.Transitive poset.StrictRelation
+Logical form (Lean): (poset : LRA.Order.StrictPoset) : LRA.Relation.Transitive poset.StrictRelation
+Source: ./OrderedSets/StrictPoset/Characterizations.lean#L128
+
+
+
+Name: StrictPosetDoesNotRelateSelf
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (poset : LRA.Order.StrictPoset) (element : poset.Carrier), Not (poset.StrictRelation element element)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    poset : LRA.Order.StrictPoset
+    element : poset.Carrier
+  Prove
+    poset.2 element element → False
+Transliterated theorem: (∀ poset ∈ LRA.Order.StrictPoset ∀ element ∈ poset.Carrier), Not (poset.StrictRelation element element)
+Logical form (Lean): (poset : LRA.Order.StrictPoset) (element : poset.Carrier) : Not (poset.StrictRelation element element)
+Source: ./OrderedSets/StrictPoset/Theorems.lean#L44
+
+
+
+Name: ExactlyTrichotomousImpliesIrreflexive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha},   LRA.Relation.ExactlyTrichotomous relation → LRA.Relation.Irreflexive relation
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsExactlyTrichotomous : LRA.Relation.ExactlyTrichotomous relation
+  Prove
+    (∀ (x y : Alpha), Or ((relation x y ∧ ((x = y → False) ∧ (relation y x → False)))) (Or ((x = y ∧ ((relation x y → False) ∧ (relation y x → False)))) ((relation y x ∧ ((relation x y → False) ∧ (x = y → False)))))) → ∀ (x : Alpha), relation x x → False
+Transliterated theorem: LRA.Relation.Irreflexive relation
+Logical form (Lean): {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsExactlyTrichotomous : LRA.Relation.ExactlyTrichotomous relation) : LRA.Relation.Irreflexive relation
+Source: ./OrderedSets/StrictLinearOrder/Theorems.lean#L48
+
+
+
+Name: StrictLinearOrderIsStrictOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha},   LRA.Order.StrictLinearOrder relation → LRA.Order.StrictOrder relation
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsStrictLinearOrder : StrictLinearOrder relation
+  Prove
+    (((∀ (x : Alpha), relation x x → False) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z)) ∧ (∀ (x y : Alpha), Or ((relation x y ∧ ((x = y → False) ∧ (relation y x → False)))) (Or ((x = y ∧ ((relation x y → False) ∧ (relation y x → False)))) ((relation y x ∧ ((relation x y → False) ∧ (x = y → False))))))) → ((∀ (x : Alpha), relation x x → False) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))
+Transliterated theorem: StrictOrder relation
+Logical form (Lean): {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsStrictLinearOrder : StrictLinearOrder relation) : StrictOrder relation
+Source: ./OrderedSets/StrictLinearOrder/Theorems.lean#L95
+
+
+
+Name: StrictLinearOrderIsExactlyTrichotomous
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha},   LRA.Order.StrictLinearOrder relation → LRA.Relation.ExactlyTrichotomous relation
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsStrictLinearOrder : StrictLinearOrder relation
+  Prove
+    (((∀ (x : Alpha), relation x x → False) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z)) ∧ (∀ (x y : Alpha), Or ((relation x y ∧ ((x = y → False) ∧ (relation y x → False)))) (Or ((x = y ∧ ((relation x y → False) ∧ (relation y x → False)))) ((relation y x ∧ ((relation x y → False) ∧ (x = y → False))))))) → ∀ (x y : Alpha), Or ((relation x y ∧ ((x = y → False) ∧ (relation y x → False)))) (Or ((x = y ∧ ((relation x y → False) ∧ (relation y x → False)))) ((relation y x ∧ ((relation x y → False) ∧ (x = y → False)))))
+Transliterated theorem: LRA.Relation.ExactlyTrichotomous relation
+Logical form (Lean): {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsStrictLinearOrder : StrictLinearOrder relation) : LRA.Relation.ExactlyTrichotomous relation
+Source: ./OrderedSets/StrictLinearOrder/Theorems.lean#L141
+
+
+
+Name: WellOrderIffLinearAndStrictPartWellFounded
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {nonStrictRelation : LRA.Relation.Endorelation Element}, WellOrder SetObject nonStrictRelation ↔ LinearOrder nonStrictRelation /\ LRA.Relation.WellFounded SetObject (StrictPart nonStrictRelation)
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    nonStrictRelation : LRA.Relation.Endorelation Element
+  Prove
+    WellOrder SetObject nonStrictRelation ↔ LinearOrder nonStrictRelation /\ LRA.Relation.WellFounded SetObject (StrictPart nonStrictRelation)
+Transliterated theorem: WellOrder SetObject nonStrictRelation ↔ LinearOrder nonStrictRelation ∧ LRA.Relation.WellFounded SetObject (StrictPart nonStrictRelation)
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {nonStrictRelation : LRA.Relation.Endorelation Element} : WellOrder SetObject nonStrictRelation ↔ LinearOrder nonStrictRelation /\ LRA.Relation.WellFounded SetObject (StrictPart nonStrictRelation)
+Source: ./OrderedSets/WellOrder/Relationships.lean#L52
+
+
+
+Name: WellOrderingPrinciple
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {nonStrictRelation : LRA.Relation.Endorelation Element} (nonStrictRelationIsWellOrder : WellOrder SetObject nonStrictRelation) (subset : SetObject) (subsetIsNonempty : exists element : Element, element ∈ subset), exists leastElement, LeastElement nonStrictRelation subset leastElement
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    nonStrictRelation : LRA.Relation.Endorelation Element
+    nonStrictRelationIsWellOrder : WellOrder SetObject nonStrictRelation
+    subset : SetObject
+  Prove
+    ((((∀ (x : Element), nonStrictRelation x x) ∧ ((∀ (x y : Element), nonStrictRelation x y → nonStrictRelation y x → x = y) ∧ (∀ (x y z : Element), nonStrictRelation x y → nonStrictRelation y z → nonStrictRelation x z))) ∧ (∀ (x y : Element), Or (nonStrictRelation x y) (nonStrictRelation y x))) ∧ (∀ (subset : SetObject), (Exists fun element => subset ≤ element) → Exists fun least => (subset ≤ least ∧ (∀ (element : Element), subset ≤ element → nonStrictRelation least element)))) → ∀ (subset : SetObject), (Exists fun element => subset ≤ element) → Exists fun leastElement => (subset ≤ leastElement ∧ (∀ (element : Element), subset ≤ element → nonStrictRelation leastElement element))
+Transliterated theorem: (∀ A ∈ U), (exists element : Element, element ∈ A) → exists leastElement, LeastElement(leastElement, A)
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {nonStrictRelation : LRA.Relation.Endorelation Element} (nonStrictRelationIsWellOrder : WellOrder SetObject nonStrictRelation) (subset : SetObject) (subsetIsNonempty : exists element : Element, element ∈ subset) : exists leastElement, LeastElement nonStrictRelation subset leastElement
+Source: ./OrderedSets/WellOrder/Theorems.lean#L52
+
+
+
+Name: WellOrderHasImmediateSuccessor
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [LRA.Set.HasSeparation Element SetObject] [LRA.Set.HasUniversal SetObject] [LRA.Set.HasComplement SetObject] [LRA.Set.SeparationLaws Element SetObject] [LRA.Set.UniversalMembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsWellOrder : WellOrder SetObject relation) (element : Element) (elementHasStrictSuccessor : exists candidate, StrictPart relation element candidate), exists successor, StrictPart relation element successor /\ forall candidate, StrictPart relation element candidate -> relation successor candidate
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsWellOrder : WellOrder SetObject relation
+    element : Element
+    elementHasStrictSuccessor : exists candidate, StrictPart relation element candidate
+  Prove
+    (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.UniversalMembershipLaws Element SetObject) → ∀ {relation : Element → Element → Prop}, ((((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x → x = y) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) ∧ (∀ (x y : Element), Or (relation x y) (relation y x))) ∧ (∀ (subset : SetObject), (Exists fun element => subset ≤ element) → Exists fun least => (subset ≤ least ∧ (∀ (element : Element), subset ≤ element → relation least element)))) → ∀ (element : Element), (Exists fun candidate => (relation element candidate ∧ (element = candidate → False))) → Exists fun successor => ((relation element successor ∧ (element = successor → False)) ∧ (∀ (candidate : Element), (relation element candidate ∧ (element = candidate → False)) → relation successor candidate))
+Transliterated theorem: (∀ x ∈ Element), exists successor, StrictPart relation x successor ∧ forall candidate, StrictPart relation x candidate -> relation successor candidate
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [LRA.Set.HasSeparation Element SetObject] [LRA.Set.HasUniversal SetObject] [LRA.Set.HasComplement SetObject] [LRA.Set.SeparationLaws Element SetObject] [LRA.Set.UniversalMembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsWellOrder : WellOrder SetObject relation) (element : Element) (elementHasStrictSuccessor : exists candidate, StrictPart relation element candidate) : exists successor, StrictPart relation element successor /\ forall candidate, StrictPart relation element candidate -> relation successor candidate
+Source: ./OrderedSets/WellOrder/Theorems.lean#L113
+
+
+
+Name: LowerBoundOfEmpty
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject]   [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject]   [inst_5 : HasSubset SetObject],   LRA.Set.MembershipLaws Element SetObject →     ∀ (relation : LRA.Relation.Endorelation Element) (bound : Element),       LRA.Order.LowerBound relation inst_4.emptyCollection bound
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    bound : Element
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ (relation : Element → Element → Prop) (bound element : Element), ≤ ≤ element → relation bound element
+Transliterated theorem: (∀ x ∈ Element), LowerBound relation ∅ ∈ SetObject x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] (relation : LRA.Relation.Endorelation Element) (bound : Element) : LowerBound relation (∅ : SetObject) bound
+Source: ./Bounds/LowerBound/Theorems.lean#L55
+
+
+
+Name: LowerBoundOfSubcollection
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} {smaller larger : SetObject} {bound : Element} (smallerIsContained : forall element, element ∈ smaller -> element ∈ larger) (boundIsLowerForLarger : LowerBound relation larger bound), LowerBound relation smaller bound
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    smaller larger : SetObject
+    bound : Element
+    boundIsLowerForLarger : LowerBound relation larger bound
+  Prove
+    ((∀ (element : Element), smaller ≤ element → larger ≤ element) ∧ (∀ (element : Element), larger ≤ element → relation bound element)) → ∀ (element : Element), smaller ≤ element → relation bound element
+Transliterated theorem: (∀ A B ∈ U ∀ x ∈ Element), (forall element, element ∈ A -> element ∈ B) → LowerBound relation A x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} {smaller larger : SetObject} {bound : Element} (smallerIsContained : forall element, element ∈ smaller -> element ∈ larger) (boundIsLowerForLarger : LowerBound relation larger bound) : LowerBound relation smaller bound
+Source: ./Bounds/LowerBound/Theorems.lean#L108
+
+
+
+Name: LowerBoundOfUnion
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {leftSubset rightSubset : SetObject} {bound : Element} (boundIsLowerForLeft : LowerBound relation leftSubset bound) (boundIsLowerForRight : LowerBound relation rightSubset bound), LowerBound relation (leftSubset ∪ rightSubset) bound
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    leftSubset rightSubset : SetObject
+    bound : Element
+    boundIsLowerForLeft : LowerBound relation leftSubset bound
+    boundIsLowerForRight : LowerBound relation rightSubset bound
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {leftSubset rightSubset : SetObject} {bound : Element}, ((∀ (element : Element), leftSubset ≤ element → relation bound element) ∧ (∀ (element : Element), rightSubset ≤ element → relation bound element)) → ∀ (element : Element), leftSubset ≤ rightSubset ≤ element → relation bound element
+Transliterated theorem: (∀ A B ∈ U ∀ x ∈ Element), LowerBound relation (A ∪ B) x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {leftSubset rightSubset : SetObject} {bound : Element} (boundIsLowerForLeft : LowerBound relation leftSubset bound) (boundIsLowerForRight : LowerBound relation rightSubset bound) : LowerBound relation (leftSubset ∪ rightSubset) bound
+Source: ./Bounds/LowerBound/Theorems.lean#L163
+
+
+
+Name: LowerBoundOfUnionIff
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {leftSubset rightSubset : SetObject} {bound : Element}, LowerBound relation (leftSubset ∪ rightSubset) bound ↔ LowerBound relation leftSubset bound /\ LowerBound relation rightSubset bound
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    leftSubset rightSubset : SetObject
+    bound : Element
+  Prove
+    LowerBound relation (leftSubset ∪ rightSubset) bound ↔ LowerBound relation leftSubset bound /\ LowerBound relation rightSubset bound
+Transliterated theorem: (∀ A B ∈ U ∀ x ∈ Element), LowerBound relation (A ∪ B) x ↔ LowerBound relation A x ∧ LowerBound relation B x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {leftSubset rightSubset : SetObject} {bound : Element} : LowerBound relation (leftSubset ∪ rightSubset) bound ↔ LowerBound relation leftSubset bound /\ LowerBound relation rightSubset bound
+Source: ./Bounds/LowerBound/Theorems.lean#L221
+
+
+
+Name: LowerBoundOfIntersection
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {leftSubset rightSubset : SetObject} {bound : Element} (boundIsLowerForEither : LowerBound relation leftSubset bound \/ LowerBound relation rightSubset bound), LowerBound relation (leftSubset ∩ rightSubset) bound
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    leftSubset rightSubset : SetObject
+    bound : Element
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {leftSubset rightSubset : SetObject} {bound : Element}, Or (∀ (element : Element), leftSubset ≤ element → relation bound element) (∀ (element : Element), rightSubset ≤ element → relation bound element) → ∀ (element : Element), leftSubset ≤ rightSubset ≤ element → relation bound element
+Transliterated theorem: (∀ A B ∈ U ∀ x ∈ Element), (LowerBound relation A x ∨ LowerBound relation B x) → LowerBound relation (A ∩ B) x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {leftSubset rightSubset : SetObject} {bound : Element} (boundIsLowerForEither : LowerBound relation leftSubset bound \/ LowerBound relation rightSubset bound) : LowerBound relation (leftSubset ∩ rightSubset) bound
+Source: ./Bounds/LowerBound/Theorems.lean#L280
+
+
+
+Name: LowerBoundOfDifference
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {subset removed : SetObject} {bound : Element} (boundIsLowerForSubset : LowerBound relation subset bound), LowerBound relation (subset \ removed) bound
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset removed : SetObject
+    bound : Element
+    boundIsLowerForSubset : LowerBound relation subset bound
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {subset removed : SetObject} {bound : Element}, (∀ (element : Element), subset ≤ element → relation bound element) → ∀ (element : Element), subset ≤ removed ≤ element → relation bound element
+Transliterated theorem: (∀ A B ∈ U ∀ x ∈ Element), LowerBound relation (A \ B) x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {subset removed : SetObject} {bound : Element} (boundIsLowerForSubset : LowerBound relation subset bound) : LowerBound relation (subset \ removed) bound
+Source: ./Bounds/LowerBound/Theorems.lean#L338
+
+
+
+Name: LowerBoundOfSymmetricDifference
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [LRA.Set.HasSymmDiff SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] [LRA.Set.SymmDiffMembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {leftSubset rightSubset : SetObject} {bound : Element} (boundIsLowerForLeft : LowerBound relation leftSubset bound) (boundIsLowerForRight : LowerBound relation rightSubset bound), LowerBound relation (leftSubset ∆ rightSubset) bound
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    leftSubset rightSubset : SetObject
+    bound : Element
+    boundIsLowerForLeft : LowerBound relation leftSubset bound
+    boundIsLowerForRight : LowerBound relation rightSubset bound
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ LRA.Set.SymmDiffMembershipLaws Element SetObject) → ∀ {relation : Element → Element → Prop} {leftSubset rightSubset : SetObject} {bound : Element}, ((∀ (element : Element), leftSubset ≤ element → relation bound element) ∧ (∀ (element : Element), rightSubset ≤ element → relation bound element)) → ∀ (element : Element), leftSubset ≤ rightSubset ≤ element → relation bound element
+Transliterated theorem: (∀ A B ∈ U ∀ x ∈ Element), LowerBound relation (A ∆ B) x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [LRA.Set.HasSymmDiff SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] [LRA.Set.SymmDiffMembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {leftSubset rightSubset : SetObject} {bound : Element} (boundIsLowerForLeft : LowerBound relation leftSubset bound) (boundIsLowerForRight : LowerBound relation rightSubset bound) : LowerBound relation (leftSubset ∆ rightSubset) bound
+Source: ./Bounds/LowerBound/Theorems.lean#L397
+
+
+
+Name: LowerBoundOfIndexedUnionIff
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} {Index : Type w} [Membership Element SetObject] [LRA.Set.HasIndexedUnion SetObject] [LRA.Set.HasIndexedIntersection SetObject] [LRA.Set.IndexedMembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {family : Index -> SetObject} {bound : Element}, LowerBound relation (LRA.Set.HasIndexedUnion.indexedUnion family) bound ↔ forall index, LowerBound relation (family index) bound
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, Index, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    family : Index -> SetObject
+    bound : Element
+  Prove
+    LowerBound relation (LRA.Set.HasIndexedUnion.indexedUnion family) bound ↔ forall index, LowerBound relation (family index) bound
+Transliterated theorem: (∀ x ∈ Element), LowerBound relation (LRA.Set.HasIndexedUnion.indexedUnion family) x ↔ forall index, LowerBound relation (family index) x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} {Index : Type w} [Membership Element SetObject] [LRA.Set.HasIndexedUnion SetObject] [LRA.Set.HasIndexedIntersection SetObject] [LRA.Set.IndexedMembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {family : Index -> SetObject} {bound : Element} : LowerBound relation (LRA.Set.HasIndexedUnion.indexedUnion family) bound ↔ forall index, LowerBound relation (family index) bound
+Source: ./Bounds/LowerBound/Theorems.lean#L456
+
+
+
+Name: LowerBoundOfIndexedIntersection
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} {Index : Type w} [inst : Membership Element SetObject]   [inst_1 : LRA.Set.HasIndexedUnion SetObject] [inst_2 : LRA.Set.HasIndexedIntersection SetObject],   LRA.Set.IndexedMembershipLaws Element SetObject →     ∀ {relation : LRA.Relation.Endorelation Element} {family : Index → SetObject} (index : Index) {bound : Element},       LRA.Order.LowerBound relation (family index) bound →         LRA.Order.LowerBound relation (inst_2.indexedIntersection family) bound
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, Index, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    family : Index -> SetObject
+    index : Index
+    bound : Element
+    boundIsLowerForMember : LowerBound relation (family index) bound
+  Prove
+    LRA.Set.IndexedMembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {family : Index → SetObject} (index : Index) {bound : Element}, (∀ (element : Element), family index ≤ element → relation bound element) → ∀ (element : Element), family ≤ ≤element → relation bound element
+Transliterated theorem: (∀ index ∈ Index ∀ x ∈ Element), LowerBound relation (LRA.Set.HasIndexedIntersection.indexedIntersection family) x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} {Index : Type w} [Membership Element SetObject] [LRA.Set.HasIndexedUnion SetObject] [LRA.Set.HasIndexedIntersection SetObject] [LRA.Set.IndexedMembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {family : Index -> SetObject} (index : Index) {bound : Element} (boundIsLowerForMember : LowerBound relation (family index) bound) : LowerBound relation (LRA.Set.HasIndexedIntersection.indexedIntersection family) bound
+Source: ./Bounds/LowerBound/Theorems.lean#L513
+
+
+
+Name: UpperBoundOfEmpty
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject]   [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject]   [inst_5 : HasSubset SetObject],   LRA.Set.MembershipLaws Element SetObject →     ∀ (relation : LRA.Relation.Endorelation Element) (bound : Element),       LRA.Order.UpperBound relation inst_4.emptyCollection bound
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    bound : Element
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ (relation : Element → Element → Prop) (bound element : Element), ≤ ≤ element → relation element bound
+Transliterated theorem: (∀ x ∈ Element), UpperBound relation ∅ ∈ SetObject x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] (relation : LRA.Relation.Endorelation Element) (bound : Element) : UpperBound relation (∅ : SetObject) bound
+Source: ./Bounds/UpperBound/Theorems.lean#L55
+
+
+
+Name: UpperBoundOfSubcollection
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} {smaller larger : SetObject} {bound : Element} (smallerIsContained : forall element, element ∈ smaller -> element ∈ larger) (boundIsUpperForLarger : UpperBound relation larger bound), UpperBound relation smaller bound
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    smaller larger : SetObject
+    bound : Element
+    boundIsUpperForLarger : UpperBound relation larger bound
+  Prove
+    ((∀ (element : Element), smaller ≤ element → larger ≤ element) ∧ (∀ (element : Element), larger ≤ element → relation element bound)) → ∀ (element : Element), smaller ≤ element → relation element bound
+Transliterated theorem: (∀ A B ∈ U ∀ x ∈ Element), (forall element, element ∈ A -> element ∈ B) → UpperBound relation A x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} {smaller larger : SetObject} {bound : Element} (smallerIsContained : forall element, element ∈ smaller -> element ∈ larger) (boundIsUpperForLarger : UpperBound relation larger bound) : UpperBound relation smaller bound
+Source: ./Bounds/UpperBound/Theorems.lean#L108
+
+
+
+Name: UpperBoundOfUnion
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {leftSubset rightSubset : SetObject} {bound : Element} (boundIsUpperForLeft : UpperBound relation leftSubset bound) (boundIsUpperForRight : UpperBound relation rightSubset bound), UpperBound relation (leftSubset ∪ rightSubset) bound
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    leftSubset rightSubset : SetObject
+    bound : Element
+    boundIsUpperForLeft : UpperBound relation leftSubset bound
+    boundIsUpperForRight : UpperBound relation rightSubset bound
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {leftSubset rightSubset : SetObject} {bound : Element}, ((∀ (element : Element), leftSubset ≤ element → relation element bound) ∧ (∀ (element : Element), rightSubset ≤ element → relation element bound)) → ∀ (element : Element), leftSubset ≤ rightSubset ≤ element → relation element bound
+Transliterated theorem: (∀ A B ∈ U ∀ x ∈ Element), UpperBound relation (A ∪ B) x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {leftSubset rightSubset : SetObject} {bound : Element} (boundIsUpperForLeft : UpperBound relation leftSubset bound) (boundIsUpperForRight : UpperBound relation rightSubset bound) : UpperBound relation (leftSubset ∪ rightSubset) bound
+Source: ./Bounds/UpperBound/Theorems.lean#L163
+
+
+
+Name: UpperBoundOfUnionIff
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {leftSubset rightSubset : SetObject} {bound : Element}, UpperBound relation (leftSubset ∪ rightSubset) bound ↔ UpperBound relation leftSubset bound /\ UpperBound relation rightSubset bound
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    leftSubset rightSubset : SetObject
+    bound : Element
+  Prove
+    UpperBound relation (leftSubset ∪ rightSubset) bound ↔ UpperBound relation leftSubset bound /\ UpperBound relation rightSubset bound
+Transliterated theorem: (∀ A B ∈ U ∀ x ∈ Element), UpperBound relation (A ∪ B) x ↔ UpperBound relation A x ∧ UpperBound relation B x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {leftSubset rightSubset : SetObject} {bound : Element} : UpperBound relation (leftSubset ∪ rightSubset) bound ↔ UpperBound relation leftSubset bound /\ UpperBound relation rightSubset bound
+Source: ./Bounds/UpperBound/Theorems.lean#L221
+
+
+
+Name: UpperBoundOfIntersection
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {leftSubset rightSubset : SetObject} {bound : Element} (boundIsUpperForEither : UpperBound relation leftSubset bound \/ UpperBound relation rightSubset bound), UpperBound relation (leftSubset ∩ rightSubset) bound
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    leftSubset rightSubset : SetObject
+    bound : Element
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {leftSubset rightSubset : SetObject} {bound : Element}, Or (∀ (element : Element), leftSubset ≤ element → relation element bound) (∀ (element : Element), rightSubset ≤ element → relation element bound) → ∀ (element : Element), leftSubset ≤ rightSubset ≤ element → relation element bound
+Transliterated theorem: (∀ A B ∈ U ∀ x ∈ Element), (UpperBound relation A x ∨ UpperBound relation B x) → UpperBound relation (A ∩ B) x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {leftSubset rightSubset : SetObject} {bound : Element} (boundIsUpperForEither : UpperBound relation leftSubset bound \/ UpperBound relation rightSubset bound) : UpperBound relation (leftSubset ∩ rightSubset) bound
+Source: ./Bounds/UpperBound/Theorems.lean#L280
+
+
+
+Name: UpperBoundOfDifference
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {subset removed : SetObject} {bound : Element} (boundIsUpperForSubset : UpperBound relation subset bound), UpperBound relation (subset \ removed) bound
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset removed : SetObject
+    bound : Element
+    boundIsUpperForSubset : UpperBound relation subset bound
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {subset removed : SetObject} {bound : Element}, (∀ (element : Element), subset ≤ element → relation element bound) → ∀ (element : Element), subset ≤ removed ≤ element → relation element bound
+Transliterated theorem: (∀ A B ∈ U ∀ x ∈ Element), UpperBound relation (A \ B) x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {subset removed : SetObject} {bound : Element} (boundIsUpperForSubset : UpperBound relation subset bound) : UpperBound relation (subset \ removed) bound
+Source: ./Bounds/UpperBound/Theorems.lean#L338
+
+
+
+Name: UpperBoundOfSymmetricDifference
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [LRA.Set.HasSymmDiff SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] [LRA.Set.SymmDiffMembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {leftSubset rightSubset : SetObject} {bound : Element} (boundIsUpperForLeft : UpperBound relation leftSubset bound) (boundIsUpperForRight : UpperBound relation rightSubset bound), UpperBound relation (leftSubset ∆ rightSubset) bound
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    leftSubset rightSubset : SetObject
+    bound : Element
+    boundIsUpperForLeft : UpperBound relation leftSubset bound
+    boundIsUpperForRight : UpperBound relation rightSubset bound
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ LRA.Set.SymmDiffMembershipLaws Element SetObject) → ∀ {relation : Element → Element → Prop} {leftSubset rightSubset : SetObject} {bound : Element}, ((∀ (element : Element), leftSubset ≤ element → relation element bound) ∧ (∀ (element : Element), rightSubset ≤ element → relation element bound)) → ∀ (element : Element), leftSubset ≤ rightSubset ≤ element → relation element bound
+Transliterated theorem: (∀ A B ∈ U ∀ x ∈ Element), UpperBound relation (A ∆ B) x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [LRA.Set.HasSymmDiff SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] [LRA.Set.SymmDiffMembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {leftSubset rightSubset : SetObject} {bound : Element} (boundIsUpperForLeft : UpperBound relation leftSubset bound) (boundIsUpperForRight : UpperBound relation rightSubset bound) : UpperBound relation (leftSubset ∆ rightSubset) bound
+Source: ./Bounds/UpperBound/Theorems.lean#L397
+
+
+
+Name: UpperBoundOfIndexedUnionIff
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} {Index : Type w} [Membership Element SetObject] [LRA.Set.HasIndexedUnion SetObject] [LRA.Set.HasIndexedIntersection SetObject] [LRA.Set.IndexedMembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {family : Index -> SetObject} {bound : Element}, UpperBound relation (LRA.Set.HasIndexedUnion.indexedUnion family) bound ↔ forall index, UpperBound relation (family index) bound
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, Index, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    family : Index -> SetObject
+    bound : Element
+  Prove
+    UpperBound relation (LRA.Set.HasIndexedUnion.indexedUnion family) bound ↔ forall index, UpperBound relation (family index) bound
+Transliterated theorem: (∀ x ∈ Element), UpperBound relation (LRA.Set.HasIndexedUnion.indexedUnion family) x ↔ forall index, UpperBound relation (family index) x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} {Index : Type w} [Membership Element SetObject] [LRA.Set.HasIndexedUnion SetObject] [LRA.Set.HasIndexedIntersection SetObject] [LRA.Set.IndexedMembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {family : Index -> SetObject} {bound : Element} : UpperBound relation (LRA.Set.HasIndexedUnion.indexedUnion family) bound ↔ forall index, UpperBound relation (family index) bound
+Source: ./Bounds/UpperBound/Theorems.lean#L456
+
+
+
+Name: UpperBoundOfIndexedIntersection
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} {Index : Type w} [inst : Membership Element SetObject]   [inst_1 : LRA.Set.HasIndexedUnion SetObject] [inst_2 : LRA.Set.HasIndexedIntersection SetObject],   LRA.Set.IndexedMembershipLaws Element SetObject →     ∀ {relation : LRA.Relation.Endorelation Element} {family : Index → SetObject} (index : Index) {bound : Element},       LRA.Order.UpperBound relation (family index) bound →         LRA.Order.UpperBound relation (inst_2.indexedIntersection family) bound
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, Index, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    family : Index -> SetObject
+    index : Index
+    bound : Element
+    boundIsUpperForMember : UpperBound relation (family index) bound
+  Prove
+    LRA.Set.IndexedMembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {family : Index → SetObject} (index : Index) {bound : Element}, (∀ (element : Element), family index ≤ element → relation element bound) → ∀ (element : Element), family ≤ ≤element → relation element bound
+Transliterated theorem: (∀ index ∈ Index ∀ x ∈ Element), UpperBound relation (LRA.Set.HasIndexedIntersection.indexedIntersection family) x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} {Index : Type w} [Membership Element SetObject] [LRA.Set.HasIndexedUnion SetObject] [LRA.Set.HasIndexedIntersection SetObject] [LRA.Set.IndexedMembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {family : Index -> SetObject} (index : Index) {bound : Element} (boundIsUpperForMember : UpperBound relation (family index) bound) : UpperBound relation (LRA.Set.HasIndexedIntersection.indexedIntersection family) bound
+Source: ./Bounds/UpperBound/Theorems.lean#L513
+
+
+
+Name: BoundedBelowOfSubcollection
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} {smaller larger : SetObject} (smallerIsContained : forall element, element ∈ smaller -> element ∈ larger) (largerIsBoundedBelow : BoundedBelow relation larger), BoundedBelow relation smaller
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    smaller larger : SetObject
+    largerIsBoundedBelow : BoundedBelow relation larger
+  Prove
+    ((∀ (element : Element), smaller ≤ element → larger ≤ element) ∧ (Exists fun bound => ∀ (element : Element), larger ≤ element → relation bound element)) → Exists fun bound => ∀ (element : Element), smaller ≤ element → relation bound element
+Transliterated theorem: (∀ A B ∈ U), (forall element, element ∈ A -> element ∈ B) → BoundedBelow(A)
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} {smaller larger : SetObject} (smallerIsContained : forall element, element ∈ smaller -> element ∈ larger) (largerIsBoundedBelow : BoundedBelow relation larger) : BoundedBelow relation smaller
+Source: ./Bounds/BoundedBelow/Theorems.lean#L55
+
+
+
+Name: UnionBoundedBelowIffPiecesBoundedBelow
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsTransitive : LRA.Relation.Transitive relation) (relationIsTotal : LRA.Relation.Total relation) (leftSubset rightSubset : SetObject), BoundedBelow relation (leftSubset ∪ rightSubset) ↔ BoundedBelow relation leftSubset /\ BoundedBelow relation rightSubset
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsTransitive : LRA.Relation.Transitive relation
+    relationIsTotal : LRA.Relation.Total relation
+    leftSubset rightSubset : SetObject
+  Prove
+    BoundedBelow relation (leftSubset ∪ rightSubset) ↔ BoundedBelow relation leftSubset /\ BoundedBelow relation rightSubset
+Transliterated theorem: (∀ A B ∈ U), BoundedBelow(A ∪ B) ↔ BoundedBelow(A) ∧ BoundedBelow(B)
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsTransitive : LRA.Relation.Transitive relation) (relationIsTotal : LRA.Relation.Total relation) (leftSubset rightSubset : SetObject) : BoundedBelow relation (leftSubset ∪ rightSubset) ↔ BoundedBelow relation leftSubset /\ BoundedBelow relation rightSubset
+Source: ./Bounds/BoundedBelow/Theorems.lean#L112
+
+
+
+Name: IntersectionBoundedBelow
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (leftSubset rightSubset : SetObject) (eitherIsBoundedBelow : BoundedBelow relation leftSubset \/ BoundedBelow relation rightSubset), BoundedBelow relation (leftSubset ∩ rightSubset)
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    leftSubset rightSubset : SetObject
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} (leftSubset rightSubset : SetObject), Or (Exists fun bound => ∀ (element : Element), leftSubset ≤ element → relation bound element) (Exists fun bound => ∀ (element : Element), rightSubset ≤ element → relation bound element) → Exists fun bound => ∀ (element : Element), leftSubset ≤ rightSubset ≤ element → relation bound element
+Transliterated theorem: (∀ A B ∈ U), (BoundedBelow(A) ∨ BoundedBelow(B)) → BoundedBelow(A ∩ B)
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (leftSubset rightSubset : SetObject) (eitherIsBoundedBelow : BoundedBelow relation leftSubset \/ BoundedBelow relation rightSubset) : BoundedBelow relation (leftSubset ∩ rightSubset)
+Source: ./Bounds/BoundedBelow/Theorems.lean#L173
+
+
+
+Name: DifferenceBoundedBelow
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (subset removed : SetObject) (subsetIsBoundedBelow : BoundedBelow relation subset), BoundedBelow relation (subset \ removed)
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset removed : SetObject
+    subsetIsBoundedBelow : BoundedBelow relation subset
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} (subset removed : SetObject), (Exists fun bound => ∀ (element : Element), subset ≤ element → relation bound element) → Exists fun bound => ∀ (element : Element), subset ≤ removed ≤ element → relation bound element
+Transliterated theorem: (∀ A B ∈ U), BoundedBelow(A \ B)
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (subset removed : SetObject) (subsetIsBoundedBelow : BoundedBelow relation subset) : BoundedBelow relation (subset \ removed)
+Source: ./Bounds/BoundedBelow/Theorems.lean#L231
+
+
+
+Name: SymmetricDifferenceBoundedBelow
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [LRA.Set.HasSymmDiff SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] [LRA.Set.SymmDiffMembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (leftSubset rightSubset : SetObject) (leftIsBoundedBelow : BoundedBelow relation leftSubset) (rightIsBoundedBelow : BoundedBelow relation rightSubset), BoundedBelow relation (leftSubset ∆ rightSubset)
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    leftSubset rightSubset : SetObject
+    leftIsBoundedBelow : BoundedBelow relation leftSubset
+    rightIsBoundedBelow : BoundedBelow relation rightSubset
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ LRA.Set.SymmDiffMembershipLaws Element SetObject) → ∀ {relation : Element → Element → Prop} (leftSubset rightSubset : SetObject), ((Exists fun bound => ∀ (element : Element), leftSubset ≤ element → relation bound element) ∧ (Exists fun bound => ∀ (element : Element), rightSubset ≤ element → relation bound element)) → Exists fun bound => ∀ (element : Element), leftSubset ≤ rightSubset ≤ element → relation bound element
+Transliterated theorem: (∀ A B ∈ U), BoundedBelow(A ∆ B)
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [LRA.Set.HasSymmDiff SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] [LRA.Set.SymmDiffMembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (leftSubset rightSubset : SetObject) (leftIsBoundedBelow : BoundedBelow relation leftSubset) (rightIsBoundedBelow : BoundedBelow relation rightSubset) : BoundedBelow relation (leftSubset ∆ rightSubset)
+Source: ./Bounds/BoundedBelow/Theorems.lean#L290
+
+
+
+Name: BoundedAboveOfSubcollection
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} {smaller larger : SetObject} (smallerIsContained : forall element, element ∈ smaller -> element ∈ larger) (largerIsBoundedAbove : BoundedAbove relation larger), BoundedAbove relation smaller
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    smaller larger : SetObject
+    largerIsBoundedAbove : BoundedAbove relation larger
+  Prove
+    ((∀ (element : Element), smaller ≤ element → larger ≤ element) ∧ (Exists fun bound => ∀ (element : Element), larger ≤ element → relation element bound)) → Exists fun bound => ∀ (element : Element), smaller ≤ element → relation element bound
+Transliterated theorem: (∀ A B ∈ U), (forall element, element ∈ A -> element ∈ B) → BoundedAbove(A)
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} {smaller larger : SetObject} (smallerIsContained : forall element, element ∈ smaller -> element ∈ larger) (largerIsBoundedAbove : BoundedAbove relation larger) : BoundedAbove relation smaller
+Source: ./Bounds/BoundedAbove/Theorems.lean#L55
+
+
+
+Name: UnionBoundedAboveIffPiecesBoundedAbove
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsTransitive : LRA.Relation.Transitive relation) (relationIsTotal : LRA.Relation.Total relation) (leftSubset rightSubset : SetObject), BoundedAbove relation (leftSubset ∪ rightSubset) ↔ BoundedAbove relation leftSubset /\ BoundedAbove relation rightSubset
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsTransitive : LRA.Relation.Transitive relation
+    relationIsTotal : LRA.Relation.Total relation
+    leftSubset rightSubset : SetObject
+  Prove
+    BoundedAbove relation (leftSubset ∪ rightSubset) ↔ BoundedAbove relation leftSubset /\ BoundedAbove relation rightSubset
+Transliterated theorem: (∀ A B ∈ U), BoundedAbove(A ∪ B) ↔ BoundedAbove(A) ∧ BoundedAbove(B)
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsTransitive : LRA.Relation.Transitive relation) (relationIsTotal : LRA.Relation.Total relation) (leftSubset rightSubset : SetObject) : BoundedAbove relation (leftSubset ∪ rightSubset) ↔ BoundedAbove relation leftSubset /\ BoundedAbove relation rightSubset
+Source: ./Bounds/BoundedAbove/Theorems.lean#L112
+
+
+
+Name: IntersectionBoundedAbove
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (leftSubset rightSubset : SetObject) (eitherIsBoundedAbove : BoundedAbove relation leftSubset \/ BoundedAbove relation rightSubset), BoundedAbove relation (leftSubset ∩ rightSubset)
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    leftSubset rightSubset : SetObject
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} (leftSubset rightSubset : SetObject), Or (Exists fun bound => ∀ (element : Element), leftSubset ≤ element → relation element bound) (Exists fun bound => ∀ (element : Element), rightSubset ≤ element → relation element bound) → Exists fun bound => ∀ (element : Element), leftSubset ≤ rightSubset ≤ element → relation element bound
+Transliterated theorem: (∀ A B ∈ U), (BoundedAbove(A) ∨ BoundedAbove(B)) → BoundedAbove(A ∩ B)
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (leftSubset rightSubset : SetObject) (eitherIsBoundedAbove : BoundedAbove relation leftSubset \/ BoundedAbove relation rightSubset) : BoundedAbove relation (leftSubset ∩ rightSubset)
+Source: ./Bounds/BoundedAbove/Theorems.lean#L173
+
+
+
+Name: DifferenceBoundedAbove
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (subset removed : SetObject) (subsetIsBoundedAbove : BoundedAbove relation subset), BoundedAbove relation (subset \ removed)
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset removed : SetObject
+    subsetIsBoundedAbove : BoundedAbove relation subset
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} (subset removed : SetObject), (Exists fun bound => ∀ (element : Element), subset ≤ element → relation element bound) → Exists fun bound => ∀ (element : Element), subset ≤ removed ≤ element → relation element bound
+Transliterated theorem: (∀ A B ∈ U), BoundedAbove(A \ B)
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (subset removed : SetObject) (subsetIsBoundedAbove : BoundedAbove relation subset) : BoundedAbove relation (subset \ removed)
+Source: ./Bounds/BoundedAbove/Theorems.lean#L231
+
+
+
+Name: SymmetricDifferenceBoundedAbove
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [LRA.Set.HasSymmDiff SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] [LRA.Set.SymmDiffMembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (leftSubset rightSubset : SetObject) (leftIsBoundedAbove : BoundedAbove relation leftSubset) (rightIsBoundedAbove : BoundedAbove relation rightSubset), BoundedAbove relation (leftSubset ∆ rightSubset)
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    leftSubset rightSubset : SetObject
+    leftIsBoundedAbove : BoundedAbove relation leftSubset
+    rightIsBoundedAbove : BoundedAbove relation rightSubset
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ LRA.Set.SymmDiffMembershipLaws Element SetObject) → ∀ {relation : Element → Element → Prop} (leftSubset rightSubset : SetObject), ((Exists fun bound => ∀ (element : Element), leftSubset ≤ element → relation element bound) ∧ (Exists fun bound => ∀ (element : Element), rightSubset ≤ element → relation element bound)) → Exists fun bound => ∀ (element : Element), leftSubset ≤ rightSubset ≤ element → relation element bound
+Transliterated theorem: (∀ A B ∈ U), BoundedAbove(A ∆ B)
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [LRA.Set.HasSymmDiff SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] [LRA.Set.SymmDiffMembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (leftSubset rightSubset : SetObject) (leftIsBoundedAbove : BoundedAbove relation leftSubset) (rightIsBoundedAbove : BoundedAbove relation rightSubset) : BoundedAbove relation (leftSubset ∆ rightSubset)
+Source: ./Bounds/BoundedAbove/Theorems.lean#L290
+
+
+
+Name: BoundedOfSubcollection
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} {smaller larger : SetObject} (smallerIsContained : forall element, element ∈ smaller -> element ∈ larger) (largerIsBounded : Bounded relation larger), Bounded relation smaller
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    smaller larger : SetObject
+    largerIsBounded : Bounded relation larger
+  Prove
+    ((∀ (element : Element), smaller ≤ element → larger ≤ element) ∧ ((Exists fun bound => ∀ (element : Element), larger ≤ element → relation element bound) ∧ (Exists fun bound => ∀ (element : Element), larger ≤ element → relation bound element))) → ((Exists fun bound => ∀ (element : Element), smaller ≤ element → relation element bound) ∧ (Exists fun bound => ∀ (element : Element), smaller ≤ element → relation bound element))
+Transliterated theorem: (∀ A B ∈ U), (forall element, element ∈ A -> element ∈ B) → Bounded relation A
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} {smaller larger : SetObject} (smallerIsContained : forall element, element ∈ smaller -> element ∈ larger) (largerIsBounded : Bounded relation larger) : Bounded relation smaller
+Source: ./Bounds/Bounded/Theorems.lean#L54
+
+
+
+Name: UnionBoundedIffPiecesBounded
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsTransitive : LRA.Relation.Transitive relation) (relationIsTotal : LRA.Relation.Total relation) (leftSubset rightSubset : SetObject), Bounded relation (leftSubset ∪ rightSubset) ↔ Bounded relation leftSubset /\ Bounded relation rightSubset
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsTransitive : LRA.Relation.Transitive relation
+    relationIsTotal : LRA.Relation.Total relation
+    leftSubset rightSubset : SetObject
+  Prove
+    Bounded relation (leftSubset ∪ rightSubset) ↔ Bounded relation leftSubset /\ Bounded relation rightSubset
+Transliterated theorem: (∀ A B ∈ U), Bounded relation (A ∪ B) ↔ Bounded relation A ∧ Bounded relation B
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsTransitive : LRA.Relation.Transitive relation) (relationIsTotal : LRA.Relation.Total relation) (leftSubset rightSubset : SetObject) : Bounded relation (leftSubset ∪ rightSubset) ↔ Bounded relation leftSubset /\ Bounded relation rightSubset
+Source: ./Bounds/Bounded/Theorems.lean#L110
+
+
+
+Name: IntersectionBounded
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (leftSubset rightSubset : SetObject) (eitherIsBounded : Bounded relation leftSubset \/ Bounded relation rightSubset), Bounded relation (leftSubset ∩ rightSubset)
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    leftSubset rightSubset : SetObject
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} (leftSubset rightSubset : SetObject), Or (((Exists fun bound => ∀ (element : Element), leftSubset ≤ element → relation element bound) ∧ (Exists fun bound => ∀ (element : Element), leftSubset ≤ element → relation bound element))) (((Exists fun bound => ∀ (element : Element), rightSubset ≤ element → relation element bound) ∧ (Exists fun bound => ∀ (element : Element), rightSubset ≤ element → relation bound element))) → ((Exists fun bound => ∀ (element : Element), leftSubset ≤ rightSubset ≤ element → relation element bound) ∧ (Exists fun bound => ∀ (element : Element), leftSubset ≤ rightSubset ≤ element → relation bound element))
+Transliterated theorem: (∀ A B ∈ U), (Bounded relation A ∨ Bounded relation B) → Bounded relation (A ∩ B)
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (leftSubset rightSubset : SetObject) (eitherIsBounded : Bounded relation leftSubset \/ Bounded relation rightSubset) : Bounded relation (leftSubset ∩ rightSubset)
+Source: ./Bounds/Bounded/Theorems.lean#L169
+
+
+
+Name: DifferenceBounded
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (subset removed : SetObject) (subsetIsBounded : Bounded relation subset), Bounded relation (subset \ removed)
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset removed : SetObject
+    subsetIsBounded : Bounded relation subset
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} (subset removed : SetObject), ((Exists fun bound => ∀ (element : Element), subset ≤ element → relation element bound) ∧ (Exists fun bound => ∀ (element : Element), subset ≤ element → relation bound element)) → ((Exists fun bound => ∀ (element : Element), subset ≤ removed ≤ element → relation element bound) ∧ (Exists fun bound => ∀ (element : Element), subset ≤ removed ≤ element → relation bound element))
+Transliterated theorem: (∀ A B ∈ U), Bounded relation (A \ B)
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (subset removed : SetObject) (subsetIsBounded : Bounded relation subset) : Bounded relation (subset \ removed)
+Source: ./Bounds/Bounded/Theorems.lean#L226
+
+
+
+Name: SymmetricDifferenceBounded
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [LRA.Set.HasSymmDiff SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] [LRA.Set.SymmDiffMembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (leftSubset rightSubset : SetObject) (leftIsBounded : Bounded relation leftSubset) (rightIsBounded : Bounded relation rightSubset), Bounded relation (leftSubset ∆ rightSubset)
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    leftSubset rightSubset : SetObject
+    leftIsBounded : Bounded relation leftSubset
+    rightIsBounded : Bounded relation rightSubset
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ LRA.Set.SymmDiffMembershipLaws Element SetObject) → ∀ {relation : Element → Element → Prop} (leftSubset rightSubset : SetObject), (((Exists fun bound => ∀ (element : Element), leftSubset ≤ element → relation element bound) ∧ (Exists fun bound => ∀ (element : Element), leftSubset ≤ element → relation bound element)) ∧ ((Exists fun bound => ∀ (element : Element), rightSubset ≤ element → relation element bound) ∧ (Exists fun bound => ∀ (element : Element), rightSubset ≤ element → relation bound element))) → ((Exists fun bound => ∀ (element : Element), leftSubset ≤ rightSubset ≤ element → relation element bound) ∧ (Exists fun bound => ∀ (element : Element), leftSubset ≤ rightSubset ≤ element → relation bound element))
+Transliterated theorem: (∀ A B ∈ U), Bounded relation (A ∆ B)
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [LRA.Set.HasSymmDiff SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] [LRA.Set.SymmDiffMembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (leftSubset rightSubset : SetObject) (leftIsBounded : Bounded relation leftSubset) (rightIsBounded : Bounded relation rightSubset) : Bounded relation (leftSubset ∆ rightSubset)
+Source: ./Bounds/Bounded/Theorems.lean#L285
+
+
+
+Name: UpperBoundsMembership
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (bound : Element), bound ∈ UpperBounds relation subset ↔ UpperBound relation subset bound
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+    bound : Element
+  Prove
+    bound ∈ UpperBounds relation subset ↔ UpperBound relation subset bound
+Transliterated theorem: (∀ A ∈ U ∀ x ∈ Element), x ∈ UpperBounds relation A ↔ UpperBound relation A x
+Logical form (Lean): (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (bound : Element) : bound ∈ UpperBounds relation subset ↔ UpperBound relation subset bound
+Source: ./Bounds/BoundSets/Theorems.lean#L65
+
+
+
+Name: LowerBoundsMembership
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (bound : Element), bound ∈ LowerBounds relation subset ↔ LowerBound relation subset bound
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+    bound : Element
+  Prove
+    bound ∈ LowerBounds relation subset ↔ LowerBound relation subset bound
+Transliterated theorem: (∀ A ∈ U ∀ x ∈ Element), x ∈ LowerBounds relation A ↔ LowerBound relation A x
+Logical form (Lean): (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (bound : Element) : bound ∈ LowerBounds relation subset ↔ LowerBound relation subset bound
+Source: ./Bounds/BoundSets/Theorems.lean#L111
+
+
+
+Name: UpperBoundsAntitoneUnderInclusion
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {relation : LRA.Relation.Endorelation Element} {smaller larger : SetObject} (smallerIsContained : smaller ⊆ larger), UpperBounds relation larger ⊆ UpperBounds relation smaller
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    smaller larger : SetObject
+    smallerIsContained : smaller ⊆ larger
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ {relation : Element → Element → Prop} {smaller larger : SetObject}, smaller ≤ larger → ≤ ≤ funbound=> ∀ (element : Element), larger ≤ element → relation element bound ≤ ≤ ≤ funbound=> ∀ (element : Element), smaller ≤ element → relation element bound
+Transliterated theorem: (∀ A B ∈ U), UpperBounds relation B ⊆ UpperBounds relation A
+Logical form (Lean): {relation : LRA.Relation.Endorelation Element} {smaller larger : SetObject} (smallerIsContained : smaller ⊆ larger) : UpperBounds relation larger ⊆ UpperBounds relation smaller
+Source: ./Bounds/BoundSets/Theorems.lean#L157
+
+
+
+Name: LowerBoundsAntitoneUnderInclusion
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {relation : LRA.Relation.Endorelation Element} {smaller larger : SetObject} (smallerIsContained : smaller ⊆ larger), LowerBounds relation larger ⊆ LowerBounds relation smaller
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    smaller larger : SetObject
+    smallerIsContained : smaller ⊆ larger
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ {relation : Element → Element → Prop} {smaller larger : SetObject}, smaller ≤ larger → ≤ ≤ funbound=> ∀ (element : Element), larger ≤ element → relation bound element ≤ ≤ ≤ funbound=> ∀ (element : Element), smaller ≤ element → relation bound element
+Transliterated theorem: (∀ A B ∈ U), LowerBounds relation B ⊆ LowerBounds relation A
+Logical form (Lean): {relation : LRA.Relation.Endorelation Element} {smaller larger : SetObject} (smallerIsContained : smaller ⊆ larger) : LowerBounds relation larger ⊆ LowerBounds relation smaller
+Source: ./Bounds/BoundSets/Theorems.lean#L203
+
+
+
+Name: UpperBoundsOfEmpty
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (relation : LRA.Relation.Endorelation Element), UpperBounds relation (∅ : SetObject) = (HasUniversal.universal : SetObject)
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ (relation : Element → Element → Prop), ≤ ≤ funbound=> ∀ (element : Element), ≤ ≤ element → relation element bound = inst_7.1
+Transliterated theorem: UpperBounds relation ∅ ∈ SetObject = HasUniversal.universal ∈ SetObject
+Logical form (Lean): (relation : LRA.Relation.Endorelation Element) : UpperBounds relation (∅ : SetObject) = (HasUniversal.universal : SetObject)
+Source: ./Bounds/BoundSets/Theorems.lean#L248
+
+
+
+Name: LowerBoundsOfEmpty
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (relation : LRA.Relation.Endorelation Element), LowerBounds relation (∅ : SetObject) = (HasUniversal.universal : SetObject)
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ (relation : Element → Element → Prop), ≤ ≤ funbound=> ∀ (element : Element), ≤ ≤ element → relation bound element = inst_7.1
+Transliterated theorem: LowerBounds relation ∅ ∈ SetObject = HasUniversal.universal ∈ SetObject
+Logical form (Lean): (relation : LRA.Relation.Endorelation Element) : LowerBounds relation (∅ : SetObject) = (HasUniversal.universal : SetObject)
+Source: ./Bounds/BoundSets/Theorems.lean#L292
+
+
+
+Name: UpperBoundsOfIndexedUnion
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Index : Type w} (relation : LRA.Relation.Endorelation Element) (family : Index -> SetObject), UpperBounds relation (HasIndexedUnion.indexedUnion family) = HasIndexedIntersection.indexedIntersection (fun index => UpperBounds relation (family index))
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, Index, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    family : Index -> SetObject
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.IndexedMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject))))) → ∀ {Index : Type w} (relation : Element → Element → Prop) (family : Index → SetObject), ≤ ≤ funbound=> ∀ (element : Element), family ≤ ≤element → relation element bound = fun ≤ index=> ≤ ≤ funbound=> ∀ (element : Element), family index ≤ element → relation element bound
+Transliterated theorem: UpperBounds relation (HasIndexedUnion.indexedUnion family) = HasIndexedIntersection.indexedIntersection (fun index => UpperBounds relation (family index))
+Logical form (Lean): {Index : Type w} (relation : LRA.Relation.Endorelation Element) (family : Index -> SetObject) : UpperBounds relation (HasIndexedUnion.indexedUnion family) = HasIndexedIntersection.indexedIntersection (fun index => UpperBounds relation (family index))
+Source: ./Bounds/BoundSets/IndexedTheorems.lean#L68
+
+
+
+Name: LowerBoundsOfIndexedUnion
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Index : Type w} (relation : LRA.Relation.Endorelation Element) (family : Index -> SetObject), LowerBounds relation (HasIndexedUnion.indexedUnion family) = HasIndexedIntersection.indexedIntersection (fun index => LowerBounds relation (family index))
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, Index, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    family : Index -> SetObject
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.IndexedMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject))))) → ∀ {Index : Type w} (relation : Element → Element → Prop) (family : Index → SetObject), ≤ ≤ funbound=> ∀ (element : Element), family ≤ ≤element → relation bound element = fun ≤ index=> ≤ ≤ funbound=> ∀ (element : Element), family index ≤ element → relation bound element
+Transliterated theorem: LowerBounds relation (HasIndexedUnion.indexedUnion family) = HasIndexedIntersection.indexedIntersection (fun index => LowerBounds relation (family index))
+Logical form (Lean): {Index : Type w} (relation : LRA.Relation.Endorelation Element) (family : Index -> SetObject) : LowerBounds relation (HasIndexedUnion.indexedUnion family) = HasIndexedIntersection.indexedIntersection (fun index => LowerBounds relation (family index))
+Source: ./Bounds/BoundSets/IndexedTheorems.lean#L118
+
+
+
+Name: IndexedUnionOfUpperBoundsContainedInUpperBoundsOfIntersection
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Index : Type w} (relation : LRA.Relation.Endorelation Element) (family : Index -> SetObject), HasIndexedUnion.indexedUnion (fun index => UpperBounds relation (family index)) ⊆ UpperBounds relation (HasIndexedIntersection.indexedIntersection family)
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, Index, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    family : Index -> SetObject
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.IndexedMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject))))) → ∀ {Index : Type w} (relation : Element → Element → Prop) (family : Index → SetObject), fun ≤ index=> ≤ ≤ funbound=> ∀ (element : Element), family index ≤ element → relation element bound ≤ ≤ ≤ funbound=> ∀ (element : Element), family ≤ ≤element → relation element bound
+Transliterated theorem: HasIndexedUnion.indexedUnion (fun index => UpperBounds relation (family index)) ⊆ UpperBounds relation (HasIndexedIntersection.indexedIntersection family)
+Logical form (Lean): {Index : Type w} (relation : LRA.Relation.Endorelation Element) (family : Index -> SetObject) : HasIndexedUnion.indexedUnion (fun index => UpperBounds relation (family index)) ⊆ UpperBounds relation (HasIndexedIntersection.indexedIntersection family)
+Source: ./Bounds/BoundSets/IndexedTheorems.lean#L169
+
+
+
+Name: IndexedUnionOfLowerBoundsContainedInLowerBoundsOfIntersection
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Index : Type w} (relation : LRA.Relation.Endorelation Element) (family : Index -> SetObject), HasIndexedUnion.indexedUnion (fun index => LowerBounds relation (family index)) ⊆ LowerBounds relation (HasIndexedIntersection.indexedIntersection family)
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, Index, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    family : Index -> SetObject
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.IndexedMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject))))) → ∀ {Index : Type w} (relation : Element → Element → Prop) (family : Index → SetObject), fun ≤ index=> ≤ ≤ funbound=> ∀ (element : Element), family index ≤ element → relation bound element ≤ ≤ ≤ funbound=> ∀ (element : Element), family ≤ ≤element → relation bound element
+Transliterated theorem: HasIndexedUnion.indexedUnion (fun index => LowerBounds relation (family index)) ⊆ LowerBounds relation (HasIndexedIntersection.indexedIntersection family)
+Logical form (Lean): {Index : Type w} (relation : LRA.Relation.Endorelation Element) (family : Index -> SetObject) : HasIndexedUnion.indexedUnion (fun index => LowerBounds relation (family index)) ⊆ LowerBounds relation (HasIndexedIntersection.indexedIntersection family)
+Source: ./Bounds/BoundSets/IndexedTheorems.lean#L221
+
+
+
+Name: LeastElementUnique
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsAntisymmetric : LRA.Relation.Antisymmetric relation) {subset : SetObject} {first second : Element} (firstIsLeast : LeastElement relation subset first) (secondIsLeast : LeastElement relation subset second), first = second
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsAntisymmetric : LRA.Relation.Antisymmetric relation
+    subset : SetObject
+    first second : Element
+    firstIsLeast : LeastElement relation subset first
+    secondIsLeast : LeastElement relation subset second
+  Prove
+    (∀ (x y : Element), relation x y → relation y x → x = y) → ∀ {subset : SetObject} {first second : Element}, ((subset ≤ first ∧ (∀ (element : Element), subset ≤ element → relation first element)) ∧ (subset ≤ second ∧ (∀ (element : Element), subset ≤ element → relation second element))) → first = second
+Transliterated theorem: (∀ A ∈ U ∀ x y ∈ Element), x = y
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsAntisymmetric : LRA.Relation.Antisymmetric relation) {subset : SetObject} {first second : Element} (firstIsLeast : LeastElement relation subset first) (secondIsLeast : LeastElement relation subset second) : first = second
+Source: ./Bounds/LeastElement/Theorems.lean#L53
+
+
+
+Name: LeastElementRetainedByIntersection
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {subset retainedBy : SetObject} {least : Element} (leastIsLeast : LeastElement relation subset least) (leastIsRetained : least ∈ retainedBy), LeastElement relation (subset ∩ retainedBy) least
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset retainedBy : SetObject
+    least : Element
+    leastIsLeast : LeastElement relation subset least
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {subset retainedBy : SetObject} {least : Element}, ((subset ≤ least ∧ (∀ (element : Element), subset ≤ element → relation least element)) ∧ retainedBy ≤ least) → (subset ≤ retainedBy ≤ least ∧ (∀ (element : Element), subset ≤ retainedBy ≤ element → relation least element))
+Transliterated theorem: (∀ A B ∈ U ∀ x ∈ Element), (x ∈ B) → LeastElement(x, A ∩ B)
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {subset retainedBy : SetObject} {least : Element} (leastIsLeast : LeastElement relation subset least) (leastIsRetained : least ∈ retainedBy) : LeastElement relation (subset ∩ retainedBy) least
+Source: ./Bounds/LeastElement/Theorems.lean#L111
+
+
+
+Name: LeastElementRetainedByDifference
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {subset removed : SetObject} {least : Element} (leastIsLeast : LeastElement relation subset least) (leastIsNotRemoved : least ∉ removed), LeastElement relation (subset \ removed) least
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset removed : SetObject
+    least : Element
+    leastIsLeast : LeastElement relation subset least
+    leastIsNotRemoved : least ∉ removed
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {subset removed : SetObject} {least : Element}, ((subset ≤ least ∧ (∀ (element : Element), subset ≤ element → relation least element)) ∧ (removed ≤ least → False)) → (subset ≤ removed ≤ least ∧ (∀ (element : Element), subset ≤ removed ≤ element → relation least element))
+Transliterated theorem: (∀ A B ∈ U ∀ x ∈ Element), LeastElement(x, A \ B)
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {subset removed : SetObject} {least : Element} (leastIsLeast : LeastElement relation subset least) (leastIsNotRemoved : least ∉ removed) : LeastElement relation (subset \ removed) least
+Source: ./Bounds/LeastElement/Theorems.lean#L169
+
+
+
+Name: LeastElementRetainedBySymmetricDifference
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [LRA.Set.HasSymmDiff SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] [LRA.Set.SymmDiffMembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {leftSubset rightSubset : SetObject} {least : Element} (leastIsLeastOfUnion : LeastElement relation (leftSubset ∪ rightSubset) least) (leastIsRetained : least ∈ (leftSubset ∆ rightSubset)), LeastElement relation (leftSubset ∆ rightSubset) least
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    leftSubset rightSubset : SetObject
+    least : Element
+    leastIsLeastOfUnion : LeastElement relation (leftSubset ∪ rightSubset) least
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ LRA.Set.SymmDiffMembershipLaws Element SetObject) → ∀ {relation : Element → Element → Prop} {leftSubset rightSubset : SetObject} {least : Element}, ((leftSubset ≤ rightSubset ≤ least ∧ (∀ (element : Element), leftSubset ≤ rightSubset ≤ element → relation least element)) ∧ leftSubset ≤ rightSubset ≤ least) → (leftSubset ≤ rightSubset ≤ least ∧ (∀ (element : Element), leftSubset ≤ rightSubset ≤ element → relation least element))
+Transliterated theorem: (∀ A B ∈ U ∀ x ∈ Element), (x ∈ (A ∆ B)) → LeastElement(x, A ∆ B)
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [LRA.Set.HasSymmDiff SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] [LRA.Set.SymmDiffMembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {leftSubset rightSubset : SetObject} {least : Element} (leastIsLeastOfUnion : LeastElement relation (leftSubset ∪ rightSubset) least) (leastIsRetained : least ∈ (leftSubset ∆ rightSubset)) : LeastElement relation (leftSubset ∆ rightSubset) least
+Source: ./Bounds/LeastElement/Theorems.lean#L228
+
+
+
+Name: LeastElementOfUnion
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {leftSubset rightSubset : SetObject} {least : Element} (leastIsLeastOfLeft : LeastElement relation leftSubset least) (leastBoundsRight : LowerBound relation rightSubset least), LeastElement relation (leftSubset ∪ rightSubset) least
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    leftSubset rightSubset : SetObject
+    least : Element
+    leastIsLeastOfLeft : LeastElement relation leftSubset least
+    leastBoundsRight : LowerBound relation rightSubset least
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {leftSubset rightSubset : SetObject} {least : Element}, ((leftSubset ≤ least ∧ (∀ (element : Element), leftSubset ≤ element → relation least element)) ∧ (∀ (element : Element), rightSubset ≤ element → relation least element)) → (leftSubset ≤ rightSubset ≤ least ∧ (∀ (element : Element), leftSubset ≤ rightSubset ≤ element → relation least element))
+Transliterated theorem: (∀ A B ∈ U ∀ x ∈ Element), LeastElement(x, A ∪ B)
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {leftSubset rightSubset : SetObject} {least : Element} (leastIsLeastOfLeft : LeastElement relation leftSubset least) (leastBoundsRight : LowerBound relation rightSubset least) : LeastElement relation (leftSubset ∪ rightSubset) least
+Source: ./Bounds/LeastElement/Theorems.lean#L287
+
+
+
+Name: LeastElementIsMinimal
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   {relation : LRA.Relation.Endorelation Element},   LRA.Relation.Antisymmetric relation →     ∀ {subset : SetObject} {least : Element},       LRA.Order.LeastElement relation subset least →         LRA.Order.MinimalElement (LRA.Order.StrictPart relation) subset least
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsAntisymmetric : LRA.Relation.Antisymmetric relation
+    subset : SetObject
+    least : Element
+    leastIsLeast : LeastElement relation subset least
+  Prove
+    (∀ (x y : Element), relation x y → relation y x → x = y) → ∀ {subset : SetObject} {least : Element}, (subset ≤ least ∧ (∀ (element : Element), subset ≤ element → relation least element)) → (subset ≤ least ∧ (∀ (element : Element), subset ≤ element → (relation element least ∧ (element = least → False)) → False))
+Transliterated theorem: (∀ A ∈ U ∀ x ∈ Element), MinimalElement (StrictPart relation) A x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsAntisymmetric : LRA.Relation.Antisymmetric relation) {subset : SetObject} {least : Element} (leastIsLeast : LeastElement relation subset least) : MinimalElement (StrictPart relation) subset least
+Source: ./Bounds/LeastElement/Relationships.lean#L55
+
+
+
+Name: LeastElementIsUniqueMinimalElement
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsAntisymmetric : LRA.Relation.Antisymmetric relation) {subset : SetObject} {least minimal : Element} (leastIsLeast : LeastElement relation subset least) (minimalIsMinimal : MinimalElement (StrictPart relation) subset minimal), minimal = least
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsAntisymmetric : LRA.Relation.Antisymmetric relation
+    subset : SetObject
+    least minimal : Element
+    leastIsLeast : LeastElement relation subset least
+    minimalIsMinimal : MinimalElement (StrictPart relation) subset minimal
+  Prove
+    (∀ (x y : Element), relation x y → relation y x → x = y) → ∀ {subset : SetObject} {least minimal : Element}, ((subset ≤ least ∧ (∀ (element : Element), subset ≤ element → relation least element)) ∧ (subset ≤ minimal ∧ (∀ (element : Element), subset ≤ element → (relation element minimal ∧ (element = minimal → False)) → False))) → minimal = least
+Transliterated theorem: (∀ A ∈ U ∀ x y ∈ Element), y = x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsAntisymmetric : LRA.Relation.Antisymmetric relation) {subset : SetObject} {least minimal : Element} (leastIsLeast : LeastElement relation subset least) (minimalIsMinimal : MinimalElement (StrictPart relation) subset minimal) : minimal = least
+Source: ./Bounds/LeastElement/Relationships.lean#L108
+
+
+
+Name: MinimalElementIsLeastInLinearOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   {relation : LRA.Relation.Endorelation Element},   LRA.Order.LinearOrder relation →     ∀ {subset : SetObject} {minimal : Element},       LRA.Order.MinimalElement (LRA.Order.StrictPart relation) subset minimal →         LRA.Order.LeastElement relation subset minimal
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsLinearOrder : LinearOrder relation
+    subset : SetObject
+    minimal : Element
+    minimalIsMinimal : MinimalElement (StrictPart relation) subset minimal
+  Prove
+    (((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x → x = y) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) ∧ (∀ (x y : Element), Or (relation x y) (relation y x))) → ∀ {subset : SetObject} {minimal : Element}, (subset ≤ minimal ∧ (∀ (element : Element), subset ≤ element → (relation element minimal ∧ (element = minimal → False)) → False)) → (subset ≤ minimal ∧ (∀ (element : Element), subset ≤ element → relation minimal element))
+Transliterated theorem: (∀ A ∈ U ∀ x ∈ Element), LeastElement(x, A)
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsLinearOrder : LinearOrder relation) {subset : SetObject} {minimal : Element} (minimalIsMinimal : MinimalElement (StrictPart relation) subset minimal) : LeastElement relation subset minimal
+Source: ./Bounds/LeastElement/Relationships.lean#L161
+
+
+
+Name: LeastElementIsInfimum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   {relation : LRA.Relation.Endorelation Element} {subset : SetObject} {least : Element},   LRA.Order.LeastElement relation subset least → LRA.Order.Infimum relation subset least
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+    least : Element
+    leastIsLeast : LeastElement relation subset least
+  Prove
+    (subset ≤ least ∧ (∀ (element : Element), subset ≤ element → relation least element)) → ((∀ (element : Element), subset ≤ element → relation least element) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation bound element) → relation bound least))
+Transliterated theorem: (∀ A ∈ U ∀ x ∈ Element), Infimum relation A x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} {subset : SetObject} {least : Element} (leastIsLeast : LeastElement relation subset least) : Infimum relation subset least
+Source: ./Bounds/LeastElement/Relationships.lean#L212
+
+
+
+Name: LeastElementIffInfimumAndMembership
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsReflexive : LRA.Relation.Reflexive relation) {subset : SetObject} {candidate : Element}, LeastElement relation subset candidate ↔ Infimum relation subset candidate /\ candidate ∈ subset
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsReflexive : LRA.Relation.Reflexive relation
+    subset : SetObject
+    candidate : Element
+  Prove
+    LeastElement relation subset candidate ↔ Infimum relation subset candidate /\ candidate ∈ subset
+Transliterated theorem: (∀ A ∈ U ∀ x ∈ Element), LeastElement(x, A) ↔ Infimum relation A x ∧ x ∈ A
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsReflexive : LRA.Relation.Reflexive relation) {subset : SetObject} {candidate : Element} : LeastElement relation subset candidate ↔ Infimum relation subset candidate /\ candidate ∈ subset
+Source: ./Bounds/LeastElement/Relationships.lean#L263
+
+
+
+Name: GreatestElementUnique
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsAntisymmetric : LRA.Relation.Antisymmetric relation) {subset : SetObject} {first second : Element} (firstIsGreatest : GreatestElement relation subset first) (secondIsGreatest : GreatestElement relation subset second), first = second
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsAntisymmetric : LRA.Relation.Antisymmetric relation
+    subset : SetObject
+    first second : Element
+    firstIsGreatest : GreatestElement relation subset first
+    secondIsGreatest : GreatestElement relation subset second
+  Prove
+    (∀ (x y : Element), relation x y → relation y x → x = y) → ∀ {subset : SetObject} {first second : Element}, ((subset ≤ first ∧ (∀ (element : Element), subset ≤ element → relation element first)) ∧ (subset ≤ second ∧ (∀ (element : Element), subset ≤ element → relation element second))) → first = second
+Transliterated theorem: (∀ A ∈ U ∀ x y ∈ Element), x = y
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsAntisymmetric : LRA.Relation.Antisymmetric relation) {subset : SetObject} {first second : Element} (firstIsGreatest : GreatestElement relation subset first) (secondIsGreatest : GreatestElement relation subset second) : first = second
+Source: ./Bounds/GreatestElement/Theorems.lean#L53
+
+
+
+Name: GreatestElementRetainedByIntersection
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {subset retainedBy : SetObject} {greatest : Element} (greatestIsGreatest : GreatestElement relation subset greatest) (greatestIsRetained : greatest ∈ retainedBy), GreatestElement relation (subset ∩ retainedBy) greatest
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset retainedBy : SetObject
+    greatest : Element
+    greatestIsGreatest : GreatestElement relation subset greatest
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {subset retainedBy : SetObject} {greatest : Element}, ((subset ≤ greatest ∧ (∀ (element : Element), subset ≤ element → relation element greatest)) ∧ retainedBy ≤ greatest) → (subset ≤ retainedBy ≤ greatest ∧ (∀ (element : Element), subset ≤ retainedBy ≤ element → relation element greatest))
+Transliterated theorem: (∀ A B ∈ U ∀ x ∈ Element), (x ∈ B) → GreatestElement(x, A ∩ B)
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {subset retainedBy : SetObject} {greatest : Element} (greatestIsGreatest : GreatestElement relation subset greatest) (greatestIsRetained : greatest ∈ retainedBy) : GreatestElement relation (subset ∩ retainedBy) greatest
+Source: ./Bounds/GreatestElement/Theorems.lean#L111
+
+
+
+Name: GreatestElementRetainedByDifference
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {subset removed : SetObject} {greatest : Element} (greatestIsGreatest : GreatestElement relation subset greatest) (greatestIsNotRemoved : greatest ∉ removed), GreatestElement relation (subset \ removed) greatest
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset removed : SetObject
+    greatest : Element
+    greatestIsGreatest : GreatestElement relation subset greatest
+    greatestIsNotRemoved : greatest ∉ removed
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {subset removed : SetObject} {greatest : Element}, ((subset ≤ greatest ∧ (∀ (element : Element), subset ≤ element → relation element greatest)) ∧ (removed ≤ greatest → False)) → (subset ≤ removed ≤ greatest ∧ (∀ (element : Element), subset ≤ removed ≤ element → relation element greatest))
+Transliterated theorem: (∀ A B ∈ U ∀ x ∈ Element), GreatestElement(x, A \ B)
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {subset removed : SetObject} {greatest : Element} (greatestIsGreatest : GreatestElement relation subset greatest) (greatestIsNotRemoved : greatest ∉ removed) : GreatestElement relation (subset \ removed) greatest
+Source: ./Bounds/GreatestElement/Theorems.lean#L169
+
+
+
+Name: GreatestElementRetainedBySymmetricDifference
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [LRA.Set.HasSymmDiff SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] [LRA.Set.SymmDiffMembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {leftSubset rightSubset : SetObject} {greatest : Element} (greatestIsGreatestOfUnion : GreatestElement relation (leftSubset ∪ rightSubset) greatest) (greatestIsRetained : greatest ∈ (leftSubset ∆ rightSubset)), GreatestElement relation (leftSubset ∆ rightSubset) greatest
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    leftSubset rightSubset : SetObject
+    greatest : Element
+    greatestIsGreatestOfUnion : GreatestElement relation (leftSubset ∪ rightSubset) greatest
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ LRA.Set.SymmDiffMembershipLaws Element SetObject) → ∀ {relation : Element → Element → Prop} {leftSubset rightSubset : SetObject} {greatest : Element}, ((leftSubset ≤ rightSubset ≤ greatest ∧ (∀ (element : Element), leftSubset ≤ rightSubset ≤ element → relation element greatest)) ∧ leftSubset ≤ rightSubset ≤ greatest) → (leftSubset ≤ rightSubset ≤ greatest ∧ (∀ (element : Element), leftSubset ≤ rightSubset ≤ element → relation element greatest))
+Transliterated theorem: (∀ A B ∈ U ∀ x ∈ Element), (x ∈ (A ∆ B)) → GreatestElement(x, A ∆ B)
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [LRA.Set.HasSymmDiff SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] [LRA.Set.SymmDiffMembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {leftSubset rightSubset : SetObject} {greatest : Element} (greatestIsGreatestOfUnion : GreatestElement relation (leftSubset ∪ rightSubset) greatest) (greatestIsRetained : greatest ∈ (leftSubset ∆ rightSubset)) : GreatestElement relation (leftSubset ∆ rightSubset) greatest
+Source: ./Bounds/GreatestElement/Theorems.lean#L228
+
+
+
+Name: GreatestElementOfUnion
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {leftSubset rightSubset : SetObject} {greatest : Element} (greatestIsGreatestOfLeft : GreatestElement relation leftSubset greatest) (greatestBoundsRight : UpperBound relation rightSubset greatest), GreatestElement relation (leftSubset ∪ rightSubset) greatest
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    leftSubset rightSubset : SetObject
+    greatest : Element
+    greatestIsGreatestOfLeft : GreatestElement relation leftSubset greatest
+    greatestBoundsRight : UpperBound relation rightSubset greatest
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {leftSubset rightSubset : SetObject} {greatest : Element}, ((leftSubset ≤ greatest ∧ (∀ (element : Element), leftSubset ≤ element → relation element greatest)) ∧ (∀ (element : Element), rightSubset ≤ element → relation element greatest)) → (leftSubset ≤ rightSubset ≤ greatest ∧ (∀ (element : Element), leftSubset ≤ rightSubset ≤ element → relation element greatest))
+Transliterated theorem: (∀ A B ∈ U ∀ x ∈ Element), GreatestElement(x, A ∪ B)
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {leftSubset rightSubset : SetObject} {greatest : Element} (greatestIsGreatestOfLeft : GreatestElement relation leftSubset greatest) (greatestBoundsRight : UpperBound relation rightSubset greatest) : GreatestElement relation (leftSubset ∪ rightSubset) greatest
+Source: ./Bounds/GreatestElement/Theorems.lean#L287
+
+
+
+Name: GreatestElementIsMaximal
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   {relation : LRA.Relation.Endorelation Element},   LRA.Relation.Antisymmetric relation →     ∀ {subset : SetObject} {greatest : Element},       LRA.Order.GreatestElement relation subset greatest →         LRA.Order.MaximalElement (LRA.Order.StrictPart relation) subset greatest
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsAntisymmetric : LRA.Relation.Antisymmetric relation
+    subset : SetObject
+    greatest : Element
+    greatestIsGreatest : GreatestElement relation subset greatest
+  Prove
+    (∀ (x y : Element), relation x y → relation y x → x = y) → ∀ {subset : SetObject} {greatest : Element}, (subset ≤ greatest ∧ (∀ (element : Element), subset ≤ element → relation element greatest)) → (subset ≤ greatest ∧ (∀ (element : Element), subset ≤ element → (relation greatest element ∧ (greatest = element → False)) → False))
+Transliterated theorem: (∀ A ∈ U ∀ x ∈ Element), MaximalElement (StrictPart relation) A x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsAntisymmetric : LRA.Relation.Antisymmetric relation) {subset : SetObject} {greatest : Element} (greatestIsGreatest : GreatestElement relation subset greatest) : MaximalElement (StrictPart relation) subset greatest
+Source: ./Bounds/GreatestElement/Relationships.lean#L55
+
+
+
+Name: GreatestElementIsUniqueMaximalElement
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsAntisymmetric : LRA.Relation.Antisymmetric relation) {subset : SetObject} {greatest maximal : Element} (greatestIsGreatest : GreatestElement relation subset greatest) (maximalIsMaximal : MaximalElement (StrictPart relation) subset maximal), maximal = greatest
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsAntisymmetric : LRA.Relation.Antisymmetric relation
+    subset : SetObject
+    greatest maximal : Element
+    greatestIsGreatest : GreatestElement relation subset greatest
+    maximalIsMaximal : MaximalElement (StrictPart relation) subset maximal
+  Prove
+    (∀ (x y : Element), relation x y → relation y x → x = y) → ∀ {subset : SetObject} {greatest maximal : Element}, ((subset ≤ greatest ∧ (∀ (element : Element), subset ≤ element → relation element greatest)) ∧ (subset ≤ maximal ∧ (∀ (element : Element), subset ≤ element → (relation maximal element ∧ (maximal = element → False)) → False))) → maximal = greatest
+Transliterated theorem: (∀ A ∈ U ∀ x y ∈ Element), y = x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsAntisymmetric : LRA.Relation.Antisymmetric relation) {subset : SetObject} {greatest maximal : Element} (greatestIsGreatest : GreatestElement relation subset greatest) (maximalIsMaximal : MaximalElement (StrictPart relation) subset maximal) : maximal = greatest
+Source: ./Bounds/GreatestElement/Relationships.lean#L108
+
+
+
+Name: MaximalElementIsGreatestInLinearOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   {relation : LRA.Relation.Endorelation Element},   LRA.Order.LinearOrder relation →     ∀ {subset : SetObject} {maximal : Element},       LRA.Order.MaximalElement (LRA.Order.StrictPart relation) subset maximal →         LRA.Order.GreatestElement relation subset maximal
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsLinearOrder : LinearOrder relation
+    subset : SetObject
+    maximal : Element
+    maximalIsMaximal : MaximalElement (StrictPart relation) subset maximal
+  Prove
+    (((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x → x = y) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) ∧ (∀ (x y : Element), Or (relation x y) (relation y x))) → ∀ {subset : SetObject} {maximal : Element}, (subset ≤ maximal ∧ (∀ (element : Element), subset ≤ element → (relation maximal element ∧ (maximal = element → False)) → False)) → (subset ≤ maximal ∧ (∀ (element : Element), subset ≤ element → relation element maximal))
+Transliterated theorem: (∀ A ∈ U ∀ x ∈ Element), GreatestElement(x, A)
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsLinearOrder : LinearOrder relation) {subset : SetObject} {maximal : Element} (maximalIsMaximal : MaximalElement (StrictPart relation) subset maximal) : GreatestElement relation subset maximal
+Source: ./Bounds/GreatestElement/Relationships.lean#L161
+
+
+
+Name: GreatestElementIsSupremum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   {relation : LRA.Relation.Endorelation Element} {subset : SetObject} {greatest : Element},   LRA.Order.GreatestElement relation subset greatest → LRA.Order.Supremum relation subset greatest
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+    greatest : Element
+    greatestIsGreatest : GreatestElement relation subset greatest
+  Prove
+    (subset ≤ greatest ∧ (∀ (element : Element), subset ≤ element → relation element greatest)) → ((∀ (element : Element), subset ≤ element → relation element greatest) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation element bound) → relation greatest bound))
+Transliterated theorem: (∀ A ∈ U ∀ x ∈ Element), Supremum relation A x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} {subset : SetObject} {greatest : Element} (greatestIsGreatest : GreatestElement relation subset greatest) : Supremum relation subset greatest
+Source: ./Bounds/GreatestElement/Relationships.lean#L212
+
+
+
+Name: GreatestElementIffSupremumAndMembership
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsReflexive : LRA.Relation.Reflexive relation) {subset : SetObject} {candidate : Element}, GreatestElement relation subset candidate ↔ Supremum relation subset candidate /\ candidate ∈ subset
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsReflexive : LRA.Relation.Reflexive relation
+    subset : SetObject
+    candidate : Element
+  Prove
+    GreatestElement relation subset candidate ↔ Supremum relation subset candidate /\ candidate ∈ subset
+Transliterated theorem: (∀ A ∈ U ∀ x ∈ Element), GreatestElement(x, A) ↔ Supremum relation A x ∧ x ∈ A
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsReflexive : LRA.Relation.Reflexive relation) {subset : SetObject} {candidate : Element} : GreatestElement relation subset candidate ↔ Supremum relation subset candidate /\ candidate ∈ subset
+Source: ./Bounds/GreatestElement/Relationships.lean#L263
+
+
+
+Name: MinimalElementOfConverseIffMaximalElement
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] (strictRelation : LRA.Relation.Endorelation Element) (subset : SetObject) (candidate : Element), MinimalElement (LRA.Relation.Converse strictRelation) subset candidate ↔ MaximalElement strictRelation subset candidate
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    strictRelation : LRA.Relation.Endorelation Element
+    subset : SetObject
+    candidate : Element
+  Prove
+    MinimalElement (LRA.Relation.Converse strictRelation) subset candidate ↔ MaximalElement strictRelation subset candidate
+Transliterated theorem: (∀ A ∈ U ∀ x ∈ Element), MinimalElement (LRA.Relation.Converse strictRelation) A x ↔ MaximalElement strictRelation A x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] (strictRelation : LRA.Relation.Endorelation Element) (subset : SetObject) (candidate : Element) : MinimalElement (LRA.Relation.Converse strictRelation) subset candidate ↔ MaximalElement strictRelation subset candidate
+Source: ./Bounds/MinimalElement/Relationships.lean#L52
+
+
+
+Name: MaximalElementOfConverseIffMinimalElement
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] (strictRelation : LRA.Relation.Endorelation Element) (subset : SetObject) (candidate : Element), MaximalElement (LRA.Relation.Converse strictRelation) subset candidate ↔ MinimalElement strictRelation subset candidate
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    strictRelation : LRA.Relation.Endorelation Element
+    subset : SetObject
+    candidate : Element
+  Prove
+    MaximalElement (LRA.Relation.Converse strictRelation) subset candidate ↔ MinimalElement strictRelation subset candidate
+Transliterated theorem: (∀ A ∈ U ∀ x ∈ Element), MaximalElement (LRA.Relation.Converse strictRelation) A x ↔ MinimalElement strictRelation A x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] (strictRelation : LRA.Relation.Endorelation Element) (subset : SetObject) (candidate : Element) : MaximalElement (LRA.Relation.Converse strictRelation) subset candidate ↔ MinimalElement strictRelation subset candidate
+Source: ./Bounds/MaximalElement/Relationships.lean#L52
+
+
+
+Name: BottomElementIffRelationToEvery
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {relation : LRA.Relation.Endorelation Element} {bottom : Element}, BottomElement (SetObject := SetObject) relation bottom <-> forall element : Element, relation bottom element
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    bottom : Element
+  Prove
+    LRA.Set.UniversalMembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {bottom : Element}, (≤ ≤ bottom ∧ (∀ (element : Element), ≤ ≤ element → relation bottom element)) ↔ ∀ (element : Element), relation bottom element
+Transliterated theorem: (∀ x ∈ Element), BottomElement SetObject ∈ = SetObject relation x <-> forall element : Element, relation x element
+Logical form (Lean): {relation : LRA.Relation.Endorelation Element} {bottom : Element} : BottomElement (SetObject := SetObject) relation bottom <-> forall element : Element, relation bottom element
+Source: ./Bounds/BottomElement/Theorems.lean#L56
+
+
+
+Name: TopElementIffEveryRelationTo
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {relation : LRA.Relation.Endorelation Element} {top : Element}, TopElement (SetObject := SetObject) relation top <-> forall element : Element, relation element top
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    top : Element
+  Prove
+    LRA.Set.UniversalMembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {top : Element}, (≤ ≤ top ∧ (∀ (element : Element), ≤ ≤ element → relation element top)) ↔ ∀ (element : Element), relation element top
+Transliterated theorem: (∀ x ∈ Element), TopElement SetObject ∈ = SetObject relation x <-> forall element : Element, relation element x
+Logical form (Lean): {relation : LRA.Relation.Endorelation Element} {top : Element} : TopElement (SetObject := SetObject) relation top <-> forall element : Element, relation element top
+Source: ./Bounds/TopElement/Theorems.lean#L56
+
+
+
+Name: InfimumUnique
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsAntisymmetric : LRA.Relation.Antisymmetric relation) {subset : SetObject} {first second : Element} (firstIsInfimum : Infimum relation subset first) (secondIsInfimum : Infimum relation subset second), first = second
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsAntisymmetric : LRA.Relation.Antisymmetric relation
+    subset : SetObject
+    first second : Element
+    firstIsInfimum : Infimum relation subset first
+    secondIsInfimum : Infimum relation subset second
+  Prove
+    (∀ (x y : Element), relation x y → relation y x → x = y) → ∀ {subset : SetObject} {first second : Element}, (((∀ (element : Element), subset ≤ element → relation first element) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation bound element) → relation bound first)) ∧ ((∀ (element : Element), subset ≤ element → relation second element) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation bound element) → relation bound second))) → first = second
+Transliterated theorem: (∀ A ∈ U ∀ x y ∈ Element), x = y
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsAntisymmetric : LRA.Relation.Antisymmetric relation) {subset : SetObject} {first second : Element} (firstIsInfimum : Infimum relation subset first) (secondIsInfimum : Infimum relation subset second) : first = second
+Source: ./Bounds/Infimum/Theorems.lean#L58
+
+
+
+Name: InfimumOfSingleton
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Singleton Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsReflexive : LRA.Relation.Reflexive relation) (element : Element) (singletonMembership : forall candidate, candidate ∈ ({element} : SetObject) ↔ candidate = element), Infimum relation ({element} : SetObject) element
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsReflexive : LRA.Relation.Reflexive relation
+    element : Element
+  Prove
+    Infimum relation ({element} : SetObject) element
+Transliterated theorem: (∀ x ∈ Element), (forall candidate, candidate ∈ {x} ∈ SetObject ↔ candidate = x) → Infimum relation {x} ∈ SetObject x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Singleton Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsReflexive : LRA.Relation.Reflexive relation) (element : Element) (singletonMembership : forall candidate, candidate ∈ ({element} : SetObject) ↔ candidate = element) : Infimum relation ({element} : SetObject) element
+Source: ./Bounds/Infimum/Theorems.lean#L113
+
+
+
+Name: InfimumIsLowerBound
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   {relation : LRA.Relation.Endorelation Element} {subset : SetObject} {infimum : Element},   LRA.Order.Infimum relation subset infimum → LRA.Order.LowerBound relation subset infimum
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+    infimum : Element
+    infimumIsInfimum : Infimum relation subset infimum
+  Prove
+    ((∀ (element : Element), subset ≤ element → relation infimum element) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation bound element) → relation bound infimum)) → ∀ (element : Element), subset ≤ element → relation infimum element
+Transliterated theorem: (∀ A ∈ U ∀ x ∈ Element), LowerBound relation A x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} {subset : SetObject} {infimum : Element} (infimumIsInfimum : Infimum relation subset infimum) : LowerBound relation subset infimum
+Source: ./Bounds/Infimum/Theorems.lean#L166
+
+
+
+Name: EveryLowerBoundRelatedToInfimum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} {subset : SetObject} {infimum bound : Element} (infimumIsInfimum : Infimum relation subset infimum) (boundIsLowerBound : LowerBound relation subset bound), relation bound infimum
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+    infimum bound : Element
+    infimumIsInfimum : Infimum relation subset infimum
+    boundIsLowerBound : LowerBound relation subset bound
+  Prove
+    (((∀ (element : Element), subset ≤ element → relation infimum element) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation bound element) → relation bound infimum)) ∧ (∀ (element : Element), subset ≤ element → relation bound element)) → relation bound infimum
+Transliterated theorem: (∀ A ∈ U ∀ x y ∈ Element), relation y x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} {subset : SetObject} {infimum bound : Element} (infimumIsInfimum : Infimum relation subset infimum) (boundIsLowerBound : LowerBound relation subset bound) : relation bound infimum
+Source: ./Bounds/Infimum/Theorems.lean#L217
+
+
+
+Name: LowerBoundIffRelatedToInfimum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsTransitive : LRA.Relation.Transitive relation) {subset : SetObject} {infimum bound : Element} (infimumIsInfimum : Infimum relation subset infimum), LowerBound relation subset bound ↔ relation bound infimum
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsTransitive : LRA.Relation.Transitive relation
+    subset : SetObject
+    infimum bound : Element
+    infimumIsInfimum : Infimum relation subset infimum
+  Prove
+    LowerBound relation subset bound ↔ relation bound infimum
+Transliterated theorem: (∀ A ∈ U ∀ x y ∈ Element), LowerBound relation A y ↔ relation y x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsTransitive : LRA.Relation.Transitive relation) {subset : SetObject} {infimum bound : Element} (infimumIsInfimum : Infimum relation subset infimum) : LowerBound relation subset bound ↔ relation bound infimum
+Source: ./Bounds/Infimum/Theorems.lean#L269
+
+
+
+Name: InfimumMonotoneUnderInclusion
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} {smaller larger : SetObject} {smallerInfimum largerInfimum : Element} (smallerIsContained : forall element, element ∈ smaller -> element ∈ larger) (smallerInfimumIsInfimum : Infimum relation smaller smallerInfimum) (largerInfimumIsInfimum : Infimum relation larger largerInfimum), relation largerInfimum smallerInfimum
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    smaller larger : SetObject
+    smallerInfimum largerInfimum : Element
+    smallerInfimumIsInfimum : Infimum relation smaller smallerInfimum
+    largerInfimumIsInfimum : Infimum relation larger largerInfimum
+  Prove
+    ((∀ (element : Element), smaller ≤ element → larger ≤ element) ∧ (((∀ (element : Element), smaller ≤ element → relation smallerInfimum element) ∧ (∀ (bound : Element), (∀ (element : Element), smaller ≤ element → relation bound element) → relation bound smallerInfimum)) ∧ ((∀ (element : Element), larger ≤ element → relation largerInfimum element) ∧ (∀ (bound : Element), (∀ (element : Element), larger ≤ element → relation bound element) → relation bound largerInfimum)))) → relation largerInfimum smallerInfimum
+Transliterated theorem: (∀ A B ∈ U ∀ x y ∈ Element), (forall element, element ∈ A -> element ∈ B) → relation y x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} {smaller larger : SetObject} {smallerInfimum largerInfimum : Element} (smallerIsContained : forall element, element ∈ smaller -> element ∈ larger) (smallerInfimumIsInfimum : Infimum relation smaller smallerInfimum) (largerInfimumIsInfimum : Infimum relation larger largerInfimum) : relation largerInfimum smallerInfimum
+Source: ./Bounds/Infimum/Theorems.lean#L322
+
+
+
+Name: InfimaCompareUnderPointwiseDomination
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsTransitive : LRA.Relation.Transitive relation) {leftSubset rightSubset : SetObject} {leftInfimum rightInfimum : Element} (leftDominatedByRightUnderConverse : Dominated (LRA.Relation.Converse relation) leftSubset rightSubset) (leftInfimumIsInfimum : Infimum relation leftSubset leftInfimum) (rightInfimumIsInfimum : Infimum relation rightSubset rightInfimum), relation rightInfimum leftInfimum
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsTransitive : LRA.Relation.Transitive relation
+    leftSubset rightSubset : SetObject
+    leftInfimum rightInfimum : Element
+    leftDominatedByRightUnderConverse : Dominated (LRA.Relation.Converse relation) leftSubset rightSubset
+    leftInfimumIsInfimum : Infimum relation leftSubset leftInfimum
+    rightInfimumIsInfimum : Infimum relation rightSubset rightInfimum
+  Prove
+    (∀ (x y z : Element), relation x y → relation y z → relation x z) → ∀ {leftSubset rightSubset : SetObject} {leftInfimum rightInfimum : Element}, ((∀ (element : Element), leftSubset ≤ element → Exists fun other => (rightSubset ≤ other ∧ relation other element)) ∧ (((∀ (element : Element), leftSubset ≤ element → relation leftInfimum element) ∧ (∀ (bound : Element), (∀ (element : Element), leftSubset ≤ element → relation bound element) → relation bound leftInfimum)) ∧ ((∀ (element : Element), rightSubset ≤ element → relation rightInfimum element) ∧ (∀ (bound : Element), (∀ (element : Element), rightSubset ≤ element → relation bound element) → relation bound rightInfimum)))) → relation rightInfimum leftInfimum
+Transliterated theorem: (∀ A B ∈ U ∀ x y ∈ Element), relation y x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsTransitive : LRA.Relation.Transitive relation) {leftSubset rightSubset : SetObject} {leftInfimum rightInfimum : Element} (leftDominatedByRightUnderConverse : Dominated (LRA.Relation.Converse relation) leftSubset rightSubset) (leftInfimumIsInfimum : Infimum relation leftSubset leftInfimum) (rightInfimumIsInfimum : Infimum relation rightSubset rightInfimum) : relation rightInfimum leftInfimum
+Source: ./Bounds/Infimum/Theorems.lean#L379
+
+
+
+Name: InfimumInSubsetIsLeastElement
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} {subset : SetObject} {infimum : Element} (infimumIsInfimum : Infimum relation subset infimum) (infimumBelongs : infimum ∈ subset), LeastElement relation subset infimum
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+    infimum : Element
+    infimumIsInfimum : Infimum relation subset infimum
+  Prove
+    (((∀ (element : Element), subset ≤ element → relation infimum element) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation bound element) → relation bound infimum)) ∧ subset ≤ infimum) → (subset ≤ infimum ∧ (∀ (element : Element), subset ≤ element → relation infimum element))
+Transliterated theorem: (∀ A ∈ U ∀ x ∈ Element), (x ∈ A) → LeastElement(x, A)
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} {subset : SetObject} {infimum : Element} (infimumIsInfimum : Infimum relation subset infimum) (infimumBelongs : infimum ∈ subset) : LeastElement relation subset infimum
+Source: ./Bounds/Infimum/Theorems.lean#L435
+
+
+
+Name: InfimumOfUnion
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsTransitive : LRA.Relation.Transitive relation) {leftSubset rightSubset : SetObject} {leftInfimum rightInfimum unionInfimum : Element} (leftInfimumIsInfimum : Infimum relation leftSubset leftInfimum) (rightInfimumIsInfimum : Infimum relation rightSubset rightInfimum) (unionInfimumIsMeet : Meet relation leftInfimum rightInfimum unionInfimum), Infimum relation (leftSubset ∪ rightSubset) unionInfimum
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsTransitive : LRA.Relation.Transitive relation
+    leftSubset rightSubset : SetObject
+    leftInfimum rightInfimum unionInfimum : Element
+    leftInfimumIsInfimum : Infimum relation leftSubset leftInfimum
+    rightInfimumIsInfimum : Infimum relation rightSubset rightInfimum
+    unionInfimumIsMeet : Meet relation leftInfimum rightInfimum unionInfimum
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop}, (∀ (x y z : Element), relation x y → relation y z → relation x z) → ∀ {leftSubset rightSubset : SetObject} {leftInfimum rightInfimum unionInfimum : Element}, (((∀ (element : Element), leftSubset ≤ element → relation leftInfimum element) ∧ (∀ (bound : Element), (∀ (element : Element), leftSubset ≤ element → relation bound element) → relation bound leftInfimum)) ∧ (((∀ (element : Element), rightSubset ≤ element → relation rightInfimum element) ∧ (∀ (bound : Element), (∀ (element : Element), rightSubset ≤ element → relation bound element) → relation bound rightInfimum)) ∧ (relation unionInfimum leftInfimum ∧ (relation unionInfimum rightInfimum ∧ (∀ (lower : Element), relation lower leftInfimum → relation lower rightInfimum → relation lower unionInfimum))))) → ((∀ (element : Element), leftSubset ≤ rightSubset ≤ element → relation unionInfimum element) ∧ (∀ (bound : Element), (∀ (element : Element), leftSubset ≤ rightSubset ≤ element → relation bound element) → relation bound unionInfimum))
+Transliterated theorem: (∀ A B ∈ U ∀ x y z ∈ Element), Infimum relation (A ∪ B) z
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsTransitive : LRA.Relation.Transitive relation) {leftSubset rightSubset : SetObject} {leftInfimum rightInfimum unionInfimum : Element} (leftInfimumIsInfimum : Infimum relation leftSubset leftInfimum) (rightInfimumIsInfimum : Infimum relation rightSubset rightInfimum) (unionInfimumIsMeet : Meet relation leftInfimum rightInfimum unionInfimum) : Infimum relation (leftSubset ∪ rightSubset) unionInfimum
+Source: ./Bounds/Infimum/Theorems.lean#L495
+
+
+
+Name: ContainingInfimumRelatedToInfimumOfIntersection
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {containingSubset otherSubset : SetObject} {intersectionInfimum containingInfimum : Element} (intersectionIsInfimum : Infimum relation (containingSubset ∩ otherSubset) intersectionInfimum) (containingIsInfimum : Infimum relation containingSubset containingInfimum), relation containingInfimum intersectionInfimum
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    containingSubset otherSubset : SetObject
+    intersectionInfimum containingInfimum : Element
+    intersectionIsInfimum : Infimum relation (containingSubset ∩ otherSubset) intersectionInfimum
+    containingIsInfimum : Infimum relation containingSubset containingInfimum
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {containingSubset otherSubset : SetObject} {intersectionInfimum containingInfimum : Element}, (((∀ (element : Element), containingSubset ≤ otherSubset ≤ element → relation intersectionInfimum element) ∧ (∀ (bound : Element), (∀ (element : Element), containingSubset ≤ otherSubset ≤ element → relation bound element) → relation bound intersectionInfimum)) ∧ ((∀ (element : Element), containingSubset ≤ element → relation containingInfimum element) ∧ (∀ (bound : Element), (∀ (element : Element), containingSubset ≤ element → relation bound element) → relation bound containingInfimum))) → relation containingInfimum intersectionInfimum
+Transliterated theorem: (∀ A B ∈ U ∀ x y ∈ Element), relation y x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {containingSubset otherSubset : SetObject} {intersectionInfimum containingInfimum : Element} (intersectionIsInfimum : Infimum relation (containingSubset ∩ otherSubset) intersectionInfimum) (containingIsInfimum : Infimum relation containingSubset containingInfimum) : relation containingInfimum intersectionInfimum
+Source: ./Bounds/Infimum/Theorems.lean#L557
+
+
+
+Name: ContainingInfimumRelatedToInfimumOfDifference
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {subset removed : SetObject} {differenceInfimum subsetInfimum : Element} (differenceIsInfimum : Infimum relation (subset \ removed) differenceInfimum) (subsetIsInfimum : Infimum relation subset subsetInfimum), relation subsetInfimum differenceInfimum
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset removed : SetObject
+    differenceInfimum subsetInfimum : Element
+    differenceIsInfimum : Infimum relation (subset \ removed) differenceInfimum
+    subsetIsInfimum : Infimum relation subset subsetInfimum
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {subset removed : SetObject} {differenceInfimum subsetInfimum : Element}, (((∀ (element : Element), subset ≤ removed ≤ element → relation differenceInfimum element) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ removed ≤ element → relation bound element) → relation bound differenceInfimum)) ∧ ((∀ (element : Element), subset ≤ element → relation subsetInfimum element) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation bound element) → relation bound subsetInfimum))) → relation subsetInfimum differenceInfimum
+Transliterated theorem: (∀ A B ∈ U ∀ x y ∈ Element), relation y x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {subset removed : SetObject} {differenceInfimum subsetInfimum : Element} (differenceIsInfimum : Infimum relation (subset \ removed) differenceInfimum) (subsetIsInfimum : Infimum relation subset subsetInfimum) : relation subsetInfimum differenceInfimum
+Source: ./Bounds/Infimum/Theorems.lean#L616
+
+
+
+Name: UnionInfimumRelatedToInfimumOfSymmetricDifference
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [LRA.Set.HasSymmDiff SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] [LRA.Set.SymmDiffMembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {leftSubset rightSubset : SetObject} {differenceInfimum unionInfimum : Element} (differenceIsInfimum : Infimum relation (leftSubset ∆ rightSubset) differenceInfimum) (unionIsInfimum : Infimum relation (leftSubset ∪ rightSubset) unionInfimum), relation unionInfimum differenceInfimum
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    leftSubset rightSubset : SetObject
+    differenceInfimum unionInfimum : Element
+    differenceIsInfimum : Infimum relation (leftSubset ∆ rightSubset) differenceInfimum
+    unionIsInfimum : Infimum relation (leftSubset ∪ rightSubset) unionInfimum
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ LRA.Set.SymmDiffMembershipLaws Element SetObject) → ∀ {relation : Element → Element → Prop} {leftSubset rightSubset : SetObject} {differenceInfimum unionInfimum : Element}, (((∀ (element : Element), leftSubset ≤ rightSubset ≤ element → relation differenceInfimum element) ∧ (∀ (bound : Element), (∀ (element : Element), leftSubset ≤ rightSubset ≤ element → relation bound element) → relation bound differenceInfimum)) ∧ ((∀ (element : Element), leftSubset ≤ rightSubset ≤ element → relation unionInfimum element) ∧ (∀ (bound : Element), (∀ (element : Element), leftSubset ≤ rightSubset ≤ element → relation bound element) → relation bound unionInfimum))) → relation unionInfimum differenceInfimum
+Transliterated theorem: (∀ A B ∈ U ∀ x y ∈ Element), relation y x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [LRA.Set.HasSymmDiff SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] [LRA.Set.SymmDiffMembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {leftSubset rightSubset : SetObject} {differenceInfimum unionInfimum : Element} (differenceIsInfimum : Infimum relation (leftSubset ∆ rightSubset) differenceInfimum) (unionIsInfimum : Infimum relation (leftSubset ∪ rightSubset) unionInfimum) : relation unionInfimum differenceInfimum
+Source: ./Bounds/Infimum/Theorems.lean#L676
+
+
+
+Name: InfimumOfIndexedUnion
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} {Index : Type w} [Membership Element SetObject] [LRA.Set.HasIndexedUnion SetObject] [LRA.Set.HasIndexedIntersection SetObject] [LRA.Set.IndexedMembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsTransitive : LRA.Relation.Transitive relation) (family : Index -> SetObject) (memberInfimum : Index -> Element) (familyInfimum : Element) (eachIsInfimum : forall index, Infimum relation (family index) (memberInfimum index)) (familyInfimumBoundsMembers : forall index, relation familyInfimum (memberInfimum index)) (familyInfimumIsGreatest : forall bound, (forall index, relation bound (memberInfimum index)) -> relation bound familyInfimum), Infimum relation (LRA.Set.HasIndexedUnion.indexedUnion family) familyInfimum
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, Index, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsTransitive : LRA.Relation.Transitive relation
+    family : Index -> SetObject
+    memberInfimum : Index -> Element
+    familyInfimum : Element
+    eachIsInfimum : forall index, Infimum relation (family index) (memberInfimum index)
+    familyInfimumBoundsMembers : forall index, relation familyInfimum (memberInfimum index)
+    familyInfimumIsGreatest : forall bound, (forall index, relation bound (memberInfimum index)) -> relation bound familyInfimum
+  Prove
+    LRA.Set.IndexedMembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop}, (∀ (x y z : Element), relation x y → relation y z → relation x z) → ∀ (family : Index → SetObject) (memberInfimum : Index → Element) (familyInfimum : Element), ((∀ (index : Index), ((∀ (element : Element), family index ≤ element → relation (memberInfimum index) element) ∧ (∀ (bound : Element), (∀ (element : Element), family index ≤ element → relation bound element) → relation bound (memberInfimum index)))) ∧ ((∀ (index : Index), relation familyInfimum (memberInfimum index)) ∧ (∀ (bound : Element), (∀ (index : Index), relation bound (memberInfimum index)) → relation bound familyInfimum))) → ((∀ (element : Element), family ≤ ≤element → relation familyInfimum element) ∧ (∀ (bound : Element), (∀ (element : Element), family ≤ ≤element → relation bound element) → relation bound familyInfimum))
+Transliterated theorem: (∀ x ∈ Element), Infimum relation (LRA.Set.HasIndexedUnion.indexedUnion family) x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} {Index : Type w} [Membership Element SetObject] [LRA.Set.HasIndexedUnion SetObject] [LRA.Set.HasIndexedIntersection SetObject] [LRA.Set.IndexedMembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsTransitive : LRA.Relation.Transitive relation) (family : Index -> SetObject) (memberInfimum : Index -> Element) (familyInfimum : Element) (eachIsInfimum : forall index, Infimum relation (family index) (memberInfimum index)) (familyInfimumBoundsMembers : forall index, relation familyInfimum (memberInfimum index)) (familyInfimumIsGreatest : forall bound, (forall index, relation bound (memberInfimum index)) -> relation bound familyInfimum) : Infimum relation (LRA.Set.HasIndexedUnion.indexedUnion family) familyInfimum
+Source: ./Bounds/Infimum/Theorems.lean#L740
+
+
+
+Name: SupremumUnique
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsAntisymmetric : LRA.Relation.Antisymmetric relation) {subset : SetObject} {first second : Element} (firstIsSupremum : Supremum relation subset first) (secondIsSupremum : Supremum relation subset second), first = second
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsAntisymmetric : LRA.Relation.Antisymmetric relation
+    subset : SetObject
+    first second : Element
+    firstIsSupremum : Supremum relation subset first
+    secondIsSupremum : Supremum relation subset second
+  Prove
+    (∀ (x y : Element), relation x y → relation y x → x = y) → ∀ {subset : SetObject} {first second : Element}, (((∀ (element : Element), subset ≤ element → relation element first) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation element bound) → relation first bound)) ∧ ((∀ (element : Element), subset ≤ element → relation element second) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation element bound) → relation second bound))) → first = second
+Transliterated theorem: (∀ A ∈ U ∀ x y ∈ Element), x = y
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsAntisymmetric : LRA.Relation.Antisymmetric relation) {subset : SetObject} {first second : Element} (firstIsSupremum : Supremum relation subset first) (secondIsSupremum : Supremum relation subset second) : first = second
+Source: ./Bounds/Supremum/Theorems.lean#L57
+
+
+
+Name: SupremumOfSingleton
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Singleton Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsReflexive : LRA.Relation.Reflexive relation) (element : Element) (singletonMembership : forall candidate, candidate ∈ ({element} : SetObject) ↔ candidate = element), Supremum relation ({element} : SetObject) element
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsReflexive : LRA.Relation.Reflexive relation
+    element : Element
+  Prove
+    Supremum relation ({element} : SetObject) element
+Transliterated theorem: (∀ x ∈ Element), (forall candidate, candidate ∈ {x} ∈ SetObject ↔ candidate = x) → Supremum relation {x} ∈ SetObject x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Singleton Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsReflexive : LRA.Relation.Reflexive relation) (element : Element) (singletonMembership : forall candidate, candidate ∈ ({element} : SetObject) ↔ candidate = element) : Supremum relation ({element} : SetObject) element
+Source: ./Bounds/Supremum/Theorems.lean#L112
+
+
+
+Name: SupremumIsUpperBound
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   {relation : LRA.Relation.Endorelation Element} {subset : SetObject} {supremum : Element},   LRA.Order.Supremum relation subset supremum → LRA.Order.UpperBound relation subset supremum
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+    supremum : Element
+    supremumIsSupremum : Supremum relation subset supremum
+  Prove
+    ((∀ (element : Element), subset ≤ element → relation element supremum) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation element bound) → relation supremum bound)) → ∀ (element : Element), subset ≤ element → relation element supremum
+Transliterated theorem: (∀ A ∈ U ∀ x ∈ Element), UpperBound relation A x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} {subset : SetObject} {supremum : Element} (supremumIsSupremum : Supremum relation subset supremum) : UpperBound relation subset supremum
+Source: ./Bounds/Supremum/Theorems.lean#L165
+
+
+
+Name: SupremumRelatedToEveryUpperBound
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} {subset : SetObject} {supremum bound : Element} (supremumIsSupremum : Supremum relation subset supremum) (boundIsUpperBound : UpperBound relation subset bound), relation supremum bound
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+    supremum bound : Element
+    supremumIsSupremum : Supremum relation subset supremum
+    boundIsUpperBound : UpperBound relation subset bound
+  Prove
+    (((∀ (element : Element), subset ≤ element → relation element supremum) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation element bound) → relation supremum bound)) ∧ (∀ (element : Element), subset ≤ element → relation element bound)) → relation supremum bound
+Transliterated theorem: (∀ A ∈ U ∀ x y ∈ Element), relation x y
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} {subset : SetObject} {supremum bound : Element} (supremumIsSupremum : Supremum relation subset supremum) (boundIsUpperBound : UpperBound relation subset bound) : relation supremum bound
+Source: ./Bounds/Supremum/Theorems.lean#L216
+
+
+
+Name: UpperBoundIffSupremumRelated
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsTransitive : LRA.Relation.Transitive relation) {subset : SetObject} {supremum bound : Element} (supremumIsSupremum : Supremum relation subset supremum), UpperBound relation subset bound ↔ relation supremum bound
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsTransitive : LRA.Relation.Transitive relation
+    subset : SetObject
+    supremum bound : Element
+    supremumIsSupremum : Supremum relation subset supremum
+  Prove
+    UpperBound relation subset bound ↔ relation supremum bound
+Transliterated theorem: (∀ A ∈ U ∀ x y ∈ Element), UpperBound relation A y ↔ relation x y
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsTransitive : LRA.Relation.Transitive relation) {subset : SetObject} {supremum bound : Element} (supremumIsSupremum : Supremum relation subset supremum) : UpperBound relation subset bound ↔ relation supremum bound
+Source: ./Bounds/Supremum/Theorems.lean#L268
+
+
+
+Name: SupremumMonotoneUnderInclusion
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} {smaller larger : SetObject} {smallerSupremum largerSupremum : Element} (smallerIsContained : forall element, element ∈ smaller -> element ∈ larger) (smallerSupremumIsSupremum : Supremum relation smaller smallerSupremum) (largerSupremumIsSupremum : Supremum relation larger largerSupremum), relation smallerSupremum largerSupremum
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    smaller larger : SetObject
+    smallerSupremum largerSupremum : Element
+    smallerSupremumIsSupremum : Supremum relation smaller smallerSupremum
+    largerSupremumIsSupremum : Supremum relation larger largerSupremum
+  Prove
+    ((∀ (element : Element), smaller ≤ element → larger ≤ element) ∧ (((∀ (element : Element), smaller ≤ element → relation element smallerSupremum) ∧ (∀ (bound : Element), (∀ (element : Element), smaller ≤ element → relation element bound) → relation smallerSupremum bound)) ∧ ((∀ (element : Element), larger ≤ element → relation element largerSupremum) ∧ (∀ (bound : Element), (∀ (element : Element), larger ≤ element → relation element bound) → relation largerSupremum bound)))) → relation smallerSupremum largerSupremum
+Transliterated theorem: (∀ A B ∈ U ∀ x y ∈ Element), (forall element, element ∈ A -> element ∈ B) → relation x y
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} {smaller larger : SetObject} {smallerSupremum largerSupremum : Element} (smallerIsContained : forall element, element ∈ smaller -> element ∈ larger) (smallerSupremumIsSupremum : Supremum relation smaller smallerSupremum) (largerSupremumIsSupremum : Supremum relation larger largerSupremum) : relation smallerSupremum largerSupremum
+Source: ./Bounds/Supremum/Theorems.lean#L323
+
+
+
+Name: SupremaCompareUnderPointwiseDomination
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsTransitive : LRA.Relation.Transitive relation) {leftSubset rightSubset : SetObject} {leftSupremum rightSupremum : Element} (leftDominatedByRight : Dominated relation leftSubset rightSubset) (leftSupremumIsSupremum : Supremum relation leftSubset leftSupremum) (rightSupremumIsSupremum : Supremum relation rightSubset rightSupremum), relation leftSupremum rightSupremum
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsTransitive : LRA.Relation.Transitive relation
+    leftSubset rightSubset : SetObject
+    leftSupremum rightSupremum : Element
+    leftDominatedByRight : Dominated relation leftSubset rightSubset
+    leftSupremumIsSupremum : Supremum relation leftSubset leftSupremum
+    rightSupremumIsSupremum : Supremum relation rightSubset rightSupremum
+  Prove
+    (∀ (x y z : Element), relation x y → relation y z → relation x z) → ∀ {leftSubset rightSubset : SetObject} {leftSupremum rightSupremum : Element}, ((∀ (element : Element), leftSubset ≤ element → Exists fun other => (rightSubset ≤ other ∧ relation element other)) ∧ (((∀ (element : Element), leftSubset ≤ element → relation element leftSupremum) ∧ (∀ (bound : Element), (∀ (element : Element), leftSubset ≤ element → relation element bound) → relation leftSupremum bound)) ∧ ((∀ (element : Element), rightSubset ≤ element → relation element rightSupremum) ∧ (∀ (bound : Element), (∀ (element : Element), rightSubset ≤ element → relation element bound) → relation rightSupremum bound)))) → relation leftSupremum rightSupremum
+Transliterated theorem: (∀ A B ∈ U ∀ x y ∈ Element), relation x y
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsTransitive : LRA.Relation.Transitive relation) {leftSubset rightSubset : SetObject} {leftSupremum rightSupremum : Element} (leftDominatedByRight : Dominated relation leftSubset rightSubset) (leftSupremumIsSupremum : Supremum relation leftSubset leftSupremum) (rightSupremumIsSupremum : Supremum relation rightSubset rightSupremum) : relation leftSupremum rightSupremum
+Source: ./Bounds/Supremum/Theorems.lean#L383
+
+
+
+Name: SupremumInSubsetIsGreatestElement
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} {subset : SetObject} {supremum : Element} (supremumIsSupremum : Supremum relation subset supremum) (supremumBelongs : supremum ∈ subset), GreatestElement relation subset supremum
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+    supremum : Element
+    supremumIsSupremum : Supremum relation subset supremum
+  Prove
+    (((∀ (element : Element), subset ≤ element → relation element supremum) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation element bound) → relation supremum bound)) ∧ subset ≤ supremum) → (subset ≤ supremum ∧ (∀ (element : Element), subset ≤ element → relation element supremum))
+Transliterated theorem: (∀ A ∈ U ∀ x ∈ Element), (x ∈ A) → GreatestElement(x, A)
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} {subset : SetObject} {supremum : Element} (supremumIsSupremum : Supremum relation subset supremum) (supremumBelongs : supremum ∈ subset) : GreatestElement relation subset supremum
+Source: ./Bounds/Supremum/Theorems.lean#L440
+
+
+
+Name: SupremumOfUnion
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsTransitive : LRA.Relation.Transitive relation) {leftSubset rightSubset : SetObject} {leftSupremum rightSupremum unionSupremum : Element} (leftSupremumIsSupremum : Supremum relation leftSubset leftSupremum) (rightSupremumIsSupremum : Supremum relation rightSubset rightSupremum) (unionSupremumIsJoin : Join relation leftSupremum rightSupremum unionSupremum), Supremum relation (leftSubset ∪ rightSubset) unionSupremum
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsTransitive : LRA.Relation.Transitive relation
+    leftSubset rightSubset : SetObject
+    leftSupremum rightSupremum unionSupremum : Element
+    leftSupremumIsSupremum : Supremum relation leftSubset leftSupremum
+    rightSupremumIsSupremum : Supremum relation rightSubset rightSupremum
+    unionSupremumIsJoin : Join relation leftSupremum rightSupremum unionSupremum
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop}, (∀ (x y z : Element), relation x y → relation y z → relation x z) → ∀ {leftSubset rightSubset : SetObject} {leftSupremum rightSupremum unionSupremum : Element}, (((∀ (element : Element), leftSubset ≤ element → relation element leftSupremum) ∧ (∀ (bound : Element), (∀ (element : Element), leftSubset ≤ element → relation element bound) → relation leftSupremum bound)) ∧ (((∀ (element : Element), rightSubset ≤ element → relation element rightSupremum) ∧ (∀ (bound : Element), (∀ (element : Element), rightSubset ≤ element → relation element bound) → relation rightSupremum bound)) ∧ (relation leftSupremum unionSupremum ∧ (relation rightSupremum unionSupremum ∧ (∀ (upper : Element), relation leftSupremum upper → relation rightSupremum upper → relation unionSupremum upper))))) → ((∀ (element : Element), leftSubset ≤ rightSubset ≤ element → relation element unionSupremum) ∧ (∀ (bound : Element), (∀ (element : Element), leftSubset ≤ rightSubset ≤ element → relation element bound) → relation unionSupremum bound))
+Transliterated theorem: (∀ A B ∈ U ∀ x y z ∈ Element), Supremum relation (A ∪ B) z
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsTransitive : LRA.Relation.Transitive relation) {leftSubset rightSubset : SetObject} {leftSupremum rightSupremum unionSupremum : Element} (leftSupremumIsSupremum : Supremum relation leftSubset leftSupremum) (rightSupremumIsSupremum : Supremum relation rightSubset rightSupremum) (unionSupremumIsJoin : Join relation leftSupremum rightSupremum unionSupremum) : Supremum relation (leftSubset ∪ rightSubset) unionSupremum
+Source: ./Bounds/Supremum/Theorems.lean#L500
+
+
+
+Name: SupremumOfIntersectionRelatedToContainingSupremum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {containingSubset otherSubset : SetObject} {intersectionSupremum containingSupremum : Element} (intersectionIsSupremum : Supremum relation (containingSubset ∩ otherSubset) intersectionSupremum) (containingIsSupremum : Supremum relation containingSubset containingSupremum), relation intersectionSupremum containingSupremum
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    containingSubset otherSubset : SetObject
+    intersectionSupremum containingSupremum : Element
+    intersectionIsSupremum : Supremum relation (containingSubset ∩ otherSubset) intersectionSupremum
+    containingIsSupremum : Supremum relation containingSubset containingSupremum
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {containingSubset otherSubset : SetObject} {intersectionSupremum containingSupremum : Element}, (((∀ (element : Element), containingSubset ≤ otherSubset ≤ element → relation element intersectionSupremum) ∧ (∀ (bound : Element), (∀ (element : Element), containingSubset ≤ otherSubset ≤ element → relation element bound) → relation intersectionSupremum bound)) ∧ ((∀ (element : Element), containingSubset ≤ element → relation element containingSupremum) ∧ (∀ (bound : Element), (∀ (element : Element), containingSubset ≤ element → relation element bound) → relation containingSupremum bound))) → relation intersectionSupremum containingSupremum
+Transliterated theorem: (∀ A B ∈ U ∀ x y ∈ Element), relation x y
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {containingSubset otherSubset : SetObject} {intersectionSupremum containingSupremum : Element} (intersectionIsSupremum : Supremum relation (containingSubset ∩ otherSubset) intersectionSupremum) (containingIsSupremum : Supremum relation containingSubset containingSupremum) : relation intersectionSupremum containingSupremum
+Source: ./Bounds/Supremum/Theorems.lean#L562
+
+
+
+Name: SupremumOfDifferenceRelatedToContainingSupremum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {subset removed : SetObject} {differenceSupremum subsetSupremum : Element} (differenceIsSupremum : Supremum relation (subset \ removed) differenceSupremum) (subsetIsSupremum : Supremum relation subset subsetSupremum), relation differenceSupremum subsetSupremum
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset removed : SetObject
+    differenceSupremum subsetSupremum : Element
+    differenceIsSupremum : Supremum relation (subset \ removed) differenceSupremum
+    subsetIsSupremum : Supremum relation subset subsetSupremum
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {subset removed : SetObject} {differenceSupremum subsetSupremum : Element}, (((∀ (element : Element), subset ≤ removed ≤ element → relation element differenceSupremum) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ removed ≤ element → relation element bound) → relation differenceSupremum bound)) ∧ ((∀ (element : Element), subset ≤ element → relation element subsetSupremum) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation element bound) → relation subsetSupremum bound))) → relation differenceSupremum subsetSupremum
+Transliterated theorem: (∀ A B ∈ U ∀ x y ∈ Element), relation x y
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {subset removed : SetObject} {differenceSupremum subsetSupremum : Element} (differenceIsSupremum : Supremum relation (subset \ removed) differenceSupremum) (subsetIsSupremum : Supremum relation subset subsetSupremum) : relation differenceSupremum subsetSupremum
+Source: ./Bounds/Supremum/Theorems.lean#L621
+
+
+
+Name: SupremumOfSymmetricDifferenceRelatedToUnionSupremum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [LRA.Set.HasSymmDiff SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] [LRA.Set.SymmDiffMembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {leftSubset rightSubset : SetObject} {differenceSupremum unionSupremum : Element} (differenceIsSupremum : Supremum relation (leftSubset ∆ rightSubset) differenceSupremum) (unionIsSupremum : Supremum relation (leftSubset ∪ rightSubset) unionSupremum), relation differenceSupremum unionSupremum
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    leftSubset rightSubset : SetObject
+    differenceSupremum unionSupremum : Element
+    differenceIsSupremum : Supremum relation (leftSubset ∆ rightSubset) differenceSupremum
+    unionIsSupremum : Supremum relation (leftSubset ∪ rightSubset) unionSupremum
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ LRA.Set.SymmDiffMembershipLaws Element SetObject) → ∀ {relation : Element → Element → Prop} {leftSubset rightSubset : SetObject} {differenceSupremum unionSupremum : Element}, (((∀ (element : Element), leftSubset ≤ rightSubset ≤ element → relation element differenceSupremum) ∧ (∀ (bound : Element), (∀ (element : Element), leftSubset ≤ rightSubset ≤ element → relation element bound) → relation differenceSupremum bound)) ∧ ((∀ (element : Element), leftSubset ≤ rightSubset ≤ element → relation element unionSupremum) ∧ (∀ (bound : Element), (∀ (element : Element), leftSubset ≤ rightSubset ≤ element → relation element bound) → relation unionSupremum bound))) → relation differenceSupremum unionSupremum
+Transliterated theorem: (∀ A B ∈ U ∀ x y ∈ Element), relation x y
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [LRA.Set.HasSymmDiff SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] [LRA.Set.SymmDiffMembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} {leftSubset rightSubset : SetObject} {differenceSupremum unionSupremum : Element} (differenceIsSupremum : Supremum relation (leftSubset ∆ rightSubset) differenceSupremum) (unionIsSupremum : Supremum relation (leftSubset ∪ rightSubset) unionSupremum) : relation differenceSupremum unionSupremum
+Source: ./Bounds/Supremum/Theorems.lean#L681
+
+
+
+Name: SupremumOfIndexedUnion
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} {Index : Type w} [Membership Element SetObject] [LRA.Set.HasIndexedUnion SetObject] [LRA.Set.HasIndexedIntersection SetObject] [LRA.Set.IndexedMembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsTransitive : LRA.Relation.Transitive relation) (family : Index -> SetObject) (memberSupremum : Index -> Element) (familySupremum : Element) (eachIsSupremum : forall index, Supremum relation (family index) (memberSupremum index)) (familySupremumBoundsMembers : forall index, relation (memberSupremum index) familySupremum) (familySupremumIsLeast : forall bound, (forall index, relation (memberSupremum index) bound) -> relation familySupremum bound), Supremum relation (LRA.Set.HasIndexedUnion.indexedUnion family) familySupremum
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, Index, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsTransitive : LRA.Relation.Transitive relation
+    family : Index -> SetObject
+    memberSupremum : Index -> Element
+    familySupremum : Element
+    eachIsSupremum : forall index, Supremum relation (family index) (memberSupremum index)
+    familySupremumBoundsMembers : forall index, relation (memberSupremum index) familySupremum
+    familySupremumIsLeast : forall bound, (forall index, relation (memberSupremum index) bound) -> relation familySupremum bound
+  Prove
+    LRA.Set.IndexedMembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop}, (∀ (x y z : Element), relation x y → relation y z → relation x z) → ∀ (family : Index → SetObject) (memberSupremum : Index → Element) (familySupremum : Element), ((∀ (index : Index), ((∀ (element : Element), family index ≤ element → relation element (memberSupremum index)) ∧ (∀ (bound : Element), (∀ (element : Element), family index ≤ element → relation element bound) → relation (memberSupremum index) bound))) ∧ ((∀ (index : Index), relation (memberSupremum index) familySupremum) ∧ (∀ (bound : Element), (∀ (index : Index), relation (memberSupremum index) bound) → relation familySupremum bound))) → ((∀ (element : Element), family ≤ ≤element → relation element familySupremum) ∧ (∀ (bound : Element), (∀ (element : Element), family ≤ ≤element → relation element bound) → relation familySupremum bound))
+Transliterated theorem: (∀ x ∈ Element), Supremum relation (LRA.Set.HasIndexedUnion.indexedUnion family) x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} {Index : Type w} [Membership Element SetObject] [LRA.Set.HasIndexedUnion SetObject] [LRA.Set.HasIndexedIntersection SetObject] [LRA.Set.IndexedMembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsTransitive : LRA.Relation.Transitive relation) (family : Index -> SetObject) (memberSupremum : Index -> Element) (familySupremum : Element) (eachIsSupremum : forall index, Supremum relation (family index) (memberSupremum index)) (familySupremumBoundsMembers : forall index, relation (memberSupremum index) familySupremum) (familySupremumIsLeast : forall bound, (forall index, relation (memberSupremum index) bound) -> relation familySupremum bound) : Supremum relation (LRA.Set.HasIndexedUnion.indexedUnion family) familySupremum
+Source: ./Bounds/Supremum/Theorems.lean#L745
+
+
+
+Name: GreatestLowerBoundPropertyGivesUniqueInfimum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsAntisymmetric : LRA.Relation.Antisymmetric relation) (relationHasGreatestLowerBounds : GreatestLowerBoundProperty SetObject relation) (subset : SetObject) (subsetIsNonempty : exists element, element ∈ subset) (subsetIsBoundedBelow : BoundedBelow relation subset), exists infimum, Infimum relation subset infimum /\ forall other, Infimum relation subset other -> other = infimum
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsAntisymmetric : LRA.Relation.Antisymmetric relation
+    relationHasGreatestLowerBounds : GreatestLowerBoundProperty SetObject relation
+    subset : SetObject
+    subsetIsBoundedBelow : BoundedBelow relation subset
+  Prove
+    ((∀ (x y : Element), relation x y → relation y x → x = y) ∧ (∀ (subset : SetObject), (Exists fun element => subset ≤ element) → (Exists fun bound => ∀ (element : Element), subset ≤ element → relation bound element) → Exists fun infimum => ((∀ (element : Element), subset ≤ element → relation infimum element) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation bound element) → relation bound infimum)))) → ∀ (subset : SetObject), (Exists fun element => subset ≤ element ∧ (Exists fun bound => ∀ (element : Element), subset ≤ element → relation bound element)) → Exists fun infimum => (((∀ (element : Element), subset ≤ element → relation infimum element) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation bound element) → relation bound infimum)) ∧ (∀ (other : Element), ((∀ (element : Element), subset ≤ element → relation other element) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation bound element) → relation bound other)) → other = infimum))
+Transliterated theorem: (∀ A ∈ U), (exists element, element ∈ A) → exists infimum, Infimum relation A infimum ∧ forall other, Infimum relation A other -> other = infimum
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsAntisymmetric : LRA.Relation.Antisymmetric relation) (relationHasGreatestLowerBounds : GreatestLowerBoundProperty SetObject relation) (subset : SetObject) (subsetIsNonempty : exists element, element ∈ subset) (subsetIsBoundedBelow : BoundedBelow relation subset) : exists infimum, Infimum relation subset infimum /\ forall other, Infimum relation subset other -> other = infimum
+Source: ./Bounds/GreatestLowerBoundProperty/Theorems.lean#L57
+
+
+
+Name: LeastUpperBoundPropertyGivesUniqueSupremum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsAntisymmetric : LRA.Relation.Antisymmetric relation) (relationHasLeastUpperBounds : LeastUpperBoundProperty SetObject relation) (subset : SetObject) (subsetIsNonempty : exists element, element ∈ subset) (subsetIsBoundedAbove : BoundedAbove relation subset), exists supremum, Supremum relation subset supremum /\ forall other, Supremum relation subset other -> other = supremum
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsAntisymmetric : LRA.Relation.Antisymmetric relation
+    relationHasLeastUpperBounds : LeastUpperBoundProperty SetObject relation
+    subset : SetObject
+    subsetIsBoundedAbove : BoundedAbove relation subset
+  Prove
+    ((∀ (x y : Element), relation x y → relation y x → x = y) ∧ (∀ (subset : SetObject), (Exists fun element => subset ≤ element) → (Exists fun bound => ∀ (element : Element), subset ≤ element → relation element bound) → Exists fun supremum => ((∀ (element : Element), subset ≤ element → relation element supremum) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation element bound) → relation supremum bound)))) → ∀ (subset : SetObject), (Exists fun element => subset ≤ element ∧ (Exists fun bound => ∀ (element : Element), subset ≤ element → relation element bound)) → Exists fun supremum => (((∀ (element : Element), subset ≤ element → relation element supremum) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation element bound) → relation supremum bound)) ∧ (∀ (other : Element), ((∀ (element : Element), subset ≤ element → relation element other) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation element bound) → relation other bound)) → other = supremum))
+Transliterated theorem: (∀ A ∈ U), (exists element, element ∈ A) → exists supremum, Supremum relation A supremum ∧ forall other, Supremum relation A other -> other = supremum
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsAntisymmetric : LRA.Relation.Antisymmetric relation) (relationHasLeastUpperBounds : LeastUpperBoundProperty SetObject relation) (subset : SetObject) (subsetIsNonempty : exists element, element ∈ subset) (subsetIsBoundedAbove : BoundedAbove relation subset) : exists supremum, Supremum relation subset supremum /\ forall other, Supremum relation subset other -> other = supremum
+Source: ./Bounds/LeastUpperBoundProperty/Theorems.lean#L57
+
+
+
+Name: Completeness
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {R : Type u} {SetObject : Type v} [inst : LE R] [inst_1 : Membership R SetObject],   LRA.Order.OrderCompletenessLaws R SetObject → LRA.Order.LeastUpperBoundProperty SetObject fun a b => inst.le a b
+Predicate logic (unfolded):
+  Ambient
+    (R, SetObject, ≤, ∈)
+  Objects
+    (none)
+  Prove
+    LRA.Order.OrderCompletenessLaws R SetObject → ∀ (subset : SetObject), (Exists fun element => subset ≤ element ∧ (Exists fun bound => ∀ (element : R), subset ≤ element → (fun a b => inst.le a b) element bound)) → Exists fun supremum => ((∀ (element : R), subset ≤ element → (fun a b => inst.le a b) element supremum) ∧ (∀ (bound : R), (∀ (element : R), subset ≤ element → (fun a b => inst.le a b) element bound) → (fun a b => inst.le a b) supremum bound))
+Transliterated theorem: LRA.Order.LeastUpperBoundProperty SetObject fun a b ∈ R => a <= b
+Logical form (Lean): [LE R] [Membership R SetObject] [OrderCompletenessLaws R SetObject] : LRA.Order.LeastUpperBoundProperty SetObject (fun a b : R => a <= b)
+Source: ./Bounds/LeastUpperBoundProperty/CompletenessLaws.lean#L104
+
+
+
+Name: SubsetOfLowerBoundsOfUpperBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (relation : LRA.Relation.Endorelation Element) (subset : SetObject), subset ⊆ LowerBounds relation (UpperBounds relation subset)
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ (relation : Element → Element → Prop) (subset : SetObject), subset ≤ ≤ ≤ funbound=> ∀ (element : Element), inst_6.separation inst_7.universal (LRA.Order.UpperBound relation subset) ≤ element → relation bound element
+Transliterated theorem: (∀ A ∈ U), A ⊆ LowerBounds relation (UpperBounds relation A)
+Logical form (Lean): (relation : LRA.Relation.Endorelation Element) (subset : SetObject) : subset ⊆ LowerBounds relation (UpperBounds relation subset)
+Source: ./Bounds/BoundSets/Relationships.lean#L62
+
+
+
+Name: SubsetOfUpperBoundsOfLowerBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (relation : LRA.Relation.Endorelation Element) (subset : SetObject), subset ⊆ UpperBounds relation (LowerBounds relation subset)
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ (relation : Element → Element → Prop) (subset : SetObject), subset ≤ ≤ ≤ funbound=> ∀ (element : Element), inst_6.separation inst_7.universal (LRA.Order.LowerBound relation subset) ≤ element → relation element bound
+Transliterated theorem: (∀ A ∈ U), A ⊆ UpperBounds relation (LowerBounds relation A)
+Logical form (Lean): (relation : LRA.Relation.Endorelation Element) (subset : SetObject) : subset ⊆ UpperBounds relation (LowerBounds relation subset)
+Source: ./Bounds/BoundSets/Relationships.lean#L106
+
+
+
+Name: UpperBoundsLowerBoundsUpperBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (relation : LRA.Relation.Endorelation Element) (subset : SetObject), UpperBounds relation (LowerBounds relation (UpperBounds relation subset)) = UpperBounds relation subset
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ (relation : Element → Element → Prop) (subset : SetObject), ≤ ≤ funbound=> ∀ (element : Element), inst_7.universal ≤ LRA.Order.LowerBound relation (LRA.Order.UpperBounds relation subset) ≤ element → relation element bound = ≤ ≤ funbound=> ∀ (element : Element), subset ≤ element → relation element bound
+Transliterated theorem: (∀ A ∈ U), UpperBounds relation (LowerBounds relation (UpperBounds relation A)) = UpperBounds relation A
+Logical form (Lean): (relation : LRA.Relation.Endorelation Element) (subset : SetObject) : UpperBounds relation (LowerBounds relation (UpperBounds relation subset)) = UpperBounds relation subset
+Source: ./Bounds/BoundSets/Relationships.lean#L152
+
+
+
+Name: LowerBoundsUpperBoundsLowerBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (relation : LRA.Relation.Endorelation Element) (subset : SetObject), LowerBounds relation (UpperBounds relation (LowerBounds relation subset)) = LowerBounds relation subset
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ (relation : Element → Element → Prop) (subset : SetObject), ≤ ≤ funbound=> ∀ (element : Element), inst_7.universal ≤ LRA.Order.UpperBound relation (LRA.Order.LowerBounds relation subset) ≤ element → relation bound element = ≤ ≤ funbound=> ∀ (element : Element), subset ≤ element → relation bound element
+Transliterated theorem: (∀ A ∈ U), LowerBounds relation (UpperBounds relation (LowerBounds relation A)) = LowerBounds relation A
+Logical form (Lean): (relation : LRA.Relation.Endorelation Element) (subset : SetObject) : LowerBounds relation (UpperBounds relation (LowerBounds relation subset)) = LowerBounds relation subset
+Source: ./Bounds/BoundSets/Relationships.lean#L200
+
+
+
+Name: LowerUpperClosureIsExtensive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (relation : LRA.Relation.Endorelation Element) (subset : SetObject), subset ⊆ LowerUpperClosure relation subset
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ (relation : Element → Element → Prop) (subset : SetObject), subset ≤ ≤ ≤ funbound=> ∀ (element : Element), LRA.Order.UpperBounds relation subset ≤ element → relation bound element
+Transliterated theorem: (∀ A ∈ U), A ⊆ LowerUpperClosure relation A
+Logical form (Lean): (relation : LRA.Relation.Endorelation Element) (subset : SetObject) : subset ⊆ LowerUpperClosure relation subset
+Source: ./Bounds/BoundSets/Relationships.lean#L246
+
+
+
+Name: LowerUpperClosureIsMonotone
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {relation : LRA.Relation.Endorelation Element} {smaller larger : SetObject} (smallerIsContained : smaller ⊆ larger), LowerUpperClosure relation smaller ⊆ LowerUpperClosure relation larger
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    smaller larger : SetObject
+    smallerIsContained : smaller ⊆ larger
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ {relation : Element → Element → Prop} {smaller larger : SetObject}, smaller ≤ larger → ≤ ≤ funbound=> ∀ (element : Element), LRA.Order.UpperBounds relation smaller ≤ element → relation bound element ≤ ≤ ≤ funbound=> ∀ (element : Element), LRA.Order.UpperBounds relation larger ≤ element → relation bound element
+Transliterated theorem: (∀ A B ∈ U), LowerUpperClosure relation A ⊆ LowerUpperClosure relation B
+Logical form (Lean): {relation : LRA.Relation.Endorelation Element} {smaller larger : SetObject} (smallerIsContained : smaller ⊆ larger) : LowerUpperClosure relation smaller ⊆ LowerUpperClosure relation larger
+Source: ./Bounds/BoundSets/Relationships.lean#L292
+
+
+
+Name: LowerUpperClosureIsIdempotent
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (relation : LRA.Relation.Endorelation Element) (subset : SetObject), LowerUpperClosure relation (LowerUpperClosure relation subset) = LowerUpperClosure relation subset
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ (relation : Element → Element → Prop) (subset : SetObject), ≤ ≤ funbound=> ∀ (element : Element), inst_6.separation inst_7.universal (LRA.Order.UpperBound relation (LRA.Order.LowerUpperClosure relation subset)) ≤ element → relation bound element = ≤ ≤ funbound=> ∀ (element : Element), inst_6.separation inst_7.universal (LRA.Order.UpperBound relation subset) ≤ element → relation bound element
+Transliterated theorem: (∀ A ∈ U), LowerUpperClosure relation (LowerUpperClosure relation A) = LowerUpperClosure relation A
+Logical form (Lean): (relation : LRA.Relation.Endorelation Element) (subset : SetObject) : LowerUpperClosure relation (LowerUpperClosure relation subset) = LowerUpperClosure relation subset
+Source: ./Bounds/BoundSets/Relationships.lean#L339
+
+
+
+Name: UpperLowerClosureIsExtensive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (relation : LRA.Relation.Endorelation Element) (subset : SetObject), subset ⊆ UpperLowerClosure relation subset
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ (relation : Element → Element → Prop) (subset : SetObject), subset ≤ ≤ ≤ funbound=> ∀ (element : Element), LRA.Order.LowerBounds relation subset ≤ element → relation element bound
+Transliterated theorem: (∀ A ∈ U), A ⊆ UpperLowerClosure relation A
+Logical form (Lean): (relation : LRA.Relation.Endorelation Element) (subset : SetObject) : subset ⊆ UpperLowerClosure relation subset
+Source: ./Bounds/BoundSets/Relationships.lean#L384
+
+
+
+Name: UpperLowerClosureIsMonotone
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {relation : LRA.Relation.Endorelation Element} {smaller larger : SetObject} (smallerIsContained : smaller ⊆ larger), UpperLowerClosure relation smaller ⊆ UpperLowerClosure relation larger
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    smaller larger : SetObject
+    smallerIsContained : smaller ⊆ larger
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ {relation : Element → Element → Prop} {smaller larger : SetObject}, smaller ≤ larger → ≤ ≤ funbound=> ∀ (element : Element), LRA.Order.LowerBounds relation smaller ≤ element → relation element bound ≤ ≤ ≤ funbound=> ∀ (element : Element), LRA.Order.LowerBounds relation larger ≤ element → relation element bound
+Transliterated theorem: (∀ A B ∈ U), UpperLowerClosure relation A ⊆ UpperLowerClosure relation B
+Logical form (Lean): {relation : LRA.Relation.Endorelation Element} {smaller larger : SetObject} (smallerIsContained : smaller ⊆ larger) : UpperLowerClosure relation smaller ⊆ UpperLowerClosure relation larger
+Source: ./Bounds/BoundSets/Relationships.lean#L430
+
+
+
+Name: UpperLowerClosureIsIdempotent
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (relation : LRA.Relation.Endorelation Element) (subset : SetObject), UpperLowerClosure relation (UpperLowerClosure relation subset) = UpperLowerClosure relation subset
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ (relation : Element → Element → Prop) (subset : SetObject), ≤ ≤ funbound=> ∀ (element : Element), inst_6.separation inst_7.universal (LRA.Order.LowerBound relation (LRA.Order.UpperLowerClosure relation subset)) ≤ element → relation element bound = ≤ ≤ funbound=> ∀ (element : Element), inst_6.separation inst_7.universal (LRA.Order.LowerBound relation subset) ≤ element → relation element bound
+Transliterated theorem: (∀ A ∈ U), UpperLowerClosure relation (UpperLowerClosure relation A) = UpperLowerClosure relation A
+Logical form (Lean): (relation : LRA.Relation.Endorelation Element) (subset : SetObject) : UpperLowerClosure relation (UpperLowerClosure relation subset) = UpperLowerClosure relation subset
+Source: ./Bounds/BoundSets/Relationships.lean#L477
+
+
+
+Name: InfimumOfConverseIffSupremum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (candidate : Element), Infimum (LRA.Relation.Converse relation) subset candidate ↔ Supremum relation subset candidate
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+    candidate : Element
+  Prove
+    Infimum (LRA.Relation.Converse relation) subset candidate ↔ Supremum relation subset candidate
+Transliterated theorem: (∀ A ∈ U ∀ x ∈ Element), Infimum (LRA.Relation.Converse relation) A x ↔ Supremum relation A x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (candidate : Element) : Infimum (LRA.Relation.Converse relation) subset candidate ↔ Supremum relation subset candidate
+Source: ./Bounds/Infimum/Relationships.lean#L53
+
+
+
+Name: InfimumOfEmptyIffTop
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] (relation : LRA.Relation.Endorelation Element) (candidate : Element), Infimum relation (∅ : SetObject) candidate ↔ forall element, relation element candidate
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    candidate : Element
+  Prove
+    Infimum relation (∅ : SetObject) candidate ↔ forall element, relation element candidate
+Transliterated theorem: (∀ x ∈ Element), Infimum relation ∅ ∈ SetObject x ↔ forall element, relation element x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] (relation : LRA.Relation.Endorelation Element) (candidate : Element) : Infimum relation (∅ : SetObject) candidate ↔ forall element, relation element candidate
+Source: ./Bounds/Infimum/Relationships.lean#L106
+
+
+
+Name: InfimumIffSupremumOfLowerBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [LRA.Set.HasSeparation Element SetObject] [LRA.Set.HasUniversal SetObject] [LRA.Set.HasComplement SetObject] [LRA.Set.SeparationLaws Element SetObject] [LRA.Set.UniversalMembershipLaws Element SetObject] (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (candidate : Element), Infimum relation subset candidate ↔ Supremum relation (LowerBounds relation subset) candidate
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+    candidate : Element
+  Prove
+    Infimum relation subset candidate ↔ Supremum relation (LowerBounds relation subset) candidate
+Transliterated theorem: (∀ A ∈ U ∀ x ∈ Element), Infimum relation A x ↔ Supremum relation (LowerBounds relation A) x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [LRA.Set.HasSeparation Element SetObject] [LRA.Set.HasUniversal SetObject] [LRA.Set.HasComplement SetObject] [LRA.Set.SeparationLaws Element SetObject] [LRA.Set.UniversalMembershipLaws Element SetObject] (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (candidate : Element) : Infimum relation subset candidate ↔ Supremum relation (LowerBounds relation subset) candidate
+Source: ./Bounds/Infimum/Relationships.lean#L163
+
+
+
+Name: LowerBoundOfConverseIffUpperBound
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (bound : Element), LowerBound (LRA.Relation.Converse relation) subset bound ↔ UpperBound relation subset bound
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+    bound : Element
+  Prove
+    LowerBound (LRA.Relation.Converse relation) subset bound ↔ UpperBound relation subset bound
+Transliterated theorem: (∀ A ∈ U ∀ x ∈ Element), LowerBound (LRA.Relation.Converse relation) A x ↔ UpperBound relation A x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (bound : Element) : LowerBound (LRA.Relation.Converse relation) subset bound ↔ UpperBound relation subset bound
+Source: ./Bounds/LowerBound/Relationships.lean#L51
+
+
+
+Name: SupremumOfConverseIffInfimum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (candidate : Element), Supremum (LRA.Relation.Converse relation) subset candidate ↔ Infimum relation subset candidate
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+    candidate : Element
+  Prove
+    Supremum (LRA.Relation.Converse relation) subset candidate ↔ Infimum relation subset candidate
+Transliterated theorem: (∀ A ∈ U ∀ x ∈ Element), Supremum (LRA.Relation.Converse relation) A x ↔ Infimum relation A x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (candidate : Element) : Supremum (LRA.Relation.Converse relation) subset candidate ↔ Infimum relation subset candidate
+Source: ./Bounds/Supremum/Relationships.lean#L54
+
+
+
+Name: SupremumOfEmptyIffBottom
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] (relation : LRA.Relation.Endorelation Element) (candidate : Element), Supremum relation (∅ : SetObject) candidate ↔ forall element, relation candidate element
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    candidate : Element
+  Prove
+    Supremum relation (∅ : SetObject) candidate ↔ forall element, relation candidate element
+Transliterated theorem: (∀ x ∈ Element), Supremum relation ∅ ∈ SetObject x ↔ forall element, relation x element
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [LRA.Set.MembershipLaws Element SetObject] (relation : LRA.Relation.Endorelation Element) (candidate : Element) : Supremum relation (∅ : SetObject) candidate ↔ forall element, relation candidate element
+Source: ./Bounds/Supremum/Relationships.lean#L107
+
+
+
+Name: SupremumIffInfimumOfUpperBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [LRA.Set.HasSeparation Element SetObject] [LRA.Set.HasUniversal SetObject] [LRA.Set.HasComplement SetObject] [LRA.Set.SeparationLaws Element SetObject] [LRA.Set.UniversalMembershipLaws Element SetObject] (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (candidate : Element), Supremum relation subset candidate ↔ Infimum relation (UpperBounds relation subset) candidate
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+    candidate : Element
+  Prove
+    Supremum relation subset candidate ↔ Infimum relation (UpperBounds relation subset) candidate
+Transliterated theorem: (∀ A ∈ U ∀ x ∈ Element), Supremum relation A x ↔ Infimum relation (UpperBounds relation A) x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [LRA.Set.HasSeparation Element SetObject] [LRA.Set.HasUniversal SetObject] [LRA.Set.HasComplement SetObject] [LRA.Set.SeparationLaws Element SetObject] [LRA.Set.UniversalMembershipLaws Element SetObject] (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (candidate : Element) : Supremum relation subset candidate ↔ Infimum relation (UpperBounds relation subset) candidate
+Source: ./Bounds/Supremum/Relationships.lean#L164
+
+
+
+Name: InfimumRelatedToSupremumOfNonemptySubset
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsTransitive : LRA.Relation.Transitive relation) {subset : SetObject} {infimum supremum : Element} (subsetIsNonempty : exists element, element ∈ subset) (infimumIsInfimum : Infimum relation subset infimum) (supremumIsSupremum : Supremum relation subset supremum), relation infimum supremum
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsTransitive : LRA.Relation.Transitive relation
+    subset : SetObject
+    infimum supremum : Element
+    infimumIsInfimum : Infimum relation subset infimum
+    supremumIsSupremum : Supremum relation subset supremum
+  Prove
+    (∀ (x y z : Element), relation x y → relation y z → relation x z) → ∀ {subset : SetObject} {infimum supremum : Element}, (Exists fun element => subset ≤ element ∧ (((∀ (element : Element), subset ≤ element → relation infimum element) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation bound element) → relation bound infimum)) ∧ ((∀ (element : Element), subset ≤ element → relation element supremum) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation element bound) → relation supremum bound)))) → relation infimum supremum
+Transliterated theorem: (∀ A ∈ U ∀ x y ∈ Element), (exists element, element ∈ A) → relation x y
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsTransitive : LRA.Relation.Transitive relation) {subset : SetObject} {infimum supremum : Element} (subsetIsNonempty : exists element, element ∈ subset) (infimumIsInfimum : Infimum relation subset infimum) (supremumIsSupremum : Supremum relation subset supremum) : relation infimum supremum
+Source: ./Bounds/Supremum/Relationships.lean#L221
+
+
+
+Name: UpperBoundOfConverseIffLowerBound
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (bound : Element), UpperBound (LRA.Relation.Converse relation) subset bound ↔ LowerBound relation subset bound
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+    bound : Element
+  Prove
+    UpperBound (LRA.Relation.Converse relation) subset bound ↔ LowerBound relation subset bound
+Transliterated theorem: (∀ A ∈ U ∀ x ∈ Element), UpperBound (LRA.Relation.Converse relation) A x ↔ LowerBound relation A x
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (bound : Element) : UpperBound (LRA.Relation.Converse relation) subset bound ↔ LowerBound relation subset bound
+Source: ./Bounds/UpperBound/Relationships.lean#L51
+
+
+
+Name: ExistsBetween
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [LT R] [DenseOrderLaw R], forall a b : R, a < b -> exists middle : R, a < middle /\ middle < b
+Predicate logic (unfolded):
+  Ambient
+    (R, <)
+  Objects
+    (none)
+  Prove
+    LRA.Order.DenseOrderLaw R → ∀ (a b : R), inst.lt a b → Exists fun middle => (inst.lt a middle ∧ inst.lt middle b)
+Transliterated theorem: forall a b : R, a < b -> exists middle : R, a < middle ∧ middle < b
+Logical form (Lean): [LT R] [DenseOrderLaw R] : forall a b : R, a < b -> exists middle : R, a < middle /\ middle < b
+Source: ./Density/DenseOrder/Definition.lean#L137
+
+
+
+Name: DenseOrderOfStrictPartIffDense
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsPartialOrder : PartialOrder relation), DenseOrder (StrictPart relation) ↔ LRA.Relation.Dense (StrictPart relation)
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsPartialOrder : PartialOrder relation
+  Prove
+    DenseOrder (StrictPart relation) ↔ LRA.Relation.Dense (StrictPart relation)
+Transliterated theorem: DenseOrder (StrictPart relation) ↔ LRA.Relation.Dense (StrictPart relation)
+Logical form (Lean): {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsPartialOrder : PartialOrder relation) : DenseOrder (StrictPart relation) ↔ LRA.Relation.Dense (StrictPart relation)
+Source: ./Density/DenseOrder/Theorems.lean#L51
+
+
+
+Name: DenseOrderHasNoCovers
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {strictRelation : LRA.Relation.Endorelation Alpha} (strictRelationIsDenseOrder : DenseOrder strictRelation), forall lower upper, Not (CoverRelation strictRelation lower upper)
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    strictRelation : LRA.Relation.Endorelation Alpha
+    strictRelationIsDenseOrder : DenseOrder strictRelation
+  Prove
+    (((∀ (x : Alpha), strictRelation x x → False) ∧ (∀ (x y z : Alpha), strictRelation x y → strictRelation y z → strictRelation x z)) ∧ (∀ (x y : Alpha), strictRelation x y → Exists fun z => (strictRelation x z ∧ strictRelation z y))) → ∀ (lower upper : Alpha), (strictRelation lower upper ∧ (∀ (middle : Alpha), (strictRelation lower middle ∧ strictRelation middle upper) → False)) → False
+Transliterated theorem: forall lower upper, Not (CoverRelation strictRelation lower upper)
+Logical form (Lean): {Alpha : Type u} {strictRelation : LRA.Relation.Endorelation Alpha} (strictRelationIsDenseOrder : DenseOrder strictRelation) : forall lower upper, Not (CoverRelation strictRelation lower upper)
+Source: ./Density/DenseOrder/Theorems.lean#L98
+
+
+
+Name: NonemptyChainIsDirected
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} {subset : SetObject} (relationIsReflexive : LRA.Relation.Reflexive relation) (subsetIsChain : Chain relation subset) (subsetIsNonempty : exists element : Element, element ∈ subset), Directed relation subset
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+    relationIsReflexive : LRA.Relation.Reflexive relation
+    subsetIsChain : Chain relation subset
+  Prove
+    ((∀ (x : Element), relation x x) ∧ ((∀ (first second : Element), subset ≤ first → subset ≤ second → Or (relation first second) (relation second first)) ∧ Exists fun element => subset ≤ element)) → (Exists fun element => subset ≤ element ∧ (∀ (first second : Element), subset ≤ first → subset ≤ second → Exists fun upper => (subset ≤ upper ∧ (relation first upper ∧ relation second upper))))
+Transliterated theorem: (∀ A ∈ U), (exists element : Element, element ∈ A) → Directed relation A
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} {subset : SetObject} (relationIsReflexive : LRA.Relation.Reflexive relation) (subsetIsChain : Chain relation subset) (subsetIsNonempty : exists element : Element, element ∈ subset) : Directed relation subset
+Source: ./Directedness/Chain/Relationships.lean#L53
+
+
+
+Name: MaximalElementOfDirectedSubsetIsGreatest
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsPartialOrder : PartialOrder relation) {subset : SetObject} {maximal : Element} (subsetIsDirected : Directed relation subset) (maximalIsMaximal : MaximalElement (StrictPart relation) subset maximal), GreatestElement relation subset maximal
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsPartialOrder : PartialOrder relation
+    subset : SetObject
+    maximal : Element
+    subsetIsDirected : Directed relation subset
+    maximalIsMaximal : MaximalElement (StrictPart relation) subset maximal
+  Prove
+    ((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x → x = y) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) → ∀ {subset : SetObject} {maximal : Element}, ((Exists fun element => subset ≤ element ∧ (∀ (first second : Element), subset ≤ first → subset ≤ second → Exists fun upper => (subset ≤ upper ∧ (relation first upper ∧ relation second upper)))) ∧ (subset ≤ maximal ∧ (∀ (element : Element), subset ≤ element → (relation maximal element ∧ (maximal = element → False)) → False))) → (subset ≤ maximal ∧ (∀ (element : Element), subset ≤ element → relation element maximal))
+Transliterated theorem: (∀ A ∈ U ∀ x ∈ Element), GreatestElement(x, A)
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsPartialOrder : PartialOrder relation) {subset : SetObject} {maximal : Element} (subsetIsDirected : Directed relation subset) (maximalIsMaximal : MaximalElement (StrictPart relation) subset maximal) : GreatestElement relation subset maximal
+Source: ./Directedness/Directed/Theorems.lean#L57
+
+
+
+Name: ProductOfDirectedSubsetsIsDirected
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {Beta : Type v} {LeftSet : Type w} {RightSet : Type x} {ProductSet : Type y} [Membership Alpha LeftSet] [Membership Beta RightSet] [Membership (Alpha × Beta) ProductSet] {leftRelation : LRA.Relation.Endorelation Alpha} {rightRelation : LRA.Relation.Endorelation Beta} {leftSubset : LeftSet} {rightSubset : RightSet} {productSubset : ProductSet} (productMembership : forall pair : Alpha × Beta, pair ∈ productSubset ↔ pair.1 ∈ leftSubset /\ pair.2 ∈ rightSubset) (leftIsDirected : Directed leftRelation leftSubset) (rightIsDirected : Directed rightRelation rightSubset), Directed (ProductRelation leftRelation rightRelation) productSubset
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta, LeftSet, RightSet, ProductSet, ∈)
+  Objects
+    leftRelation : LRA.Relation.Endorelation Alpha
+    rightRelation : LRA.Relation.Endorelation Beta
+    leftSubset : LeftSet
+    rightSubset : RightSet
+    productSubset : ProductSet
+    leftIsDirected : Directed leftRelation leftSubset
+    rightIsDirected : Directed rightRelation rightSubset
+  Prove
+    Directed (ProductRelation leftRelation rightRelation) productSubset
+Transliterated theorem: (forall pair : Alpha × Beta, pair ∈ productSubset ↔ pair.1 ∈ leftSubset ∧ pair.2 ∈ rightSubset) → Directed (ProductRelation leftRelation rightRelation) productSubset
+Logical form (Lean): {Alpha : Type u} {Beta : Type v} {LeftSet : Type w} {RightSet : Type x} {ProductSet : Type y} [Membership Alpha LeftSet] [Membership Beta RightSet] [Membership (Alpha × Beta) ProductSet] {leftRelation : LRA.Relation.Endorelation Alpha} {rightRelation : LRA.Relation.Endorelation Beta} {leftSubset : LeftSet} {rightSubset : RightSet} {productSubset : ProductSet} (productMembership : forall pair : Alpha × Beta, pair ∈ productSubset ↔ pair.1 ∈ leftSubset /\ pair.2 ∈ rightSubset) (leftIsDirected : Directed leftRelation leftSubset) (rightIsDirected : Directed rightRelation rightSubset) : Directed (ProductRelation leftRelation rightRelation) productSubset
+Source: ./Directedness/Directed/Theorems.lean#L119
+
+
+
+Name: JoinUnique
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsAntisymmetric : LRA.Relation.Antisymmetric relation) {left right first second : Alpha} (firstIsJoin : Join relation left right first) (secondIsJoin : Join relation left right second), first = second
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsAntisymmetric : LRA.Relation.Antisymmetric relation
+    left right first second : Alpha
+    firstIsJoin : Join relation left right first
+    secondIsJoin : Join relation left right second
+  Prove
+    (∀ (x y : Alpha), relation x y → relation y x → x = y) → ∀ {left right first second : Alpha}, ((relation left first ∧ (relation right first ∧ (∀ (upper : Alpha), relation left upper → relation right upper → relation first upper))) ∧ (relation left second ∧ (relation right second ∧ (∀ (upper : Alpha), relation left upper → relation right upper → relation second upper)))) → first = second
+Transliterated theorem: first = second
+Logical form (Lean): {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsAntisymmetric : LRA.Relation.Antisymmetric relation) {left right first second : Alpha} (firstIsJoin : Join relation left right first) (secondIsJoin : Join relation left right second) : first = second
+Source: ./Lattices/Join/Theorems.lean#L52
+
+
+
+Name: JoinCommutes
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha) (left right join : Alpha), Join relation left right join ↔ Join relation right left join
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    left right join : Alpha
+  Prove
+    Join relation left right join ↔ Join relation right left join
+Transliterated theorem: (∀ left right join ∈ Alpha), Join relation left right join ↔ Join relation right left join
+Logical form (Lean): {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha) (left right join : Alpha) : Join relation left right join ↔ Join relation right left join
+Source: ./Lattices/Join/Theorems.lean#L101
+
+
+
+Name: JoinIdempotent
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha},   LRA.Relation.Reflexive relation → ∀ (element : Alpha), LRA.Order.Join relation element element element
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsReflexive : LRA.Relation.Reflexive relation
+    element : Alpha
+  Prove
+    (∀ (x : Alpha), relation x x) → ∀ (element : Alpha), (relation element element ∧ (relation element element ∧ (∀ (upper : Alpha), relation element upper → relation element upper → relation element upper)))
+Transliterated theorem: (∀ element ∈ Alpha), Join relation element element element
+Logical form (Lean): {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsReflexive : LRA.Relation.Reflexive relation) (element : Alpha) : Join relation element element element
+Source: ./Lattices/Join/Theorems.lean#L148
+
+
+
+Name: JoinAssociative
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsPartialOrder : PartialOrder relation) {left middle right leftMiddle firstAssociation middleRight secondAssociation : Alpha} (leftMiddleIsJoin : Join relation left middle leftMiddle) (firstAssociationIsJoin : Join relation leftMiddle right firstAssociation) (middleRightIsJoin : Join relation middle right middleRight) (secondAssociationIsJoin : Join relation left middleRight secondAssociation), firstAssociation = secondAssociation
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsPartialOrder : PartialOrder relation
+    left middle right leftMiddle firstAssociation middleRight secondAssociation : Alpha
+    leftMiddleIsJoin : Join relation left middle leftMiddle
+    firstAssociationIsJoin : Join relation leftMiddle right firstAssociation
+    middleRightIsJoin : Join relation middle right middleRight
+    secondAssociationIsJoin : Join relation left middleRight secondAssociation
+  Prove
+    ((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) → ∀ {left middle right leftMiddle firstAssociation middleRight secondAssociation : Alpha}, ((relation left leftMiddle ∧ (relation middle leftMiddle ∧ (∀ (upper : Alpha), relation left upper → relation middle upper → relation leftMiddle upper))) ∧ ((relation leftMiddle firstAssociation ∧ (relation right firstAssociation ∧ (∀ (upper : Alpha), relation leftMiddle upper → relation right upper → relation firstAssociation upper))) ∧ ((relation middle middleRight ∧ (relation right middleRight ∧ (∀ (upper : Alpha), relation middle upper → relation right upper → relation middleRight upper))) ∧ (relation left secondAssociation ∧ (relation middleRight secondAssociation ∧ (∀ (upper : Alpha), relation left upper → relation middleRight upper → relation secondAssociation upper)))))) → firstAssociation = secondAssociation
+Transliterated theorem: firstAssociation = secondAssociation
+Logical form (Lean): {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsPartialOrder : PartialOrder relation) {left middle right leftMiddle firstAssociation middleRight secondAssociation : Alpha} (leftMiddleIsJoin : Join relation left middle leftMiddle) (firstAssociationIsJoin : Join relation leftMiddle right firstAssociation) (middleRightIsJoin : Join relation middle right middleRight) (secondAssociationIsJoin : Join relation left middleRight secondAssociation) : firstAssociation = secondAssociation
+Source: ./Lattices/Join/Theorems.lean#L201
+
+
+
+Name: JoinOfConverseIffMeet
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha) (left right candidate : Alpha), Join (LRA.Relation.Converse relation) left right candidate ↔ Meet relation left right candidate
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    left right candidate : Alpha
+  Prove
+    Join (LRA.Relation.Converse relation) left right candidate ↔ Meet relation left right candidate
+Transliterated theorem: (∀ left right candidate ∈ Alpha), Join (LRA.Relation.Converse relation) left right candidate ↔ Meet relation left right candidate
+Logical form (Lean): {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha) (left right candidate : Alpha) : Join (LRA.Relation.Converse relation) left right candidate ↔ Meet relation left right candidate
+Source: ./Lattices/Join/Relationships.lean#L50
+
+
+
+Name: MeetUnique
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsAntisymmetric : LRA.Relation.Antisymmetric relation) {left right first second : Alpha} (firstIsMeet : Meet relation left right first) (secondIsMeet : Meet relation left right second), first = second
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsAntisymmetric : LRA.Relation.Antisymmetric relation
+    left right first second : Alpha
+    firstIsMeet : Meet relation left right first
+    secondIsMeet : Meet relation left right second
+  Prove
+    (∀ (x y : Alpha), relation x y → relation y x → x = y) → ∀ {left right first second : Alpha}, ((relation first left ∧ (relation first right ∧ (∀ (lower : Alpha), relation lower left → relation lower right → relation lower first))) ∧ (relation second left ∧ (relation second right ∧ (∀ (lower : Alpha), relation lower left → relation lower right → relation lower second)))) → first = second
+Transliterated theorem: first = second
+Logical form (Lean): {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsAntisymmetric : LRA.Relation.Antisymmetric relation) {left right first second : Alpha} (firstIsMeet : Meet relation left right first) (secondIsMeet : Meet relation left right second) : first = second
+Source: ./Lattices/Meet/Theorems.lean#L52
+
+
+
+Name: MeetCommutes
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha) (left right meet : Alpha), Meet relation left right meet ↔ Meet relation right left meet
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    left right meet : Alpha
+  Prove
+    Meet relation left right meet ↔ Meet relation right left meet
+Transliterated theorem: (∀ left right meet ∈ Alpha), Meet relation left right meet ↔ Meet relation right left meet
+Logical form (Lean): {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha) (left right meet : Alpha) : Meet relation left right meet ↔ Meet relation right left meet
+Source: ./Lattices/Meet/Theorems.lean#L101
+
+
+
+Name: MeetIdempotent
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha},   LRA.Relation.Reflexive relation → ∀ (element : Alpha), LRA.Order.Meet relation element element element
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsReflexive : LRA.Relation.Reflexive relation
+    element : Alpha
+  Prove
+    (∀ (x : Alpha), relation x x) → ∀ (element : Alpha), (relation element element ∧ (relation element element ∧ (∀ (lower : Alpha), relation lower element → relation lower element → relation lower element)))
+Transliterated theorem: (∀ element ∈ Alpha), Meet relation element element element
+Logical form (Lean): {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsReflexive : LRA.Relation.Reflexive relation) (element : Alpha) : Meet relation element element element
+Source: ./Lattices/Meet/Theorems.lean#L148
+
+
+
+Name: MeetAssociative
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsPartialOrder : PartialOrder relation) {left middle right leftMiddle firstAssociation middleRight secondAssociation : Alpha} (leftMiddleIsMeet : Meet relation left middle leftMiddle) (firstAssociationIsMeet : Meet relation leftMiddle right firstAssociation) (middleRightIsMeet : Meet relation middle right middleRight) (secondAssociationIsMeet : Meet relation left middleRight secondAssociation), firstAssociation = secondAssociation
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsPartialOrder : PartialOrder relation
+    left middle right leftMiddle firstAssociation middleRight secondAssociation : Alpha
+    leftMiddleIsMeet : Meet relation left middle leftMiddle
+    firstAssociationIsMeet : Meet relation leftMiddle right firstAssociation
+    middleRightIsMeet : Meet relation middle right middleRight
+    secondAssociationIsMeet : Meet relation left middleRight secondAssociation
+  Prove
+    ((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) → ∀ {left middle right leftMiddle firstAssociation middleRight secondAssociation : Alpha}, ((relation leftMiddle left ∧ (relation leftMiddle middle ∧ (∀ (lower : Alpha), relation lower left → relation lower middle → relation lower leftMiddle))) ∧ ((relation firstAssociation leftMiddle ∧ (relation firstAssociation right ∧ (∀ (lower : Alpha), relation lower leftMiddle → relation lower right → relation lower firstAssociation))) ∧ ((relation middleRight middle ∧ (relation middleRight right ∧ (∀ (lower : Alpha), relation lower middle → relation lower right → relation lower middleRight))) ∧ (relation secondAssociation left ∧ (relation secondAssociation middleRight ∧ (∀ (lower : Alpha), relation lower left → relation lower middleRight → relation lower secondAssociation)))))) → firstAssociation = secondAssociation
+Transliterated theorem: firstAssociation = secondAssociation
+Logical form (Lean): {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsPartialOrder : PartialOrder relation) {left middle right leftMiddle firstAssociation middleRight secondAssociation : Alpha} (leftMiddleIsMeet : Meet relation left middle leftMiddle) (firstAssociationIsMeet : Meet relation leftMiddle right firstAssociation) (middleRightIsMeet : Meet relation middle right middleRight) (secondAssociationIsMeet : Meet relation left middleRight secondAssociation) : firstAssociation = secondAssociation
+Source: ./Lattices/Meet/Theorems.lean#L201
+
+
+
+Name: MeetOfConverseIffJoin
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha) (left right candidate : Alpha), Meet (LRA.Relation.Converse relation) left right candidate ↔ Join relation left right candidate
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    left right candidate : Alpha
+  Prove
+    Meet (LRA.Relation.Converse relation) left right candidate ↔ Join relation left right candidate
+Transliterated theorem: (∀ left right candidate ∈ Alpha), Meet (LRA.Relation.Converse relation) left right candidate ↔ Join relation left right candidate
+Logical form (Lean): {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha) (left right candidate : Alpha) : Meet (LRA.Relation.Converse relation) left right candidate ↔ Join relation left right candidate
+Source: ./Lattices/Meet/Relationships.lean#L50
+
+
+
+Name: JoinSemilatticeHasJoin
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha},   LRA.Order.JoinSemilattice relation →     ∀ (left right : Alpha), Exists fun join => LRA.Order.Join relation left right join
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsJoinSemilattice : JoinSemilattice relation
+    left right : Alpha
+  Prove
+    (((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) ∧ (∀ (left right : Alpha), Exists fun join => (relation left join ∧ (relation right join ∧ (∀ (upper : Alpha), relation left upper → relation right upper → relation join upper))))) → ∀ (left right : Alpha), Exists fun join => (relation left join ∧ (relation right join ∧ (∀ (upper : Alpha), relation left upper → relation right upper → relation join upper)))
+Transliterated theorem: (∀ left right ∈ Alpha), exists join, Join relation left right join
+Logical form (Lean): {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsJoinSemilattice : JoinSemilattice relation) (left right : Alpha) : exists join, Join relation left right join
+Source: ./Lattices/JoinSemilattice/Theorems.lean#L48
+
+
+
+Name: MeetSemilatticeHasMeet
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha},   LRA.Order.MeetSemilattice relation →     ∀ (left right : Alpha), Exists fun meet => LRA.Order.Meet relation left right meet
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsMeetSemilattice : MeetSemilattice relation
+    left right : Alpha
+  Prove
+    (((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) ∧ (∀ (left right : Alpha), Exists fun meet => (relation meet left ∧ (relation meet right ∧ (∀ (lower : Alpha), relation lower left → relation lower right → relation lower meet))))) → ∀ (left right : Alpha), Exists fun meet => (relation meet left ∧ (relation meet right ∧ (∀ (lower : Alpha), relation lower left → relation lower right → relation lower meet)))
+Transliterated theorem: (∀ left right ∈ Alpha), exists meet, Meet relation left right meet
+Logical form (Lean): {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsMeetSemilattice : MeetSemilattice relation) (left right : Alpha) : exists meet, Meet relation left right meet
+Source: ./Lattices/MeetSemilattice/Theorems.lean#L48
+
+
+
+Name: LatticeHasJoin
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha},   LRA.Order.Lattice relation → ∀ (left right : Alpha), Exists fun join => LRA.Order.Join relation left right join
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsLattice : Lattice relation
+    left right : Alpha
+  Prove
+    (((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) ∧ (∀ (left right : Alpha), ((Exists fun join => (relation left join ∧ (relation right join ∧ (∀ (upper : Alpha), relation left upper → relation right upper → relation join upper)))) ∧ (Exists fun meet => (relation meet left ∧ (relation meet right ∧ (∀ (lower : Alpha), relation lower left → relation lower right → relation lower meet))))))) → ∀ (left right : Alpha), Exists fun join => (relation left join ∧ (relation right join ∧ (∀ (upper : Alpha), relation left upper → relation right upper → relation join upper)))
+Transliterated theorem: (∀ left right ∈ Alpha), exists join, Join relation left right join
+Logical form (Lean): {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsLattice : Lattice relation) (left right : Alpha) : exists join, Join relation left right join
+Source: ./Lattices/Lattice/Theorems.lean#L48
+
+
+
+Name: LatticeHasMeet
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha},   LRA.Order.Lattice relation → ∀ (left right : Alpha), Exists fun meet => LRA.Order.Meet relation left right meet
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsLattice : Lattice relation
+    left right : Alpha
+  Prove
+    (((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) ∧ (∀ (left right : Alpha), ((Exists fun join => (relation left join ∧ (relation right join ∧ (∀ (upper : Alpha), relation left upper → relation right upper → relation join upper)))) ∧ (Exists fun meet => (relation meet left ∧ (relation meet right ∧ (∀ (lower : Alpha), relation lower left → relation lower right → relation lower meet))))))) → ∀ (left right : Alpha), Exists fun meet => (relation meet left ∧ (relation meet right ∧ (∀ (lower : Alpha), relation lower left → relation lower right → relation lower meet)))
+Transliterated theorem: (∀ left right ∈ Alpha), exists meet, Meet relation left right meet
+Logical form (Lean): {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsLattice : Lattice relation) (left right : Alpha) : exists meet, Meet relation left right meet
+Source: ./Lattices/Lattice/Theorems.lean#L96
+
+
+
+Name: JoinEqualsRightIffRelated
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsPartialOrder : PartialOrder relation) (left right : Alpha), Join relation left right right ↔ relation left right
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsPartialOrder : PartialOrder relation
+    left right : Alpha
+  Prove
+    Join relation left right right ↔ relation left right
+Transliterated theorem: (∀ left right ∈ Alpha), Join relation left right right ↔ relation left right
+Logical form (Lean): {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsPartialOrder : PartialOrder relation) (left right : Alpha) : Join relation left right right ↔ relation left right
+Source: ./Lattices/Lattice/Theorems.lean#L144
+
+
+
+Name: MeetEqualsLeftIffRelated
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsPartialOrder : PartialOrder relation) (left right : Alpha), Meet relation left right left ↔ relation left right
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsPartialOrder : PartialOrder relation
+    left right : Alpha
+  Prove
+    Meet relation left right left ↔ relation left right
+Transliterated theorem: (∀ left right ∈ Alpha), Meet relation left right left ↔ relation left right
+Logical form (Lean): {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsPartialOrder : PartialOrder relation) (left right : Alpha) : Meet relation left right left ↔ relation left right
+Source: ./Lattices/Lattice/Theorems.lean#L192
+
+
+
+Name: MeetWithJoinAbsorbs
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsPartialOrder : PartialOrder relation) {left right join meet : Alpha} (joinIsJoin : Join relation left right join) (meetIsMeet : Meet relation left join meet), meet = left
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsPartialOrder : PartialOrder relation
+    left right join meet : Alpha
+    joinIsJoin : Join relation left right join
+    meetIsMeet : Meet relation left join meet
+  Prove
+    ((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) → ∀ {left right join meet : Alpha}, ((relation left join ∧ (relation right join ∧ (∀ (upper : Alpha), relation left upper → relation right upper → relation join upper))) ∧ (relation meet left ∧ (relation meet join ∧ (∀ (lower : Alpha), relation lower left → relation lower join → relation lower meet)))) → meet = left
+Transliterated theorem: meet = left
+Logical form (Lean): {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsPartialOrder : PartialOrder relation) {left right join meet : Alpha} (joinIsJoin : Join relation left right join) (meetIsMeet : Meet relation left join meet) : meet = left
+Source: ./Lattices/Lattice/Theorems.lean#L242
+
+
+
+Name: JoinWithMeetAbsorbs
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsPartialOrder : PartialOrder relation) {left right meet join : Alpha} (meetIsMeet : Meet relation left right meet) (joinIsJoin : Join relation left meet join), join = left
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsPartialOrder : PartialOrder relation
+    left right meet join : Alpha
+    meetIsMeet : Meet relation left right meet
+    joinIsJoin : Join relation left meet join
+  Prove
+    ((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) → ∀ {left right meet join : Alpha}, ((relation meet left ∧ (relation meet right ∧ (∀ (lower : Alpha), relation lower left → relation lower right → relation lower meet))) ∧ (relation left join ∧ (relation meet join ∧ (∀ (upper : Alpha), relation left upper → relation meet upper → relation join upper)))) → join = left
+Transliterated theorem: join = left
+Logical form (Lean): {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsPartialOrder : PartialOrder relation) {left right meet join : Alpha} (meetIsMeet : Meet relation left right meet) (joinIsJoin : Join relation left meet join) : join = left
+Source: ./Lattices/Lattice/Theorems.lean#L294
+
+
+
+Name: JoinOfMeetsRelatedToMeetWithJoin
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsPartialOrder : PartialOrder relation) {a b c bJoinC aMeetBJoinC aMeetB aMeetC joinOfMeets : Alpha} (bJoinCIsJoin : Join relation b c bJoinC) (aMeetBJoinCIsMeet : Meet relation a bJoinC aMeetBJoinC) (aMeetBIsMeet : Meet relation a b aMeetB) (aMeetCIsMeet : Meet relation a c aMeetC) (joinOfMeetsIsJoin : Join relation aMeetB aMeetC joinOfMeets), relation joinOfMeets aMeetBJoinC
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsPartialOrder : PartialOrder relation
+    a b c bJoinC aMeetBJoinC aMeetB aMeetC joinOfMeets : Alpha
+    bJoinCIsJoin : Join relation b c bJoinC
+    aMeetBJoinCIsMeet : Meet relation a bJoinC aMeetBJoinC
+    aMeetBIsMeet : Meet relation a b aMeetB
+    aMeetCIsMeet : Meet relation a c aMeetC
+    joinOfMeetsIsJoin : Join relation aMeetB aMeetC joinOfMeets
+  Prove
+    ((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) → ∀ {a b c bJoinC aMeetBJoinC aMeetB aMeetC joinOfMeets : Alpha}, ((relation b bJoinC ∧ (relation c bJoinC ∧ (∀ (upper : Alpha), relation b upper → relation c upper → relation bJoinC upper))) ∧ ((relation aMeetBJoinC a ∧ (relation aMeetBJoinC bJoinC ∧ (∀ (lower : Alpha), relation lower a → relation lower bJoinC → relation lower aMeetBJoinC))) ∧ ((relation aMeetB a ∧ (relation aMeetB b ∧ (∀ (lower : Alpha), relation lower a → relation lower b → relation lower aMeetB))) ∧ ((relation aMeetC a ∧ (relation aMeetC c ∧ (∀ (lower : Alpha), relation lower a → relation lower c → relation lower aMeetC))) ∧ (relation aMeetB joinOfMeets ∧ (relation aMeetC joinOfMeets ∧ (∀ (upper : Alpha), relation aMeetB upper → relation aMeetC upper → relation joinOfMeets upper))))))) → relation joinOfMeets aMeetBJoinC
+Transliterated theorem: relation joinOfMeets aMeetBJoinC
+Logical form (Lean): {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsPartialOrder : PartialOrder relation) {a b c bJoinC aMeetBJoinC aMeetB aMeetC joinOfMeets : Alpha} (bJoinCIsJoin : Join relation b c bJoinC) (aMeetBJoinCIsMeet : Meet relation a bJoinC aMeetBJoinC) (aMeetBIsMeet : Meet relation a b aMeetB) (aMeetCIsMeet : Meet relation a c aMeetC) (joinOfMeetsIsJoin : Join relation aMeetB aMeetC joinOfMeets) : relation joinOfMeets aMeetBJoinC
+Source: ./Lattices/Lattice/Theorems.lean#L349
+
+
+
+Name: JoinWithMeetRelatedToMeetOfJoins
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsPartialOrder : PartialOrder relation) {a b c bMeetC aJoinBMeetC aJoinB aJoinC meetOfJoins : Alpha} (bMeetCIsMeet : Meet relation b c bMeetC) (aJoinBMeetCIsJoin : Join relation a bMeetC aJoinBMeetC) (aJoinBIsJoin : Join relation a b aJoinB) (aJoinCIsJoin : Join relation a c aJoinC) (meetOfJoinsIsMeet : Meet relation aJoinB aJoinC meetOfJoins), relation aJoinBMeetC meetOfJoins
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsPartialOrder : PartialOrder relation
+    a b c bMeetC aJoinBMeetC aJoinB aJoinC meetOfJoins : Alpha
+    bMeetCIsMeet : Meet relation b c bMeetC
+    aJoinBMeetCIsJoin : Join relation a bMeetC aJoinBMeetC
+    aJoinBIsJoin : Join relation a b aJoinB
+    aJoinCIsJoin : Join relation a c aJoinC
+    meetOfJoinsIsMeet : Meet relation aJoinB aJoinC meetOfJoins
+  Prove
+    ((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) → ∀ {a b c bMeetC aJoinBMeetC aJoinB aJoinC meetOfJoins : Alpha}, ((relation bMeetC b ∧ (relation bMeetC c ∧ (∀ (lower : Alpha), relation lower b → relation lower c → relation lower bMeetC))) ∧ ((relation a aJoinBMeetC ∧ (relation bMeetC aJoinBMeetC ∧ (∀ (upper : Alpha), relation a upper → relation bMeetC upper → relation aJoinBMeetC upper))) ∧ ((relation a aJoinB ∧ (relation b aJoinB ∧ (∀ (upper : Alpha), relation a upper → relation b upper → relation aJoinB upper))) ∧ ((relation a aJoinC ∧ (relation c aJoinC ∧ (∀ (upper : Alpha), relation a upper → relation c upper → relation aJoinC upper))) ∧ (relation meetOfJoins aJoinB ∧ (relation meetOfJoins aJoinC ∧ (∀ (lower : Alpha), relation lower aJoinB → relation lower aJoinC → relation lower meetOfJoins))))))) → relation aJoinBMeetC meetOfJoins
+Transliterated theorem: relation aJoinBMeetC meetOfJoins
+Logical form (Lean): {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsPartialOrder : PartialOrder relation) {a b c bMeetC aJoinBMeetC aJoinB aJoinC meetOfJoins : Alpha} (bMeetCIsMeet : Meet relation b c bMeetC) (aJoinBMeetCIsJoin : Join relation a bMeetC aJoinBMeetC) (aJoinBIsJoin : Join relation a b aJoinB) (aJoinCIsJoin : Join relation a c aJoinC) (meetOfJoinsIsMeet : Meet relation aJoinB aJoinC meetOfJoins) : relation aJoinBMeetC meetOfJoins
+Source: ./Lattices/Lattice/Theorems.lean#L407
+
+
+
+Name: LatticeIffJoinAndMeetSemilattice
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha), Lattice relation ↔ JoinSemilattice relation /\ MeetSemilattice relation
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+  Prove
+    Lattice relation ↔ JoinSemilattice relation /\ MeetSemilattice relation
+Transliterated theorem: Lattice relation ↔ JoinSemilattice relation ∧ MeetSemilattice relation
+Logical form (Lean): {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha) : Lattice relation ↔ JoinSemilattice relation /\ MeetSemilattice relation
+Source: ./Lattices/Lattice/Relationships.lean#L52
+
+
+
+Name: ConverseIsLatticeIff
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha), Lattice (LRA.Relation.Converse relation) ↔ Lattice relation
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+  Prove
+    Lattice (LRA.Relation.Converse relation) ↔ Lattice relation
+Transliterated theorem: Lattice (LRA.Relation.Converse relation) ↔ Lattice relation
+Logical form (Lean): {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha) : Lattice (LRA.Relation.Converse relation) ↔ Lattice relation
+Source: ./Lattices/Lattice/Relationships.lean#L96
+
+
+
+Name: JoinIffMeetOfDual
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier) (left right value : Carrier), Join order.relation left right value ↔ Meet (LRA.Order.OrderedSets.PartialOrder.Dual order).relation left right value
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier
+    left right value : Carrier
+  Prove
+    Join order.relation left right value ↔ Meet (LRA.Order.OrderedSets.PartialOrder.Dual order).relation left right value
+Transliterated theorem: (∀ left right value ∈ Carrier), Join order.relation left right value ↔ Meet (LRA.Order.OrderedSets.PartialOrder.Dual order).relation left right value
+Logical form (Lean): {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier) (left right value : Carrier) : Join order.relation left right value ↔ Meet (LRA.Order.OrderedSets.PartialOrder.Dual order).relation left right value
+Source: ./Lattices/Lattice/Relationships.lean#L143
+
+
+
+Name: MeetIffJoinOfDual
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier) (left right value : Carrier), Meet order.relation left right value ↔ Join (LRA.Order.OrderedSets.PartialOrder.Dual order).relation left right value
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier
+    left right value : Carrier
+  Prove
+    Meet order.relation left right value ↔ Join (LRA.Order.OrderedSets.PartialOrder.Dual order).relation left right value
+Transliterated theorem: (∀ left right value ∈ Carrier), Meet order.relation left right value ↔ Join (LRA.Order.OrderedSets.PartialOrder.Dual order).relation left right value
+Logical form (Lean): {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier) (left right value : Carrier) : Meet order.relation left right value ↔ Join (LRA.Order.OrderedSets.PartialOrder.Dual order).relation left right value
+Source: ./Lattices/Lattice/Relationships.lean#L193
+
+
+
+Name: JoinOperationCommutative
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier},   LRA.Order.PartialOrder relation →     ∀ {joinOperation : LRA.Operation.BinaryEndoOperation Carrier},       LRA.Order.IsJoinOperation relation joinOperation → LRA.Operation.Laws.Commutative.Commutative joinOperation
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Relation.Endorelation Carrier
+    relationIsPartialOrder : PartialOrder relation
+    joinOperation : BinaryEndoOperation Carrier
+  Prove
+    ((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x → x = y) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z))) → ∀ {joinOperation : Carrier → Carrier → Carrier}, (∀ (left right : Carrier), (relation left (joinOperation left right) ∧ (relation right (joinOperation left right) ∧ (∀ (upper : Carrier), relation left upper → relation right upper → relation (joinOperation left right) upper)))) → ∀ (first second : Carrier), joinOperation first second = joinOperation second first
+Transliterated theorem: (IsJoinOperation relation joinOperation) → LRA.Operation.Laws.Commutative.Commutative joinOperation
+Logical form (Lean): {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} (relationIsPartialOrder : PartialOrder relation) {joinOperation : BinaryEndoOperation Carrier} (isJoinOperation : IsJoinOperation relation joinOperation) : LRA.Operation.Laws.Commutative.Commutative joinOperation
+Source: ./Lattices/Lattice/Consequences.lean#L149
+
+
+
+Name: MeetOperationCommutative
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier},   LRA.Order.PartialOrder relation →     ∀ {meetOperation : LRA.Operation.BinaryEndoOperation Carrier},       LRA.Order.IsMeetOperation relation meetOperation → LRA.Operation.Laws.Commutative.Commutative meetOperation
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Relation.Endorelation Carrier
+    relationIsPartialOrder : PartialOrder relation
+    meetOperation : BinaryEndoOperation Carrier
+  Prove
+    ((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x → x = y) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z))) → ∀ {meetOperation : Carrier → Carrier → Carrier}, (∀ (left right : Carrier), (relation (meetOperation left right) left ∧ (relation (meetOperation left right) right ∧ (∀ (lower : Carrier), relation lower left → relation lower right → relation lower (meetOperation left right))))) → ∀ (first second : Carrier), meetOperation first second = meetOperation second first
+Transliterated theorem: (IsMeetOperation relation meetOperation) → LRA.Operation.Laws.Commutative.Commutative meetOperation
+Logical form (Lean): {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} (relationIsPartialOrder : PartialOrder relation) {meetOperation : BinaryEndoOperation Carrier} (isMeetOperation : IsMeetOperation relation meetOperation) : LRA.Operation.Laws.Commutative.Commutative meetOperation
+Source: ./Lattices/Lattice/Consequences.lean#L199
+
+
+
+Name: JoinOperationIdempotent
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier},   LRA.Order.PartialOrder relation →     ∀ {joinOperation : LRA.Operation.BinaryEndoOperation Carrier},       LRA.Order.IsJoinOperation relation joinOperation → LRA.Operation.Laws.Idempotent.Idempotent joinOperation
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Relation.Endorelation Carrier
+    relationIsPartialOrder : PartialOrder relation
+    joinOperation : BinaryEndoOperation Carrier
+  Prove
+    ((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x → x = y) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z))) → ∀ {joinOperation : Carrier → Carrier → Carrier}, (∀ (left right : Carrier), (relation left (joinOperation left right) ∧ (relation right (joinOperation left right) ∧ (∀ (upper : Carrier), relation left upper → relation right upper → relation (joinOperation left right) upper)))) → ∀ (element : Carrier), joinOperation element element = element
+Transliterated theorem: (IsJoinOperation relation joinOperation) → LRA.Operation.Laws.Idempotent.Idempotent joinOperation
+Logical form (Lean): {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} (relationIsPartialOrder : PartialOrder relation) {joinOperation : BinaryEndoOperation Carrier} (isJoinOperation : IsJoinOperation relation joinOperation) : LRA.Operation.Laws.Idempotent.Idempotent joinOperation
+Source: ./Lattices/Lattice/Consequences.lean#L249
+
+
+
+Name: MeetOperationIdempotent
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier},   LRA.Order.PartialOrder relation →     ∀ {meetOperation : LRA.Operation.BinaryEndoOperation Carrier},       LRA.Order.IsMeetOperation relation meetOperation → LRA.Operation.Laws.Idempotent.Idempotent meetOperation
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Relation.Endorelation Carrier
+    relationIsPartialOrder : PartialOrder relation
+    meetOperation : BinaryEndoOperation Carrier
+  Prove
+    ((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x → x = y) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z))) → ∀ {meetOperation : Carrier → Carrier → Carrier}, (∀ (left right : Carrier), (relation (meetOperation left right) left ∧ (relation (meetOperation left right) right ∧ (∀ (lower : Carrier), relation lower left → relation lower right → relation lower (meetOperation left right))))) → ∀ (element : Carrier), meetOperation element element = element
+Transliterated theorem: (IsMeetOperation relation meetOperation) → LRA.Operation.Laws.Idempotent.Idempotent meetOperation
+Logical form (Lean): {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} (relationIsPartialOrder : PartialOrder relation) {meetOperation : BinaryEndoOperation Carrier} (isMeetOperation : IsMeetOperation relation meetOperation) : LRA.Operation.Laws.Idempotent.Idempotent meetOperation
+Source: ./Lattices/Lattice/Consequences.lean#L299
+
+
+
+Name: JoinOperationAssociative
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier},   LRA.Order.PartialOrder relation →     ∀ {joinOperation : LRA.Operation.BinaryEndoOperation Carrier},       LRA.Order.IsJoinOperation relation joinOperation → LRA.Operation.Laws.Associative.Associative joinOperation
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Relation.Endorelation Carrier
+    relationIsPartialOrder : PartialOrder relation
+    joinOperation : BinaryEndoOperation Carrier
+  Prove
+    ((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x → x = y) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z))) → ∀ {joinOperation : Carrier → Carrier → Carrier}, (∀ (left right : Carrier), (relation left (joinOperation left right) ∧ (relation right (joinOperation left right) ∧ (∀ (upper : Carrier), relation left upper → relation right upper → relation (joinOperation left right) upper)))) → ∀ (first second third : Carrier), joinOperation (joinOperation first second) third = joinOperation first (joinOperation second third)
+Transliterated theorem: (IsJoinOperation relation joinOperation) → LRA.Operation.Laws.Associative.Associative joinOperation
+Logical form (Lean): {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} (relationIsPartialOrder : PartialOrder relation) {joinOperation : BinaryEndoOperation Carrier} (isJoinOperation : IsJoinOperation relation joinOperation) : LRA.Operation.Laws.Associative.Associative joinOperation
+Source: ./Lattices/Lattice/Consequences.lean#L349
+
+
+
+Name: MeetOperationAssociative
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier},   LRA.Order.PartialOrder relation →     ∀ {meetOperation : LRA.Operation.BinaryEndoOperation Carrier},       LRA.Order.IsMeetOperation relation meetOperation → LRA.Operation.Laws.Associative.Associative meetOperation
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Relation.Endorelation Carrier
+    relationIsPartialOrder : PartialOrder relation
+    meetOperation : BinaryEndoOperation Carrier
+  Prove
+    ((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x → x = y) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z))) → ∀ {meetOperation : Carrier → Carrier → Carrier}, (∀ (left right : Carrier), (relation (meetOperation left right) left ∧ (relation (meetOperation left right) right ∧ (∀ (lower : Carrier), relation lower left → relation lower right → relation lower (meetOperation left right))))) → ∀ (first second third : Carrier), meetOperation (meetOperation first second) third = meetOperation first (meetOperation second third)
+Transliterated theorem: (IsMeetOperation relation meetOperation) → LRA.Operation.Laws.Associative.Associative meetOperation
+Logical form (Lean): {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} (relationIsPartialOrder : PartialOrder relation) {meetOperation : BinaryEndoOperation Carrier} (isMeetOperation : IsMeetOperation relation meetOperation) : LRA.Operation.Laws.Associative.Associative meetOperation
+Source: ./Lattices/Lattice/Consequences.lean#L399
+
+
+
+Name: JoinMeetOperationAbsorption
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} (relationIsPartialOrder : PartialOrder relation) {joinOperation meetOperation : BinaryEndoOperation Carrier} (isJoinOperation : IsJoinOperation relation joinOperation) (isMeetOperation : IsMeetOperation relation meetOperation), LRA.Operation.Laws.Absorption.AbsorptionLaw joinOperation meetOperation
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Relation.Endorelation Carrier
+    relationIsPartialOrder : PartialOrder relation
+    joinOperation meetOperation : BinaryEndoOperation Carrier
+  Prove
+    ((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x → x = y) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z))) → ∀ {joinOperation meetOperation : Carrier → Carrier → Carrier}, ((∀ (left right : Carrier), (relation left (joinOperation left right) ∧ (relation right (joinOperation left right) ∧ (∀ (upper : Carrier), relation left upper → relation right upper → relation (joinOperation left right) upper)))) ∧ (∀ (left right : Carrier), (relation (meetOperation left right) left ∧ (relation (meetOperation left right) right ∧ (∀ (lower : Carrier), relation lower left → relation lower right → relation lower (meetOperation left right)))))) → ∀ (left right : Carrier), joinOperation left (meetOperation left right) = left
+Transliterated theorem: (IsJoinOperation relation joinOperation ∧ IsMeetOperation relation meetOperation) → LRA.Operation.Laws.Absorption.AbsorptionLaw joinOperation meetOperation
+Logical form (Lean): {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} (relationIsPartialOrder : PartialOrder relation) {joinOperation meetOperation : BinaryEndoOperation Carrier} (isJoinOperation : IsJoinOperation relation joinOperation) (isMeetOperation : IsMeetOperation relation meetOperation) : LRA.Operation.Laws.Absorption.AbsorptionLaw joinOperation meetOperation
+Source: ./Lattices/Lattice/Consequences.lean#L451
+
+
+
+Name: MeetJoinOperationAbsorption
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} (relationIsPartialOrder : PartialOrder relation) {joinOperation meetOperation : BinaryEndoOperation Carrier} (isJoinOperation : IsJoinOperation relation joinOperation) (isMeetOperation : IsMeetOperation relation meetOperation), LRA.Operation.Laws.Absorption.AbsorptionLaw meetOperation joinOperation
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Relation.Endorelation Carrier
+    relationIsPartialOrder : PartialOrder relation
+    joinOperation meetOperation : BinaryEndoOperation Carrier
+  Prove
+    ((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x → x = y) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z))) → ∀ {joinOperation meetOperation : Carrier → Carrier → Carrier}, ((∀ (left right : Carrier), (relation left (joinOperation left right) ∧ (relation right (joinOperation left right) ∧ (∀ (upper : Carrier), relation left upper → relation right upper → relation (joinOperation left right) upper)))) ∧ (∀ (left right : Carrier), (relation (meetOperation left right) left ∧ (relation (meetOperation left right) right ∧ (∀ (lower : Carrier), relation lower left → relation lower right → relation lower (meetOperation left right)))))) → ∀ (left right : Carrier), meetOperation left (joinOperation left right) = left
+Transliterated theorem: (IsJoinOperation relation joinOperation ∧ IsMeetOperation relation meetOperation) → LRA.Operation.Laws.Absorption.AbsorptionLaw meetOperation joinOperation
+Logical form (Lean): {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} (relationIsPartialOrder : PartialOrder relation) {joinOperation meetOperation : BinaryEndoOperation Carrier} (isJoinOperation : IsJoinOperation relation joinOperation) (isMeetOperation : IsMeetOperation relation meetOperation) : LRA.Operation.Laws.Absorption.AbsorptionLaw meetOperation joinOperation
+Source: ./Lattices/Lattice/Consequences.lean#L505
+
+
+
+Name: JoinMeetOperationMutualAbsorption
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} (relationIsPartialOrder : PartialOrder relation) {joinOperation meetOperation : BinaryEndoOperation Carrier} (isJoinOperation : IsJoinOperation relation joinOperation) (isMeetOperation : IsMeetOperation relation meetOperation), LRA.Operation.Laws.Absorption.MutualAbsorptionLaw joinOperation meetOperation
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Relation.Endorelation Carrier
+    relationIsPartialOrder : PartialOrder relation
+    joinOperation meetOperation : BinaryEndoOperation Carrier
+  Prove
+    ((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x → x = y) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z))) → ∀ {joinOperation meetOperation : Carrier → Carrier → Carrier}, ((∀ (left right : Carrier), (relation left (joinOperation left right) ∧ (relation right (joinOperation left right) ∧ (∀ (upper : Carrier), relation left upper → relation right upper → relation (joinOperation left right) upper)))) ∧ (∀ (left right : Carrier), (relation (meetOperation left right) left ∧ (relation (meetOperation left right) right ∧ (∀ (lower : Carrier), relation lower left → relation lower right → relation lower (meetOperation left right)))))) → ((∀ (left right : Carrier), joinOperation left (meetOperation left right) = left) ∧ (∀ (left right : Carrier), meetOperation left (joinOperation left right) = left))
+Transliterated theorem: (IsJoinOperation relation joinOperation ∧ IsMeetOperation relation meetOperation) → LRA.Operation.Laws.Absorption.MutualAbsorptionLaw joinOperation meetOperation
+Logical form (Lean): {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} (relationIsPartialOrder : PartialOrder relation) {joinOperation meetOperation : BinaryEndoOperation Carrier} (isJoinOperation : IsJoinOperation relation joinOperation) (isMeetOperation : IsMeetOperation relation meetOperation) : LRA.Operation.Laws.Absorption.MutualAbsorptionLaw joinOperation meetOperation
+Source: ./Lattices/Lattice/Consequences.lean#L559
+
+
+
+Name: DistributiveLatticeIsLattice
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha},   LRA.Order.DistributiveLattice relation → LRA.Order.Lattice relation
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsDistributiveLattice : DistributiveLattice relation
+  Prove
+    ((((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) ∧ (∀ (left right : Alpha), ((Exists fun join => (relation left join ∧ (relation right join ∧ (∀ (upper : Alpha), relation left upper → relation right upper → relation join upper)))) ∧ (Exists fun meet => (relation meet left ∧ (relation meet right ∧ (∀ (lower : Alpha), relation lower left → relation lower right → relation lower meet))))))) ∧ ((∀ (a b c bMeetC leftSide aJoinB aJoinC rightSide : Alpha), (relation bMeetC b ∧ (relation bMeetC c ∧ (∀ (lower : Alpha), relation lower b → relation lower c → relation lower bMeetC))) → (relation a leftSide ∧ (relation bMeetC leftSide ∧ (∀ (upper : Alpha), relation a upper → relation bMeetC upper → relation leftSide upper))) → (relation a aJoinB ∧ (relation b aJoinB ∧ (∀ (upper : Alpha), relation a upper → relation b upper → relation aJoinB upper))) → (relation a aJoinC ∧ (relation c aJoinC ∧ (∀ (upper : Alpha), relation a upper → relation c upper → relation aJoinC upper))) → (relation rightSide aJoinB ∧ (relation rightSide aJoinC ∧ (∀ (lower : Alpha), relation lower aJoinB → relation lower aJoinC → relation lower rightSide))) → leftSide = rightSide) ∧ (∀ (a b c bJoinC leftSide aMeetB aMeetC rightSide : Alpha), (relation b bJoinC ∧ (relation c bJoinC ∧ (∀ (upper : Alpha), relation b upper → relation c upper → relation bJoinC upper))) → (relation leftSide a ∧ (relation leftSide bJoinC ∧ (∀ (lower : Alpha), relation lower a → relation lower bJoinC → relation lower leftSide))) → (relation aMeetB a ∧ (relation aMeetB b ∧ (∀ (lower : Alpha), relation lower a → relation lower b → relation lower aMeetB))) → (relation aMeetC a ∧ (relation aMeetC c ∧ (∀ (lower : Alpha), relation lower a → relation lower c → relation lower aMeetC))) → (relation aMeetB rightSide ∧ (relation aMeetC rightSide ∧ (∀ (upper : Alpha), relation aMeetB upper → relation aMeetC upper → relation rightSide upper))) → leftSide = rightSide))) → (((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) ∧ (∀ (left right : Alpha), ((Exists fun join => (relation left join ∧ (relation right join ∧ (∀ (upper : Alpha), relation left upper → relation right upper → relation join upper)))) ∧ (Exists fun meet => (relation meet left ∧ (relation meet right ∧ (∀ (lower : Alpha), relation lower left → relation lower right → relation lower meet)))))))
+Transliterated theorem: Lattice relation
+Logical form (Lean): {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsDistributiveLattice : DistributiveLattice relation) : Lattice relation
+Source: ./Lattices/DistributiveLattice/Theorems.lean#L47
+
+
+
+Name: JoinDistributesOverMeet
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsDistributiveLattice : DistributiveLattice relation) {a b c bMeetC leftSide aJoinB aJoinC rightSide : Alpha} (bMeetCIsMeet : Meet relation b c bMeetC) (leftSideIsJoin : Join relation a bMeetC leftSide) (aJoinBIsJoin : Join relation a b aJoinB) (aJoinCIsJoin : Join relation a c aJoinC) (rightSideIsMeet : Meet relation aJoinB aJoinC rightSide), leftSide = rightSide
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsDistributiveLattice : DistributiveLattice relation
+    a b c bMeetC leftSide aJoinB aJoinC rightSide : Alpha
+    bMeetCIsMeet : Meet relation b c bMeetC
+    leftSideIsJoin : Join relation a bMeetC leftSide
+    aJoinBIsJoin : Join relation a b aJoinB
+    aJoinCIsJoin : Join relation a c aJoinC
+    rightSideIsMeet : Meet relation aJoinB aJoinC rightSide
+  Prove
+    ((((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) ∧ (∀ (left right : Alpha), ((Exists fun join => (relation left join ∧ (relation right join ∧ (∀ (upper : Alpha), relation left upper → relation right upper → relation join upper)))) ∧ (Exists fun meet => (relation meet left ∧ (relation meet right ∧ (∀ (lower : Alpha), relation lower left → relation lower right → relation lower meet))))))) ∧ ((∀ (a b c bMeetC leftSide aJoinB aJoinC rightSide : Alpha), (relation bMeetC b ∧ (relation bMeetC c ∧ (∀ (lower : Alpha), relation lower b → relation lower c → relation lower bMeetC))) → (relation a leftSide ∧ (relation bMeetC leftSide ∧ (∀ (upper : Alpha), relation a upper → relation bMeetC upper → relation leftSide upper))) → (relation a aJoinB ∧ (relation b aJoinB ∧ (∀ (upper : Alpha), relation a upper → relation b upper → relation aJoinB upper))) → (relation a aJoinC ∧ (relation c aJoinC ∧ (∀ (upper : Alpha), relation a upper → relation c upper → relation aJoinC upper))) → (relation rightSide aJoinB ∧ (relation rightSide aJoinC ∧ (∀ (lower : Alpha), relation lower aJoinB → relation lower aJoinC → relation lower rightSide))) → leftSide = rightSide) ∧ (∀ (a b c bJoinC leftSide aMeetB aMeetC rightSide : Alpha), (relation b bJoinC ∧ (relation c bJoinC ∧ (∀ (upper : Alpha), relation b upper → relation c upper → relation bJoinC upper))) → (relation leftSide a ∧ (relation leftSide bJoinC ∧ (∀ (lower : Alpha), relation lower a → relation lower bJoinC → relation lower leftSide))) → (relation aMeetB a ∧ (relation aMeetB b ∧ (∀ (lower : Alpha), relation lower a → relation lower b → relation lower aMeetB))) → (relation aMeetC a ∧ (relation aMeetC c ∧ (∀ (lower : Alpha), relation lower a → relation lower c → relation lower aMeetC))) → (relation aMeetB rightSide ∧ (relation aMeetC rightSide ∧ (∀ (upper : Alpha), relation aMeetB upper → relation aMeetC upper → relation rightSide upper))) → leftSide = rightSide))) → ∀ {a b c bMeetC leftSide aJoinB aJoinC rightSide : Alpha}, ((relation bMeetC b ∧ (relation bMeetC c ∧ (∀ (lower : Alpha), relation lower b → relation lower c → relation lower bMeetC))) ∧ ((relation a leftSide ∧ (relation bMeetC leftSide ∧ (∀ (upper : Alpha), relation a upper → relation bMeetC upper → relation leftSide upper))) ∧ ((relation a aJoinB ∧ (relation b aJoinB ∧ (∀ (upper : Alpha), relation a upper → relation b upper → relation aJoinB upper))) ∧ ((relation a aJoinC ∧ (relation c aJoinC ∧ (∀ (upper : Alpha), relation a upper → relation c upper → relation aJoinC upper))) ∧ (relation rightSide aJoinB ∧ (relation rightSide aJoinC ∧ (∀ (lower : Alpha), relation lower aJoinB → relation lower aJoinC → relation lower rightSide))))))) → leftSide = rightSide
+Transliterated theorem: leftSide = rightSide
+Logical form (Lean): {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsDistributiveLattice : DistributiveLattice relation) {a b c bMeetC leftSide aJoinB aJoinC rightSide : Alpha} (bMeetCIsMeet : Meet relation b c bMeetC) (leftSideIsJoin : Join relation a bMeetC leftSide) (aJoinBIsJoin : Join relation a b aJoinB) (aJoinCIsJoin : Join relation a c aJoinC) (rightSideIsMeet : Meet relation aJoinB aJoinC rightSide) : leftSide = rightSide
+Source: ./Lattices/DistributiveLattice/Theorems.lean#L99
+
+
+
+Name: MeetDistributesOverJoin
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsDistributiveLattice : DistributiveLattice relation) {a b c bJoinC leftSide aMeetB aMeetC rightSide : Alpha} (bJoinCIsJoin : Join relation b c bJoinC) (leftSideIsMeet : Meet relation a bJoinC leftSide) (aMeetBIsMeet : Meet relation a b aMeetB) (aMeetCIsMeet : Meet relation a c aMeetC) (rightSideIsJoin : Join relation aMeetB aMeetC rightSide), leftSide = rightSide
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsDistributiveLattice : DistributiveLattice relation
+    a b c bJoinC leftSide aMeetB aMeetC rightSide : Alpha
+    bJoinCIsJoin : Join relation b c bJoinC
+    leftSideIsMeet : Meet relation a bJoinC leftSide
+    aMeetBIsMeet : Meet relation a b aMeetB
+    aMeetCIsMeet : Meet relation a c aMeetC
+    rightSideIsJoin : Join relation aMeetB aMeetC rightSide
+  Prove
+    ((((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) ∧ (∀ (left right : Alpha), ((Exists fun join => (relation left join ∧ (relation right join ∧ (∀ (upper : Alpha), relation left upper → relation right upper → relation join upper)))) ∧ (Exists fun meet => (relation meet left ∧ (relation meet right ∧ (∀ (lower : Alpha), relation lower left → relation lower right → relation lower meet))))))) ∧ ((∀ (a b c bMeetC leftSide aJoinB aJoinC rightSide : Alpha), (relation bMeetC b ∧ (relation bMeetC c ∧ (∀ (lower : Alpha), relation lower b → relation lower c → relation lower bMeetC))) → (relation a leftSide ∧ (relation bMeetC leftSide ∧ (∀ (upper : Alpha), relation a upper → relation bMeetC upper → relation leftSide upper))) → (relation a aJoinB ∧ (relation b aJoinB ∧ (∀ (upper : Alpha), relation a upper → relation b upper → relation aJoinB upper))) → (relation a aJoinC ∧ (relation c aJoinC ∧ (∀ (upper : Alpha), relation a upper → relation c upper → relation aJoinC upper))) → (relation rightSide aJoinB ∧ (relation rightSide aJoinC ∧ (∀ (lower : Alpha), relation lower aJoinB → relation lower aJoinC → relation lower rightSide))) → leftSide = rightSide) ∧ (∀ (a b c bJoinC leftSide aMeetB aMeetC rightSide : Alpha), (relation b bJoinC ∧ (relation c bJoinC ∧ (∀ (upper : Alpha), relation b upper → relation c upper → relation bJoinC upper))) → (relation leftSide a ∧ (relation leftSide bJoinC ∧ (∀ (lower : Alpha), relation lower a → relation lower bJoinC → relation lower leftSide))) → (relation aMeetB a ∧ (relation aMeetB b ∧ (∀ (lower : Alpha), relation lower a → relation lower b → relation lower aMeetB))) → (relation aMeetC a ∧ (relation aMeetC c ∧ (∀ (lower : Alpha), relation lower a → relation lower c → relation lower aMeetC))) → (relation aMeetB rightSide ∧ (relation aMeetC rightSide ∧ (∀ (upper : Alpha), relation aMeetB upper → relation aMeetC upper → relation rightSide upper))) → leftSide = rightSide))) → ∀ {a b c bJoinC leftSide aMeetB aMeetC rightSide : Alpha}, ((relation b bJoinC ∧ (relation c bJoinC ∧ (∀ (upper : Alpha), relation b upper → relation c upper → relation bJoinC upper))) ∧ ((relation leftSide a ∧ (relation leftSide bJoinC ∧ (∀ (lower : Alpha), relation lower a → relation lower bJoinC → relation lower leftSide))) ∧ ((relation aMeetB a ∧ (relation aMeetB b ∧ (∀ (lower : Alpha), relation lower a → relation lower b → relation lower aMeetB))) ∧ ((relation aMeetC a ∧ (relation aMeetC c ∧ (∀ (lower : Alpha), relation lower a → relation lower c → relation lower aMeetC))) ∧ (relation aMeetB rightSide ∧ (relation aMeetC rightSide ∧ (∀ (upper : Alpha), relation aMeetB upper → relation aMeetC upper → relation rightSide upper))))))) → leftSide = rightSide
+Transliterated theorem: leftSide = rightSide
+Logical form (Lean): {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} (relationIsDistributiveLattice : DistributiveLattice relation) {a b c bJoinC leftSide aMeetB aMeetC rightSide : Alpha} (bJoinCIsJoin : Join relation b c bJoinC) (leftSideIsMeet : Meet relation a bJoinC leftSide) (aMeetBIsMeet : Meet relation a b aMeetB) (aMeetCIsMeet : Meet relation a c aMeetC) (rightSideIsJoin : Join relation aMeetB aMeetC rightSide) : leftSide = rightSide
+Source: ./Lattices/DistributiveLattice/Theorems.lean#L157
+
+
+
+Name: CompleteLatticeHasBottomAndTop
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsCompleteLattice : CompleteLattice SetObject relation), (exists bottom, forall element, relation bottom element) /\ (exists top, forall element, relation element top)
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsCompleteLattice : CompleteLattice SetObject relation
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop}, (((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x → x = y) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) ∧ (∀ (subset : SetObject), ((Exists fun supremum => ((∀ (element : Element), subset ≤ element → relation element supremum) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation element bound) → relation supremum bound))) ∧ (Exists fun infimum => ((∀ (element : Element), subset ≤ element → relation infimum element) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation bound element) → relation bound infimum)))))) → ((Exists fun bottom => ∀ (element : Element), relation bottom element) ∧ (Exists fun top => ∀ (element : Element), relation element top))
+Transliterated theorem: (exists bottom, forall element, relation bottom element) ∧ (exists top, forall element, relation element top)
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [MembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsCompleteLattice : CompleteLattice SetObject relation) : (exists bottom, forall element, relation bottom element) /\ (exists top, forall element, relation element top)
+Source: ./Lattices/CompleteLattice/Theorems.lean#L57
+
+
+
+Name: AllSupremaImplyCompleteLattice
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [HasSeparation Element SetObject] [HasUniversal SetObject] [HasComplement SetObject] [SeparationLaws Element SetObject] [UniversalMembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsPartialOrder : PartialOrder relation) (everySubsetHasSupremum : forall subset : SetObject, exists supremum, Supremum relation subset supremum), CompleteLattice SetObject relation
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsPartialOrder : PartialOrder relation
+    everySubsetHasSupremum : forall subset : SetObject, exists supremum, Supremum relation subset supremum
+  Prove
+    (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.UniversalMembershipLaws Element SetObject) → ∀ {relation : Element → Element → Prop}, (((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x → x = y) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) ∧ (∀ (subset : SetObject), Exists fun supremum => ((∀ (element : Element), subset ≤ element → relation element supremum) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation element bound) → relation supremum bound)))) → (((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x → x = y) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) ∧ (∀ (subset : SetObject), ((Exists fun supremum => ((∀ (element : Element), subset ≤ element → relation element supremum) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation element bound) → relation supremum bound))) ∧ (Exists fun infimum => ((∀ (element : Element), subset ≤ element → relation infimum element) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation bound element) → relation bound infimum))))))
+Transliterated theorem: CompleteLattice SetObject relation
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [HasSeparation Element SetObject] [HasUniversal SetObject] [HasComplement SetObject] [SeparationLaws Element SetObject] [UniversalMembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsPartialOrder : PartialOrder relation) (everySubsetHasSupremum : forall subset : SetObject, exists supremum, Supremum relation subset supremum) : CompleteLattice SetObject relation
+Source: ./Lattices/CompleteLattice/Theorems.lean#L118
+
+
+
+Name: AllInfimaImplyCompleteLattice
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [HasSeparation Element SetObject] [HasUniversal SetObject] [HasComplement SetObject] [SeparationLaws Element SetObject] [UniversalMembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsPartialOrder : PartialOrder relation) (everySubsetHasInfimum : forall subset : SetObject, exists infimum, Infimum relation subset infimum), CompleteLattice SetObject relation
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsPartialOrder : PartialOrder relation
+    everySubsetHasInfimum : forall subset : SetObject, exists infimum, Infimum relation subset infimum
+  Prove
+    (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.UniversalMembershipLaws Element SetObject) → ∀ {relation : Element → Element → Prop}, (((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x → x = y) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) ∧ (∀ (subset : SetObject), Exists fun infimum => ((∀ (element : Element), subset ≤ element → relation infimum element) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation bound element) → relation bound infimum)))) → (((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x → x = y) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) ∧ (∀ (subset : SetObject), ((Exists fun supremum => ((∀ (element : Element), subset ≤ element → relation element supremum) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation element bound) → relation supremum bound))) ∧ (Exists fun infimum => ((∀ (element : Element), subset ≤ element → relation infimum element) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation bound element) → relation bound infimum))))))
+Transliterated theorem: CompleteLattice SetObject relation
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [HasSeparation Element SetObject] [HasUniversal SetObject] [HasComplement SetObject] [SeparationLaws Element SetObject] [UniversalMembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsPartialOrder : PartialOrder relation) (everySubsetHasInfimum : forall subset : SetObject, exists infimum, Infimum relation subset infimum) : CompleteLattice SetObject relation
+Source: ./Lattices/CompleteLattice/Theorems.lean#L182
+
+
+
+Name: CompleteLatticeIsLattice
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [HasSeparation Element SetObject] [HasUniversal SetObject] [HasComplement SetObject] [SeparationLaws Element SetObject] [UniversalMembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsCompleteLattice : CompleteLattice SetObject relation), Lattice relation
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsCompleteLattice : CompleteLattice SetObject relation
+  Prove
+    (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.UniversalMembershipLaws Element SetObject) → ∀ {relation : Element → Element → Prop}, (((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x → x = y) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) ∧ (∀ (subset : SetObject), ((Exists fun supremum => ((∀ (element : Element), subset ≤ element → relation element supremum) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation element bound) → relation supremum bound))) ∧ (Exists fun infimum => ((∀ (element : Element), subset ≤ element → relation infimum element) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation bound element) → relation bound infimum)))))) → (((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x → x = y) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) ∧ (∀ (left right : Element), ((Exists fun join => (relation left join ∧ (relation right join ∧ (∀ (upper : Element), relation left upper → relation right upper → relation join upper)))) ∧ (Exists fun meet => (relation meet left ∧ (relation meet right ∧ (∀ (lower : Element), relation lower left → relation lower right → relation lower meet)))))))
+Transliterated theorem: Lattice relation
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] [HasSeparation Element SetObject] [HasUniversal SetObject] [HasComplement SetObject] [SeparationLaws Element SetObject] [UniversalMembershipLaws Element SetObject] {relation : LRA.Relation.Endorelation Element} (relationIsCompleteLattice : CompleteLattice SetObject relation) : Lattice relation
+Source: ./Lattices/CompleteLattice/Theorems.lean#L243
+
+
+
+Name: ConverseIsCompleteLatticeIff
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [Membership Element SetObject] (relation : LRA.Relation.Endorelation Element), CompleteLattice SetObject (LRA.Relation.Converse relation) ↔ CompleteLattice SetObject relation
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+  Prove
+    CompleteLattice SetObject (LRA.Relation.Converse relation) ↔ CompleteLattice SetObject relation
+Transliterated theorem: CompleteLattice SetObject (LRA.Relation.Converse relation) ↔ CompleteLattice SetObject relation
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] (relation : LRA.Relation.Endorelation Element) : CompleteLattice SetObject (LRA.Relation.Converse relation) ↔ CompleteLattice SetObject relation
+Source: ./Lattices/CompleteLattice/Relationships.lean#L49
+
+
+
+Name: NoStrictBetweenAddOne
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [LT R] [Add R] [OfNat R 1] [OrderDiscretenessLaw R], forall a : R, Not (exists middle : R, a < middle /\ middle < a + 1)
+Predicate logic (unfolded):
+  Ambient
+    (R, <)
+  Objects
+    (none)
+  Prove
+    LRA.Order.OrderDiscretenessLaw R → ∀ (a : R), (Exists fun middle => (inst.lt a middle ∧ inst.lt middle ({ hAdd := fun a b => inst_1.add a b }.hAdd a 1))) → False
+Transliterated theorem: forall a : R, Not exists middle ∈ R, a < middle ∧ middle < a + 1
+Logical form (Lean): [LT R] [Add R] [OfNat R 1] [OrderDiscretenessLaw R] : forall a : R, Not (exists middle : R, a < middle /\ middle < a + 1)
+Source: ./DiscreteOrder/Definition.lean#L97
+
+
+
+Name: ProductOfPartialOrdersIsPartialOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {Beta : Type v} {leftRelation : LRA.Relation.Endorelation Alpha} {rightRelation : LRA.Relation.Endorelation Beta} (leftIsPartialOrder : PartialOrder leftRelation) (rightIsPartialOrder : PartialOrder rightRelation), PartialOrder (ProductRelation leftRelation rightRelation)
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta)
+  Objects
+    leftRelation : LRA.Relation.Endorelation Alpha
+    rightRelation : LRA.Relation.Endorelation Beta
+    leftIsPartialOrder : PartialOrder leftRelation
+    rightIsPartialOrder : PartialOrder rightRelation
+  Prove
+    (((∀ (x : Alpha), leftRelation x x) ∧ ((∀ (x y : Alpha), leftRelation x y → leftRelation y x → x = y) ∧ (∀ (x y z : Alpha), leftRelation x y → leftRelation y z → leftRelation x z))) ∧ ((∀ (x : Beta), rightRelation x x) ∧ ((∀ (x y : Beta), rightRelation x y → rightRelation y x → x = y) ∧ (∀ (x y z : Beta), rightRelation x y → rightRelation y z → rightRelation x z)))) → ((∀ (x : Prod Alpha Beta), (leftRelation x.1 x.1 ∧ rightRelation x.2 x.2)) ∧ ((∀ (x y : Prod Alpha Beta), (leftRelation x.1 y.1 ∧ rightRelation x.2 y.2) → (leftRelation y.1 x.1 ∧ rightRelation y.2 x.2) → x = y) ∧ (∀ (x y z : Prod Alpha Beta), (leftRelation x.1 y.1 ∧ rightRelation x.2 y.2) → (leftRelation y.1 z.1 ∧ rightRelation y.2 z.2) → (leftRelation x.1 z.1 ∧ rightRelation x.2 z.2))))
+Transliterated theorem: PartialOrder (ProductRelation leftRelation rightRelation)
+Logical form (Lean): {Alpha : Type u} {Beta : Type v} {leftRelation : LRA.Relation.Endorelation Alpha} {rightRelation : LRA.Relation.Endorelation Beta} (leftIsPartialOrder : PartialOrder leftRelation) (rightIsPartialOrder : PartialOrder rightRelation) : PartialOrder (ProductRelation leftRelation rightRelation)
+Source: ./Constructions/ProductOrder/Theorems.lean#L50
+
+
+
+Name: LexicographicProductIsStrictLinearOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {Beta : Type v} {leftRelation : LRA.Relation.Endorelation Alpha} {rightRelation : LRA.Relation.Endorelation Beta} (leftIsStrictLinear : StrictLinearOrder leftRelation) (rightIsStrictLinear : StrictLinearOrder rightRelation), StrictLinearOrder (LexicographicRelation leftRelation rightRelation)
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta)
+  Objects
+    leftRelation : LRA.Relation.Endorelation Alpha
+    rightRelation : LRA.Relation.Endorelation Beta
+    leftIsStrictLinear : StrictLinearOrder leftRelation
+    rightIsStrictLinear : StrictLinearOrder rightRelation
+  Prove
+    ((((∀ (x : Alpha), leftRelation x x → False) ∧ (∀ (x y z : Alpha), leftRelation x y → leftRelation y z → leftRelation x z)) ∧ (∀ (x y : Alpha), Or ((leftRelation x y ∧ ((x = y → False) ∧ (leftRelation y x → False)))) (Or ((x = y ∧ ((leftRelation x y → False) ∧ (leftRelation y x → False)))) ((leftRelation y x ∧ ((leftRelation x y → False) ∧ (x = y → False))))))) ∧ (((∀ (x : Beta), rightRelation x x → False) ∧ (∀ (x y z : Beta), rightRelation x y → rightRelation y z → rightRelation x z)) ∧ (∀ (x y : Beta), Or ((rightRelation x y ∧ ((x = y → False) ∧ (rightRelation y x → False)))) (Or ((x = y ∧ ((rightRelation x y → False) ∧ (rightRelation y x → False)))) ((rightRelation y x ∧ ((rightRelation x y → False) ∧ (x = y → False)))))))) → (((∀ (x : Prod Alpha Beta), Or (leftRelation x.1 x.1) ((x.1 = x.1 ∧ rightRelation x.2 x.2)) → False) ∧ (∀ (x y z : Prod Alpha Beta), Or (leftRelation x.1 y.1) ((x.1 = y.1 ∧ rightRelation x.2 y.2)) → Or (leftRelation y.1 z.1) ((y.1 = z.1 ∧ rightRelation y.2 z.2)) → Or (leftRelation x.1 z.1) ((x.1 = z.1 ∧ rightRelation x.2 z.2)))) ∧ (∀ (x y : Prod Alpha Beta), Or (((Or (leftRelation x.1 y.1) ((x.1 = y.1 ∧ rightRelation x.2 y.2))) ∧ ((x = y → False) ∧ (Or (leftRelation y.1 x.1) ((y.1 = x.1 ∧ rightRelation y.2 x.2)) → False)))) (Or ((x = y ∧ ((Or (leftRelation x.1 y.1) ((x.1 = y.1 ∧ rightRelation x.2 y.2)) → False) ∧ (Or (leftRelation y.1 x.1) ((y.1 = x.1 ∧ rightRelation y.2 x.2)) → False)))) (((Or (leftRelation y.1 x.1) ((y.1 = x.1 ∧ rightRelation y.2 x.2))) ∧ ((Or (leftRelation x.1 y.1) ((x.1 = y.1 ∧ rightRelation x.2 y.2)) → False) ∧ (x = y → False)))))))
+Transliterated theorem: StrictLinearOrder (LexicographicRelation leftRelation rightRelation)
+Logical form (Lean): {Alpha : Type u} {Beta : Type v} {leftRelation : LRA.Relation.Endorelation Alpha} {rightRelation : LRA.Relation.Endorelation Beta} (leftIsStrictLinear : StrictLinearOrder leftRelation) (rightIsStrictLinear : StrictLinearOrder rightRelation) : StrictLinearOrder (LexicographicRelation leftRelation rightRelation)
+Source: ./Constructions/LexicographicOrder/Theorems.lean#L50
+
+
+
+Name: StrictRelationOfPosetIsStrictOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (poset : LRA.Order.Poset), LRA.Order.StrictOrder (LRA.Order.StrictFromNonStrict poset.NonStrictOrder)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    poset : Poset
+  Prove
+    ((∀ (x : poset.1), (poset.2 x x ∧ ¬ x = x) → False) ∧ (∀ (x y z : poset.1), (poset.2 x y ∧ (x = y → False)) → (poset.2 y z ∧ (y = z → False)) → (poset.2 x z ∧ (x = z → False))))
+Transliterated theorem: (∀ poset ∈ Poset), LRA.Order.StrictOrder (StrictFromNonStrict poset.NonStrictOrder)
+Logical form (Lean): (poset : Poset) : LRA.Order.StrictOrder (StrictFromNonStrict poset.NonStrictOrder)
+Source: ./Constructions/StrictNonStrictCorrespondence/Definition.lean#L137
+
+
+
+Name: NonStrictRelationOfStrictPosetIsPartialOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (strictPoset : LRA.Order.StrictPoset),   LRA.Order.PartialOrder (LRA.Order.NonStrictFromStrict strictPoset.StrictRelation)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    strictPoset : StrictPoset
+  Prove
+    ((∀ (x : strictPoset.1), Or (strictPoset.2 x x) (x = x)) ∧ ((∀ (x y : strictPoset.1), Or (strictPoset.2 x y) (x = y) → Or (strictPoset.2 y x) (y = x) → x = y) ∧ (∀ (x y z : strictPoset.1), Or (strictPoset.2 x y) (x = y) → Or (strictPoset.2 y z) (y = z) → Or (strictPoset.2 x z) (x = z))))
+Transliterated theorem: (∀ strictPoset ∈ StrictPoset), LRA.Order.PartialOrder (NonStrictFromStrict strictPoset.StrictRelation)
+Logical form (Lean): (strictPoset : StrictPoset) : LRA.Order.PartialOrder (NonStrictFromStrict strictPoset.StrictRelation)
+Source: ./Constructions/StrictNonStrictCorrespondence/Definition.lean#L229
+
+
+
+Name: StrictOrderInducesPartialOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {strictRelation : LRA.Relation.Endorelation Alpha},   LRA.Order.StrictOrder strictRelation → LRA.Order.PartialOrder (LRA.Order.NonStrictFromStrict strictRelation)
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    strictRelation : LRA.Relation.Endorelation Alpha
+    strictRelationIsStrictOrder : StrictOrder strictRelation
+  Prove
+    ((∀ (x : Alpha), strictRelation x x → False) ∧ (∀ (x y z : Alpha), strictRelation x y → strictRelation y z → strictRelation x z)) → ((∀ (x : Alpha), Or (strictRelation x x) (x = x)) ∧ ((∀ (x y : Alpha), Or (strictRelation x y) (x = y) → Or (strictRelation y x) (y = x) → x = y) ∧ (∀ (x y z : Alpha), Or (strictRelation x y) (x = y) → Or (strictRelation y z) (y = z) → Or (strictRelation x z) (x = z))))
+Transliterated theorem: PartialOrder (NonStrictFromStrict strictRelation)
+Logical form (Lean): {Alpha : Type u} {strictRelation : LRA.Relation.Endorelation Alpha} (strictRelationIsStrictOrder : StrictOrder strictRelation) : PartialOrder (NonStrictFromStrict strictRelation)
+Source: ./Constructions/StrictNonStrictCorrespondence/Theorems.lean#L49
+
+
+
+Name: PartialOrderInducesStrictOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {nonStrictRelation : LRA.Relation.Endorelation Alpha},   LRA.Order.PartialOrder nonStrictRelation → LRA.Order.StrictOrder (LRA.Order.StrictFromNonStrict nonStrictRelation)
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    nonStrictRelation : LRA.Relation.Endorelation Alpha
+    nonStrictRelationIsPartialOrder : PartialOrder nonStrictRelation
+  Prove
+    ((∀ (x : Alpha), nonStrictRelation x x) ∧ ((∀ (x y : Alpha), nonStrictRelation x y → nonStrictRelation y x → x = y) ∧ (∀ (x y z : Alpha), nonStrictRelation x y → nonStrictRelation y z → nonStrictRelation x z))) → ((∀ (x : Alpha), (nonStrictRelation x x ∧ ¬ x = x) → False) ∧ (∀ (x y z : Alpha), (nonStrictRelation x y ∧ (x = y → False)) → (nonStrictRelation y z ∧ (y = z → False)) → (nonStrictRelation x z ∧ (x = z → False))))
+Transliterated theorem: StrictOrder (StrictFromNonStrict nonStrictRelation)
+Logical form (Lean): {Alpha : Type u} {nonStrictRelation : LRA.Relation.Endorelation Alpha} (nonStrictRelationIsPartialOrder : PartialOrder nonStrictRelation) : StrictOrder (StrictFromNonStrict nonStrictRelation)
+Source: ./Constructions/StrictNonStrictCorrespondence/Theorems.lean#L95
+
+
+
+Name: StrictLinearOrderInducesLinearOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {strictRelation : LRA.Relation.Endorelation Alpha},   LRA.Order.StrictLinearOrder strictRelation → LRA.Order.LinearOrder (LRA.Order.NonStrictFromStrict strictRelation)
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    strictRelation : LRA.Relation.Endorelation Alpha
+    strictRelationIsStrictLinearOrder : StrictLinearOrder strictRelation
+  Prove
+    (((∀ (x : Alpha), strictRelation x x → False) ∧ (∀ (x y z : Alpha), strictRelation x y → strictRelation y z → strictRelation x z)) ∧ (∀ (x y : Alpha), Or ((strictRelation x y ∧ ((x = y → False) ∧ (strictRelation y x → False)))) (Or ((x = y ∧ ((strictRelation x y → False) ∧ (strictRelation y x → False)))) ((strictRelation y x ∧ ((strictRelation x y → False) ∧ (x = y → False))))))) → (((∀ (x : Alpha), Or (strictRelation x x) (x = x)) ∧ ((∀ (x y : Alpha), Or (strictRelation x y) (x = y) → Or (strictRelation y x) (y = x) → x = y) ∧ (∀ (x y z : Alpha), Or (strictRelation x y) (x = y) → Or (strictRelation y z) (y = z) → Or (strictRelation x z) (x = z)))) ∧ (∀ (x y : Alpha), Or (Or (strictRelation x y) (x = y))(Or (strictRelation y x) (y = x))))
+Transliterated theorem: LinearOrder (NonStrictFromStrict strictRelation)
+Logical form (Lean): {Alpha : Type u} {strictRelation : LRA.Relation.Endorelation Alpha} (strictRelationIsStrictLinearOrder : StrictLinearOrder strictRelation) : LinearOrder (NonStrictFromStrict strictRelation)
+Source: ./Constructions/StrictNonStrictCorrespondence/Theorems.lean#L141
+
+
+
+Name: StrictNonStrictInverseCorrespondence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {strictRelation : LRA.Relation.Endorelation Alpha} (strictRelationIsIrreflexive : LRA.Relation.Irreflexive strictRelation), StrictFromNonStrict (NonStrictFromStrict strictRelation) = strictRelation
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    strictRelation : LRA.Relation.Endorelation Alpha
+    strictRelationIsIrreflexive : LRA.Relation.Irreflexive strictRelation
+  Prove
+    (∀ (x : Alpha), strictRelation x x → False) → fun left right => (Or (strictRelation left right) (left = right) ∧ (left = right → False)) = strictRelation
+Transliterated theorem: StrictFromNonStrict (NonStrictFromStrict strictRelation) = strictRelation
+Logical form (Lean): {Alpha : Type u} {strictRelation : LRA.Relation.Endorelation Alpha} (strictRelationIsIrreflexive : LRA.Relation.Irreflexive strictRelation) : StrictFromNonStrict (NonStrictFromStrict strictRelation) = strictRelation
+Source: ./Constructions/StrictNonStrictCorrespondence/Theorems.lean#L187
+
+
+
+Name: NonStrictStrictInverseCorrespondence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {nonStrictRelation : LRA.Relation.Endorelation Alpha} (nonStrictRelationIsReflexive : LRA.Relation.Reflexive nonStrictRelation), NonStrictFromStrict (StrictFromNonStrict nonStrictRelation) = nonStrictRelation
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    nonStrictRelation : LRA.Relation.Endorelation Alpha
+    nonStrictRelationIsReflexive : LRA.Relation.Reflexive nonStrictRelation
+  Prove
+    (∀ (x : Alpha), nonStrictRelation x x) → fun left right => Or ((nonStrictRelation left right ∧ (left = right → False))) (left = right) = nonStrictRelation
+Transliterated theorem: NonStrictFromStrict (StrictFromNonStrict nonStrictRelation) = nonStrictRelation
+Logical form (Lean): {Alpha : Type u} {nonStrictRelation : LRA.Relation.Endorelation Alpha} (nonStrictRelationIsReflexive : LRA.Relation.Reflexive nonStrictRelation) : NonStrictFromStrict (StrictFromNonStrict nonStrictRelation) = nonStrictRelation
+Source: ./Constructions/StrictNonStrictCorrespondence/Theorems.lean#L233
+
+
+
+Name: PosetOfStrictPosetOfPoset
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (poset : Poset), PosetOfStrictPoset (StrictPosetOfPoset poset) = poset
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    poset : Poset
+  Prove
+    { Carrier := (LRA.Order.StrictPosetOfPoset poset).1, NonStrictOrder := fun left right => Or ((LRA.Order.StrictPosetOfPoset poset).2 left right) (left = right), NonStrictOrderIsPartialOrder := ⋯ } = poset
+Transliterated theorem: (∀ poset ∈ Poset), PosetOfStrictPoset (StrictPosetOfPoset poset) = poset
+Logical form (Lean): (poset : Poset) : PosetOfStrictPoset (StrictPosetOfPoset poset) = poset
+Source: ./Constructions/StrictNonStrictCorrespondence/Theorems.lean#L276
+
+
+
+Name: StrictPosetOfPosetOfStrictPoset
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (strictPoset : StrictPoset), StrictPosetOfPoset (PosetOfStrictPoset strictPoset) = strictPoset
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    strictPoset : StrictPoset
+  Prove
+    { Carrier := (LRA.Order.PosetOfStrictPoset strictPoset).1, StrictRelation := fun left right => ((LRA.Order.PosetOfStrictPoset strictPoset).2 left right ∧ (left = right → False)), StrictRelationIsStrictOrder := ⋯ } = strictPoset
+Transliterated theorem: (∀ strictPoset ∈ StrictPoset), StrictPosetOfPoset (PosetOfStrictPoset strictPoset) = strictPoset
+Logical form (Lean): (strictPoset : StrictPoset) : StrictPosetOfPoset (PosetOfStrictPoset strictPoset) = strictPoset
+Source: ./Constructions/StrictNonStrictCorrespondence/Theorems.lean#L316
+
+
+
+Name: MonotoneIdentity
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha),   LRA.Order.Monotone relation relation fun element => element
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+  Prove
+    relation left right → relation ((fun element => element) left) ((fun element => element) right)
+Transliterated theorem: Monotone relation relation (fun element => element)
+Logical form (Lean): {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha) : Monotone relation relation (fun element => element)
+Source: ./Morphisms/Monotone/Theorems.lean#L56
+
+
+
+Name: MonotoneComp
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {Beta : Type v} {Gamma : Type w} {sourceRelation : LRA.Relation.Endorelation Alpha} {middleRelation : LRA.Relation.Endorelation Beta} {targetRelation : LRA.Relation.Endorelation Gamma} {firstMap : Alpha -> Beta} {secondMap : Beta -> Gamma} (firstMapIsMonotone : Monotone sourceRelation middleRelation firstMap) (secondMapIsMonotone : Monotone middleRelation targetRelation secondMap), Monotone sourceRelation targetRelation (fun x => secondMap (firstMap x))
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta, Gamma)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    middleRelation : LRA.Relation.Endorelation Beta
+    targetRelation : LRA.Relation.Endorelation Gamma
+    firstMap : Alpha -> Beta
+    secondMap : Beta -> Gamma
+    firstMapIsMonotone : Monotone sourceRelation middleRelation firstMap
+    secondMapIsMonotone : Monotone middleRelation targetRelation secondMap
+  Prove
+    ((∀ (left right : Alpha), sourceRelation left right → middleRelation (firstMap left) (firstMap right)) ∧ (∀ (left right : Beta), middleRelation left right → targetRelation (secondMap left) (secondMap right))) → ∀ (left right : Alpha), sourceRelation left right → targetRelation ((fun x => secondMap (firstMap x)) left) ((fun x => secondMap (firstMap x)) right)
+Transliterated theorem: Monotone sourceRelation targetRelation (fun x => secondMap (firstMap x))
+Logical form (Lean): {Alpha : Type u} {Beta : Type v} {Gamma : Type w} {sourceRelation : LRA.Relation.Endorelation Alpha} {middleRelation : LRA.Relation.Endorelation Beta} {targetRelation : LRA.Relation.Endorelation Gamma} {firstMap : Alpha -> Beta} {secondMap : Beta -> Gamma} (firstMapIsMonotone : Monotone sourceRelation middleRelation firstMap) (secondMapIsMonotone : Monotone middleRelation targetRelation secondMap) : Monotone sourceRelation targetRelation (fun x => secondMap (firstMap x))
+Source: ./Morphisms/Monotone/Theorems.lean#L105
+
+
+
+Name: MonotoneSendsUpperBoundToImageUpperBound
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) (mapIsMonotone : Monotone sourceRelation targetRelation map) {bound : Alpha} (boundIsUpper : UpperBound sourceRelation subset bound), UpperBound targetRelation imageSet (map bound)
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta, SourceSet, TargetSet, ∈)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    map : Alpha → Beta
+    subset : SourceSet
+    imageSet : TargetSet
+    representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))
+    mapIsMonotone : Monotone sourceRelation targetRelation map
+    bound : Alpha
+    boundIsUpper : UpperBound sourceRelation subset bound
+  Prove
+    ((∀ (element : Beta), imageSet ≤ element ↔ Exists fun x => (subset ≤ x ∧ map x = element)) ∧ (∀ (left right : Alpha), sourceRelation left right → targetRelation (map left) (map right))) → ∀ {bound : Alpha}, (∀ (element : Alpha), subset ≤ element → sourceRelation element bound) → ∀ (element : Beta), imageSet ≤ element → targetRelation element (map bound)
+Transliterated theorem: (∀ subset ∈ SourceSet ∀ imageSet ∈ TargetSet), UpperBound targetRelation imageSet (map bound)
+Logical form (Lean): (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) (mapIsMonotone : Monotone sourceRelation targetRelation map) {bound : Alpha} (boundIsUpper : UpperBound sourceRelation subset bound) : UpperBound targetRelation imageSet (map bound)
+Source: ./Morphisms/Monotone/Theorems.lean#L166
+
+
+
+Name: MonotoneSendsLowerBoundToImageLowerBound
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) (mapIsMonotone : Monotone sourceRelation targetRelation map) {bound : Alpha} (boundIsLower : LowerBound sourceRelation subset bound), LowerBound targetRelation imageSet (map bound)
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta, SourceSet, TargetSet, ∈)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    map : Alpha → Beta
+    subset : SourceSet
+    imageSet : TargetSet
+    representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))
+    mapIsMonotone : Monotone sourceRelation targetRelation map
+    bound : Alpha
+    boundIsLower : LowerBound sourceRelation subset bound
+  Prove
+    ((∀ (element : Beta), imageSet ≤ element ↔ Exists fun x => (subset ≤ x ∧ map x = element)) ∧ (∀ (left right : Alpha), sourceRelation left right → targetRelation (map left) (map right))) → ∀ {bound : Alpha}, (∀ (element : Alpha), subset ≤ element → sourceRelation bound element) → ∀ (element : Beta), imageSet ≤ element → targetRelation (map bound) element
+Transliterated theorem: (∀ subset ∈ SourceSet ∀ imageSet ∈ TargetSet), LowerBound targetRelation imageSet (map bound)
+Logical form (Lean): (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) (mapIsMonotone : Monotone sourceRelation targetRelation map) {bound : Alpha} (boundIsLower : LowerBound sourceRelation subset bound) : LowerBound targetRelation imageSet (map bound)
+Source: ./Morphisms/Monotone/Theorems.lean#L218
+
+
+
+Name: MonotoneImageUpperBoundsContainment
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) (mapIsMonotone : Monotone sourceRelation targetRelation map) (output : Beta) (outputIsImageOfUpperBound : LRA.Function.ImageClass map (fun input => UpperBound sourceRelation subset input) output), UpperBound targetRelation imageSet output
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta, SourceSet, TargetSet, ∈)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    map : Alpha → Beta
+    subset : SourceSet
+    imageSet : TargetSet
+    representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))
+    mapIsMonotone : Monotone sourceRelation targetRelation map
+    output : Beta
+    outputIsImageOfUpperBound : LRA.Function.ImageClass map (fun input => UpperBound sourceRelation subset input) output
+  Prove
+    ((∀ (element : Beta), imageSet ≤ element ↔ Exists fun x => (subset ≤ x ∧ map x = element)) ∧ (∀ (left right : Alpha), sourceRelation left right → targetRelation (map left) (map right))) → ∀ (output : Beta), (Exists fun x => (((fun input => ∀ (element : Alpha), subset ≤ element → sourceRelation element input) x) ∧ map x = output)) → ∀ (element : Beta), imageSet ≤ element → targetRelation element output
+Transliterated theorem: (∀ subset ∈ SourceSet ∀ imageSet ∈ TargetSet ∀ output ∈ Beta), UpperBound targetRelation imageSet output
+Logical form (Lean): (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) (mapIsMonotone : Monotone sourceRelation targetRelation map) (output : Beta) (outputIsImageOfUpperBound : LRA.Function.ImageClass map (fun input => UpperBound sourceRelation subset input) output) : UpperBound targetRelation imageSet output
+Source: ./Morphisms/Monotone/Theorems.lean#L272
+
+
+
+Name: MonotoneUpperBoundsPreimageContainment
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) (mapIsMonotone : Monotone sourceRelation targetRelation map) (bound : Alpha) (boundIsSourceUpperBound : UpperBound sourceRelation subset bound), LRA.Function.PreimageClass map (fun output => UpperBound targetRelation imageSet output) bound
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta, SourceSet, TargetSet, ∈)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    map : Alpha → Beta
+    subset : SourceSet
+    imageSet : TargetSet
+    representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))
+    mapIsMonotone : Monotone sourceRelation targetRelation map
+    bound : Alpha
+    boundIsSourceUpperBound : UpperBound sourceRelation subset bound
+  Prove
+    ((∀ (element : Beta), imageSet ≤ element ↔ Exists fun x => (subset ≤ x ∧ map x = element)) ∧ (∀ (left right : Alpha), sourceRelation left right → targetRelation (map left) (map right))) → ∀ (bound : Alpha), (∀ (element : Alpha), subset ≤ element → sourceRelation element bound) → Exists fun y => (((fun output => ∀ (element : Beta), imageSet ≤ element → targetRelation element output) y) ∧ map bound = y)
+Transliterated theorem: (∀ subset ∈ SourceSet ∀ imageSet ∈ TargetSet ∀ bound ∈ Alpha), LRA.Function.PreimageClass map (fun output => UpperBound targetRelation imageSet output) bound
+Logical form (Lean): (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) (mapIsMonotone : Monotone sourceRelation targetRelation map) (bound : Alpha) (boundIsSourceUpperBound : UpperBound sourceRelation subset bound) : LRA.Function.PreimageClass map (fun output => UpperBound targetRelation imageSet output) bound
+Source: ./Morphisms/Monotone/Theorems.lean#L327
+
+
+
+Name: MonotoneImageLowerBoundsContainment
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) (mapIsMonotone : Monotone sourceRelation targetRelation map) (output : Beta) (outputIsImageOfLowerBound : LRA.Function.ImageClass map (fun input => LowerBound sourceRelation subset input) output), LowerBound targetRelation imageSet output
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta, SourceSet, TargetSet, ∈)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    map : Alpha → Beta
+    subset : SourceSet
+    imageSet : TargetSet
+    representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))
+    mapIsMonotone : Monotone sourceRelation targetRelation map
+    output : Beta
+    outputIsImageOfLowerBound : LRA.Function.ImageClass map (fun input => LowerBound sourceRelation subset input) output
+  Prove
+    ((∀ (element : Beta), imageSet ≤ element ↔ Exists fun x => (subset ≤ x ∧ map x = element)) ∧ (∀ (left right : Alpha), sourceRelation left right → targetRelation (map left) (map right))) → ∀ (output : Beta), (Exists fun x => (((fun input => ∀ (element : Alpha), subset ≤ element → sourceRelation input element) x) ∧ map x = output)) → ∀ (element : Beta), imageSet ≤ element → targetRelation output element
+Transliterated theorem: (∀ subset ∈ SourceSet ∀ imageSet ∈ TargetSet ∀ output ∈ Beta), LowerBound targetRelation imageSet output
+Logical form (Lean): (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) (mapIsMonotone : Monotone sourceRelation targetRelation map) (output : Beta) (outputIsImageOfLowerBound : LRA.Function.ImageClass map (fun input => LowerBound sourceRelation subset input) output) : LowerBound targetRelation imageSet output
+Source: ./Morphisms/Monotone/Theorems.lean#L382
+
+
+
+Name: MonotoneLowerBoundsPreimageContainment
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) (mapIsMonotone : Monotone sourceRelation targetRelation map) (bound : Alpha) (boundIsSourceLowerBound : LowerBound sourceRelation subset bound), LRA.Function.PreimageClass map (fun output => LowerBound targetRelation imageSet output) bound
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta, SourceSet, TargetSet, ∈)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    map : Alpha → Beta
+    subset : SourceSet
+    imageSet : TargetSet
+    representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))
+    mapIsMonotone : Monotone sourceRelation targetRelation map
+    bound : Alpha
+    boundIsSourceLowerBound : LowerBound sourceRelation subset bound
+  Prove
+    ((∀ (element : Beta), imageSet ≤ element ↔ Exists fun x => (subset ≤ x ∧ map x = element)) ∧ (∀ (left right : Alpha), sourceRelation left right → targetRelation (map left) (map right))) → ∀ (bound : Alpha), (∀ (element : Alpha), subset ≤ element → sourceRelation bound element) → Exists fun y => (((fun output => ∀ (element : Beta), imageSet ≤ element → targetRelation output element) y) ∧ map bound = y)
+Transliterated theorem: (∀ subset ∈ SourceSet ∀ imageSet ∈ TargetSet ∀ bound ∈ Alpha), LRA.Function.PreimageClass map (fun output => LowerBound targetRelation imageSet output) bound
+Logical form (Lean): (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) (mapIsMonotone : Monotone sourceRelation targetRelation map) (bound : Alpha) (boundIsSourceLowerBound : LowerBound sourceRelation subset bound) : LRA.Function.PreimageClass map (fun output => LowerBound targetRelation imageSet output) bound
+Source: ./Morphisms/Monotone/Theorems.lean#L437
+
+
+
+Name: AntitoneCompAntitoneIsMonotone
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {Beta : Type v} {Gamma : Type w} {sourceRelation : LRA.Relation.Endorelation Alpha} {middleRelation : LRA.Relation.Endorelation Beta} {targetRelation : LRA.Relation.Endorelation Gamma} {firstMap : Alpha -> Beta} {secondMap : Beta -> Gamma} (firstMapIsAntitone : Antitone sourceRelation middleRelation firstMap) (secondMapIsAntitone : Antitone middleRelation targetRelation secondMap), Monotone sourceRelation targetRelation (fun element => secondMap (firstMap element))
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta, Gamma)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    middleRelation : LRA.Relation.Endorelation Beta
+    targetRelation : LRA.Relation.Endorelation Gamma
+    firstMap : Alpha -> Beta
+    secondMap : Beta -> Gamma
+    firstMapIsAntitone : Antitone sourceRelation middleRelation firstMap
+    secondMapIsAntitone : Antitone middleRelation targetRelation secondMap
+  Prove
+    ((∀ (left right : Alpha), sourceRelation left right → middleRelation (firstMap right) (firstMap left)) ∧ (∀ (left right : Beta), middleRelation left right → targetRelation (secondMap right) (secondMap left))) → ∀ (left right : Alpha), sourceRelation left right → targetRelation ((fun element => secondMap (firstMap element)) left) ((fun element => secondMap (firstMap element)) right)
+Transliterated theorem: Monotone sourceRelation targetRelation (fun element => secondMap (firstMap element))
+Logical form (Lean): {Alpha : Type u} {Beta : Type v} {Gamma : Type w} {sourceRelation : LRA.Relation.Endorelation Alpha} {middleRelation : LRA.Relation.Endorelation Beta} {targetRelation : LRA.Relation.Endorelation Gamma} {firstMap : Alpha -> Beta} {secondMap : Beta -> Gamma} (firstMapIsAntitone : Antitone sourceRelation middleRelation firstMap) (secondMapIsAntitone : Antitone middleRelation targetRelation secondMap) : Monotone sourceRelation targetRelation (fun element => secondMap (firstMap element))
+Source: ./Morphisms/Antitone/Theorems.lean#L63
+
+
+
+Name: AntitoneThenMonotoneIsAntitone
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {Beta : Type v} {Gamma : Type w} {sourceRelation : LRA.Relation.Endorelation Alpha} {middleRelation : LRA.Relation.Endorelation Beta} {targetRelation : LRA.Relation.Endorelation Gamma} {firstMap : Alpha -> Beta} {secondMap : Beta -> Gamma} (firstMapIsAntitone : Antitone sourceRelation middleRelation firstMap) (secondMapIsMonotone : Monotone middleRelation targetRelation secondMap), Antitone sourceRelation targetRelation (fun element => secondMap (firstMap element))
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta, Gamma)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    middleRelation : LRA.Relation.Endorelation Beta
+    targetRelation : LRA.Relation.Endorelation Gamma
+    firstMap : Alpha -> Beta
+    secondMap : Beta -> Gamma
+    firstMapIsAntitone : Antitone sourceRelation middleRelation firstMap
+    secondMapIsMonotone : Monotone middleRelation targetRelation secondMap
+  Prove
+    ((∀ (left right : Alpha), sourceRelation left right → middleRelation (firstMap right) (firstMap left)) ∧ (∀ (left right : Beta), middleRelation left right → targetRelation (secondMap left) (secondMap right))) → ∀ (left right : Alpha), sourceRelation left right → targetRelation ((fun element => secondMap (firstMap element)) right) ((fun element => secondMap (firstMap element)) left)
+Transliterated theorem: Antitone sourceRelation targetRelation (fun element => secondMap (firstMap element))
+Logical form (Lean): {Alpha : Type u} {Beta : Type v} {Gamma : Type w} {sourceRelation : LRA.Relation.Endorelation Alpha} {middleRelation : LRA.Relation.Endorelation Beta} {targetRelation : LRA.Relation.Endorelation Gamma} {firstMap : Alpha -> Beta} {secondMap : Beta -> Gamma} (firstMapIsAntitone : Antitone sourceRelation middleRelation firstMap) (secondMapIsMonotone : Monotone middleRelation targetRelation secondMap) : Antitone sourceRelation targetRelation (fun element => secondMap (firstMap element))
+Source: ./Morphisms/Antitone/Theorems.lean#L119
+
+
+
+Name: MonotoneThenAntitoneIsAntitone
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {Beta : Type v} {Gamma : Type w} {sourceRelation : LRA.Relation.Endorelation Alpha} {middleRelation : LRA.Relation.Endorelation Beta} {targetRelation : LRA.Relation.Endorelation Gamma} {firstMap : Alpha -> Beta} {secondMap : Beta -> Gamma} (firstMapIsMonotone : Monotone sourceRelation middleRelation firstMap) (secondMapIsAntitone : Antitone middleRelation targetRelation secondMap), Antitone sourceRelation targetRelation (fun element => secondMap (firstMap element))
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta, Gamma)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    middleRelation : LRA.Relation.Endorelation Beta
+    targetRelation : LRA.Relation.Endorelation Gamma
+    firstMap : Alpha -> Beta
+    secondMap : Beta -> Gamma
+    firstMapIsMonotone : Monotone sourceRelation middleRelation firstMap
+    secondMapIsAntitone : Antitone middleRelation targetRelation secondMap
+  Prove
+    ((∀ (left right : Alpha), sourceRelation left right → middleRelation (firstMap left) (firstMap right)) ∧ (∀ (left right : Beta), middleRelation left right → targetRelation (secondMap right) (secondMap left))) → ∀ (left right : Alpha), sourceRelation left right → targetRelation ((fun element => secondMap (firstMap element)) right) ((fun element => secondMap (firstMap element)) left)
+Transliterated theorem: Antitone sourceRelation targetRelation (fun element => secondMap (firstMap element))
+Logical form (Lean): {Alpha : Type u} {Beta : Type v} {Gamma : Type w} {sourceRelation : LRA.Relation.Endorelation Alpha} {middleRelation : LRA.Relation.Endorelation Beta} {targetRelation : LRA.Relation.Endorelation Gamma} {firstMap : Alpha -> Beta} {secondMap : Beta -> Gamma} (firstMapIsMonotone : Monotone sourceRelation middleRelation firstMap) (secondMapIsAntitone : Antitone middleRelation targetRelation secondMap) : Antitone sourceRelation targetRelation (fun element => secondMap (firstMap element))
+Source: ./Morphisms/Antitone/Theorems.lean#L175
+
+
+
+Name: AntitoneSendsUpperBoundToImageLowerBound
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) (mapIsAntitone : Antitone sourceRelation targetRelation map) {bound : Alpha} (boundIsUpper : UpperBound sourceRelation subset bound), LowerBound targetRelation imageSet (map bound)
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta, SourceSet, TargetSet, ∈)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    map : Alpha → Beta
+    subset : SourceSet
+    imageSet : TargetSet
+    representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))
+    mapIsAntitone : Antitone sourceRelation targetRelation map
+    bound : Alpha
+    boundIsUpper : UpperBound sourceRelation subset bound
+  Prove
+    ((∀ (element : Beta), imageSet ≤ element ↔ Exists fun x => (subset ≤ x ∧ map x = element)) ∧ (∀ (left right : Alpha), sourceRelation left right → targetRelation (map right) (map left))) → ∀ {bound : Alpha}, (∀ (element : Alpha), subset ≤ element → sourceRelation element bound) → ∀ (element : Beta), imageSet ≤ element → targetRelation (map bound) element
+Transliterated theorem: (∀ subset ∈ SourceSet ∀ imageSet ∈ TargetSet), LowerBound targetRelation imageSet (map bound)
+Logical form (Lean): (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) (mapIsAntitone : Antitone sourceRelation targetRelation map) {bound : Alpha} (boundIsUpper : UpperBound sourceRelation subset bound) : LowerBound targetRelation imageSet (map bound)
+Source: ./Morphisms/Antitone/Theorems.lean#L237
+
+
+
+Name: AntitoneSendsLowerBoundToImageUpperBound
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) (mapIsAntitone : Antitone sourceRelation targetRelation map) {bound : Alpha} (boundIsLower : LowerBound sourceRelation subset bound), UpperBound targetRelation imageSet (map bound)
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta, SourceSet, TargetSet, ∈)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    map : Alpha → Beta
+    subset : SourceSet
+    imageSet : TargetSet
+    representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))
+    mapIsAntitone : Antitone sourceRelation targetRelation map
+    bound : Alpha
+    boundIsLower : LowerBound sourceRelation subset bound
+  Prove
+    ((∀ (element : Beta), imageSet ≤ element ↔ Exists fun x => (subset ≤ x ∧ map x = element)) ∧ (∀ (left right : Alpha), sourceRelation left right → targetRelation (map right) (map left))) → ∀ {bound : Alpha}, (∀ (element : Alpha), subset ≤ element → sourceRelation bound element) → ∀ (element : Beta), imageSet ≤ element → targetRelation element (map bound)
+Transliterated theorem: (∀ subset ∈ SourceSet ∀ imageSet ∈ TargetSet), UpperBound targetRelation imageSet (map bound)
+Logical form (Lean): (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) (mapIsAntitone : Antitone sourceRelation targetRelation map) {bound : Alpha} (boundIsLower : LowerBound sourceRelation subset bound) : UpperBound targetRelation imageSet (map bound)
+Source: ./Morphisms/Antitone/Theorems.lean#L289
+
+
+
+Name: AntitoneImageUpperBoundsIntoLowerBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) (mapIsAntitone : Antitone sourceRelation targetRelation map) (output : Beta) (outputIsImageOfUpperBound : LRA.Function.ImageClass map (fun input => UpperBound sourceRelation subset input) output), LowerBound targetRelation imageSet output
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta, SourceSet, TargetSet, ∈)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    map : Alpha → Beta
+    subset : SourceSet
+    imageSet : TargetSet
+    representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))
+    mapIsAntitone : Antitone sourceRelation targetRelation map
+    output : Beta
+    outputIsImageOfUpperBound : LRA.Function.ImageClass map (fun input => UpperBound sourceRelation subset input) output
+  Prove
+    ((∀ (element : Beta), imageSet ≤ element ↔ Exists fun x => (subset ≤ x ∧ map x = element)) ∧ (∀ (left right : Alpha), sourceRelation left right → targetRelation (map right) (map left))) → ∀ (output : Beta), (Exists fun x => (((fun input => ∀ (element : Alpha), subset ≤ element → sourceRelation element input) x) ∧ map x = output)) → ∀ (element : Beta), imageSet ≤ element → targetRelation output element
+Transliterated theorem: (∀ subset ∈ SourceSet ∀ imageSet ∈ TargetSet ∀ output ∈ Beta), LowerBound targetRelation imageSet output
+Logical form (Lean): (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) (mapIsAntitone : Antitone sourceRelation targetRelation map) (output : Beta) (outputIsImageOfUpperBound : LRA.Function.ImageClass map (fun input => UpperBound sourceRelation subset input) output) : LowerBound targetRelation imageSet output
+Source: ./Morphisms/Antitone/Theorems.lean#L343
+
+
+
+Name: AntitoneUpperBoundsPreimageLowerBoundsContainment
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) (mapIsAntitone : Antitone sourceRelation targetRelation map) (bound : Alpha) (boundIsSourceUpperBound : UpperBound sourceRelation subset bound), LRA.Function.PreimageClass map (fun output => LowerBound targetRelation imageSet output) bound
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta, SourceSet, TargetSet, ∈)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    map : Alpha → Beta
+    subset : SourceSet
+    imageSet : TargetSet
+    representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))
+    mapIsAntitone : Antitone sourceRelation targetRelation map
+    bound : Alpha
+    boundIsSourceUpperBound : UpperBound sourceRelation subset bound
+  Prove
+    ((∀ (element : Beta), imageSet ≤ element ↔ Exists fun x => (subset ≤ x ∧ map x = element)) ∧ (∀ (left right : Alpha), sourceRelation left right → targetRelation (map right) (map left))) → ∀ (bound : Alpha), (∀ (element : Alpha), subset ≤ element → sourceRelation element bound) → Exists fun y => (((fun output => ∀ (element : Beta), imageSet ≤ element → targetRelation output element) y) ∧ map bound = y)
+Transliterated theorem: (∀ subset ∈ SourceSet ∀ imageSet ∈ TargetSet ∀ bound ∈ Alpha), LRA.Function.PreimageClass map (fun output => LowerBound targetRelation imageSet output) bound
+Logical form (Lean): (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) (mapIsAntitone : Antitone sourceRelation targetRelation map) (bound : Alpha) (boundIsSourceUpperBound : UpperBound sourceRelation subset bound) : LRA.Function.PreimageClass map (fun output => LowerBound targetRelation imageSet output) bound
+Source: ./Morphisms/Antitone/Theorems.lean#L398
+
+
+
+Name: AntitoneImageLowerBoundsIntoUpperBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) (mapIsAntitone : Antitone sourceRelation targetRelation map) (output : Beta) (outputIsImageOfLowerBound : LRA.Function.ImageClass map (fun input => LowerBound sourceRelation subset input) output), UpperBound targetRelation imageSet output
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta, SourceSet, TargetSet, ∈)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    map : Alpha → Beta
+    subset : SourceSet
+    imageSet : TargetSet
+    representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))
+    mapIsAntitone : Antitone sourceRelation targetRelation map
+    output : Beta
+    outputIsImageOfLowerBound : LRA.Function.ImageClass map (fun input => LowerBound sourceRelation subset input) output
+  Prove
+    ((∀ (element : Beta), imageSet ≤ element ↔ Exists fun x => (subset ≤ x ∧ map x = element)) ∧ (∀ (left right : Alpha), sourceRelation left right → targetRelation (map right) (map left))) → ∀ (output : Beta), (Exists fun x => (((fun input => ∀ (element : Alpha), subset ≤ element → sourceRelation input element) x) ∧ map x = output)) → ∀ (element : Beta), imageSet ≤ element → targetRelation element output
+Transliterated theorem: (∀ subset ∈ SourceSet ∀ imageSet ∈ TargetSet ∀ output ∈ Beta), UpperBound targetRelation imageSet output
+Logical form (Lean): (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) (mapIsAntitone : Antitone sourceRelation targetRelation map) (output : Beta) (outputIsImageOfLowerBound : LRA.Function.ImageClass map (fun input => LowerBound sourceRelation subset input) output) : UpperBound targetRelation imageSet output
+Source: ./Morphisms/Antitone/Theorems.lean#L453
+
+
+
+Name: AntitoneLowerBoundsPreimageUpperBoundsContainment
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) (mapIsAntitone : Antitone sourceRelation targetRelation map) (bound : Alpha) (boundIsSourceLowerBound : LowerBound sourceRelation subset bound), LRA.Function.PreimageClass map (fun output => UpperBound targetRelation imageSet output) bound
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta, SourceSet, TargetSet, ∈)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    map : Alpha → Beta
+    subset : SourceSet
+    imageSet : TargetSet
+    representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))
+    mapIsAntitone : Antitone sourceRelation targetRelation map
+    bound : Alpha
+    boundIsSourceLowerBound : LowerBound sourceRelation subset bound
+  Prove
+    ((∀ (element : Beta), imageSet ≤ element ↔ Exists fun x => (subset ≤ x ∧ map x = element)) ∧ (∀ (left right : Alpha), sourceRelation left right → targetRelation (map right) (map left))) → ∀ (bound : Alpha), (∀ (element : Alpha), subset ≤ element → sourceRelation bound element) → Exists fun y => (((fun output => ∀ (element : Beta), imageSet ≤ element → targetRelation element output) y) ∧ map bound = y)
+Transliterated theorem: (∀ subset ∈ SourceSet ∀ imageSet ∈ TargetSet ∀ bound ∈ Alpha), LRA.Function.PreimageClass map (fun output => UpperBound targetRelation imageSet output) bound
+Logical form (Lean): (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) (mapIsAntitone : Antitone sourceRelation targetRelation map) (bound : Alpha) (boundIsSourceLowerBound : LowerBound sourceRelation subset bound) : LRA.Function.PreimageClass map (fun output => UpperBound targetRelation imageSet output) bound
+Source: ./Morphisms/Antitone/Theorems.lean#L508
+
+
+
+Name: OrderEmbeddingInjective
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {Beta : Type v} {sourceRelation : LRA.Relation.Endorelation Alpha} {targetRelation : LRA.Relation.Endorelation Beta} {map : Alpha -> Beta} (sourceIsAntisymmetric : LRA.Relation.Antisymmetric sourceRelation) (targetIsReflexive : LRA.Relation.Reflexive targetRelation) (mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map), Function.Injective map
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    map : Alpha -> Beta
+    sourceIsAntisymmetric : LRA.Relation.Antisymmetric sourceRelation
+    targetIsReflexive : LRA.Relation.Reflexive targetRelation
+    mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map
+  Prove
+    ((∀ (x y : Alpha), sourceRelation x y → sourceRelation y x → x = y) ∧ ((∀ (x : Beta), targetRelation x x) ∧ ((∀ (left right : Alpha), sourceRelation left right → targetRelation (map left) (map right)) ∧ (∀ (left right : Alpha), targetRelation (map left) (map right) → sourceRelation left right)))) → ∀ (y : Beta) (x₁ x₂ : Alpha), (map x₁ = y ∧ map x₂ = y) → x₁ = x₂
+Transliterated theorem: Function.Injective map
+Logical form (Lean): {Alpha : Type u} {Beta : Type v} {sourceRelation : LRA.Relation.Endorelation Alpha} {targetRelation : LRA.Relation.Endorelation Beta} {map : Alpha -> Beta} (sourceIsAntisymmetric : LRA.Relation.Antisymmetric sourceRelation) (targetIsReflexive : LRA.Relation.Reflexive targetRelation) (mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map) : Function.Injective map
+Source: ./Morphisms/OrderEmbedding/Theorems.lean#L62
+
+
+
+Name: OrderEmbeddingComp
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {Beta : Type v} {Gamma : Type w} {sourceRelation : LRA.Relation.Endorelation Alpha} {middleRelation : LRA.Relation.Endorelation Beta} {targetRelation : LRA.Relation.Endorelation Gamma} {firstMap : Alpha -> Beta} {secondMap : Beta -> Gamma} (firstMapIsEmbedding : OrderEmbedding sourceRelation middleRelation firstMap) (secondMapIsEmbedding : OrderEmbedding middleRelation targetRelation secondMap), OrderEmbedding sourceRelation targetRelation (fun element => secondMap (firstMap element))
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta, Gamma)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    middleRelation : LRA.Relation.Endorelation Beta
+    targetRelation : LRA.Relation.Endorelation Gamma
+    firstMap : Alpha -> Beta
+    secondMap : Beta -> Gamma
+    firstMapIsEmbedding : OrderEmbedding sourceRelation middleRelation firstMap
+    secondMapIsEmbedding : OrderEmbedding middleRelation targetRelation secondMap
+  Prove
+    (((∀ (left right : Alpha), sourceRelation left right → middleRelation (firstMap left) (firstMap right)) ∧ (∀ (left right : Alpha), middleRelation (firstMap left) (firstMap right) → sourceRelation left right)) ∧ ((∀ (left right : Beta), middleRelation left right → targetRelation (secondMap left) (secondMap right)) ∧ (∀ (left right : Beta), targetRelation (secondMap left) (secondMap right) → middleRelation left right))) → ((∀ (left right : Alpha), sourceRelation left right → targetRelation ((fun element => secondMap (firstMap element)) left) ((fun element => secondMap (firstMap element)) right)) ∧ (∀ (left right : Alpha), targetRelation ((fun element => secondMap (firstMap element)) left) ((fun element => secondMap (firstMap element)) right) → sourceRelation left right))
+Transliterated theorem: OrderEmbedding sourceRelation targetRelation (fun element => secondMap (firstMap element))
+Logical form (Lean): {Alpha : Type u} {Beta : Type v} {Gamma : Type w} {sourceRelation : LRA.Relation.Endorelation Alpha} {middleRelation : LRA.Relation.Endorelation Beta} {targetRelation : LRA.Relation.Endorelation Gamma} {firstMap : Alpha -> Beta} {secondMap : Beta -> Gamma} (firstMapIsEmbedding : OrderEmbedding sourceRelation middleRelation firstMap) (secondMapIsEmbedding : OrderEmbedding middleRelation targetRelation secondMap) : OrderEmbedding sourceRelation targetRelation (fun element => secondMap (firstMap element))
+Source: ./Morphisms/OrderEmbedding/Theorems.lean#L117
+
+
+
+Name: OrderEmbeddingSendsUpperBoundToImageUpperBound
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) (mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map) {bound : Alpha} (boundIsUpper : UpperBound sourceRelation subset bound), UpperBound targetRelation imageSet (map bound)
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta, SourceSet, TargetSet, ∈)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    map : Alpha → Beta
+    subset : SourceSet
+    imageSet : TargetSet
+    representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))
+    mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map
+    bound : Alpha
+    boundIsUpper : UpperBound sourceRelation subset bound
+  Prove
+    ((∀ (element : Beta), imageSet ≤ element ↔ Exists fun x => (subset ≤ x ∧ map x = element)) ∧ ((∀ (left right : Alpha), sourceRelation left right → targetRelation (map left) (map right)) ∧ (∀ (left right : Alpha), targetRelation (map left) (map right) → sourceRelation left right))) → ∀ {bound : Alpha}, (∀ (element : Alpha), subset ≤ element → sourceRelation element bound) → ∀ (element : Beta), imageSet ≤ element → targetRelation element (map bound)
+Transliterated theorem: (∀ subset ∈ SourceSet ∀ imageSet ∈ TargetSet), UpperBound targetRelation imageSet (map bound)
+Logical form (Lean): (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) (mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map) {bound : Alpha} (boundIsUpper : UpperBound sourceRelation subset bound) : UpperBound targetRelation imageSet (map bound)
+Source: ./Morphisms/OrderEmbedding/Theorems.lean#L179
+
+
+
+Name: OrderEmbeddingSendsLowerBoundToImageLowerBound
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) (mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map) {bound : Alpha} (boundIsLower : LowerBound sourceRelation subset bound), LowerBound targetRelation imageSet (map bound)
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta, SourceSet, TargetSet, ∈)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    map : Alpha → Beta
+    subset : SourceSet
+    imageSet : TargetSet
+    representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))
+    mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map
+    bound : Alpha
+    boundIsLower : LowerBound sourceRelation subset bound
+  Prove
+    ((∀ (element : Beta), imageSet ≤ element ↔ Exists fun x => (subset ≤ x ∧ map x = element)) ∧ ((∀ (left right : Alpha), sourceRelation left right → targetRelation (map left) (map right)) ∧ (∀ (left right : Alpha), targetRelation (map left) (map right) → sourceRelation left right))) → ∀ {bound : Alpha}, (∀ (element : Alpha), subset ≤ element → sourceRelation bound element) → ∀ (element : Beta), imageSet ≤ element → targetRelation (map bound) element
+Transliterated theorem: (∀ subset ∈ SourceSet ∀ imageSet ∈ TargetSet), LowerBound targetRelation imageSet (map bound)
+Logical form (Lean): (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) (mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map) {bound : Alpha} (boundIsLower : LowerBound sourceRelation subset bound) : LowerBound targetRelation imageSet (map bound)
+Source: ./Morphisms/OrderEmbedding/Theorems.lean#L231
+
+
+
+Name: OrderEmbeddingUpperBoundsPreimageIff
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) (mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map) (bound : Alpha), UpperBound sourceRelation subset bound ↔ LRA.Function.PreimageClass map (fun output => UpperBound targetRelation imageSet output) bound
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta, SourceSet, TargetSet, ∈)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    map : Alpha → Beta
+    subset : SourceSet
+    imageSet : TargetSet
+    representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))
+    mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map
+    bound : Alpha
+  Prove
+    UpperBound sourceRelation subset bound ↔ LRA.Function.PreimageClass map (fun output => UpperBound targetRelation imageSet output) bound
+Transliterated theorem: (∀ subset ∈ SourceSet ∀ imageSet ∈ TargetSet ∀ bound ∈ Alpha), UpperBound sourceRelation subset bound ↔ LRA.Function.PreimageClass map (fun output => UpperBound targetRelation imageSet output) bound
+Logical form (Lean): (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) (mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map) (bound : Alpha) : UpperBound sourceRelation subset bound ↔ LRA.Function.PreimageClass map (fun output => UpperBound targetRelation imageSet output) bound
+Source: ./Morphisms/OrderEmbedding/Theorems.lean#L284
+
+
+
+Name: OrderEmbeddingLowerBoundsPreimageIff
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) (mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map) (bound : Alpha), LowerBound sourceRelation subset bound ↔ LRA.Function.PreimageClass map (fun output => LowerBound targetRelation imageSet output) bound
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta, SourceSet, TargetSet, ∈)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    map : Alpha → Beta
+    subset : SourceSet
+    imageSet : TargetSet
+    representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))
+    mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map
+    bound : Alpha
+  Prove
+    LowerBound sourceRelation subset bound ↔ LRA.Function.PreimageClass map (fun output => LowerBound targetRelation imageSet output) bound
+Transliterated theorem: (∀ subset ∈ SourceSet ∀ imageSet ∈ TargetSet ∀ bound ∈ Alpha), LowerBound sourceRelation subset bound ↔ LRA.Function.PreimageClass map (fun output => LowerBound targetRelation imageSet output) bound
+Logical form (Lean): (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) (mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map) (bound : Alpha) : LowerBound sourceRelation subset bound ↔ LRA.Function.PreimageClass map (fun output => LowerBound targetRelation imageSet output) bound
+Source: ./Morphisms/OrderEmbedding/Theorems.lean#L338
+
+
+
+Name: OrderEmbeddingPreservesGreatestElement
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) (mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map) {greatest : Alpha} (greatestIsGreatest : GreatestElement sourceRelation subset greatest), GreatestElement targetRelation imageSet (map greatest)
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta, SourceSet, TargetSet, ∈)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    map : Alpha → Beta
+    subset : SourceSet
+    imageSet : TargetSet
+    representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))
+    mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map
+    greatest : Alpha
+    greatestIsGreatest : GreatestElement sourceRelation subset greatest
+  Prove
+    ((∀ (element : Beta), imageSet ≤ element ↔ Exists fun x => (subset ≤ x ∧ map x = element)) ∧ ((∀ (left right : Alpha), sourceRelation left right → targetRelation (map left) (map right)) ∧ (∀ (left right : Alpha), targetRelation (map left) (map right) → sourceRelation left right))) → ∀ {greatest : Alpha}, (subset ≤ greatest ∧ (∀ (element : Alpha), subset ≤ element → sourceRelation element greatest)) → (imageSet ≤ map greatest ∧ (∀ (element : Beta), imageSet ≤ element → targetRelation element (map greatest)))
+Transliterated theorem: (∀ subset ∈ SourceSet ∀ imageSet ∈ TargetSet), GreatestElement targetRelation imageSet (map greatest)
+Logical form (Lean): (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) (mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map) {greatest : Alpha} (greatestIsGreatest : GreatestElement sourceRelation subset greatest) : GreatestElement targetRelation imageSet (map greatest)
+Source: ./Morphisms/OrderEmbedding/Theorems.lean#L391
+
+
+
+Name: OrderEmbeddingPreservesLeastElement
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) (mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map) {least : Alpha} (leastIsLeast : LeastElement sourceRelation subset least), LeastElement targetRelation imageSet (map least)
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta, SourceSet, TargetSet, ∈)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    map : Alpha → Beta
+    subset : SourceSet
+    imageSet : TargetSet
+    representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))
+    mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map
+    least : Alpha
+    leastIsLeast : LeastElement sourceRelation subset least
+  Prove
+    ((∀ (element : Beta), imageSet ≤ element ↔ Exists fun x => (subset ≤ x ∧ map x = element)) ∧ ((∀ (left right : Alpha), sourceRelation left right → targetRelation (map left) (map right)) ∧ (∀ (left right : Alpha), targetRelation (map left) (map right) → sourceRelation left right))) → ∀ {least : Alpha}, (subset ≤ least ∧ (∀ (element : Alpha), subset ≤ element → sourceRelation least element)) → (imageSet ≤ map least ∧ (∀ (element : Beta), imageSet ≤ element → targetRelation (map least) element))
+Transliterated theorem: (∀ subset ∈ SourceSet ∀ imageSet ∈ TargetSet), LeastElement targetRelation imageSet (map least)
+Logical form (Lean): (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) (mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map) {least : Alpha} (leastIsLeast : LeastElement sourceRelation subset least) : LeastElement targetRelation imageSet (map least)
+Source: ./Morphisms/OrderEmbedding/Theorems.lean#L443
+
+
+
+Name: OrderIsomorphismPreservesJoin
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {Beta : Type v} {sourceRelation : LRA.Relation.Endorelation Alpha}   {targetRelation : LRA.Relation.Endorelation Beta} {forward : Alpha → Beta} {inverse : Beta → Alpha},   LRA.Order.OrderIsomorphism sourceRelation targetRelation forward inverse →     ∀ {left right join : Alpha},       LRA.Order.Join sourceRelation left right join →         LRA.Order.Join targetRelation (forward left) (forward right) (forward join)
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    forward : Alpha -> Beta
+    inverse : Beta -> Alpha
+    mapsAreIsomorphism : OrderIsomorphism sourceRelation targetRelation forward inverse
+    left right join : Alpha
+    joinIsJoin : Join sourceRelation left right join
+  Prove
+    ((∀ (source : Alpha), inverse (forward source) = source) ∧ ((∀ (target : Beta), forward (inverse target) = target) ∧ ((∀ (left right : Alpha), sourceRelation left right → targetRelation (forward left) (forward right)) ∧ (∀ (left right : Alpha), targetRelation (forward left) (forward right) → sourceRelation left right)))) → ∀ {left right join : Alpha}, (sourceRelation left join ∧ (sourceRelation right join ∧ (∀ (upper : Alpha), sourceRelation left upper → sourceRelation right upper → sourceRelation join upper))) → (targetRelation (forward left) (forward join) ∧ (targetRelation (forward right) (forward join) ∧ (∀ (upper : Beta), targetRelation (forward left) upper → targetRelation (forward right) upper → targetRelation (forward join) upper)))
+Transliterated theorem: Join targetRelation (forward left) (forward right) (forward join)
+Logical form (Lean): {Alpha : Type u} {Beta : Type v} {sourceRelation : LRA.Relation.Endorelation Alpha} {targetRelation : LRA.Relation.Endorelation Beta} {forward : Alpha -> Beta} {inverse : Beta -> Alpha} (mapsAreIsomorphism : OrderIsomorphism sourceRelation targetRelation forward inverse) {left right join : Alpha} (joinIsJoin : Join sourceRelation left right join) : Join targetRelation (forward left) (forward right) (forward join)
+Source: ./Morphisms/OrderIsomorphism/Theorems.lean#L64
+
+
+
+Name: OrderIsomorphismPreservesMeet
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {Beta : Type v} {sourceRelation : LRA.Relation.Endorelation Alpha}   {targetRelation : LRA.Relation.Endorelation Beta} {forward : Alpha → Beta} {inverse : Beta → Alpha},   LRA.Order.OrderIsomorphism sourceRelation targetRelation forward inverse →     ∀ {left right meet : Alpha},       LRA.Order.Meet sourceRelation left right meet →         LRA.Order.Meet targetRelation (forward left) (forward right) (forward meet)
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    forward : Alpha -> Beta
+    inverse : Beta -> Alpha
+    mapsAreIsomorphism : OrderIsomorphism sourceRelation targetRelation forward inverse
+    left right meet : Alpha
+    meetIsMeet : Meet sourceRelation left right meet
+  Prove
+    ((∀ (source : Alpha), inverse (forward source) = source) ∧ ((∀ (target : Beta), forward (inverse target) = target) ∧ ((∀ (left right : Alpha), sourceRelation left right → targetRelation (forward left) (forward right)) ∧ (∀ (left right : Alpha), targetRelation (forward left) (forward right) → sourceRelation left right)))) → ∀ {left right meet : Alpha}, (sourceRelation meet left ∧ (sourceRelation meet right ∧ (∀ (lower : Alpha), sourceRelation lower left → sourceRelation lower right → sourceRelation lower meet))) → (targetRelation (forward meet) (forward left) ∧ (targetRelation (forward meet) (forward right) ∧ (∀ (lower : Beta), targetRelation lower (forward left) → targetRelation lower (forward right) → targetRelation lower (forward meet))))
+Transliterated theorem: Meet targetRelation (forward left) (forward right) (forward meet)
+Logical form (Lean): {Alpha : Type u} {Beta : Type v} {sourceRelation : LRA.Relation.Endorelation Alpha} {targetRelation : LRA.Relation.Endorelation Beta} {forward : Alpha -> Beta} {inverse : Beta -> Alpha} (mapsAreIsomorphism : OrderIsomorphism sourceRelation targetRelation forward inverse) {left right meet : Alpha} (meetIsMeet : Meet sourceRelation left right meet) : Meet targetRelation (forward left) (forward right) (forward meet)
+Source: ./Morphisms/OrderIsomorphism/Theorems.lean#L120
+
+
+
+Name: OrderIsomorphismInverse
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {Beta : Type v} {sourceRelation : LRA.Relation.Endorelation Alpha}   {targetRelation : LRA.Relation.Endorelation Beta} {forward : Alpha → Beta} {inverse : Beta → Alpha},   LRA.Order.OrderIsomorphism sourceRelation targetRelation forward inverse →     LRA.Order.OrderIsomorphism targetRelation sourceRelation inverse forward
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    forward : Alpha -> Beta
+    inverse : Beta -> Alpha
+    mapsAreIsomorphism : OrderIsomorphism sourceRelation targetRelation forward inverse
+  Prove
+    ((∀ (source : Alpha), inverse (forward source) = source) ∧ ((∀ (target : Beta), forward (inverse target) = target) ∧ ((∀ (left right : Alpha), sourceRelation left right → targetRelation (forward left) (forward right)) ∧ (∀ (left right : Alpha), targetRelation (forward left) (forward right) → sourceRelation left right)))) → ((∀ (source : Beta), forward (inverse source) = source) ∧ ((∀ (target : Alpha), inverse (forward target) = target) ∧ ((∀ (left right : Beta), targetRelation left right → sourceRelation (inverse left) (inverse right)) ∧ (∀ (left right : Beta), sourceRelation (inverse left) (inverse right) → targetRelation left right))))
+Transliterated theorem: OrderIsomorphism targetRelation sourceRelation inverse forward
+Logical form (Lean): {Alpha : Type u} {Beta : Type v} {sourceRelation : LRA.Relation.Endorelation Alpha} {targetRelation : LRA.Relation.Endorelation Beta} {forward : Alpha -> Beta} {inverse : Beta -> Alpha} (mapsAreIsomorphism : OrderIsomorphism sourceRelation targetRelation forward inverse) : OrderIsomorphism targetRelation sourceRelation inverse forward
+Source: ./Morphisms/OrderIsomorphism/Theorems.lean#L174
+
+
+
+Name: OrderIsomorphismComp
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {Beta : Type v} {Gamma : Type w} {sourceRelation : LRA.Relation.Endorelation Alpha} {middleRelation : LRA.Relation.Endorelation Beta} {targetRelation : LRA.Relation.Endorelation Gamma} {firstForward : Alpha -> Beta} {firstInverse : Beta -> Alpha} {secondForward : Beta -> Gamma} {secondInverse : Gamma -> Beta} (firstMapsAreIsomorphism : OrderIsomorphism sourceRelation middleRelation firstForward firstInverse) (secondMapsAreIsomorphism : OrderIsomorphism middleRelation targetRelation secondForward secondInverse), OrderIsomorphism sourceRelation targetRelation (fun element => secondForward (firstForward element)) (fun element => firstInverse (secondInverse element))
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta, Gamma)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    middleRelation : LRA.Relation.Endorelation Beta
+    targetRelation : LRA.Relation.Endorelation Gamma
+    firstForward : Alpha -> Beta
+    firstInverse : Beta -> Alpha
+    secondForward : Beta -> Gamma
+    secondInverse : Gamma -> Beta
+    firstMapsAreIsomorphism : OrderIsomorphism sourceRelation middleRelation firstForward firstInverse
+    secondMapsAreIsomorphism : OrderIsomorphism middleRelation targetRelation secondForward secondInverse
+  Prove
+    (((∀ (source : Alpha), firstInverse (firstForward source) = source) ∧ ((∀ (target : Beta), firstForward (firstInverse target) = target) ∧ ((∀ (left right : Alpha), sourceRelation left right → middleRelation (firstForward left) (firstForward right)) ∧ (∀ (left right : Alpha), middleRelation (firstForward left) (firstForward right) → sourceRelation left right)))) ∧ ((∀ (source : Beta), secondInverse (secondForward source) = source) ∧ ((∀ (target : Gamma), secondForward (secondInverse target) = target) ∧ ((∀ (left right : Beta), middleRelation left right → targetRelation (secondForward left) (secondForward right)) ∧ (∀ (left right : Beta), targetRelation (secondForward left) (secondForward right) → middleRelation left right))))) → ((∀ (source : Alpha), (fun element => firstInverse (secondInverse element)) ((fun element => secondForward (firstForward element)) source) = source) ∧ ((∀ (target : Gamma), (fun element => secondForward (firstForward element)) ((fun element => firstInverse (secondInverse element)) target) = target) ∧ ((∀ (left right : Alpha), sourceRelation left right → targetRelation ((fun element => secondForward (firstForward element)) left) ((fun element => secondForward (firstForward element)) right)) ∧ (∀ (left right : Alpha), targetRelation ((fun element => secondForward (firstForward element)) left) ((fun element => secondForward (firstForward element)) right) → sourceRelation left right))))
+Transliterated theorem: OrderIsomorphism sourceRelation targetRelation (fun element => secondForward (firstForward element)) (fun element => firstInverse (secondInverse element))
+Logical form (Lean): {Alpha : Type u} {Beta : Type v} {Gamma : Type w} {sourceRelation : LRA.Relation.Endorelation Alpha} {middleRelation : LRA.Relation.Endorelation Beta} {targetRelation : LRA.Relation.Endorelation Gamma} {firstForward : Alpha -> Beta} {firstInverse : Beta -> Alpha} {secondForward : Beta -> Gamma} {secondInverse : Gamma -> Beta} (firstMapsAreIsomorphism : OrderIsomorphism sourceRelation middleRelation firstForward firstInverse) (secondMapsAreIsomorphism : OrderIsomorphism middleRelation targetRelation secondForward secondInverse) : OrderIsomorphism sourceRelation targetRelation (fun element => secondForward (firstForward element)) (fun element => firstInverse (secondInverse element))
+Source: ./Morphisms/OrderIsomorphism/Theorems.lean#L234
+
+
+
+Name: OrderIsomorphismPreservesUpperBound
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x} [inst : Membership Alpha SourceSet]   [inst_1 : Membership Beta TargetSet] {sourceRelation : LRA.Relation.Endorelation Alpha}   {targetRelation : LRA.Relation.Endorelation Beta} {map : Alpha → Beta} (subset : SourceSet) (imageSet : TargetSet),   LRA.Set.Represents imageSet (LRA.Function.ImageClass map (LRA.Set.ClassOfSet subset)) →     ∀ {inverse : Beta → Alpha},       LRA.Order.OrderIsomorphism sourceRelation targetRelation map inverse →         ∀ {bound : Alpha},           LRA.Order.UpperBound sourceRelation subset bound → LRA.Order.UpperBound targetRelation imageSet (map bound)
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta, SourceSet, TargetSet, ∈)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    map : Alpha → Beta
+    subset : SourceSet
+    imageSet : TargetSet
+    representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))
+    inverse : Beta → Alpha
+    mapsAreIsomorphism : OrderIsomorphism sourceRelation targetRelation map inverse
+    bound : Alpha
+    boundIsUpper : UpperBound sourceRelation subset bound
+  Prove
+    (∀ (element : Beta), imageSet ≤ element ↔ Exists fun x => (subset ≤ x ∧ map x = element)) → ∀ {inverse : Beta → Alpha}, ((∀ (source : Alpha), inverse (map source) = source) ∧ ((∀ (target : Beta), map (inverse target) = target) ∧ ((∀ (left right : Alpha), sourceRelation left right → targetRelation (map left) (map right)) ∧ (∀ (left right : Alpha), targetRelation (map left) (map right) → sourceRelation left right)))) → ∀ {bound : Alpha}, (∀ (element : Alpha), subset ≤ element → sourceRelation element bound) → ∀ (element : Beta), imageSet ≤ element → targetRelation element (map bound)
+Transliterated theorem: (∀ subset ∈ SourceSet ∀ imageSet ∈ TargetSet), UpperBound targetRelation imageSet (map bound)
+Logical form (Lean): (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) {inverse : Beta → Alpha} (mapsAreIsomorphism : OrderIsomorphism sourceRelation targetRelation map inverse) {bound : Alpha} (boundIsUpper : UpperBound sourceRelation subset bound) : UpperBound targetRelation imageSet (map bound)
+Source: ./Morphisms/OrderIsomorphism/Theorems.lean#L304
+
+
+
+Name: OrderIsomorphismPreservesLowerBound
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x} [inst : Membership Alpha SourceSet]   [inst_1 : Membership Beta TargetSet] {sourceRelation : LRA.Relation.Endorelation Alpha}   {targetRelation : LRA.Relation.Endorelation Beta} {map : Alpha → Beta} (subset : SourceSet) (imageSet : TargetSet),   LRA.Set.Represents imageSet (LRA.Function.ImageClass map (LRA.Set.ClassOfSet subset)) →     ∀ {inverse : Beta → Alpha},       LRA.Order.OrderIsomorphism sourceRelation targetRelation map inverse →         ∀ {bound : Alpha},           LRA.Order.LowerBound sourceRelation subset bound → LRA.Order.LowerBound targetRelation imageSet (map bound)
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta, SourceSet, TargetSet, ∈)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    map : Alpha → Beta
+    subset : SourceSet
+    imageSet : TargetSet
+    representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))
+    inverse : Beta → Alpha
+    mapsAreIsomorphism : OrderIsomorphism sourceRelation targetRelation map inverse
+    bound : Alpha
+    boundIsLower : LowerBound sourceRelation subset bound
+  Prove
+    (∀ (element : Beta), imageSet ≤ element ↔ Exists fun x => (subset ≤ x ∧ map x = element)) → ∀ {inverse : Beta → Alpha}, ((∀ (source : Alpha), inverse (map source) = source) ∧ ((∀ (target : Beta), map (inverse target) = target) ∧ ((∀ (left right : Alpha), sourceRelation left right → targetRelation (map left) (map right)) ∧ (∀ (left right : Alpha), targetRelation (map left) (map right) → sourceRelation left right)))) → ∀ {bound : Alpha}, (∀ (element : Alpha), subset ≤ element → sourceRelation bound element) → ∀ (element : Beta), imageSet ≤ element → targetRelation (map bound) element
+Transliterated theorem: (∀ subset ∈ SourceSet ∀ imageSet ∈ TargetSet), LowerBound targetRelation imageSet (map bound)
+Logical form (Lean): (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) {inverse : Beta → Alpha} (mapsAreIsomorphism : OrderIsomorphism sourceRelation targetRelation map inverse) {bound : Alpha} (boundIsLower : LowerBound sourceRelation subset bound) : LowerBound targetRelation imageSet (map bound)
+Source: ./Morphisms/OrderIsomorphism/Theorems.lean#L360
+
+
+
+Name: OrderIsomorphismPreservesSupremum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x} [inst : Membership Alpha SourceSet]   [inst_1 : Membership Beta TargetSet] {sourceRelation : LRA.Relation.Endorelation Alpha}   {targetRelation : LRA.Relation.Endorelation Beta} {map : Alpha → Beta} (subset : SourceSet) (imageSet : TargetSet),   LRA.Set.Represents imageSet (LRA.Function.ImageClass map (LRA.Set.ClassOfSet subset)) →     ∀ {inverse : Beta → Alpha},       LRA.Order.OrderIsomorphism sourceRelation targetRelation map inverse →         ∀ {supremum : Alpha},           LRA.Order.Supremum sourceRelation subset supremum → LRA.Order.Supremum targetRelation imageSet (map supremum)
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta, SourceSet, TargetSet, ∈)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    map : Alpha → Beta
+    subset : SourceSet
+    imageSet : TargetSet
+    representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))
+    inverse : Beta → Alpha
+    mapsAreIsomorphism : OrderIsomorphism sourceRelation targetRelation map inverse
+    supremum : Alpha
+    supremumIsSupremum : Supremum sourceRelation subset supremum
+  Prove
+    (∀ (element : Beta), imageSet ≤ element ↔ Exists fun x => (subset ≤ x ∧ map x = element)) → ∀ {inverse : Beta → Alpha}, ((∀ (source : Alpha), inverse (map source) = source) ∧ ((∀ (target : Beta), map (inverse target) = target) ∧ ((∀ (left right : Alpha), sourceRelation left right → targetRelation (map left) (map right)) ∧ (∀ (left right : Alpha), targetRelation (map left) (map right) → sourceRelation left right)))) → ∀ {supremum : Alpha}, ((∀ (element : Alpha), subset ≤ element → sourceRelation element supremum) ∧ (∀ (bound : Alpha), (∀ (element : Alpha), subset ≤ element → sourceRelation element bound) → sourceRelation supremum bound)) → ((∀ (element : Beta), imageSet ≤ element → targetRelation element (map supremum)) ∧ (∀ (bound : Beta), (∀ (element : Beta), imageSet ≤ element → targetRelation element bound) → targetRelation (map supremum) bound))
+Transliterated theorem: (∀ subset ∈ SourceSet ∀ imageSet ∈ TargetSet), Supremum targetRelation imageSet (map supremum)
+Logical form (Lean): (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) {inverse : Beta → Alpha} (mapsAreIsomorphism : OrderIsomorphism sourceRelation targetRelation map inverse) {supremum : Alpha} (supremumIsSupremum : Supremum sourceRelation subset supremum) : Supremum targetRelation imageSet (map supremum)
+Source: ./Morphisms/OrderIsomorphism/Theorems.lean#L416
+
+
+
+Name: OrderIsomorphismPreservesInfimum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x} [inst : Membership Alpha SourceSet]   [inst_1 : Membership Beta TargetSet] {sourceRelation : LRA.Relation.Endorelation Alpha}   {targetRelation : LRA.Relation.Endorelation Beta} {map : Alpha → Beta} (subset : SourceSet) (imageSet : TargetSet),   LRA.Set.Represents imageSet (LRA.Function.ImageClass map (LRA.Set.ClassOfSet subset)) →     ∀ {inverse : Beta → Alpha},       LRA.Order.OrderIsomorphism sourceRelation targetRelation map inverse →         ∀ {infimum : Alpha},           LRA.Order.Infimum sourceRelation subset infimum → LRA.Order.Infimum targetRelation imageSet (map infimum)
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta, SourceSet, TargetSet, ∈)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    map : Alpha → Beta
+    subset : SourceSet
+    imageSet : TargetSet
+    representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))
+    inverse : Beta → Alpha
+    mapsAreIsomorphism : OrderIsomorphism sourceRelation targetRelation map inverse
+    infimum : Alpha
+    infimumIsInfimum : Infimum sourceRelation subset infimum
+  Prove
+    (∀ (element : Beta), imageSet ≤ element ↔ Exists fun x => (subset ≤ x ∧ map x = element)) → ∀ {inverse : Beta → Alpha}, ((∀ (source : Alpha), inverse (map source) = source) ∧ ((∀ (target : Beta), map (inverse target) = target) ∧ ((∀ (left right : Alpha), sourceRelation left right → targetRelation (map left) (map right)) ∧ (∀ (left right : Alpha), targetRelation (map left) (map right) → sourceRelation left right)))) → ∀ {infimum : Alpha}, ((∀ (element : Alpha), subset ≤ element → sourceRelation infimum element) ∧ (∀ (bound : Alpha), (∀ (element : Alpha), subset ≤ element → sourceRelation bound element) → sourceRelation bound infimum)) → ((∀ (element : Beta), imageSet ≤ element → targetRelation (map infimum) element) ∧ (∀ (bound : Beta), (∀ (element : Beta), imageSet ≤ element → targetRelation bound element) → targetRelation bound (map infimum)))
+Transliterated theorem: (∀ subset ∈ SourceSet ∀ imageSet ∈ TargetSet), Infimum targetRelation imageSet (map infimum)
+Logical form (Lean): (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) {inverse : Beta → Alpha} (mapsAreIsomorphism : OrderIsomorphism sourceRelation targetRelation map inverse) {infimum : Alpha} (infimumIsInfimum : Infimum sourceRelation subset infimum) : Infimum targetRelation imageSet (map infimum)
+Source: ./Morphisms/OrderIsomorphism/Theorems.lean#L472
+
+
+
+Name: OrderIsomorphismToConverseSendsSupremumToInfimum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x} [inst : Membership Alpha SourceSet]   [inst_1 : Membership Beta TargetSet] {sourceRelation : LRA.Relation.Endorelation Alpha}   {targetRelation : LRA.Relation.Endorelation Beta} {map : Alpha → Beta} (subset : SourceSet) (imageSet : TargetSet),   LRA.Set.Represents imageSet (LRA.Function.ImageClass map (LRA.Set.ClassOfSet subset)) →     ∀ {inverse : Beta → Alpha},       LRA.Order.OrderIsomorphism sourceRelation (LRA.Relation.Converse targetRelation) map inverse →         ∀ {supremum : Alpha},           LRA.Order.Supremum sourceRelation subset supremum → LRA.Order.Infimum targetRelation imageSet (map supremum)
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta, SourceSet, TargetSet, ∈)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    map : Alpha → Beta
+    subset : SourceSet
+    imageSet : TargetSet
+    representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))
+    inverse : Beta → Alpha
+    mapsAreIsomorphism : OrderIsomorphism sourceRelation (LRA.Relation.Converse targetRelation) map inverse
+    supremum : Alpha
+    supremumIsSupremum : Supremum sourceRelation subset supremum
+  Prove
+    (∀ (element : Beta), imageSet ≤ element ↔ Exists fun x => (subset ≤ x ∧ map x = element)) → ∀ {inverse : Beta → Alpha}, ((∀ (source : Alpha), inverse (map source) = source) ∧ ((∀ (target : Beta), map (inverse target) = target) ∧ ((∀ (left right : Alpha), sourceRelation left right → targetRelation (map right) (map left)) ∧ (∀ (left right : Alpha), targetRelation (map right) (map left) → sourceRelation left right)))) → ∀ {supremum : Alpha}, ((∀ (element : Alpha), subset ≤ element → sourceRelation element supremum) ∧ (∀ (bound : Alpha), (∀ (element : Alpha), subset ≤ element → sourceRelation element bound) → sourceRelation supremum bound)) → ((∀ (element : Beta), imageSet ≤ element → targetRelation (map supremum) element) ∧ (∀ (bound : Beta), (∀ (element : Beta), imageSet ≤ element → targetRelation bound element) → targetRelation bound (map supremum)))
+Transliterated theorem: (∀ subset ∈ SourceSet ∀ imageSet ∈ TargetSet), Infimum targetRelation imageSet (map supremum)
+Logical form (Lean): (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) {inverse : Beta → Alpha} (mapsAreIsomorphism : OrderIsomorphism sourceRelation (LRA.Relation.Converse targetRelation) map inverse) {supremum : Alpha} (supremumIsSupremum : Supremum sourceRelation subset supremum) : Infimum targetRelation imageSet (map supremum)
+Source: ./Morphisms/OrderIsomorphism/Theorems.lean#L528
+
+
+
+Name: OrderIsomorphismToConverseSendsInfimumToSupremum
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x} [inst : Membership Alpha SourceSet]   [inst_1 : Membership Beta TargetSet] {sourceRelation : LRA.Relation.Endorelation Alpha}   {targetRelation : LRA.Relation.Endorelation Beta} {map : Alpha → Beta} (subset : SourceSet) (imageSet : TargetSet),   LRA.Set.Represents imageSet (LRA.Function.ImageClass map (LRA.Set.ClassOfSet subset)) →     ∀ {inverse : Beta → Alpha},       LRA.Order.OrderIsomorphism sourceRelation (LRA.Relation.Converse targetRelation) map inverse →         ∀ {infimum : Alpha},           LRA.Order.Infimum sourceRelation subset infimum → LRA.Order.Supremum targetRelation imageSet (map infimum)
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta, SourceSet, TargetSet, ∈)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    map : Alpha → Beta
+    subset : SourceSet
+    imageSet : TargetSet
+    representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))
+    inverse : Beta → Alpha
+    mapsAreIsomorphism : OrderIsomorphism sourceRelation (LRA.Relation.Converse targetRelation) map inverse
+    infimum : Alpha
+    infimumIsInfimum : Infimum sourceRelation subset infimum
+  Prove
+    (∀ (element : Beta), imageSet ≤ element ↔ Exists fun x => (subset ≤ x ∧ map x = element)) → ∀ {inverse : Beta → Alpha}, ((∀ (source : Alpha), inverse (map source) = source) ∧ ((∀ (target : Beta), map (inverse target) = target) ∧ ((∀ (left right : Alpha), sourceRelation left right → targetRelation (map right) (map left)) ∧ (∀ (left right : Alpha), targetRelation (map right) (map left) → sourceRelation left right)))) → ∀ {infimum : Alpha}, ((∀ (element : Alpha), subset ≤ element → sourceRelation infimum element) ∧ (∀ (bound : Alpha), (∀ (element : Alpha), subset ≤ element → sourceRelation bound element) → sourceRelation bound infimum)) → ((∀ (element : Beta), imageSet ≤ element → targetRelation element (map infimum)) ∧ (∀ (bound : Beta), (∀ (element : Beta), imageSet ≤ element → targetRelation element bound) → targetRelation (map infimum) bound))
+Transliterated theorem: (∀ subset ∈ SourceSet ∀ imageSet ∈ TargetSet), Supremum targetRelation imageSet (map infimum)
+Logical form (Lean): (subset : SourceSet) (imageSet : TargetSet) (representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))) {inverse : Beta → Alpha} (mapsAreIsomorphism : OrderIsomorphism sourceRelation (LRA.Relation.Converse targetRelation) map inverse) {infimum : Alpha} (infimumIsInfimum : Infimum sourceRelation subset infimum) : Supremum targetRelation imageSet (map infimum)
+Source: ./Morphisms/OrderIsomorphism/Theorems.lean#L584
+
+
+
+Name: Antitone.comp_antitone_is_monotone
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {Beta : Type v} {Gamma : Type w} {sourceRelation : LRA.Relation.Endorelation Alpha} {middleRelation : LRA.Relation.Endorelation Beta} {targetRelation : LRA.Relation.Endorelation Gamma} {first : Alpha -> Beta} {second : Beta -> Gamma} (firstAntitone : Antitone sourceRelation middleRelation first) (secondAntitone : Antitone middleRelation targetRelation second), Monotone sourceRelation targetRelation (fun input => second (first input))
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, Beta, Gamma)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    middleRelation : LRA.Relation.Endorelation Beta
+    targetRelation : LRA.Relation.Endorelation Gamma
+    first : Alpha -> Beta
+    second : Beta -> Gamma
+    firstAntitone : Antitone sourceRelation middleRelation first
+    secondAntitone : Antitone middleRelation targetRelation second
+  Prove
+    ((∀ (left right : Alpha), sourceRelation left right → middleRelation (first right) (first left)) ∧ (∀ (left right : Beta), middleRelation left right → targetRelation (second right) (second left))) → ∀ (left right : Alpha), sourceRelation left right → targetRelation ((fun input => second (first input)) left) ((fun input => second (first input)) right)
+Transliterated theorem: Monotone sourceRelation targetRelation (fun input => second (first input))
+Logical form (Lean): {Alpha : Type u} {Beta : Type v} {Gamma : Type w} {sourceRelation : LRA.Relation.Endorelation Alpha} {middleRelation : LRA.Relation.Endorelation Beta} {targetRelation : LRA.Relation.Endorelation Gamma} {first : Alpha -> Beta} {second : Beta -> Gamma} (firstAntitone : Antitone sourceRelation middleRelation first) (secondAntitone : Antitone middleRelation targetRelation second) : Monotone sourceRelation targetRelation (fun input => second (first input))
+Source: ./Morphisms/Antitone/Consequences.lean#L54
+
+
+
+Name: LeRefl
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {R : Type u} [inst : LE R], LRA.Order.PartialOrderLaws R → ∀ (a : R), inst.le a a
+Predicate logic (unfolded):
+  Ambient
+    (R, ≤)
+  Objects
+    (none)
+  Prove
+    LRA.Order.PartialOrderLaws R → ∀ (a : R), inst.le a a
+Transliterated theorem: forall a : R, a <= a
+Logical form (Lean): [LE R] [PartialOrderLaws R] : forall a : R, a <= a
+Source: ./Laws/PartialOrder/Definition.lean#L95
+
+
+
+Name: LeAntisymm
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [LE R] [PartialOrderLaws R], forall a b : R, a <= b -> b <= a -> a = b
+Predicate logic (unfolded):
+  Ambient
+    (R, ≤)
+  Objects
+    (none)
+  Prove
+    LRA.Order.PartialOrderLaws R → ∀ (a b : R), (inst.le a b ∧ inst.le b a) → a = b
+Transliterated theorem: forall a b : R, a <= b -> b <= a -> a = b
+Logical form (Lean): [LE R] [PartialOrderLaws R] : forall a b : R, a <= b -> b <= a -> a = b
+Source: ./Laws/PartialOrder/Definition.lean#L134
+
+
+
+Name: LeTrans
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [LE R] [PartialOrderLaws R], forall a b c : R, a <= b -> b <= c -> a <= c
+Predicate logic (unfolded):
+  Ambient
+    (R, ≤)
+  Objects
+    (none)
+  Prove
+    LRA.Order.PartialOrderLaws R → ∀ (a b c : R), (inst.le a b ∧ inst.le b c) → inst.le a c
+Transliterated theorem: forall a b c : R, a <= b -> b <= c -> a <= c
+Logical form (Lean): [LE R] [PartialOrderLaws R] : forall a b c : R, a <= b -> b <= c -> a <= c
+Source: ./Laws/PartialOrder/Definition.lean#L174
+
+
+
+Name: LeTotal
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {R : Type u} [inst : LE R], LRA.Order.TotalOrderLaw R → ∀ (a b : R), Or (inst.le a b) (inst.le b a)
+Predicate logic (unfolded):
+  Ambient
+    (R, ≤)
+  Objects
+    (none)
+  Prove
+    LRA.Order.TotalOrderLaw R → ∀ (a b : R), Or (inst.le a b) (inst.le b a)
+Transliterated theorem: forall a b : R, a <= b ∨ b <= a
+Logical form (Lean): [LE R] [TotalOrderLaw R] : forall a b : R, a <= b \/ b <= a
+Source: ./Laws/LinearOrder/Definition.lean#L132
+
+
+
+Name: LtIffLeNotLe
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [LT R] [LE R] [StrictOrderCompatibilityLaw R], forall a b : R, a < b <-> a <= b /\ Not (b <= a)
+Predicate logic (unfolded):
+  Ambient
+    (R, <, ≤)
+  Objects
+    (none)
+  Prove
+    LRA.Order.StrictOrderCompatibilityLaw R → ∀ (a b : R), inst.lt a b ↔ (inst_1.le a b ∧ (inst_1.le b a → False))
+Transliterated theorem: forall a b : R, a < b <-> a <= b ∧ Not (b <= a)
+Logical form (Lean): [LT R] [LE R] [StrictOrderCompatibilityLaw R] : forall a b : R, a < b <-> a <= b /\ Not (b <= a)
+Source: ./Laws/StrictOrderCompatibility/Definition.lean#L88
+
+
+
+Name: AddLeAddLeft
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {R : Type u} [inst : Add R] [inst_1 : LE R],   LRA.Order.AdditionRespectsOrderLaws R →     ∀ (a b : R), inst_1.le a b → ∀ (c : R), inst_1.le (instHAdd.hAdd c a) (instHAdd.hAdd c b)
+Predicate logic (unfolded):
+  Ambient
+    (R, ≤)
+  Objects
+    (none)
+  Prove
+    LRA.Order.AdditionRespectsOrderLaws R → ∀ (a b : R), inst_1.le a b → ∀ (c : R), inst_1.le ({ hAdd := fun a b => inst.add a b }.hAdd c a) ({ hAdd := fun a b => inst.add a b }.hAdd c b)
+Transliterated theorem: forall a b : R, a <= b -> forall c : R, c + a <= c + b
+Logical form (Lean): [Add R] [LE R] [AdditionRespectsOrderLaws R] : forall a b : R, a <= b -> forall c : R, c + a <= c + b
+Source: ./Laws/OperationCompatibility/Definition.lean#L672
+
+
+
+Name: AddLeAddRight
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {R : Type u} [inst : Add R] [inst_1 : LE R],   LRA.Order.AdditionRespectsOrderLaws R →     ∀ (a b : R), inst_1.le a b → ∀ (c : R), inst_1.le (instHAdd.hAdd a c) (instHAdd.hAdd b c)
+Predicate logic (unfolded):
+  Ambient
+    (R, ≤)
+  Objects
+    (none)
+  Prove
+    LRA.Order.AdditionRespectsOrderLaws R → ∀ (a b : R), inst_1.le a b → ∀ (c : R), inst_1.le ({ hAdd := fun a b => inst.add a b }.hAdd a c) ({ hAdd := fun a b => inst.add a b }.hAdd b c)
+Transliterated theorem: forall a b : R, a <= b -> forall c : R, a + c <= b + c
+Logical form (Lean): [Add R] [LE R] [AdditionRespectsOrderLaws R] : forall a b : R, a <= b -> forall c : R, a + c <= b + c
+Source: ./Laws/OperationCompatibility/Definition.lean#L712
+
+
+
+Name: MulNonneg
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ [Mul R] [LE R] [OfNat R 0] [MultiplicationRespectsOrderLaws R], forall a b : R, 0 <= a -> 0 <= b -> 0 <= a * b
+Predicate logic (unfolded):
+  Ambient
+    (R, ≤)
+  Objects
+    (none)
+  Prove
+    LRA.Order.MultiplicationRespectsOrderLaws R → ∀ (a b : R), (inst_1.le 0 a ∧ inst_1.le 0 b) → inst_1.le 0 ({ hMul := fun a b => inst.mul a b }.hMul a b)
+Transliterated theorem: forall a b : R, 0 <= a -> 0 <= b -> 0 <= a * b
+Logical form (Lean): [Mul R] [LE R] [OfNat R 0] [MultiplicationRespectsOrderLaws R] : forall a b : R, 0 <= a -> 0 <= b -> 0 <= a * b
+Source: ./Laws/OperationCompatibility/Definition.lean#L753
+
+
+
+Name: LeftTranslationPreservesRelation.apply
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {relation : Carrier -> Carrier -> Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier} (law : LeftTranslationPreservesRelation relation operation) (fixed left right : Carrier) (related : relation left right), relation (operation fixed left) (operation fixed right)
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : Carrier -> Carrier -> Prop
+    operation : LRA.Operation.BinaryEndoOperation Carrier
+    law : LeftTranslationPreservesRelation relation operation
+    fixed left right : Carrier
+    related : relation left right
+  Prove
+    (∀ (left right fixed : Carrier), positive fixed → relation left right → relation (operation left fixed) (operation right fixed)) → ∀ (left right fixed : Carrier), (positive fixed ∧ relation left right) → relation (operation left fixed) (operation right fixed)
+Transliterated theorem: (∀ fixed left right ∈ Carrier), relation (operation fixed left) (operation fixed right)
+Logical form (Lean): {Carrier : Type u} {relation : Carrier -> Carrier -> Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier} (law : LeftTranslationPreservesRelation relation operation) (fixed left right : Carrier) (related : relation left right) : relation (operation fixed left) (operation fixed right)
+Source: ./Laws/OperationCompatibility/Theorems.lean#L49
+
+
+
+Name: RightTranslationPreservesRelation.apply
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {relation : Carrier -> Carrier -> Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier} (law : RightTranslationPreservesRelation relation operation) (left right fixed : Carrier) (related : relation left right), relation (operation left fixed) (operation right fixed)
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : Carrier -> Carrier -> Prop
+    operation : LRA.Operation.BinaryEndoOperation Carrier
+    law : RightTranslationPreservesRelation relation operation
+    left right fixed : Carrier
+    related : relation left right
+  Prove
+    (∀ (fixed left right : Carrier), positive fixed → relation left right → relation (operation fixed left) (operation fixed right)) → ∀ (fixed left right : Carrier), (positive fixed ∧ relation left right) → relation (operation fixed left) (operation fixed right)
+Transliterated theorem: (∀ left right fixed ∈ Carrier), relation (operation left fixed) (operation right fixed)
+Logical form (Lean): {Carrier : Type u} {relation : Carrier -> Carrier -> Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier} (law : RightTranslationPreservesRelation relation operation) (left right fixed : Carrier) (related : relation left right) : relation (operation left fixed) (operation right fixed)
+Source: ./Laws/OperationCompatibility/Theorems.lean#L99
+
+
+
+Name: CoordinatewisePreservesRelation.apply
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {relation : Carrier → Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Order.LeftTranslationReversesRelation relation operation →     ∀ (fixed left right : Carrier), relation left right → relation (operation fixed right) (operation fixed left)
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : Carrier -> Carrier -> Prop
+    operation : LRA.Operation.BinaryEndoOperation Carrier
+    law : CoordinatewisePreservesRelation relation operation
+    left₁ left₂ right₁ right₂ : Carrier
+    left_related : relation left₁ left₂
+    right_related : relation right₁ right₂
+  Prove
+    (∀ (fixed left right : Carrier), relation left right → relation (operation fixed right) (operation fixed left)) → ∀ (fixed left right : Carrier), relation left right → relation (operation fixed right) (operation fixed left)
+Transliterated theorem: (∀ left₁ left₂ right₁ right₂ ∈ Carrier), relation (operation left₁ right₁) (operation left₂ right₂)
+Logical form (Lean): {Carrier : Type u} {relation : Carrier -> Carrier -> Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier} (law : CoordinatewisePreservesRelation relation operation) (left₁ left₂ right₁ right₂ : Carrier) (left_related : relation left₁ left₂) (right_related : relation right₁ right₂) : relation (operation left₁ right₁) (operation left₂ right₂)
+Source: ./Laws/OperationCompatibility/Theorems.lean#L150
+
+
+
+Name: LeftTranslationReversesRelation.apply
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {relation : Carrier -> Carrier -> Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier} (law : LeftTranslationReversesRelation relation operation) (fixed left right : Carrier) (related : relation left right), relation (operation fixed right) (operation fixed left)
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : Carrier -> Carrier -> Prop
+    operation : LRA.Operation.BinaryEndoOperation Carrier
+    law : LeftTranslationReversesRelation relation operation
+    fixed left right : Carrier
+    related : relation left right
+  Prove
+    (∀ (left right fixed : Carrier), negative fixed → relation left right → relation (operation right fixed) (operation left fixed)) → ∀ (left right fixed : Carrier), (negative fixed ∧ relation left right) → relation (operation right fixed) (operation left fixed)
+Transliterated theorem: (∀ fixed left right ∈ Carrier), relation (operation fixed right) (operation fixed left)
+Logical form (Lean): {Carrier : Type u} {relation : Carrier -> Carrier -> Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier} (law : LeftTranslationReversesRelation relation operation) (fixed left right : Carrier) (related : relation left right) : relation (operation fixed right) (operation fixed left)
+Source: ./Laws/OperationCompatibility/Theorems.lean#L201
+
+
+
+Name: RightTranslationReversesRelation.apply
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {relation : Carrier -> Carrier -> Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier} (law : RightTranslationReversesRelation relation operation) (left right fixed : Carrier) (related : relation left right), relation (operation right fixed) (operation left fixed)
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : Carrier -> Carrier -> Prop
+    operation : LRA.Operation.BinaryEndoOperation Carrier
+    law : RightTranslationReversesRelation relation operation
+    left right fixed : Carrier
+    related : relation left right
+  Prove
+    (∀ (fixed left right : Carrier), negative fixed → relation left right → relation (operation fixed right) (operation fixed left)) → ∀ (fixed left right : Carrier), (negative fixed ∧ relation left right) → relation (operation fixed right) (operation fixed left)
+Transliterated theorem: (∀ left right fixed ∈ Carrier), relation (operation right fixed) (operation left fixed)
+Logical form (Lean): {Carrier : Type u} {relation : Carrier -> Carrier -> Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier} (law : RightTranslationReversesRelation relation operation) (left right fixed : Carrier) (related : relation left right) : relation (operation right fixed) (operation left fixed)
+Source: ./Laws/OperationCompatibility/Theorems.lean#L251
+
+
+
+Name: PositiveRightTranslationPreservesRelation.apply
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {relation : Carrier → Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Order.RightTranslationReversesRelation relation operation →     ∀ (left right fixed : Carrier), relation left right → relation (operation right fixed) (operation left fixed)
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : Carrier -> Carrier -> Prop
+    positive : Carrier -> Prop
+    operation : LRA.Operation.BinaryEndoOperation Carrier
+    law : PositiveRightTranslationPreservesRelation relation positive operation
+    left right fixed : Carrier
+    fixed_positive : positive fixed
+    related : relation left right
+  Prove
+    (∀ (left right fixed : Carrier), relation left right → relation (operation right fixed) (operation left fixed)) → ∀ (left right fixed : Carrier), relation left right → relation (operation right fixed) (operation left fixed)
+Transliterated theorem: (∀ left right fixed ∈ Carrier), relation (operation left fixed) (operation right fixed)
+Logical form (Lean): {Carrier : Type u} {relation : Carrier -> Carrier -> Prop} {positive : Carrier -> Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier} (law : PositiveRightTranslationPreservesRelation relation positive operation) (left right fixed : Carrier) (fixed_positive : positive fixed) (related : relation left right) : relation (operation left fixed) (operation right fixed)
+Source: ./Laws/OperationCompatibility/Theorems.lean#L303
+
+
+
+Name: PositiveLeftTranslationPreservesRelation.apply
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {relation : Carrier -> Carrier -> Prop} {positive : Carrier -> Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier} (law : PositiveLeftTranslationPreservesRelation relation positive operation) (fixed left right : Carrier) (fixed_positive : positive fixed) (related : relation left right), relation (operation fixed left) (operation fixed right)
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : Carrier -> Carrier -> Prop
+    positive : Carrier -> Prop
+    operation : LRA.Operation.BinaryEndoOperation Carrier
+    law : PositiveLeftTranslationPreservesRelation relation positive operation
+    fixed left right : Carrier
+    fixed_positive : positive fixed
+    related : relation left right
+  Prove
+    (∀ (left₁ left₂ right₁ right₂ : Carrier), relation left₁ left₂ → relation right₁ right₂ → relation (operation left₁ right₁) (operation left₂ right₂)) → ∀ (left₁ left₂ right₁ right₂ : Carrier), (relation left₁ left₂ ∧ relation right₁ right₂) → relation (operation left₁ right₁) (operation left₂ right₂)
+Transliterated theorem: (∀ fixed left right ∈ Carrier), relation (operation fixed left) (operation fixed right)
+Logical form (Lean): {Carrier : Type u} {relation : Carrier -> Carrier -> Prop} {positive : Carrier -> Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier} (law : PositiveLeftTranslationPreservesRelation relation positive operation) (fixed left right : Carrier) (fixed_positive : positive fixed) (related : relation left right) : relation (operation fixed left) (operation fixed right)
+Source: ./Laws/OperationCompatibility/Theorems.lean#L357
+
+
+
+Name: NegativeRightTranslationReversesRelation.apply
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {relation : Carrier → Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Order.LeftTranslationPreservesRelation relation operation →     ∀ (fixed left right : Carrier), relation left right → relation (operation fixed left) (operation fixed right)
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : Carrier -> Carrier -> Prop
+    negative : Carrier -> Prop
+    operation : LRA.Operation.BinaryEndoOperation Carrier
+    law : NegativeRightTranslationReversesRelation relation negative operation
+    left right fixed : Carrier
+    fixed_negative : negative fixed
+    related : relation left right
+  Prove
+    (∀ (fixed left right : Carrier), relation left right → relation (operation fixed left) (operation fixed right)) → ∀ (fixed left right : Carrier), relation left right → relation (operation fixed left) (operation fixed right)
+Transliterated theorem: (∀ left right fixed ∈ Carrier), relation (operation right fixed) (operation left fixed)
+Logical form (Lean): {Carrier : Type u} {relation : Carrier -> Carrier -> Prop} {negative : Carrier -> Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier} (law : NegativeRightTranslationReversesRelation relation negative operation) (left right fixed : Carrier) (fixed_negative : negative fixed) (related : relation left right) : relation (operation right fixed) (operation left fixed)
+Source: ./Laws/OperationCompatibility/Theorems.lean#L411
+
+
+
+Name: NegativeLeftTranslationReversesRelation.apply
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {relation : Carrier → Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Order.RightTranslationPreservesRelation relation operation →     ∀ (left right fixed : Carrier), relation left right → relation (operation left fixed) (operation right fixed)
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : Carrier -> Carrier -> Prop
+    negative : Carrier -> Prop
+    operation : LRA.Operation.BinaryEndoOperation Carrier
+    law : NegativeLeftTranslationReversesRelation relation negative operation
+    fixed left right : Carrier
+    fixed_negative : negative fixed
+    related : relation left right
+  Prove
+    (∀ (left right fixed : Carrier), relation left right → relation (operation left fixed) (operation right fixed)) → ∀ (left right fixed : Carrier), relation left right → relation (operation left fixed) (operation right fixed)
+Transliterated theorem: (∀ fixed left right ∈ Carrier), relation (operation fixed right) (operation fixed left)
+Logical form (Lean): {Carrier : Type u} {relation : Carrier -> Carrier -> Prop} {negative : Carrier -> Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier} (law : NegativeLeftTranslationReversesRelation relation negative operation) (fixed left right : Carrier) (fixed_negative : negative fixed) (related : relation left right) : relation (operation fixed right) (operation fixed left)
+Source: ./Laws/OperationCompatibility/Theorems.lean#L465
+
+
+
+Name: Commutative.left_preservation_to_right_preservation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {relation : Carrier -> Carrier -> Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier} (commutative : LRA.Operation.Laws.Commutative.Commutative operation) (leftLaw : LeftTranslationPreservesRelation relation operation), RightTranslationPreservesRelation relation operation
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : Carrier -> Carrier -> Prop
+    operation : LRA.Operation.BinaryEndoOperation Carrier
+    commutative : LRA.Operation.Laws.Commutative.Commutative operation
+    leftLaw : LeftTranslationPreservesRelation relation operation
+  Prove
+    ((∀ (first second : Carrier), operation first second = operation second first) ∧ (∀ (fixed left right : Carrier), relation left right → relation (operation fixed left) (operation fixed right))) → ∀ (left right fixed : Carrier), relation left right → relation (operation left fixed) (operation right fixed)
+Transliterated theorem: RightTranslationPreservesRelation relation operation
+Logical form (Lean): {Carrier : Type u} {relation : Carrier -> Carrier -> Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier} (commutative : LRA.Operation.Laws.Commutative.Commutative operation) (leftLaw : LeftTranslationPreservesRelation relation operation) : RightTranslationPreservesRelation relation operation
+Source: ./Laws/OperationCompatibility/Relationships.lean#L50
+
+
+
+Name: Commutative.right_preservation_to_left_preservation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {relation : Carrier -> Carrier -> Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier} (commutative : LRA.Operation.Laws.Commutative.Commutative operation) (rightLaw : RightTranslationPreservesRelation relation operation), LeftTranslationPreservesRelation relation operation
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : Carrier -> Carrier -> Prop
+    operation : LRA.Operation.BinaryEndoOperation Carrier
+    commutative : LRA.Operation.Laws.Commutative.Commutative operation
+    rightLaw : RightTranslationPreservesRelation relation operation
+  Prove
+    ((∀ (first second : Carrier), operation first second = operation second first) ∧ (∀ (left right fixed : Carrier), relation left right → relation (operation left fixed) (operation right fixed))) → ∀ (fixed left right : Carrier), relation left right → relation (operation fixed left) (operation fixed right)
+Transliterated theorem: LeftTranslationPreservesRelation relation operation
+Logical form (Lean): {Carrier : Type u} {relation : Carrier -> Carrier -> Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier} (commutative : LRA.Operation.Laws.Commutative.Commutative operation) (rightLaw : RightTranslationPreservesRelation relation operation) : LeftTranslationPreservesRelation relation operation
+Source: ./Laws/OperationCompatibility/Relationships.lean#L100
+
+
+
+Name: PositiveRightTranslationPreservesRelation.to_right_preservation_on_positive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {relation : Carrier → Carrier → Prop} {positive : Carrier → Prop}   {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Order.PositiveRightTranslationPreservesRelation relation positive operation →     ∀ (fixed : Carrier),       positive fixed →         ∀ (left right : Carrier), relation left right → relation (operation left fixed) (operation right fixed)
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : Carrier -> Carrier -> Prop
+    positive : Carrier -> Prop
+    operation : LRA.Operation.BinaryEndoOperation Carrier
+    law : PositiveRightTranslationPreservesRelation relation positive operation
+  Prove
+    (∀ (left right fixed : Carrier), positive fixed → relation left right → relation (operation left fixed) (operation right fixed)) → ∀ (fixed : Carrier), positive fixed → ∀ (left right : Carrier), relation left right → relation (operation left fixed) (operation right fixed)
+Transliterated theorem: forall fixed, positive fixed -> forall left right, relation left right -> relation (operation left fixed) (operation right fixed)
+Logical form (Lean): {Carrier : Type u} {relation : Carrier -> Carrier -> Prop} {positive : Carrier -> Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier} (law : PositiveRightTranslationPreservesRelation relation positive operation) : forall fixed, positive fixed -> forall left right, relation left right -> relation (operation left fixed) (operation right fixed)
+Source: ./Laws/OperationCompatibility/Relationships.lean#L152
+
+
+
+Name: NegativeRightTranslationReversesRelation.to_right_reversal_on_negative
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {relation : Carrier → Carrier → Prop} {negative : Carrier → Prop}   {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.Order.NegativeRightTranslationReversesRelation relation negative operation →     ∀ (fixed : Carrier),       negative fixed →         ∀ (left right : Carrier), relation left right → relation (operation right fixed) (operation left fixed)
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : Carrier -> Carrier -> Prop
+    negative : Carrier -> Prop
+    operation : LRA.Operation.BinaryEndoOperation Carrier
+    law : NegativeRightTranslationReversesRelation relation negative operation
+  Prove
+    (∀ (left right fixed : Carrier), negative fixed → relation left right → relation (operation right fixed) (operation left fixed)) → ∀ (fixed : Carrier), negative fixed → ∀ (left right : Carrier), relation left right → relation (operation right fixed) (operation left fixed)
+Transliterated theorem: forall fixed, negative fixed -> forall left right, relation left right -> relation (operation right fixed) (operation left fixed)
+Logical form (Lean): {Carrier : Type u} {relation : Carrier -> Carrier -> Prop} {negative : Carrier -> Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier} (law : NegativeRightTranslationReversesRelation relation negative operation) : forall fixed, negative fixed -> forall left right, relation left right -> relation (operation right fixed) (operation left fixed)
+Source: ./Laws/OperationCompatibility/Relationships.lean#L206
+
+
+
+Name: CoordinatewisePreservesRelation.of_left_and_right_translation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {relation : Carrier → Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier}   [Trans relation relation relation],   LRA.Order.LeftTranslationPreservesRelation relation operation →     LRA.Order.RightTranslationPreservesRelation relation operation →       LRA.Order.CoordinatewisePreservesRelation relation operation
+Predicate logic (unfolded): ∀ {Carrier : Type u} {relation : Carrier → Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier}   [Trans relation relation relation],   LRA.Order.LeftTranslationPreservesRelation relation operation →     LRA.Order.RightTranslationPreservesRelation relation operation →       LRA.Order.CoordinatewisePreservesRelation relation operation [unfold error: unavailable]
+Transliterated theorem: CoordinatewisePreservesRelation relation operation
+Logical form (Lean): {Carrier : Type u} {relation : Carrier -> Carrier -> Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier} [Trans relation relation relation] (leftLaw : LeftTranslationPreservesRelation relation operation) (rightLaw : RightTranslationPreservesRelation relation operation) : CoordinatewisePreservesRelation relation operation
+Source: ./Laws/OperationCompatibility/Relationships.lean#L259
+
+
+
+Name: AdditionRespectsOrderLaws.to_left_translation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {R : Type u} [inst : Add R] [inst_1 : LE R],   LRA.Order.AdditionRespectsOrderLaws R →     LRA.Order.LeftTranslationPreservesRelation (fun x1 x2 => inst_1.le x1 x2) fun a b => instHAdd.hAdd a b
+Predicate logic (unfolded):
+  Ambient
+    (R, ≤)
+  Objects
+    (none)
+  Prove
+    LRA.Order.AdditionRespectsOrderLaws R → ∀ (fixed left right : R), inst_1.le left right → (fun x1 x2 => inst_1.le x1 x2) ((fun a b => { hAdd := fun a b => inst.add a b }.hAdd a b) fixed left) ((fun a b => { hAdd := fun a b => inst.add a b }.hAdd a b) fixed right)
+Transliterated theorem: LeftTranslationPreservesRelation · <= · ∈ R -> R -> Prop (fun a b => a + b)
+Logical form (Lean): {R : Type u} [Add R] [LE R] [AdditionRespectsOrderLaws R] : LeftTranslationPreservesRelation (· <= · : R -> R -> Prop) (fun a b => a + b)
+Source: ./Laws/OperationCompatibility/Relationships.lean#L307
+
+
+
+Name: AdditionRespectsOrderLaws.to_right_translation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {R : Type u} [inst : Add R] [inst_1 : LE R],   LRA.Order.AdditionRespectsOrderLaws R →     LRA.Order.RightTranslationPreservesRelation (fun x1 x2 => inst_1.le x1 x2) fun a b => instHAdd.hAdd a b
+Predicate logic (unfolded):
+  Ambient
+    (R, ≤)
+  Objects
+    (none)
+  Prove
+    LRA.Order.AdditionRespectsOrderLaws R → ∀ (left right fixed : R), inst_1.le left right → (fun x1 x2 => inst_1.le x1 x2) ((fun a b => { hAdd := fun a b => inst.add a b }.hAdd a b) left fixed) ((fun a b => { hAdd := fun a b => inst.add a b }.hAdd a b) right fixed)
+Transliterated theorem: RightTranslationPreservesRelation · <= · ∈ R -> R -> Prop (fun a b => a + b)
+Logical form (Lean): {R : Type u} [Add R] [LE R] [AdditionRespectsOrderLaws R] : RightTranslationPreservesRelation (· <= · : R -> R -> Prop) (fun a b => a + b)
+Source: ./Laws/OperationCompatibility/Relationships.lean#L351
+
+
+
+Name: LeftTranslationPreservesRelationIffMonotoneTranslations
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (relation : Carrier -> Carrier -> Prop) (operation : LRA.Operation.BinaryEndoOperation Carrier), LeftTranslationPreservesRelation relation operation <-> forall fixed, LRA.Order.Monotone relation relation (fun value => operation fixed value)
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : Carrier -> Carrier -> Prop
+    operation : LRA.Operation.BinaryEndoOperation Carrier
+  Prove
+    ∀ (fixed left right : Carrier), relation left right → relation (operation fixed left) (operation fixed right) ↔ ∀ (fixed left right : Carrier), relation left right → relation ((fun value => operation fixed value) left) ((fun value => operation fixed value) right)
+Transliterated theorem: LeftTranslationPreservesRelation relation operation <-> forall fixed, LRA.Order.Monotone relation relation (fun value => operation fixed value)
+Logical form (Lean): {Carrier : Type u} (relation : Carrier -> Carrier -> Prop) (operation : LRA.Operation.BinaryEndoOperation Carrier) : LeftTranslationPreservesRelation relation operation <-> forall fixed, LRA.Order.Monotone relation relation (fun value => operation fixed value)
+Source: ./Laws/OperationCompatibility/Consequences.lean#L52
+
+
+
+Name: RightTranslationPreservesRelationIffMonotoneTranslations
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (relation : Carrier -> Carrier -> Prop) (operation : LRA.Operation.BinaryEndoOperation Carrier), RightTranslationPreservesRelation relation operation <-> forall fixed, LRA.Order.Monotone relation relation (fun value => operation value fixed)
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : Carrier -> Carrier -> Prop
+    operation : LRA.Operation.BinaryEndoOperation Carrier
+  Prove
+    ∀ (left right fixed : Carrier), relation left right → relation (operation left fixed) (operation right fixed) ↔ ∀ (fixed left right : Carrier), relation left right → relation ((fun value => operation value fixed) left) ((fun value => operation value fixed) right)
+Transliterated theorem: RightTranslationPreservesRelation relation operation <-> forall fixed, LRA.Order.Monotone relation relation (fun value => operation value fixed)
+Logical form (Lean): {Carrier : Type u} (relation : Carrier -> Carrier -> Prop) (operation : LRA.Operation.BinaryEndoOperation Carrier) : RightTranslationPreservesRelation relation operation <-> forall fixed, LRA.Order.Monotone relation relation (fun value => operation value fixed)
+Source: ./Laws/OperationCompatibility/Consequences.lean#L104
+
+
+
+Name: CoordinatewisePreservesRelation.left_translation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {relation : Carrier -> Carrier -> Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier} (relationIsReflexive : LRA.Relation.Reflexive relation) (coordinatewise : CoordinatewisePreservesRelation relation operation), LeftTranslationPreservesRelation relation operation
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : Carrier -> Carrier -> Prop
+    operation : LRA.Operation.BinaryEndoOperation Carrier
+    relationIsReflexive : LRA.Relation.Reflexive relation
+    coordinatewise : CoordinatewisePreservesRelation relation operation
+  Prove
+    ((∀ (x : Carrier), relation x x) ∧ (∀ (left₁ left₂ right₁ right₂ : Carrier), relation left₁ left₂ → relation right₁ right₂ → relation (operation left₁ right₁) (operation left₂ right₂))) → ∀ (fixed left right : Carrier), relation left right → relation (operation fixed left) (operation fixed right)
+Transliterated theorem: LeftTranslationPreservesRelation relation operation
+Logical form (Lean): {Carrier : Type u} {relation : Carrier -> Carrier -> Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier} (relationIsReflexive : LRA.Relation.Reflexive relation) (coordinatewise : CoordinatewisePreservesRelation relation operation) : LeftTranslationPreservesRelation relation operation
+Source: ./Laws/OperationCompatibility/Consequences.lean#L156
+
+
+
+Name: CoordinatewisePreservesRelation.right_translation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {relation : Carrier -> Carrier -> Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier} (relationIsReflexive : LRA.Relation.Reflexive relation) (coordinatewise : CoordinatewisePreservesRelation relation operation), RightTranslationPreservesRelation relation operation
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : Carrier -> Carrier -> Prop
+    operation : LRA.Operation.BinaryEndoOperation Carrier
+    relationIsReflexive : LRA.Relation.Reflexive relation
+    coordinatewise : CoordinatewisePreservesRelation relation operation
+  Prove
+    ((∀ (x : Carrier), relation x x) ∧ (∀ (left₁ left₂ right₁ right₂ : Carrier), relation left₁ left₂ → relation right₁ right₂ → relation (operation left₁ right₁) (operation left₂ right₂))) → ∀ (left right fixed : Carrier), relation left right → relation (operation left fixed) (operation right fixed)
+Transliterated theorem: RightTranslationPreservesRelation relation operation
+Logical form (Lean): {Carrier : Type u} {relation : Carrier -> Carrier -> Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier} (relationIsReflexive : LRA.Relation.Reflexive relation) (coordinatewise : CoordinatewisePreservesRelation relation operation) : RightTranslationPreservesRelation relation operation
+Source: ./Laws/OperationCompatibility/Consequences.lean#L208
+
+
+
+Name: GreaterThanOrEqualIsConverseOfLessThanOrEqual
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} (strictRelation : LRA.Relation.Endorelation Alpha), GreaterThanOrEqual strictRelation = LRA.Relation.Converse (LessThanOrEqual strictRelation)
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    strictRelation : LRA.Relation.Endorelation Alpha
+  Prove
+    fun left right => Or (strictRelation right left) (left = right) = funy x => Or (strictRelation x y) (x = y)
+Transliterated theorem: GreaterThanOrEqual strictRelation = LRA.Relation.Converse (LessThanOrEqual strictRelation)
+Logical form (Lean): {Alpha : Type u} (strictRelation : LRA.Relation.Endorelation Alpha) : GreaterThanOrEqual strictRelation = LRA.Relation.Converse (LessThanOrEqual strictRelation)
+Source: ./Relation/GreaterThanOrEqual/Relationships.lean#L49
+
+
+
+Name: CoverRelationImpliesStrictRelation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {strictRelation : LRA.Relation.Endorelation Alpha} {lower upper : Alpha},   LRA.Order.CoverRelation strictRelation lower upper → strictRelation lower upper
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    strictRelation : LRA.Relation.Endorelation Alpha
+    lower upper : Alpha
+    lowerIsCoveredByUpper : CoverRelation strictRelation lower upper
+  Prove
+    (strictRelation lower upper ∧ (∀ (middle : Alpha), (strictRelation lower middle ∧ strictRelation middle upper) → False)) → strictRelation lower upper
+Transliterated theorem: strictRelation lower upper
+Logical form (Lean): {Alpha : Type u} {strictRelation : LRA.Relation.Endorelation Alpha} {lower upper : Alpha} (lowerIsCoveredByUpper : CoverRelation strictRelation lower upper) : strictRelation lower upper
+Source: ./Relation/CoverRelation/Theorems.lean#L48
+
+
+
+Name: NaturalAdditionRightTranslationPreservesLessEqual
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Order.RightTranslationPreservesRelation (fun left right => instLENat.le left right)   LRA.Order.NaturalAdditionForOrderCompatibility
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    instLENat.le left right → (fun left right => instLENat.le left right) ({ hAdd := fun a b => instAddNat.add a b }.hAdd left fixed) ({ hAdd := fun a b => instAddNat.add a b }.hAdd right fixed)
+Transliterated theorem: RightTranslationPreservesRelation fun left right ∈ Nat => left <= right NaturalAdditionForOrderCompatibility
+Logical form (Lean): : RightTranslationPreservesRelation (fun left right : Nat => left <= right) NaturalAdditionForOrderCompatibility
+Source: ./Examples.lean#L93
+
+
+
+Name: NaturalSubtractionRightTranslationPreservesLessEqual
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Order.RightTranslationPreservesRelation (fun left right => instLENat.le left right)   LRA.Order.NaturalSubtractionForOrderCompatibilityExample
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    instLENat.le left right → (fun left right => instLENat.le left right) ({ hSub := fun a b => instSubNat.sub a b }.hSub left fixed) ({ hSub := fun a b => instSubNat.sub a b }.hSub right fixed)
+Transliterated theorem: RightTranslationPreservesRelation fun left right ∈ Nat => left <= right NaturalSubtractionForOrderCompatibilityExample
+Logical form (Lean): : RightTranslationPreservesRelation (fun left right : Nat => left <= right) NaturalSubtractionForOrderCompatibilityExample
+Source: ./Examples.lean#L183
+
+
+
+Name: NaturalNumberLessEqualIsPartialOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Order.PartialOrder fun left right => instLENat.le left right
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Nat), (fun left right => instLENat.le left right) x x) ∧ ((∀ (x y : Nat), instLENat.le x y → instLENat.le y x → x = y) ∧ (∀ (x y z : Nat), instLENat.le x y → instLENat.le y z → (fun left right => instLENat.le left right) x z)))
+Transliterated theorem: LRA.Order.PartialOrder fun left right ∈ Nat => left <= right
+Logical form (Lean): : LRA.Order.PartialOrder (fun left right : Nat => left <= right)
+Source: ./Examples.lean#L229
+
+
+
+Name: BooleanEqualityIsPartialOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Order.PartialOrder (fun left right : Bool => left = right)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Bool), (fun left right => left = right)x x) ∧ ((∀ (x y : Bool), x = y → y = x → x = y) ∧ (∀ (x y z : Bool), x = y → y = z → (fun left right => left = right)x z)))
+Transliterated theorem: LRA.Order.PartialOrder fun left right ∈ Bool => left = right
+Logical form (Lean): : LRA.Order.PartialOrder (fun left right : Bool => left = right)
+Source: ./Examples.lean#L324
+
+
+
+Name: DivisibilityIsPartialOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Order.PartialOrder fun left right => Nat.instDvd.dvd left right
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Nat), (fun left right => Nat.instDvd.1 left right) x x) ∧ ((∀ (x y : Nat), Nat.instDvd.1 x y → Nat.instDvd.1 y x → x = y) ∧ (∀ (x y z : Nat), Nat.instDvd.1 x y → Nat.instDvd.1 y z → (fun left right => Nat.instDvd.1 left right) x z)))
+Transliterated theorem: LRA.Order.PartialOrder fun left right ∈ Nat => left ∣ right
+Logical form (Lean): : LRA.Order.PartialOrder (fun left right : Nat => left ∣ right)
+Source: ./Examples.lean#L420
+
+
+
+Name: PredicateSetInclusionIsPartialOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (Alpha : Type u), LRA.Order.PartialOrder fun left right => Set.instLE.le left right
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Alpha → Prop), (fun left right => { le := fun s₁ s₂ => ∀ ⦃a : Alpha⦄, a ∈ s₁ → a ∈ s₂}.le left right) x x) ∧ ((∀ (x y : Alpha → Prop), { le := fun s₁ s₂ => ∀ ⦃a : Alpha⦄, a ∈ s₁ → a ∈ s₂}.le x y → { le := fun s₁ s₂ => ∀ ⦃a : Alpha⦄, a ∈ s₁ → a ∈ s₂}.le y x → x = y) ∧ (∀ (x y z : Alpha → Prop), { le := fun s₁ s₂ => ∀ ⦃a : Alpha⦄, a ∈ s₁ → a ∈ s₂}.le x y → { le := fun s₁ s₂ => ∀ ⦃a : Alpha⦄, a ∈ s₁ → a ∈ s₂}.le y z → (fun left right => { le := fun s₁ s₂ => ∀ ⦃a : Alpha⦄, a ∈ s₁ → a ∈ s₂}.le left right) x z)))
+Transliterated theorem: LRA.Order.PartialOrder fun left right ∈ Set Alpha => left ⊆ right
+Logical form (Lean): (Alpha : Type u) : LRA.Order.PartialOrder (fun left right : Set Alpha => left ⊆ right)
+Source: ./Examples.lean#L462
+
+
+
+Name: NaturalNumberOrderIsPartialOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Order.PartialOrder fun left right => instLENat.le left right
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Nat), (fun left right => instLENat.le left right) x x) ∧ ((∀ (x y : Nat), instLENat.le x y → instLENat.le y x → x = y) ∧ (∀ (x y z : Nat), instLENat.le x y → instLENat.le y z → (fun left right => instLENat.le left right) x z)))
+Transliterated theorem: LRA.Order.PartialOrder fun left right ∈ Nat => left <= right
+Logical form (Lean): : LRA.Order.PartialOrder (fun left right : Nat => left <= right)
+Source: ./Examples.lean#L507
+
+
+
+Name: BooleanUniversalRelationIsPreorder
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Order.Preorder fun x x_1 => True
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Bool), (fun x x_1 => True) x x) ∧ (∀ (x y z : Bool), True → True → (fun x x_1 => True) x z))
+Transliterated theorem: LRA.Order.Preorder fun _ _ ∈ Bool => True
+Logical form (Lean): : LRA.Order.Preorder (fun _ _ : Bool => True)
+Source: ./Examples.lean#L605
+
+
+
+Name: NaturalNumberLessThanIsStrictOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Order.StrictOrder fun left right => instLTNat.lt left right
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Nat), instLTNat.lt x x → False) ∧ (∀ (x y z : Nat), instLTNat.lt x y → instLTNat.lt y z → (fun left right => instLTNat.lt left right) x z))
+Transliterated theorem: LRA.Order.StrictOrder fun left right ∈ Nat => left < right
+Logical form (Lean): : LRA.Order.StrictOrder (fun left right : Nat => left < right)
+Source: ./Examples.lean#L698
+
+
+
+Name: IntegerSingletonsWitnessUpperBoundsIntersectionFailure
+Kind: Theorem
+State: Sorry
+Predicate logic: UpperBoundsFailToPreserveIndexedIntersectionsAsUnions (fun left right : Int => left ≤ right) (fun index : Bool => if index then ({1} : Set Int) else {0})
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.MathlibPredicateSet.instHasSeparationSet.1 LRA.Set.MathlibPredicateSet.instHasUniversalSet.1 fun bound => ∀ (element : Int), element ∈ LRA.Set.MathlibPredicateSet.instHasIndexedIntersectionSet.indexedIntersection fun index => ite (index = Bool.true)(Set.instSingletonSet.singleton 1) (Set.instSingletonSet.singleton 0) → (fun left right => Int.instLEInt.le left right) element bound = LRA.Set.MathlibPredicateSet.instHasIndexedUnionSet.1 fun index => LRA.Set.MathlibPredicateSet.instHasSeparationSet.1 LRA.Set.MathlibPredicateSet.instHasUniversalSet.universal (LRA.Order.UpperBound (fun left right => Int.instLEInt.le left right) ((fun index => ite (index = Bool.true)(Set.instSingletonSet.singleton 1) (Set.instSingletonSet.singleton 0)) index)) → False
+Transliterated theorem: UpperBoundsFailToPreserveIndexedIntersectionsAsUnions fun left right ∈ Int => left ≤ right fun index ∈ Bool => if index then {1} ∈ Set Int else {0}
+Logical form (Lean): : UpperBoundsFailToPreserveIndexedIntersectionsAsUnions (fun left right : Int => left ≤ right) (fun index : Bool => if index then ({1} : Set Int) else {0})
+Source: ./FailureModes.lean#L113
+
+
+
+Name: IntegerSingletonsWitnessLowerBoundsIntersectionFailure
+Kind: Theorem
+State: Sorry
+Predicate logic: LowerBoundsFailToPreserveIndexedIntersectionsAsUnions (fun left right : Int => left ≤ right) (fun index : Bool => if index then ({1} : Set Int) else {0})
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.MathlibPredicateSet.instHasSeparationSet.1 LRA.Set.MathlibPredicateSet.instHasUniversalSet.1 fun bound => ∀ (element : Int), element ∈ LRA.Set.MathlibPredicateSet.instHasIndexedIntersectionSet.indexedIntersection fun index => ite (index = Bool.true)(Set.instSingletonSet.singleton 1) (Set.instSingletonSet.singleton 0) → (fun left right => Int.instLEInt.le left right) bound element = LRA.Set.MathlibPredicateSet.instHasIndexedUnionSet.1 fun index => LRA.Set.MathlibPredicateSet.instHasSeparationSet.1 LRA.Set.MathlibPredicateSet.instHasUniversalSet.universal (LRA.Order.LowerBound (fun left right => Int.instLEInt.le left right) ((fun index => ite (index = Bool.true)(Set.instSingletonSet.singleton 1) (Set.instSingletonSet.singleton 0)) index)) → False
+Transliterated theorem: LowerBoundsFailToPreserveIndexedIntersectionsAsUnions fun left right ∈ Int => left ≤ right fun index ∈ Bool => if index then {1} ∈ Set Int else {0}
+Logical form (Lean): : LowerBoundsFailToPreserveIndexedIntersectionsAsUnions (fun left right : Int => left ≤ right) (fun index : Bool => if index then ({1} : Set Int) else {0})
+Source: ./FailureModes.lean#L213
+
+
+
+Name: DisjointIntegerSingletonsCreateVacuousBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: EmptyIndexedIntersectionCreatesVacuousBounds (fun left right : Int => left ≤ right) (fun index : Bool => if index then ({1} : Set Int) else {0})
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (element : Int), element ∈ LRA.Set.MathlibPredicateSet.instHasIndexedIntersectionSet.1 fun index => Decidable.rec (fun h => (fun x => Set.instSingletonSet.singleton 0) h) (fun h => (fun x => Set.instSingletonSet.singleton 1) h) (instDecidableEqBool index Bool.true) → False) ∧ (∀ (bound : Int), ((∀ (element : Int), element ∈ LRA.Set.MathlibPredicateSet.instHasIndexedIntersectionSet.1 fun index => Decidable.rec (fun h => (fun x => Set.instSingletonSet.singleton 0) h) (fun h => (fun x => Set.instSingletonSet.singleton 1) h) (instDecidableEqBool index Bool.true) → (fun left right => Int.instLEInt.le left right) element bound) ∧ (∀ (element : Int), element ∈ LRA.Set.MathlibPredicateSet.instHasIndexedIntersectionSet.1 fun index => Decidable.rec (fun h => (fun x => Set.instSingletonSet.singleton 0) h) (fun h => (fun x => Set.instSingletonSet.singleton 1) h) (instDecidableEqBool index Bool.true) → (fun left right => Int.instLEInt.le left right) bound element))))
+Transliterated theorem: EmptyIndexedIntersectionCreatesVacuousBounds fun left right ∈ Int => left ≤ right fun index ∈ Bool => if index then {1} ∈ Set Int else {0}
+Logical form (Lean): : EmptyIndexedIntersectionCreatesVacuousBounds (fun left right : Int => left ≤ right) (fun index : Bool => if index then ({1} : Set Int) else {0})
+Source: ./FailureModes.lean#L319
+
+
+
+Name: IntegerUniverseFailsBounded
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Order.FailsBounded (fun left right => Int.instLEInt.le left right) Set.univ
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((Exists fun bound => ∀ (element : Int), element ∈ Set.univ → (fun left right => Int.instLEInt.le left right) element bound) ∧ (Exists fun bound => ∀ (element : Int), element ∈ Set.univ → (fun left right => Int.instLEInt.le left right) bound element)) → False
+Transliterated theorem: FailsBounded fun left right ∈ Int => left ≤ right Set.univ ∈ Set Int
+Logical form (Lean): : FailsBounded (fun left right : Int => left ≤ right) (Set.univ : Set Int)
+Source: ./FailureModes.lean#L417
+
+
+
+Name: EveryBoundedRealSetHasUnboundedComplement
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (subset : Set Real),   LRA.Order.Bounded (fun left right => Real.instLE.le left right) subset →     LRA.Order.ComplementDestroysTwoSidedBoundedness (fun left right => Real.instLE.le left right) subset
+Predicate logic (unfolded):
+  Ambient
+    (Real)
+  Objects
+    subset : Set Real
+  Prove
+    ((Exists fun bound => ∀ (element : Real), element ∈ subset → (fun left right => Real.instLE.le left right) element bound) ∧ (Exists fun bound => ∀ (element : Real), element ∈ subset → (fun left right => Real.instLE.le left right) bound element)) → (((Exists fun bound => ∀ (element : Real), element ∈ subset → (fun left right => Real.instLE.le left right) element bound) ∧ (Exists fun bound => ∀ (element : Real), element ∈ subset → (fun left right => Real.instLE.le left right) bound element)) ∧ (((Exists fun bound => ∀ (element : Real), element ∈ LRA.Set.MathlibPredicateSet.instHasComplementSet.1 subset → (fun left right => Real.instLE.le left right) element bound) → False) ∧ ((Exists fun bound => ∀ (element : Real), element ∈ LRA.Set.MathlibPredicateSet.instHasComplementSet.1 subset → (fun left right => Real.instLE.le left right) bound element) → False)))
+Transliterated theorem: (Bounded fun left right ∈ Real => left ≤ right subset) → ComplementDestroysTwoSidedBoundedness fun left right ∈ Real => left ≤ right subset
+Logical form (Lean): (subset : Set Real) (subsetIsBounded : Bounded (fun left right : Real => left ≤ right) subset) : ComplementDestroysTwoSidedBoundedness (fun left right : Real => left ≤ right) subset
+Source: ./FailureModes.lean#L515
+
+
+
+Name: IntegerUniverseFailsBoundedAbove
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Order.FailsBoundedAbove (fun left right => Int.instLEInt.le left right) Set.univ
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun bound => ∀ (element : Int), element ∈ setOf fun _a => True → (fun left right => Int.instLEInt.le left right) element bound) → False
+Transliterated theorem: FailsBoundedAbove fun left right ∈ Int => left ≤ right Set.univ ∈ Set Int
+Logical form (Lean): : FailsBoundedAbove (fun left right : Int => left ≤ right) (Set.univ : Set Int)
+Source: ./FailureModes.lean#L613
+
+
+
+Name: IntegerUniverseFailsBoundedBelow
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Order.FailsBoundedBelow (fun left right => Int.instLEInt.le left right) Set.univ
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun bound => ∀ (element : Int), element ∈ setOf fun _a => True → (fun left right => Int.instLEInt.le left right) bound element) → False
+Transliterated theorem: FailsBoundedBelow fun left right ∈ Int => left ≤ right Set.univ ∈ Set Int
+Logical form (Lean): : FailsBoundedBelow (fun left right : Int => left ≤ right) (Set.univ : Set Int)
+Source: ./FailureModes.lean#L709
+
+
+
+Name: OneFailsGreatestElementOfOpenUnitInterval
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Order.FailsGreatestElement (fun left right => Real.instLE.le left right) (Set.Ioo 0 1) 1
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((1 ∈ fun x => (Real.instPreorder.lt 0 x ∧ Real.instPreorder.lt x 1)) ∧ (∀ (element : Real), element ∈ setOf fun x => (Real.instPreorder.lt 0 x ∧ Real.instPreorder.lt x 1) → (fun left right => Real.instLE.le left right) element 1)) → False
+Transliterated theorem: FailsGreatestElement fun left right ∈ Real => left ≤ right (Set.Ioo 0 1) 1
+Logical form (Lean): : FailsGreatestElement (fun left right : Real => left ≤ right) (Set.Ioo 0 1) 1
+Source: ./FailureModes.lean#L806
+
+
+
+Name: RationalOrderFailsGreatestLowerBoundProperty
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Order.FailsGreatestLowerBoundProperty (Set Rat) fun left right => Rat.instLE.le left right
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (subset : Rat → Prop), (Exists fun element => element) ∈ subset → (Exists fun bound => ∀ (element : Rat), element ∈ subset → (fun left right => Rat.instLE.le left right) bound element) → Exists fun infimum => ((∀ (element : Rat), element ∈ subset → (fun left right => Rat.instLE.le left right) infimum element) ∧ (∀ (bound : Rat), (∀ (element : Rat), element ∈ subset → (fun left right => Rat.instLE.le left right) bound element) → (fun left right => Rat.instLE.le left right) bound infimum))) → False
+Transliterated theorem: FailsGreatestLowerBoundProperty (Set Rat) fun left right ∈ Rat => left ≤ right
+Logical form (Lean): : FailsGreatestLowerBoundProperty (Set Rat) (fun left right : Rat => left ≤ right)
+Source: ./FailureModes.lean#L902
+
+
+
+Name: EmptyIntegerSetFailsInfimum
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Order.FailsInfimum (fun left right => Int.instLEInt.le left right) Set.instEmptyCollection.emptyCollection
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun candidate => ((∀ (element : Int), element ∈ Set.instEmptyCollection.1 → (fun left right => Int.instLEInt.le left right) candidate element) ∧ (∀ (bound : Int), (∀ (element : Int), element ∈ Set.instEmptyCollection.1 → (fun left right => Int.instLEInt.le left right) bound element) → (fun left right => Int.instLEInt.le left right) bound candidate))) → False
+Transliterated theorem: FailsInfimum fun left right ∈ Int => left ≤ right ∅ ∈ Set Int
+Logical form (Lean): : FailsInfimum (fun left right : Int => left ≤ right) (∅ : Set Int)
+Source: ./FailureModes.lean#L999
+
+
+
+Name: IntegerSingletonComplementHasNoInfimum
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Order.ComplementInfimumFormulaFails (fun left right => Int.instLEInt.le left right) Set.compl   (Set.instSingletonSet.singleton 0)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((Exists fun infimum => ((∀ (element : Int), element ∈ Set.instSingletonSet.1 0 → (fun left right => Int.instLEInt.le left right) infimum element) ∧ (∀ (bound : Int), (∀ (element : Int), element ∈ Set.instSingletonSet.1 0 → (fun left right => Int.instLEInt.le left right) bound element) → (fun left right => Int.instLEInt.le left right) bound infimum))) ∧ ((Exists fun infimum => ((∀ (element : Int), element ∈ setOf fun a => ¬ a ∈ Set.instSingletonSet.singleton 0 → (fun left right => Int.instLEInt.le left right) infimum element) ∧ (∀ (bound : Int), (∀ (element : Int), element ∈ setOf fun a => ¬ a ∈ Set.instSingletonSet.singleton 0 → (fun left right => Int.instLEInt.le left right) bound element) → (fun left right => Int.instLEInt.le left right) bound infimum))) → False))
+Transliterated theorem: ComplementInfimumFormulaFails fun left right ∈ Int => left ≤ right Set.compl {0} ∈ Set Int
+Logical form (Lean): : ComplementInfimumFormulaFails (fun left right : Int => left ≤ right) Set.compl ({0} : Set Int)
+Source: ./FailureModes.lean#L1092
+
+
+
+Name: IntegerSingletonDifferenceHasNoInfimum
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Order.DifferenceInfimumFormulaFails (fun left right => Int.instLEInt.le left right)   (Set.instSingletonSet.singleton 0) (Set.instSingletonSet.singleton 0)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((Exists fun infimum => ((∀ (element : Int), element ∈ Set.instSingletonSet.1 0 → (fun left right => Int.instLEInt.le left right) infimum element) ∧ (∀ (bound : Int), (∀ (element : Int), element ∈ Set.instSingletonSet.1 0 → (fun left right => Int.instLEInt.le left right) bound element) → (fun left right => Int.instLEInt.le left right) bound infimum))) ∧ ((Exists fun infimum => ((∀ (element : Int), element ∈ Set.instSingletonSet.1 0 → (fun left right => Int.instLEInt.le left right) infimum element) ∧ (∀ (bound : Int), (∀ (element : Int), element ∈ Set.instSingletonSet.1 0 → (fun left right => Int.instLEInt.le left right) bound element) → (fun left right => Int.instLEInt.le left right) bound infimum))) ∧ ((Exists fun infimum => ((∀ (element : Int), element ∈ Set.instSingletonSet.singleton 0 \ Set.instSingletonSet.singleton 0 → (fun left right => Int.instLEInt.le left right) infimum element) ∧ (∀ (bound : Int), (∀ (element : Int), element ∈ Set.instSingletonSet.singleton 0 \ Set.instSingletonSet.singleton 0 → (fun left right => Int.instLEInt.le left right) bound element) → (fun left right => Int.instLEInt.le left right) bound infimum))) → False)))
+Transliterated theorem: DifferenceInfimumFormulaFails fun left right ∈ Int => left ≤ right {0} ∈ Set Int {0} ∈ Set Int
+Logical form (Lean): : DifferenceInfimumFormulaFails (fun left right : Int => left ≤ right) ({0} : Set Int) ({0} : Set Int)
+Source: ./FailureModes.lean#L1187
+
+
+
+Name: ZeroFailsLeastElementOfOpenUnitInterval
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Order.FailsLeastElement (fun left right => Real.instLE.le left right) (Set.Ioo 0 1) 0
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((0 ∈ fun x => (Real.instPreorder.lt 0 x ∧ Real.instPreorder.lt x 1)) ∧ (∀ (element : Real), element ∈ setOf fun x => (Real.instPreorder.lt 0 x ∧ Real.instPreorder.lt x 1) → (fun left right => Real.instLE.le left right) 0 element)) → False
+Transliterated theorem: FailsLeastElement fun left right ∈ Real => left ≤ right (Set.Ioo 0 1) 0
+Logical form (Lean): : FailsLeastElement (fun left right : Real => left ≤ right) (Set.Ioo 0 1) 0
+Source: ./FailureModes.lean#L1284
+
+
+
+Name: RationalOrderFailsLeastUpperBoundProperty
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Order.FailsLeastUpperBoundProperty (Set Rat) fun left right => Rat.instLE.le left right
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (subset : Rat → Prop), (Exists fun element => element) ∈ subset → (Exists fun bound => ∀ (element : Rat), element ∈ subset → (fun left right => Rat.instLE.le left right) element bound) → Exists fun supremum => ((∀ (element : Rat), element ∈ subset → (fun left right => Rat.instLE.le left right) element supremum) ∧ (∀ (bound : Rat), (∀ (element : Rat), element ∈ subset → (fun left right => Rat.instLE.le left right) element bound) → (fun left right => Rat.instLE.le left right) supremum bound))) → False
+Transliterated theorem: FailsLeastUpperBoundProperty (Set Rat) fun left right ∈ Rat => left ≤ right
+Logical form (Lean): : FailsLeastUpperBoundProperty (Set Rat) (fun left right : Rat => left ≤ right)
+Source: ./FailureModes.lean#L1380
+
+
+
+Name: OneFailsLowerBoundOfOpenUnitInterval
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Order.FailsLowerBound (fun left right => Real.instLE.le left right) (Set.Ioo 0 1) 1
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (element : Real), element ∈ fun x => (Real.instPreorder.lt 0 x ∧ Real.instPreorder.lt x 1) → (fun left right => Real.instLE.le left right) 1 element) → False
+Transliterated theorem: FailsLowerBound fun left right ∈ Real => left ≤ right (Set.Ioo 0 1) 1
+Logical form (Lean): : FailsLowerBound (fun left right : Real => left ≤ right) (Set.Ioo 0 1) 1
+Source: ./FailureModes.lean#L1477
+
+
+
+Name: BooleanAntichainHasDistinctMaximalElementsButNoGreatest
+Kind: Theorem
+State: Sorry
+Predicate logic: MaximalityFailsToImplyGreatest (StrictPart (fun left right : Bool => left = right)) (fun left right : Bool => left = right) (Set.univ : Set Bool) false /\ MaximalityFailsToImplyGreatest (StrictPart (fun left right : Bool => left = right)) (fun left right : Bool => left = right) (Set.univ : Set Bool) true /\ false ≠ true
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((Bool.false ∈ fun _a => True ∧ (∀ (element : Bool), element ∈ fun _a => True → ((fun left right => left = right)Bool.false element ∧ ¬ Bool.false = element) → False)) ∧ ((Bool.false ∈ fun _a => True ∧ (∀ (element : Bool), element ∈ setOf fun _a => True → (fun left right => left = right)element Bool.false)) → False)) ∧ (((Bool.true ∈ fun _a => True ∧ (∀ (element : Bool), element ∈ fun _a => True → ((fun left right => left = right)Bool.true element ∧ ¬ Bool.true = element) → False)) ∧ ((Bool.true ∈ fun _a => True ∧ (∀ (element : Bool), element ∈ setOf fun _a => True → (fun left right => left = right)element Bool.true)) → False)) ∧ (Bool.false = Bool.true → False)))
+Transliterated theorem: MaximalityFailsToImplyGreatest (StrictPart fun left right ∈ Bool => left = right) fun left right ∈ Bool => left = right Set.univ ∈ Set Bool false ∧ MaximalityFailsToImplyGreatest (StrictPart fun left right ∈ Bool => left = right) fun left right ∈ Bool => left = right Set.univ ∈ Set Bool true ∧ false ≠ true
+Logical form (Lean): : MaximalityFailsToImplyGreatest (StrictPart (fun left right : Bool => left = right)) (fun left right : Bool => left = right) (Set.univ : Set Bool) false /\ MaximalityFailsToImplyGreatest (StrictPart (fun left right : Bool => left = right)) (fun left right : Bool => left = right) (Set.univ : Set Bool) true /\ false ≠ true
+Source: ./FailureModes.lean#L1581
+
+
+
+Name: BooleanAntichainHasDistinctMinimalElementsButNoLeast
+Kind: Theorem
+State: Sorry
+Predicate logic: MinimalityFailsToImplyLeast (StrictPart (fun left right : Bool => left = right)) (fun left right : Bool => left = right) (Set.univ : Set Bool) false /\ MinimalityFailsToImplyLeast (StrictPart (fun left right : Bool => left = right)) (fun left right : Bool => left = right) (Set.univ : Set Bool) true /\ false ≠ true
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((Bool.false ∈ fun _a => True ∧ (∀ (element : Bool), element ∈ fun _a => True → ((fun left right => left = right)element Bool.false ∧ ¬ element = Bool.false) → False)) ∧ ((Bool.false ∈ fun _a => True ∧ (∀ (element : Bool), element ∈ setOf fun _a => True → (fun left right => left = right)Bool.false element)) → False)) ∧ (((Bool.true ∈ fun _a => True ∧ (∀ (element : Bool), element ∈ fun _a => True → ((fun left right => left = right)element Bool.true ∧ ¬ element = Bool.true) → False)) ∧ ((Bool.true ∈ fun _a => True ∧ (∀ (element : Bool), element ∈ setOf fun _a => True → (fun left right => left = right)Bool.true element)) → False)) ∧ (Bool.false = Bool.true → False)))
+Transliterated theorem: MinimalityFailsToImplyLeast (StrictPart fun left right ∈ Bool => left = right) fun left right ∈ Bool => left = right Set.univ ∈ Set Bool false ∧ MinimalityFailsToImplyLeast (StrictPart fun left right ∈ Bool => left = right) fun left right ∈ Bool => left = right Set.univ ∈ Set Bool true ∧ false ≠ true
+Logical form (Lean): : MinimalityFailsToImplyLeast (StrictPart (fun left right : Bool => left = right)) (fun left right : Bool => left = right) (Set.univ : Set Bool) false /\ MinimalityFailsToImplyLeast (StrictPart (fun left right : Bool => left = right)) (fun left right : Bool => left = right) (Set.univ : Set Bool) true /\ false ≠ true
+Source: ./FailureModes.lean#L1691
+
+
+
+Name: SupremaNeedNotBeUniqueInPreorder
+Kind: Theorem
+State: Sorry
+Predicate logic: Preorder (fun _ _ : Bool => True) /\ FailsSupremumUniqueness (fun _ _ : Bool => True) (Set.univ : Set Bool)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : Bool), (fun x x_1 => True) x x) ∧ (∀ (x y z : Bool), True → True → (fun x x_1 => True) x z)) ∧ (Exists fun first => Exists fun second => ((first = second → False) ∧ (((∀ (element : Bool), element ∈ fun _a => True → (fun x x_1 => True) element first) ∧ (∀ (bound : Bool), (∀ (element : Bool), element ∈ fun _a => True → (fun x x_1 => True) element bound) → (fun x x_1 => True) first bound)) ∧ ((∀ (element : Bool), element ∈ fun _a => True → (fun x x_1 => True) element second) ∧ (∀ (bound : Bool), (∀ (element : Bool), element ∈ fun _a => True → (fun x x_1 => True) element bound) → (fun x x_1 => True) second bound))))))
+Transliterated theorem: Preorder fun _ _ ∈ Bool => True ∧ FailsSupremumUniqueness fun _ _ ∈ Bool => True Set.univ ∈ Set Bool
+Logical form (Lean): : Preorder (fun _ _ : Bool => True) /\ FailsSupremumUniqueness (fun _ _ : Bool => True) (Set.univ : Set Bool)
+Source: ./FailureModes.lean#L1799
+
+
+
+Name: IntegerSingletonComplementHasNoSupremum
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Order.ComplementSupremumFormulaFails (fun left right => Int.instLEInt.le left right) Set.compl   (Set.instSingletonSet.singleton 0)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((Exists fun supremum => ((∀ (element : Int), element ∈ Set.instSingletonSet.1 0 → (fun left right => Int.instLEInt.le left right) element supremum) ∧ (∀ (bound : Int), (∀ (element : Int), element ∈ Set.instSingletonSet.1 0 → (fun left right => Int.instLEInt.le left right) element bound) → (fun left right => Int.instLEInt.le left right) supremum bound))) ∧ ((Exists fun supremum => ((∀ (element : Int), element ∈ setOf fun a => ¬ a ∈ Set.instSingletonSet.singleton 0 → (fun left right => Int.instLEInt.le left right) element supremum) ∧ (∀ (bound : Int), (∀ (element : Int), element ∈ setOf fun a => ¬ a ∈ Set.instSingletonSet.singleton 0 → (fun left right => Int.instLEInt.le left right) element bound) → (fun left right => Int.instLEInt.le left right) supremum bound))) → False))
+Transliterated theorem: ComplementSupremumFormulaFails fun left right ∈ Int => left ≤ right Set.compl {0} ∈ Set Int
+Logical form (Lean): : ComplementSupremumFormulaFails (fun left right : Int => left ≤ right) Set.compl ({0} : Set Int)
+Source: ./FailureModes.lean#L1892
+
+
+
+Name: IntegerSingletonDifferenceHasNoSupremum
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Order.DifferenceSupremumFormulaFails (fun left right => Int.instLEInt.le left right)   (Set.instSingletonSet.singleton 0) (Set.instSingletonSet.singleton 0)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((Exists fun supremum => ((∀ (element : Int), element ∈ Set.instSingletonSet.1 0 → (fun left right => Int.instLEInt.le left right) element supremum) ∧ (∀ (bound : Int), (∀ (element : Int), element ∈ Set.instSingletonSet.1 0 → (fun left right => Int.instLEInt.le left right) element bound) → (fun left right => Int.instLEInt.le left right) supremum bound))) ∧ ((Exists fun supremum => ((∀ (element : Int), element ∈ Set.instSingletonSet.1 0 → (fun left right => Int.instLEInt.le left right) element supremum) ∧ (∀ (bound : Int), (∀ (element : Int), element ∈ Set.instSingletonSet.1 0 → (fun left right => Int.instLEInt.le left right) element bound) → (fun left right => Int.instLEInt.le left right) supremum bound))) ∧ ((Exists fun supremum => ((∀ (element : Int), element ∈ Set.instSingletonSet.singleton 0 \ Set.instSingletonSet.singleton 0 → (fun left right => Int.instLEInt.le left right) element supremum) ∧ (∀ (bound : Int), (∀ (element : Int), element ∈ Set.instSingletonSet.singleton 0 \ Set.instSingletonSet.singleton 0 → (fun left right => Int.instLEInt.le left right) element bound) → (fun left right => Int.instLEInt.le left right) supremum bound))) → False)))
+Transliterated theorem: DifferenceSupremumFormulaFails fun left right ∈ Int => left ≤ right {0} ∈ Set Int {0} ∈ Set Int
+Logical form (Lean): : DifferenceSupremumFormulaFails (fun left right : Int => left ≤ right) ({0} : Set Int) ({0} : Set Int)
+Source: ./FailureModes.lean#L1987
+
+
+
+Name: ZeroFailsUpperBoundOfOpenUnitInterval
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Order.FailsUpperBound (fun left right => Real.instLE.le left right) (Set.Ioo 0 1) 0
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (element : Real), element ∈ fun x => (Real.instPreorder.lt 0 x ∧ Real.instPreorder.lt x 1) → (fun left right => Real.instLE.le left right) element 0) → False
+Transliterated theorem: FailsUpperBound fun left right ∈ Real => left ≤ right (Set.Ioo 0 1) 0
+Logical form (Lean): : FailsUpperBound (fun left right : Real => left ≤ right) (Set.Ioo 0 1) 0
+Source: ./FailureModes.lean#L2083
+
+
+
+Name: ProductOfLinearOrdersNeedNotBeLinear
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Order.ProductOrderFailsTotality (fun left right => instLENat.le left right) fun left right =>   instLENat.le left right
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (x y : Prod Nat Nat), Or (((fun left right => instLENat.le left right) x.1 y.1 ∧ (fun left right => instLENat.le left right) x.2 y.2)) (((fun left right => instLENat.le left right) y.1 x.1 ∧ (fun left right => instLENat.le left right) y.2 x.2))) → False
+Transliterated theorem: ProductOrderFailsTotality fun left right ∈ Nat => left ≤ right fun left right ∈ Nat => left ≤ right
+Logical form (Lean): : ProductOrderFailsTotality (fun left right : Nat => left ≤ right) (fun left right : Nat => left ≤ right)
+Source: ./FailureModes.lean#L2179
+
+
+
+Name: IntegerStrictOrderIsNotDenseLinearOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Order.FailsDenseLinearOrder fun left right => Int.instLTInt.lt left right
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((((∀ (x : Int), ¬ (fun left right => Int.instLTInt.lt left right) x x) ∧ (∀ (x y z : Int), (fun left right => Int.instLTInt.lt left right) x y → (fun left right => Int.instLTInt.lt left right) y z → (fun left right => Int.instLTInt.lt left right) x z)) ∧ (∀ (x y : Int), Or (((fun left right => Int.instLTInt.lt left right) x y ∧ (¬ x = y ∧ ¬ (fun left right => Int.instLTInt.lt left right) y x))) (Or ((x = y ∧ (¬ (fun left right => Int.instLTInt.lt left right) x y ∧ ¬ (fun left right => Int.instLTInt.lt left right) y x))) (((fun left right => Int.instLTInt.lt left right) y x ∧ (¬ (fun left right => Int.instLTInt.lt left right) x y ∧ ¬ x = y)))))) ∧ (∀ (x y : Int), Int.instLTInt.lt x y → Exists fun z => ((fun left right => Int.instLTInt.lt left right) x z ∧ (fun left right => Int.instLTInt.lt left right) z y))) → False
+Transliterated theorem: FailsDenseLinearOrder fun left right ∈ Int => left < right
+Logical form (Lean): : FailsDenseLinearOrder (fun left right : Int => left < right)
+Source: ./FailureModes.lean#L2269
+
+
+
+Name: ReflexiveRelationIsRawDense
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha}, LRA.Order.ReflexivityMakesRawDensityVacuous relation
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+  Prove
+    (∀ (x : Alpha), relation x x) → ∀ (x y : Alpha), relation x y → Exists fun z => (relation x z ∧ relation z y)
+Transliterated theorem: ReflexivityMakesRawDensityVacuous relation
+Logical form (Lean): {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha} : ReflexivityMakesRawDensityVacuous relation
+Source: ./FailureModes.lean#L2359
+
+
+
+Name: TwoAndThreeFailDivisibilityChain
+Kind: Theorem
+State: Sorry
+Predicate logic: FailsChain (fun left right : Nat => left ∣ right) ({number | number = 2 \/ number = 3} : Set Nat)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (first second : Nat), first ∈ fun number => Or (number = 2)(number = 3) → second ∈ fun number => Or (number = 2)(number = 3) → Or ((fun left right => Nat.instDvd.1 left right) first second) ((fun left right => Nat.instDvd.1 left right) second first)) → False
+Transliterated theorem: FailsChain fun left right ∈ Nat => left ∣ right {number | number = 2 ∨ number = 3} ∈ Set Nat
+Logical form (Lean): : FailsChain (fun left right : Nat => left ∣ right) ({number | number = 2 \/ number = 3} : Set Nat)
+Source: ./FailureModes.lean#L2456
+
+
+
+Name: DirectedDoesNotImplyChain
+Kind: Theorem
+State: Sorry
+Predicate logic: let subset : Set Nat
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    have subset := setOf fun element => Or (element = 2)(Or (element = 3)(element = 6));LRA.Order.DirectednessFailsToImplyChain (fun left right => Nat.instDvd.dvd left right) subset
+Transliterated theorem: let subset : Set Nat
+Logical form (Lean): : let subset : Set Nat
+Source: ./FailureModes.lean#L2605
+
+
+
+Name: SubsetOfDirectedSetNeedNotBeDirected
+Kind: Theorem
+State: Sorry
+Predicate logic: let relation
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    have relation := fun left right => Nat.instDvd.dvd left right; have ambient := Set.univ; have subset := setOf fun element => Or (element = 2)(element = 3);LRA.Order.DirectednessFailsUnderSubset relation ambient subset
+Transliterated theorem: let relation
+Logical form (Lean): : let relation
+Source: ./FailureModes.lean#L2650
+
+
+
+Name: IntegerLeastUpperBoundPropertyDoesNotImplyCompleteLattice
+Kind: Theorem
+State: Sorry
+Predicate logic: LeastUpperBoundProperty (Set Int) (fun left right : Int => left ≤ right) /\ FailsCompleteLattice (Set Int) (fun left right : Int => left ≤ right)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (subset : Int → Prop), (Exists fun element => element) ∈ subset → (Exists fun bound => ∀ (element : Int), element ∈ subset → (fun left right => Int.instLEInt.le left right) element bound) → Exists fun supremum => ((∀ (element : Int), element ∈ subset → (fun left right => Int.instLEInt.le left right) element supremum) ∧ (∀ (bound : Int), (∀ (element : Int), element ∈ subset → (fun left right => Int.instLEInt.le left right) element bound) → (fun left right => Int.instLEInt.le left right) supremum bound))) ∧ ((((∀ (x : Int), (fun left right => Int.instLEInt.le left right) x x) ∧ ((∀ (x y : Int), Int.instLEInt.le x y → Int.instLEInt.le y x → x = y) ∧ (∀ (x y z : Int), Int.instLEInt.le x y → Int.instLEInt.le y z → (fun left right => Int.instLEInt.le left right) x z))) ∧ (∀ (subset : Int → Prop), ((Exists fun supremum => ((∀ (element : Int), element ∈ subset → (fun left right => Int.instLEInt.le left right) element supremum) ∧ (∀ (bound : Int), (∀ (element : Int), element ∈ subset → (fun left right => Int.instLEInt.le left right) element bound) → (fun left right => Int.instLEInt.le left right) supremum bound))) ∧ (Exists fun infimum => ((∀ (element : Int), element ∈ subset → (fun left right => Int.instLEInt.le left right) infimum element) ∧ (∀ (bound : Int), (∀ (element : Int), element ∈ subset → (fun left right => Int.instLEInt.le left right) bound element) → (fun left right => Int.instLEInt.le left right) bound infimum)))))) → False))
+Transliterated theorem: LeastUpperBoundProperty (Set Int) fun left right ∈ Int => left ≤ right ∧ FailsCompleteLattice (Set Int) fun left right ∈ Int => left ≤ right
+Logical form (Lean): : LeastUpperBoundProperty (Set Int) (fun left right : Int => left ≤ right) /\ FailsCompleteLattice (Set Int) (fun left right : Int => left ≤ right)
+Source: ./FailureModes.lean#L2745
+
+
+
+Name: M3IsNondistributiveLattice
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Order.FailsDistributiveLattice LRA.Order.M3Relation
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((((∀ (x : Fin 5), Or (x = x)(Or (x = 0)(x = 4))) ∧ ((∀ (x y : Fin 5), Or (x = y)(Or (x = 0)(y = 4)) → Or (y = x)(Or (y = 0)(x = 4)) → x = y) ∧ (∀ (x y z : Fin 5), Or (x = y)(Or (x = 0)(y = 4)) → Or (y = z)(Or (y = 0)(z = 4)) → Or (x = z)(Or (x = 0)(z = 4))))) ∧ (∀ (left right : Fin 5), ((Exists fun join => (Or (left = join)(Or (left = 0)(join = 4)) ∧ (Or (right = join)(Or (right = 0)(join = 4)) ∧ (∀ (upper : Fin 5), Or (left = upper)(Or (left = 0)(upper = 4)) → Or (right = upper)(Or (right = 0)(upper = 4)) → Or (join = upper)(Or (join = 0)(upper = 4)))))) ∧ (Exists fun meet => (Or (meet = left)(Or (meet = 0)(left = 4)) ∧ (Or (meet = right)(Or (meet = 0)(right = 4)) ∧ (∀ (lower : Fin 5), Or (lower = left)(Or (lower = 0)(left = 4)) → Or (lower = right)(Or (lower = 0)(right = 4)) → Or (lower = meet)(Or (lower = 0)(meet = 4))))))))) ∧ (((((∀ (x : Fin 5), LRA.Order.M3Relation x x) ∧ ((∀ (x y : Fin 5), LRA.Order.M3Relation x y → LRA.Order.M3Relation y x → x = y) ∧ (∀ (x y z : Fin 5), LRA.Order.M3Relation x y → LRA.Order.M3Relation y z → LRA.Order.M3Relation x z))) ∧ (∀ (left right : Fin 5), ((Exists fun join => (Or (left = join)(Or (left = 0)(join = 4)) ∧ (Or (right = join)(Or (right = 0)(join = 4)) ∧ (∀ (upper : Fin 5), Or (left = upper)(Or (left = 0)(upper = 4)) → Or (right = upper)(Or (right = 0)(upper = 4)) → Or (join = upper)(Or (join = 0)(upper = 4)))))) ∧ (Exists fun meet => (Or (meet = left)(Or (meet = 0)(left = 4)) ∧ (Or (meet = right)(Or (meet = 0)(right = 4)) ∧ (∀ (lower : Fin 5), Or (lower = left)(Or (lower = 0)(left = 4)) → Or (lower = right)(Or (lower = 0)(right = 4)) → Or (lower = meet)(Or (lower = 0)(meet = 4))))))))) ∧ ((∀ (a b c bMeetC leftSide aJoinB aJoinC rightSide : Fin 5), (Or (bMeetC = b)(Or (bMeetC = 0)(b = 4)) ∧ (Or (bMeetC = c)(Or (bMeetC = 0)(c = 4)) ∧ (∀ (lower : Fin 5), Or (lower = b)(Or (lower = 0)(b = 4)) → Or (lower = c)(Or (lower = 0)(c = 4)) → Or (lower = bMeetC)(Or (lower = 0)(bMeetC = 4))))) → (Or (a = leftSide)(Or (a = 0)(leftSide = 4)) ∧ (Or (bMeetC = leftSide)(Or (bMeetC = 0)(leftSide = 4)) ∧ (∀ (upper : Fin 5), Or (a = upper)(Or (a = 0)(upper = 4)) → Or (bMeetC = upper)(Or (bMeetC = 0)(upper = 4)) → Or (leftSide = upper)(Or (leftSide = 0)(upper = 4))))) → (Or (a = aJoinB)(Or (a = 0)(aJoinB = 4)) ∧ (Or (b = aJoinB)(Or (b = 0)(aJoinB = 4)) ∧ (∀ (upper : Fin 5), Or (a = upper)(Or (a = 0)(upper = 4)) → Or (b = upper)(Or (b = 0)(upper = 4)) → Or (aJoinB = upper)(Or (aJoinB = 0)(upper = 4))))) → (Or (a = aJoinC)(Or (a = 0)(aJoinC = 4)) ∧ (Or (c = aJoinC)(Or (c = 0)(aJoinC = 4)) ∧ (∀ (upper : Fin 5), Or (a = upper)(Or (a = 0)(upper = 4)) → Or (c = upper)(Or (c = 0)(upper = 4)) → Or (aJoinC = upper)(Or (aJoinC = 0)(upper = 4))))) → (Or (rightSide = aJoinB)(Or (rightSide = 0)(aJoinB = 4)) ∧ (Or (rightSide = aJoinC)(Or (rightSide = 0)(aJoinC = 4)) ∧ (∀ (lower : Fin 5), Or (lower = aJoinB)(Or (lower = 0)(aJoinB = 4)) → Or (lower = aJoinC)(Or (lower = 0)(aJoinC = 4)) → Or (lower = rightSide)(Or (lower = 0)(rightSide = 4))))) → leftSide = rightSide) ∧ (∀ (a b c bJoinC leftSide aMeetB aMeetC rightSide : Fin 5), (Or (b = bJoinC)(Or (b = 0)(bJoinC = 4)) ∧ (Or (c = bJoinC)(Or (c = 0)(bJoinC = 4)) ∧ (∀ (upper : Fin 5), Or (b = upper)(Or (b = 0)(upper = 4)) → Or (c = upper)(Or (c = 0)(upper = 4)) → Or (bJoinC = upper)(Or (bJoinC = 0)(upper = 4))))) → (Or (leftSide = a)(Or (leftSide = 0)(a = 4)) ∧ (Or (leftSide = bJoinC)(Or (leftSide = 0)(bJoinC = 4)) ∧ (∀ (lower : Fin 5), Or (lower = a)(Or (lower = 0)(a = 4)) → Or (lower = bJoinC)(Or (lower = 0)(bJoinC = 4)) → Or (lower = leftSide)(Or (lower = 0)(leftSide = 4))))) → (Or (aMeetB = a)(Or (aMeetB = 0)(a = 4)) ∧ (Or (aMeetB = b)(Or (aMeetB = 0)(b = 4)) ∧ (∀ (lower : Fin 5), Or (lower = a)(Or (lower = 0)(a = 4)) → Or (lower = b)(Or (lower = 0)(b = 4)) → Or (lower = aMeetB)(Or (lower = 0)(aMeetB = 4))))) → (Or (aMeetC = a)(Or (aMeetC = 0)(a = 4)) ∧ (Or (aMeetC = c)(Or (aMeetC = 0)(c = 4)) ∧ (∀ (lower : Fin 5), Or (lower = a)(Or (lower = 0)(a = 4)) → Or (lower = c)(Or (lower = 0)(c = 4)) → Or (lower = aMeetC)(Or (lower = 0)(aMeetC = 4))))) → (Or (aMeetB = rightSide)(Or (aMeetB = 0)(rightSide = 4)) ∧ (Or (aMeetC = rightSide)(Or (aMeetC = 0)(rightSide = 4)) ∧ (∀ (upper : Fin 5), Or (aMeetB = upper)(Or (aMeetB = 0)(upper = 4)) → Or (aMeetC = upper)(Or (aMeetC = 0)(upper = 4)) → Or (rightSide = upper)(Or (rightSide = 0)(upper = 4))))) → leftSide = rightSide))) → False))
+Transliterated theorem: FailsDistributiveLattice M3Relation
+Logical form (Lean): : FailsDistributiveLattice M3Relation
+Source: ./FailureModes.lean#L2919
+
+
+
+Name: N5IsNondistributiveLattice
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Order.FailsDistributiveLattice LRA.Order.N5Relation
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((((∀ (x : Fin 5), Or (x = x)(Or (x = 0)(Or (x = 4)((x = 1 ∧ x = 2))))) ∧ ((∀ (x y : Fin 5), Or (x = y)(Or (x = 0)(Or (y = 4)((x = 1 ∧ y = 2)))) → Or (y = x)(Or (y = 0)(Or (x = 4)((y = 1 ∧ x = 2)))) → x = y) ∧ (∀ (x y z : Fin 5), Or (x = y)(Or (x = 0)(Or (y = 4)((x = 1 ∧ y = 2)))) → Or (y = z)(Or (y = 0)(Or (z = 4)((y = 1 ∧ z = 2)))) → Or (x = z)(Or (x = 0)(Or (z = 4)((x = 1 ∧ z = 2))))))) ∧ (∀ (left right : Fin 5), ((Exists fun join => ((Or (left = join)(Or (left = 0)(Or (join = 4)((left = 1 ∧ join = 2))))) ∧ ((Or (right = join)(Or (right = 0)(Or (join = 4)((right = 1 ∧ join = 2))))) ∧ (∀ (upper : Fin 5), Or (left = upper)(Or (left = 0)(Or (upper = 4)((left = 1 ∧ upper = 2)))) → Or (right = upper)(Or (right = 0)(Or (upper = 4)((right = 1 ∧ upper = 2)))) → Or (join = upper)(Or (join = 0)(Or (upper = 4)((join = 1 ∧ upper = 2)))))))) ∧ (Exists fun meet => ((Or (meet = left)(Or (meet = 0)(Or (left = 4)((meet = 1 ∧ left = 2))))) ∧ ((Or (meet = right)(Or (meet = 0)(Or (right = 4)((meet = 1 ∧ right = 2))))) ∧ (∀ (lower : Fin 5), Or (lower = left)(Or (lower = 0)(Or (left = 4)((lower = 1 ∧ left = 2)))) → Or (lower = right)(Or (lower = 0)(Or (right = 4)((lower = 1 ∧ right = 2)))) → Or (lower = meet)(Or (lower = 0)(Or (meet = 4)((lower = 1 ∧ meet = 2))))))))))) ∧ (((((∀ (x : Fin 5), LRA.Order.N5Relation x x) ∧ ((∀ (x y : Fin 5), LRA.Order.N5Relation x y → LRA.Order.N5Relation y x → x = y) ∧ (∀ (x y z : Fin 5), LRA.Order.N5Relation x y → LRA.Order.N5Relation y z → LRA.Order.N5Relation x z))) ∧ (∀ (left right : Fin 5), ((Exists fun join => ((Or (left = join)(Or (left = 0)(Or (join = 4)((left = 1 ∧ join = 2))))) ∧ ((Or (right = join)(Or (right = 0)(Or (join = 4)((right = 1 ∧ join = 2))))) ∧ (∀ (upper : Fin 5), Or (left = upper)(Or (left = 0)(Or (upper = 4)((left = 1 ∧ upper = 2)))) → Or (right = upper)(Or (right = 0)(Or (upper = 4)((right = 1 ∧ upper = 2)))) → Or (join = upper)(Or (join = 0)(Or (upper = 4)((join = 1 ∧ upper = 2)))))))) ∧ (Exists fun meet => ((Or (meet = left)(Or (meet = 0)(Or (left = 4)((meet = 1 ∧ left = 2))))) ∧ ((Or (meet = right)(Or (meet = 0)(Or (right = 4)((meet = 1 ∧ right = 2))))) ∧ (∀ (lower : Fin 5), Or (lower = left)(Or (lower = 0)(Or (left = 4)((lower = 1 ∧ left = 2)))) → Or (lower = right)(Or (lower = 0)(Or (right = 4)((lower = 1 ∧ right = 2)))) → Or (lower = meet)(Or (lower = 0)(Or (meet = 4)((lower = 1 ∧ meet = 2))))))))))) ∧ ((∀ (a b c bMeetC leftSide aJoinB aJoinC rightSide : Fin 5), ((Or (bMeetC = b)(Or (bMeetC = 0)(Or (b = 4)((bMeetC = 1 ∧ b = 2))))) ∧ ((Or (bMeetC = c)(Or (bMeetC = 0)(Or (c = 4)((bMeetC = 1 ∧ c = 2))))) ∧ (∀ (lower : Fin 5), Or (lower = b)(Or (lower = 0)(Or (b = 4)((lower = 1 ∧ b = 2)))) → Or (lower = c)(Or (lower = 0)(Or (c = 4)((lower = 1 ∧ c = 2)))) → Or (lower = bMeetC)(Or (lower = 0)(Or (bMeetC = 4)((lower = 1 ∧ bMeetC = 2))))))) → ((Or (a = leftSide)(Or (a = 0)(Or (leftSide = 4)((a = 1 ∧ leftSide = 2))))) ∧ ((Or (bMeetC = leftSide)(Or (bMeetC = 0)(Or (leftSide = 4)((bMeetC = 1 ∧ leftSide = 2))))) ∧ (∀ (upper : Fin 5), Or (a = upper)(Or (a = 0)(Or (upper = 4)((a = 1 ∧ upper = 2)))) → Or (bMeetC = upper)(Or (bMeetC = 0)(Or (upper = 4)((bMeetC = 1 ∧ upper = 2)))) → Or (leftSide = upper) (Or (leftSide = 0)(Or (upper = 4)((leftSide = 1 ∧ upper = 2))))))) → ((Or (a = aJoinB)(Or (a = 0)(Or (aJoinB = 4)((a = 1 ∧ aJoinB = 2))))) ∧ ((Or (b = aJoinB)(Or (b = 0)(Or (aJoinB = 4)((b = 1 ∧ aJoinB = 2))))) ∧ (∀ (upper : Fin 5), Or (a = upper)(Or (a = 0)(Or (upper = 4)((a = 1 ∧ upper = 2)))) → Or (b = upper)(Or (b = 0)(Or (upper = 4)((b = 1 ∧ upper = 2)))) → Or (aJoinB = upper)(Or (aJoinB = 0)(Or (upper = 4)((aJoinB = 1 ∧ upper = 2))))))) → ((Or (a = aJoinC)(Or (a = 0)(Or (aJoinC = 4)((a = 1 ∧ aJoinC = 2))))) ∧ ((Or (c = aJoinC)(Or (c = 0)(Or (aJoinC = 4)((c = 1 ∧ aJoinC = 2))))) ∧ (∀ (upper : Fin 5), Or (a = upper)(Or (a = 0)(Or (upper = 4)((a = 1 ∧ upper = 2)))) → Or (c = upper)(Or (c = 0)(Or (upper = 4)((c = 1 ∧ upper = 2)))) → Or (aJoinC = upper) (Or (aJoinC = 0)(Or (upper = 4)((aJoinC = 1 ∧ upper = 2))))))) → ((Or (rightSide = aJoinB) (Or (rightSide = 0)(Or (aJoinB = 4)((rightSide = 1 ∧ aJoinB = 2))))) ∧ ((Or (rightSide = aJoinC) (Or (rightSide = 0)(Or (aJoinC = 4)((rightSide = 1 ∧ aJoinC = 2))))) ∧ (∀ (lower : Fin 5), Or (lower = aJoinB)(Or (lower = 0)(Or (aJoinB = 4)((lower = 1 ∧ aJoinB = 2)))) → Or (lower = aJoinC)(Or (lower = 0)(Or (aJoinC = 4)((lower = 1 ∧ aJoinC = 2)))) → Or (lower = rightSide) (Or (lower = 0)(Or (rightSide = 4)((lower = 1 ∧ rightSide = 2))))))) → leftSide = rightSide) ∧ (∀ (a b c bJoinC leftSide aMeetB aMeetC rightSide : Fin 5), ((Or (b = bJoinC)(Or (b = 0)(Or (bJoinC = 4)((b = 1 ∧ bJoinC = 2))))) ∧ ((Or (c = bJoinC)(Or (c = 0)(Or (bJoinC = 4)((c = 1 ∧ bJoinC = 2))))) ∧ (∀ (upper : Fin 5), Or (b = upper)(Or (b = 0)(Or (upper = 4)((b = 1 ∧ upper = 2)))) → Or (c = upper)(Or (c = 0)(Or (upper = 4)((c = 1 ∧ upper = 2)))) → Or (bJoinC = upper)(Or (bJoinC = 0)(Or (upper = 4)((bJoinC = 1 ∧ upper = 2))))))) → ((Or (leftSide = a)(Or (leftSide = 0)(Or (a = 4)((leftSide = 1 ∧ a = 2))))) ∧ ((Or (leftSide = bJoinC)(Or (leftSide = 0)(Or (bJoinC = 4)((leftSide = 1 ∧ bJoinC = 2))))) ∧ (∀ (lower : Fin 5), Or (lower = a)(Or (lower = 0)(Or (a = 4)((lower = 1 ∧ a = 2)))) → Or (lower = bJoinC)(Or (lower = 0)(Or (bJoinC = 4)((lower = 1 ∧ bJoinC = 2)))) → Or (lower = leftSide) (Or (lower = 0)(Or (leftSide = 4)((lower = 1 ∧ leftSide = 2))))))) → ((Or (aMeetB = a)(Or (aMeetB = 0)(Or (a = 4)((aMeetB = 1 ∧ a = 2))))) ∧ ((Or (aMeetB = b)(Or (aMeetB = 0)(Or (b = 4)((aMeetB = 1 ∧ b = 2))))) ∧ (∀ (lower : Fin 5), Or (lower = a)(Or (lower = 0)(Or (a = 4)((lower = 1 ∧ a = 2)))) → Or (lower = b)(Or (lower = 0)(Or (b = 4)((lower = 1 ∧ b = 2)))) → Or (lower = aMeetB)(Or (lower = 0)(Or (aMeetB = 4)((lower = 1 ∧ aMeetB = 2))))))) → ((Or (aMeetC = a)(Or (aMeetC = 0)(Or (a = 4)((aMeetC = 1 ∧ a = 2))))) ∧ ((Or (aMeetC = c)(Or (aMeetC = 0)(Or (c = 4)((aMeetC = 1 ∧ c = 2))))) ∧ (∀ (lower : Fin 5), Or (lower = a)(Or (lower = 0)(Or (a = 4)((lower = 1 ∧ a = 2)))) → Or (lower = c)(Or (lower = 0)(Or (c = 4)((lower = 1 ∧ c = 2)))) → Or (lower = aMeetC) (Or (lower = 0)(Or (aMeetC = 4)((lower = 1 ∧ aMeetC = 2))))))) → ((Or (aMeetB = rightSide) (Or (aMeetB = 0)(Or (rightSide = 4)((aMeetB = 1 ∧ rightSide = 2))))) ∧ ((Or (aMeetC = rightSide) (Or (aMeetC = 0)(Or (rightSide = 4)((aMeetC = 1 ∧ rightSide = 2))))) ∧ (∀ (upper : Fin 5), Or (aMeetB = upper)(Or (aMeetB = 0)(Or (upper = 4)((aMeetB = 1 ∧ upper = 2)))) → Or (aMeetC = upper)(Or (aMeetC = 0)(Or (upper = 4)((aMeetC = 1 ∧ upper = 2)))) → Or (rightSide = upper) (Or (rightSide = 0)(Or (upper = 4)((rightSide = 1 ∧ upper = 2))))))) → leftSide = rightSide))) → False))
+Transliterated theorem: FailsDistributiveLattice N5Relation
+Logical form (Lean): : FailsDistributiveLattice N5Relation
+Source: ./FailureModes.lean#L2959
+
+
+
+Name: TwoFailsJoinOfTwoAndThree
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Order.FailsJoin (fun left right => instLENat.le left right) 2 3 2
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((fun left right => instLENat.le left right) 2 2 ∧ ((fun left right => instLENat.le left right) 3 2 ∧ (∀ (upper : Nat), instLENat.le 2 upper → instLENat.le 3 upper → (fun left right => instLENat.le left right) 2 upper))) → False
+Transliterated theorem: FailsJoin fun left right ∈ Nat => left ≤ right 2 3 2
+Logical form (Lean): : FailsJoin (fun left right : Nat => left ≤ right) 2 3 2
+Source: ./FailureModes.lean#L3051
+
+
+
+Name: BooleanEqualityFailsJoinSemilattice
+Kind: Theorem
+State: Sorry
+Predicate logic: FailsJoinSemilattice (fun left right : Bool => left = right)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : Bool), (fun left right => left = right)x x) ∧ ((∀ (x y : Bool), x = y → y = x → x = y) ∧ (∀ (x y z : Bool), x = y → y = z → (fun left right => left = right)x z))) ∧ (∀ (left right : Bool), Exists fun join => ((fun left right => left = right)left join ∧ ((fun left right => left = right)right join ∧ (∀ (upper : Bool), left = upper → right = upper → (fun left right => left = right)join upper))))) → False
+Transliterated theorem: FailsJoinSemilattice fun left right ∈ Bool => left = right
+Logical form (Lean): : FailsJoinSemilattice (fun left right : Bool => left = right)
+Source: ./FailureModes.lean#L3143
+
+
+
+Name: BooleanEqualityFailsLattice
+Kind: Theorem
+State: Sorry
+Predicate logic: FailsLattice (fun left right : Bool => left = right)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : Bool), (fun left right => left = right)x x) ∧ ((∀ (x y : Bool), x = y → y = x → x = y) ∧ (∀ (x y z : Bool), x = y → y = z → (fun left right => left = right)x z))) ∧ (∀ (left right : Bool), ((Exists fun join => ((fun left right => left = right)left join ∧ ((fun left right => left = right)right join ∧ (∀ (upper : Bool), left = upper → right = upper → (fun left right => left = right)join upper)))) ∧ (Exists fun meet => ((fun left right => left = right)meet left ∧ ((fun left right => left = right)meet right ∧ (∀ (lower : Bool), lower = left → lower = right → (fun left right => left = right)lower meet))))))) → False
+Transliterated theorem: FailsLattice fun left right ∈ Bool => left = right
+Logical form (Lean): : FailsLattice (fun left right : Bool => left = right)
+Source: ./FailureModes.lean#L3235
+
+
+
+Name: ThreeFailsMeetOfTwoAndThree
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Order.FailsMeet (fun left right => instLENat.le left right) 2 3 3
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((fun left right => instLENat.le left right) 3 2 ∧ ((fun left right => instLENat.le left right) 3 3 ∧ (∀ (lower : Nat), instLENat.le lower 2 → instLENat.le lower 3 → (fun left right => instLENat.le left right) lower 3))) → False
+Transliterated theorem: FailsMeet fun left right ∈ Nat => left ≤ right 2 3 3
+Logical form (Lean): : FailsMeet (fun left right : Nat => left ≤ right) 2 3 3
+Source: ./FailureModes.lean#L3329
+
+
+
+Name: BooleanEqualityFailsMeetSemilattice
+Kind: Theorem
+State: Sorry
+Predicate logic: FailsMeetSemilattice (fun left right : Bool => left = right)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : Bool), (fun left right => left = right)x x) ∧ ((∀ (x y : Bool), x = y → y = x → x = y) ∧ (∀ (x y z : Bool), x = y → y = z → (fun left right => left = right)x z))) ∧ (∀ (left right : Bool), Exists fun meet => ((fun left right => left = right)meet left ∧ ((fun left right => left = right)meet right ∧ (∀ (lower : Bool), lower = left → lower = right → (fun left right => left = right)lower meet))))) → False
+Transliterated theorem: FailsMeetSemilattice fun left right ∈ Bool => left = right
+Logical form (Lean): : FailsMeetSemilattice (fun left right : Bool => left = right)
+Source: ./FailureModes.lean#L3421
+
+
+
+Name: NaturalSubtractionFailsLeftTranslationPreservesLessEqual
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Order.FailsLeftTranslationPreservesRelation (fun left right => instLENat.le left right)   LRA.Order.NaturalSubtractionForOrderCompatibilityFailure
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (fixed left right : Nat), instLENat.le left right → (fun left right => instLENat.le left right) ({ hSub := fun a b => instSubNat.sub a b }.hSub fixed left) ({ hSub := fun a b => instSubNat.sub a b }.hSub fixed right)) → False
+Transliterated theorem: FailsLeftTranslationPreservesRelation fun left right ∈ Nat => left <= right NaturalSubtractionForOrderCompatibilityFailure
+Logical form (Lean): : FailsLeftTranslationPreservesRelation (fun left right : Nat => left <= right) NaturalSubtractionForOrderCompatibilityFailure
+Source: ./FailureModes.lean#L3603
+
+
+
+Name: NaturalIdentityFailsAntitone
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Order.FailsAntitone (fun left right => instLENat.le left right) (fun left right => instLENat.le left right)   fun value => value
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (left right : Nat), instLENat.le left right → instLENat.le ((fun value => value) right) ((fun value => value) left)) → False
+Transliterated theorem: FailsAntitone fun left right ∈ Nat => left ≤ right fun left right ∈ Nat => left ≤ right (fun value => value)
+Logical form (Lean): : FailsAntitone (fun left right : Nat => left ≤ right) (fun left right : Nat => left ≤ right) (fun value => value)
+Source: ./FailureModes.lean#L3702
+
+
+
+Name: IntegerNegationFailsMonotone
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Order.FailsMonotone (fun left right => Int.instLEInt.le left right) (fun left right => Int.instLEInt.le left right)   fun value => Int.instNegInt.neg value
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (left right : Int), Int.instLEInt.le left right → (fun left right => Int.instLEInt.le left right) ((fun value => Int.instNegInt.neg value) left) ((fun value => Int.instNegInt.neg value) right)) → False
+Transliterated theorem: FailsMonotone fun left right ∈ Int => left ≤ right fun left right ∈ Int => left ≤ right (fun value => -value)
+Logical form (Lean): : FailsMonotone (fun left right : Int => left ≤ right) (fun left right : Int => left ≤ right) (fun value => -value)
+Source: ./FailureModes.lean#L3804
+
+
+
+Name: MonotoneBijectionNeedNotHaveMonotoneInverse
+Kind: Theorem
+State: Sorry
+Predicate logic: Function.Bijective (fun value : Bool => value) /\ Monotone (fun left right : Bool => left = right) BooleanChainRelation (fun value => value) /\ Not (Monotone BooleanChainRelation (fun left right : Bool => left = right) (fun value => value)) /\ FailsOrderEmbedding (fun left right : Bool => left = right) BooleanChainRelation (fun value => value)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (y x₁ x₂ : Bool), (fun value => value) x₁ = y → (fun value => value) x₂ = y → x₁ = x₂) ∧ (∀ (y : Bool), Exists fun x => (fun value => value) x = y)) ∧ ((∀ (left right : Bool), left = right → Or ((fun value => value) left = Bool.false)((fun value => value) right = Bool.true)) ∧ (((∀ (left right : Bool), Or (left = Bool.false)(right = Bool.true) → (fun left right => left = right)((fun value => value) left) ((fun value => value) right)) → False) ∧ (((∀ (left right : Bool), left = right → Or ((fun value => value) left = Bool.false)((fun value => value) right = Bool.true)) ∧ (∀ (left right : Bool), Or ((fun value => value) left = Bool.false)((fun value => value) right = Bool.true) → (fun left right => left = right)left right)) → False))))
+Transliterated theorem: Function.Bijective fun value ∈ Bool => value ∧ Monotone fun left right ∈ Bool => left = right BooleanChainRelation (fun value => value) ∧ Not (Monotone BooleanChainRelation fun left right ∈ Bool => left = right (fun value => value)) ∧ FailsOrderEmbedding fun left right ∈ Bool => left = right BooleanChainRelation (fun value => value)
+Logical form (Lean): : Function.Bijective (fun value : Bool => value) /\ Monotone (fun left right : Bool => left = right) BooleanChainRelation (fun value => value) /\ Not (Monotone BooleanChainRelation (fun left right : Bool => left = right) (fun value => value)) /\ FailsOrderEmbedding (fun left right : Bool => left = right) BooleanChainRelation (fun value => value)
+Source: ./FailureModes.lean#L3948
+
+
+
+Name: BooleanConstantMapsFailOrderIsomorphism
+Kind: Theorem
+State: Sorry
+Predicate logic: FailsOrderIsomorphism (fun left right : Bool => left = false \/ right = true) (fun left right : Bool => left = false \/ right = true) (fun _ => false) (fun _ => false)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (source : Bool), (fun x => Bool.false) ((fun x => Bool.false) source) = source) ∧ ((∀ (target : Bool), (fun x => Bool.false) ((fun x => Bool.false) target) = target) ∧ ((∀ (left right : Bool), (fun left right => Or (left = Bool.false)(right = Bool.true))left right → (fun left right => Or (left = Bool.false)(right = Bool.true))((fun x => Bool.false) left) ((fun x => Bool.false) right)) ∧ (∀ (left right : Bool), (fun left right => Or (left = Bool.false)(right = Bool.true))((fun x => Bool.false) left) ((fun x => Bool.false) right) → (fun left right => Or (left = Bool.false)(right = Bool.true))left right)))) → False
+Transliterated theorem: FailsOrderIsomorphism fun left right ∈ Bool => left = false ∨ right = true fun left right ∈ Bool => left = false ∨ right = true (fun _ => false) (fun _ => false)
+Logical form (Lean): : FailsOrderIsomorphism (fun left right : Bool => left = false \/ right = true) (fun left right : Bool => left = false \/ right = true) (fun _ => false) (fun _ => false)
+Source: ./FailureModes.lean#L4052
+
+
+
+Name: BooleanEqualityPartialOrderFailsTotality
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Order.OrderedSets.LinearOrder.FailsTotality   LRA.Order.OrderedSets.PartialOrder.BooleanEqualityNonStrictPartialOrder.relation
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (x y : Bool), Or (LRA.Order.OrderedSets.PartialOrder.BooleanEqualityNonStrictPartialOrder.1 x y) (LRA.Order.OrderedSets.PartialOrder.BooleanEqualityNonStrictPartialOrder.1 y x)) → False
+Transliterated theorem: FailsTotality LRA.Order.OrderedSets.PartialOrder.BooleanEqualityNonStrictPartialOrder.relation
+Logical form (Lean): : FailsTotality LRA.Order.OrderedSets.PartialOrder.BooleanEqualityNonStrictPartialOrder.relation
+Source: ./FailureModes.lean#L4146
+
+
+
+Name: NaturalDivisibilityIsNotLinearOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Order.OrderedSets.LinearOrder.FailsTotality fun left right => Nat.instDvd.dvd left right
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (x y : Nat), Or ((fun left right => Nat.instDvd.1 left right) x y) ((fun left right => Nat.instDvd.1 left right) y x)) → False
+Transliterated theorem: FailsTotality fun left right ∈ Nat => left ∣ right
+Logical form (Lean): : FailsTotality (fun left right : Nat => left ∣ right)
+Source: ./FailureModes.lean#L4187
+
+
+
+Name: ImmediateSuccessorOrEqualFailsPreorder
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Relation.Reflexive ImmediateSuccessorOrEqualRelation /\ Not (LRA.Relation.Transitive ImmediateSuccessorOrEqualRelation) /\ FailsPreorder ImmediateSuccessorOrEqualRelation
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Nat), Or (x = x)(x = { hAdd := fun a b => instAddNat.add a b }.hAdd x 1)) ∧ (((∀ (x y z : Nat), Or (x = y)(y = { hAdd := fun a b => instAddNat.add a b }.hAdd x 1) → Or (y = z)(z = { hAdd := fun a b => instAddNat.add a b }.hAdd y 1) → Or (x = z)(z = { hAdd := fun a b => instAddNat.add a b }.hAdd x 1)) → False) ∧ (((∀ (x : Nat), Or (x = x)(x = { hAdd := fun a b => instAddNat.add a b }.hAdd x 1)) ∧ (∀ (x y z : Nat), Or (x = y)(y = { hAdd := fun a b => instAddNat.add a b }.hAdd x 1) → Or (y = z)(z = { hAdd := fun a b => instAddNat.add a b }.hAdd y 1) → Or (x = z)(z = { hAdd := fun a b => instAddNat.add a b }.hAdd x 1))) → False)))
+Transliterated theorem: LRA.Relation.Reflexive ImmediateSuccessorOrEqualRelation ∧ Not (LRA.Relation.Transitive ImmediateSuccessorOrEqualRelation) ∧ FailsPreorder ImmediateSuccessorOrEqualRelation
+Logical form (Lean): : LRA.Relation.Reflexive ImmediateSuccessorOrEqualRelation /\ Not (LRA.Relation.Transitive ImmediateSuccessorOrEqualRelation) /\ FailsPreorder ImmediateSuccessorOrEqualRelation
+Source: ./FailureModes.lean#L4368
+
+
+
+Name: NatStrictOrderFailsPreorder
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Relation.Transitive (fun left right : Nat => left < right) /\ Not (LRA.Relation.Reflexive (fun left right : Nat => left < right)) /\ FailsPreorder (fun left right : Nat => left < right)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x y z : Nat), instLTNat.lt x y → instLTNat.lt y z → (fun left right => instLTNat.lt left right) x z) ∧ (((∀ (x : Nat), (fun left right => instLTNat.lt left right) x x) → False) ∧ (((∀ (x : Nat), (fun left right => instLTNat.lt left right) x x) ∧ (∀ (x y z : Nat), instLTNat.lt x y → instLTNat.lt y z → (fun left right => instLTNat.lt left right) x z)) → False)))
+Transliterated theorem: LRA.Relation.Transitive fun left right ∈ Nat => left < right ∧ Not (LRA.Relation.Reflexive fun left right ∈ Nat => left < right) ∧ FailsPreorder fun left right ∈ Nat => left < right
+Logical form (Lean): : LRA.Relation.Transitive (fun left right : Nat => left < right) /\ Not (LRA.Relation.Reflexive (fun left right : Nat => left < right)) /\ FailsPreorder (fun left right : Nat => left < right)
+Source: ./FailureModes.lean#L4414
+
+
+
+Name: StrictPartConstructionsDifferOnUniversalPreorder
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Order.OrderedSets.Preorder.StrictPartConstructionsFailToAgree   LRA.Order.OrderedSets.Preorder.BooleanUniversalPreorder
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (fun left right => (LRA.Order.OrderedSets.Preorder.BooleanUniversalPreorder.1 left right ∧ (left = right → False)) = funleft right => (LRA.Order.OrderedSets.Preorder.BooleanUniversalPreorder.1 left right ∧ (LRA.Order.OrderedSets.Preorder.BooleanUniversalPreorder.1 right left → False))) → False
+Transliterated theorem: StrictPartConstructionsFailToAgree BooleanUniversalPreorder
+Logical form (Lean): : StrictPartConstructionsFailToAgree BooleanUniversalPreorder
+Source: ./FailureModes.lean#L4457
+
+
+
+Name: ImmediateSuccessorOrEqualFailsTransitivity
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Relation.Reflexive LRA.Order.OrderedSets.Preorder.ImmediateSuccessorOrEqualRelation /\ LRA.Relation.Antisymmetric LRA.Order.OrderedSets.Preorder.ImmediateSuccessorOrEqualRelation /\ FailsTransitivity LRA.Order.OrderedSets.Preorder.ImmediateSuccessorOrEqualRelation /\ FailsNonStrictPartialOrder LRA.Order.OrderedSets.Preorder.ImmediateSuccessorOrEqualRelation
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Nat), Or (x = x)(x = { hAdd := fun a b => instAddNat.add a b }.hAdd x 1)) ∧ ((∀ (x y : Nat), Or (x = y)(y = { hAdd := fun a b => instAddNat.add a b }.hAdd x 1) → Or (y = x)(x = { hAdd := fun a b => instAddNat.add a b }.hAdd y 1) → x = y) ∧ (((∀ (x y z : Nat), Or (x = y)(y = { hAdd := fun a b => instAddNat.add a b }.hAdd x 1) → Or (y = z)(z = { hAdd := fun a b => instAddNat.add a b }.hAdd y 1) → Or (x = z)(z = { hAdd := fun a b => instAddNat.add a b }.hAdd x 1)) → False) ∧ (((∀ (x : Nat), Or (x = x)(x = { hAdd := fun a b => instAddNat.add a b }.hAdd x 1)) ∧ ((∀ (x y : Nat), Or (x = y)(y = { hAdd := fun a b => instAddNat.add a b }.hAdd x 1) → Or (y = x)(x = { hAdd := fun a b => instAddNat.add a b }.hAdd y 1) → x = y) ∧ (∀ (x y z : Nat), Or (x = y)(y = { hAdd := fun a b => instAddNat.add a b }.hAdd x 1) → Or (y = z)(z = { hAdd := fun a b => instAddNat.add a b }.hAdd y 1) → Or (x = z)(z = { hAdd := fun a b => instAddNat.add a b }.hAdd x 1)))) → False))))
+Transliterated theorem: LRA.Relation.Reflexive LRA.Order.OrderedSets.Preorder.ImmediateSuccessorOrEqualRelation ∧ LRA.Relation.Antisymmetric LRA.Order.OrderedSets.Preorder.ImmediateSuccessorOrEqualRelation ∧ FailsTransitivity LRA.Order.OrderedSets.Preorder.ImmediateSuccessorOrEqualRelation ∧ FailsNonStrictPartialOrder LRA.Order.OrderedSets.Preorder.ImmediateSuccessorOrEqualRelation
+Logical form (Lean): : LRA.Relation.Reflexive LRA.Order.OrderedSets.Preorder.ImmediateSuccessorOrEqualRelation /\ LRA.Relation.Antisymmetric LRA.Order.OrderedSets.Preorder.ImmediateSuccessorOrEqualRelation /\ FailsTransitivity LRA.Order.OrderedSets.Preorder.ImmediateSuccessorOrEqualRelation /\ FailsNonStrictPartialOrder LRA.Order.OrderedSets.Preorder.ImmediateSuccessorOrEqualRelation
+Source: ./FailureModes.lean#L4600
+
+
+
+Name: NatStrictOrderFailsNonStrictPartialOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: Not (LRA.Relation.Reflexive (fun left right : Nat => left < right)) /\ LRA.Relation.Antisymmetric (fun left right : Nat => left < right) /\ LRA.Relation.Transitive (fun left right : Nat => left < right) /\ FailsNonStrictPartialOrder (fun left right : Nat => left < right)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : Nat), (fun left right => instLTNat.lt left right) x x) → False) ∧ ((∀ (x y : Nat), instLTNat.lt x y → instLTNat.lt y x → x = y) ∧ ((∀ (x y z : Nat), instLTNat.lt x y → instLTNat.lt y z → (fun left right => instLTNat.lt left right) x z) ∧ (((∀ (x : Nat), (fun left right => instLTNat.lt left right) x x) ∧ ((∀ (x y : Nat), instLTNat.lt x y → instLTNat.lt y x → x = y) ∧ (∀ (x y z : Nat), instLTNat.lt x y → instLTNat.lt y z → (fun left right => instLTNat.lt left right) x z))) → False))))
+Transliterated theorem: Not (LRA.Relation.Reflexive fun left right ∈ Nat => left < right) ∧ LRA.Relation.Antisymmetric fun left right ∈ Nat => left < right ∧ LRA.Relation.Transitive fun left right ∈ Nat => left < right ∧ FailsNonStrictPartialOrder fun left right ∈ Nat => left < right
+Logical form (Lean): : Not (LRA.Relation.Reflexive (fun left right : Nat => left < right)) /\ LRA.Relation.Antisymmetric (fun left right : Nat => left < right) /\ LRA.Relation.Transitive (fun left right : Nat => left < right) /\ FailsNonStrictPartialOrder (fun left right : Nat => left < right)
+Source: ./FailureModes.lean#L4653
+
+
+
+Name: BooleanUniversalRelationFailsNonStrictPartialOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Relation.Reflexive (fun _ _ : Bool => True) /\ Not (LRA.Relation.Antisymmetric (fun _ _ : Bool => True)) /\ LRA.Relation.Transitive (fun _ _ : Bool => True) /\ FailsNonStrictPartialOrder (fun _ _ : Bool => True)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Bool), (fun x x_1 => True) x x) ∧ (((∀ (x y : Bool), True → True → x = y) → False) ∧ ((∀ (x y z : Bool), True → True → (fun x x_1 => True) x z) ∧ (((∀ (x : Bool), (fun x x_1 => True) x x) ∧ ((∀ (x y : Bool), True → True → x = y) ∧ (∀ (x y z : Bool), True → True → (fun x x_1 => True) x z))) → False))))
+Transliterated theorem: LRA.Relation.Reflexive fun _ _ ∈ Bool => True ∧ Not (LRA.Relation.Antisymmetric fun _ _ ∈ Bool => True) ∧ LRA.Relation.Transitive fun _ _ ∈ Bool => True ∧ FailsNonStrictPartialOrder fun _ _ ∈ Bool => True
+Logical form (Lean): : LRA.Relation.Reflexive (fun _ _ : Bool => True) /\ Not (LRA.Relation.Antisymmetric (fun _ _ : Bool => True)) /\ LRA.Relation.Transitive (fun _ _ : Bool => True) /\ FailsNonStrictPartialOrder (fun _ _ : Bool => True)
+Source: ./FailureModes.lean#L4703
+
+
+
+Name: IntegerDivisibilityIsPreorderButNotPartialOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Order.Preorder (fun left right : Int => left ∣ right) /\ FailsNonStrictPartialOrder (fun left right : Int => left ∣ right)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : Int), (fun left right => Int.instDvd.1 left right) x x) ∧ (∀ (x y z : Int), Int.instDvd.1 x y → Int.instDvd.1 y z → (fun left right => Int.instDvd.1 left right) x z)) ∧ (((∀ (x : Int), (fun left right => Int.instDvd.1 left right) x x) ∧ ((∀ (x y : Int), Int.instDvd.1 x y → Int.instDvd.1 y x → x = y) ∧ (∀ (x y z : Int), Int.instDvd.1 x y → Int.instDvd.1 y z → (fun left right => Int.instDvd.1 left right) x z))) → False))
+Transliterated theorem: LRA.Order.Preorder fun left right ∈ Int => left ∣ right ∧ FailsNonStrictPartialOrder fun left right ∈ Int => left ∣ right
+Logical form (Lean): : LRA.Order.Preorder (fun left right : Int => left ∣ right) /\ FailsNonStrictPartialOrder (fun left right : Int => left ∣ right)
+Source: ./FailureModes.lean#L4749
+
+
+
+Name: NatStrictOrderFailsPosetLaws
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Order.OrderedSets.Poset.FailsPosetLaws fun left right => instLTNat.lt left right
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Nat), (fun left right => instLTNat.lt left right) x x) ∧ ((∀ (x y : Nat), instLTNat.lt x y → instLTNat.lt y x → x = y) ∧ (∀ (x y z : Nat), instLTNat.lt x y → instLTNat.lt y z → (fun left right => instLTNat.lt left right) x z))) → False
+Transliterated theorem: FailsPosetLaws fun left right ∈ Nat => left < right
+Logical form (Lean): : FailsPosetLaws (fun left right : Nat => left < right)
+Source: ./FailureModes.lean#L4837
+
+
+
+Name: BooleanEqualityFailsStrictLinearOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: FailsStrictLinearOrder (fun left right : Bool => left = right)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : Bool), (fun left right => left = right)x x → False) ∧ (∀ (x y z : Bool), x = y → y = z → (fun left right => left = right)x z)) ∧ (∀ (x y : Bool), Or (((fun left right => left = right)x y ∧ ((x = y → False) ∧ ((fun left right => left = right)y x → False)))) (Or ((x = y ∧ (((fun left right => left = right)x y → False) ∧ ((fun left right => left = right)y x → False)))) (((fun left right => left = right)y x ∧ (((fun left right => left = right)x y → False) ∧ (x = y → False))))))) → False
+Transliterated theorem: FailsStrictLinearOrder fun left right ∈ Bool => left = right
+Logical form (Lean): : FailsStrictLinearOrder (fun left right : Bool => left = right)
+Source: ./FailureModes.lean#L4927
+
+
+
+Name: NatNonStrictOrderFailsStrictOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Relation.Transitive (fun left right : Nat => left <= right) /\ Not (LRA.Relation.Irreflexive (fun left right : Nat => left <= right)) /\ FailsStrictOrder (fun left right : Nat => left <= right)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x y z : Nat), instLENat.le x y → instLENat.le y z → (fun left right => instLENat.le left right) x z) ∧ (((∀ (x : Nat), instLENat.le x x → False) → False) ∧ (((∀ (x : Nat), instLENat.le x x → False) ∧ (∀ (x y z : Nat), instLENat.le x y → instLENat.le y z → (fun left right => instLENat.le left right) x z)) → False)))
+Transliterated theorem: LRA.Relation.Transitive fun left right ∈ Nat => left <= right ∧ Not (LRA.Relation.Irreflexive fun left right ∈ Nat => left <= right) ∧ FailsStrictOrder fun left right ∈ Nat => left <= right
+Logical form (Lean): : LRA.Relation.Transitive (fun left right : Nat => left <= right) /\ Not (LRA.Relation.Irreflexive (fun left right : Nat => left <= right)) /\ FailsStrictOrder (fun left right : Nat => left <= right)
+Source: ./FailureModes.lean#L5022
+
+
+
+Name: ImmediateSuccessorFailsStrictOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Relation.Irreflexive ImmediateSuccessorRelation /\ Not (LRA.Relation.Transitive ImmediateSuccessorRelation) /\ FailsStrictOrder ImmediateSuccessorRelation
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Nat), x = { hAdd := fun a b => instAddNat.add a b }.hAdd x 1 → False) ∧ (((∀ (x y z : Nat), y = { hAdd := fun a b => instAddNat.add a b }.hAdd x 1 → z = { hAdd := fun a b => instAddNat.add a b }.hAdd y 1 → z = { hAdd := fun a b => instAddNat.add a b }.hAdd x 1) → False) ∧ (((∀ (x : Nat), x = instHAdd.hAdd x 1 → False) ∧ (∀ (x y z : Nat), y = { hAdd := fun a b => instAddNat.add a b }.hAdd x 1 → z = { hAdd := fun a b => instAddNat.add a b }.hAdd y 1 → z = { hAdd := fun a b => instAddNat.add a b }.hAdd x 1)) → False)))
+Transliterated theorem: LRA.Relation.Irreflexive ImmediateSuccessorRelation ∧ Not (LRA.Relation.Transitive ImmediateSuccessorRelation) ∧ FailsStrictOrder ImmediateSuccessorRelation
+Logical form (Lean): : LRA.Relation.Irreflexive ImmediateSuccessorRelation /\ Not (LRA.Relation.Transitive ImmediateSuccessorRelation) /\ FailsStrictOrder ImmediateSuccessorRelation
+Source: ./FailureModes.lean#L5107
+
+
+
+Name: IntegersAreNotWellOrdered
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Order.FailsWellOrder (Set Int) fun left right => Int.instLEInt.le left right
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((((∀ (x : Int), (fun left right => Int.instLEInt.le left right) x x) ∧ ((∀ (x y : Int), (fun left right => Int.instLEInt.le left right) x y → (fun left right => Int.instLEInt.le left right) y x → x = y) ∧ (∀ (x y z : Int), (fun left right => Int.instLEInt.le left right) x y → (fun left right => Int.instLEInt.le left right) y z → (fun left right => Int.instLEInt.le left right) x z))) ∧ (∀ (x y : Int), Or ((fun left right => Int.instLEInt.le left right) x y) ((fun left right => Int.instLEInt.le left right) y x))) ∧ (∀ (subset : Int → Prop), (Exists fun element => element) ∈ subset → Exists fun least => (least ∈ subset ∧ (∀ (element : Int), element ∈ subset → (fun left right => Int.instLEInt.le left right) least element)))) → False
+Transliterated theorem: FailsWellOrder (Set Int) fun left right ∈ Int => left ≤ right
+Logical form (Lean): : FailsWellOrder (Set Int) (fun left right : Int => left ≤ right)
+Source: ./FailureModes.lean#L5199
+
+
+
+Name: AlgebraicLatticeJoinOrderIsOrderLattice
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {join meet : LRA.Operation.BinaryEndoOperation Carrier},   LRA.AlgebraicStructures.LatticeLaws join meet →     LRA.Order.Lattice (LRA.Order.Interop.AlgebraicLattice.OrderFromJoin join)
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    join meet : LRA.Operation.BinaryEndoOperation Carrier
+    laws : LRA.AlgebraicStructures.LatticeLaws join meet
+  Prove
+    (((∀ (first second third : Carrier), join (join first second) third = join first (join second third)) ∧ ((∀ (first second : Carrier), join first second = join second first) ∧ (∀ (element : Carrier), join element element = element))) ∧ (((∀ (first second third : Carrier), meet (meet first second) third = meet first (meet second third)) ∧ ((∀ (first second : Carrier), meet first second = meet second first) ∧ (∀ (element : Carrier), meet element element = element))) ∧ ((∀ (left right : Carrier), join left (meet left right) = left) ∧ (∀ (left right : Carrier), meet left (join left right) = left)))) → (((∀ (x : Carrier), join x x = x) ∧ ((∀ (x y : Carrier), join x y = y → join y x = x → x = y) ∧ (∀ (x y z : Carrier), join x y = y → join y z = z → join x z = z))) ∧ (∀ (left right : Carrier), ((Exists fun join_1 => (join left join_1 = join_1 ∧ (join right join_1 = join_1 ∧ (∀ (upper : Carrier), join left upper = upper → join right upper = upper → join join_1 upper = upper)))) ∧ (Exists fun meet => (join meet left = left ∧ (join meet right = right ∧ (∀ (lower : Carrier), join lower left = left → join lower right = right → join lower meet = meet)))))))
+Transliterated theorem: LRA.Order.Lattice (OrderFromJoin join)
+Logical form (Lean): {Carrier : Type u} {join meet : LRA.Operation.BinaryEndoOperation Carrier} (laws : LRA.AlgebraicStructures.LatticeLaws join meet) : LRA.Order.Lattice (OrderFromJoin join)
+Source: ./Interop/AlgebraicLattice.lean#L136
+
+
+
+Name: AlgebraicLatticeMeetOrderIsOrderLattice
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {join meet : LRA.Operation.BinaryEndoOperation Carrier},   LRA.AlgebraicStructures.LatticeLaws join meet →     LRA.Order.Lattice (LRA.Order.Interop.AlgebraicLattice.OrderFromMeet meet)
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    join meet : LRA.Operation.BinaryEndoOperation Carrier
+    laws : LRA.AlgebraicStructures.LatticeLaws join meet
+  Prove
+    (((∀ (first second third : Carrier), join (join first second) third = join first (join second third)) ∧ ((∀ (first second : Carrier), join first second = join second first) ∧ (∀ (element : Carrier), join element element = element))) ∧ (((∀ (first second third : Carrier), meet (meet first second) third = meet first (meet second third)) ∧ ((∀ (first second : Carrier), meet first second = meet second first) ∧ (∀ (element : Carrier), meet element element = element))) ∧ ((∀ (left right : Carrier), join left (meet left right) = left) ∧ (∀ (left right : Carrier), meet left (join left right) = left)))) → (((∀ (x : Carrier), meet x x = x) ∧ ((∀ (x y : Carrier), meet x y = x → meet y x = y → x = y) ∧ (∀ (x y z : Carrier), meet x y = x → meet y z = y → meet x z = x))) ∧ (∀ (left right : Carrier), ((Exists fun join => (meet left join = left ∧ (meet right join = right ∧ (∀ (upper : Carrier), meet left upper = left → meet right upper = right → meet join upper = join)))) ∧ (Exists fun meet_1 => (meet meet_1 left = meet_1 ∧ (meet meet_1 right = meet_1 ∧ (∀ (lower : Carrier), meet lower left = lower → meet lower right = lower → meet lower meet_1 = lower)))))))
+Transliterated theorem: LRA.Order.Lattice (OrderFromMeet meet)
+Logical form (Lean): {Carrier : Type u} {join meet : LRA.Operation.BinaryEndoOperation Carrier} (laws : LRA.AlgebraicStructures.LatticeLaws join meet) : LRA.Order.Lattice (OrderFromMeet meet)
+Source: ./Interop/AlgebraicLattice.lean#L182
+
+
+
+Name: OrderLatticeOperationsAreAlgebraic
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} {join meet : LRA.Operation.BinaryEndoOperation Carrier} (orderLattice : LRA.Order.Lattice relation) (joinSpec : forall left right : Carrier, LRA.Order.Join relation left right (join left right)) (meetSpec : forall left right : Carrier, LRA.Order.Meet relation left right (meet left right)), LRA.AlgebraicStructures.LatticeLaws join meet
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Relation.Endorelation Carrier
+    join meet : LRA.Operation.BinaryEndoOperation Carrier
+    orderLattice : LRA.Order.Lattice relation
+    joinSpec : forall left right : Carrier, LRA.Order.Join relation left right (join left right)
+    meetSpec : forall left right : Carrier, LRA.Order.Meet relation left right (meet left right)
+  Prove
+    ((((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x → x = y) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z))) ∧ (∀ (left right : Carrier), ((Exists fun join => (relation left join ∧ (relation right join ∧ (∀ (upper : Carrier), relation left upper → relation right upper → relation join upper)))) ∧ (Exists fun meet => (relation meet left ∧ (relation meet right ∧ (∀ (lower : Carrier), relation lower left → relation lower right → relation lower meet))))))) ∧ ((∀ (left right : Carrier), (relation left (join left right) ∧ (relation right (join left right) ∧ (∀ (upper : Carrier), relation left upper → relation right upper → relation (join left right) upper)))) ∧ (∀ (left right : Carrier), (relation (meet left right) left ∧ (relation (meet left right) right ∧ (∀ (lower : Carrier), relation lower left → relation lower right → relation lower (meet left right))))))) → (((∀ (first second third : Carrier), join (join first second) third = join first (join second third)) ∧ ((∀ (first second : Carrier), join first second = join second first) ∧ (∀ (element : Carrier), join element element = element))) ∧ (((∀ (first second third : Carrier), meet (meet first second) third = meet first (meet second third)) ∧ ((∀ (first second : Carrier), meet first second = meet second first) ∧ (∀ (element : Carrier), meet element element = element))) ∧ ((∀ (left right : Carrier), join left (meet left right) = left) ∧ (∀ (left right : Carrier), meet left (join left right) = left))))
+Transliterated theorem: LRA.AlgebraicStructures.LatticeLaws join meet
+Logical form (Lean): {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} {join meet : LRA.Operation.BinaryEndoOperation Carrier} (orderLattice : LRA.Order.Lattice relation) (joinSpec : forall left right : Carrier, LRA.Order.Join relation left right (join left right)) (meetSpec : forall left right : Carrier, LRA.Order.Meet relation left right (meet left right)) : LRA.AlgebraicStructures.LatticeLaws join meet
+Source: ./Interop/AlgebraicLattice.lean#L233
+
+
+
+Name: upperBound_iff_mem_upperBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} [LE Alpha] (subset : Set Alpha) (candidate : Alpha), UpperBound (fun left right : Alpha => left ≤ right) subset candidate ↔ candidate ∈ upperBounds subset
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, ≤)
+  Objects
+    subset : Set Alpha
+    candidate : Alpha
+  Prove
+    UpperBound (fun left right : Alpha => left ≤ right) subset candidate ↔ candidate ∈ upperBounds subset
+Transliterated theorem: (∀ candidate ∈ Alpha), UpperBound fun left right ∈ Alpha => left ≤ right subset candidate ↔ candidate ∈ upperBounds subset
+Logical form (Lean): {Alpha : Type u} [LE Alpha] (subset : Set Alpha) (candidate : Alpha) : UpperBound (fun left right : Alpha => left ≤ right) subset candidate ↔ candidate ∈ upperBounds subset
+Source: ./Interop/Mathlib/Bounds.lean#L190
+
+
+
+Name: lowerBound_iff_mem_lowerBounds
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} [LE Alpha] (subset : Set Alpha) (candidate : Alpha), LowerBound (fun left right : Alpha => left ≤ right) subset candidate ↔ candidate ∈ lowerBounds subset
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, ≤)
+  Objects
+    subset : Set Alpha
+    candidate : Alpha
+  Prove
+    LowerBound (fun left right : Alpha => left ≤ right) subset candidate ↔ candidate ∈ lowerBounds subset
+Transliterated theorem: (∀ candidate ∈ Alpha), LowerBound fun left right ∈ Alpha => left ≤ right subset candidate ↔ candidate ∈ lowerBounds subset
+Logical form (Lean): {Alpha : Type u} [LE Alpha] (subset : Set Alpha) (candidate : Alpha) : LowerBound (fun left right : Alpha => left ≤ right) subset candidate ↔ candidate ∈ lowerBounds subset
+Source: ./Interop/Mathlib/Bounds.lean#L234
+
+
+
+Name: leastElement_iff_isLeast
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} [LE Alpha] (subset : Set Alpha) (candidate : Alpha), LeastElement (fun left right : Alpha => left ≤ right) subset candidate ↔ IsLeast subset candidate
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, ≤)
+  Objects
+    subset : Set Alpha
+    candidate : Alpha
+  Prove
+    LeastElement (fun left right : Alpha => left ≤ right) subset candidate ↔ IsLeast subset candidate
+Transliterated theorem: (∀ candidate ∈ Alpha), LeastElement fun left right ∈ Alpha => left ≤ right subset candidate ↔ IsLeast subset candidate
+Logical form (Lean): {Alpha : Type u} [LE Alpha] (subset : Set Alpha) (candidate : Alpha) : LeastElement (fun left right : Alpha => left ≤ right) subset candidate ↔ IsLeast subset candidate
+Source: ./Interop/Mathlib/Bounds.lean#L278
+
+
+
+Name: greatestElement_iff_isGreatest
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} [LE Alpha] (subset : Set Alpha) (candidate : Alpha), GreatestElement (fun left right : Alpha => left ≤ right) subset candidate ↔ IsGreatest subset candidate
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, ≤)
+  Objects
+    subset : Set Alpha
+    candidate : Alpha
+  Prove
+    GreatestElement (fun left right : Alpha => left ≤ right) subset candidate ↔ IsGreatest subset candidate
+Transliterated theorem: (∀ candidate ∈ Alpha), GreatestElement fun left right ∈ Alpha => left ≤ right subset candidate ↔ IsGreatest subset candidate
+Logical form (Lean): {Alpha : Type u} [LE Alpha] (subset : Set Alpha) (candidate : Alpha) : GreatestElement (fun left right : Alpha => left ≤ right) subset candidate ↔ IsGreatest subset candidate
+Source: ./Interop/Mathlib/Bounds.lean#L322
+
+
+
+Name: supremum_iff_isLUB
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} [LE Alpha] (subset : Set Alpha) (candidate : Alpha), Supremum (fun left right : Alpha => left ≤ right) subset candidate ↔ IsLUB subset candidate
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, ≤)
+  Objects
+    subset : Set Alpha
+    candidate : Alpha
+  Prove
+    Supremum (fun left right : Alpha => left ≤ right) subset candidate ↔ IsLUB subset candidate
+Transliterated theorem: (∀ candidate ∈ Alpha), Supremum fun left right ∈ Alpha => left ≤ right subset candidate ↔ IsLUB subset candidate
+Logical form (Lean): {Alpha : Type u} [LE Alpha] (subset : Set Alpha) (candidate : Alpha) : Supremum (fun left right : Alpha => left ≤ right) subset candidate ↔ IsLUB subset candidate
+Source: ./Interop/Mathlib/Bounds.lean#L366
+
+
+
+Name: infimum_iff_isGLB
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} [LE Alpha] (subset : Set Alpha) (candidate : Alpha), Infimum (fun left right : Alpha => left ≤ right) subset candidate ↔ IsGLB subset candidate
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, ≤)
+  Objects
+    subset : Set Alpha
+    candidate : Alpha
+  Prove
+    Infimum (fun left right : Alpha => left ≤ right) subset candidate ↔ IsGLB subset candidate
+Transliterated theorem: (∀ candidate ∈ Alpha), Infimum fun left right ∈ Alpha => left ≤ right subset candidate ↔ IsGLB subset candidate
+Logical form (Lean): {Alpha : Type u} [LE Alpha] (subset : Set Alpha) (candidate : Alpha) : Infimum (fun left right : Alpha => left ≤ right) subset candidate ↔ IsGLB subset candidate
+Source: ./Interop/Mathlib/Bounds.lean#L410
+
+
+
+Name: boundedAbove_iff_bddAbove
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} [LE Alpha] (subset : Set Alpha), BoundedAbove (fun left right : Alpha => left ≤ right) subset ↔ BddAbove subset
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, ≤)
+  Objects
+    subset : Set Alpha
+  Prove
+    BoundedAbove (fun left right : Alpha => left ≤ right) subset ↔ BddAbove subset
+Transliterated theorem: BoundedAbove fun left right ∈ Alpha => left ≤ right subset ↔ BddAbove subset
+Logical form (Lean): {Alpha : Type u} [LE Alpha] (subset : Set Alpha) : BoundedAbove (fun left right : Alpha => left ≤ right) subset ↔ BddAbove subset
+Source: ./Interop/Mathlib/Bounds.lean#L454
+
+
+
+Name: boundedBelow_iff_bddBelow
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} [LE Alpha] (subset : Set Alpha), BoundedBelow (fun left right : Alpha => left ≤ right) subset ↔ BddBelow subset
+Predicate logic (unfolded):
+  Ambient
+    (Alpha, ≤)
+  Objects
+    subset : Set Alpha
+  Prove
+    BoundedBelow (fun left right : Alpha => left ≤ right) subset ↔ BddBelow subset
+Transliterated theorem: BoundedBelow fun left right ∈ Alpha => left ≤ right subset ↔ BddBelow subset
+Logical form (Lean): {Alpha : Type u} [LE Alpha] (subset : Set Alpha) : BoundedBelow (fun left right : Alpha => left ≤ right) subset ↔ BddBelow subset
+Source: ./Interop/Mathlib/Bounds.lean#L498
+
+
+
+Name: NonemptyFiniteSubsetHasMaximalElement
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {relation : LRA.Relation.Endorelation Element} (relationIsPartialOrder : PartialOrder relation) (subset : Set Element) (subsetIsFinite : subset.Finite) (subsetIsNonempty : exists element, element ∈ subset), exists maximal, MaximalElement (StrictPart relation) subset maximal
+Predicate logic (unfolded):
+  Ambient
+    (Element)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsPartialOrder : PartialOrder relation
+    subset : Set Element
+    subsetIsFinite : subset.Finite
+  Prove
+    ((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x → x = y) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) → ∀ (subset : Element → Prop), (Finite (Subtype fun x => x) ∈ subset ∧ Exists fun element => element ∈ subset) → Exists fun maximal => (maximal ∈ subset ∧ (∀ (element : Element), element ∈ subset → (relation maximal element ∧ (maximal = element → False)) → False))
+Transliterated theorem: (∀ subsetIsFinite ∈ subset.Finite), (exists element, element ∈ subset) → exists maximal, MaximalElement (StrictPart relation) subset maximal
+Logical form (Lean): {Element : Type u} {relation : LRA.Relation.Endorelation Element} (relationIsPartialOrder : PartialOrder relation) (subset : Set Element) (subsetIsFinite : subset.Finite) (subsetIsNonempty : exists element, element ∈ subset) : exists maximal, MaximalElement (StrictPart relation) subset maximal
+Source: ./Interop/Mathlib/Finite.lean#L61
+
+
+
+Name: NonemptyFiniteSubsetHasGreatestElement
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {relation : LRA.Relation.Endorelation Element} (relationIsLinearOrder : LinearOrder relation) (subset : Set Element) (subsetIsFinite : subset.Finite) (subsetIsNonempty : exists element, element ∈ subset), exists greatest, GreatestElement relation subset greatest
+Predicate logic (unfolded):
+  Ambient
+    (Element)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsLinearOrder : LinearOrder relation
+    subset : Set Element
+    subsetIsFinite : subset.Finite
+  Prove
+    (((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x → x = y) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) ∧ (∀ (x y : Element), Or (relation x y) (relation y x))) → ∀ (subset : Element → Prop), (Finite (Subtype fun x => x) ∈ subset ∧ Exists fun element => element ∈ subset) → Exists fun greatest => (greatest ∈ subset ∧ (∀ (element : Element), element ∈ subset → relation element greatest))
+Transliterated theorem: (∀ subsetIsFinite ∈ subset.Finite), (exists element, element ∈ subset) → exists greatest, GreatestElement(greatest, subset)
+Logical form (Lean): {Element : Type u} {relation : LRA.Relation.Endorelation Element} (relationIsLinearOrder : LinearOrder relation) (subset : Set Element) (subsetIsFinite : subset.Finite) (subsetIsNonempty : exists element, element ∈ subset) : exists greatest, GreatestElement relation subset greatest
+Source: ./Interop/Mathlib/Finite.lean#L113
+
+
+
+Name: NonemptyFiniteSubsetHasMinimalElement
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {relation : LRA.Relation.Endorelation Element} (relationIsPartialOrder : PartialOrder relation) (subset : Set Element) (subsetIsFinite : subset.Finite) (subsetIsNonempty : exists element, element ∈ subset), exists minimal, MinimalElement (StrictPart relation) subset minimal
+Predicate logic (unfolded):
+  Ambient
+    (Element)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsPartialOrder : PartialOrder relation
+    subset : Set Element
+    subsetIsFinite : subset.Finite
+  Prove
+    ((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x → x = y) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) → ∀ (subset : Element → Prop), (Finite (Subtype fun x => x) ∈ subset ∧ Exists fun element => element ∈ subset) → Exists fun minimal => (minimal ∈ subset ∧ (∀ (element : Element), element ∈ subset → (relation element minimal ∧ (element = minimal → False)) → False))
+Transliterated theorem: (∀ subsetIsFinite ∈ subset.Finite), (exists element, element ∈ subset) → exists minimal, MinimalElement (StrictPart relation) subset minimal
+Logical form (Lean): {Element : Type u} {relation : LRA.Relation.Endorelation Element} (relationIsPartialOrder : PartialOrder relation) (subset : Set Element) (subsetIsFinite : subset.Finite) (subsetIsNonempty : exists element, element ∈ subset) : exists minimal, MinimalElement (StrictPart relation) subset minimal
+Source: ./Interop/Mathlib/Finite.lean#L165
+
+
+
+Name: NonemptyFiniteSubsetHasLeastElement
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Element : Type u} {relation : LRA.Relation.Endorelation Element} (relationIsLinearOrder : LinearOrder relation) (subset : Set Element) (subsetIsFinite : subset.Finite) (subsetIsNonempty : exists element, element ∈ subset), exists least, LeastElement relation subset least
+Predicate logic (unfolded):
+  Ambient
+    (Element)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsLinearOrder : LinearOrder relation
+    subset : Set Element
+    subsetIsFinite : subset.Finite
+  Prove
+    (((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x → x = y) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) ∧ (∀ (x y : Element), Or (relation x y) (relation y x))) → ∀ (subset : Element → Prop), (Finite (Subtype fun x => x) ∈ subset ∧ Exists fun element => element ∈ subset) → Exists fun least => (least ∈ subset ∧ (∀ (element : Element), element ∈ subset → relation least element))
+Transliterated theorem: (∀ subsetIsFinite ∈ subset.Finite), (exists element, element ∈ subset) → exists least, LeastElement(least, subset)
+Logical form (Lean): {Element : Type u} {relation : LRA.Relation.Endorelation Element} (relationIsLinearOrder : LinearOrder relation) (subset : Set Element) (subsetIsFinite : subset.Finite) (subsetIsNonempty : exists element, element ∈ subset) : exists least, LeastElement relation subset least
+Source: ./Interop/Mathlib/Finite.lean#L217
+
+
+
+Name: FiniteLatticeIsComplete
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} [Finite Alpha] [Nonempty Alpha] {relation : LRA.Relation.Endorelation Alpha} (relationIsLattice : Lattice relation), CompleteLattice (Set Alpha) relation
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsLattice : Lattice relation
+  Prove
+    (Finite Alpha ∧ Nonempty Alpha) → ∀ {relation : Alpha → Alpha → Prop}, (((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) ∧ (∀ (left right : Alpha), ((Exists fun join => (relation left join ∧ (relation right join ∧ (∀ (upper : Alpha), relation left upper → relation right upper → relation join upper)))) ∧ (Exists fun meet => (relation meet left ∧ (relation meet right ∧ (∀ (lower : Alpha), relation lower left → relation lower right → relation lower meet))))))) → (((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) ∧ (∀ (subset : Alpha → Prop), ((Exists fun supremum => ((∀ (element : Alpha), element ∈ subset → relation element supremum) ∧ (∀ (bound : Alpha), (∀ (element : Alpha), element ∈ subset → relation element bound) → relation supremum bound))) ∧ (Exists fun infimum => ((∀ (element : Alpha), element ∈ subset → relation infimum element) ∧ (∀ (bound : Alpha), (∀ (element : Alpha), element ∈ subset → relation bound element) → relation bound infimum))))))
+Transliterated theorem: CompleteLattice (Set Alpha) relation
+Logical form (Lean): {Alpha : Type u} [Finite Alpha] [Nonempty Alpha] {relation : LRA.Relation.Endorelation Alpha} (relationIsLattice : Lattice relation) : CompleteLattice (Set Alpha) relation
+Source: ./Interop/Mathlib/Finite.lean#L266
+
+
+
+Name: FiniteLinearOrderIsWellOrder
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u},   Finite Alpha →     ∀ {relation : LRA.Relation.Endorelation Alpha},       LRA.Order.LinearOrder relation → LRA.Order.WellOrder (Set Alpha) relation
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsLinearOrder : LinearOrder relation
+  Prove
+    Finite Alpha → ∀ {relation : Alpha → Alpha → Prop}, (((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) ∧ (∀ (x y : Alpha), Or (relation x y) (relation y x))) → ((((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) ∧ (∀ (x y : Alpha), Or (relation x y) (relation y x))) ∧ (∀ (subset : Alpha → Prop), (Exists fun element => element) ∈ subset → Exists fun least => (least ∈ subset ∧ (∀ (element : Alpha), element ∈ subset → relation least element))))
+Transliterated theorem: WellOrder (Set Alpha) relation
+Logical form (Lean): {Alpha : Type u} [Finite Alpha] {relation : LRA.Relation.Endorelation Alpha} (relationIsLinearOrder : LinearOrder relation) : WellOrder (Set Alpha) relation
+Source: ./Interop/Mathlib/Finite.lean#L312
+
+
+
+Name: GreaterThanIsPartialOrderIff
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha), PartialOrder (GreaterThan relation) ↔ PartialOrder relation
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+  Prove
+    PartialOrder (GreaterThan relation) ↔ PartialOrder relation
+Transliterated theorem: PartialOrder (GreaterThan relation) ↔ PartialOrder relation
+Logical form (Lean): {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha) : PartialOrder (GreaterThan relation) ↔ PartialOrder relation
+Source: ./Relation/GreaterThan/Relationships.lean#L50
+
+
+
+Name: GreaterThanIsStrictOrderIff
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha), StrictOrder (GreaterThan relation) ↔ StrictOrder relation
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+  Prove
+    StrictOrder (GreaterThan relation) ↔ StrictOrder relation
+Transliterated theorem: StrictOrder (GreaterThan relation) ↔ StrictOrder relation
+Logical form (Lean): {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha) : StrictOrder (GreaterThan relation) ↔ StrictOrder relation
+Source: ./Relation/GreaterThan/Relationships.lean#L94
+
+
+
+Name: GreaterThanIsLinearOrderIff
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha), LinearOrder (GreaterThan relation) ↔ LinearOrder relation
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+  Prove
+    LinearOrder (GreaterThan relation) ↔ LinearOrder relation
+Transliterated theorem: LinearOrder (GreaterThan relation) ↔ LinearOrder relation
+Logical form (Lean): {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha) : LinearOrder (GreaterThan relation) ↔ LinearOrder relation
+Source: ./Relation/GreaterThan/Relationships.lean#L138
+
+
+
+Name: GreaterThanIsStrictLinearOrderIff
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha), StrictLinearOrder (GreaterThan relation) ↔ StrictLinearOrder relation
+Predicate logic (unfolded):
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+  Prove
+    StrictLinearOrder (GreaterThan relation) ↔ StrictLinearOrder relation
+Transliterated theorem: StrictLinearOrder (GreaterThan relation) ↔ StrictLinearOrder relation
+Logical form (Lean): {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha) : StrictLinearOrder (GreaterThan relation) ↔ StrictLinearOrder relation
+Source: ./Relation/GreaterThan/Relationships.lean#L182
+
+## Axioms / Assumptions
+
+Declarations written as `axiom` are recorded here for audit context, but they are
+excluded from the active proof queue because there is no proof obligation to discharge.
+
+No axiomatic assumptions are currently present in this scope.
+
+## Completed Inventory
+
+Completed entries are retained below for full-fresh regeneration and audit context,
+but they are not part of the active proof queue.
+
+Name: Preorder
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha),   And (LRA.Relation.Reflexive relation) (LRA.Relation.Transitive relation)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Alpha), relation x x) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./OrderedSets/Preorder/Definition.lean
+
+
+
+Name: PartialOrder
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha),   And (LRA.Relation.Reflexive relation) (And (LRA.Relation.Antisymmetric relation) (LRA.Relation.Transitive relation))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z)))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./OrderedSets/PartialOrder/Definition.lean
+
+
+
+Name: StrictPartByNotConverse
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (preorder : LRA.Order.OrderedSets.Preorder.PreorderRelation Carrier) (a a_1 : Carrier),   And (preorder.relation a a_1) (Not (preorder.relation a_1 a))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (preorder.1 a a_1 ∧ (preorder.1 a_1 a → False))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./OrderedSets/Preorder/Relationships.lean
+
+
+
+Name: PreorderEquivalence
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (preorder : LRA.Order.OrderedSets.Preorder.PreorderRelation Carrier) (a a_1 : Carrier),   And (preorder.relation a a_1) (preorder.relation a_1 a)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (preorder.1 a a_1 ∧ preorder.1 a_1 a)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./OrderedSets/Preorder/Relationships.lean
+
+
+
+Name: StrictOrder
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Alpha : Type u} (relation : LRA.Order.OrderedSets.OrderRelation Alpha),   And (LRA.Relation.Irreflexive relation) (LRA.Relation.Transitive relation)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Alpha), relation x x → False) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./OrderedSets/StrictOrder/Definition.lean
+
+
+
+Name: StrictPart
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {alpha : Type u} (nonStrictRelation : LRA.Relation.Endorelation alpha) (a a_1 : alpha),   And (nonStrictRelation a a_1) (Ne a a_1)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (nonStrictRelation a a_1 ∧ (a = a_1 → False))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Relation/StrictPart/Definition.lean
+
+
+
+Name: StrictPart
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier) (a a_1 : Carrier),   And (order.relation a a_1) (Ne a a_1)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (order.1 a a_1 ∧ (a = a_1 → False))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./OrderedSets/PartialOrder/Relationships.lean
+
+
+
+Name: LinearOrder
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha),   And (LRA.Order.PartialOrder relation) (LRA.Relation.Total relation)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) ∧ (∀ (x y : Alpha), Or (relation x y) (relation y x)))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./OrderedSets/LinearOrder/Definition.lean
+
+
+
+Name: TotalOrder
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha),   And (LRA.Order.PartialOrder relation) (LRA.Relation.Total relation)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) ∧ (∀ (x y : Alpha), Or (relation x y) (relation y x)))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./OrderedSets/LinearOrder/Definition.lean
+
+
+
+Name: LessThanOrEqual
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {alpha : Type u} (strictRelation : LRA.Relation.Endorelation alpha) (a a_1 : alpha),   Or (strictRelation a a_1) (Eq a a_1)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (strictRelation a a_1) (a = a_1)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Relation/LessThanOrEqual/Definition.lean
+
+
+
+Name: ReflexiveClosure
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.StrictOrder.StrictOrderRelation Carrier) (a a_1 : Carrier),   Or (order.relation a a_1) (Eq a a_1)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (order.1 a a_1) (a = a_1)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./OrderedSets/StrictOrder/Relationships.lean
+
+
+
+Name: StrictLinearOrder
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha),   And (LRA.Order.StrictOrder relation) (LRA.Relation.ExactlyTrichotomous relation)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : Alpha), relation x x → False) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z)) ∧ (∀ (x y : Alpha), Or ((relation x y ∧ ((x = y → False) ∧ (relation y x → False)))) (Or ((x = y ∧ ((relation x y → False) ∧ (relation y x → False)))) ((relation y x ∧ ((relation x y → False) ∧ (x = y → False)))))))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./OrderedSets/StrictLinearOrder/Definition.lean
+
+
+
+Name: LowerBound
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (bound element : Element),   inst.mem subset element → relation bound element
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    subset ≤ element → relation bound element
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Bounds/LowerBound/Definition.lean
+
+
+
+Name: LeastElement
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (least : Element),   And (inst.mem subset least) (LRA.Order.LowerBound relation subset least)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (subset ≤ least ∧ (∀ (element : Element), subset ≤ element → relation least element))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Bounds/LeastElement/Definition.lean
+
+
+
+Name: WellOrder
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} (SetObject : Type v) [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element),   And (LRA.Order.LinearOrder relation)     (∀ (subset : SetObject),       (Exists fun element => inst.mem subset element) →         Exists fun least => LRA.Order.LeastElement relation subset least)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x → x = y) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) ∧ (∀ (x y : Element), Or (relation x y) (relation y x))) ∧ (∀ (subset : SetObject), (Exists fun element => subset ≤ element) → Exists fun least => (subset ≤ least ∧ (∀ (element : Element), subset ≤ element → relation least element))))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./OrderedSets/WellOrder/Definition.lean
+
+
+
+Name: UpperBound
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (bound element : Element),   inst.mem subset element → relation element bound
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    subset ≤ element → relation element bound
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Bounds/UpperBound/Definition.lean
+
+
+
+Name: BoundedBelow
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element) (subset : SetObject),   Exists fun bound => LRA.Order.LowerBound relation subset bound
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun bound => ∀ (element : Element), subset ≤ element → relation bound element
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Bounds/BoundedBelow/Definition.lean
+
+
+
+Name: BoundedAbove
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element) (subset : SetObject),   Exists fun bound => LRA.Order.UpperBound relation subset bound
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun bound => ∀ (element : Element), subset ≤ element → relation element bound
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Bounds/BoundedAbove/Definition.lean
+
+
+
+Name: Bounded
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element) (subset : SetObject),   And (LRA.Order.BoundedAbove relation subset) (LRA.Order.BoundedBelow relation subset)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((Exists fun bound => ∀ (element : Element), subset ≤ element → relation element bound) ∧ (Exists fun bound => ∀ (element : Element), subset ≤ element → relation bound element))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Bounds/Bounded/Definition.lean
+
+
+
+Name: Infimum
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (infimum : Element),   And (LRA.Order.LowerBound relation subset infimum)     (∀ (bound : Element), LRA.Order.LowerBound relation subset bound → relation bound infimum)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (element : Element), subset ≤ element → relation infimum element) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation bound element) → relation bound infimum))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Bounds/Infimum/Definition.lean
+
+
+
+Name: MinimalElement
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (strictRelation : LRA.Relation.Endorelation Element) (subset : SetObject) (minimal : Element),   And (inst.mem subset minimal) (∀ (element : Element), inst.mem subset element → Not (strictRelation element minimal))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (subset ≤ minimal ∧ (∀ (element : Element), subset ≤ element → strictRelation element minimal → False))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Bounds/MinimalElement/Definition.lean
+
+
+
+Name: GreatestElement
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (greatest : Element),   And (inst.mem subset greatest) (LRA.Order.UpperBound relation subset greatest)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (subset ≤ greatest ∧ (∀ (element : Element), subset ≤ element → relation element greatest))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Bounds/GreatestElement/Definition.lean
+
+
+
+Name: MaximalElement
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (strictRelation : LRA.Relation.Endorelation Element) (subset : SetObject) (maximal : Element),   And (inst.mem subset maximal) (∀ (element : Element), inst.mem subset element → Not (strictRelation maximal element))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (subset ≤ maximal ∧ (∀ (element : Element), subset ≤ element → strictRelation maximal element → False))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Bounds/MaximalElement/Definition.lean
+
+
+
+Name: Supremum
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (supremum : Element),   And (LRA.Order.UpperBound relation subset supremum)     (∀ (bound : Element), LRA.Order.UpperBound relation subset bound → relation supremum bound)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (element : Element), subset ≤ element → relation element supremum) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation element bound) → relation supremum bound))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Bounds/Supremum/Definition.lean
+
+
+
+Name: BottomElement
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   [inst_1 : LRA.Set.HasUniversal SetObject] (relation : LRA.Relation.Endorelation Element) (bottom : Element),   And (inst.mem inst_1.universal bottom) (LRA.Order.LowerBound relation inst_1.universal bottom)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (≤ ≤ bottom ∧ (∀ (element : Element), ≤ ≤ element → relation bottom element))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Bounds/BottomElement/Definition.lean
+
+
+
+Name: TopElement
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   [inst_1 : LRA.Set.HasUniversal SetObject] (relation : LRA.Relation.Endorelation Element) (top : Element),   And (inst.mem inst_1.universal top) (LRA.Order.UpperBound relation inst_1.universal top)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (≤ ≤ top ∧ (∀ (element : Element), ≤ ≤ element → relation element top))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Bounds/TopElement/Definition.lean
+
+
+
+Name: Meet
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {alpha : Type u} (relation : LRA.Relation.Endorelation alpha) (left right meet : alpha),   And (relation meet left)     (And (relation meet right) (∀ (lower : alpha), relation lower left → relation lower right → relation lower meet))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (relation meet left ∧ (relation meet right ∧ (∀ (lower : alpha), relation lower left → relation lower right → relation lower meet)))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Lattices/Meet/Definition.lean
+
+
+
+Name: Dominated
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element) (dominated dominating : SetObject) (element : Element),   inst.mem dominated element → Exists fun other => And (inst.mem dominating other) (relation element other)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    dominated ≤ element → Exists fun other => (dominating ≤ other ∧ relation element other)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Relation/Dominated/Definition.lean
+
+
+
+Name: Join
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {alpha : Type u} (relation : LRA.Relation.Endorelation alpha) (left right join : alpha),   And (relation left join)     (And (relation right join) (∀ (upper : alpha), relation left upper → relation right upper → relation join upper))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (relation left join ∧ (relation right join ∧ (∀ (upper : alpha), relation left upper → relation right upper → relation join upper)))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Lattices/Join/Definition.lean
+
+
+
+Name: GreatestLowerBoundProperty
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} (SetObject : Type v) [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element) (subset : SetObject),   And (Exists fun element => inst.mem subset element) (LRA.Order.BoundedBelow relation subset) →     Exists fun infimum => LRA.Order.Infimum relation subset infimum
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun element => subset ≤ element ∧ (Exists fun bound => ∀ (element : Element), subset ≤ element → relation bound element)) → Exists fun infimum => ((∀ (element : Element), subset ≤ element → relation infimum element) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation bound element) → relation bound infimum))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Bounds/GreatestLowerBoundProperty/Definition.lean
+
+
+
+Name: LeastUpperBoundProperty
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} (SetObject : Type v) [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element) (subset : SetObject),   And (Exists fun element => inst.mem subset element) (LRA.Order.BoundedAbove relation subset) →     Exists fun supremum => LRA.Order.Supremum relation subset supremum
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun element => subset ≤ element ∧ (Exists fun bound => ∀ (element : Element), subset ≤ element → relation element bound)) → Exists fun supremum => ((∀ (element : Element), subset ≤ element → relation element supremum) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation element bound) → relation supremum bound))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Bounds/LeastUpperBoundProperty/Definition.lean
+
+
+
+Name: Coinitial
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (point : Element),   Exists fun element => And (inst.mem subset element) (relation element point)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun element => (subset ≤ element ∧ relation element point)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Bounds/Coinitial/Definition.lean
+
+
+
+Name: DenseBelow
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (point : Element),   Exists fun element => And (inst.mem subset element) (relation element point)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun element => (subset ≤ element ∧ relation element point)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Bounds/Coinitial/Definition.lean
+
+
+
+Name: Cofinal
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (point : Element),   Exists fun element => And (inst.mem subset element) (relation point element)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun element => (subset ≤ element ∧ relation point element)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Bounds/Cofinal/Definition.lean
+
+
+
+Name: DenseAbove
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (point : Element),   Exists fun element => And (inst.mem subset element) (relation point element)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun element => (subset ≤ element ∧ relation point element)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Bounds/Cofinal/Definition.lean
+
+
+
+Name: DenseOrder
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {alpha : Type u} (relation : LRA.Relation.Endorelation alpha),   And (LRA.Order.StrictOrder relation) (LRA.Relation.Dense relation)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : alpha), relation x x → False) ∧ (∀ (x y z : alpha), relation x y → relation y z → relation x z)) ∧ (∀ (x y : alpha), relation x y → Exists fun z => (relation x z ∧ relation z y)))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Density/DenseOrder/Definition.lean
+
+
+
+Name: CoverRelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {alpha : Type u} (strictRelation : LRA.Relation.Endorelation alpha) (a a_1 : alpha),   And (strictRelation a a_1) (∀ (middle : alpha), Not (And (strictRelation a middle) (strictRelation middle a_1)))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (strictRelation a a_1 ∧ (∀ (middle : alpha), (strictRelation a middle ∧ strictRelation middle a_1) → False))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Relation/CoverRelation/Definition.lean
+
+
+
+Name: DenseLinearOrder
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {alpha : Type u} (relation : LRA.Relation.Endorelation alpha),   And (LRA.Order.StrictLinearOrder relation) (LRA.Relation.Dense relation)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((((∀ (x : alpha), relation x x → False) ∧ (∀ (x y z : alpha), relation x y → relation y z → relation x z)) ∧ (∀ (x y : alpha), Or ((relation x y ∧ ((x = y → False) ∧ (relation y x → False)))) (Or ((x = y ∧ ((relation x y → False) ∧ (relation y x → False)))) ((relation y x ∧ ((relation x y → False) ∧ (x = y → False))))))) ∧ (∀ (x y : alpha), relation x y → Exists fun z => (relation x z ∧ relation z y)))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Density/DenseLinearOrder/Definition.lean
+
+
+
+Name: DenseSubset
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (x y : Element),   relation x y → Exists fun d => And (inst.mem subset d) (And (relation x d) (relation d y))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    relation x y → Exists fun d => (subset ≤ d ∧ (relation x d ∧ relation d y))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Density/DenseSubset/Definition.lean
+
+
+
+Name: Comparable
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {alpha : Type u} (relation : LRA.Relation.Endorelation alpha) (left right : alpha),   Or (relation left right) (relation right left)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (relation left right) (relation right left)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Relation/Comparable/Definition.lean
+
+
+
+Name: Chain
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (first second : Element),   And (inst.mem subset first) (inst.mem subset second) → LRA.Order.Comparable relation first second
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (subset ≤ first ∧ subset ≤ second) → Or (relation first second) (relation second first)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Directedness/Chain/Definition.lean
+
+
+
+Name: Directed
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element) (subset : SetObject),   And (Exists fun element => inst.mem subset element)     (∀ (first second : Element),       inst.mem subset first →         inst.mem subset second →           Exists fun upper => And (inst.mem subset upper) (And (relation first upper) (relation second upper)))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun element => subset ≤ element ∧ (∀ (first second : Element), subset ≤ first → subset ≤ second → Exists fun upper => (subset ≤ upper ∧ (relation first upper ∧ relation second upper))))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Directedness/Directed/Definition.lean
+
+
+
+Name: ProductRelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Alpha : Type u} {Beta : Type v} (leftRelation : LRA.Relation.Endorelation Alpha)   (rightRelation : LRA.Relation.Endorelation Beta) (a a_1 : Prod Alpha Beta),   And (leftRelation a.fst a_1.fst) (rightRelation a.snd a_1.snd)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (leftRelation a.1 a_1.1 ∧ rightRelation a.2 a_1.2)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Constructions/ProductOrder/Definition.lean
+
+
+
+Name: JoinSemilattice
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha),   And (LRA.Order.PartialOrder relation)     (∀ (left right : Alpha), Exists fun join => LRA.Order.Join relation left right join)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) ∧ (∀ (left right : Alpha), Exists fun join => (relation left join ∧ (relation right join ∧ (∀ (upper : Alpha), relation left upper → relation right upper → relation join upper)))))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Lattices/JoinSemilattice/Definition.lean
+
+
+
+Name: MeetSemilattice
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha),   And (LRA.Order.PartialOrder relation)     (∀ (left right : Alpha), Exists fun meet => LRA.Order.Meet relation left right meet)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) ∧ (∀ (left right : Alpha), Exists fun meet => (relation meet left ∧ (relation meet right ∧ (∀ (lower : Alpha), relation lower left → relation lower right → relation lower meet)))))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Lattices/MeetSemilattice/Definition.lean
+
+
+
+Name: Lattice
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {alpha : Type u} (relation : LRA.Relation.Endorelation alpha),   And (LRA.Order.PartialOrder relation)     (∀ (left right : alpha),       And (Exists fun join => LRA.Order.Join relation left right join)         (Exists fun meet => LRA.Order.Meet relation left right meet))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : alpha), relation x x) ∧ ((∀ (x y : alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : alpha), relation x y → relation y z → relation x z))) ∧ (∀ (left right : alpha), ((Exists fun join => (relation left join ∧ (relation right join ∧ (∀ (upper : alpha), relation left upper → relation right upper → relation join upper)))) ∧ (Exists fun meet => (relation meet left ∧ (relation meet right ∧ (∀ (lower : alpha), relation lower left → relation lower right → relation lower meet)))))))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Lattices/Lattice/Definition.lean
+
+
+
+Name: IsMeetOperation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (relation : LRA.Relation.Endorelation Carrier)   (meetOperation : LRA.Operation.BinaryEndoOperation Carrier) (left right : Carrier),   LRA.Order.Meet relation left right (meetOperation left right)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (relation (meetOperation left right) left ∧ (relation (meetOperation left right) right ∧ (∀ (lower : Carrier), relation lower left → relation lower right → relation lower (meetOperation left right))))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Lattices/Lattice/Consequences.lean
+
+
+
+Name: IsJoinOperation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (relation : LRA.Relation.Endorelation Carrier)   (joinOperation : LRA.Operation.BinaryEndoOperation Carrier) (left right : Carrier),   LRA.Order.Join relation left right (joinOperation left right)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (relation left (joinOperation left right) ∧ (relation right (joinOperation left right) ∧ (∀ (upper : Carrier), relation left upper → relation right upper → relation (joinOperation left right) upper)))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Lattices/Lattice/Consequences.lean
+
+
+
+Name: DistributiveLattice
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha),   And (LRA.Order.Lattice relation)     (And       (∀ (a b c bMeetC leftSide aJoinB aJoinC rightSide : Alpha),         LRA.Order.Meet relation b c bMeetC →           LRA.Order.Join relation a bMeetC leftSide →             LRA.Order.Join relation a b aJoinB →               LRA.Order.Join relation a c aJoinC →                 LRA.Order.Meet relation aJoinB aJoinC rightSide → Eq leftSide rightSide)       (∀ (a b c bJoinC leftSide aMeetB aMeetC rightSide : Alpha),         LRA.Order.Join relation b c bJoinC →           LRA.Order.Meet relation a bJoinC leftSide →             LRA.Order.Meet relation a b aMeetB →               LRA.Order.Meet relation a c aMeetC →                 LRA.Order.Join relation aMeetB aMeetC rightSide → Eq leftSide rightSide))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) ∧ (∀ (left right : Alpha), ((Exists fun join => (relation left join ∧ (relation right join ∧ (∀ (upper : Alpha), relation left upper → relation right upper → relation join upper)))) ∧ (Exists fun meet => (relation meet left ∧ (relation meet right ∧ (∀ (lower : Alpha), relation lower left → relation lower right → relation lower meet))))))) ∧ ((∀ (a b c bMeetC leftSide aJoinB aJoinC rightSide : Alpha), (relation bMeetC b ∧ (relation bMeetC c ∧ (∀ (lower : Alpha), relation lower b → relation lower c → relation lower bMeetC))) → (relation a leftSide ∧ (relation bMeetC leftSide ∧ (∀ (upper : Alpha), relation a upper → relation bMeetC upper → relation leftSide upper))) → (relation a aJoinB ∧ (relation b aJoinB ∧ (∀ (upper : Alpha), relation a upper → relation b upper → relation aJoinB upper))) → (relation a aJoinC ∧ (relation c aJoinC ∧ (∀ (upper : Alpha), relation a upper → relation c upper → relation aJoinC upper))) → (relation rightSide aJoinB ∧ (relation rightSide aJoinC ∧ (∀ (lower : Alpha), relation lower aJoinB → relation lower aJoinC → relation lower rightSide))) → leftSide = rightSide) ∧ (∀ (a b c bJoinC leftSide aMeetB aMeetC rightSide : Alpha), (relation b bJoinC ∧ (relation c bJoinC ∧ (∀ (upper : Alpha), relation b upper → relation c upper → relation bJoinC upper))) → (relation leftSide a ∧ (relation leftSide bJoinC ∧ (∀ (lower : Alpha), relation lower a → relation lower bJoinC → relation lower leftSide))) → (relation aMeetB a ∧ (relation aMeetB b ∧ (∀ (lower : Alpha), relation lower a → relation lower b → relation lower aMeetB))) → (relation aMeetC a ∧ (relation aMeetC c ∧ (∀ (lower : Alpha), relation lower a → relation lower c → relation lower aMeetC))) → (relation aMeetB rightSide ∧ (relation aMeetC rightSide ∧ (∀ (upper : Alpha), relation aMeetB upper → relation aMeetC upper → relation rightSide upper))) → leftSide = rightSide)))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Lattices/DistributiveLattice/Definition.lean
+
+
+
+Name: CompleteLattice
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} (SetObject : Type v) [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element),   And (LRA.Order.PartialOrder relation)     (∀ (subset : SetObject),       And (Exists fun supremum => LRA.Order.Supremum relation subset supremum)         (Exists fun infimum => LRA.Order.Infimum relation subset infimum))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x → x = y) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) ∧ (∀ (subset : SetObject), ((Exists fun supremum => ((∀ (element : Element), subset ≤ element → relation element supremum) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation element bound) → relation supremum bound))) ∧ (Exists fun infimum => ((∀ (element : Element), subset ≤ element → relation infimum element) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation bound element) → relation bound infimum))))))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Lattices/CompleteLattice/Definition.lean
+
+
+
+Name: LexicographicRelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Alpha : Type u} {Beta : Type v} (leftRelation : LRA.Relation.Endorelation Alpha)   (rightRelation : LRA.Relation.Endorelation Beta) (a a_1 : Prod Alpha Beta),   Or (leftRelation a.fst a_1.fst) (And (Eq a.fst a_1.fst) (rightRelation a.snd a_1.snd))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (leftRelation a.1 a_1.1) ((a.1 = a_1.1 ∧ rightRelation a.2 a_1.2))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Constructions/LexicographicOrder/Definition.lean
+
+
+
+Name: NonStrictFromStrict
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Alpha : Type u} (strictRelation : LRA.Relation.Endorelation Alpha) (a a_1 : Alpha),   Or (strictRelation a a_1) (Eq a a_1)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (strictRelation a a_1) (a = a_1)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Constructions/StrictNonStrictCorrespondence/Definition.lean
+
+
+
+Name: StrictFromNonStrict
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Alpha : Type u} (nonStrictRelation : LRA.Relation.Endorelation Alpha) (a a_1 : Alpha),   And (nonStrictRelation a a_1) (Ne a a_1)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (nonStrictRelation a a_1 ∧ (a = a_1 → False))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Constructions/StrictNonStrictCorrespondence/Definition.lean
+
+
+
+Name: Monotone
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Alpha : Type u} {Beta : Type v} (sourceRelation : LRA.Relation.Endorelation Alpha)   (targetRelation : LRA.Relation.Endorelation Beta) (map : Alpha → Beta) (left right : Alpha),   sourceRelation left right → targetRelation (map left) (map right)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    sourceRelation left right → targetRelation (map left) (map right)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Morphisms/Monotone/Definition.lean
+
+
+
+Name: Antitone
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Alpha : Type u} {Beta : Type v} (sourceRelation : LRA.Relation.Endorelation Alpha)   (targetRelation : LRA.Relation.Endorelation Beta) (map : Alpha → Beta) (left right : Alpha),   sourceRelation left right → LRA.Relation.Converse targetRelation (map left) (map right)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    sourceRelation left right → targetRelation (map right) (map left)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Morphisms/Antitone/Definition.lean
+
+
+
+Name: OrderEmbedding
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Alpha : Type u} {Beta : Type v} (sourceRelation : LRA.Relation.Endorelation Alpha)   (targetRelation : LRA.Relation.Endorelation Beta) (map : Alpha → Beta),   And (LRA.Morphism.PreservesRelation map sourceRelation targetRelation)     (LRA.Morphism.ReflectsRelation map sourceRelation targetRelation)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (left right : Alpha), sourceRelation left right → targetRelation (map left) (map right)) ∧ (∀ (left right : Alpha), targetRelation (map left) (map right) → sourceRelation left right))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Morphisms/OrderEmbedding/Definition.lean
+
+
+
+Name: OrderIsomorphism
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Alpha : Type u} {Beta : Type v} (sourceRelation : LRA.Relation.Endorelation Alpha)   (targetRelation : LRA.Relation.Endorelation Beta) (forward : Alpha → Beta) (inverse : Beta → Alpha),   And (∀ (source : Alpha), Eq (inverse (forward source)) source)     (And (∀ (target : Beta), Eq (forward (inverse target)) target)       (LRA.Order.OrderEmbedding sourceRelation targetRelation forward))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (source : Alpha), inverse (forward source) = source) ∧ ((∀ (target : Beta), forward (inverse target) = target) ∧ ((∀ (left right : Alpha), sourceRelation left right → targetRelation (forward left) (forward right)) ∧ (∀ (left right : Alpha), targetRelation (forward left) (forward right) → sourceRelation left right))))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Morphisms/OrderIsomorphism/Definition.lean
+
+
+
+Name: NegativeLeftTranslationReversesRelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) (negative : Carrier → Prop)   (operation : LRA.Operation.BinaryEndoOperation Carrier) (fixed left right : Carrier),   And (negative fixed) (relation left right) → relation (operation fixed right) (operation fixed left)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (negative fixed ∧ relation left right) → relation (operation fixed right) (operation fixed left)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Laws/OperationCompatibility/Definition.lean
+
+
+
+Name: LeftTranslationPreservesRelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) (operation : LRA.Operation.BinaryEndoOperation Carrier)   (fixed left right : Carrier), relation left right → relation (operation fixed left) (operation fixed right)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    relation left right → relation (operation fixed left) (operation fixed right)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Laws/OperationCompatibility/Definition.lean
+
+
+
+Name: RightTranslationPreservesRelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) (operation : LRA.Operation.BinaryEndoOperation Carrier)   (left right fixed : Carrier), relation left right → relation (operation left fixed) (operation right fixed)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    relation left right → relation (operation left fixed) (operation right fixed)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Laws/OperationCompatibility/Definition.lean
+
+
+
+Name: CoordinatewisePreservesRelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) (operation : LRA.Operation.BinaryEndoOperation Carrier)   (left₁ left₂ right₁ right₂ : Carrier),   And (relation left₁ left₂) (relation right₁ right₂) → relation (operation left₁ right₁) (operation left₂ right₂)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (relation left₁ left₂ ∧ relation right₁ right₂) → relation (operation left₁ right₁) (operation left₂ right₂)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Laws/OperationCompatibility/Definition.lean
+
+
+
+Name: PositiveLeftTranslationPreservesRelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) (positive : Carrier → Prop)   (operation : LRA.Operation.BinaryEndoOperation Carrier) (fixed left right : Carrier),   And (positive fixed) (relation left right) → relation (operation fixed left) (operation fixed right)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (positive fixed ∧ relation left right) → relation (operation fixed left) (operation fixed right)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Laws/OperationCompatibility/Definition.lean
+
+
+
+Name: PositiveRightTranslationPreservesRelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) (positive : Carrier → Prop)   (operation : LRA.Operation.BinaryEndoOperation Carrier) (left right fixed : Carrier),   And (positive fixed) (relation left right) → relation (operation left fixed) (operation right fixed)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (positive fixed ∧ relation left right) → relation (operation left fixed) (operation right fixed)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Laws/OperationCompatibility/Definition.lean
+
+
+
+Name: LeftTranslationReversesRelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) (operation : LRA.Operation.BinaryEndoOperation Carrier)   (fixed left right : Carrier), relation left right → relation (operation fixed right) (operation fixed left)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    relation left right → relation (operation fixed right) (operation fixed left)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Laws/OperationCompatibility/Definition.lean
+
+
+
+Name: NegativeRightTranslationReversesRelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) (negative : Carrier → Prop)   (operation : LRA.Operation.BinaryEndoOperation Carrier) (left right fixed : Carrier),   And (negative fixed) (relation left right) → relation (operation right fixed) (operation left fixed)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (negative fixed ∧ relation left right) → relation (operation right fixed) (operation left fixed)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Laws/OperationCompatibility/Definition.lean
+
+
+
+Name: PreservesPositiveRightMultiplication
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {R : Type u} (strictOrderRelation : R → R → Prop) (mul : R → R → R) (zero first second positive : R),   And (strictOrderRelation zero positive) (strictOrderRelation first second) →     strictOrderRelation (mul first positive) (mul second positive)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (strictOrderRelation zero positive ∧ strictOrderRelation first second) → strictOrderRelation (mul first positive) (mul second positive)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Laws/OperationCompatibility/Definition.lean
+
+
+
+Name: RightTranslationReversesRelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) (operation : LRA.Operation.BinaryEndoOperation Carrier)   (left right fixed : Carrier), relation left right → relation (operation right fixed) (operation left fixed)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    relation left right → relation (operation right fixed) (operation left fixed)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Laws/OperationCompatibility/Definition.lean
+
+
+
+Name: StrictlyPreservesRightTranslation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {R : Type u} (relation : R → R → Prop) (operation : R → R → R) (first second translation : R),   relation first second → relation (operation first translation) (operation second translation)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    relation first second → relation (operation first translation) (operation second translation)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Laws/OperationCompatibility/Definition.lean
+
+
+
+Name: GreaterThan
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {alpha : Type u} (strictRelation : LRA.Relation.Endorelation alpha) (a a_1 : alpha), strictRelation a_1 a
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    strictRelation a_1 a
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Relation/GreaterThan/Definition.lean
+
+
+
+Name: GreaterThanOrEqual
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {alpha : Type u} (strictRelation : LRA.Relation.Endorelation alpha) (a a_1 : alpha),   Or (LRA.Order.GreaterThan strictRelation a a_1) (Eq a a_1)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (strictRelation a_1 a) (a = a_1)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Relation/GreaterThanOrEqual/Definition.lean
+
+
+
+Name: UpperCover
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {alpha : Type u} (strictRelation : LRA.Relation.Endorelation alpha) (element cover : alpha),   And (strictRelation element cover)     (∀ (middle : alpha), Not (And (strictRelation element middle) (strictRelation middle cover)))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (strictRelation element cover ∧ (∀ (middle : alpha), (strictRelation element middle ∧ strictRelation middle cover) → False))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Relation/UpperCover/Definition.lean
+
+
+
+Name: LowerCover
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {alpha : Type u} (strictRelation : LRA.Relation.Endorelation alpha) (element cover : alpha),   And (strictRelation cover element)     (∀ (middle : alpha), Not (And (strictRelation cover middle) (strictRelation middle element)))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (strictRelation cover element ∧ (∀ (middle : alpha), (strictRelation cover middle ∧ strictRelation middle element) → False))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Relation/LowerCover/Definition.lean
+
+
+
+Name: Adjacent
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {alpha : Type u} (strictRelation : LRA.Relation.Endorelation alpha) (left right : alpha),   Or (LRA.Order.CoverRelation strictRelation left right) (LRA.Order.CoverRelation strictRelation right left)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or ((strictRelation left right ∧ (∀ (middle : alpha), (strictRelation left middle ∧ strictRelation middle right) → False))) ((strictRelation right left ∧ (∀ (middle : alpha), (strictRelation right middle ∧ strictRelation middle left) → False)))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Relation/Adjacent/Definition.lean
+
+
+
+Name: ComplementInfimumFormulaFails
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element) (complement : SetObject → SetObject) (subset : SetObject),   And (Exists fun infimum => LRA.Order.Infimum relation subset infimum)     (Not (Exists fun infimum => LRA.Order.Infimum relation (complement subset) infimum))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((Exists fun infimum => ((∀ (element : Element), subset ≤ element → relation infimum element) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation bound element) → relation bound infimum))) ∧ ((Exists fun infimum => ((∀ (element : Element), complement subset ≤ element → relation infimum element) ∧ (∀ (bound : Element), (∀ (element : Element), complement subset ≤ element → relation bound element) → relation bound infimum))) → False))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: N5Relation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (a a_1 : Fin 5), Or (Eq a a_1) (Or (Eq a 0) (Or (Eq a_1 4) (And (Eq a 1) (Eq a_1 2))))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (a = a_1)(Or (a = 0)(Or (a_1 = 4)((a = 1 ∧ a_1 = 2))))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: FailsMonotone
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Source : Type u} {Target : Type v} (sourceRelation : LRA.Relation.Endorelation Source)   (targetRelation : LRA.Relation.Endorelation Target) (map : Source → Target),   LRA.Order.Monotone sourceRelation targetRelation map → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (left right : Source), sourceRelation left right → targetRelation (map left) (map right)) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: FailsLeastElement
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (candidate : Element),   LRA.Order.LeastElement relation subset candidate → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (subset ≤ candidate ∧ (∀ (element : Element), subset ≤ element → relation candidate element)) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: ComplementSupremumFormulaFails
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element) (complement : SetObject → SetObject) (subset : SetObject),   And (Exists fun supremum => LRA.Order.Supremum relation subset supremum)     (Not (Exists fun supremum => LRA.Order.Supremum relation (complement subset) supremum))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((Exists fun supremum => ((∀ (element : Element), subset ≤ element → relation element supremum) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation element bound) → relation supremum bound))) ∧ ((Exists fun supremum => ((∀ (element : Element), complement subset ≤ element → relation element supremum) ∧ (∀ (bound : Element), (∀ (element : Element), complement subset ≤ element → relation element bound) → relation supremum bound))) → False))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: FailsJoinSemilattice
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} (relation : LRA.Relation.Endorelation Element), LRA.Order.JoinSemilattice relation → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x → x = y) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) ∧ (∀ (left right : Element), Exists fun join => (relation left join ∧ (relation right join ∧ (∀ (upper : Element), relation left upper → relation right upper → relation join upper))))) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: FailsJoin
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} (relation : LRA.Relation.Endorelation Element) (left right candidate : Element),   LRA.Order.Join relation left right candidate → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (relation left candidate ∧ (relation right candidate ∧ (∀ (upper : Element), relation left upper → relation right upper → relation candidate upper))) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: MinimalityFailsToImplyLeast
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (strictRelation nonStrictRelation : LRA.Relation.Endorelation Element) (subset : SetObject) (candidate : Element),   And (LRA.Order.MinimalElement strictRelation subset candidate)     (Not (LRA.Order.LeastElement nonStrictRelation subset candidate))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((subset ≤ candidate ∧ (∀ (element : Element), subset ≤ element → strictRelation element candidate → False)) ∧ ((subset ≤ candidate ∧ (∀ (element : Element), subset ≤ element → nonStrictRelation candidate element)) → False))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: DirectednessFailsToImplyChain
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element) (subset : SetObject),   And (LRA.Order.Directed relation subset) (Not (LRA.Order.Chain relation subset))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((Exists fun element => subset ≤ element ∧ (∀ (first second : Element), subset ≤ first → subset ≤ second → Exists fun upper => (subset ≤ upper ∧ (relation first upper ∧ relation second upper)))) ∧ ((∀ (first second : Element), subset ≤ first → subset ≤ second → Or (relation first second) (relation second first)) → False))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: LowerBoundsFailToPreserveIndexedIntersectionsAsUnions
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} {Index : Type w} [inst : Membership Element SetObject]   [inst_1 : LRA.Set.HasSeparation Element SetObject] [inst_2 : LRA.Set.HasUniversal SetObject]   [inst_3 : LRA.Set.HasIndexedUnion SetObject] [inst_4 : LRA.Set.HasIndexedIntersection SetObject]   (relation : LRA.Relation.Endorelation Element) (family : Index → SetObject),   Eq (LRA.Order.LowerBounds relation (inst_4.indexedIntersection family))       (inst_3.indexedUnion fun index => LRA.Order.LowerBounds relation (family index)) →     False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ≤ ≤ funbound=> ∀ (element : Element), family ≤ ≤element → relation bound element = fun ≤ index=> ≤ ≤ funbound=> ∀ (element : Element), family index ≤ element → relation bound element → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: ReflexivityMakesRawDensityVacuous
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} (relation : LRA.Relation.Endorelation Element),   LRA.Relation.Reflexive relation → LRA.Relation.Dense relation
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (x : Element), relation x x) → ∀ (x y : Element), relation x y → Exists fun z => (relation x z ∧ relation z y)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: FailsBoundedAbove
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element) (subset : SetObject), LRA.Order.BoundedAbove relation subset → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun bound => ∀ (element : Element), subset ≤ element → relation element bound) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: FailsPreorder
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (relation : LRA.Order.OrderedSets.OrderRelation Carrier), LRA.Order.Preorder relation → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Carrier), relation x x) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z)) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: FailsInfimum
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element) (subset : SetObject),   (Exists fun candidate => LRA.Order.Infimum relation subset candidate) → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun candidate => ((∀ (element : Element), subset ≤ element → relation candidate element) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation bound element) → relation bound candidate))) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: FailsStrictLinearOrder
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} (relation : LRA.Relation.Endorelation Element), LRA.Order.StrictLinearOrder relation → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : Element), relation x x → False) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z)) ∧ (∀ (x y : Element), Or ((relation x y ∧ ((x = y → False) ∧ (relation y x → False)))) (Or ((x = y ∧ ((relation x y → False) ∧ (relation y x → False)))) ((relation y x ∧ ((relation x y → False) ∧ (x = y → False))))))) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: StrictPartConstructionsFailToAgree
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (preorder : LRA.Order.OrderedSets.Preorder.PreorderRelation Carrier),   Eq (LRA.Order.StrictPart preorder.relation) (LRA.Order.OrderedSets.Preorder.StrictPartByNotConverse preorder) → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (fun left right => (preorder.1 left right ∧ (left = right → False)) = funleft right => (preorder.1 left right ∧ (preorder.1 right left → False))) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: FailsDenseLinearOrder
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} (relation : LRA.Relation.Endorelation Element), LRA.Order.DenseLinearOrder relation → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((((∀ (x : Element), relation x x → False) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z)) ∧ (∀ (x y : Element), Or ((relation x y ∧ ((x = y → False) ∧ (relation y x → False)))) (Or ((x = y ∧ ((relation x y → False) ∧ (relation y x → False)))) ((relation y x ∧ ((relation x y → False) ∧ (x = y → False))))))) ∧ (∀ (x y : Element), relation x y → Exists fun z => (relation x z ∧ relation z y))) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: FailsTotality
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (relation : LRA.Relation.Endorelation Carrier), LRA.Relation.Total relation → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (x y : Carrier), Or (relation x y) (relation y x)) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: FailsLeftTranslationPreservesRelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) (operation : LRA.Operation.BinaryEndoOperation Carrier),   LRA.Order.LeftTranslationPreservesRelation relation operation → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (fixed left right : Carrier), relation left right → relation (operation fixed left) (operation fixed right)) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: FailsLowerBound
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (candidate : Element),   LRA.Order.LowerBound relation subset candidate → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (element : Element), subset ≤ element → relation candidate element) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: BooleanChainRelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (a a_1 : Bool), Or (Eq a Bool.false) (Eq a_1 Bool.true)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (a = Bool.false)(a_1 = Bool.true)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: FailsGreatestLowerBoundProperty
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} (SetObject : Type v) [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element), LRA.Order.GreatestLowerBoundProperty SetObject relation → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (subset : SetObject), (Exists fun element => subset ≤ element) → (Exists fun bound => ∀ (element : Element), subset ≤ element → relation bound element) → Exists fun infimum => ((∀ (element : Element), subset ≤ element → relation infimum element) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation bound element) → relation bound infimum))) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: FailsWellOrder
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} (SetObject : Type v) [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element), LRA.Order.WellOrder SetObject relation → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x → x = y) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) ∧ (∀ (x y : Element), Or (relation x y) (relation y x))) ∧ (∀ (subset : SetObject), (Exists fun element => subset ≤ element) → Exists fun least => (subset ≤ least ∧ (∀ (element : Element), subset ≤ element → relation least element)))) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: FailsSupremumUniqueness
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element) (subset : SetObject),   Exists fun first =>     Exists fun second =>       And (Ne first second) (And (LRA.Order.Supremum relation subset first) (LRA.Order.Supremum relation subset second))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun first => Exists fun second => ((first = second → False) ∧ (((∀ (element : Element), subset ≤ element → relation element first) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation element bound) → relation first bound)) ∧ ((∀ (element : Element), subset ≤ element → relation element second) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation element bound) → relation second bound))))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: FailsRightTranslationPreservesRelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) (operation : LRA.Operation.BinaryEndoOperation Carrier),   LRA.Order.RightTranslationPreservesRelation relation operation → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (left right fixed : Carrier), relation left right → relation (operation left fixed) (operation right fixed)) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: FailsStrictOrder
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (relation : LRA.Order.OrderedSets.OrderRelation Carrier), LRA.Order.StrictOrder relation → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Carrier), relation x x → False) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z)) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: UpperBoundsFailToPreserveIndexedIntersectionsAsUnions
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} {Index : Type w} [inst : Membership Element SetObject]   [inst_1 : LRA.Set.HasSeparation Element SetObject] [inst_2 : LRA.Set.HasUniversal SetObject]   [inst_3 : LRA.Set.HasIndexedUnion SetObject] [inst_4 : LRA.Set.HasIndexedIntersection SetObject]   (relation : LRA.Relation.Endorelation Element) (family : Index → SetObject),   Eq (LRA.Order.UpperBounds relation (inst_4.indexedIntersection family))       (inst_3.indexedUnion fun index => LRA.Order.UpperBounds relation (family index)) →     False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ≤ ≤ funbound=> ∀ (element : Element), family ≤ ≤element → relation element bound = fun ≤ index=> ≤ ≤ funbound=> ∀ (element : Element), family index ≤ element → relation element bound → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: FailsNonStrictPartialOrder
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (relation : LRA.Order.OrderedSets.OrderRelation Carrier), LRA.Order.PartialOrder relation → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x → x = y) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z))) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: EmptyIndexedIntersectionCreatesVacuousBounds
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} {Index : Type w} [inst : Membership Element SetObject]   [inst_1 : LRA.Set.HasIndexedIntersection SetObject] (relation : LRA.Relation.Endorelation Element)   (family : Index → SetObject),   And (∀ (element : Element), Not (inst.mem (inst_1.indexedIntersection family) element))     (∀ (bound : Element),       And (LRA.Order.UpperBound relation (inst_1.indexedIntersection family) bound)         (LRA.Order.LowerBound relation (inst_1.indexedIntersection family) bound))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (element : Element), family ≤ ≤element → False) ∧ (∀ (bound : Element), ((∀ (element : Element), family ≤ ≤element → relation element bound) ∧ (∀ (element : Element), family ≤ ≤element → relation bound element))))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: ImmediateSuccessorRelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (a a_1 : Nat), Eq a_1 (instHAdd.hAdd a 1)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    a_1 = { hAdd := fun a b => instAddNat.add a b }.hAdd a 1
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: FailsMeet
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} (relation : LRA.Relation.Endorelation Element) (left right candidate : Element),   LRA.Order.Meet relation left right candidate → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (relation candidate left ∧ (relation candidate right ∧ (∀ (lower : Element), relation lower left → relation lower right → relation lower candidate))) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: DirectednessFailsUnderSubset
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element) (ambient subset : SetObject),   And (LRA.Order.Directed relation ambient)     (And (∀ (element : Element), inst.mem subset element → inst.mem ambient element)       (Not (LRA.Order.Directed relation subset)))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((Exists fun element => ambient ≤ element ∧ (∀ (first second : Element), ambient ≤ first → ambient ≤ second → Exists fun upper => (ambient ≤ upper ∧ (relation first upper ∧ relation second upper)))) ∧ ((∀ (element : Element), subset ≤ element → ambient ≤ element) ∧ ((Exists fun element => subset ≤ element ∧ (∀ (first second : Element), subset ≤ first → subset ≤ second → Exists fun upper => (subset ≤ upper ∧ (relation first upper ∧ relation second upper)))) → False)))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: FailsPosetLaws
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {alpha : Type u} (relation : LRA.Relation.Endorelation alpha), LRA.Order.PartialOrder relation → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : alpha), relation x x) ∧ ((∀ (x y : alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : alpha), relation x y → relation y z → relation x z))) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: FailsBounded
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element) (subset : SetObject), LRA.Order.Bounded relation subset → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((Exists fun bound => ∀ (element : Element), subset ≤ element → relation element bound) ∧ (Exists fun bound => ∀ (element : Element), subset ≤ element → relation bound element)) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: M3Relation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (a a_1 : Fin 5), Or (Eq a a_1) (Or (Eq a 0) (Eq a_1 4))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (a = a_1)(Or (a = 0)(a_1 = 4))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: FailsBoundedBelow
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element) (subset : SetObject), LRA.Order.BoundedBelow relation subset → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun bound => ∀ (element : Element), subset ≤ element → relation bound element) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: FailsMeetSemilattice
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} (relation : LRA.Relation.Endorelation Element), LRA.Order.MeetSemilattice relation → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x → x = y) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) ∧ (∀ (left right : Element), Exists fun meet => (relation meet left ∧ (relation meet right ∧ (∀ (lower : Element), relation lower left → relation lower right → relation lower meet))))) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: FailsTransitivity
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (relation : LRA.Order.OrderedSets.OrderRelation Carrier), LRA.Relation.Transitive relation → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (x y z : Carrier), relation x y → relation y z → relation x z) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: ImmediateSuccessorOrEqualRelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (a a_1 : Nat), Or (Eq a a_1) (Eq a_1 (instHAdd.hAdd a 1))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (a = a_1)(a_1 = { hAdd := fun a b => instAddNat.add a b }.hAdd a 1)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: FailsDistributiveLattice
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} (relation : LRA.Relation.Endorelation Element),   And (LRA.Order.Lattice relation) (Not (LRA.Order.DistributiveLattice relation))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x → x = y) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) ∧ (∀ (left right : Element), ((Exists fun join => (relation left join ∧ (relation right join ∧ (∀ (upper : Element), relation left upper → relation right upper → relation join upper)))) ∧ (Exists fun meet => (relation meet left ∧ (relation meet right ∧ (∀ (lower : Element), relation lower left → relation lower right → relation lower meet))))))) ∧ (((((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x → x = y) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) ∧ (∀ (left right : Element), ((Exists fun join => (relation left join ∧ (relation right join ∧ (∀ (upper : Element), relation left upper → relation right upper → relation join upper)))) ∧ (Exists fun meet => (relation meet left ∧ (relation meet right ∧ (∀ (lower : Element), relation lower left → relation lower right → relation lower meet))))))) ∧ ((∀ (a b c bMeetC leftSide aJoinB aJoinC rightSide : Element), (relation bMeetC b ∧ (relation bMeetC c ∧ (∀ (lower : Element), relation lower b → relation lower c → relation lower bMeetC))) → (relation a leftSide ∧ (relation bMeetC leftSide ∧ (∀ (upper : Element), relation a upper → relation bMeetC upper → relation leftSide upper))) → (relation a aJoinB ∧ (relation b aJoinB ∧ (∀ (upper : Element), relation a upper → relation b upper → relation aJoinB upper))) → (relation a aJoinC ∧ (relation c aJoinC ∧ (∀ (upper : Element), relation a upper → relation c upper → relation aJoinC upper))) → (relation rightSide aJoinB ∧ (relation rightSide aJoinC ∧ (∀ (lower : Element), relation lower aJoinB → relation lower aJoinC → relation lower rightSide))) → leftSide = rightSide) ∧ (∀ (a b c bJoinC leftSide aMeetB aMeetC rightSide : Element), (relation b bJoinC ∧ (relation c bJoinC ∧ (∀ (upper : Element), relation b upper → relation c upper → relation bJoinC upper))) → (relation leftSide a ∧ (relation leftSide bJoinC ∧ (∀ (lower : Element), relation lower a → relation lower bJoinC → relation lower leftSide))) → (relation aMeetB a ∧ (relation aMeetB b ∧ (∀ (lower : Element), relation lower a → relation lower b → relation lower aMeetB))) → (relation aMeetC a ∧ (relation aMeetC c ∧ (∀ (lower : Element), relation lower a → relation lower c → relation lower aMeetC))) → (relation aMeetB rightSide ∧ (relation aMeetC rightSide ∧ (∀ (upper : Element), relation aMeetB upper → relation aMeetC upper → relation rightSide upper))) → leftSide = rightSide))) → False))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: FailsLattice
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} (relation : LRA.Relation.Endorelation Element), LRA.Order.Lattice relation → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x → x = y) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) ∧ (∀ (left right : Element), ((Exists fun join => (relation left join ∧ (relation right join ∧ (∀ (upper : Element), relation left upper → relation right upper → relation join upper)))) ∧ (Exists fun meet => (relation meet left ∧ (relation meet right ∧ (∀ (lower : Element), relation lower left → relation lower right → relation lower meet))))))) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: DifferenceInfimumFormulaFails
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : SDiff SetObject]   (relation : LRA.Relation.Endorelation Element) (left removed : SetObject),   And (Exists fun infimum => LRA.Order.Infimum relation left infimum)     (And (Exists fun infimum => LRA.Order.Infimum relation removed infimum)       (Not (Exists fun infimum => LRA.Order.Infimum relation (inst_1.sdiff left removed) infimum)))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((Exists fun infimum => ((∀ (element : Element), left ≤ element → relation infimum element) ∧ (∀ (bound : Element), (∀ (element : Element), left ≤ element → relation bound element) → relation bound infimum))) ∧ ((Exists fun infimum => ((∀ (element : Element), removed ≤ element → relation infimum element) ∧ (∀ (bound : Element), (∀ (element : Element), removed ≤ element → relation bound element) → relation bound infimum))) ∧ ((Exists fun infimum => ((∀ (element : Element), left ≤ removed ≤ element → relation infimum element) ∧ (∀ (bound : Element), (∀ (element : Element), left ≤ removed ≤ element → relation bound element) → relation bound infimum))) → False)))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: FailsAntitone
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Source : Type u} {Target : Type v} (sourceRelation : LRA.Relation.Endorelation Source)   (targetRelation : LRA.Relation.Endorelation Target) (map : Source → Target),   LRA.Order.Antitone sourceRelation targetRelation map → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (left right : Source), sourceRelation left right → targetRelation (map right) (map left)) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: ProductOrderFailsTotality
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Left : Type u} {Right : Type v} (leftRelation : LRA.Relation.Endorelation Left)   (rightRelation : LRA.Relation.Endorelation Right),   LRA.Relation.Total (LRA.Order.ProductRelation leftRelation rightRelation) → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (x y : Prod Left Right), Or ((leftRelation x.1 y.1 ∧ rightRelation x.2 y.2)) ((leftRelation y.1 x.1 ∧ rightRelation y.2 x.2))) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: FailsGreatestElement
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (candidate : Element),   LRA.Order.GreatestElement relation subset candidate → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (subset ≤ candidate ∧ (∀ (element : Element), subset ≤ element → relation element candidate)) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: FailsLeastUpperBoundProperty
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} (SetObject : Type v) [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element), LRA.Order.LeastUpperBoundProperty SetObject relation → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (subset : SetObject), (Exists fun element => subset ≤ element) → (Exists fun bound => ∀ (element : Element), subset ≤ element → relation element bound) → Exists fun supremum => ((∀ (element : Element), subset ≤ element → relation element supremum) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation element bound) → relation supremum bound))) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: MaximalityFailsToImplyGreatest
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (strictRelation nonStrictRelation : LRA.Relation.Endorelation Element) (subset : SetObject) (candidate : Element),   And (LRA.Order.MaximalElement strictRelation subset candidate)     (Not (LRA.Order.GreatestElement nonStrictRelation subset candidate))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((subset ≤ candidate ∧ (∀ (element : Element), subset ≤ element → strictRelation candidate element → False)) ∧ ((subset ≤ candidate ∧ (∀ (element : Element), subset ≤ element → nonStrictRelation element candidate)) → False))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: ComplementDestroysTwoSidedBoundedness
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   [inst_1 : LRA.Set.HasComplement SetObject] (relation : LRA.Relation.Endorelation Element) (subset : SetObject),   And (LRA.Order.Bounded relation subset)     (And (Not (LRA.Order.BoundedAbove relation (inst_1.complement subset)))       (Not (LRA.Order.BoundedBelow relation (inst_1.complement subset))))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((Exists fun bound => ∀ (element : Element), subset ≤ element → relation element bound) ∧ (Exists fun bound => ∀ (element : Element), subset ≤ element → relation bound element)) ∧ (((Exists fun bound => ∀ (element : Element), subset ≤ ≤element → relation element bound) → False) ∧ ((Exists fun bound => ∀ (element : Element), subset ≤ ≤element → relation bound element) → False)))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: FailsUpperBound
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (candidate : Element),   LRA.Order.UpperBound relation subset candidate → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (element : Element), subset ≤ element → relation element candidate) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: FailsOrderIsomorphism
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Source : Type u} {Target : Type v} (sourceRelation : LRA.Relation.Endorelation Source)   (targetRelation : LRA.Relation.Endorelation Target) (forward : Source → Target) (inverse : Target → Source),   LRA.Order.OrderIsomorphism sourceRelation targetRelation forward inverse → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (source : Source), inverse (forward source) = source) ∧ ((∀ (target : Target), forward (inverse target) = target) ∧ ((∀ (left right : Source), sourceRelation left right → targetRelation (forward left) (forward right)) ∧ (∀ (left right : Source), targetRelation (forward left) (forward right) → sourceRelation left right)))) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: DifferenceSupremumFormulaFails
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : SDiff SetObject]   (relation : LRA.Relation.Endorelation Element) (left removed : SetObject),   And (Exists fun supremum => LRA.Order.Supremum relation left supremum)     (And (Exists fun supremum => LRA.Order.Supremum relation removed supremum)       (Not (Exists fun supremum => LRA.Order.Supremum relation (inst_1.sdiff left removed) supremum)))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((Exists fun supremum => ((∀ (element : Element), left ≤ element → relation element supremum) ∧ (∀ (bound : Element), (∀ (element : Element), left ≤ element → relation element bound) → relation supremum bound))) ∧ ((Exists fun supremum => ((∀ (element : Element), removed ≤ element → relation element supremum) ∧ (∀ (bound : Element), (∀ (element : Element), removed ≤ element → relation element bound) → relation supremum bound))) ∧ ((Exists fun supremum => ((∀ (element : Element), left ≤ removed ≤ element → relation element supremum) ∧ (∀ (bound : Element), (∀ (element : Element), left ≤ removed ≤ element → relation element bound) → relation supremum bound))) → False)))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: FailsOrderEmbedding
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Source : Type u} {Target : Type v} (sourceRelation : LRA.Relation.Endorelation Source)   (targetRelation : LRA.Relation.Endorelation Target) (map : Source → Target),   LRA.Order.OrderEmbedding sourceRelation targetRelation map → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (left right : Source), sourceRelation left right → targetRelation (map left) (map right)) ∧ (∀ (left right : Source), targetRelation (map left) (map right) → sourceRelation left right)) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: FailsChain
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element) (subset : SetObject), LRA.Order.Chain relation subset → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (first second : Element), subset ≤ first → subset ≤ second → Or (relation first second) (relation second first)) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: FailsCompleteLattice
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Element : Type u} (SetObject : Type v) [inst : Membership Element SetObject]   (relation : LRA.Relation.Endorelation Element), LRA.Order.CompleteLattice SetObject relation → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x → x = y) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) ∧ (∀ (subset : SetObject), ((Exists fun supremum => ((∀ (element : Element), subset ≤ element → relation element supremum) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation element bound) → relation supremum bound))) ∧ (Exists fun infimum => ((∀ (element : Element), subset ≤ element → relation infimum element) ∧ (∀ (bound : Element), (∀ (element : Element), subset ≤ element → relation bound element) → relation bound infimum)))))) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FailureModes.lean
+
+
+
+Name: OrderFromJoin
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (join : LRA.Operation.BinaryEndoOperation Carrier) (a a_1 : Carrier), Eq (join a a_1) a_1
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    join a a_1 = a_1
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/AlgebraicLattice.lean
+
+
+
+Name: OrderFromMeet
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (meet : LRA.Operation.BinaryEndoOperation Carrier) (a a_1 : Carrier), Eq (meet a a_1) a
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    meet a a_1 = a
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/AlgebraicLattice.lean
+
+
+
+Name: instOrderDiscretenessLawInt
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Order.OrderDiscretenessLaw Int
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Order.OrderDiscretenessLaw Int
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/Mathlib/Certificates.lean
+
+
+
+Name: instAdditionRespectsOrderLawsOfIsOrderedAddMonoid
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {R : Type u} [inst : AddCommMonoid R] [inst_1 : PartialOrder R],   IsOrderedAddMonoid R → LRA.Order.AdditionRespectsOrderLaws R
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    IsOrderedAddMonoid R → LRA.Order.AdditionRespectsOrderLaws R
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/Mathlib/Certificates.lean
+
+
+
+Name: instOrderCompletenessLawsSet
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {R : Type u} [inst : ConditionallyCompleteLinearOrder R], LRA.Order.OrderCompletenessLaws R (Set R)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Order.OrderCompletenessLaws R (R → Prop)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/Mathlib/Certificates.lean
+
+
+
+Name: instPartialOrderLaws
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {R : Type u} [inst : PartialOrder R], LRA.Order.PartialOrderLaws R
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Order.PartialOrderLaws R
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/Mathlib/Certificates.lean
+
+
+
+Name: instDenseOrderLawOfDenselyOrdered
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {R : Type u} [inst : LT R], DenselyOrdered R → LRA.Order.DenseOrderLaw R
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    DenselyOrdered R → LRA.Order.DenseOrderLaw R
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/Mathlib/Certificates.lean
+
+
+
+Name: instMultiplicationRespectsOrderLawsOfIsOrderedRing
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {R : Type u} [inst : Semiring R] [inst_1 : PartialOrder R],   IsOrderedRing R → LRA.Order.MultiplicationRespectsOrderLaws R
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    IsOrderedRing R → LRA.Order.MultiplicationRespectsOrderLaws R
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/Mathlib/Certificates.lean
+
+
+
+Name: instStrictOrderCompatibilityLaw
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {R : Type u} [inst : Preorder R], LRA.Order.StrictOrderCompatibilityLaw R
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Order.StrictOrderCompatibilityLaw R
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/Mathlib/Certificates.lean
+
+
+
+Name: instTotalOrderLaw
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {R : Type u} [inst : LinearOrder R], LRA.Order.TotalOrderLaw R
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Order.TotalOrderLaw R
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Interop/Mathlib/Certificates.lean

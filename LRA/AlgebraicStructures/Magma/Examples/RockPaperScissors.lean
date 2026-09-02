@@ -21,7 +21,5 @@ instance : Nonempty RPS := ⟨.rock⟩
 
 theorem rpsNotAssociative :
     ¬ ∀ a b c : RPS, (a * b) * c = a * (b * c) := by
-  intro h
-  have key := by
   sorry
 end LRA.AlgebraicStructures.Magma.Examples

@@ -98,7 +98,7 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 LRA_ROOT = REPO_ROOT / "LRA"
-TSV_PATH = REPO_ROOT / "build" / "proofs-todo-environment.tsv"
+DEFAULT_TSV_PATH = REPO_ROOT / "build" / "proofs-todo-environment.tsv"
 
 EXCLUDED_EXACT = {"Pilot"}
 EXCLUDED_PREFIX = "Volume"
@@ -1572,6 +1572,40 @@ def compiled_rows_for_prefixes(
     }
 
 
+def source_modules_for_folder(folder: Path) -> list[SourceModule]:
+    source_modules = in_scope_source_modules(folder)
+    barrel_path = REPO_ROOT / "LRA" / f"{folder.name}.lean"
+    barrel_module = folder_module_prefix(folder)
+    if barrel_path.exists() and all(mod.module != barrel_module for mod in source_modules):
+        source_modules.append(scan_source_module(barrel_path, barrel_module))
+    return source_modules
+
+
+def validate_compiled_coverage(
+    folders: list[Path],
+    tsv_by_module: dict[str, list[CompiledTheorem]] | None,
+    offline: bool,
+) -> None:
+    if offline:
+        return
+    assert tsv_by_module is not None
+    missing_prefixes: list[str] = []
+    for folder in folders:
+        prefix = folder_module_prefix(folder)
+        source_modules = source_modules_for_folder(folder)
+        if not any(mod.theorems for mod in source_modules):
+            continue
+        if not compiled_rows_for_prefixes([prefix], tsv_by_module, offline):
+            missing_prefixes.append(prefix)
+    if missing_prefixes:
+        raise SystemExit(
+            "build/proofs-todo-environment.tsv is incomplete for: "
+            + ", ".join(missing_prefixes)
+            + ". Rerun `lake env lean --run scripts/DumpProofsToDo.lean` without "
+            + "`--prefix`, then rerun `python scripts/generate_proofs_todo.py`."
+        )
+
+
 def include_compiled_only_modules(
     source_modules: list[SourceModule],
     compiled_by_module: dict[str, list[CompiledTheorem]],
@@ -1590,12 +1624,8 @@ def include_compiled_only_modules(
 
 
 def process_folder(folder: Path, tsv_by_module: dict[str, list[CompiledTheorem]] | None, offline: bool) -> tuple[str, list[str]]:
-    source_modules = in_scope_source_modules(folder)
-    barrel_path = REPO_ROOT / "LRA" / f"{folder.name}.lean"
+    source_modules = source_modules_for_folder(folder)
     barrel_module = folder_module_prefix(folder)
-    if barrel_path.exists() and all(mod.module != barrel_module for mod in source_modules):
-        source_modules.append(scan_source_module(barrel_path, barrel_module))
-
     prefix = barrel_module
     if offline:
         compiled_by_module = synthesize_offline(source_modules)
@@ -1672,24 +1702,34 @@ def main() -> int:
         action="append",
         help="only process this LRA/<Folder> (repeatable); default is every audited folder",
     )
+    parser.add_argument(
+        "--tsv",
+        type=Path,
+        default=DEFAULT_TSV_PATH,
+        help="compiled TSV emitted by DumpProofsToDo.lean "
+        f"(default: {DEFAULT_TSV_PATH.relative_to(REPO_ROOT).as_posix()})",
+    )
     args = parser.parse_args()
 
     tsv_by_module = None
     if not args.offline:
-        if not TSV_PATH.exists():
+        tsv_path = args.tsv if args.tsv.is_absolute() else REPO_ROOT / args.tsv
+        if not tsv_path.exists():
             print(
-                f"missing {TSV_PATH.relative_to(REPO_ROOT)}; run "
+                f"missing {tsv_path.relative_to(REPO_ROOT)}; run "
                 "`lake env lean --run scripts/DumpProofsToDo.lean` first "
                 "(or pass --offline to preview without it)",
                 file=sys.stderr,
             )
             return 1
-        tsv_by_module = load_tsv(TSV_PATH)
+        tsv_by_module = load_tsv(tsv_path)
 
     folders = audited_folders()
     if args.folder:
         wanted = set(args.folder)
         folders = [f for f in folders if f.name in wanted]
+
+    validate_compiled_coverage(folders, tsv_by_module, args.offline)
 
     stale = []
     all_warnings: list[str] = []
@@ -1705,16 +1745,17 @@ def main() -> int:
             output.write_text(content, encoding="utf-8", newline="\n")
             print(f"wrote {output.relative_to(REPO_ROOT)}")
 
-    global_content, global_warnings = process_global(folders, tsv_by_module, args.offline)
-    all_warnings.extend(global_warnings)
-    global_output = LRA_ROOT / "ProofsToDo.md"
-    if args.check:
-        current = global_output.read_text(encoding="utf-8") if global_output.exists() else ""
-        if current != global_content:
-            stale.append(global_output.relative_to(REPO_ROOT).as_posix())
-    else:
-        global_output.write_text(global_content, encoding="utf-8", newline="\n")
-        print(f"wrote {global_output.relative_to(REPO_ROOT)}")
+    if not args.folder:
+        global_content, global_warnings = process_global(folders, tsv_by_module, args.offline)
+        all_warnings.extend(global_warnings)
+        global_output = LRA_ROOT / "ProofsToDo.md"
+        if args.check:
+            current = global_output.read_text(encoding="utf-8") if global_output.exists() else ""
+            if current != global_content:
+                stale.append(global_output.relative_to(REPO_ROOT).as_posix())
+        else:
+            global_output.write_text(global_content, encoding="utf-8", newline="\n")
+            print(f"wrote {global_output.relative_to(REPO_ROOT)}")
 
     for warning in all_warnings:
         print(f"WARNING: {warning}", file=sys.stderr)

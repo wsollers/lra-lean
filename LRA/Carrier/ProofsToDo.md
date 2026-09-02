@@ -13,7 +13,107 @@ the folder.
 
 **Snapshot:** 0/0 theorem-family entries currently completed (0 sorry remaining).
 
-**Inventory:** 0 theorem/lemma/corollary/proposition entries across 0 module(s) (0 completed, 0 sorry).
-**Excluded from counts:** 0 `instance` entries and 0 `axiom` entries.
+**Inventory:** 0 theorem/lemma/corollary/proposition entries across 2 module(s) (0 completed, 0 sorry).
+**Excluded from counts:** 5 `instance` entries and 0 `axiom` entries.
 
-No proof or axiom declarations found under this scope yet.
+## Open Work Queue
+
+Unfinished entries (`Sorry`, or `Unknown` in offline preview) are listed first so
+this section can be used as the actual proof queue.
+
+No unfinished theorem declarations are currently present in this scope.
+
+## Axioms / Assumptions
+
+Declarations written as `axiom` are recorded here for audit context, but they are
+excluded from the active proof queue because there is no proof obligation to discharge.
+
+No axiomatic assumptions are currently present in this scope.
+
+## Completed Inventory
+
+Completed entries are retained below for full-fresh regeneration and audit context,
+but they are not part of the active proof queue.
+
+Name: IsInfinite
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (A : Type u), LRA.Carrier.IsFinite A → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun n => Exists fun f => ((∀ (y : Fin n) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Fin n), Exists fun x => f x = y))) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Finiteness/Definition.lean
+
+
+
+Name: IsFinite
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (A : Type u), Exists fun n => Exists fun f => LRA.Function.Bijective f
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun n => Exists fun f => ((∀ (y : Fin n) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Fin n), Exists fun x => f x = y))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Finiteness/Definition.lean
+
+
+
+Name: IsUncountable
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (A : Type u), LRA.Carrier.IsCountable A → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun f => ∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Countability/Definition.lean
+
+
+
+Name: IsCountable
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (A : Type u), Exists fun f => LRA.Function.Injective f
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun f => ∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Countability/Definition.lean
+
+
+
+Name: IsCountablyInfinite
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (A : Type u), Exists fun f => LRA.Function.Bijective f
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun f => ((∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Nat), Exists fun x => f x = y))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Countability/Definition.lean

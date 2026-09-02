@@ -13,7 +13,73 @@ the folder.
 
 **Snapshot:** 0/0 theorem-family entries currently completed (0 sorry remaining).
 
-**Inventory:** 0 theorem/lemma/corollary/proposition entries across 0 module(s) (0 completed, 0 sorry).
-**Excluded from counts:** 0 `instance` entries and 0 `axiom` entries.
+**Inventory:** 0 theorem/lemma/corollary/proposition entries across 1 module(s) (0 completed, 0 sorry).
+**Excluded from counts:** 3 `instance` entries and 0 `axiom` entries.
 
-No proof or axiom declarations found under this scope yet.
+## Open Work Queue
+
+Unfinished entries (`Sorry`, or `Unknown` in offline preview) are listed first so
+this section can be used as the actual proof queue.
+
+No unfinished theorem declarations are currently present in this scope.
+
+## Axioms / Assumptions
+
+Declarations written as `axiom` are recorded here for audit context, but they are
+excluded from the active proof queue because there is no proof obligation to discharge.
+
+No axiomatic assumptions are currently present in this scope.
+
+## Completed Inventory
+
+Completed entries are retained below for full-fresh regeneration and audit context,
+but they are not part of the active proof queue.
+
+Name: IsEventuallyPeriodic
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {integerModel : LRA.NumberSystems.Integers.Interface.ModelTheory.IntegerModel}   (fraction : LRA.Arithmetic.ContinuedFractions.InfiniteSimpleContinuedFraction integerModel),   Exists fun start =>     Exists fun period =>       And (Ne period 0)         (∀ (index : Nat), instLENat.le start index → Eq (fraction (instHAdd.hAdd index period)) (fraction index))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun start => Exists fun period => ((period = 0 → False) ∧ (∀ (index : Nat), instLENat.le start index → fraction ({ hAdd := fun a b => instAddNat.add a b }.hAdd index period) = fraction index))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./ContinuedFractions/Definition.lean
+
+
+
+Name: IsCanonicalSimpleContinuedFraction
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {integerModel : LRA.NumberSystems.Integers.Interface.ModelTheory.IntegerModel}   (fraction : LRA.Arithmetic.ContinuedFractions.FiniteSimpleContinuedFraction integerModel),   And     (∀ (coefficient : integerModel.Carrier),       List.instMembership.mem fraction.Tail coefficient → integerModel.ltInst.lt 0 coefficient)     (Or (Eq fraction.Tail List.nil)       (Exists fun initialSegment =>         Exists fun last =>           And (Eq fraction.Tail (instHAppendOfAppend.hAppend initialSegment (List.cons last List.nil)))             (integerModel.ltInst.lt 1 last)))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (coefficient : integerModel.1), List.coefficient ∈ fraction.2 → integerModel.7.lt 0 coefficient) ∧ (Or (fraction.2 = List.nil) (Exists fun initialSegment => Exists fun last => (fraction.2 = instHAppendOfAppend.1 initialSegment (List.cons last List.nil) ∧ integerModel.7.lt 1 last))))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./ContinuedFractions/Definition.lean
+
+
+
+Name: IsProperInfiniteSimpleContinuedFraction
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {integerModel : LRA.NumberSystems.Integers.Interface.ModelTheory.IntegerModel}   (fraction : LRA.Arithmetic.ContinuedFractions.InfiniteSimpleContinuedFraction integerModel) (index : Nat),   integerModel.ltInst.lt 0 (fraction (instHAdd.hAdd index 1))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    integerModel.7.lt 0 (fraction ({ hAdd := fun a b => instAddNat.add a b }.hAdd index 1))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./ContinuedFractions/Definition.lean

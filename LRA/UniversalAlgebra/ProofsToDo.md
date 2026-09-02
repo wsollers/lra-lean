@@ -12,11 +12,942 @@ references. That gives a conservative repo-local work sequence, but it is
 the folder.
 
 **Progress:** 0/27 theorem-family entries completed since reset baseline `4e5dfb4e` (ready for proving).
-**Baseline reconciliation:** 0 still match baseline as `sorry`; 27 baseline entries were moved, renamed, or removed and are not auto-credited.
+**Baseline reconciliation:** 27 still match baseline as `sorry`; 0 baseline entries were moved, renamed, or removed and are not auto-credited.
 
-**Snapshot:** 0/0 theorem-family entries currently completed (0 sorry remaining).
+**Snapshot:** 0/27 theorem-family entries currently completed (27 sorry remaining).
 
-**Inventory:** 0 theorem/lemma/corollary/proposition entries across 0 module(s) (0 completed, 0 sorry).
-**Excluded from counts:** 0 `instance` entries and 0 `axiom` entries.
+**Inventory:** 27 theorem/lemma/corollary/proposition entries across 15 module(s) (0 completed, 27 sorry).
+**Excluded from counts:** 23 `instance` entries and 0 `axiom` entries.
 
-No proof or axiom declarations found under this scope yet.
+## Open Work Queue
+
+Unfinished entries (`Sorry`, or `Unknown` in offline preview) are listed first so
+this section can be used as the actual proof queue.
+
+Name: algebraicSignatureIsAlgebraic
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (Functions : LRA.Logic.ArityIndexedSymbols) (Constants : Type),   (LRA.UniversalAlgebra.algebraicSignature Functions Constants).IsAlgebraic
+Predicate logic (unfolded):
+  Ambient
+    (Constants)
+  Objects
+    Functions : ArityIndexedSymbols
+  Prove
+    False
+Transliterated theorem: (∀ Functions ∈ ArityIndexedSymbols), (algebraicSignature Functions Constants).IsAlgebraic
+Logical form (Lean): (Functions : ArityIndexedSymbols) (Constants : Type) : (algebraicSignature Functions Constants).IsAlgebraic
+Source: ./Algebra/Definition.lean#L147
+
+
+
+Name: termAlgebraEvaluatesToItself
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (S : Signature) (Variable : Type) [Nonempty Variable] (term : Term S Variable), evaluateTerm (termAlgebra S Variable) Term.var term = term
+Predicate logic (unfolded):
+  Ambient
+    (Variable)
+  Objects
+    S : Signature
+    term : Term S Variable
+  Prove
+    LRA.Logic.FirstOrder.evaluateTerm { Domain := LRA.Logic.FirstOrder.Term S Variable, domainNonempty := ⋯, equalityIsDiagonal := ⋯, interpretFunction := fun functionSymbol arguments => LRA.Logic.FirstOrder.Term.apply functionSymbol arguments, interpretRelation := fun x x_1 => False, interpretConstant := fun constantSymbol => LRA.Logic.FirstOrder.Term.const constantSymbol } LRA.Logic.FirstOrder.Term.var term = term
+Transliterated theorem: (∀ S ∈ Signature), evaluateTerm (termAlgebra S Variable) Term.var term = term
+Logical form (Lean): (S : Signature) (Variable : Type) [Nonempty Variable] (term : Term S Variable) : evaluateTerm (termAlgebra S Variable) Term.var term = term
+Source: ./Algebra/Definition.lean#L260
+
+
+
+Name: modelsOfEquationalTheoryIsVariety
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {S : LRA.Logic.Signature} (theory : LRA.UniversalAlgebra.EquationalTheory S Nat),   LRA.UniversalAlgebra.IsVariety (LRA.UniversalAlgebra.ModelsOfEquationalTheory theory)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    S : Signature
+    theory : EquationalTheory S Nat
+  Prove
+    Exists fun theory_1 => fun M => ∀ (equation : LRA.UniversalAlgebra.Equation S Nat), equation ∈ theory → ∀ (assignment : Nat → M.1), LRA.Logic.FirstOrder.evaluateTerm M assignment equation.1 = LRA.Logic.FirstOrder.evaluateTerm M assignment equation.2 = funM => ∀ (equation : LRA.UniversalAlgebra.Equation S Nat), equation ∈ theory_1 → ∀ (assignment : Nat → M.1), LRA.Logic.FirstOrder.evaluateTerm M assignment equation.1 = LRA.Logic.FirstOrder.evaluateTerm M assignment equation.2
+Transliterated theorem: IsVariety (ModelsOfEquationalTheory.{u} theory)
+Logical form (Lean): {S : Signature} (theory : EquationalTheory S Nat) : IsVariety (ModelsOfEquationalTheory.{u} theory)
+Source: ./Satisfaction/Definition.lean#L309
+
+
+
+Name: UnaryOperationCongruence.apply
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}   {operation : LRA.Operation.UnaryEndoOperation Carrier},   LRA.UniversalAlgebra.Congruence.UnaryOperationCongruence relation operation →     ∀ {left right : Carrier}, relation left right → relation (operation left) (operation right)
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Relation.Endorelation Carrier
+    operation : UnaryEndoOperation Carrier
+    law : UnaryOperationCongruence relation operation
+    left right : Carrier
+    related_inputs : relation left right
+  Prove
+    (∀ {left right : Carrier}, relation left right → relation (operation left) (operation right)) → ∀ {left right : Carrier}, relation left right → relation (operation left) (operation right)
+Transliterated theorem: relation (operation left) (operation right)
+Logical form (Lean): {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} {operation : UnaryEndoOperation Carrier} (law : UnaryOperationCongruence relation operation) {left right : Carrier} (related_inputs : relation left right) : relation (operation left) (operation right)
+Source: ./Congruence/Theorems.lean#L51
+
+
+
+Name: BinaryOperationCongruence.apply
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} {operation : BinaryEndoOperation Carrier} (law : BinaryOperationCongruence relation operation) {left₁ left₂ right₁ right₂ : Carrier} (related_left_inputs : relation left₁ left₂) (related_right_inputs : relation right₁ right₂), relation (operation left₁ right₁) (operation left₂ right₂)
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Relation.Endorelation Carrier
+    operation : BinaryEndoOperation Carrier
+    law : BinaryOperationCongruence relation operation
+    left₁ left₂ right₁ right₂ : Carrier
+    related_left_inputs : relation left₁ left₂
+    related_right_inputs : relation right₁ right₂
+  Prove
+    (∀ {left₁ left₂ right₁ right₂ : Carrier}, relation left₁ left₂ → relation right₁ right₂ → relation (operation left₁ right₁) (operation left₂ right₂)) → ∀ {left₁ left₂ right₁ right₂ : Carrier}, (relation left₁ left₂ ∧ relation right₁ right₂) → relation (operation left₁ right₁) (operation left₂ right₂)
+Transliterated theorem: relation (operation left₁ right₁) (operation left₂ right₂)
+Logical form (Lean): {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} {operation : BinaryEndoOperation Carrier} (law : BinaryOperationCongruence relation operation) {left₁ left₂ right₁ right₂ : Carrier} (related_left_inputs : relation left₁ left₂) (related_right_inputs : relation right₁ right₂) : relation (operation left₁ right₁) (operation left₂ right₂)
+Source: ./Congruence/Theorems.lean#L102
+
+
+
+Name: UnaryOperationRelationRequirements.relation_is_equivalence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}   {operation : LRA.Operation.UnaryEndoOperation Carrier},   LRA.UniversalAlgebra.Congruence.UnaryOperationRelationRequirements relation operation →     LRA.Relation.EquivalenceRelation relation
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Relation.Endorelation Carrier
+    operation : UnaryEndoOperation Carrier
+    requirements : UnaryOperationRelationRequirements relation operation
+  Prove
+    (((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z))) ∧ (∀ {left right : Carrier}, relation left right → relation (operation left) (operation right))) → ((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z)))
+Transliterated theorem: LRA.Relation.EquivalenceRelation relation
+Logical form (Lean): {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} {operation : UnaryEndoOperation Carrier} (requirements : UnaryOperationRelationRequirements relation operation) : LRA.Relation.EquivalenceRelation relation
+Source: ./Congruence/Theorems.lean#L151
+
+
+
+Name: UnaryOperationRelationRequirements.operation_congruence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}   {operation : LRA.Operation.UnaryEndoOperation Carrier},   LRA.UniversalAlgebra.Congruence.UnaryOperationRelationRequirements relation operation →     LRA.UniversalAlgebra.Congruence.UnaryOperationCongruence relation operation
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Relation.Endorelation Carrier
+    operation : UnaryEndoOperation Carrier
+    requirements : UnaryOperationRelationRequirements relation operation
+  Prove
+    (((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z))) ∧ (∀ {left right : Carrier}, relation left right → relation (operation left) (operation right))) → ∀ {left right : Carrier}, relation left right → relation (operation left) (operation right)
+Transliterated theorem: UnaryOperationCongruence relation operation
+Logical form (Lean): {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} {operation : UnaryEndoOperation Carrier} (requirements : UnaryOperationRelationRequirements relation operation) : UnaryOperationCongruence relation operation
+Source: ./Congruence/Theorems.lean#L197
+
+
+
+Name: BinaryOperationRelationRequirements.relation_is_equivalence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}   {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.UniversalAlgebra.Congruence.BinaryOperationRelationRequirements relation operation →     LRA.Relation.EquivalenceRelation relation
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Relation.Endorelation Carrier
+    operation : BinaryEndoOperation Carrier
+    requirements : BinaryOperationRelationRequirements relation operation
+  Prove
+    (((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z))) ∧ (∀ {left₁ left₂ right₁ right₂ : Carrier}, relation left₁ left₂ → relation right₁ right₂ → relation (operation left₁ right₁) (operation left₂ right₂))) → ((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z)))
+Transliterated theorem: LRA.Relation.EquivalenceRelation relation
+Logical form (Lean): {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} {operation : BinaryEndoOperation Carrier} (requirements : BinaryOperationRelationRequirements relation operation) : LRA.Relation.EquivalenceRelation relation
+Source: ./Congruence/Theorems.lean#L243
+
+
+
+Name: BinaryOperationRelationRequirements.operation_congruence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}   {operation : LRA.Operation.BinaryEndoOperation Carrier},   LRA.UniversalAlgebra.Congruence.BinaryOperationRelationRequirements relation operation →     LRA.UniversalAlgebra.Congruence.BinaryOperationCongruence relation operation
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Relation.Endorelation Carrier
+    operation : BinaryEndoOperation Carrier
+    requirements : BinaryOperationRelationRequirements relation operation
+  Prove
+    (((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z))) ∧ (∀ {left₁ left₂ right₁ right₂ : Carrier}, relation left₁ left₂ → relation right₁ right₂ → relation (operation left₁ right₁) (operation left₂ right₂))) → ∀ {left₁ left₂ right₁ right₂ : Carrier}, (relation left₁ left₂ ∧ relation right₁ right₂) → relation (operation left₁ right₁) (operation left₂ right₂)
+Transliterated theorem: BinaryOperationCongruence relation operation
+Logical form (Lean): {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} {operation : BinaryEndoOperation Carrier} (requirements : BinaryOperationRelationRequirements relation operation) : BinaryOperationCongruence relation operation
+Source: ./Congruence/Theorems.lean#L289
+
+
+
+Name: BinaryOperationCongruence.left
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} {operation : BinaryEndoOperation Carrier} (reflexive : LRA.Relation.Reflexive relation) (law : BinaryOperationCongruence relation operation), forall {left₁ left₂ : Carrier} (right : Carrier), relation left₁ left₂ -> relation (operation left₁ right) (operation left₂ right)
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Relation.Endorelation Carrier
+    operation : BinaryEndoOperation Carrier
+    reflexive : LRA.Relation.Reflexive relation
+    law : BinaryOperationCongruence relation operation
+  Prove
+    ((∀ (x : Carrier), relation x x) ∧ (∀ {left₁ left₂ right₁ right₂ : Carrier}, relation left₁ left₂ → relation right₁ right₂ → relation (operation left₁ right₁) (operation left₂ right₂))) → ∀ {left₁ left₂ : Carrier} (right : Carrier), relation left₁ left₂ → relation (operation left₁ right) (operation left₂ right)
+Transliterated theorem: forall {left₁ left₂ : Carrier} right ∈ Carrier, relation left₁ left₂ -> relation (operation left₁ right) (operation left₂ right)
+Logical form (Lean): {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} {operation : BinaryEndoOperation Carrier} (reflexive : LRA.Relation.Reflexive relation) (law : BinaryOperationCongruence relation operation) : forall {left₁ left₂ : Carrier} (right : Carrier), relation left₁ left₂ -> relation (operation left₁ right) (operation left₂ right)
+Source: ./Congruence/Relationships.lean#L52
+
+
+
+Name: BinaryOperationCongruence.right
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} {operation : BinaryEndoOperation Carrier} (reflexive : LRA.Relation.Reflexive relation) (law : BinaryOperationCongruence relation operation), forall (left : Carrier) {right₁ right₂ : Carrier}, relation right₁ right₂ -> relation (operation left right₁) (operation left right₂)
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Relation.Endorelation Carrier
+    operation : BinaryEndoOperation Carrier
+    reflexive : LRA.Relation.Reflexive relation
+    law : BinaryOperationCongruence relation operation
+  Prove
+    ((∀ (x : Carrier), relation x x) ∧ (∀ {left₁ left₂ right₁ right₂ : Carrier}, relation left₁ left₂ → relation right₁ right₂ → relation (operation left₁ right₁) (operation left₂ right₂))) → ∀ (left : Carrier) {right₁ right₂ : Carrier}, relation right₁ right₂ → relation (operation left right₁) (operation left right₂)
+Transliterated theorem: forall left ∈ Carrier {right₁ right₂ : Carrier}, relation right₁ right₂ -> relation (operation left right₁) (operation left right₂)
+Logical form (Lean): {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier} {operation : BinaryEndoOperation Carrier} (reflexive : LRA.Relation.Reflexive relation) (law : BinaryOperationCongruence relation operation) : forall (left : Carrier) {right₁ right₂ : Carrier}, relation right₁ right₂ -> relation (operation left right₁) (operation left right₂)
+Source: ./Congruence/Relationships.lean#L104
+
+
+
+Name: UnaryOperationRelationRequirements.quotient_projection_respects_operation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {SetObject : Type v} [Membership Carrier SetObject] [LRA.Set.HasSeparation Carrier SetObject] [LRA.Set.SeparationLaws Carrier SetObject] [LRA.Set.ExtensionalityLaw Carrier SetObject] {ambient : SetObject} {relation : LRA.Relation.Endorelation Carrier} {operation : UnaryEndoOperation Carrier} (requirements : UnaryOperationRelationRequirements relation operation) {left right : Carrier} (related : relation left right), LRA.Relation.QuotientProjection ambient relation (operation left) = LRA.Relation.QuotientProjection ambient relation (operation right)
+Predicate logic (unfolded):
+  Ambient
+    (Carrier, SetObject, ∈)
+  Objects
+    ambient : SetObject
+    relation : LRA.Relation.Endorelation Carrier
+    operation : UnaryEndoOperation Carrier
+    requirements : UnaryOperationRelationRequirements relation operation
+    left right : Carrier
+    related : relation left right
+  Prove
+    (LRA.Set.SeparationLaws Carrier SetObject ∧ LRA.Set.ExtensionalityLaw Carrier SetObject) → ∀ {ambient : SetObject} {relation : Carrier → Carrier → Prop} {operation : Carrier → Carrier}, (((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z))) ∧ (∀ {left right : Carrier}, relation left right → relation (operation left) (operation right))) → ∀ {left right : Carrier}, relation left right → ambient ≤ funcandidate => relation candidate (operation left) = ambient ≤ funcandidate => relation candidate (operation right)
+Transliterated theorem: (∀ A ∈ U), LRA.Relation.QuotientProjection A relation (operation left) = LRA.Relation.QuotientProjection A relation (operation right)
+Logical form (Lean): {Carrier : Type u} {SetObject : Type v} [Membership Carrier SetObject] [LRA.Set.HasSeparation Carrier SetObject] [LRA.Set.SeparationLaws Carrier SetObject] [LRA.Set.ExtensionalityLaw Carrier SetObject] {ambient : SetObject} {relation : LRA.Relation.Endorelation Carrier} {operation : UnaryEndoOperation Carrier} (requirements : UnaryOperationRelationRequirements relation operation) {left right : Carrier} (related : relation left right) : LRA.Relation.QuotientProjection ambient relation (operation left) = LRA.Relation.QuotientProjection ambient relation (operation right)
+Source: ./Congruence/Consequences.lean#L61
+
+
+
+Name: BinaryOperationRelationRequirements.quotient_projection_respects_operation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {SetObject : Type v} [Membership Carrier SetObject] [LRA.Set.HasSeparation Carrier SetObject] [LRA.Set.SeparationLaws Carrier SetObject] [LRA.Set.ExtensionalityLaw Carrier SetObject] {ambient : SetObject} {relation : LRA.Relation.Endorelation Carrier} {operation : BinaryEndoOperation Carrier} (requirements : BinaryOperationRelationRequirements relation operation) {left₁ left₂ right₁ right₂ : Carrier} (leftRelated : relation left₁ left₂) (rightRelated : relation right₁ right₂), LRA.Relation.QuotientProjection ambient relation (operation left₁ right₁) = LRA.Relation.QuotientProjection ambient relation (operation left₂ right₂)
+Predicate logic (unfolded):
+  Ambient
+    (Carrier, SetObject, ∈)
+  Objects
+    ambient : SetObject
+    relation : LRA.Relation.Endorelation Carrier
+    operation : BinaryEndoOperation Carrier
+    requirements : BinaryOperationRelationRequirements relation operation
+    left₁ left₂ right₁ right₂ : Carrier
+    leftRelated : relation left₁ left₂
+    rightRelated : relation right₁ right₂
+  Prove
+    (LRA.Set.SeparationLaws Carrier SetObject ∧ LRA.Set.ExtensionalityLaw Carrier SetObject) → ∀ {ambient : SetObject} {relation : Carrier → Carrier → Prop} {operation : Carrier → Carrier → Carrier}, (((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z))) ∧ (∀ {left₁ left₂ right₁ right₂ : Carrier}, relation left₁ left₂ → relation right₁ right₂ → relation (operation left₁ right₁) (operation left₂ right₂))) → ∀ {left₁ left₂ right₁ right₂ : Carrier}, (relation left₁ left₂ ∧ relation right₁ right₂) → ambient ≤ funcandidate => relation candidate (operation left₁ right₁) = ambient ≤ funcandidate => relation candidate (operation left₂ right₂)
+Transliterated theorem: (∀ A ∈ U), LRA.Relation.QuotientProjection A relation (operation left₁ right₁) = LRA.Relation.QuotientProjection A relation (operation left₂ right₂)
+Logical form (Lean): {Carrier : Type u} {SetObject : Type v} [Membership Carrier SetObject] [LRA.Set.HasSeparation Carrier SetObject] [LRA.Set.SeparationLaws Carrier SetObject] [LRA.Set.ExtensionalityLaw Carrier SetObject] {ambient : SetObject} {relation : LRA.Relation.Endorelation Carrier} {operation : BinaryEndoOperation Carrier} (requirements : BinaryOperationRelationRequirements relation operation) {left₁ left₂ right₁ right₂ : Carrier} (leftRelated : relation left₁ left₂) (rightRelated : relation right₁ right₂) : LRA.Relation.QuotientProjection ambient relation (operation left₁ right₁) = LRA.Relation.QuotientProjection ambient relation (operation left₂ right₂)
+Source: ./Congruence/Consequences.lean#L130
+
+
+
+Name: SameParityAdditionCongruence
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.UniversalAlgebra.Congruence.BinaryOperationCongruence LRA.UniversalAlgebra.Congruence.SameParityForCongruenceExample   LRA.UniversalAlgebra.Congruence.NaturalAddition
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (instHMod.1 left₁ 2 = instHMod.1 left₂ 2 ∧ instHMod.1 right₁ 2 = instHMod.1 right₂ 2) → instHMod.1 ({ hAdd := fun a b => instAddNat.add a b }.hAdd left₁ right₁) 2 = instHMod.1 ({ hAdd := fun a b => instAddNat.add a b }.hAdd left₂ right₂) 2
+Transliterated theorem: BinaryOperationCongruence SameParityForCongruenceExample NaturalAddition
+Logical form (Lean): : BinaryOperationCongruence SameParityForCongruenceExample NaturalAddition
+Source: ./Congruence/Examples.lean#L126
+
+
+
+Name: SameParityFailsUnarySubstitutionForSuccessor
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.UniversalAlgebra.Congruence.FailsUnaryRelationSubstitution LRA.UniversalAlgebra.Congruence.SameParity   LRA.UniversalAlgebra.Congruence.NaturalSuccessor
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ {left right : Nat}, instHMod.1 left 2 = instHMod.1 right 2 → { hAdd := fun a b => instAddNat.add a b }.hAdd left 1 = { hAdd := fun a b => instAddNat.add a b }.hAdd right 1) → False
+Transliterated theorem: FailsUnaryRelationSubstitution SameParity NaturalSuccessor
+Logical form (Lean): : FailsUnaryRelationSubstitution SameParity NaturalSuccessor
+Source: ./Congruence/FailureModes.lean#L174
+
+
+
+Name: Homomorphism.commutesWithTermEvaluation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {S : Signature} {Variable : Type} {M : Model.{u} S} {N : Model.{v} S} (homomorphism : Homomorphism M N) (assignment : Variable → M.Domain) (term : Term S Variable), homomorphism.map (evaluateTerm M assignment term) = evaluateTerm N (fun v => homomorphism.map (assignment v)) term
+Predicate logic (unfolded):
+  Ambient
+    (Variable)
+  Objects
+    S : Signature
+    M : Model.{u} S
+    N : Model.{v} S
+    homomorphism : Homomorphism M N
+    assignment : Variable → M.Domain
+    term : Term S Variable
+  Prove
+    homomorphism.1 (LRA.Logic.FirstOrder.evaluateTerm M assignment term) = LRA.Logic.FirstOrder.evaluateTerm N (fun v => homomorphism.1 (assignment v)) term
+Transliterated theorem: homomorphism.map (evaluateTerm M assignment term) = evaluateTerm N (fun v => homomorphism.map (assignment v)) term
+Logical form (Lean): {S : Signature} {Variable : Type} {M : Model.{u} S} {N : Model.{v} S} (homomorphism : Homomorphism M N) (assignment : Variable → M.Domain) (term : Term S Variable) : homomorphism.map (evaluateTerm M assignment term) = evaluateTerm N (fun v => homomorphism.map (assignment v)) term
+Source: ./Homomorphism/Definition.lean#L293
+
+
+
+Name: termExtensionUnique
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {S : Signature} {Variable : Type} [Nonempty Variable] (M : Model.{0} S) (assignment : Variable → M.Domain) (homomorphism : Homomorphism (termAlgebra S Variable) M) (agreesOnVariables : ∀ v : Variable, homomorphism.map (.var v) = assignment v), ∀ term : Term S Variable, homomorphism.map term = evaluateTerm M assignment term
+Predicate logic (unfolded):
+  Ambient
+    (Variable)
+  Objects
+    S : Signature
+    M : Model.{0} S
+    assignment : Variable → M.Domain
+    homomorphism : Homomorphism (termAlgebra S Variable) M
+  Prove
+    (∀ (v : Variable), homomorphism.1 (LRA.Logic.FirstOrder.Term.var v) = assignment v) → ∀ (term : LRA.Logic.FirstOrder.Term S Variable), homomorphism.1 term = LRA.Logic.FirstOrder.evaluateTerm M assignment term
+Transliterated theorem: (∀ v : Variable, homomorphism.map (.var v) = assignment v) → ∀ term : Term S Variable, homomorphism.map term = evaluateTerm M assignment term
+Logical form (Lean): {S : Signature} {Variable : Type} [Nonempty Variable] (M : Model.{0} S) (assignment : Variable → M.Domain) (homomorphism : Homomorphism (termAlgebra S Variable) M) (agreesOnVariables : ∀ v : Variable, homomorphism.map (.var v) = assignment v) : ∀ term : Term S Variable, homomorphism.map term = evaluateTerm M assignment term
+Source: ./Homomorphism/Definition.lean#L414
+
+
+
+Name: equationTransportsAlongSurjection
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {S : Signature} {Variable : Type} {M : Model.{u} S} {N : Model.{v} S} (homomorphism : Homomorphism M N) (surjective : ∀ target : N.Domain, ∃ source, homomorphism.map source = target) (equation : Equation S Variable) (sourceSatisfies : SatisfiesEquation M equation), SatisfiesEquation N equation
+Predicate logic (unfolded):
+  Ambient
+    (Variable)
+  Objects
+    S : Signature
+    M : Model.{u} S
+    N : Model.{v} S
+    homomorphism : Homomorphism M N
+    equation : Equation S Variable
+    sourceSatisfies : SatisfiesEquation M equation
+  Prove
+    (∀ (target : N.1), Exists fun source => homomorphism.1 source = target) → ∀ (equation : LRA.UniversalAlgebra.Equation S Variable), (∀ (assignment : Variable → M.1), LRA.Logic.FirstOrder.evaluateTerm M assignment equation.1 = LRA.Logic.FirstOrder.evaluateTerm M assignment equation.2) → ∀ (assignment : Variable → N.1), LRA.Logic.FirstOrder.evaluateTerm N assignment equation.1 = LRA.Logic.FirstOrder.evaluateTerm N assignment equation.2
+Transliterated theorem: (∀ target : N.Domain, ∃ source, homomorphism.map source = target) → SatisfiesEquation N equation
+Logical form (Lean): {S : Signature} {Variable : Type} {M : Model.{u} S} {N : Model.{v} S} (homomorphism : Homomorphism M N) (surjective : ∀ target : N.Domain, ∃ source, homomorphism.map source = target) (equation : Equation S Variable) (sourceSatisfies : SatisfiesEquation M equation) : SatisfiesEquation N equation
+Source: ./Homomorphism/Definition.lean#L466
+
+
+
+Name: isomorphic_symm
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {S : LRA.Logic.Signature} {M : LRA.Logic.FirstOrder.Model S} {N : LRA.Logic.FirstOrder.Model S},   LRA.UniversalAlgebra.Isomorphic M N → LRA.UniversalAlgebra.Isomorphic N M
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    S : Signature
+    M : Model.{u} S
+    N : Model.{v} S
+  Prove
+    Nonempty (LRA.UniversalAlgebra.Isomorphism M N) → Nonempty (LRA.UniversalAlgebra.Isomorphism N M)
+Transliterated theorem: Isomorphic M N → Isomorphic N M
+Logical form (Lean): {S : Signature} {M : Model.{u} S} {N : Model.{v} S} : Isomorphic M N → Isomorphic N M
+Source: ./Isomorphism/Definition.lean#L180
+
+
+
+Name: quotientProjectionIsHomomorphism
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {S : Signature} {M : Model.{u} S} (congruence : Congruence M), ∃ projection : Homomorphism M (quotientModel congruence), ∀ element, projection.map element = Quot.mk _ element
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    S : Signature
+    M : Model.{u} S
+    congruence : Congruence M
+  Prove
+    Exists fun projection => ∀ (element : M.1), projection.1 element = Quot.mk congruence.1 element
+Transliterated theorem: ∃ projection ∈ Homomorphism M (quotientModel congruence), ∀ element, projection.map element = Quot.mk _ element
+Logical form (Lean): {S : Signature} {M : Model.{u} S} (congruence : Congruence M) : ∃ projection : Homomorphism M (quotientModel congruence), ∀ element, projection.map element = Quot.mk _ element
+Source: ./Quotient/Definition.lean#L205
+
+
+
+Name: binary_operation_respects_iff_left_and_right
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type} (setoid : Setoid Carrier) (operation : Carrier → Carrier → Carrier), binary_operation_respects setoid operation ↔ binary_operation_respects_left setoid operation ∧ binary_operation_respects_right setoid operation
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    setoid : Setoid Carrier
+    operation : Carrier → Carrier → Carrier
+  Prove
+    binary_operation_respects setoid operation ↔ binary_operation_respects_left setoid operation ∧ binary_operation_respects_right setoid operation
+Transliterated theorem: binary_operation_respects setoid operation ↔ binary_operation_respects_left setoid operation ∧ binary_operation_respects_right setoid operation
+Logical form (Lean): {Carrier : Type} (setoid : Setoid Carrier) (operation : Carrier → Carrier → Carrier) : binary_operation_respects setoid operation ↔ binary_operation_respects_left setoid operation ∧ binary_operation_respects_right setoid operation
+Source: ./Quotient/RepresentativeCompatibility.lean#L266
+
+
+
+Name: commutative_operation_respects_of_respects_left
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type} (setoid : Setoid Carrier) (operation : Carrier → Carrier → Carrier) (operation_is_commutative : ∀ first second : Carrier, operation first second = operation second first) (operation_respects_left : binary_operation_respects_left setoid operation), binary_operation_respects setoid operation
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    setoid : Setoid Carrier
+    operation : Carrier → Carrier → Carrier
+    operation_respects_left : binary_operation_respects_left setoid operation
+  Prove
+    ((∀ (first second : Carrier), operation first second = operation second first) ∧ (∀ (first_representative first_replacement second_representative : Carrier), setoid.1 first_representative first_replacement → setoid.1 (operation first_representative second_representative) (operation first_replacement second_representative))) → ∀ (first_representative first_replacement second_representative second_replacement : Carrier), (setoid.1 first_representative first_replacement ∧ setoid.1 second_representative second_replacement) → setoid.1 (operation first_representative second_representative) (operation first_replacement second_replacement)
+Transliterated theorem: (∀ first second : Carrier, operation first second = operation second first) → binary_operation_respects setoid operation
+Logical form (Lean): {Carrier : Type} (setoid : Setoid Carrier) (operation : Carrier → Carrier → Carrier) (operation_is_commutative : ∀ first second : Carrier, operation first second = operation second first) (operation_respects_left : binary_operation_respects_left setoid operation) : binary_operation_respects setoid operation
+Source: ./Quotient/RepresentativeCompatibility.lean#L319
+
+
+
+Name: induced_binary_operation_exists
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type} (setoid : Setoid Carrier) (representative_operation : Carrier → Carrier → Carrier) (representative_operation_respects : binary_operation_respects setoid representative_operation), ∃ quotient_operation : Quotient setoid → Quotient setoid → Quotient setoid, ∀ first_representative second_representative : Carrier, quotient_operation (Quotient.mk setoid first_representative) (Quotient.mk setoid second_representative) = Quotient.mk setoid (representative_operation first_representative second_representative)
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    setoid : Setoid Carrier
+    representative_operation : Carrier → Carrier → Carrier
+    representative_operation_respects : binary_operation_respects setoid representative_operation
+  Prove
+    (∀ (first_representative first_replacement second_representative second_replacement : Carrier), setoid.1 first_representative first_replacement → setoid.1 second_representative second_replacement → setoid.1 (representative_operation first_representative second_representative) (representative_operation first_replacement second_replacement)) → Exists fun quotient_operation => ∀ (first_representative second_representative : Carrier), quotient_operation (Quot.mk setoid.1 first_representative) (Quot.mk setoid.1 second_representative) = Quot.mk setoid.1 (representative_operation first_representative second_representative)
+Transliterated theorem: ∃ quotient_operation ∈ Quotient setoid → Quotient setoid → Quotient setoid, ∀ first_representative second_representative : Carrier, quotient_operation (Quotient.mk setoid first_representative) (Quotient.mk setoid second_representative) = Quotient.mk setoid (representative_operation first_representative second_representative)
+Logical form (Lean): {Carrier : Type} (setoid : Setoid Carrier) (representative_operation : Carrier → Carrier → Carrier) (representative_operation_respects : binary_operation_respects setoid representative_operation) : ∃ quotient_operation : Quotient setoid → Quotient setoid → Quotient setoid, ∀ first_representative second_representative : Carrier, quotient_operation (Quotient.mk setoid first_representative) (Quotient.mk setoid second_representative) = Quotient.mk setoid (representative_operation first_representative second_representative)
+Source: ./Quotient/RepresentativeCompatibility.lean#L381
+
+
+
+Name: compatible_predicate_has_constant_truth_on_classes
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type} (setoid : Setoid Carrier) (predicate : Carrier → Prop) (predicate_is_compatible : predicate_respects setoid predicate) (first_representative second_representative : Carrier) (representatives_are_equivalent : setoid.r first_representative second_representative), predicate first_representative ↔ predicate second_representative
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    setoid : Setoid Carrier
+    predicate : Carrier → Prop
+    predicate_is_compatible : predicate_respects setoid predicate
+    first_representative second_representative : Carrier
+    representatives_are_equivalent : setoid.r first_representative second_representative
+  Prove
+    predicate first_representative ↔ predicate second_representative
+Transliterated theorem: (∀ first_representative second_representative ∈ Carrier), predicate first_representative ↔ predicate second_representative
+Logical form (Lean): {Carrier : Type} (setoid : Setoid Carrier) (predicate : Carrier → Prop) (predicate_is_compatible : predicate_respects setoid predicate) (first_representative second_representative : Carrier) (representatives_are_equivalent : setoid.r first_representative second_representative) : predicate first_representative ↔ predicate second_representative
+Source: ./Quotient/RepresentativeCompatibility.lean#L548
+
+
+
+Name: induced_relation_exists
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type} (setoid : Setoid Carrier) (representative_relation : Carrier → Carrier → Prop) (representative_relation_respects : relation_respects setoid representative_relation), ∃ quotient_relation : Quotient setoid → Quotient setoid → Prop, ∀ first_representative second_representative : Carrier, quotient_relation (Quotient.mk setoid first_representative) (Quotient.mk setoid second_representative) ↔ representative_relation first_representative second_representative
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    setoid : Setoid Carrier
+    representative_relation : Carrier → Carrier → Prop
+    representative_relation_respects : relation_respects setoid representative_relation
+  Prove
+    ∃ quotient_relation : Quotient setoid → Quotient setoid → Prop, ∀ first_representative second_representative : Carrier, quotient_relation (Quotient.mk setoid first_representative) (Quotient.mk setoid second_representative) ↔ representative_relation first_representative second_representative
+Transliterated theorem: ∃ quotient_relation ∈ Quotient setoid → Quotient setoid → Prop, ∀ first_representative second_representative : Carrier, quotient_relation (Quotient.mk setoid first_representative) (Quotient.mk setoid second_representative) ↔ representative_relation first_representative second_representative
+Logical form (Lean): {Carrier : Type} (setoid : Setoid Carrier) (representative_relation : Carrier → Carrier → Prop) (representative_relation_respects : relation_respects setoid representative_relation) : ∃ quotient_relation : Quotient setoid → Quotient setoid → Prop, ∀ first_representative second_representative : Carrier, quotient_relation (Quotient.mk setoid first_representative) (Quotient.mk setoid second_representative) ↔ representative_relation first_representative second_representative
+Source: ./Quotient/RepresentativeCompatibility.lean#L607
+
+
+
+Name: kernelRelationIsEquivalence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {S : LRA.Logic.Signature} {M : LRA.Logic.FirstOrder.Model S} {N : LRA.Logic.FirstOrder.Model S}   (homomorphism : LRA.UniversalAlgebra.Homomorphism M N), Equivalence (LRA.UniversalAlgebra.kernelRelation homomorphism)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    S : Signature
+    M : Model.{u} S
+    N : Model.{v} S
+    homomorphism : Homomorphism M N
+  Prove
+    Equivalence fun first second => homomorphism.1 first = homomorphism.1 second
+Transliterated theorem: Equivalence (kernelRelation homomorphism)
+Logical form (Lean): {S : Signature} {M : Model.{u} S} {N : Model.{v} S} (homomorphism : Homomorphism M N) : Equivalence (kernelRelation homomorphism)
+Source: ./KernelCongruence/KernelRelation/Definition.lean#L96
+
+
+
+Name: firstIsomorphismTheorem
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {S : Signature} {M : Model.{u} S} {N : Model.{v} S} (homomorphism : Homomorphism M N) (surjective : ∀ target : N.Domain, ∃ source, homomorphism.map source = target), Isomorphic (quotientModel (kernelCongruence homomorphism)) N
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    S : Signature
+    M : Model.{u} S
+    N : Model.{v} S
+    homomorphism : Homomorphism M N
+  Prove
+    (∀ (target : N.1), Exists fun source => homomorphism.1 source = target) → Nonempty (LRA.UniversalAlgebra.Isomorphism { Domain := Quot (LRA.UniversalAlgebra.kernelCongruence homomorphism).1, domainNonempty := ⋯, equalityIsDiagonal := ⋯, interpretFunction := fun functionSymbol arguments => Quot.mk (LRA.UniversalAlgebra.kernelCongruence homomorphism).1 (M.5 functionSymbol fun i => (Classical.indefiniteDescription (fun x => Quot.mk (LRA.UniversalAlgebra.kernelCongruence homomorphism).rel x = arguments i) ⋯).1), interpretRelation := fun relationSymbol arguments => M.6 relationSymbol fun i => (Classical.indefiniteDescription (fun x => Quot.mk (LRA.UniversalAlgebra.kernelCongruence homomorphism).rel x = arguments i) ⋯).1, interpretConstant := fun constantSymbol => Quot.mk (LRA.UniversalAlgebra.kernelCongruence homomorphism).1 (M.7 constantSymbol) } N)
+Transliterated theorem: (∀ target : N.Domain, ∃ source, homomorphism.map source = target) → Isomorphic (quotientModel (kernelCongruence homomorphism)) N
+Logical form (Lean): {S : Signature} {M : Model.{u} S} {N : Model.{v} S} (homomorphism : Homomorphism M N) (surjective : ∀ target : N.Domain, ∃ source, homomorphism.map source = target) : Isomorphic (quotientModel (kernelCongruence homomorphism)) N
+Source: ./KernelCongruence/Definition.lean#L131
+
+## Axioms / Assumptions
+
+Declarations written as `axiom` are recorded here for audit context, but they are
+excluded from the active proof queue because there is no proof obligation to discharge.
+
+No axiomatic assumptions are currently present in this scope.
+
+## Completed Inventory
+
+Completed entries are retained below for full-fresh regeneration and audit context,
+but they are not part of the active proof queue.
+
+Name: Unary
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (arity : LRA.UniversalAlgebra.Signature.FormalVocabulary.Arity), Eq arity 1
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    arity = 1
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Signature/FormalVocabulary/Arity.lean
+
+
+
+Name: Binary
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (arity : LRA.UniversalAlgebra.Signature.FormalVocabulary.Arity), Eq arity 2
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    arity = 2
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Signature/FormalVocabulary/Arity.lean
+
+
+
+Name: Nullary
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (arity : LRA.UniversalAlgebra.Signature.FormalVocabulary.Arity), Eq arity 0
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    arity = 0
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Signature/FormalVocabulary/Arity.lean
+
+
+
+Name: IsAlgebraic
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (S : LRA.Logic.Signature) (a : S.RelationSymbol), False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Algebra/Definition.lean
+
+
+
+Name: EquationalTheoryOfClass
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {S : LRA.Logic.Signature} {Variable : Type} (class_ : Set (LRA.Logic.FirstOrder.Model S))   (a : LRA.UniversalAlgebra.Equation S Variable) (M : LRA.Logic.FirstOrder.Model S),   Set.instMembership.mem class_ M → LRA.UniversalAlgebra.SatisfiesEquation M a
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    M ∈ class_ → ∀ (assignment : Variable → M.1), LRA.Logic.FirstOrder.evaluateTerm M assignment a.1 = LRA.Logic.FirstOrder.evaluateTerm M assignment a.2
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Satisfaction/Definition.lean
+
+
+
+Name: IsVariety
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {S : LRA.Logic.Signature} (class_ : Set (LRA.Logic.FirstOrder.Model S)),   Exists fun theory => Eq class_ (LRA.UniversalAlgebra.ModelsOfEquationalTheory theory)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun theory => class_ = funM => ∀ (equation : LRA.UniversalAlgebra.Equation S Nat), equation ∈ theory → ∀ (assignment : Nat → M.1), LRA.Logic.FirstOrder.evaluateTerm M assignment equation.1 = LRA.Logic.FirstOrder.evaluateTerm M assignment equation.2
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Satisfaction/Definition.lean
+
+
+
+Name: ModelsOfEquationalTheory
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {S : LRA.Logic.Signature} {Variable : Type} (theory : LRA.UniversalAlgebra.EquationalTheory S Variable)   (a : LRA.Logic.FirstOrder.Model S) (equation : LRA.UniversalAlgebra.Equation S Variable),   Set.instMembership.mem theory equation → LRA.UniversalAlgebra.SatisfiesEquation a equation
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    equation ∈ theory → ∀ (assignment : Variable → a.1), LRA.Logic.FirstOrder.evaluateTerm a assignment equation.1 = LRA.Logic.FirstOrder.evaluateTerm a assignment equation.2
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Satisfaction/Definition.lean
+
+
+
+Name: SatisfiesEquation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {S : LRA.Logic.Signature} {Variable : Type} (M : LRA.Logic.FirstOrder.Model S)   (equation : LRA.UniversalAlgebra.Equation S Variable) (assignment : Variable → M.Domain),   Eq (LRA.Logic.FirstOrder.evaluateTerm M assignment equation.lhs)     (LRA.Logic.FirstOrder.evaluateTerm M assignment equation.rhs)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.FirstOrder.evaluateTerm M assignment equation.1 = LRA.Logic.FirstOrder.evaluateTerm M assignment equation.2
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Satisfaction/Definition.lean
+
+
+
+Name: BinaryOperationRelationRequirements
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (relation : LRA.Relation.Endorelation Carrier)   (operation : LRA.Operation.BinaryEndoOperation Carrier),   And (LRA.Relation.EquivalenceRelation relation)     (LRA.UniversalAlgebra.Congruence.BinaryOperationCongruence relation operation)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z))) ∧ (∀ {left₁ left₂ right₁ right₂ : Carrier}, relation left₁ left₂ → relation right₁ right₂ → relation (operation left₁ right₁) (operation left₂ right₂)))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Congruence/Definition.lean
+
+
+
+Name: BinaryOperationCongruence
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (relation : LRA.Relation.Endorelation Carrier)   (operation : LRA.Operation.BinaryEndoOperation Carrier) {left₁ left₂ right₁ right₂ : Carrier},   And (relation left₁ left₂) (relation right₁ right₂) → relation (operation left₁ right₁) (operation left₂ right₂)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (relation left₁ left₂ ∧ relation right₁ right₂) → relation (operation left₁ right₁) (operation left₂ right₂)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Congruence/Definition.lean
+
+
+
+Name: UnaryOperationCongruence
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (relation : LRA.Relation.Endorelation Carrier)   (operation : LRA.Operation.UnaryEndoOperation Carrier) {left right : Carrier},   relation left right → relation (operation left) (operation right)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    relation left right → relation (operation left) (operation right)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Congruence/Definition.lean
+
+
+
+Name: UnaryOperationRelationRequirements
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (relation : LRA.Relation.Endorelation Carrier)   (operation : LRA.Operation.UnaryEndoOperation Carrier),   And (LRA.Relation.EquivalenceRelation relation)     (LRA.UniversalAlgebra.Congruence.UnaryOperationCongruence relation operation)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z))) ∧ (∀ {left right : Carrier}, relation left right → relation (operation left) (operation right)))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Congruence/Definition.lean
+
+
+
+Name: SameParityForCongruenceExample
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (left right : Nat), Eq (instHMod.hMod left 2) (instHMod.hMod right 2)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    instHMod.1 left 2 = instHMod.1 right 2
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Congruence/Examples.lean
+
+
+
+Name: FailsUnaryRelationSubstitution
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) (operation : LRA.Operation.UnaryEndoOperation Carrier),   (∀ {left right : Carrier}, relation left right → Eq (operation left) (operation right)) → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ {left right : Carrier}, relation left right → operation left = operation right) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Congruence/FailureModes.lean
+
+
+
+Name: SameParity
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (left right : Nat), Eq (instHMod.hMod left 2) (instHMod.hMod right 2)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    instHMod.1 left 2 = instHMod.1 right 2
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Congruence/FailureModes.lean
+
+
+
+Name: Isomorphic
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {S : LRA.Logic.Signature} (M : LRA.Logic.FirstOrder.Model S) (N : LRA.Logic.FirstOrder.Model S),   Nonempty (LRA.UniversalAlgebra.Isomorphism M N)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Nonempty (LRA.UniversalAlgebra.Isomorphism M N)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Isomorphism/Definition.lean
+
+
+
+Name: unary_operation_respects
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type} (setoid : Setoid Carrier) (operation : Carrier → Carrier)   (first_representative second_representative : Carrier),   setoid.r first_representative second_representative →     setoid.r (operation first_representative) (operation second_representative)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    setoid.1 first_representative second_representative → setoid.1 (operation first_representative) (operation second_representative)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Quotient/RepresentativeCompatibility.lean
+
+
+
+Name: binary_operation_respects
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type} (setoid : Setoid Carrier) (operation : Carrier → Carrier → Carrier)   (first_representative first_replacement second_representative second_replacement : Carrier),   And (setoid.r first_representative first_replacement) (setoid.r second_representative second_replacement) →     setoid.r (operation first_representative second_representative) (operation first_replacement second_replacement)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (setoid.1 first_representative first_replacement ∧ setoid.1 second_representative second_replacement) → setoid.1 (operation first_representative second_representative) (operation first_replacement second_replacement)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Quotient/RepresentativeCompatibility.lean
+
+
+
+Name: predicate_respects
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type} (setoid : Setoid Carrier) (predicate : Carrier → Prop)   (first_representative second_representative : Carrier),   setoid.r first_representative second_representative →     Iff (predicate first_representative) (predicate second_representative)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    setoid.1 first_representative second_representative → predicate first_representative ↔ predicate second_representative
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Quotient/RepresentativeCompatibility.lean
+
+
+
+Name: binary_operation_respects_left
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type} (setoid : Setoid Carrier) (operation : Carrier → Carrier → Carrier)   (first_representative first_replacement second_representative : Carrier),   setoid.r first_representative first_replacement →     setoid.r (operation first_representative second_representative) (operation first_replacement second_representative)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    setoid.1 first_representative first_replacement → setoid.1 (operation first_representative second_representative) (operation first_replacement second_representative)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Quotient/RepresentativeCompatibility.lean
+
+
+
+Name: binary_operation_respects_right
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type} (setoid : Setoid Carrier) (operation : Carrier → Carrier → Carrier)   (first_representative second_representative second_replacement : Carrier),   setoid.r second_representative second_replacement →     setoid.r (operation first_representative second_representative) (operation first_representative second_replacement)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    setoid.1 second_representative second_replacement → setoid.1 (operation first_representative second_representative) (operation first_representative second_replacement)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Quotient/RepresentativeCompatibility.lean
+
+
+
+Name: relation_respects
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type} (setoid : Setoid Carrier) (relation : Carrier → Carrier → Prop)   (first_representative first_replacement second_representative second_replacement : Carrier),   And (setoid.r first_representative first_replacement) (setoid.r second_representative second_replacement) →     Iff (relation first_representative second_representative) (relation first_replacement second_replacement)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (setoid.1 first_representative first_replacement ∧ setoid.1 second_representative second_replacement) → relation first_representative second_representative ↔ relation first_replacement second_replacement
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Quotient/RepresentativeCompatibility.lean
+
+
+
+Name: kernelRelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {S : LRA.Logic.Signature} {M : LRA.Logic.FirstOrder.Model S} {N : LRA.Logic.FirstOrder.Model S}   (homomorphism : LRA.UniversalAlgebra.Homomorphism M N) (a a_1 : M.Domain),   Eq (homomorphism.map a) (homomorphism.map a_1)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    homomorphism.1 a = homomorphism.1 a_1
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./KernelCongruence/KernelRelation/Definition.lean

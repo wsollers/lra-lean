@@ -17,8 +17,6 @@ def EvenIntegers : LRA.Set.LRA_Set Int := {n | Even n}
 
 theorem evenIntegersClosedUnderMultiplication :
     ∀ a b, a ∈ EvenIntegers → b ∈ EvenIntegers → a * b ∈ EvenIntegers := by
-  intro a b ha _
-  obtain ⟨r, hr⟩ := by
   sorry
 noncomputable instance : Mul {n // n ∈ EvenIntegers} :=
   Magma.Constructions.ClosedSubsetMul evenIntegersClosedUnderMultiplication

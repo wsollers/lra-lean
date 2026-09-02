@@ -362,6 +362,11 @@ private partial def parsePrefixes : List String → List String
   | "--prefix" :: value :: rest => value :: parsePrefixes rest
   | _ :: rest => parsePrefixes rest
 
+private partial def parseOutputPath : List String → Option System.FilePath
+  | [] => none
+  | "--output" :: value :: _ => some value
+  | _ :: rest => parseOutputPath rest
+
 private def moduleMatchesPrefixes (moduleName : Name) (prefixes : List String) : Bool :=
   if prefixes.isEmpty then
     true
@@ -375,18 +380,11 @@ private def modulePathExists (moduleName : Name) : IO Bool := do
 
 private def selectedImports (prefixes : List String) : IO (Array Import) := do
   if prefixes.isEmpty then
-    discoveredLraImports
+    pure #[{ module := `LRA }]
   else
-    let mut imports : Array Import := #[]
-    for pref in prefixes do
-      let moduleName := pref.toName
-      if ← modulePathExists moduleName then
-        imports := imports.push { module := moduleName }
-    if imports.isEmpty then
-      return (← discoveredLraImports).filter (fun importDecl =>
-        moduleMatchesPrefixes importDecl.module prefixes
-      )
-    return imports
+    return (← discoveredLraImports).filter (fun importDecl =>
+      moduleMatchesPrefixes importDecl.module prefixes
+    )
 
 /--
 Recursively delta-unfolds every application of a definition not present in
@@ -507,6 +505,7 @@ private def propositionExprOfDefn (type value : Expr) : MetaM Expr := do
 
 unsafe def main (args : List String) : IO Unit := do
   let prefixes := parsePrefixes args
+  let outputPath := (parseOutputPath args).getD "build/proofs-todo-environment.tsv"
   let modules ← selectedImports prefixes
   let mut rows : Array String := #[]
   let mut theoremCount := 0
@@ -516,78 +515,78 @@ unsafe def main (args : List String) : IO Unit := do
   let mut propTrueCount := 0
   let mut propFalseCount := 0
   let mut propErrorCount := 0
-  for importDecl in modules do
-    let env ← importModules #[importDecl] {} (trustLevel := 0)
-    for h : moduleIndex in *...env.header.moduleNames.size do
-      let moduleName := env.header.moduleNames[moduleIndex]
-      let renderedModule := moduleName.toString
-      if !(renderedModule == "LRA" || renderedModule.startsWith "LRA.") then
+  let env ← importModules modules {} (trustLevel := 0)
+  for h : moduleIndex in *...env.header.moduleNames.size do
+    let moduleName := env.header.moduleNames[moduleIndex]
+    let renderedModule := moduleName.toString
+    if !(renderedModule == "LRA" || renderedModule.startsWith "LRA.") then
+      continue
+    if !moduleMatchesPrefixes moduleName prefixes then
+      continue
+    let moduleData := env.header.moduleData[moduleIndex]!
+    for h : constantIndex in *...moduleData.constNames.size do
+      let name := moduleData.constNames[constantIndex]!
+      let info := moduleData.constants[constantIndex]!
+      if isGenerated env name then
         continue
-      if !moduleMatchesPrefixes moduleName prefixes then
-        continue
-      let moduleData := env.header.moduleData[moduleIndex]!
-      for h : constantIndex in *...moduleData.constNames.size do
-        let name := moduleData.constNames[constantIndex]!
-        let info := moduleData.constants[constantIndex]!
-        if isGenerated env name then
-          continue
-        if let ConstantInfo.thmInfo thm := info then
-          let sorryUsed := usesSorry thm.value
-          let (_plain, uncurried, unfolded, status) ← computeFolRenderings env thm.type
-          theoremCount := theoremCount + 1
+      if let ConstantInfo.thmInfo thm := info then
+        let sorryUsed := usesSorry thm.value
+        let (_plain, uncurried, unfolded, status) ← computeFolRenderings env thm.type
+        theoremCount := theoremCount + 1
+        rows := rows.push <| String.intercalate "\t" [
+          clean name.toString,
+          clean renderedModule,
+          "theorem",
+          toString sorryUsed,
+          clean uncurried,
+          clean unfolded,
+          status
+        ]
+      else if let ConstantInfo.axiomInfo ax := info then
+        let (_plain, uncurried, unfolded, status) ← computeFolRenderings env ax.type
+        axiomCount := axiomCount + 1
+        rows := rows.push <| String.intercalate "\t" [
+          clean name.toString,
+          clean renderedModule,
+          "axiom",
+          "false",
+          clean uncurried,
+          clean unfolded,
+          status
+        ]
+      else if let ConstantInfo.defnInfo defn := info then
+        defnInfoCount := defnInfoCount + 1
+        let isPropResult ← classifyDefn env defn.type
+        match isPropResult with
+        | none => propErrorCount := propErrorCount + 1
+        | some false => propFalseCount := propFalseCount + 1
+        | some true =>
+          propTrueCount := propTrueCount + 1
+          let sorryUsed := usesSorry defn.value
+          let ctx : Core.Context := { fileName := "DumpProofsToDo", fileMap := default }
+          let renderExpr ←
+            try
+              let (expr, _) ←
+                (propositionExprOfDefn defn.type defn.value).toIO ctx { env := env }
+              pure expr
+            catch _ =>
+              pure defn.type
+          let (_plain, uncurried, unfolded, status) ← computeFolRenderings env renderExpr
+          instanceCount := instanceCount + 1
           rows := rows.push <| String.intercalate "\t" [
             clean name.toString,
             clean renderedModule,
-            "theorem",
+            "instance",
             toString sorryUsed,
             clean uncurried,
             clean unfolded,
             status
           ]
-        else if let ConstantInfo.axiomInfo ax := info then
-          let (_plain, uncurried, unfolded, status) ← computeFolRenderings env ax.type
-          axiomCount := axiomCount + 1
-          rows := rows.push <| String.intercalate "\t" [
-            clean name.toString,
-            clean renderedModule,
-            "axiom",
-            "false",
-            clean uncurried,
-            clean unfolded,
-            status
-          ]
-        else if let ConstantInfo.defnInfo defn := info then
-          defnInfoCount := defnInfoCount + 1
-          let isPropResult ← classifyDefn env defn.type
-          match isPropResult with
-          | none => propErrorCount := propErrorCount + 1
-          | some false => propFalseCount := propFalseCount + 1
-          | some true =>
-            propTrueCount := propTrueCount + 1
-            let sorryUsed := usesSorry defn.value
-            let ctx : Core.Context := { fileName := "DumpProofsToDo", fileMap := default }
-            let renderExpr ←
-              try
-                let (expr, _) ←
-                  (propositionExprOfDefn defn.type defn.value).toIO ctx { env := env }
-                pure expr
-              catch _ =>
-                pure defn.type
-            let (_plain, uncurried, unfolded, status) ← computeFolRenderings env renderExpr
-            instanceCount := instanceCount + 1
-            rows := rows.push <| String.intercalate "\t" [
-              clean name.toString,
-              clean renderedModule,
-              "instance",
-              toString sorryUsed,
-              clean uncurried,
-              clean unfolded,
-              status
-            ]
-  IO.FS.createDirAll "build"
-  IO.FS.writeFile "build/proofs-todo-environment.tsv" <|
+  let outputDir := outputPath.parent.getD "."
+  IO.FS.createDirAll outputDir
+  IO.FS.writeFile outputPath <|
     "fq_name\tmodule\tkind\tuses_sorry\tpretty_type_uncurried\tpretty_type_unfolded\tunfold_status\n" ++
       String.intercalate "\n" rows.toList ++ "\n"
-  IO.println s!"wrote {rows.size} declarations ({theoremCount} theorem, {instanceCount} instance, {axiomCount} axiom)"
+  IO.println s!"wrote {rows.size} declarations to {outputPath} ({theoremCount} theorem, {instanceCount} instance, {axiomCount} axiom)"
   IO.println s!"defnInfo scanned (post-noise-filter): {defnInfoCount}"
   IO.println s!"  Meta.isProp:      true={propTrueCount} (captured as instance rows) false={propFalseCount} error={propErrorCount}"

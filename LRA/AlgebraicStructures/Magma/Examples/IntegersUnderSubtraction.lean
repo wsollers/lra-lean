@@ -14,7 +14,5 @@ instance : Nonempty IntegersUnderSubtraction := ⟨⟨0⟩⟩
 
 theorem integersUnderSubtractionNotAssociative :
     ¬ ∀ a b c : IntegersUnderSubtraction, (a * b) * c = a * (b * c) := by
-  intro h
-  have key : ((1 : Int) - 1) - 1 = (1 : Int) - (1 - 1) := by
   sorry
 end LRA.AlgebraicStructures.Magma.Examples

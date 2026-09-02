@@ -12,11 +12,543 @@ references. That gives a conservative repo-local work sequence, but it is
 the folder.
 
 **Progress:** 0/13 theorem-family entries completed since reset baseline `4e5dfb4e` (ready for proving).
-**Baseline reconciliation:** 0 still match baseline as `sorry`; 13 baseline entries were moved, renamed, or removed and are not auto-credited.
+**Baseline reconciliation:** 13 still match baseline as `sorry`; 0 baseline entries were moved, renamed, or removed and are not auto-credited.
 
-**Snapshot:** 0/0 theorem-family entries currently completed (0 sorry remaining).
+**Snapshot:** 0/13 theorem-family entries currently completed (13 sorry remaining).
 
-**Inventory:** 0 theorem/lemma/corollary/proposition entries across 0 module(s) (0 completed, 0 sorry).
-**Excluded from counts:** 0 `instance` entries and 0 `axiom` entries.
+**Inventory:** 13 theorem/lemma/corollary/proposition entries across 21 module(s) (0 completed, 13 sorry).
+**Excluded from counts:** 15 `instance` entries and 0 `axiom` entries.
 
-No proof or axiom declarations found under this scope yet.
+## Open Work Queue
+
+Unfinished entries (`Sorry`, or `Unknown` in offline preview) are listed first so
+this section can be used as the actual proof queue.
+
+Name: PreservesRelation.apply
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source}   {targetRelation : LRA.Relation.Endorelation Target},   LRA.Morphism.PreservesRelation function sourceRelation targetRelation →     ∀ {left right : Source}, sourceRelation left right → targetRelation (function left) (function right)
+Predicate logic (unfolded):
+  Ambient
+    (Source, Target)
+  Objects
+    function : Source → Target
+    sourceRelation : LRA.Relation.Endorelation Source
+    targetRelation : LRA.Relation.Endorelation Target
+    law : PreservesRelation function sourceRelation targetRelation
+    left right : Source
+    related : sourceRelation left right
+  Prove
+    (∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)) → ∀ {left right : Source}, sourceRelation left right → targetRelation (function left) (function right)
+Transliterated theorem: targetRelation (function left) (function right)
+Logical form (Lean): {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source} {targetRelation : LRA.Relation.Endorelation Target} (law : PreservesRelation function sourceRelation targetRelation) {left right : Source} (related : sourceRelation left right) : targetRelation (function left) (function right)
+Source: ./Properties/PreservesRelation/Theorems.lean#L50
+
+
+
+Name: ReflectsRelation.apply
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source}   {targetRelation : LRA.Relation.Endorelation Target},   LRA.Morphism.ReflectsRelation function sourceRelation targetRelation →     ∀ {left right : Source}, targetRelation (function left) (function right) → sourceRelation left right
+Predicate logic (unfolded):
+  Ambient
+    (Source, Target)
+  Objects
+    function : Source → Target
+    sourceRelation : LRA.Relation.Endorelation Source
+    targetRelation : LRA.Relation.Endorelation Target
+    law : ReflectsRelation function sourceRelation targetRelation
+    left right : Source
+    relatedValues : targetRelation (function left) (function right)
+  Prove
+    (∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right) → ∀ {left right : Source}, targetRelation (function left) (function right) → sourceRelation left right
+Transliterated theorem: sourceRelation left right
+Logical form (Lean): {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source} {targetRelation : LRA.Relation.Endorelation Target} (law : ReflectsRelation function sourceRelation targetRelation) {left right : Source} (relatedValues : targetRelation (function left) (function right)) : sourceRelation left right
+Source: ./Properties/ReflectsRelation/Theorems.lean#L50
+
+
+
+Name: PreservesAndReflectsRelation.preserves
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source}   {targetRelation : LRA.Relation.Endorelation Target},   LRA.Morphism.PreservesAndReflectsRelation function sourceRelation targetRelation →     LRA.Morphism.PreservesRelation function sourceRelation targetRelation
+Predicate logic (unfolded):
+  Ambient
+    (Source, Target)
+  Objects
+    function : Source → Target
+    sourceRelation : LRA.Relation.Endorelation Source
+    targetRelation : LRA.Relation.Endorelation Target
+    law : PreservesAndReflectsRelation function sourceRelation targetRelation
+  Prove
+    ((∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)) ∧ (∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right)) → ∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)
+Transliterated theorem: PreservesRelation function sourceRelation targetRelation
+Logical form (Lean): (law : PreservesAndReflectsRelation function sourceRelation targetRelation) : PreservesRelation function sourceRelation targetRelation
+Source: ./Properties/RelationEmbedding/Theorems.lean#L54
+
+
+
+Name: PreservesAndReflectsRelation.reflects
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source}   {targetRelation : LRA.Relation.Endorelation Target},   LRA.Morphism.RelationEmbedding function sourceRelation targetRelation →     LRA.Morphism.ReflectsRelation function sourceRelation targetRelation
+Predicate logic (unfolded):
+  Ambient
+    (Source, Target)
+  Objects
+    function : Source → Target
+    sourceRelation : LRA.Relation.Endorelation Source
+    targetRelation : LRA.Relation.Endorelation Target
+    law : PreservesAndReflectsRelation function sourceRelation targetRelation
+  Prove
+    ((∀ (y : Target) (x₁ x₂ : Source), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ ((∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)) ∧ (∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right))) → ∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right
+Transliterated theorem: ReflectsRelation function sourceRelation targetRelation
+Logical form (Lean): (law : PreservesAndReflectsRelation function sourceRelation targetRelation) : ReflectsRelation function sourceRelation targetRelation
+Source: ./Properties/RelationEmbedding/Theorems.lean#L96
+
+
+
+Name: RelationEmbedding.injective
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source}   {targetRelation : LRA.Relation.Endorelation Target},   LRA.Morphism.RelationEmbedding function sourceRelation targetRelation → LRA.Function.Injective function
+Predicate logic (unfolded):
+  Ambient
+    (Source, Target)
+  Objects
+    function : Source → Target
+    sourceRelation : LRA.Relation.Endorelation Source
+    targetRelation : LRA.Relation.Endorelation Target
+    embedding : RelationEmbedding function sourceRelation targetRelation
+  Prove
+    ((∀ (y : Target) (x₁ x₂ : Source), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ ((∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)) ∧ (∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right))) → ∀ (y : Target) (x₁ x₂ : Source), (function x₁ = y ∧ function x₂ = y) → x₁ = x₂
+Transliterated theorem: LRA.Function.Injective function
+Logical form (Lean): (embedding : RelationEmbedding function sourceRelation targetRelation) : LRA.Function.Injective function
+Source: ./Properties/RelationEmbedding/Theorems.lean#L138
+
+
+
+Name: RelationEmbedding.preserves_and_reflects
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source}   {targetRelation : LRA.Relation.Endorelation Target},   LRA.Morphism.RelationEmbedding function sourceRelation targetRelation →     LRA.Morphism.PreservesAndReflectsRelation function sourceRelation targetRelation
+Predicate logic (unfolded):
+  Ambient
+    (Source, Target)
+  Objects
+    function : Source → Target
+    sourceRelation : LRA.Relation.Endorelation Source
+    targetRelation : LRA.Relation.Endorelation Target
+    embedding : RelationEmbedding function sourceRelation targetRelation
+  Prove
+    ((∀ (y : Target) (x₁ x₂ : Source), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ ((∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)) ∧ (∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right))) → ((∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)) ∧ (∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right))
+Transliterated theorem: PreservesAndReflectsRelation function sourceRelation targetRelation
+Logical form (Lean): (embedding : RelationEmbedding function sourceRelation targetRelation) : PreservesAndReflectsRelation function sourceRelation targetRelation
+Source: ./Properties/RelationEmbedding/Theorems.lean#L180
+
+
+
+Name: RelationEmbedding.preserves
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source}   {targetRelation : LRA.Relation.Endorelation Target},   LRA.Morphism.RelationEmbedding function sourceRelation targetRelation →     LRA.Morphism.PreservesRelation function sourceRelation targetRelation
+Predicate logic (unfolded):
+  Ambient
+    (Source, Target)
+  Objects
+    function : Source → Target
+    sourceRelation : LRA.Relation.Endorelation Source
+    targetRelation : LRA.Relation.Endorelation Target
+    embedding : RelationEmbedding function sourceRelation targetRelation
+  Prove
+    ((∀ (y : Target) (x₁ x₂ : Source), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ ((∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)) ∧ (∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right))) → ∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)
+Transliterated theorem: PreservesRelation function sourceRelation targetRelation
+Logical form (Lean): (embedding : RelationEmbedding function sourceRelation targetRelation) : PreservesRelation function sourceRelation targetRelation
+Source: ./Properties/RelationEmbedding/Theorems.lean#L222
+
+
+
+Name: RelationEmbedding.reflects
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source}   {targetRelation : LRA.Relation.Endorelation Target},   LRA.Morphism.PreservesAndReflectsRelation function sourceRelation targetRelation →     LRA.Morphism.ReflectsRelation function sourceRelation targetRelation
+Predicate logic (unfolded):
+  Ambient
+    (Source, Target)
+  Objects
+    function : Source → Target
+    sourceRelation : LRA.Relation.Endorelation Source
+    targetRelation : LRA.Relation.Endorelation Target
+    embedding : RelationEmbedding function sourceRelation targetRelation
+  Prove
+    ((∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)) ∧ (∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right)) → ∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right
+Transliterated theorem: ReflectsRelation function sourceRelation targetRelation
+Logical form (Lean): (embedding : RelationEmbedding function sourceRelation targetRelation) : ReflectsRelation function sourceRelation targetRelation
+Source: ./Properties/RelationEmbedding/Theorems.lean#L264
+
+
+
+Name: PreservesNullaryOperation.apply
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceElement : LRA.Operation.NullaryOperation Source} {targetElement : LRA.Operation.NullaryOperation Target} (law : PreservesNullaryOperation function sourceElement targetElement), function sourceElement = targetElement
+Predicate logic (unfolded):
+  Ambient
+    (Source, Target)
+  Objects
+    function : Source → Target
+    sourceElement : LRA.Operation.NullaryOperation Source
+    targetElement : LRA.Operation.NullaryOperation Target
+    law : PreservesNullaryOperation function sourceElement targetElement
+  Prove
+    function sourceElement = targetElement → function sourceElement = targetElement
+Transliterated theorem: function sourceElement = targetElement
+Logical form (Lean): {Source : Type u} {Target : Type v} {function : Source → Target} {sourceElement : LRA.Operation.NullaryOperation Source} {targetElement : LRA.Operation.NullaryOperation Target} (law : PreservesNullaryOperation function sourceElement targetElement) : function sourceElement = targetElement
+Source: ./Properties/PreservesNullaryOperation/Theorems.lean#L48
+
+
+
+Name: PreservesUnaryOperation.apply
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceOperation : LRA.Operation.UnaryEndoOperation Source} {targetOperation : LRA.Operation.UnaryEndoOperation Target} (law : PreservesUnaryOperation function sourceOperation targetOperation) (element : Source), function (sourceOperation element) = targetOperation (function element)
+Predicate logic (unfolded):
+  Ambient
+    (Source, Target)
+  Objects
+    function : Source → Target
+    sourceOperation : LRA.Operation.UnaryEndoOperation Source
+    targetOperation : LRA.Operation.UnaryEndoOperation Target
+    law : PreservesUnaryOperation function sourceOperation targetOperation
+    element : Source
+  Prove
+    (∀ (element : Source), function (sourceOperation element) = targetOperation (function element)) → ∀ (element : Source), function (sourceOperation element) = targetOperation (function element)
+Transliterated theorem: (∀ element ∈ Source), function (sourceOperation element) = targetOperation (function element)
+Logical form (Lean): {Source : Type u} {Target : Type v} {function : Source → Target} {sourceOperation : LRA.Operation.UnaryEndoOperation Source} {targetOperation : LRA.Operation.UnaryEndoOperation Target} (law : PreservesUnaryOperation function sourceOperation targetOperation) (element : Source) : function (sourceOperation element) = targetOperation (function element)
+Source: ./Properties/PreservesUnaryOperation/Theorems.lean#L49
+
+
+
+Name: PreservesBinaryOperation.apply
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceOperation : LRA.Operation.BinaryEndoOperation Source} {targetOperation : LRA.Operation.BinaryEndoOperation Target} (law : PreservesBinaryOperation function sourceOperation targetOperation) (left right : Source), function (sourceOperation left right) = targetOperation (function left) (function right)
+Predicate logic (unfolded):
+  Ambient
+    (Source, Target)
+  Objects
+    function : Source → Target
+    sourceOperation : LRA.Operation.BinaryEndoOperation Source
+    targetOperation : LRA.Operation.BinaryEndoOperation Target
+    law : PreservesBinaryOperation function sourceOperation targetOperation
+    left right : Source
+  Prove
+    (∀ (left right : Source), function (sourceOperation left right) = targetOperation (function left) (function right)) → ∀ (left right : Source), function (sourceOperation left right) = targetOperation (function left) (function right)
+Transliterated theorem: (∀ left right ∈ Source), function (sourceOperation left right) = targetOperation (function left) (function right)
+Logical form (Lean): {Source : Type u} {Target : Type v} {function : Source → Target} {sourceOperation : LRA.Operation.BinaryEndoOperation Source} {targetOperation : LRA.Operation.BinaryEndoOperation Target} (law : PreservesBinaryOperation function sourceOperation targetOperation) (left right : Source) : function (sourceOperation left right) = targetOperation (function left) (function right)
+Source: ./Properties/PreservesBinaryOperation/Theorems.lean#L50
+
+
+
+Name: BinaryOperationEmbedding.injective
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Source : Type u} {Target : Type v} {function : Source → Target}   {sourceOperation : LRA.Operation.BinaryEndoOperation Source}   {targetOperation : LRA.Operation.BinaryEndoOperation Target},   LRA.Morphism.BinaryOperationEmbedding function sourceOperation targetOperation → LRA.Function.Injective function
+Predicate logic (unfolded):
+  Ambient
+    (Source, Target)
+  Objects
+    function : Source → Target
+    sourceOperation : LRA.Operation.BinaryEndoOperation Source
+    targetOperation : LRA.Operation.BinaryEndoOperation Target
+    law : BinaryOperationEmbedding function sourceOperation targetOperation
+  Prove
+    ((∀ (y : Target) (x₁ x₂ : Source), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ (∀ (left right : Source), function (sourceOperation left right) = targetOperation (function left) (function right))) → ∀ (y : Target) (x₁ x₂ : Source), (function x₁ = y ∧ function x₂ = y) → x₁ = x₂
+Transliterated theorem: LRA.Function.Injective function
+Logical form (Lean): (law : BinaryOperationEmbedding function sourceOperation targetOperation) : LRA.Function.Injective function
+Source: ./Properties/OperationEmbedding/Theorems.lean#L53
+
+
+
+Name: BinaryOperationEmbedding.preserves
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Source : Type u} {Target : Type v} {function : Source → Target}   {sourceOperation : LRA.Operation.BinaryEndoOperation Source}   {targetOperation : LRA.Operation.BinaryEndoOperation Target},   LRA.Morphism.BinaryOperationEmbedding function sourceOperation targetOperation →     LRA.Morphism.PreservesBinaryOperation function sourceOperation targetOperation
+Predicate logic (unfolded):
+  Ambient
+    (Source, Target)
+  Objects
+    function : Source → Target
+    sourceOperation : LRA.Operation.BinaryEndoOperation Source
+    targetOperation : LRA.Operation.BinaryEndoOperation Target
+    law : BinaryOperationEmbedding function sourceOperation targetOperation
+  Prove
+    ((∀ (y : Target) (x₁ x₂ : Source), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ (∀ (left right : Source), function (sourceOperation left right) = targetOperation (function left) (function right))) → ∀ (left right : Source), function (sourceOperation left right) = targetOperation (function left) (function right)
+Transliterated theorem: PreservesBinaryOperation function sourceOperation targetOperation
+Logical form (Lean): (law : BinaryOperationEmbedding function sourceOperation targetOperation) : PreservesBinaryOperation function sourceOperation targetOperation
+Source: ./Properties/OperationEmbedding/Theorems.lean#L95
+
+## Axioms / Assumptions
+
+Declarations written as `axiom` are recorded here for audit context, but they are
+excluded from the active proof queue because there is no proof obligation to discharge.
+
+No axiomatic assumptions are currently present in this scope.
+
+## Completed Inventory
+
+Completed entries are retained below for full-fresh regeneration and audit context,
+but they are not part of the active proof queue.
+
+Name: PreservesRelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Source : Type u} {Target : Type v} (function : Source → Target) (sourceRelation : LRA.Relation.Endorelation Source)   (targetRelation : LRA.Relation.Endorelation Target) (left right : Source),   sourceRelation left right → targetRelation (function left) (function right)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    sourceRelation left right → targetRelation (function left) (function right)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Properties/PreservesRelation/Definition.lean
+
+
+
+Name: ReflectsRelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Source : Type u} {Target : Type v} (function : Source → Target) (sourceRelation : LRA.Relation.Endorelation Source)   (targetRelation : LRA.Relation.Endorelation Target) (left right : Source),   targetRelation (function left) (function right) → sourceRelation left right
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    targetRelation (function left) (function right) → sourceRelation left right
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Properties/ReflectsRelation/Definition.lean
+
+
+
+Name: PreservesAndReflectsRelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Source : Type u} {Target : Type v} (function : Source → Target) (sourceRelation : LRA.Relation.Endorelation Source)   (targetRelation : LRA.Relation.Endorelation Target),   And (LRA.Morphism.PreservesRelation function sourceRelation targetRelation)     (LRA.Morphism.ReflectsRelation function sourceRelation targetRelation)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)) ∧ (∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Properties/RelationEmbedding/Definition.lean
+
+
+
+Name: RelationEmbedding
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Source : Type u} {Target : Type v} (function : Source → Target) (sourceRelation : LRA.Relation.Endorelation Source)   (targetRelation : LRA.Relation.Endorelation Target),   And (LRA.Function.Injective function)     (LRA.Morphism.PreservesAndReflectsRelation function sourceRelation targetRelation)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (y : Target) (x₁ x₂ : Source), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ ((∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)) ∧ (∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right)))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Properties/RelationEmbedding/Definition.lean
+
+
+
+Name: PreservesNullaryOperation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Source : Type u} {Target : Type v} (function : Source → Target)   (sourceElement : LRA.Operation.NullaryOperation Source) (targetElement : LRA.Operation.NullaryOperation Target),   Eq (function sourceElement) targetElement
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    function sourceElement = targetElement
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Properties/PreservesNullaryOperation/Definition.lean
+
+
+
+Name: PreservesUnaryOperation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Source : Type u} {Target : Type v} (function : Source → Target)   (sourceOperation : LRA.Operation.UnaryEndoOperation Source)   (targetOperation : LRA.Operation.UnaryEndoOperation Target) (element : Source),   Eq (function (sourceOperation element)) (targetOperation (function element))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    function (sourceOperation element) = targetOperation (function element)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Properties/PreservesUnaryOperation/Definition.lean
+
+
+
+Name: PreservesBinaryOperation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Source : Type u} {Target : Type v} (function : Source → Target)   (sourceOperation : LRA.Operation.BinaryEndoOperation Source)   (targetOperation : LRA.Operation.BinaryEndoOperation Target) (left right : Source),   Eq (function (sourceOperation left right)) (targetOperation (function left) (function right))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    function (sourceOperation left right) = targetOperation (function left) (function right)
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Properties/PreservesBinaryOperation/Definition.lean
+
+
+
+Name: BinaryOperationEmbedding
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Source : Type u} {Target : Type v} (function : Source → Target)   (sourceOperation : LRA.Operation.BinaryEndoOperation Source)   (targetOperation : LRA.Operation.BinaryEndoOperation Target),   And (LRA.Function.Injective function) (LRA.Morphism.PreservesBinaryOperation function sourceOperation targetOperation)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (y : Target) (x₁ x₂ : Source), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ (∀ (left right : Source), function (sourceOperation left right) = targetOperation (function left) (function right)))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Properties/OperationEmbedding/Definition.lean
+
+
+
+Name: FailsBinaryOperationEmbedding
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Source : Type u} {Target : Type v} (function : Source → Target)   (sourceOperation : LRA.Operation.BinaryEndoOperation Source)   (targetOperation : LRA.Operation.BinaryEndoOperation Target),   LRA.Morphism.BinaryOperationEmbedding function sourceOperation targetOperation → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (y : Target) (x₁ x₂ : Source), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ (∀ (left right : Source), function (sourceOperation left right) = targetOperation (function left) (function right))) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Properties/OperationEmbedding/FailureModes.lean
+
+
+
+Name: FailsPreservesBinaryOperation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Source : Type u} {Target : Type v} (function : Source → Target)   (sourceOperation : LRA.Operation.BinaryEndoOperation Source)   (targetOperation : LRA.Operation.BinaryEndoOperation Target),   LRA.Morphism.PreservesBinaryOperation function sourceOperation targetOperation → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (left right : Source), function (sourceOperation left right) = targetOperation (function left) (function right)) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Properties/PreservesBinaryOperation/FailureModes.lean
+
+
+
+Name: FailsPreservesNullaryOperation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Source : Type u} {Target : Type v} (function : Source → Target)   (sourceElement : LRA.Operation.NullaryOperation Source) (targetElement : LRA.Operation.NullaryOperation Target),   LRA.Morphism.PreservesNullaryOperation function sourceElement targetElement → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    function sourceElement = targetElement → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Properties/PreservesNullaryOperation/FailureModes.lean
+
+
+
+Name: FailsPreservesRelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Source : Type u} {Target : Type v} (function : Source → Target) (sourceRelation : LRA.Relation.Endorelation Source)   (targetRelation : LRA.Relation.Endorelation Target),   LRA.Morphism.PreservesRelation function sourceRelation targetRelation → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Properties/PreservesRelation/FailureModes.lean
+
+
+
+Name: FailsPreservesUnaryOperation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Source : Type u} {Target : Type v} (function : Source → Target)   (sourceOperation : LRA.Operation.UnaryEndoOperation Source)   (targetOperation : LRA.Operation.UnaryEndoOperation Target),   LRA.Morphism.PreservesUnaryOperation function sourceOperation targetOperation → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (element : Source), function (sourceOperation element) = targetOperation (function element)) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Properties/PreservesUnaryOperation/FailureModes.lean
+
+
+
+Name: FailsReflectsRelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Source : Type u} {Target : Type v} (function : Source → Target) (sourceRelation : LRA.Relation.Endorelation Source)   (targetRelation : LRA.Relation.Endorelation Target),   LRA.Morphism.ReflectsRelation function sourceRelation targetRelation → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Properties/ReflectsRelation/FailureModes.lean
+
+
+
+Name: FailsRelationEmbedding
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Source : Type u} {Target : Type v} (function : Source → Target) (sourceRelation : LRA.Relation.Endorelation Source)   (targetRelation : LRA.Relation.Endorelation Target),   LRA.Morphism.RelationEmbedding function sourceRelation targetRelation → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (y : Target) (x₁ x₂ : Source), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ ((∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)) ∧ (∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right))) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Properties/RelationEmbedding/FailureModes.lean

@@ -11,9 +11,1671 @@ references. That gives a conservative repo-local work sequence, but it is
 **not** a theorem-level semantic dependency graph across unrelated topics in
 the folder.
 
-**Snapshot:** 0/0 theorem-family entries currently completed (0 sorry remaining).
+**Snapshot:** 1/58 theorem-family entries currently completed (57 sorry remaining).
 
-**Inventory:** 0 theorem/lemma/corollary/proposition entries across 0 module(s) (0 completed, 0 sorry).
-**Excluded from counts:** 0 `instance` entries and 0 `axiom` entries.
+**Inventory:** 58 theorem/lemma/corollary/proposition entries across 33 module(s) (1 completed, 57 sorry).
+**Excluded from counts:** 36 `instance` entries and 0 `axiom` entries.
 
-No proof or axiom declarations found under this scope yet.
+## Open Work Queue
+
+Unfinished entries (`Sorry`, or `Unknown` in offline preview) are listed first so
+this section can be used as the actual proof queue.
+
+Name: symbolsWiringTest
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (Symbol : Type), Nonempty Symbol → Nonempty Symbol
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Nonempty Symbol → Nonempty Symbol
+Transliterated theorem: forall Symbol : Type, Nonempty Symbol -> Nonempty Symbol
+Logical form (Lean): : forall Symbol : Type, Nonempty Symbol -> Nonempty Symbol
+Source: ./Language/Symbols.lean#L42
+
+
+
+Name: Formula.and_evaluatesToConjunction
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {L : PropositionalLanguage} (valuation : L.Atoms -> Bool) (φ ψ : Formula L), evaluate valuation (Formula.and φ ψ) = (evaluate valuation φ && evaluate valuation ψ)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    L : PropositionalLanguage
+    valuation : L.Atoms -> Bool
+    φ ψ : Formula L
+  Prove
+    LRA.Logic.Propositional.evaluate valuation (φ.impl ψ.neg).neg = Bool.rec ((fun _ => Bool.false) Unit.unit) ((fun _ => LRA.Logic.Propositional.evaluate valuation ψ) Unit.unit) (LRA.Logic.Propositional.evaluate valuation φ)
+Transliterated theorem: evaluate valuation (Formula.and φ ψ) = (evaluate valuation φ && evaluate valuation ψ)
+Logical form (Lean): {L : PropositionalLanguage} (valuation : L.Atoms -> Bool) (φ ψ : Formula L) : evaluate valuation (Formula.and φ ψ) = (evaluate valuation φ && evaluate valuation ψ)
+Source: ./Syntax/Propositional/Formula.lean#L274
+
+
+
+Name: Formula.or_evaluatesToDisjunction
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {L : PropositionalLanguage} (valuation : L.Atoms -> Bool) (φ ψ : Formula L), evaluate valuation (Formula.or φ ψ) = (evaluate valuation φ || evaluate valuation ψ)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    L : PropositionalLanguage
+    valuation : L.Atoms -> Bool
+    φ ψ : Formula L
+  Prove
+    LRA.Logic.Propositional.evaluate valuation (φ.neg.impl ψ) = Bool.rec ((fun _ => LRA.Logic.Propositional.evaluate valuation ψ) Unit.unit) ((fun _ => Bool.true) Unit.unit) (LRA.Logic.Propositional.evaluate valuation φ)
+Transliterated theorem: evaluate valuation (Formula.or φ ψ) = (evaluate valuation φ || evaluate valuation ψ)
+Logical form (Lean): {L : PropositionalLanguage} (valuation : L.Atoms -> Bool) (φ ψ : Formula L) : evaluate valuation (Formula.or φ ψ) = (evaluate valuation φ || evaluate valuation ψ)
+Source: ./Syntax/Propositional/Formula.lean#L318
+
+
+
+Name: Formula.iff_evaluatesToBiconditional
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {L : PropositionalLanguage} (valuation : L.Atoms -> Bool) (φ ψ : Formula L), evaluate valuation (Formula.iff φ ψ) = (evaluate valuation φ == evaluate valuation ψ)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    L : PropositionalLanguage
+    valuation : L.Atoms -> Bool
+    φ ψ : Formula L
+  Prove
+    LRA.Logic.Propositional.evaluate valuation ((φ.impl ψ).impl (ψ.impl φ).neg).neg = instBEqOfDecidable.1 = LRA.Logic.Propositional.evaluate valuation φ (LRA.Logic.Propositional.evaluate valuation ψ)
+Transliterated theorem: evaluate valuation (Formula.iff φ ψ) = (evaluate valuation φ == evaluate valuation ψ)
+Logical form (Lean): {L : PropositionalLanguage} (valuation : L.Atoms -> Bool) (φ ψ : Formula L) : evaluate valuation (Formula.iff φ ψ) = (evaluate valuation φ == evaluate valuation ψ)
+Source: ./Syntax/Propositional/Formula.lean#L362
+
+
+
+Name: freeVariablesInTerm_substituteInTerm_subset
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : DecidableEq Variable] (replacedVariable : Variable)   (replacementTerm originalTerm : LRA.Logic.FirstOrder.Term S Variable),   Finset.instPartialOrder.le     (LRA.Logic.FirstOrder.freeVariablesInTerm       (LRA.Logic.FirstOrder.substituteInTerm replacedVariable replacementTerm originalTerm))     (Finset.instUnion.union (LRA.Logic.FirstOrder.freeVariablesInTerm originalTerm)       (LRA.Logic.FirstOrder.freeVariablesInTerm replacementTerm))
+Predicate logic (unfolded):
+  Ambient
+    (Variable)
+  Objects
+    S : Signature
+    replacedVariable : Variable
+    replacementTerm originalTerm : Term S Variable
+  Prove
+    Finset.instPartialOrder.toPreorder.1.le (LRA.Logic.FirstOrder.freeVariablesInTerm (LRA.Logic.FirstOrder.substituteInTerm replacedVariable replacementTerm originalTerm)) (Finset.LRA.Logic.FirstOrder.freeVariablesInTerm originalTerm ∪ LRA.Logic.FirstOrder.freeVariablesInTerm replacementTerm)
+Transliterated theorem: (∀ replacedVariable ∈ Variable), freeVariablesInTerm (substituteInTerm replacedVariable replacementTerm originalTerm) ⊆ freeVariablesInTerm originalTerm ∪ freeVariablesInTerm replacementTerm
+Logical form (Lean): {S : Signature} {Variable : Type} [DecidableEq Variable] (replacedVariable : Variable) (replacementTerm originalTerm : Term S Variable) : freeVariablesInTerm (substituteInTerm replacedVariable replacementTerm originalTerm) ⊆ freeVariablesInTerm originalTerm ∪ freeVariablesInTerm replacementTerm
+Source: ./Syntax/FirstOrder/SubstitutionFreeVariables.lean#L66
+
+
+
+Name: freeVariables_substitute_subset
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : DecidableEq Variable] (replacedVariable : Variable)   (replacementTerm : LRA.Logic.FirstOrder.Term S Variable) (formula : LRA.Logic.FirstOrder.Formula S Variable),   Finset.instPartialOrder.le     (LRA.Logic.FirstOrder.freeVariables (LRA.Logic.FirstOrder.substitute replacedVariable replacementTerm formula))     (Finset.instUnion.union (LRA.Logic.FirstOrder.freeVariables formula)       (LRA.Logic.FirstOrder.freeVariablesInTerm replacementTerm))
+Predicate logic (unfolded):
+  Ambient
+    (Variable)
+  Objects
+    S : Signature
+    replacedVariable : Variable
+    replacementTerm : Term S Variable
+    formula : Formula S Variable
+  Prove
+    Finset.instPartialOrder.toPreorder.1.le (LRA.Logic.FirstOrder.freeVariables (LRA.Logic.FirstOrder.substitute replacedVariable replacementTerm formula)) (Finset.LRA.Logic.FirstOrder.freeVariables formula ∪ LRA.Logic.FirstOrder.freeVariablesInTerm replacementTerm)
+Transliterated theorem: (∀ replacedVariable ∈ Variable), freeVariables (substitute replacedVariable replacementTerm formula) ⊆ freeVariables formula ∪ freeVariablesInTerm replacementTerm
+Logical form (Lean): {S : Signature} {Variable : Type} [DecidableEq Variable] (replacedVariable : Variable) (replacementTerm : Term S Variable) (formula : Formula S Variable) : freeVariables (substitute replacedVariable replacementTerm formula) ⊆ freeVariables formula ∪ freeVariablesInTerm replacementTerm
+Source: ./Syntax/FirstOrder/SubstitutionFreeVariables.lean#L192
+
+
+
+Name: sentence_hasNoFreeVariables
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {S : Signature} {Variable : Type} [DecidableEq Variable] (sentence : Sentence S Variable), freeVariables sentence.val = ∅
+Predicate logic (unfolded):
+  Ambient
+    (Variable)
+  Objects
+    S : Signature
+    sentence : Sentence S Variable
+  Prove
+    LRA.Logic.FirstOrder.freeVariables sentence.1 = Finset.instEmptyCollection.1
+Transliterated theorem: freeVariables sentence.val = ∅
+Logical form (Lean): {S : Signature} {Variable : Type} [DecidableEq Variable] (sentence : Sentence S Variable) : freeVariables sentence.val = ∅
+Source: ./Syntax/FirstOrder/Sentence.lean#L130
+
+
+
+Name: ModelIsomorphism.bijective
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {S : LRA.Logic.Signature} {M₁ : LRA.Logic.FirstOrder.Model S} {M₂ : LRA.Logic.FirstOrder.Model S}   (iso : LRA.Logic.FirstOrder.ModelIsomorphism M₁ M₂), Function.Bijective iso.toFun
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    S : Signature
+    M₁ M₂ : Model S
+    iso : ModelIsomorphism M₁ M₂
+  Prove
+    ((∀ ⦃a₁ a₂ : M₁.1⦄, iso.toModelEmbedding.1 a₁ = iso.toModelEmbedding.1 a₂ → a₁ = a₂) ∧ (∀ (b : M₂.1), Exists fun a => iso.toModelEmbedding.1 a = b))
+Transliterated theorem: Function.Bijective iso.toFun
+Logical form (Lean): {S : Signature} {M₁ M₂ : Model S} (iso : ModelIsomorphism M₁ M₂) : Function.Bijective iso.toFun
+Source: ./Model/Comparison/ModelIsomorphism.lean#L89
+
+
+
+Name: ModelIsomorphism.toEquiv_apply
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {S : Signature} {M₁ M₂ : Model S} (iso : ModelIsomorphism M₁ M₂) (x : M₁.Domain), iso.toEquiv x = iso.toFun x
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    S : Signature
+    M₁ M₂ : Model S
+    iso : ModelIsomorphism M₁ M₂
+    x : M₁.Domain
+  Prove
+    EquivLike.toFunLike.1 { toFun := iso.toModelEmbedding.1, invFun := fun b => (Classical.indefiniteDescription (fun x => iso.toFun x = b)⋯).1, left_inv := ⋯, right_inv := ⋯ } x = iso.toModelEmbedding.1 x
+Transliterated theorem: (∀ x ∈ M₁.Domain), iso.toEquiv x = iso.toFun x
+Logical form (Lean): {S : Signature} {M₁ M₂ : Model S} (iso : ModelIsomorphism M₁ M₂) (x : M₁.Domain) : iso.toEquiv x = iso.toFun x
+Source: ./Model/Comparison/ModelIsomorphismSymmetric.lean#L94
+
+
+
+Name: updatedVariableTakesNewValue
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Variable : Type} [DecidableEq Variable] {Domain : Type u} (assignment : Variable -> Domain) (v : Variable) (a : Domain), updateAssignment assignment v a v = a
+Predicate logic (unfolded):
+  Ambient
+    (Variable, Domain)
+  Objects
+    assignment : Variable -> Domain
+    v : Variable
+    a : Domain
+  Prove
+    Decidable.rec (fun h => (fun x => assignment v) h) (fun h => (fun x => a) h) (inst v v) = a
+Transliterated theorem: (∀ v ∈ Variable ∀ a ∈ Domain), updateAssignment assignment v a v = a
+Logical form (Lean): {Variable : Type} [DecidableEq Variable] {Domain : Type u} (assignment : Variable -> Domain) (v : Variable) (a : Domain) : updateAssignment assignment v a v = a
+Source: ./Semantics/Assignment.lean#L96
+
+
+
+Name: differentVariableKeepsOldValue
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Variable : Type} [DecidableEq Variable] {Domain : Type u} (assignment : Variable -> Domain) (v v' : Variable) (a : Domain) (hv : v' ≠ v), updateAssignment assignment v a v' = assignment v'
+Predicate logic (unfolded):
+  Ambient
+    (Variable, Domain)
+  Objects
+    assignment : Variable -> Domain
+    v v' : Variable
+    a : Domain
+    hv : v' ≠ v
+  Prove
+    (v' = v → False) → Decidable.rec (fun h => (fun x => assignment v') h) (fun h => (fun x => a) h) (inst v' v) = assignment v'
+Transliterated theorem: (∀ v v' ∈ Variable ∀ a ∈ Domain), updateAssignment assignment v a v' = assignment v'
+Logical form (Lean): {Variable : Type} [DecidableEq Variable] {Domain : Type u} (assignment : Variable -> Domain) (v v' : Variable) (a : Domain) (hv : v' ≠ v) : updateAssignment assignment v a v' = assignment v'
+Source: ./Semantics/Assignment.lean#L141
+
+
+
+Name: satisfiesAndIffSatisfiesBoth
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {S : Signature} {Variable : Type} [DecidableEq Variable] (M : Model S) (assignment : Variable -> M.Domain) (φ ψ : Formula S Variable), Satisfies M assignment (Formula.and φ ψ) ↔ (Satisfies M assignment φ ∧ Satisfies M assignment ψ)
+Predicate logic (unfolded):
+  Ambient
+    (Variable)
+  Objects
+    S : Signature
+    M : Model S
+    assignment : Variable -> M.Domain
+    φ ψ : Formula S Variable
+  Prove
+    Satisfies M assignment (Formula.and φ ψ) ↔ (Satisfies M assignment φ ∧ Satisfies M assignment ψ)
+Transliterated theorem: Satisfies M assignment (Formula.and φ ψ) ↔ (Satisfies M assignment φ ∧ Satisfies M assignment ψ)
+Logical form (Lean): {S : Signature} {Variable : Type} [DecidableEq Variable] (M : Model S) (assignment : Variable -> M.Domain) (φ ψ : Formula S Variable) : Satisfies M assignment (Formula.and φ ψ) ↔ (Satisfies M assignment φ ∧ Satisfies M assignment ψ)
+Source: ./Semantics/Satisfaction.lean#L118
+
+
+
+Name: satisfiesExistsIffSomeWitness
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {S : Signature} {Variable : Type} [DecidableEq Variable] (M : Model S) (assignment : Variable -> M.Domain) (v : Variable) (φ : Formula S Variable), Satisfies M assignment (Formula.existsQ v φ) ↔ ∃ a : M.Domain, Satisfies M (updateAssignment assignment v a) φ
+Predicate logic (unfolded):
+  Ambient
+    (Variable)
+  Objects
+    S : Signature
+    M : Model S
+    assignment : Variable -> M.Domain
+    v : Variable
+    φ : Formula S Variable
+  Prove
+    Satisfies M assignment (Formula.existsQ v φ) ↔ ∃ a : M.Domain, Satisfies M (updateAssignment assignment v a) φ
+Transliterated theorem: (∀ v ∈ Variable), Satisfies M assignment (Formula.existsQ v φ) ↔ ∃ a ∈ M.Domain, Satisfies M (updateAssignment assignment v a) φ
+Logical form (Lean): {S : Signature} {Variable : Type} [DecidableEq Variable] (M : Model S) (assignment : Variable -> M.Domain) (v : Variable) (φ : Formula S Variable) : Satisfies M assignment (Formula.existsQ v φ) ↔ ∃ a : M.Domain, Satisfies M (updateAssignment assignment v a) φ
+Source: ./Semantics/Satisfaction.lean#L166
+
+
+
+Name: evaluateTerm_substituteInTerm_eq_update
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {S : Signature} {Variable : Type} [DecidableEq Variable] (M : Model S) (assignment : Variable -> M.Domain) (replacedVariable : Variable) (replacementTerm originalTerm : Term S Variable), evaluateTerm M assignment (substituteInTerm replacedVariable replacementTerm originalTerm) = evaluateTerm M (updateAssignment assignment replacedVariable (evaluateTerm M assignment replacementTerm)) originalTerm
+Predicate logic (unfolded):
+  Ambient
+    (Variable)
+  Objects
+    S : Signature
+    M : Model S
+    assignment : Variable -> M.Domain
+    replacedVariable : Variable
+    replacementTerm originalTerm : Term S Variable
+  Prove
+    LRA.Logic.FirstOrder.evaluateTerm M assignment (LRA.Logic.FirstOrder.substituteInTerm replacedVariable replacementTerm originalTerm) = LRA.Logic.FirstOrder.evaluateTerm M (fun v' => Decidable.rec (fun h => (fun x => assignment v') h) (fun h => (fun x => LRA.Logic.FirstOrder.evaluateTerm M assignment replacementTerm) h) (inst v' replacedVariable)) originalTerm
+Transliterated theorem: (∀ replacedVariable ∈ Variable), evaluateTerm M assignment (substituteInTerm replacedVariable replacementTerm originalTerm) = evaluateTerm M (updateAssignment assignment replacedVariable (evaluateTerm M assignment replacementTerm)) originalTerm
+Logical form (Lean): {S : Signature} {Variable : Type} [DecidableEq Variable] (M : Model S) (assignment : Variable -> M.Domain) (replacedVariable : Variable) (replacementTerm originalTerm : Term S Variable) : evaluateTerm M assignment (substituteInTerm replacedVariable replacementTerm originalTerm) = evaluateTerm M (updateAssignment assignment replacedVariable (evaluateTerm M assignment replacementTerm)) originalTerm
+Source: ./Semantics/Substitution.lean#L54
+
+
+
+Name: evaluateTerm_eq_of_agrees_on_freeVariablesInTerm
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {S : Signature} {Variable : Type} [DecidableEq Variable] (M : Model S) {leftAssignment rightAssignment : Variable -> M.Domain} (term : Term S Variable) (assignmentsAgree : ∀ candidateVariable, candidateVariable ∈ freeVariablesInTerm term -> leftAssignment candidateVariable = rightAssignment candidateVariable), evaluateTerm M leftAssignment term = evaluateTerm M rightAssignment term
+Predicate logic (unfolded):
+  Ambient
+    (Variable)
+  Objects
+    S : Signature
+    M : Model S
+    leftAssignment rightAssignment : Variable -> M.Domain
+    term : Term S Variable
+  Prove
+    (∀ (candidateVariable : Variable), SetLike.candidateVariable ∈ LRA.Logic.FirstOrder.freeVariablesInTerm term → leftAssignment candidateVariable = rightAssignment candidateVariable) → LRA.Logic.FirstOrder.evaluateTerm M leftAssignment term = LRA.Logic.FirstOrder.evaluateTerm M rightAssignment term
+Transliterated theorem: (∀ candidateVariable, candidateVariable ∈ freeVariablesInTerm term -> leftAssignment candidateVariable = rightAssignment candidateVariable) → evaluateTerm M leftAssignment term = evaluateTerm M rightAssignment term
+Logical form (Lean): {S : Signature} {Variable : Type} [DecidableEq Variable] (M : Model S) {leftAssignment rightAssignment : Variable -> M.Domain} (term : Term S Variable) (assignmentsAgree : ∀ candidateVariable, candidateVariable ∈ freeVariablesInTerm term -> leftAssignment candidateVariable = rightAssignment candidateVariable) : evaluateTerm M leftAssignment term = evaluateTerm M rightAssignment term
+Source: ./Semantics/Substitution.lean#L112
+
+
+
+Name: isSubstitutable_of_freeVariablesInTerm_not_mem_allVariables
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {S : Signature} {Variable : Type} [DecidableEq Variable] (formula : Formula S Variable) (replacedVariable : Variable) (replacementTerm : Term S Variable) (replacementVariablesAreFresh : ∀ candidateVariable, candidateVariable ∈ freeVariablesInTerm replacementTerm -> candidateVariable ∉ allVariables formula), IsSubstitutable formula replacedVariable replacementTerm
+Predicate logic (unfolded):
+  Ambient
+    (Variable)
+  Objects
+    S : Signature
+    formula : Formula S Variable
+    replacedVariable : Variable
+    replacementTerm : Term S Variable
+  Prove
+    (∀ (candidateVariable : Variable), SetLike.candidateVariable ∈ LRA.Logic.FirstOrder.freeVariablesInTerm replacementTerm → SetLike.candidateVariable ∈ LRA.Logic.FirstOrder.allVariables formula → False) → LRA.Logic.FirstOrder.IsSubstitutable formula replacedVariable replacementTerm
+Transliterated theorem: (∀ replacedVariable ∈ Variable), (∀ candidateVariable, candidateVariable ∈ freeVariablesInTerm replacementTerm -> candidateVariable ∉ allVariables formula) → IsSubstitutable formula replacedVariable replacementTerm
+Logical form (Lean): {S : Signature} {Variable : Type} [DecidableEq Variable] (formula : Formula S Variable) (replacedVariable : Variable) (replacementTerm : Term S Variable) (replacementVariablesAreFresh : ∀ candidateVariable, candidateVariable ∈ freeVariablesInTerm replacementTerm -> candidateVariable ∉ allVariables formula) : IsSubstitutable formula replacedVariable replacementTerm
+Source: ./Semantics/Substitution.lean#L168
+
+
+
+Name: satisfies_iff_of_agrees_on_freeVariables
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {S : Signature} {Variable : Type} [DecidableEq Variable] (M : Model S) {leftAssignment rightAssignment : Variable -> M.Domain} (formula : Formula S Variable) (assignmentsAgree : ∀ candidateVariable, candidateVariable ∈ freeVariables formula -> leftAssignment candidateVariable = rightAssignment candidateVariable), Satisfies M leftAssignment formula ↔ Satisfies M rightAssignment formula
+Predicate logic (unfolded):
+  Ambient
+    (Variable)
+  Objects
+    S : Signature
+    M : Model S
+    leftAssignment rightAssignment : Variable -> M.Domain
+    formula : Formula S Variable
+  Prove
+    Satisfies M leftAssignment formula ↔ Satisfies M rightAssignment formula
+Transliterated theorem: (∀ candidateVariable, candidateVariable ∈ freeVariables formula -> leftAssignment candidateVariable = rightAssignment candidateVariable) → Satisfies M leftAssignment formula ↔ Satisfies M rightAssignment formula
+Logical form (Lean): {S : Signature} {Variable : Type} [DecidableEq Variable] (M : Model S) {leftAssignment rightAssignment : Variable -> M.Domain} (formula : Formula S Variable) (assignmentsAgree : ∀ candidateVariable, candidateVariable ∈ freeVariables formula -> leftAssignment candidateVariable = rightAssignment candidateVariable) : Satisfies M leftAssignment formula ↔ Satisfies M rightAssignment formula
+Source: ./Semantics/Substitution.lean#L254
+
+
+
+Name: satisfies_substitute_iff_update
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {S : Signature} {Variable : Type} [DecidableEq Variable] (M : Model S) (assignment : Variable -> M.Domain) (replacedVariable : Variable) (replacementTerm : Term S Variable) (formula : Formula S Variable) (captureAvoiding : IsSubstitutable formula replacedVariable replacementTerm), Satisfies M assignment (substitute replacedVariable replacementTerm formula) ↔ Satisfies M (updateAssignment assignment replacedVariable (evaluateTerm M assignment replacementTerm)) formula
+Predicate logic (unfolded):
+  Ambient
+    (Variable)
+  Objects
+    S : Signature
+    M : Model S
+    assignment : Variable -> M.Domain
+    replacedVariable : Variable
+    replacementTerm : Term S Variable
+    formula : Formula S Variable
+  Prove
+    Satisfies M assignment (substitute replacedVariable replacementTerm formula) ↔ Satisfies M (updateAssignment assignment replacedVariable (evaluateTerm M assignment replacementTerm)) formula
+Transliterated theorem: (∀ replacedVariable ∈ Variable), (IsSubstitutable formula replacedVariable replacementTerm) → Satisfies M assignment (substitute replacedVariable replacementTerm formula) ↔ Satisfies M (updateAssignment assignment replacedVariable (evaluateTerm M assignment replacementTerm)) formula
+Logical form (Lean): {S : Signature} {Variable : Type} [DecidableEq Variable] (M : Model S) (assignment : Variable -> M.Domain) (replacedVariable : Variable) (replacementTerm : Term S Variable) (formula : Formula S Variable) (captureAvoiding : IsSubstitutable formula replacedVariable replacementTerm) : Satisfies M assignment (substitute replacedVariable replacementTerm formula) ↔ Satisfies M (updateAssignment assignment replacedVariable (evaluateTerm M assignment replacementTerm)) formula
+Source: ./Semantics/Substitution.lean#L406
+
+
+
+Name: satisfies_iff_of_isClosedFormula
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {S : Signature} {Variable : Type} [DecidableEq Variable] (M : Model S) {leftAssignment rightAssignment : Variable -> M.Domain} (formula : Formula S Variable) (closedFormula : IsClosedFormula formula), Satisfies M leftAssignment formula ↔ Satisfies M rightAssignment formula
+Predicate logic (unfolded):
+  Ambient
+    (Variable)
+  Objects
+    S : Signature
+    M : Model S
+    leftAssignment rightAssignment : Variable -> M.Domain
+    formula : Formula S Variable
+  Prove
+    Satisfies M leftAssignment formula ↔ Satisfies M rightAssignment formula
+Transliterated theorem: (IsClosedFormula formula) → Satisfies M leftAssignment formula ↔ Satisfies M rightAssignment formula
+Logical form (Lean): {S : Signature} {Variable : Type} [DecidableEq Variable] (M : Model S) {leftAssignment rightAssignment : Variable -> M.Domain} (formula : Formula S Variable) (closedFormula : IsClosedFormula formula) : Satisfies M leftAssignment formula ↔ Satisfies M rightAssignment formula
+Source: ./Semantics/Sentence.lean#L49
+
+
+
+Name: satisfies_sentence_iff
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {S : Signature} {Variable : Type} [DecidableEq Variable] (M : Model S) {leftAssignment rightAssignment : Variable -> M.Domain} (sentence : Sentence S Variable), Satisfies M leftAssignment sentence.val ↔ Satisfies M rightAssignment sentence.val
+Predicate logic (unfolded):
+  Ambient
+    (Variable)
+  Objects
+    S : Signature
+    M : Model S
+    leftAssignment rightAssignment : Variable -> M.Domain
+    sentence : Sentence S Variable
+  Prove
+    Satisfies M leftAssignment sentence.val ↔ Satisfies M rightAssignment sentence.val
+Transliterated theorem: Satisfies M leftAssignment sentence.val ↔ Satisfies M rightAssignment sentence.val
+Logical form (Lean): {S : Signature} {Variable : Type} [DecidableEq Variable] (M : Model S) {leftAssignment rightAssignment : Variable -> M.Domain} (sentence : Sentence S Variable) : Satisfies M leftAssignment sentence.val ↔ Satisfies M rightAssignment sentence.val
+Source: ./Semantics/Sentence.lean#L100
+
+
+
+Name: firstOrderSubstitutionSafety
+Kind: Instance
+State: Sorry
+Predicate logic: ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : DecidableEq Variable],   LRA.Metamathematics.SubstitutionSafety (LRA.Logic.FirstOrder.Formula S Variable) Variable     (LRA.Logic.FirstOrder.Term S Variable) LRA.Logic.FirstOrder.IsSubstitutable LRA.Logic.FirstOrder.substitute     (fun candidateVariable term =>       SetLike.instMembership.mem (LRA.Logic.FirstOrder.freeVariablesInTerm term) candidateVariable)     fun formula => (LRA.Logic.FirstOrder.freeVariables formula).toList
+Predicate logic (unfolded):
+  Ambient
+    (Variable)
+  Objects
+    S : Signature
+  Prove
+    LRA.Metamathematics.SubstitutionSafety (LRA.Logic.FirstOrder.Formula S Variable) Variable (LRA.Logic.FirstOrder.Term S Variable) LRA.Logic.FirstOrder.IsSubstitutable LRA.Logic.FirstOrder.substitute (fun candidateVariable term => SetLike.candidateVariable) ∈ LRA.Logic.FirstOrder.freeVariablesInTerm term fun formula => (Classical.indefiniteDescription (fun x => Quot.mk (List.isSetoid Variable).r x = LRA.Logic.FirstOrder.freeVariables formula.val) ⋯).1
+Transliterated theorem: SubstitutionSafety (Formula S Variable) Variable (Term S Variable) IsSubstitutable substitute (fun candidateVariable term => candidateVariable ∈ freeVariablesInTerm term) (fun formula => (freeVariables formula).toList) where noCaptureUnderSafety
+Logical form (Lean): {S : Signature} {Variable : Type} [DecidableEq Variable] : SubstitutionSafety (Formula S Variable) Variable (Term S Variable) IsSubstitutable substitute (fun candidateVariable term => candidateVariable ∈ freeVariablesInTerm term) (fun formula => (freeVariables formula).toList) where noCaptureUnderSafety
+Source: ./Metamathematics.lean#L37
+
+
+
+Name: monoidSignature.mulIsBinary
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Logic.monoidSignature.IsBinaryFunctionSymbol LRA.Logic.MonoidFunctionSymbol.mul
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.monoidSignature.Functions.2 LRA.Logic.MonoidFunctionSymbol.mul = 2
+Transliterated theorem: monoidSignature.IsBinaryFunctionSymbol .mul
+Logical form (Lean): : monoidSignature.IsBinaryFunctionSymbol .mul
+Source: ./Language/Examples.lean#L311
+
+
+
+Name: additiveMonoidSignature.addIsBinary
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Logic.orderedRingSignature.IsBinaryFunctionSymbol LRA.Logic.OrderedRingFunctionSymbol.add
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.orderedRingSignature.Functions.2 LRA.Logic.OrderedRingFunctionSymbol.add = 2
+Transliterated theorem: additiveMonoidSignature.IsBinaryFunctionSymbol .add
+Logical form (Lean): : additiveMonoidSignature.IsBinaryFunctionSymbol .add
+Source: ./Language/Examples.lean#L619
+
+
+
+Name: orderedRingSignature.addIsBinary
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Logic.additiveMonoidSignature.IsBinaryFunctionSymbol LRA.Logic.AdditiveMonoidFunctionSymbol.add
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.additiveMonoidSignature.Functions.2 LRA.Logic.AdditiveMonoidFunctionSymbol.add = 2
+Transliterated theorem: orderedRingSignature.IsBinaryFunctionSymbol .add
+Logical form (Lean): : orderedRingSignature.IsBinaryFunctionSymbol .add
+Source: ./Language/Examples.lean#L955
+
+
+
+Name: orderedRingSignature.mulIsBinary
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Logic.orderedRingSignature.IsBinaryFunctionSymbol LRA.Logic.OrderedRingFunctionSymbol.mul
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.orderedRingSignature.Functions.2 LRA.Logic.OrderedRingFunctionSymbol.mul = 2
+Transliterated theorem: orderedRingSignature.IsBinaryFunctionSymbol .mul
+Logical form (Lean): : orderedRingSignature.IsBinaryFunctionSymbol .mul
+Source: ./Language/Examples.lean#L995
+
+
+
+Name: orderedRingSignature.negIsUnary
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Logic.orderedRingSignature.IsUnaryFunctionSymbol LRA.Logic.OrderedRingFunctionSymbol.neg
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.orderedRingSignature.Functions.2 LRA.Logic.OrderedRingFunctionSymbol.neg = 1
+Transliterated theorem: orderedRingSignature.IsUnaryFunctionSymbol .neg
+Logical form (Lean): : orderedRingSignature.IsUnaryFunctionSymbol .neg
+Source: ./Language/Examples.lean#L1035
+
+
+
+Name: orderedRingSignature.ltIsBinary
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Logic.orderedRingSignature.IsBinaryRelationSymbol LRA.Logic.OrderedRingRelationSymbol.lt
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.orderedRingSignature.Relations.2 LRA.Logic.OrderedRingRelationSymbol.lt = 2
+Transliterated theorem: orderedRingSignature.IsBinaryRelationSymbol .lt
+Logical form (Lean): : orderedRingSignature.IsBinaryRelationSymbol .lt
+Source: ./Language/Examples.lean#L1075
+
+
+
+Name: natMulMonoidModel.mulComputesMultiplication
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : Nat), natMulMonoidModel.interpretFunction .mul (fun i => if i.val = 0 then a else b) = a * b
+Predicate logic (unfolded):
+  Ambient
+    (Nat)
+  Objects
+    a b : Nat
+  Prove
+    LRA.Logic.FirstOrder.intOrderedRingModel.5 LRA.Logic.OrderedRingFunctionSymbol.mul fun i => Decidable.rec (fun h => (fun x => b) h) (fun h => (fun x => a) h) (Bool.casesOn (motive := fun x => i.val.beq 0 = x → (fun x => Decidable (i.val = 0))x) (i.val.beq 0) (fun h => Decidable.isFalse ⋯) (fun h => Decidable.isTrue ⋯) ⋯) = { hMul := fun a b => Int.instMul.mul a b }.hMul a b
+Transliterated theorem: (∀ a b ∈ Nat), natMulMonoidModel.interpretFunction .mul (fun i => if i.val = 0 then a else b) = a * b
+Logical form (Lean): (a b : Nat) : natMulMonoidModel.interpretFunction .mul (fun i => if i.val = 0 then a else b) = a * b
+Source: ./Model/Examples.lean#L111
+
+
+
+Name: natMulMonoidModel.oneComputesOne
+Kind: Theorem
+State: Sorry
+Predicate logic: natMulMonoidModel.interpretConstant .one = (1 : Nat)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.FirstOrder.natMulMonoidModel.7 LRA.Logic.MonoidConstantSymbol.one = 1
+Transliterated theorem: natMulMonoidModel.interpretConstant .one = 1 ∈ Nat
+Logical form (Lean): : natMulMonoidModel.interpretConstant .one = (1 : Nat)
+Source: ./Model/Examples.lean#L153
+
+
+
+Name: natAddMonoidModel.addComputesAddition
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : Nat), natAddMonoidModel.interpretFunction .add (fun i => if i.val = 0 then a else b) = a + b
+Predicate logic (unfolded):
+  Ambient
+    (Nat)
+  Objects
+    a b : Nat
+  Prove
+    LRA.Logic.FirstOrder.intOrderedRingModel.5 LRA.Logic.OrderedRingFunctionSymbol.add fun i => Decidable.rec (fun h => (fun x => b) h) (fun h => (fun x => a) h) (Bool.casesOn (motive := fun x => i.val.beq 0 = x → (fun x => Decidable (i.val = 0))x) (i.val.beq 0) (fun h => Decidable.isFalse ⋯) (fun h => Decidable.isTrue ⋯) ⋯) = { hAdd := fun a b => Int.instAdd.add a b }.hAdd a b
+Transliterated theorem: (∀ a b ∈ Nat), natAddMonoidModel.interpretFunction .add (fun i => if i.val = 0 then a else b) = a + b
+Logical form (Lean): (a b : Nat) : natAddMonoidModel.interpretFunction .add (fun i => if i.val = 0 then a else b) = a + b
+Source: ./Model/Examples.lean#L261
+
+
+
+Name: natAddMonoidModel.zeroComputesZero
+Kind: Theorem
+State: Sorry
+Predicate logic: natAddMonoidModel.interpretConstant .zero = (0 : Nat)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.FirstOrder.intOrderedRingModel.7 LRA.Logic.OrderedRingConstantSymbol.zero = 0
+Transliterated theorem: natAddMonoidModel.interpretConstant .zero = 0 ∈ Nat
+Logical form (Lean): : natAddMonoidModel.interpretConstant .zero = (0 : Nat)
+Source: ./Model/Examples.lean#L303
+
+
+
+Name: intOrderedRingModel.addComputesAddition
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : Int), intOrderedRingModel.interpretFunction .add (fun i => if i.val = 0 then a else b) = a + b
+Predicate logic (unfolded):
+  Ambient
+    (Int)
+  Objects
+    a b : Int
+  Prove
+    LRA.Logic.FirstOrder.natAddMonoidModel.5 LRA.Logic.AdditiveMonoidFunctionSymbol.add fun i => Decidable.rec (fun h => (fun x => b) h) (fun h => (fun x => a) h) (Bool.casesOn (motive := fun x => i.val.beq 0 = x → (fun x => Decidable (i.val = 0))x) (i.val.beq 0) (fun h => Decidable.isFalse ⋯) (fun h => Decidable.isTrue ⋯) ⋯) = { hAdd := fun a b => instAddNat.add a b }.hAdd a b
+Transliterated theorem: (∀ a b ∈ Int), intOrderedRingModel.interpretFunction .add (fun i => if i.val = 0 then a else b) = a + b
+Logical form (Lean): (a b : Int) : intOrderedRingModel.interpretFunction .add (fun i => if i.val = 0 then a else b) = a + b
+Source: ./Model/Examples.lean#L427
+
+
+
+Name: intOrderedRingModel.mulComputesMultiplication
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : Int), intOrderedRingModel.interpretFunction .mul (fun i => if i.val = 0 then a else b) = a * b
+Predicate logic (unfolded):
+  Ambient
+    (Int)
+  Objects
+    a b : Int
+  Prove
+    LRA.Logic.FirstOrder.natMulMonoidModel.5 LRA.Logic.MonoidFunctionSymbol.mul fun i => Decidable.rec (fun h => (fun x => b) h) (fun h => (fun x => a) h) (Bool.casesOn (motive := fun x => i.val.beq 0 = x → (fun x => Decidable (i.val = 0))x) (i.val.beq 0) (fun h => Decidable.isFalse ⋯) (fun h => Decidable.isTrue ⋯) ⋯) = { hMul := fun a b => instMulNat.mul a b }.hMul a b
+Transliterated theorem: (∀ a b ∈ Int), intOrderedRingModel.interpretFunction .mul (fun i => if i.val = 0 then a else b) = a * b
+Logical form (Lean): (a b : Int) : intOrderedRingModel.interpretFunction .mul (fun i => if i.val = 0 then a else b) = a * b
+Source: ./Model/Examples.lean#L471
+
+
+
+Name: intOrderedRingModel.negComputesNegation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a : Int), intOrderedRingModel.interpretFunction .neg (fun _ => a) = -a
+Predicate logic (unfolded):
+  Ambient
+    (Int)
+  Objects
+    a : Int
+  Prove
+    LRA.Logic.FirstOrder.intOrderedRingModel.5 LRA.Logic.OrderedRingFunctionSymbol.neg fun x => a = Int.instNegInt.neg a
+Transliterated theorem: (∀ a ∈ Int), intOrderedRingModel.interpretFunction .neg (fun _ => a) = -a
+Logical form (Lean): (a : Int) : intOrderedRingModel.interpretFunction .neg (fun _ => a) = -a
+Source: ./Model/Examples.lean#L514
+
+
+
+Name: intOrderedRingModel.ltComputesLessThan
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : Int), intOrderedRingModel.interpretRelation .lt (fun i => if i.val = 0 then a else b) = (a < b)
+Predicate logic (unfolded):
+  Ambient
+    (Int)
+  Objects
+    a b : Int
+  Prove
+    LRA.Logic.FirstOrder.intOrderedRingModel.6 LRA.Logic.OrderedRingRelationSymbol.lt fun i => Decidable.rec (fun h => (fun x => b) h) (fun h => (fun x => a) h) (Bool.casesOn (motive := fun x => i.val.beq 0 = x → (fun x => Decidable (i.val = 0))x) (i.val.beq 0) (fun h => Decidable.isFalse ⋯) (fun h => Decidable.isTrue ⋯) ⋯) = Int.instLTInt.lt a b
+Transliterated theorem: (∀ a b ∈ Int), intOrderedRingModel.interpretRelation .lt (fun i => if i.val = 0 then a else b) = (a < b)
+Logical form (Lean): (a b : Int) : intOrderedRingModel.interpretRelation .lt (fun i => if i.val = 0 then a else b) = (a < b)
+Source: ./Model/Examples.lean#L557
+
+
+
+Name: intOrderedRingModel.zeroComputesZero
+Kind: Theorem
+State: Sorry
+Predicate logic: intOrderedRingModel.interpretConstant .zero = (0 : Int)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.FirstOrder.natAddMonoidModel.7 LRA.Logic.AdditiveMonoidConstantSymbol.zero = 0
+Transliterated theorem: intOrderedRingModel.interpretConstant .zero = 0 ∈ Int
+Logical form (Lean): : intOrderedRingModel.interpretConstant .zero = (0 : Int)
+Source: ./Model/Examples.lean#L599
+
+
+
+Name: intOrderedRingModel.oneComputesOne
+Kind: Theorem
+State: Sorry
+Predicate logic: intOrderedRingModel.interpretConstant .one = (1 : Int)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.FirstOrder.intOrderedRingModel.7 LRA.Logic.OrderedRingConstantSymbol.one = 1
+Transliterated theorem: intOrderedRingModel.interpretConstant .one = 1 ∈ Int
+Logical form (Lean): : intOrderedRingModel.interpretConstant .one = (1 : Int)
+Source: ./Model/Examples.lean#L639
+
+
+
+Name: qOrderedRingModel.addComputesAddition
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : Rat), qOrderedRingModel.interpretFunction .add (fun i => if i.val = 0 then a else b) = a + b
+Predicate logic (unfolded):
+  Ambient
+    (Rat)
+  Objects
+    a b : Rat
+  Prove
+    LRA.Logic.FirstOrder.rOrderedRingModel.5 LRA.Logic.OrderedRingFunctionSymbol.add fun i => Decidable.rec (fun h => (fun x => b) h) (fun h => (fun x => a) h) (Bool.casesOn (motive := fun x => i.val.beq 0 = x → (fun x => Decidable (i.val = 0))x) (i.val.beq 0) (fun h => Decidable.isFalse ⋯) (fun h => Decidable.isTrue ⋯) ⋯) = { hAdd := fun a b => Real.instAdd.add a b }.hAdd a b
+Transliterated theorem: (∀ a b ∈ Rat), qOrderedRingModel.interpretFunction .add (fun i => if i.val = 0 then a else b) = a + b
+Logical form (Lean): (a b : Rat) : qOrderedRingModel.interpretFunction .add (fun i => if i.val = 0 then a else b) = a + b
+Source: ./Model/Comparison/Examples.lean#L134
+
+
+
+Name: qOrderedRingModel.zeroComputesZero
+Kind: Theorem
+State: Sorry
+Predicate logic: qOrderedRingModel.interpretConstant .zero = (0 : Rat)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.FirstOrder.qOrderedRingModel.7 LRA.Logic.OrderedRingConstantSymbol.zero = 0
+Transliterated theorem: qOrderedRingModel.interpretConstant .zero = 0 ∈ Rat
+Logical form (Lean): : qOrderedRingModel.interpretConstant .zero = (0 : Rat)
+Source: ./Model/Comparison/Examples.lean#L176
+
+
+
+Name: qOrderedRingModel.oneComputesOne
+Kind: Theorem
+State: Sorry
+Predicate logic: qOrderedRingModel.interpretConstant .one = (1 : Rat)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.FirstOrder.qOrderedRingModel.7 LRA.Logic.OrderedRingConstantSymbol.one = 1
+Transliterated theorem: qOrderedRingModel.interpretConstant .one = 1 ∈ Rat
+Logical form (Lean): : qOrderedRingModel.interpretConstant .one = (1 : Rat)
+Source: ./Model/Comparison/Examples.lean#L216
+
+
+
+Name: rOrderedRingModel.addComputesAddition
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (a b : Real), rOrderedRingModel.interpretFunction .add (fun i => if i.val = 0 then a else b) = a + b
+Predicate logic (unfolded):
+  Ambient
+    (Real)
+  Objects
+    a b : Real
+  Prove
+    LRA.Logic.FirstOrder.qOrderedRingModel.5 LRA.Logic.OrderedRingFunctionSymbol.add fun i => Decidable.rec (fun h => (fun x => b) h) (fun h => (fun x => a) h) (Bool.casesOn (motive := fun x => i.val.beq 0 = x → (fun x => Decidable (i.val = 0))x) (i.val.beq 0) (fun h => Decidable.isFalse ⋯) (fun h => Decidable.isTrue ⋯) ⋯) = { hAdd := fun a b => Rat.instAdd.add a b }.hAdd a b
+Transliterated theorem: (∀ a b ∈ Real), rOrderedRingModel.interpretFunction .add (fun i => if i.val = 0 then a else b) = a + b
+Logical form (Lean): (a b : Real) : rOrderedRingModel.interpretFunction .add (fun i => if i.val = 0 then a else b) = a + b
+Source: ./Model/Comparison/Examples.lean#L340
+
+
+
+Name: rOrderedRingModel.zeroComputesZero
+Kind: Theorem
+State: Sorry
+Predicate logic: rOrderedRingModel.interpretConstant .zero = (0 : Real)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.FirstOrder.rOrderedRingModel.7 LRA.Logic.OrderedRingConstantSymbol.zero = 0
+Transliterated theorem: rOrderedRingModel.interpretConstant .zero = 0 ∈ Real
+Logical form (Lean): : rOrderedRingModel.interpretConstant .zero = (0 : Real)
+Source: ./Model/Comparison/Examples.lean#L382
+
+
+
+Name: rOrderedRingModel.oneComputesOne
+Kind: Theorem
+State: Sorry
+Predicate logic: rOrderedRingModel.interpretConstant .one = (1 : Real)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.FirstOrder.rOrderedRingModel.7 LRA.Logic.OrderedRingConstantSymbol.one = 1
+Transliterated theorem: rOrderedRingModel.interpretConstant .one = 1 ∈ Real
+Logical form (Lean): : rOrderedRingModel.interpretConstant .one = (1 : Real)
+Source: ./Model/Comparison/Examples.lean#L422
+
+
+
+Name: qToQIsomorphism.toFunIsIdentity
+Kind: Theorem
+State: Sorry
+Predicate logic: qToQIsomorphism.toFun = (id : Rat -> Rat)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.FirstOrder.qToQIsomorphism.toModelEmbedding.1 = funa => a
+Transliterated theorem: qToQIsomorphism.toFun = id ∈ Rat -> Rat
+Logical form (Lean): : qToQIsomorphism.toFun = (id : Rat -> Rat)
+Source: ./Model/Comparison/Examples.lean#L710
+
+
+
+Name: testModel_satisfies_aAndB
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Logic.Propositional.testModel.satisfies LRA.Logic.Propositional.testFormula
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.Propositional.evaluate LRA.Logic.Propositional.testModel.1 LRA.Logic.Propositional.testFormula = Bool.true
+Transliterated theorem: testModel.satisfies testFormula
+Logical form (Lean): : testModel.satisfies testFormula
+Source: ./Model/Propositional/Examples.lean#L222
+
+
+
+Name: modelAA_mem_modelClass_A
+Kind: Theorem
+State: Sorry
+Predicate logic: Set.instMembership.mem   (LRA.Logic.Propositional.modelClass (LRA.Logic.Propositional.Formula.atom LRA.Logic.Propositional.TestAtom.A))   LRA.Logic.Propositional.modelAA
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.Propositional.modelAA ∈ fun M => LRA.Logic.Propositional.evaluate M.1 (LRA.Logic.Propositional.Formula.atom LRA.Logic.Propositional.TestAtom.A) = Bool.true
+Transliterated theorem: modelAA ∈ modelClass (Formula.atom TestAtom.A)
+Logical form (Lean): : modelAA ∈ modelClass (Formula.atom TestAtom.A)
+Source: ./Model/Propositional/ModelsAndTheoriesExamples.lean#L244
+
+
+
+Name: modelFF_not_mem_modelClass_A
+Kind: Theorem
+State: Sorry
+Predicate logic: modelFF ∉ modelClass (Formula.atom TestAtom.A)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.Propositional.modelFF ∈ fun M => LRA.Logic.Propositional.evaluate M.1 (LRA.Logic.Propositional.Formula.atom LRA.Logic.Propositional.TestAtom.A) = Bool.true → False
+Transliterated theorem: modelFF ∉ modelClass (Formula.atom TestAtom.A)
+Logical form (Lean): : modelFF ∉ modelClass (Formula.atom TestAtom.A)
+Source: ./Model/Propositional/ModelsAndTheoriesExamples.lean#L284
+
+
+
+Name: excludedMiddle_isValid
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Logic.Propositional.IsValid   ((LRA.Logic.Propositional.Formula.atom LRA.Logic.Propositional.TestAtom.A).or     (LRA.Logic.Propositional.Formula.atom LRA.Logic.Propositional.TestAtom.A).neg)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.Propositional.evaluate M.1 ((LRA.Logic.Propositional.Formula.atom LRA.Logic.Propositional.TestAtom.A).neg.impl (LRA.Logic.Propositional.Formula.atom LRA.Logic.Propositional.TestAtom.A).neg) = Bool.true
+Transliterated theorem: IsValid (Formula.or (Formula.atom TestAtom.A) (Formula.neg (Formula.atom TestAtom.A)))
+Logical form (Lean): : IsValid (Formula.or (Formula.atom TestAtom.A) (Formula.neg (Formula.atom TestAtom.A)))
+Source: ./Model/Propositional/ModelsAndTheoriesExamples.lean#L324
+
+
+
+Name: theory_AB_isSatisfiable
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Logic.Propositional.IsSatisfiable   (Set.instInsert.insert (LRA.Logic.Propositional.Formula.atom LRA.Logic.Propositional.TestAtom.A)     (Set.instSingletonSet.singleton (LRA.Logic.Propositional.Formula.atom LRA.Logic.Propositional.TestAtom.B)))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun x => x ∈ fun M => ∀ (φ : LRA.Logic.Propositional.Formula LRA.Logic.Propositional.testLanguage), φ ∈ Set.instInsert.insert (LRA.Logic.Propositional.Formula.atom LRA.Logic.Propositional.TestAtom.A) (Set.instSingletonSet.singleton (LRA.Logic.Propositional.Formula.atom LRA.Logic.Propositional.TestAtom.B)) → LRA.Logic.Propositional.evaluate M.valuation φ = Bool.true
+Transliterated theorem: IsSatisfiable {Formula.atom TestAtom.A, Formula.atom TestAtom.B} ∈ Set (Formula testLanguage)
+Logical form (Lean): : IsSatisfiable ({Formula.atom TestAtom.A, Formula.atom TestAtom.B} : Set (Formula testLanguage))
+Source: ./Model/Propositional/ModelsAndTheoriesExamples.lean#L364
+
+
+
+Name: theory_AAndNotA_not_isSatisfiable
+Kind: Theorem
+State: Sorry
+Predicate logic: ¬ IsSatisfiable ({Formula.atom TestAtom.A, Formula.neg (Formula.atom TestAtom.A)} : Set (Formula testLanguage))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun x => x) ∈ fun M => ∀ (φ : LRA.Logic.Propositional.Formula LRA.Logic.Propositional.testLanguage), φ ∈ Set.instInsert.insert (LRA.Logic.Propositional.Formula.atom LRA.Logic.Propositional.TestAtom.A) (Set.instSingletonSet.singleton (LRA.Logic.Propositional.Formula.atom LRA.Logic.Propositional.TestAtom.A).neg) → M.satisfies φ → False
+Transliterated theorem: ¬ IsSatisfiable ({Formula.atom TestAtom.A, Formula.neg (Formula.atom TestAtom.A)} : Set (Formula testLanguage))
+Logical form (Lean): : ¬ IsSatisfiable ({Formula.atom TestAtom.A, Formula.neg (Formula.atom TestAtom.A)} : Set (Formula testLanguage))
+Source: ./Model/Propositional/ModelsAndTheoriesExamples.lean#L416
+
+
+
+Name: AAndB_semanticConsequence_A
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Logic.Propositional.SemanticConsequence   (Set.instSingletonSet.singleton     ((LRA.Logic.Propositional.Formula.atom LRA.Logic.Propositional.TestAtom.A).and       (LRA.Logic.Propositional.Formula.atom LRA.Logic.Propositional.TestAtom.B)))   (LRA.Logic.Propositional.Formula.atom LRA.Logic.Propositional.TestAtom.A)
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    { le := fun s₁ s₂ => ∀ ⦃a : LRA.Logic.Propositional.PropositionalModel LRA.Logic.Propositional.testLanguage⦄, a ∈ s₁ → a ∈ s₂}.le (fun M => ∀ (φ : LRA.Logic.Propositional.Formula LRA.Logic.Propositional.testLanguage), φ ∈ Set.instSingletonSet.1 ((LRA.Logic.Propositional.Formula.atom LRA.Logic.Propositional.TestAtom.A).impl (LRA.Logic.Propositional.Formula.atom LRA.Logic.Propositional.TestAtom.B).neg).neg → LRA.Logic.Propositional.evaluate M.1 φ = Bool.true) fun M => LRA.Logic.Propositional.evaluate M.1 (LRA.Logic.Propositional.Formula.atom LRA.Logic.Propositional.TestAtom.A) = Bool.true
+Transliterated theorem: ({Formula.and (Formula.atom TestAtom.A) (Formula.atom TestAtom.B)} : Set (Formula testLanguage)) ⊨ₜ (Formula.atom TestAtom.A)
+Logical form (Lean): : ({Formula.and (Formula.atom TestAtom.A) (Formula.atom TestAtom.B)} : Set (Formula testLanguage)) ⊨ₜ (Formula.atom TestAtom.A)
+Source: ./Model/Propositional/ModelsAndTheoriesExamples.lean#L466
+
+
+
+Name: testFOLModel_satisfies_aAndB
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (assignment : Nat → LRA.Logic.FirstOrder.testFOLModel.Domain),   LRA.Logic.FirstOrder.Satisfies LRA.Logic.FirstOrder.testFOLModel assignment LRA.Logic.FirstOrder.testFOLFormula
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    assignment : Nat -> testFOLModel.Domain
+  Prove
+    LRA.Logic.FirstOrder.Satisfies LRA.Logic.FirstOrder.testFOLModel assignment LRA.Logic.FirstOrder.testFOLFormula
+Transliterated theorem: Satisfies testFOLModel assignment testFOLFormula
+Logical form (Lean): (assignment : Nat -> testFOLModel.Domain) : Satisfies testFOLModel assignment testFOLFormula
+Source: ./Semantics/Examples.lean#L288
+
+
+
+Name: alwaysTrueModel_satisfies_forallR
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (assignment : Nat → LRA.Logic.FirstOrder.alwaysTrueModel.Domain),   LRA.Logic.FirstOrder.Satisfies LRA.Logic.FirstOrder.alwaysTrueModel assignment LRA.Logic.FirstOrder.forallRFormula
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    assignment : Nat -> alwaysTrueModel.Domain
+  Prove
+    LRA.Logic.FirstOrder.Satisfies LRA.Logic.FirstOrder.alwaysTrueModel assignment LRA.Logic.FirstOrder.forallRFormula
+Transliterated theorem: Satisfies alwaysTrueModel assignment forallRFormula
+Logical form (Lean): (assignment : Nat -> alwaysTrueModel.Domain) : Satisfies alwaysTrueModel assignment forallRFormula
+Source: ./Semantics/Examples.lean#L668
+
+
+
+Name: alwaysTrueModel_satisfies_existsR
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (assignment : Nat → LRA.Logic.FirstOrder.alwaysTrueModel.Domain),   LRA.Logic.FirstOrder.Satisfies LRA.Logic.FirstOrder.alwaysTrueModel assignment LRA.Logic.FirstOrder.existsRFormula
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    assignment : Nat -> alwaysTrueModel.Domain
+  Prove
+    LRA.Logic.FirstOrder.Satisfies LRA.Logic.FirstOrder.alwaysTrueModel assignment LRA.Logic.FirstOrder.existsRFormula
+Transliterated theorem: Satisfies alwaysTrueModel assignment existsRFormula
+Logical form (Lean): (assignment : Nat -> alwaysTrueModel.Domain) : Satisfies alwaysTrueModel assignment existsRFormula
+Source: ./Semantics/Examples.lean#L708
+
+
+
+Name: sometimesFalseModel_not_satisfies_forallR
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (assignment : Nat -> sometimesFalseModel.Domain), ¬ Satisfies sometimesFalseModel assignment forallRFormula
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    assignment : Nat -> sometimesFalseModel.Domain
+  Prove
+    LRA.Logic.FirstOrder.Satisfies LRA.Logic.FirstOrder.sometimesFalseModel assignment LRA.Logic.FirstOrder.forallRFormula → False
+Transliterated theorem: ¬ Satisfies sometimesFalseModel assignment forallRFormula
+Logical form (Lean): (assignment : Nat -> sometimesFalseModel.Domain) : ¬ Satisfies sometimesFalseModel assignment forallRFormula
+Source: ./Semantics/Examples.lean#L754
+
+
+
+Name: sometimesFalseModel_satisfies_existsR
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (assignment : Nat → LRA.Logic.FirstOrder.sometimesFalseModel.Domain),   LRA.Logic.FirstOrder.Satisfies LRA.Logic.FirstOrder.sometimesFalseModel assignment LRA.Logic.FirstOrder.existsRFormula
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    assignment : Nat -> sometimesFalseModel.Domain
+  Prove
+    LRA.Logic.FirstOrder.Satisfies LRA.Logic.FirstOrder.sometimesFalseModel assignment LRA.Logic.FirstOrder.existsRFormula
+Transliterated theorem: Satisfies sometimesFalseModel assignment existsRFormula
+Logical form (Lean): (assignment : Nat -> sometimesFalseModel.Domain) : Satisfies sometimesFalseModel assignment existsRFormula
+Source: ./Semantics/Examples.lean#L796
+
+
+
+Name: richModel_satisfies_henkinTestFormula
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {richAssignment : LRA.Logic.SecondOrderMonadic.SOAssignment LRA.Logic.SecondOrderMonadic.richModel Nat Nat},   LRA.Logic.SecondOrderMonadic.SOSatisfies LRA.Logic.SecondOrderMonadic.richModel richAssignment     LRA.Logic.SecondOrderMonadic.henkinTestFormula
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.SecondOrderMonadic.SOSatisfies LRA.Logic.SecondOrderMonadic.richModel richAssignment LRA.Logic.SecondOrderMonadic.henkinTestFormula
+Transliterated theorem: SOSatisfies richModel richAssignment henkinTestFormula
+Logical form (Lean): : SOSatisfies richModel richAssignment henkinTestFormula
+Source: ./Semantics/SecondOrderMonadic/Examples.lean#L356
+
+
+
+Name: poorModel_not_satisfies_henkinTestFormula
+Kind: Theorem
+State: Sorry
+Predicate logic: ¬ SOSatisfies poorModel poorAssignment henkinTestFormula
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.SecondOrderMonadic.SOSatisfies LRA.Logic.SecondOrderMonadic.poorModel poorAssignment LRA.Logic.SecondOrderMonadic.henkinTestFormula → False
+Transliterated theorem: ¬ SOSatisfies poorModel poorAssignment henkinTestFormula
+Logical form (Lean): : ¬ SOSatisfies poorModel poorAssignment henkinTestFormula
+Source: ./Semantics/SecondOrderMonadic/Examples.lean#L400
+
+## Axioms / Assumptions
+
+Declarations written as `axiom` are recorded here for audit context, but they are
+excluded from the active proof queue because there is no proof obligation to discharge.
+
+No axiomatic assumptions are currently present in this scope.
+
+## Completed Inventory
+
+Completed entries are retained below for full-fresh regeneration and audit context,
+but they are not part of the active proof queue.
+
+Name: IsBinary
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (A : LRA.Logic.ArityIndexedSymbols) (symbol : A.Symbol), Eq (A.arity symbol) 2
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    A.2 symbol = 2
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Language/Symbols/Signature.lean
+
+
+
+Name: IsNullary
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (A : LRA.Logic.ArityIndexedSymbols) (symbol : A.Symbol), Eq (A.arity symbol) 0
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    A.2 symbol = 0
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Language/Symbols/Signature.lean
+
+
+
+Name: IsUnary
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (A : LRA.Logic.ArityIndexedSymbols) (symbol : A.Symbol), Eq (A.arity symbol) 1
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    A.2 symbol = 1
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Language/Symbols/Signature.lean
+
+
+
+Name: IsBinaryFunctionSymbol
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (S : LRA.Logic.Signature) (symbol : S.FunctionSymbol), Eq (S.Functions.arity symbol) 2
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    S.Functions.2 symbol = 2
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Language/FirstOrder/Signature.lean
+
+
+
+Name: IsBinaryRelationSymbol
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (S : LRA.Logic.Signature) (symbol : S.RelationSymbol), Eq (S.Relations.arity symbol) 2
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    S.Relations.2 symbol = 2
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Language/FirstOrder/Signature.lean
+
+
+
+Name: IsUnaryFunctionSymbol
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (S : LRA.Logic.Signature) (symbol : S.FunctionSymbol), Eq (S.Functions.arity symbol) 1
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    S.Functions.2 symbol = 1
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Language/FirstOrder/Signature.lean
+
+
+
+Name: IsUnaryRelationSymbol
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (S : LRA.Logic.Signature) (symbol : S.RelationSymbol), Eq (S.Relations.arity symbol) 1
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    S.Relations.2 symbol = 1
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Language/FirstOrder/Signature.lean
+
+
+
+Name: IsSubstitutable
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : DecidableEq Variable]   (a : LRA.Logic.FirstOrder.Formula S Variable) (a_1 : Variable) (a_2 : LRA.Logic.FirstOrder.Term S Variable),   (LRA.Logic.FirstOrder.Formula.brecOn.go (motive := fun x => Variable → LRA.Logic.FirstOrder.Term S Variable → Prop) a         LRA.Logic.FirstOrder.IsSubstitutable._f).1     a_1 a_2
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (LRA.Logic.FirstOrder.Formula.brecOn.go (motive := fun x => Variable → LRA.Logic.FirstOrder.Term S Variable → Prop) a LRA.Logic.FirstOrder.IsSubstitutable._f).1 a_1 a_2
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Syntax/FirstOrder/IsSubstitutable.lean
+
+
+
+Name: IsClosedFormula
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : DecidableEq Variable]   (formula : LRA.Logic.FirstOrder.Formula S Variable),   Eq (LRA.Logic.FirstOrder.freeVariables formula) Finset.instEmptyCollection.emptyCollection
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.FirstOrder.freeVariables formula = Finset.instEmptyCollection.1
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Syntax/FirstOrder/Sentence.lean
+
+
+
+Name: instNonemptyDomain
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {S : LRA.Logic.Signature} (M : LRA.Logic.FirstOrder.Model S), Nonempty M.Domain
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Nonempty M.1
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Model/Model.lean
+
+
+
+Name: satisfies
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {L : LRA.Logic.Propositional.PropositionalLanguage} (M : LRA.Logic.Propositional.PropositionalModel L)   (φ : LRA.Logic.Propositional.Formula L), Eq (LRA.Logic.Propositional.evaluate M.valuation φ) Bool.true
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.Propositional.evaluate M.1 φ = Bool.true
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Model/Propositional/PropositionalModel.lean
+
+
+
+Name: IsSatisfiable
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {L : LRA.Logic.Propositional.PropositionalLanguage} (Γ : Set (LRA.Logic.Propositional.Formula L)),   Exists fun x => Set.instMembership.mem (LRA.Logic.Propositional.ModelsOfTheory Γ) x
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun x => x ∈ fun M => ∀ (φ : LRA.Logic.Propositional.Formula L), φ ∈ Γ → LRA.Logic.Propositional.evaluate M.1 φ = Bool.true
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Model/Propositional/ModelsAndTheories.lean
+
+
+
+Name: SemanticConsequence
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {L : LRA.Logic.Propositional.PropositionalLanguage} (Γ : Set (LRA.Logic.Propositional.Formula L))   (φ : LRA.Logic.Propositional.Formula L) ⦃a : LRA.Logic.Propositional.PropositionalModel L⦄,   Set.instMembership.mem (LRA.Logic.Propositional.ModelsOfTheory Γ) a →     Set.instMembership.mem (LRA.Logic.Propositional.modelClass φ) a
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    a ∈ fun M => ∀ (φ : LRA.Logic.Propositional.Formula L), φ ∈ Γ → LRA.Logic.Propositional.evaluate M.1 φ = Bool.true → a ∈ fun M => LRA.Logic.Propositional.evaluate M.1 φ = Bool.true
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Model/Propositional/ModelsAndTheories.lean
+
+
+
+Name: ModelsOfTheory
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {L : LRA.Logic.Propositional.PropositionalLanguage} (Γ : Set (LRA.Logic.Propositional.Formula L))   (a : LRA.Logic.Propositional.PropositionalModel L) (φ : LRA.Logic.Propositional.Formula L),   Set.instMembership.mem Γ φ → a.satisfies φ
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    φ ∈ Γ → LRA.Logic.Propositional.evaluate a.1 φ = Bool.true
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Model/Propositional/ModelsAndTheories.lean
+
+
+
+Name: TheoryOfModels
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {L : LRA.Logic.Propositional.PropositionalLanguage} (K : Set (LRA.Logic.Propositional.PropositionalModel L))   (a : LRA.Logic.Propositional.Formula L) (M : LRA.Logic.Propositional.PropositionalModel L),   Set.instMembership.mem K M → M.satisfies a
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    M ∈ K → LRA.Logic.Propositional.evaluate M.1 a = Bool.true
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Model/Propositional/ModelsAndTheories.lean
+
+
+
+Name: IsValid
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {L : LRA.Logic.Propositional.PropositionalLanguage} (φ : LRA.Logic.Propositional.Formula L)   (M : LRA.Logic.Propositional.PropositionalModel L), M.satisfies φ
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.Propositional.evaluate M.1 φ = Bool.true
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Model/Propositional/ModelsAndTheories.lean
+
+
+
+Name: modelClass
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {L : LRA.Logic.Propositional.PropositionalLanguage} (φ : LRA.Logic.Propositional.Formula L)   (a : LRA.Logic.Propositional.PropositionalModel L), Eq (LRA.Logic.Propositional.evaluate a.valuation φ) Bool.true
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.Propositional.evaluate a.1 φ = Bool.true
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Model/Propositional/ModelsAndTheories.lean
+
+
+
+Name: HasFullSecondOrderSemantics
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {S : LRA.Logic.Signature} (M : LRA.Logic.SecondOrderMonadic.HenkinModel S) (subset : Set M.Domain),   Set.instMembership.mem M.SecondOrderDomain subset
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    subset ∈ M.2
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Model/SecondOrderMonadic/HenkinModel.lean
+
+
+
+Name: Satisfies
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : DecidableEq Variable] (M : LRA.Logic.FirstOrder.Model S)   (assignment : Variable → M.Domain) (a : LRA.Logic.FirstOrder.Formula S Variable),   (LRA.Logic.FirstOrder.Formula.brecOn.go (motive := fun x => (Variable → M.Domain) → Prop) a         (LRA.Logic.FirstOrder.Satisfies._f M)).1     assignment
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (LRA.Logic.FirstOrder.Formula.brecOn.go (motive := fun x => (Variable → M.Domain) → Prop) a (LRA.Logic.FirstOrder.Satisfies._f M)).1 assignment
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Semantics/Satisfaction.lean
+
+
+
+Name: SOSatisfies
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {S : LRA.Logic.Signature} {Variable SetVariable : Type} [inst : DecidableEq Variable]   [inst_1 : DecidableEq SetVariable] (M : LRA.Logic.SecondOrderMonadic.HenkinModel S)   (assignment : LRA.Logic.SecondOrderMonadic.SOAssignment M Variable SetVariable)   (a : LRA.Logic.SecondOrderMonadic.SOFormula S Variable SetVariable),   (LRA.Logic.SecondOrderMonadic.SOFormula.brecOn.go (motive := fun x =>         LRA.Logic.SecondOrderMonadic.SOAssignment M Variable SetVariable → Prop) a         (LRA.Logic.SecondOrderMonadic.SOSatisfies._f M)).1     assignment
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (LRA.Logic.SecondOrderMonadic.SOFormula.brecOn.go (motive := fun x => LRA.Logic.SecondOrderMonadic.SOAssignment M Variable SetVariable → Prop) a (LRA.Logic.SecondOrderMonadic.SOSatisfies._f M)).1 assignment
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Semantics/SecondOrderMonadic/SOSatisfaction.lean
+
+
+
+Name: SemanticConsequence
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {S : LRA.Logic.Signature} {Variable SetVariable : Type} [inst : DecidableEq Variable]   [inst_1 : DecidableEq SetVariable] (Γ : LRA.Logic.SecondOrderMonadic.FormulaTheory S Variable SetVariable)   (φ : LRA.Logic.SecondOrderMonadic.SOFormula S Variable SetVariable) (M : LRA.Logic.SecondOrderMonadic.HenkinModel S)   (assignment : LRA.Logic.SecondOrderMonadic.SOAssignment M Variable SetVariable),   Set.instMembership.mem (LRA.Logic.SecondOrderMonadic.ModelsOfFormulaTheory Γ) M →     LRA.Logic.SecondOrderMonadic.SOSatisfies M assignment φ
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    M ∈ fun M => ∀ (assignment : LRA.Logic.SecondOrderMonadic.SOAssignment M Variable SetVariable) (φ : LRA.Logic.SecondOrderMonadic.SOFormula S Variable SetVariable), φ ∈ Γ → LRA.Logic.SecondOrderMonadic.SOSatisfies M assignment φ → LRA.Logic.SecondOrderMonadic.SOSatisfies M assignment φ
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Theory.lean
+
+
+
+Name: SemanticConsequence
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : DecidableEq Variable]   (Γ : LRA.Logic.FirstOrder.FormulaTheory S Variable) (φ : LRA.Logic.FirstOrder.Formula S Variable)   (M : LRA.Logic.FirstOrder.Model S) (assignment : Variable → M.Domain),   Set.instMembership.mem (LRA.Logic.FirstOrder.ModelsOfFormulaTheory Γ) M →     LRA.Logic.FirstOrder.Satisfies M assignment φ
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    M ∈ fun M => ∀ (assignment : Variable → M.1) (φ : LRA.Logic.FirstOrder.Formula S Variable), φ ∈ Γ → LRA.Logic.FirstOrder.Satisfies M assignment φ → LRA.Logic.FirstOrder.Satisfies M assignment φ
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Theory.lean
+
+
+
+Name: ModelsOfTheory
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : DecidableEq Variable] (Γ : LRA.Logic.FirstOrder.Theory S Variable)   (a : LRA.Logic.FirstOrder.Model S) (assignment : Variable → a.Domain)   (sentence : LRA.Logic.FirstOrder.Sentence S Variable),   Set.instMembership.mem Γ sentence → LRA.Logic.FirstOrder.Satisfies a assignment sentence.val
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    sentence ∈ Γ → LRA.Logic.FirstOrder.Satisfies a assignment sentence.1
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Theory.lean
+
+
+
+Name: TheoryOfModels
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : DecidableEq Variable] (K : Set (LRA.Logic.FirstOrder.Model S))   (a : LRA.Logic.FirstOrder.Sentence S Variable) (M : LRA.Logic.FirstOrder.Model S),   Set.instMembership.mem K M → ∀ (assignment : Variable → M.Domain), LRA.Logic.FirstOrder.Satisfies M assignment a.val
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    M ∈ K → ∀ (assignment : Variable → M.1), LRA.Logic.FirstOrder.Satisfies M assignment a.1
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Theory.lean
+
+
+
+Name: ModelsOfFormulaTheory
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : DecidableEq Variable]   (Γ : LRA.Logic.FirstOrder.FormulaTheory S Variable) (a : LRA.Logic.FirstOrder.Model S)   (assignment : Variable → a.Domain) (φ : LRA.Logic.FirstOrder.Formula S Variable),   Set.instMembership.mem Γ φ → LRA.Logic.FirstOrder.Satisfies a assignment φ
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    φ ∈ Γ → LRA.Logic.FirstOrder.Satisfies a assignment φ
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Theory.lean
+
+
+
+Name: ModelsOfFormulaTheory
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {S : LRA.Logic.Signature} {Variable SetVariable : Type} [inst : DecidableEq Variable]   [inst_1 : DecidableEq SetVariable] (Γ : LRA.Logic.SecondOrderMonadic.FormulaTheory S Variable SetVariable)   (a : LRA.Logic.SecondOrderMonadic.HenkinModel S)   (assignment : LRA.Logic.SecondOrderMonadic.SOAssignment a Variable SetVariable)   (φ : LRA.Logic.SecondOrderMonadic.SOFormula S Variable SetVariable),   Set.instMembership.mem Γ φ → LRA.Logic.SecondOrderMonadic.SOSatisfies a assignment φ
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    φ ∈ Γ → LRA.Logic.SecondOrderMonadic.SOSatisfies a assignment φ
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Theory.lean
+
+
+
+Name: FreeVarOccurs
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {L : LRA.Logic.Proof.System.Takeuti.Alphabet} (a : L.FreeVar) (a_1 : LRA.Logic.Proof.System.Takeuti.FormulaArg L),   (LRA.Logic.Proof.System.Takeuti.FormulaArg.brecOn.go a_1       (LRA.Logic.Proof.System.Takeuti.FormulaArg.FreeVarOccurs._f a)).1
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (LRA.Logic.Proof.System.Takeuti.FormulaArg.brecOn.go a_1 (LRA.Logic.Proof.System.Takeuti.FormulaArg.FreeVarOccurs._f a)).1
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Proof/System/Takeuti/Term.lean
+
+
+
+Name: BoundVarOccurs
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {L : LRA.Logic.Proof.System.Takeuti.Alphabet} (x : L.BoundVar) (a : LRA.Logic.Proof.System.Takeuti.FormulaArg L),   (LRA.Logic.Proof.System.Takeuti.FormulaArg.brecOn.go a       (LRA.Logic.Proof.System.Takeuti.FormulaArg.BoundVarOccurs._f x)).1
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (LRA.Logic.Proof.System.Takeuti.FormulaArg.brecOn.go a (LRA.Logic.Proof.System.Takeuti.FormulaArg.BoundVarOccurs._f x)).1
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Proof/System/Takeuti/Term.lean
+
+
+
+Name: BoundVarOccurs
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {L : LRA.Logic.Proof.System.Takeuti.Alphabet} (x : L.BoundVar) (a : LRA.Logic.Proof.System.Takeuti.Formula L),   (LRA.Logic.Proof.System.Takeuti.Formula.brecOn.go a (LRA.Logic.Proof.System.Takeuti.Formula.BoundVarOccurs._f x)).1
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (LRA.Logic.Proof.System.Takeuti.Formula.brecOn.go a (LRA.Logic.Proof.System.Takeuti.Formula.BoundVarOccurs._f x)).1
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Proof/System/Takeuti/Formula.lean
+
+
+
+Name: BoundVarFresh
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {L : LRA.Logic.Proof.System.Takeuti.Alphabet} (x : L.BoundVar) (A : LRA.Logic.Proof.System.Takeuti.Formula L),   LRA.Logic.Proof.System.Takeuti.Formula.BoundVarOccurs x A → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.Proof.System.Takeuti.Formula.BoundVarOccurs x A → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Proof/System/Takeuti/Formula.lean
+
+
+
+Name: FreeVarOccurs
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {L : LRA.Logic.Proof.System.Takeuti.Alphabet} (a : L.FreeVar) (a_1 : LRA.Logic.Proof.System.Takeuti.Formula L),   (LRA.Logic.Proof.System.Takeuti.Formula.brecOn.go a_1 (LRA.Logic.Proof.System.Takeuti.Formula.FreeVarOccurs._f a)).1
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (LRA.Logic.Proof.System.Takeuti.Formula.brecOn.go a_1 (LRA.Logic.Proof.System.Takeuti.Formula.FreeVarOccurs._f a)).1
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Proof/System/Takeuti/Formula.lean
+
+
+
+Name: IsIntuitionistic
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {L : LRA.Logic.Proof.System.Takeuti.Alphabet} (J : LRA.Logic.Proof.System.Takeuti.Judgement L),   J.succedent.length.le 1
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    J.2.length.le 1
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Proof/System/Takeuti/Judgement.lean
+
+
+
+Name: FreeVarOccurs
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {L : LRA.Logic.Proof.System.Takeuti.Alphabet} (a : L.FreeVar) (J : LRA.Logic.Proof.System.Takeuti.Judgement L),   Or     (Exists fun A =>       And (List.instMembership.mem J.antecedent A) (LRA.Logic.Proof.System.Takeuti.Formula.FreeVarOccurs a A))     (Exists fun A =>       And (List.instMembership.mem J.succedent A) (LRA.Logic.Proof.System.Takeuti.Formula.FreeVarOccurs a A))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (Exists fun A => (List.A ∈ J.1 ∧ LRA.Logic.Proof.System.Takeuti.Formula.FreeVarOccurs a A)) (Exists fun A => (List.A ∈ J.2 ∧ LRA.Logic.Proof.System.Takeuti.Formula.FreeVarOccurs a A))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Proof/System/Takeuti/Judgement.lean
+
+
+
+Name: IsInitial
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {L : LRA.Logic.Proof.System.Takeuti.Alphabet} (J : LRA.Logic.Proof.System.Takeuti.Judgement L),   Exists fun A => Eq J { antecedent := List.cons A List.nil, succedent := List.cons A List.nil }
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun A => J = { antecedent := List.cons A List.nil, succedent := List.cons A List.nil }
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Proof/System/Takeuti/Rule.lean
+
+
+
+Name: LJRule
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {L : LRA.Logic.Proof.System.Takeuti.Alphabet} [inst : DecidableEq L.FreeVar]   (uppers : List (LRA.Logic.Proof.System.Takeuti.Judgement L)) (lower : LRA.Logic.Proof.System.Takeuti.Judgement L),   And (LRA.Logic.Proof.System.Takeuti.Rule uppers lower)     (And lower.IsIntuitionistic       (∀ (upper : LRA.Logic.Proof.System.Takeuti.Judgement L),         List.instMembership.mem uppers upper → upper.IsIntuitionistic))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (LRA.Logic.Proof.System.Takeuti.Rule uppers lower ∧ (instLENat.le lower.2.length 1 ∧ (∀ (upper : LRA.Logic.Proof.System.Takeuti.Judgement L), List.upper ∈ uppers → instLENat.le upper.2.length 1)))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Proof/System/Takeuti/LJ.lean
+
+
+
+Name: IsCutRuleShape
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {L : LRA.Logic.Proof.System.Takeuti.Alphabet} (uppers : List (LRA.Logic.Proof.System.Takeuti.Judgement L))   (lower : LRA.Logic.Proof.System.Takeuti.Judgement L),   Exists fun A =>     Exists fun leftAntecedent =>       Exists fun leftSuccedent =>         Exists fun rightAntecedent =>           Exists fun rightSuccedent =>             And               (Eq uppers                 (List.cons                   { antecedent := leftAntecedent,                     succedent := instHAppendOfAppend.hAppend leftSuccedent (List.cons A List.nil) }                   (List.cons { antecedent := List.cons A rightAntecedent, succedent := rightSuccedent } List.nil)))               (Eq lower                 { antecedent := instHAppendOfAppend.hAppend leftAntecedent rightAntecedent,                   succedent := instHAppendOfAppend.hAppend leftSuccedent rightSuccedent })
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun A => Exists fun leftAntecedent => Exists fun leftSuccedent => Exists fun rightAntecedent => Exists fun rightSuccedent => (uppers = List.cons { antecedent := leftAntecedent, succedent := instHAppendOfAppend.1 leftSuccedent (List.cons A List.nil) } (List.cons { antecedent := List.cons A rightAntecedent, succedent := rightSuccedent } List.nil) ∧ lower = { antecedent := instHAppendOfAppend.1 leftAntecedent rightAntecedent, succedent := instHAppendOfAppend.1 leftSuccedent rightSuccedent })
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Proof/System/Takeuti/Cut.lean

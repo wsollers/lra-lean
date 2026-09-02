@@ -12,11 +12,535 @@ references. That gives a conservative repo-local work sequence, but it is
 the folder.
 
 **Progress:** 0/20 theorem-family entries completed since reset baseline `4e5dfb4e` (ready for proving).
-**Baseline reconciliation:** 0 still match baseline as `sorry`; 20 baseline entries were moved, renamed, or removed and are not auto-credited.
+**Baseline reconciliation:** 20 still match baseline as `sorry`; 0 baseline entries were moved, renamed, or removed and are not auto-credited.
 
-**Snapshot:** 0/0 theorem-family entries currently completed (0 sorry remaining).
+**Snapshot:** 0/20 theorem-family entries currently completed (20 sorry remaining).
 
-**Inventory:** 0 theorem/lemma/corollary/proposition entries across 0 module(s) (0 completed, 0 sorry).
-**Excluded from counts:** 0 `instance` entries and 0 `axiom` entries.
+**Inventory:** 20 theorem/lemma/corollary/proposition entries across 6 module(s) (0 completed, 20 sorry).
+**Excluded from counts:** 10 `instance` entries and 0 `axiom` entries.
 
-No proof or axiom declarations found under this scope yet.
+## Open Work Queue
+
+Unfinished entries (`Sorry`, or `Unknown` in offline preview) are listed first so
+this section can be used as the actual proof queue.
+
+Name: EquinumerousReflexive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Type u), LRA.Cardinality.Equinumerous A A
+Predicate logic (unfolded):
+  Ambient
+    (A)
+  Objects
+    (none)
+  Prove
+    Exists fun f => ((∀ (y x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : A), Exists fun x => f x = y))
+Transliterated theorem: Equinumerous A A
+Logical form (Lean): (A : Type u) : Equinumerous A A
+Source: ./Theorems.lean#L44
+
+
+
+Name: EquinumerousSymmetric
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Type u) (B : Type v), LRA.Cardinality.Equinumerous A B → LRA.Cardinality.Equinumerous B A
+Predicate logic (unfolded):
+  Ambient
+    (A, B)
+  Objects
+    equinumerous : Equinumerous A B
+  Prove
+    (Exists fun f => ((∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : B), Exists fun x => f x = y))) → Exists fun f => ((∀ (y : A) (x₁ x₂ : B), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : A), Exists fun x => f x = y))
+Transliterated theorem: Equinumerous B A
+Logical form (Lean): (A : Type u) (B : Type v) (equinumerous : Equinumerous A B) : Equinumerous B A
+Source: ./Theorems.lean#L83
+
+
+
+Name: EquinumerousTransitive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Type u) (B : Type v) (C : Type w) (firstEquinumerous : Equinumerous A B) (secondEquinumerous : Equinumerous B C), Equinumerous A C
+Predicate logic (unfolded):
+  Ambient
+    (A, B, C)
+  Objects
+    firstEquinumerous : Equinumerous A B
+    secondEquinumerous : Equinumerous B C
+  Prove
+    ((Exists fun f => ((∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : B), Exists fun x => f x = y))) ∧ (Exists fun f => ((∀ (y : C) (x₁ x₂ : B), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : C), Exists fun x => f x = y)))) → Exists fun f => ((∀ (y : C) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : C), Exists fun x => f x = y))
+Transliterated theorem: Equinumerous A C
+Logical form (Lean): (A : Type u) (B : Type v) (C : Type w) (firstEquinumerous : Equinumerous A B) (secondEquinumerous : Equinumerous B C) : Equinumerous A C
+Source: ./Theorems.lean#L124
+
+
+
+Name: DominatesReflexive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Type u), LRA.Cardinality.Dominates A A
+Predicate logic (unfolded):
+  Ambient
+    (A)
+  Objects
+    (none)
+  Prove
+    Exists fun f => ∀ (y x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
+Transliterated theorem: Dominates A A
+Logical form (Lean): (A : Type u) : Dominates A A
+Source: ./Theorems.lean#L164
+
+
+
+Name: DominatesTransitive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Type u) (B : Type v) (C : Type w) (firstDominates : Dominates A B) (secondDominates : Dominates B C), Dominates A C
+Predicate logic (unfolded):
+  Ambient
+    (A, B, C)
+  Objects
+    firstDominates : Dominates A B
+    secondDominates : Dominates B C
+  Prove
+    ((Exists fun f => ∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (Exists fun f => ∀ (y : C) (x₁ x₂ : B), f x₁ = y → f x₂ = y → x₁ = x₂)) → Exists fun f => ∀ (y : C) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
+Transliterated theorem: Dominates A C
+Logical form (Lean): (A : Type u) (B : Type v) (C : Type w) (firstDominates : Dominates A B) (secondDominates : Dominates B C) : Dominates A C
+Source: ./Theorems.lean#L204
+
+
+
+Name: DominatesOfEquinumerous
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Type u) (B : Type v), LRA.Cardinality.Equinumerous A B → LRA.Cardinality.Dominates A B
+Predicate logic (unfolded):
+  Ambient
+    (A, B)
+  Objects
+    equinumerous : Equinumerous A B
+  Prove
+    (Exists fun f => ((∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : B), Exists fun x => f x = y))) → Exists fun f => ∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
+Transliterated theorem: Dominates A B
+Logical form (Lean): (A : Type u) (B : Type v) (equinumerous : Equinumerous A B) : Dominates A B
+Source: ./Theorems.lean#L245
+
+
+
+Name: CantorSchroederBernstein
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Type u) (B : Type v) (firstDominates : Dominates A B) (secondDominates : Dominates B A), Equinumerous A B
+Predicate logic (unfolded):
+  Ambient
+    (A, B)
+  Objects
+    firstDominates : Dominates A B
+    secondDominates : Dominates B A
+  Prove
+    ((Exists fun f => ∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (Exists fun f => ∀ (y : A) (x₁ x₂ : B), f x₁ = y → f x₂ = y → x₁ = x₂)) → Exists fun f => ((∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : B), Exists fun x => f x = y))
+Transliterated theorem: Equinumerous A B
+Logical form (Lean): (A : Type u) (B : Type v) (firstDominates : Dominates A B) (secondDominates : Dominates B A) : Equinumerous A B
+Source: ./Theorems.lean#L286
+
+
+
+Name: CantorTheorem
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Type u), ¬ ∃ f : A → (A → Prop), LRA.Function.Surjective f
+Predicate logic (unfolded):
+  Ambient
+    (A)
+  Objects
+    (none)
+  Prove
+    (Exists fun f => ∀ (y : A → Prop), Exists fun x => f x = y) → False
+Transliterated theorem: ¬ ∃ f ∈ A → (A → Prop), LRA.Function.Surjective f
+Logical form (Lean): (A : Type u) : ¬ ∃ f : A → (A → Prop), LRA.Function.Surjective f
+Source: ./Theorems.lean#L327
+
+
+
+Name: StrictlyDominatesPowerset
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Type u), LRA.Cardinality.StrictlyDominates A (A → Prop)
+Predicate logic (unfolded):
+  Ambient
+    (A)
+  Objects
+    (none)
+  Prove
+    ((Exists fun f => ∀ (y : A → Prop) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ ((Exists fun f => ((∀ (y : A → Prop) (x₁ x₂ : A), LRA.Function.Graph f x₁ y → LRA.Function.Graph f x₂ y → x₁ = x₂) ∧ (∀ (y : A → Prop), Exists fun x => LRA.Function.Graph f x y))) → False))
+Transliterated theorem: StrictlyDominates A (A → Prop)
+Logical form (Lean): (A : Type u) : StrictlyDominates A (A → Prop)
+Source: ./Theorems.lean#L367
+
+
+
+Name: IsFiniteCongr
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Type u) (B : Type v) (equinumerous : Equinumerous A B), IsFinite A ↔ IsFinite B
+Predicate logic (unfolded):
+  Ambient
+    (A, B)
+  Objects
+    equinumerous : Equinumerous A B
+  Prove
+    IsFinite A ↔ IsFinite B
+Transliterated theorem: IsFinite A ↔ IsFinite B
+Logical form (Lean): (A : Type u) (B : Type v) (equinumerous : Equinumerous A B) : IsFinite A ↔ IsFinite B
+Source: ./Properties/Finiteness/Theorems.lean#L46
+
+
+
+Name: NotBothFiniteAndInfinite
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Type u), ¬ (IsFinite A ∧ IsInfinite A)
+Predicate logic (unfolded):
+  Ambient
+    (A)
+  Objects
+    (none)
+  Prove
+    ((Exists fun n => Exists fun f => ((∀ (y : Fin n) (x₁ x₂ : A), LRA.Function.Graph f x₁ y → LRA.Function.Graph f x₂ y → x₁ = x₂) ∧ (∀ (y : Fin n), Exists fun x => LRA.Function.Graph f x y))) ∧ ((Exists fun n => Exists fun f => (LRA.Function.Injective f ∧ LRA.Function.Surjective f)) → False)) → False
+Transliterated theorem: ¬ (IsFinite A ∧ IsInfinite A)
+Logical form (Lean): (A : Type u) : ¬ (IsFinite A ∧ IsInfinite A)
+Source: ./Properties/Finiteness/Theorems.lean#L86
+
+
+
+Name: FiniteImpliesDedekindFinite
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Type u), LRA.Cardinality.IsFinite A → LRA.Cardinality.IsDedekindFinite A
+Predicate logic (unfolded):
+  Ambient
+    (A)
+  Objects
+    (none)
+  Prove
+    ((Exists fun n => Exists fun f => ((∀ (y : Fin n) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Fin n), Exists fun x => f x = y))) ∧ (Exists fun f => ((∀ (y x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ ((∀ (y : A), Exists fun x => LRA.Function.Graph f x y) → False)))) → False
+Transliterated theorem: (IsFinite A) → IsDedekindFinite A
+Logical form (Lean): (A : Type u) (finite : IsFinite A) : IsDedekindFinite A
+Source: ./Properties/Finiteness/Theorems.lean#L126
+
+
+
+Name: DedekindInfiniteImpliesInfinite
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Type u), LRA.Cardinality.IsDedekindInfinite A → LRA.Cardinality.IsInfinite A
+Predicate logic (unfolded):
+  Ambient
+    (A)
+  Objects
+    (none)
+  Prove
+    ((Exists fun f => ((∀ (y x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ ((∀ (y : A), Exists fun x => f x = y) → False))) ∧ (Exists fun n => Exists fun f => (LRA.Relation.LeftUnique (LRA.Function.Graph f) ∧ LRA.Relation.RightTotal (LRA.Function.Graph f)))) → False
+Transliterated theorem: (IsDedekindInfinite A) → IsInfinite A
+Logical form (Lean): (A : Type u) (dedekindInfinite : IsDedekindInfinite A) : IsInfinite A
+Source: ./Properties/Finiteness/Theorems.lean#L166
+
+
+
+Name: DominatesOfFiniteInfinite
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Type u) (B : Type v) (finiteA : IsFinite A) (infiniteB : IsInfinite B), Dominates A B
+Predicate logic (unfolded):
+  Ambient
+    (A, B)
+  Objects
+    (none)
+  Prove
+    ((Exists fun n => Exists fun f => ((∀ (y : Fin n) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Fin n), Exists fun x => f x = y))) ∧ ((Exists fun n => Exists fun f => (LRA.Relation.LeftUnique (LRA.Function.Graph f) ∧ LRA.Relation.RightTotal (LRA.Function.Graph f))) → False)) → Exists fun f => ∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
+Transliterated theorem: (IsFinite A ∧ IsInfinite B) → Dominates A B
+Logical form (Lean): (A : Type u) (B : Type v) (finiteA : IsFinite A) (infiniteB : IsInfinite B) : Dominates A B
+Source: ./Properties/Finiteness/Theorems.lean#L206
+
+
+
+Name: FiniteImpliesCountable
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Type u), LRA.Cardinality.IsFinite A → LRA.Cardinality.IsCountable A
+Predicate logic (unfolded):
+  Ambient
+    (A)
+  Objects
+    (none)
+  Prove
+    (Exists fun n => Exists fun f => ((∀ (y : Fin n) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Fin n), Exists fun x => f x = y))) → Exists fun f => ∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
+Transliterated theorem: (IsFinite A) → IsCountable A
+Logical form (Lean): (A : Type u) (finite : IsFinite A) : IsCountable A
+Source: ./Properties/Countability/Theorems.lean#L46
+
+
+
+Name: CountablyInfiniteImpliesCountable
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Type u), LRA.Cardinality.IsCountablyInfinite A → LRA.Cardinality.IsCountable A
+Predicate logic (unfolded):
+  Ambient
+    (A)
+  Objects
+    (none)
+  Prove
+    (Exists fun f => ((∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Nat), Exists fun x => f x = y))) → Exists fun f => ∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
+Transliterated theorem: (IsCountablyInfinite A) → IsCountable A
+Logical form (Lean): (A : Type u) (countablyInfinite : IsCountablyInfinite A) : IsCountable A
+Source: ./Properties/Countability/Theorems.lean#L86
+
+
+
+Name: CountablyInfiniteImpliesInfinite
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Type u), LRA.Cardinality.IsCountablyInfinite A → LRA.Cardinality.IsInfinite A
+Predicate logic (unfolded):
+  Ambient
+    (A)
+  Objects
+    (none)
+  Prove
+    ((Exists fun f => ((∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Nat), Exists fun x => f x = y))) ∧ (Exists fun n => Exists fun f => (LRA.Relation.LeftUnique (LRA.Function.Graph f) ∧ LRA.Relation.RightTotal (LRA.Function.Graph f)))) → False
+Transliterated theorem: (IsCountablyInfinite A) → IsInfinite A
+Logical form (Lean): (A : Type u) (countablyInfinite : IsCountablyInfinite A) : IsInfinite A
+Source: ./Properties/Countability/Theorems.lean#L126
+
+
+
+Name: IsCountableCongr
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Type u) (B : Type v) (equinumerous : Equinumerous A B), IsCountable A ↔ IsCountable B
+Predicate logic (unfolded):
+  Ambient
+    (A, B)
+  Objects
+    equinumerous : Equinumerous A B
+  Prove
+    IsCountable A ↔ IsCountable B
+Transliterated theorem: IsCountable A ↔ IsCountable B
+Logical form (Lean): (A : Type u) (B : Type v) (equinumerous : Equinumerous A B) : IsCountable A ↔ IsCountable B
+Source: ./Properties/Countability/Theorems.lean#L166
+
+
+
+Name: DominatesCountableIsCountable
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (A : Type u) (B : Type v) (dominatesB : Dominates A B) (countableB : IsCountable B), IsCountable A
+Predicate logic (unfolded):
+  Ambient
+    (A, B)
+  Objects
+    dominatesB : Dominates A B
+  Prove
+    ((Exists fun f => ∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (Exists fun f => ∀ (y : Nat) (x₁ x₂ : B), f x₁ = y → f x₂ = y → x₁ = x₂)) → Exists fun f => ∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
+Transliterated theorem: (IsCountable B) → IsCountable A
+Logical form (Lean): (A : Type u) (B : Type v) (dominatesB : Dominates A B) (countableB : IsCountable B) : IsCountable A
+Source: ./Properties/Countability/Theorems.lean#L207
+
+
+
+Name: CountableSigmaOfCountableIndexCountableFibers
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Index : Type u} (family : Index → Type v) (countableIndex : IsCountable Index) (countableFibers : ∀ index : Index, IsCountable (family index)), IsCountable (Sigma family)
+Predicate logic (unfolded):
+  Ambient
+    (Index)
+  Objects
+    family : Index → Type v
+  Prove
+    ((Exists fun f => ∀ (y : Nat) (x₁ x₂ : Index), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (index : Index), Exists fun f => ∀ (y : Nat) (x₁ x₂ : family index), f x₁ = y → f x₂ = y → x₁ = x₂)) → Exists fun f => ∀ (y : Nat) (x₁ x₂ : Sigma family), f x₁ = y → f x₂ = y → x₁ = x₂
+Transliterated theorem: (IsCountable Index ∧ ∀ index : Index, IsCountable (family index)) → IsCountable (Sigma family)
+Logical form (Lean): {Index : Type u} (family : Index → Type v) (countableIndex : IsCountable Index) (countableFibers : ∀ index : Index, IsCountable (family index)) : IsCountable (Sigma family)
+Source: ./Properties/Countability/Theorems.lean#L251
+
+## Axioms / Assumptions
+
+Declarations written as `axiom` are recorded here for audit context, but they are
+excluded from the active proof queue because there is no proof obligation to discharge.
+
+No axiomatic assumptions are currently present in this scope.
+
+## Completed Inventory
+
+Completed entries are retained below for full-fresh regeneration and audit context,
+but they are not part of the active proof queue.
+
+Name: Dominates
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (A : Type u) (B : Type v), Exists fun f => LRA.Function.Injective f
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun f => ∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Definition.lean
+
+
+
+Name: Equinumerous
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (A : Type u) (B : Type v), Exists fun f => LRA.Function.Bijective f
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun f => ((∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : B), Exists fun x => f x = y))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Definition.lean
+
+
+
+Name: StrictlyDominates
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (A : Type u) (B : Type v), And (LRA.Cardinality.Dominates A B) (Not (LRA.Cardinality.Equinumerous A B))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((Exists fun f => ∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ ((Exists fun f => ((∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : B), Exists fun x => f x = y))) → False))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Definition.lean
+
+
+
+Name: IsInfinite
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (A : Type u), LRA.Carrier.IsFinite A → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun n => Exists fun f => ((∀ (y : Fin n) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Fin n), Exists fun x => f x = y))) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Properties/Finiteness/Definition.lean
+
+
+
+Name: IsDedekindInfinite
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (A : Type u), Exists fun f => And (LRA.Function.Injective f) (Not (LRA.Function.Surjective f))
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun f => ((∀ (y x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ ((∀ (y : A), Exists fun x => f x = y) → False))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Properties/Finiteness/Definition.lean
+
+
+
+Name: IsFinite
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (A : Type u), Exists fun n => Exists fun f => LRA.Function.Bijective f
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun n => Exists fun f => ((∀ (y : Fin n) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Fin n), Exists fun x => f x = y))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Properties/Finiteness/Definition.lean
+
+
+
+Name: IsDedekindFinite
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (A : Type u), LRA.Cardinality.IsDedekindInfinite A → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun f => ((∀ (y x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ ((∀ (y : A), Exists fun x => f x = y) → False))) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Properties/Finiteness/Definition.lean
+
+
+
+Name: IsCountablyInfinite
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (A : Type u), Exists fun f => LRA.Function.Bijective f
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun f => ((∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Nat), Exists fun x => f x = y))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Properties/Countability/Definition.lean
+
+
+
+Name: IsUncountable
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (A : Type u), LRA.Carrier.IsCountable A → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun f => ∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Properties/Countability/Definition.lean
+
+
+
+Name: IsCountable
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (A : Type u), Exists fun f => LRA.Function.Injective f
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun f => ∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Properties/Countability/Definition.lean

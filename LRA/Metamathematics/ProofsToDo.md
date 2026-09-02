@@ -11,9 +11,326 @@ references. That gives a conservative repo-local work sequence, but it is
 **not** a theorem-level semantic dependency graph across unrelated topics in
 the folder.
 
-**Snapshot:** 0/0 theorem-family entries currently completed (0 sorry remaining).
+**Snapshot:** 0/11 theorem-family entries currently completed (11 sorry remaining).
 
-**Inventory:** 0 theorem/lemma/corollary/proposition entries across 0 module(s) (0 completed, 0 sorry).
-**Excluded from counts:** 0 `instance` entries and 0 `axiom` entries.
+**Inventory:** 11 theorem/lemma/corollary/proposition entries across 9 module(s) (0 completed, 11 sorry).
+**Excluded from counts:** 7 `instance` entries and 0 `axiom` entries.
 
-No proof or axiom declarations found under this scope yet.
+## Open Work Queue
+
+Unfinished entries (`Sorry`, or `Unknown` in offline preview) are listed first so
+this section can be used as the actual proof queue.
+
+Name: LogicalConnectives.negIsUnary
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Metamathematics.Notation.LogicalConnectives.IsUnary LRA.Metamathematics.Notation.LogicalConnective.neg
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Metamathematics.Notation.LogicalConnectives.2 LRA.Metamathematics.Notation.LogicalConnective.neg = 1
+Transliterated theorem: LogicalConnectives.IsUnary .neg
+Logical form (Lean): : LogicalConnectives.IsUnary .neg
+Source: ./Notation/LogicalSymbols.lean#L142
+
+
+
+Name: LogicalConnectives.implIsBinary
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Metamathematics.Notation.LogicalConnectives.IsBinary LRA.Metamathematics.Notation.LogicalConnective.impl
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Metamathematics.Notation.LogicalConnectives.2 LRA.Metamathematics.Notation.LogicalConnective.impl = 2
+Transliterated theorem: LogicalConnectives.IsBinary .impl
+Logical form (Lean): : LogicalConnectives.IsBinary .impl
+Source: ./Notation/LogicalSymbols.lean#L182
+
+
+
+Name: LogicalEqualitySymbols.eqIsBinary
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Metamathematics.Notation.LogicalEqualitySymbols.IsBinary LRA.Metamathematics.Notation.LogicalEquality.eq
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Metamathematics.Notation.LogicalEqualitySymbols.2 LRA.Metamathematics.Notation.LogicalEquality.eq = 2
+Transliterated theorem: LogicalEqualitySymbols.IsBinary .eq
+Logical form (Lean): : LogicalEqualitySymbols.IsBinary .eq
+Source: ./Notation/LogicalSymbols.lean#L314
+
+
+
+Name: notationWiringTest
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (proposition : Prop), proposition → proposition
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    proposition → proposition
+Transliterated theorem: forall proposition : Prop, proposition -> proposition
+Logical form (Lean): : forall proposition : Prop, proposition -> proposition
+Source: ./Notation.lean#L42
+
+
+
+Name: corollary_smoke_test
+Kind: Corollary
+State: Sorry
+Predicate logic: ∀ (a : Nat), a + 0 = a
+Predicate logic (unfolded):
+  Ambient
+    (Nat)
+  Objects
+    a : Nat
+  Prove
+    { hAdd := fun a b => instAddNat.add a b }.hAdd a 0 = a
+Transliterated theorem: (∀ a ∈ Nat), a + 0 = a
+Logical form (Lean): (a : Nat) : a + 0 = a
+Source: ./DeclarationKeywords.lean#L158
+
+
+
+Name: proposition_smoke_test
+Kind: Proposition
+State: Sorry
+Predicate logic: ∀ (a b : Nat), a + b = b + a
+Predicate logic (unfolded):
+  Ambient
+    (Nat)
+  Objects
+    a b : Nat
+  Prove
+    { hAdd := fun a b => instAddNat.add a b }.hAdd a b = { hAdd := fun a b => instAddNat.add a b }.hAdd b a
+Transliterated theorem: (∀ a b ∈ Nat), a + b = b + a
+Logical form (Lean): (a b : Nat) : a + b = b + a
+Source: ./DeclarationKeywords.lean#L160
+
+
+
+Name: SyntacticCategory.decidableEquality_unique
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Symbol : Type u} (inst1 inst2 : SyntacticCategory Symbol), ∀ x y : Symbol, @Decidable.decide (x = y) (inst1.decidableEquality x y) = @Decidable.decide (x = y) (inst2.decidableEquality x y)
+Predicate logic (unfolded):
+  Ambient
+    (Symbol)
+  Objects
+    inst1 inst2 : SyntacticCategory Symbol
+  Prove
+    Decidable.rec (fun h => (fun x => Bool.false) h) (fun h => (fun x => Bool.true) h) (inst1.1 x y) = Decidable.rec (fun h => (fun x => Bool.false) h) (fun h => (fun x => Bool.true) h) (inst2.1 x y)
+Transliterated theorem: ∀ x y : Symbol, @Decidable.decide (x = y) (inst1.decidableEquality x y) = @Decidable.decide (x = y) (inst2.decidableEquality x y)
+Logical form (Lean): {Symbol : Type u} (inst1 inst2 : SyntacticCategory Symbol) : ∀ x y : Symbol, @Decidable.decide (x = y) (inst1.decidableEquality x y) = @Decidable.decide (x = y) (inst2.decidableEquality x y)
+Source: ./SyntacticCategory.lean#L58
+
+
+
+Name: StructuralIdentity.isPropositionalEquality
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Expr : Type u} [StructuralIdentity Expr] (e1 e2 : Expr), (decide (e1 = e2) = true) ↔ e1 = e2
+Predicate logic (unfolded):
+  Ambient
+    (Expr)
+  Objects
+    e1 e2 : Expr
+  Prove
+    (decide (e1 = e2) = true) ↔ e1 = e2
+Transliterated theorem: (∀ e1 e2 ∈ Expr), (decide (e1 = e2) = true) ↔ e1 = e2
+Logical form (Lean): {Expr : Type u} [StructuralIdentity Expr] (e1 e2 : Expr) : (decide (e1 = e2) = true) ↔ e1 = e2
+Source: ./StructuralIdentity.lean#L57
+
+
+
+Name: firstOrderSubstitutionSafetyObligation
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Metamathematics.FirstOrderSubstitutionSafetyObligation
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Metamathematics.FirstOrderSubstitutionSafetyObligation
+Transliterated theorem: FirstOrderSubstitutionSafetyObligation
+Logical form (Lean): : FirstOrderSubstitutionSafetyObligation
+Source: ./SubstitutionSafety.lean#L107
+
+
+
+Name: takeutiSoundnessObligation
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Metamathematics.TakeutiSoundnessObligation
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Metamathematics.TakeutiSoundnessObligation
+Transliterated theorem: TakeutiSoundnessObligation
+Logical form (Lean): : TakeutiSoundnessObligation
+Source: ./MetatheoremTargets.lean#L85
+
+
+
+Name: takeutiCompletenessObligation
+Kind: Theorem
+State: Sorry
+Predicate logic: LRA.Metamathematics.TakeutiCompletenessObligation
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Metamathematics.TakeutiCompletenessObligation
+Transliterated theorem: TakeutiCompletenessObligation
+Logical form (Lean): : TakeutiCompletenessObligation
+Source: ./MetatheoremTargets.lean#L93
+
+## Axioms / Assumptions
+
+Declarations written as `axiom` are recorded here for audit context, but they are
+excluded from the active proof queue because there is no proof obligation to discharge.
+
+No axiomatic assumptions are currently present in this scope.
+
+## Completed Inventory
+
+Completed entries are retained below for full-fresh regeneration and audit context,
+but they are not part of the active proof queue.
+
+Name: RequiresInterpretation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (_level : LRA.Metamathematics.DiscourseLevel),   LRA.Metamathematics.DiscourseLevel.rec ((fun _ => True) Unit.unit) ((fun _ => False) Unit.unit) _level
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Metamathematics.DiscourseLevel.rec ((fun _ => True) Unit.unit) ((fun _ => False) Unit.unit) _level
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./ObjectMetaDistinction.lean
+
+
+
+Name: Mem
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {α : Type u} (a : α) (xs : LRA.Metamathematics.MetaCollection α), List.Mem a xs
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    List.Mem a xs
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./FiniteSyntacticCollection.lean
+
+
+
+Name: FirstOrderSubstitutionSafetyObligation
+Kind: Instance
+State: Completed
+Predicate logic: Exists fun Expr =>   Exists fun Variable =>     Exists fun Term =>       Exists fun IsSafe =>         Exists fun substitute =>           Exists fun variableOccursFreelyIn =>             Exists fun freeVariablesOf =>               LRA.Metamathematics.SubstitutionSafety Expr Variable Term IsSafe substitute variableOccursFreelyIn                 freeVariablesOf
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun Expr => Exists fun Variable => Exists fun Term => Exists fun IsSafe => Exists fun substitute => Exists fun variableOccursFreelyIn => Exists fun freeVariablesOf => LRA.Metamathematics.SubstitutionSafety Expr Variable Term IsSafe substitute variableOccursFreelyIn freeVariablesOf
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./SubstitutionSafety.lean
+
+
+
+Name: IsComplete
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Formula : Type u} {Theory : Type v} (pairing : LRA.Metamathematics.ProofSemanticsPairing Formula Theory) (Γ : Theory)   (φ : Formula), pairing.Satisfies Γ φ → pairing.Provable Γ φ
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    pairing.2 Γ φ → pairing.1 Γ φ
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./MetatheoremTargets.lean
+
+
+
+Name: TakeutiCompletenessObligation
+Kind: Instance
+State: Completed
+Predicate logic: Exists fun Formula => Exists fun Theory => Exists fun pairing => LRA.Metamathematics.IsComplete pairing
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun Formula => Exists fun Theory => Exists fun pairing => ∀ (Γ : Theory) (φ : Formula), pairing.2 Γ φ → pairing.1 Γ φ
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./MetatheoremTargets.lean
+
+
+
+Name: IsSound
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Formula : Type u} {Theory : Type v} (pairing : LRA.Metamathematics.ProofSemanticsPairing Formula Theory) (Γ : Theory)   (φ : Formula), pairing.Provable Γ φ → pairing.Satisfies Γ φ
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    pairing.1 Γ φ → pairing.2 Γ φ
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./MetatheoremTargets.lean
+
+
+
+Name: TakeutiSoundnessObligation
+Kind: Instance
+State: Completed
+Predicate logic: Exists fun Formula => Exists fun Theory => Exists fun pairing => LRA.Metamathematics.IsSound pairing
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun Formula => Exists fun Theory => Exists fun pairing => ∀ (Γ : Theory) (φ : Formula), pairing.1 Γ φ → pairing.2 Γ φ
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./MetatheoremTargets.lean
