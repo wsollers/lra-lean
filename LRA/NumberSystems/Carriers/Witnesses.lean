@@ -1,4 +1,3 @@
-import LRA.NumberSystems.Carriers.Definition
 import LRA.NumberSystems.NaturalNumbers.Constructions.Landau.Laws
 import LRA.NumberSystems.WholeNumbers.Constructions.Landau
 import LRA.NumberSystems.Integers.Constructions.QuotientOrderedPairs
@@ -141,10 +140,6 @@ Related proof moves: unfold
 abbrev N_0_Landau :=
   LRA.NumberSystems.WholeNumbers.Constructions.Landau.Carrier
     landauNaturalArithmeticForWholeNumbers
-
-abbrev W_LRA := N_0_Landau
-
-abbrev W := W_LRA
 
 /--
 `landauWholeNumberArithmeticForQuotientPairs` TODO
@@ -765,46 +760,6 @@ Related proof moves: unfold
 abbrev Q_RationalQuotientFractions :=
   LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Carrier
     landauIntegerAndPositiveNaturalData
-
-/--
-`Q` TODO
-
-Predicate logic:
-
-  abbrev Q := Q_RationalQuotientFractions
-
-Predicate logic (unfolded):
-
-  abbrev Q := Q_RationalQuotientFractions (source fallback; no compiled unfold data available)
-
-Logical form (Lean):
-
-```lean
-abbrev Q := Q_RationalQuotientFractions
-```
-
-Type-theoretic form:
-
-  TODO
-
-Proof use:
-
-  TODO
-
-After unfold / common proof state:
-
-  TODO
-
-Common confusions:
-
-  TODO
-
-Related proof moves: unfold
-
--/
-abbrev Q := Q_RationalQuotientFractions
-
-abbrev Q_LRA := Q
 
 /-!
 Three of `RealNumbers`'s six constructions (`Cantor`, `Dedekind`,
@@ -1966,11 +1921,9 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-abbrev R := R_Cauchy
-
-abbrev R_LRA := R
-
-abbrev C_LRA := C R_LRA
+abbrev C_LRA :=
+  LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.ComplexNumber
+    R_Cauchy
 
 /-!
 `Cauchy` now has a full concrete `RealModel` (arithmetic instances, order,

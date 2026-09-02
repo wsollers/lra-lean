@@ -1,6 +1,8 @@
 
 import Mathlib.Data.EReal.Basic
-import LRA.NumberSystems.RealNumbers.Interop.Extended
+import Mathlib.Data.NNReal.Basic
+import Mathlib.Data.ENNReal.Basic
+import LRA.NumberSystems.RealNumbers.Extended
 import LRA.NumberSystems.Integers.Interface.ModelTheory.Model
 import LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.Model
 import LRA.NumberSystems.RealNumbers.Interface.ModelTheory.Model
@@ -11,6 +13,21 @@ open LRA.NumberSystems.Integers.Interface.ModelTheory
 open LRA.NumberSystems.RationalNumbers.Interface.ModelTheory
 open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 open LRA.NumberSystems.RealNumbers.Extended
+
+/--
+`NonNegativeRealMathlibBridgeExists` TODO
+-/
+theorem NonNegativeRealMathlibBridgeExists :
+    ∃ toNNReal : NonNegativeReal mathlibRealModel → NNReal,
+    ∃ fromNNReal : NNReal → NonNegativeReal mathlibRealModel,
+      (∀ value, fromNNReal (toNNReal value) = value) ∧
+      (∀ value, toNNReal (fromNNReal value) = value) ∧
+      (∀ first second, le mathlibRealModel first second ↔
+        toNNReal first ≤ toNNReal second) ∧
+      (∀ first second,
+        toNNReal (add mathlibRealModel first second) =
+          toNNReal first + toNNReal second) := by
+  sorry
 
 /--
 `ExtendedRealMathlibBridgeExists` TODO
@@ -63,6 +80,21 @@ theorem ExtendedRealMathlibBridgeExists :
       (∀ first second,
         nonstrict_order mathlibRealModel first second ↔
           toEReal first ≤ toEReal second) := by
+  sorry
+
+/--
+`NonNegativeExtendedRealMathlibBridgeExists` TODO
+-/
+theorem NonNegativeExtendedRealMathlibBridgeExists :
+    ∃ toENNReal : NonNegativeExtendedReal mathlibRealModel → ENNReal,
+    ∃ fromENNReal : ENNReal → NonNegativeExtendedReal mathlibRealModel,
+      (∀ value, fromENNReal (toENNReal value) = value) ∧
+      (∀ value, toENNReal (fromENNReal value) = value) ∧
+      (∀ first second, leExtended mathlibRealModel first second ↔
+        toENNReal first ≤ toENNReal second) ∧
+      (∀ first second,
+        toENNReal (addExtended mathlibRealModel first second) =
+          toENNReal first + toENNReal second) := by
   sorry
 
 end LRA.NumberSystems.RealNumbers.Interop.Mathlib

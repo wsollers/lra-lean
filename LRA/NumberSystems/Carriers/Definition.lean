@@ -1,10 +1,12 @@
 import Mathlib.Data.Complex.Basic
 import Mathlib.Data.Real.Basic
 import LRA.NumberSystems.NaturalNumbers.Definition
-import LRA.NumberSystems.Integers.Constructions.Polish
+import LRA.NumberSystems.WholeNumbers.Definition
+import LRA.NumberSystems.Integers.Definition
+import LRA.NumberSystems.RationalNumbers.Definition
+import LRA.NumberSystems.RealNumbers.Definition
 import LRA.NumberSystems.GaussianIntegers.Interface.ModelTheory.LStructure
 import LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs
-import LRA.NumberSystems.RealNumbers.Constructions.Dyadic
 
 namespace LRA.NumberSystems.Carriers
 
@@ -48,8 +50,7 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-abbrev N_Landau :=
-  LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauElement
+abbrev N_Landau := LRA.NumberSystems.NaturalNumbers.LRA_N_Landau
 
 /--
 `N_VonNeumann` TODO
@@ -89,8 +90,7 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-abbrev N_VonNeumann :=
-  LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.NaturalElement
+abbrev N_VonNeumann := LRA.NumberSystems.NaturalNumbers.LRA_N_VonNeumann
 
 /--
 `N_Presburger` TODO
@@ -130,8 +130,7 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-abbrev N_Presburger :=
-  LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.PresburgerElement
+abbrev N_Presburger := LRA.NumberSystems.NaturalNumbers.LRA_N_Presburger
 
 /--
 `N` TODO
@@ -169,11 +168,13 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-abbrev N := N_Landau
+abbrev N := LRA.NumberSystems.NaturalNumbers.LRA_N
 
 abbrev N_LRA := N
 
 abbrev N_Mathlib := LRA.NumberSystems.NaturalNumbers.LRA_MATHLIB_N
+
+abbrev N_Pos := LRA.NumberSystems.NaturalNumbers.LRA_N_Pos
 
 /--
 `N_0` TODO
@@ -213,7 +214,11 @@ Related proof moves: unfold
 -/
 abbrev N_0 := N_VonNeumann
 
-abbrev W_Mathlib := Nat
+abbrev W := LRA.NumberSystems.WholeNumbers.LRA_W
+
+abbrev W_LRA := W
+
+abbrev W_Mathlib := LRA.NumberSystems.WholeNumbers.LRA_MATHLIB_W
 
 /--
 `Z_Polish` TODO
@@ -254,8 +259,7 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-abbrev Z_Polish :=
-  LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
+abbrev Z_Polish := LRA.NumberSystems.Integers.LRA_Z_Polish
 
 /--
 `Z` TODO
@@ -293,15 +297,33 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-abbrev Z := Z_Polish
+abbrev Z := LRA.NumberSystems.Integers.LRA_Z
 
 abbrev Z_LRA := Z
 
-abbrev Z_Mathlib := Int
+abbrev Z_Mathlib := LRA.NumberSystems.Integers.LRA_MATHLIB_Z
 
-abbrev Q_Mathlib := Rat
+abbrev Z_Pos := LRA.NumberSystems.Integers.LRA_Z_Pos
 
-abbrev R_Mathlib := Real
+abbrev Z_Nonneg := LRA.NumberSystems.Integers.LRA_Z_Nonneg
+
+abbrev Z_Neg := LRA.NumberSystems.Integers.LRA_Z_Neg
+
+abbrev Z_Nonpos := LRA.NumberSystems.Integers.LRA_Z_Nonpos
+
+abbrev Q := LRA.NumberSystems.RationalNumbers.LRA_Q
+
+abbrev Q_LRA := Q
+
+abbrev Q_Mathlib := LRA.NumberSystems.RationalNumbers.LRA_MATHLIB_Q
+
+abbrev Q_Pos := LRA.NumberSystems.RationalNumbers.LRA_Q_Pos
+
+abbrev Q_Nonneg := LRA.NumberSystems.RationalNumbers.LRA_Q_Nonneg
+
+abbrev Q_Neg := LRA.NumberSystems.RationalNumbers.LRA_Q_Neg
+
+abbrev Q_Nonpos := LRA.NumberSystems.RationalNumbers.LRA_Q_Nonpos
 
 /--
 `GaussianInt_OrderedPairs` TODO
@@ -493,7 +515,18 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-abbrev R_Dyadic :=
-  LRA.NumberSystems.RealNumbers.Dyadic.Expansion
+abbrev R := LRA.NumberSystems.RealNumbers.LRA_R
+
+abbrev R_LRA := R
+
+abbrev R_Mathlib := LRA.NumberSystems.RealNumbers.LRA_MATHLIB_R
+
+abbrev R_Pos := LRA.NumberSystems.RealNumbers.LRA_R_Pos
+
+abbrev R_Nonneg := LRA.NumberSystems.RealNumbers.LRA_R_Nonneg
+
+abbrev R_Neg := LRA.NumberSystems.RealNumbers.LRA_R_Neg
+
+abbrev R_Nonpos := LRA.NumberSystems.RealNumbers.LRA_R_Nonpos
 
 end LRA.NumberSystems.Carriers

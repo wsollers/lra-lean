@@ -6,6 +6,11 @@ Updated: 2026-09-01
 
 - `LRA/NumberSystems` is a family of concrete subjects, not one authoritative
   global number-system interface.
+- The naturals-family target shape is stratified by concrete arithmetic content:
+  `SuccessorArithmetic` is concrete successor only, `Presburger` is the full
+  0-based additive layer, `Landau` is 1-based arithmetic in the style of
+  Landau's presentation, and `VonNeumann` is the 0-based arithmetic extension
+  with `0` added back.
 - Each concrete subject owns its external generic interface, model theory,
   universal algebra, examples, interop, carriers, and construction aliases.
 - Each construction owns an explicit `Satisfy_Generic.lean` bridge when the
@@ -22,10 +27,14 @@ Updated: 2026-09-01
 - `LRA/NumberSystems/Carriers.lean` still acts as a cross-subject aggregation
   surface. This remains a compatibility layer rather than the desired final
   owner shape.
-- `NaturalNumbers` has incomplete construction normalization:
-  `Landau`, `VonNeumann`, and `Presburger` do not all expose a full generic
-  bridge plus subject-owned example surface in the same way as the better
-  normalized subjects.
+- `SuccessorArithmetic` now has the correct concrete subject role, but the
+  structural validator still expects deleted/retired `Interface/ModelTheory`
+  and `Interface/UniversalAlgebra` files there, so validation on that path is
+  currently non-discriminating.
+- `NaturalNumbers` still has uneven generic normalization across constructions,
+  but its arithmetic owner split is now explicit: `Presburger` owns the
+  additive 0-based layer, `Landau` remains the canonical 1-based arithmetic
+  layer, and `VonNeumann` owns the 0-based arithmetic/semiring scaffolding.
 - `GaussianIntegers` does not yet expose a full generic bridge file for
   `OrderedPairs`, and its subject interface remains thinner than the core
   scalar chain.
@@ -41,6 +50,16 @@ Updated: 2026-09-01
 
 ## Changes In This Pass
 
+- Recast `SuccessorArithmetic` as the concrete successor-only subject over
+  `Nat`, with canonical `zero`, `successor`, `one`, and `concretePeanoSystem`
+  owners.
+- Added the missing 0-based additive owner surface to
+  `NaturalNumbers.Constructions.Presburger`, including law packages and a
+  construction-local `Satisfy_AlgebraicStructures.lean`.
+- Added the missing 0-based arithmetic scaffolding to
+  `NaturalNumbers.Constructions.VonNeumann`, including successor, addition,
+  multiplication, exponentiation, law packages, and a construction-local
+  `Satisfy_AlgebraicStructures.lean`.
 - Added subject-owned `Examples.lean` routers for the concrete subjects that
   were missing them.
 - Added per-subject arithmetic example surfaces on the stable
@@ -54,22 +73,14 @@ Updated: 2026-09-01
 
 - Decomposition of `LRA/NumberSystems/Carriers` into subject-owned carrier
   modules.
-- Naturals-family carrier ownership reset so `NaturalNumbers` owns the
-  canonical `Landau` / `VonNeumann` / `Presburger` / `Mathlib` carrier choices
-  directly, instead of keeping `PositiveNaturals` and `ZeroBasedNaturals` as
-  peer owner subjects.
-- Retirement of the redundant successor-adjacent subject layers whose current
-  external use is only through top-level barrels and aggregators:
-  `FirstOrderArithmetic`, `PresburgerArithmetic`, `PositiveNaturals`, and
-  `ZeroBasedNaturals`.
-- Import and aggregator cleanup after those subject retirements.
 - Full `UniversalAlgebra` and `Satisfy_*` normalization for
   `ComplexNumbers` and `GaussianIntegers`.
 - `Satisfy_Generic.lean` completion for every construction that still lacks a
   canonical generic bridge.
-- `Satisfy_AlgebraicStructures.lean` normalization for constructions whose
-  concrete arithmetic surface already stably supports named bridges into the
-  generic algebraic hierarchy.
+- Remaining naturals-family cleanup is now mostly ownership polish rather than
+  subject-shape ambiguity: carrier alias ownership, `Carriers` decomposition,
+  and any additional generic/refinement bridges should follow the settled
+  `SuccessorArithmetic` / `Presburger` / `Landau` / `VonNeumann` split.
 - Subject-local `Interop` ownership for every concrete subject.
 - One arithmetic example for each non-mathlib construction whose current
   public surface still lacks a stable subject-facing addition operation.

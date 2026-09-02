@@ -1,3 +1,6 @@
 import LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.Carrier
 import LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.Equivalence
 import LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.WellFoundedness
+import LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.Operations
+import LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.Instances
+import LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.Satisfy_AlgebraicStructures

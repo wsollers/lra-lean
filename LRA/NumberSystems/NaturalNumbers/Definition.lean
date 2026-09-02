@@ -1,4 +1,5 @@
-import LRA.NumberSystems.NaturalNumbers.Constructions.Landau.Carrier
+import Mathlib.Data.PNat.Defs
+import LRA.NumberSystems.NaturalNumbers.Constructions.Landau
 import LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.Carrier
 import LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.Carrier
 
@@ -30,5 +31,14 @@ abbrev LRA_Nat := LRA_N
 abbrev LRA_DefaultCarrier := LRA_Nat
 
 abbrev LRA_MATHLIB_N := Nat
+
+abbrev LRA_MATHLIB_N_Pos := PNat
+
+/-!
+`NaturalNumbers` is already the one-based positive owner in this tree, so the
+generic `N+` refinement collapses to the parent carrier instead of introducing
+an extra subtype wrapper.
+-/
+abbrev LRA_N_Pos := LRA_N
 
 end LRA.NumberSystems.NaturalNumbers

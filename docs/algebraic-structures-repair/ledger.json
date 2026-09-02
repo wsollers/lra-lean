@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-01",
+  "generated_at": "2026-09-02",
   "repo": "F:/repos/lra-lean",
   "branch": "main",
   "source": "conversation: AlgebraicStructures reorg + axiom-audit request",
@@ -931,67 +931,170 @@
     },
     {
       "id": "nsc-06",
-      "subject": "SuccessorArithmetic additive monoid",
+      "subject": "SuccessorArithmetic concrete successor normalization",
       "tier": 10,
       "depends_on": ["nsc-05"],
-      "status": "not_started",
+      "status": "done",
       "validator_path": "LRA/NumberSystems/SuccessorArithmetic",
       "build_target": "LRA.NumberSystems.SuccessorArithmetic",
       "notes": [
-        "Move the one canonical Peano-recursive addition owner into SuccessorArithmetic with zero as identity, then retarget Landau to consume it instead of creating a parallel addition API.",
-        "Expose Add, OfNat 0, Nonempty, and additive-semigroup/identity/monoid law packages. Every new theorem and proof-carrying instance is `sorry`."
+        "Corrected 2026-09-01 after the later naturals-architecture discussion: `SuccessorArithmetic` should be concrete and successor-only, not the owner of full addition. The canonical shape is `Carrier := Nat`, `zero := 0`, `successor := Nat.succ`, and `one := successor zero`, with `PeanoSystem` still owning the abstract `base`/`successor` axioms and recursion principles.",
+        "Completed 2026-09-01: rewrote `LRA/NumberSystems/SuccessorArithmetic/Definition.lean` around that concrete subject boundary, added `zeroIsNotSuccessor`, `successorInjective`, `successorInduction`, and `concretePeanoSystem` as the subject-owned proof/package surface, and retargeted `Constructions/Mathlib.lean`, `Examples/ConstructionArithmetic.lean`, and `ProofOrder.md` to the concrete-owner story.",
+        "No additive owner, compatibility alias, shim, wrapper, or recreation of the deleted successor-only signature/model-theory/universal-algebra surfaces was introduced.",
+        "Every new theorem and proof-carrying instance is written with `sorry`.",
+        "Re-verified 2026-09-01: `lake build LRA.NumberSystems.SuccessorArithmetic` passes. `python scripts/validate_structure.py --path LRA/NumberSystems/SuccessorArithmetic` still reports the pre-existing missing `Interface/ModelTheory/{LStructure,Model,Theory}.lean` and `Interface/UniversalAlgebra/Signature/Definition.lean` files, so it is not a discriminating signal for this item."
       ]
     },
     {
       "id": "nsc-07",
-      "subject": "Scalar carrier ownership completion",
+      "subject": "Presburger additive arithmetic owner",
       "tier": 11,
-      "depends_on": ["nsc-05"],
-      "status": "not_started",
-      "validator_path": "LRA/NumberSystems",
-      "build_target": "LRA.NumberSystems",
+      "depends_on": ["nsc-06"],
+      "status": "done",
+      "validator_path": "LRA/NumberSystems/NaturalNumbers",
+      "build_target": "LRA.NumberSystems.NaturalNumbers",
       "notes": [
-        "Move canonical and Mathlib aliases for N/W/Z/Q/R to their owning subject Definition modules; construction-local Carrier aliases remain construction-owned.",
-        "Retarget Carriers to compatibility re-exports only, and audit existing generic bridges without inventing new peer models."
+        "Added 2026-09-01 after the naturals-architecture clarification that `Presburger` rather than `SuccessorArithmetic` should own the full 0-based addition layer.",
+        "Scope: make `NaturalNumbers.Constructions.Presburger` the canonical additive owner in the naturals family, with zero as additive identity and the usual additive law packages exposed directly on the construction surface.",
+        "Completed 2026-09-01: added the missing additive theorem stubs in `NaturalNumbers/Constructions/Presburger/Operations.lean`, the owner-local `OfNat 0`, `HasSuccessor`, `Nonempty`, `Add`, and additive semigroup/identity/commutative/monoid surfaces in `.../Presburger/Instances.lean`, and the named construction-local algebraic bridges in `.../Presburger/Satisfy_AlgebraicStructures.lean`.",
+        "Retargeted only the minimal parent import needed to expose the new bridge owner canonically: `NaturalNumbers/Constructions/Presburger.lean` now imports `Presburger.Satisfy_AlgebraicStructures`.",
+        "Every new theorem and proof-carrying instance is written with `sorry`.",
+        "Re-verified 2026-09-01: `lake build LRA.NumberSystems.NaturalNumbers` passes."
       ]
     },
     {
       "id": "nsc-08",
-      "subject": "Generic signed and positive refinements",
+      "subject": "VonNeumann 0-based arithmetic scaffolding",
       "tier": 12,
       "depends_on": ["nsc-07"],
-      "status": "not_started",
-      "validator_path": "LRA/NumberSystems",
-      "build_target": "LRA.NumberSystems",
+      "status": "done",
+      "validator_path": "LRA/NumberSystems/NaturalNumbers",
+      "build_target": "LRA.NumberSystems.NaturalNumbers",
       "notes": [
-        "Add subject-local generic subtype refinements, not peer number-system models: N+; Z+/Z0+/Z-/Z0-; Q+/Q0+/Q-/Q0-; R+/R0+/R-/R0-.",
-        "Use + for strict positivity/negativity and 0+ or 0- for closed cones; expose only operations closed on each subtype. Every new theorem and proof-carrying instance is `sorry`."
+        "Added 2026-09-01 after the naturals-architecture clarification that `VonNeumann` is the 0-based full-arithmetic target rather than a thin well-foundedness-only shell.",
+        "Scope: flesh out `NaturalNumbers.Constructions.VonNeumann` so it owns the canonical 0-based successor/addition/multiplication/exponentiation scaffolding and the corresponding additive/multiplicative/semiring law packages, with proof-carrying surfaces left `sorry`.",
+        "Completed 2026-09-01: added `NaturalNumbers/Constructions/VonNeumann/{Operations,Instances,Satisfy_AlgebraicStructures}.lean`, defining `NaturalOne`, `VonNeumannAddition`, `VonNeumannMultiplication`, `VonNeumannExponentiation`, owner-local `OfNat`/`HasSuccessor`/`Add`/`Mul` instances, additive and multiplicative law-package theorems, and named algebraic bridges through `CommutativeSemiring`.",
+        "Retargeted only the minimal parent import needed to expose those owners canonically: `NaturalNumbers/Constructions/VonNeumann.lean` now imports the new operations/instances/bridge modules directly.",
+        "Every new theorem and proof-carrying instance is written with `sorry`.",
+        "Re-verified 2026-09-01: `lake build LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.Instances` and `lake build LRA.NumberSystems.NaturalNumbers` pass."
       ]
     },
     {
       "id": "nsc-09",
-      "subject": "Mathlib refinement aliases and bridges",
+      "subject": "SuccessorArithmetic interface/model/UA reconstruction",
       "tier": 13,
       "depends_on": ["nsc-08"],
-      "status": "not_started",
+      "status": "done",
       "validator_path": "LRA/NumberSystems",
       "build_target": "LRA.NumberSystems",
       "notes": [
-        "Alias Mathlib refinement carriers directly where they exist: PNat, Nat, NNRat, NNReal, and units for strictly-positive multiplicative surfaces.",
-        "Place construction-local bridges in Satisfy_Refinement rather than Satisfy_Generic, since a refinement is a derived parent-model carrier rather than an independent generic model. Every proof-carrying bridge is `sorry`."
+        "Added 2026-09-01 after `nsc-06` through `nsc-08` clarified the naturals-family arithmetic owner split but left the `SuccessorArithmetic` owner tree structurally incomplete.",
+        "Scope: rebuild real owner files under `SuccessorArithmetic/Interface`, `Interface/ModelTheory`, `Interface/UniversalAlgebra`, and any canonical `Satisfy_*` surfaces needed for the settled concrete successor-only subject.",
+        "Completed 2026-09-01: added `SuccessorArithmetic/Interface/Signature/Definition.lean` for the concrete successor-only first-order signature, `Interface/ModelTheory/{LStructure,Theory,Model}.lean` for the subject-owned model surface, `Interface/UniversalAlgebra/Signature/Definition.lean` for the matching pure algebraic signature, and the minimal subject-local `Interface/{UniversalAlgebra,Satisfy_ModelTheory,Satisfy_UniversalAlgebra,Satisfaction}.lean` surfaces needed to expose them canonically.",
+        "Retargeted only the subject root barrel needed to make those owners live: `LRA/NumberSystems/SuccessorArithmetic.lean` now imports the new interface surfaces alongside the existing constructions.",
+        "Kept the settled boundary intact: `PeanoSystem` remains the owner of the abstract base/successor axioms, while `SuccessorArithmetic.Interface.ModelTheory.SuccessorArithmeticTheory` only packages alignment of the subject-facing zero/successor signature with an underlying `PeanoSystem`; no addition, semiring, compatibility alias, shim, wrapper, or duplicate peer surface was introduced.",
+        "Every new theorem and proof-carrying instance is written with `sorry`.",
+        "Re-verified 2026-09-01: `python scripts/validate_structure.py --path LRA/NumberSystems/SuccessorArithmetic` and `lake build LRA.NumberSystems.SuccessorArithmetic` both pass, so the prior validator gap on this subject is closed."
       ]
     },
     {
       "id": "nsc-10",
-      "subject": "Extended-real consolidation",
+      "subject": "Presburger interface/model/UA and satisfies completion",
       "tier": 14,
       "depends_on": ["nsc-09"],
-      "status": "not_started",
+      "status": "done",
       "validator_path": "LRA/NumberSystems",
       "build_target": "LRA.NumberSystems",
       "notes": [
-        "Settle one canonical owner for existing RealNumbers.Extended/nonnegative material versus the design-only ExtendedReal directory; do not maintain both.",
-        "Promote full, nonnegative, and nonpositive extended-real refinements with EReal/ENNReal aliases, order-first bridges, and named arithmetic failure modes. Every theorem and proof-carrying instance is `sorry`."
+        "Added 2026-09-01 after the naturals-architecture clarification that `Presburger` is the canonical 0-based additive layer and now has a construction-local additive owner surface.",
+        "Scope: promote that additive construction surface into proper subject-owned interface, model-theory, universal-algebra, and `Satisfy_*` owners.",
+        "Keep `Presburger` at the additive layer only; do not broaden it into the full semiring/0-based-all-operations subject, which belongs to `VonNeumann` under the settled architecture.",
+        "Completed 2026-09-01: added `LRA/NumberSystems/Presburger/{Definition,Interface}.lean`, `Interface/Signature/Definition.lean`, `Interface/ModelTheory/{LStructure,Theory,Model}.lean`, `Interface/UniversalAlgebra{,.Signature/Definition}.lean`, and the minimal subject-local `Interface/{Satisfy_ModelTheory,Satisfy_UniversalAlgebra,Satisfaction}.lean` owners required to expose the new canonical subject surface.",
+        "Retargeted the root routers `LRA/NumberSystems.lean` and `LRA/NumberSystems/Interface.lean` to include the new `Presburger` subject, and kept `LRA/NumberSystems/Presburger.lean` as the canonical subject barrel over the existing naturals construction implementation.",
+        "Trimmed `LRA/NumberSystems/NaturalNumbers/Constructions/Presburger/Instances.lean` back to construction-local additive ownership by removing the duplicate first-order signature/model packaging that now belongs to the canonical `Presburger` subject owner tree.",
+        "No compatibility alias, shim, wrapper, or duplicate peer surface was introduced, and no semiring, multiplication, or broader VonNeumann arithmetic content was added.",
+        "Every new theorem and proof-carrying instance is written with `sorry`.",
+        "Re-verified 2026-09-01: `python scripts/validate_structure.py --path LRA/NumberSystems/Presburger` and `lake build LRA.NumberSystems.Presburger` both pass."
+      ]
+    },
+    {
+      "id": "nsc-11",
+      "subject": "VonNeumann interface/model/UA and satisfies completion",
+      "tier": 15,
+      "depends_on": ["nsc-10"],
+      "status": "done",
+      "validator_path": "LRA/NumberSystems",
+      "build_target": "LRA.NumberSystems",
+      "notes": [
+        "Added 2026-09-01 after the naturals-architecture clarification that `VonNeumann` is the canonical 0-based arithmetic extension with `0` restored, not just a thin well-foundedness shell.",
+        "Scope: promote the new `VonNeumann` successor/addition/multiplication/exponentiation scaffolding into proper subject-owned interface, model-theory, universal-algebra, and `Satisfy_*` owners for the full 0-based arithmetic layer.",
+        "Completed 2026-09-01: added `LRA/NumberSystems/VonNeumann/{Definition,Interface}.lean`, `Interface/Signature/Definition.lean`, `Interface/ModelTheory/{LStructure,Theory,Model}.lean`, `Interface/UniversalAlgebra{,.Signature/Definition}.lean`, and the minimal subject-local `Interface/{Satisfy_ModelTheory,Satisfy_UniversalAlgebra,Satisfaction}.lean` owners required to expose the canonical full 0-based arithmetic subject surface.",
+        "Retargeted the root routers `LRA/NumberSystems.lean` and `LRA/NumberSystems/Interface.lean` to include the new `VonNeumann` subject, and kept `LRA/NumberSystems/VonNeumann.lean` as the canonical subject barrel over the existing naturals construction implementation.",
+        "Kept the settled boundary intact: `SuccessorArithmetic` remains successor-only, `Presburger` remains additive-only, and `VonNeumann` now owns the broader 0-based arithmetic extension. No compatibility alias, shim, wrapper, or duplicate peer surface was introduced.",
+        "Every new theorem and proof-carrying instance is written with `sorry`.",
+        "Re-verified 2026-09-01: `python scripts/validate_structure.py --path LRA/NumberSystems/VonNeumann` and `lake build LRA.NumberSystems.VonNeumann` both pass."
+      ]
+    },
+    {
+      "id": "nsc-12",
+      "subject": "Scalar carrier ownership completion",
+      "tier": 16,
+      "depends_on": ["nsc-11"],
+      "status": "done",
+      "validator_path": "LRA/NumberSystems",
+      "build_target": "LRA.NumberSystems",
+      "notes": [
+        "Completed 2026-09-02: `NaturalNumbers` kept the existing `LRA_N_*` owner aliases, while `WholeNumbers`, `Integers`, `RationalNumbers`, and `RealNumbers` now own their canonical and Mathlib scalar aliases directly in `Definition.lean` rather than sourcing them back through `LRA.NumberSystems.Carriers`.",
+        "Retargeted `Carriers.Definition` to compatibility re-exports for the scalar chain (`N/W/Z/Q/R` and their Mathlib aliases) while leaving construction-owned carrier witnesses in place, and removed the stale `Carriers.Witnesses -> Carriers.Definition` dependency so the subject-owner imports do not form a cycle.",
+        "No new model, interface, wrapper, shim, bridge, or duplicate owner surface was introduced; construction-local `Carrier` ownership remains with the existing construction modules.",
+        "Re-verified 2026-09-02: `python scripts/validate_structure.py --path LRA/NumberSystems` and `lake build LRA.NumberSystems` both pass."
+      ]
+    },
+    {
+      "id": "nsc-13",
+      "subject": "Generic signed and positive refinements",
+      "tier": 17,
+      "depends_on": ["nsc-12"],
+      "status": "done",
+      "validator_path": "LRA/NumberSystems",
+      "build_target": "LRA.NumberSystems",
+      "notes": [
+        "Completed 2026-09-02: added the generic refinement owners directly in `NaturalNumbers/Definition.lean`, `Integers/Definition.lean`, `RationalNumbers/Definition.lean`, and `RealNumbers/Definition.lean` instead of creating new peer number-system subjects, wrappers, or bridge surfaces.",
+        "The one-based naturals owner makes `N+` collapse to `LRA_N` itself; `Z+/Z0+/Z-/Z0-`, `Q+/Q0+/Q-/Q0-`, and `R+/R0+/R-/R0-` are derived subtype carriers over the settled `LRA_Z`, `LRA_Q`, and `LRA_R` owners.",
+        "Exposed only same-subtype operations that are closed on each refinement: positive and nonnegative cones get additive/multiplicative structure where closed, negative and nonpositive cones get only the closed additive surfaces, and negative rational/real cones also get inversion. Every new proof-carrying instance is written with `sorry`.",
+        "Retargeted `Carriers.Definition` to compatibility re-exports for the new refinement aliases rather than creating any new compatibility model layer, shim, or duplicate owner surface.",
+        "Re-verified 2026-09-02: `python scripts/validate_structure.py --path LRA/NumberSystems` and `lake build LRA.NumberSystems` both pass."
+      ]
+    },
+    {
+      "id": "nsc-14",
+      "subject": "Mathlib refinement aliases and bridges",
+      "tier": 18,
+      "depends_on": ["nsc-13"],
+      "status": "done",
+      "validator_path": "LRA/NumberSystems",
+      "build_target": "LRA.NumberSystems",
+      "notes": [
+        "Completed 2026-09-02: added exact subject-local Mathlib refinement aliases only where the carrier already exists in Mathlib, with `NaturalNumbers` owning `LRA_MATHLIB_N_Pos := PNat`, `RationalNumbers` owning `LRA_MATHLIB_Q_Nonneg := NNRat` and `LRA_MATHLIB_Q_Pos := NNRatˣ`, and `RealNumbers` owning `LRA_MATHLIB_R_Nonneg := NNReal` and `LRA_MATHLIB_R_Pos := NNRealˣ`.",
+        "Added construction-local `Constructions/Mathlib/Satisfy_Refinement.lean` bridge owners for those exact cases only, each bridging into the settled generic refinement owners from `nsc-13`; `Integers` was intentionally left on the generic subtype owners because no exact Mathlib refinement alias was introduced there.",
+        "Kept `Carriers.Definition` as compatibility-only re-exports and introduced no compatibility layer, shim, wrapper, or duplicate owner surface. Every proof-carrying bridge is written with `sorry`.",
+        "Re-verified 2026-09-02: `python scripts/validate_structure.py --path LRA/NumberSystems` and `lake build LRA.NumberSystems` both pass."
+      ]
+    },
+    {
+      "id": "nsc-15",
+      "subject": "Extended-real consolidation",
+      "tier": 19,
+      "depends_on": ["nsc-14"],
+      "status": "done",
+      "validator_path": "LRA/NumberSystems",
+      "build_target": "LRA.NumberSystems",
+      "notes": [
+        "Completed 2026-09-02: settled `LRA/NumberSystems/RealNumbers/Extended.lean` as the one canonical Lean owner for the generic extended-real carrier, the existing nonnegative-real-to-extended-real material, and the new nonpositive extended-real refinement, while leaving `LRA/NumberSystems/ExtendedReal/Design.md` as design-only documentation rather than promoting a peer source tree.",
+        "Promoted the exact Mathlib aliases directly in `RealNumbers/Definition.lean`: `LRA_MATHLIB_R_Extended := EReal` and `LRA_MATHLIB_R_ExtendedNonneg := ENNReal`. No exact Mathlib nonpositive extended-real alias was introduced because no exact carrier match exists.",
+        "Collapsed the prior owner split by deleting `RealNumbers/Interop/NonNegative.lean`, `RealNumbers/Interop/Mathlib/NonNegative.lean`, `RealNumbers/NonNegative.lean`, and the old `RealNumbers/Interop/Extended.lean` forwarding surface instead of keeping wrappers, shims, or duplicate owner trees.",
+        "Added the order-first extended-real declarations plus explicit named arithmetic definedness/failure-mode predicates and theorems in `RealNumbers/Extended.lean`, and consolidated the Mathlib bridge theorems for `NNReal`, `EReal`, and `ENNReal` into `RealNumbers/Interop/Mathlib/Extended.lean`. Every new theorem and proof-carrying instance is written with `sorry`.",
+        "Re-verified 2026-09-02: `python scripts/validate_structure.py --path LRA/NumberSystems` and `lake build LRA.NumberSystems` both pass."
       ]
     }
   ]

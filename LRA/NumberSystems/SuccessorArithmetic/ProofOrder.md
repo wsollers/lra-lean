@@ -2,13 +2,8 @@
 
 Updated: 2026-08-29
 
-1. Signature
-2. First-order model builder
-3. Theory axioms
-4. Generic model wrapper
-5. Model-theory satisfaction
-6. Universal-algebra signature
-7. Universal-algebra realization
-8. Mathlib construction
-9. Examples
-
+1. Concrete carrier `Nat`
+2. Base element `0`
+3. Successor operation `Nat.succ`
+4. Peano packaging
+5. Examples

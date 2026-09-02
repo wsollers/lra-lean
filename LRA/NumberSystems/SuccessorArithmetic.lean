@@ -1,1 +1,7 @@
 import LRA.NumberSystems.SuccessorArithmetic.Constructions
+import LRA.NumberSystems.SuccessorArithmetic.Interface.Signature.Definition
+import LRA.NumberSystems.SuccessorArithmetic.Interface.ModelTheory.LStructure
+import LRA.NumberSystems.SuccessorArithmetic.Interface.ModelTheory.Theory
+import LRA.NumberSystems.SuccessorArithmetic.Interface.ModelTheory.Model
+import LRA.NumberSystems.SuccessorArithmetic.Interface.UniversalAlgebra
+import LRA.NumberSystems.SuccessorArithmetic.Interface.Satisfaction

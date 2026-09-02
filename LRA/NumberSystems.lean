@@ -4,6 +4,8 @@ import LRA.NumberSystems.Interop
 import LRA.NumberSystems.Examples
 import LRA.NumberSystems.PeanoSystem
 import LRA.NumberSystems.SuccessorArithmetic
+import LRA.NumberSystems.Presburger
+import LRA.NumberSystems.VonNeumann
 import LRA.NumberSystems.NaturalNumbers
 import LRA.NumberSystems.WholeNumbers
 import LRA.NumberSystems.IntegerStructure

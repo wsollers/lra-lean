@@ -10,6 +10,6 @@ abbrev LRA_Nat := LRA_W
 
 abbrev LRA_DefaultCarrier := LRA_Nat
 
-abbrev LRA_MATHLIB_W := LRA.NumberSystems.Carriers.W_Mathlib
+abbrev LRA_MATHLIB_W := Nat
 
 end LRA.NumberSystems.WholeNumbers

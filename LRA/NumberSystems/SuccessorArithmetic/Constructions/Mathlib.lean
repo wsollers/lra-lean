@@ -4,19 +4,16 @@ namespace LRA.NumberSystems.SuccessorArithmetic.Constructions.Mathlib
 
 abbrev Carrier := LRA.NumberSystems.SuccessorArithmetic.StandardCarrier
 
-def genericArithmetic : SuccessorArithmetic Nat (Set Nat) where
-  peanoSystem :=
-    { base := 0
-      successor := Nat.succ
-      one_not_successor := by sorry
-      successor_injective := by sorry
-      induction := by sorry }
+abbrev genericArithmetic :=
+  LRA.NumberSystems.SuccessorArithmetic.concretePeanoSystem
 
-theorem satisfiesGenericType : genericArithmetic.peanoSystem.base = (0 : Carrier) := by
+theorem satisfiesGenericType : genericArithmetic.base = (0 : Carrier) := by
   rfl
 
-abbrev zero := LRA.NumberSystems.SuccessorArithmetic.zero genericArithmetic
+abbrev zero := LRA.NumberSystems.SuccessorArithmetic.zero
 
-abbrev one := LRA.NumberSystems.SuccessorArithmetic.one genericArithmetic
+abbrev one := LRA.NumberSystems.SuccessorArithmetic.one
+
+abbrev successor := LRA.NumberSystems.SuccessorArithmetic.successor
 
 end LRA.NumberSystems.SuccessorArithmetic.Constructions.Mathlib

@@ -2,6 +2,14 @@ import LRA.NumberSystems.PeanoSystem.Interface.Signature.Definition
 import LRA.NumberSystems.PeanoSystem.Interface.ModelTheory.LStructure
 import LRA.NumberSystems.PeanoSystem.Interface.ModelTheory.Theory
 import LRA.NumberSystems.PeanoSystem.Interface.ModelTheory.Model
+import LRA.NumberSystems.Presburger.Interface.Signature.Definition
+import LRA.NumberSystems.Presburger.Interface.ModelTheory.LStructure
+import LRA.NumberSystems.Presburger.Interface.ModelTheory.Theory
+import LRA.NumberSystems.Presburger.Interface.ModelTheory.Model
+import LRA.NumberSystems.VonNeumann.Interface.Signature.Definition
+import LRA.NumberSystems.VonNeumann.Interface.ModelTheory.LStructure
+import LRA.NumberSystems.VonNeumann.Interface.ModelTheory.Theory
+import LRA.NumberSystems.VonNeumann.Interface.ModelTheory.Model
 import LRA.NumberSystems.NaturalNumbers.Interface.Signature.Definition
 import LRA.NumberSystems.NaturalNumbers.Interface.ModelTheory.LStructure
 import LRA.NumberSystems.NaturalNumbers.Interface.ModelTheory.Theory
