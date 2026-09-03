@@ -231,6 +231,18 @@ def IntegerStructureHenkinTheory
   IntegerBaseNeighboursAxiom M.toModel /\
   IntegerAperiodicAxiom M.toModel /\
   IntegerInductionAxiom M
+
+/--
+`IntegerStructureMonadicTheory` makes explicit that the current second-order
+strength of the interface is monadic Henkin semantics over unary predicates.
+-/
+abbrev IntegerStructureMonadicTheory := IntegerStructureHenkinTheory
+
+/--
+`IntegerStructureMonadicAxioms` is the monadic-SOL-facing alias for the current
+integer structure axiom package.
+-/
+abbrev IntegerStructureMonadicAxioms := IntegerStructureHenkinTheory
 ```
 
 Type-theoretic form:

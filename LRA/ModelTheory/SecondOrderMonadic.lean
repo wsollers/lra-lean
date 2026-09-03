@@ -1,1 +1,6 @@
 import LRA.ModelTheory.SecondOrderMonadic.HenkinModel
+import LRA.ModelTheory.SecondOrderMonadic.FullModel
+import LRA.ModelTheory.SecondOrderMonadic.Semantics.SOAssignment
+import LRA.ModelTheory.SecondOrderMonadic.Semantics.SOSatisfaction
+import LRA.ModelTheory.SecondOrderMonadic.Semantics.FullSOAssignment
+import LRA.ModelTheory.SecondOrderMonadic.Semantics.FullSOSatisfaction

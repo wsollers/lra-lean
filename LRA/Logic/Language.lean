@@ -1,4 +1,4 @@
 import LRA.Logic.Language.Symbols
-import LRA.Logic.Language.FirstOrder
-import LRA.Logic.Language.SecondOrderMonadic
-import LRA.Logic.Language.Propositional
+import LRA.Logic.Language.ZOL
+import LRA.Logic.Language.FOL
+import LRA.Logic.Language.SOL

@@ -25,6 +25,12 @@ Logical form (Lean):
 structure PeanoModel where
   toHenkinModel : LRA.ModelTheory.SecondOrderMonadic.HenkinModel PeanoFirstOrderSignature
   satisfiesTheory : PeanoTheory toHenkinModel
+
+/--
+`PeanoMonadicModel` makes explicit that current Peano satisfaction is packaged
+over monadic Henkin second-order models.
+-/
+abbrev PeanoMonadicModel := PeanoModel
 ```
 
 Type-theoretic form:
@@ -65,6 +71,12 @@ Logical form (Lean):
 
 ```lean
 abbrev PeanoSatisfaction := PeanoModel
+
+/--
+`PeanoMonadicSatisfaction` is the monadic-SOL-facing alias for the current
+Peano model package.
+-/
+abbrev PeanoMonadicSatisfaction := PeanoModel
 ```
 
 Type-theoretic form:

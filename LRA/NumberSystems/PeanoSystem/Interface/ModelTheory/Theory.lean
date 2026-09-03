@@ -167,6 +167,18 @@ def PeanoHenkinTheory
   PeanoBaseNotSuccessorAxiom M.toModel /\
   PeanoSuccessorInjectiveAxiom M.toModel /\
   PeanoInductionAxiom M
+
+/--
+`PeanoMonadicTheory` makes explicit that the current second-order strength of
+the interface is monadic Henkin semantics over unary predicates/subsets.
+-/
+abbrev PeanoMonadicTheory := PeanoHenkinTheory
+
+/--
+`PeanoMonadicAxioms` is the monadic-SOL-facing alias for the current Peano
+axiom package.
+-/
+abbrev PeanoMonadicAxioms := PeanoHenkinTheory
 ```
 
 Type-theoretic form:

@@ -1,5 +1,4 @@
 import LRA.Identity.Interface.Definitions
-import LRA.Identity.Interface.ModelTheory.LStructure
-import LRA.Identity.Interface.ModelTheory.Theory
-import LRA.Identity.Interface.ModelTheory.Model
+import LRA.Identity.Interface.Logic
+import LRA.Identity.Interface.ModelTheory
 import LRA.Identity.Interface.UniversalAlgebra

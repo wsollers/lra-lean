@@ -17,7 +17,7 @@ The planning doc describes a pre-refactor layout that the actual restructure com
 
 ## What's actually there — full direct-inspection results
 
-**`LRA/Identity/` structure, confirmed by `find`:**
+**`LRA/Identity/` structure, confirmed by direct source inspection on September 3, 2026:**
 ```
 Bridges/           -- Diagonal.lean (IdentIsDiagonal)
 Constructions/
@@ -25,13 +25,17 @@ Constructions/
   Mathlib/         -- Satisfies.lean (Ident := Eq, zero-axiom)
 Interface/
   Definitions/     -- IdentityRelation, Distinctness, Witnesses, Cardinality
-  ModelTheory/     -- LStructure, Model, Theory
+  Logic/           -- subject-owned equality language/theory packaging
+  ModelTheory/     -- router plus LStructure, Model, compatibility Theory
   UniversalAlgebra/-- Signature/Definition, Congruence, Quotient, Extensionality
 Theorems/          -- Equivalence, Congruence, Distinctness, Witnesses, ModelTheory, UniversalAlgebra
 Interop/           -- Adapters, Providers/{LRA,Mathlib}, Audit
 ```
 
-**Sorry count across every `.lean` file in `LRA/Identity/`: zero.** Confirmed by direct `grep -c sorry` on all 33 files.
+**Sorry count across `LRA/Identity/`: three declarations, all in `Theorems/ModelTheory.lean`.**
+These are the new second-order characterization theorems for `IsIdentityRelation`:
+`IsIdentityRelation.isDiagonal`, `IsIdentityRelation.iff_forall_iff_eq`, and
+`IsIdentityRelation.iff_eq_diagonal`.
 
 **Core definition** (`Interface/Definitions/IdentityRelation.lean`) — matches project memory exactly:
 ```lean
@@ -48,19 +52,19 @@ Leibniz substitution is the sole primitive; symmetry and transitivity are derive
 - `IdentPreservesRelations` — $x\sim x' \wedge y \sim y' \to (R\,x\,y \leftrightarrow R\,x'\,y')$, both directions proved.
 - `IdentPreservesOperations` — $x\sim x' \wedge y\sim y' \to \mathrm{op}(x,y) \sim \mathrm{op}(x',y')$ — this is precisely the abstract shape the Operations interlude's `RespectsRelation` (Operations §6.7.1) needed, and it already exists here, proved, specialized to `Ident`.
 
-**Collapse theorem** (`Bridges/Diagonal.lean`): `IdentIsDiagonal : Ident x y ↔ x = y` — proved, plus a model-theoretic upgrade (`Theorems/ModelTheory.lean`'s `EqualityStructure.isDiagonal`) stating the same fact for any `EqualityStructure` satisfying the first-order identity theory, not just any `IdentityRelation` instance.
+**Collapse theorem** (`Bridges/Diagonal.lean`): `IdentIsDiagonal : Ident x y ↔ x = y` — proved, plus a model-theoretic upgrade (`Theorems/ModelTheory.lean`'s `EqualityStructure.isDiagonal`) stating the same fact for any `EqualityStructure` satisfying the identity theory. The subject now also exposes an explicit second-order style predicate `IsIdentityRelation` and bridge constructors `IdentityRelation.ofIsIdentityRelation` and `EqualityStructure.ofIsIdentityRelation`.
 
 **Two scoped constructions**, exactly as project memory described:
 - **Mathlib / zero-axiom** (`Constructions/Mathlib/Satisfies.lean`): `Ident := Eq`, `IdentReflexive := rfl`, `IdentLeibniz := fun h _ hp => h ▸ hp` — no axioms, built entirely on Lean's native `Eq`.
 - **Axiomatic / three-axiom** (`Constructions/Axiomatic/{Axioms,Satisfies}.lean`): `Ax_IdentityRelation`, `Ax_EqualityReflexivity`, `Ax_LeibnizLaw` declared with the honest `axiom` keyword (correct per the project's own discipline — `axiom` reserved for genuinely postulated constructions like this one and Enderton ZFCSet/Landau ℕ, never used to paper over an unfinished proof), then shown to instantiate `IdentityRelation`.
 
-**Model theory layer** (`Interface/ModelTheory/{LStructure,Model,Theory}.lean`) — a real first-order treatment: `pureEqualitySignature` (empty functions/relations/constants — pure identity has no non-logical symbols), `EqualityStructure` (a carrier plus an interpretation plus a proof it satisfies `IdentityTheory`), and `Theorems/ModelTheory.lean` bridges `IdentityRelation ↔ IdentityTheory`-satisfaction **both directions** (`IdentityRelation.ofIdentityTheory`, `IdentityRelation.satisfiesIdentityTheory`).
+**Logic and model-theory layers** (`Interface/Logic.lean`, `Interface/Logic/{FirstOrder,SecondOrder}`, and `Interface/ModelTheory.lean`) — the subject now separates its formal equality presentation from its semantic structures. `Interface/Logic/FirstOrder/Language.lean` owns `pureEqualitySignature` and the pure equality language package; `Interface/Logic/Theory.lean` owns the generic `IdentityTheory` schema; `Interface/Logic/SecondOrder/Theory.lean` owns `IsIdentityRelation` and the full-Leibniz bridges; `Interface/ModelTheory/LStructure.lean` owns `EqualityStructure`; and `Interface/ModelTheory/Model.lean` exposes both `toFirstOrderModel` and `toFullSecondOrderModel`.
 
 **Universal-algebra bridge, checked specifically for the "is this a duplication, like Morphism?" question — it is not.** `Interface/UniversalAlgebra/Congruence.lean` defines `IsCongruence` generically (any equivalence relation compatible with an arbitrary `AlgebraicSignature`'s operations) — correctly kept identity-agnostic rather than hard-coded to `Ident`. The connection is made properly in `Theorems/UniversalAlgebra.lean`: `IdentIsCongruence` *proves* `Ident` instantiates the generic `IsCongruence`, and `quotientByIdentToCarrier` proves the congruence-quotient by `Ident` is isomorphic to the carrier itself (both inversion directions proved) — a genuine, non-trivial payoff theorem, not a stub. This is the correct layering pattern: unlike `Morphism/Properties` vs. `UniversalAlgebra/Homomorphism` (confirmed genuinely duplicated, no cross-import), `Identity`'s generic `IsCongruence` and its identity-specific instantiation are properly connected by an explicit bridge theorem.
 
 ## Verdict
 
-**`Identity` is structured properly and is essentially complete** — sorry-free throughout, matches every claim in project memory, and includes real content beyond what memory described (the full model-theory layer, the universal-algebra congruence bridge with a proved quotient-isomorphism theorem). The only prior claim to the contrary (`13-audit-round-2.md`'s original wording) was itself the error, now corrected there and recorded here for permanence.
+**`Identity` is structured properly and now has a clearer forward-standardized interface shape** — especially around `Interface/ModelTheory` and the explicit second-order predicate layer. It is no longer sorry-free throughout, but the remaining `sorry`s are localized to the new `IsIdentityRelation` characterization theorems rather than to the base `IdentityRelation` or congruence API.
 
 **One genuinely open, minor item, found during this direct inspection, not from any `ProofsToDo.md`:** `Interface/UniversalAlgebra/Congruence.lean`'s `AlgebraicStructure`/`AlgebraicSignature` types are locally defined inside `Identity` rather than imported from `LRA/UniversalAlgebra/Signature`. Worth checking in a future round whether this is a deliberate, lightweight local copy (acceptable — `Identity` may want to avoid a heavy dependency on the full `UniversalAlgebra` layer) or accidental drift from a shared definition that has since diverged.
 

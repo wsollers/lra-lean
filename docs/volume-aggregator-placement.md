@@ -119,8 +119,6 @@ External TOC:
 
 - `LRA.Logic`
 - `LRA.Identity`
-- `LRA.Identity.Model`
-- `LRA.Identity.Toolkit`
 - `LRA.Meta.DeclarationKeywords`
 - `LRA.Set`
 - `LRA.Relation`
@@ -134,9 +132,16 @@ Reason:
 
 - These are the current public routers that best match logic, sets, order,
   cardinality, and the geometry slice.
+- `LRA.Logic` is the public umbrella over the standardized order-indexed logic
+  routers `Language.ZOL/FOL/SOL` and `Syntax.ZOL/FOL/SOL`; volume aggregators
+  should continue importing the umbrella rather than enumerating those internal
+  order routers separately.
 - `LRA.Identity` belongs here because Volume I includes axiomatic equality.
-- `LRA.Identity.Model`, `LRA.Identity.Toolkit`, and
-  `LRA.Meta.DeclarationKeywords` are foundational support surfaces for the
+- `LRA.Identity.Interface.ModelTheory` is the standardized internal router for
+  the identity subject's logical packaging; public volume aggregators should
+  keep importing `LRA.Identity` and only add `LRA.Identity.Interface.ModelTheory`
+  when the equality-model interface is needed explicitly.
+- `LRA.Meta.DeclarationKeywords` is a foundational support surface for the
   Volume I logic-and-identity material.
 - No deleted legacy subtree names are reused.
 
@@ -359,6 +364,10 @@ Reason:
   subject, not merely because their path contains `Model`.
 - The top-level `ModelTheory` and `ProofTheory` subjects align directly with
   the Volume VII advanced-logic slice.
+- `LRA.ModelTheory` and `LRA.ProofTheory` now expose standardized public
+  `ZOL/FOL/SOL` routers beneath the subject root; the volume aggregate should
+  keep importing the subject root instead of listing those order routers
+  individually.
 - Non-logic `*/Model` subtrees, such as set, number-system, Euclidean, and
   algebraic-structure model workups, stay with their parent topics instead of
   being pulled into Volume VII by name.
@@ -404,6 +413,9 @@ The aggregate chain is:
   rule is intentionally narrow: only logic-native model-theory and proof-theory
   surfaces should move there, while all other `*/Model` material remains with
   its parent topic.
+- Current second-order number-system interfaces remain intentionally monadic on
+  the implementation side even though the public logic/model-theory surfaces now
+  expose both general `SOL` and explicit monadic specializations.
 
 ## Machine-Readable Summary
 
@@ -413,8 +425,6 @@ The aggregate chain is:
     "core": [
       "LRA.Logic",
       "LRA.Identity",
-      "LRA.Identity.Model",
-      "LRA.Identity.Toolkit",
       "LRA.Meta.DeclarationKeywords",
       "LRA.Set",
       "LRA.Relation",

@@ -25,6 +25,12 @@ Logical form (Lean):
 structure IntegerStructureModel where
   toHenkinModel : LRA.ModelTheory.SecondOrderMonadic.HenkinModel IntegerFirstOrderSignature
   satisfiesTheory : IntegerStructureTheory toHenkinModel
+
+/--
+`IntegerStructureMonadicModel` makes explicit that current integer-structure
+model satisfaction is packaged over monadic Henkin second-order models.
+-/
+abbrev IntegerStructureMonadicModel := IntegerStructureModel
 ```
 
 Type-theoretic form:
@@ -90,6 +96,13 @@ Related proof moves: unfold
 
 -/
 abbrev IntegerStructureSatisfaction :=
+  IntegerStructureModel
+
+/--
+`IntegerStructureMonadicSatisfaction` is the monadic-SOL-facing alias for the
+current integer-structure model package.
+-/
+abbrev IntegerStructureMonadicSatisfaction :=
   IntegerStructureModel
 
 end LRA.NumberSystems.IntegerStructure.Interface.ModelTheory

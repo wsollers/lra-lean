@@ -1,6 +1,6 @@
 import LRA.Logic
 import LRA.Identity
-import LRA.Identity.Interface.ModelTheory.Model
+import LRA.Identity.Interface.ModelTheory
 import LRA.Metamathematics
 import LRA.Set
 import LRA.Relation

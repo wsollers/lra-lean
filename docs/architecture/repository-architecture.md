@@ -56,6 +56,49 @@ Dependencies flow from `Logic` into `ModelTheory` and `ProofTheory`. `Logic`
 must not import either higher-level subject. `ModelTheory` and `ProofTheory`
 remain independent unless a direct dependency is mathematically necessary.
 
+### Public Logic Order Surfaces
+
+The public order-indexed routers for logic-native work are:
+
+- `LRA.Logic.Language.ZOL`, `LRA.Logic.Language.FOL`, `LRA.Logic.Language.SOL`
+- `LRA.Logic.Syntax.ZOL`, `LRA.Logic.Syntax.FOL`, `LRA.Logic.Syntax.SOL`
+- `LRA.ModelTheory.ZOL`, `LRA.ModelTheory.FOL`, `LRA.ModelTheory.SOL`
+- `LRA.ProofTheory.ZOL`, `LRA.ProofTheory.FOL`, `LRA.ProofTheory.SOL`
+
+Use these as the standard public import spines when the consumer is organized by
+logical order rather than by one implementation subtree.
+
+### Public Surface Versus Implementation Subtree
+
+The public `ZOL/FOL/SOL` routers standardize consumption. They do not require
+the implementation folders to be named the same way.
+
+- `ZOL` is the public zero-order or propositional surface.
+- `FOL` is the public first-order surface.
+- `SOL` is the public second-order surface.
+- Implementation subtrees such as `Propositional`, `FirstOrder`,
+  `SecondOrderMonadic`, and `SecondOrder` remain valid internal organization
+  when they own materially different mathematics.
+
+This separation is intentional. The public router answers "what logical order
+is this?" while the implementation subtree answers "which concrete formalization
+currently provides that order's machinery?"
+
+### Second-Order Policy
+
+`SOL` is the general second-order public surface. Monadic second-order work is
+kept as an explicit specialization rather than pretending monadic and general
+second-order logic are interchangeable.
+
+- General second-order syntax and semantics belong under `SecondOrder`.
+- Monadic second-order syntax and semantics belong under `SecondOrderMonadic`.
+- Compatibility aliases are acceptable at the public surface when they preserve
+  the stronger owner/specialization distinction instead of erasing it.
+
+For the current repository state, number-system interfaces that quantify over
+second-order predicates should stay on explicit monadic Henkin semantics until a
+real mathematical need for higher-arity second-order quantification appears.
+
 ## Placement Principle
 
 Before adding a declaration, answer:
@@ -119,6 +162,9 @@ Core theory must not import either.
 Use these meanings consistently:
 
 - `Interface`: the LRA-owned abstract subject surface.
+- `Interface/Logic`: subject-owned logical packaging such as a subject's
+  language, syntax-facing presentation, and theory schemas over the generic
+  logic framework.
 - `Interface/ModelTheory`: formal logical packaging of that interface.
 - `Interface/UniversalAlgebra`: operation-based algebraic packaging.
 - `Realizations`: concrete carriers or backends proved to satisfy the
@@ -130,6 +176,8 @@ Concrete implementations belong in `Realizations`.
 ### Decision Table
 
 - Add `Interface` when the subject exposes a reusable abstract surface.
+- Add `Interface/Logic` when the subject owns a specific formal presentation of
+  its language or theory, rather than only consuming logic generically.
 - Add `Interface/ModelTheory` when the subject genuinely needs signature,
   theory, satisfaction, or modelhood machinery.
 - Add `Interface/UniversalAlgebra` when operation-level machinery,
@@ -191,6 +239,10 @@ Imports must follow mathematical dependency direction.
 - Core theory does not import examples, failures, or optional interop.
 - Repository-level aggregators should import standard aggregate surfaces, not
   bypass them by reaching directly into arbitrary subject internals.
+- When a public `ZOL/FOL/SOL` router exists, downstream files should prefer it
+  over reaching directly into `Propositional`, `FirstOrder`,
+  `SecondOrderMonadic`, or `SecondOrder`, unless the dependency genuinely needs
+  a non-public implementation detail or an explicitly monadic specialization.
 
 ## Filing Checklist
 

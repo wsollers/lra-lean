@@ -1,24 +1,9 @@
-import LRA.Logic.Language.FirstOrder.Signature
-import LRA.Metamathematics.Notation.LogicalSymbols
-import LRA.Identity.Interface.ModelTheory.Theory
+import LRA.Identity.Interface.Logic.FirstOrder.Language
+import LRA.Identity.Interface.Logic.Theory
 
 namespace LRA.Identity
 
-open LRA.Logic
-
 universe u
-
-def pureEqualitySignature : Signature where
-  Functions := ⟨Empty, Empty.elim⟩
-  Relations := ⟨Empty, Empty.elim⟩
-  Constants := Empty
-
-abbrev PureEqualityLanguage := FirstOrderLanguage
-
-def pureEqualityLanguage : PureEqualityLanguage :=
-  pureEqualitySignature
-
-abbrev EqualityLogicalSymbol := LRA.Metamathematics.Notation.LogicalEquality
 
 def EqualityDiagonal (Carrier : Type u) : Carrier -> Carrier -> Prop :=
   fun left right => left = right

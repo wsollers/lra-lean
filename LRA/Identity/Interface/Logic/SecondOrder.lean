@@ -1,2 +1,1 @@
-import LRA.Identity.Interface.Logic.Theory
 import LRA.Identity.Interface.Logic.SecondOrder.Theory
