@@ -120,14 +120,14 @@ Predicate logic:
 
   def BuildOrderedRingModel
     (signature : OrderedRingSignature) :
-    LRA.Logic.FirstOrder.Model OrderedRingFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model OrderedRingFirstOrderSignature where
   Domain
 
 Predicate logic (unfolded):
 
   def BuildOrderedRingModel
     (signature : OrderedRingSignature) :
-    LRA.Logic.FirstOrder.Model OrderedRingFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model OrderedRingFirstOrderSignature where
   Domain (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
@@ -135,7 +135,7 @@ Logical form (Lean):
 ```lean
 def BuildOrderedRingModel
     (signature : OrderedRingSignature) :
-    LRA.Logic.FirstOrder.Model OrderedRingFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model OrderedRingFirstOrderSignature where
   Domain
 ```
 
@@ -160,7 +160,7 @@ Related proof moves: unfold
 -/
 def BuildOrderedRingModel
     (signature : OrderedRingSignature) :
-    LRA.Logic.FirstOrder.Model OrderedRingFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model OrderedRingFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.zero⟩
   interpretFunction
@@ -183,7 +183,7 @@ Predicate logic:
 
   def orderedRingFirstOrderModel (R : Type u)
     [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [LT R] [LE R] :
-    LRA.Logic.FirstOrder.Model OrderedRingFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model OrderedRingFirstOrderSignature :=
   BuildOrderedRingModel
     { carrier := R, zero := 0, one := 1, add := (· + ·),
       neg := (- ·), multiply := (· * ·), le := (· ≤ ·),
@@ -193,7 +193,7 @@ Predicate logic (unfolded):
 
   def orderedRingFirstOrderModel (R : Type u)
     [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [LT R] [LE R] :
-    LRA.Logic.FirstOrder.Model OrderedRingFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model OrderedRingFirstOrderSignature :=
   BuildOrderedRingModel
     { carrier := R, zero := 0, one := 1, add := (· + ·),
       neg := (- ·), multiply := (· * ·), le := (· ≤ ·),
@@ -204,7 +204,7 @@ Logical form (Lean):
 ```lean
 def orderedRingFirstOrderModel (R : Type u)
     [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [LT R] [LE R] :
-    LRA.Logic.FirstOrder.Model OrderedRingFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model OrderedRingFirstOrderSignature :=
   BuildOrderedRingModel
     { carrier := R, zero := 0, one := 1, add := (· + ·),
       neg := (- ·), multiply := (· * ·), le := (· ≤ ·),
@@ -232,7 +232,7 @@ Related proof moves: unfold
 -/
 def orderedRingFirstOrderModel (R : Type u)
     [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [LT R] [LE R] :
-    LRA.Logic.FirstOrder.Model OrderedRingFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model OrderedRingFirstOrderSignature :=
   BuildOrderedRingModel
     { carrier := R, zero := 0, one := 1, add := (· + ·),
       neg := (- ·), multiply := (· * ·), le := (· ≤ ·),

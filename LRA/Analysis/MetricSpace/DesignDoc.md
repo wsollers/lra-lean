@@ -8,7 +8,7 @@ This note records the concrete target structure for
 Repository-wide rules for when a subject gets `Interface`,
 `Interface/ModelTheory`, `Interface/UniversalAlgebra`, and `Realizations` live
 in
-`ExternalInterfaces.md`. This file applies that standard specifically to metric
+`docs/architecture/repository-architecture.md`. This file applies that standard specifically to metric
 space.
 
 ## Decision

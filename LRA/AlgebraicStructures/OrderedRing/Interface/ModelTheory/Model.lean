@@ -50,7 +50,7 @@ def OrderedRingModel.signature {Carrier : Type u}
 /-- The first-order model induced by a promoted ordered-ring model. -/
 def OrderedRingModel.firstOrderModel {Carrier : Type u}
     (model : OrderedRingModel Carrier) :
-    LRA.Logic.FirstOrder.Model
+    LRA.ModelTheory.FirstOrder.Model
       LRA.AlgebraicStructures.OrderedRing.Interface.Signature.OrderedRingFirstOrderSignature :=
   BuildOrderedRingModel model.signature
 

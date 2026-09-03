@@ -8,6 +8,7 @@ namespace LRA.Set.MathlibZFSet
 
 open LRA.Logic
 open LRA.Logic.FirstOrder
+open LRA.ModelTheory.FirstOrder
 open LRA.Set.ModelTheory
 open LRA.Set.Constructions.ZFCSet.Interface.ModelTheory
 
@@ -16,7 +17,7 @@ open LRA.Set.Constructions.ZFCSet.Interface.ModelTheory
 
 Predicate logic:
 
-  noncomputable def ZFSetMembershipModel : Model.{1} MembershipSignature where
+  noncomputable def ZFSetMembershipModel : LRA.ModelTheory.FirstOrder.Model.{1} MembershipSignature where
   Domain := ZFSet.{0}
   domainNonempty := ⟨∅⟩
   interpretFunction := fun functionSymbol => functionSymbol.elim
@@ -29,7 +30,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  noncomputable def ZFSetMembershipModel : Model.{1} MembershipSignature where
+  noncomputable def ZFSetMembershipModel : LRA.ModelTheory.FirstOrder.Model.{1} MembershipSignature where
   Domain := ZFSet.{0}
   domainNonempty := ⟨∅⟩
   interpretFunction := fun functionSymbol => functionSymbol.elim
@@ -43,7 +44,7 @@ Predicate logic (unfolded):
 Logical form (Lean):
 
 ```lean
-noncomputable def ZFSetMembershipModel : Model.{1} MembershipSignature where
+noncomputable def ZFSetMembershipModel : LRA.ModelTheory.FirstOrder.Model.{1} MembershipSignature where
   Domain := ZFSet.{0}
   domainNonempty := ⟨∅⟩
   interpretFunction := fun functionSymbol => functionSymbol.elim
@@ -74,7 +75,7 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-@[reducible] noncomputable def ZFSetMembershipModel : Model.{1} MembershipSignature where
+@[reducible] noncomputable def ZFSetMembershipModel : LRA.ModelTheory.FirstOrder.Model.{1} MembershipSignature where
   Domain := ZFSet.{0}
   domainNonempty := ⟨∅⟩
   interpretFunction := fun functionSymbol => functionSymbol.elim

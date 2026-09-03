@@ -44,7 +44,7 @@ def CommutativeRingModel.signature {Carrier : Type u}
 /-- The first-order model induced by a promoted commutative-ring model. -/
 def CommutativeRingModel.firstOrderModel {Carrier : Type u}
     (model : CommutativeRingModel Carrier) :
-    LRA.Logic.FirstOrder.Model
+    LRA.ModelTheory.FirstOrder.Model
       LRA.AlgebraicStructures.CommutativeRing.Interface.Signature.CommutativeRingFirstOrderSignature :=
   BuildCommutativeRingModel model.signature
 

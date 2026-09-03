@@ -38,7 +38,7 @@ def MultiplicationModel.signature {Carrier : Type u}
 /-- The first-order model induced by a promoted multiplication model. -/
 def MultiplicationModel.firstOrderModel {Carrier : Type u}
     (model : MultiplicationModel Carrier) :
-    LRA.Logic.FirstOrder.Model MultiplicationFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model MultiplicationFirstOrderSignature :=
   BuildMultiplicationModel model.signature
 
 end LRA.Operation.Multiplication.Interface.ModelTheory

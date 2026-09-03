@@ -38,7 +38,7 @@ def AdditionModel.signature {Carrier : Type u}
 /-- The first-order model induced by a promoted addition model. -/
 def AdditionModel.firstOrderModel {Carrier : Type u}
     (model : AdditionModel Carrier) :
-    LRA.Logic.FirstOrder.Model AdditionFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model AdditionFirstOrderSignature :=
   BuildAdditionModel model.signature
 
 end LRA.Operation.Addition.Interface.ModelTheory

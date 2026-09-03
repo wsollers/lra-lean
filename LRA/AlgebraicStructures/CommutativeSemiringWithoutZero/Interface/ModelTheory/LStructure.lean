@@ -15,7 +15,7 @@ Predicate logic:
 
   def BuildCommutativeSemiringWithoutZeroModel
     (signature : LRA.AlgebraicStructures.CommutativeSemiringWithoutZeroConceptSignature) :
-    LRA.Logic.FirstOrder.Model CommutativeSemiringWithoutZeroFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model CommutativeSemiringWithoutZeroFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.one⟩
   interpretFunction
@@ -31,7 +31,7 @@ Predicate logic (unfolded):
 
   def BuildCommutativeSemiringWithoutZeroModel
     (signature : LRA.AlgebraicStructures.CommutativeSemiringWithoutZeroConceptSignature) :
-    LRA.Logic.FirstOrder.Model CommutativeSemiringWithoutZeroFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model CommutativeSemiringWithoutZeroFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.one⟩
   interpretFunction
@@ -48,7 +48,7 @@ Logical form (Lean):
 ```lean
 def BuildCommutativeSemiringWithoutZeroModel
     (signature : LRA.AlgebraicStructures.CommutativeSemiringWithoutZeroConceptSignature) :
-    LRA.Logic.FirstOrder.Model CommutativeSemiringWithoutZeroFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model CommutativeSemiringWithoutZeroFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.one⟩
   interpretFunction
@@ -82,7 +82,7 @@ Related proof moves: unfold
 -/
 def BuildCommutativeSemiringWithoutZeroModel
     (signature : LRA.AlgebraicStructures.CommutativeSemiringWithoutZeroConceptSignature) :
-    LRA.Logic.FirstOrder.Model CommutativeSemiringWithoutZeroFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model CommutativeSemiringWithoutZeroFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.one⟩
   interpretFunction
@@ -101,7 +101,7 @@ Predicate logic:
 
   def commutativeSemiringWithoutZeroFirstOrderModel (R : Type u)
     [Add R] [Mul R] [OfNat R 1] :
-    LRA.Logic.FirstOrder.Model CommutativeSemiringWithoutZeroFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model CommutativeSemiringWithoutZeroFirstOrderSignature :=
   BuildCommutativeSemiringWithoutZeroModel
     { carrier := R, one := 1, add := (· + ·), multiply := (· * ·) }
 
@@ -109,7 +109,7 @@ Predicate logic (unfolded):
 
   def commutativeSemiringWithoutZeroFirstOrderModel (R : Type u)
     [Add R] [Mul R] [OfNat R 1] :
-    LRA.Logic.FirstOrder.Model CommutativeSemiringWithoutZeroFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model CommutativeSemiringWithoutZeroFirstOrderSignature :=
   BuildCommutativeSemiringWithoutZeroModel
     { carrier := R, one := 1, add := (· + ·), multiply := (· * ·) } (source fallback; no compiled unfold data available)
 
@@ -118,7 +118,7 @@ Logical form (Lean):
 ```lean
 def commutativeSemiringWithoutZeroFirstOrderModel (R : Type u)
     [Add R] [Mul R] [OfNat R 1] :
-    LRA.Logic.FirstOrder.Model CommutativeSemiringWithoutZeroFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model CommutativeSemiringWithoutZeroFirstOrderSignature :=
   BuildCommutativeSemiringWithoutZeroModel
     { carrier := R, one := 1, add := (· + ·), multiply := (· * ·) }
 ```
@@ -144,7 +144,7 @@ Related proof moves: unfold
 -/
 def commutativeSemiringWithoutZeroFirstOrderModel (R : Type u)
     [Add R] [Mul R] [OfNat R 1] :
-    LRA.Logic.FirstOrder.Model CommutativeSemiringWithoutZeroFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model CommutativeSemiringWithoutZeroFirstOrderSignature :=
   BuildCommutativeSemiringWithoutZeroModel
     { carrier := R, one := 1, add := (· + ·), multiply := (· * ·) }
 

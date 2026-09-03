@@ -1,5 +1,5 @@
 import LRA.EuclideanSpace.Interface.ModelTheory.LStructure
-import LRA.Logic.Theory
+import LRA.ModelTheory.Theory
 
 namespace LRA.EuclideanSpace
 
@@ -9,18 +9,18 @@ namespace LRA.EuclideanSpace
 Predicate logic:
 
   abbrev TarskiFormulaTheory (Variable : Type) :=
-  LRA.Logic.FirstOrder.FormulaTheory TarskiFirstOrderSignature Variable
+  LRA.ModelTheory.FirstOrder.FormulaTheory TarskiFirstOrderSignature Variable
 
 Predicate logic (unfolded):
 
   abbrev TarskiFormulaTheory (Variable : Type) :=
-  LRA.Logic.FirstOrder.FormulaTheory TarskiFirstOrderSignature Variable (source fallback; no compiled unfold data available)
+  LRA.ModelTheory.FirstOrder.FormulaTheory TarskiFirstOrderSignature Variable (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
 abbrev TarskiFormulaTheory (Variable : Type) :=
-  LRA.Logic.FirstOrder.FormulaTheory TarskiFirstOrderSignature Variable
+  LRA.ModelTheory.FirstOrder.FormulaTheory TarskiFirstOrderSignature Variable
 ```
 
 Type-theoretic form:
@@ -43,7 +43,7 @@ Related proof moves: unfold
 
 -/
 abbrev TarskiFormulaTheory (Variable : Type) :=
-  LRA.Logic.FirstOrder.FormulaTheory TarskiFirstOrderSignature Variable
+  LRA.ModelTheory.FirstOrder.FormulaTheory TarskiFirstOrderSignature Variable
 
 /--
 `TarskiTheory` TODO
@@ -51,18 +51,18 @@ abbrev TarskiFormulaTheory (Variable : Type) :=
 Predicate logic:
 
   abbrev TarskiTheory (Variable : Type) [DecidableEq Variable] :=
-  LRA.Logic.FirstOrder.Theory TarskiFirstOrderSignature Variable
+  LRA.ModelTheory.FirstOrder.Theory TarskiFirstOrderSignature Variable
 
 Predicate logic (unfolded):
 
   abbrev TarskiTheory (Variable : Type) [DecidableEq Variable] :=
-  LRA.Logic.FirstOrder.Theory TarskiFirstOrderSignature Variable (source fallback; no compiled unfold data available)
+  LRA.ModelTheory.FirstOrder.Theory TarskiFirstOrderSignature Variable (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
 abbrev TarskiTheory (Variable : Type) [DecidableEq Variable] :=
-  LRA.Logic.FirstOrder.Theory TarskiFirstOrderSignature Variable
+  LRA.ModelTheory.FirstOrder.Theory TarskiFirstOrderSignature Variable
 ```
 
 Type-theoretic form:
@@ -85,7 +85,7 @@ Related proof moves: unfold
 
 -/
 abbrev TarskiTheory (Variable : Type) [DecidableEq Variable] :=
-  LRA.Logic.FirstOrder.Theory TarskiFirstOrderSignature Variable
+  LRA.ModelTheory.FirstOrder.Theory TarskiFirstOrderSignature Variable
 
 /--
 `TarskiStructuresOfTheory` TODO
@@ -104,7 +104,7 @@ Logical form (Lean):
 abbrev TarskiStructuresOfTheory {Variable : Type} [DecidableEq Variable]
     (Γ : TarskiTheory Variable) :
     Set TarskiStructure :=
-  LRA.Logic.FirstOrder.ModelsOfTheory Γ
+  LRA.ModelTheory.FirstOrder.ModelsOfTheory Γ
 ```
 
 Type-theoretic form:
@@ -129,7 +129,7 @@ Related proof moves: unfold
 abbrev TarskiStructuresOfTheory {Variable : Type} [DecidableEq Variable]
     (Γ : TarskiTheory Variable) :
     Set TarskiStructure :=
-  LRA.Logic.FirstOrder.ModelsOfTheory Γ
+  LRA.ModelTheory.FirstOrder.ModelsOfTheory Γ
 
 /--
 `IsTarskiModelOf` TODO

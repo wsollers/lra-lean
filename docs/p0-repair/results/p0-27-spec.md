@@ -4,7 +4,7 @@
 - Task backend: `main-thread coordinator`
 - Spec task id: `main-thread`
 - Validator path: `LRA/Logic/Proof/System/Takeuti`
-- Build target: `LRA.Logic.Proof.System.Takeuti`
+- Build target: `LRA.ProofTheory.System.Takeuti`
 - Last good stop: `2026-08-23`: spec frozen on disk and ready for implementation
 
 ## Brief Summary
@@ -66,7 +66,7 @@ sequents and well-scoped rule applications.
   widen into a separate representation overhaul.
 - `python scripts/validate_structure.py --path LRA/Logic/Proof/System/Takeuti`
   passes.
-- `lake build LRA.Logic.Proof.System.Takeuti` passes.
+- `lake build LRA.ProofTheory.System.Takeuti` passes.
 
 ## Blockers Or Dependencies
 

@@ -1,0 +1,101 @@
+import LRA.ModelTheory.Model
+import LRA.ModelTheory.Comparison.SignatureEmbedding
+
+open LRA.Logic
+
+namespace LRA.ModelTheory.FirstOrder
+
+/--
+`Model.expand` TODO
+
+Predicate logic:
+
+  def Model.expand
+    {S S' : Signature} (e : SignatureEmbedding S S') (M : Model S)
+    (newFunctions :
+      (f' : S'.FunctionSymbol) -> (Fin (S'.functionArity f') -> M.Domain) -> M.Domain)
+    (newRelations :
+      (r' : S'.RelationSymbol) -> (Fin (S'.relationArity r') -> M.Domain) -> Prop)
+    (newConstants : S'.Constants -> M.Domain) :
+    Model S' where
+  Domain
+
+Predicate logic (unfolded):
+
+  def Model.expand
+    {S S' : Signature} (e : SignatureEmbedding S S') (M : Model S)
+    (newFunctions :
+      (f' : S'.FunctionSymbol) -> (Fin (S'.functionArity f') -> M.Domain) -> M.Domain)
+    (newRelations :
+      (r' : S'.RelationSymbol) -> (Fin (S'.relationArity r') -> M.Domain) -> Prop)
+    (newConstants : S'.Constants -> M.Domain) :
+    Model S' where
+  Domain (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+def Model.expand
+    {S S' : Signature} (e : SignatureEmbedding S S') (M : Model S)
+    (newFunctions :
+      (f' : S'.FunctionSymbol) -> (Fin (S'.functionArity f') -> M.Domain) -> M.Domain)
+    (newRelations :
+      (r' : S'.RelationSymbol) -> (Fin (S'.relationArity r') -> M.Domain) -> Prop)
+    (newConstants : S'.Constants -> M.Domain) :
+    Model S' where
+  Domain
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, unfold
+
+-/
+def Model.expand
+    {S S' : Signature} (e : SignatureEmbedding S S') (M : Model S)
+    (newFunctions :
+      (f' : S'.FunctionSymbol) -> (Fin (S'.functionArity f') -> M.Domain) -> M.Domain)
+    (newRelations :
+      (r' : S'.RelationSymbol) -> (Fin (S'.relationArity r') -> M.Domain) -> Prop)
+    (newConstants : S'.Constants -> M.Domain) :
+    Model S' where
+  Domain := M.Domain
+  domainNonempty := M.domainNonempty
+  interpretFunction f' args :=
+    match h : e.functionPreimage f' with
+    | some f =>
+        M.interpretFunction f
+          (fun i =>
+            args
+              (((e.functionEmbedFunction_of_preimage f' f h) ▸
+                (e.functionArityPreserved f)).symm ▸ i))
+    | none => newFunctions f' args
+  interpretRelation r' args :=
+    match h : e.relationPreimage r' with
+    | some r =>
+        M.interpretRelation r
+          (fun i =>
+            args
+              (((e.relationEmbedRelation_of_preimage r' r h) ▸
+                (e.relationArityPreserved r)).symm ▸ i))
+    | none => newRelations r' args
+  interpretConstant c' :=
+    match e.constantPreimage c' with
+    | some c => M.interpretConstant c
+    | none => newConstants c'
+
+end LRA.ModelTheory.FirstOrder

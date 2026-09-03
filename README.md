@@ -4,12 +4,26 @@ Lean 4 proof formalization for the **Learning Real Analysis** project.
 
 This repo was extracted from `Learning-Real-Analysis/lean/`.
 
+## Documentation
+
+The authoritative repository standards live under `docs/`:
+
+- `docs/governance/repository-governance.md`
+- `docs/architecture/repository-architecture.md`
+- `docs/standards/lean-standards.md`
+
+Planning notes, audits, prompt packs, and repair ledgers are working artifacts,
+not governance.
+
 ## Structure
 
 ```
 lakefile.lean       — Lake build configuration
 lean-toolchain      — Lean 4 version pin
 LRA/                — Lean source modules
+LRA/Logic/          — sealed logical languages, syntax, and semantics
+LRA/ModelTheory/    — set-level and structure-level model theory
+LRA/ProofTheory/    — proof systems and metaproof theory
 ```
 
 ## Aggregators
@@ -84,6 +98,19 @@ lake build LRAVolumeI LRAVolumeII LRAVolumeIII LRAVolumeIV LRAVolumeVI LRAVolume
 
 Production Lean modules live under `LRA/`. Build-gated smoke and regression
 checks live under `test/` and are built through `LRATests`.
+
+## Completed Theorems
+
+Generate a compact, compiled-environment-backed Markdown list for a subject:
+
+```powershell
+python scripts/dump_completed_theorems.py Set
+python scripts/dump_completed_theorems.py Identity
+```
+
+Each command writes `build/completed-theorems/<subject>.md` with fully
+qualified theorem names and `Completed` status. Add `--stdout` when a terminal
+list is preferred.
 
 ## Blueprint
 

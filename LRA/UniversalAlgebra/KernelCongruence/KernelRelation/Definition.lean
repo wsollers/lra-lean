@@ -5,6 +5,7 @@ namespace LRA.UniversalAlgebra
 
 open LRA.Logic
 open LRA.Logic.FirstOrder
+open LRA.ModelTheory.FirstOrder
 
 universe u v
 
@@ -13,11 +14,11 @@ universe u v
 
 Predicate logic:
 
-  ∀ {S : LRA.Logic.Signature} {M : LRA.Logic.FirstOrder.Model S} {N : LRA.Logic.FirstOrder.Model S} (homomorphism : LRA.UniversalAlgebra.Homomorphism M N) (a a_1 : M.Domain), homomorphism.map a = homomorphism.map a_1
+  ∀ {S : LRA.Logic.Signature} {M : LRA.ModelTheory.FirstOrder.Model S} {N : LRA.ModelTheory.FirstOrder.Model S} (homomorphism : LRA.UniversalAlgebra.Homomorphism M N) (a a_1 : M.Domain), homomorphism.map a = homomorphism.map a_1
 
 Predicate logic (unfolded):
 
-  ∀ {S : LRA.Logic.Signature} {M : LRA.Logic.FirstOrder.Model S} {N : LRA.Logic.FirstOrder.Model S} (homomorphism : LRA.UniversalAlgebra.Homomorphism M N) (a a_1 : M.1), homomorphism.1 a = homomorphism.1 a_1
+  ∀ {S : LRA.Logic.Signature} {M : LRA.ModelTheory.FirstOrder.Model S} {N : LRA.ModelTheory.FirstOrder.Model S} (homomorphism : LRA.UniversalAlgebra.Homomorphism M N) (a a_1 : M.1), homomorphism.1 a = homomorphism.1 a_1
 
 Logical form (Lean):
 
@@ -63,7 +64,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {S : LRA.Logic.Signature} {M : LRA.Logic.FirstOrder.Model S} {N : LRA.Logic.FirstOrder.Model S} (homomorphism : LRA.UniversalAlgebra.Homomorphism M N), Equivalence fun first second => homomorphism.1 first = homomorphism.1 second
+  ∀ {S : LRA.Logic.Signature} {M : LRA.ModelTheory.FirstOrder.Model S} {N : LRA.ModelTheory.FirstOrder.Model S} (homomorphism : LRA.UniversalAlgebra.Homomorphism M N), Equivalence fun first second => homomorphism.1 first = homomorphism.1 second
 
 Logical form (Lean):
 

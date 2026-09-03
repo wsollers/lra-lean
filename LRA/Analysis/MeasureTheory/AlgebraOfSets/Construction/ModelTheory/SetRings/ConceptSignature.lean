@@ -1,6 +1,6 @@
 import LRA.UniversalAlgebra.InterpretedOperationBundles
 
-namespace LRA.Logic.ModelTheory.SetRings
+namespace LRA.ModelTheoryTheory.SetRings
 
 /--
 `SetRingConceptSignature` TODO
@@ -60,4 +60,4 @@ structure SetRingConceptSignature extends LRA.UniversalAlgebra.InterpretedOperat
   meet : LRA.Operation.BinaryOperation carrier
   difference : LRA.Operation.BinaryOperation carrier
 
-end LRA.Logic.ModelTheory.SetRings
+end LRA.ModelTheoryTheory.SetRings

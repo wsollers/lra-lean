@@ -1,5 +1,5 @@
 import LRA.Logic.Syntax.Term
-import LRA.Logic.Model.Model
+import LRA.Logic.Semantics.Interpretation
 
 namespace LRA.Logic.FirstOrder
 
@@ -9,7 +9,7 @@ namespace LRA.Logic.FirstOrder
 Predicate logic:
 
   def evaluateTerm
-    {S : Signature} {Variable : Type} (M : Model S) (assignment : Variable -> M.Domain) :
+    {S : Signature} {Variable : Type} (M : Interpretation S) (assignment : Variable -> M.Domain) :
     Term S Variable -> M.Domain
   | .var v => assignment v
   | .const c => M.interpretConstant c
@@ -18,7 +18,7 @@ Predicate logic:
 Predicate logic (unfolded):
 
   def evaluateTerm
-    {S : Signature} {Variable : Type} (M : Model S) (assignment : Variable -> M.Domain) :
+    {S : Signature} {Variable : Type} (M : Interpretation S) (assignment : Variable -> M.Domain) :
     Term S Variable -> M.Domain
   | .var v => assignment v
   | .const c => M.interpretConstant c
@@ -28,7 +28,7 @@ Logical form (Lean):
 
 ```lean
 def evaluateTerm
-    {S : Signature} {Variable : Type} (M : Model S) (assignment : Variable -> M.Domain) :
+    {S : Signature} {Variable : Type} (M : Interpretation S) (assignment : Variable -> M.Domain) :
     Term S Variable -> M.Domain
   | .var v => assignment v
   | .const c => M.interpretConstant c
@@ -55,7 +55,7 @@ Related proof moves: intro, unfold
 
 -/
 def evaluateTerm
-    {S : Signature} {Variable : Type} (M : Model S) (assignment : Variable -> M.Domain) :
+    {S : Signature} {Variable : Type} (M : Interpretation S) (assignment : Variable -> M.Domain) :
     Term S Variable -> M.Domain
   | .var v => assignment v
   | .const c => M.interpretConstant c

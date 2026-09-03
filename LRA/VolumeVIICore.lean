@@ -1,5 +1,5 @@
-import LRA.Logic.Model
-import LRA.Logic.Proof
+import LRA.ModelTheory
+import LRA.ProofTheory
 
 /-!
 Volume VII core aggregate.

@@ -1,11 +1,12 @@
 
 import LRA.Set.Interface.ModelTheory.LStructure
-import LRA.Logic.Theory
+import LRA.ModelTheory.Theory
 
 namespace LRA.Set.ModelTheory
 
 open LRA.Logic
 open LRA.Logic.FirstOrder
+open LRA.ModelTheory.FirstOrder
 
 /--
 `satisfiesIffF` TODO
@@ -16,7 +17,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {M : LRA.Logic.FirstOrder.Model LRA.Set.ModelTheory.MembershipSignature} {assignment : Nat → M.1} {φ ψ : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat}, LRA.Logic.FirstOrder.Satisfies M assignment ((φ.impl ψ).impl (ψ.impl φ).neg).neg ↔ LRA.Logic.FirstOrder.Satisfies M assignment φ ↔ LRA.Logic.FirstOrder.Satisfies M assignment ψ
+  ∀ {M : LRA.ModelTheory.FirstOrder.Model LRA.Set.ModelTheory.MembershipSignature} {assignment : Nat → M.1} {φ ψ : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat}, LRA.Logic.FirstOrder.Satisfies M assignment ((φ.impl ψ).impl (ψ.impl φ).neg).neg ↔ LRA.Logic.FirstOrder.Satisfies M assignment φ ↔ LRA.Logic.FirstOrder.Satisfies M assignment ψ
 
 Logical form (Lean):
 
@@ -63,7 +64,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {M : LRA.Logic.FirstOrder.Model LRA.Set.ModelTheory.MembershipSignature} {assignment : Nat → M.1} {φ ψ : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat}, LRA.Logic.FirstOrder.Satisfies M assignment (φ.neg.impl ψ) ↔ Or (LRA.Logic.FirstOrder.Satisfies M assignment φ) (LRA.Logic.FirstOrder.Satisfies M assignment ψ)
+  ∀ {M : LRA.ModelTheory.FirstOrder.Model LRA.Set.ModelTheory.MembershipSignature} {assignment : Nat → M.1} {φ ψ : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat}, LRA.Logic.FirstOrder.Satisfies M assignment (φ.neg.impl ψ) ↔ Or (LRA.Logic.FirstOrder.Satisfies M assignment φ) (LRA.Logic.FirstOrder.Satisfies M assignment ψ)
 
 Logical form (Lean):
 

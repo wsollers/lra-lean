@@ -1,6 +1,6 @@
 import LRA.Logic
 
-namespace LRA.Logic.ModelTheory.SetAlgebras
+namespace LRA.ModelTheoryTheory.SetAlgebras
 
 /--
 `SetAlgebraFunctionSymbol` TODO
@@ -290,4 +290,4 @@ def SetAlgebraFirstOrderSignature : LRA.Logic.Signature where
   Relations := SetAlgebraFirstOrderRelations
   Constants := SetAlgebraConstantSymbol
 
-end LRA.Logic.ModelTheory.SetAlgebras
+end LRA.ModelTheoryTheory.SetAlgebras

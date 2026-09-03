@@ -1,0 +1,303 @@
+{
+  "schema_version": 1,
+  "comment_template": [
+    "Meaning",
+    "Predicate logic",
+    "Predicate logic (unfolded)",
+    "Logical form (Lean)",
+    "Type-theoretic form",
+    "Proof use",
+    "After unfold / common proof state",
+    "Common confusions",
+    "Related proof moves"
+  ],
+  "declarations": [
+    {
+      "id": "LRA/Book/Identity.lean:41:Ident",
+      "name": "Ident",
+      "kind": "abbrev",
+      "file": "LRA/Book/Identity.lean",
+      "line": 41,
+      "declaration": "abbrev Ident := LRA.Identity.Ident",
+      "formal_statement": "abbrev Ident := LRA.Identity.Ident",
+      "predicate_logic": "abbrev Ident := LRA.Identity.Ident",
+      "predicate_logic_unfolded": "abbrev Ident := LRA.Identity.Ident (source fallback; no compiled unfold data available)",
+      "existing_doc": "",
+      "detected_connectives": [],
+      "suggested_moves": [
+        "unfold"
+      ],
+      "generated_comment": "/--\n`Ident` TODO\n\nPredicate logic:\n\n  abbrev Ident := LRA.Identity.Ident\n\nPredicate logic (unfolded):\n\n  abbrev Ident := LRA.Identity.Ident (source fallback; no compiled unfold data available)\n\nLogical form (Lean):\n\n```lean\nabbrev Ident := LRA.Identity.Ident\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Book/Identity.lean:84:Distinct",
+      "name": "Distinct",
+      "kind": "abbrev",
+      "file": "LRA/Book/Identity.lean",
+      "line": 84,
+      "declaration": "abbrev Distinct := LRA.Identity.Distinct",
+      "formal_statement": "def Distinct {Carrier : Type u} [IdentityRelation Carrier] (left right : Carrier) : Prop :=\n  ¬ Ident left right",
+      "predicate_logic": "∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] (left right : Carrier), inst.Ident left right → False",
+      "predicate_logic_unfolded": "Ambient\n  (implicit ambient)\nObjects\n  (none)\nProve\n  left ≤ right → False",
+      "existing_doc": "",
+      "detected_connectives": [
+        "Prop"
+      ],
+      "suggested_moves": [
+        "unfold"
+      ],
+      "generated_comment": "/--\n`Distinct` TODO\n\nPredicate logic:\n\n  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] (left right : Carrier), inst.Ident left right → False\n\nPredicate logic (unfolded):\n\n  Ambient\n    (implicit ambient)\n  Objects\n    (none)\n  Prove\n    left ≤ right → False\n\nLogical form (Lean):\n\n```lean\ndef Distinct {Carrier : Type u} [IdentityRelation Carrier] (left right : Carrier) : Prop :=\n  ¬ Ident left right\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Book/Identity.lean:127:HasWitness",
+      "name": "HasWitness",
+      "kind": "abbrev",
+      "file": "LRA/Book/Identity.lean",
+      "line": 127,
+      "declaration": "abbrev HasWitness := LRA.Identity.HasWitness",
+      "formal_statement": "def HasWitness {Carrier : Type u} (P : Carrier → Prop) : Prop :=\n  ∃ x, P x",
+      "predicate_logic": "∀ {Carrier : Type u} (P : Carrier → Prop), Exists fun x => P x",
+      "predicate_logic_unfolded": "Ambient\n  (implicit ambient)\nObjects\n  (none)\nProve\n  Exists fun x => P x",
+      "existing_doc": "`HasWitness P` states that at least one element of `Carrier` satisfies `P`.",
+      "detected_connectives": [
+        "→",
+        "∃",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro",
+        "use",
+        "rcases",
+        "unfold"
+      ],
+      "generated_comment": "/--\n`HasWitness` `HasWitness P` states that at least one element of `Carrier` satisfies `P`.\n\nPredicate logic:\n\n  ∀ {Carrier : Type u} (P : Carrier → Prop), Exists fun x => P x\n\nPredicate logic (unfolded):\n\n  Ambient\n    (implicit ambient)\n  Objects\n    (none)\n  Prove\n    Exists fun x => P x\n\nLogical form (Lean):\n\n```lean\ndef HasWitness {Carrier : Type u} (P : Carrier → Prop) : Prop :=\n  ∃ x, P x\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: unfold\n\n-/",
+      "meaning": "`HasWitness P` states that at least one element of `Carrier` satisfies `P`.",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Book/Identity.lean:170:HasNoWitness",
+      "name": "HasNoWitness",
+      "kind": "abbrev",
+      "file": "LRA/Book/Identity.lean",
+      "line": 170,
+      "declaration": "abbrev HasNoWitness := LRA.Identity.HasNoWitness",
+      "formal_statement": "def HasNoWitness {Carrier : Type u} (P : Carrier → Prop) : Prop :=\n  ¬ ∃ x, P x",
+      "predicate_logic": "∀ {Carrier : Type u} (P : Carrier → Prop), (Exists fun x => P x) → False",
+      "predicate_logic_unfolded": "Ambient\n  (implicit ambient)\nObjects\n  (none)\nProve\n  (Exists fun x => P x) → False",
+      "existing_doc": "",
+      "detected_connectives": [
+        "→",
+        "∃",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro",
+        "use",
+        "rcases",
+        "unfold"
+      ],
+      "generated_comment": "/--\n`HasNoWitness` TODO\n\nPredicate logic:\n\n  ∀ {Carrier : Type u} (P : Carrier → Prop), (Exists fun x => P x) → False\n\nPredicate logic (unfolded):\n\n  Ambient\n    (implicit ambient)\n  Objects\n    (none)\n  Prove\n    (Exists fun x => P x) → False\n\nLogical form (Lean):\n\n```lean\ndef HasNoWitness {Carrier : Type u} (P : Carrier → Prop) : Prop :=\n  ¬ ∃ x, P x\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Book/Identity.lean:213:AtMostOne",
+      "name": "AtMostOne",
+      "kind": "abbrev",
+      "file": "LRA/Book/Identity.lean",
+      "line": 213,
+      "declaration": "abbrev AtMostOne := LRA.Identity.AtMostOne",
+      "formal_statement": "def AtMostOne (P : Carrier → Prop) : Prop :=\n  ∀ left right, P left → P right → Ident left right",
+      "predicate_logic": "∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] (P : Carrier → Prop) (left right : Carrier), (P left ∧ P right) → inst.Ident left right",
+      "predicate_logic_unfolded": "Ambient\n  (implicit ambient)\nObjects\n  (none)\nProve\n  (P left ∧ P right) → left ≤ right",
+      "existing_doc": "`AtMostOne P` states that any two witnesses of `P` are identified by the\nactive `IdentityRelation`.\n\nIt does not assert that a witness exists.",
+      "detected_connectives": [
+        "∀",
+        "→",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro",
+        "unfold"
+      ],
+      "generated_comment": "/--\n`AtMostOne` `AtMostOne P` states that any two witnesses of `P` are identified by the active `IdentityRelation`.  It does not assert that a witness exists.\n\nPredicate logic:\n\n  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] (P : Carrier → Prop) (left right : Carrier), (P left ∧ P right) → inst.Ident left right\n\nPredicate logic (unfolded):\n\n  Ambient\n    (implicit ambient)\n  Objects\n    (none)\n  Prove\n    (P left ∧ P right) → left ≤ right\n\nLogical form (Lean):\n\n```lean\ndef AtMostOne (P : Carrier → Prop) : Prop :=\n  ∀ left right, P left → P right → Ident left right\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: unfold\n\n-/",
+      "meaning": "`AtMostOne P` states that any two witnesses of `P` are identified by the active `IdentityRelation`.  It does not assert that a witness exists.",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Book/Identity.lean:256:NotAtMostOne",
+      "name": "NotAtMostOne",
+      "kind": "abbrev",
+      "file": "LRA/Book/Identity.lean",
+      "line": 256,
+      "declaration": "abbrev NotAtMostOne := LRA.Identity.NotAtMostOne",
+      "formal_statement": "def NotAtMostOne (P : Carrier → Prop) : Prop :=\n  ∃ left right, P left ∧ P right ∧ Distinct left right",
+      "predicate_logic": "∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] (P : Carrier → Prop), Exists fun left => Exists fun right => (P left ∧ (P right ∧ LRA.Identity.Distinct left right))",
+      "predicate_logic_unfolded": "Ambient\n  (implicit ambient)\nObjects\n  (none)\nProve\n  Exists fun left => Exists fun right => (P left ∧ (P right ∧ (left ≤ right → False)))",
+      "existing_doc": "",
+      "detected_connectives": [
+        "→",
+        "∧",
+        "∃",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro",
+        "constructor",
+        "cases",
+        "rcases",
+        "use",
+        "unfold"
+      ],
+      "generated_comment": "/--\n`NotAtMostOne` TODO\n\nPredicate logic:\n\n  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] (P : Carrier → Prop), Exists fun left => Exists fun right => (P left ∧ (P right ∧ LRA.Identity.Distinct left right))\n\nPredicate logic (unfolded):\n\n  Ambient\n    (implicit ambient)\n  Objects\n    (none)\n  Prove\n    Exists fun left => Exists fun right => (P left ∧ (P right ∧ (left ≤ right → False)))\n\nLogical form (Lean):\n\n```lean\ndef NotAtMostOne (P : Carrier → Prop) : Prop :=\n  ∃ left right, P left ∧ P right ∧ Distinct left right\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Book/Identity.lean:299:ExactlyOne",
+      "name": "ExactlyOne",
+      "kind": "abbrev",
+      "file": "LRA/Book/Identity.lean",
+      "line": 299,
+      "declaration": "abbrev ExactlyOne := LRA.Identity.ExactlyOne",
+      "formal_statement": "def ExactlyOne (P : Carrier → Prop) : Prop :=\n  HasWitness P ∧ AtMostOne P",
+      "predicate_logic": "∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] (P : Carrier → Prop), (LRA.Identity.HasWitness P ∧ LRA.Identity.AtMostOne P)",
+      "predicate_logic_unfolded": "Ambient\n  (implicit ambient)\nObjects\n  (none)\nProve\n  (Exists fun x => P x ∧ (∀ (left right : Carrier), P left → P right → left ≤ right))",
+      "existing_doc": "`ExactlyOne P` states that `P` has a witness and that all its witnesses are\nidentified by the active `IdentityRelation`.\n\nUse this identity-polymorphic notion when uniqueness should be expressed via\n`Ident`; use Lean's `ExistsAndUnique` when native equality is intended.",
+      "detected_connectives": [
+        "→",
+        "∧",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro",
+        "constructor",
+        "cases",
+        "rcases",
+        "unfold"
+      ],
+      "generated_comment": "/--\n`ExactlyOne` `ExactlyOne P` states that `P` has a witness and that all its witnesses are identified by the active `IdentityRelation`.  Use this identity-polymorphic notion when uniqueness should be expressed via `Ident`; use Lean's `ExistsAndUnique` when native equality is intended.\n\nPredicate logic:\n\n  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] (P : Carrier → Prop), (LRA.Identity.HasWitness P ∧ LRA.Identity.AtMostOne P)\n\nPredicate logic (unfolded):\n\n  Ambient\n    (implicit ambient)\n  Objects\n    (none)\n  Prove\n    (Exists fun x => P x ∧ (∀ (left right : Carrier), P left → P right → left ≤ right))\n\nLogical form (Lean):\n\n```lean\ndef ExactlyOne (P : Carrier → Prop) : Prop :=\n  HasWitness P ∧ AtMostOne P\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: unfold\n\n-/",
+      "meaning": "`ExactlyOne P` states that `P` has a witness and that all its witnesses are identified by the active `IdentityRelation`.  Use this identity-polymorphic notion when uniqueness should be expressed via `Ident`; use Lean's `ExistsAndUnique` when native equality is intended.",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Book/Identity.lean:342:AtLeastTwo",
+      "name": "AtLeastTwo",
+      "kind": "abbrev",
+      "file": "LRA/Book/Identity.lean",
+      "line": 342,
+      "declaration": "abbrev AtLeastTwo := LRA.Identity.AtLeastTwo",
+      "formal_statement": "def AtLeastTwo (Carrier : Type u) [IdentityRelation Carrier] : Prop :=\n  ∃ x y : Carrier, Distinct x y",
+      "predicate_logic": "∀ (Carrier : Type u) [inst : LRA.Identity.IdentityRelation Carrier], Exists fun x => Exists fun y => LRA.Identity.Distinct x y",
+      "predicate_logic_unfolded": "Ambient\n  (implicit ambient)\nObjects\n  (none)\nProve\n  Exists fun x => Exists fun y => x ≤ y → False",
+      "existing_doc": "",
+      "detected_connectives": [
+        "∃",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "use",
+        "rcases",
+        "unfold"
+      ],
+      "generated_comment": "/--\n`AtLeastTwo` TODO\n\nPredicate logic:\n\n  ∀ (Carrier : Type u) [inst : LRA.Identity.IdentityRelation Carrier], Exists fun x => Exists fun y => LRA.Identity.Distinct x y\n\nPredicate logic (unfolded):\n\n  Ambient\n    (implicit ambient)\n  Objects\n    (none)\n  Prove\n    Exists fun x => Exists fun y => x ≤ y → False\n\nLogical form (Lean):\n\n```lean\ndef AtLeastTwo (Carrier : Type u) [IdentityRelation Carrier] : Prop :=\n  ∃ x y : Carrier, Distinct x y\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Book/Identity.lean:385:AtMostTwo",
+      "name": "AtMostTwo",
+      "kind": "abbrev",
+      "file": "LRA/Book/Identity.lean",
+      "line": 385,
+      "declaration": "abbrev AtMostTwo := LRA.Identity.AtMostTwo",
+      "formal_statement": "def AtMostTwo (Carrier : Type u) [IdentityRelation Carrier] : Prop :=\n  ∀ x y z : Carrier, Ident x y ∨ Ident y z ∨ Ident x z",
+      "predicate_logic": "∀ (Carrier : Type u) [inst : LRA.Identity.IdentityRelation Carrier] (x y z : Carrier), Or (inst.Ident x y) (Or (inst.Ident y z) (inst.Ident x z))",
+      "predicate_logic_unfolded": "Ambient\n  (implicit ambient)\nObjects\n  (none)\nProve\n  Or (x ≤ y)(Or (y ≤ z)(x ≤ z))",
+      "existing_doc": "",
+      "detected_connectives": [
+        "∀",
+        "∨",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro",
+        "Or.inl",
+        "Or.inr",
+        "cases",
+        "rcases",
+        "unfold"
+      ],
+      "generated_comment": "/--\n`AtMostTwo` TODO\n\nPredicate logic:\n\n  ∀ (Carrier : Type u) [inst : LRA.Identity.IdentityRelation Carrier] (x y z : Carrier), Or (inst.Ident x y) (Or (inst.Ident y z) (inst.Ident x z))\n\nPredicate logic (unfolded):\n\n  Ambient\n    (implicit ambient)\n  Objects\n    (none)\n  Prove\n    Or (x ≤ y)(Or (y ≤ z)(x ≤ z))\n\nLogical form (Lean):\n\n```lean\ndef AtMostTwo (Carrier : Type u) [IdentityRelation Carrier] : Prop :=\n  ∀ x y z : Carrier, Ident x y ∨ Ident y z ∨ Ident x z\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "unfold"
+      ],
+      "status": "draft"
+    }
+  ]
+}

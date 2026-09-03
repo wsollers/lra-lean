@@ -717,7 +717,7 @@ instance (real_model : RealModel) (n : ℕ) : Congruent (Rn real_model n) where
 Predicate logic:
 
   def EuclideanTupleModel (real_model : RealModel) (n : ℕ) :
-    LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model TarskiFirstOrderSignature :=
   BuildTarskiModel
     (Point := Rn real_model n)
     (between := fun x y z => between x y z)
@@ -726,7 +726,7 @@ Predicate logic:
 Predicate logic (unfolded):
 
   def EuclideanTupleModel (real_model : RealModel) (n : ℕ) :
-    LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model TarskiFirstOrderSignature :=
   BuildTarskiModel
     (Point := Rn real_model n)
     (between := fun x y z => between x y z)
@@ -736,7 +736,7 @@ Logical form (Lean):
 
 ```lean
 def EuclideanTupleModel (real_model : RealModel) (n : ℕ) :
-    LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model TarskiFirstOrderSignature :=
   BuildTarskiModel
     (Point := Rn real_model n)
     (between := fun x y z => between x y z)
@@ -763,7 +763,7 @@ Related proof moves: unfold
 
 -/
 def EuclideanTupleModel (real_model : RealModel) (n : ℕ) :
-    LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model TarskiFirstOrderSignature :=
   BuildTarskiModel
     (Point := Rn real_model n)
     (between := fun x y z => between x y z)

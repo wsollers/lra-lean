@@ -15,7 +15,7 @@ Predicate logic:
 
   def BuildMonoidModel
     (signature : LRA.AlgebraicStructures.MonoidConceptSignature) :
-    LRA.Logic.FirstOrder.Model MonoidFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model MonoidFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.one⟩
   interpretFunction
@@ -29,7 +29,7 @@ Predicate logic (unfolded):
 
   def BuildMonoidModel
     (signature : LRA.AlgebraicStructures.MonoidConceptSignature) :
-    LRA.Logic.FirstOrder.Model MonoidFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model MonoidFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.one⟩
   interpretFunction
@@ -44,7 +44,7 @@ Logical form (Lean):
 ```lean
 def BuildMonoidModel
     (signature : LRA.AlgebraicStructures.MonoidConceptSignature) :
-    LRA.Logic.FirstOrder.Model MonoidFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model MonoidFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.one⟩
   interpretFunction
@@ -76,7 +76,7 @@ Related proof moves: unfold
 -/
 def BuildMonoidModel
     (signature : LRA.AlgebraicStructures.MonoidConceptSignature) :
-    LRA.Logic.FirstOrder.Model MonoidFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model MonoidFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.one⟩
   interpretFunction
@@ -92,14 +92,14 @@ def BuildMonoidModel
 Predicate logic:
 
   def monoidFirstOrderModel (R : Type u) [Mul R] [OfNat R 1] :
-    LRA.Logic.FirstOrder.Model MonoidFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model MonoidFirstOrderSignature :=
   BuildMonoidModel
     { carrier := R, one := 1, multiply := (· * ·) }
 
 Predicate logic (unfolded):
 
   def monoidFirstOrderModel (R : Type u) [Mul R] [OfNat R 1] :
-    LRA.Logic.FirstOrder.Model MonoidFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model MonoidFirstOrderSignature :=
   BuildMonoidModel
     { carrier := R, one := 1, multiply := (· * ·) } (source fallback; no compiled unfold data available)
 
@@ -107,7 +107,7 @@ Logical form (Lean):
 
 ```lean
 def monoidFirstOrderModel (R : Type u) [Mul R] [OfNat R 1] :
-    LRA.Logic.FirstOrder.Model MonoidFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model MonoidFirstOrderSignature :=
   BuildMonoidModel
     { carrier := R, one := 1, multiply := (· * ·) }
 ```
@@ -132,7 +132,7 @@ Related proof moves: unfold
 
 -/
 def monoidFirstOrderModel (R : Type u) [Mul R] [OfNat R 1] :
-    LRA.Logic.FirstOrder.Model MonoidFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model MonoidFirstOrderSignature :=
   BuildMonoidModel
     { carrier := R, one := 1, multiply := (· * ·) }
 

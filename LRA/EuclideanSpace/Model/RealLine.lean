@@ -274,20 +274,20 @@ def OpenRayBelowM (real_model : RealModel)
 Predicate logic:
 
   def RealLineModel (real_model : RealModel) :
-    LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model TarskiFirstOrderSignature :=
   EuclideanTupleModel real_model 1
 
 Predicate logic (unfolded):
 
   def RealLineModel (real_model : RealModel) :
-    LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model TarskiFirstOrderSignature :=
   EuclideanTupleModel real_model 1
 
 Logical form (Lean):
 
 ```lean
 def RealLineModel (real_model : RealModel) :
-    LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model TarskiFirstOrderSignature :=
   EuclideanTupleModel real_model 1
 ```
 
@@ -311,7 +311,7 @@ Related proof moves: unfold
 
 -/
 def RealLineModel (real_model : RealModel) :
-    LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model TarskiFirstOrderSignature :=
   EuclideanTupleModel real_model 1
 
 end LRA.EuclideanSpace

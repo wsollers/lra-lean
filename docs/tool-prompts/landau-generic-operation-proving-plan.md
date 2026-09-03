@@ -29,10 +29,10 @@ requires, and produce a concrete plan to close the gap.
 
 ## Documents to read, in this order
 
-1. **`PurposeAndArchitecture.md`** and **`DESIGN.md`** (repo root) — overall
-   repo intent, the `namespace Landau` convention ("historically aligned
-   theorem developments"), and the Source Policy section (theorems should
-   cite a source and section/theorem number where possible).
+1. **`docs/architecture/repository-architecture.md`** and
+   **`docs/standards/lean-standards.md`** — overall repo intent, the
+   `namespace Landau` convention for legacy arithmetic work, and the source and
+   doc-comment policy that governs theorem citations and display names.
 2. **`docs/interface-model-standardization-inventory.md`** — current state of
    interface/model standardization across the repo; relevant because the
    generic transport-theorem approach is itself an interface-standardization

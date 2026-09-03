@@ -1,7 +1,7 @@
 import LRA.Set.Interface.ModelTheory.LStructure
 import LRA.Logic.Syntax.FirstOrder.Substitute
 import LRA.Logic.Syntax.FirstOrder.AllVariables
-import LRA.Logic.Theory
+import LRA.ModelTheory.Theory
 
 /-!
 ZFCSet's exported ZFC theory: the ten axiom formulas and axiom schemas of
@@ -15,6 +15,7 @@ namespace LRA.Set.Constructions.ZFCSet.Interface.ModelTheory
 
 open LRA.Logic
 open LRA.Logic.FirstOrder
+open LRA.ModelTheory.FirstOrder
 open LRA.Set.ModelTheory
 
 /--

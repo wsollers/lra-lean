@@ -47,7 +47,7 @@ def DivisionRingModel.signature {Carrier : Type u}
 /-- The first-order model induced by a promoted division-ring model. -/
 def DivisionRingModel.firstOrderModel {Carrier : Type u}
     (model : DivisionRingModel Carrier) :
-    LRA.Logic.FirstOrder.Model
+    LRA.ModelTheory.FirstOrder.Model
       LRA.AlgebraicStructures.DivisionRing.Interface.Signature.DivisionRingFirstOrderSignature :=
   BuildDivisionRingModel model.signature
 

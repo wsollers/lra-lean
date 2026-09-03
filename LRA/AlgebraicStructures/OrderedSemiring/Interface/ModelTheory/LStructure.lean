@@ -62,14 +62,14 @@ Predicate logic:
 
   def BuildOrderedSemiringModel
     (signature : OrderedSemiringSignature) :
-    LRA.Logic.FirstOrder.Model OrderedSemiringFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model OrderedSemiringFirstOrderSignature where
   Domain
 
 Predicate logic (unfolded):
 
   def BuildOrderedSemiringModel
     (signature : OrderedSemiringSignature) :
-    LRA.Logic.FirstOrder.Model OrderedSemiringFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model OrderedSemiringFirstOrderSignature where
   Domain (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
@@ -77,7 +77,7 @@ Logical form (Lean):
 ```lean
 def BuildOrderedSemiringModel
     (signature : OrderedSemiringSignature) :
-    LRA.Logic.FirstOrder.Model OrderedSemiringFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model OrderedSemiringFirstOrderSignature where
   Domain
 ```
 
@@ -102,7 +102,7 @@ Related proof moves: unfold
 -/
 def BuildOrderedSemiringModel
     (signature : OrderedSemiringSignature) :
-    LRA.Logic.FirstOrder.Model OrderedSemiringFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model OrderedSemiringFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.zero⟩
   interpretFunction
@@ -124,7 +124,7 @@ Predicate logic:
 
   def orderedSemiringFirstOrderModel (R : Type u)
     [Add R] [Mul R] [OfNat R 0] [OfNat R 1] [LT R] [LE R] :
-    LRA.Logic.FirstOrder.Model OrderedSemiringFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model OrderedSemiringFirstOrderSignature :=
   BuildOrderedSemiringModel
     { carrier := R, zero := 0, one := 1, add := (· + ·),
       multiply := (· * ·), le := (· ≤ ·),
@@ -134,7 +134,7 @@ Predicate logic (unfolded):
 
   def orderedSemiringFirstOrderModel (R : Type u)
     [Add R] [Mul R] [OfNat R 0] [OfNat R 1] [LT R] [LE R] :
-    LRA.Logic.FirstOrder.Model OrderedSemiringFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model OrderedSemiringFirstOrderSignature :=
   BuildOrderedSemiringModel
     { carrier := R, zero := 0, one := 1, add := (· + ·),
       multiply := (· * ·), le := (· ≤ ·),
@@ -145,7 +145,7 @@ Logical form (Lean):
 ```lean
 def orderedSemiringFirstOrderModel (R : Type u)
     [Add R] [Mul R] [OfNat R 0] [OfNat R 1] [LT R] [LE R] :
-    LRA.Logic.FirstOrder.Model OrderedSemiringFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model OrderedSemiringFirstOrderSignature :=
   BuildOrderedSemiringModel
     { carrier := R, zero := 0, one := 1, add := (· + ·),
       multiply := (· * ·), le := (· ≤ ·),
@@ -173,7 +173,7 @@ Related proof moves: unfold
 -/
 def orderedSemiringFirstOrderModel (R : Type u)
     [Add R] [Mul R] [OfNat R 0] [OfNat R 1] [LT R] [LE R] :
-    LRA.Logic.FirstOrder.Model OrderedSemiringFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model OrderedSemiringFirstOrderSignature :=
   BuildOrderedSemiringModel
     { carrier := R, zero := 0, one := 1, add := (· + ·),
       multiply := (· * ·), le := (· ≤ ·),

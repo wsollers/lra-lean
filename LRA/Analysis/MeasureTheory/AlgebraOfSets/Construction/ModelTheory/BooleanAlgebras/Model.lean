@@ -1,7 +1,7 @@
 import LRA.Analysis.MeasureTheory.AlgebraOfSets.Construction.ModelTheory.BooleanAlgebras.Signature
 import LRA.Analysis.MeasureTheory.AlgebraOfSets.Construction.ModelTheory.BooleanAlgebras.ConceptSignature
 
-namespace LRA.Logic.ModelTheory.BooleanAlgebras
+namespace LRA.ModelTheoryTheory.BooleanAlgebras
 
 /--
 `BuildBooleanAlgebraModel` TODO
@@ -10,14 +10,14 @@ Predicate logic:
 
   def BuildBooleanAlgebraModel
     (signature : BooleanAlgebraConceptSignature) :
-    LRA.Logic.FirstOrder.Model BooleanAlgebraFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model BooleanAlgebraFirstOrderSignature where
   Domain
 
 Predicate logic (unfolded):
 
   def BuildBooleanAlgebraModel
     (signature : BooleanAlgebraConceptSignature) :
-    LRA.Logic.FirstOrder.Model BooleanAlgebraFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model BooleanAlgebraFirstOrderSignature where
   Domain (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
@@ -25,7 +25,7 @@ Logical form (Lean):
 ```lean
 def BuildBooleanAlgebraModel
     (signature : BooleanAlgebraConceptSignature) :
-    LRA.Logic.FirstOrder.Model BooleanAlgebraFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model BooleanAlgebraFirstOrderSignature where
   Domain
 ```
 
@@ -50,7 +50,7 @@ Related proof moves: unfold
 -/
 def BuildBooleanAlgebraModel
     (signature : BooleanAlgebraConceptSignature) :
-    LRA.Logic.FirstOrder.Model BooleanAlgebraFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model BooleanAlgebraFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.zero⟩
   interpretFunction
@@ -65,4 +65,4 @@ def BuildBooleanAlgebraModel
     | .zero => signature.zero
     | .one => signature.one
 
-end LRA.Logic.ModelTheory.BooleanAlgebras
+end LRA.ModelTheoryTheory.BooleanAlgebras

@@ -24,7 +24,7 @@ The spec is correct.
    intrinsically scoped representation rewrite.
 
 4. The scoped validator on `LRA/Logic/Proof/System/Takeuti` plus the direct
-   `lake build LRA.Logic.Proof.System.Takeuti` target are sufficient gates for
+   `lake build LRA.ProofTheory.System.Takeuti` target are sufficient gates for
    the bounded change.
 
 ## Resolution

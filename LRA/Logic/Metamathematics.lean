@@ -1,7 +1,6 @@
 import LRA.Metamathematics.StructuralIdentity
 import LRA.Metamathematics.SubstitutionSafety
 import LRA.Logic.Syntax.FirstOrder.SubstitutionFreeVariables
-import LRA.Logic.Proof.System.Takeuti
 
 /-!
 # Logic / Metamathematics wiring

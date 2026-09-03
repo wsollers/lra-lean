@@ -1,7 +1,7 @@
 import LRA.Analysis.MeasureTheory.AlgebraOfSets.Construction.ModelTheory.SetAlgebras.Signature
 import LRA.Analysis.MeasureTheory.AlgebraOfSets.Construction.ModelTheory.SetAlgebras.ConceptSignature
 
-namespace LRA.Logic.ModelTheory.SetAlgebras
+namespace LRA.ModelTheoryTheory.SetAlgebras
 
 /--
 `BuildSetAlgebraModel` TODO
@@ -10,14 +10,14 @@ Predicate logic:
 
   def BuildSetAlgebraModel
     (signature : SetAlgebraConceptSignature) :
-    LRA.Logic.FirstOrder.Model SetAlgebraFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model SetAlgebraFirstOrderSignature where
   Domain
 
 Predicate logic (unfolded):
 
   def BuildSetAlgebraModel
     (signature : SetAlgebraConceptSignature) :
-    LRA.Logic.FirstOrder.Model SetAlgebraFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model SetAlgebraFirstOrderSignature where
   Domain (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
@@ -25,7 +25,7 @@ Logical form (Lean):
 ```lean
 def BuildSetAlgebraModel
     (signature : SetAlgebraConceptSignature) :
-    LRA.Logic.FirstOrder.Model SetAlgebraFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model SetAlgebraFirstOrderSignature where
   Domain
 ```
 
@@ -50,7 +50,7 @@ Related proof moves: unfold
 -/
 def BuildSetAlgebraModel
     (signature : SetAlgebraConceptSignature) :
-    LRA.Logic.FirstOrder.Model SetAlgebraFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model SetAlgebraFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.zero⟩
   interpretFunction
@@ -65,4 +65,4 @@ def BuildSetAlgebraModel
     | .zero => signature.zero
     | .one => signature.one
 
-end LRA.Logic.ModelTheory.SetAlgebras
+end LRA.ModelTheoryTheory.SetAlgebras

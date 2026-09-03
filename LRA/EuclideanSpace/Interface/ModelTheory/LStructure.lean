@@ -1,5 +1,5 @@
 import LRA.EuclideanSpace.Interface.Signature
-import LRA.Logic.Model.Model
+import LRA.ModelTheory.Model
 
 namespace LRA.EuclideanSpace
 
@@ -10,16 +10,16 @@ universe u
 
 Predicate logic:
 
-  abbrev TarskiStructure := LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature
+  abbrev TarskiStructure := LRA.ModelTheory.FirstOrder.Model TarskiFirstOrderSignature
 
 Predicate logic (unfolded):
 
-  abbrev TarskiStructure := LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature (source fallback; no compiled unfold data available)
+  abbrev TarskiStructure := LRA.ModelTheory.FirstOrder.Model TarskiFirstOrderSignature (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
-abbrev TarskiStructure := LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature
+abbrev TarskiStructure := LRA.ModelTheory.FirstOrder.Model TarskiFirstOrderSignature
 ```
 
 Type-theoretic form:
@@ -41,7 +41,7 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-abbrev TarskiStructure := LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature
+abbrev TarskiStructure := LRA.ModelTheory.FirstOrder.Model TarskiFirstOrderSignature
 
 /--
 `BuildTarskiStructure` TODO

@@ -15,14 +15,14 @@ Predicate logic:
 
   def BuildFieldModel
     (signature : LRA.AlgebraicStructures.FieldConceptSignature) :
-    LRA.Logic.FirstOrder.Model FieldFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model FieldFirstOrderSignature where
   Domain
 
 Predicate logic (unfolded):
 
   def BuildFieldModel
     (signature : LRA.AlgebraicStructures.FieldConceptSignature) :
-    LRA.Logic.FirstOrder.Model FieldFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model FieldFirstOrderSignature where
   Domain (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
@@ -30,7 +30,7 @@ Logical form (Lean):
 ```lean
 def BuildFieldModel
     (signature : LRA.AlgebraicStructures.FieldConceptSignature) :
-    LRA.Logic.FirstOrder.Model FieldFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model FieldFirstOrderSignature where
   Domain
 ```
 
@@ -55,7 +55,7 @@ Related proof moves: unfold
 -/
 def BuildFieldModel
     (signature : LRA.AlgebraicStructures.FieldConceptSignature) :
-    LRA.Logic.FirstOrder.Model FieldFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model FieldFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.zero⟩
   interpretFunction
@@ -77,7 +77,7 @@ Predicate logic:
 
   def fieldFirstOrderModel (R : Type u)
     [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] :
-    LRA.Logic.FirstOrder.Model FieldFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model FieldFirstOrderSignature :=
   BuildFieldModel
     { carrier := R, zero := 0, one := 1, add := (· + ·),
       neg := (- ·), multiply := (· * ·), inv := (·⁻¹) }
@@ -86,7 +86,7 @@ Predicate logic (unfolded):
 
   def fieldFirstOrderModel (R : Type u)
     [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] :
-    LRA.Logic.FirstOrder.Model FieldFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model FieldFirstOrderSignature :=
   BuildFieldModel
     { carrier := R, zero := 0, one := 1, add := (· + ·),
       neg := (- ·), multiply := (· * ·), inv := (·⁻¹) } (source fallback; no compiled unfold data available)
@@ -96,7 +96,7 @@ Logical form (Lean):
 ```lean
 def fieldFirstOrderModel (R : Type u)
     [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] :
-    LRA.Logic.FirstOrder.Model FieldFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model FieldFirstOrderSignature :=
   BuildFieldModel
     { carrier := R, zero := 0, one := 1, add := (· + ·),
       neg := (- ·), multiply := (· * ·), inv := (·⁻¹) }
@@ -123,7 +123,7 @@ Related proof moves: unfold
 -/
 def fieldFirstOrderModel (R : Type u)
     [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] :
-    LRA.Logic.FirstOrder.Model FieldFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model FieldFirstOrderSignature :=
   BuildFieldModel
     { carrier := R, zero := 0, one := 1, add := (· + ·),
       neg := (- ·), multiply := (· * ·), inv := (·⁻¹) }

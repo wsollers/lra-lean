@@ -4,6 +4,7 @@ namespace LRA.UniversalAlgebra
 
 open LRA.Logic
 open LRA.Logic.FirstOrder
+open LRA.ModelTheory.FirstOrder
 
 universe u
 
@@ -172,7 +173,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {S : LRA.Logic.Signature} {M : LRA.Logic.FirstOrder.Model S} (congruence : LRA.UniversalAlgebra.Congruence M), Exists fun projection => ∀ (element : M.1), projection.1 element = Quot.mk congruence.1 element
+  ∀ {S : LRA.Logic.Signature} {M : LRA.ModelTheory.FirstOrder.Model S} (congruence : LRA.UniversalAlgebra.Congruence M), Exists fun projection => ∀ (element : M.1), projection.1 element = Quot.mk congruence.1 element
 
 Logical form (Lean):
 

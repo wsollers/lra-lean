@@ -1,5 +1,5 @@
 import LRA.Operation.Addition.Interface.Signature.Definition
-import LRA.Logic.Model.Model
+import LRA.ModelTheory.Model
 
 namespace LRA.Operation.Addition.Interface.ModelTheory
 
@@ -33,7 +33,7 @@ def AdditionFirstOrderSignature : LRA.Logic.Signature where
 /-- Interpret a promoted addition signature as a first-order model. -/
 def BuildAdditionModel
     (signature : LRA.Operation.Addition.Interface.Signature.AdditionConceptSignature) :
-    LRA.Logic.FirstOrder.Model AdditionFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model AdditionFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := signature.carrierNonempty
   interpretFunction

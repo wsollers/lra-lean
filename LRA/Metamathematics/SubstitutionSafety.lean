@@ -76,7 +76,7 @@ class SubstitutionSafety
   here as a REQUIRED FIELD, not proved generically, because "capture"
   necessarily refers to `Expr`'s own binder structure, which differs per
   system (single `Variable` type for `LRA.Logic.Syntax.FirstOrder`, split
-  `FreeVar`/`BoundVar` for `LRA.Logic.Proof.System.Takeuti`). -/
+  `FreeVar`/`BoundVar` for `LRA.ProofTheory.System.Takeuti`). -/
   noCaptureUnderSafety :
     ∀ (e : Expr) (x : Variable) (t : Term) (y : Variable),
       IsSafe e x t →

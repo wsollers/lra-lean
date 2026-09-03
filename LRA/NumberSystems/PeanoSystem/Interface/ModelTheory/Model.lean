@@ -10,20 +10,20 @@ namespace LRA.NumberSystems.PeanoSystem.Interface.ModelTheory
 Predicate logic:
 
   structure PeanoModel where
-  toHenkinModel : LRA.Logic.SecondOrderMonadic.HenkinModel PeanoFirstOrderSignature
+  toHenkinModel : LRA.ModelTheory.SecondOrderMonadic.HenkinModel PeanoFirstOrderSignature
   satisfiesTheory : PeanoTheory toHenkinModel
 
 Predicate logic (unfolded):
 
   structure PeanoModel where
-  toHenkinModel : LRA.Logic.SecondOrderMonadic.HenkinModel PeanoFirstOrderSignature
+  toHenkinModel : LRA.ModelTheory.SecondOrderMonadic.HenkinModel PeanoFirstOrderSignature
   satisfiesTheory : PeanoTheory toHenkinModel (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
 structure PeanoModel where
-  toHenkinModel : LRA.Logic.SecondOrderMonadic.HenkinModel PeanoFirstOrderSignature
+  toHenkinModel : LRA.ModelTheory.SecondOrderMonadic.HenkinModel PeanoFirstOrderSignature
   satisfiesTheory : PeanoTheory toHenkinModel
 ```
 
@@ -47,7 +47,7 @@ Related proof moves: TODO
 
 -/
 structure PeanoModel where
-  toHenkinModel : LRA.Logic.SecondOrderMonadic.HenkinModel PeanoFirstOrderSignature
+  toHenkinModel : LRA.ModelTheory.SecondOrderMonadic.HenkinModel PeanoFirstOrderSignature
   satisfiesTheory : PeanoTheory toHenkinModel
 
 /--

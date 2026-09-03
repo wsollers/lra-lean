@@ -8,7 +8,7 @@ particular proof system or semantics, the SHAPE of the two theorems every
 proof system in this repository is ultimately being built toward:
 soundness and completeness. This file proves nothing -- its purpose is
 to give these two theorems a canonical, parametric statement now, so
-that whichever proof system eventually discharges them (`LRA.Logic.Proof
+that whichever proof system eventually discharges them (`LRA.ProofTheory
 .System.Takeuti`, explicitly work-in-progress at time of writing, or any
 future proof system added to the repository) is proving an INSTANCE of
 a named theorem-shape, rather than inventing its own ad hoc soundness or
@@ -29,7 +29,7 @@ without this file needing to change when they do.
 /-- The abstract shape shared by every soundness/completeness pair this
 repository will eventually state: a `Provable` relation (syntactic,
 proof-system-specific -- e.g. eventually derived from
-`LRA.Logic.Proof.System.Takeuti`'s `Judgement`/derivation machinery) and
+`LRA.ProofTheory.System.Takeuti`'s `Judgement`/derivation machinery) and
 a `Satisfies` relation (semantic, model-specific -- e.g.
 `LRA.Logic.Semantics.Satisfaction` or its SOL counterpart), both relating
 a "theory" (a set of formulas serving as hypotheses) to a single formula. -/
@@ -75,7 +75,7 @@ def TakeutiCompletenessObligation : Prop :=
     IsComplete pairing
 
 /-- Named forward reference, not yet dischargeable: the soundness
-obligation for `LRA.Logic.Proof.System.Takeuti`'s sequent calculus (LK or
+obligation for `LRA.ProofTheory.System.Takeuti`'s sequent calculus (LK or
 LJ) paired against `LRA.Logic.Semantics.Satisfaction`, once Takeuti's
 own derivation/judgement machinery is far enough along to instantiate
 `ProofSemanticsPairing`. Declared here as a statement of what is owed,

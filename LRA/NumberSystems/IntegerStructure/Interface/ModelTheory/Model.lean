@@ -10,20 +10,20 @@ namespace LRA.NumberSystems.IntegerStructure.Interface.ModelTheory
 Predicate logic:
 
   structure IntegerStructureModel where
-  toHenkinModel : LRA.Logic.SecondOrderMonadic.HenkinModel IntegerFirstOrderSignature
+  toHenkinModel : LRA.ModelTheory.SecondOrderMonadic.HenkinModel IntegerFirstOrderSignature
   satisfiesTheory : IntegerStructureTheory toHenkinModel
 
 Predicate logic (unfolded):
 
   structure IntegerStructureModel where
-  toHenkinModel : LRA.Logic.SecondOrderMonadic.HenkinModel IntegerFirstOrderSignature
+  toHenkinModel : LRA.ModelTheory.SecondOrderMonadic.HenkinModel IntegerFirstOrderSignature
   satisfiesTheory : IntegerStructureTheory toHenkinModel (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
 structure IntegerStructureModel where
-  toHenkinModel : LRA.Logic.SecondOrderMonadic.HenkinModel IntegerFirstOrderSignature
+  toHenkinModel : LRA.ModelTheory.SecondOrderMonadic.HenkinModel IntegerFirstOrderSignature
   satisfiesTheory : IntegerStructureTheory toHenkinModel
 ```
 
@@ -47,7 +47,7 @@ Related proof moves: TODO
 
 -/
 structure IntegerStructureModel where
-  toHenkinModel : LRA.Logic.SecondOrderMonadic.HenkinModel IntegerFirstOrderSignature
+  toHenkinModel : LRA.ModelTheory.SecondOrderMonadic.HenkinModel IntegerFirstOrderSignature
   satisfiesTheory : IntegerStructureTheory toHenkinModel
 
 /--

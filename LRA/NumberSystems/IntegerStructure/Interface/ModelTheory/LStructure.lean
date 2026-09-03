@@ -77,18 +77,18 @@ structure IntegerStructureSignature where
 Predicate logic:
 
   abbrev IntegerStructureLStructure :=
-  LRA.Logic.FirstOrder.Model IntegerFirstOrderSignature
+  LRA.ModelTheory.FirstOrder.Model IntegerFirstOrderSignature
 
 Predicate logic (unfolded):
 
   abbrev IntegerStructureLStructure :=
-  LRA.Logic.FirstOrder.Model IntegerFirstOrderSignature (source fallback; no compiled unfold data available)
+  LRA.ModelTheory.FirstOrder.Model IntegerFirstOrderSignature (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
 abbrev IntegerStructureLStructure :=
-  LRA.Logic.FirstOrder.Model IntegerFirstOrderSignature
+  LRA.ModelTheory.FirstOrder.Model IntegerFirstOrderSignature
 ```
 
 Type-theoretic form:
@@ -111,7 +111,7 @@ Related proof moves: unfold
 
 -/
 abbrev IntegerStructureLStructure :=
-  LRA.Logic.FirstOrder.Model IntegerFirstOrderSignature
+  LRA.ModelTheory.FirstOrder.Model IntegerFirstOrderSignature
 
 /--
 `BuildIntegerStructureLStructure` TODO

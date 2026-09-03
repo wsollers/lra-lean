@@ -37,9 +37,9 @@ Placement rule:
 - Topic assignment is not complete until the matching topic-local `Examples`,
   `Failures`, and `Interop` routers are assigned at the same time when they
   exist.
-- `Model` subtrees follow the parent topic by default. Only logic-native model
-  theory and proof-theory surfaces, such as `Logic/Model` and logic proof
-  systems, should be promoted into the Volume VII advanced-logic slice.
+- `Model` subtrees follow the parent topic by default. The top-level
+  `ModelTheory` and `ProofTheory` subjects are the advanced-logic exceptions
+  promoted into the Volume VII slice.
 - Leave `Examples`, `Failures`, or `Interop` out of a volume only when they are
   clearly global, cross-topic, or support-only.
 
@@ -350,25 +350,25 @@ Reason:
 
 `LRA.VolumeVIICore` should contain:
 
-- `LRA.Logic.Model`
-- `LRA.Logic.Proof`
+- `LRA.ModelTheory`
+- `LRA.ProofTheory`
 
 Reason:
 
 - Volume VII is reserved for advanced-logic surfaces that are logic-native by
   subject, not merely because their path contains `Model`.
-- `Logic/Model` aligns with model theory, and logic proof-system surfaces align
-  with proof theory.
+- The top-level `ModelTheory` and `ProofTheory` subjects align directly with
+  the Volume VII advanced-logic slice.
 - Non-logic `*/Model` subtrees, such as set, number-system, Euclidean, and
   algebraic-structure model workups, stay with their parent topics instead of
   being pulled into Volume VII by name.
 
 `LRA.VolumeVIIExamplesFailures` should contain:
 
-- `LRA.Logic.Model.Examples`
-- `LRA.Logic.Model.Comparison.Examples`
-- `LRA.Logic.Model.Propositional.Examples`
-- `LRA.Logic.Model.Propositional.ModelsAndTheoriesExamples`
+- `LRA.ModelTheory.Examples`
+- `LRA.ModelTheory.Comparison.Examples`
+- `LRA.ModelTheory.Propositional.Examples`
+- `LRA.ModelTheory.Propositional.ModelsAndTheoriesExamples`
 
 Reason:
 
@@ -543,14 +543,14 @@ The aggregate chain is:
   },
   "volume_vii": {
     "core": [
-      "LRA.Logic.Model",
-      "LRA.Logic.Proof"
+      "LRA.ModelTheory",
+      "LRA.ProofTheory"
     ],
     "examples_failures": [
-      "LRA.Logic.Model.Examples",
-      "LRA.Logic.Model.Comparison.Examples",
-      "LRA.Logic.Model.Propositional.Examples",
-      "LRA.Logic.Model.Propositional.ModelsAndTheoriesExamples"
+      "LRA.ModelTheory.Examples",
+      "LRA.ModelTheory.Comparison.Examples",
+      "LRA.ModelTheory.Propositional.Examples",
+      "LRA.ModelTheory.Propositional.ModelsAndTheoriesExamples"
     ]
   }
 }

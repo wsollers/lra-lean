@@ -334,20 +334,20 @@ def GraphOf (real_model : RealModel)
 Predicate logic:
 
   def CartesianPlaneModel (real_model : RealModel) :
-    LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model TarskiFirstOrderSignature :=
   EuclideanTupleModel real_model 2
 
 Predicate logic (unfolded):
 
   def CartesianPlaneModel (real_model : RealModel) :
-    LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model TarskiFirstOrderSignature :=
   EuclideanTupleModel real_model 2
 
 Logical form (Lean):
 
 ```lean
 def CartesianPlaneModel (real_model : RealModel) :
-    LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model TarskiFirstOrderSignature :=
   EuclideanTupleModel real_model 2
 ```
 
@@ -371,7 +371,7 @@ Related proof moves: unfold
 
 -/
 def CartesianPlaneModel (real_model : RealModel) :
-    LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model TarskiFirstOrderSignature :=
   EuclideanTupleModel real_model 2
 
 end LRA.EuclideanSpace

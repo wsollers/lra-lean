@@ -1,7 +1,7 @@
 import LRA.Analysis.MeasureTheory.AlgebraOfSets.Construction.ModelTheory.SetRings.Signature
 import LRA.Analysis.MeasureTheory.AlgebraOfSets.Construction.ModelTheory.SetRings.ConceptSignature
 
-namespace LRA.Logic.ModelTheory.SetRings
+namespace LRA.ModelTheoryTheory.SetRings
 
 /--
 `BuildSetRingModel` TODO
@@ -10,14 +10,14 @@ Predicate logic:
 
   def BuildSetRingModel
     (signature : SetRingConceptSignature) :
-    LRA.Logic.FirstOrder.Model SetRingFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model SetRingFirstOrderSignature where
   Domain
 
 Predicate logic (unfolded):
 
   def BuildSetRingModel
     (signature : SetRingConceptSignature) :
-    LRA.Logic.FirstOrder.Model SetRingFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model SetRingFirstOrderSignature where
   Domain (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
@@ -25,7 +25,7 @@ Logical form (Lean):
 ```lean
 def BuildSetRingModel
     (signature : SetRingConceptSignature) :
-    LRA.Logic.FirstOrder.Model SetRingFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model SetRingFirstOrderSignature where
   Domain
 ```
 
@@ -50,7 +50,7 @@ Related proof moves: unfold
 -/
 def BuildSetRingModel
     (signature : SetRingConceptSignature) :
-    LRA.Logic.FirstOrder.Model SetRingFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model SetRingFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.zero⟩
   interpretFunction
@@ -64,4 +64,4 @@ def BuildSetRingModel
   interpretConstant
     | .zero => signature.zero
 
-end LRA.Logic.ModelTheory.SetRings
+end LRA.ModelTheoryTheory.SetRings

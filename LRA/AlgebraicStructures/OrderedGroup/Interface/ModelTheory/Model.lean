@@ -41,7 +41,7 @@ def OrderedGroupModel.signature {Carrier : Type u}
 /-- The first-order model induced by a promoted ordered-group model. -/
 def OrderedGroupModel.firstOrderModel {Carrier : Type u}
     (model : OrderedGroupModel Carrier) :
-    LRA.Logic.FirstOrder.Model
+    LRA.ModelTheory.FirstOrder.Model
       LRA.AlgebraicStructures.OrderedGroup.Interface.Signature.OrderedGroupFirstOrderSignature :=
   BuildOrderedGroupModel model.signature
 

@@ -1,7 +1,7 @@
-import LRA.Logic.Model.Examples
-import LRA.Logic.Model.Comparison.Examples
-import LRA.Logic.Model.Propositional.Examples
-import LRA.Logic.Model.Propositional.ModelsAndTheoriesExamples
+import LRA.ModelTheory.Examples
+import LRA.ModelTheory.Comparison.Examples
+import LRA.ModelTheory.Propositional.Examples
+import LRA.ModelTheory.Propositional.ModelsAndTheoriesExamples
 
 /-!
 Volume VII examples/failures aggregate.

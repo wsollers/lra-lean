@@ -1,26 +1,26 @@
 import LRA.Analysis.MeasureTheory.AlgebraOfSets.Construction.ModelTheory.SetRings.ConceptSignature
 
-namespace LRA.Logic.ModelTheory.SetAlgebras
+namespace LRA.ModelTheoryTheory.SetAlgebras
 
 /--
 `SetAlgebraConceptSignature` TODO
 
 Predicate logic:
 
-  structure SetAlgebraConceptSignature extends LRA.Logic.ModelTheory.SetRings.SetRingConceptSignature where
+  structure SetAlgebraConceptSignature extends LRA.ModelTheoryTheory.SetRings.SetRingConceptSignature where
   one : carrier
   complement : LRA.Operation.UnaryOperation carrier
 
 Predicate logic (unfolded):
 
-  structure SetAlgebraConceptSignature extends LRA.Logic.ModelTheory.SetRings.SetRingConceptSignature where
+  structure SetAlgebraConceptSignature extends LRA.ModelTheoryTheory.SetRings.SetRingConceptSignature where
   one : carrier
   complement : LRA.Operation.UnaryOperation carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
-structure SetAlgebraConceptSignature extends LRA.Logic.ModelTheory.SetRings.SetRingConceptSignature where
+structure SetAlgebraConceptSignature extends LRA.ModelTheoryTheory.SetRings.SetRingConceptSignature where
   one : carrier
   complement : LRA.Operation.UnaryOperation carrier
 ```
@@ -44,8 +44,8 @@ Common confusions:
 Related proof moves: TODO
 
 -/
-structure SetAlgebraConceptSignature extends LRA.Logic.ModelTheory.SetRings.SetRingConceptSignature where
+structure SetAlgebraConceptSignature extends LRA.ModelTheoryTheory.SetRings.SetRingConceptSignature where
   one : carrier
   complement : LRA.Operation.UnaryOperation carrier
 
-end LRA.Logic.ModelTheory.SetAlgebras
+end LRA.ModelTheoryTheory.SetAlgebras

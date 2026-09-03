@@ -16,7 +16,7 @@ Predicate logic:
   def BuildSemigroupModel
     (signature : LRA.AlgebraicStructures.SemigroupConceptSignature)
     (witness : signature.carrier) :
-    LRA.Logic.FirstOrder.Model SemigroupFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model SemigroupFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨witness⟩
   interpretFunction
@@ -30,7 +30,7 @@ Predicate logic (unfolded):
   def BuildSemigroupModel
     (signature : LRA.AlgebraicStructures.SemigroupConceptSignature)
     (witness : signature.carrier) :
-    LRA.Logic.FirstOrder.Model SemigroupFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model SemigroupFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨witness⟩
   interpretFunction
@@ -45,7 +45,7 @@ Logical form (Lean):
 def BuildSemigroupModel
     (signature : LRA.AlgebraicStructures.SemigroupConceptSignature)
     (witness : signature.carrier) :
-    LRA.Logic.FirstOrder.Model SemigroupFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model SemigroupFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨witness⟩
   interpretFunction
@@ -77,7 +77,7 @@ Related proof moves: unfold
 def BuildSemigroupModel
     (signature : LRA.AlgebraicStructures.SemigroupConceptSignature)
     (witness : signature.carrier) :
-    LRA.Logic.FirstOrder.Model SemigroupFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model SemigroupFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨witness⟩
   interpretFunction
@@ -92,20 +92,20 @@ def BuildSemigroupModel
 Predicate logic:
 
   def semigroupFirstOrderModel (R : Type u) [Inhabited R] [Mul R] :
-    LRA.Logic.FirstOrder.Model SemigroupFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model SemigroupFirstOrderSignature :=
   BuildSemigroupModel { carrier := R, multiply := (· * ·) } default
 
 Predicate logic (unfolded):
 
   def semigroupFirstOrderModel (R : Type u) [Inhabited R] [Mul R] :
-    LRA.Logic.FirstOrder.Model SemigroupFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model SemigroupFirstOrderSignature :=
   BuildSemigroupModel { carrier := R, multiply := (· * ·) } default (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
 def semigroupFirstOrderModel (R : Type u) [Inhabited R] [Mul R] :
-    LRA.Logic.FirstOrder.Model SemigroupFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model SemigroupFirstOrderSignature :=
   BuildSemigroupModel { carrier := R, multiply := (· * ·) } default
 ```
 
@@ -129,7 +129,7 @@ Related proof moves: unfold
 
 -/
 def semigroupFirstOrderModel (R : Type u) [Inhabited R] [Mul R] :
-    LRA.Logic.FirstOrder.Model SemigroupFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model SemigroupFirstOrderSignature :=
   BuildSemigroupModel { carrier := R, multiply := (· * ·) } default
 
 end LRA.AlgebraicStructures.Semigroup.Interface.ModelTheory

@@ -14,8 +14,9 @@ Current repo constraints:
 
 Authoritative structure documents to enforce:
 
-- `PurposeAndArchitecture.md`
-- `DESIGN.md`
+- `docs/governance/repository-governance.md`
+- `docs/architecture/repository-architecture.md`
+- `docs/standards/lean-standards.md`
 - `docs/interface-model-standardization-inventory.md`
 - Existing validator entrypoints:
   - `scripts/validate_structure.py`

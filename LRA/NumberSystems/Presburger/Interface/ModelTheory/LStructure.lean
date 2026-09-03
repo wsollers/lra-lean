@@ -17,7 +17,7 @@ structure PresburgerSignature where
   lessThan : carrier → carrier → Prop
 
 abbrev PresburgerLStructure :=
-  LRA.Logic.FirstOrder.Model PresburgerFirstOrderSignature
+  LRA.ModelTheory.FirstOrder.Model PresburgerFirstOrderSignature
 
 def BuildPresburgerLStructure
     (signature : PresburgerSignature) :

@@ -49,14 +49,16 @@ def main() -> int:
         help="Regenerate the dataset and validate the apply step without writing source files.",
     )
     args = parser.parse_args()
+    root = args.root if args.root.is_absolute() else REPO_ROOT / args.root
+    output = args.output if args.output.is_absolute() else REPO_ROOT / args.output
 
     harvest_cmd = [
         sys.executable,
         str(HARVEST),
         "--root",
-        str(args.root),
+        str(root),
         "--output",
-        str(args.output),
+        str(output),
     ]
     if not args.no_preserve_custom:
         harvest_cmd.append("--preserve-custom")
@@ -65,7 +67,7 @@ def main() -> int:
         sys.executable,
         str(APPLY),
         "--input",
-        str(args.output),
+        str(output),
     ]
     if args.reviewed_only:
         apply_cmd.append("--reviewed-only")

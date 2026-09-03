@@ -70,14 +70,14 @@ Predicate logic:
 
   def BuildArithmeticRingModel
     (signature : ArithmeticRingSignature) :
-    LRA.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model ArithmeticRingFirstOrderSignature where
   Domain
 
 Predicate logic (unfolded):
 
   def BuildArithmeticRingModel
     (signature : ArithmeticRingSignature) :
-    LRA.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model ArithmeticRingFirstOrderSignature where
   Domain (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
@@ -85,7 +85,7 @@ Logical form (Lean):
 ```lean
 def BuildArithmeticRingModel
     (signature : ArithmeticRingSignature) :
-    LRA.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model ArithmeticRingFirstOrderSignature where
   Domain
 ```
 
@@ -110,7 +110,7 @@ Related proof moves: unfold
 -/
 def BuildArithmeticRingModel
     (signature : ArithmeticRingSignature) :
-    LRA.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model ArithmeticRingFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.zero⟩
   interpretFunction
@@ -130,7 +130,7 @@ Predicate logic:
 
   def arithmeticRingFirstOrderModel (R : Type u)
     [Add R] [Mul R] [OfNat R 0] [OfNat R 1] :
-    LRA.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
   BuildArithmeticRingModel
     { carrier := R, zero := 0, one := 1, addition := (· + ·),
       multiplication := (· * ·) }
@@ -139,7 +139,7 @@ Predicate logic (unfolded):
 
   def arithmeticRingFirstOrderModel (R : Type u)
     [Add R] [Mul R] [OfNat R 0] [OfNat R 1] :
-    LRA.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
   BuildArithmeticRingModel
     { carrier := R, zero := 0, one := 1, addition := (· + ·),
       multiplication := (· * ·) } (source fallback; no compiled unfold data available)
@@ -149,7 +149,7 @@ Logical form (Lean):
 ```lean
 def arithmeticRingFirstOrderModel (R : Type u)
     [Add R] [Mul R] [OfNat R 0] [OfNat R 1] :
-    LRA.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
   BuildArithmeticRingModel
     { carrier := R, zero := 0, one := 1, addition := (· + ·),
       multiplication := (· * ·) }
@@ -176,7 +176,7 @@ Related proof moves: unfold
 -/
 def arithmeticRingFirstOrderModel (R : Type u)
     [Add R] [Mul R] [OfNat R 0] [OfNat R 1] :
-    LRA.Logic.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
   BuildArithmeticRingModel
     { carrier := R, zero := 0, one := 1, addition := (· + ·),
       multiplication := (· * ·) }

@@ -11,8 +11,11 @@ Governance sources consulted:
 - Canonical governance repo `lra-governance` (resolved via the route resolver,
   route `author-lean-theorem`): `capabilities/overlays/lra-lean.md`,
   `capabilities/reference/architecture/lra-lean-architecture.md`.
-- Repo-local authoritative docs: `PurposeAndArchitecture.md`, `DESIGN.md`,
-  `ExternalInterfaces.md`, `docs/interface-model-standardization-inventory.md`.
+- Repo-local authoritative docs:
+  `docs/governance/repository-governance.md`,
+  `docs/architecture/repository-architecture.md`,
+  `docs/standards/lean-standards.md`,
+  `docs/interface-model-standardization-inventory.md`.
 - Existing validator: `scripts/validate_structure.py`,
   `scripts/structure_validator_plugins/folder_structure.py`.
 
@@ -22,15 +25,15 @@ Governance sources consulted:
 
 | Rule | Source |
 |---|---|
-| Durable top-level subjects (`Identity`, `Logic`, `Set`, `SetSystems`, `Relation`, `Function`, `Morphism`, `Cardinality`, `Operation`, `UniversalAlgebra`, `AlgebraicStructures`, `Order`, `NumberSystems`, `EuclideanSpace`, `Analysis`, `Topology`, `LinearAlgebra`). `Algebra`, `Carrier`, `Interop` (top-level), `Meta`, `Pilot`, `Spaces`, `Volume*` are explicitly named as transitional/auxiliary and "should not be treated as new ownership models." | `PurposeAndArchitecture.md` §"Top-Level Subjects" |
-| Subject layout: `<Subject>.lean` router + `<Subject>/{Definition,Group,Examples,Failures,Interop}`; concept files use a fixed role set (`Definition`, `Theorems`, `Characterizations`, `Consequences`, `Relationships`). | `PurposeAndArchitecture.md` §"Subject Layout", §"Concept File Roles" |
-| `Interface` / `Interface/ModelTheory` / `Interface/UniversalAlgebra` / `Realizations` decision table and required internal shapes (`LStructure.lean`, `Theory.lean`, `Model.lean`; `Signature/Definition.lean`). | `ExternalInterfaces.md`; also `capabilities/reference/architecture/lra-lean-architecture.md` in canonical governance |
-| `Realizations` = concrete backends satisfying an interface contract; must not be named `Model` or `Construction/ModelTheory`. | `ExternalInterfaces.md` §"Realizations", §"Naming Rules" |
-| NumberSystems three-layer rule: `NumberSystems/Interface/` (generic) → `NumberSystems/<System>/` (system theory) → `NumberSystems/<System>/Constructions/<Construction>/` (concrete). A theorem belongs at the highest layer where it is true. | `PurposeAndArchitecture.md` §"Generic Interfaces And Implementations" |
-| Construction Pipeline file-role order: `Carrier → Equivalence → WellFoundedness → Operations → WellDefinedness → Laws → Behavior → Instances`. | `PurposeAndArchitecture.md` §"Construction Pipeline" |
-| Import discipline: lower layers never import higher layers; core (`Definition`/`Theorems`/…) must not import `Examples`/`Failures`/optional interop. | `PurposeAndArchitecture.md` §"Import Discipline"; enforced partially by validator (`_check_core_import_quarantine`) |
-| VolumeII is Mathlib-free (zero package dependencies); VolumeI and VolumeIII+ permit Mathlib. | `DESIGN.md` §2 |
-| Peano-first architecture: all VolumeII definitions/theorems parametrize over `(ps : PeanoSystem)`; recursion factors through one shared architecture. | `DESIGN.md` §3, §3.5, §10 |
+| Durable top-level subjects (`Identity`, `Logic`, `Set`, `SetSystems`, `Relation`, `Function`, `Morphism`, `Cardinality`, `Operation`, `UniversalAlgebra`, `AlgebraicStructures`, `Order`, `NumberSystems`, `EuclideanSpace`, `Analysis`, `Topology`, `LinearAlgebra`). `Algebra`, `Carrier`, `Interop` (top-level), `Pilot`, `Spaces`, and `Volume*` are explicitly named as transitional or auxiliary and should not be treated as new ownership models. | `docs/architecture/repository-architecture.md` §"Durable Subject Owners" |
+| Subject layout: `<Subject>.lean` router plus standard role folders; concept files use a fixed role set (`Definition`, `Theorems`, `Characterizations`, `Consequences`, `Relationships`). | `docs/architecture/repository-architecture.md` §"Standard Subject Shape", §"Concept Roles" |
+| `Interface` / `Interface/ModelTheory` / `Interface/UniversalAlgebra` / `Realizations` decision table and required internal shapes (`LStructure.lean`, `Theory.lean`, `Model.lean`; `Signature/Definition.lean`). | `docs/architecture/repository-architecture.md` §"Interface, ModelTheory, UniversalAlgebra, Realizations"; also `capabilities/reference/architecture/lra-lean-architecture.md` in canonical governance |
+| `Realizations` = concrete backends satisfying an interface contract; they must not be filed as `Model` or `Construction/ModelTheory`. | `docs/architecture/repository-architecture.md` §"Interface, ModelTheory, UniversalAlgebra, Realizations" |
+| NumberSystems three-layer rule: `NumberSystems/Interface/` (generic) → `NumberSystems/<System>/` (system theory) → `NumberSystems/<System>/Constructions/<Construction>/` (concrete). A theorem belongs at the highest layer where it is true. | `docs/architecture/repository-architecture.md` §"NumberSystems Layering" |
+| Construction Pipeline file-role order: `Carrier → Equivalence → WellFoundedness → Operations → WellDefinedness → Laws → Behavior → Instances`. | `docs/architecture/repository-architecture.md` §"Construction Pipeline" |
+| Import discipline: lower layers never import higher layers; core files must not import `Examples`, `Failures`, or optional interop. | `docs/architecture/repository-architecture.md` §"Import Discipline"; enforced partially by validator (`_check_core_import_quarantine`) |
+| Mathlib-free zones must remain Mathlib-free; where Mathlib is allowed, imports should stay narrow. | `docs/standards/lean-standards.md` §"Mathlib Policy" |
+| Structural cleanup must preserve mathematical substance unless the task explicitly calls for mathematical authoring or correction. | `docs/standards/lean-standards.md` §"No unauthorized mathematical drift" |
 | Migration matrix for `Interface`/`ModelTheory`/`UniversalAlgebra`/`Realizations` families (A–D) with a recommended chunk order. | `docs/interface-model-standardization-inventory.md` |
 | Legacy `Model.lean`/`Axioms.lean`/`Satisfaction.lean`/`Structure.lean` under `Interface/ModelTheory` and legacy `Construction/ModelTheory` are validator-checked and rejected (unless `--allow-legacy-construction-modeltheory`). | `scripts/structure_validator_plugins/folder_structure.py` |
 

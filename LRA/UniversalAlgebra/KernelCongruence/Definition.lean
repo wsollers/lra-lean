@@ -6,6 +6,7 @@ namespace LRA.UniversalAlgebra
 
 open LRA.Logic
 open LRA.Logic.FirstOrder
+open LRA.ModelTheory.FirstOrder
 
 universe u v
 
@@ -96,7 +97,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {S : LRA.Logic.Signature} {M : LRA.Logic.FirstOrder.Model S} {N : LRA.Logic.FirstOrder.Model S} (homomorphism : LRA.UniversalAlgebra.Homomorphism M N), (∀ (target : N.1), Exists fun source => homomorphism.1 source = target) → Nonempty (LRA.UniversalAlgebra.Isomorphism { Domain := Quot (LRA.UniversalAlgebra.kernelCongruence homomorphism).1, domainNonempty := ⋯, equalityIsDiagonal := ⋯, interpretFunction := fun functionSymbol arguments => Quot.mk (LRA.UniversalAlgebra.kernelCongruence homomorphism).1 (M.5 functionSymbol fun i => (Classical.indefiniteDescription (fun x => Quot.mk (LRA.UniversalAlgebra.kernelCongruence homomorphism).rel x = arguments i) ⋯).1), interpretRelation := fun relationSymbol arguments => M.6 relationSymbol fun i => (Classical.indefiniteDescription (fun x => Quot.mk (LRA.UniversalAlgebra.kernelCongruence homomorphism).rel x = arguments i) ⋯).1, interpretConstant := fun constantSymbol => Quot.mk (LRA.UniversalAlgebra.kernelCongruence homomorphism).1 (M.7 constantSymbol) } N)
+  ∀ {S : LRA.Logic.Signature} {M : LRA.ModelTheory.FirstOrder.Model S} {N : LRA.ModelTheory.FirstOrder.Model S} (homomorphism : LRA.UniversalAlgebra.Homomorphism M N), (∀ (target : N.1), Exists fun source => homomorphism.1 source = target) → Nonempty (LRA.UniversalAlgebra.Isomorphism { Domain := Quot (LRA.UniversalAlgebra.kernelCongruence homomorphism).1, domainNonempty := ⋯, equalityIsDiagonal := ⋯, interpretFunction := fun functionSymbol arguments => Quot.mk (LRA.UniversalAlgebra.kernelCongruence homomorphism).1 (M.5 functionSymbol fun i => (Classical.indefiniteDescription (fun x => Quot.mk (LRA.UniversalAlgebra.kernelCongruence homomorphism).rel x = arguments i) ⋯).1), interpretRelation := fun relationSymbol arguments => M.6 relationSymbol fun i => (Classical.indefiniteDescription (fun x => Quot.mk (LRA.UniversalAlgebra.kernelCongruence homomorphism).rel x = arguments i) ⋯).1, interpretConstant := fun constantSymbol => Quot.mk (LRA.UniversalAlgebra.kernelCongruence homomorphism).1 (M.7 constantSymbol) } N)
 
 Logical form (Lean):
 

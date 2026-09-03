@@ -13,14 +13,14 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : (a b : Variable) → Decidable (a = b)] (M : LRA.Logic.FirstOrder.Model S) (assignment : Variable → M.1) (replacedVariable : Variable) (replacementTerm originalTerm : LRA.Logic.FirstOrder.Term S Variable), LRA.Logic.FirstOrder.evaluateTerm M assignment (LRA.Logic.FirstOrder.substituteInTerm replacedVariable replacementTerm originalTerm) = LRA.Logic.FirstOrder.evaluateTerm M (fun v' => Decidable.rec (fun h => (fun x => assignment v') h) (fun h => (fun x => LRA.Logic.FirstOrder.evaluateTerm M assignment replacementTerm) h) (inst v' replacedVariable)) originalTerm
+  ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : (a b : Variable) → Decidable (a = b)] (M : LRA.Logic.FirstOrder.Interpretation S) (assignment : Variable → M.1) (replacedVariable : Variable) (replacementTerm originalTerm : LRA.Logic.FirstOrder.Term S Variable), LRA.Logic.FirstOrder.evaluateTerm M assignment (LRA.Logic.FirstOrder.substituteInTerm replacedVariable replacementTerm originalTerm) = LRA.Logic.FirstOrder.evaluateTerm M (fun v' => Decidable.rec (fun h => (fun x => assignment v') h) (fun h => (fun x => LRA.Logic.FirstOrder.evaluateTerm M assignment replacementTerm) h) (inst v' replacedVariable)) originalTerm
 
 Logical form (Lean):
 
 ```lean
 theorem evaluateTerm_substituteInTerm_eq_update
     {S : Signature} {Variable : Type} [DecidableEq Variable]
-    (M : Model S)
+    (M : Interpretation S)
     (assignment : Variable -> M.Domain)
     (replacedVariable : Variable)
     (replacementTerm originalTerm : Term S Variable) :
@@ -53,7 +53,7 @@ Related proof moves: intro
 -/
 theorem evaluateTerm_substituteInTerm_eq_update
     {S : Signature} {Variable : Type} [DecidableEq Variable]
-    (M : Model S)
+    (M : Interpretation S)
     (assignment : Variable -> M.Domain)
     (replacedVariable : Variable)
     (replacementTerm originalTerm : Term S Variable) :
@@ -73,14 +73,14 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : (a b : Variable) → Decidable (a = b)] (M : LRA.Logic.FirstOrder.Model S) {leftAssignment rightAssignment : Variable → M.1} (term : LRA.Logic.FirstOrder.Term S Variable), (∀ (candidateVariable : Variable), SetLike.instMembership.1 (LRA.Logic.FirstOrder.freeVariablesInTerm term) candidateVariable → leftAssignment candidateVariable = rightAssignment candidateVariable) → LRA.Logic.FirstOrder.evaluateTerm M leftAssignment term = LRA.Logic.FirstOrder.evaluateTerm M rightAssignment term
+  ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : (a b : Variable) → Decidable (a = b)] (M : LRA.Logic.FirstOrder.Interpretation S) {leftAssignment rightAssignment : Variable → M.1} (term : LRA.Logic.FirstOrder.Term S Variable), (∀ (candidateVariable : Variable), SetLike.instMembership.1 (LRA.Logic.FirstOrder.freeVariablesInTerm term) candidateVariable → leftAssignment candidateVariable = rightAssignment candidateVariable) → LRA.Logic.FirstOrder.evaluateTerm M leftAssignment term = LRA.Logic.FirstOrder.evaluateTerm M rightAssignment term
 
 Logical form (Lean):
 
 ```lean
 theorem evaluateTerm_eq_of_agrees_on_freeVariablesInTerm
     {S : Signature} {Variable : Type} [DecidableEq Variable]
-    (M : Model S)
+    (M : Interpretation S)
     {leftAssignment rightAssignment : Variable -> M.Domain}
     (term : Term S Variable)
     (assignmentsAgree :
@@ -111,7 +111,7 @@ Related proof moves: intro
 -/
 theorem evaluateTerm_eq_of_agrees_on_freeVariablesInTerm
     {S : Signature} {Variable : Type} [DecidableEq Variable]
-    (M : Model S)
+    (M : Interpretation S)
     {leftAssignment rightAssignment : Variable -> M.Domain}
     (term : Term S Variable)
     (assignmentsAgree :
@@ -185,14 +185,14 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : (a b : Variable) → Decidable (a = b)] (M : LRA.Logic.FirstOrder.Model S) {leftAssignment rightAssignment : Variable → M.1} (formula : LRA.Logic.FirstOrder.Formula S Variable), (∀ (candidateVariable : Variable), SetLike.instMembership.1 (LRA.Logic.FirstOrder.freeVariables formula) candidateVariable → leftAssignment candidateVariable = rightAssignment candidateVariable) → LRA.Logic.FirstOrder.Satisfies M leftAssignment formula ↔ LRA.Logic.FirstOrder.Satisfies M rightAssignment formula
+  ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : (a b : Variable) → Decidable (a = b)] (M : LRA.Logic.FirstOrder.Interpretation S) {leftAssignment rightAssignment : Variable → M.1} (formula : LRA.Logic.FirstOrder.Formula S Variable), (∀ (candidateVariable : Variable), SetLike.instMembership.1 (LRA.Logic.FirstOrder.freeVariables formula) candidateVariable → leftAssignment candidateVariable = rightAssignment candidateVariable) → LRA.Logic.FirstOrder.Satisfies M leftAssignment formula ↔ LRA.Logic.FirstOrder.Satisfies M rightAssignment formula
 
 Logical form (Lean):
 
 ```lean
 theorem satisfies_iff_of_agrees_on_freeVariables
     {S : Signature} {Variable : Type} [DecidableEq Variable]
-    (M : Model S)
+    (M : Interpretation S)
     {leftAssignment rightAssignment : Variable -> M.Domain}
     (formula : Formula S Variable)
     (assignmentsAgree :
@@ -253,7 +253,7 @@ Related proof moves: intro, constructor, .mp, .mpr
 -/
 theorem satisfies_iff_of_agrees_on_freeVariables
     {S : Signature} {Variable : Type} [DecidableEq Variable]
-    (M : Model S)
+    (M : Interpretation S)
     {leftAssignment rightAssignment : Variable -> M.Domain}
     (formula : Formula S Variable)
     (assignmentsAgree :
@@ -271,14 +271,14 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : (a b : Variable) → Decidable (a = b)] (M : LRA.Logic.FirstOrder.Model S) (assignment : Variable → M.1) (replacedVariable : Variable) (replacementTerm : LRA.Logic.FirstOrder.Term S Variable) (formula : LRA.Logic.FirstOrder.Formula S Variable), LRA.Logic.FirstOrder.IsSubstitutable formula replacedVariable replacementTerm → LRA.Logic.FirstOrder.Satisfies M assignment (LRA.Logic.FirstOrder.substitute replacedVariable replacementTerm formula) ↔ LRA.Logic.FirstOrder.Satisfies M (fun v' => Decidable.rec (fun h => (fun x => assignment v') h) (fun h => (fun x => LRA.Logic.FirstOrder.evaluateTerm M assignment replacementTerm) h) (inst v' replacedVariable)) formula
+  ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : (a b : Variable) → Decidable (a = b)] (M : LRA.Logic.FirstOrder.Interpretation S) (assignment : Variable → M.1) (replacedVariable : Variable) (replacementTerm : LRA.Logic.FirstOrder.Term S Variable) (formula : LRA.Logic.FirstOrder.Formula S Variable), LRA.Logic.FirstOrder.IsSubstitutable formula replacedVariable replacementTerm → LRA.Logic.FirstOrder.Satisfies M assignment (LRA.Logic.FirstOrder.substitute replacedVariable replacementTerm formula) ↔ LRA.Logic.FirstOrder.Satisfies M (fun v' => Decidable.rec (fun h => (fun x => assignment v') h) (fun h => (fun x => LRA.Logic.FirstOrder.evaluateTerm M assignment replacementTerm) h) (inst v' replacedVariable)) formula
 
 Logical form (Lean):
 
 ```lean
 theorem satisfies_substitute_iff_update
     {S : Signature} {Variable : Type} [DecidableEq Variable]
-    (M : Model S)
+    (M : Interpretation S)
     (assignment : Variable -> M.Domain)
     (replacedVariable : Variable)
     (replacementTerm : Term S Variable)
@@ -405,7 +405,7 @@ Related proof moves: intro, constructor, .mp, .mpr
 -/
 theorem satisfies_substitute_iff_update
     {S : Signature} {Variable : Type} [DecidableEq Variable]
-    (M : Model S)
+    (M : Interpretation S)
     (assignment : Variable -> M.Domain)
     (replacedVariable : Variable)
     (replacementTerm : Term S Variable)

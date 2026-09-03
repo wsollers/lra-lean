@@ -13,8 +13,9 @@ Current repo constraints:
 
 Authoritative documents:
 
-- `PurposeAndArchitecture.md`
-- `DESIGN.md`
+- `docs/governance/repository-governance.md`
+- `docs/architecture/repository-architecture.md`
+- `docs/standards/lean-standards.md`
 - `docs/interface-model-standardization-inventory.md`
 
 Existing validator implementation to compare against:

@@ -44,7 +44,7 @@ def ComplexNumberModel.signature
 
 def ComplexNumberModel.firstOrderModel
     (M : ComplexNumberModel) :
-    LRA.Logic.FirstOrder.Model ComplexNumbersFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model ComplexNumbersFirstOrderSignature :=
   BuildFieldModel M.signature
 
 noncomputable def mathlibComplexNumberModel : ComplexNumberModel :=

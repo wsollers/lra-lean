@@ -15,7 +15,7 @@ Predicate logic:
 
   def BuildAbelianGroupModel
     (signature : LRA.AlgebraicStructures.AbelianGroupConceptSignature) :
-    LRA.Logic.FirstOrder.Model AbelianGroupFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model AbelianGroupFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.zero⟩
   interpretFunction
@@ -30,7 +30,7 @@ Predicate logic (unfolded):
 
   def BuildAbelianGroupModel
     (signature : LRA.AlgebraicStructures.AbelianGroupConceptSignature) :
-    LRA.Logic.FirstOrder.Model AbelianGroupFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model AbelianGroupFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.zero⟩
   interpretFunction
@@ -46,7 +46,7 @@ Logical form (Lean):
 ```lean
 def BuildAbelianGroupModel
     (signature : LRA.AlgebraicStructures.AbelianGroupConceptSignature) :
-    LRA.Logic.FirstOrder.Model AbelianGroupFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model AbelianGroupFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.zero⟩
   interpretFunction
@@ -79,7 +79,7 @@ Related proof moves: unfold
 -/
 def BuildAbelianGroupModel
     (signature : LRA.AlgebraicStructures.AbelianGroupConceptSignature) :
-    LRA.Logic.FirstOrder.Model AbelianGroupFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model AbelianGroupFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.zero⟩
   interpretFunction
@@ -96,14 +96,14 @@ def BuildAbelianGroupModel
 Predicate logic:
 
   def abelianGroupFirstOrderModel (R : Type u) [Add R] [Neg R] [OfNat R 0] :
-    LRA.Logic.FirstOrder.Model AbelianGroupFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model AbelianGroupFirstOrderSignature :=
   BuildAbelianGroupModel
     { carrier := R, zero := 0, add := (· + ·), neg := (- ·) }
 
 Predicate logic (unfolded):
 
   def abelianGroupFirstOrderModel (R : Type u) [Add R] [Neg R] [OfNat R 0] :
-    LRA.Logic.FirstOrder.Model AbelianGroupFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model AbelianGroupFirstOrderSignature :=
   BuildAbelianGroupModel
     { carrier := R, zero := 0, add := (· + ·), neg := (- ·) } (source fallback; no compiled unfold data available)
 
@@ -111,7 +111,7 @@ Logical form (Lean):
 
 ```lean
 def abelianGroupFirstOrderModel (R : Type u) [Add R] [Neg R] [OfNat R 0] :
-    LRA.Logic.FirstOrder.Model AbelianGroupFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model AbelianGroupFirstOrderSignature :=
   BuildAbelianGroupModel
     { carrier := R, zero := 0, add := (· + ·), neg := (- ·) }
 ```
@@ -136,7 +136,7 @@ Related proof moves: unfold
 
 -/
 def abelianGroupFirstOrderModel (R : Type u) [Add R] [Neg R] [OfNat R 0] :
-    LRA.Logic.FirstOrder.Model AbelianGroupFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model AbelianGroupFirstOrderSignature :=
   BuildAbelianGroupModel
     { carrier := R, zero := 0, add := (· + ·), neg := (- ·) }
 

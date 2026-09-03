@@ -20,7 +20,7 @@ Predicate logic:
 
   noncomputable def wholeNumbersModel
     (natural_data : NaturalArithmeticForWholeNumbers Element SetObject) :
-    LRA.Logic.FirstOrder.Model WholeNumbersFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model WholeNumbersFirstOrderSignature :=
   letI := zeroOn natural_data
   letI := oneOn natural_data
   letI := addOn natural_data
@@ -33,7 +33,7 @@ Predicate logic (unfolded):
 
   noncomputable def wholeNumbersModel
     (natural_data : NaturalArithmeticForWholeNumbers Element SetObject) :
-    LRA.Logic.FirstOrder.Model WholeNumbersFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model WholeNumbersFirstOrderSignature :=
   letI := zeroOn natural_data
   letI := oneOn natural_data
   letI := addOn natural_data
@@ -47,7 +47,7 @@ Logical form (Lean):
 ```lean
 noncomputable def wholeNumbersModel
     (natural_data : NaturalArithmeticForWholeNumbers Element SetObject) :
-    LRA.Logic.FirstOrder.Model WholeNumbersFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model WholeNumbersFirstOrderSignature :=
   letI := zeroOn natural_data
   letI := oneOn natural_data
   letI := addOn natural_data
@@ -78,7 +78,7 @@ Related proof moves: unfold
 -/
 noncomputable def wholeNumbersModel
     (natural_data : NaturalArithmeticForWholeNumbers Element SetObject) :
-    LRA.Logic.FirstOrder.Model WholeNumbersFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model WholeNumbersFirstOrderSignature :=
   letI := zeroOn natural_data
   letI := oneOn natural_data
   letI := addOn natural_data

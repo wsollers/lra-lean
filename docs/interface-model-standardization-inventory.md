@@ -9,7 +9,8 @@ around:
 - `Realizations/`
 - `Interop/`
 
-The governing standard is [ExternalInterfaces.md](/F:/repos/lra-lean/ExternalInterfaces.md:1).
+The governing standard is
+[repository-architecture.md](/F:/repos/lra-lean/docs/architecture/repository-architecture.md:1).
 
 ## Success Gate
 

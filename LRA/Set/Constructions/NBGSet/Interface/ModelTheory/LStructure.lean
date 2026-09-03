@@ -1,5 +1,5 @@
 import LRA.Logic.Language.FirstOrder.Signature
-import LRA.Logic.Model.Model
+import LRA.ModelTheory.Model
 import LRA.Logic.Semantics.Satisfaction
 import LRA.Set.Constructions.NBGSet.Axioms.Public
 
@@ -7,6 +7,7 @@ namespace LRA.Set.Constructions.NBG.Interface.ModelTheory
 
 open LRA.Logic
 open LRA.Logic.FirstOrder
+open LRA.ModelTheory.FirstOrder
 
 inductive MembershipRelationSymbol where
   | mem

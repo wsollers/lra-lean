@@ -20,7 +20,7 @@ those categories relate:
   Formula S Variable -> Formula S Variable`), with `[DecidableEq
   Variable]` assumed ambiently wherever needed (`IsSubstitutable`,
   `freeVariables`, `Theory`).
-- `LRA.Logic.Proof.System.Takeuti` uses TWO distinct types, `FreeVar` and
+- `LRA.ProofTheory.System.Takeuti` uses TWO distinct types, `FreeVar` and
   `BoundVar`, as separate fields of `Alphabet`, with no `DecidableEq`
   requirement currently stated on either.
 
@@ -33,7 +33,7 @@ this file DOES assert is the schema itself, so that:
 (a) any future proof system added to this repository has a named
     obligation to satisfy, rather than silently assuming `DecidableEq`
     the way `LRA.Logic.Syntax.FirstOrder` currently does without comment;
-(b) `LRA.Logic.Proof.System.Takeuti.Alphabet` can be checked against this
+(b) `LRA.ProofTheory.System.Takeuti.Alphabet` can be checked against this
     schema once it stabilizes, to confirm `FreeVar`/`BoundVar` should
     carry `DecidableEq` too -- currently an open question, not yet
     required by any Takeuti file's actual usage, and deliberately left

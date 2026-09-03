@@ -4,6 +4,7 @@ namespace LRA.UniversalAlgebra
 
 open LRA.Logic
 open LRA.Logic.FirstOrder
+open LRA.ModelTheory.FirstOrder
 
 universe u v
 
@@ -104,11 +105,11 @@ def Isomorphism.id {S : Signature} (M : Model.{u} S) : Isomorphism M M where
 
 Predicate logic:
 
-  ∀ {S : LRA.Logic.Signature} (M : LRA.Logic.FirstOrder.Model S) (N : LRA.Logic.FirstOrder.Model S), Nonempty (LRA.UniversalAlgebra.Isomorphism M N)
+  ∀ {S : LRA.Logic.Signature} (M : LRA.ModelTheory.FirstOrder.Model S) (N : LRA.ModelTheory.FirstOrder.Model S), Nonempty (LRA.UniversalAlgebra.Isomorphism M N)
 
 Predicate logic (unfolded):
 
-  ∀ {S : LRA.Logic.Signature} (M : LRA.Logic.FirstOrder.Model S) (N : LRA.Logic.FirstOrder.Model S), Nonempty (LRA.UniversalAlgebra.Isomorphism M N)
+  ∀ {S : LRA.Logic.Signature} (M : LRA.ModelTheory.FirstOrder.Model S) (N : LRA.ModelTheory.FirstOrder.Model S), Nonempty (LRA.UniversalAlgebra.Isomorphism M N)
 
 Logical form (Lean):
 
@@ -148,7 +149,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {S : LRA.Logic.Signature} {M : LRA.Logic.FirstOrder.Model S} {N : LRA.Logic.FirstOrder.Model S}, Nonempty (LRA.UniversalAlgebra.Isomorphism M N) → Nonempty (LRA.UniversalAlgebra.Isomorphism N M)
+  ∀ {S : LRA.Logic.Signature} {M : LRA.ModelTheory.FirstOrder.Model S} {N : LRA.ModelTheory.FirstOrder.Model S}, Nonempty (LRA.UniversalAlgebra.Isomorphism M N) → Nonempty (LRA.UniversalAlgebra.Isomorphism N M)
 
 Logical form (Lean):
 

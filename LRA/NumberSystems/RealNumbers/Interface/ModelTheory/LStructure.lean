@@ -14,12 +14,12 @@ Logical form:
 
 ```lean
 def realNumbersModel (real_model : RealModel) :
-    LRA.Logic.FirstOrder.Model RealNumbersFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model RealNumbersFirstOrderSignature :=
   BuildOrderedFieldModel real_model.signature
 ```
 -/
 def realNumbersModel (real_model : RealModel) :
-    LRA.Logic.FirstOrder.Model RealNumbersFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model RealNumbersFirstOrderSignature :=
   BuildOrderedFieldModel real_model.signature
 
 end LRA.NumberSystems.RealNumbers.Interface.ModelTheory

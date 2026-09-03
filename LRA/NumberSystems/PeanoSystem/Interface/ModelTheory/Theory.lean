@@ -1,6 +1,6 @@
 
 import LRA.NumberSystems.PeanoSystem.Interface.ModelTheory.LStructure
-import LRA.Logic.Model.SecondOrderMonadic.HenkinModel
+import LRA.ModelTheory.SecondOrderMonadic.HenkinModel
 
 namespace LRA.NumberSystems.PeanoSystem.Interface.ModelTheory
 
@@ -103,17 +103,17 @@ def PeanoSuccessorInjectiveAxiom
 
 Predicate logic:
 
-  ∀ (M : LRA.Logic.SecondOrderMonadic.HenkinModel LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFirstOrderSignature) (subset : Set M.Domain), (Set.instMembership.mem M.SecondOrderDomain subset ∧ (Set.instMembership.mem subset (M.interpretConstant LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoConstantSymbol.one) ∧ ∀ (element : M.Domain), Set.instMembership.mem subset element → Set.instMembership.mem subset (M.interpretFunction LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFunctionSymbol.successor fun x => element))) → ∀ (element : M.Domain), Set.instMembership.mem subset element
+  ∀ (M : LRA.ModelTheory.SecondOrderMonadic.HenkinModel LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFirstOrderSignature) (subset : Set M.Domain), (Set.instMembership.mem M.SecondOrderDomain subset ∧ (Set.instMembership.mem subset (M.interpretConstant LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoConstantSymbol.one) ∧ ∀ (element : M.Domain), Set.instMembership.mem subset element → Set.instMembership.mem subset (M.interpretFunction LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFunctionSymbol.successor fun x => element))) → ∀ (element : M.Domain), Set.instMembership.mem subset element
 
 Predicate logic (unfolded):
 
-  ∀ (M : LRA.Logic.SecondOrderMonadic.HenkinModel LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFirstOrderSignature) (subset : M.toModel.1 → Prop), (Set.instMembership.1 M.2 subset ∧ (Set.instMembership.1 subset (M.toModel.7 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoConstantSymbol.one) ∧ ∀ (element : M.toModel.1), Set.instMembership.1 subset element → Set.instMembership.1 subset (M.toModel.5 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFunctionSymbol.successor fun x => element))) → ∀ (element : M.toModel.1), Set.instMembership.1 subset element
+  ∀ (M : LRA.ModelTheory.SecondOrderMonadic.HenkinModel LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFirstOrderSignature) (subset : M.toModel.1 → Prop), (Set.instMembership.1 M.2 subset ∧ (Set.instMembership.1 subset (M.toModel.7 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoConstantSymbol.one) ∧ ∀ (element : M.toModel.1), Set.instMembership.1 subset element → Set.instMembership.1 subset (M.toModel.5 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFunctionSymbol.successor fun x => element))) → ∀ (element : M.toModel.1), Set.instMembership.1 subset element
 
 Logical form (Lean):
 
 ```lean
 def PeanoInductionAxiom
-    (M : LRA.Logic.SecondOrderMonadic.HenkinModel PeanoFirstOrderSignature) : Prop :=
+    (M : LRA.ModelTheory.SecondOrderMonadic.HenkinModel PeanoFirstOrderSignature) : Prop :=
   ∀ subset ∈ M.SecondOrderDomain,
     M.interpretConstant .base ∈ subset ->
     (∀ element ∈ subset,
@@ -141,7 +141,7 @@ Related proof moves: intro, unfold
 
 -/
 def PeanoInductionAxiom
-    (M : LRA.Logic.SecondOrderMonadic.HenkinModel PeanoFirstOrderSignature) : Prop :=
+    (M : LRA.ModelTheory.SecondOrderMonadic.HenkinModel PeanoFirstOrderSignature) : Prop :=
   ∀ subset ∈ M.SecondOrderDomain,
     M.interpretConstant .one ∈ subset ->
     (∀ element ∈ subset,
@@ -153,17 +153,17 @@ def PeanoInductionAxiom
 
 Predicate logic:
 
-  ∀ (M : LRA.Logic.SecondOrderMonadic.HenkinModel LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFirstOrderSignature), (LRA.NumberSystems.PeanoSystem.Interface.ModelTheory.PeanoBaseNotSuccessorAxiom M.toModel ∧ (LRA.NumberSystems.PeanoSystem.Interface.ModelTheory.PeanoSuccessorInjectiveAxiom M.toModel ∧ LRA.NumberSystems.PeanoSystem.Interface.ModelTheory.PeanoInductionAxiom M))
+  ∀ (M : LRA.ModelTheory.SecondOrderMonadic.HenkinModel LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFirstOrderSignature), (LRA.NumberSystems.PeanoSystem.Interface.ModelTheory.PeanoBaseNotSuccessorAxiom M.toModel ∧ (LRA.NumberSystems.PeanoSystem.Interface.ModelTheory.PeanoSuccessorInjectiveAxiom M.toModel ∧ LRA.NumberSystems.PeanoSystem.Interface.ModelTheory.PeanoInductionAxiom M))
 
 Predicate logic (unfolded):
 
-  ∀ (M : LRA.Logic.SecondOrderMonadic.HenkinModel LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFirstOrderSignature), (∀ (element : M.toModel.1), M.toModel.5 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFunctionSymbol.successor fun x => element = M.toModel.7 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoConstantSymbol.one → False ∧ (∀ (first second : M.toModel.1), M.toModel.5 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFunctionSymbol.successor fun x => first = M.toModel.5 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFunctionSymbol.successor fun x => second → first = second ∧ ∀ (subset : M.toModel.1 → Prop), Set.instMembership.1 M.2 subset → Set.instMembership.1 subset (M.toModel.7 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoConstantSymbol.one) → (∀ (element : M.toModel.1), Set.instMembership.1 subset element → Set.instMembership.1 subset (M.toModel.5 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFunctionSymbol.successor fun x => element)) → ∀ (element : M.toModel.1), Set.instMembership.1 subset element))
+  ∀ (M : LRA.ModelTheory.SecondOrderMonadic.HenkinModel LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFirstOrderSignature), (∀ (element : M.toModel.1), M.toModel.5 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFunctionSymbol.successor fun x => element = M.toModel.7 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoConstantSymbol.one → False ∧ (∀ (first second : M.toModel.1), M.toModel.5 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFunctionSymbol.successor fun x => first = M.toModel.5 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFunctionSymbol.successor fun x => second → first = second ∧ ∀ (subset : M.toModel.1 → Prop), Set.instMembership.1 M.2 subset → Set.instMembership.1 subset (M.toModel.7 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoConstantSymbol.one) → (∀ (element : M.toModel.1), Set.instMembership.1 subset element → Set.instMembership.1 subset (M.toModel.5 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFunctionSymbol.successor fun x => element)) → ∀ (element : M.toModel.1), Set.instMembership.1 subset element))
 
 Logical form (Lean):
 
 ```lean
 def PeanoHenkinTheory
-    (M : LRA.Logic.SecondOrderMonadic.HenkinModel PeanoFirstOrderSignature) : Prop :=
+    (M : LRA.ModelTheory.SecondOrderMonadic.HenkinModel PeanoFirstOrderSignature) : Prop :=
   PeanoBaseNotSuccessorAxiom M.toModel /\
   PeanoSuccessorInjectiveAxiom M.toModel /\
   PeanoInductionAxiom M
@@ -189,7 +189,7 @@ Related proof moves: constructor, cases, rcases, unfold
 
 -/
 def PeanoHenkinTheory
-    (M : LRA.Logic.SecondOrderMonadic.HenkinModel PeanoFirstOrderSignature) : Prop :=
+    (M : LRA.ModelTheory.SecondOrderMonadic.HenkinModel PeanoFirstOrderSignature) : Prop :=
   PeanoBaseNotSuccessorAxiom M.toModel /\
   PeanoSuccessorInjectiveAxiom M.toModel /\
   PeanoInductionAxiom M
@@ -199,11 +199,11 @@ def PeanoHenkinTheory
 
 Predicate logic:
 
-  ∀ (M : LRA.Logic.SecondOrderMonadic.HenkinModel LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFirstOrderSignature), (LRA.NumberSystems.PeanoSystem.Interface.ModelTheory.PeanoBaseNotSuccessorAxiom M.toModel ∧ (LRA.NumberSystems.PeanoSystem.Interface.ModelTheory.PeanoSuccessorInjectiveAxiom M.toModel ∧ LRA.NumberSystems.PeanoSystem.Interface.ModelTheory.PeanoInductionAxiom M))
+  ∀ (M : LRA.ModelTheory.SecondOrderMonadic.HenkinModel LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFirstOrderSignature), (LRA.NumberSystems.PeanoSystem.Interface.ModelTheory.PeanoBaseNotSuccessorAxiom M.toModel ∧ (LRA.NumberSystems.PeanoSystem.Interface.ModelTheory.PeanoSuccessorInjectiveAxiom M.toModel ∧ LRA.NumberSystems.PeanoSystem.Interface.ModelTheory.PeanoInductionAxiom M))
 
 Predicate logic (unfolded):
 
-  ∀ (M : LRA.Logic.SecondOrderMonadic.HenkinModel LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFirstOrderSignature), (∀ (element : M.toModel.1), M.toModel.5 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFunctionSymbol.successor fun x => element = M.toModel.7 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoConstantSymbol.one → False ∧ (∀ (first second : M.toModel.1), M.toModel.5 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFunctionSymbol.successor fun x => first = M.toModel.5 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFunctionSymbol.successor fun x => second → first = second ∧ ∀ (subset : M.toModel.1 → Prop), Set.instMembership.1 M.2 subset → Set.instMembership.1 subset (M.toModel.7 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoConstantSymbol.one) → (∀ (element : M.toModel.1), Set.instMembership.1 subset element → Set.instMembership.1 subset (M.toModel.5 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFunctionSymbol.successor fun x => element)) → ∀ (element : M.toModel.1), Set.instMembership.1 subset element))
+  ∀ (M : LRA.ModelTheory.SecondOrderMonadic.HenkinModel LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFirstOrderSignature), (∀ (element : M.toModel.1), M.toModel.5 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFunctionSymbol.successor fun x => element = M.toModel.7 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoConstantSymbol.one → False ∧ (∀ (first second : M.toModel.1), M.toModel.5 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFunctionSymbol.successor fun x => first = M.toModel.5 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFunctionSymbol.successor fun x => second → first = second ∧ ∀ (subset : M.toModel.1 → Prop), Set.instMembership.1 M.2 subset → Set.instMembership.1 subset (M.toModel.7 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoConstantSymbol.one) → (∀ (element : M.toModel.1), Set.instMembership.1 subset element → Set.instMembership.1 subset (M.toModel.5 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFunctionSymbol.successor fun x => element)) → ∀ (element : M.toModel.1), Set.instMembership.1 subset element))
 
 Logical form (Lean):
 
@@ -237,11 +237,11 @@ abbrev PeanoTheory := PeanoHenkinTheory
 
 Predicate logic:
 
-  ∀ (M : LRA.Logic.SecondOrderMonadic.HenkinModel LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFirstOrderSignature), (LRA.NumberSystems.PeanoSystem.Interface.ModelTheory.PeanoBaseNotSuccessorAxiom M.toModel ∧ (LRA.NumberSystems.PeanoSystem.Interface.ModelTheory.PeanoSuccessorInjectiveAxiom M.toModel ∧ LRA.NumberSystems.PeanoSystem.Interface.ModelTheory.PeanoInductionAxiom M))
+  ∀ (M : LRA.ModelTheory.SecondOrderMonadic.HenkinModel LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFirstOrderSignature), (LRA.NumberSystems.PeanoSystem.Interface.ModelTheory.PeanoBaseNotSuccessorAxiom M.toModel ∧ (LRA.NumberSystems.PeanoSystem.Interface.ModelTheory.PeanoSuccessorInjectiveAxiom M.toModel ∧ LRA.NumberSystems.PeanoSystem.Interface.ModelTheory.PeanoInductionAxiom M))
 
 Predicate logic (unfolded):
 
-  ∀ (M : LRA.Logic.SecondOrderMonadic.HenkinModel LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFirstOrderSignature), (∀ (element : M.toModel.1), M.toModel.5 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFunctionSymbol.successor fun x => element = M.toModel.7 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoConstantSymbol.one → False ∧ (∀ (first second : M.toModel.1), M.toModel.5 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFunctionSymbol.successor fun x => first = M.toModel.5 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFunctionSymbol.successor fun x => second → first = second ∧ ∀ (subset : M.toModel.1 → Prop), Set.instMembership.1 M.2 subset → Set.instMembership.1 subset (M.toModel.7 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoConstantSymbol.one) → (∀ (element : M.toModel.1), Set.instMembership.1 subset element → Set.instMembership.1 subset (M.toModel.5 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFunctionSymbol.successor fun x => element)) → ∀ (element : M.toModel.1), Set.instMembership.1 subset element))
+  ∀ (M : LRA.ModelTheory.SecondOrderMonadic.HenkinModel LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFirstOrderSignature), (∀ (element : M.toModel.1), M.toModel.5 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFunctionSymbol.successor fun x => element = M.toModel.7 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoConstantSymbol.one → False ∧ (∀ (first second : M.toModel.1), M.toModel.5 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFunctionSymbol.successor fun x => first = M.toModel.5 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFunctionSymbol.successor fun x => second → first = second ∧ ∀ (subset : M.toModel.1 → Prop), Set.instMembership.1 M.2 subset → Set.instMembership.1 subset (M.toModel.7 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoConstantSymbol.one) → (∀ (element : M.toModel.1), Set.instMembership.1 subset element → Set.instMembership.1 subset (M.toModel.5 LRA.NumberSystems.PeanoSystem.Interface.Signature.PeanoFunctionSymbol.successor fun x => element)) → ∀ (element : M.toModel.1), Set.instMembership.1 subset element))
 
 Logical form (Lean):
 

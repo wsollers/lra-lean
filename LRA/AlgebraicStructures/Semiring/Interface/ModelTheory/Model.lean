@@ -40,7 +40,7 @@ def SemiringModel.signature {Carrier : Type u}
 /-- The first-order model induced by a promoted semiring model. -/
 def SemiringModel.firstOrderModel {Carrier : Type u}
     (model : SemiringModel Carrier) :
-    LRA.Logic.FirstOrder.Model
+    LRA.ModelTheory.FirstOrder.Model
       LRA.AlgebraicStructures.Semiring.Interface.Signature.SemiringFirstOrderSignature :=
   BuildSemiringModel model.signature
 

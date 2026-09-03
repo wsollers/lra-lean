@@ -164,20 +164,20 @@ def Sphere4 (real_model : RealModel)
 Predicate logic:
 
   def Euclidean4SpaceModel (real_model : RealModel) :
-    LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model TarskiFirstOrderSignature :=
   EuclideanTupleModel real_model 4
 
 Predicate logic (unfolded):
 
   def Euclidean4SpaceModel (real_model : RealModel) :
-    LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model TarskiFirstOrderSignature :=
   EuclideanTupleModel real_model 4
 
 Logical form (Lean):
 
 ```lean
 def Euclidean4SpaceModel (real_model : RealModel) :
-    LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model TarskiFirstOrderSignature :=
   EuclideanTupleModel real_model 4
 ```
 
@@ -201,7 +201,7 @@ Related proof moves: unfold
 
 -/
 def Euclidean4SpaceModel (real_model : RealModel) :
-    LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model TarskiFirstOrderSignature :=
   EuclideanTupleModel real_model 4
 
 end LRA.EuclideanSpace

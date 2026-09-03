@@ -9,6 +9,7 @@ namespace LRA.Set.Constructions.ZFCSet
 
 open LRA.Logic
 open LRA.Logic.FirstOrder
+open LRA.ModelTheory.FirstOrder
 open LRA.Set.ModelTheory
 open LRA.Set.Constructions.ZFCSet.Interface.ModelTheory
 

@@ -268,20 +268,20 @@ def Plane (real_model : RealModel)
 Predicate logic:
 
   def Euclidean3SpaceModel (real_model : RealModel) :
-    LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model TarskiFirstOrderSignature :=
   EuclideanTupleModel real_model 3
 
 Predicate logic (unfolded):
 
   def Euclidean3SpaceModel (real_model : RealModel) :
-    LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model TarskiFirstOrderSignature :=
   EuclideanTupleModel real_model 3
 
 Logical form (Lean):
 
 ```lean
 def Euclidean3SpaceModel (real_model : RealModel) :
-    LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model TarskiFirstOrderSignature :=
   EuclideanTupleModel real_model 3
 ```
 
@@ -305,7 +305,7 @@ Related proof moves: unfold
 
 -/
 def Euclidean3SpaceModel (real_model : RealModel) :
-    LRA.Logic.FirstOrder.Model TarskiFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model TarskiFirstOrderSignature :=
   EuclideanTupleModel real_model 3
 
 end LRA.EuclideanSpace

@@ -54,7 +54,7 @@ def OrderedFieldModel.signature {Carrier : Type u}
 /-- The first-order model induced by a promoted ordered-field model. -/
 def OrderedFieldModel.firstOrderModel {Carrier : Type u}
     (model : OrderedFieldModel Carrier) :
-    LRA.Logic.FirstOrder.Model
+    LRA.ModelTheory.FirstOrder.Model
       LRA.AlgebraicStructures.OrderedField.Interface.Signature.OrderedFieldFirstOrderSignature :=
   BuildOrderedFieldModel model.signature
 

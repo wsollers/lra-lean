@@ -27,7 +27,7 @@ def toFirstOrderModel
     [GenericSemantics RelationObject Carrier]
     [Nonempty Carrier]
     (relation : RelationObject) :
-    LRA.Logic.FirstOrder.Model
+    LRA.ModelTheory.FirstOrder.Model
       LRA.Relation.ModelTheory.RelationSignature :=
   LRA.Relation.ModelTheory.relationModel (toModelTheoryStructure relation)
 

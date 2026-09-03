@@ -1,5 +1,5 @@
 import LRA.Relation.Interface.ModelTheory.LStructure
-import LRA.Logic.Model.Model
+import LRA.ModelTheory.Model
 
 namespace LRA.Relation.ModelTheory
 
@@ -8,7 +8,7 @@ open LRA.Logic
 universe u
 
 def relationModel (structure_ : RelationStructure.{u}) :
-    FirstOrder.Model RelationSignature where
+    ModelTheory.FirstOrder.Model RelationSignature where
   Domain := structure_.Carrier
   domainNonempty := structure_.carrierNonempty
   interpretFunction := fun functionSymbol => Empty.elim functionSymbol
@@ -22,7 +22,7 @@ def relationModel (structure_ : RelationStructure.{u}) :
 
 def RelationStructure.toFirstOrderModel
     (structure_ : RelationStructure.{u}) :
-    FirstOrder.Model RelationSignature :=
+    ModelTheory.FirstOrder.Model RelationSignature :=
   relationModel structure_
 
 end LRA.Relation.ModelTheory

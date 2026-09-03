@@ -26,7 +26,7 @@ Contents:
   of variable, function symbol, relation symbol, ...) must carry
   decidable equality, stated independently of how many such categories
   a given proof system distinguishes (contrast `LRA.Logic.Syntax
-  .FirstOrder`'s single `Variable` type against `LRA.Logic.Proof.System
+  .FirstOrder`'s single `Variable` type against `LRA.ProofTheory.System
   .Takeuti.Alphabet`'s separate `FreeVar`/`BoundVar`).
 - `StructuralIdentity` -- the schema that syntactic identity of an
   inductively-defined expression type is decidable constructor equality;

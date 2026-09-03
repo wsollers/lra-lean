@@ -21,8 +21,8 @@ it is not automatic just because a type happens to be inductive.
 
 REPO STATUS, checked directly (see accompanying audit trail): as of this
 writing, `LRA.Logic.Syntax.Term`, `LRA.Logic.Syntax.FirstOrder.Formula`,
-`LRA.Logic.Proof.System.Takeuti.Term`, and
-`LRA.Logic.Proof.System.Takeuti.Formula` do NOT derive `DecidableEq`
+`LRA.ProofTheory.System.Takeuti.Term`, and
+`LRA.ProofTheory.System.Takeuti.Formula` do NOT derive `DecidableEq`
 anywhere -- confirmed absent by exhaustive search across the entire
 `LRA.Logic` tree. This is a genuine, currently open gap, not merely
 undocumented: structural identity is exactly the kind of fact this
@@ -32,7 +32,7 @@ derived for any concrete syntax type in the repository.
 
 This file states the schema and the obligation. It does NOT retroactively
 derive `DecidableEq` for `Term`/`Formula`/Takeuti's types -- that is
-system-specific work belonging to `LRA.Logic.Syntax`/`LRA.Logic.Proof`
+system-specific work belonging to `LRA.Logic.Syntax`/`LRA.ProofTheory`
 respectively, to be done once each system's own definition is settled
 (Takeuti is explicitly work-in-progress at time of writing).
 -/

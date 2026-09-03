@@ -15,14 +15,14 @@ Predicate logic:
 
   def BuildSemiringModel
     (signature : LRA.AlgebraicStructures.SemiringConceptSignature) :
-    LRA.Logic.FirstOrder.Model SemiringFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model SemiringFirstOrderSignature where
   Domain
 
 Predicate logic (unfolded):
 
   def BuildSemiringModel
     (signature : LRA.AlgebraicStructures.SemiringConceptSignature) :
-    LRA.Logic.FirstOrder.Model SemiringFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model SemiringFirstOrderSignature where
   Domain (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
@@ -30,7 +30,7 @@ Logical form (Lean):
 ```lean
 def BuildSemiringModel
     (signature : LRA.AlgebraicStructures.SemiringConceptSignature) :
-    LRA.Logic.FirstOrder.Model SemiringFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model SemiringFirstOrderSignature where
   Domain
 ```
 
@@ -55,7 +55,7 @@ Related proof moves: unfold
 -/
 def BuildSemiringModel
     (signature : LRA.AlgebraicStructures.SemiringConceptSignature) :
-    LRA.Logic.FirstOrder.Model SemiringFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model SemiringFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.zero⟩
   interpretFunction
@@ -75,7 +75,7 @@ Predicate logic:
 
   def semiringFirstOrderModel (R : Type u)
     [Add R] [Mul R] [OfNat R 0] [OfNat R 1] :
-    LRA.Logic.FirstOrder.Model SemiringFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model SemiringFirstOrderSignature :=
   BuildSemiringModel
     { carrier := R, zero := 0, one := 1, add := (· + ·),
       multiply := (· * ·) }
@@ -84,7 +84,7 @@ Predicate logic (unfolded):
 
   def semiringFirstOrderModel (R : Type u)
     [Add R] [Mul R] [OfNat R 0] [OfNat R 1] :
-    LRA.Logic.FirstOrder.Model SemiringFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model SemiringFirstOrderSignature :=
   BuildSemiringModel
     { carrier := R, zero := 0, one := 1, add := (· + ·),
       multiply := (· * ·) } (source fallback; no compiled unfold data available)
@@ -94,7 +94,7 @@ Logical form (Lean):
 ```lean
 def semiringFirstOrderModel (R : Type u)
     [Add R] [Mul R] [OfNat R 0] [OfNat R 1] :
-    LRA.Logic.FirstOrder.Model SemiringFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model SemiringFirstOrderSignature :=
   BuildSemiringModel
     { carrier := R, zero := 0, one := 1, add := (· + ·),
       multiply := (· * ·) }
@@ -121,7 +121,7 @@ Related proof moves: unfold
 -/
 def semiringFirstOrderModel (R : Type u)
     [Add R] [Mul R] [OfNat R 0] [OfNat R 1] :
-    LRA.Logic.FirstOrder.Model SemiringFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model SemiringFirstOrderSignature :=
   BuildSemiringModel
     { carrier := R, zero := 0, one := 1, add := (· + ·),
       multiply := (· * ·) }

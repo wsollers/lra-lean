@@ -14,12 +14,12 @@ Logical form:
 
 ```lean
 def integersModel (integer_model : IntegerModel) :
-    LRA.Logic.FirstOrder.Model IntegersFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model IntegersFirstOrderSignature :=
   BuildOrderedRingModel integer_model.signature
 ```
 -/
 def integersModel (integer_model : IntegerModel) :
-    LRA.Logic.FirstOrder.Model IntegersFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model IntegersFirstOrderSignature :=
   BuildOrderedRingModel integer_model.signature
 
 end LRA.NumberSystems.Integers.Interface.ModelTheory

@@ -57,7 +57,7 @@ that formula (its shape, whether it is well-formed, whether two formulas
 are structurally identical) holds independently of any interpretation.
 Stated here as a `Prop`-valued definition schema -- `HasObjectMeaning`
 below is instantiated, per formula language, once that language's model
-notion exists (`LRA.Logic.FirstOrder.Model`, `LRA.Logic.Model.Propositional`,
+notion exists (`LRA.ModelTheory.FirstOrder.Model`, `LRA.ModelTheory.Propositional`,
 etc.) -- not proved generically here, since "meaning" is necessarily
 language-specific. -/
 def RequiresInterpretation (_level : DiscourseLevel) : Prop :=

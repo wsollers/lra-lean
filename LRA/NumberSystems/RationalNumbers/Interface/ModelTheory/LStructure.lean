@@ -14,12 +14,12 @@ Logical form:
 
 ```lean
 def rationalNumbersModel (rational_model : RationalModel) :
-    LRA.Logic.FirstOrder.Model RationalNumbersFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model RationalNumbersFirstOrderSignature :=
   BuildOrderedFieldModel rational_model.signature
 ```
 -/
 def rationalNumbersModel (rational_model : RationalModel) :
-    LRA.Logic.FirstOrder.Model RationalNumbersFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model RationalNumbersFirstOrderSignature :=
   BuildOrderedFieldModel rational_model.signature
 
 end LRA.NumberSystems.RationalNumbers.Interface.ModelTheory

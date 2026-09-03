@@ -47,7 +47,7 @@ def FieldModel.signature {Carrier : Type u}
 /-- The first-order model induced by a promoted field model. -/
 def FieldModel.firstOrderModel {Carrier : Type u}
     (model : FieldModel Carrier) :
-    LRA.Logic.FirstOrder.Model
+    LRA.ModelTheory.FirstOrder.Model
       LRA.AlgebraicStructures.Field.Interface.Signature.FieldFirstOrderSignature :=
   BuildFieldModel model.signature
 

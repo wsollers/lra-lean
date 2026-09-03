@@ -35,7 +35,7 @@ def AbelianGroupModel.signature {Carrier : Type u}
 /-- The first-order model induced by a promoted abelian-group model. -/
 def AbelianGroupModel.firstOrderModel {Carrier : Type u}
     (model : AbelianGroupModel Carrier) :
-    LRA.Logic.FirstOrder.Model
+    LRA.ModelTheory.FirstOrder.Model
       LRA.AlgebraicStructures.AbelianGroup.Interface.Signature.AbelianGroupFirstOrderSignature :=
   BuildAbelianGroupModel model.signature
 

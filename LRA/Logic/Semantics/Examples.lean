@@ -103,7 +103,7 @@ def testFOLSignature : Signature where
 
 Predicate logic:
 
-  def testFOLModel : Model testFOLSignature where
+  def testFOLModel : Interpretation testFOLSignature where
   Domain := Unit
   domainNonempty := ⟨()⟩
   interpretFunction := fun f => Empty.elim f
@@ -112,7 +112,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  def testFOLModel : Model testFOLSignature where
+  def testFOLModel : Interpretation testFOLSignature where
   Domain := Unit
   domainNonempty := ⟨()⟩
   interpretFunction := fun f => Empty.elim f
@@ -122,7 +122,7 @@ Predicate logic (unfolded):
 Logical form (Lean):
 
 ```lean
-def testFOLModel : Model testFOLSignature where
+def testFOLModel : Interpretation testFOLSignature where
   Domain := Unit
   domainNonempty := ⟨()⟩
   interpretFunction := fun f => Empty.elim f
@@ -149,7 +149,7 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-def testFOLModel : Model testFOLSignature where
+def testFOLModel : Interpretation testFOLSignature where
   Domain := Unit
   domainNonempty := ⟨()⟩
   interpretFunction := fun f => Empty.elim f
@@ -391,7 +391,7 @@ def quantifierSignature : Signature where
 
 Predicate logic:
 
-  def alwaysTrueModel : Model quantifierSignature where
+  def alwaysTrueModel : Interpretation quantifierSignature where
   Domain := Bool
   domainNonempty := ⟨true⟩
   interpretFunction := fun f => Empty.elim f
@@ -400,7 +400,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  def alwaysTrueModel : Model quantifierSignature where
+  def alwaysTrueModel : Interpretation quantifierSignature where
   Domain := Bool
   domainNonempty := ⟨true⟩
   interpretFunction := fun f => Empty.elim f
@@ -410,7 +410,7 @@ Predicate logic (unfolded):
 Logical form (Lean):
 
 ```lean
-def alwaysTrueModel : Model quantifierSignature where
+def alwaysTrueModel : Interpretation quantifierSignature where
   Domain := Bool
   domainNonempty := ⟨true⟩
   interpretFunction := fun f => Empty.elim f
@@ -437,7 +437,7 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-def alwaysTrueModel : Model quantifierSignature where
+def alwaysTrueModel : Interpretation quantifierSignature where
   Domain := Bool
   domainNonempty := ⟨true⟩
   interpretFunction := fun f => Empty.elim f
@@ -449,7 +449,7 @@ def alwaysTrueModel : Model quantifierSignature where
 
 Predicate logic:
 
-  def sometimesFalseModel : Model quantifierSignature where
+  def sometimesFalseModel : Interpretation quantifierSignature where
   Domain := Bool
   domainNonempty := ⟨true⟩
   interpretFunction := fun f => Empty.elim f
@@ -459,7 +459,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  def sometimesFalseModel : Model quantifierSignature where
+  def sometimesFalseModel : Interpretation quantifierSignature where
   Domain := Bool
   domainNonempty := ⟨true⟩
   interpretFunction := fun f => Empty.elim f
@@ -470,7 +470,7 @@ Predicate logic (unfolded):
 Logical form (Lean):
 
 ```lean
-def sometimesFalseModel : Model quantifierSignature where
+def sometimesFalseModel : Interpretation quantifierSignature where
   Domain := Bool
   domainNonempty := ⟨true⟩
   interpretFunction := fun f => Empty.elim f
@@ -498,7 +498,7 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-def sometimesFalseModel : Model quantifierSignature where
+def sometimesFalseModel : Interpretation quantifierSignature where
   Domain := Bool
   domainNonempty := ⟨true⟩
   interpretFunction := fun f => Empty.elim f

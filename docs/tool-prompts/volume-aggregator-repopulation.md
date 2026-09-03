@@ -24,8 +24,8 @@ Relevant source material:
   - `blueprint/src/macros/common.tex`
   - any included TOC-driving TeX files referenced from `blueprint/src/`
 - architecture context:
-  - `PurposeAndArchitecture.md`
-  - `DESIGN.md`
+  - `docs/architecture/repository-architecture.md`
+  - `docs/standards/lean-standards.md`
 
 Task:
 

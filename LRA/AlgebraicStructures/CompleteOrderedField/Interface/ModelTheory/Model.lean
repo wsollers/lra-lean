@@ -58,7 +58,7 @@ def CompleteOrderedFieldModel.signature {Carrier : Type u} {SetObject : Type v}
 def CompleteOrderedFieldModel.firstOrderModel
     {Carrier : Type u} {SetObject : Type v}
     (model : CompleteOrderedFieldModel Carrier SetObject) :
-    LRA.Logic.FirstOrder.Model
+    LRA.ModelTheory.FirstOrder.Model
       LRA.AlgebraicStructures.CompleteOrderedField.Interface.Signature.CompleteOrderedFieldFirstOrderSignature :=
   BuildCompleteOrderedFieldFirstOrderReduct model.signature
 

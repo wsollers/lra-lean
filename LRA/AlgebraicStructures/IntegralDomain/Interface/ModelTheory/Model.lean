@@ -44,7 +44,7 @@ def IntegralDomainModel.signature {Carrier : Type u}
 /-- The first-order model induced by a promoted integral-domain model. -/
 def IntegralDomainModel.firstOrderModel {Carrier : Type u}
     (model : IntegralDomainModel Carrier) :
-    LRA.Logic.FirstOrder.Model
+    LRA.ModelTheory.FirstOrder.Model
       LRA.AlgebraicStructures.IntegralDomain.Interface.Signature.IntegralDomainFirstOrderSignature :=
   BuildIntegralDomainModel model.signature
 

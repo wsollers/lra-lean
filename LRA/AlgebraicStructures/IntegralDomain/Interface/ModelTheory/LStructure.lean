@@ -56,14 +56,14 @@ Predicate logic:
 
   def BuildIntegralDomainModel
     (signature : IntegralDomainSignature) :
-    LRA.Logic.FirstOrder.Model IntegralDomainFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model IntegralDomainFirstOrderSignature :=
   LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory.BuildCommutativeRingModel signature
 
 Predicate logic (unfolded):
 
   def BuildIntegralDomainModel
     (signature : IntegralDomainSignature) :
-    LRA.Logic.FirstOrder.Model IntegralDomainFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model IntegralDomainFirstOrderSignature :=
   LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory.BuildCommutativeRingModel signature (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
@@ -71,7 +71,7 @@ Logical form (Lean):
 ```lean
 def BuildIntegralDomainModel
     (signature : IntegralDomainSignature) :
-    LRA.Logic.FirstOrder.Model IntegralDomainFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model IntegralDomainFirstOrderSignature :=
   LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory.BuildCommutativeRingModel signature
 ```
 
@@ -96,7 +96,7 @@ Related proof moves: unfold
 -/
 def BuildIntegralDomainModel
     (signature : IntegralDomainSignature) :
-    LRA.Logic.FirstOrder.Model IntegralDomainFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model IntegralDomainFirstOrderSignature :=
   LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory.BuildCommutativeRingModel signature
 
 /--
@@ -106,14 +106,14 @@ Predicate logic:
 
   def integralDomainFirstOrderModel (R : Type u)
     [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] :
-    LRA.Logic.FirstOrder.Model IntegralDomainFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model IntegralDomainFirstOrderSignature :=
   LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory.commutativeRingFirstOrderModel R
 
 Predicate logic (unfolded):
 
   def integralDomainFirstOrderModel (R : Type u)
     [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] :
-    LRA.Logic.FirstOrder.Model IntegralDomainFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model IntegralDomainFirstOrderSignature :=
   LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory.commutativeRingFirstOrderModel R (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
@@ -121,7 +121,7 @@ Logical form (Lean):
 ```lean
 def integralDomainFirstOrderModel (R : Type u)
     [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] :
-    LRA.Logic.FirstOrder.Model IntegralDomainFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model IntegralDomainFirstOrderSignature :=
   LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory.commutativeRingFirstOrderModel R
 ```
 
@@ -146,7 +146,7 @@ Related proof moves: unfold
 -/
 def integralDomainFirstOrderModel (R : Type u)
     [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] :
-    LRA.Logic.FirstOrder.Model IntegralDomainFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model IntegralDomainFirstOrderSignature :=
   LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory.commutativeRingFirstOrderModel R
 
 end LRA.AlgebraicStructures.IntegralDomain.Interface.ModelTheory

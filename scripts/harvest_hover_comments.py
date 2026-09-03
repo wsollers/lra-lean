@@ -11,7 +11,7 @@ from __future__ import annotations
 
 import argparse
 import csv
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, replace
 import importlib.util
 import json
 from pathlib import Path
@@ -184,6 +184,12 @@ def load_compiled_rows() -> dict[str, list[dict[str, str]]]:
 
 
 COMPILED_ROWS = load_compiled_rows()
+COMPILED_ROWS_BY_FQ_NAME = {
+    row["fq_name"]: row
+    for rows in COMPILED_ROWS.values()
+    for row in rows
+}
+ABBREV_TARGET_RE = re.compile(r":=\s*(LRA(?:\.[A-Za-z_][A-Za-z0-9_']*)+)")
 
 
 def compiled_row_for(
@@ -209,6 +215,26 @@ def compiled_row_for(
         return suffix[0]
     if bare:
         return bare[0]
+    return None
+
+
+def source_declaration_for_abbrev(declaration: Any) -> tuple[Path, Any] | None:
+    """Resolve a Book abbreviation's canonical declaration through compiled metadata."""
+    if declaration.kind != "abbrev":
+        return None
+    target = ABBREV_TARGET_RE.search(declaration.source)
+    if target is None or target.group(1).startswith("LRA.Book."):
+        return None
+    row = COMPILED_ROWS_BY_FQ_NAME.get(target.group(1))
+    if row is None:
+        return None
+    source_path = REPO_ROOT / Path(*row["module"].split(".")).with_suffix(".lean")
+    if not source_path.exists():
+        return None
+    name = target.group(1).rsplit(".", maxsplit=1)[-1]
+    matches = [candidate for candidate in HOVER.declarations_in(source_path.read_text(encoding="utf-8")) if candidate.name == name]
+    if len(matches) == 1:
+        return source_path, matches[0]
     return None
 
 
@@ -320,6 +346,23 @@ def first_doc_sentence(existing_doc: str) -> str:
 
 
 def entry_for(path: Path, declaration: Any) -> HoverCommentEntry:
+    source_declaration = source_declaration_for_abbrev(declaration)
+    if source_declaration is not None:
+        source_path, target = source_declaration
+        inherited = entry_for(source_path, target)
+        entry = replace(
+            inherited,
+            id=f"{repo_relative(path)}:{declaration.line}:{declaration.name}",
+            name=declaration.name,
+            kind=declaration.kind,
+            file=repo_relative(path),
+            line=declaration.line,
+            declaration=declaration.source,
+            generated_comment="",
+        )
+        entry.generated_comment = comment_template(entry)
+        return entry
+
     text = path.read_text(encoding="utf-8")
     existing_doc = ""
     if declaration.doc is not None:
@@ -384,16 +427,18 @@ def main() -> int:
         help="Preserve editable fields from an existing output JSON by declaration name.",
     )
     args = parser.parse_args()
+    root = args.root if args.root.is_absolute() else REPO_ROOT / args.root
+    output = args.output if args.output.is_absolute() else REPO_ROOT / args.output
 
     previous: dict[str, dict[str, Any]] = {}
-    if args.preserve_custom and args.output.exists():
-        data = json.loads(args.output.read_text(encoding="utf-8"))
+    if args.preserve_custom and output.exists():
+        data = json.loads(output.read_text(encoding="utf-8"))
         for entry in data.get("declarations", []):
             previous[entry.get("id", f"{entry['file']}:{entry['line']}:{entry['name']}")] = entry
             previous[stable_entry_key(entry["file"], entry["name"])] = entry
 
     entries: list[HoverCommentEntry] = []
-    for path in lean_files(args.root):
+    for path in lean_files(root):
         text = path.read_text(encoding="utf-8")
         for declaration in HOVER.declarations_in(text):
             entry = entry_for(path, declaration)
@@ -430,13 +475,13 @@ def main() -> int:
         ],
         "declarations": [asdict(entry) for entry in entries],
     }
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(
         json.dumps(payload, indent=2, ensure_ascii=False) + "\n",
         encoding="utf-8",
         newline="\n",
     )
-    print(f"Wrote {len(entries)} declaration entries to {repo_relative(args.output)}.")
+    print(f"Wrote {len(entries)} declaration entries to {repo_relative(output)}.")
     return 0
 
 

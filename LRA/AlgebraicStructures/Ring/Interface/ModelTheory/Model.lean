@@ -43,7 +43,7 @@ def RingModel.signature {Carrier : Type u}
 /-- The first-order model induced by a promoted ring model. -/
 def RingModel.firstOrderModel {Carrier : Type u}
     (model : RingModel Carrier) :
-    LRA.Logic.FirstOrder.Model
+    LRA.ModelTheory.FirstOrder.Model
       LRA.AlgebraicStructures.Ring.Interface.Signature.RingFirstOrderSignature :=
   BuildRingModel model.signature
 

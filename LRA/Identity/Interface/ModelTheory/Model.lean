@@ -1,5 +1,5 @@
 import LRA.Identity.Theorems.ModelTheory
-import LRA.Logic.Model.Model
+import LRA.ModelTheory.Model
 
 namespace LRA.Identity
 
@@ -9,7 +9,7 @@ universe u
 
 def EqualityStructure.toFirstOrderModel
     (S : EqualityStructure.{u}) :
-    FirstOrder.Model pureEqualitySignature where
+    ModelTheory.FirstOrder.Model pureEqualitySignature where
   Domain := S.Carrier
   domainNonempty := S.carrierNonempty
   interpretEquality := S.equalityInterpretation

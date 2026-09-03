@@ -13,14 +13,14 @@ Predicate logic:
 
   def naturalNumbersModel
     (natural_model : LRA.AlgebraicStructures.CommutativeSemiringWithoutZeroConceptSignature) :
-    LRA.Logic.FirstOrder.Model NaturalNumbersFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model NaturalNumbersFirstOrderSignature :=
   BuildCommutativeSemiringWithoutZeroModel natural_model
 
 Predicate logic (unfolded):
 
   def naturalNumbersModel
     (natural_model : LRA.AlgebraicStructures.CommutativeSemiringWithoutZeroConceptSignature) :
-    LRA.Logic.FirstOrder.Model NaturalNumbersFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model NaturalNumbersFirstOrderSignature :=
   BuildCommutativeSemiringWithoutZeroModel natural_model (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
@@ -28,7 +28,7 @@ Logical form (Lean):
 ```lean
 def naturalNumbersModel
     (natural_model : LRA.AlgebraicStructures.CommutativeSemiringWithoutZeroConceptSignature) :
-    LRA.Logic.FirstOrder.Model NaturalNumbersFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model NaturalNumbersFirstOrderSignature :=
   BuildCommutativeSemiringWithoutZeroModel natural_model
 ```
 
@@ -53,7 +53,7 @@ Related proof moves: unfold
 -/
 def naturalNumbersModel
     (natural_model : LRA.AlgebraicStructures.CommutativeSemiringWithoutZeroConceptSignature) :
-    LRA.Logic.FirstOrder.Model NaturalNumbersFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model NaturalNumbersFirstOrderSignature :=
   BuildCommutativeSemiringWithoutZeroModel natural_model
 
 end LRA.NumberSystems.NaturalNumbers.Interface.ModelTheory

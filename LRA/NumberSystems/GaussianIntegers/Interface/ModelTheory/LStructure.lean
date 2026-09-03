@@ -56,7 +56,7 @@ Predicate logic:
 
   def gaussianArithmeticRingModel (R : Type u)
     [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] :
-    LRA.Logic.FirstOrder.Model GaussianIntegersFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model GaussianIntegersFirstOrderSignature :=
   LRA.AlgebraicStructures.IntegralDomain.Interface.ModelTheory.integralDomainFirstOrderModel
     (GaussianInteger R)
 
@@ -64,7 +64,7 @@ Predicate logic (unfolded):
 
   def gaussianArithmeticRingModel (R : Type u)
     [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] :
-    LRA.Logic.FirstOrder.Model GaussianIntegersFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model GaussianIntegersFirstOrderSignature :=
   LRA.AlgebraicStructures.IntegralDomain.Interface.ModelTheory.integralDomainFirstOrderModel
     (GaussianInteger R) (source fallback; no compiled unfold data available)
 
@@ -73,7 +73,7 @@ Logical form (Lean):
 ```lean
 def gaussianArithmeticRingModel (R : Type u)
     [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] :
-    LRA.Logic.FirstOrder.Model GaussianIntegersFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model GaussianIntegersFirstOrderSignature :=
   LRA.AlgebraicStructures.IntegralDomain.Interface.ModelTheory.integralDomainFirstOrderModel
     (GaussianInteger R)
 ```
@@ -99,7 +99,7 @@ Related proof moves: unfold
 -/
 def gaussianArithmeticRingModel (R : Type u)
     [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] :
-    LRA.Logic.FirstOrder.Model GaussianIntegersFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model GaussianIntegersFirstOrderSignature :=
   LRA.AlgebraicStructures.IntegralDomain.Interface.ModelTheory.integralDomainFirstOrderModel
     (GaussianInteger R)
 
@@ -109,20 +109,20 @@ def gaussianArithmeticRingModel (R : Type u)
 Predicate logic:
 
   def GaussianArithmeticRingModel :
-    LRA.Logic.FirstOrder.Model GaussianIntegersFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model GaussianIntegersFirstOrderSignature :=
   gaussianArithmeticRingModel LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
 
 Predicate logic (unfolded):
 
   def GaussianArithmeticRingModel :
-    LRA.Logic.FirstOrder.Model GaussianIntegersFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model GaussianIntegersFirstOrderSignature :=
   gaussianArithmeticRingModel LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
 def GaussianArithmeticRingModel :
-    LRA.Logic.FirstOrder.Model GaussianIntegersFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model GaussianIntegersFirstOrderSignature :=
   gaussianArithmeticRingModel LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
 ```
 
@@ -146,7 +146,7 @@ Related proof moves: unfold
 
 -/
 def GaussianArithmeticRingModel :
-    LRA.Logic.FirstOrder.Model GaussianIntegersFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model GaussianIntegersFirstOrderSignature :=
   gaussianArithmeticRingModel LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
 
 example : CommutativeRingLaws ActiveGaussianInteger := inferInstance

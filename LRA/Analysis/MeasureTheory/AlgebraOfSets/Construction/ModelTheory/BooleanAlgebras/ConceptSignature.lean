@@ -1,6 +1,6 @@
 import LRA.UniversalAlgebra.InterpretedOperationBundles
 
-namespace LRA.Logic.ModelTheory.BooleanAlgebras
+namespace LRA.ModelTheoryTheory.BooleanAlgebras
 
 /--
 `BooleanAlgebraConceptSignature` TODO
@@ -44,4 +44,4 @@ Related proof moves: unfold
 abbrev BooleanAlgebraConceptSignature :=
   LRA.UniversalAlgebra.InterpretedOperationBundles.BooleanAlgebraOperationBundle
 
-end LRA.Logic.ModelTheory.BooleanAlgebras
+end LRA.ModelTheoryTheory.BooleanAlgebras

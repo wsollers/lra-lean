@@ -8,8 +8,11 @@ Current repo state for all prompts in this folder:
 - Do not run `lake build`.
 - Do not run validator execution as a success gate.
 - Do not propose compatibility shims, legacy aliases, or temporary bridge files.
-- Work from the documented structure in [PurposeAndArchitecture.md](/F:/repos/lra-lean/PurposeAndArchitecture.md),
-  [DESIGN.md](/F:/repos/lra-lean/DESIGN.md), and
+- Work from the documented structure in
+  [repository-governance.md](/F:/repos/lra-lean/docs/governance/repository-governance.md),
+  [repository-architecture.md](/F:/repos/lra-lean/docs/architecture/repository-architecture.md),
+  [lean-standards.md](/F:/repos/lra-lean/docs/standards/lean-standards.md),
+  and
   [docs/interface-model-standardization-inventory.md](/F:/repos/lra-lean/docs/interface-model-standardization-inventory.md).
 - The repo currently contains deliberate breakage from deleted legacy
   `LRA/VolumeII/**`, `LRA/VolumeIII/**`, and `LRA/VolumeVII/**` subtrees while

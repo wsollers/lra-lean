@@ -1,5 +1,5 @@
 
-import LRA.Logic.Model.Model
+import LRA.ModelTheory.Model
 
 namespace LRA.NumberSystems.IntegerStructure.Interface.Signature
 

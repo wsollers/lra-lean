@@ -7,7 +7,7 @@ import LRA.Function.Operations.Inverse.FailureModes
 import LRA.Function.Properties.FailureModes
 import LRA.Identity.Interop.Adapters
 import LRA.Logic.Semantics.Examples
-import LRA.Logic.Semantics.SecondOrderMonadic.Examples
+import LRA.ModelTheory.SecondOrderMonadic.Semantics.Examples
 import LRA.Morphism.Properties.OperationEmbedding.FailureModes
 import LRA.Morphism.Properties.PreservesBinaryOperation.FailureModes
 import LRA.Morphism.Properties.PreservesNullaryOperation.FailureModes

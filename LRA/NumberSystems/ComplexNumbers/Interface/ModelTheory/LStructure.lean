@@ -17,14 +17,14 @@ Predicate logic:
 
   def complexNumbersModel (R : Type u)
     [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] :
-    LRA.Logic.FirstOrder.Model ComplexNumbersFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model ComplexNumbersFirstOrderSignature :=
   fieldFirstOrderModel (ComplexNumber R)
 
 Predicate logic (unfolded):
 
   def complexNumbersModel (R : Type u)
     [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] :
-    LRA.Logic.FirstOrder.Model ComplexNumbersFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model ComplexNumbersFirstOrderSignature :=
   fieldFirstOrderModel (ComplexNumber R) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
@@ -32,7 +32,7 @@ Logical form (Lean):
 ```lean
 def complexNumbersModel (R : Type u)
     [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] :
-    LRA.Logic.FirstOrder.Model ComplexNumbersFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model ComplexNumbersFirstOrderSignature :=
   fieldFirstOrderModel (ComplexNumber R)
 ```
 
@@ -57,7 +57,7 @@ Related proof moves: unfold
 -/
 def complexNumbersModel (R : Type u)
     [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] :
-    LRA.Logic.FirstOrder.Model ComplexNumbersFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model ComplexNumbersFirstOrderSignature :=
   fieldFirstOrderModel (ComplexNumber R)
 
 /--
@@ -66,20 +66,20 @@ def complexNumbersModel (R : Type u)
 Predicate logic:
 
   noncomputable def complexNumbersOverMathlibReals :
-    LRA.Logic.FirstOrder.Model ComplexNumbersFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model ComplexNumbersFirstOrderSignature :=
   complexNumbersModel Real
 
 Predicate logic (unfolded):
 
   noncomputable def complexNumbersOverMathlibReals :
-    LRA.Logic.FirstOrder.Model ComplexNumbersFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model ComplexNumbersFirstOrderSignature :=
   complexNumbersModel Real (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
 noncomputable def complexNumbersOverMathlibReals :
-    LRA.Logic.FirstOrder.Model ComplexNumbersFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model ComplexNumbersFirstOrderSignature :=
   complexNumbersModel Real
 ```
 
@@ -103,7 +103,7 @@ Related proof moves: unfold
 
 -/
 noncomputable def complexNumbersOverMathlibReals :
-    LRA.Logic.FirstOrder.Model ComplexNumbersFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model ComplexNumbersFirstOrderSignature :=
   complexNumbersModel Real
 
 end LRA.NumberSystems.ComplexNumbers.Interface.ModelTheory

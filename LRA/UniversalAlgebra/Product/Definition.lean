@@ -4,6 +4,7 @@ namespace LRA.UniversalAlgebra
 
 open LRA.Logic
 open LRA.Logic.FirstOrder
+open LRA.ModelTheory.FirstOrder
 
 universe u v w
 

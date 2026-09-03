@@ -13,6 +13,7 @@ namespace LRA.Set.Constructions.TGSet
 
 open LRA.Logic
 open LRA.Logic.FirstOrder
+open LRA.ModelTheory.FirstOrder
 open LRA.Set.ModelTheory
 open LRA.Set.Constructions.TGSet.Interface.ModelTheory
 open LRA.Set.Constructions.ZFCSet.Interface.ModelTheory

@@ -8,8 +8,9 @@
     "do_not_run_validators": true,
     "no_compat_shims": true,
     "authority_documents": [
-      "PurposeAndArchitecture.md",
-      "DESIGN.md",
+      "docs/governance/repository-governance.md",
+      "docs/architecture/repository-architecture.md",
+      "docs/standards/lean-standards.md",
       "docs/interface-model-standardization-inventory.md"
     ]
   },

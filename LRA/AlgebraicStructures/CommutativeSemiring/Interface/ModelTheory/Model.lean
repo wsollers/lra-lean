@@ -40,7 +40,7 @@ def CommutativeSemiringModel.signature {Carrier : Type u}
 /-- The first-order model induced by a promoted commutative-semiring model. -/
 def CommutativeSemiringModel.firstOrderModel {Carrier : Type u}
     (model : CommutativeSemiringModel Carrier) :
-    LRA.Logic.FirstOrder.Model
+    LRA.ModelTheory.FirstOrder.Model
       LRA.AlgebraicStructures.CommutativeSemiring.Interface.Signature.CommutativeSemiringFirstOrderSignature :=
   BuildCommutativeSemiringModel model.signature
 

@@ -15,7 +15,7 @@ structure SuccessorArithmeticSignature where
   successor : LRA.Operation.UnaryOperation carrier
 
 abbrev SuccessorArithmeticLStructure :=
-  LRA.Logic.FirstOrder.Model SuccessorArithmeticFirstOrderSignature
+  LRA.ModelTheory.FirstOrder.Model SuccessorArithmeticFirstOrderSignature
 
 def BuildSuccessorArithmeticLStructure
     (signature : SuccessorArithmeticSignature) :

@@ -1,5 +1,5 @@
 import LRA.UniversalAlgebra.Signature
-import LRA.Logic.Model.Model
+import LRA.ModelTheory.Model
 import LRA.Logic.Syntax.Term
 import LRA.Logic.Semantics.TermEvaluation
 
@@ -155,7 +155,7 @@ Predicate logic:
 
   noncomputable def termAlgebra
     (S : Signature) (Variable : Type) [Nonempty Variable] :
-    Model.{0} S where
+    LRA.ModelTheory.FirstOrder.LRA.ModelTheory.FirstOrder.Model.{0} S where
   Domain := Term S Variable
   domainNonempty := ⟨.var (Classical.choice inferInstance)⟩
   interpretFunction := fun functionSymbol arguments =>
@@ -167,7 +167,7 @@ Predicate logic (unfolded):
 
   noncomputable def termAlgebra
     (S : Signature) (Variable : Type) [Nonempty Variable] :
-    Model.{0} S where
+    LRA.ModelTheory.FirstOrder.Model.{0} S where
   Domain := Term S Variable
   domainNonempty := ⟨.var (Classical.choice inferInstance)⟩
   interpretFunction := fun functionSymbol arguments =>
@@ -180,7 +180,7 @@ Logical form (Lean):
 ```lean
 noncomputable def termAlgebra
     (S : Signature) (Variable : Type) [Nonempty Variable] :
-    Model.{0} S where
+    LRA.ModelTheory.FirstOrder.Model.{0} S where
   Domain := Term S Variable
   domainNonempty := ⟨.var (Classical.choice inferInstance)⟩
   interpretFunction := fun functionSymbol arguments =>
@@ -210,7 +210,7 @@ Related proof moves: unfold
 -/
 noncomputable def termAlgebra
     (S : Signature) (Variable : Type) [Nonempty Variable] :
-    Model.{0} S where
+    LRA.ModelTheory.FirstOrder.Model.{0} S where
   Domain := Term S Variable
   domainNonempty := ⟨.var (Classical.choice inferInstance)⟩
   interpretFunction := fun functionSymbol arguments =>

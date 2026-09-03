@@ -54,7 +54,7 @@ def WholeNumberModel.signature
 
 def WholeNumberModel.firstOrderModel
     (M : WholeNumberModel) :
-    LRA.Logic.FirstOrder.Model WholeNumbersFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model WholeNumbersFirstOrderSignature :=
   BuildOrderedSemiringModel M.signature
 
 def mathlibWholeNumberModel : WholeNumberModel :=

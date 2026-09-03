@@ -65,18 +65,18 @@ structure PeanoSignature where
 Predicate logic:
 
   abbrev PeanoLStructure :=
-  LRA.Logic.FirstOrder.Model PeanoFirstOrderSignature
+  LRA.ModelTheory.FirstOrder.Model PeanoFirstOrderSignature
 
 Predicate logic (unfolded):
 
   abbrev PeanoLStructure :=
-  LRA.Logic.FirstOrder.Model PeanoFirstOrderSignature (source fallback; no compiled unfold data available)
+  LRA.ModelTheory.FirstOrder.Model PeanoFirstOrderSignature (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
 abbrev PeanoLStructure :=
-  LRA.Logic.FirstOrder.Model PeanoFirstOrderSignature
+  LRA.ModelTheory.FirstOrder.Model PeanoFirstOrderSignature
 ```
 
 Type-theoretic form:
@@ -99,7 +99,7 @@ Related proof moves: unfold
 
 -/
 abbrev PeanoLStructure :=
-  LRA.Logic.FirstOrder.Model PeanoFirstOrderSignature
+  LRA.ModelTheory.FirstOrder.Model PeanoFirstOrderSignature
 
 /--
 `BuildPeanoLStructure` TODO

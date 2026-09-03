@@ -1,5 +1,5 @@
 import LRA.Operation.Multiplication.Interface.Signature.Definition
-import LRA.Logic.Model.Model
+import LRA.ModelTheory.Model
 
 namespace LRA.Operation.Multiplication.Interface.ModelTheory
 
@@ -33,7 +33,7 @@ def MultiplicationFirstOrderSignature : LRA.Logic.Signature where
 /-- Interpret a promoted multiplication signature as a first-order model. -/
 def BuildMultiplicationModel
     (signature : LRA.Operation.Multiplication.Interface.Signature.MultiplicationConceptSignature) :
-    LRA.Logic.FirstOrder.Model MultiplicationFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model MultiplicationFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := signature.carrierNonempty
   interpretFunction

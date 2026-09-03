@@ -221,14 +221,14 @@ Predicate logic:
 
   def BuildOrderedFieldModel
     (signature : OrderedFieldSignature) :
-    LRA.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model OrderedFieldFirstOrderSignature where
   Domain
 
 Predicate logic (unfolded):
 
   def BuildOrderedFieldModel
     (signature : OrderedFieldSignature) :
-    LRA.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model OrderedFieldFirstOrderSignature where
   Domain (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
@@ -236,7 +236,7 @@ Logical form (Lean):
 ```lean
 def BuildOrderedFieldModel
     (signature : OrderedFieldSignature) :
-    LRA.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model OrderedFieldFirstOrderSignature where
   Domain
 ```
 
@@ -261,7 +261,7 @@ Related proof moves: unfold
 -/
 def BuildOrderedFieldModel
     (signature : OrderedFieldSignature) :
-    LRA.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model OrderedFieldFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.zero⟩
   interpretFunction
@@ -285,7 +285,7 @@ Predicate logic:
 
   def orderedFieldFirstOrderModel (R : Type u)
     [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] [LT R] [LE R] :
-    LRA.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model OrderedFieldFirstOrderSignature :=
   BuildOrderedFieldModel
     { carrier := R, zero := 0, one := 1, add := (· + ·),
       neg := (- ·), multiply := (· * ·), inv := (·⁻¹), le := (· ≤ ·),
@@ -295,7 +295,7 @@ Predicate logic (unfolded):
 
   def orderedFieldFirstOrderModel (R : Type u)
     [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] [LT R] [LE R] :
-    LRA.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model OrderedFieldFirstOrderSignature :=
   BuildOrderedFieldModel
     { carrier := R, zero := 0, one := 1, add := (· + ·),
       neg := (- ·), multiply := (· * ·), inv := (·⁻¹), le := (· ≤ ·),
@@ -306,7 +306,7 @@ Logical form (Lean):
 ```lean
 def orderedFieldFirstOrderModel (R : Type u)
     [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] [LT R] [LE R] :
-    LRA.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model OrderedFieldFirstOrderSignature :=
   BuildOrderedFieldModel
     { carrier := R, zero := 0, one := 1, add := (· + ·),
       neg := (- ·), multiply := (· * ·), inv := (·⁻¹), le := (· ≤ ·),
@@ -334,7 +334,7 @@ Related proof moves: unfold
 -/
 def orderedFieldFirstOrderModel (R : Type u)
     [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] [LT R] [LE R] :
-    LRA.Logic.FirstOrder.Model OrderedFieldFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model OrderedFieldFirstOrderSignature :=
   BuildOrderedFieldModel
     { carrier := R, zero := 0, one := 1, add := (· + ·),
       neg := (- ·), multiply := (· * ·), inv := (·⁻¹), le := (· ≤ ·),

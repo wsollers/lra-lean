@@ -62,14 +62,14 @@ Predicate logic:
 
   def BuildOrderedGroupModel
     (signature : OrderedGroupSignature) :
-    LRA.Logic.FirstOrder.Model OrderedGroupFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model OrderedGroupFirstOrderSignature where
   Domain
 
 Predicate logic (unfolded):
 
   def BuildOrderedGroupModel
     (signature : OrderedGroupSignature) :
-    LRA.Logic.FirstOrder.Model OrderedGroupFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model OrderedGroupFirstOrderSignature where
   Domain (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
@@ -77,7 +77,7 @@ Logical form (Lean):
 ```lean
 def BuildOrderedGroupModel
     (signature : OrderedGroupSignature) :
-    LRA.Logic.FirstOrder.Model OrderedGroupFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model OrderedGroupFirstOrderSignature where
   Domain
 ```
 
@@ -102,7 +102,7 @@ Related proof moves: unfold
 -/
 def BuildOrderedGroupModel
     (signature : OrderedGroupSignature) :
-    LRA.Logic.FirstOrder.Model OrderedGroupFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model OrderedGroupFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.one⟩
   interpretFunction
@@ -121,7 +121,7 @@ def BuildOrderedGroupModel
 Predicate logic:
 
   def orderedGroupFirstOrderModel (R : Type u) [Mul R] [Inv R] [OfNat R 1] [LT R] [LE R] :
-    LRA.Logic.FirstOrder.Model OrderedGroupFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model OrderedGroupFirstOrderSignature :=
   BuildOrderedGroupModel
     { carrier := R, one := 1, multiply := (· * ·), inverse := (·⁻¹),
       StrictOrder := (· < ·), NonstrictOrder := (· ≤ ·) }
@@ -129,7 +129,7 @@ Predicate logic:
 Predicate logic (unfolded):
 
   def orderedGroupFirstOrderModel (R : Type u) [Mul R] [Inv R] [OfNat R 1] [LT R] [LE R] :
-    LRA.Logic.FirstOrder.Model OrderedGroupFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model OrderedGroupFirstOrderSignature :=
   BuildOrderedGroupModel
     { carrier := R, one := 1, multiply := (· * ·), inverse := (·⁻¹),
       StrictOrder := (· < ·), NonstrictOrder := (· ≤ ·) } (source fallback; no compiled unfold data available)
@@ -138,7 +138,7 @@ Logical form (Lean):
 
 ```lean
 def orderedGroupFirstOrderModel (R : Type u) [Mul R] [Inv R] [OfNat R 1] [LT R] [LE R] :
-    LRA.Logic.FirstOrder.Model OrderedGroupFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model OrderedGroupFirstOrderSignature :=
   BuildOrderedGroupModel
     { carrier := R, one := 1, multiply := (· * ·), inverse := (·⁻¹),
       StrictOrder := (· < ·), NonstrictOrder := (· ≤ ·) }
@@ -164,7 +164,7 @@ Related proof moves: unfold
 
 -/
 def orderedGroupFirstOrderModel (R : Type u) [Mul R] [Inv R] [OfNat R 1] [LT R] [LE R] :
-    LRA.Logic.FirstOrder.Model OrderedGroupFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model OrderedGroupFirstOrderSignature :=
   BuildOrderedGroupModel
     { carrier := R, one := 1, multiply := (· * ·), inverse := (·⁻¹),
       StrictOrder := (· < ·), NonstrictOrder := (· ≤ ·) }

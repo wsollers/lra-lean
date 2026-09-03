@@ -45,7 +45,7 @@ def NaturalNumberModel.signature
 
 def NaturalNumberModel.firstOrderModel
     (M : NaturalNumberModel) :
-    LRA.Logic.FirstOrder.Model NaturalNumbersFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model NaturalNumbersFirstOrderSignature :=
   naturalNumbersModel M.signature
 
 def mathlibNaturalNumberModel : NaturalNumberModel :=

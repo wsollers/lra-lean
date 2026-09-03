@@ -19,7 +19,7 @@ structure VonNeumannSignature where
   lessThan : carrier → carrier → Prop
 
 abbrev VonNeumannLStructure :=
-  LRA.Logic.FirstOrder.Model VonNeumannFirstOrderSignature
+  LRA.ModelTheory.FirstOrder.Model VonNeumannFirstOrderSignature
 
 def BuildVonNeumannLStructure
     (signature : VonNeumannSignature) :

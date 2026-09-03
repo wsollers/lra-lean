@@ -1,6 +1,6 @@
 import LRA.Logic
 
-namespace LRA.Logic.ModelTheory.BooleanAlgebras
+namespace LRA.ModelTheoryTheory.BooleanAlgebras
 
 /--
 `BooleanAlgebraFunctionSymbol` TODO
@@ -290,4 +290,4 @@ def BooleanAlgebraFirstOrderSignature : LRA.Logic.Signature where
   Relations := BooleanAlgebraFirstOrderRelations
   Constants := BooleanAlgebraConstantSymbol
 
-end LRA.Logic.ModelTheory.BooleanAlgebras
+end LRA.ModelTheoryTheory.BooleanAlgebras

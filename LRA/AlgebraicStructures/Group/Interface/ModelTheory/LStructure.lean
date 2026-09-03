@@ -15,7 +15,7 @@ Predicate logic:
 
   def BuildGroupModel
     (signature : LRA.AlgebraicStructures.GroupConceptSignature) :
-    LRA.Logic.FirstOrder.Model GroupFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model GroupFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.one⟩
   interpretFunction
@@ -30,7 +30,7 @@ Predicate logic (unfolded):
 
   def BuildGroupModel
     (signature : LRA.AlgebraicStructures.GroupConceptSignature) :
-    LRA.Logic.FirstOrder.Model GroupFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model GroupFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.one⟩
   interpretFunction
@@ -46,7 +46,7 @@ Logical form (Lean):
 ```lean
 def BuildGroupModel
     (signature : LRA.AlgebraicStructures.GroupConceptSignature) :
-    LRA.Logic.FirstOrder.Model GroupFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model GroupFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.one⟩
   interpretFunction
@@ -79,7 +79,7 @@ Related proof moves: unfold
 -/
 def BuildGroupModel
     (signature : LRA.AlgebraicStructures.GroupConceptSignature) :
-    LRA.Logic.FirstOrder.Model GroupFirstOrderSignature where
+    LRA.ModelTheory.FirstOrder.Model GroupFirstOrderSignature where
   Domain := signature.carrier
   domainNonempty := ⟨signature.one⟩
   interpretFunction
@@ -96,14 +96,14 @@ def BuildGroupModel
 Predicate logic:
 
   def groupFirstOrderModel (R : Type u) [Mul R] [Inv R] [OfNat R 1] :
-    LRA.Logic.FirstOrder.Model GroupFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model GroupFirstOrderSignature :=
   BuildGroupModel
     { carrier := R, one := 1, multiply := (· * ·), inverse := (·⁻¹) }
 
 Predicate logic (unfolded):
 
   def groupFirstOrderModel (R : Type u) [Mul R] [Inv R] [OfNat R 1] :
-    LRA.Logic.FirstOrder.Model GroupFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model GroupFirstOrderSignature :=
   BuildGroupModel
     { carrier := R, one := 1, multiply := (· * ·), inverse := (·⁻¹) } (source fallback; no compiled unfold data available)
 
@@ -111,7 +111,7 @@ Logical form (Lean):
 
 ```lean
 def groupFirstOrderModel (R : Type u) [Mul R] [Inv R] [OfNat R 1] :
-    LRA.Logic.FirstOrder.Model GroupFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model GroupFirstOrderSignature :=
   BuildGroupModel
     { carrier := R, one := 1, multiply := (· * ·), inverse := (·⁻¹) }
 ```
@@ -136,7 +136,7 @@ Related proof moves: unfold
 
 -/
 def groupFirstOrderModel (R : Type u) [Mul R] [Inv R] [OfNat R 1] :
-    LRA.Logic.FirstOrder.Model GroupFirstOrderSignature :=
+    LRA.ModelTheory.FirstOrder.Model GroupFirstOrderSignature :=
   BuildGroupModel
     { carrier := R, one := 1, multiply := (· * ·), inverse := (·⁻¹) }
 

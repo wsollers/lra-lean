@@ -1,6 +1,6 @@
 import LRA.Logic
 
-namespace LRA.Logic.ModelTheory.SetRings
+namespace LRA.ModelTheoryTheory.SetRings
 
 /--
 `SetRingFunctionSymbol` TODO
@@ -286,4 +286,4 @@ def SetRingFirstOrderSignature : LRA.Logic.Signature where
   Relations := SetRingFirstOrderRelations
   Constants := SetRingConstantSymbol
 
-end LRA.Logic.ModelTheory.SetRings
+end LRA.ModelTheoryTheory.SetRings
