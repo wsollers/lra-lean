@@ -1,5 +1,5 @@
 import LRA.Set.Constructions.TGSet.Definition
-import LRA.Identity.Interface.Definitions.Witnesses
+import LRA.Identity.Laws.Witnesses
 import LRA.Identity.Constructions.Mathlib
 
 namespace LRA.Set.Constructions.TGSet

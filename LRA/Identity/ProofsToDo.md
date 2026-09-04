@@ -14,17 +14,533 @@ the folder.
 **Progress:** 0/33 theorem-family entries completed since reset baseline `73e79b40` (Mass-sorry non-Logic proofs and regenerate todos).
 **Baseline reconciliation:** 0 still match baseline as `sorry`; 33 baseline entries were moved, renamed, or removed and are not auto-credited.
 
-**Snapshot:** 21/21 theorem-family entries currently completed (0 sorry remaining).
+**Snapshot:** 0/29 theorem-family entries currently completed (29 sorry remaining).
 
-**Inventory:** 21 theorem/lemma/corollary/proposition entries across 17 module(s) (21 completed, 0 sorry).
-**Excluded from counts:** 14 `instance` entries and 3 `axiom` entries.
+**Inventory:** 29 theorem/lemma/corollary/proposition entries across 23 module(s) (0 completed, 29 sorry).
+**Excluded from counts:** 18 `instance` entries and 3 `axiom` entries.
 
 ## Open Work Queue
 
 Unfinished entries (`Sorry`, or `Unknown` in offline preview) are listed first so
 this section can be used as the actual proof queue.
 
-No unfinished theorem declarations are currently present in this scope.
+Name: axiomaticIdentityRelation_isReflexive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (Carrier : Type u), LRA.Identity.IsReflexiveIdentityRelation LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    (none)
+  Prove
+    LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x x
+Transliterated theorem: LRA.Identity.IsReflexiveIdentityRelation Ax_IdentityRelation ∈ Carrier → Carrier → Prop
+Logical form (Lean): (Carrier : Type u) : LRA.Identity.IsReflexiveIdentityRelation (Ax_IdentityRelation : Carrier → Carrier → Prop)
+Source: ./Constructions/Axiomatic/Axioms/Reflexivity/Theorems.lean#L50
+
+
+
+Name: axiomaticIdentityRelation_satisfiesReflexivity
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (Carrier : Type u) (x : Carrier), LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x x
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    (none)
+  Prove
+    LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x x
+Transliterated theorem: ∀ x : Carrier, Ax_IdentityRelation x x
+Logical form (Lean): (Carrier : Type u) : ∀ x : Carrier, Ax_IdentityRelation x x
+Source: ./Constructions/Axiomatic/Axioms/Reflexivity/Satisfies.lean#L49
+
+
+
+Name: EqualityFirstOrderTheory.leibnizAxiom
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {Admissible : (Carrier → Prop) → Prop} {R : Carrier → Carrier → Prop},   LRA.Identity.EqualityFirstOrderTheory Admissible R → LRA.Identity.FirstOrderLeibnizAxiom Admissible R
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    Admissible : (Carrier → Prop) → Prop
+    R : Carrier → Carrier → Prop
+    h : EqualityFirstOrderTheory Admissible R
+  Prove
+    LRA.Identity.IdentityTheory Admissible R → ∀ (x y : Carrier), R x y → ∀ (P : Carrier → Prop), (Admissible P ∧ P x) → P y
+Transliterated theorem: FirstOrderLeibnizAxiom Admissible R
+Logical form (Lean): {Carrier : Type u} {Admissible : (Carrier → Prop) → Prop} {R : Carrier → Carrier → Prop} (h : EqualityFirstOrderTheory Admissible R) : FirstOrderLeibnizAxiom Admissible R
+Source: ./Constructions/Axiomatic/Axioms/FirstOrderLeibniz/Theorems.lean#L53
+
+
+
+Name: IdentityRelation.satisfiesIdentityTheory
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (Carrier : Type u) [inst : LRA.Identity.IdentityRelation Carrier],   LRA.Identity.IdentityTheory (LRA.Identity.FullLeibniz Carrier) inst.Ident
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    (none)
+  Prove
+    LRA.Identity.IdentityTheory (fun x => True) inst.1
+Transliterated theorem: IdentityTheory (FullLeibniz Carrier) Ident ∈ Carrier → Carrier → Prop
+Logical form (Lean): (Carrier : Type u) [IdentityRelation Carrier] : IdentityTheory (FullLeibniz Carrier) (Ident : Carrier → Carrier → Prop)
+Source: ./Constructions/Axiomatic/Axioms/SecondOrderLeibniz/Definitions.lean#L256
+
+
+
+Name: IdentIsDiagonal
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} [IdentityRelation Carrier] (x y : Carrier), Ident x y ↔ x = y
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    x y : Carrier
+  Prove
+    Ident x y ↔ x = y
+Transliterated theorem: (∀ x y ∈ Carrier), Ident x y ↔ x = y
+Logical form (Lean): {Carrier : Type u} [IdentityRelation Carrier] (x y : Carrier) : Ident x y ↔ x = y
+Source: ./Constructions/Axiomatic/Axioms/SecondOrderLeibniz/Theorems.lean#L49
+
+
+
+Name: IdentSymmetric
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] {x y : Carrier}, inst.Ident x y → inst.Ident y x
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    x y : Carrier
+    h : Ident x y
+  Prove
+    x ≤ y → y ≤ x
+Transliterated theorem: Ident y x
+Logical form (Lean): {Carrier : Type u} [IdentityRelation Carrier] {x y : Carrier} (h : Ident x y) : Ident y x
+Source: ./Constructions/Axiomatic/Axioms/SecondOrderLeibniz/Theorems.lean#L96
+
+
+
+Name: IdentTransitive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} [IdentityRelation Carrier] {x y z : Carrier} (hxy : Ident x y) (hyz : Ident y z), Ident x z
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    x y z : Carrier
+    hxy : Ident x y
+    hyz : Ident y z
+  Prove
+    (x ≤ y ∧ y ≤ z) → x ≤ z
+Transliterated theorem: Ident x z
+Logical form (Lean): {Carrier : Type u} [IdentityRelation Carrier] {x y z : Carrier} (hxy : Ident x y) (hyz : Ident y z) : Ident x z
+Source: ./Constructions/Axiomatic/Axioms/SecondOrderLeibniz/Theorems.lean#L144
+
+
+
+Name: IdentLeibnizIff
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} [IdentityRelation Carrier] {x y : Carrier} (h : Ident x y) (Property : Carrier → Prop), Property x ↔ Property y
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    x y : Carrier
+    h : Ident x y
+    Property : Carrier → Prop
+  Prove
+    Property x ↔ Property y
+Transliterated theorem: Property x ↔ Property y
+Logical form (Lean): {Carrier : Type u} [IdentityRelation Carrier] {x y : Carrier} (h : Ident x y) (Property : Carrier → Prop) : Property x ↔ Property y
+Source: ./Constructions/Axiomatic/Axioms/SecondOrderLeibniz/Theorems.lean#L193
+
+
+
+Name: axiomaticIdentityRelation_satisfiesFirstOrderLeibniz
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (Carrier : Type u) (Admissible : (Carrier → Prop) → Prop),   LRA.Identity.EqualityFirstOrderTheory Admissible LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    Admissible : (Carrier → Prop) → Prop
+  Prove
+    LRA.Identity.IdentityTheory Admissible LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation
+Transliterated theorem: LRA.Identity.EqualityFirstOrderTheory Admissible Ax_IdentityRelation ∈ Carrier → Carrier → Prop
+Logical form (Lean): (Carrier : Type u) (Admissible : (Carrier → Prop) → Prop) : LRA.Identity.EqualityFirstOrderTheory Admissible (Ax_IdentityRelation : Carrier → Carrier → Prop)
+Source: ./Constructions/Axiomatic/Axioms/FirstOrderLeibniz/Satisfies.lean#L53
+
+
+
+Name: EqualityStructure.isDiagonal
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (S : EqualityStructure.{u}), ∀ left right, S.equalityInterpretation left right ↔ EqualityDiagonal S.Carrier left right
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    S : EqualityStructure.{u}
+  Prove
+    ∀ left right, S.equalityInterpretation left right ↔ EqualityDiagonal S.Carrier left right
+Transliterated theorem: ∀ left right, S.equalityInterpretation left right ↔ EqualityDiagonal S.Carrier left right
+Logical form (Lean): (S : EqualityStructure.{u}) : ∀ left right, S.equalityInterpretation left right ↔ EqualityDiagonal S.Carrier left right
+Source: ./Interface/ModelTheory/Model.lean#L55
+
+
+
+Name: EqualityStructure.toHenkinSecondOrderModel_hasFullSecondOrderSemantics
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (S : LRA.Identity.EqualityStructure),   LRA.ModelTheory.SecondOrder.HasFullSecondOrderSemantics S.toHenkinSecondOrderModel
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    S : EqualityStructure.{u}
+  Prove
+    ((∀ (arity : Nat) (relation_ : (Fin arity → S.toHenkinSecondOrderModel.toInterpretation.1) → Prop), relation_ ∈ S.toHenkinSecondOrderModel.2 arity) ∧ (∀ (arity : Nat) (function_ : (Fin arity → S.toHenkinSecondOrderModel.toInterpretation.1) → S.toHenkinSecondOrderModel.toInterpretation.1), function_ ∈ S.toHenkinSecondOrderModel.3 arity))
+Transliterated theorem: ModelTheory.SecondOrder.HasFullSecondOrderSemantics S.toHenkinSecondOrderModel
+Logical form (Lean): (S : EqualityStructure.{u}) : ModelTheory.SecondOrder.HasFullSecondOrderSemantics S.toHenkinSecondOrderModel
+Source: ./Interface/ModelTheory/Model.lean#L350
+
+
+
+Name: IndexedOperationCongruence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Index : Type u} {Carrier : Type v} {Codomain : Type w} (operation : (Index → Carrier) → Codomain) {left right : Index → Carrier} (argumentsEqual : ∀ index, left index = right index), operation left = operation right
+Predicate logic (unfolded):
+  Ambient
+    (Index, Carrier, Codomain)
+  Objects
+    operation : (Index → Carrier) → Codomain
+    left right : Index → Carrier
+  Prove
+    (∀ (index : Index), left index = right index) → operation left = operation right
+Transliterated theorem: (∀ index, left index = right index) → operation left = operation right
+Logical form (Lean): {Index : Type u} {Carrier : Type v} {Codomain : Type w} (operation : (Index → Carrier) → Codomain) {left right : Index → Carrier} (argumentsEqual : ∀ index, left index = right index) : operation left = operation right
+Source: ./Interface/UniversalAlgebra/Extensionality.lean#L54
+
+
+
+Name: AlgebraicStructure.interpretOperationCongruence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {signature : AlgebraicSignature.{v, w}} (structure_ : AlgebraicStructure.{u} signature) (symbol : signature.OperationSymbol) {left right : Fin (signature.arity symbol) → structure_.Carrier} (argumentsEqual : ∀ index, left index = right index), structure_.interpretOperation symbol left = structure_.interpretOperation symbol right
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    signature : AlgebraicSignature.{v, w}
+    structure_ : AlgebraicStructure.{u} signature
+    symbol : signature.OperationSymbol
+    left right : Fin (signature.arity symbol) → structure_.Carrier
+  Prove
+    (∀ (index : Fin (signature.2 symbol)), left index = right index) → structure_.3 symbol left = structure_.3 symbol right
+Transliterated theorem: (∀ symbol ∈ signature.OperationSymbol), (∀ index, left index = right index) → structure_.interpretOperation symbol left = structure_.interpretOperation symbol right
+Logical form (Lean): {signature : AlgebraicSignature.{v, w}} (structure_ : AlgebraicStructure.{u} signature) (symbol : signature.OperationSymbol) {left right : Fin (signature.arity symbol) → structure_.Carrier} (argumentsEqual : ∀ index, left index = right index) : structure_.interpretOperation symbol left = structure_.interpretOperation symbol right
+Source: ./Interface/UniversalAlgebra/Extensionality.lean#L114
+
+
+
+Name: DistinctIrreflexive
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ (x : Carrier), ¬ Distinct x x
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    x : Carrier
+  Prove
+    (x ≤ x → False) → False
+Transliterated theorem: (∀ x ∈ Carrier), ¬ Distinct x x
+Logical form (Lean): (x : Carrier) : ¬ Distinct x x
+Source: ./Laws/Distinctness.lean#L185
+
+
+
+Name: DistinctSymmetric
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] {x y : Carrier},   LRA.Identity.Distinct x y → LRA.Identity.Distinct y x
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    x y : Carrier
+    h : Distinct x y
+  Prove
+    ((x ≤ y → False) ∧ y ≤ x) → False
+Transliterated theorem: Distinct y x
+Logical form (Lean): {x y : Carrier} (h : Distinct x y) : Distinct y x
+Source: ./Laws/Distinctness.lean#L230
+
+
+
+Name: HasNoWitnessNotHasWitness
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {P : Carrier → Prop} (h : HasNoWitness P), ¬ HasWitness P
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    P : Carrier → Prop
+  Prove
+    (((Exists fun x => P x) → False) ∧ Exists fun x => P x) → False
+Transliterated theorem: (HasNoWitness P) → ¬ HasWitness P
+Logical form (Lean): {Carrier : Type u} {P : Carrier → Prop} (h : HasNoWitness P) : ¬ HasWitness P
+Source: ./Laws/Witnesses.lean#L280
+
+
+
+Name: ExactlyOneNotAtLeastTwoWitnesses
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} [IdentityRelation Carrier] {P : Carrier → Prop} (h : ExactlyOne P), ¬ NotAtMostOne P
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    P : Carrier → Prop
+    h : ExactlyOne P
+  Prove
+    ((Exists fun x => P x ∧ (∀ (left right : Carrier), P left → P right → left ≤ right)) ∧ (Exists fun left => Exists fun right => (P left ∧ (P right ∧ (left ≤ right → False))))) → False
+Transliterated theorem: ¬ NotAtMostOne P
+Logical form (Lean): {Carrier : Type u} [IdentityRelation Carrier] {P : Carrier → Prop} (h : ExactlyOne P) : ¬ NotAtMostOne P
+Source: ./Laws/Witnesses.lean#L327
+
+
+
+Name: IdentPreservesFunctions
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] {Codomain : Type u}   [inst_1 : LRA.Identity.IdentityRelation Codomain] {x y : Carrier},   inst.Ident x y → ∀ (f : Carrier → Codomain), inst_1.Ident (f x) (f y)
+Predicate logic (unfolded):
+  Ambient
+    (Carrier, Codomain)
+  Objects
+    x y : Carrier
+    h : Ident x y
+    f : Carrier → Codomain
+  Prove
+    x ≤ y → ∀ (f : Carrier → Codomain), f x ≤ f y
+Transliterated theorem: Ident (f x) (f y)
+Logical form (Lean): {Codomain : Type u} [IdentityRelation Codomain] {x y : Carrier} (h : Ident x y) (f : Carrier → Codomain) : Ident (f x) (f y)
+Source: ./Laws/Congruence.lean#L54
+
+
+
+Name: IdentPreservesRelations
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x x' y y' : Carrier} (hx : Ident x x') (hy : Ident y y') (R : Carrier → Carrier → Prop), R x y ↔ R x' y'
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    x x' y y' : Carrier
+    hx : Ident x x'
+    hy : Ident y y'
+    R : Carrier → Carrier → Prop
+  Prove
+    R x y ↔ R x' y'
+Transliterated theorem: R x y ↔ R x' y'
+Logical form (Lean): {x x' y y' : Carrier} (hx : Ident x x') (hy : Ident y y') (R : Carrier → Carrier → Prop) : R x y ↔ R x' y'
+Source: ./Laws/Congruence.lean#L105
+
+
+
+Name: IdentPreservesOperations
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {x x' y y' : Carrier} (hx : Ident x x') (hy : Ident y y') (op : Carrier → Carrier → Carrier), Ident (op x y) (op x' y')
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    x x' y y' : Carrier
+    hx : Ident x x'
+    hy : Ident y y'
+    op : Carrier → Carrier → Carrier
+  Prove
+    (x ≤ x' ∧ y ≤ y') → ∀ (op : Carrier → Carrier → Carrier), op x y ≤ op x' y'
+Transliterated theorem: Ident (op x y) (op x' y')
+Logical form (Lean): {x x' y y' : Carrier} (hx : Ident x x') (hy : Ident y y') (op : Carrier → Carrier → Carrier) : Ident (op x y) (op x' y')
+Source: ./Laws/Congruence.lean#L156
+
+
+
+Name: toEq
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} [IdentityRelation Carrier] {x y : Carrier} (h : Ident x y), x = y
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    x y : Carrier
+    h : Ident x y
+  Prove
+    x ≤ y → x = y
+Transliterated theorem: x = y
+Logical form (Lean): {Carrier : Type u} [IdentityRelation Carrier] {x y : Carrier} (h : Ident x y) : x = y
+Source: ./Interop/Adapters.lean#L52
+
+
+
+Name: ofEq
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} [IdentityRelation Carrier] {x y : Carrier} (h : x = y), Ident x y
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    x y : Carrier
+  Prove
+    x = y → x ≤ y
+Transliterated theorem: (x = y) → Ident x y
+Logical form (Lean): {Carrier : Type u} [IdentityRelation Carrier] {x y : Carrier} (h : x = y) : Ident x y
+Source: ./Interop/Adapters.lean#L98
+
+
+
+Name: IdentIsCongruence
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {signature : LRA.Identity.AlgebraicSignature} (structure_ : LRA.Identity.AlgebraicStructure signature)   [inst : LRA.Identity.IdentityRelation structure_.Carrier], LRA.Identity.IsCongruence structure_ inst.Ident
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    signature : AlgebraicSignature.{v, w}
+    structure_ : AlgebraicStructure.{u} signature
+  Prove
+    LRA.Identity.IsCongruence structure_ inst.1
+Transliterated theorem: IsCongruence structure_ Ident
+Logical form (Lean): {signature : AlgebraicSignature.{v, w}} (structure_ : AlgebraicStructure.{u} signature) [IdentityRelation structure_.Carrier] : IsCongruence structure_ Ident
+Source: ./Laws/UniversalAlgebra.lean#L56
+
+
+
+Name: quotientByIdentToCarrier_leftInverse
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {signature : AlgebraicSignature.{v, w}} (structure_ : AlgebraicStructure.{u} signature) [IdentityRelation structure_.Carrier] (element : structure_.Carrier), quotientByIdentToCarrier structure_ (Quot.mk _ element) = element
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    signature : AlgebraicSignature.{v, w}
+    structure_ : AlgebraicStructure.{u} signature
+    element : structure_.Carrier
+  Prove
+    Quot.lift (fun a => a) ⋯ (Quot.mk element) ≤ =element
+Transliterated theorem: (∀ element ∈ structure_.Carrier), quotientByIdentToCarrier structure_ (Quot.mk _ element) = element
+Logical form (Lean): {signature : AlgebraicSignature.{v, w}} (structure_ : AlgebraicStructure.{u} signature) [IdentityRelation structure_.Carrier] (element : structure_.Carrier) : quotientByIdentToCarrier structure_ (Quot.mk _ element) = element
+Source: ./Laws/UniversalAlgebra.lean#L169
+
+
+
+Name: quotientByIdentToCarrier_rightInverse
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {signature : AlgebraicSignature.{v, w}} (structure_ : AlgebraicStructure.{u} signature) [IdentityRelation structure_.Carrier] (classOf : CongruenceQuotient structure_ Ident), Quot.mk _ (quotientByIdentToCarrier structure_ classOf) = classOf
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    signature : AlgebraicSignature.{v, w}
+    structure_ : AlgebraicStructure.{u} signature
+    classOf : CongruenceQuotient structure_ Ident
+  Prove
+    ≤ Quot.mk Quot.lift (fun a => a) ⋯ classOf ≤ = classOf
+Transliterated theorem: Quot.mk _ (quotientByIdentToCarrier structure_ classOf) = classOf
+Logical form (Lean): {signature : AlgebraicSignature.{v, w}} (structure_ : AlgebraicStructure.{u} signature) [IdentityRelation structure_.Carrier] (classOf : CongruenceQuotient structure_ Ident) : Quot.mk _ (quotientByIdentToCarrier structure_ classOf) = classOf
+Source: ./Laws/UniversalAlgebra.lean#L225
+
+
+
+Name: IsIdentityRelation.isDiagonal
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {R : Carrier → Carrier → Prop} (h : IsIdentityRelation R), ∀ left right, R left right ↔ EqualityDiagonal Carrier left right
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    R : Carrier → Carrier → Prop
+  Prove
+    ∀ left right, R left right ↔ EqualityDiagonal Carrier left right
+Transliterated theorem: (IsIdentityRelation R) → ∀ left right, R left right ↔ EqualityDiagonal Carrier left right
+Logical form (Lean): {Carrier : Type u} {R : Carrier → Carrier → Prop} (h : IsIdentityRelation R) : ∀ left right, R left right ↔ EqualityDiagonal Carrier left right
+Source: ./Laws/ModelTheory.lean#L53
+
+
+
+Name: IsIdentityRelation.iff_forall_iff_eq
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {R : Carrier → Carrier → Prop}, IsIdentityRelation R ↔ ∀ left right, R left right ↔ left = right
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    R : Carrier → Carrier → Prop
+  Prove
+    IsIdentityRelation R ↔ ∀ left right, R left right ↔ left = right
+Transliterated theorem: IsIdentityRelation R ↔ ∀ left right, R left right ↔ left = right
+Logical form (Lean): {Carrier : Type u} {R : Carrier → Carrier → Prop} : IsIdentityRelation R ↔ ∀ left right, R left right ↔ left = right
+Source: ./Laws/ModelTheory.lean#L102
+
+
+
+Name: IsIdentityRelation.iff_eq_diagonal
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} {R : Carrier → Carrier → Prop}, IsIdentityRelation R ↔ R = EqualityDiagonal Carrier
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    R : Carrier → Carrier → Prop
+  Prove
+    IsIdentityRelation R ↔ R = EqualityDiagonal Carrier
+Transliterated theorem: IsIdentityRelation R ↔ R = EqualityDiagonal Carrier
+Logical form (Lean): {Carrier : Type u} {R : Carrier → Carrier → Prop} : IsIdentityRelation R ↔ R = EqualityDiagonal Carrier
+Source: ./Laws/ModelTheory.lean#L150
+
+
+
+Name: axiomaticIsEq
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} (x y : Carrier), LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x y ↔ x = y
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    x y : Carrier
+  Prove
+    LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x y ↔ x = y
+Transliterated theorem: (∀ x y ∈ Carrier), LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x y ↔ x = y
+Logical form (Lean): {Carrier : Type u} (x y : Carrier) : LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x y ↔ x = y
+Source: ./Interop/Audit.lean#L54
 
 ## Axioms / Assumptions
 
@@ -36,9 +552,9 @@ Kind: Axiom
 State: Axiom
 Predicate logic: {Carrier : Type u} → Carrier → Carrier → Prop
 Predicate logic (unfolded): {Carrier : Type u} → Carrier → Carrier → Prop [unfold error: unavailable]
-Transliterated theorem: Carrier → Carrier → Prop
-Logical form (Lean): {Carrier : Type u} : Carrier → Carrier → Prop
-Source: ./Constructions/Axiomatic/Axioms.lean#L5
+Transliterated theorem: Carrier → Carrier → Prop end Construction.Axiomatic structure IdentityTheory {Carrier : Type u} Admissible ∈ (Carrier → Prop → Prop) R ∈ Carrier → Carrier → Prop : Prop where reflexive : ∀ x, R x x leibniz : ∀ x y, R x y → ∀ P : Carrier → Prop, Admissible P → P x → P y end LRA.Identity
+Logical form (Lean): {Carrier : Type u} : Carrier → Carrier → Prop end Construction.Axiomatic structure IdentityTheory {Carrier : Type u} (Admissible : (Carrier → Prop) → Prop) (R : Carrier → Carrier → Prop) : Prop where reflexive : ∀ x, R x x leibniz : ∀ x y, R x y → ∀ P : Carrier → Prop, Admissible P → P x → P y end LRA.Identity
+Source: ./Constructions/Axiomatic/Axioms/Common.lean#L43
 
 
 
@@ -53,9 +569,9 @@ Predicate logic (unfolded):
     x : Carrier
   Prove
     LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x x
-Transliterated theorem: (∀ x ∈ Carrier), Ax_IdentityRelation x x
-Logical form (Lean): {Carrier : Type u} (x : Carrier) : Ax_IdentityRelation x x
-Source: ./Constructions/Axiomatic/Axioms.lean#L7
+Transliterated theorem: (∀ x ∈ Carrier), Ax_IdentityRelation x x end LRA.Identity.Construction.Axiomatic
+Logical form (Lean): {Carrier : Type u} (x : Carrier) : Ax_IdentityRelation x x end LRA.Identity.Construction.Axiomatic
+Source: ./Constructions/Axiomatic/Axioms/Reflexivity/Axiom.lean#L49
 
 
 
@@ -74,146 +590,61 @@ Predicate logic (unfolded):
     LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x y → ∀ (Property : Carrier → Prop), Property x → Property y
 Transliterated theorem: Property x → Property y end LRA.Identity.Construction.Axiomatic
 Logical form (Lean): {Carrier : Type u} {x y : Carrier} (h : Ax_IdentityRelation x y) (Property : Carrier → Prop) : Property x → Property y end LRA.Identity.Construction.Axiomatic
-Source: ./Constructions/Axiomatic/Axioms.lean#L10
+Source: ./Constructions/Axiomatic/Axioms/SecondOrderLeibniz/Axiom.lean#L52
 
 ## Completed Inventory
 
 Completed entries are retained below for full-fresh regeneration and audit context,
 but they are not part of the active proof queue.
 
-Name: Distinct
+Name: IsReflexiveIdentityRelation
 Kind: Instance
 State: Completed
-Predicate logic: ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] (left right : Carrier),   inst.Ident left right → False
+Predicate logic: ∀ {Carrier : Type u} (R : Carrier → Carrier → Prop) (x : Carrier), R x x
 Predicate logic (unfolded):
   Ambient
     (implicit ambient)
   Objects
     (none)
   Prove
-    left ≤ right → False
+    R x x
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Interface/Definitions/Distinctness.lean
+Source: ./Constructions/Axiomatic/Axioms/Reflexivity/Definitions.lean
 
 
 
-Name: NotAtMostOne
+Name: FirstOrderLeibnizAxiom
 Kind: Instance
 State: Completed
-Predicate logic: ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] (P : Carrier → Prop),   Exists fun left => Exists fun right => And (P left) (And (P right) (LRA.Identity.Distinct left right))
+Predicate logic: ∀ {Carrier : Type u} (Admissible : (Carrier → Prop) → Prop) (R : Carrier → Carrier → Prop) (x y : Carrier),   R x y → ∀ (P : Carrier → Prop), And (Admissible P) (P x) → P y
 Predicate logic (unfolded):
   Ambient
     (implicit ambient)
   Objects
     (none)
   Prove
-    Exists fun left => Exists fun right => (P left ∧ (P right ∧ (left ≤ right → False)))
+    R x y → ∀ (P : Carrier → Prop), (Admissible P ∧ P x) → P y
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Interface/Definitions/Witnesses.lean
+Source: ./Constructions/Axiomatic/Axioms/FirstOrderLeibniz/Axiom.lean
 
 
 
-Name: ExactlyOne
+Name: EqualityFirstOrderTheory
 Kind: Instance
 State: Completed
-Predicate logic: ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] (P : Carrier → Prop),   And (LRA.Identity.HasWitness P) (LRA.Identity.AtMostOne P)
+Predicate logic: ∀ {Carrier : Type u_1} (Admissible : (Carrier → Prop) → Prop) (R : Carrier → Carrier → Prop),   LRA.Identity.IdentityTheory Admissible R
 Predicate logic (unfolded):
   Ambient
     (implicit ambient)
   Objects
     (none)
   Prove
-    (Exists fun x => P x ∧ (∀ (left right : Carrier), P left → P right → left ≤ right))
+    LRA.Identity.IdentityTheory Admissible R
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Interface/Definitions/Witnesses.lean
-
-
-
-Name: HasNoWitness
-Kind: Instance
-State: Completed
-Predicate logic: ∀ {Carrier : Type u} (P : Carrier → Prop), (Exists fun x => P x) → False
-Predicate logic (unfolded):
-  Ambient
-    (implicit ambient)
-  Objects
-    (none)
-  Prove
-    (Exists fun x => P x) → False
-Transliterated theorem: (signature unavailable)
-Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Interface/Definitions/Witnesses.lean
-
-
-
-Name: AtMostOne
-Kind: Instance
-State: Completed
-Predicate logic: ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] (P : Carrier → Prop) (left right : Carrier),   And (P left) (P right) → inst.Ident left right
-Predicate logic (unfolded):
-  Ambient
-    (implicit ambient)
-  Objects
-    (none)
-  Prove
-    (P left ∧ P right) → left ≤ right
-Transliterated theorem: (signature unavailable)
-Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Interface/Definitions/Witnesses.lean
-
-
-
-Name: HasWitness
-Kind: Instance
-State: Completed
-Predicate logic: ∀ {Carrier : Type u} (P : Carrier → Prop), Exists fun x => P x
-Predicate logic (unfolded):
-  Ambient
-    (implicit ambient)
-  Objects
-    (none)
-  Prove
-    Exists fun x => P x
-Transliterated theorem: (signature unavailable)
-Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Interface/Definitions/Witnesses.lean
-
-
-
-Name: AtLeastTwo
-Kind: Instance
-State: Completed
-Predicate logic: ∀ (Carrier : Type u) [inst : LRA.Identity.IdentityRelation Carrier],   Exists fun x => Exists fun y => LRA.Identity.Distinct x y
-Predicate logic (unfolded):
-  Ambient
-    (implicit ambient)
-  Objects
-    (none)
-  Prove
-    Exists fun x => Exists fun y => x ≤ y → False
-Transliterated theorem: (signature unavailable)
-Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Interface/Definitions/Cardinality.lean
-
-
-
-Name: AtMostTwo
-Kind: Instance
-State: Completed
-Predicate logic: ∀ (Carrier : Type u) [inst : LRA.Identity.IdentityRelation Carrier] (x y z : Carrier),   Or (inst.Ident x y) (Or (inst.Ident y z) (inst.Ident x z))
-Predicate logic (unfolded):
-  Ambient
-    (implicit ambient)
-  Objects
-    (none)
-  Prove
-    Or (x ≤ y)(Or (y ≤ z)(x ≤ z))
-Transliterated theorem: (signature unavailable)
-Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Interface/Definitions/Cardinality.lean
+Source: ./Constructions/Axiomatic/Axioms/FirstOrderLeibniz/Definitions.lean
 
 
 
@@ -230,7 +661,24 @@ Predicate logic (unfolded):
     True
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Interface/ModelTheory/Theory.lean
+Source: ./Constructions/Axiomatic/Axioms/SecondOrderLeibniz/Definitions.lean
+
+
+
+Name: IsIdentityRelation
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (R : Carrier → Carrier → Prop), LRA.Identity.IdentityTheory (LRA.Identity.FullLeibniz Carrier) R
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Identity.IdentityTheory (fun x => True) R
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Constructions/Axiomatic/Axioms/SecondOrderLeibniz/Definitions.lean
 
 
 
@@ -248,57 +696,6 @@ Predicate logic (unfolded):
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: ./Interface/ModelTheory/LStructure.lean
-
-
-
-Name: IdentIsDiagonal
-Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Carrier : Type u} [IdentityRelation Carrier] (x y : Carrier), Ident x y ↔ x = y
-Predicate logic (unfolded):
-  Ambient
-    (Carrier)
-  Objects
-    x y : Carrier
-  Prove
-    Ident x y ↔ x = y
-Transliterated theorem: (∀ x y ∈ Carrier), Ident x y ↔ x = y
-Logical form (Lean): {Carrier : Type u} [IdentityRelation Carrier] (x y : Carrier) : Ident x y ↔ x = y
-Source: ./Bridges/Diagonal.lean#L7
-
-
-
-Name: IdentityRelation.satisfiesIdentityTheory
-Kind: Theorem
-State: Completed
-Predicate logic: ∀ (Carrier : Type u) [inst : LRA.Identity.IdentityRelation Carrier],   LRA.Identity.IdentityTheory (LRA.Identity.FullLeibniz Carrier) inst.Ident
-Predicate logic (unfolded):
-  Ambient
-    (Carrier)
-  Objects
-    (none)
-  Prove
-    LRA.Identity.IdentityTheory (fun x => True) inst.1
-Transliterated theorem: IdentityTheory (FullLeibniz Carrier) Ident ∈ Carrier → Carrier → Prop where reflexive
-Logical form (Lean): (Carrier : Type u) [IdentityRelation Carrier] : IdentityTheory (FullLeibniz Carrier) (Ident : Carrier → Carrier → Prop) where reflexive
-Source: ./Theorems/ModelTheory.lean#L16
-
-
-
-Name: EqualityStructure.isDiagonal
-Kind: Theorem
-State: Completed
-Predicate logic: ∀ (S : EqualityStructure.{u}), ∀ left right, S.equalityInterpretation left right ↔ EqualityDiagonal S.Carrier left right
-Predicate logic (unfolded):
-  Ambient
-    (implicit ambient)
-  Objects
-    S : EqualityStructure.{u}
-  Prove
-    ∀ left right, S.equalityInterpretation left right ↔ EqualityDiagonal S.Carrier left right
-Transliterated theorem: ∀ left right, S.equalityInterpretation left right ↔ EqualityDiagonal S.Carrier left right
-Logical form (Lean): (S : EqualityStructure.{u}) : ∀ left right, S.equalityInterpretation left right ↔ EqualityDiagonal S.Carrier left right
-Source: ./Theorems/ModelTheory.lean#L22
 
 
 
@@ -370,331 +767,136 @@ Source: ./Interface/UniversalAlgebra/Congruence.lean
 
 
 
-Name: IndexedOperationCongruence
-Kind: Theorem
+Name: AtLeastTwo
+Kind: Instance
 State: Completed
-Predicate logic: ∀ {Index : Type u} {Carrier : Type v} {Codomain : Type w} (operation : (Index → Carrier) → Codomain) {left right : Index → Carrier} (argumentsEqual : ∀ index, left index = right index), operation left = operation right
-Predicate logic (unfolded):
-  Ambient
-    (Index, Carrier, Codomain)
-  Objects
-    operation : (Index → Carrier) → Codomain
-    left right : Index → Carrier
-  Prove
-    (∀ (index : Index), left index = right index) → operation left = operation right
-Transliterated theorem: (∀ index, left index = right index) → operation left = operation right
-Logical form (Lean): {Index : Type u} {Carrier : Type v} {Codomain : Type w} (operation : (Index → Carrier) → Codomain) {left right : Index → Carrier} (argumentsEqual : ∀ index, left index = right index) : operation left = operation right
-Source: ./Interface/UniversalAlgebra/Extensionality.lean#L11
-
-
-
-Name: AlgebraicStructure.interpretOperationCongruence
-Kind: Theorem
-State: Completed
-Predicate logic: ∀ {signature : AlgebraicSignature.{v, w}} (structure_ : AlgebraicStructure.{u} signature) (symbol : signature.OperationSymbol) {left right : Fin (signature.arity symbol) → structure_.Carrier} (argumentsEqual : ∀ index, left index = right index), structure_.interpretOperation symbol left = structure_.interpretOperation symbol right
+Predicate logic: ∀ (Carrier : Type u) [inst : LRA.Identity.IdentityRelation Carrier],   Exists fun x => Exists fun y => LRA.Identity.Distinct x y
 Predicate logic (unfolded):
   Ambient
     (implicit ambient)
   Objects
-    signature : AlgebraicSignature.{v, w}
-    structure_ : AlgebraicStructure.{u} signature
-    symbol : signature.OperationSymbol
-    left right : Fin (signature.arity symbol) → structure_.Carrier
+    (none)
   Prove
-    (∀ (index : Fin (signature.2 symbol)), left index = right index) → structure_.3 symbol left = structure_.3 symbol right
-Transliterated theorem: (∀ symbol ∈ signature.OperationSymbol), (∀ index, left index = right index) → structure_.interpretOperation symbol left = structure_.interpretOperation symbol right
-Logical form (Lean): {signature : AlgebraicSignature.{v, w}} (structure_ : AlgebraicStructure.{u} signature) (symbol : signature.OperationSymbol) {left right : Fin (signature.arity symbol) → structure_.Carrier} (argumentsEqual : ∀ index, left index = right index) : structure_.interpretOperation symbol left = structure_.interpretOperation symbol right
-Source: ./Interface/UniversalAlgebra/Extensionality.lean#L23
+    Exists fun x => Exists fun y => x ≤ y → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Laws/Distinctness.lean
 
 
 
-Name: IdentSymmetric
-Kind: Theorem
+Name: Distinct
+Kind: Instance
 State: Completed
-Predicate logic: ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] {x y : Carrier}, inst.Ident x y → inst.Ident y x
-Predicate logic (unfolded):
-  Ambient
-    (Carrier)
-  Objects
-    x y : Carrier
-    h : Ident x y
-  Prove
-    x ≤ y → y ≤ x
-Transliterated theorem: Ident y x
-Logical form (Lean): {x y : Carrier} (h : Ident x y) : Ident y x
-Source: ./Theorems/Equivalence.lean#L9
-
-
-
-Name: IdentTransitive
-Kind: Theorem
-State: Completed
-Predicate logic: ∀ {x y z : Carrier} (hxy : Ident x y) (hyz : Ident y z), Ident x z
-Predicate logic (unfolded):
-  Ambient
-    (Carrier)
-  Objects
-    x y z : Carrier
-    hxy : Ident x y
-    hyz : Ident y z
-  Prove
-    (x ≤ y ∧ y ≤ z) → x ≤ z
-Transliterated theorem: Ident x z
-Logical form (Lean): {x y z : Carrier} (hxy : Ident x y) (hyz : Ident y z) : Ident x z
-Source: ./Theorems/Equivalence.lean#L12
-
-
-
-Name: IdentLeibnizIff
-Kind: Theorem
-State: Completed
-Predicate logic: ∀ {x y : Carrier} (h : Ident x y) (Property : Carrier → Prop), Property x ↔ Property y
-Predicate logic (unfolded):
-  Ambient
-    (Carrier)
-  Objects
-    x y : Carrier
-    h : Ident x y
-    Property : Carrier → Prop
-  Prove
-    Property x ↔ Property y
-Transliterated theorem: Property x ↔ Property y
-Logical form (Lean): {x y : Carrier} (h : Ident x y) (Property : Carrier → Prop) : Property x ↔ Property y
-Source: ./Theorems/Equivalence.lean#L16
-
-
-
-Name: IdentPreservesFunctions
-Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] {Codomain : Type u}   [inst_1 : LRA.Identity.IdentityRelation Codomain] {x y : Carrier},   inst.Ident x y → ∀ (f : Carrier → Codomain), inst_1.Ident (f x) (f y)
-Predicate logic (unfolded):
-  Ambient
-    (Carrier, Codomain)
-  Objects
-    x y : Carrier
-    h : Ident x y
-    f : Carrier → Codomain
-  Prove
-    x ≤ y → ∀ (f : Carrier → Codomain), f x ≤ f y
-Transliterated theorem: Ident (f x) (f y)
-Logical form (Lean): {Codomain : Type u} [IdentityRelation Codomain] {x y : Carrier} (h : Ident x y) (f : Carrier → Codomain) : Ident (f x) (f y)
-Source: ./Theorems/Congruence.lean#L9
-
-
-
-Name: IdentPreservesRelations
-Kind: Theorem
-State: Completed
-Predicate logic: ∀ {x x' y y' : Carrier} (hx : Ident x x') (hy : Ident y y') (R : Carrier → Carrier → Prop), R x y ↔ R x' y'
-Predicate logic (unfolded):
-  Ambient
-    (Carrier)
-  Objects
-    x x' y y' : Carrier
-    hx : Ident x x'
-    hy : Ident y y'
-    R : Carrier → Carrier → Prop
-  Prove
-    R x y ↔ R x' y'
-Transliterated theorem: R x y ↔ R x' y'
-Logical form (Lean): {x x' y y' : Carrier} (hx : Ident x x') (hy : Ident y y') (R : Carrier → Carrier → Prop) : R x y ↔ R x' y'
-Source: ./Theorems/Congruence.lean#L14
-
-
-
-Name: IdentPreservesOperations
-Kind: Theorem
-State: Completed
-Predicate logic: ∀ {x x' y y' : Carrier} (hx : Ident x x') (hy : Ident y y') (op : Carrier → Carrier → Carrier), Ident (op x y) (op x' y')
-Predicate logic (unfolded):
-  Ambient
-    (Carrier)
-  Objects
-    x x' y y' : Carrier
-    hx : Ident x x'
-    hy : Ident y y'
-    op : Carrier → Carrier → Carrier
-  Prove
-    (x ≤ x' ∧ y ≤ y') → ∀ (op : Carrier → Carrier → Carrier), op x y ≤ op x' y'
-Transliterated theorem: Ident (op x y) (op x' y')
-Logical form (Lean): {x x' y y' : Carrier} (hx : Ident x x') (hy : Ident y y') (op : Carrier → Carrier → Carrier) : Ident (op x y) (op x' y')
-Source: ./Theorems/Congruence.lean#L24
-
-
-
-Name: DistinctIrreflexive
-Kind: Theorem
-State: Completed
-Predicate logic: ∀ (x : Carrier), ¬ Distinct x x
-Predicate logic (unfolded):
-  Ambient
-    (Carrier)
-  Objects
-    x : Carrier
-  Prove
-    (x ≤ x → False) → False
-Transliterated theorem: (∀ x ∈ Carrier), ¬ Distinct x x
-Logical form (Lean): (x : Carrier) : ¬ Distinct x x
-Source: ./Theorems/Distinctness.lean#L10
-
-
-
-Name: DistinctSymmetric
-Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] {x y : Carrier},   LRA.Identity.Distinct x y → LRA.Identity.Distinct y x
-Predicate logic (unfolded):
-  Ambient
-    (Carrier)
-  Objects
-    x y : Carrier
-    h : Distinct x y
-  Prove
-    ((x ≤ y → False) ∧ y ≤ x) → False
-Transliterated theorem: Distinct y x
-Logical form (Lean): {x y : Carrier} (h : Distinct x y) : Distinct y x
-Source: ./Theorems/Distinctness.lean#L13
-
-
-
-Name: HasNoWitnessNotHasWitness
-Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Carrier : Type u} {P : Carrier → Prop} (h : HasNoWitness P), ¬ HasWitness P
-Predicate logic (unfolded):
-  Ambient
-    (Carrier)
-  Objects
-    P : Carrier → Prop
-  Prove
-    (((Exists fun x => P x) → False) ∧ Exists fun x => P x) → False
-Transliterated theorem: (HasNoWitness P) → ¬ HasWitness P
-Logical form (Lean): {Carrier : Type u} {P : Carrier → Prop} (h : HasNoWitness P) : ¬ HasWitness P
-Source: ./Theorems/Witnesses.lean#L7
-
-
-
-Name: ExactlyOneNotAtLeastTwoWitnesses
-Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Carrier : Type u} [IdentityRelation Carrier] {P : Carrier → Prop} (h : ExactlyOne P), ¬ NotAtMostOne P
-Predicate logic (unfolded):
-  Ambient
-    (Carrier)
-  Objects
-    P : Carrier → Prop
-    h : ExactlyOne P
-  Prove
-    ((Exists fun x => P x ∧ (∀ (left right : Carrier), P left → P right → left ≤ right)) ∧ (Exists fun left => Exists fun right => (P left ∧ (P right ∧ (left ≤ right → False))))) → False
-Transliterated theorem: ¬ NotAtMostOne P
-Logical form (Lean): {Carrier : Type u} [IdentityRelation Carrier] {P : Carrier → Prop} (h : ExactlyOne P) : ¬ NotAtMostOne P
-Source: ./Theorems/Witnesses.lean#L11
-
-
-
-Name: toEq
-Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Carrier : Type u} [IdentityRelation Carrier] {x y : Carrier} (h : Ident x y), x = y
-Predicate logic (unfolded):
-  Ambient
-    (Carrier)
-  Objects
-    x y : Carrier
-    h : Ident x y
-  Prove
-    x ≤ y → x = y
-Transliterated theorem: x = y
-Logical form (Lean): {Carrier : Type u} [IdentityRelation Carrier] {x y : Carrier} (h : Ident x y) : x = y
-Source: ./Interop/Adapters.lean#L9
-
-
-
-Name: ofEq
-Kind: Theorem
-State: Completed
-Predicate logic: ∀ {Carrier : Type u} [IdentityRelation Carrier] {x y : Carrier} (h : x = y), Ident x y
-Predicate logic (unfolded):
-  Ambient
-    (Carrier)
-  Objects
-    x y : Carrier
-  Prove
-    x = y → x ≤ y
-Transliterated theorem: (x = y) → Ident x y
-Logical form (Lean): {Carrier : Type u} [IdentityRelation Carrier] {x y : Carrier} (h : x = y) : Ident x y
-Source: ./Interop/Adapters.lean#L13
-
-
-
-Name: IdentIsCongruence
-Kind: Theorem
-State: Completed
-Predicate logic: ∀ {signature : LRA.Identity.AlgebraicSignature} (structure_ : LRA.Identity.AlgebraicStructure signature)   [inst : LRA.Identity.IdentityRelation structure_.Carrier], LRA.Identity.IsCongruence structure_ inst.Ident
+Predicate logic: ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] (left right : Carrier),   inst.Ident left right → False
 Predicate logic (unfolded):
   Ambient
     (implicit ambient)
   Objects
-    signature : AlgebraicSignature.{v, w}
-    structure_ : AlgebraicStructure.{u} signature
+    (none)
   Prove
-    LRA.Identity.IsCongruence structure_ inst.1
-Transliterated theorem: IsCongruence structure_ Ident
-Logical form (Lean): {signature : AlgebraicSignature.{v, w}} (structure_ : AlgebraicStructure.{u} signature) [IdentityRelation structure_.Carrier] : IsCongruence structure_ Ident
-Source: ./Theorems/UniversalAlgebra.lean#L10
+    left ≤ right → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Laws/Distinctness.lean
 
 
 
-Name: quotientByIdentToCarrier_leftInverse
-Kind: Theorem
+Name: AtMostTwo
+Kind: Instance
 State: Completed
-Predicate logic: ∀ {signature : AlgebraicSignature.{v, w}} (structure_ : AlgebraicStructure.{u} signature) [IdentityRelation structure_.Carrier] (element : structure_.Carrier), quotientByIdentToCarrier structure_ (Quot.mk _ element) = element
+Predicate logic: ∀ (Carrier : Type u) [inst : LRA.Identity.IdentityRelation Carrier] (x y z : Carrier),   Or (inst.Ident x y) (Or (inst.Ident y z) (inst.Ident x z))
 Predicate logic (unfolded):
   Ambient
     (implicit ambient)
   Objects
-    signature : AlgebraicSignature.{v, w}
-    structure_ : AlgebraicStructure.{u} signature
-    element : structure_.Carrier
+    (none)
   Prove
-    Quot.lift (fun a => a) ⋯ (Quot.mk element) ≤ =element
-Transliterated theorem: (∀ element ∈ structure_.Carrier), quotientByIdentToCarrier structure_ (Quot.mk _ element) = element
-Logical form (Lean): {signature : AlgebraicSignature.{v, w}} (structure_ : AlgebraicStructure.{u} signature) [IdentityRelation structure_.Carrier] (element : structure_.Carrier) : quotientByIdentToCarrier structure_ (Quot.mk _ element) = element
-Source: ./Theorems/UniversalAlgebra.lean#L32
+    Or (x ≤ y)(Or (y ≤ z)(x ≤ z))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Laws/Distinctness.lean
 
 
 
-Name: quotientByIdentToCarrier_rightInverse
-Kind: Theorem
+Name: NotAtMostOne
+Kind: Instance
 State: Completed
-Predicate logic: ∀ {signature : AlgebraicSignature.{v, w}} (structure_ : AlgebraicStructure.{u} signature) [IdentityRelation structure_.Carrier] (classOf : CongruenceQuotient structure_ Ident), Quot.mk _ (quotientByIdentToCarrier structure_ classOf) = classOf
+Predicate logic: ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] (P : Carrier → Prop),   Exists fun left => Exists fun right => And (P left) (And (P right) (LRA.Identity.Distinct left right))
 Predicate logic (unfolded):
   Ambient
     (implicit ambient)
   Objects
-    signature : AlgebraicSignature.{v, w}
-    structure_ : AlgebraicStructure.{u} signature
-    classOf : CongruenceQuotient structure_ Ident
+    (none)
   Prove
-    ≤ Quot.mk Quot.lift (fun a => a) ⋯ classOf ≤ = classOf
-Transliterated theorem: Quot.mk _ (quotientByIdentToCarrier structure_ classOf) = classOf
-Logical form (Lean): {signature : AlgebraicSignature.{v, w}} (structure_ : AlgebraicStructure.{u} signature) [IdentityRelation structure_.Carrier] (classOf : CongruenceQuotient structure_ Ident) : Quot.mk _ (quotientByIdentToCarrier structure_ classOf) = classOf
-Source: ./Theorems/UniversalAlgebra.lean#L40
+    Exists fun left => Exists fun right => (P left ∧ (P right ∧ (left ≤ right → False)))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Laws/Witnesses.lean
 
 
 
-Name: axiomaticIsEq
-Kind: Theorem
+Name: ExactlyOne
+Kind: Instance
 State: Completed
-Predicate logic: ∀ {Carrier : Type u} (x y : Carrier), LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x y ↔ x = y
+Predicate logic: ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] (P : Carrier → Prop),   And (LRA.Identity.HasWitness P) (LRA.Identity.AtMostOne P)
 Predicate logic (unfolded):
   Ambient
-    (Carrier)
+    (implicit ambient)
   Objects
-    x y : Carrier
+    (none)
   Prove
-    LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x y ↔ x = y
-Transliterated theorem: (∀ x y ∈ Carrier), LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x y ↔ x = y
-Logical form (Lean): {Carrier : Type u} (x y : Carrier) : LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x y ↔ x = y
-Source: ./Interop/Audit.lean#L11
+    (Exists fun x => P x ∧ (∀ (left right : Carrier), P left → P right → left ≤ right))
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Laws/Witnesses.lean
+
+
+
+Name: HasNoWitness
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (P : Carrier → Prop), (Exists fun x => P x) → False
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun x => P x) → False
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Laws/Witnesses.lean
+
+
+
+Name: AtMostOne
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] (P : Carrier → Prop) (left right : Carrier),   And (P left) (P right) → inst.Ident left right
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (P left ∧ P right) → left ≤ right
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Laws/Witnesses.lean
+
+
+
+Name: HasWitness
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (P : Carrier → Prop), Exists fun x => P x
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun x => P x
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: ./Laws/Witnesses.lean

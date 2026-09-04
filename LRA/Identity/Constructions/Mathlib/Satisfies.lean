@@ -1,4 +1,4 @@
-import LRA.Identity.Interface.Definitions.IdentityRelation
+import LRA.Identity.Constructions.Axiomatic.Axioms.SecondOrderLeibniz.Definitions
 
 namespace LRA.Identity.Construction.Mathlib
 

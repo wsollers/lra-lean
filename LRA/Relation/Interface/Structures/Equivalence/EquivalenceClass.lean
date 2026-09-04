@@ -1,5 +1,5 @@
 import LRA.Relation.Interface.Structures.Equivalence.Definition
-import LRA.Identity.Interface.Definitions.Witnesses
+import LRA.Identity.Laws.Witnesses
 import LRA.Identity.Constructions.Mathlib
 import LRA.Set.Interface.Laws.Membership
 

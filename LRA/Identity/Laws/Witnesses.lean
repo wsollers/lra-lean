@@ -1,89 +1,11 @@
-import LRA.Identity.Laws
+import LRA.Identity.Laws.Distinctness
 
-namespace LRA.Book.Identity
+namespace LRA.Identity
+
+universe u
 
 /--
-`Ident` TODO
-
-Predicate logic:
-
-  abbrev Ident := LRA.Identity.Ident
-
-Predicate logic (unfolded):
-
-  abbrev Ident := LRA.Identity.Ident (source fallback; no compiled unfold data available)
-
-Logical form (Lean):
-
-```lean
-abbrev Ident := LRA.Identity.Ident
-```
-
-Type-theoretic form:
-
-  TODO
-
-Proof use:
-
-  TODO
-
-After unfold / common proof state:
-
-  TODO
-
-Common confusions:
-
-  TODO
-
-Related proof moves: unfold
-
--/
-abbrev Ident := LRA.Identity.Ident
-/--
-`Distinct` TODO
-
-Predicate logic:
-
-  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] (left right : Carrier), inst.Ident left right → False
-
-Predicate logic (unfolded):
-
-  Ambient
-    (implicit ambient)
-  Objects
-    (none)
-  Prove
-    left ≤ right → False
-
-Logical form (Lean):
-
-```lean
-def Distinct {Carrier : Type u} [IdentityRelation Carrier] (left right : Carrier) : Prop :=
-  ¬ Ident left right
-```
-
-Type-theoretic form:
-
-  TODO
-
-Proof use:
-
-  TODO
-
-After unfold / common proof state:
-
-  TODO
-
-Common confusions:
-
-  TODO
-
-Related proof moves: unfold
-
--/
-abbrev Distinct := LRA.Identity.Distinct
-/--
-`HasWitness` `HasWitness P` states that at least one element of `Carrier` satisfies `P`.
+`HasWitness` TODO
 
 Predicate logic:
 
@@ -121,10 +43,12 @@ Common confusions:
 
   TODO
 
-Related proof moves: unfold
+Related proof moves: intro, use, rcases, unfold
 
 -/
-abbrev HasWitness := LRA.Identity.HasWitness
+def HasWitness {Carrier : Type u} (P : Carrier → Prop) : Prop :=
+  ∃ x, P x
+
 /--
 `HasNoWitness` TODO
 
@@ -164,12 +88,18 @@ Common confusions:
 
   TODO
 
-Related proof moves: unfold
+Related proof moves: intro, use, rcases, unfold
 
 -/
-abbrev HasNoWitness := LRA.Identity.HasNoWitness
+def HasNoWitness {Carrier : Type u} (P : Carrier → Prop) : Prop :=
+  ¬ ∃ x, P x
+
+section NeedsIdentity
+
+variable {Carrier : Type u} [IdentityRelation Carrier]
+
 /--
-`AtMostOne` `AtMostOne P` states that any two witnesses of `P` are identified by the active `IdentityRelation`.  It does not assert that a witness exists.
+`AtMostOne` TODO
 
 Predicate logic:
 
@@ -207,10 +137,12 @@ Common confusions:
 
   TODO
 
-Related proof moves: unfold
+Related proof moves: intro, unfold
 
 -/
-abbrev AtMostOne := LRA.Identity.AtMostOne
+def AtMostOne (P : Carrier → Prop) : Prop :=
+  ∀ left right, P left → P right → Ident left right
+
 /--
 `NotAtMostOne` TODO
 
@@ -250,12 +182,14 @@ Common confusions:
 
   TODO
 
-Related proof moves: unfold
+Related proof moves: intro, constructor, cases, rcases, use, unfold
 
 -/
-abbrev NotAtMostOne := LRA.Identity.NotAtMostOne
+def NotAtMostOne (P : Carrier → Prop) : Prop :=
+  ∃ left right, P left ∧ P right ∧ Distinct left right
+
 /--
-`ExactlyOne` `ExactlyOne P` states that `P` has a witness and that all its witnesses are identified by the active `IdentityRelation`.  Use this identity-polymorphic notion when uniqueness should be expressed via `Ident`; use Lean's `ExistsAndUnique` when native equality is intended.
+`ExactlyOne` TODO
 
 Predicate logic:
 
@@ -293,31 +227,35 @@ Common confusions:
 
   TODO
 
-Related proof moves: unfold
+Related proof moves: intro, constructor, cases, rcases, unfold
 
 -/
-abbrev ExactlyOne := LRA.Identity.ExactlyOne
+def ExactlyOne (P : Carrier → Prop) : Prop :=
+  HasWitness P ∧ AtMostOne P
+
+end NeedsIdentity
+
 /--
-`AtLeastTwo` TODO
+`HasNoWitnessNotHasWitness` TODO
 
 Predicate logic:
 
-  ∀ (Carrier : Type u) [inst : LRA.Identity.IdentityRelation Carrier], Exists fun x => Exists fun y => LRA.Identity.Distinct x y
+  (HasNoWitness P) → ¬ HasWitness P
 
 Predicate logic (unfolded):
 
   Ambient
-    (implicit ambient)
+    (Carrier)
   Objects
-    (none)
+    P : Carrier → Prop
   Prove
-    Exists fun x => Exists fun y => x ≤ y → False
+    (((Exists fun x => P x) → False) ∧ Exists fun x => P x) → False
 
 Logical form (Lean):
 
 ```lean
-def AtLeastTwo (Carrier : Type u) [IdentityRelation Carrier] : Prop :=
-  ∃ x y : Carrier, Distinct x y
+theorem HasNoWitnessNotHasWitness {Carrier : Type u} {P : Carrier → Prop}
+    (h : HasNoWitness P) : ¬ HasWitness P
 ```
 
 Type-theoretic form:
@@ -336,31 +274,35 @@ Common confusions:
 
   TODO
 
-Related proof moves: unfold
+Related proof moves: intro
 
 -/
-abbrev AtLeastTwo := LRA.Identity.AtLeastTwo
+theorem HasNoWitnessNotHasWitness {Carrier : Type u} {P : Carrier → Prop}
+    (h : HasNoWitness P) : ¬ HasWitness P :=
+  by sorry
+
 /--
-`AtMostTwo` TODO
+`ExactlyOneNotAtLeastTwoWitnesses` TODO
 
 Predicate logic:
 
-  ∀ (Carrier : Type u) [inst : LRA.Identity.IdentityRelation Carrier] (x y z : Carrier), Or (inst.Ident x y) (Or (inst.Ident y z) (inst.Ident x z))
+  ¬ NotAtMostOne P
 
 Predicate logic (unfolded):
 
   Ambient
-    (implicit ambient)
+    (Carrier)
   Objects
-    (none)
+    P : Carrier → Prop
+    h : ExactlyOne P
   Prove
-    Or (x ≤ y)(Or (y ≤ z)(x ≤ z))
+    ((Exists fun x => P x ∧ (∀ (left right : Carrier), P left → P right → left ≤ right)) ∧ (Exists fun left => Exists fun right => (P left ∧ (P right ∧ (left ≤ right → False))))) → False
 
 Logical form (Lean):
 
 ```lean
-def AtMostTwo (Carrier : Type u) [IdentityRelation Carrier] : Prop :=
-  ∀ x y z : Carrier, Ident x y ∨ Ident y z ∨ Ident x z
+theorem ExactlyOneNotAtLeastTwoWitnesses {Carrier : Type u} [IdentityRelation Carrier]
+    {P : Carrier → Prop} (h : ExactlyOne P) : ¬ NotAtMostOne P
 ```
 
 Type-theoretic form:
@@ -379,9 +321,11 @@ Common confusions:
 
   TODO
 
-Related proof moves: unfold
+Related proof moves: intro
 
 -/
-abbrev AtMostTwo := LRA.Identity.AtMostTwo
+theorem ExactlyOneNotAtLeastTwoWitnesses {Carrier : Type u} [IdentityRelation Carrier]
+    {P : Carrier → Prop} (h : ExactlyOne P) : ¬ NotAtMostOne P :=
+  by sorry
 
-end LRA.Book.Identity
+end LRA.Identity

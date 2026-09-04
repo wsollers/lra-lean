@@ -1,5 +1,5 @@
 import LRA.Set.Constructions.ZFCSet.Primitives
-import LRA.Identity.Interface.Definitions.Witnesses
+import LRA.Identity.Laws.Witnesses
 import LRA.Identity.Constructions.Mathlib
 
 namespace LRA.Set.Constructions.ZFCSet.Axioms

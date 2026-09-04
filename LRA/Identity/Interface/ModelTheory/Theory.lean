@@ -1,2 +1,2 @@
-import LRA.Identity.Interface.Logic.Theory
-import LRA.Identity.Interface.Logic.SecondOrder.Theory
+import LRA.Identity.Constructions.Axiomatic.Axioms.Common
+import LRA.Identity.Constructions.Axiomatic.Axioms.SecondOrderLeibniz.Definitions

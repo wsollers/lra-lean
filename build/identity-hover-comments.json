@@ -1,0 +1,2393 @@
+{
+  "schema_version": 1,
+  "comment_template": [
+    "Meaning",
+    "Predicate logic",
+    "Predicate logic (unfolded)",
+    "Logical form (Lean)",
+    "Type-theoretic form",
+    "Proof use",
+    "After unfold / common proof state",
+    "Common confusions",
+    "Related proof moves"
+  ],
+  "declarations": [
+    {
+      "id": "LRA/Identity/Constructions/Axiomatic/Axioms/Common.lean:43:Ax_IdentityRelation",
+      "name": "Ax_IdentityRelation",
+      "kind": "axiom",
+      "file": "LRA/Identity/Constructions/Axiomatic/Axioms/Common.lean",
+      "line": 43,
+      "declaration": "axiom Ax_IdentityRelation {Carrier : Type u} : Carrier → Carrier → Prop",
+      "formal_statement": "axiom Ax_IdentityRelation {Carrier : Type u} : Carrier → Carrier → Prop",
+      "predicate_logic": "Carrier → Carrier → Prop end Construction.Axiomatic structure IdentityTheory {Carrier : Type u} Admissible ∈ (Carrier → Prop → Prop) R ∈ Carrier → Carrier → Prop : Prop where reflexive : ∀ x, R x x leibniz : ∀ x y, R x y → ∀ P : Carrier → Prop, Admissible P → P x → P y end LRA.Identity",
+      "predicate_logic_unfolded": "{Carrier : Type u} → Carrier → Carrier → Prop (compiled unfold unavailable; showing predicate logic)",
+      "existing_doc": "",
+      "detected_connectives": [
+        "→",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro"
+      ],
+      "generated_comment": "/--\n`Ax_IdentityRelation` TODO\n\nPredicate logic:\n\n  Carrier → Carrier → Prop end Construction.Axiomatic structure IdentityTheory {Carrier : Type u} Admissible ∈ (Carrier → Prop → Prop) R ∈ Carrier → Carrier → Prop : Prop where reflexive : ∀ x, R x x leibniz : ∀ x y, R x y → ∀ P : Carrier → Prop, Admissible P → P x → P y end LRA.Identity\n\nPredicate logic (unfolded):\n\n  {Carrier : Type u} → Carrier → Carrier → Prop (compiled unfold unavailable; showing predicate logic)\n\nLogical form (Lean):\n\n```lean\naxiom Ax_IdentityRelation {Carrier : Type u} : Carrier → Carrier → Prop\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Constructions/Axiomatic/Axioms/Common.lean:95:IdentityTheory",
+      "name": "IdentityTheory",
+      "kind": "structure",
+      "file": "LRA/Identity/Constructions/Axiomatic/Axioms/Common.lean",
+      "line": 95,
+      "declaration": "structure IdentityTheory {Carrier : Type u}\n    (Admissible : (Carrier → Prop) → Prop)\n    (R : Carrier → Carrier → Prop) : Prop where\n  reflexive : ∀ x, R x x\n  leibniz : ∀ x y, R x y → ∀ P : Carrier → Prop, Admissible P → P x → P y",
+      "formal_statement": "structure IdentityTheory {Carrier : Type u}\n    (Admissible : (Carrier → Prop) → Prop)\n    (R : Carrier → Carrier → Prop) : Prop where\n  reflexive : ∀ x, R x x\n  leibniz : ∀ x y, R x y → ∀ P : Carrier → Prop, Admissible P → P x → P y",
+      "predicate_logic": "structure IdentityTheory {Carrier : Type u}\n    (Admissible : (Carrier → Prop) → Prop)\n    (R : Carrier → Carrier → Prop) : Prop where\n  reflexive : ∀ x, R x x\n  leibniz : ∀ x y, R x y → ∀ P : Carrier → Prop, Admissible P → P x → P y",
+      "predicate_logic_unfolded": "structure IdentityTheory {Carrier : Type u}\n    (Admissible : (Carrier → Prop) → Prop)\n    (R : Carrier → Carrier → Prop) : Prop where\n  reflexive : ∀ x, R x x\n  leibniz : ∀ x y, R x y → ∀ P : Carrier → Prop, Admissible P → P x → P y (source fallback; no compiled unfold data available)",
+      "existing_doc": "",
+      "detected_connectives": [
+        "∀",
+        "→",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro"
+      ],
+      "generated_comment": "/--\n`IdentityTheory` TODO\n\nPredicate logic:\n\n  structure IdentityTheory {Carrier : Type u}\n      (Admissible : (Carrier → Prop) → Prop)\n      (R : Carrier → Carrier → Prop) : Prop where\n    reflexive : ∀ x, R x x\n    leibniz : ∀ x y, R x y → ∀ P : Carrier → Prop, Admissible P → P x → P y\n\nPredicate logic (unfolded):\n\n  structure IdentityTheory {Carrier : Type u}\n      (Admissible : (Carrier → Prop) → Prop)\n      (R : Carrier → Carrier → Prop) : Prop where\n    reflexive : ∀ x, R x x\n    leibniz : ∀ x y, R x y → ∀ P : Carrier → Prop, Admissible P → P x → P y (source fallback; no compiled unfold data available)\n\nLogical form (Lean):\n\n```lean\nstructure IdentityTheory {Carrier : Type u}\n    (Admissible : (Carrier → Prop) → Prop)\n    (R : Carrier → Carrier → Prop) : Prop where\n  reflexive : ∀ x, R x x\n  leibniz : ∀ x y, R x y → ∀ P : Carrier → Prop, Admissible P → P x → P y\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Constructions/Axiomatic/Axioms/FirstOrderLeibniz/Axiom.lean:49:FirstOrderLeibnizAxiom",
+      "name": "FirstOrderLeibnizAxiom",
+      "kind": "def",
+      "file": "LRA/Identity/Constructions/Axiomatic/Axioms/FirstOrderLeibniz/Axiom.lean",
+      "line": 49,
+      "declaration": "def FirstOrderLeibnizAxiom {Carrier : Type u}\n    (Admissible : (Carrier → Prop) → Prop)\n    (R : Carrier → Carrier → Prop) : Prop :=\n  ∀ x y, R x y → ∀ P : Carrier → Prop, Admissible P → P x → P y",
+      "formal_statement": "def FirstOrderLeibnizAxiom {Carrier : Type u}\n    (Admissible : (Carrier → Prop) → Prop)\n    (R : Carrier → Carrier → Prop) : Prop :=\n  ∀ x y, R x y → ∀ P : Carrier → Prop, Admissible P → P x → P y",
+      "predicate_logic": "∀ {Carrier : Type u} (Admissible : (Carrier → Prop) → Prop) (R : Carrier → Carrier → Prop) (x y : Carrier), R x y → ∀ (P : Carrier → Prop), (Admissible P ∧ P x) → P y",
+      "predicate_logic_unfolded": "Ambient\n  (implicit ambient)\nObjects\n  (none)\nProve\n  R x y → ∀ (P : Carrier → Prop), (Admissible P ∧ P x) → P y",
+      "existing_doc": "",
+      "detected_connectives": [
+        "∀",
+        "→",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro",
+        "unfold"
+      ],
+      "generated_comment": "/--\n`FirstOrderLeibnizAxiom` TODO\n\nPredicate logic:\n\n  ∀ {Carrier : Type u} (Admissible : (Carrier → Prop) → Prop) (R : Carrier → Carrier → Prop) (x y : Carrier), R x y → ∀ (P : Carrier → Prop), (Admissible P ∧ P x) → P y\n\nPredicate logic (unfolded):\n\n  Ambient\n    (implicit ambient)\n  Objects\n    (none)\n  Prove\n    R x y → ∀ (P : Carrier → Prop), (Admissible P ∧ P x) → P y\n\nLogical form (Lean):\n\n```lean\ndef FirstOrderLeibnizAxiom {Carrier : Type u}\n    (Admissible : (Carrier → Prop) → Prop)\n    (R : Carrier → Carrier → Prop) : Prop :=\n  ∀ x y, R x y → ∀ P : Carrier → Prop, Admissible P → P x → P y\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro, unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro",
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Constructions/Axiomatic/Axioms/FirstOrderLeibniz/Definitions.lean:51:EqualityFirstOrderTheory",
+      "name": "EqualityFirstOrderTheory",
+      "kind": "abbrev",
+      "file": "LRA/Identity/Constructions/Axiomatic/Axioms/FirstOrderLeibniz/Definitions.lean",
+      "line": 51,
+      "declaration": "abbrev EqualityFirstOrderTheory {Carrier : Type _}\n    (Admissible : (Carrier → Prop) → Prop)\n    (R : Carrier → Carrier → Prop) : Prop :=\n  IdentityTheory Admissible R",
+      "formal_statement": "abbrev EqualityFirstOrderTheory {Carrier : Type _}\n    (Admissible : (Carrier → Prop) → Prop)\n    (R : Carrier → Carrier → Prop) : Prop :=\n  IdentityTheory Admissible R",
+      "predicate_logic": "∀ {Carrier : Type u_1} (Admissible : (Carrier → Prop) → Prop) (R : Carrier → Carrier → Prop), LRA.Identity.IdentityTheory Admissible R",
+      "predicate_logic_unfolded": "Ambient\n  (implicit ambient)\nObjects\n  (none)\nProve\n  LRA.Identity.IdentityTheory Admissible R",
+      "existing_doc": "",
+      "detected_connectives": [
+        "→",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro",
+        "unfold"
+      ],
+      "generated_comment": "/--\n`EqualityFirstOrderTheory` TODO\n\nPredicate logic:\n\n  ∀ {Carrier : Type u_1} (Admissible : (Carrier → Prop) → Prop) (R : Carrier → Carrier → Prop), LRA.Identity.IdentityTheory Admissible R\n\nPredicate logic (unfolded):\n\n  Ambient\n    (implicit ambient)\n  Objects\n    (none)\n  Prove\n    LRA.Identity.IdentityTheory Admissible R\n\nLogical form (Lean):\n\n```lean\nabbrev EqualityFirstOrderTheory {Carrier : Type _}\n    (Admissible : (Carrier → Prop) → Prop)\n    (R : Carrier → Carrier → Prop) : Prop :=\n  IdentityTheory Admissible R\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro, unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro",
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Constructions/Axiomatic/Axioms/FirstOrderLeibniz/Satisfies.lean:53:axiomaticIdentityRelation_satisfiesFirstOrderLeibniz",
+      "name": "axiomaticIdentityRelation_satisfiesFirstOrderLeibniz",
+      "kind": "theorem",
+      "file": "LRA/Identity/Constructions/Axiomatic/Axioms/FirstOrderLeibniz/Satisfies.lean",
+      "line": 53,
+      "declaration": "theorem axiomaticIdentityRelation_satisfiesFirstOrderLeibniz\n    (Carrier : Type u) (Admissible : (Carrier → Prop) → Prop) :\n    LRA.Identity.EqualityFirstOrderTheory Admissible\n      (Ax_IdentityRelation : Carrier → Carrier → Prop) := by\n  sorry",
+      "formal_statement": "theorem axiomaticIdentityRelation_satisfiesFirstOrderLeibniz\n    (Carrier : Type u) (Admissible : (Carrier → Prop) → Prop) :\n    LRA.Identity.EqualityFirstOrderTheory Admissible\n      (Ax_IdentityRelation : Carrier → Carrier → Prop)",
+      "predicate_logic": "LRA.Identity.EqualityFirstOrderTheory Admissible Ax_IdentityRelation ∈ Carrier → Carrier → Prop",
+      "predicate_logic_unfolded": "Ambient\n  (Carrier)\nObjects\n  Admissible : (Carrier → Prop) → Prop\nProve\n  LRA.Identity.IdentityTheory Admissible LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation",
+      "existing_doc": "",
+      "detected_connectives": [
+        "→",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro"
+      ],
+      "generated_comment": "/--\n`axiomaticIdentityRelation_satisfiesFirstOrderLeibniz` TODO\n\nPredicate logic:\n\n  LRA.Identity.EqualityFirstOrderTheory Admissible Ax_IdentityRelation ∈ Carrier → Carrier → Prop\n\nPredicate logic (unfolded):\n\n  Ambient\n    (Carrier)\n  Objects\n    Admissible : (Carrier → Prop) → Prop\n  Prove\n    LRA.Identity.IdentityTheory Admissible LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation\n\nLogical form (Lean):\n\n```lean\ntheorem axiomaticIdentityRelation_satisfiesFirstOrderLeibniz\n    (Carrier : Type u) (Admissible : (Carrier → Prop) → Prop) :\n    LRA.Identity.EqualityFirstOrderTheory Admissible\n      (Ax_IdentityRelation : Carrier → Carrier → Prop)\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Constructions/Axiomatic/Axioms/FirstOrderLeibniz/Theorems.lean:53:EqualityFirstOrderTheory.leibnizAxiom",
+      "name": "EqualityFirstOrderTheory.leibnizAxiom",
+      "kind": "theorem",
+      "file": "LRA/Identity/Constructions/Axiomatic/Axioms/FirstOrderLeibniz/Theorems.lean",
+      "line": 53,
+      "declaration": "theorem EqualityFirstOrderTheory.leibnizAxiom {Carrier : Type u}\n    {Admissible : (Carrier → Prop) → Prop} {R : Carrier → Carrier → Prop}\n    (h : EqualityFirstOrderTheory Admissible R) :\n    FirstOrderLeibnizAxiom Admissible R := by\n  sorry",
+      "formal_statement": "theorem EqualityFirstOrderTheory.leibnizAxiom {Carrier : Type u}\n    {Admissible : (Carrier → Prop) → Prop} {R : Carrier → Carrier → Prop}\n    (h : EqualityFirstOrderTheory Admissible R) :\n    FirstOrderLeibnizAxiom Admissible R",
+      "predicate_logic": "FirstOrderLeibnizAxiom Admissible R",
+      "predicate_logic_unfolded": "Ambient\n  (Carrier)\nObjects\n  Admissible : (Carrier → Prop) → Prop\n  R : Carrier → Carrier → Prop\n  h : EqualityFirstOrderTheory Admissible R\nProve\n  LRA.Identity.IdentityTheory Admissible R → ∀ (x y : Carrier), R x y → ∀ (P : Carrier → Prop), (Admissible P ∧ P x) → P y",
+      "existing_doc": "",
+      "detected_connectives": [
+        "→",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro"
+      ],
+      "generated_comment": "/--\n`EqualityFirstOrderTheory.leibnizAxiom` TODO\n\nPredicate logic:\n\n  FirstOrderLeibnizAxiom Admissible R\n\nPredicate logic (unfolded):\n\n  Ambient\n    (Carrier)\n  Objects\n    Admissible : (Carrier → Prop) → Prop\n    R : Carrier → Carrier → Prop\n    h : EqualityFirstOrderTheory Admissible R\n  Prove\n    LRA.Identity.IdentityTheory Admissible R → ∀ (x y : Carrier), R x y → ∀ (P : Carrier → Prop), (Admissible P ∧ P x) → P y\n\nLogical form (Lean):\n\n```lean\ntheorem EqualityFirstOrderTheory.leibnizAxiom {Carrier : Type u}\n    {Admissible : (Carrier → Prop) → Prop} {R : Carrier → Carrier → Prop}\n    (h : EqualityFirstOrderTheory Admissible R) :\n    FirstOrderLeibnizAxiom Admissible R\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Constructions/Axiomatic/Axioms/Reflexivity/Axiom.lean:49:Ax_EqualityReflexivity",
+      "name": "Ax_EqualityReflexivity",
+      "kind": "axiom",
+      "file": "LRA/Identity/Constructions/Axiomatic/Axioms/Reflexivity/Axiom.lean",
+      "line": 49,
+      "declaration": "axiom Ax_EqualityReflexivity {Carrier : Type u} (x : Carrier) :\n    Ax_IdentityRelation x x",
+      "formal_statement": "axiom Ax_EqualityReflexivity {Carrier : Type u} (x : Carrier) :\n    Ax_IdentityRelation x x",
+      "predicate_logic": "(∀ x ∈ Carrier), Ax_IdentityRelation x x end LRA.Identity.Construction.Axiomatic",
+      "predicate_logic_unfolded": "Ambient\n  (Carrier)\nObjects\n  x : Carrier\nProve\n  LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x x",
+      "existing_doc": "",
+      "detected_connectives": [],
+      "suggested_moves": [],
+      "generated_comment": "/--\n`Ax_EqualityReflexivity` TODO\n\nPredicate logic:\n\n  (∀ x ∈ Carrier), Ax_IdentityRelation x x end LRA.Identity.Construction.Axiomatic\n\nPredicate logic (unfolded):\n\n  Ambient\n    (Carrier)\n  Objects\n    x : Carrier\n  Prove\n    LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x x\n\nLogical form (Lean):\n\n```lean\naxiom Ax_EqualityReflexivity {Carrier : Type u} (x : Carrier) :\n    Ax_IdentityRelation x x\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: TODO\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Constructions/Axiomatic/Axioms/Reflexivity/Definitions.lean:48:IsReflexiveIdentityRelation",
+      "name": "IsReflexiveIdentityRelation",
+      "kind": "def",
+      "file": "LRA/Identity/Constructions/Axiomatic/Axioms/Reflexivity/Definitions.lean",
+      "line": 48,
+      "declaration": "def IsReflexiveIdentityRelation {Carrier : Type u}\n    (R : Carrier → Carrier → Prop) : Prop :=\n  ∀ x, R x x",
+      "formal_statement": "def IsReflexiveIdentityRelation {Carrier : Type u}\n    (R : Carrier → Carrier → Prop) : Prop :=\n  ∀ x, R x x",
+      "predicate_logic": "∀ {Carrier : Type u} (R : Carrier → Carrier → Prop) (x : Carrier), R x x",
+      "predicate_logic_unfolded": "Ambient\n  (implicit ambient)\nObjects\n  (none)\nProve\n  R x x",
+      "existing_doc": "",
+      "detected_connectives": [
+        "∀",
+        "→",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro",
+        "unfold"
+      ],
+      "generated_comment": "/--\n`IsReflexiveIdentityRelation` TODO\n\nPredicate logic:\n\n  ∀ {Carrier : Type u} (R : Carrier → Carrier → Prop) (x : Carrier), R x x\n\nPredicate logic (unfolded):\n\n  Ambient\n    (implicit ambient)\n  Objects\n    (none)\n  Prove\n    R x x\n\nLogical form (Lean):\n\n```lean\ndef IsReflexiveIdentityRelation {Carrier : Type u}\n    (R : Carrier → Carrier → Prop) : Prop :=\n  ∀ x, R x x\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro, unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro",
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Constructions/Axiomatic/Axioms/Reflexivity/Satisfies.lean:49:axiomaticIdentityRelation_satisfiesReflexivity",
+      "name": "axiomaticIdentityRelation_satisfiesReflexivity",
+      "kind": "theorem",
+      "file": "LRA/Identity/Constructions/Axiomatic/Axioms/Reflexivity/Satisfies.lean",
+      "line": 49,
+      "declaration": "theorem axiomaticIdentityRelation_satisfiesReflexivity (Carrier : Type u) :\n    ∀ x : Carrier, Ax_IdentityRelation x x := by\n  sorry",
+      "formal_statement": "theorem axiomaticIdentityRelation_satisfiesReflexivity (Carrier : Type u) :\n    ∀ x : Carrier, Ax_IdentityRelation x x",
+      "predicate_logic": "∀ x : Carrier, Ax_IdentityRelation x x",
+      "predicate_logic_unfolded": "Ambient\n  (Carrier)\nObjects\n  (none)\nProve\n  LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x x",
+      "existing_doc": "",
+      "detected_connectives": [
+        "∀"
+      ],
+      "suggested_moves": [
+        "intro"
+      ],
+      "generated_comment": "/--\n`axiomaticIdentityRelation_satisfiesReflexivity` TODO\n\nPredicate logic:\n\n  ∀ x : Carrier, Ax_IdentityRelation x x\n\nPredicate logic (unfolded):\n\n  Ambient\n    (Carrier)\n  Objects\n    (none)\n  Prove\n    LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x x\n\nLogical form (Lean):\n\n```lean\ntheorem axiomaticIdentityRelation_satisfiesReflexivity (Carrier : Type u) :\n    ∀ x : Carrier, Ax_IdentityRelation x x\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Constructions/Axiomatic/Axioms/Reflexivity/Theorems.lean:50:axiomaticIdentityRelation_isReflexive",
+      "name": "axiomaticIdentityRelation_isReflexive",
+      "kind": "theorem",
+      "file": "LRA/Identity/Constructions/Axiomatic/Axioms/Reflexivity/Theorems.lean",
+      "line": 50,
+      "declaration": "theorem axiomaticIdentityRelation_isReflexive (Carrier : Type u) :\n    LRA.Identity.IsReflexiveIdentityRelation (Ax_IdentityRelation : Carrier → Carrier → Prop) := by\n  sorry",
+      "formal_statement": "theorem axiomaticIdentityRelation_isReflexive (Carrier : Type u) :\n    LRA.Identity.IsReflexiveIdentityRelation (Ax_IdentityRelation : Carrier → Carrier → Prop)",
+      "predicate_logic": "LRA.Identity.IsReflexiveIdentityRelation Ax_IdentityRelation ∈ Carrier → Carrier → Prop",
+      "predicate_logic_unfolded": "Ambient\n  (Carrier)\nObjects\n  (none)\nProve\n  LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x x",
+      "existing_doc": "",
+      "detected_connectives": [
+        "→",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro"
+      ],
+      "generated_comment": "/--\n`axiomaticIdentityRelation_isReflexive` TODO\n\nPredicate logic:\n\n  LRA.Identity.IsReflexiveIdentityRelation Ax_IdentityRelation ∈ Carrier → Carrier → Prop\n\nPredicate logic (unfolded):\n\n  Ambient\n    (Carrier)\n  Objects\n    (none)\n  Prove\n    LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x x\n\nLogical form (Lean):\n\n```lean\ntheorem axiomaticIdentityRelation_isReflexive (Carrier : Type u) :\n    LRA.Identity.IsReflexiveIdentityRelation (Ax_IdentityRelation : Carrier → Carrier → Prop)\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Constructions/Axiomatic/Axioms/SecondOrderLeibniz/Axiom.lean:52:Ax_LeibnizLaw",
+      "name": "Ax_LeibnizLaw",
+      "kind": "axiom",
+      "file": "LRA/Identity/Constructions/Axiomatic/Axioms/SecondOrderLeibniz/Axiom.lean",
+      "line": 52,
+      "declaration": "axiom Ax_LeibnizLaw {Carrier : Type u} {x y : Carrier}\n    (h : Ax_IdentityRelation x y) (Property : Carrier → Prop) :\n    Property x → Property y",
+      "formal_statement": "axiom Ax_LeibnizLaw {Carrier : Type u} {x y : Carrier}\n    (h : Ax_IdentityRelation x y) (Property : Carrier → Prop) :\n    Property x → Property y",
+      "predicate_logic": "Property x → Property y end LRA.Identity.Construction.Axiomatic",
+      "predicate_logic_unfolded": "Ambient\n  (Carrier)\nObjects\n  x y : Carrier\n  h : Ax_IdentityRelation x y\n  Property : Carrier → Prop\nProve\n  LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x y → ∀ (Property : Carrier → Prop), Property x → Property y",
+      "existing_doc": "",
+      "detected_connectives": [
+        "→",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro"
+      ],
+      "generated_comment": "/--\n`Ax_LeibnizLaw` TODO\n\nPredicate logic:\n\n  Property x → Property y end LRA.Identity.Construction.Axiomatic\n\nPredicate logic (unfolded):\n\n  Ambient\n    (Carrier)\n  Objects\n    x y : Carrier\n    h : Ax_IdentityRelation x y\n    Property : Carrier → Prop\n  Prove\n    LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x y → ∀ (Property : Carrier → Prop), Property x → Property y\n\nLogical form (Lean):\n\n```lean\naxiom Ax_LeibnizLaw {Carrier : Type u} {x y : Carrier}\n    (h : Ax_IdentityRelation x y) (Property : Carrier → Prop) :\n    Property x → Property y\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Constructions/Axiomatic/Axioms/SecondOrderLeibniz/Definitions.lean:55:IdentityRelation",
+      "name": "IdentityRelation",
+      "kind": "class",
+      "file": "LRA/Identity/Constructions/Axiomatic/Axioms/SecondOrderLeibniz/Definitions.lean",
+      "line": 55,
+      "declaration": "class IdentityRelation (Carrier : Type u) where\n  Ident : Carrier → Carrier → Prop\n  IdentReflexive : ∀ x : Carrier, Ident x x\n  IdentLeibniz : ∀ {x y : Carrier}, Ident x y →\n    ∀ Property : Carrier → Prop, Property x → Property y",
+      "formal_statement": "class IdentityRelation (Carrier : Type u) where\n  Ident : Carrier → Carrier → Prop\n  IdentReflexive : ∀ x : Carrier, Ident x x\n  IdentLeibniz : ∀ {x y : Carrier}, Ident x y →\n    ∀ Property : Carrier → Prop, Property x → Property y",
+      "predicate_logic": "class IdentityRelation (Carrier : Type u) where\n  Ident : Carrier → Carrier → Prop\n  IdentReflexive : ∀ x : Carrier, Ident x x\n  IdentLeibniz : ∀ {x y : Carrier}, Ident x y →\n    ∀ Property : Carrier → Prop, Property x → Property y",
+      "predicate_logic_unfolded": "class IdentityRelation (Carrier : Type u) where\n  Ident : Carrier → Carrier → Prop\n  IdentReflexive : ∀ x : Carrier, Ident x x\n  IdentLeibniz : ∀ {x y : Carrier}, Ident x y →\n    ∀ Property : Carrier → Prop, Property x → Property y (source fallback; no compiled unfold data available)",
+      "existing_doc": "",
+      "detected_connectives": [
+        "∀",
+        "→",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro"
+      ],
+      "generated_comment": "/--\n`IdentityRelation` TODO\n\nPredicate logic:\n\n  class IdentityRelation (Carrier : Type u) where\n    Ident : Carrier → Carrier → Prop\n    IdentReflexive : ∀ x : Carrier, Ident x x\n    IdentLeibniz : ∀ {x y : Carrier}, Ident x y →\n      ∀ Property : Carrier → Prop, Property x → Property y\n\nPredicate logic (unfolded):\n\n  class IdentityRelation (Carrier : Type u) where\n    Ident : Carrier → Carrier → Prop\n    IdentReflexive : ∀ x : Carrier, Ident x x\n    IdentLeibniz : ∀ {x y : Carrier}, Ident x y →\n      ∀ Property : Carrier → Prop, Property x → Property y (source fallback; no compiled unfold data available)\n\nLogical form (Lean):\n\n```lean\nclass IdentityRelation (Carrier : Type u) where\n  Ident : Carrier → Carrier → Prop\n  IdentReflexive : ∀ x : Carrier, Ident x x\n  IdentLeibniz : ∀ {x y : Carrier}, Ident x y →\n    ∀ Property : Carrier → Prop, Property x → Property y\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Constructions/Axiomatic/Axioms/SecondOrderLeibniz/Definitions.lean:105:FullLeibniz",
+      "name": "FullLeibniz",
+      "kind": "abbrev",
+      "file": "LRA/Identity/Constructions/Axiomatic/Axioms/SecondOrderLeibniz/Definitions.lean",
+      "line": 105,
+      "declaration": "abbrev FullLeibniz (Carrier : Type u) : (Carrier → Prop) → Prop :=\n  fun _ => True",
+      "formal_statement": "abbrev FullLeibniz (Carrier : Type u) : (Carrier → Prop) → Prop :=\n  fun _ => True",
+      "predicate_logic": "∀ (Carrier : Type u) (a : Carrier → Prop), True",
+      "predicate_logic_unfolded": "Ambient\n  (implicit ambient)\nObjects\n  (none)\nProve\n  True",
+      "existing_doc": "",
+      "detected_connectives": [
+        "→",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro",
+        "unfold"
+      ],
+      "generated_comment": "/--\n`FullLeibniz` TODO\n\nPredicate logic:\n\n  ∀ (Carrier : Type u) (a : Carrier → Prop), True\n\nPredicate logic (unfolded):\n\n  Ambient\n    (implicit ambient)\n  Objects\n    (none)\n  Prove\n    True\n\nLogical form (Lean):\n\n```lean\nabbrev FullLeibniz (Carrier : Type u) : (Carrier → Prop) → Prop :=\n  fun _ => True\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro, unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro",
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Constructions/Axiomatic/Axioms/SecondOrderLeibniz/Definitions.lean:151:IsIdentityRelation",
+      "name": "IsIdentityRelation",
+      "kind": "abbrev",
+      "file": "LRA/Identity/Constructions/Axiomatic/Axioms/SecondOrderLeibniz/Definitions.lean",
+      "line": 151,
+      "declaration": "abbrev IsIdentityRelation {Carrier : Type u}\n    (R : Carrier → Carrier → Prop) : Prop :=\n  IdentityTheory (FullLeibniz Carrier) R",
+      "formal_statement": "abbrev IsIdentityRelation {Carrier : Type u}\n    (R : Carrier → Carrier → Prop) : Prop :=\n  IdentityTheory (FullLeibniz Carrier) R",
+      "predicate_logic": "∀ {Carrier : Type u} (R : Carrier → Carrier → Prop), LRA.Identity.IdentityTheory (LRA.Identity.FullLeibniz Carrier) R",
+      "predicate_logic_unfolded": "Ambient\n  (implicit ambient)\nObjects\n  (none)\nProve\n  LRA.Identity.IdentityTheory (fun x => True) R",
+      "existing_doc": "",
+      "detected_connectives": [
+        "→",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro",
+        "unfold"
+      ],
+      "generated_comment": "/--\n`IsIdentityRelation` TODO\n\nPredicate logic:\n\n  ∀ {Carrier : Type u} (R : Carrier → Carrier → Prop), LRA.Identity.IdentityTheory (LRA.Identity.FullLeibniz Carrier) R\n\nPredicate logic (unfolded):\n\n  Ambient\n    (implicit ambient)\n  Objects\n    (none)\n  Prove\n    LRA.Identity.IdentityTheory (fun x => True) R\n\nLogical form (Lean):\n\n```lean\nabbrev IsIdentityRelation {Carrier : Type u}\n    (R : Carrier → Carrier → Prop) : Prop :=\n  IdentityTheory (FullLeibniz Carrier) R\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro, unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro",
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Constructions/Axiomatic/Axioms/SecondOrderLeibniz/Definitions.lean:206:IdentityRelation.ofIdentityTheory",
+      "name": "IdentityRelation.ofIdentityTheory",
+      "kind": "abbrev",
+      "file": "LRA/Identity/Constructions/Axiomatic/Axioms/SecondOrderLeibniz/Definitions.lean",
+      "line": 206,
+      "declaration": "abbrev IdentityRelation.ofIdentityTheory {Carrier : Type u}\n    {R : Carrier → Carrier → Prop}\n    (h : IdentityTheory (FullLeibniz Carrier) R) : IdentityRelation Carrier where\n  Ident := R\n  IdentReflexive := h.reflexive\n  IdentLeibniz := fun hxy P hp => h.leibniz _ _ hxy P trivial hp",
+      "formal_statement": "abbrev IdentityRelation.ofIdentityTheory {Carrier : Type u}\n    {R : Carrier → Carrier → Prop}\n    (h : IdentityTheory (FullLeibniz Carrier) R) : IdentityRelation Carrier where\n  Ident := R\n  IdentReflexive := h.reflexive\n  IdentLeibniz := fun hxy P hp => h.leibniz _ _ hxy P trivial hp",
+      "predicate_logic": "abbrev IdentityRelation.ofIdentityTheory {Carrier : Type u}\n    {R : Carrier → Carrier → Prop}\n    (h : IdentityTheory (FullLeibniz Carrier) R) : IdentityRelation Carrier where\n  Ident := R\n  IdentReflexive := h.reflexive\n  IdentLeibniz := fun hxy P hp => h.leibniz _ _ hxy P trivial hp",
+      "predicate_logic_unfolded": "abbrev IdentityRelation.ofIdentityTheory {Carrier : Type u}\n    {R : Carrier → Carrier → Prop}\n    (h : IdentityTheory (FullLeibniz Carrier) R) : IdentityRelation Carrier where\n  Ident := R\n  IdentReflexive := h.reflexive\n  IdentLeibniz := fun hxy P hp => h.leibniz _ _ hxy P trivial hp (source fallback; no compiled unfold data available)",
+      "existing_doc": "",
+      "detected_connectives": [
+        "→",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro",
+        "unfold"
+      ],
+      "generated_comment": "/--\n`IdentityRelation.ofIdentityTheory` TODO\n\nPredicate logic:\n\n  abbrev IdentityRelation.ofIdentityTheory {Carrier : Type u}\n      {R : Carrier → Carrier → Prop}\n      (h : IdentityTheory (FullLeibniz Carrier) R) : IdentityRelation Carrier where\n    Ident := R\n    IdentReflexive := h.reflexive\n    IdentLeibniz := fun hxy P hp => h.leibniz _ _ hxy P trivial hp\n\nPredicate logic (unfolded):\n\n  abbrev IdentityRelation.ofIdentityTheory {Carrier : Type u}\n      {R : Carrier → Carrier → Prop}\n      (h : IdentityTheory (FullLeibniz Carrier) R) : IdentityRelation Carrier where\n    Ident := R\n    IdentReflexive := h.reflexive\n    IdentLeibniz := fun hxy P hp => h.leibniz _ _ hxy P trivial hp (source fallback; no compiled unfold data available)\n\nLogical form (Lean):\n\n```lean\nabbrev IdentityRelation.ofIdentityTheory {Carrier : Type u}\n    {R : Carrier → Carrier → Prop}\n    (h : IdentityTheory (FullLeibniz Carrier) R) : IdentityRelation Carrier where\n  Ident := R\n  IdentReflexive := h.reflexive\n  IdentLeibniz := fun hxy P hp => h.leibniz _ _ hxy P trivial hp\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro, unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro",
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Constructions/Axiomatic/Axioms/SecondOrderLeibniz/Definitions.lean:256:IdentityRelation.satisfiesIdentityTheory",
+      "name": "IdentityRelation.satisfiesIdentityTheory",
+      "kind": "theorem",
+      "file": "LRA/Identity/Constructions/Axiomatic/Axioms/SecondOrderLeibniz/Definitions.lean",
+      "line": 256,
+      "declaration": "theorem IdentityRelation.satisfiesIdentityTheory (Carrier : Type u)\n    [IdentityRelation Carrier] :\n    IdentityTheory (FullLeibniz Carrier) (Ident : Carrier → Carrier → Prop) := by\n  sorry",
+      "formal_statement": "theorem IdentityRelation.satisfiesIdentityTheory (Carrier : Type u)\n    [IdentityRelation Carrier] :\n    IdentityTheory (FullLeibniz Carrier) (Ident : Carrier → Carrier → Prop)",
+      "predicate_logic": "IdentityTheory (FullLeibniz Carrier) Ident ∈ Carrier → Carrier → Prop",
+      "predicate_logic_unfolded": "Ambient\n  (Carrier)\nObjects\n  (none)\nProve\n  LRA.Identity.IdentityTheory (fun x => True) inst.1",
+      "existing_doc": "",
+      "detected_connectives": [
+        "→",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro"
+      ],
+      "generated_comment": "/--\n`IdentityRelation.satisfiesIdentityTheory` TODO\n\nPredicate logic:\n\n  IdentityTheory (FullLeibniz Carrier) Ident ∈ Carrier → Carrier → Prop\n\nPredicate logic (unfolded):\n\n  Ambient\n    (Carrier)\n  Objects\n    (none)\n  Prove\n    LRA.Identity.IdentityTheory (fun x => True) inst.1\n\nLogical form (Lean):\n\n```lean\ntheorem IdentityRelation.satisfiesIdentityTheory (Carrier : Type u)\n    [IdentityRelation Carrier] :\n    IdentityTheory (FullLeibniz Carrier) (Ident : Carrier → Carrier → Prop)\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Constructions/Axiomatic/Axioms/SecondOrderLeibniz/Definitions.lean:306:IdentityRelation.ofIsIdentityRelation",
+      "name": "IdentityRelation.ofIsIdentityRelation",
+      "kind": "abbrev",
+      "file": "LRA/Identity/Constructions/Axiomatic/Axioms/SecondOrderLeibniz/Definitions.lean",
+      "line": 306,
+      "declaration": "abbrev IdentityRelation.ofIsIdentityRelation {Carrier : Type u}\n    {R : Carrier → Carrier → Prop}\n    (h : IsIdentityRelation R) : IdentityRelation Carrier :=\n  IdentityRelation.ofIdentityTheory h",
+      "formal_statement": "abbrev IdentityRelation.ofIsIdentityRelation {Carrier : Type u}\n    {R : Carrier → Carrier → Prop}\n    (h : IsIdentityRelation R) : IdentityRelation Carrier :=\n  IdentityRelation.ofIdentityTheory h",
+      "predicate_logic": "abbrev IdentityRelation.ofIsIdentityRelation {Carrier : Type u}\n    {R : Carrier → Carrier → Prop}\n    (h : IsIdentityRelation R) : IdentityRelation Carrier :=\n  IdentityRelation.ofIdentityTheory h",
+      "predicate_logic_unfolded": "abbrev IdentityRelation.ofIsIdentityRelation {Carrier : Type u}\n    {R : Carrier → Carrier → Prop}\n    (h : IsIdentityRelation R) : IdentityRelation Carrier :=\n  IdentityRelation.ofIdentityTheory h (source fallback; no compiled unfold data available)",
+      "existing_doc": "",
+      "detected_connectives": [
+        "→",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro",
+        "unfold"
+      ],
+      "generated_comment": "/--\n`IdentityRelation.ofIsIdentityRelation` TODO\n\nPredicate logic:\n\n  abbrev IdentityRelation.ofIsIdentityRelation {Carrier : Type u}\n      {R : Carrier → Carrier → Prop}\n      (h : IsIdentityRelation R) : IdentityRelation Carrier :=\n    IdentityRelation.ofIdentityTheory h\n\nPredicate logic (unfolded):\n\n  abbrev IdentityRelation.ofIsIdentityRelation {Carrier : Type u}\n      {R : Carrier → Carrier → Prop}\n      (h : IsIdentityRelation R) : IdentityRelation Carrier :=\n    IdentityRelation.ofIdentityTheory h (source fallback; no compiled unfold data available)\n\nLogical form (Lean):\n\n```lean\nabbrev IdentityRelation.ofIsIdentityRelation {Carrier : Type u}\n    {R : Carrier → Carrier → Prop}\n    (h : IsIdentityRelation R) : IdentityRelation Carrier :=\n  IdentityRelation.ofIdentityTheory h\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro, unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro",
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Constructions/Axiomatic/Axioms/SecondOrderLeibniz/Theorems.lean:49:IdentIsDiagonal",
+      "name": "IdentIsDiagonal",
+      "kind": "theorem",
+      "file": "LRA/Identity/Constructions/Axiomatic/Axioms/SecondOrderLeibniz/Theorems.lean",
+      "line": 49,
+      "declaration": "theorem IdentIsDiagonal {Carrier : Type u} [IdentityRelation Carrier]\n    (x y : Carrier) : Ident x y ↔ x = y := by\n  sorry",
+      "formal_statement": "theorem IdentIsDiagonal {Carrier : Type u} [IdentityRelation Carrier]\n    (x y : Carrier) : Ident x y ↔ x = y",
+      "predicate_logic": "(∀ x y ∈ Carrier), Ident x y ↔ x = y",
+      "predicate_logic_unfolded": "Ambient\n  (Carrier)\nObjects\n  x y : Carrier\nProve\n  inst.Ident x y ↔ x = y",
+      "existing_doc": "",
+      "detected_connectives": [
+        "↔"
+      ],
+      "suggested_moves": [
+        "constructor",
+        ".mp",
+        ".mpr"
+      ],
+      "generated_comment": "/--\n`IdentIsDiagonal` TODO\n\nPredicate logic:\n\n  (∀ x y ∈ Carrier), Ident x y ↔ x = y\n\nPredicate logic (unfolded):\n\n  Ambient\n    (Carrier)\n  Objects\n    x y : Carrier\n  Prove\n    inst.Ident x y ↔ x = y\n\nLogical form (Lean):\n\n```lean\ntheorem IdentIsDiagonal {Carrier : Type u} [IdentityRelation Carrier]\n    (x y : Carrier) : Ident x y ↔ x = y\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: constructor, .mp, .mpr\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "constructor",
+        ".mp",
+        ".mpr"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Constructions/Axiomatic/Axioms/SecondOrderLeibniz/Theorems.lean:96:IdentSymmetric",
+      "name": "IdentSymmetric",
+      "kind": "theorem",
+      "file": "LRA/Identity/Constructions/Axiomatic/Axioms/SecondOrderLeibniz/Theorems.lean",
+      "line": 96,
+      "declaration": "theorem IdentSymmetric {Carrier : Type u} [IdentityRelation Carrier]\n    {x y : Carrier} (h : Ident x y) : Ident y x := by\n  sorry",
+      "formal_statement": "theorem IdentSymmetric {Carrier : Type u} [IdentityRelation Carrier]\n    {x y : Carrier} (h : Ident x y) : Ident y x",
+      "predicate_logic": "Ident y x",
+      "predicate_logic_unfolded": "Ambient\n  (Carrier)\nObjects\n  x y : Carrier\n  h : Ident x y\nProve\n  x ≤ y → y ≤ x",
+      "existing_doc": "",
+      "detected_connectives": [],
+      "suggested_moves": [],
+      "generated_comment": "/--\n`IdentSymmetric` TODO\n\nPredicate logic:\n\n  Ident y x\n\nPredicate logic (unfolded):\n\n  Ambient\n    (Carrier)\n  Objects\n    x y : Carrier\n    h : Ident x y\n  Prove\n    x ≤ y → y ≤ x\n\nLogical form (Lean):\n\n```lean\ntheorem IdentSymmetric {Carrier : Type u} [IdentityRelation Carrier]\n    {x y : Carrier} (h : Ident x y) : Ident y x\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: TODO\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Constructions/Axiomatic/Axioms/SecondOrderLeibniz/Theorems.lean:144:IdentTransitive",
+      "name": "IdentTransitive",
+      "kind": "theorem",
+      "file": "LRA/Identity/Constructions/Axiomatic/Axioms/SecondOrderLeibniz/Theorems.lean",
+      "line": 144,
+      "declaration": "theorem IdentTransitive {Carrier : Type u} [IdentityRelation Carrier]\n    {x y z : Carrier} (hxy : Ident x y) (hyz : Ident y z) : Ident x z := by\n  sorry",
+      "formal_statement": "theorem IdentTransitive {Carrier : Type u} [IdentityRelation Carrier]\n    {x y z : Carrier} (hxy : Ident x y) (hyz : Ident y z) : Ident x z",
+      "predicate_logic": "Ident x z",
+      "predicate_logic_unfolded": "Ambient\n  (Carrier)\nObjects\n  x y z : Carrier\n  hxy : Ident x y\n  hyz : Ident y z\nProve\n  (x ≤ y ∧ y ≤ z) → x ≤ z",
+      "existing_doc": "",
+      "detected_connectives": [],
+      "suggested_moves": [],
+      "generated_comment": "/--\n`IdentTransitive` TODO\n\nPredicate logic:\n\n  Ident x z\n\nPredicate logic (unfolded):\n\n  Ambient\n    (Carrier)\n  Objects\n    x y z : Carrier\n    hxy : Ident x y\n    hyz : Ident y z\n  Prove\n    (x ≤ y ∧ y ≤ z) → x ≤ z\n\nLogical form (Lean):\n\n```lean\ntheorem IdentTransitive {Carrier : Type u} [IdentityRelation Carrier]\n    {x y z : Carrier} (hxy : Ident x y) (hyz : Ident y z) : Ident x z\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: TODO\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Constructions/Axiomatic/Axioms/SecondOrderLeibniz/Theorems.lean:193:IdentLeibnizIff",
+      "name": "IdentLeibnizIff",
+      "kind": "theorem",
+      "file": "LRA/Identity/Constructions/Axiomatic/Axioms/SecondOrderLeibniz/Theorems.lean",
+      "line": 193,
+      "declaration": "theorem IdentLeibnizIff {Carrier : Type u} [IdentityRelation Carrier]\n    {x y : Carrier} (h : Ident x y) (Property : Carrier → Prop) :\n    Property x ↔ Property y := by\n  sorry",
+      "formal_statement": "theorem IdentLeibnizIff {Carrier : Type u} [IdentityRelation Carrier]\n    {x y : Carrier} (h : Ident x y) (Property : Carrier → Prop) :\n    Property x ↔ Property y",
+      "predicate_logic": "Property x ↔ Property y",
+      "predicate_logic_unfolded": "Ambient\n  (Carrier)\nObjects\n  x y : Carrier\n  h : Ident x y\n  Property : Carrier → Prop\nProve\n  inst.Ident x y → ∀ (Property : Carrier → Prop), Property x ↔ Property y",
+      "existing_doc": "",
+      "detected_connectives": [
+        "→",
+        "↔",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro",
+        "constructor",
+        ".mp",
+        ".mpr"
+      ],
+      "generated_comment": "/--\n`IdentLeibnizIff` TODO\n\nPredicate logic:\n\n  Property x ↔ Property y\n\nPredicate logic (unfolded):\n\n  Ambient\n    (Carrier)\n  Objects\n    x y : Carrier\n    h : Ident x y\n    Property : Carrier → Prop\n  Prove\n    inst.Ident x y → ∀ (Property : Carrier → Prop), Property x ↔ Property y\n\nLogical form (Lean):\n\n```lean\ntheorem IdentLeibnizIff {Carrier : Type u} [IdentityRelation Carrier]\n    {x y : Carrier} (h : Ident x y) (Property : Carrier → Prop) :\n    Property x ↔ Property y\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro, constructor, .mp, .mpr\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro",
+        "constructor",
+        ".mp",
+        ".mpr"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Interface/Logic/FirstOrder/Language.lean:53:pureEqualitySignature",
+      "name": "pureEqualitySignature",
+      "kind": "def",
+      "file": "LRA/Identity/Interface/Logic/FirstOrder/Language.lean",
+      "line": 53,
+      "declaration": "def pureEqualitySignature : Signature where\n  Functions := ⟨Empty, Empty.elim⟩\n  Relations := ⟨Empty, Empty.elim⟩\n  Constants := Empty",
+      "formal_statement": "def pureEqualitySignature : Signature where\n  Functions := ⟨Empty, Empty.elim⟩\n  Relations := ⟨Empty, Empty.elim⟩\n  Constants := Empty",
+      "predicate_logic": "def pureEqualitySignature : Signature where\n  Functions := ⟨Empty, Empty.elim⟩\n  Relations := ⟨Empty, Empty.elim⟩\n  Constants := Empty",
+      "predicate_logic_unfolded": "def pureEqualitySignature : Signature where\n  Functions := ⟨Empty, Empty.elim⟩\n  Relations := ⟨Empty, Empty.elim⟩\n  Constants := Empty (source fallback; no compiled unfold data available)",
+      "existing_doc": "",
+      "detected_connectives": [],
+      "suggested_moves": [
+        "unfold"
+      ],
+      "generated_comment": "/--\n`pureEqualitySignature` TODO\n\nPredicate logic:\n\n  def pureEqualitySignature : Signature where\n    Functions := ⟨Empty, Empty.elim⟩\n    Relations := ⟨Empty, Empty.elim⟩\n    Constants := Empty\n\nPredicate logic (unfolded):\n\n  def pureEqualitySignature : Signature where\n    Functions := ⟨Empty, Empty.elim⟩\n    Relations := ⟨Empty, Empty.elim⟩\n    Constants := Empty (source fallback; no compiled unfold data available)\n\nLogical form (Lean):\n\n```lean\ndef pureEqualitySignature : Signature where\n  Functions := ⟨Empty, Empty.elim⟩\n  Relations := ⟨Empty, Empty.elim⟩\n  Constants := Empty\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Interface/Logic/FirstOrder/Language.lean:94:PureEqualityLanguage",
+      "name": "PureEqualityLanguage",
+      "kind": "abbrev",
+      "file": "LRA/Identity/Interface/Logic/FirstOrder/Language.lean",
+      "line": 94,
+      "declaration": "abbrev PureEqualityLanguage := FirstOrderLanguage",
+      "formal_statement": "abbrev PureEqualityLanguage := FirstOrderLanguage",
+      "predicate_logic": "abbrev PureEqualityLanguage := FirstOrderLanguage",
+      "predicate_logic_unfolded": "abbrev PureEqualityLanguage := FirstOrderLanguage (source fallback; no compiled unfold data available)",
+      "existing_doc": "",
+      "detected_connectives": [],
+      "suggested_moves": [
+        "unfold"
+      ],
+      "generated_comment": "/--\n`PureEqualityLanguage` TODO\n\nPredicate logic:\n\n  abbrev PureEqualityLanguage := FirstOrderLanguage\n\nPredicate logic (unfolded):\n\n  abbrev PureEqualityLanguage := FirstOrderLanguage (source fallback; no compiled unfold data available)\n\nLogical form (Lean):\n\n```lean\nabbrev PureEqualityLanguage := FirstOrderLanguage\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Interface/Logic/FirstOrder/Language.lean:135:pureEqualityLanguage",
+      "name": "pureEqualityLanguage",
+      "kind": "def",
+      "file": "LRA/Identity/Interface/Logic/FirstOrder/Language.lean",
+      "line": 135,
+      "declaration": "def pureEqualityLanguage : PureEqualityLanguage :=\n  pureEqualitySignature",
+      "formal_statement": "def pureEqualityLanguage : PureEqualityLanguage :=\n  pureEqualitySignature",
+      "predicate_logic": "def pureEqualityLanguage : PureEqualityLanguage :=\n  pureEqualitySignature",
+      "predicate_logic_unfolded": "def pureEqualityLanguage : PureEqualityLanguage :=\n  pureEqualitySignature (source fallback; no compiled unfold data available)",
+      "existing_doc": "",
+      "detected_connectives": [],
+      "suggested_moves": [
+        "unfold"
+      ],
+      "generated_comment": "/--\n`pureEqualityLanguage` TODO\n\nPredicate logic:\n\n  def pureEqualityLanguage : PureEqualityLanguage :=\n    pureEqualitySignature\n\nPredicate logic (unfolded):\n\n  def pureEqualityLanguage : PureEqualityLanguage :=\n    pureEqualitySignature (source fallback; no compiled unfold data available)\n\nLogical form (Lean):\n\n```lean\ndef pureEqualityLanguage : PureEqualityLanguage :=\n  pureEqualitySignature\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Interface/Logic/FirstOrder/Language.lean:174:EqualityFirstOrderSignature",
+      "name": "EqualityFirstOrderSignature",
+      "kind": "abbrev",
+      "file": "LRA/Identity/Interface/Logic/FirstOrder/Language.lean",
+      "line": 174,
+      "declaration": "abbrev EqualityFirstOrderSignature := Signature",
+      "formal_statement": "abbrev EqualityFirstOrderSignature := Signature",
+      "predicate_logic": "abbrev EqualityFirstOrderSignature := Signature",
+      "predicate_logic_unfolded": "abbrev EqualityFirstOrderSignature := Signature (source fallback; no compiled unfold data available)",
+      "existing_doc": "",
+      "detected_connectives": [],
+      "suggested_moves": [
+        "unfold"
+      ],
+      "generated_comment": "/--\n`EqualityFirstOrderSignature` TODO\n\nPredicate logic:\n\n  abbrev EqualityFirstOrderSignature := Signature\n\nPredicate logic (unfolded):\n\n  abbrev EqualityFirstOrderSignature := Signature (source fallback; no compiled unfold data available)\n\nLogical form (Lean):\n\n```lean\nabbrev EqualityFirstOrderSignature := Signature\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Interface/Logic/FirstOrder/Language.lean:215:equalityFirstOrderSignature",
+      "name": "equalityFirstOrderSignature",
+      "kind": "abbrev",
+      "file": "LRA/Identity/Interface/Logic/FirstOrder/Language.lean",
+      "line": 215,
+      "declaration": "abbrev equalityFirstOrderSignature : EqualityFirstOrderSignature :=\n  pureEqualitySignature",
+      "formal_statement": "abbrev equalityFirstOrderSignature : EqualityFirstOrderSignature :=\n  pureEqualitySignature",
+      "predicate_logic": "abbrev equalityFirstOrderSignature : EqualityFirstOrderSignature :=\n  pureEqualitySignature",
+      "predicate_logic_unfolded": "abbrev equalityFirstOrderSignature : EqualityFirstOrderSignature :=\n  pureEqualitySignature (source fallback; no compiled unfold data available)",
+      "existing_doc": "",
+      "detected_connectives": [],
+      "suggested_moves": [
+        "unfold"
+      ],
+      "generated_comment": "/--\n`equalityFirstOrderSignature` TODO\n\nPredicate logic:\n\n  abbrev equalityFirstOrderSignature : EqualityFirstOrderSignature :=\n    pureEqualitySignature\n\nPredicate logic (unfolded):\n\n  abbrev equalityFirstOrderSignature : EqualityFirstOrderSignature :=\n    pureEqualitySignature (source fallback; no compiled unfold data available)\n\nLogical form (Lean):\n\n```lean\nabbrev equalityFirstOrderSignature : EqualityFirstOrderSignature :=\n  pureEqualitySignature\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Interface/Logic/FirstOrder/Language.lean:254:EqualityFirstOrderLanguage",
+      "name": "EqualityFirstOrderLanguage",
+      "kind": "abbrev",
+      "file": "LRA/Identity/Interface/Logic/FirstOrder/Language.lean",
+      "line": 254,
+      "declaration": "abbrev EqualityFirstOrderLanguage := PureEqualityLanguage",
+      "formal_statement": "abbrev EqualityFirstOrderLanguage := PureEqualityLanguage",
+      "predicate_logic": "abbrev EqualityFirstOrderLanguage := PureEqualityLanguage",
+      "predicate_logic_unfolded": "abbrev EqualityFirstOrderLanguage := PureEqualityLanguage (source fallback; no compiled unfold data available)",
+      "existing_doc": "",
+      "detected_connectives": [],
+      "suggested_moves": [
+        "unfold"
+      ],
+      "generated_comment": "/--\n`EqualityFirstOrderLanguage` TODO\n\nPredicate logic:\n\n  abbrev EqualityFirstOrderLanguage := PureEqualityLanguage\n\nPredicate logic (unfolded):\n\n  abbrev EqualityFirstOrderLanguage := PureEqualityLanguage (source fallback; no compiled unfold data available)\n\nLogical form (Lean):\n\n```lean\nabbrev EqualityFirstOrderLanguage := PureEqualityLanguage\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Interface/Logic/FirstOrder/Language.lean:295:equalityFirstOrderLanguage",
+      "name": "equalityFirstOrderLanguage",
+      "kind": "abbrev",
+      "file": "LRA/Identity/Interface/Logic/FirstOrder/Language.lean",
+      "line": 295,
+      "declaration": "abbrev equalityFirstOrderLanguage : EqualityFirstOrderLanguage :=\n  pureEqualityLanguage",
+      "formal_statement": "abbrev equalityFirstOrderLanguage : EqualityFirstOrderLanguage :=\n  pureEqualityLanguage",
+      "predicate_logic": "abbrev equalityFirstOrderLanguage : EqualityFirstOrderLanguage :=\n  pureEqualityLanguage",
+      "predicate_logic_unfolded": "abbrev equalityFirstOrderLanguage : EqualityFirstOrderLanguage :=\n  pureEqualityLanguage (source fallback; no compiled unfold data available)",
+      "existing_doc": "",
+      "detected_connectives": [],
+      "suggested_moves": [
+        "unfold"
+      ],
+      "generated_comment": "/--\n`equalityFirstOrderLanguage` TODO\n\nPredicate logic:\n\n  abbrev equalityFirstOrderLanguage : EqualityFirstOrderLanguage :=\n    pureEqualityLanguage\n\nPredicate logic (unfolded):\n\n  abbrev equalityFirstOrderLanguage : EqualityFirstOrderLanguage :=\n    pureEqualityLanguage (source fallback; no compiled unfold data available)\n\nLogical form (Lean):\n\n```lean\nabbrev equalityFirstOrderLanguage : EqualityFirstOrderLanguage :=\n  pureEqualityLanguage\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Interface/Logic/FirstOrder/Language.lean:334:EqualityLogicalSymbol",
+      "name": "EqualityLogicalSymbol",
+      "kind": "abbrev",
+      "file": "LRA/Identity/Interface/Logic/FirstOrder/Language.lean",
+      "line": 334,
+      "declaration": "abbrev EqualityLogicalSymbol := LRA.Metamathematics.Notation.LogicalEquality",
+      "formal_statement": "abbrev EqualityLogicalSymbol := LRA.Metamathematics.Notation.LogicalEquality",
+      "predicate_logic": "abbrev EqualityLogicalSymbol := LRA.Metamathematics.Notation.LogicalEquality",
+      "predicate_logic_unfolded": "abbrev EqualityLogicalSymbol := LRA.Metamathematics.Notation.LogicalEquality (source fallback; no compiled unfold data available)",
+      "existing_doc": "",
+      "detected_connectives": [],
+      "suggested_moves": [
+        "unfold"
+      ],
+      "generated_comment": "/--\n`EqualityLogicalSymbol` TODO\n\nPredicate logic:\n\n  abbrev EqualityLogicalSymbol := LRA.Metamathematics.Notation.LogicalEquality\n\nPredicate logic (unfolded):\n\n  abbrev EqualityLogicalSymbol := LRA.Metamathematics.Notation.LogicalEquality (source fallback; no compiled unfold data available)\n\nLogical form (Lean):\n\n```lean\nabbrev EqualityLogicalSymbol := LRA.Metamathematics.Notation.LogicalEquality\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Interface/Logic/FirstOrder/Syntax.lean:10:equalityAtom",
+      "name": "equalityAtom",
+      "kind": "abbrev",
+      "file": "LRA/Identity/Interface/Logic/FirstOrder/Syntax.lean",
+      "line": 10,
+      "declaration": "abbrev equalityAtom {S : LRA.Logic.Signature} {Variable : Type}\n    (left right : Term S Variable) : Formula S Variable :=\n  .equal left right",
+      "formal_statement": "abbrev equalityAtom {S : LRA.Logic.Signature} {Variable : Type}\n    (left right : Term S Variable) : Formula S Variable :=\n  .equal left right",
+      "predicate_logic": "abbrev equalityAtom {S : LRA.Logic.Signature} {Variable : Type}\n    (left right : Term S Variable) : Formula S Variable :=\n  .equal left right",
+      "predicate_logic_unfolded": "abbrev equalityAtom {S : LRA.Logic.Signature} {Variable : Type}\n    (left right : Term S Variable) : Formula S Variable :=\n  .equal left right (source fallback; no compiled unfold data available)",
+      "existing_doc": "The object-language equality atom `left = right`.",
+      "detected_connectives": [],
+      "suggested_moves": [
+        "unfold"
+      ],
+      "generated_comment": "/--\n`equalityAtom` The object-language equality atom `left = right`.\n\nPredicate logic:\n\n  abbrev equalityAtom {S : LRA.Logic.Signature} {Variable : Type}\n      (left right : Term S Variable) : Formula S Variable :=\n    .equal left right\n\nPredicate logic (unfolded):\n\n  abbrev equalityAtom {S : LRA.Logic.Signature} {Variable : Type}\n      (left right : Term S Variable) : Formula S Variable :=\n    .equal left right (source fallback; no compiled unfold data available)\n\nLogical form (Lean):\n\n```lean\nabbrev equalityAtom {S : LRA.Logic.Signature} {Variable : Type}\n    (left right : Term S Variable) : Formula S Variable :=\n  .equal left right\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: unfold\n\n-/",
+      "meaning": "The object-language equality atom `left = right`.",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Interface/Logic/FirstOrder/Syntax.lean:15:inequalityAtom",
+      "name": "inequalityAtom",
+      "kind": "abbrev",
+      "file": "LRA/Identity/Interface/Logic/FirstOrder/Syntax.lean",
+      "line": 15,
+      "declaration": "abbrev inequalityAtom {S : LRA.Logic.Signature} {Variable : Type}\n    (left right : Term S Variable) : Formula S Variable :=\n  .neg (equalityAtom left right)",
+      "formal_statement": "abbrev inequalityAtom {S : LRA.Logic.Signature} {Variable : Type}\n    (left right : Term S Variable) : Formula S Variable :=\n  .neg (equalityAtom left right)",
+      "predicate_logic": "abbrev inequalityAtom {S : LRA.Logic.Signature} {Variable : Type}\n    (left right : Term S Variable) : Formula S Variable :=\n  .neg (equalityAtom left right)",
+      "predicate_logic_unfolded": "abbrev inequalityAtom {S : LRA.Logic.Signature} {Variable : Type}\n    (left right : Term S Variable) : Formula S Variable :=\n  .neg (equalityAtom left right) (source fallback; no compiled unfold data available)",
+      "existing_doc": "The object-language inequality formula `left != right`, defined as `not (left = right)`.",
+      "detected_connectives": [],
+      "suggested_moves": [
+        "unfold"
+      ],
+      "generated_comment": "/--\n`inequalityAtom` The object-language inequality formula `left != right`, defined as `not (left = right)`.\n\nPredicate logic:\n\n  abbrev inequalityAtom {S : LRA.Logic.Signature} {Variable : Type}\n      (left right : Term S Variable) : Formula S Variable :=\n    .neg (equalityAtom left right)\n\nPredicate logic (unfolded):\n\n  abbrev inequalityAtom {S : LRA.Logic.Signature} {Variable : Type}\n      (left right : Term S Variable) : Formula S Variable :=\n    .neg (equalityAtom left right) (source fallback; no compiled unfold data available)\n\nLogical form (Lean):\n\n```lean\nabbrev inequalityAtom {S : LRA.Logic.Signature} {Variable : Type}\n    (left right : Term S Variable) : Formula S Variable :=\n  .neg (equalityAtom left right)\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: unfold\n\n-/",
+      "meaning": "The object-language inequality formula `left != right`, defined as `not (left = right)`.",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Interface/Logic/FirstOrder/Syntax.lean:20:equalityOfVariables",
+      "name": "equalityOfVariables",
+      "kind": "abbrev",
+      "file": "LRA/Identity/Interface/Logic/FirstOrder/Syntax.lean",
+      "line": 20,
+      "declaration": "abbrev equalityOfVariables {S : LRA.Logic.Signature} {Variable : Type}\n    (left right : Variable) : Formula S Variable :=\n  equalityAtom (.var left) (.var right)",
+      "formal_statement": "abbrev equalityOfVariables {S : LRA.Logic.Signature} {Variable : Type}\n    (left right : Variable) : Formula S Variable :=\n  equalityAtom (.var left) (.var right)",
+      "predicate_logic": "abbrev equalityOfVariables {S : LRA.Logic.Signature} {Variable : Type}\n    (left right : Variable) : Formula S Variable :=\n  equalityAtom (.var left) (.var right)",
+      "predicate_logic_unfolded": "abbrev equalityOfVariables {S : LRA.Logic.Signature} {Variable : Type}\n    (left right : Variable) : Formula S Variable :=\n  equalityAtom (.var left) (.var right) (source fallback; no compiled unfold data available)",
+      "existing_doc": "The equality atom between the variables `left` and `right`.",
+      "detected_connectives": [],
+      "suggested_moves": [
+        "unfold"
+      ],
+      "generated_comment": "/--\n`equalityOfVariables` The equality atom between the variables `left` and `right`.\n\nPredicate logic:\n\n  abbrev equalityOfVariables {S : LRA.Logic.Signature} {Variable : Type}\n      (left right : Variable) : Formula S Variable :=\n    equalityAtom (.var left) (.var right)\n\nPredicate logic (unfolded):\n\n  abbrev equalityOfVariables {S : LRA.Logic.Signature} {Variable : Type}\n      (left right : Variable) : Formula S Variable :=\n    equalityAtom (.var left) (.var right) (source fallback; no compiled unfold data available)\n\nLogical form (Lean):\n\n```lean\nabbrev equalityOfVariables {S : LRA.Logic.Signature} {Variable : Type}\n    (left right : Variable) : Formula S Variable :=\n  equalityAtom (.var left) (.var right)\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: unfold\n\n-/",
+      "meaning": "The equality atom between the variables `left` and `right`.",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Interface/Logic/FirstOrder/Syntax.lean:25:inequalityOfVariables",
+      "name": "inequalityOfVariables",
+      "kind": "abbrev",
+      "file": "LRA/Identity/Interface/Logic/FirstOrder/Syntax.lean",
+      "line": 25,
+      "declaration": "abbrev inequalityOfVariables {S : LRA.Logic.Signature} {Variable : Type}\n    (left right : Variable) : Formula S Variable :=\n  inequalityAtom (.var left) (.var right)",
+      "formal_statement": "abbrev inequalityOfVariables {S : LRA.Logic.Signature} {Variable : Type}\n    (left right : Variable) : Formula S Variable :=\n  inequalityAtom (.var left) (.var right)",
+      "predicate_logic": "abbrev inequalityOfVariables {S : LRA.Logic.Signature} {Variable : Type}\n    (left right : Variable) : Formula S Variable :=\n  inequalityAtom (.var left) (.var right)",
+      "predicate_logic_unfolded": "abbrev inequalityOfVariables {S : LRA.Logic.Signature} {Variable : Type}\n    (left right : Variable) : Formula S Variable :=\n  inequalityAtom (.var left) (.var right) (source fallback; no compiled unfold data available)",
+      "existing_doc": "The inequality formula between the variables `left` and `right`.",
+      "detected_connectives": [],
+      "suggested_moves": [
+        "unfold"
+      ],
+      "generated_comment": "/--\n`inequalityOfVariables` The inequality formula between the variables `left` and `right`.\n\nPredicate logic:\n\n  abbrev inequalityOfVariables {S : LRA.Logic.Signature} {Variable : Type}\n      (left right : Variable) : Formula S Variable :=\n    inequalityAtom (.var left) (.var right)\n\nPredicate logic (unfolded):\n\n  abbrev inequalityOfVariables {S : LRA.Logic.Signature} {Variable : Type}\n      (left right : Variable) : Formula S Variable :=\n    inequalityAtom (.var left) (.var right) (source fallback; no compiled unfold data available)\n\nLogical form (Lean):\n\n```lean\nabbrev inequalityOfVariables {S : LRA.Logic.Signature} {Variable : Type}\n    (left right : Variable) : Formula S Variable :=\n  inequalityAtom (.var left) (.var right)\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: unfold\n\n-/",
+      "meaning": "The inequality formula between the variables `left` and `right`.",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Interface/Logic/FirstOrder/Syntax.lean:30:equalityReflexivityFormula",
+      "name": "equalityReflexivityFormula",
+      "kind": "abbrev",
+      "file": "LRA/Identity/Interface/Logic/FirstOrder/Syntax.lean",
+      "line": 30,
+      "declaration": "abbrev equalityReflexivityFormula {S : LRA.Logic.Signature} {Variable : Type}\n    (x : Variable) : Formula S Variable :=\n  equalityOfVariables x x",
+      "formal_statement": "abbrev equalityReflexivityFormula {S : LRA.Logic.Signature} {Variable : Type}\n    (x : Variable) : Formula S Variable :=\n  equalityOfVariables x x",
+      "predicate_logic": "abbrev equalityReflexivityFormula {S : LRA.Logic.Signature} {Variable : Type}\n    (x : Variable) : Formula S Variable :=\n  equalityOfVariables x x",
+      "predicate_logic_unfolded": "abbrev equalityReflexivityFormula {S : LRA.Logic.Signature} {Variable : Type}\n    (x : Variable) : Formula S Variable :=\n  equalityOfVariables x x (source fallback; no compiled unfold data available)",
+      "existing_doc": "The reflexive equality formula `variable = variable`.",
+      "detected_connectives": [],
+      "suggested_moves": [
+        "unfold"
+      ],
+      "generated_comment": "/--\n`equalityReflexivityFormula` The reflexive equality formula `variable = variable`.\n\nPredicate logic:\n\n  abbrev equalityReflexivityFormula {S : LRA.Logic.Signature} {Variable : Type}\n      (x : Variable) : Formula S Variable :=\n    equalityOfVariables x x\n\nPredicate logic (unfolded):\n\n  abbrev equalityReflexivityFormula {S : LRA.Logic.Signature} {Variable : Type}\n      (x : Variable) : Formula S Variable :=\n    equalityOfVariables x x (source fallback; no compiled unfold data available)\n\nLogical form (Lean):\n\n```lean\nabbrev equalityReflexivityFormula {S : LRA.Logic.Signature} {Variable : Type}\n    (x : Variable) : Formula S Variable :=\n  equalityOfVariables x x\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: unfold\n\n-/",
+      "meaning": "The reflexive equality formula `variable = variable`.",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Interface/ModelTheory/LStructure.lean:51:EqualityDiagonal",
+      "name": "EqualityDiagonal",
+      "kind": "def",
+      "file": "LRA/Identity/Interface/ModelTheory/LStructure.lean",
+      "line": 51,
+      "declaration": "def EqualityDiagonal (Carrier : Type u) : Carrier -> Carrier -> Prop :=\n  fun left right => left = right",
+      "formal_statement": "def EqualityDiagonal (Carrier : Type u) : Carrier -> Carrier -> Prop :=\n  fun left right => left = right",
+      "predicate_logic": "∀ (Carrier : Type u) (a a_1 : Carrier), a = a_1",
+      "predicate_logic_unfolded": "Ambient\n  (implicit ambient)\nObjects\n  (none)\nProve\n  a = a_1",
+      "existing_doc": "",
+      "detected_connectives": [
+        "→",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro",
+        "unfold"
+      ],
+      "generated_comment": "/--\n`EqualityDiagonal` TODO\n\nPredicate logic:\n\n  ∀ (Carrier : Type u) (a a_1 : Carrier), a = a_1\n\nPredicate logic (unfolded):\n\n  Ambient\n    (implicit ambient)\n  Objects\n    (none)\n  Prove\n    a = a_1\n\nLogical form (Lean):\n\n```lean\ndef EqualityDiagonal (Carrier : Type u) : Carrier -> Carrier -> Prop :=\n  fun left right => left = right\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro, unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro",
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Interface/ModelTheory/LStructure.lean:105:EqualityStructure",
+      "name": "EqualityStructure",
+      "kind": "structure",
+      "file": "LRA/Identity/Interface/ModelTheory/LStructure.lean",
+      "line": 105,
+      "declaration": "structure EqualityStructure where\n  Carrier : Type u\n  carrierNonempty : Nonempty Carrier\n  equalityInterpretation : Carrier -> Carrier -> Prop\n  satisfiesIdentityTheory :\n    IdentityTheory (FullLeibniz Carrier) equalityInterpretation",
+      "formal_statement": "structure EqualityStructure where\n  Carrier : Type u\n  carrierNonempty : Nonempty Carrier\n  equalityInterpretation : Carrier -> Carrier -> Prop\n  satisfiesIdentityTheory :\n    IdentityTheory (FullLeibniz Carrier) equalityInterpretation",
+      "predicate_logic": "structure EqualityStructure where\n  Carrier : Type u\n  carrierNonempty : Nonempty Carrier\n  equalityInterpretation : Carrier -> Carrier -> Prop\n  satisfiesIdentityTheory :\n    IdentityTheory (FullLeibniz Carrier) equalityInterpretation",
+      "predicate_logic_unfolded": "structure EqualityStructure where\n  Carrier : Type u\n  carrierNonempty : Nonempty Carrier\n  equalityInterpretation : Carrier -> Carrier -> Prop\n  satisfiesIdentityTheory :\n    IdentityTheory (FullLeibniz Carrier) equalityInterpretation (source fallback; no compiled unfold data available)",
+      "existing_doc": "",
+      "detected_connectives": [
+        "→",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro"
+      ],
+      "generated_comment": "/--\n`EqualityStructure` TODO\n\nPredicate logic:\n\n  structure EqualityStructure where\n    Carrier : Type u\n    carrierNonempty : Nonempty Carrier\n    equalityInterpretation : Carrier -> Carrier -> Prop\n    satisfiesIdentityTheory :\n      IdentityTheory (FullLeibniz Carrier) equalityInterpretation\n\nPredicate logic (unfolded):\n\n  structure EqualityStructure where\n    Carrier : Type u\n    carrierNonempty : Nonempty Carrier\n    equalityInterpretation : Carrier -> Carrier -> Prop\n    satisfiesIdentityTheory :\n      IdentityTheory (FullLeibniz Carrier) equalityInterpretation (source fallback; no compiled unfold data available)\n\nLogical form (Lean):\n\n```lean\nstructure EqualityStructure where\n  Carrier : Type u\n  carrierNonempty : Nonempty Carrier\n  equalityInterpretation : Carrier -> Carrier -> Prop\n  satisfiesIdentityTheory :\n    IdentityTheory (FullLeibniz Carrier) equalityInterpretation\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Interface/ModelTheory/Model.lean:55:EqualityStructure.isDiagonal",
+      "name": "EqualityStructure.isDiagonal",
+      "kind": "theorem",
+      "file": "LRA/Identity/Interface/ModelTheory/Model.lean",
+      "line": 55,
+      "declaration": "theorem EqualityStructure.isDiagonal (S : EqualityStructure.{u}) :\n    ∀ left right, S.equalityInterpretation left right ↔ EqualityDiagonal S.Carrier left right := by\n  sorry",
+      "formal_statement": "theorem EqualityStructure.isDiagonal (S : EqualityStructure.{u}) :\n    ∀ left right, S.equalityInterpretation left right ↔ EqualityDiagonal S.Carrier left right",
+      "predicate_logic": "∀ left right, S.equalityInterpretation left right ↔ EqualityDiagonal S.Carrier left right",
+      "predicate_logic_unfolded": "Ambient\n  (implicit ambient)\nObjects\n  S : EqualityStructure.{u}\nProve\n  S.equalityInterpretation left right ↔ LRA.Identity.EqualityDiagonal S.Carrier left right",
+      "existing_doc": "",
+      "detected_connectives": [
+        "∀",
+        "↔"
+      ],
+      "suggested_moves": [
+        "intro",
+        "constructor",
+        ".mp",
+        ".mpr"
+      ],
+      "generated_comment": "/--\n`EqualityStructure.isDiagonal` TODO\n\nPredicate logic:\n\n  ∀ left right, S.equalityInterpretation left right ↔ EqualityDiagonal S.Carrier left right\n\nPredicate logic (unfolded):\n\n  Ambient\n    (implicit ambient)\n  Objects\n    S : EqualityStructure.{u}\n  Prove\n    S.equalityInterpretation left right ↔ LRA.Identity.EqualityDiagonal S.Carrier left right\n\nLogical form (Lean):\n\n```lean\ntheorem EqualityStructure.isDiagonal (S : EqualityStructure.{u}) :\n    ∀ left right, S.equalityInterpretation left right ↔ EqualityDiagonal S.Carrier left right\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro, constructor, .mp, .mpr\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro",
+        "constructor",
+        ".mp",
+        ".mpr"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Interface/ModelTheory/Model.lean:122:EqualityStructure.toFirstOrderModel",
+      "name": "EqualityStructure.toFirstOrderModel",
+      "kind": "def",
+      "file": "LRA/Identity/Interface/ModelTheory/Model.lean",
+      "line": 122,
+      "declaration": "def EqualityStructure.toFirstOrderModel\n    (S : EqualityStructure.{u}) :\n    ModelTheory.FirstOrder.Model pureEqualitySignature where\n  Domain := S.Carrier\n  domainNonempty := S.carrierNonempty\n  interpretEquality := S.equalityInterpretation\n  equalityIsDiagonal := S.isDiagonal\n  interpretFunction := fun functionSymbol => Empty.elim functionSymbol\n  interpretRelation := fun relationSymbol => Empty.elim relationSymbol\n  interpretConstant := Empty.elim",
+      "formal_statement": "def EqualityStructure.toFirstOrderModel\n    (S : EqualityStructure.{u}) :\n    ModelTheory.FirstOrder.Model pureEqualitySignature where\n  Domain := S.Carrier\n  domainNonempty := S.carrierNonempty\n  interpretEquality := S.equalityInterpretation\n  equalityIsDiagonal := S.isDiagonal\n  interpretFunction := fun functionSymbol => Empty.elim functionSymbol\n  interpretRelation := fun relationSymbol => Empty.elim relationSymbol\n  interpretConstant := Empty.elim",
+      "predicate_logic": "def EqualityStructure.toFirstOrderModel\n    (S : EqualityStructure.{u}) :\n    ModelTheory.FirstOrder.Model pureEqualitySignature where\n  Domain := S.Carrier\n  domainNonempty := S.carrierNonempty\n  interpretEquality := S.equalityInterpretation\n  equalityIsDiagonal := S.isDiagonal\n  interpretFunction := fun functionSymbol => Empty.elim functionSymbol\n  interpretRelation := fun relationSymbol => Empty.elim relationSymbol\n  interpretConstant := Empty.elim",
+      "predicate_logic_unfolded": "def EqualityStructure.toFirstOrderModel\n    (S : EqualityStructure.{u}) :\n    ModelTheory.FirstOrder.Model pureEqualitySignature where\n  Domain := S.Carrier\n  domainNonempty := S.carrierNonempty\n  interpretEquality := S.equalityInterpretation\n  equalityIsDiagonal := S.isDiagonal\n  interpretFunction := fun functionSymbol => Empty.elim functionSymbol\n  interpretRelation := fun relationSymbol => Empty.elim relationSymbol\n  interpretConstant := Empty.elim (source fallback; no compiled unfold data available)",
+      "existing_doc": "",
+      "detected_connectives": [],
+      "suggested_moves": [
+        "unfold"
+      ],
+      "generated_comment": "/--\n`EqualityStructure.toFirstOrderModel` TODO\n\nPredicate logic:\n\n  def EqualityStructure.toFirstOrderModel\n      (S : EqualityStructure.{u}) :\n      ModelTheory.FirstOrder.Model pureEqualitySignature where\n    Domain := S.Carrier\n    domainNonempty := S.carrierNonempty\n    interpretEquality := S.equalityInterpretation\n    equalityIsDiagonal := S.isDiagonal\n    interpretFunction := fun functionSymbol => Empty.elim functionSymbol\n    interpretRelation := fun relationSymbol => Empty.elim relationSymbol\n    interpretConstant := Empty.elim\n\nPredicate logic (unfolded):\n\n  def EqualityStructure.toFirstOrderModel\n      (S : EqualityStructure.{u}) :\n      ModelTheory.FirstOrder.Model pureEqualitySignature where\n    Domain := S.Carrier\n    domainNonempty := S.carrierNonempty\n    interpretEquality := S.equalityInterpretation\n    equalityIsDiagonal := S.isDiagonal\n    interpretFunction := fun functionSymbol => Empty.elim functionSymbol\n    interpretRelation := fun relationSymbol => Empty.elim relationSymbol\n    interpretConstant := Empty.elim (source fallback; no compiled unfold data available)\n\nLogical form (Lean):\n\n```lean\ndef EqualityStructure.toFirstOrderModel\n    (S : EqualityStructure.{u}) :\n    ModelTheory.FirstOrder.Model pureEqualitySignature where\n  Domain := S.Carrier\n  domainNonempty := S.carrierNonempty\n  interpretEquality := S.equalityInterpretation\n  equalityIsDiagonal := S.isDiagonal\n  interpretFunction := fun functionSymbol => Empty.elim functionSymbol\n  interpretRelation := fun relationSymbol => Empty.elim relationSymbol\n  interpretConstant := Empty.elim\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Interface/ModelTheory/Model.lean:196:EqualityStructure.toFullSecondOrderModel",
+      "name": "EqualityStructure.toFullSecondOrderModel",
+      "kind": "def",
+      "file": "LRA/Identity/Interface/ModelTheory/Model.lean",
+      "line": 196,
+      "declaration": "def EqualityStructure.toFullSecondOrderModel\n    (S : EqualityStructure.{u}) :\n    ModelTheory.SecondOrder.FullModel pureEqualitySignature where\n  Domain := S.Carrier\n  domainNonempty := S.carrierNonempty\n  interpretEquality := S.equalityInterpretation\n  equalityIsDiagonal := S.isDiagonal\n  interpretFunction := fun functionSymbol => Empty.elim functionSymbol\n  interpretRelation := fun relationSymbol => Empty.elim relationSymbol\n  interpretConstant := Empty.elim",
+      "formal_statement": "def EqualityStructure.toFullSecondOrderModel\n    (S : EqualityStructure.{u}) :\n    ModelTheory.SecondOrder.FullModel pureEqualitySignature where\n  Domain := S.Carrier\n  domainNonempty := S.carrierNonempty\n  interpretEquality := S.equalityInterpretation\n  equalityIsDiagonal := S.isDiagonal\n  interpretFunction := fun functionSymbol => Empty.elim functionSymbol\n  interpretRelation := fun relationSymbol => Empty.elim relationSymbol\n  interpretConstant := Empty.elim",
+      "predicate_logic": "def EqualityStructure.toFullSecondOrderModel\n    (S : EqualityStructure.{u}) :\n    ModelTheory.SecondOrder.FullModel pureEqualitySignature where\n  Domain := S.Carrier\n  domainNonempty := S.carrierNonempty\n  interpretEquality := S.equalityInterpretation\n  equalityIsDiagonal := S.isDiagonal\n  interpretFunction := fun functionSymbol => Empty.elim functionSymbol\n  interpretRelation := fun relationSymbol => Empty.elim relationSymbol\n  interpretConstant := Empty.elim",
+      "predicate_logic_unfolded": "def EqualityStructure.toFullSecondOrderModel\n    (S : EqualityStructure.{u}) :\n    ModelTheory.SecondOrder.FullModel pureEqualitySignature where\n  Domain := S.Carrier\n  domainNonempty := S.carrierNonempty\n  interpretEquality := S.equalityInterpretation\n  equalityIsDiagonal := S.isDiagonal\n  interpretFunction := fun functionSymbol => Empty.elim functionSymbol\n  interpretRelation := fun relationSymbol => Empty.elim relationSymbol\n  interpretConstant := Empty.elim (source fallback; no compiled unfold data available)",
+      "existing_doc": "",
+      "detected_connectives": [],
+      "suggested_moves": [
+        "unfold"
+      ],
+      "generated_comment": "/--\n`EqualityStructure.toFullSecondOrderModel` TODO\n\nPredicate logic:\n\n  def EqualityStructure.toFullSecondOrderModel\n      (S : EqualityStructure.{u}) :\n      ModelTheory.SecondOrder.FullModel pureEqualitySignature where\n    Domain := S.Carrier\n    domainNonempty := S.carrierNonempty\n    interpretEquality := S.equalityInterpretation\n    equalityIsDiagonal := S.isDiagonal\n    interpretFunction := fun functionSymbol => Empty.elim functionSymbol\n    interpretRelation := fun relationSymbol => Empty.elim relationSymbol\n    interpretConstant := Empty.elim\n\nPredicate logic (unfolded):\n\n  def EqualityStructure.toFullSecondOrderModel\n      (S : EqualityStructure.{u}) :\n      ModelTheory.SecondOrder.FullModel pureEqualitySignature where\n    Domain := S.Carrier\n    domainNonempty := S.carrierNonempty\n    interpretEquality := S.equalityInterpretation\n    equalityIsDiagonal := S.isDiagonal\n    interpretFunction := fun functionSymbol => Empty.elim functionSymbol\n    interpretRelation := fun relationSymbol => Empty.elim relationSymbol\n    interpretConstant := Empty.elim (source fallback; no compiled unfold data available)\n\nLogical form (Lean):\n\n```lean\ndef EqualityStructure.toFullSecondOrderModel\n    (S : EqualityStructure.{u}) :\n    ModelTheory.SecondOrder.FullModel pureEqualitySignature where\n  Domain := S.Carrier\n  domainNonempty := S.carrierNonempty\n  interpretEquality := S.equalityInterpretation\n  equalityIsDiagonal := S.isDiagonal\n  interpretFunction := fun functionSymbol => Empty.elim functionSymbol\n  interpretRelation := fun relationSymbol => Empty.elim relationSymbol\n  interpretConstant := Empty.elim\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Interface/ModelTheory/Model.lean:252:EqualityStructure.toSecondOrderModel",
+      "name": "EqualityStructure.toSecondOrderModel",
+      "kind": "abbrev",
+      "file": "LRA/Identity/Interface/ModelTheory/Model.lean",
+      "line": 252,
+      "declaration": "abbrev EqualityStructure.toSecondOrderModel\n    (S : EqualityStructure.{u}) :\n    ModelTheory.SecondOrder.FullModel pureEqualitySignature :=\n  S.toFullSecondOrderModel",
+      "formal_statement": "abbrev EqualityStructure.toSecondOrderModel\n    (S : EqualityStructure.{u}) :\n    ModelTheory.SecondOrder.FullModel pureEqualitySignature :=\n  S.toFullSecondOrderModel",
+      "predicate_logic": "abbrev EqualityStructure.toSecondOrderModel\n    (S : EqualityStructure.{u}) :\n    ModelTheory.SecondOrder.FullModel pureEqualitySignature :=\n  S.toFullSecondOrderModel",
+      "predicate_logic_unfolded": "abbrev EqualityStructure.toSecondOrderModel\n    (S : EqualityStructure.{u}) :\n    ModelTheory.SecondOrder.FullModel pureEqualitySignature :=\n  S.toFullSecondOrderModel (source fallback; no compiled unfold data available)",
+      "existing_doc": "",
+      "detected_connectives": [],
+      "suggested_moves": [
+        "unfold"
+      ],
+      "generated_comment": "/--\n`EqualityStructure.toSecondOrderModel` TODO\n\nPredicate logic:\n\n  abbrev EqualityStructure.toSecondOrderModel\n      (S : EqualityStructure.{u}) :\n      ModelTheory.SecondOrder.FullModel pureEqualitySignature :=\n    S.toFullSecondOrderModel\n\nPredicate logic (unfolded):\n\n  abbrev EqualityStructure.toSecondOrderModel\n      (S : EqualityStructure.{u}) :\n      ModelTheory.SecondOrder.FullModel pureEqualitySignature :=\n    S.toFullSecondOrderModel (source fallback; no compiled unfold data available)\n\nLogical form (Lean):\n\n```lean\nabbrev EqualityStructure.toSecondOrderModel\n    (S : EqualityStructure.{u}) :\n    ModelTheory.SecondOrder.FullModel pureEqualitySignature :=\n  S.toFullSecondOrderModel\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Interface/ModelTheory/Model.lean:302:EqualityStructure.toHenkinSecondOrderModel",
+      "name": "EqualityStructure.toHenkinSecondOrderModel",
+      "kind": "abbrev",
+      "file": "LRA/Identity/Interface/ModelTheory/Model.lean",
+      "line": 302,
+      "declaration": "abbrev EqualityStructure.toHenkinSecondOrderModel\n    (S : EqualityStructure.{u}) :\n    ModelTheory.SecondOrder.HenkinModel pureEqualitySignature :=\n  S.toFullSecondOrderModel.toHenkinModel",
+      "formal_statement": "abbrev EqualityStructure.toHenkinSecondOrderModel\n    (S : EqualityStructure.{u}) :\n    ModelTheory.SecondOrder.HenkinModel pureEqualitySignature :=\n  S.toFullSecondOrderModel.toHenkinModel",
+      "predicate_logic": "abbrev EqualityStructure.toHenkinSecondOrderModel\n    (S : EqualityStructure.{u}) :\n    ModelTheory.SecondOrder.HenkinModel pureEqualitySignature :=\n  S.toFullSecondOrderModel.toHenkinModel",
+      "predicate_logic_unfolded": "abbrev EqualityStructure.toHenkinSecondOrderModel\n    (S : EqualityStructure.{u}) :\n    ModelTheory.SecondOrder.HenkinModel pureEqualitySignature :=\n  S.toFullSecondOrderModel.toHenkinModel (source fallback; no compiled unfold data available)",
+      "existing_doc": "",
+      "detected_connectives": [],
+      "suggested_moves": [
+        "unfold"
+      ],
+      "generated_comment": "/--\n`EqualityStructure.toHenkinSecondOrderModel` TODO\n\nPredicate logic:\n\n  abbrev EqualityStructure.toHenkinSecondOrderModel\n      (S : EqualityStructure.{u}) :\n      ModelTheory.SecondOrder.HenkinModel pureEqualitySignature :=\n    S.toFullSecondOrderModel.toHenkinModel\n\nPredicate logic (unfolded):\n\n  abbrev EqualityStructure.toHenkinSecondOrderModel\n      (S : EqualityStructure.{u}) :\n      ModelTheory.SecondOrder.HenkinModel pureEqualitySignature :=\n    S.toFullSecondOrderModel.toHenkinModel (source fallback; no compiled unfold data available)\n\nLogical form (Lean):\n\n```lean\nabbrev EqualityStructure.toHenkinSecondOrderModel\n    (S : EqualityStructure.{u}) :\n    ModelTheory.SecondOrder.HenkinModel pureEqualitySignature :=\n  S.toFullSecondOrderModel.toHenkinModel\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Interface/ModelTheory/Model.lean:350:EqualityStructure.toHenkinSecondOrderModel_hasFullSecondOrderSemantics",
+      "name": "EqualityStructure.toHenkinSecondOrderModel_hasFullSecondOrderSemantics",
+      "kind": "theorem",
+      "file": "LRA/Identity/Interface/ModelTheory/Model.lean",
+      "line": 350,
+      "declaration": "theorem EqualityStructure.toHenkinSecondOrderModel_hasFullSecondOrderSemantics\n    (S : EqualityStructure.{u}) :\n    ModelTheory.SecondOrder.HasFullSecondOrderSemantics S.toHenkinSecondOrderModel := by\n  sorry",
+      "formal_statement": "theorem EqualityStructure.toHenkinSecondOrderModel_hasFullSecondOrderSemantics\n    (S : EqualityStructure.{u}) :\n    ModelTheory.SecondOrder.HasFullSecondOrderSemantics S.toHenkinSecondOrderModel",
+      "predicate_logic": "ModelTheory.SecondOrder.HasFullSecondOrderSemantics S.toHenkinSecondOrderModel",
+      "predicate_logic_unfolded": "Ambient\n  (implicit ambient)\nObjects\n  S : EqualityStructure.{u}\nProve\n  ((∀ (arity : Nat) (relation_ : (Fin arity → S.toHenkinSecondOrderModel.toInterpretation.1) → Prop), relation_ ∈ S.toHenkinSecondOrderModel.2 arity) ∧ (∀ (arity : Nat) (function_ : (Fin arity → S.toHenkinSecondOrderModel.toInterpretation.1) → S.toHenkinSecondOrderModel.toInterpretation.1), function_ ∈ S.toHenkinSecondOrderModel.3 arity))",
+      "existing_doc": "",
+      "detected_connectives": [],
+      "suggested_moves": [],
+      "generated_comment": "/--\n`EqualityStructure.toHenkinSecondOrderModel_hasFullSecondOrderSemantics` TODO\n\nPredicate logic:\n\n  ModelTheory.SecondOrder.HasFullSecondOrderSemantics S.toHenkinSecondOrderModel\n\nPredicate logic (unfolded):\n\n  Ambient\n    (implicit ambient)\n  Objects\n    S : EqualityStructure.{u}\n  Prove\n    ((∀ (arity : Nat) (relation_ : (Fin arity → S.toHenkinSecondOrderModel.toInterpretation.1) → Prop), relation_ ∈ S.toHenkinSecondOrderModel.2 arity) ∧ (∀ (arity : Nat) (function_ : (Fin arity → S.toHenkinSecondOrderModel.toInterpretation.1) → S.toHenkinSecondOrderModel.toInterpretation.1), function_ ∈ S.toHenkinSecondOrderModel.3 arity))\n\nLogical form (Lean):\n\n```lean\ntheorem EqualityStructure.toHenkinSecondOrderModel_hasFullSecondOrderSemantics\n    (S : EqualityStructure.{u}) :\n    ModelTheory.SecondOrder.HasFullSecondOrderSemantics S.toHenkinSecondOrderModel\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: TODO\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Interface/ModelTheory/Model.lean:409:canonicalEqualityStructure",
+      "name": "canonicalEqualityStructure",
+      "kind": "def",
+      "file": "LRA/Identity/Interface/ModelTheory/Model.lean",
+      "line": 409,
+      "declaration": "def canonicalEqualityStructure (Carrier : Type u) [Nonempty Carrier] :\n    EqualityStructure where\n  Carrier := Carrier\n  carrierNonempty := inferInstance\n  equalityInterpretation := EqualityDiagonal Carrier\n  satisfiesIdentityTheory :=\n    ⟨fun _ => rfl, fun _ _ h _ _ hp => h ▸ hp⟩",
+      "formal_statement": "def canonicalEqualityStructure (Carrier : Type u) [Nonempty Carrier] :\n    EqualityStructure where\n  Carrier := Carrier\n  carrierNonempty := inferInstance\n  equalityInterpretation := EqualityDiagonal Carrier\n  satisfiesIdentityTheory :=\n    ⟨fun _ => rfl, fun _ _ h _ _ hp => h ▸ hp⟩",
+      "predicate_logic": "def canonicalEqualityStructure (Carrier : Type u) [Nonempty Carrier] :\n    EqualityStructure where\n  Carrier := Carrier\n  carrierNonempty := inferInstance\n  equalityInterpretation := EqualityDiagonal Carrier\n  satisfiesIdentityTheory :=\n    ⟨fun _ => rfl, fun _ _ h _ _ hp => h ▸ hp⟩",
+      "predicate_logic_unfolded": "def canonicalEqualityStructure (Carrier : Type u) [Nonempty Carrier] :\n    EqualityStructure where\n  Carrier := Carrier\n  carrierNonempty := inferInstance\n  equalityInterpretation := EqualityDiagonal Carrier\n  satisfiesIdentityTheory :=\n    ⟨fun _ => rfl, fun _ _ h _ _ hp => h ▸ hp⟩ (source fallback; no compiled unfold data available)",
+      "existing_doc": "",
+      "detected_connectives": [],
+      "suggested_moves": [
+        "unfold"
+      ],
+      "generated_comment": "/--\n`canonicalEqualityStructure` TODO\n\nPredicate logic:\n\n  def canonicalEqualityStructure (Carrier : Type u) [Nonempty Carrier] :\n      EqualityStructure where\n    Carrier := Carrier\n    carrierNonempty := inferInstance\n    equalityInterpretation := EqualityDiagonal Carrier\n    satisfiesIdentityTheory :=\n      ⟨fun _ => rfl, fun _ _ h _ _ hp => h ▸ hp⟩\n\nPredicate logic (unfolded):\n\n  def canonicalEqualityStructure (Carrier : Type u) [Nonempty Carrier] :\n      EqualityStructure where\n    Carrier := Carrier\n    carrierNonempty := inferInstance\n    equalityInterpretation := EqualityDiagonal Carrier\n    satisfiesIdentityTheory :=\n      ⟨fun _ => rfl, fun _ _ h _ _ hp => h ▸ hp⟩ (source fallback; no compiled unfold data available)\n\nLogical form (Lean):\n\n```lean\ndef canonicalEqualityStructure (Carrier : Type u) [Nonempty Carrier] :\n    EqualityStructure where\n  Carrier := Carrier\n  carrierNonempty := inferInstance\n  equalityInterpretation := EqualityDiagonal Carrier\n  satisfiesIdentityTheory :=\n    ⟨fun _ => rfl, fun _ _ h _ _ hp => h ▸ hp⟩\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Interface/ModelTheory/Model.lean:459:canonicalFirstOrderEqualityModel",
+      "name": "canonicalFirstOrderEqualityModel",
+      "kind": "abbrev",
+      "file": "LRA/Identity/Interface/ModelTheory/Model.lean",
+      "line": 459,
+      "declaration": "abbrev canonicalFirstOrderEqualityModel (Carrier : Type u) [Nonempty Carrier] :\n    ModelTheory.FirstOrder.Model pureEqualitySignature :=\n  (canonicalEqualityStructure Carrier).toFirstOrderModel",
+      "formal_statement": "abbrev canonicalFirstOrderEqualityModel (Carrier : Type u) [Nonempty Carrier] :\n    ModelTheory.FirstOrder.Model pureEqualitySignature :=\n  (canonicalEqualityStructure Carrier).toFirstOrderModel",
+      "predicate_logic": "abbrev canonicalFirstOrderEqualityModel (Carrier : Type u) [Nonempty Carrier] :\n    ModelTheory.FirstOrder.Model pureEqualitySignature :=\n  (canonicalEqualityStructure Carrier).toFirstOrderModel",
+      "predicate_logic_unfolded": "abbrev canonicalFirstOrderEqualityModel (Carrier : Type u) [Nonempty Carrier] :\n    ModelTheory.FirstOrder.Model pureEqualitySignature :=\n  (canonicalEqualityStructure Carrier).toFirstOrderModel (source fallback; no compiled unfold data available)",
+      "existing_doc": "",
+      "detected_connectives": [],
+      "suggested_moves": [
+        "unfold"
+      ],
+      "generated_comment": "/--\n`canonicalFirstOrderEqualityModel` TODO\n\nPredicate logic:\n\n  abbrev canonicalFirstOrderEqualityModel (Carrier : Type u) [Nonempty Carrier] :\n      ModelTheory.FirstOrder.Model pureEqualitySignature :=\n    (canonicalEqualityStructure Carrier).toFirstOrderModel\n\nPredicate logic (unfolded):\n\n  abbrev canonicalFirstOrderEqualityModel (Carrier : Type u) [Nonempty Carrier] :\n      ModelTheory.FirstOrder.Model pureEqualitySignature :=\n    (canonicalEqualityStructure Carrier).toFirstOrderModel (source fallback; no compiled unfold data available)\n\nLogical form (Lean):\n\n```lean\nabbrev canonicalFirstOrderEqualityModel (Carrier : Type u) [Nonempty Carrier] :\n    ModelTheory.FirstOrder.Model pureEqualitySignature :=\n  (canonicalEqualityStructure Carrier).toFirstOrderModel\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Interface/ModelTheory/Model.lean:505:canonicalSecondOrderEqualityModel",
+      "name": "canonicalSecondOrderEqualityModel",
+      "kind": "abbrev",
+      "file": "LRA/Identity/Interface/ModelTheory/Model.lean",
+      "line": 505,
+      "declaration": "abbrev canonicalSecondOrderEqualityModel (Carrier : Type u) [Nonempty Carrier] :\n    ModelTheory.SecondOrder.FullModel pureEqualitySignature :=\n  (canonicalEqualityStructure Carrier).toFullSecondOrderModel",
+      "formal_statement": "abbrev canonicalSecondOrderEqualityModel (Carrier : Type u) [Nonempty Carrier] :\n    ModelTheory.SecondOrder.FullModel pureEqualitySignature :=\n  (canonicalEqualityStructure Carrier).toFullSecondOrderModel",
+      "predicate_logic": "abbrev canonicalSecondOrderEqualityModel (Carrier : Type u) [Nonempty Carrier] :\n    ModelTheory.SecondOrder.FullModel pureEqualitySignature :=\n  (canonicalEqualityStructure Carrier).toFullSecondOrderModel",
+      "predicate_logic_unfolded": "abbrev canonicalSecondOrderEqualityModel (Carrier : Type u) [Nonempty Carrier] :\n    ModelTheory.SecondOrder.FullModel pureEqualitySignature :=\n  (canonicalEqualityStructure Carrier).toFullSecondOrderModel (source fallback; no compiled unfold data available)",
+      "existing_doc": "",
+      "detected_connectives": [],
+      "suggested_moves": [
+        "unfold"
+      ],
+      "generated_comment": "/--\n`canonicalSecondOrderEqualityModel` TODO\n\nPredicate logic:\n\n  abbrev canonicalSecondOrderEqualityModel (Carrier : Type u) [Nonempty Carrier] :\n      ModelTheory.SecondOrder.FullModel pureEqualitySignature :=\n    (canonicalEqualityStructure Carrier).toFullSecondOrderModel\n\nPredicate logic (unfolded):\n\n  abbrev canonicalSecondOrderEqualityModel (Carrier : Type u) [Nonempty Carrier] :\n      ModelTheory.SecondOrder.FullModel pureEqualitySignature :=\n    (canonicalEqualityStructure Carrier).toFullSecondOrderModel (source fallback; no compiled unfold data available)\n\nLogical form (Lean):\n\n```lean\nabbrev canonicalSecondOrderEqualityModel (Carrier : Type u) [Nonempty Carrier] :\n    ModelTheory.SecondOrder.FullModel pureEqualitySignature :=\n  (canonicalEqualityStructure Carrier).toFullSecondOrderModel\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Interface/UniversalAlgebra/Congruence.lean:61:AlgebraicStructure",
+      "name": "AlgebraicStructure",
+      "kind": "structure",
+      "file": "LRA/Identity/Interface/UniversalAlgebra/Congruence.lean",
+      "line": 61,
+      "declaration": "structure AlgebraicStructure (signature : AlgebraicSignature.{v, w}) where\n  Carrier : Type u\n  carrierNonempty : Nonempty Carrier\n  interpretOperation :\n    (symbol : signature.OperationSymbol) →\n      (Fin (signature.arity symbol) → Carrier) → Carrier\n  interpretConstant : signature.ConstantSymbol → Carrier",
+      "formal_statement": "structure AlgebraicStructure (signature : AlgebraicSignature.{v, w}) where\n  Carrier : Type u\n  carrierNonempty : Nonempty Carrier\n  interpretOperation :\n    (symbol : signature.OperationSymbol) →\n      (Fin (signature.arity symbol) → Carrier) → Carrier\n  interpretConstant : signature.ConstantSymbol → Carrier",
+      "predicate_logic": "structure AlgebraicStructure (signature : AlgebraicSignature.{v, w}) where\n  Carrier : Type u\n  carrierNonempty : Nonempty Carrier\n  interpretOperation :\n    (symbol : signature.OperationSymbol) →\n      (Fin (signature.arity symbol) → Carrier) → Carrier\n  interpretConstant : signature.ConstantSymbol → Carrier",
+      "predicate_logic_unfolded": "structure AlgebraicStructure (signature : AlgebraicSignature.{v, w}) where\n  Carrier : Type u\n  carrierNonempty : Nonempty Carrier\n  interpretOperation :\n    (symbol : signature.OperationSymbol) →\n      (Fin (signature.arity symbol) → Carrier) → Carrier\n  interpretConstant : signature.ConstantSymbol → Carrier (source fallback; no compiled unfold data available)",
+      "existing_doc": "",
+      "detected_connectives": [
+        "→"
+      ],
+      "suggested_moves": [
+        "intro"
+      ],
+      "generated_comment": "/--\n`AlgebraicStructure` TODO\n\nPredicate logic:\n\n  structure AlgebraicStructure (signature : AlgebraicSignature.{v, w}) where\n    Carrier : Type u\n    carrierNonempty : Nonempty Carrier\n    interpretOperation :\n      (symbol : signature.OperationSymbol) →\n        (Fin (signature.arity symbol) → Carrier) → Carrier\n    interpretConstant : signature.ConstantSymbol → Carrier\n\nPredicate logic (unfolded):\n\n  structure AlgebraicStructure (signature : AlgebraicSignature.{v, w}) where\n    Carrier : Type u\n    carrierNonempty : Nonempty Carrier\n    interpretOperation :\n      (symbol : signature.OperationSymbol) →\n        (Fin (signature.arity symbol) → Carrier) → Carrier\n    interpretConstant : signature.ConstantSymbol → Carrier (source fallback; no compiled unfold data available)\n\nLogical form (Lean):\n\n```lean\nstructure AlgebraicStructure (signature : AlgebraicSignature.{v, w}) where\n  Carrier : Type u\n  carrierNonempty : Nonempty Carrier\n  interpretOperation :\n    (symbol : signature.OperationSymbol) →\n      (Fin (signature.arity symbol) → Carrier) → Carrier\n  interpretConstant : signature.ConstantSymbol → Carrier\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Interface/UniversalAlgebra/Congruence.lean:111:RelationReflexive",
+      "name": "RelationReflexive",
+      "kind": "def",
+      "file": "LRA/Identity/Interface/UniversalAlgebra/Congruence.lean",
+      "line": 111,
+      "declaration": "def RelationReflexive {Carrier : Type u} (relation : Carrier → Carrier → Prop) : Prop :=\n  ∀ x, relation x x",
+      "formal_statement": "def RelationReflexive {Carrier : Type u} (relation : Carrier → Carrier → Prop) : Prop :=\n  ∀ x, relation x x",
+      "predicate_logic": "∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) (x : Carrier), relation x x",
+      "predicate_logic_unfolded": "Ambient\n  (implicit ambient)\nObjects\n  (none)\nProve\n  relation x x",
+      "existing_doc": "",
+      "detected_connectives": [
+        "∀",
+        "→",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro",
+        "unfold"
+      ],
+      "generated_comment": "/--\n`RelationReflexive` TODO\n\nPredicate logic:\n\n  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) (x : Carrier), relation x x\n\nPredicate logic (unfolded):\n\n  Ambient\n    (implicit ambient)\n  Objects\n    (none)\n  Prove\n    relation x x\n\nLogical form (Lean):\n\n```lean\ndef RelationReflexive {Carrier : Type u} (relation : Carrier → Carrier → Prop) : Prop :=\n  ∀ x, relation x x\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro, unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro",
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Interface/UniversalAlgebra/Congruence.lean:156:RelationSymmetric",
+      "name": "RelationSymmetric",
+      "kind": "def",
+      "file": "LRA/Identity/Interface/UniversalAlgebra/Congruence.lean",
+      "line": 156,
+      "declaration": "def RelationSymmetric {Carrier : Type u} (relation : Carrier → Carrier → Prop) : Prop :=\n  ∀ {x y}, relation x y → relation y x",
+      "formal_statement": "def RelationSymmetric {Carrier : Type u} (relation : Carrier → Carrier → Prop) : Prop :=\n  ∀ {x y}, relation x y → relation y x",
+      "predicate_logic": "∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) {x y : Carrier}, relation x y → relation y x",
+      "predicate_logic_unfolded": "Ambient\n  (implicit ambient)\nObjects\n  (none)\nProve\n  relation x y → relation y x",
+      "existing_doc": "",
+      "detected_connectives": [
+        "∀",
+        "→",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro",
+        "unfold"
+      ],
+      "generated_comment": "/--\n`RelationSymmetric` TODO\n\nPredicate logic:\n\n  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) {x y : Carrier}, relation x y → relation y x\n\nPredicate logic (unfolded):\n\n  Ambient\n    (implicit ambient)\n  Objects\n    (none)\n  Prove\n    relation x y → relation y x\n\nLogical form (Lean):\n\n```lean\ndef RelationSymmetric {Carrier : Type u} (relation : Carrier → Carrier → Prop) : Prop :=\n  ∀ {x y}, relation x y → relation y x\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro, unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro",
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Interface/UniversalAlgebra/Congruence.lean:201:RelationTransitive",
+      "name": "RelationTransitive",
+      "kind": "def",
+      "file": "LRA/Identity/Interface/UniversalAlgebra/Congruence.lean",
+      "line": 201,
+      "declaration": "def RelationTransitive {Carrier : Type u} (relation : Carrier → Carrier → Prop) : Prop :=\n  ∀ {x y z}, relation x y → relation y z → relation x z",
+      "formal_statement": "def RelationTransitive {Carrier : Type u} (relation : Carrier → Carrier → Prop) : Prop :=\n  ∀ {x y z}, relation x y → relation y z → relation x z",
+      "predicate_logic": "∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) {x y z : Carrier}, (relation x y ∧ relation y z) → relation x z",
+      "predicate_logic_unfolded": "Ambient\n  (implicit ambient)\nObjects\n  (none)\nProve\n  (relation x y ∧ relation y z) → relation x z",
+      "existing_doc": "",
+      "detected_connectives": [
+        "∀",
+        "→",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro",
+        "unfold"
+      ],
+      "generated_comment": "/--\n`RelationTransitive` TODO\n\nPredicate logic:\n\n  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) {x y z : Carrier}, (relation x y ∧ relation y z) → relation x z\n\nPredicate logic (unfolded):\n\n  Ambient\n    (implicit ambient)\n  Objects\n    (none)\n  Prove\n    (relation x y ∧ relation y z) → relation x z\n\nLogical form (Lean):\n\n```lean\ndef RelationTransitive {Carrier : Type u} (relation : Carrier → Carrier → Prop) : Prop :=\n  ∀ {x y z}, relation x y → relation y z → relation x z\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro, unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro",
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Interface/UniversalAlgebra/Congruence.lean:254:OperationCompatible",
+      "name": "OperationCompatible",
+      "kind": "def",
+      "file": "LRA/Identity/Interface/UniversalAlgebra/Congruence.lean",
+      "line": 254,
+      "declaration": "def OperationCompatible\n    {signature : AlgebraicSignature.{v, w}}\n    (structure_ : AlgebraicStructure signature)\n    (relation : structure_.Carrier → structure_.Carrier → Prop) : Prop :=\n  ∀ (symbol : signature.OperationSymbol)\n    (left right : Fin (signature.arity symbol) → structure_.Carrier),\n      (∀ index, relation (left index) (right index)) →\n        relation\n          (structure_.interpretOperation symbol left)\n          (structure_.interpretOperation symbol right)",
+      "formal_statement": "def OperationCompatible\n    {signature : AlgebraicSignature.{v, w}}\n    (structure_ : AlgebraicStructure signature)\n    (relation : structure_.Carrier → structure_.Carrier → Prop) : Prop :=\n  ∀ (symbol : signature.OperationSymbol)\n    (left right : Fin (signature.arity symbol) → structure_.Carrier),\n      (∀ index, relation (left index) (right index)) →\n        relation\n          (structure_.interpretOperation symbol left)\n          (structure_.interpretOperation symbol right)",
+      "predicate_logic": "∀ {signature : LRA.Identity.AlgebraicSignature} (structure_ : LRA.Identity.AlgebraicStructure signature) (relation : structure_.Carrier → structure_.Carrier → Prop) (symbol : signature.OperationSymbol) (left right : Fin (signature.arity symbol) → structure_.Carrier), (∀ (index : Fin (signature.arity symbol)), relation (left index) (right index)) → relation (structure_.interpretOperation symbol left) (structure_.interpretOperation symbol right)",
+      "predicate_logic_unfolded": "Ambient\n  (implicit ambient)\nObjects\n  (none)\nProve\n  (∀ (index : Fin (signature.2 symbol)), relation (left index) (right index)) → relation (structure_.3 symbol left) (structure_.3 symbol right)",
+      "existing_doc": "",
+      "detected_connectives": [
+        "∀",
+        "→",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro",
+        "unfold"
+      ],
+      "generated_comment": "/--\n`OperationCompatible` TODO\n\nPredicate logic:\n\n  ∀ {signature : LRA.Identity.AlgebraicSignature} (structure_ : LRA.Identity.AlgebraicStructure signature) (relation : structure_.Carrier → structure_.Carrier → Prop) (symbol : signature.OperationSymbol) (left right : Fin (signature.arity symbol) → structure_.Carrier), (∀ (index : Fin (signature.arity symbol)), relation (left index) (right index)) → relation (structure_.interpretOperation symbol left) (structure_.interpretOperation symbol right)\n\nPredicate logic (unfolded):\n\n  Ambient\n    (implicit ambient)\n  Objects\n    (none)\n  Prove\n    (∀ (index : Fin (signature.2 symbol)), relation (left index) (right index)) → relation (structure_.3 symbol left) (structure_.3 symbol right)\n\nLogical form (Lean):\n\n```lean\ndef OperationCompatible\n    {signature : AlgebraicSignature.{v, w}}\n    (structure_ : AlgebraicStructure signature)\n    (relation : structure_.Carrier → structure_.Carrier → Prop) : Prop :=\n  ∀ (symbol : signature.OperationSymbol)\n    (left right : Fin (signature.arity symbol) → structure_.Carrier),\n      (∀ index, relation (left index) (right index)) →\n        relation\n          (structure_.interpretOperation symbol left)\n          (structure_.interpretOperation symbol right)\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro, unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro",
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Interface/UniversalAlgebra/Congruence.lean:322:IsCongruence",
+      "name": "IsCongruence",
+      "kind": "structure",
+      "file": "LRA/Identity/Interface/UniversalAlgebra/Congruence.lean",
+      "line": 322,
+      "declaration": "structure IsCongruence\n    {signature : AlgebraicSignature.{v, w}}\n    (structure_ : AlgebraicStructure signature)\n    (relation : structure_.Carrier → structure_.Carrier → Prop) : Prop where\n  reflexive : RelationReflexive relation\n  symmetric : RelationSymmetric relation\n  transitive : RelationTransitive relation\n  operationCompatible : OperationCompatible structure_ relation",
+      "formal_statement": "structure IsCongruence\n    {signature : AlgebraicSignature.{v, w}}\n    (structure_ : AlgebraicStructure signature)\n    (relation : structure_.Carrier → structure_.Carrier → Prop) : Prop where\n  reflexive : RelationReflexive relation\n  symmetric : RelationSymmetric relation\n  transitive : RelationTransitive relation\n  operationCompatible : OperationCompatible structure_ relation",
+      "predicate_logic": "structure IsCongruence\n    {signature : AlgebraicSignature.{v, w}}\n    (structure_ : AlgebraicStructure signature)\n    (relation : structure_.Carrier → structure_.Carrier → Prop) : Prop where\n  reflexive : RelationReflexive relation\n  symmetric : RelationSymmetric relation\n  transitive : RelationTransitive relation\n  operationCompatible : OperationCompatible structure_ relation",
+      "predicate_logic_unfolded": "structure IsCongruence\n    {signature : AlgebraicSignature.{v, w}}\n    (structure_ : AlgebraicStructure signature)\n    (relation : structure_.Carrier → structure_.Carrier → Prop) : Prop where\n  reflexive : RelationReflexive relation\n  symmetric : RelationSymmetric relation\n  transitive : RelationTransitive relation\n  operationCompatible : OperationCompatible structure_ relation (source fallback; no compiled unfold data available)",
+      "existing_doc": "",
+      "detected_connectives": [
+        "→",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro"
+      ],
+      "generated_comment": "/--\n`IsCongruence` TODO\n\nPredicate logic:\n\n  structure IsCongruence\n      {signature : AlgebraicSignature.{v, w}}\n      (structure_ : AlgebraicStructure signature)\n      (relation : structure_.Carrier → structure_.Carrier → Prop) : Prop where\n    reflexive : RelationReflexive relation\n    symmetric : RelationSymmetric relation\n    transitive : RelationTransitive relation\n    operationCompatible : OperationCompatible structure_ relation\n\nPredicate logic (unfolded):\n\n  structure IsCongruence\n      {signature : AlgebraicSignature.{v, w}}\n      (structure_ : AlgebraicStructure signature)\n      (relation : structure_.Carrier → structure_.Carrier → Prop) : Prop where\n    reflexive : RelationReflexive relation\n    symmetric : RelationSymmetric relation\n    transitive : RelationTransitive relation\n    operationCompatible : OperationCompatible structure_ relation (source fallback; no compiled unfold data available)\n\nLogical form (Lean):\n\n```lean\nstructure IsCongruence\n    {signature : AlgebraicSignature.{v, w}}\n    (structure_ : AlgebraicStructure signature)\n    (relation : structure_.Carrier → structure_.Carrier → Prop) : Prop where\n  reflexive : RelationReflexive relation\n  symmetric : RelationSymmetric relation\n  transitive : RelationTransitive relation\n  operationCompatible : OperationCompatible structure_ relation\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Interface/UniversalAlgebra/Extensionality.lean:54:IndexedOperationCongruence",
+      "name": "IndexedOperationCongruence",
+      "kind": "theorem",
+      "file": "LRA/Identity/Interface/UniversalAlgebra/Extensionality.lean",
+      "line": 54,
+      "declaration": "theorem IndexedOperationCongruence\n    {Index : Type u} {Carrier : Type v} {Codomain : Type w}\n    (operation : (Index → Carrier) → Codomain)\n    {left right : Index → Carrier}\n    (argumentsEqual : ∀ index, left index = right index) :\n    operation left = operation right := by\n  sorry",
+      "formal_statement": "theorem IndexedOperationCongruence\n    {Index : Type u} {Carrier : Type v} {Codomain : Type w}\n    (operation : (Index → Carrier) → Codomain)\n    {left right : Index → Carrier}\n    (argumentsEqual : ∀ index, left index = right index) :\n    operation left = operation right",
+      "predicate_logic": "(∀ index, left index = right index) → operation left = operation right",
+      "predicate_logic_unfolded": "Ambient\n  (Index, Carrier, Codomain)\nObjects\n  operation : (Index → Carrier) → Codomain\n  left right : Index → Carrier\nProve\n  (∀ (index : Index), left index = right index) → operation left = operation right",
+      "existing_doc": "",
+      "detected_connectives": [
+        "∀",
+        "→"
+      ],
+      "suggested_moves": [
+        "intro"
+      ],
+      "generated_comment": "/--\n`IndexedOperationCongruence` TODO\n\nPredicate logic:\n\n  (∀ index, left index = right index) → operation left = operation right\n\nPredicate logic (unfolded):\n\n  Ambient\n    (Index, Carrier, Codomain)\n  Objects\n    operation : (Index → Carrier) → Codomain\n    left right : Index → Carrier\n  Prove\n    (∀ (index : Index), left index = right index) → operation left = operation right\n\nLogical form (Lean):\n\n```lean\ntheorem IndexedOperationCongruence\n    {Index : Type u} {Carrier : Type v} {Codomain : Type w}\n    (operation : (Index → Carrier) → Codomain)\n    {left right : Index → Carrier}\n    (argumentsEqual : ∀ index, left index = right index) :\n    operation left = operation right\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Interface/UniversalAlgebra/Extensionality.lean:114:AlgebraicStructure.interpretOperationCongruence",
+      "name": "AlgebraicStructure.interpretOperationCongruence",
+      "kind": "theorem",
+      "file": "LRA/Identity/Interface/UniversalAlgebra/Extensionality.lean",
+      "line": 114,
+      "declaration": "theorem AlgebraicStructure.interpretOperationCongruence\n    {signature : AlgebraicSignature.{v, w}}\n    (structure_ : AlgebraicStructure.{u} signature)\n    (symbol : signature.OperationSymbol)\n    {left right : Fin (signature.arity symbol) → structure_.Carrier}\n    (argumentsEqual : ∀ index, left index = right index) :\n    structure_.interpretOperation symbol left =\n      structure_.interpretOperation symbol right := by\n  sorry",
+      "formal_statement": "theorem AlgebraicStructure.interpretOperationCongruence\n    {signature : AlgebraicSignature.{v, w}}\n    (structure_ : AlgebraicStructure.{u} signature)\n    (symbol : signature.OperationSymbol)\n    {left right : Fin (signature.arity symbol) → structure_.Carrier}\n    (argumentsEqual : ∀ index, left index = right index) :\n    structure_.interpretOperation symbol left =\n      structure_.interpretOperation symbol right",
+      "predicate_logic": "(∀ symbol ∈ signature.OperationSymbol), (∀ index, left index = right index) → structure_.interpretOperation symbol left = structure_.interpretOperation symbol right",
+      "predicate_logic_unfolded": "Ambient\n  (implicit ambient)\nObjects\n  signature : AlgebraicSignature.{v, w}\n  structure_ : AlgebraicStructure.{u} signature\n  symbol : signature.OperationSymbol\n  left right : Fin (signature.arity symbol) → structure_.Carrier\nProve\n  (∀ (index : Fin (signature.2 symbol)), left index = right index) → structure_.3 symbol left = structure_.3 symbol right",
+      "existing_doc": "",
+      "detected_connectives": [
+        "∀",
+        "→"
+      ],
+      "suggested_moves": [
+        "intro"
+      ],
+      "generated_comment": "/--\n`AlgebraicStructure.interpretOperationCongruence` TODO\n\nPredicate logic:\n\n  (∀ symbol ∈ signature.OperationSymbol), (∀ index, left index = right index) → structure_.interpretOperation symbol left = structure_.interpretOperation symbol right\n\nPredicate logic (unfolded):\n\n  Ambient\n    (implicit ambient)\n  Objects\n    signature : AlgebraicSignature.{v, w}\n    structure_ : AlgebraicStructure.{u} signature\n    symbol : signature.OperationSymbol\n    left right : Fin (signature.arity symbol) → structure_.Carrier\n  Prove\n    (∀ (index : Fin (signature.2 symbol)), left index = right index) → structure_.3 symbol left = structure_.3 symbol right\n\nLogical form (Lean):\n\n```lean\ntheorem AlgebraicStructure.interpretOperationCongruence\n    {signature : AlgebraicSignature.{v, w}}\n    (structure_ : AlgebraicStructure.{u} signature)\n    (symbol : signature.OperationSymbol)\n    {left right : Fin (signature.arity symbol) → structure_.Carrier}\n    (argumentsEqual : ∀ index, left index = right index) :\n    structure_.interpretOperation symbol left =\n      structure_.interpretOperation symbol right\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Interface/UniversalAlgebra/Quotient.lean:55:CongruenceQuotient",
+      "name": "CongruenceQuotient",
+      "kind": "def",
+      "file": "LRA/Identity/Interface/UniversalAlgebra/Quotient.lean",
+      "line": 55,
+      "declaration": "def CongruenceQuotient\n    {signature : AlgebraicSignature.{v, w}}\n    (structure_ : AlgebraicStructure signature)\n    (relation : structure_.Carrier → structure_.Carrier → Prop) : Type u :=\n  Quot relation",
+      "formal_statement": "def CongruenceQuotient\n    {signature : AlgebraicSignature.{v, w}}\n    (structure_ : AlgebraicStructure signature)\n    (relation : structure_.Carrier → structure_.Carrier → Prop) : Type u :=\n  Quot relation",
+      "predicate_logic": "def CongruenceQuotient\n    {signature : AlgebraicSignature.{v, w}}\n    (structure_ : AlgebraicStructure signature)\n    (relation : structure_.Carrier → structure_.Carrier → Prop) : Type u :=\n  Quot relation",
+      "predicate_logic_unfolded": "def CongruenceQuotient\n    {signature : AlgebraicSignature.{v, w}}\n    (structure_ : AlgebraicStructure signature)\n    (relation : structure_.Carrier → structure_.Carrier → Prop) : Type u :=\n  Quot relation (source fallback; no compiled unfold data available)",
+      "existing_doc": "",
+      "detected_connectives": [
+        "→",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro",
+        "unfold"
+      ],
+      "generated_comment": "/--\n`CongruenceQuotient` TODO\n\nPredicate logic:\n\n  def CongruenceQuotient\n      {signature : AlgebraicSignature.{v, w}}\n      (structure_ : AlgebraicStructure signature)\n      (relation : structure_.Carrier → structure_.Carrier → Prop) : Type u :=\n    Quot relation\n\nPredicate logic (unfolded):\n\n  def CongruenceQuotient\n      {signature : AlgebraicSignature.{v, w}}\n      (structure_ : AlgebraicStructure signature)\n      (relation : structure_.Carrier → structure_.Carrier → Prop) : Type u :=\n    Quot relation (source fallback; no compiled unfold data available)\n\nLogical form (Lean):\n\n```lean\ndef CongruenceQuotient\n    {signature : AlgebraicSignature.{v, w}}\n    (structure_ : AlgebraicStructure signature)\n    (relation : structure_.Carrier → structure_.Carrier → Prop) : Type u :=\n  Quot relation\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro, unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro",
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Interface/UniversalAlgebra/Signature/Definition.lean:50:AlgebraicSignature",
+      "name": "AlgebraicSignature",
+      "kind": "structure",
+      "file": "LRA/Identity/Interface/UniversalAlgebra/Signature/Definition.lean",
+      "line": 50,
+      "declaration": "structure AlgebraicSignature where\n  OperationSymbol : Type u\n  arity : OperationSymbol → Nat\n  ConstantSymbol : Type v",
+      "formal_statement": "structure AlgebraicSignature where\n  OperationSymbol : Type u\n  arity : OperationSymbol → Nat\n  ConstantSymbol : Type v",
+      "predicate_logic": "structure AlgebraicSignature where\n  OperationSymbol : Type u\n  arity : OperationSymbol → Nat\n  ConstantSymbol : Type v",
+      "predicate_logic_unfolded": "structure AlgebraicSignature where\n  OperationSymbol : Type u\n  arity : OperationSymbol → Nat\n  ConstantSymbol : Type v (source fallback; no compiled unfold data available)",
+      "existing_doc": "",
+      "detected_connectives": [
+        "→"
+      ],
+      "suggested_moves": [
+        "intro"
+      ],
+      "generated_comment": "/--\n`AlgebraicSignature` TODO\n\nPredicate logic:\n\n  structure AlgebraicSignature where\n    OperationSymbol : Type u\n    arity : OperationSymbol → Nat\n    ConstantSymbol : Type v\n\nPredicate logic (unfolded):\n\n  structure AlgebraicSignature where\n    OperationSymbol : Type u\n    arity : OperationSymbol → Nat\n    ConstantSymbol : Type v (source fallback; no compiled unfold data available)\n\nLogical form (Lean):\n\n```lean\nstructure AlgebraicSignature where\n  OperationSymbol : Type u\n  arity : OperationSymbol → Nat\n  ConstantSymbol : Type v\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Interop/Adapters.lean:52:toEq",
+      "name": "toEq",
+      "kind": "theorem",
+      "file": "LRA/Identity/Interop/Adapters.lean",
+      "line": 52,
+      "declaration": "theorem toEq {Carrier : Type u} [IdentityRelation Carrier] {x y : Carrier}\n    (h : Ident x y) : x = y :=\n  by sorry",
+      "formal_statement": "theorem toEq {Carrier : Type u} [IdentityRelation Carrier] {x y : Carrier}\n    (h : Ident x y) : x = y",
+      "predicate_logic": "x = y",
+      "predicate_logic_unfolded": "Ambient\n  (Carrier)\nObjects\n  x y : Carrier\n  h : Ident x y\nProve\n  x ≤ y → x = y",
+      "existing_doc": "",
+      "detected_connectives": [],
+      "suggested_moves": [],
+      "generated_comment": "/--\n`toEq` TODO\n\nPredicate logic:\n\n  x = y\n\nPredicate logic (unfolded):\n\n  Ambient\n    (Carrier)\n  Objects\n    x y : Carrier\n    h : Ident x y\n  Prove\n    x ≤ y → x = y\n\nLogical form (Lean):\n\n```lean\ntheorem toEq {Carrier : Type u} [IdentityRelation Carrier] {x y : Carrier}\n    (h : Ident x y) : x = y\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: TODO\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Interop/Adapters.lean:98:ofEq",
+      "name": "ofEq",
+      "kind": "theorem",
+      "file": "LRA/Identity/Interop/Adapters.lean",
+      "line": 98,
+      "declaration": "theorem ofEq {Carrier : Type u} [IdentityRelation Carrier] {x y : Carrier}\n    (h : x = y) : Ident x y :=\n  by sorry",
+      "formal_statement": "theorem ofEq {Carrier : Type u} [IdentityRelation Carrier] {x y : Carrier}\n    (h : x = y) : Ident x y",
+      "predicate_logic": "(x = y) → Ident x y",
+      "predicate_logic_unfolded": "Ambient\n  (Carrier)\nObjects\n  x y : Carrier\nProve\n  x = y → x ≤ y",
+      "existing_doc": "",
+      "detected_connectives": [],
+      "suggested_moves": [],
+      "generated_comment": "/--\n`ofEq` TODO\n\nPredicate logic:\n\n  (x = y) → Ident x y\n\nPredicate logic (unfolded):\n\n  Ambient\n    (Carrier)\n  Objects\n    x y : Carrier\n  Prove\n    x = y → x ≤ y\n\nLogical form (Lean):\n\n```lean\ntheorem ofEq {Carrier : Type u} [IdentityRelation Carrier] {x y : Carrier}\n    (h : x = y) : Ident x y\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: TODO\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Interop/Audit.lean:54:axiomaticIsEq",
+      "name": "axiomaticIsEq",
+      "kind": "theorem",
+      "file": "LRA/Identity/Interop/Audit.lean",
+      "line": 54,
+      "declaration": "theorem axiomaticIsEq {Carrier : Type u} (x y : Carrier) :\n    LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x y ↔ x = y := by\n  sorry",
+      "formal_statement": "theorem axiomaticIsEq {Carrier : Type u} (x y : Carrier) :\n    LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x y ↔ x = y",
+      "predicate_logic": "(∀ x y ∈ Carrier), LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x y ↔ x = y",
+      "predicate_logic_unfolded": "Ambient\n  (Carrier)\nObjects\n  x y : Carrier\nProve\n  LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x y ↔ x = y",
+      "existing_doc": "",
+      "detected_connectives": [
+        "↔"
+      ],
+      "suggested_moves": [
+        "constructor",
+        ".mp",
+        ".mpr"
+      ],
+      "generated_comment": "/--\n`axiomaticIsEq` TODO\n\nPredicate logic:\n\n  (∀ x y ∈ Carrier), LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x y ↔ x = y\n\nPredicate logic (unfolded):\n\n  Ambient\n    (Carrier)\n  Objects\n    x y : Carrier\n  Prove\n    LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x y ↔ x = y\n\nLogical form (Lean):\n\n```lean\ntheorem axiomaticIsEq {Carrier : Type u} (x y : Carrier) :\n    LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x y ↔ x = y\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: constructor, .mp, .mpr\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "constructor",
+        ".mp",
+        ".mpr"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Laws/Congruence.lean:54:IdentPreservesFunctions",
+      "name": "IdentPreservesFunctions",
+      "kind": "theorem",
+      "file": "LRA/Identity/Laws/Congruence.lean",
+      "line": 54,
+      "declaration": "theorem IdentPreservesFunctions {Codomain : Type u} [IdentityRelation Codomain]\n    {x y : Carrier} (h : Ident x y) (f : Carrier → Codomain) :\n    Ident (f x) (f y) := by\n  sorry",
+      "formal_statement": "theorem IdentPreservesFunctions {Codomain : Type u} [IdentityRelation Codomain]\n    {x y : Carrier} (h : Ident x y) (f : Carrier → Codomain) :\n    Ident (f x) (f y)",
+      "predicate_logic": "Ident (f x) (f y)",
+      "predicate_logic_unfolded": "Ambient\n  (Carrier, Codomain)\nObjects\n  x y : Carrier\n  h : Ident x y\n  f : Carrier → Codomain\nProve\n  x ≤ y → ∀ (f : Carrier → Codomain), f x ≤ f y",
+      "existing_doc": "",
+      "detected_connectives": [
+        "→"
+      ],
+      "suggested_moves": [
+        "intro"
+      ],
+      "generated_comment": "/--\n`IdentPreservesFunctions` TODO\n\nPredicate logic:\n\n  Ident (f x) (f y)\n\nPredicate logic (unfolded):\n\n  Ambient\n    (Carrier, Codomain)\n  Objects\n    x y : Carrier\n    h : Ident x y\n    f : Carrier → Codomain\n  Prove\n    x ≤ y → ∀ (f : Carrier → Codomain), f x ≤ f y\n\nLogical form (Lean):\n\n```lean\ntheorem IdentPreservesFunctions {Codomain : Type u} [IdentityRelation Codomain]\n    {x y : Carrier} (h : Ident x y) (f : Carrier → Codomain) :\n    Ident (f x) (f y)\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Laws/Congruence.lean:105:IdentPreservesRelations",
+      "name": "IdentPreservesRelations",
+      "kind": "theorem",
+      "file": "LRA/Identity/Laws/Congruence.lean",
+      "line": 105,
+      "declaration": "theorem IdentPreservesRelations {x x' y y' : Carrier}\n    (hx : Ident x x') (hy : Ident y y') (R : Carrier → Carrier → Prop) :\n    R x y ↔ R x' y' := by\n  sorry",
+      "formal_statement": "theorem IdentPreservesRelations {x x' y y' : Carrier}\n    (hx : Ident x x') (hy : Ident y y') (R : Carrier → Carrier → Prop) :\n    R x y ↔ R x' y'",
+      "predicate_logic": "R x y ↔ R x' y'",
+      "predicate_logic_unfolded": "Ambient\n  (Carrier)\nObjects\n  x x' y y' : Carrier\n  hx : Ident x x'\n  hy : Ident y y'\n  R : Carrier → Carrier → Prop\nProve\n  (inst.Ident x x' ∧ inst.Ident y y') → ∀ (R : Carrier → Carrier → Prop), R x y ↔ R x' y'",
+      "existing_doc": "",
+      "detected_connectives": [
+        "→",
+        "↔",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro",
+        "constructor",
+        ".mp",
+        ".mpr"
+      ],
+      "generated_comment": "/--\n`IdentPreservesRelations` TODO\n\nPredicate logic:\n\n  R x y ↔ R x' y'\n\nPredicate logic (unfolded):\n\n  Ambient\n    (Carrier)\n  Objects\n    x x' y y' : Carrier\n    hx : Ident x x'\n    hy : Ident y y'\n    R : Carrier → Carrier → Prop\n  Prove\n    (inst.Ident x x' ∧ inst.Ident y y') → ∀ (R : Carrier → Carrier → Prop), R x y ↔ R x' y'\n\nLogical form (Lean):\n\n```lean\ntheorem IdentPreservesRelations {x x' y y' : Carrier}\n    (hx : Ident x x') (hy : Ident y y') (R : Carrier → Carrier → Prop) :\n    R x y ↔ R x' y'\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro, constructor, .mp, .mpr\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro",
+        "constructor",
+        ".mp",
+        ".mpr"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Laws/Congruence.lean:156:IdentPreservesOperations",
+      "name": "IdentPreservesOperations",
+      "kind": "theorem",
+      "file": "LRA/Identity/Laws/Congruence.lean",
+      "line": 156,
+      "declaration": "theorem IdentPreservesOperations {x x' y y' : Carrier}\n    (hx : Ident x x') (hy : Ident y y') (op : Carrier → Carrier → Carrier) :\n    Ident (op x y) (op x' y') := by\n  sorry",
+      "formal_statement": "theorem IdentPreservesOperations {x x' y y' : Carrier}\n    (hx : Ident x x') (hy : Ident y y') (op : Carrier → Carrier → Carrier) :\n    Ident (op x y) (op x' y')",
+      "predicate_logic": "Ident (op x y) (op x' y')",
+      "predicate_logic_unfolded": "Ambient\n  (Carrier)\nObjects\n  x x' y y' : Carrier\n  hx : Ident x x'\n  hy : Ident y y'\n  op : Carrier → Carrier → Carrier\nProve\n  (x ≤ x' ∧ y ≤ y') → ∀ (op : Carrier → Carrier → Carrier), op x y ≤ op x' y'",
+      "existing_doc": "",
+      "detected_connectives": [
+        "→"
+      ],
+      "suggested_moves": [
+        "intro"
+      ],
+      "generated_comment": "/--\n`IdentPreservesOperations` TODO\n\nPredicate logic:\n\n  Ident (op x y) (op x' y')\n\nPredicate logic (unfolded):\n\n  Ambient\n    (Carrier)\n  Objects\n    x x' y y' : Carrier\n    hx : Ident x x'\n    hy : Ident y y'\n    op : Carrier → Carrier → Carrier\n  Prove\n    (x ≤ x' ∧ y ≤ y') → ∀ (op : Carrier → Carrier → Carrier), op x y ≤ op x' y'\n\nLogical form (Lean):\n\n```lean\ntheorem IdentPreservesOperations {x x' y y' : Carrier}\n    (hx : Ident x x') (hy : Ident y y') (op : Carrier → Carrier → Carrier) :\n    Ident (op x y) (op x' y')\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Laws/Distinctness.lean:51:Distinct",
+      "name": "Distinct",
+      "kind": "def",
+      "file": "LRA/Identity/Laws/Distinctness.lean",
+      "line": 51,
+      "declaration": "def Distinct (left right : Carrier) : Prop :=\n  ¬ Ident left right",
+      "formal_statement": "def Distinct (left right : Carrier) : Prop :=\n  ¬ Ident left right",
+      "predicate_logic": "∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] (left right : Carrier), inst.Ident left right → False",
+      "predicate_logic_unfolded": "Ambient\n  (implicit ambient)\nObjects\n  (none)\nProve\n  left ≤ right → False",
+      "existing_doc": "",
+      "detected_connectives": [
+        "Prop"
+      ],
+      "suggested_moves": [
+        "unfold"
+      ],
+      "generated_comment": "/--\n`Distinct` TODO\n\nPredicate logic:\n\n  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] (left right : Carrier), inst.Ident left right → False\n\nPredicate logic (unfolded):\n\n  Ambient\n    (implicit ambient)\n  Objects\n    (none)\n  Prove\n    left ≤ right → False\n\nLogical form (Lean):\n\n```lean\ndef Distinct (left right : Carrier) : Prop :=\n  ¬ Ident left right\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Laws/Distinctness.lean:96:AtLeastTwo",
+      "name": "AtLeastTwo",
+      "kind": "def",
+      "file": "LRA/Identity/Laws/Distinctness.lean",
+      "line": 96,
+      "declaration": "def AtLeastTwo (Carrier : Type u) [IdentityRelation Carrier] : Prop :=\n  ∃ x y : Carrier, Distinct x y",
+      "formal_statement": "def AtLeastTwo (Carrier : Type u) [IdentityRelation Carrier] : Prop :=\n  ∃ x y : Carrier, Distinct x y",
+      "predicate_logic": "∀ (Carrier : Type u) [inst : LRA.Identity.IdentityRelation Carrier], Exists fun x => Exists fun y => LRA.Identity.Distinct x y",
+      "predicate_logic_unfolded": "Ambient\n  (implicit ambient)\nObjects\n  (none)\nProve\n  Exists fun x => Exists fun y => x ≤ y → False",
+      "existing_doc": "",
+      "detected_connectives": [
+        "∃",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "use",
+        "rcases",
+        "unfold"
+      ],
+      "generated_comment": "/--\n`AtLeastTwo` TODO\n\nPredicate logic:\n\n  ∀ (Carrier : Type u) [inst : LRA.Identity.IdentityRelation Carrier], Exists fun x => Exists fun y => LRA.Identity.Distinct x y\n\nPredicate logic (unfolded):\n\n  Ambient\n    (implicit ambient)\n  Objects\n    (none)\n  Prove\n    Exists fun x => Exists fun y => x ≤ y → False\n\nLogical form (Lean):\n\n```lean\ndef AtLeastTwo (Carrier : Type u) [IdentityRelation Carrier] : Prop :=\n  ∃ x y : Carrier, Distinct x y\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: use, rcases, unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "use",
+        "rcases",
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Laws/Distinctness.lean:141:AtMostTwo",
+      "name": "AtMostTwo",
+      "kind": "def",
+      "file": "LRA/Identity/Laws/Distinctness.lean",
+      "line": 141,
+      "declaration": "def AtMostTwo (Carrier : Type u) [IdentityRelation Carrier] : Prop :=\n  ∀ x y z : Carrier, Ident x y ∨ Ident y z ∨ Ident x z",
+      "formal_statement": "def AtMostTwo (Carrier : Type u) [IdentityRelation Carrier] : Prop :=\n  ∀ x y z : Carrier, Ident x y ∨ Ident y z ∨ Ident x z",
+      "predicate_logic": "∀ (Carrier : Type u) [inst : LRA.Identity.IdentityRelation Carrier] (x y z : Carrier), Or (inst.Ident x y) (Or (inst.Ident y z) (inst.Ident x z))",
+      "predicate_logic_unfolded": "Ambient\n  (implicit ambient)\nObjects\n  (none)\nProve\n  Or (x ≤ y)(Or (y ≤ z)(x ≤ z))",
+      "existing_doc": "",
+      "detected_connectives": [
+        "∀",
+        "∨",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro",
+        "Or.inl",
+        "Or.inr",
+        "cases",
+        "rcases",
+        "unfold"
+      ],
+      "generated_comment": "/--\n`AtMostTwo` TODO\n\nPredicate logic:\n\n  ∀ (Carrier : Type u) [inst : LRA.Identity.IdentityRelation Carrier] (x y z : Carrier), Or (inst.Ident x y) (Or (inst.Ident y z) (inst.Ident x z))\n\nPredicate logic (unfolded):\n\n  Ambient\n    (implicit ambient)\n  Objects\n    (none)\n  Prove\n    Or (x ≤ y)(Or (y ≤ z)(x ≤ z))\n\nLogical form (Lean):\n\n```lean\ndef AtMostTwo (Carrier : Type u) [IdentityRelation Carrier] : Prop :=\n  ∀ x y z : Carrier, Ident x y ∨ Ident y z ∨ Ident x z\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro, Or.inl, Or.inr, cases, rcases, unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro",
+        "Or.inl",
+        "Or.inr",
+        "cases",
+        "rcases",
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Laws/Distinctness.lean:185:DistinctIrreflexive",
+      "name": "DistinctIrreflexive",
+      "kind": "theorem",
+      "file": "LRA/Identity/Laws/Distinctness.lean",
+      "line": 185,
+      "declaration": "theorem DistinctIrreflexive (x : Carrier) : ¬ Distinct x x :=\n  by sorry",
+      "formal_statement": "theorem DistinctIrreflexive (x : Carrier) : ¬ Distinct x x",
+      "predicate_logic": "(∀ x ∈ Carrier), ¬ Distinct x x",
+      "predicate_logic_unfolded": "Ambient\n  (Carrier)\nObjects\n  x : Carrier\nProve\n  (x ≤ x → False) → False",
+      "existing_doc": "",
+      "detected_connectives": [],
+      "suggested_moves": [],
+      "generated_comment": "/--\n`DistinctIrreflexive` TODO\n\nPredicate logic:\n\n  (∀ x ∈ Carrier), ¬ Distinct x x\n\nPredicate logic (unfolded):\n\n  Ambient\n    (Carrier)\n  Objects\n    x : Carrier\n  Prove\n    (x ≤ x → False) → False\n\nLogical form (Lean):\n\n```lean\ntheorem DistinctIrreflexive (x : Carrier) : ¬ Distinct x x\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: TODO\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Laws/Distinctness.lean:230:DistinctSymmetric",
+      "name": "DistinctSymmetric",
+      "kind": "theorem",
+      "file": "LRA/Identity/Laws/Distinctness.lean",
+      "line": 230,
+      "declaration": "theorem DistinctSymmetric {x y : Carrier} (h : Distinct x y) : Distinct y x :=\n  by sorry",
+      "formal_statement": "theorem DistinctSymmetric {x y : Carrier} (h : Distinct x y) : Distinct y x",
+      "predicate_logic": "Distinct y x",
+      "predicate_logic_unfolded": "Ambient\n  (Carrier)\nObjects\n  x y : Carrier\n  h : Distinct x y\nProve\n  ((x ≤ y → False) ∧ y ≤ x) → False",
+      "existing_doc": "",
+      "detected_connectives": [],
+      "suggested_moves": [],
+      "generated_comment": "/--\n`DistinctSymmetric` TODO\n\nPredicate logic:\n\n  Distinct y x\n\nPredicate logic (unfolded):\n\n  Ambient\n    (Carrier)\n  Objects\n    x y : Carrier\n    h : Distinct x y\n  Prove\n    ((x ≤ y → False) ∧ y ≤ x) → False\n\nLogical form (Lean):\n\n```lean\ntheorem DistinctSymmetric {x y : Carrier} (h : Distinct x y) : Distinct y x\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: TODO\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Laws/ModelTheory.lean:53:IsIdentityRelation.isDiagonal",
+      "name": "IsIdentityRelation.isDiagonal",
+      "kind": "theorem",
+      "file": "LRA/Identity/Laws/ModelTheory.lean",
+      "line": 53,
+      "declaration": "theorem IsIdentityRelation.isDiagonal {Carrier : Type u}\n    {R : Carrier → Carrier → Prop}\n    (h : IsIdentityRelation R) :\n    ∀ left right, R left right ↔ EqualityDiagonal Carrier left right := by\n  sorry",
+      "formal_statement": "theorem IsIdentityRelation.isDiagonal {Carrier : Type u}\n    {R : Carrier → Carrier → Prop}\n    (h : IsIdentityRelation R) :\n    ∀ left right, R left right ↔ EqualityDiagonal Carrier left right",
+      "predicate_logic": "(IsIdentityRelation R) → ∀ left right, R left right ↔ EqualityDiagonal Carrier left right",
+      "predicate_logic_unfolded": "Ambient\n  (Carrier)\nObjects\n  R : Carrier → Carrier → Prop\nProve\n  LRA.Identity.IsIdentityRelation R → ∀ (left right : Carrier), R left right ↔ LRA.Identity.EqualityDiagonal Carrier left right",
+      "existing_doc": "",
+      "detected_connectives": [
+        "∀",
+        "→",
+        "↔",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro",
+        "constructor",
+        ".mp",
+        ".mpr"
+      ],
+      "generated_comment": "/--\n`IsIdentityRelation.isDiagonal` TODO\n\nPredicate logic:\n\n  (IsIdentityRelation R) → ∀ left right, R left right ↔ EqualityDiagonal Carrier left right\n\nPredicate logic (unfolded):\n\n  Ambient\n    (Carrier)\n  Objects\n    R : Carrier → Carrier → Prop\n  Prove\n    LRA.Identity.IsIdentityRelation R → ∀ (left right : Carrier), R left right ↔ LRA.Identity.EqualityDiagonal Carrier left right\n\nLogical form (Lean):\n\n```lean\ntheorem IsIdentityRelation.isDiagonal {Carrier : Type u}\n    {R : Carrier → Carrier → Prop}\n    (h : IsIdentityRelation R) :\n    ∀ left right, R left right ↔ EqualityDiagonal Carrier left right\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro, constructor, .mp, .mpr\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro",
+        "constructor",
+        ".mp",
+        ".mpr"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Laws/ModelTheory.lean:102:IsIdentityRelation.iff_forall_iff_eq",
+      "name": "IsIdentityRelation.iff_forall_iff_eq",
+      "kind": "theorem",
+      "file": "LRA/Identity/Laws/ModelTheory.lean",
+      "line": 102,
+      "declaration": "theorem IsIdentityRelation.iff_forall_iff_eq {Carrier : Type u}\n    {R : Carrier → Carrier → Prop} :\n    IsIdentityRelation R ↔ ∀ left right, R left right ↔ left = right := by\n  sorry",
+      "formal_statement": "theorem IsIdentityRelation.iff_forall_iff_eq {Carrier : Type u}\n    {R : Carrier → Carrier → Prop} :\n    IsIdentityRelation R ↔ ∀ left right, R left right ↔ left = right",
+      "predicate_logic": "IsIdentityRelation R ↔ ∀ left right, R left right ↔ left = right",
+      "predicate_logic_unfolded": "Ambient\n  (Carrier)\nObjects\n  R : Carrier → Carrier → Prop\nProve\n  LRA.Identity.IsIdentityRelation R ↔ ∀ (left right : Carrier), R left right ↔ left = right",
+      "existing_doc": "",
+      "detected_connectives": [
+        "∀",
+        "→",
+        "↔",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro",
+        "constructor",
+        ".mp",
+        ".mpr"
+      ],
+      "generated_comment": "/--\n`IsIdentityRelation.iff_forall_iff_eq` TODO\n\nPredicate logic:\n\n  IsIdentityRelation R ↔ ∀ left right, R left right ↔ left = right\n\nPredicate logic (unfolded):\n\n  Ambient\n    (Carrier)\n  Objects\n    R : Carrier → Carrier → Prop\n  Prove\n    LRA.Identity.IsIdentityRelation R ↔ ∀ (left right : Carrier), R left right ↔ left = right\n\nLogical form (Lean):\n\n```lean\ntheorem IsIdentityRelation.iff_forall_iff_eq {Carrier : Type u}\n    {R : Carrier → Carrier → Prop} :\n    IsIdentityRelation R ↔ ∀ left right, R left right ↔ left = right\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro, constructor, .mp, .mpr\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro",
+        "constructor",
+        ".mp",
+        ".mpr"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Laws/ModelTheory.lean:150:IsIdentityRelation.iff_eq_diagonal",
+      "name": "IsIdentityRelation.iff_eq_diagonal",
+      "kind": "theorem",
+      "file": "LRA/Identity/Laws/ModelTheory.lean",
+      "line": 150,
+      "declaration": "theorem IsIdentityRelation.iff_eq_diagonal {Carrier : Type u}\n    {R : Carrier → Carrier → Prop} :\n    IsIdentityRelation R ↔ R = EqualityDiagonal Carrier := by\n  sorry",
+      "formal_statement": "theorem IsIdentityRelation.iff_eq_diagonal {Carrier : Type u}\n    {R : Carrier → Carrier → Prop} :\n    IsIdentityRelation R ↔ R = EqualityDiagonal Carrier",
+      "predicate_logic": "IsIdentityRelation R ↔ R = EqualityDiagonal Carrier",
+      "predicate_logic_unfolded": "Ambient\n  (Carrier)\nObjects\n  R : Carrier → Carrier → Prop\nProve\n  LRA.Identity.IsIdentityRelation R ↔ R = LRA.Identity.EqualityDiagonal Carrier",
+      "existing_doc": "",
+      "detected_connectives": [
+        "→",
+        "↔",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro",
+        "constructor",
+        ".mp",
+        ".mpr"
+      ],
+      "generated_comment": "/--\n`IsIdentityRelation.iff_eq_diagonal` TODO\n\nPredicate logic:\n\n  IsIdentityRelation R ↔ R = EqualityDiagonal Carrier\n\nPredicate logic (unfolded):\n\n  Ambient\n    (Carrier)\n  Objects\n    R : Carrier → Carrier → Prop\n  Prove\n    LRA.Identity.IsIdentityRelation R ↔ R = LRA.Identity.EqualityDiagonal Carrier\n\nLogical form (Lean):\n\n```lean\ntheorem IsIdentityRelation.iff_eq_diagonal {Carrier : Type u}\n    {R : Carrier → Carrier → Prop} :\n    IsIdentityRelation R ↔ R = EqualityDiagonal Carrier\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro, constructor, .mp, .mpr\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro",
+        "constructor",
+        ".mp",
+        ".mpr"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Laws/ModelTheory.lean:215:EqualityStructure.ofReflexiveLeibnizRelation",
+      "name": "EqualityStructure.ofReflexiveLeibnizRelation",
+      "kind": "def",
+      "file": "LRA/Identity/Laws/ModelTheory.lean",
+      "line": 215,
+      "declaration": "def EqualityStructure.ofReflexiveLeibnizRelation\n    (Carrier : Type u) [Nonempty Carrier] {R : Carrier → Carrier → Prop}\n    (reflexive : ∀ x, R x x)\n    (leibniz : ∀ x y, R x y → ∀ P : Carrier → Prop, P x → P y) :\n    EqualityStructure.{u} where\n  Carrier := Carrier\n  carrierNonempty := inferInstance\n  equalityInterpretation := R\n  satisfiesIdentityTheory := ⟨reflexive, fun x y h P _ => leibniz x y h P⟩",
+      "formal_statement": "def EqualityStructure.ofReflexiveLeibnizRelation\n    (Carrier : Type u) [Nonempty Carrier] {R : Carrier → Carrier → Prop}\n    (reflexive : ∀ x, R x x)\n    (leibniz : ∀ x y, R x y → ∀ P : Carrier → Prop, P x → P y) :\n    EqualityStructure.{u} where\n  Carrier := Carrier\n  carrierNonempty := inferInstance\n  equalityInterpretation := R\n  satisfiesIdentityTheory := ⟨reflexive, fun x y h P _ => leibniz x y h P⟩",
+      "predicate_logic": "def EqualityStructure.ofReflexiveLeibnizRelation\n    (Carrier : Type u) [Nonempty Carrier] {R : Carrier → Carrier → Prop}\n    (reflexive : ∀ x, R x x)\n    (leibniz : ∀ x y, R x y → ∀ P : Carrier → Prop, P x → P y) :\n    EqualityStructure.{u} where\n  Carrier := Carrier\n  carrierNonempty := inferInstance\n  equalityInterpretation := R\n  satisfiesIdentityTheory := ⟨reflexive, fun x y h P _ => leibniz x y h P⟩",
+      "predicate_logic_unfolded": "def EqualityStructure.ofReflexiveLeibnizRelation\n    (Carrier : Type u) [Nonempty Carrier] {R : Carrier → Carrier → Prop}\n    (reflexive : ∀ x, R x x)\n    (leibniz : ∀ x y, R x y → ∀ P : Carrier → Prop, P x → P y) :\n    EqualityStructure.{u} where\n  Carrier := Carrier\n  carrierNonempty := inferInstance\n  equalityInterpretation := R\n  satisfiesIdentityTheory := ⟨reflexive, fun x y h P _ => leibniz x y h P⟩ (source fallback; no compiled unfold data available)",
+      "existing_doc": "",
+      "detected_connectives": [
+        "∀",
+        "→",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro",
+        "unfold"
+      ],
+      "generated_comment": "/--\n`EqualityStructure.ofReflexiveLeibnizRelation` TODO\n\nPredicate logic:\n\n  def EqualityStructure.ofReflexiveLeibnizRelation\n      (Carrier : Type u) [Nonempty Carrier] {R : Carrier → Carrier → Prop}\n      (reflexive : ∀ x, R x x)\n      (leibniz : ∀ x y, R x y → ∀ P : Carrier → Prop, P x → P y) :\n      EqualityStructure.{u} where\n    Carrier := Carrier\n    carrierNonempty := inferInstance\n    equalityInterpretation := R\n    satisfiesIdentityTheory := ⟨reflexive, fun x y h P _ => leibniz x y h P⟩\n\nPredicate logic (unfolded):\n\n  def EqualityStructure.ofReflexiveLeibnizRelation\n      (Carrier : Type u) [Nonempty Carrier] {R : Carrier → Carrier → Prop}\n      (reflexive : ∀ x, R x x)\n      (leibniz : ∀ x y, R x y → ∀ P : Carrier → Prop, P x → P y) :\n      EqualityStructure.{u} where\n    Carrier := Carrier\n    carrierNonempty := inferInstance\n    equalityInterpretation := R\n    satisfiesIdentityTheory := ⟨reflexive, fun x y h P _ => leibniz x y h P⟩ (source fallback; no compiled unfold data available)\n\nLogical form (Lean):\n\n```lean\ndef EqualityStructure.ofReflexiveLeibnizRelation\n    (Carrier : Type u) [Nonempty Carrier] {R : Carrier → Carrier → Prop}\n    (reflexive : ∀ x, R x x)\n    (leibniz : ∀ x y, R x y → ∀ P : Carrier → Prop, P x → P y) :\n    EqualityStructure.{u} where\n  Carrier := Carrier\n  carrierNonempty := inferInstance\n  equalityInterpretation := R\n  satisfiesIdentityTheory := ⟨reflexive, fun x y h P _ => leibniz x y h P⟩\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro, unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro",
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Laws/ModelTheory.lean:273:EqualityStructure.ofIsIdentityRelation",
+      "name": "EqualityStructure.ofIsIdentityRelation",
+      "kind": "abbrev",
+      "file": "LRA/Identity/Laws/ModelTheory.lean",
+      "line": 273,
+      "declaration": "abbrev EqualityStructure.ofIsIdentityRelation\n    (Carrier : Type u) [Nonempty Carrier] {R : Carrier → Carrier → Prop}\n    (h : IsIdentityRelation R) : EqualityStructure.{u} :=\n  EqualityStructure.ofReflexiveLeibnizRelation Carrier h.reflexive\n    (fun x y hxy P hx => h.leibniz x y hxy P trivial hx)",
+      "formal_statement": "abbrev EqualityStructure.ofIsIdentityRelation\n    (Carrier : Type u) [Nonempty Carrier] {R : Carrier → Carrier → Prop}\n    (h : IsIdentityRelation R) : EqualityStructure.{u} :=\n  EqualityStructure.ofReflexiveLeibnizRelation Carrier h.reflexive\n    (fun x y hxy P hx => h.leibniz x y hxy P trivial hx)",
+      "predicate_logic": "abbrev EqualityStructure.ofIsIdentityRelation\n    (Carrier : Type u) [Nonempty Carrier] {R : Carrier → Carrier → Prop}\n    (h : IsIdentityRelation R) : EqualityStructure.{u} :=\n  EqualityStructure.ofReflexiveLeibnizRelation Carrier h.reflexive\n    (fun x y hxy P hx => h.leibniz x y hxy P trivial hx)",
+      "predicate_logic_unfolded": "abbrev EqualityStructure.ofIsIdentityRelation\n    (Carrier : Type u) [Nonempty Carrier] {R : Carrier → Carrier → Prop}\n    (h : IsIdentityRelation R) : EqualityStructure.{u} :=\n  EqualityStructure.ofReflexiveLeibnizRelation Carrier h.reflexive\n    (fun x y hxy P hx => h.leibniz x y hxy P trivial hx) (source fallback; no compiled unfold data available)",
+      "existing_doc": "",
+      "detected_connectives": [
+        "→",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro",
+        "unfold"
+      ],
+      "generated_comment": "/--\n`EqualityStructure.ofIsIdentityRelation` TODO\n\nPredicate logic:\n\n  abbrev EqualityStructure.ofIsIdentityRelation\n      (Carrier : Type u) [Nonempty Carrier] {R : Carrier → Carrier → Prop}\n      (h : IsIdentityRelation R) : EqualityStructure.{u} :=\n    EqualityStructure.ofReflexiveLeibnizRelation Carrier h.reflexive\n      (fun x y hxy P hx => h.leibniz x y hxy P trivial hx)\n\nPredicate logic (unfolded):\n\n  abbrev EqualityStructure.ofIsIdentityRelation\n      (Carrier : Type u) [Nonempty Carrier] {R : Carrier → Carrier → Prop}\n      (h : IsIdentityRelation R) : EqualityStructure.{u} :=\n    EqualityStructure.ofReflexiveLeibnizRelation Carrier h.reflexive\n      (fun x y hxy P hx => h.leibniz x y hxy P trivial hx) (source fallback; no compiled unfold data available)\n\nLogical form (Lean):\n\n```lean\nabbrev EqualityStructure.ofIsIdentityRelation\n    (Carrier : Type u) [Nonempty Carrier] {R : Carrier → Carrier → Prop}\n    (h : IsIdentityRelation R) : EqualityStructure.{u} :=\n  EqualityStructure.ofReflexiveLeibnizRelation Carrier h.reflexive\n    (fun x y hxy P hx => h.leibniz x y hxy P trivial hx)\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro, unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro",
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Laws/UniversalAlgebra.lean:56:IdentIsCongruence",
+      "name": "IdentIsCongruence",
+      "kind": "theorem",
+      "file": "LRA/Identity/Laws/UniversalAlgebra.lean",
+      "line": 56,
+      "declaration": "theorem IdentIsCongruence\n    {signature : AlgebraicSignature.{v, w}}\n    (structure_ : AlgebraicStructure.{u} signature)\n    [IdentityRelation structure_.Carrier] :\n    IsCongruence structure_ Ident := by\n  sorry",
+      "formal_statement": "theorem IdentIsCongruence\n    {signature : AlgebraicSignature.{v, w}}\n    (structure_ : AlgebraicStructure.{u} signature)\n    [IdentityRelation structure_.Carrier] :\n    IsCongruence structure_ Ident",
+      "predicate_logic": "IsCongruence structure_ Ident",
+      "predicate_logic_unfolded": "Ambient\n  (implicit ambient)\nObjects\n  signature : AlgebraicSignature.{v, w}\n  structure_ : AlgebraicStructure.{u} signature\nProve\n  LRA.Identity.IsCongruence structure_ inst.1",
+      "existing_doc": "",
+      "detected_connectives": [],
+      "suggested_moves": [],
+      "generated_comment": "/--\n`IdentIsCongruence` TODO\n\nPredicate logic:\n\n  IsCongruence structure_ Ident\n\nPredicate logic (unfolded):\n\n  Ambient\n    (implicit ambient)\n  Objects\n    signature : AlgebraicSignature.{v, w}\n    structure_ : AlgebraicStructure.{u} signature\n  Prove\n    LRA.Identity.IsCongruence structure_ inst.1\n\nLogical form (Lean):\n\n```lean\ntheorem IdentIsCongruence\n    {signature : AlgebraicSignature.{v, w}}\n    (structure_ : AlgebraicStructure.{u} signature)\n    [IdentityRelation structure_.Carrier] :\n    IsCongruence structure_ Ident\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: TODO\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Laws/UniversalAlgebra.lean:114:quotientByIdentToCarrier",
+      "name": "quotientByIdentToCarrier",
+      "kind": "def",
+      "file": "LRA/Identity/Laws/UniversalAlgebra.lean",
+      "line": 114,
+      "declaration": "def quotientByIdentToCarrier\n    {signature : AlgebraicSignature.{v, w}}\n    (structure_ : AlgebraicStructure.{u} signature)\n    [IdentityRelation structure_.Carrier] :\n    CongruenceQuotient structure_ Ident → structure_.Carrier :=\n  Quot.lift id fun _ _ h => Interop.toEq h",
+      "formal_statement": "def quotientByIdentToCarrier\n    {signature : AlgebraicSignature.{v, w}}\n    (structure_ : AlgebraicStructure.{u} signature)\n    [IdentityRelation structure_.Carrier] :\n    CongruenceQuotient structure_ Ident → structure_.Carrier :=\n  Quot.lift id fun _ _ h => Interop.toEq h",
+      "predicate_logic": "def quotientByIdentToCarrier\n    {signature : AlgebraicSignature.{v, w}}\n    (structure_ : AlgebraicStructure.{u} signature)\n    [IdentityRelation structure_.Carrier] :\n    CongruenceQuotient structure_ Ident → structure_.Carrier :=\n  Quot.lift id fun _ _ h => Interop.toEq h",
+      "predicate_logic_unfolded": "def quotientByIdentToCarrier\n    {signature : AlgebraicSignature.{v, w}}\n    (structure_ : AlgebraicStructure.{u} signature)\n    [IdentityRelation structure_.Carrier] :\n    CongruenceQuotient structure_ Ident → structure_.Carrier :=\n  Quot.lift id fun _ _ h => Interop.toEq h (source fallback; no compiled unfold data available)",
+      "existing_doc": "",
+      "detected_connectives": [
+        "→"
+      ],
+      "suggested_moves": [
+        "intro",
+        "unfold"
+      ],
+      "generated_comment": "/--\n`quotientByIdentToCarrier` TODO\n\nPredicate logic:\n\n  def quotientByIdentToCarrier\n      {signature : AlgebraicSignature.{v, w}}\n      (structure_ : AlgebraicStructure.{u} signature)\n      [IdentityRelation structure_.Carrier] :\n      CongruenceQuotient structure_ Ident → structure_.Carrier :=\n    Quot.lift id fun _ _ h => Interop.toEq h\n\nPredicate logic (unfolded):\n\n  def quotientByIdentToCarrier\n      {signature : AlgebraicSignature.{v, w}}\n      (structure_ : AlgebraicStructure.{u} signature)\n      [IdentityRelation structure_.Carrier] :\n      CongruenceQuotient structure_ Ident → structure_.Carrier :=\n    Quot.lift id fun _ _ h => Interop.toEq h (source fallback; no compiled unfold data available)\n\nLogical form (Lean):\n\n```lean\ndef quotientByIdentToCarrier\n    {signature : AlgebraicSignature.{v, w}}\n    (structure_ : AlgebraicStructure.{u} signature)\n    [IdentityRelation structure_.Carrier] :\n    CongruenceQuotient structure_ Ident → structure_.Carrier :=\n  Quot.lift id fun _ _ h => Interop.toEq h\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro, unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro",
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Laws/UniversalAlgebra.lean:169:quotientByIdentToCarrier_leftInverse",
+      "name": "quotientByIdentToCarrier_leftInverse",
+      "kind": "theorem",
+      "file": "LRA/Identity/Laws/UniversalAlgebra.lean",
+      "line": 169,
+      "declaration": "theorem quotientByIdentToCarrier_leftInverse\n    {signature : AlgebraicSignature.{v, w}}\n    (structure_ : AlgebraicStructure.{u} signature)\n    [IdentityRelation structure_.Carrier]\n    (element : structure_.Carrier) :\n    quotientByIdentToCarrier structure_ (Quot.mk _ element) = element := by\n  sorry",
+      "formal_statement": "theorem quotientByIdentToCarrier_leftInverse\n    {signature : AlgebraicSignature.{v, w}}\n    (structure_ : AlgebraicStructure.{u} signature)\n    [IdentityRelation structure_.Carrier]\n    (element : structure_.Carrier) :\n    quotientByIdentToCarrier structure_ (Quot.mk _ element) = element",
+      "predicate_logic": "(∀ element ∈ structure_.Carrier), quotientByIdentToCarrier structure_ (Quot.mk _ element) = element",
+      "predicate_logic_unfolded": "Ambient\n  (implicit ambient)\nObjects\n  signature : AlgebraicSignature.{v, w}\n  structure_ : AlgebraicStructure.{u} signature\n  element : structure_.Carrier\nProve\n  Quot.lift (fun a => a) ⋯ (Quot.mk element) ≤ =element",
+      "existing_doc": "",
+      "detected_connectives": [],
+      "suggested_moves": [],
+      "generated_comment": "/--\n`quotientByIdentToCarrier_leftInverse` TODO\n\nPredicate logic:\n\n  (∀ element ∈ structure_.Carrier), quotientByIdentToCarrier structure_ (Quot.mk _ element) = element\n\nPredicate logic (unfolded):\n\n  Ambient\n    (implicit ambient)\n  Objects\n    signature : AlgebraicSignature.{v, w}\n    structure_ : AlgebraicStructure.{u} signature\n    element : structure_.Carrier\n  Prove\n    Quot.lift (fun a => a) ⋯ (Quot.mk element) ≤ =element\n\nLogical form (Lean):\n\n```lean\ntheorem quotientByIdentToCarrier_leftInverse\n    {signature : AlgebraicSignature.{v, w}}\n    (structure_ : AlgebraicStructure.{u} signature)\n    [IdentityRelation structure_.Carrier]\n    (element : structure_.Carrier) :\n    quotientByIdentToCarrier structure_ (Quot.mk _ element) = element\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: TODO\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Laws/UniversalAlgebra.lean:225:quotientByIdentToCarrier_rightInverse",
+      "name": "quotientByIdentToCarrier_rightInverse",
+      "kind": "theorem",
+      "file": "LRA/Identity/Laws/UniversalAlgebra.lean",
+      "line": 225,
+      "declaration": "theorem quotientByIdentToCarrier_rightInverse\n    {signature : AlgebraicSignature.{v, w}}\n    (structure_ : AlgebraicStructure.{u} signature)\n    [IdentityRelation structure_.Carrier]\n    (classOf : CongruenceQuotient structure_ Ident) :\n    Quot.mk _ (quotientByIdentToCarrier structure_ classOf) = classOf := by\n  sorry",
+      "formal_statement": "theorem quotientByIdentToCarrier_rightInverse\n    {signature : AlgebraicSignature.{v, w}}\n    (structure_ : AlgebraicStructure.{u} signature)\n    [IdentityRelation structure_.Carrier]\n    (classOf : CongruenceQuotient structure_ Ident) :\n    Quot.mk _ (quotientByIdentToCarrier structure_ classOf) = classOf",
+      "predicate_logic": "Quot.mk _ (quotientByIdentToCarrier structure_ classOf) = classOf",
+      "predicate_logic_unfolded": "Ambient\n  (implicit ambient)\nObjects\n  signature : AlgebraicSignature.{v, w}\n  structure_ : AlgebraicStructure.{u} signature\n  classOf : CongruenceQuotient structure_ Ident\nProve\n  ≤ Quot.mk Quot.lift (fun a => a) ⋯ classOf ≤ = classOf",
+      "existing_doc": "",
+      "detected_connectives": [],
+      "suggested_moves": [],
+      "generated_comment": "/--\n`quotientByIdentToCarrier_rightInverse` TODO\n\nPredicate logic:\n\n  Quot.mk _ (quotientByIdentToCarrier structure_ classOf) = classOf\n\nPredicate logic (unfolded):\n\n  Ambient\n    (implicit ambient)\n  Objects\n    signature : AlgebraicSignature.{v, w}\n    structure_ : AlgebraicStructure.{u} signature\n    classOf : CongruenceQuotient structure_ Ident\n  Prove\n    ≤ Quot.mk Quot.lift (fun a => a) ⋯ classOf ≤ = classOf\n\nLogical form (Lean):\n\n```lean\ntheorem quotientByIdentToCarrier_rightInverse\n    {signature : AlgebraicSignature.{v, w}}\n    (structure_ : AlgebraicStructure.{u} signature)\n    [IdentityRelation structure_.Carrier]\n    (classOf : CongruenceQuotient structure_ Ident) :\n    Quot.mk _ (quotientByIdentToCarrier structure_ classOf) = classOf\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: TODO\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Laws/Witnesses.lean:49:HasWitness",
+      "name": "HasWitness",
+      "kind": "def",
+      "file": "LRA/Identity/Laws/Witnesses.lean",
+      "line": 49,
+      "declaration": "def HasWitness {Carrier : Type u} (P : Carrier → Prop) : Prop :=\n  ∃ x, P x",
+      "formal_statement": "def HasWitness {Carrier : Type u} (P : Carrier → Prop) : Prop :=\n  ∃ x, P x",
+      "predicate_logic": "∀ {Carrier : Type u} (P : Carrier → Prop), Exists fun x => P x",
+      "predicate_logic_unfolded": "Ambient\n  (implicit ambient)\nObjects\n  (none)\nProve\n  Exists fun x => P x",
+      "existing_doc": "",
+      "detected_connectives": [
+        "→",
+        "∃",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro",
+        "use",
+        "rcases",
+        "unfold"
+      ],
+      "generated_comment": "/--\n`HasWitness` TODO\n\nPredicate logic:\n\n  ∀ {Carrier : Type u} (P : Carrier → Prop), Exists fun x => P x\n\nPredicate logic (unfolded):\n\n  Ambient\n    (implicit ambient)\n  Objects\n    (none)\n  Prove\n    Exists fun x => P x\n\nLogical form (Lean):\n\n```lean\ndef HasWitness {Carrier : Type u} (P : Carrier → Prop) : Prop :=\n  ∃ x, P x\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro, use, rcases, unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro",
+        "use",
+        "rcases",
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Laws/Witnesses.lean:94:HasNoWitness",
+      "name": "HasNoWitness",
+      "kind": "def",
+      "file": "LRA/Identity/Laws/Witnesses.lean",
+      "line": 94,
+      "declaration": "def HasNoWitness {Carrier : Type u} (P : Carrier → Prop) : Prop :=\n  ¬ ∃ x, P x",
+      "formal_statement": "def HasNoWitness {Carrier : Type u} (P : Carrier → Prop) : Prop :=\n  ¬ ∃ x, P x",
+      "predicate_logic": "∀ {Carrier : Type u} (P : Carrier → Prop), (Exists fun x => P x) → False",
+      "predicate_logic_unfolded": "Ambient\n  (implicit ambient)\nObjects\n  (none)\nProve\n  (Exists fun x => P x) → False",
+      "existing_doc": "",
+      "detected_connectives": [
+        "→",
+        "∃",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro",
+        "use",
+        "rcases",
+        "unfold"
+      ],
+      "generated_comment": "/--\n`HasNoWitness` TODO\n\nPredicate logic:\n\n  ∀ {Carrier : Type u} (P : Carrier → Prop), (Exists fun x => P x) → False\n\nPredicate logic (unfolded):\n\n  Ambient\n    (implicit ambient)\n  Objects\n    (none)\n  Prove\n    (Exists fun x => P x) → False\n\nLogical form (Lean):\n\n```lean\ndef HasNoWitness {Carrier : Type u} (P : Carrier → Prop) : Prop :=\n  ¬ ∃ x, P x\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro, use, rcases, unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro",
+        "use",
+        "rcases",
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Laws/Witnesses.lean:143:AtMostOne",
+      "name": "AtMostOne",
+      "kind": "def",
+      "file": "LRA/Identity/Laws/Witnesses.lean",
+      "line": 143,
+      "declaration": "def AtMostOne (P : Carrier → Prop) : Prop :=\n  ∀ left right, P left → P right → Ident left right",
+      "formal_statement": "def AtMostOne (P : Carrier → Prop) : Prop :=\n  ∀ left right, P left → P right → Ident left right",
+      "predicate_logic": "∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] (P : Carrier → Prop) (left right : Carrier), (P left ∧ P right) → inst.Ident left right",
+      "predicate_logic_unfolded": "Ambient\n  (implicit ambient)\nObjects\n  (none)\nProve\n  (P left ∧ P right) → left ≤ right",
+      "existing_doc": "",
+      "detected_connectives": [
+        "∀",
+        "→",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro",
+        "unfold"
+      ],
+      "generated_comment": "/--\n`AtMostOne` TODO\n\nPredicate logic:\n\n  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] (P : Carrier → Prop) (left right : Carrier), (P left ∧ P right) → inst.Ident left right\n\nPredicate logic (unfolded):\n\n  Ambient\n    (implicit ambient)\n  Objects\n    (none)\n  Prove\n    (P left ∧ P right) → left ≤ right\n\nLogical form (Lean):\n\n```lean\ndef AtMostOne (P : Carrier → Prop) : Prop :=\n  ∀ left right, P left → P right → Ident left right\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro, unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro",
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Laws/Witnesses.lean:188:NotAtMostOne",
+      "name": "NotAtMostOne",
+      "kind": "def",
+      "file": "LRA/Identity/Laws/Witnesses.lean",
+      "line": 188,
+      "declaration": "def NotAtMostOne (P : Carrier → Prop) : Prop :=\n  ∃ left right, P left ∧ P right ∧ Distinct left right",
+      "formal_statement": "def NotAtMostOne (P : Carrier → Prop) : Prop :=\n  ∃ left right, P left ∧ P right ∧ Distinct left right",
+      "predicate_logic": "∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] (P : Carrier → Prop), Exists fun left => Exists fun right => (P left ∧ (P right ∧ LRA.Identity.Distinct left right))",
+      "predicate_logic_unfolded": "Ambient\n  (implicit ambient)\nObjects\n  (none)\nProve\n  Exists fun left => Exists fun right => (P left ∧ (P right ∧ (left ≤ right → False)))",
+      "existing_doc": "",
+      "detected_connectives": [
+        "→",
+        "∧",
+        "∃",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro",
+        "constructor",
+        "cases",
+        "rcases",
+        "use",
+        "unfold"
+      ],
+      "generated_comment": "/--\n`NotAtMostOne` TODO\n\nPredicate logic:\n\n  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] (P : Carrier → Prop), Exists fun left => Exists fun right => (P left ∧ (P right ∧ LRA.Identity.Distinct left right))\n\nPredicate logic (unfolded):\n\n  Ambient\n    (implicit ambient)\n  Objects\n    (none)\n  Prove\n    Exists fun left => Exists fun right => (P left ∧ (P right ∧ (left ≤ right → False)))\n\nLogical form (Lean):\n\n```lean\ndef NotAtMostOne (P : Carrier → Prop) : Prop :=\n  ∃ left right, P left ∧ P right ∧ Distinct left right\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro, constructor, cases, rcases, use, unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro",
+        "constructor",
+        "cases",
+        "rcases",
+        "use",
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Laws/Witnesses.lean:233:ExactlyOne",
+      "name": "ExactlyOne",
+      "kind": "def",
+      "file": "LRA/Identity/Laws/Witnesses.lean",
+      "line": 233,
+      "declaration": "def ExactlyOne (P : Carrier → Prop) : Prop :=\n  HasWitness P ∧ AtMostOne P",
+      "formal_statement": "def ExactlyOne (P : Carrier → Prop) : Prop :=\n  HasWitness P ∧ AtMostOne P",
+      "predicate_logic": "∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] (P : Carrier → Prop), (LRA.Identity.HasWitness P ∧ LRA.Identity.AtMostOne P)",
+      "predicate_logic_unfolded": "Ambient\n  (implicit ambient)\nObjects\n  (none)\nProve\n  (Exists fun x => P x ∧ (∀ (left right : Carrier), P left → P right → left ≤ right))",
+      "existing_doc": "",
+      "detected_connectives": [
+        "→",
+        "∧",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro",
+        "constructor",
+        "cases",
+        "rcases",
+        "unfold"
+      ],
+      "generated_comment": "/--\n`ExactlyOne` TODO\n\nPredicate logic:\n\n  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] (P : Carrier → Prop), (LRA.Identity.HasWitness P ∧ LRA.Identity.AtMostOne P)\n\nPredicate logic (unfolded):\n\n  Ambient\n    (implicit ambient)\n  Objects\n    (none)\n  Prove\n    (Exists fun x => P x ∧ (∀ (left right : Carrier), P left → P right → left ≤ right))\n\nLogical form (Lean):\n\n```lean\ndef ExactlyOne (P : Carrier → Prop) : Prop :=\n  HasWitness P ∧ AtMostOne P\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro, constructor, cases, rcases, unfold\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro",
+        "constructor",
+        "cases",
+        "rcases",
+        "unfold"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Laws/Witnesses.lean:280:HasNoWitnessNotHasWitness",
+      "name": "HasNoWitnessNotHasWitness",
+      "kind": "theorem",
+      "file": "LRA/Identity/Laws/Witnesses.lean",
+      "line": 280,
+      "declaration": "theorem HasNoWitnessNotHasWitness {Carrier : Type u} {P : Carrier → Prop}\n    (h : HasNoWitness P) : ¬ HasWitness P :=\n  by sorry",
+      "formal_statement": "theorem HasNoWitnessNotHasWitness {Carrier : Type u} {P : Carrier → Prop}\n    (h : HasNoWitness P) : ¬ HasWitness P",
+      "predicate_logic": "(HasNoWitness P) → ¬ HasWitness P",
+      "predicate_logic_unfolded": "Ambient\n  (Carrier)\nObjects\n  P : Carrier → Prop\nProve\n  (((Exists fun x => P x) → False) ∧ Exists fun x => P x) → False",
+      "existing_doc": "",
+      "detected_connectives": [
+        "→",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro"
+      ],
+      "generated_comment": "/--\n`HasNoWitnessNotHasWitness` TODO\n\nPredicate logic:\n\n  (HasNoWitness P) → ¬ HasWitness P\n\nPredicate logic (unfolded):\n\n  Ambient\n    (Carrier)\n  Objects\n    P : Carrier → Prop\n  Prove\n    (((Exists fun x => P x) → False) ∧ Exists fun x => P x) → False\n\nLogical form (Lean):\n\n```lean\ntheorem HasNoWitnessNotHasWitness {Carrier : Type u} {P : Carrier → Prop}\n    (h : HasNoWitness P) : ¬ HasWitness P\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro"
+      ],
+      "status": "draft"
+    },
+    {
+      "id": "LRA/Identity/Laws/Witnesses.lean:327:ExactlyOneNotAtLeastTwoWitnesses",
+      "name": "ExactlyOneNotAtLeastTwoWitnesses",
+      "kind": "theorem",
+      "file": "LRA/Identity/Laws/Witnesses.lean",
+      "line": 327,
+      "declaration": "theorem ExactlyOneNotAtLeastTwoWitnesses {Carrier : Type u} [IdentityRelation Carrier]\n    {P : Carrier → Prop} (h : ExactlyOne P) : ¬ NotAtMostOne P :=\n  by sorry",
+      "formal_statement": "theorem ExactlyOneNotAtLeastTwoWitnesses {Carrier : Type u} [IdentityRelation Carrier]\n    {P : Carrier → Prop} (h : ExactlyOne P) : ¬ NotAtMostOne P",
+      "predicate_logic": "¬ NotAtMostOne P",
+      "predicate_logic_unfolded": "Ambient\n  (Carrier)\nObjects\n  P : Carrier → Prop\n  h : ExactlyOne P\nProve\n  ((Exists fun x => P x ∧ (∀ (left right : Carrier), P left → P right → left ≤ right)) ∧ (Exists fun left => Exists fun right => (P left ∧ (P right ∧ (left ≤ right → False))))) → False",
+      "existing_doc": "",
+      "detected_connectives": [
+        "→",
+        "Prop"
+      ],
+      "suggested_moves": [
+        "intro"
+      ],
+      "generated_comment": "/--\n`ExactlyOneNotAtLeastTwoWitnesses` TODO\n\nPredicate logic:\n\n  ¬ NotAtMostOne P\n\nPredicate logic (unfolded):\n\n  Ambient\n    (Carrier)\n  Objects\n    P : Carrier → Prop\n    h : ExactlyOne P\n  Prove\n    ((Exists fun x => P x ∧ (∀ (left right : Carrier), P left → P right → left ≤ right)) ∧ (Exists fun left => Exists fun right => (P left ∧ (P right ∧ (left ≤ right → False))))) → False\n\nLogical form (Lean):\n\n```lean\ntheorem ExactlyOneNotAtLeastTwoWitnesses {Carrier : Type u} [IdentityRelation Carrier]\n    {P : Carrier → Prop} (h : ExactlyOne P) : ¬ NotAtMostOne P\n```\n\nType-theoretic form:\n\n  TODO\n\nProof use:\n\n  TODO\n\nAfter unfold / common proof state:\n\n  TODO\n\nCommon confusions:\n\n  TODO\n\nRelated proof moves: intro\n\n-/",
+      "meaning": "",
+      "type_theoretic_form": [],
+      "proof_use": [],
+      "after_unfold": [],
+      "common_confusions": [],
+      "related_moves": [
+        "intro"
+      ],
+      "status": "draft"
+    }
+  ]
+}

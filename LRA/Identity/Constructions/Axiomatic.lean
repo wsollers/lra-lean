@@ -1,2 +1,2 @@
 import LRA.Identity.Constructions.Axiomatic.Axioms
-import LRA.Identity.Constructions.Axiomatic.Satisfies
+import LRA.Identity.Constructions.Axiomatic.Primitives

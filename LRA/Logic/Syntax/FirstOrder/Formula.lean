@@ -1,4 +1,3 @@
-import LRA.Identity
 import LRA.Logic.Syntax.Term
 
 namespace LRA.Logic.FirstOrder
