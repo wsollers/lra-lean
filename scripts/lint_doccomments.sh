@@ -24,6 +24,20 @@ RED='\033[0;31m'
 GREEN='\033[0;32m'
 NC='\033[0m'
 
+usage() {
+    cat <<'EOF'
+usage: scripts/lint_doccomments.sh [--help|-h] [TARGET]
+
+Report display-name doc-comment coverage for a Lean file or directory.
+Set LRA_DOCLINT_STRICT=1 to make missing display names fail the run.
+EOF
+}
+
+if [[ "$TARGET" == "--help" || "$TARGET" == "-h" ]]; then
+    usage
+    exit 0
+fi
+
 check_file() {
     local path="$1"
     FILES=$((FILES + 1))

@@ -48,6 +48,18 @@ Related proof moves: constructor, .mp, .mpr
 -/
 theorem IdentIsDiagonal {Carrier : Type u} [IdentityRelation Carrier]
     (x y : Carrier) : Ident x y ↔ x = y := by
+
+  constructor
+  . --> MP
+
+    intro hxIy
+    let inst : IdentityRelation Carrier := inferInstance
+
+    sorry
+
+  . -- <- MPR
+
+    sorry
   sorry
 
 /--

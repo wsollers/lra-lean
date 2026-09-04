@@ -15,6 +15,7 @@ anything the moment that path moves, so the roots follow the architecture.
 
 from __future__ import annotations
 
+import argparse
 import pathlib
 import sys
 
@@ -140,7 +141,15 @@ def imported_module(line: str) -> str | None:
     return stripped.split(None, 1)[1]
 
 
-def main() -> int:
+def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Check that foundational Lean files stay free of quarantined Mathlib imports."
+    )
+    return parser.parse_args(argv)
+
+
+def main(argv: list[str] | None = None) -> int:
+    parse_args(argv)
     # A check that names paths goes quiet when the paths move, and reports
     # success while doing so.  That is how this file came to be scanning
     # LRA/VolumeI after the promotion emptied it.  Refuse to pass vacuously.

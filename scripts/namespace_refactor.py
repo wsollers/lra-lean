@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import argparse
 from pathlib import Path
 
 
@@ -81,14 +82,23 @@ def rewrite(path: Path) -> bool:
     return True
 
 
-def main() -> None:
+def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Rewrite Lean declaration and reference text to the current semantic namespace layout."
+    )
+    return parser.parse_args(argv)
+
+
+def main(argv: list[str] | None = None) -> int:
+    parse_args(argv)
     changed = []
     for base in (ROOT / "LRA", ROOT / "test"):
         for path in sorted(base.rglob("*.lean")):
             if rewrite(path):
                 changed.append(path.relative_to(ROOT).as_posix())
     print(f"rewrote {len(changed)} Lean files")
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

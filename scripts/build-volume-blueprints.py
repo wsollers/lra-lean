@@ -9,6 +9,7 @@ where the prose Markdown source tree is absent.
 
 from __future__ import annotations
 
+import argparse
 import pathlib
 import json
 import re
@@ -460,7 +461,15 @@ def write_volume(slug: str, roman: str, title: str, prefix: str) -> pathlib.Path
     return output_path
 
 
-def main() -> int:
+def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Generate Lean-driven Blueprint chapter inputs for the active LRA volumes."
+    )
+    return parser.parse_args(argv)
+
+
+def main(argv: list[str] | None = None) -> int:
+    parse_args(argv)
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     written = []
     for slug, roman, title, prefix in VOLUMES:

@@ -5,7 +5,11 @@ universe u
 namespace Construction.Axiomatic
 
 /--
-`Ax_IdentityRelation` TODO
+`Ax_IdentityRelation` is the abstract identity relation used by the axiomatic
+construction.  It is an `axiom`, rather than a `def`, so this development does
+not immediately identify it with Lean's built-in equality (`x = y`).  Its
+intended equality-like behavior is supplied separately by axioms such as
+reflexivity and Leibniz substitution.
 
 Predicate logic:
 
@@ -23,7 +27,7 @@ axiom Ax_IdentityRelation {Carrier : Type u} : Carrier → Carrier → Prop
 
 Type-theoretic form:
 
-  TODO
+  An uninterpreted binary predicate on each `Carrier`.
 
 Proof use:
 
@@ -35,7 +39,10 @@ After unfold / common proof state:
 
 Common confusions:
 
-  TODO
+  This declaration alone does not prove that the relation is reflexive,
+  symmetric, transitive, or equal to Lean equality.  A definition such as
+  `def IdentityRelation (x y : Carrier) : Prop := x = y` would make that
+  particular choice directly, whereas this axiom leaves the relation abstract.
 
 Related proof moves: intro
 

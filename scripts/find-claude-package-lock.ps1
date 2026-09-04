@@ -1,3 +1,13 @@
+<#
+.SYNOPSIS
+Find open handles that may be locking the Claude Desktop WindowsApps package.
+
+.PARAMETER PackagePrefix
+Package folder prefix to match under C:\Program Files\WindowsApps.
+
+.EXAMPLE
+Get-Help .\scripts\find-claude-package-lock.ps1 -Detailed
+#>
 [CmdletBinding()]
 param(
     [string]$PackagePrefix = 'Claude_'

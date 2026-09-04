@@ -1,3 +1,13 @@
+<#
+.SYNOPSIS
+Restart the running Codex desktop application after an optional delay.
+
+.PARAMETER DelaySeconds
+Seconds to wait before stopping the current Codex processes.
+
+.EXAMPLE
+Get-Help .\scripts\restart-codex-desktop.ps1 -Detailed
+#>
 param(
     [int]$DelaySeconds = 3
 )

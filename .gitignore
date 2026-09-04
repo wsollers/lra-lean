@@ -1,20 +1,138 @@
-/.lake
-/tmp/
-lean-decl-inventory.txt
+# LRA shared ignore policy
+# Copy this file for each new governed repository. Keep repository-specific
+# patterns below the shared policy section in that repository's .gitignore.
 
-# Local Google Drive upload scratch directories
+# LaTeX intermediate files
+*.aux
+*.log
+*.ilg
+*.idx
+*.ind
+*.toc
+*.lof
+*.lot
+*.out
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.synctex(busy)
+*.nav
+*.snm
+*.vrb
+*.xdv
+*.run.xml
+
+# Build output
+build/
+build-*/
+out/
+dist/
+.generated/
+
+# Python
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+venv/
+env/
+
+# Node / web tooling
+node_modules/
+.next/
+.vite/
+coverage/
+
+# CMake and compiled output
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps/
+.cmake/
+vcpkg_installed/
+cmake-build-*/
+*.o
+*.obj
+*.a
+*.so
+*.so.*
+*.dylib
+*.dll
+*.exe
+*.app
+*.pdb
+*.ilk
+*.exp
+*.lib
+*.spv
+
+# Lean
+.lake/
+lean/.lake/
+
+# Generated reports and local process output
+**/.explorer/
+baselines/
+migration-reports/
+reports/
+!docs/reports/
+!docs/reports/**
+runs/extraction-*/
+logs/extraction-log-*.log
+logs/extraction-report-*.md
+
+# Local temp/cache output
+.cache/
+.test-tmp/
+tmp/
+temp/
+*.tmp
+*.bak
+*.zip
 .tmp.driveupload/
 **/.tmp.driveupload/
+
+# IDE / editor
+.vscode/
+.idea/
+.vs/
+*.suo
+*.user
+*.sln.docinfo
+*.vcxproj.user
+*.cbp
+*.code-workspace
+*.clangd
+.clangd/
+.clang-tidy-cache
+
+# OS noise
+.DS_Store
+Thumbs.db
+desktop.ini
 
 # Local source PDFs
 # These may include personally purchased or otherwise non-redistributable files.
 *.pdf
+
+# Local agent state and attachments
 .claude/
+.codex-remote-attachments/
 
-# Generated GitHub Pages output
+# Repository-specific ignore rules
+/.lake
+/tmp/
+lean-decl-inventory.txt
 /site/
-
-# Generated Blueprint outputs
 /blueprint/web/
 /blueprint/print/
 /blueprint/lean_decls
@@ -24,16 +142,9 @@ lean-decl-inventory.txt
 /blueprint/src/web.paux
 /blueprint/src/web.bbl
 /docs/number-systems/declarations.yaml
-
-.codex-remote-attachments/
-
-# Local scratch and generated cache directories
 /hold/
 /_to_delete/
 /scripts/__pycache__/
-**/__pycache__/
-
-# Generated analysis, rendering, and search-index artifacts
 /build/internal-index/
 /build/namespace-environment.tsv
 /build/pilot/supremum-comparison/render/
@@ -42,6 +153,4 @@ lean-decl-inventory.txt
 /build/pilot/supremum-comparison/*.out
 /build/pilot/supremum-extraction-v5.html
 /build/pilot/supremum-extraction-v5.json
-
-# Session-local verification harness
 /scratch/

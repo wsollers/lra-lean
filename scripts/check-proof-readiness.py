@@ -8,6 +8,7 @@ contain `sorry`; it rejects vacuous theorem statements, fake definitions, and
 
 from __future__ import annotations
 
+import argparse
 import pathlib
 import re
 import sys
@@ -60,7 +61,15 @@ def check(path: pathlib.Path) -> list[str]:
     return errors
 
 
-def main() -> int:
+def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Reject placeholder mathematics in proof-ready Lean modules."
+    )
+    return parser.parse_args(argv)
+
+
+def main(argv: list[str] | None = None) -> int:
+    parse_args(argv)
     errors: list[str] = []
     for path in sorted(LEAN_ROOT.rglob("*.lean")):
         errors.extend(check(path))

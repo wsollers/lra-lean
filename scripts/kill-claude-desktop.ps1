@@ -1,3 +1,13 @@
+<#
+.SYNOPSIS
+Stop Claude Desktop processes that may be holding Windows package locks.
+
+.PARAMETER RestartExplorer
+Restart explorer.exe after stopping Claude-related processes.
+
+.EXAMPLE
+Get-Help .\scripts\kill-claude-desktop.ps1 -Detailed
+#>
 [CmdletBinding(SupportsShouldProcess = $true)]
 param(
     [switch]$RestartExplorer

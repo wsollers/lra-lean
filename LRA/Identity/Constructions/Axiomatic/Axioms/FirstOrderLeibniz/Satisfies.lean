@@ -64,11 +64,11 @@ theorem axiomaticIdentityRelation_satisfiesFirstOrderLeibniz
 
   . -- leibniz
     intro x y
-    have xRx := Ax_EqualityReflexivity x
-    have xRy := Ax_EqualityReflexivity y
-
-    sorry
-
+    intro Rxy
+    intro P
+    intro pIsAdmissible
+    intro Px
+    exact Ax_LeibnizLaw Rxy P Px
 
 
 end LRA.Identity.Construction.Axiomatic

@@ -7,6 +7,7 @@ partial so the implementation plan does not hide missing book-level blocks.
 
 from __future__ import annotations
 
+import argparse
 import re
 from collections import Counter, defaultdict
 from dataclasses import dataclass
@@ -331,7 +332,15 @@ def render(labels: list[BookLabel], decls: list[LeanDecl]) -> str:
     return "\n".join(lines) + "\n"
 
 
-def main() -> None:
+def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Generate the Volume I foundations crosswalk report from book labels and Lean declarations."
+    )
+    return parser.parse_args(argv)
+
+
+def main(argv: list[str] | None = None) -> int:
+    parse_args(argv)
     if not VOLUME_I_ROOT.exists():
         raise SystemExit(f"Volume I source not found: {VOLUME_I_ROOT}")
     labels = collect_book_labels()
@@ -341,7 +350,8 @@ def main() -> None:
     print(f"wrote {REPORT_PATH}")
     print(f"book labels: {len(labels)}")
     print(f"lean declarations: {len(decls)}")
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

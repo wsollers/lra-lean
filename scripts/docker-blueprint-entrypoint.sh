@@ -3,6 +3,19 @@ set -euo pipefail
 
 command_name="${1:-blueprint}"
 
+usage() {
+  cat <<'EOF'
+usage: lra-blueprint [--help|-h] {inputs|blueprint|blueprint-existing|docs|shell}
+
+Commands:
+  inputs              Generate Blueprint input files from the current Lean tree.
+  blueprint           Generate inputs, then build the Blueprint PDF and web outputs.
+  blueprint-existing  Build the existing Blueprint PDF and web outputs only.
+  docs                Build Blueprint outputs and the repository site.
+  shell               Open an interactive shell in the container.
+EOF
+}
+
 require_repo_root() {
   if [[ ! -f "blueprint/src/content.tex" ]]; then
     echo "error: run this container with the lra-lean repository mounted at /workspace" >&2
@@ -26,6 +39,9 @@ build_blueprint_existing() {
 }
 
 case "$command_name" in
+  -h|--help|help)
+    usage
+    ;;
   inputs)
     build_inputs
     ;;
@@ -48,7 +64,7 @@ case "$command_name" in
     exec bash
     ;;
   *)
-    echo "usage: lra-blueprint {inputs|blueprint|blueprint-existing|docs|shell}" >&2
+    usage >&2
     exit 2
     ;;
 esac

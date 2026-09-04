@@ -7,6 +7,19 @@ set -euo pipefail
 HOOKS_DIR=".git/hooks"
 SCRIPTS_DIR="scripts"
 
+usage() {
+    cat <<'EOF'
+usage: scripts/install_hooks.sh [--help|-h]
+
+Install the repository's Git hooks into .git/hooks from the repo root.
+EOF
+}
+
+if [[ "${1:-}" == "--help" || "${1:-}" == "-h" ]]; then
+    usage
+    exit 0
+fi
+
 if [[ ! -d "$HOOKS_DIR" ]]; then
     echo "ERROR: .git/hooks not found. Run from the repo root."
     exit 1

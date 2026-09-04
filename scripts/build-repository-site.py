@@ -7,6 +7,7 @@ hand-maintained mathematical outline.
 
 from __future__ import annotations
 
+import argparse
 import html
 import pathlib
 import re
@@ -295,7 +296,15 @@ def write_indexes(markdown: list[pathlib.Path], lean: list[pathlib.Path]) -> Non
     (SITE / "index.html").write_text(page("Learning Real Analysis — Lean", home_body), encoding="utf-8")
 
 
-def main() -> None:
+def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Build a static site from the repository's tracked Markdown and Lean sources."
+    )
+    return parser.parse_args(argv)
+
+
+def main(argv: list[str] | None = None) -> int:
+    parse_args(argv)
     if SITE.exists():
         shutil.rmtree(SITE)
     SITE.mkdir(parents=True)
@@ -305,7 +314,8 @@ def main() -> None:
     write_lean_pages(lean)
     write_indexes(markdown, lean)
     print(f"Generated {len(markdown)} Markdown pages and {len(lean)} Lean module pages.")
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

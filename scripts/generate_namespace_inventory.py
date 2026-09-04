@@ -13,6 +13,7 @@ and writes both namespace-inventory.tsv and namespace-review.md.
 
 from __future__ import annotations
 
+import argparse
 import csv
 import hashlib
 import re
@@ -117,7 +118,15 @@ def run_git(*args: str) -> str:
     return completed.stdout.strip()
 
 
-def main() -> None:
+def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Reconcile the compiled LRA environment with source declarations and write inventory reports."
+    )
+    return parser.parse_args(argv)
+
+
+def main(argv: list[str] | None = None) -> int:
+    parse_args(argv)
     if not RAW.exists():
         raise SystemExit(
             "missing build/namespace-environment.tsv; run the Lean dumper first"
@@ -280,7 +289,8 @@ Case-insensitive collisions: {', '.join(f'`{name}`' for name in case_collisions)
     print(f"wrote {len(rows)} rows; sha256={digest}; source-only candidates={len(source_only)}")
     for module, name in source_only:
         print(f"SOURCE_ONLY\t{module}\t{name}")
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

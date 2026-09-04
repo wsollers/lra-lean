@@ -1,3 +1,16 @@
+<#
+.SYNOPSIS
+Restart the services that commonly hold the Claude Desktop package lock.
+
+.PARAMETER PackagePrefix
+Package folder prefix to match under C:\Program Files\WindowsApps.
+
+.PARAMETER RestartExplorer
+Restart explorer.exe after restarting the package services.
+
+.EXAMPLE
+Get-Help .\scripts\unlock-claude-package.ps1 -Detailed
+#>
 [CmdletBinding(SupportsShouldProcess = $true)]
 param(
     [string]$PackagePrefix = 'Claude_',

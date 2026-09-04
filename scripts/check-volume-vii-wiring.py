@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import pathlib
 import sys
 
@@ -69,7 +70,15 @@ EXPECTED = {
 }
 
 
-def main() -> int:
+def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Check that the metric-space formalization is wired into the expected Lean modules."
+    )
+    return parser.parse_args(argv)
+
+
+def main(argv: list[str] | None = None) -> int:
+    parse_args(argv)
     errors: list[str] = []
 
     for path, needles in EXPECTED.items():

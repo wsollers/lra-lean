@@ -1,0 +1,36 @@
+name: Governance Script Help Validator
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: governance-script-validator-${{ github.repository }}
+  cancel-in-progress: true
+
+jobs:
+  validate-script-help:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+        with:
+          path: repo
+
+      - name: Checkout governance
+        uses: actions/checkout@v4
+        with:
+          repository: wsollers/lra-governance
+          path: .ci/lra-governance
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Run script help validator
+        working-directory: repo
+        run: python ../.ci/lra-governance/tools/governance/validate_script_help.py --root . --repo lra-lean --script-root scripts --script-root tools
