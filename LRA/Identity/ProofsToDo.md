@@ -14,9 +14,9 @@ the folder.
 **Progress:** 0/33 theorem-family entries completed since reset baseline `73e79b40` (Mass-sorry non-Logic proofs and regenerate todos).
 **Baseline reconciliation:** 0 still match baseline as `sorry`; 33 baseline entries were moved, renamed, or removed and are not auto-credited.
 
-**Snapshot:** 4/48 theorem-family entries currently completed (44 sorry remaining).
+**Snapshot:** 4/47 theorem-family entries currently completed (43 sorry remaining).
 
-**Inventory:** 48 theorem/lemma/corollary/proposition entries across 29 module(s) (4 completed, 44 sorry).
+**Inventory:** 47 theorem/lemma/corollary/proposition entries across 28 module(s) (4 completed, 43 sorry).
 **Excluded from counts:** 19 `instance` entries and 3 `axiom` entries.
 
 ## Open Work Queue
@@ -345,57 +345,6 @@ Source: ./Constructions/Axiomatic/Laws/Equality.lean#L34
 
 
 
-Name: IdentIsEquivalenceRelation
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier], LRA.Relation.EquivalenceRelation inst.Ident
-Predicate logic (unfolded):
-  Ambient
-    (Carrier)
-  Objects
-    (none)
-  Prove
-    ((∀ (x : Carrier), x ≤ x) ∧ ((∀ (x y : Carrier), x ≤ y → y ≤ x) ∧ (∀ (x y z : Carrier), x ≤ y → y ≤ z → x ≤ z)))
-Transliterated theorem: LRA.Relation.EquivalenceRelation Ident ∈ Carrier → Carrier → Prop
-Logical form (Lean): {Carrier : Type u} [IdentityRelation Carrier] : LRA.Relation.EquivalenceRelation (Ident : Carrier → Carrier → Prop)
-Source: ./Laws/Equivalence.lean#L21
-
-
-
-Name: EqualIsEquivalenceRelation
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ {Carrier : Type u} [inst : LRA.Identity.EqualityRelation Carrier], LRA.Relation.EquivalenceRelation inst.Equal
-Predicate logic (unfolded):
-  Ambient
-    (Carrier)
-  Objects
-    (none)
-  Prove
-    ((∀ (x : Carrier), x ≤ x) ∧ ((∀ (x y : Carrier), x ≤ y → y ≤ x) ∧ (∀ (x y z : Carrier), x ≤ y → y ≤ z → x ≤ z)))
-Transliterated theorem: LRA.Relation.EquivalenceRelation Equal ∈ Carrier → Carrier → Prop
-Logical form (Lean): {Carrier : Type u} [EqualityRelation Carrier] : LRA.Relation.EquivalenceRelation (Equal : Carrier → Carrier → Prop)
-Source: ./Laws/Equivalence.lean#L38
-
-
-
-Name: axiomaticIdentIsEquivalenceRelation
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ {Carrier : Type u}, LRA.Relation.EquivalenceRelation LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation
-Predicate logic (unfolded):
-  Ambient
-    (Carrier)
-  Objects
-    (none)
-  Prove
-    ((∀ (x : Carrier), LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x x) ∧ ((∀ (x y : Carrier), LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x y → LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation y x) ∧ (∀ (x y z : Carrier), LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x y → LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation y z → LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x z)))
-Transliterated theorem: LRA.Relation.EquivalenceRelation Ax_IdentityRelation ∈ Carrier → Carrier → Prop
-Logical form (Lean): {Carrier : Type u} : LRA.Relation.EquivalenceRelation (Ax_IdentityRelation : Carrier → Carrier → Prop)
-Source: ./Constructions/Axiomatic/Laws/Equivalence.lean#L20
-
-
-
 Name: IdentPreservesFunctions
 Kind: Theorem
 State: Sorry
@@ -593,6 +542,40 @@ Predicate logic (unfolded):
 Transliterated theorem: IsIdentityRelation R ↔ R = EqualityDiagonal Carrier
 Logical form (Lean): {Carrier : Type u} {R : Carrier → Carrier → Prop} : IsIdentityRelation R ↔ R = EqualityDiagonal Carrier
 Source: ./Laws/ModelTheory.lean#L150
+
+
+
+Name: IdentIsEquivalenceRelation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier], LRA.Relation.EquivalenceRelation inst.Ident
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Carrier), x ≤ x) ∧ ((∀ (x y : Carrier), x ≤ y → y ≤ x) ∧ (∀ (x y z : Carrier), x ≤ y → y ≤ z → x ≤ z)))
+Transliterated theorem: LRA.Relation.EquivalenceRelation Ident ∈ Carrier → Carrier → Prop
+Logical form (Lean): {Carrier : Type u} [IdentityRelation Carrier] : LRA.Relation.EquivalenceRelation (Ident : Carrier → Carrier → Prop)
+Source: ./Laws/Equivalence.lean#L21
+
+
+
+Name: EqualIsEquivalenceRelation
+Kind: Theorem
+State: Sorry
+Predicate logic: ∀ {Carrier : Type u} [inst : LRA.Identity.EqualityRelation Carrier], LRA.Relation.EquivalenceRelation inst.Equal
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Carrier), x ≤ x) ∧ ((∀ (x y : Carrier), x ≤ y → y ≤ x) ∧ (∀ (x y z : Carrier), x ≤ y → y ≤ z → x ≤ z)))
+Transliterated theorem: LRA.Relation.EquivalenceRelation Equal ∈ Carrier → Carrier → Prop
+Logical form (Lean): {Carrier : Type u} [EqualityRelation Carrier] : LRA.Relation.EquivalenceRelation (Equal : Carrier → Carrier → Prop)
+Source: ./Laws/Equivalence.lean#L38
 
 
 
