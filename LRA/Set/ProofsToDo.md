@@ -14,9 +14,9 @@ the folder.
 **Progress:** 0/531 theorem-family entries completed since reset baseline `73e79b40` (Mass-sorry non-Logic proofs and regenerate todos).
 **Baseline reconciliation:** 157 still match baseline as `sorry`; 374 baseline entries were moved, renamed, or removed and are not auto-credited.
 
-**Snapshot:** 4/627 theorem-family entries currently completed (623 sorry remaining).
+**Snapshot:** 8/627 theorem-family entries currently completed (619 sorry remaining).
 
-**Inventory:** 627 theorem/lemma/corollary/proposition entries across 169 module(s) (4 completed, 623 sorry).
+**Inventory:** 627 theorem/lemma/corollary/proposition entries across 169 module(s) (8 completed, 619 sorry).
 **Excluded from counts:** 153 `instance` entries and 52 `axiom` entries.
 
 ## Open Work Queue
@@ -2393,7 +2393,7 @@ Predicate logic (unfolded):
     Satisfies M assignment (iffF φ ψ) ↔ (Satisfies M assignment φ ↔ Satisfies M assignment ψ)
 Transliterated theorem: Satisfies M assignment (iffF φ ψ) ↔ (Satisfies M assignment φ ↔ Satisfies M assignment ψ)
 Logical form (Lean): {M : Model MembershipSignature} {assignment : Nat → M.Domain} {φ ψ : Formula MembershipSignature Nat} : Satisfies M assignment (iffF φ ψ) ↔ (Satisfies M assignment φ ↔ Satisfies M assignment ψ)
-Source: ./Interface/ModelTheory/SatisfactionLemmas.lean#L50
+Source: ./Interface/ModelTheory/SatisfactionLemmas.lean#L51
 
 
 
@@ -2412,7 +2412,7 @@ Predicate logic (unfolded):
     Satisfies M assignment (orF φ ψ) ↔ (Satisfies M assignment φ ∨ Satisfies M assignment ψ)
 Transliterated theorem: Satisfies M assignment (orF φ ψ) ↔ (Satisfies M assignment φ ∨ Satisfies M assignment ψ)
 Logical form (Lean): {M : Model MembershipSignature} {assignment : Nat → M.Domain} {φ ψ : Formula MembershipSignature Nat} : Satisfies M assignment (orF φ ψ) ↔ (Satisfies M assignment φ ∨ Satisfies M assignment ψ)
-Source: ./Interface/ModelTheory/SatisfactionLemmas.lean#L97
+Source: ./Interface/ModelTheory/SatisfactionLemmas.lean#L98
 
 
 
@@ -3993,87 +3993,19 @@ Source: ./Constructions/TypeSet/Satisfy_Generic.lean
 
 
 
-Name: EmptySetIsUnique
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ {A B : Set} (AIsEmpty : IsEmptySet A) (BIsEmpty : IsEmptySet B), B = A
-Predicate logic (unfolded):
-  Ambient
-    (implicit ambient)
-  Objects
-    A B : Set
-  Prove
-    ((∀ (x : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.Constructions.instMembershipZFCSet.1 A x → False) ∧ (∀ (x : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.Constructions.instMembershipZFCSet.1 B x → False)) → B = A
-Transliterated theorem: (IsEmptySet A ∧ IsEmptySet B) → B = A
-Logical form (Lean): {A B : Set} (AIsEmpty : IsEmptySet A) (BIsEmpty : IsEmptySet B) : B = A
-Source: ./Constructions/ZFCSet/Axioms/EmptySet/Uniqueness.lean#L6
-
-
-
-Name: EmptySetsAreEqual
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ {A B : Set} (AIsEmpty : IsEmptySet A) (BIsEmpty : IsEmptySet B), A = B
-Predicate logic (unfolded):
-  Ambient
-    (implicit ambient)
-  Objects
-    A B : Set
-  Prove
-    ((∀ (x : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.Constructions.instMembershipZFCSet.1 A x → False) ∧ (∀ (x : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.Constructions.instMembershipZFCSet.1 B x → False)) → A = B
-Transliterated theorem: (IsEmptySet A ∧ IsEmptySet B) → A = B
-Logical form (Lean): {A B : Set} (AIsEmpty : IsEmptySet A) (BIsEmpty : IsEmptySet B) : A = B
-Source: ./Constructions/ZFCSet/Axioms/EmptySet/Uniqueness.lean#L13
-
-
-
-Name: EmptySetExistsAndIsUnique
-Kind: Theorem
-State: Sorry
-Predicate logic: LRA.Set.Constructions.ZFCSet.Axioms.ExistsAndUnique LRA.Set.Constructions.ZFCSet.Axioms.IsEmptySet
-Predicate logic (unfolded):
-  Ambient
-    (implicit ambient)
-  Objects
-    (none)
-  Prove
-    ((Exists fun x => ∀ (x_1 : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.Constructions.instMembershipZFCSet.1 x x_1 → False) ∧ (∀ (left right : LRA.Set.Constructions.ZFCSet.Axioms.Set), (∀ (x : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.Constructions.instMembershipZFCSet.1 left x → False) → (∀ (x : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.Constructions.instMembershipZFCSet.1 right x → False) → (LRA.Identity.Construction.Mathlib.instIdentityRelation LRA.Set.Constructions.ZFCSet.Axioms.Set).1 left right))
-Transliterated theorem: ExistsAndUnique IsEmptySet
-Logical form (Lean): : ExistsAndUnique IsEmptySet
-Source: ./Constructions/ZFCSet/Axioms/EmptySet/Uniqueness.lean#L20
-
-
-
-Name: PairSetExists
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ (x1 x2 : LRA.Set.Constructions.ZFCSet.Axioms.Set),   Exists fun P => LRA.Set.Constructions.ZFCSet.Axioms.IsPairSet x1 x2 P
-Predicate logic (unfolded):
-  Ambient
-    (implicit ambient)
-  Objects
-    x1 x2 : Set
-  Prove
-    Exists fun P => ∀ (w : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.Constructions.instMembershipZFCSet.1 P w ↔ Or (w = x1)(w = x2)
-Transliterated theorem: (∀ x1 x2 ∈ Set), ∃ P ∈ Set, IsPairSet x1 x2 P
-Logical form (Lean): (x1 x2 : Set) : ∃ P : Set, IsPairSet x1 x2 P
-Source: ./Constructions/ZFCSet/Axioms/Pairing/Existence.lean#L6
-
-
-
 Name: PairSetIsUnique
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {x1 x2 P G : Set} (PIsPairSet : IsPairSet x1 x2 P) (GIsPairSet : IsPairSet x1 x2 G), G = P
+Predicate logic: ∀ {A B P G : Set} (PIsPairSet : IsPairSet A B P) (GIsPairSet : IsPairSet A B G), G = P
 Predicate logic (unfolded):
   Ambient
     (implicit ambient)
   Objects
-    x1 x2 P G : Set
+    A B P G : Set
   Prove
-    ((∀ (w : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.Constructions.instMembershipZFCSet.1 P w ↔ Or (w = x1)(w = x2)) ∧ (∀ (w : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.Constructions.instMembershipZFCSet.1 G w ↔ Or (w = x1)(w = x2))) → G = P
-Transliterated theorem: (IsPairSet x1 x2 P ∧ IsPairSet x1 x2 G) → G = P
-Logical form (Lean): {x1 x2 P G : Set} (PIsPairSet : IsPairSet x1 x2 P) (GIsPairSet : IsPairSet x1 x2 G) : G = P
+    ((∀ (w : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.Constructions.instMembershipZFCSet.1 P w ↔ Or (w = A)(w = B)) ∧ (∀ (w : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.Constructions.instMembershipZFCSet.1 G w ↔ Or (w = A)(w = B))) → G = P
+Transliterated theorem: (IsPairSet A B P ∧ IsPairSet A B G) → G = P
+Logical form (Lean): {A B P G : Set} (PIsPairSet : IsPairSet A B P) (GIsPairSet : IsPairSet A B G) : G = P
 Source: ./Constructions/ZFCSet/Axioms/Pairing/Uniqueness.lean#L6
 
 
@@ -4091,7 +4023,7 @@ Predicate logic (unfolded):
     ((Exists fun x => (fun P => ∀ (w : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.Constructions.instMembershipZFCSet.1 P w ↔ Or (w = x1)(w = x2)) x) ∧ (∀ (left right : LRA.Set.Constructions.ZFCSet.Axioms.Set), (∀ (w : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.Constructions.instMembershipZFCSet.1 left w ↔ Or (w = x1)(w = x2)) → (∀ (w : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.Constructions.instMembershipZFCSet.1 right w ↔ Or (w = x1)(w = x2)) → (LRA.Identity.Construction.Mathlib.instIdentityRelation LRA.Set.Constructions.ZFCSet.Axioms.Set).1 left right))
 Transliterated theorem: (∀ x1 x2 ∈ Set), ExistsAndUnique fun P ∈ Set => IsPairSet x1 x2 P
 Logical form (Lean): (x1 x2 : Set) : ExistsAndUnique (fun P : Set => IsPairSet x1 x2 P)
-Source: ./Constructions/ZFCSet/Axioms/Pairing/Uniqueness.lean#L13
+Source: ./Constructions/ZFCSet/Axioms/Pairing/Uniqueness.lean#L19
 
 
 
@@ -5584,7 +5516,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.freeVariables LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.extensionalityFormula = Finset.instEmptyCollection.1
 Transliterated theorem: IsClosedFormula extensionalityFormula
 Logical form (Lean): : IsClosedFormula extensionalityFormula
-Source: ./Constructions/ZFCSet/Interface/ModelTheory/Theory.lean#L687
+Source: ./Constructions/ZFCSet/Interface/ModelTheory/Theory.lean#L688
 
 
 
@@ -5601,7 +5533,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.freeVariables LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.emptySetFormula = Finset.instEmptyCollection.1
 Transliterated theorem: IsClosedFormula emptySetFormula
 Logical form (Lean): : IsClosedFormula emptySetFormula
-Source: ./Constructions/ZFCSet/Interface/ModelTheory/Theory.lean#L726
+Source: ./Constructions/ZFCSet/Interface/ModelTheory/Theory.lean#L727
 
 
 
@@ -5618,7 +5550,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.freeVariables LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.pairingFormula = Finset.instEmptyCollection.1
 Transliterated theorem: IsClosedFormula pairingFormula
 Logical form (Lean): : IsClosedFormula pairingFormula
-Source: ./Constructions/ZFCSet/Interface/ModelTheory/Theory.lean#L765
+Source: ./Constructions/ZFCSet/Interface/ModelTheory/Theory.lean#L766
 
 
 
@@ -5635,7 +5567,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.freeVariables LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.unionFormula = Finset.instEmptyCollection.1
 Transliterated theorem: IsClosedFormula unionFormula
 Logical form (Lean): : IsClosedFormula unionFormula
-Source: ./Constructions/ZFCSet/Interface/ModelTheory/Theory.lean#L804
+Source: ./Constructions/ZFCSet/Interface/ModelTheory/Theory.lean#L805
 
 
 
@@ -5652,7 +5584,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.freeVariables LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.powerSetFormula = Finset.instEmptyCollection.1
 Transliterated theorem: IsClosedFormula powerSetFormula
 Logical form (Lean): : IsClosedFormula powerSetFormula
-Source: ./Constructions/ZFCSet/Interface/ModelTheory/Theory.lean#L843
+Source: ./Constructions/ZFCSet/Interface/ModelTheory/Theory.lean#L844
 
 
 
@@ -5669,7 +5601,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.freeVariables LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.infinityFormula = Finset.instEmptyCollection.1
 Transliterated theorem: IsClosedFormula infinityFormula
 Logical form (Lean): : IsClosedFormula infinityFormula
-Source: ./Constructions/ZFCSet/Interface/ModelTheory/Theory.lean#L882
+Source: ./Constructions/ZFCSet/Interface/ModelTheory/Theory.lean#L883
 
 
 
@@ -5686,7 +5618,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.freeVariables LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.foundationFormula = Finset.instEmptyCollection.1
 Transliterated theorem: IsClosedFormula foundationFormula
 Logical form (Lean): : IsClosedFormula foundationFormula
-Source: ./Constructions/ZFCSet/Interface/ModelTheory/Theory.lean#L921
+Source: ./Constructions/ZFCSet/Interface/ModelTheory/Theory.lean#L922
 
 
 
@@ -5703,7 +5635,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.freeVariables LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.choiceFormula = Finset.instEmptyCollection.1
 Transliterated theorem: IsClosedFormula choiceFormula
 Logical form (Lean): : IsClosedFormula choiceFormula
-Source: ./Constructions/ZFCSet/Interface/ModelTheory/Theory.lean#L960
+Source: ./Constructions/ZFCSet/Interface/ModelTheory/Theory.lean#L961
 
 
 
@@ -5924,7 +5856,7 @@ Predicate logic (unfolded):
     LRA.Set.Constructions.ZFCSet.ZFCSetMembershipModel.6 LRA.Set.ModelTheory.MembershipRelationSymbol.mem arguments = LRA.Set.Constructions.instMembershipZFCSet.1 (arguments ⟨1, ⋯⟩) (arguments ⟨0, ⋯⟩)
 Transliterated theorem: ZFCSetMembershipModel.interpretRelation .mem arguments = (arguments ⟨0, by decide⟩ ∈ arguments ⟨1, by decide⟩)
 Logical form (Lean): (arguments : Fin (MembershipSignature.relationArity .mem) → LRA.Set.Constructions.ZFCSet) : ZFCSetMembershipModel.interpretRelation .mem arguments = (arguments ⟨0, by decide⟩ ∈ arguments ⟨1, by decide⟩)
-Source: ./Constructions/ZFCSet/Satisfy_ZFC.lean#L26
+Source: ./Constructions/ZFCSet/Satisfy_ZFC.lean#L27
 
 
 
@@ -5941,7 +5873,7 @@ Predicate logic (unfolded):
     LRA.Set.Constructions.ZFCSet.ZFCSetMembershipModel.7 LRA.Set.ModelTheory.MembershipConstantSymbol.emptySet = LRA.Set.Constructions.ZFCSet.instEmptyCollection.1
 Transliterated theorem: ZFCSetMembershipModel.interpretConstant .emptySet = ∅ ∈ LRA.Set.Constructions.ZFCSet
 Logical form (Lean): : ZFCSetMembershipModel.interpretConstant .emptySet = (∅ : LRA.Set.Constructions.ZFCSet)
-Source: ./Constructions/ZFCSet/Satisfy_ZFC.lean#L32
+Source: ./Constructions/ZFCSet/Satisfy_ZFC.lean#L33
 
 
 
@@ -5958,7 +5890,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies LRA.Set.Constructions.ZFCSet.ZFCSetMembershipModel assignment LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.extensionalityFormula
 Transliterated theorem: Satisfies ZFCSetMembershipModel assignment extensionalityFormula
 Logical form (Lean): (assignment : Nat → ZFCSetMembershipModel.Domain) : Satisfies ZFCSetMembershipModel assignment extensionalityFormula
-Source: ./Constructions/ZFCSet/Satisfy_ZFC.lean#L37
+Source: ./Constructions/ZFCSet/Satisfy_ZFC.lean#L38
 
 
 
@@ -5975,7 +5907,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies LRA.Set.Constructions.ZFCSet.ZFCSetMembershipModel assignment LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.emptySetFormula
 Transliterated theorem: Satisfies ZFCSetMembershipModel assignment emptySetFormula
 Logical form (Lean): (assignment : Nat → ZFCSetMembershipModel.Domain) : Satisfies ZFCSetMembershipModel assignment emptySetFormula
-Source: ./Constructions/ZFCSet/Satisfy_ZFC.lean#L42
+Source: ./Constructions/ZFCSet/Satisfy_ZFC.lean#L43
 
 
 
@@ -5992,7 +5924,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies LRA.Set.Constructions.ZFCSet.ZFCSetMembershipModel assignment LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.pairingFormula
 Transliterated theorem: Satisfies ZFCSetMembershipModel assignment pairingFormula
 Logical form (Lean): (assignment : Nat → ZFCSetMembershipModel.Domain) : Satisfies ZFCSetMembershipModel assignment pairingFormula
-Source: ./Constructions/ZFCSet/Satisfy_ZFC.lean#L47
+Source: ./Constructions/ZFCSet/Satisfy_ZFC.lean#L48
 
 
 
@@ -6009,7 +5941,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies LRA.Set.Constructions.ZFCSet.ZFCSetMembershipModel assignment LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.unionFormula
 Transliterated theorem: Satisfies ZFCSetMembershipModel assignment unionFormula
 Logical form (Lean): (assignment : Nat → ZFCSetMembershipModel.Domain) : Satisfies ZFCSetMembershipModel assignment unionFormula
-Source: ./Constructions/ZFCSet/Satisfy_ZFC.lean#L52
+Source: ./Constructions/ZFCSet/Satisfy_ZFC.lean#L53
 
 
 
@@ -6026,7 +5958,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies LRA.Set.Constructions.ZFCSet.ZFCSetMembershipModel assignment LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.powerSetFormula
 Transliterated theorem: Satisfies ZFCSetMembershipModel assignment powerSetFormula
 Logical form (Lean): (assignment : Nat → ZFCSetMembershipModel.Domain) : Satisfies ZFCSetMembershipModel assignment powerSetFormula
-Source: ./Constructions/ZFCSet/Satisfy_ZFC.lean#L57
+Source: ./Constructions/ZFCSet/Satisfy_ZFC.lean#L58
 
 
 
@@ -6043,7 +5975,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies LRA.Set.Constructions.ZFCSet.ZFCSetMembershipModel assignment LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.infinityFormula
 Transliterated theorem: Satisfies ZFCSetMembershipModel assignment infinityFormula
 Logical form (Lean): (assignment : Nat → ZFCSetMembershipModel.Domain) : Satisfies ZFCSetMembershipModel assignment infinityFormula
-Source: ./Constructions/ZFCSet/Satisfy_ZFC.lean#L62
+Source: ./Constructions/ZFCSet/Satisfy_ZFC.lean#L63
 
 
 
@@ -6060,7 +5992,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies LRA.Set.Constructions.ZFCSet.ZFCSetMembershipModel assignment LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.foundationFormula
 Transliterated theorem: Satisfies ZFCSetMembershipModel assignment foundationFormula
 Logical form (Lean): (assignment : Nat → ZFCSetMembershipModel.Domain) : Satisfies ZFCSetMembershipModel assignment foundationFormula
-Source: ./Constructions/ZFCSet/Satisfy_ZFC.lean#L67
+Source: ./Constructions/ZFCSet/Satisfy_ZFC.lean#L68
 
 
 
@@ -6077,7 +6009,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies LRA.Set.Constructions.ZFCSet.ZFCSetMembershipModel assignment LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.choiceFormula
 Transliterated theorem: Satisfies ZFCSetMembershipModel assignment choiceFormula
 Logical form (Lean): (assignment : Nat → ZFCSetMembershipModel.Domain) : Satisfies ZFCSetMembershipModel assignment choiceFormula
-Source: ./Constructions/ZFCSet/Satisfy_ZFC.lean#L72
+Source: ./Constructions/ZFCSet/Satisfy_ZFC.lean#L73
 
 
 
@@ -6096,7 +6028,7 @@ Predicate logic (unfolded):
     ((SetLike.1 ∈ LRA.Logic.FirstOrder.freeVariables property → False) ∧ (SetLike.2 ∈ LRA.Logic.FirstOrder.freeVariables property → False)) → ∀ (assignment : Nat → LRA.Set.Constructions.ZFCSet.ZFCSetMembershipModel.1), LRA.Logic.FirstOrder.Satisfies LRA.Set.Constructions.ZFCSet.ZFCSetMembershipModel assignment (LRA.Logic.FirstOrder.Formula.forallQ 1 (LRA.Logic.FirstOrder.Formula.forallQ 2 (LRA.Logic.FirstOrder.Formula.forallQ 0 (((LRA.Logic.FirstOrder.Formula.relation LRA.Set.ModelTheory.MembershipRelationSymbol.mem (LRA.Set.ModelTheory.binaryTerms (LRA.Set.ModelTheory.varT 0) (LRA.Set.ModelTheory.varT 2))).impl ((LRA.Set.ModelTheory.memT (LRA.Set.ModelTheory.varT 0) (LRA.Set.ModelTheory.varT 1)).impl property.neg).neg).impl (((LRA.Set.ModelTheory.memT (LRA.Set.ModelTheory.varT 0) (LRA.Set.ModelTheory.varT 1)).impl property.neg).neg.impl (LRA.Logic.FirstOrder.Formula.relation LRA.Set.ModelTheory.MembershipRelationSymbol.mem (LRA.Set.ModelTheory.binaryTerms (LRA.Set.ModelTheory.varT 0) (LRA.Set.ModelTheory.varT 2)))).neg).neg).neg).neg)
 Transliterated theorem: Satisfies ZFCSetMembershipModel assignment (separationInstance property)
 Logical form (Lean): (property : Formula MembershipSignature Nat) (hygienic : SeparationHygienic property) (assignment : Nat → ZFCSetMembershipModel.Domain) : Satisfies ZFCSetMembershipModel assignment (separationInstance property)
-Source: ./Constructions/ZFCSet/Satisfy_ZFC.lean#L77
+Source: ./Constructions/ZFCSet/Satisfy_ZFC.lean#L78
 
 
 
@@ -6115,14 +6047,14 @@ Predicate logic (unfolded):
     ((SetLike.2 ∈ LRA.Logic.FirstOrder.freeVariables relation → False) ∧ ((SetLike.3 ∈ LRA.Logic.FirstOrder.freeVariables relation → False) ∧ (SetLike.4 ∈ LRA.Logic.FirstOrder.allVariables relation → False))) → ∀ (assignment : Nat → LRA.Set.Constructions.ZFCSet.ZFCSetMembershipModel.1), LRA.Logic.FirstOrder.Satisfies LRA.Set.Constructions.ZFCSet.ZFCSetMembershipModel assignment (LRA.Logic.FirstOrder.Formula.forallQ 2 ((LRA.Logic.FirstOrder.Formula.forallQ 0 ((LRA.Logic.FirstOrder.Formula.relation LRA.Set.ModelTheory.MembershipRelationSymbol.mem fun i => Fin.induction.match_1 (fun x => (fun x => (fun x => LRA.Logic.FirstOrder.Term LRA.Set.ModelTheory.MembershipSignature Nat) x) x) i fun i hi => Fin.induction.go (LRA.Set.ModelTheory.varT 0) (fun i x => (fun i => Fin.cases (LRA.Set.ModelTheory.varT 2) Fin.elim0 i) i) i hi).impl ((LRA.Logic.FirstOrder.Formula.forallQ 1 relation.neg).neg.impl (LRA.Logic.FirstOrder.Formula.forallQ 1 (LRA.Logic.FirstOrder.Formula.forallQ 4 ((relation.impl (LRA.Logic.FirstOrder.substitute 1 (LRA.Logic.FirstOrder.Term.var 4) relation).neg).neg.impl (LRA.Logic.FirstOrder.Formula.equal (LRA.Logic.FirstOrder.Term.var 1) (LRA.Logic.FirstOrder.Term.var 4))))).neg).neg)).impl (LRA.Logic.FirstOrder.Formula.forallQ 3 (LRA.Logic.FirstOrder.Formula.forallQ 1 (((LRA.Logic.FirstOrder.Formula.relation LRA.Set.ModelTheory.MembershipRelationSymbol.mem (LRA.Set.ModelTheory.binaryTerms (LRA.Set.ModelTheory.varT 1) (LRA.Set.ModelTheory.varT 3))).impl (LRA.Logic.FirstOrder.Formula.forallQ 0 ((LRA.Set.ModelTheory.memF 0 2).impl relation.neg).neg.neg).neg).impl ((LRA.Logic.FirstOrder.Formula.forallQ 0 ((LRA.Set.ModelTheory.memF 0 2).impl relation.neg).neg.neg).neg.impl (LRA.Logic.FirstOrder.Formula.relation LRA.Set.ModelTheory.MembershipRelationSymbol.mem (LRA.Set.ModelTheory.binaryTerms (LRA.Set.ModelTheory.varT 1) (LRA.Set.ModelTheory.varT 3)))).neg).neg).neg).neg))
 Transliterated theorem: Satisfies ZFCSetMembershipModel assignment (replacementInstance relation)
 Logical form (Lean): (relation : Formula MembershipSignature Nat) (hygienic : ReplacementHygienic relation) (assignment : Nat → ZFCSetMembershipModel.Domain) : Satisfies ZFCSetMembershipModel assignment (replacementInstance relation)
-Source: ./Constructions/ZFCSet/Satisfy_ZFC.lean#L85
+Source: ./Constructions/ZFCSet/Satisfy_ZFC.lean#L86
 
 
 
 Name: zfcSetModelsZFC
 Kind: Theorem
 State: Sorry
-Predicate logic: Set.instMembership.mem   (LRA.Logic.FirstOrder.ModelsOfFormulaTheory LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.ZFCTheory)   LRA.Set.Constructions.ZFCSet.ZFCSetMembershipModel
+Predicate logic: Set.instMembership.mem   (LRA.ModelTheory.FirstOrder.ModelsOfFormulaTheory LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.ZFCTheory)   LRA.Set.Constructions.ZFCSet.ZFCSetMembershipModel
 Predicate logic (unfolded):
   Ambient
     (implicit ambient)
@@ -6132,7 +6064,7 @@ Predicate logic (unfolded):
     LRA.Set.Constructions.ZFCSet.ZFCSetMembershipModel ∈ fun M => ∀ (assignment : Nat → M.1) (φ : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat), φ ∈ LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.ZFCTheory → LRA.Logic.FirstOrder.Satisfies M assignment φ
 Transliterated theorem: ZFCSetMembershipModel ∈ ModelsOfFormulaTheory ZFCTheory
 Logical form (Lean): : ZFCSetMembershipModel ∈ ModelsOfFormulaTheory ZFCTheory
-Source: ./Constructions/ZFCSet/Satisfy_ZFC.lean#L93
+Source: ./Constructions/ZFCSet/Satisfy_ZFC.lean#L94
 
 
 
@@ -6200,7 +6132,7 @@ Predicate logic (unfolded):
     LRA.Set.Constructions.NBG.Interface.ModelTheory.IsNormalClassModel M
 Transliterated theorem: (∀ M ∈ SingleSortedClassStructure), IsNormalClassModel M
 Logical form (Lean): (M : SingleSortedClassStructure) : IsNormalClassModel M
-Source: ./Constructions/NBGSet/Interface/ModelTheory/LStructure.lean#L103
+Source: ./Constructions/NBGSet/Interface/ModelTheory/LStructure.lean#L104
 
 
 
@@ -8775,7 +8707,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies LRA.Set.Constructions.TGSet.TGSetMembershipModel assignment LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.extensionalityFormula
 Transliterated theorem: Satisfies TGSetMembershipModel assignment extensionalityFormula
 Logical form (Lean): (assignment : Nat → TGSetMembershipModel.Domain) : Satisfies TGSetMembershipModel assignment extensionalityFormula
-Source: ./Constructions/TGSet/Satisfy_ZFC.lean#L31
+Source: ./Constructions/TGSet/Satisfy_ZFC.lean#L32
 
 
 
@@ -8792,7 +8724,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies LRA.Set.Constructions.TGSet.TGSetMembershipModel assignment LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.emptySetFormula
 Transliterated theorem: Satisfies TGSetMembershipModel assignment emptySetFormula
 Logical form (Lean): (assignment : Nat → TGSetMembershipModel.Domain) : Satisfies TGSetMembershipModel assignment emptySetFormula
-Source: ./Constructions/TGSet/Satisfy_ZFC.lean#L36
+Source: ./Constructions/TGSet/Satisfy_ZFC.lean#L37
 
 
 
@@ -8809,7 +8741,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies LRA.Set.Constructions.TGSet.TGSetMembershipModel assignment LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.pairingFormula
 Transliterated theorem: Satisfies TGSetMembershipModel assignment pairingFormula
 Logical form (Lean): (assignment : Nat → TGSetMembershipModel.Domain) : Satisfies TGSetMembershipModel assignment pairingFormula
-Source: ./Constructions/TGSet/Satisfy_ZFC.lean#L41
+Source: ./Constructions/TGSet/Satisfy_ZFC.lean#L42
 
 
 
@@ -8826,7 +8758,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies LRA.Set.Constructions.TGSet.TGSetMembershipModel assignment LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.unionFormula
 Transliterated theorem: Satisfies TGSetMembershipModel assignment unionFormula
 Logical form (Lean): (assignment : Nat → TGSetMembershipModel.Domain) : Satisfies TGSetMembershipModel assignment unionFormula
-Source: ./Constructions/TGSet/Satisfy_ZFC.lean#L46
+Source: ./Constructions/TGSet/Satisfy_ZFC.lean#L47
 
 
 
@@ -8843,7 +8775,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies LRA.Set.Constructions.TGSet.TGSetMembershipModel assignment LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.powerSetFormula
 Transliterated theorem: Satisfies TGSetMembershipModel assignment powerSetFormula
 Logical form (Lean): (assignment : Nat → TGSetMembershipModel.Domain) : Satisfies TGSetMembershipModel assignment powerSetFormula
-Source: ./Constructions/TGSet/Satisfy_ZFC.lean#L51
+Source: ./Constructions/TGSet/Satisfy_ZFC.lean#L52
 
 
 
@@ -8860,7 +8792,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies LRA.Set.Constructions.TGSet.TGSetMembershipModel assignment LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.infinityFormula
 Transliterated theorem: Satisfies TGSetMembershipModel assignment infinityFormula
 Logical form (Lean): (assignment : Nat → TGSetMembershipModel.Domain) : Satisfies TGSetMembershipModel assignment infinityFormula
-Source: ./Constructions/TGSet/Satisfy_ZFC.lean#L56
+Source: ./Constructions/TGSet/Satisfy_ZFC.lean#L57
 
 
 
@@ -8877,7 +8809,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies LRA.Set.Constructions.TGSet.TGSetMembershipModel assignment LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.foundationFormula
 Transliterated theorem: Satisfies TGSetMembershipModel assignment foundationFormula
 Logical form (Lean): (assignment : Nat → TGSetMembershipModel.Domain) : Satisfies TGSetMembershipModel assignment foundationFormula
-Source: ./Constructions/TGSet/Satisfy_ZFC.lean#L61
+Source: ./Constructions/TGSet/Satisfy_ZFC.lean#L62
 
 
 
@@ -8894,7 +8826,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies LRA.Set.Constructions.TGSet.TGSetMembershipModel assignment LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.choiceFormula
 Transliterated theorem: Satisfies TGSetMembershipModel assignment choiceFormula
 Logical form (Lean): (assignment : Nat → TGSetMembershipModel.Domain) : Satisfies TGSetMembershipModel assignment choiceFormula
-Source: ./Constructions/TGSet/Satisfy_ZFC.lean#L66
+Source: ./Constructions/TGSet/Satisfy_ZFC.lean#L67
 
 
 
@@ -8913,7 +8845,7 @@ Predicate logic (unfolded):
     ((SetLike.1 ∈ LRA.Logic.FirstOrder.freeVariables property → False) ∧ (SetLike.2 ∈ LRA.Logic.FirstOrder.freeVariables property → False)) → ∀ (assignment : Nat → LRA.Set.Constructions.TGSet.TGSetMembershipModel.1), LRA.Logic.FirstOrder.Satisfies LRA.Set.Constructions.TGSet.TGSetMembershipModel assignment (LRA.Logic.FirstOrder.Formula.forallQ 1 (LRA.Logic.FirstOrder.Formula.forallQ 2 (LRA.Logic.FirstOrder.Formula.forallQ 0 (((LRA.Logic.FirstOrder.Formula.relation LRA.Set.ModelTheory.MembershipRelationSymbol.mem (LRA.Set.ModelTheory.binaryTerms (LRA.Set.ModelTheory.varT 0) (LRA.Set.ModelTheory.varT 2))).impl ((LRA.Set.ModelTheory.memT (LRA.Set.ModelTheory.varT 0) (LRA.Set.ModelTheory.varT 1)).impl property.neg).neg).impl (((LRA.Set.ModelTheory.memT (LRA.Set.ModelTheory.varT 0) (LRA.Set.ModelTheory.varT 1)).impl property.neg).neg.impl (LRA.Logic.FirstOrder.Formula.relation LRA.Set.ModelTheory.MembershipRelationSymbol.mem (LRA.Set.ModelTheory.binaryTerms (LRA.Set.ModelTheory.varT 0) (LRA.Set.ModelTheory.varT 2)))).neg).neg).neg).neg)
 Transliterated theorem: Satisfies TGSetMembershipModel assignment (separationInstance property)
 Logical form (Lean): (property : Formula MembershipSignature Nat) (hygienic : SeparationHygienic property) (assignment : Nat → TGSetMembershipModel.Domain) : Satisfies TGSetMembershipModel assignment (separationInstance property)
-Source: ./Constructions/TGSet/Satisfy_ZFC.lean#L71
+Source: ./Constructions/TGSet/Satisfy_ZFC.lean#L72
 
 
 
@@ -8932,14 +8864,14 @@ Predicate logic (unfolded):
     ((SetLike.2 ∈ LRA.Logic.FirstOrder.freeVariables relation → False) ∧ ((SetLike.3 ∈ LRA.Logic.FirstOrder.freeVariables relation → False) ∧ (SetLike.4 ∈ LRA.Logic.FirstOrder.allVariables relation → False))) → ∀ (assignment : Nat → LRA.Set.Constructions.TGSet.TGSetMembershipModel.1), LRA.Logic.FirstOrder.Satisfies LRA.Set.Constructions.TGSet.TGSetMembershipModel assignment (LRA.Logic.FirstOrder.Formula.forallQ 2 ((LRA.Logic.FirstOrder.Formula.forallQ 0 ((LRA.Logic.FirstOrder.Formula.relation LRA.Set.ModelTheory.MembershipRelationSymbol.mem fun i => Fin.induction.match_1 (fun x => (fun x => (fun x => LRA.Logic.FirstOrder.Term LRA.Set.ModelTheory.MembershipSignature Nat) x) x) i fun i hi => Fin.induction.go (LRA.Set.ModelTheory.varT 0) (fun i x => (fun i => Fin.cases (LRA.Set.ModelTheory.varT 2) Fin.elim0 i) i) i hi).impl ((LRA.Logic.FirstOrder.Formula.forallQ 1 relation.neg).neg.impl (LRA.Logic.FirstOrder.Formula.forallQ 1 (LRA.Logic.FirstOrder.Formula.forallQ 4 ((relation.impl (LRA.Logic.FirstOrder.substitute 1 (LRA.Logic.FirstOrder.Term.var 4) relation).neg).neg.impl (LRA.Logic.FirstOrder.Formula.equal (LRA.Logic.FirstOrder.Term.var 1) (LRA.Logic.FirstOrder.Term.var 4))))).neg).neg)).impl (LRA.Logic.FirstOrder.Formula.forallQ 3 (LRA.Logic.FirstOrder.Formula.forallQ 1 (((LRA.Logic.FirstOrder.Formula.relation LRA.Set.ModelTheory.MembershipRelationSymbol.mem (LRA.Set.ModelTheory.binaryTerms (LRA.Set.ModelTheory.varT 1) (LRA.Set.ModelTheory.varT 3))).impl (LRA.Logic.FirstOrder.Formula.forallQ 0 ((LRA.Set.ModelTheory.memF 0 2).impl relation.neg).neg.neg).neg).impl ((LRA.Logic.FirstOrder.Formula.forallQ 0 ((LRA.Set.ModelTheory.memF 0 2).impl relation.neg).neg.neg).neg.impl (LRA.Logic.FirstOrder.Formula.relation LRA.Set.ModelTheory.MembershipRelationSymbol.mem (LRA.Set.ModelTheory.binaryTerms (LRA.Set.ModelTheory.varT 1) (LRA.Set.ModelTheory.varT 3)))).neg).neg).neg).neg))
 Transliterated theorem: Satisfies TGSetMembershipModel assignment (replacementInstance relation)
 Logical form (Lean): (relation : Formula MembershipSignature Nat) (hygienic : ReplacementHygienic relation) (assignment : Nat → TGSetMembershipModel.Domain) : Satisfies TGSetMembershipModel assignment (replacementInstance relation)
-Source: ./Constructions/TGSet/Satisfy_ZFC.lean#L79
+Source: ./Constructions/TGSet/Satisfy_ZFC.lean#L80
 
 
 
 Name: tgSetModelsZFC
 Kind: Theorem
 State: Sorry
-Predicate logic: Set.instMembership.mem   (LRA.Logic.FirstOrder.ModelsOfFormulaTheory LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.ZFCTheory)   LRA.Set.Constructions.TGSet.TGSetMembershipModel
+Predicate logic: Set.instMembership.mem   (LRA.ModelTheory.FirstOrder.ModelsOfFormulaTheory LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.ZFCTheory)   LRA.Set.Constructions.TGSet.TGSetMembershipModel
 Predicate logic (unfolded):
   Ambient
     (implicit ambient)
@@ -8949,7 +8881,7 @@ Predicate logic (unfolded):
     LRA.Set.Constructions.TGSet.TGSetMembershipModel ∈ fun M => ∀ (assignment : Nat → M.1) (φ : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat), φ ∈ LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.ZFCTheory → LRA.Logic.FirstOrder.Satisfies M assignment φ
 Transliterated theorem: TGSetMembershipModel ∈ ModelsOfFormulaTheory ZFCTheory
 Logical form (Lean): : TGSetMembershipModel ∈ ModelsOfFormulaTheory ZFCTheory
-Source: ./Constructions/TGSet/Satisfy_ZFC.lean#L87
+Source: ./Constructions/TGSet/Satisfy_ZFC.lean#L88
 
 
 
@@ -8966,7 +8898,7 @@ Predicate logic (unfolded):
     SupportsTGExpansion SetObject ↔ TGUniverseAxiom SetObject
 Transliterated theorem: SupportsTGExpansion SetObject ↔ TGUniverseAxiom SetObject
 Logical form (Lean): (SetObject : Type u) [Membership SetObject SetObject] : SupportsTGExpansion SetObject ↔ TGUniverseAxiom SetObject
-Source: ./Constructions/GrothendieckUniverse/Interface/ModelTheory/Theory.lean#L31
+Source: ./Constructions/GrothendieckUniverse/Interface/ModelTheory/Theory.lean#L32
 
 
 
@@ -9136,7 +9068,7 @@ Predicate logic (unfolded):
     ((∀ (left right : Subtype fun x => LRA.Set.Constructions.GrothendieckUniverse.Interface.ModelTheory.toUniverseLStructure A U universeHypothesis ≤ .2 x), right.1 ≤ left.1 ↔ right.1 ≤ left.1) ∧ (∀ ⦃x y : SetObject⦄, LRA.Set.Constructions.GrothendieckUniverse.Interface.ModelTheory.toUniverseLStructure A U universeHypothesis ≤ .2 x → x ≤ y → LRA.Set.Constructions.GrothendieckUniverse.Interface.ModelTheory.toUniverseLStructure A U universeHypothesis ≤ .2 y))
 Transliterated theorem: (∀ A B ∈ U), (IsGrothendieckUniverseFor A B) → IsStandardTransitiveMembershipStructure (toUniverseLStructure A B universeHypothesis)
 Logical form (Lean): {SetObject : Type u} [Membership SetObject SetObject] (A U : SetObject) (universeHypothesis : IsGrothendieckUniverseFor A U) : IsStandardTransitiveMembershipStructure (toUniverseLStructure A U universeHypothesis)
-Source: ./Constructions/GrothendieckUniverse/Satisfy_ZFC.lean#L57
+Source: ./Constructions/GrothendieckUniverse/Satisfy_ZFC.lean#L58
 
 
 
@@ -9154,7 +9086,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies { Domain := Subtype fun x => U ≤ x,domainNonempty := ⋯, equalityIsDiagonal := ⋯, interpretFunction := fun functionSymbol => Empty.rec (fun x => (Fin (LRA.Set.ModelTheory.MembershipSignature.Functions.2 functionSymbol) → Subtype fun x => U ≤ x) → Subtype fun x => U ≤ x) functionSymbol, interpretRelation := fun relationSymbol arguments => LRA.Set.ModelTheory.MembershipRelationSymbol.rec (motive := fun x => (arguments : Fin (LRA.Set.ModelTheory.MembershipSignature.Relations.2 x) → Subtype fun x => U ≤ x) → (fun relationSymbol arguments => Prop) x arguments) (fun arguments => (fun arguments => arguments ⟨1, LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseMembershipModel._proof_3⟩ ≤ .1 (arguments ⟨0, LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseMembershipModel._proof_4⟩).1) arguments) relationSymbol arguments, interpretConstant := fun constantSymbol => LRA.Set.ModelTheory.MembershipConstantSymbol.rec ((fun _ => let emptyWitness := Classical.choose ⋯; have emptyWitnessSpec := ⋯; ⟨emptyWitness, ⋯⟩) Unit.unit) constantSymbol } assignment LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.extensionalityFormula
 Transliterated theorem: (∀ A B ∈ U), (IsGrothendieckUniverseFor A B) → Satisfies (GrothendieckUniverseMembershipModel A B universeHypothesis) assignment extensionalityFormula
 Logical form (Lean): {SetObject : Type u} [Membership SetObject SetObject] (A U : SetObject) (universeHypothesis : IsGrothendieckUniverseFor A U) (assignment : Nat → (GrothendieckUniverseMembershipModel A U universeHypothesis).Domain) : Satisfies (GrothendieckUniverseMembershipModel A U universeHypothesis) assignment extensionalityFormula
-Source: ./Constructions/GrothendieckUniverse/Satisfy_ZFC.lean#L79
+Source: ./Constructions/GrothendieckUniverse/Satisfy_ZFC.lean#L80
 
 
 
@@ -9172,7 +9104,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies { Domain := Subtype fun x => U ≤ x,domainNonempty := ⋯, equalityIsDiagonal := ⋯, interpretFunction := fun functionSymbol => Empty.rec (fun x => (Fin (LRA.Set.ModelTheory.MembershipSignature.Functions.2 functionSymbol) → Subtype fun x => U ≤ x) → Subtype fun x => U ≤ x) functionSymbol, interpretRelation := fun relationSymbol arguments => LRA.Set.ModelTheory.MembershipRelationSymbol.rec (motive := fun x => (arguments : Fin (LRA.Set.ModelTheory.MembershipSignature.Relations.2 x) → Subtype fun x => U ≤ x) → (fun relationSymbol arguments => Prop) x arguments) (fun arguments => (fun arguments => arguments ⟨1, LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseMembershipModel._proof_3⟩ ≤ .1 (arguments ⟨0, LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseMembershipModel._proof_4⟩).1) arguments) relationSymbol arguments, interpretConstant := fun constantSymbol => LRA.Set.ModelTheory.MembershipConstantSymbol.rec ((fun _ => let emptyWitness := Classical.choose ⋯; have emptyWitnessSpec := ⋯; ⟨emptyWitness, ⋯⟩) Unit.unit) constantSymbol } assignment LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.emptySetFormula
 Transliterated theorem: (∀ A B ∈ U), (IsGrothendieckUniverseFor A B) → Satisfies (GrothendieckUniverseMembershipModel A B universeHypothesis) assignment emptySetFormula
 Logical form (Lean): {SetObject : Type u} [Membership SetObject SetObject] (A U : SetObject) (universeHypothesis : IsGrothendieckUniverseFor A U) (assignment : Nat → (GrothendieckUniverseMembershipModel A U universeHypothesis).Domain) : Satisfies (GrothendieckUniverseMembershipModel A U universeHypothesis) assignment emptySetFormula
-Source: ./Constructions/GrothendieckUniverse/Satisfy_ZFC.lean#L91
+Source: ./Constructions/GrothendieckUniverse/Satisfy_ZFC.lean#L92
 
 
 
@@ -9190,7 +9122,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies { Domain := Subtype fun x => U ≤ x,domainNonempty := ⋯, equalityIsDiagonal := ⋯, interpretFunction := fun functionSymbol => Empty.rec (fun x => (Fin (LRA.Set.ModelTheory.MembershipSignature.Functions.2 functionSymbol) → Subtype fun x => U ≤ x) → Subtype fun x => U ≤ x) functionSymbol, interpretRelation := fun relationSymbol arguments => LRA.Set.ModelTheory.MembershipRelationSymbol.rec (motive := fun x => (arguments : Fin (LRA.Set.ModelTheory.MembershipSignature.Relations.2 x) → Subtype fun x => U ≤ x) → (fun relationSymbol arguments => Prop) x arguments) (fun arguments => (fun arguments => arguments ⟨1, LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseMembershipModel._proof_3⟩ ≤ .1 (arguments ⟨0, LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseMembershipModel._proof_4⟩).1) arguments) relationSymbol arguments, interpretConstant := fun constantSymbol => LRA.Set.ModelTheory.MembershipConstantSymbol.rec ((fun _ => let emptyWitness := Classical.choose ⋯; have emptyWitnessSpec := ⋯; ⟨emptyWitness, ⋯⟩) Unit.unit) constantSymbol } assignment LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.pairingFormula
 Transliterated theorem: (∀ A B ∈ U), (IsGrothendieckUniverseFor A B) → Satisfies (GrothendieckUniverseMembershipModel A B universeHypothesis) assignment pairingFormula
 Logical form (Lean): {SetObject : Type u} [Membership SetObject SetObject] (A U : SetObject) (universeHypothesis : IsGrothendieckUniverseFor A U) (assignment : Nat → (GrothendieckUniverseMembershipModel A U universeHypothesis).Domain) : Satisfies (GrothendieckUniverseMembershipModel A U universeHypothesis) assignment pairingFormula
-Source: ./Constructions/GrothendieckUniverse/Satisfy_ZFC.lean#L103
+Source: ./Constructions/GrothendieckUniverse/Satisfy_ZFC.lean#L104
 
 
 
@@ -9208,7 +9140,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies { Domain := Subtype fun x => U ≤ x,domainNonempty := ⋯, equalityIsDiagonal := ⋯, interpretFunction := fun functionSymbol => Empty.rec (fun x => (Fin (LRA.Set.ModelTheory.MembershipSignature.Functions.2 functionSymbol) → Subtype fun x => U ≤ x) → Subtype fun x => U ≤ x) functionSymbol, interpretRelation := fun relationSymbol arguments => LRA.Set.ModelTheory.MembershipRelationSymbol.rec (motive := fun x => (arguments : Fin (LRA.Set.ModelTheory.MembershipSignature.Relations.2 x) → Subtype fun x => U ≤ x) → (fun relationSymbol arguments => Prop) x arguments) (fun arguments => (fun arguments => arguments ⟨1, LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseMembershipModel._proof_3⟩ ≤ .1 (arguments ⟨0, LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseMembershipModel._proof_4⟩).1) arguments) relationSymbol arguments, interpretConstant := fun constantSymbol => LRA.Set.ModelTheory.MembershipConstantSymbol.rec ((fun _ => let emptyWitness := Classical.choose ⋯; have emptyWitnessSpec := ⋯; ⟨emptyWitness, ⋯⟩) Unit.unit) constantSymbol } assignment LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.unionFormula
 Transliterated theorem: (∀ A B ∈ U), (IsGrothendieckUniverseFor A B) → Satisfies (GrothendieckUniverseMembershipModel A B universeHypothesis) assignment unionFormula
 Logical form (Lean): {SetObject : Type u} [Membership SetObject SetObject] (A U : SetObject) (universeHypothesis : IsGrothendieckUniverseFor A U) (assignment : Nat → (GrothendieckUniverseMembershipModel A U universeHypothesis).Domain) : Satisfies (GrothendieckUniverseMembershipModel A U universeHypothesis) assignment unionFormula
-Source: ./Constructions/GrothendieckUniverse/Satisfy_ZFC.lean#L115
+Source: ./Constructions/GrothendieckUniverse/Satisfy_ZFC.lean#L116
 
 
 
@@ -9226,7 +9158,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies { Domain := Subtype fun x => U ≤ x,domainNonempty := ⋯, equalityIsDiagonal := ⋯, interpretFunction := fun functionSymbol => Empty.rec (fun x => (Fin (LRA.Set.ModelTheory.MembershipSignature.Functions.2 functionSymbol) → Subtype fun x => U ≤ x) → Subtype fun x => U ≤ x) functionSymbol, interpretRelation := fun relationSymbol arguments => LRA.Set.ModelTheory.MembershipRelationSymbol.rec (motive := fun x => (arguments : Fin (LRA.Set.ModelTheory.MembershipSignature.Relations.2 x) → Subtype fun x => U ≤ x) → (fun relationSymbol arguments => Prop) x arguments) (fun arguments => (fun arguments => arguments ⟨1, LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseMembershipModel._proof_3⟩ ≤ .1 (arguments ⟨0, LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseMembershipModel._proof_4⟩).1) arguments) relationSymbol arguments, interpretConstant := fun constantSymbol => LRA.Set.ModelTheory.MembershipConstantSymbol.rec ((fun _ => let emptyWitness := Classical.choose ⋯; have emptyWitnessSpec := ⋯; ⟨emptyWitness, ⋯⟩) Unit.unit) constantSymbol } assignment LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.powerSetFormula
 Transliterated theorem: (∀ A B ∈ U), (IsGrothendieckUniverseFor A B) → Satisfies (GrothendieckUniverseMembershipModel A B universeHypothesis) assignment powerSetFormula
 Logical form (Lean): {SetObject : Type u} [Membership SetObject SetObject] (A U : SetObject) (universeHypothesis : IsGrothendieckUniverseFor A U) (assignment : Nat → (GrothendieckUniverseMembershipModel A U universeHypothesis).Domain) : Satisfies (GrothendieckUniverseMembershipModel A U universeHypothesis) assignment powerSetFormula
-Source: ./Constructions/GrothendieckUniverse/Satisfy_ZFC.lean#L127
+Source: ./Constructions/GrothendieckUniverse/Satisfy_ZFC.lean#L128
 
 
 
@@ -9244,7 +9176,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies { Domain := Subtype fun x => U ≤ x,domainNonempty := ⋯, equalityIsDiagonal := ⋯, interpretFunction := fun functionSymbol => Empty.rec (fun x => (Fin (LRA.Set.ModelTheory.MembershipSignature.Functions.2 functionSymbol) → Subtype fun x => U ≤ x) → Subtype fun x => U ≤ x) functionSymbol, interpretRelation := fun relationSymbol arguments => LRA.Set.ModelTheory.MembershipRelationSymbol.rec (motive := fun x => (arguments : Fin (LRA.Set.ModelTheory.MembershipSignature.Relations.2 x) → Subtype fun x => U ≤ x) → (fun relationSymbol arguments => Prop) x arguments) (fun arguments => (fun arguments => arguments ⟨1, LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseMembershipModel._proof_3⟩ ≤ .1 (arguments ⟨0, LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseMembershipModel._proof_4⟩).1) arguments) relationSymbol arguments, interpretConstant := fun constantSymbol => LRA.Set.ModelTheory.MembershipConstantSymbol.rec ((fun _ => let emptyWitness := Classical.choose ⋯; have emptyWitnessSpec := ⋯; ⟨emptyWitness, ⋯⟩) Unit.unit) constantSymbol } assignment LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.infinityFormula
 Transliterated theorem: (∀ A B ∈ U), (IsGrothendieckUniverseFor A B) → Satisfies (GrothendieckUniverseMembershipModel A B universeHypothesis) assignment infinityFormula
 Logical form (Lean): {SetObject : Type u} [Membership SetObject SetObject] (A U : SetObject) (universeHypothesis : IsGrothendieckUniverseFor A U) (assignment : Nat → (GrothendieckUniverseMembershipModel A U universeHypothesis).Domain) : Satisfies (GrothendieckUniverseMembershipModel A U universeHypothesis) assignment infinityFormula
-Source: ./Constructions/GrothendieckUniverse/Satisfy_ZFC.lean#L139
+Source: ./Constructions/GrothendieckUniverse/Satisfy_ZFC.lean#L140
 
 
 
@@ -9262,7 +9194,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies { Domain := Subtype fun x => U ≤ x,domainNonempty := ⋯, equalityIsDiagonal := ⋯, interpretFunction := fun functionSymbol => Empty.rec (fun x => (Fin (LRA.Set.ModelTheory.MembershipSignature.Functions.2 functionSymbol) → Subtype fun x => U ≤ x) → Subtype fun x => U ≤ x) functionSymbol, interpretRelation := fun relationSymbol arguments => LRA.Set.ModelTheory.MembershipRelationSymbol.rec (motive := fun x => (arguments : Fin (LRA.Set.ModelTheory.MembershipSignature.Relations.2 x) → Subtype fun x => U ≤ x) → (fun relationSymbol arguments => Prop) x arguments) (fun arguments => (fun arguments => arguments ⟨1, LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseMembershipModel._proof_3⟩ ≤ .1 (arguments ⟨0, LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseMembershipModel._proof_4⟩).1) arguments) relationSymbol arguments, interpretConstant := fun constantSymbol => LRA.Set.ModelTheory.MembershipConstantSymbol.rec ((fun _ => let emptyWitness := Classical.choose ⋯; have emptyWitnessSpec := ⋯; ⟨emptyWitness, ⋯⟩) Unit.unit) constantSymbol } assignment LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.foundationFormula
 Transliterated theorem: (∀ A B ∈ U), (IsGrothendieckUniverseFor A B) → Satisfies (GrothendieckUniverseMembershipModel A B universeHypothesis) assignment foundationFormula
 Logical form (Lean): {SetObject : Type u} [Membership SetObject SetObject] (A U : SetObject) (universeHypothesis : IsGrothendieckUniverseFor A U) (assignment : Nat → (GrothendieckUniverseMembershipModel A U universeHypothesis).Domain) : Satisfies (GrothendieckUniverseMembershipModel A U universeHypothesis) assignment foundationFormula
-Source: ./Constructions/GrothendieckUniverse/Satisfy_ZFC.lean#L151
+Source: ./Constructions/GrothendieckUniverse/Satisfy_ZFC.lean#L152
 
 
 
@@ -9280,7 +9212,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies { Domain := Subtype fun x => U ≤ x,domainNonempty := ⋯, equalityIsDiagonal := ⋯, interpretFunction := fun functionSymbol => Empty.rec (fun x => (Fin (LRA.Set.ModelTheory.MembershipSignature.Functions.2 functionSymbol) → Subtype fun x => U ≤ x) → Subtype fun x => U ≤ x) functionSymbol, interpretRelation := fun relationSymbol arguments => LRA.Set.ModelTheory.MembershipRelationSymbol.rec (motive := fun x => (arguments : Fin (LRA.Set.ModelTheory.MembershipSignature.Relations.2 x) → Subtype fun x => U ≤ x) → (fun relationSymbol arguments => Prop) x arguments) (fun arguments => (fun arguments => arguments ⟨1, LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseMembershipModel._proof_3⟩ ≤ .1 (arguments ⟨0, LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseMembershipModel._proof_4⟩).1) arguments) relationSymbol arguments, interpretConstant := fun constantSymbol => LRA.Set.ModelTheory.MembershipConstantSymbol.rec ((fun _ => let emptyWitness := Classical.choose ⋯; have emptyWitnessSpec := ⋯; ⟨emptyWitness, ⋯⟩) Unit.unit) constantSymbol } assignment LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.choiceFormula
 Transliterated theorem: (∀ A B ∈ U), (IsGrothendieckUniverseFor A B) → Satisfies (GrothendieckUniverseMembershipModel A B universeHypothesis) assignment choiceFormula
 Logical form (Lean): {SetObject : Type u} [Membership SetObject SetObject] (A U : SetObject) (universeHypothesis : IsGrothendieckUniverseFor A U) (assignment : Nat → (GrothendieckUniverseMembershipModel A U universeHypothesis).Domain) : Satisfies (GrothendieckUniverseMembershipModel A U universeHypothesis) assignment choiceFormula
-Source: ./Constructions/GrothendieckUniverse/Satisfy_ZFC.lean#L163
+Source: ./Constructions/GrothendieckUniverse/Satisfy_ZFC.lean#L164
 
 
 
@@ -9300,7 +9232,7 @@ Predicate logic (unfolded):
     ((SetLike.1 ∈ LRA.Logic.FirstOrder.freeVariables property → False) ∧ (SetLike.2 ∈ LRA.Logic.FirstOrder.freeVariables property → False)) → ∀ (assignment : Nat → (LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseMembershipModel A U universeHypothesis).1), LRA.Logic.FirstOrder.Satisfies { Domain := Subtype fun x => U ≤ x,domainNonempty := ⋯, equalityIsDiagonal := ⋯, interpretFunction := fun functionSymbol => Empty.rec (fun x => (Fin (LRA.Set.ModelTheory.MembershipSignature.Functions.2 functionSymbol) → Subtype fun x => U ≤ x) → Subtype fun x => U ≤ x) functionSymbol, interpretRelation := fun relationSymbol arguments => LRA.Set.ModelTheory.MembershipRelationSymbol.rec (motive := fun x => (arguments : Fin (LRA.Set.ModelTheory.MembershipSignature.Relations.2 x) → Subtype fun x => U ≤ x) → (fun relationSymbol arguments => Prop) x arguments) (fun arguments => (fun arguments => arguments ⟨1, LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseMembershipModel._proof_3⟩ ≤ .1 (arguments ⟨0, LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseMembershipModel._proof_4⟩).1) arguments) relationSymbol arguments, interpretConstant := fun constantSymbol => LRA.Set.ModelTheory.MembershipConstantSymbol.rec ((fun _ => let emptyWitness := Classical.choose ⋯; have emptyWitnessSpec := ⋯; ⟨emptyWitness, ⋯⟩) Unit.unit) constantSymbol } assignment (LRA.Logic.FirstOrder.Formula.forallQ 1 (LRA.Logic.FirstOrder.Formula.forallQ 2 (LRA.Logic.FirstOrder.Formula.forallQ 0 (((LRA.Logic.FirstOrder.Formula.relation LRA.Set.ModelTheory.MembershipRelationSymbol.mem (LRA.Set.ModelTheory.binaryTerms (LRA.Set.ModelTheory.varT 0) (LRA.Set.ModelTheory.varT 2))).impl ((LRA.Set.ModelTheory.memT (LRA.Set.ModelTheory.varT 0) (LRA.Set.ModelTheory.varT 1)).impl property.neg).neg).impl (((LRA.Set.ModelTheory.memT (LRA.Set.ModelTheory.varT 0) (LRA.Set.ModelTheory.varT 1)).impl property.neg).neg.impl (LRA.Logic.FirstOrder.Formula.relation LRA.Set.ModelTheory.MembershipRelationSymbol.mem (LRA.Set.ModelTheory.binaryTerms (LRA.Set.ModelTheory.varT 0) (LRA.Set.ModelTheory.varT 2)))).neg).neg).neg).neg)
 Transliterated theorem: (∀ A B ∈ U), (IsGrothendieckUniverseFor A B) → Satisfies (GrothendieckUniverseMembershipModel A B universeHypothesis) assignment (separationInstance property)
 Logical form (Lean): {SetObject : Type u} [Membership SetObject SetObject] (A U : SetObject) (universeHypothesis : IsGrothendieckUniverseFor A U) (property : Formula MembershipSignature Nat) (hygienic : SeparationHygienic property) (assignment : Nat → (GrothendieckUniverseMembershipModel A U universeHypothesis).Domain) : Satisfies (GrothendieckUniverseMembershipModel A U universeHypothesis) assignment (separationInstance property)
-Source: ./Constructions/GrothendieckUniverse/Satisfy_ZFC.lean#L175
+Source: ./Constructions/GrothendieckUniverse/Satisfy_ZFC.lean#L176
 
 
 
@@ -9320,14 +9252,14 @@ Predicate logic (unfolded):
     ((SetLike.2 ∈ LRA.Logic.FirstOrder.freeVariables relation → False) ∧ ((SetLike.3 ∈ LRA.Logic.FirstOrder.freeVariables relation → False) ∧ (SetLike.4 ∈ LRA.Logic.FirstOrder.allVariables relation → False))) → ∀ (assignment : Nat → (LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseMembershipModel A U universeHypothesis).1), LRA.Logic.FirstOrder.Satisfies { Domain := Subtype fun x => U ≤ x,domainNonempty := ⋯, equalityIsDiagonal := ⋯, interpretFunction := fun functionSymbol => Empty.rec (fun x => (Fin (LRA.Set.ModelTheory.MembershipSignature.Functions.2 functionSymbol) → Subtype fun x => U ≤ x) → Subtype fun x => U ≤ x) functionSymbol, interpretRelation := fun relationSymbol arguments => LRA.Set.ModelTheory.MembershipRelationSymbol.rec (motive := fun x => (arguments : Fin (LRA.Set.ModelTheory.MembershipSignature.Relations.2 x) → Subtype fun x => U ≤ x) → (fun relationSymbol arguments => Prop) x arguments) (fun arguments => (fun arguments => arguments ⟨1, LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseMembershipModel._proof_3⟩ ≤ .1 (arguments ⟨0, LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseMembershipModel._proof_4⟩).1) arguments) relationSymbol arguments, interpretConstant := fun constantSymbol => LRA.Set.ModelTheory.MembershipConstantSymbol.rec ((fun _ => let emptyWitness := Classical.choose ⋯; have emptyWitnessSpec := ⋯; ⟨emptyWitness, ⋯⟩) Unit.unit) constantSymbol } assignment (LRA.Logic.FirstOrder.Formula.forallQ 2 ((LRA.Logic.FirstOrder.Formula.forallQ 0 ((LRA.Logic.FirstOrder.Formula.relation LRA.Set.ModelTheory.MembershipRelationSymbol.mem fun i => Fin.induction.match_1 (fun x => (fun x => (fun x => LRA.Logic.FirstOrder.Term LRA.Set.ModelTheory.MembershipSignature Nat) x) x) i fun i hi => Fin.induction.go (LRA.Set.ModelTheory.varT 0) (fun i x => (fun i => Fin.cases (LRA.Set.ModelTheory.varT 2) Fin.elim0 i) i) i hi).impl ((LRA.Logic.FirstOrder.Formula.forallQ 1 relation.neg).neg.impl (LRA.Logic.FirstOrder.Formula.forallQ 1 (LRA.Logic.FirstOrder.Formula.forallQ 4 ((relation.impl (LRA.Logic.FirstOrder.substitute 1 (LRA.Logic.FirstOrder.Term.var 4) relation).neg).neg.impl (LRA.Logic.FirstOrder.Formula.equal (LRA.Logic.FirstOrder.Term.var 1) (LRA.Logic.FirstOrder.Term.var 4))))).neg).neg)).impl (LRA.Logic.FirstOrder.Formula.forallQ 3 (LRA.Logic.FirstOrder.Formula.forallQ 1 (((LRA.Logic.FirstOrder.Formula.relation LRA.Set.ModelTheory.MembershipRelationSymbol.mem (LRA.Set.ModelTheory.binaryTerms (LRA.Set.ModelTheory.varT 1) (LRA.Set.ModelTheory.varT 3))).impl (LRA.Logic.FirstOrder.Formula.forallQ 0 ((LRA.Set.ModelTheory.memF 0 2).impl relation.neg).neg.neg).neg).impl ((LRA.Logic.FirstOrder.Formula.forallQ 0 ((LRA.Set.ModelTheory.memF 0 2).impl relation.neg).neg.neg).neg.impl (LRA.Logic.FirstOrder.Formula.relation LRA.Set.ModelTheory.MembershipRelationSymbol.mem (LRA.Set.ModelTheory.binaryTerms (LRA.Set.ModelTheory.varT 1) (LRA.Set.ModelTheory.varT 3)))).neg).neg).neg).neg))
 Transliterated theorem: (∀ A B ∈ U), (IsGrothendieckUniverseFor A B) → Satisfies (GrothendieckUniverseMembershipModel A B universeHypothesis) assignment (replacementInstance relation)
 Logical form (Lean): {SetObject : Type u} [Membership SetObject SetObject] (A U : SetObject) (universeHypothesis : IsGrothendieckUniverseFor A U) (relation : Formula MembershipSignature Nat) (hygienic : ReplacementHygienic relation) (assignment : Nat → (GrothendieckUniverseMembershipModel A U universeHypothesis).Domain) : Satisfies (GrothendieckUniverseMembershipModel A U universeHypothesis) assignment (replacementInstance relation)
-Source: ./Constructions/GrothendieckUniverse/Satisfy_ZFC.lean#L189
+Source: ./Constructions/GrothendieckUniverse/Satisfy_ZFC.lean#L190
 
 
 
 Name: grothendieckUniverseModelsZFC
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {SetObject : Type u} [inst : Membership SetObject SetObject] (A U : SetObject)   (universeHypothesis : LRA.Set.Constructions.GrothendieckUniverse.IsGrothendieckUniverseFor A U),   Set.instMembership.mem     (LRA.Logic.FirstOrder.ModelsOfFormulaTheory LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.ZFCTheory)     (LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseMembershipModel A U universeHypothesis)
+Predicate logic: ∀ {SetObject : Type u} [inst : Membership SetObject SetObject] (A U : SetObject)   (universeHypothesis : LRA.Set.Constructions.GrothendieckUniverse.IsGrothendieckUniverseFor A U),   Set.instMembership.mem     (LRA.ModelTheory.FirstOrder.ModelsOfFormulaTheory LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.ZFCTheory)     (LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseMembershipModel A U universeHypothesis)
 Predicate logic (unfolded):
   Ambient
     (SetObject, ∈)
@@ -9337,14 +9269,14 @@ Predicate logic (unfolded):
     { Domain := Subtype fun x => U ≤ x,domainNonempty := ⋯, equalityIsDiagonal := ⋯, interpretFunction := fun functionSymbol => Empty.rec (fun x => (Fin (LRA.Set.ModelTheory.MembershipSignature.Functions.2 functionSymbol) → Subtype fun x => U ≤ x) → Subtype fun x => U ≤ x) functionSymbol, interpretRelation := fun relationSymbol arguments => LRA.Set.ModelTheory.MembershipRelationSymbol.rec (motive := fun x => (arguments : Fin (LRA.Set.ModelTheory.MembershipSignature.Relations.2 x) → Subtype fun x => U ≤ x) → (fun relationSymbol arguments => Prop) x arguments) (fun arguments => (fun arguments => arguments ⟨1, LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseMembershipModel._proof_3⟩ ≤ .1 (arguments ⟨0, LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseMembershipModel._proof_4⟩).1) arguments) relationSymbol arguments, interpretConstant := fun constantSymbol => LRA.Set.ModelTheory.MembershipConstantSymbol.rec ((fun _ => let emptyWitness := Classical.choose ⋯; have emptyWitnessSpec := ⋯; ⟨emptyWitness, ⋯⟩) Unit.unit) constantSymbol } ∈ fun M => ∀ (assignment : Nat → M.1) (φ : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat), φ ∈ LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.ZFCTheory → LRA.Logic.FirstOrder.Satisfies M assignment φ
 Transliterated theorem: (∀ A B ∈ U), (IsGrothendieckUniverseFor A B) → GrothendieckUniverseMembershipModel A B universeHypothesis ∈ ModelsOfFormulaTheory ZFCTheory
 Logical form (Lean): {SetObject : Type u} [Membership SetObject SetObject] (A U : SetObject) (universeHypothesis : IsGrothendieckUniverseFor A U) : GrothendieckUniverseMembershipModel A U universeHypothesis ∈ ModelsOfFormulaTheory ZFCTheory
-Source: ./Constructions/GrothendieckUniverse/Satisfy_ZFC.lean#L203
+Source: ./Constructions/GrothendieckUniverse/Satisfy_ZFC.lean#L204
 
 
 
 Name: canonicalGrothendieckUniverseModelsZFC
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {SetObject : Type u} [inst : Membership SetObject SetObject]   [inst_1 : LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseAxiom SetObject] (A : SetObject),   Set.instMembership.mem     (LRA.Logic.FirstOrder.ModelsOfFormulaTheory LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.ZFCTheory)     (LRA.Set.Constructions.GrothendieckUniverse.CanonicalGrothendieckUniverseMembershipModel A)
+Predicate logic: ∀ {SetObject : Type u} [inst : Membership SetObject SetObject]   [inst_1 : LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseAxiom SetObject] (A : SetObject),   Set.instMembership.mem     (LRA.ModelTheory.FirstOrder.ModelsOfFormulaTheory LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.ZFCTheory)     (LRA.Set.Constructions.GrothendieckUniverse.CanonicalGrothendieckUniverseMembershipModel A)
 Predicate logic (unfolded):
   Ambient
     (SetObject, ∈)
@@ -9354,7 +9286,7 @@ Predicate logic (unfolded):
     { Domain := Subtype fun x => Classical.indefiniteDescription (LRA.Set.Constructions.GrothendieckUniverse.IsGrothendieckUniverseFor A) ⋯ ≤ .val x, domainNonempty := ⋯, equalityIsDiagonal := ⋯, interpretFunction := fun functionSymbol => Empty.rec (fun x => (Fin (LRA.Set.ModelTheory.MembershipSignature.Functions.2 functionSymbol) → Subtype fun x => Classical.choose ⋯ ≤ x) → Subtype fun x => Classical.choose ⋯ ≤ x) functionSymbol, interpretRelation := fun relationSymbol arguments => LRA.Set.ModelTheory.MembershipRelationSymbol.rec (motive := fun x => (arguments : Fin (LRA.Set.ModelTheory.MembershipSignature.Relations.arity x) → Subtype fun x => LRA.Set.Constructions.GrothendieckUniverse.TheGrothendieckUniverse A ≤ x) → (fun relationSymbol arguments => Prop) x arguments) (fun arguments => (fun arguments => arguments ⟨1, LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseMembershipModel._proof_3⟩ ≤ .val (arguments ⟨0, LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseMembershipModel._proof_4⟩).val) arguments) relationSymbol arguments, interpretConstant := fun constantSymbol => LRA.Set.ModelTheory.MembershipConstantSymbol.rec ((fun _ => let emptyWitness := Classical.choose ⋯; have emptyWitnessSpec := ⋯; ⟨emptyWitness, ⋯⟩) Unit.unit) constantSymbol } ∈ fun M => ∀ (assignment : Nat → M.1) (φ : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat), φ ∈ LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.ZFCTheory → LRA.Logic.FirstOrder.Satisfies M assignment φ
 Transliterated theorem: (∀ A ∈ U), CanonicalGrothendieckUniverseMembershipModel A ∈ ModelsOfFormulaTheory ZFCTheory
 Logical form (Lean): {SetObject : Type u} [Membership SetObject SetObject] [GrothendieckUniverseAxiom SetObject] (A : SetObject) : CanonicalGrothendieckUniverseMembershipModel A ∈ ModelsOfFormulaTheory ZFCTheory
-Source: ./Constructions/GrothendieckUniverse/Satisfy_ZFC.lean#L212
+Source: ./Constructions/GrothendieckUniverse/Satisfy_ZFC.lean#L213
 
 
 
@@ -9371,7 +9303,7 @@ Predicate logic (unfolded):
     { Domain := Subtype fun x => U ≤ x,domainNonempty := ⋯, equalityIsDiagonal := ⋯, interpretFunction := fun functionSymbol => Empty.rec (fun x => (Fin (LRA.Set.ModelTheory.MembershipSignature.Functions.2 functionSymbol) → Subtype fun x => U ≤ x) → Subtype fun x => U ≤ x) functionSymbol, interpretRelation := fun relationSymbol arguments => LRA.Set.ModelTheory.MembershipRelationSymbol.rec (motive := fun x => (arguments : Fin (LRA.Set.ModelTheory.MembershipSignature.Relations.arity x) → Subtype fun x => U ≤ x) → (fun relationSymbol arguments => Prop) x arguments) (fun arguments => (fun arguments => arguments ⟨1, LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseMembershipModel._proof_3⟩ ≤ .val (arguments ⟨0, LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseMembershipModel._proof_4⟩).val) arguments) relationSymbol arguments, interpretConstant := fun constantSymbol => LRA.Set.ModelTheory.MembershipConstantSymbol.rec ((fun _ => let emptyWitness := Classical.choose ⋯; have emptyWitnessSpec := ⋯; ⟨emptyWitness, ⋯⟩) Unit.unit) constantSymbol } ∈ fun M => ∀ (assignment : Nat → M.1) (φ : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat), φ ∈ LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.ZFCTheory → LRA.Logic.FirstOrder.Satisfies M assignment φ
 Transliterated theorem: (∀ A B ∈ U), (IsGrothendieckUniverseFor A B) → HasCumulativeHierarchyClassification A B universeHypothesis
 Logical form (Lean): {SetObject : Type u} [Membership SetObject SetObject] (A U : SetObject) (universeHypothesis : IsGrothendieckUniverseFor A U) : HasCumulativeHierarchyClassification A U universeHypothesis
-Source: ./Constructions/GrothendieckUniverse/Satisfy_ZFC.lean#L221
+Source: ./Constructions/GrothendieckUniverse/Satisfy_ZFC.lean#L222
 
 
 
@@ -9388,7 +9320,7 @@ Predicate logic (unfolded):
     LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseAxiom SetObject → LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseAxiom SetObject
 Transliterated theorem: SupportsTGExpansion SetObject
 Logical form (Lean): (SetObject : Type u) [Membership SetObject SetObject] [GrothendieckUniverseAxiom SetObject] : SupportsTGExpansion SetObject
-Source: ./Constructions/GrothendieckUniverse/Satisfy_ZFC.lean#L229
+Source: ./Constructions/GrothendieckUniverse/Satisfy_ZFC.lean#L230
 
 
 
@@ -9405,14 +9337,14 @@ Predicate logic (unfolded):
     { Domain := Subtype fun x => Classical.choose ⋯ ≤ x,domainNonempty := ⋯, equalityIsDiagonal := ⋯, interpretFunction := fun functionSymbol => Empty.rec (fun x => (Fin (LRA.Set.ModelTheory.MembershipSignature.Functions.arity functionSymbol) → Subtype fun x => LRA.Set.Constructions.GrothendieckUniverse.TheGrothendieckUniverse A ≤ x) → Subtype fun x => LRA.Set.Constructions.GrothendieckUniverse.TheGrothendieckUniverse A ≤ x) functionSymbol, interpretRelation := fun relationSymbol arguments => LRA.Set.ModelTheory.MembershipRelationSymbol.rec (motive := fun x => (arguments : Fin (LRA.Set.ModelTheory.MembershipSignature.relationArity x) → Subtype fun x => x) ∈ LRA.Set.Constructions.GrothendieckUniverse.TheGrothendieckUniverse A → (fun relationSymbol arguments => Prop) x arguments) (fun arguments => (fun arguments => .val ∈ arguments ⟨1, LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseMembershipModel._proof_3⟩ (arguments ⟨0, LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseMembershipModel._proof_4⟩).val) arguments) relationSymbol arguments, interpretConstant := fun constantSymbol => LRA.Set.ModelTheory.MembershipConstantSymbol.rec ((fun _ => let emptyWitness := Classical.choose ⋯; have emptyWitnessSpec := ⋯; ⟨emptyWitness, ⋯⟩) Unit.unit) constantSymbol } ∈ fun M => ∀ (assignment : Nat → M.1) (φ : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat), φ ∈ LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.ZFCTheory → LRA.Logic.FirstOrder.Satisfies M assignment φ
 Transliterated theorem: SupportsTGUniverseTower SetObject
 Logical form (Lean): (SetObject : Type u) [Membership SetObject SetObject] [GrothendieckUniverseAxiom SetObject] : SupportsTGUniverseTower SetObject
-Source: ./Constructions/GrothendieckUniverse/Satisfy_ZFC.lean#L236
+Source: ./Constructions/GrothendieckUniverse/Satisfy_ZFC.lean#L237
 
 
 
 Name: tgSetCanonicalGrothendieckUniverseModelsZFC
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A : LRA.Set.Constructions.TGSet),   Set.instMembership.mem     (LRA.Logic.FirstOrder.ModelsOfFormulaTheory LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.ZFCTheory)     A.TGSetCanonicalGrothendieckUniverseMembershipModel
+Predicate logic: ∀ (A : LRA.Set.Constructions.TGSet),   Set.instMembership.mem     (LRA.ModelTheory.FirstOrder.ModelsOfFormulaTheory LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.ZFCTheory)     A.TGSetCanonicalGrothendieckUniverseMembershipModel
 Predicate logic (unfolded):
   Ambient
     (implicit ambient)
@@ -9422,7 +9354,7 @@ Predicate logic (unfolded):
     { Domain := Subtype fun x => LRA.Set.Constructions.instMembershipTGSet.1 (Classical.choose ⋯) x, domainNonempty := ⋯, equalityIsDiagonal := ⋯, interpretFunction := fun functionSymbol => Empty.rec (fun x => (Fin (LRA.Set.ModelTheory.MembershipSignature.Functions.arity functionSymbol) → Subtype fun x => LRA.Set.Constructions.instMembershipTGSet.1 (LRA.Set.Constructions.GrothendieckUniverse.TheGrothendieckUniverse A) x) → Subtype fun x => LRA.Set.Constructions.instMembershipTGSet.1 (LRA.Set.Constructions.GrothendieckUniverse.TheGrothendieckUniverse A) x) functionSymbol, interpretRelation := fun relationSymbol arguments => LRA.Set.ModelTheory.MembershipRelationSymbol.rec (motive := fun x => (arguments : Fin (LRA.Set.ModelTheory.MembershipSignature.relationArity x) → Subtype fun x => LRA.Set.Constructions.instMembershipTGSet.mem (LRA.Set.Constructions.GrothendieckUniverse.TheGrothendieckUniverse A) x) → (fun relationSymbol arguments => Prop) x arguments) (fun arguments => (fun arguments => LRA.Set.Constructions.instMembershipTGSet.mem (arguments ⟨1, LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseMembershipModel._proof_3⟩).val (arguments ⟨0, LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseMembershipModel._proof_4⟩).val) arguments) relationSymbol arguments, interpretConstant := fun constantSymbol => LRA.Set.ModelTheory.MembershipConstantSymbol.rec ((fun _ => let emptyWitness := Classical.choose ⋯; have emptyWitnessSpec := ⋯; ⟨emptyWitness, ⋯⟩) Unit.unit) constantSymbol } ∈ fun M => ∀ (assignment : Nat → M.1) (φ : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat), φ ∈ LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.ZFCTheory → LRA.Logic.FirstOrder.Satisfies M assignment φ
 Transliterated theorem: (∀ A ∈ LRA.Set.Constructions.TGSet), TGSetCanonicalGrothendieckUniverseMembershipModel A ∈ ModelsOfFormulaTheory ZFCTheory
 Logical form (Lean): (A : LRA.Set.Constructions.TGSet) : TGSetCanonicalGrothendieckUniverseMembershipModel A ∈ ModelsOfFormulaTheory ZFCTheory
-Source: ./Constructions/TGSet/Theorems/ModelTheory/StandardTransitive.lean#L21
+Source: ./Constructions/TGSet/Theorems/ModelTheory/StandardTransitive.lean#L22
 
 
 
@@ -9456,14 +9388,14 @@ Predicate logic (unfolded):
     LRA.Set.Constructions.TGSet.Interface.ModelTheory.TGUniverseAxiom
 Transliterated theorem: TGUniverseAxiom
 Logical form (Lean): : TGUniverseAxiom
-Source: ./Constructions/TGSet/Satisfy_Grothendieck.lean#L22
+Source: ./Constructions/TGSet/Satisfy_Grothendieck.lean#L23
 
 
 
 Name: tgSetContainsInternalUniverseModel
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ (A : LRA.Set.Constructions.TGSet.Interface.ModelTheory.TGSetObject),   Exists fun U =>     Exists fun hU =>       Set.instMembership.mem         (LRA.Logic.FirstOrder.ModelsOfFormulaTheory LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.ZFCTheory)         (LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseMembershipModel A U hU)
+Predicate logic: ∀ (A : LRA.Set.Constructions.TGSet.Interface.ModelTheory.TGSetObject),   Exists fun U =>     Exists fun hU =>       Set.instMembership.mem         (LRA.ModelTheory.FirstOrder.ModelsOfFormulaTheory LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.ZFCTheory)         (LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseMembershipModel A U hU)
 Predicate logic (unfolded):
   Ambient
     (implicit ambient)
@@ -9473,7 +9405,7 @@ Predicate logic (unfolded):
     Exists fun U => Exists fun hU => { Domain := Subtype fun x => LRA.Set.Constructions.instMembershipTGSet.1 U x, domainNonempty := ⋯, equalityIsDiagonal := ⋯, interpretFunction := fun functionSymbol => Empty.rec (fun x => (Fin (LRA.Set.ModelTheory.MembershipSignature.Functions.2 functionSymbol) → Subtype fun x => LRA.Set.Constructions.instMembershipTGSet.1 U x) → Subtype fun x => LRA.Set.Constructions.instMembershipTGSet.1 U x) functionSymbol, interpretRelation := fun relationSymbol arguments => LRA.Set.ModelTheory.MembershipRelationSymbol.rec (motive := fun x => (arguments : Fin (LRA.Set.ModelTheory.MembershipSignature.Relations.2 x) → Subtype fun x => LRA.Set.Constructions.instMembershipTGSet.1 U x) → (fun relationSymbol arguments => Prop) x arguments) (fun arguments => (fun arguments => LRA.Set.Constructions.instMembershipTGSet.1 (arguments ⟨1, LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseMembershipModel._proof_3⟩).1 (arguments ⟨0, LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseMembershipModel._proof_4⟩).1) arguments) relationSymbol arguments, interpretConstant := fun constantSymbol => LRA.Set.ModelTheory.MembershipConstantSymbol.rec ((fun _ => let emptyWitness := Classical.choose ⋯; have emptyWitnessSpec := ⋯; ⟨emptyWitness, ⋯⟩) Unit.unit) constantSymbol } ∈ fun M => ∀ (assignment : Nat → M.1) (φ : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat), φ ∈ LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.ZFCTheory → LRA.Logic.FirstOrder.Satisfies M assignment φ
 Transliterated theorem: (∀ A ∈ TGSetObject), ∃ U ∈ TGSetObject, ∃ hU ∈ TGUniversePredicate A U, GrothendieckUniverseMembershipModel A U hU ∈ ModelsOfFormulaTheory ZFCTheory
 Logical form (Lean): (A : TGSetObject) : ∃ U : TGSetObject, ∃ hU : TGUniversePredicate A U, GrothendieckUniverseMembershipModel A U hU ∈ ModelsOfFormulaTheory ZFCTheory
-Source: ./Constructions/TGSet/Satisfy_Grothendieck.lean#L25
+Source: ./Constructions/TGSet/Satisfy_Grothendieck.lean#L26
 
 
 
@@ -9490,7 +9422,7 @@ Predicate logic (unfolded):
     ((∀ (left right : Subtype fun x => LRA.Set.Constructions.instMembershipTGSet.1 (LRA.Set.Constructions.GrothendieckUniverse.Interface.ModelTheory.toUniverseLStructure A (LRA.Set.Constructions.GrothendieckUniverse.TheGrothendieckUniverse A) ⋯).2 x), LRA.Set.Constructions.instMembershipTGSet.1 right.1 left.1 ↔ LRA.Set.Constructions.instMembershipTGSet.1 right.1 left.1) ∧ (∀ ⦃x y : LRA.Set.Constructions.TGSet.Interface.ModelTheory.TGSetObject⦄, LRA.Set.Constructions.instMembershipTGSet.1 (LRA.Set.Constructions.GrothendieckUniverse.Interface.ModelTheory.toUniverseLStructure A (LRA.Set.Constructions.GrothendieckUniverse.TheGrothendieckUniverse A) ⋯).2 x → LRA.Set.Constructions.instMembershipTGSet.1 x y → LRA.Set.Constructions.instMembershipTGSet.1 (LRA.Set.Constructions.GrothendieckUniverse.Interface.ModelTheory.toUniverseLStructure A (LRA.Set.Constructions.GrothendieckUniverse.TheGrothendieckUniverse A) ⋯).2 y))
 Transliterated theorem: (∀ A ∈ TGSetObject), IsStandardTransitiveMembershipStructure (toUniverseLStructure A (LRA.Set.Constructions.GrothendieckUniverse.TheGrothendieckUniverse A) (LRA.Set.Constructions.GrothendieckUniverse.TheGrothendieckUniverseIsGrothendieckUniverseFor A))
 Logical form (Lean): (A : TGSetObject) : IsStandardTransitiveMembershipStructure (toUniverseLStructure A (LRA.Set.Constructions.GrothendieckUniverse.TheGrothendieckUniverse A) (LRA.Set.Constructions.GrothendieckUniverse.TheGrothendieckUniverseIsGrothendieckUniverseFor A))
-Source: ./Constructions/TGSet/Satisfy_Grothendieck.lean#L33
+Source: ./Constructions/TGSet/Satisfy_Grothendieck.lean#L34
 
 
 
@@ -9507,7 +9439,7 @@ Predicate logic (unfolded):
     LRA.Set.Constructions.TGSet.SupportsInternalUniverseTower
 Transliterated theorem: SupportsInternalUniverseTower
 Logical form (Lean): : SupportsInternalUniverseTower
-Source: ./Constructions/TGSet/Satisfy_Grothendieck.lean#L51
+Source: ./Constructions/TGSet/Satisfy_Grothendieck.lean#L52
 
 
 
@@ -9524,7 +9456,7 @@ Predicate logic (unfolded):
     LRA.Set.Constructions.TGSet.SatisfiesTGSemanticTower
 Transliterated theorem: SatisfiesTGSemanticTower
 Logical form (Lean): : SatisfiesTGSemanticTower
-Source: ./Constructions/TGSet/Satisfy_Grothendieck.lean#L61
+Source: ./Constructions/TGSet/Satisfy_Grothendieck.lean#L62
 
 
 
@@ -9541,7 +9473,7 @@ Predicate logic (unfolded):
     ((LRA.Set.Constructions.TGSet.TGSetMembershipModel ∈ fun M => ∀ (assignment : Nat → M.1) (φ : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat), φ ∈ LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.ZFCTheory → LRA.Logic.FirstOrder.Satisfies M assignment φ) ∧ LRA.Set.Constructions.TGSet.Interface.ModelTheory.TGUniverseAxiom)
 Transliterated theorem: SatisfiesTGTheory TGSetMembershipModel
 Logical form (Lean): : SatisfiesTGTheory TGSetMembershipModel
-Source: ./Constructions/TGSet/Satisfy_Grothendieck.lean#L69
+Source: ./Constructions/TGSet/Satisfy_Grothendieck.lean#L70
 
 
 
@@ -10415,7 +10347,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies LRA.Set.MathlibZFSet.ZFSetMembershipModel assignment LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.extensionalityFormula
 Transliterated theorem: Satisfies ZFSetMembershipModel assignment extensionalityFormula
 Logical form (Lean): (assignment : Nat → ZFSetMembershipModel.Domain) : Satisfies ZFSetMembershipModel assignment extensionalityFormula
-Source: ./Constructions/Mathlib/ZFSet/Satisfy_ZFC.lean#L121
+Source: ./Constructions/Mathlib/ZFSet/Satisfy_ZFC.lean#L122
 
 
 
@@ -10432,7 +10364,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies LRA.Set.MathlibZFSet.ZFSetMembershipModel assignment LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.emptySetFormula
 Transliterated theorem: Satisfies ZFSetMembershipModel assignment emptySetFormula
 Logical form (Lean): (assignment : Nat → ZFSetMembershipModel.Domain) : Satisfies ZFSetMembershipModel assignment emptySetFormula
-Source: ./Constructions/Mathlib/ZFSet/Satisfy_ZFC.lean#L158
+Source: ./Constructions/Mathlib/ZFSet/Satisfy_ZFC.lean#L159
 
 
 
@@ -10449,7 +10381,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies LRA.Set.MathlibZFSet.ZFSetMembershipModel assignment LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.pairingFormula
 Transliterated theorem: Satisfies ZFSetMembershipModel assignment pairingFormula
 Logical form (Lean): (assignment : Nat → ZFSetMembershipModel.Domain) : Satisfies ZFSetMembershipModel assignment pairingFormula
-Source: ./Constructions/Mathlib/ZFSet/Satisfy_ZFC.lean#L195
+Source: ./Constructions/Mathlib/ZFSet/Satisfy_ZFC.lean#L196
 
 
 
@@ -10466,7 +10398,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies LRA.Set.MathlibZFSet.ZFSetMembershipModel assignment LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.unionFormula
 Transliterated theorem: Satisfies ZFSetMembershipModel assignment unionFormula
 Logical form (Lean): (assignment : Nat → ZFSetMembershipModel.Domain) : Satisfies ZFSetMembershipModel assignment unionFormula
-Source: ./Constructions/Mathlib/ZFSet/Satisfy_ZFC.lean#L232
+Source: ./Constructions/Mathlib/ZFSet/Satisfy_ZFC.lean#L233
 
 
 
@@ -10483,7 +10415,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies LRA.Set.MathlibZFSet.ZFSetMembershipModel assignment LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.powerSetFormula
 Transliterated theorem: Satisfies ZFSetMembershipModel assignment powerSetFormula
 Logical form (Lean): (assignment : Nat → ZFSetMembershipModel.Domain) : Satisfies ZFSetMembershipModel assignment powerSetFormula
-Source: ./Constructions/Mathlib/ZFSet/Satisfy_ZFC.lean#L269
+Source: ./Constructions/Mathlib/ZFSet/Satisfy_ZFC.lean#L270
 
 
 
@@ -10500,7 +10432,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies LRA.Set.MathlibZFSet.ZFSetMembershipModel assignment LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.infinityFormula
 Transliterated theorem: Satisfies ZFSetMembershipModel assignment infinityFormula
 Logical form (Lean): (assignment : Nat → ZFSetMembershipModel.Domain) : Satisfies ZFSetMembershipModel assignment infinityFormula
-Source: ./Constructions/Mathlib/ZFSet/Satisfy_ZFC.lean#L306
+Source: ./Constructions/Mathlib/ZFSet/Satisfy_ZFC.lean#L307
 
 
 
@@ -10517,7 +10449,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies LRA.Set.MathlibZFSet.ZFSetMembershipModel assignment LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.foundationFormula
 Transliterated theorem: Satisfies ZFSetMembershipModel assignment foundationFormula
 Logical form (Lean): (assignment : Nat → ZFSetMembershipModel.Domain) : Satisfies ZFSetMembershipModel assignment foundationFormula
-Source: ./Constructions/Mathlib/ZFSet/Satisfy_ZFC.lean#L343
+Source: ./Constructions/Mathlib/ZFSet/Satisfy_ZFC.lean#L344
 
 
 
@@ -10534,7 +10466,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies LRA.Set.MathlibZFSet.ZFSetMembershipModel assignment LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.choiceFormula
 Transliterated theorem: Satisfies ZFSetMembershipModel assignment choiceFormula
 Logical form (Lean): (assignment : Nat → ZFSetMembershipModel.Domain) : Satisfies ZFSetMembershipModel assignment choiceFormula
-Source: ./Constructions/Mathlib/ZFSet/Satisfy_ZFC.lean#L380
+Source: ./Constructions/Mathlib/ZFSet/Satisfy_ZFC.lean#L381
 
 
 
@@ -10553,7 +10485,7 @@ Predicate logic (unfolded):
     ((SetLike.1 ∈ LRA.Logic.FirstOrder.freeVariables property → False) ∧ (SetLike.2 ∈ LRA.Logic.FirstOrder.freeVariables property → False)) → ∀ (assignment : Nat → LRA.Set.MathlibZFSet.ZFSetMembershipModel.1), LRA.Logic.FirstOrder.Satisfies LRA.Set.MathlibZFSet.ZFSetMembershipModel assignment (LRA.Logic.FirstOrder.Formula.forallQ 1 (LRA.Logic.FirstOrder.Formula.forallQ 2 (LRA.Logic.FirstOrder.Formula.forallQ 0 (((LRA.Logic.FirstOrder.Formula.relation LRA.Set.ModelTheory.MembershipRelationSymbol.mem (LRA.Set.ModelTheory.binaryTerms (LRA.Set.ModelTheory.varT 0) (LRA.Set.ModelTheory.varT 2))).impl ((LRA.Set.ModelTheory.memT (LRA.Set.ModelTheory.varT 0) (LRA.Set.ModelTheory.varT 1)).impl property.neg).neg).impl (((LRA.Set.ModelTheory.memT (LRA.Set.ModelTheory.varT 0) (LRA.Set.ModelTheory.varT 1)).impl property.neg).neg.impl (LRA.Logic.FirstOrder.Formula.relation LRA.Set.ModelTheory.MembershipRelationSymbol.mem (LRA.Set.ModelTheory.binaryTerms (LRA.Set.ModelTheory.varT 0) (LRA.Set.ModelTheory.varT 2)))).neg).neg).neg).neg)
 Transliterated theorem: Satisfies ZFSetMembershipModel assignment (separationInstance property)
 Logical form (Lean): (property : Formula MembershipSignature Nat) (hygienic : SeparationHygienic property) (assignment : Nat → ZFSetMembershipModel.Domain) : Satisfies ZFSetMembershipModel assignment (separationInstance property)
-Source: ./Constructions/Mathlib/ZFSet/Satisfy_ZFC.lean#L421
+Source: ./Constructions/Mathlib/ZFSet/Satisfy_ZFC.lean#L422
 
 
 
@@ -10572,14 +10504,14 @@ Predicate logic (unfolded):
     ((SetLike.2 ∈ LRA.Logic.FirstOrder.freeVariables relation → False) ∧ ((SetLike.3 ∈ LRA.Logic.FirstOrder.freeVariables relation → False) ∧ (SetLike.4 ∈ LRA.Logic.FirstOrder.allVariables relation → False))) → ∀ (assignment : Nat → LRA.Set.MathlibZFSet.ZFSetMembershipModel.1), LRA.Logic.FirstOrder.Satisfies LRA.Set.MathlibZFSet.ZFSetMembershipModel assignment (LRA.Logic.FirstOrder.Formula.forallQ 2 ((LRA.Logic.FirstOrder.Formula.forallQ 0 ((LRA.Logic.FirstOrder.Formula.relation LRA.Set.ModelTheory.MembershipRelationSymbol.mem fun i => Fin.induction.match_1 (fun x => (fun x => (fun x => LRA.Logic.FirstOrder.Term LRA.Set.ModelTheory.MembershipSignature Nat) x) x) i fun i hi => Fin.induction.go (LRA.Set.ModelTheory.varT 0) (fun i x => (fun i => Fin.cases (LRA.Set.ModelTheory.varT 2) Fin.elim0 i) i) i hi).impl ((LRA.Logic.FirstOrder.Formula.forallQ 1 relation.neg).neg.impl (LRA.Logic.FirstOrder.Formula.forallQ 1 (LRA.Logic.FirstOrder.Formula.forallQ 4 ((relation.impl (LRA.Logic.FirstOrder.substitute 1 (LRA.Logic.FirstOrder.Term.var 4) relation).neg).neg.impl (LRA.Logic.FirstOrder.Formula.equal (LRA.Logic.FirstOrder.Term.var 1) (LRA.Logic.FirstOrder.Term.var 4))))).neg).neg)).impl (LRA.Logic.FirstOrder.Formula.forallQ 3 (LRA.Logic.FirstOrder.Formula.forallQ 1 (((LRA.Logic.FirstOrder.Formula.relation LRA.Set.ModelTheory.MembershipRelationSymbol.mem (LRA.Set.ModelTheory.binaryTerms (LRA.Set.ModelTheory.varT 1) (LRA.Set.ModelTheory.varT 3))).impl (LRA.Logic.FirstOrder.Formula.forallQ 0 ((LRA.Set.ModelTheory.memF 0 2).impl relation.neg).neg.neg).neg).impl ((LRA.Logic.FirstOrder.Formula.forallQ 0 ((LRA.Set.ModelTheory.memF 0 2).impl relation.neg).neg.neg).neg.impl (LRA.Logic.FirstOrder.Formula.relation LRA.Set.ModelTheory.MembershipRelationSymbol.mem (LRA.Set.ModelTheory.binaryTerms (LRA.Set.ModelTheory.varT 1) (LRA.Set.ModelTheory.varT 3)))).neg).neg).neg).neg))
 Transliterated theorem: Satisfies ZFSetMembershipModel assignment (replacementInstance relation)
 Logical form (Lean): (relation : Formula MembershipSignature Nat) (hygienic : ReplacementHygienic relation) (assignment : Nat → ZFSetMembershipModel.Domain) : Satisfies ZFSetMembershipModel assignment (replacementInstance relation)
-Source: ./Constructions/Mathlib/ZFSet/Satisfy_ZFC.lean#L466
+Source: ./Constructions/Mathlib/ZFSet/Satisfy_ZFC.lean#L467
 
 
 
 Name: zfSetModelsZFC
 Kind: Theorem
 State: Sorry
-Predicate logic: Set.instMembership.mem   (LRA.Logic.FirstOrder.ModelsOfFormulaTheory LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.ZFCTheory)   LRA.Set.MathlibZFSet.ZFSetMembershipModel
+Predicate logic: Set.instMembership.mem   (LRA.ModelTheory.FirstOrder.ModelsOfFormulaTheory LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.ZFCTheory)   LRA.Set.MathlibZFSet.ZFSetMembershipModel
 Predicate logic (unfolded):
   Ambient
     (implicit ambient)
@@ -10589,7 +10521,7 @@ Predicate logic (unfolded):
     LRA.Set.MathlibZFSet.ZFSetMembershipModel ∈ fun M => ∀ (assignment : Nat → M.1) (φ : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat), φ ∈ LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.ZFCTheory → LRA.Logic.FirstOrder.Satisfies M assignment φ
 Transliterated theorem: ZFSetMembershipModel ∈ ModelsOfFormulaTheory ZFCTheory
 Logical form (Lean): : ZFSetMembershipModel ∈ ModelsOfFormulaTheory ZFCTheory
-Source: ./Constructions/Mathlib/ZFSet/Satisfy_ZFC.lean#L507
+Source: ./Constructions/Mathlib/ZFSet/Satisfy_ZFC.lean#L508
 
 
 
@@ -12699,6 +12631,57 @@ Source: ./Constructions/ZFCSet/Axioms/EmptySet/Existence.lean#L6
 
 
 
+Name: EmptySetIsUnique
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {A B : Set} (AIsEmpty : IsEmptySet A) (BIsEmpty : IsEmptySet B), B = A
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    A B : Set
+  Prove
+    ((∀ (x : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.Constructions.instMembershipZFCSet.1 A x → False) ∧ (∀ (x : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.Constructions.instMembershipZFCSet.1 B x → False)) → B = A
+Transliterated theorem: (IsEmptySet A ∧ IsEmptySet B) → B = A
+Logical form (Lean): {A B : Set} (AIsEmpty : IsEmptySet A) (BIsEmpty : IsEmptySet B) : B = A
+Source: ./Constructions/ZFCSet/Axioms/EmptySet/Uniqueness.lean#L6
+
+
+
+Name: EmptySetsAreEqual
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {A B : Set} (AIsEmpty : IsEmptySet A) (BIsEmpty : IsEmptySet B), A = B
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    A B : Set
+  Prove
+    ((∀ (x : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.Constructions.instMembershipZFCSet.1 A x → False) ∧ (∀ (x : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.Constructions.instMembershipZFCSet.1 B x → False)) → A = B
+Transliterated theorem: (IsEmptySet A ∧ IsEmptySet B) → A = B
+Logical form (Lean): {A B : Set} (AIsEmpty : IsEmptySet A) (BIsEmpty : IsEmptySet B) : A = B
+Source: ./Constructions/ZFCSet/Axioms/EmptySet/Uniqueness.lean#L27
+
+
+
+Name: EmptySetExistsAndIsUnique
+Kind: Theorem
+State: Completed
+Predicate logic: LRA.Set.Constructions.ZFCSet.Axioms.ExistsAndUnique LRA.Set.Constructions.ZFCSet.Axioms.IsEmptySet
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((Exists fun x => ∀ (x_1 : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.Constructions.instMembershipZFCSet.1 x x_1 → False) ∧ (∀ (left right : LRA.Set.Constructions.ZFCSet.Axioms.Set), (∀ (x : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.Constructions.instMembershipZFCSet.1 left x → False) → (∀ (x : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.Constructions.instMembershipZFCSet.1 right x → False) → (LRA.Identity.Construction.Mathlib.instIdentityRelation LRA.Set.Constructions.ZFCSet.Axioms.Set).1 left right))
+Transliterated theorem: ExistsAndUnique IsEmptySet
+Logical form (Lean): : ExistsAndUnique IsEmptySet
+Source: ./Constructions/ZFCSet/Axioms/EmptySet/Uniqueness.lean#L51
+
+
+
 Name: TheEmptySetIsEmpty
 Kind: Theorem
 State: Completed
@@ -12730,6 +12713,23 @@ Predicate logic (unfolded):
 Transliterated theorem: (IsEmptySet A) → A = TheEmptySet
 Logical form (Lean): {A : Set} (AIsEmpty : IsEmptySet A) : A = TheEmptySet
 Source: ./Constructions/ZFCSet/Axioms/EmptySet/Consequences.lean#L5
+
+
+
+Name: PairSetExists
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ (A B : LRA.Set.Constructions.ZFCSet.Axioms.Set), Exists fun P => LRA.Set.Constructions.ZFCSet.Axioms.IsPairSet A B P
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    A B : Set
+  Prove
+    Exists fun P => ∀ (w : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.Constructions.instMembershipZFCSet.1 P w ↔ Or (w = A)(w = B)
+Transliterated theorem: (∀ A B ∈ Set), ∃ P ∈ Set, IsPairSet A B P
+Logical form (Lean): (A B : Set) : ∃ P : Set, IsPairSet A B P
+Source: ./Constructions/ZFCSet/Axioms/Pairing/Existence.lean#L6
 
 
 
@@ -14215,7 +14215,7 @@ Source: ./Constructions/TGSet/Interface/ModelTheory/Theory.lean
 Name: SatisfiesTGTheory
 Kind: Instance
 State: Completed
-Predicate logic: ∀ (model : LRA.Logic.FirstOrder.Model LRA.Set.ModelTheory.MembershipSignature),   And     (Set.instMembership.mem       (LRA.Logic.FirstOrder.ModelsOfFormulaTheory LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.ZFCTheory) model)     LRA.Set.Constructions.TGSet.Interface.ModelTheory.TGUniverseAxiom
+Predicate logic: ∀ (model : LRA.ModelTheory.FirstOrder.Model LRA.Set.ModelTheory.MembershipSignature),   And     (Set.instMembership.mem       (LRA.ModelTheory.FirstOrder.ModelsOfFormulaTheory LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.ZFCTheory)       model)     LRA.Set.Constructions.TGSet.Interface.ModelTheory.TGUniverseAxiom
 Predicate logic (unfolded):
   Ambient
     (implicit ambient)
@@ -14249,7 +14249,7 @@ Source: ./Constructions/GrothendieckUniverse/Interface/ModelTheory/Theory.lean
 Name: SatisfiesAllExpandedZFCAxioms
 Kind: Instance
 State: Completed
-Predicate logic: ∀ {SetObject : Type u} (a : Membership SetObject SetObject)   (model :     LRA.Logic.FirstOrder.Model       LRA.Set.Constructions.GrothendieckUniverse.Interface.ModelTheory.ExpandedMembershipSignature)   (assignment : Nat → model.Domain) (φ : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat),   Set.instMembership.mem LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.ZFCTheory φ →     LRA.Logic.FirstOrder.Satisfies model assignment φ
+Predicate logic: ∀ {SetObject : Type u} (a : Membership SetObject SetObject)   (model :     LRA.ModelTheory.FirstOrder.Model       LRA.Set.Constructions.GrothendieckUniverse.Interface.ModelTheory.ExpandedMembershipSignature)   (assignment : Nat → model.Domain) (φ : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat),   Set.instMembership.mem LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.ZFCTheory φ →     LRA.Logic.FirstOrder.Satisfies model assignment φ
 Predicate logic (unfolded):
   Ambient
     (implicit ambient)
@@ -14300,7 +14300,7 @@ Source: ./Constructions/GrothendieckUniverse/Satisfy_ZFC.lean
 Name: SupportsTGUniverseTower
 Kind: Instance
 State: Completed
-Predicate logic: ∀ (SetObject : Type u) [inst : Membership SetObject SetObject]   [inst_1 : LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseAxiom SetObject] (A : SetObject),   Set.instMembership.mem     (LRA.Logic.FirstOrder.ModelsOfFormulaTheory LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.ZFCTheory)     (LRA.Set.Constructions.GrothendieckUniverse.CanonicalGrothendieckUniverseMembershipModel A)
+Predicate logic: ∀ (SetObject : Type u) [inst : Membership SetObject SetObject]   [inst_1 : LRA.Set.Constructions.GrothendieckUniverse.GrothendieckUniverseAxiom SetObject] (A : SetObject),   Set.instMembership.mem     (LRA.ModelTheory.FirstOrder.ModelsOfFormulaTheory LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.ZFCTheory)     (LRA.Set.Constructions.GrothendieckUniverse.CanonicalGrothendieckUniverseMembershipModel A)
 Predicate logic (unfolded):
   Ambient
     (implicit ambient)
@@ -14334,7 +14334,7 @@ Source: ./Constructions/TGSet/Satisfy_Grothendieck.lean
 Name: SupportsInternalUniverseTower
 Kind: Instance
 State: Completed
-Predicate logic: ∀ (A : LRA.Set.Constructions.TGSet.Interface.ModelTheory.TGSetObject),   Set.instMembership.mem     (LRA.Logic.FirstOrder.ModelsOfFormulaTheory LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.ZFCTheory)     (LRA.Set.Constructions.TGSet.TGSetCanonicalGrothendieckUniverseMembershipModel A)
+Predicate logic: ∀ (A : LRA.Set.Constructions.TGSet.Interface.ModelTheory.TGSetObject),   Set.instMembership.mem     (LRA.ModelTheory.FirstOrder.ModelsOfFormulaTheory LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.ZFCTheory)     (LRA.Set.Constructions.TGSet.TGSetCanonicalGrothendieckUniverseMembershipModel A)
 Predicate logic (unfolded):
   Ambient
     (implicit ambient)

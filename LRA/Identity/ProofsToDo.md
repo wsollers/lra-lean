@@ -14,9 +14,9 @@ the folder.
 **Progress:** 0/33 theorem-family entries completed since reset baseline `73e79b40` (Mass-sorry non-Logic proofs and regenerate todos).
 **Baseline reconciliation:** 0 still match baseline as `sorry`; 33 baseline entries were moved, renamed, or removed and are not auto-credited.
 
-**Snapshot:** 4/47 theorem-family entries currently completed (43 sorry remaining).
+**Snapshot:** 8/48 theorem-family entries currently completed (40 sorry remaining).
 
-**Inventory:** 47 theorem/lemma/corollary/proposition entries across 28 module(s) (4 completed, 43 sorry).
+**Inventory:** 48 theorem/lemma/corollary/proposition entries across 28 module(s) (8 completed, 40 sorry).
 **Excluded from counts:** 19 `instance` entries and 3 `axiom` entries.
 
 ## Open Work Queue
@@ -128,23 +128,6 @@ Predicate logic (unfolded):
 Transliterated theorem: Property x ↔ Property y
 Logical form (Lean): {x y : Carrier} (h : Ident x y) (Property : Carrier → Prop) : Property x ↔ Property y
 Source: ./Laws/Primitive.lean#L69
-
-
-
-Name: axiomaticIdentRfl
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ {Carrier : Type u} (x : Carrier), LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x x
-Predicate logic (unfolded):
-  Ambient
-    (Carrier)
-  Objects
-    x : Carrier
-  Prove
-    LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x x
-Transliterated theorem: (∀ x ∈ Carrier), Ax_IdentityRelation x x
-Logical form (Lean): {Carrier : Type u} (x : Carrier) : Ax_IdentityRelation x x
-Source: ./Constructions/Axiomatic/Laws/Primitive.lean#L19
 
 
 
@@ -308,40 +291,6 @@ Predicate logic (unfolded):
 Transliterated theorem: (∀ x y ∈ Carrier), Ident x y ↔ Equal x y
 Logical form (Lean): [IdentityRelation Carrier] [EqualityRelation Carrier] (x y : Carrier) : Ident x y ↔ Equal x y
 Source: ./Laws/Equality.lean#L89
-
-
-
-Name: axiomaticEqualRfl
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ {Carrier : Type u} (x : Carrier), LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x x
-Predicate logic (unfolded):
-  Ambient
-    (Carrier)
-  Objects
-    x : Carrier
-  Prove
-    LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x x
-Transliterated theorem: (∀ x ∈ Carrier), Ax_IdentityRelation x x
-Logical form (Lean): {Carrier : Type u} (x : Carrier) : Ax_IdentityRelation x x
-Source: ./Constructions/Axiomatic/Laws/Equality.lean#L19
-
-
-
-Name: axiomaticIdentIsDiagonal
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ {Carrier : Type u} (x y : Carrier), Ax_IdentityRelation x y ↔ Ax_IdentityRelation x y
-Predicate logic (unfolded):
-  Ambient
-    (Carrier)
-  Objects
-    x y : Carrier
-  Prove
-    Ax_IdentityRelation x y ↔ Ax_IdentityRelation x y
-Transliterated theorem: (∀ x y ∈ Carrier), Ax_IdentityRelation x y ↔ Ax_IdentityRelation x y
-Logical form (Lean): {Carrier : Type u} (x y : Carrier) : Ax_IdentityRelation x y ↔ Ax_IdentityRelation x y
-Source: ./Constructions/Axiomatic/Laws/Equality.lean#L34
 
 
 
@@ -805,7 +754,7 @@ Source: ./Constructions/Axiomatic/Axioms/Common.lean#L50
 
 
 
-Name: Ax_EqualityReflexivity
+Name: Ax_IdentityReflexivity
 Kind: Axiom
 State: Axiom
 Predicate logic: ∀ {Carrier : Type u} (x : Carrier), LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x x
@@ -816,9 +765,9 @@ Predicate logic (unfolded):
     x : Carrier
   Prove
     LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x x
-Transliterated theorem: (∀ x ∈ Carrier), Ax_IdentityRelation x x end LRA.Identity.Construction.Axiomatic
-Logical form (Lean): {Carrier : Type u} (x : Carrier) : Ax_IdentityRelation x x end LRA.Identity.Construction.Axiomatic
-Source: ./Constructions/Axiomatic/Axioms/Reflexivity/Axiom.lean#L49
+Transliterated theorem: (∀ x ∈ Carrier), Ax_IdentityRelation x x
+Logical form (Lean): {Carrier : Type u} (x : Carrier) : Ax_IdentityRelation x x
+Source: ./Constructions/Axiomatic/Axioms/Reflexivity/Axiom.lean#L50
 
 
 
@@ -843,6 +792,23 @@ Source: ./Constructions/Axiomatic/Axioms/SecondOrderLeibniz/Axiom.lean#L52
 
 Completed entries are retained below for full-fresh regeneration and audit context,
 but they are not part of the active proof queue.
+
+Name: Ax_EqualityReflexivity
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (x : Carrier), LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x x
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    x : Carrier
+  Prove
+    LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x x
+Transliterated theorem: (∀ x ∈ Carrier), Ax_IdentityRelation x x
+Logical form (Lean): {Carrier : Type u} (x : Carrier) : Ax_IdentityRelation x x
+Source: ./Constructions/Axiomatic/Axioms/Reflexivity/Axiom.lean#L66
+
+
 
 Name: IsReflexiveIdentityRelation
 Kind: Instance
@@ -999,6 +965,23 @@ Source: ./Constructions/Axiomatic/Axioms/FirstOrderLeibniz/Satisfies.lean#L53
 
 
 
+Name: axiomaticIdentRfl
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (x : Carrier), LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x x
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    x : Carrier
+  Prove
+    LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x x
+Transliterated theorem: (∀ x ∈ Carrier), Ax_IdentityRelation x x
+Logical form (Lean): {Carrier : Type u} (x : Carrier) : Ax_IdentityRelation x x
+Source: ./Constructions/Axiomatic/Laws/Primitive.lean#L19
+
+
+
 Name: EqualityTheory
 Kind: Instance
 State: Completed
@@ -1013,6 +996,40 @@ Predicate logic (unfolded):
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: ./Interface/Equality.lean
+
+
+
+Name: axiomaticEqualRfl
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (x : Carrier), (LRA.Identity.Construction.Axiomatic.instEqualityRelation Carrier).Equal x x
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    x : Carrier
+  Prove
+    (LRA.Identity.Construction.Axiomatic.instEqualityRelation Carrier).1 x x
+Transliterated theorem: (∀ x ∈ Carrier), @LRA.Identity.Equal Carrier (instEqualityRelation Carrier) x x
+Logical form (Lean): {Carrier : Type u} (x : Carrier) : @LRA.Identity.Equal Carrier (instEqualityRelation Carrier) x x
+Source: ./Constructions/Axiomatic/Laws/Equality.lean#L19
+
+
+
+Name: axiomaticIdentIsDiagonal
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} (x y : Carrier), Ax_IdentityRelation x y ↔ @LRA.Identity.Equal Carrier (instEqualityRelation Carrier) x y
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    x y : Carrier
+  Prove
+    Ax_IdentityRelation x y ↔ @LRA.Identity.Equal Carrier (instEqualityRelation Carrier) x y
+Transliterated theorem: (∀ x y ∈ Carrier), Ax_IdentityRelation x y ↔ @LRA.Identity.Equal Carrier (instEqualityRelation Carrier) x y
+Logical form (Lean): {Carrier : Type u} (x y : Carrier) : Ax_IdentityRelation x y ↔ @LRA.Identity.Equal Carrier (instEqualityRelation Carrier) x y
+Source: ./Constructions/Axiomatic/Laws/Equality.lean#L36
 
 
 

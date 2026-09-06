@@ -18,7 +18,7 @@ theorem axiomaticIdentRfl {Carrier : Type u} (x : Carrier) :
 -/
 theorem axiomaticIdentRfl {Carrier : Type u} (x : Carrier) :
     Ax_IdentityRelation x x := by
-  sorry
+  exact Ax_IdentityReflexivity x
 
 /--
 `axiomaticIdentSymmetric` is the axiomatic construction's symmetry law for

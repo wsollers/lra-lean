@@ -50,7 +50,7 @@ Related proof moves: intro
 theorem axiomaticIdentityRelation_isReflexive (Carrier : Type u) :
     LRA.Identity.IsReflexiveIdentityRelation (Ax_IdentityRelation : Carrier → Carrier → Prop) := by
   intro x
-  exact Ax_EqualityReflexivity x
+  exact Ax_IdentityReflexivity x
 
 
 end LRA.Identity.Construction.Axiomatic

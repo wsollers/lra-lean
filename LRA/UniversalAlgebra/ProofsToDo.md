@@ -318,21 +318,21 @@ Source: ./Congruence/FailureModes.lean#L174
 Name: Homomorphism.commutesWithTermEvaluation
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {S : Signature} {Variable : Type} {M : Model.{u} S} {N : Model.{v} S} (homomorphism : Homomorphism M N) (assignment : Variable → M.Domain) (term : Term S Variable), homomorphism.map (evaluateTerm M assignment term) = evaluateTerm N (fun v => homomorphism.map (assignment v)) term
+Predicate logic: ∀ {S : Signature} {Variable : Type} {M : LRA.ModelTheory.FirstOrder.Model.{u} S} {N : LRA.ModelTheory.FirstOrder.Model.{v} S} (homomorphism : Homomorphism M N) (assignment : Variable → M.Domain) (term : Term S Variable), homomorphism.map (evaluateTerm M assignment term) = evaluateTerm N (fun v => homomorphism.map (assignment v)) term
 Predicate logic (unfolded):
   Ambient
     (Variable)
   Objects
     S : Signature
-    M : Model.{u} S
-    N : Model.{v} S
+    M : LRA.ModelTheory.FirstOrder.Model.{u} S
+    N : LRA.ModelTheory.FirstOrder.Model.{v} S
     homomorphism : Homomorphism M N
     assignment : Variable → M.Domain
     term : Term S Variable
   Prove
     homomorphism.1 (LRA.Logic.FirstOrder.evaluateTerm M assignment term) = LRA.Logic.FirstOrder.evaluateTerm N (fun v => homomorphism.1 (assignment v)) term
 Transliterated theorem: homomorphism.map (evaluateTerm M assignment term) = evaluateTerm N (fun v => homomorphism.map (assignment v)) term
-Logical form (Lean): {S : Signature} {Variable : Type} {M : Model.{u} S} {N : Model.{v} S} (homomorphism : Homomorphism M N) (assignment : Variable → M.Domain) (term : Term S Variable) : homomorphism.map (evaluateTerm M assignment term) = evaluateTerm N (fun v => homomorphism.map (assignment v)) term
+Logical form (Lean): {S : Signature} {Variable : Type} {M : LRA.ModelTheory.FirstOrder.Model.{u} S} {N : LRA.ModelTheory.FirstOrder.Model.{v} S} (homomorphism : Homomorphism M N) (assignment : Variable → M.Domain) (term : Term S Variable) : homomorphism.map (evaluateTerm M assignment term) = evaluateTerm N (fun v => homomorphism.map (assignment v)) term
 Source: ./Homomorphism/Definition.lean#L293
 
 
@@ -340,19 +340,19 @@ Source: ./Homomorphism/Definition.lean#L293
 Name: termExtensionUnique
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {S : Signature} {Variable : Type} [Nonempty Variable] (M : Model.{0} S) (assignment : Variable → M.Domain) (homomorphism : Homomorphism (termAlgebra S Variable) M) (agreesOnVariables : ∀ v : Variable, homomorphism.map (.var v) = assignment v), ∀ term : Term S Variable, homomorphism.map term = evaluateTerm M assignment term
+Predicate logic: ∀ {S : Signature} {Variable : Type} [Nonempty Variable] (M : LRA.ModelTheory.FirstOrder.Model.{0} S) (assignment : Variable → M.Domain) (homomorphism : Homomorphism (termAlgebra S Variable) M) (agreesOnVariables : ∀ v : Variable, homomorphism.map (.var v) = assignment v), ∀ term : Term S Variable, homomorphism.map term = evaluateTerm M assignment term
 Predicate logic (unfolded):
   Ambient
     (Variable)
   Objects
     S : Signature
-    M : Model.{0} S
+    M : LRA.ModelTheory.FirstOrder.Model.{0} S
     assignment : Variable → M.Domain
     homomorphism : Homomorphism (termAlgebra S Variable) M
   Prove
     (∀ (v : Variable), homomorphism.1 (LRA.Logic.FirstOrder.Term.var v) = assignment v) → ∀ (term : LRA.Logic.FirstOrder.Term S Variable), homomorphism.1 term = LRA.Logic.FirstOrder.evaluateTerm M assignment term
 Transliterated theorem: (∀ v : Variable, homomorphism.map (.var v) = assignment v) → ∀ term : Term S Variable, homomorphism.map term = evaluateTerm M assignment term
-Logical form (Lean): {S : Signature} {Variable : Type} [Nonempty Variable] (M : Model.{0} S) (assignment : Variable → M.Domain) (homomorphism : Homomorphism (termAlgebra S Variable) M) (agreesOnVariables : ∀ v : Variable, homomorphism.map (.var v) = assignment v) : ∀ term : Term S Variable, homomorphism.map term = evaluateTerm M assignment term
+Logical form (Lean): {S : Signature} {Variable : Type} [Nonempty Variable] (M : LRA.ModelTheory.FirstOrder.Model.{0} S) (assignment : Variable → M.Domain) (homomorphism : Homomorphism (termAlgebra S Variable) M) (agreesOnVariables : ∀ v : Variable, homomorphism.map (.var v) = assignment v) : ∀ term : Term S Variable, homomorphism.map term = evaluateTerm M assignment term
 Source: ./Homomorphism/Definition.lean#L414
 
 
@@ -360,21 +360,21 @@ Source: ./Homomorphism/Definition.lean#L414
 Name: equationTransportsAlongSurjection
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {S : Signature} {Variable : Type} {M : Model.{u} S} {N : Model.{v} S} (homomorphism : Homomorphism M N) (surjective : ∀ target : N.Domain, ∃ source, homomorphism.map source = target) (equation : Equation S Variable) (sourceSatisfies : SatisfiesEquation M equation), SatisfiesEquation N equation
+Predicate logic: ∀ {S : Signature} {Variable : Type} {M : LRA.ModelTheory.FirstOrder.Model.{u} S} {N : LRA.ModelTheory.FirstOrder.Model.{v} S} (homomorphism : Homomorphism M N) (surjective : ∀ target : N.Domain, ∃ source, homomorphism.map source = target) (equation : Equation S Variable) (sourceSatisfies : SatisfiesEquation M equation), SatisfiesEquation N equation
 Predicate logic (unfolded):
   Ambient
     (Variable)
   Objects
     S : Signature
-    M : Model.{u} S
-    N : Model.{v} S
+    M : LRA.ModelTheory.FirstOrder.Model.{u} S
+    N : LRA.ModelTheory.FirstOrder.Model.{v} S
     homomorphism : Homomorphism M N
     equation : Equation S Variable
     sourceSatisfies : SatisfiesEquation M equation
   Prove
     (∀ (target : N.1), Exists fun source => homomorphism.1 source = target) → ∀ (equation : LRA.UniversalAlgebra.Equation S Variable), (∀ (assignment : Variable → M.1), LRA.Logic.FirstOrder.evaluateTerm M assignment equation.1 = LRA.Logic.FirstOrder.evaluateTerm M assignment equation.2) → ∀ (assignment : Variable → N.1), LRA.Logic.FirstOrder.evaluateTerm N assignment equation.1 = LRA.Logic.FirstOrder.evaluateTerm N assignment equation.2
 Transliterated theorem: (∀ target : N.Domain, ∃ source, homomorphism.map source = target) → SatisfiesEquation N equation
-Logical form (Lean): {S : Signature} {Variable : Type} {M : Model.{u} S} {N : Model.{v} S} (homomorphism : Homomorphism M N) (surjective : ∀ target : N.Domain, ∃ source, homomorphism.map source = target) (equation : Equation S Variable) (sourceSatisfies : SatisfiesEquation M equation) : SatisfiesEquation N equation
+Logical form (Lean): {S : Signature} {Variable : Type} {M : LRA.ModelTheory.FirstOrder.Model.{u} S} {N : LRA.ModelTheory.FirstOrder.Model.{v} S} (homomorphism : Homomorphism M N) (surjective : ∀ target : N.Domain, ∃ source, homomorphism.map source = target) (equation : Equation S Variable) (sourceSatisfies : SatisfiesEquation M equation) : SatisfiesEquation N equation
 Source: ./Homomorphism/Definition.lean#L466
 
 
@@ -382,7 +382,7 @@ Source: ./Homomorphism/Definition.lean#L466
 Name: isomorphic_symm
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {S : LRA.Logic.Signature} {M : LRA.Logic.FirstOrder.Model S} {N : LRA.Logic.FirstOrder.Model S},   LRA.UniversalAlgebra.Isomorphic M N → LRA.UniversalAlgebra.Isomorphic N M
+Predicate logic: ∀ {S : LRA.Logic.Signature} {M : LRA.ModelTheory.FirstOrder.Model S} {N : LRA.ModelTheory.FirstOrder.Model S},   LRA.UniversalAlgebra.Isomorphic M N → LRA.UniversalAlgebra.Isomorphic N M
 Predicate logic (unfolded):
   Ambient
     (implicit ambient)
@@ -394,7 +394,7 @@ Predicate logic (unfolded):
     Nonempty (LRA.UniversalAlgebra.Isomorphism M N) → Nonempty (LRA.UniversalAlgebra.Isomorphism N M)
 Transliterated theorem: Isomorphic M N → Isomorphic N M
 Logical form (Lean): {S : Signature} {M : Model.{u} S} {N : Model.{v} S} : Isomorphic M N → Isomorphic N M
-Source: ./Isomorphism/Definition.lean#L180
+Source: ./Isomorphism/Definition.lean#L181
 
 
 
@@ -413,7 +413,7 @@ Predicate logic (unfolded):
     Exists fun projection => ∀ (element : M.1), projection.1 element = Quot.mk congruence.1 element
 Transliterated theorem: ∃ projection ∈ Homomorphism M (quotientModel congruence), ∀ element, projection.map element = Quot.mk _ element
 Logical form (Lean): {S : Signature} {M : Model.{u} S} (congruence : Congruence M) : ∃ projection : Homomorphism M (quotientModel congruence), ∀ element, projection.map element = Quot.mk _ element
-Source: ./Quotient/Definition.lean#L205
+Source: ./Quotient/Definition.lean#L206
 
 
 
@@ -516,7 +516,7 @@ Source: ./Quotient/RepresentativeCompatibility.lean#L607
 Name: kernelRelationIsEquivalence
 Kind: Theorem
 State: Sorry
-Predicate logic: ∀ {S : LRA.Logic.Signature} {M : LRA.Logic.FirstOrder.Model S} {N : LRA.Logic.FirstOrder.Model S}   (homomorphism : LRA.UniversalAlgebra.Homomorphism M N), Equivalence (LRA.UniversalAlgebra.kernelRelation homomorphism)
+Predicate logic: ∀ {S : LRA.Logic.Signature} {M : LRA.ModelTheory.FirstOrder.Model S} {N : LRA.ModelTheory.FirstOrder.Model S}   (homomorphism : LRA.UniversalAlgebra.Homomorphism M N), Equivalence (LRA.UniversalAlgebra.kernelRelation homomorphism)
 Predicate logic (unfolded):
   Ambient
     (implicit ambient)
@@ -529,7 +529,7 @@ Predicate logic (unfolded):
     Equivalence fun first second => homomorphism.1 first = homomorphism.1 second
 Transliterated theorem: Equivalence (kernelRelation homomorphism)
 Logical form (Lean): {S : Signature} {M : Model.{u} S} {N : Model.{v} S} (homomorphism : Homomorphism M N) : Equivalence (kernelRelation homomorphism)
-Source: ./KernelCongruence/KernelRelation/Definition.lean#L96
+Source: ./KernelCongruence/KernelRelation/Definition.lean#L97
 
 
 
@@ -549,7 +549,7 @@ Predicate logic (unfolded):
     (∀ (target : N.1), Exists fun source => homomorphism.1 source = target) → Nonempty (LRA.UniversalAlgebra.Isomorphism { Domain := Quot (LRA.UniversalAlgebra.kernelCongruence homomorphism).1, domainNonempty := ⋯, equalityIsDiagonal := ⋯, interpretFunction := fun functionSymbol arguments => Quot.mk (LRA.UniversalAlgebra.kernelCongruence homomorphism).1 (M.5 functionSymbol fun i => (Classical.indefiniteDescription (fun x => Quot.mk (LRA.UniversalAlgebra.kernelCongruence homomorphism).rel x = arguments i) ⋯).1), interpretRelation := fun relationSymbol arguments => M.6 relationSymbol fun i => (Classical.indefiniteDescription (fun x => Quot.mk (LRA.UniversalAlgebra.kernelCongruence homomorphism).rel x = arguments i) ⋯).1, interpretConstant := fun constantSymbol => Quot.mk (LRA.UniversalAlgebra.kernelCongruence homomorphism).1 (M.7 constantSymbol) } N)
 Transliterated theorem: (∀ target : N.Domain, ∃ source, homomorphism.map source = target) → Isomorphic (quotientModel (kernelCongruence homomorphism)) N
 Logical form (Lean): {S : Signature} {M : Model.{u} S} {N : Model.{v} S} (homomorphism : Homomorphism M N) (surjective : ∀ target : N.Domain, ∃ source, homomorphism.map source = target) : Isomorphic (quotientModel (kernelCongruence homomorphism)) N
-Source: ./KernelCongruence/Definition.lean#L131
+Source: ./KernelCongruence/Definition.lean#L132
 
 ## Axioms / Assumptions
 
@@ -634,7 +634,7 @@ Source: ./Algebra/Definition.lean
 Name: EquationalTheoryOfClass
 Kind: Instance
 State: Completed
-Predicate logic: ∀ {S : LRA.Logic.Signature} {Variable : Type} (class_ : Set (LRA.Logic.FirstOrder.Model S))   (a : LRA.UniversalAlgebra.Equation S Variable) (M : LRA.Logic.FirstOrder.Model S),   Set.instMembership.mem class_ M → LRA.UniversalAlgebra.SatisfiesEquation M a
+Predicate logic: ∀ {S : LRA.Logic.Signature} {Variable : Type} (class_ : Set (LRA.ModelTheory.FirstOrder.Model S))   (a : LRA.UniversalAlgebra.Equation S Variable) (M : LRA.ModelTheory.FirstOrder.Model S),   Set.instMembership.mem class_ M → LRA.UniversalAlgebra.SatisfiesEquation M a
 Predicate logic (unfolded):
   Ambient
     (implicit ambient)
@@ -651,7 +651,7 @@ Source: ./Satisfaction/Definition.lean
 Name: IsVariety
 Kind: Instance
 State: Completed
-Predicate logic: ∀ {S : LRA.Logic.Signature} (class_ : Set (LRA.Logic.FirstOrder.Model S)),   Exists fun theory => Eq class_ (LRA.UniversalAlgebra.ModelsOfEquationalTheory theory)
+Predicate logic: ∀ {S : LRA.Logic.Signature} (class_ : Set (LRA.ModelTheory.FirstOrder.Model S)),   Exists fun theory => Eq class_ (LRA.UniversalAlgebra.ModelsOfEquationalTheory theory)
 Predicate logic (unfolded):
   Ambient
     (implicit ambient)
@@ -668,7 +668,7 @@ Source: ./Satisfaction/Definition.lean
 Name: ModelsOfEquationalTheory
 Kind: Instance
 State: Completed
-Predicate logic: ∀ {S : LRA.Logic.Signature} {Variable : Type} (theory : LRA.UniversalAlgebra.EquationalTheory S Variable)   (a : LRA.Logic.FirstOrder.Model S) (equation : LRA.UniversalAlgebra.Equation S Variable),   Set.instMembership.mem theory equation → LRA.UniversalAlgebra.SatisfiesEquation a equation
+Predicate logic: ∀ {S : LRA.Logic.Signature} {Variable : Type} (theory : LRA.UniversalAlgebra.EquationalTheory S Variable)   (a : LRA.ModelTheory.FirstOrder.Model S) (equation : LRA.UniversalAlgebra.Equation S Variable),   Set.instMembership.mem theory equation → LRA.UniversalAlgebra.SatisfiesEquation a equation
 Predicate logic (unfolded):
   Ambient
     (implicit ambient)
@@ -685,7 +685,7 @@ Source: ./Satisfaction/Definition.lean
 Name: SatisfiesEquation
 Kind: Instance
 State: Completed
-Predicate logic: ∀ {S : LRA.Logic.Signature} {Variable : Type} (M : LRA.Logic.FirstOrder.Model S)   (equation : LRA.UniversalAlgebra.Equation S Variable) (assignment : Variable → M.Domain),   Eq (LRA.Logic.FirstOrder.evaluateTerm M assignment equation.lhs)     (LRA.Logic.FirstOrder.evaluateTerm M assignment equation.rhs)
+Predicate logic: ∀ {S : LRA.Logic.Signature} {Variable : Type} (M : LRA.ModelTheory.FirstOrder.Model S)   (equation : LRA.UniversalAlgebra.Equation S Variable) (assignment : Variable → M.Domain),   Eq (LRA.Logic.FirstOrder.evaluateTerm M assignment equation.lhs)     (LRA.Logic.FirstOrder.evaluateTerm M assignment equation.rhs)
 Predicate logic (unfolded):
   Ambient
     (implicit ambient)
@@ -821,7 +821,7 @@ Source: ./Congruence/FailureModes.lean
 Name: Isomorphic
 Kind: Instance
 State: Completed
-Predicate logic: ∀ {S : LRA.Logic.Signature} (M : LRA.Logic.FirstOrder.Model S) (N : LRA.Logic.FirstOrder.Model S),   Nonempty (LRA.UniversalAlgebra.Isomorphism M N)
+Predicate logic: ∀ {S : LRA.Logic.Signature} (M : LRA.ModelTheory.FirstOrder.Model S) (N : LRA.ModelTheory.FirstOrder.Model S),   Nonempty (LRA.UniversalAlgebra.Isomorphism M N)
 Predicate logic (unfolded):
   Ambient
     (implicit ambient)
@@ -940,7 +940,7 @@ Source: ./Quotient/RepresentativeCompatibility.lean
 Name: kernelRelation
 Kind: Instance
 State: Completed
-Predicate logic: ∀ {S : LRA.Logic.Signature} {M : LRA.Logic.FirstOrder.Model S} {N : LRA.Logic.FirstOrder.Model S}   (homomorphism : LRA.UniversalAlgebra.Homomorphism M N) (a a_1 : M.Domain),   Eq (homomorphism.map a) (homomorphism.map a_1)
+Predicate logic: ∀ {S : LRA.Logic.Signature} {M : LRA.ModelTheory.FirstOrder.Model S} {N : LRA.ModelTheory.FirstOrder.Model S}   (homomorphism : LRA.UniversalAlgebra.Homomorphism M N) (a a_1 : M.Domain),   Eq (homomorphism.map a) (homomorphism.map a_1)
 Predicate logic (unfolded):
   Ambient
     (implicit ambient)

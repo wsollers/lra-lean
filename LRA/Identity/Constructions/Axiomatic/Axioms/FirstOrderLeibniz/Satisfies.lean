@@ -59,7 +59,7 @@ theorem axiomaticIdentityRelation_satisfiesFirstOrderLeibniz
   constructor
   . -- reflexive
     intro x
-    exact Ax_EqualityReflexivity x
+    exact Ax_IdentityReflexivity x
 
 
   . -- leibniz
