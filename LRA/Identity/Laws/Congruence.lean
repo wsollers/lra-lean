@@ -1,4 +1,4 @@
-import LRA.Identity.Constructions.Axiomatic.Axioms.SecondOrderLeibniz.Theorems
+import LRA.Identity.Laws.Primitive
 
 namespace LRA.Identity
 

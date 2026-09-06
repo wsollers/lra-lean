@@ -1,6 +1,5 @@
 import LRA.Identity.Interface.ModelTheory.LStructure
 import LRA.Identity.Constructions.Axiomatic.Axioms.SecondOrderLeibniz.Definitions
-import LRA.Identity.Constructions.Axiomatic.Axioms.SecondOrderLeibniz.Theorems
 import LRA.ModelTheory.Model
 import LRA.ModelTheory.SecondOrder.FullModel
 

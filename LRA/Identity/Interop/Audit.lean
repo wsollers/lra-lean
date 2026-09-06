@@ -1,7 +1,6 @@
 import LRA.Identity.Interop.Adapters
 import LRA.Identity.Constructions.Axiomatic
 import LRA.Identity.Constructions.Mathlib
-import LRA.Identity.Constructions.Axiomatic.Axioms.SecondOrderLeibniz.Theorems
 
 namespace LRA.Identity.Interop
 
@@ -55,7 +54,7 @@ theorem axiomaticIsEq {Carrier : Type u} (x y : Carrier) :
     LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x y ↔ x = y := by
   sorry
 
-#print axioms IdentIsDiagonal
+#print axioms IdentAgreesWithLeanEq
 #print axioms LRA.Identity.Construction.Mathlib.instIdentityRelation
 #print axioms axiomaticIsEq
 
