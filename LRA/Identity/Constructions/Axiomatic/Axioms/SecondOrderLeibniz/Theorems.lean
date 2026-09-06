@@ -5,6 +5,36 @@ namespace LRA.Identity
 universe u
 
 /--
+`IdentRfl` is the in-house reflexivity theorem for identity. Every object is
+identical to itself; this is the `Ident`-level analogue of Lean's `rfl`.
+
+Logical form:
+
+```lean
+theorem IdentRfl {Carrier : Type u} [IdentityRelation Carrier]
+    (x : Carrier) : Ident x x
+```
+-/
+theorem IdentRfl {Carrier : Type u} [IdentityRelation Carrier]
+    (x : Carrier) : Ident x x := by
+  sorry
+
+/--
+`IdentRefl` is a prose-name alias for `IdentRfl`. Every object is identical to
+itself.
+
+Logical form:
+
+```lean
+theorem IdentRefl {Carrier : Type u} [IdentityRelation Carrier]
+    (x : Carrier) : Ident x x
+```
+-/
+theorem IdentRefl {Carrier : Type u} [IdentityRelation Carrier]
+    (x : Carrier) : Ident x x := by
+  sorry
+
+/--
 `IdentIsDiagonal` TODO
 
 Predicate logic:
@@ -60,7 +90,6 @@ theorem IdentIsDiagonal {Carrier : Type u} [IdentityRelation Carrier]
   . -- <- MPR
 
     sorry
-  sorry
 
 /--
 `IdentSymmetric` TODO
