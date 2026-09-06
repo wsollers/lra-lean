@@ -1,0 +1,27 @@
+{
+  "name": "lra-lean",
+  "build": {
+    "dockerfile": "../Dockerfile",
+    "target": "lean-build",
+    "context": ".."
+  },
+  "remoteUser": "root",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "leanprover.lean4",
+        "ms-vscode.makefile-tools",
+        "ms-python.python"
+      ],
+      "settings": {
+        "lean4.serverEnv": {
+          "PATH": "/root/.elan/bin:${env:PATH}"
+        },
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+  "postCreateCommand": "lake update && lake exe cache get",
+  "postAttachCommand": "lean --version && lake --version"
+}
