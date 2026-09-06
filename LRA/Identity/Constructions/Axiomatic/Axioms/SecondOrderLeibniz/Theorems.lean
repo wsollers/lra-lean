@@ -17,7 +17,9 @@ theorem IdentRfl {Carrier : Type u} [IdentityRelation Carrier]
 -/
 theorem IdentRfl {Carrier : Type u} [IdentityRelation Carrier]
     (x : Carrier) : Ident x x := by
-  sorry
+
+  have reflIdent := IdentReflexive x
+  exact reflIdent
 
 /--
 `IdentRefl` is a prose-name alias for `IdentRfl`. Every object is identical to
@@ -32,64 +34,9 @@ theorem IdentRefl {Carrier : Type u} [IdentityRelation Carrier]
 -/
 theorem IdentRefl {Carrier : Type u} [IdentityRelation Carrier]
     (x : Carrier) : Ident x x := by
-  sorry
+  exact IdentRfl x
 
-/--
-`IdentIsDiagonal` TODO
 
-Predicate logic:
-
-  (∀ x y ∈ Carrier), Ident x y ↔ x = y
-
-Predicate logic (unfolded):
-
-  Ambient
-    (Carrier)
-  Objects
-    x y : Carrier
-  Prove
-    inst.Ident x y ↔ x = y
-
-Logical form (Lean):
-
-```lean
-theorem IdentIsDiagonal {Carrier : Type u} [IdentityRelation Carrier]
-    (x y : Carrier) : Ident x y ↔ x = y
-```
-
-Type-theoretic form:
-
-  TODO
-
-Proof use:
-
-  TODO
-
-After unfold / common proof state:
-
-  TODO
-
-Common confusions:
-
-  TODO
-
-Related proof moves: constructor, .mp, .mpr
-
--/
-theorem IdentIsDiagonal {Carrier : Type u} [IdentityRelation Carrier]
-    (x y : Carrier) : Ident x y ↔ x = y := by
-
-  constructor
-  . --> MP
-
-    intro hxIy
-    let inst : IdentityRelation Carrier := inferInstance
-
-    sorry
-
-  . -- <- MPR
-
-    sorry
 
 /--
 `IdentSymmetric` TODO
@@ -235,5 +182,80 @@ theorem IdentLeibnizIff {Carrier : Type u} [IdentityRelation Carrier]
     {x y : Carrier} (h : Ident x y) (Property : Carrier → Prop) :
     Property x ↔ Property y := by
   sorry
+
+
+/--
+`IdentIsDiagonal` TODO
+
+Predicate logic:
+
+  (∀ x y ∈ Carrier), Ident x y ↔ x = y
+
+Predicate logic (unfolded):
+
+  Ambient
+    (Carrier)
+  Objects
+    x y : Carrier
+  Prove
+    inst.Ident x y ↔ x = y
+
+Logical form (Lean):
+
+```lean
+theorem IdentIsDiagonal {Carrier : Type u} [IdentityRelation Carrier]
+    (x y : Carrier) : Ident x y ↔ x = y
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: constructor, .mp, .mpr
+
+-/
+theorem IdentIsDiagonal {Carrier : Type u} [IdentityRelation Carrier]
+    (x y : Carrier) : Ident x y ↔ x = y := by
+
+  constructor
+  · -- Forward Direction (MP)
+    intro hxIy
+
+    -- Step 2 & 3: Define the property/predicate P(z) ≡ (x = z)
+    let P : Carrier → Prop := fun z => x = z
+
+    -- Step 4 & 5: Evaluate P at x, which is (x = x)
+    have hPx : P x := rfl
+
+    -- Step 6: Specialize Leibniz's Law with P and hxIy to get P x → P y
+    let inst : IdentityRelation Carrier := inferInstance
+    have hImp : P x → P y := inst.IdentLeibniz hxIy P
+
+    -- Step 7: Apply Modus Ponens to obtain P y
+    have hPy : P y := hImp hPx
+
+    -- Step 8: P y is definitionally (x = y)
+    exact hPy
+
+  . -- <- MPR
+    intro hxEy
+    --have ir := IdentityRelation
+
+
+    sorry
+
+
 
 end LRA.Identity

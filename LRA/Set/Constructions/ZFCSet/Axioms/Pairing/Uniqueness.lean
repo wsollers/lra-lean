@@ -4,10 +4,16 @@ import LRA.Set.Constructions.ZFCSet.Axioms.Extensionality.Theorems
 namespace LRA.Set.Constructions.ZFCSet.Axioms
 
 theorem PairSetIsUnique
-    {x1 x2 P G : Set}
-    (PIsPairSet : IsPairSet x1 x2 P)
-    (GIsPairSet : IsPairSet x1 x2 G) :
+    {A B P G : Set}
+    (PIsPairSet : IsPairSet A B P)
+    (GIsPairSet : IsPairSet A B G) :
     G = P := by
+
+  have p := Pairing A B
+  have g := Pairing A B
+
+
+
   sorry
 
 theorem PairingOutputExistsAndIsUnique (x1 x2 : Set) :
