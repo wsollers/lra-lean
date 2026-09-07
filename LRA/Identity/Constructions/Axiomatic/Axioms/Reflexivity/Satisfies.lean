@@ -49,7 +49,7 @@ Related proof moves: intro
 theorem axiomaticIdentityRelation_satisfiesReflexivity (Carrier : Type u) :
     ∀ x : Carrier, Ax_IdentityRelation x x := by
   intro x
-  exact Ax_IdentityReflexivity x
+  exact axiomaticIdentityReflexivity x
 
 
 end LRA.Identity.Construction.Axiomatic

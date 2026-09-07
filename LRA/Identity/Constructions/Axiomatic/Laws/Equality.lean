@@ -18,7 +18,7 @@ theorem axiomaticEqualRfl {Carrier : Type u} (x : Carrier) :
 -/
 theorem axiomaticEqualRfl {Carrier : Type u} (x : Carrier) :
     @LRA.Identity.Equal Carrier (instEqualityRelation Carrier) x x := by
-  exact Ax_IdentityReflexivity x
+  exact axiomaticIdentityReflexivity x
 
 /--
 `axiomaticIdentIsDiagonal` identifies axiomatic identity with axiomatic

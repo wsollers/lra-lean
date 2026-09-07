@@ -1,6 +1,6 @@
 import LRA.Identity.Constructions.Axiomatic.Axioms.Reflexivity.Satisfies
 import LRA.Identity.Constructions.Axiomatic.Axioms.FirstOrderLeibniz.Theorems
-import LRA.Identity.Constructions.Axiomatic.Axioms.SecondOrderLeibniz.Axiom
+import LRA.Identity.Constructions.Axiomatic.Axioms.SecondOrderLeibniz.Theorems
 
 namespace LRA.Identity.Construction.Axiomatic
 
@@ -59,7 +59,7 @@ theorem axiomaticIdentityRelation_satisfiesFirstOrderLeibniz
   constructor
   . -- reflexive
     intro x
-    exact Ax_IdentityReflexivity x
+    exact axiomaticIdentityReflexivity x
 
 
   . -- leibniz
@@ -68,7 +68,7 @@ theorem axiomaticIdentityRelation_satisfiesFirstOrderLeibniz
     intro P
     intro pIsAdmissible
     intro Px
-    exact Ax_LeibnizLaw Rxy P Px
+    exact axiomaticLeibnizLaw Rxy P Px
 
 
 end LRA.Identity.Construction.Axiomatic

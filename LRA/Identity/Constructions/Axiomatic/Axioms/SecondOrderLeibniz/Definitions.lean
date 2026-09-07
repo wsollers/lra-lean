@@ -211,54 +211,6 @@ abbrev IdentityRelation.ofIdentityTheory {Carrier : Type u}
   IdentLeibniz := fun hxy P hp => h.leibniz _ _ hxy P trivial hp
 
 /--
-`IdentityRelation.satisfiesIdentityTheory` TODO
-
-Predicate logic:
-
-  IdentityTheory (FullLeibniz Carrier) Ident ∈ Carrier → Carrier → Prop
-
-Predicate logic (unfolded):
-
-  Ambient
-    (Carrier)
-  Objects
-    (none)
-  Prove
-    LRA.Identity.IdentityTheory (fun x => True) inst.1
-
-Logical form (Lean):
-
-```lean
-theorem IdentityRelation.satisfiesIdentityTheory (Carrier : Type u)
-    [IdentityRelation Carrier] :
-    IdentityTheory (FullLeibniz Carrier) (Ident : Carrier → Carrier → Prop)
-```
-
-Type-theoretic form:
-
-  TODO
-
-Proof use:
-
-  TODO
-
-After unfold / common proof state:
-
-  TODO
-
-Common confusions:
-
-  TODO
-
-Related proof moves: intro
-
--/
-theorem IdentityRelation.satisfiesIdentityTheory (Carrier : Type u)
-    [IdentityRelation Carrier] :
-    IdentityTheory (FullLeibniz Carrier) (Ident : Carrier → Carrier → Prop) := by
-  sorry
-
-/--
 `IdentityRelation.ofIsIdentityRelation` TODO
 
 Predicate logic:
