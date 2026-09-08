@@ -1,7 +1,7 @@
 import LRA.Identity.Interface.Equality
 import LRA.Identity.Constructions.Mathlib.Satisfies
 
-namespace LRA.Identity.Construction.Mathlib
+namespace LRA.Identity.Constructions.Mathlib
 
 universe u
 
@@ -19,7 +19,7 @@ scoped instance instEqualityRelation (Carrier : Type u) :
 scoped instance instEqualityRelation (Carrier : Type u) :
     LRA.Identity.EqualityRelation Carrier where
   Equal := Eq
-  EqualReflexive := fun _ => rfl
-  EqualLeibniz := fun h _ hp => h ▸ hp
+  satisfiesEqualityTheory := by
+    sorry
 
-end LRA.Identity.Construction.Mathlib
+end LRA.Identity.Constructions.Mathlib

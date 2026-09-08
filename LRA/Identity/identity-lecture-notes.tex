@@ -226,18 +226,32 @@ This is a clean illustration of how transport proofs work: one writes the target
 
 Together, symmetry and transitivity show that identity is already an equivalence relation in substance before that phrase is ever introduced explicitly. Reflexivity keeps every object fixed to itself, symmetry removes directional bias, and transitivity lets chains of identifications collapse into a single identification.
 
-\subsection{Two-Way Leibniz}
+\subsection{The Two Directions of Leibniz's Law}
 
 \begin{leanblock}
-theorem IdentLeibnizIff {x y : Carrier} (h : Ident x y)
-    (Property : Carrier -> Prop) : Property x <-> Property y :=
-  <| IdentLeibniz h Property,
-     IdentLeibniz (IdentSymmetric h) Property
+theorem IndiscernibilityOfIdenticals {x y : Carrier}
+    (h : Ident x y) :
+    forall Property : Carrier -> Prop, Property x <-> Property y
+
+theorem IdentityOfIndiscernibles {x y : Carrier}
+    (h : forall Property : Carrier -> Prop,
+      Property x <-> Property y) : Ident x y
+
+theorem IdentLeibnizIff {x y : Carrier} :
+    Ident x y <-> forall Property : Carrier -> Prop,
+      Property x <-> Property y
 \end{leanblock}
 
-Once symmetry has been derived, Leibniz transport becomes biconditional. Identical objects satisfy exactly the same predicates. This is the formal recovery of the full indiscernibility principle.
+The forward direction is the \emph{Indiscernibility of Identicals}: identical
+objects satisfy exactly the same predicates. The reverse direction is the
+\emph{Identity of Indiscernibles}: objects satisfying exactly the same
+predicates are identical. The full theorem packages the two principles as one
+biconditional characterization of identity.
 
-This theorem is one of the key conceptual bridges in the file. It turns identity from a relation one can mention into a relation whose entire mathematical effect is clear. If \(x\) and \(y\) are identical, then no admissible property can tell them apart. That is exactly what it means for replacement in proofs to be legitimate.
+Together these theorems form one of the key conceptual bridges in the file.
+They turn identity from a relation one can mention into a relation whose entire
+mathematical effect is clear: identity prevents every property from
+distinguishing two objects, and complete indiscernibility recovers identity.
 
 \section{Congruence Consequences}
 
@@ -780,7 +794,7 @@ That result pinpoints the strength of unrestricted substitutability. If every pr
 \subsection{Building Equality Structures from Reflexivity and Leibniz}
 
 \begin{leanblock}
-def EqualityStructure.ofReflexiveLeibnizRelation
+noncomputable def EqualityStructure.OfReflexiveLeibnizRelation
     (Carrier : Type u) [Nonempty Carrier] {R : Carrier -> Carrier -> Prop}
     (reflexive : forall x, R x x)
     (leibniz : forall x y, R x y -> forall P : Carrier -> Prop, P x -> P y) :
@@ -798,13 +812,13 @@ This constructor packages raw reflexivity and Leibniz data into an equality stru
 \subsection{First-Order Models}
 
 \begin{leanblock}
-def EqualityStructure.toFirstOrderModel
+noncomputable def EqualityStructure.ToFOLModel
     (S : EqualityStructure.{u}) :
     FirstOrder.Model pureEqualitySignature where
   Domain := S.Carrier
   domainNonempty := S.carrierNonempty
   interpretEquality := S.equalityInterpretation
-  equalityIsDiagonal := S.isDiagonal
+  equalityIsDiagonal := by sorry
   interpretFunction := fun functionSymbol => Empty.elim functionSymbol
   interpretRelation := fun relationSymbol => Empty.elim relationSymbol
   interpretConstant := Empty.elim
@@ -815,14 +829,13 @@ This turns an equality structure into a first-order model of the pure equality l
 \subsection{Canonical Equality Structure}
 
 \begin{leanblock}
-def canonicalEqualityStructure (Carrier : Type u) [Nonempty Carrier] :
+noncomputable def LRA.Identity.Constructions.Mathlib.CanonicalEqualityStructure
+    (Carrier : Type u) [Nonempty Carrier] :
     EqualityStructure where
   Carrier := Carrier
   carrierNonempty := inferInstance
   equalityInterpretation := EqualityDiagonal Carrier
-  satisfiesIdentityTheory :=
-    <| (fun _ => rfl),
-       (fun _ _ h _ _ hp => h ▸ hp)
+  satisfiesIdentityTheory := by sorry
 \end{leanblock}
 
 This is the standard model in which equality is interpreted by actual equality.
@@ -833,9 +846,9 @@ This is the standard model in which equality is interpreted by actual equality.
 
 \begin{leanblock}
 theorem axiomaticIsEq {Carrier : Type u} (x y : Carrier) :
-    LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x y <-> x = y :=
+    LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x y <-> x = y :=
   @IdentIsDiagonal Carrier
-    (LRA.Identity.Construction.Axiomatic.instIdentityRelation Carrier) x y
+    (LRA.Identity.Constructions.Axiomatic.instIdentityRelation Carrier) x y
 \end{leanblock}
 
 This theorem is the concrete certificate that the axiomatic backend is provably diagonal.
@@ -844,7 +857,7 @@ This theorem is the concrete certificate that the axiomatic backend is provably 
 
 \begin{leanblock}
 #print axioms IdentIsDiagonal
-#print axioms LRA.Identity.Construction.Mathlib.instIdentityRelation
+#print axioms LRA.Identity.Constructions.Mathlib.instIdentityRelation
 #print axioms axiomaticIsEq
 \end{leanblock}
 

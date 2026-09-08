@@ -1,7 +1,7 @@
 import LRA.Identity.Constructions.Axiomatic.Axioms.SecondOrderLeibniz.Satisfies
 import LRA.Identity.Laws.Primitive
 
-namespace LRA.Identity.Construction.Axiomatic
+namespace LRA.Identity.Constructions.Axiomatic
 
 universe u
 
@@ -18,7 +18,7 @@ theorem axiomaticIdentRfl {Carrier : Type u} (x : Carrier) :
 -/
 theorem axiomaticIdentRfl {Carrier : Type u} (x : Carrier) :
     Ax_IdentityRelation x x := by
-  exact axiomaticIdentityReflexivity x
+  sorry
 
 /--
 `axiomaticIdentSymmetric` is the axiomatic construction's symmetry law for
@@ -69,4 +69,4 @@ theorem axiomaticIdentLeibnizIff {Carrier : Type u} {x y : Carrier}
     Property x ↔ Property y := by
   sorry
 
-end LRA.Identity.Construction.Axiomatic
+end LRA.Identity.Constructions.Axiomatic

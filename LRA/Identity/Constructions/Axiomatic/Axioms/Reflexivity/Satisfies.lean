@@ -1,6 +1,6 @@
 import LRA.Identity.Constructions.Axiomatic.Axioms.Reflexivity.Theorems
 
-namespace LRA.Identity.Construction.Axiomatic
+namespace LRA.Identity.Constructions.Axiomatic
 
 universe u
 
@@ -18,7 +18,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x x
+    LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x x
 
 Logical form (Lean):
 
@@ -48,8 +48,7 @@ Related proof moves: intro
 -/
 theorem axiomaticIdentityRelation_satisfiesReflexivity (Carrier : Type u) :
     ∀ x : Carrier, Ax_IdentityRelation x x := by
-  intro x
-  exact axiomaticIdentityReflexivity x
+  sorry
 
 
-end LRA.Identity.Construction.Axiomatic
+end LRA.Identity.Constructions.Axiomatic

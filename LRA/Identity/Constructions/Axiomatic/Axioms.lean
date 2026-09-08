@@ -1,4 +1,7 @@
 import LRA.Identity.Constructions.Axiomatic.Axioms.Common
+import LRA.Identity.Constructions.Axiomatic.Axioms.ZeroOrder
+import LRA.Identity.Constructions.Axiomatic.Axioms.FirstOrder
+import LRA.Identity.Constructions.Axiomatic.Axioms.SecondOrder
 import LRA.Identity.Constructions.Axiomatic.Axioms.Reflexivity.Axiom
 import LRA.Identity.Constructions.Axiomatic.Axioms.Reflexivity.Definitions
 import LRA.Identity.Constructions.Axiomatic.Axioms.Reflexivity.Theorems

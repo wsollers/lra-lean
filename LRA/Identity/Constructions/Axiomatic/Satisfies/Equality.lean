@@ -1,7 +1,7 @@
 import LRA.Identity.Interface.Equality
 import LRA.Identity.Constructions.Axiomatic.Axioms.SecondOrderLeibniz.Satisfies
 
-namespace LRA.Identity.Construction.Axiomatic
+namespace LRA.Identity.Constructions.Axiomatic
 
 universe u
 
@@ -19,7 +19,7 @@ noncomputable scoped instance instEqualityRelation (Carrier : Type u) :
 noncomputable scoped instance instEqualityRelation (Carrier : Type u) :
     LRA.Identity.EqualityRelation Carrier where
   Equal := Ax_IdentityRelation
-  EqualReflexive := axiomaticIdentityRelation_satisfiesReflexivity Carrier
-  EqualLeibniz := axiomaticLeibnizLaw
+  satisfiesEqualityTheory := by
+    sorry
 
-end LRA.Identity.Construction.Axiomatic
+end LRA.Identity.Constructions.Axiomatic

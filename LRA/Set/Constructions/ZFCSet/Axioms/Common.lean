@@ -4,7 +4,7 @@ import LRA.Identity.Constructions.Mathlib
 
 namespace LRA.Set.Constructions.ZFCSet.Axioms
 
-open scoped LRA.Identity.Construction.Mathlib
+open scoped LRA.Identity.Constructions.Mathlib
 
 abbrev Set := LRA.Set.Constructions.ZFCSet
 

@@ -1,68 +1,21 @@
-import LRA.Identity.Constructions.Axiomatic.Axioms.FirstOrderLeibniz.Definitions
+import LRA.Identity.Constructions.Axiomatic.Axioms.FirstOrderLeibniz.Axiom
+import LRA.Identity.Constructions.Axiomatic.Axioms.SecondOrderLeibniz.Axiom
 
-namespace LRA.Identity
+namespace LRA.Identity.Constructions.Axiomatic
 
-universe u
+/-- The unrestricted second-order Leibniz axiom entails the construction's
+model-relative first-order Leibniz principle. This implication does not
+replace the independently postulated FOL axiom.
 
-/--
-`EqualityFirstOrderTheory.leibnizAxiom` TODO
-
-Predicate logic:
-
-  FirstOrderLeibnizAxiom Admissible R
-
-Predicate logic (unfolded):
-
-  Ambient
-    (Carrier)
-  Objects
-    Admissible : (Carrier → Prop) → Prop
-    R : Carrier → Carrier → Prop
-    h : EqualityFirstOrderTheory Admissible R
-  Prove
-    LRA.Identity.IdentityTheory Admissible R → ∀ (x y : Carrier), R x y → ∀ (P : Carrier → Prop), (Admissible P ∧ P x) → P y
-
-Logical form (Lean):
-
+Logical form:
 ```lean
-theorem EqualityFirstOrderTheory.leibnizAxiom {Carrier : Type u}
-    {Admissible : (Carrier → Prop) → Prop} {R : Carrier → Carrier → Prop}
-    (h : EqualityFirstOrderTheory Admissible R) :
-    FirstOrderLeibnizAxiom Admissible R
+FirstOrderLeibnizPrinciple Variable M
 ```
-
-Type-theoretic form:
-
-  TODO
-
-Proof use:
-
-  TODO
-
-After unfold / common proof state:
-
-  TODO
-
-Common confusions:
-
-  TODO
-
-Related proof moves: intro
-
 -/
-theorem EqualityFirstOrderTheory.leibnizAxiom {Carrier : Type u}
-    {Admissible : (Carrier → Prop) → Prop} {R : Carrier → Carrier → Prop}
-    (h : EqualityFirstOrderTheory Admissible R) :
-    FirstOrderLeibnizAxiom Admissible R := by
-  rcases h with ⟨_, hLeibniz⟩
-  exact hLeibniz
+theorem SecondOrderLeibnizImpliesFirstOrderLeibniz
+    {S : LRA.Logic.Signature} (Variable : Type) [DecidableEq Variable]
+    (M : LRA.Logic.FirstOrder.Interpretation S) :
+    FirstOrderLeibnizPrinciple Variable M := by
+  sorry
 
-
-
-
-
-
-
-
-
-end LRA.Identity
+end LRA.Identity.Constructions.Axiomatic

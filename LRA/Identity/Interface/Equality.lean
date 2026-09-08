@@ -4,78 +4,69 @@ namespace LRA.Identity
 
 universe u
 
-/--
-`EqualityRelation` is the in-house equality interface. It is intentionally
-separate from Lean's native equality; Lean equality belongs at the interop or
-model-theory boundary.
+/-- `EqualityTheory` presents the generic full identity contract under the
+equality vocabulary.
 
 Logical form:
-
 ```lean
-class EqualityRelation (Carrier : Type u) where
-  Equal : Carrier → Carrier → Prop
-  EqualReflexive : ∀ x : Carrier, Equal x x
-  EqualLeibniz :
-    ∀ {x y : Carrier}, Equal x y →
-      ∀ Property : Carrier → Prop, Property x → Property y
+abbrev EqualityTheory (Carrier : Type u) :
+    (Carrier -> Carrier -> Prop) -> Prop := IsIdentityRelation
 ```
 -/
+abbrev EqualityTheory (Carrier : Type u) :
+    (Carrier -> Carrier -> Prop) -> Prop := IsIdentityRelation
+
+/-- `EqualityRelation` designates an equality presentation and certifies that
+its relation satisfies the generic identity contract. The identity laws are
+not duplicated as equality-specific class fields.
+
+Logical form:
+```lean
 class EqualityRelation (Carrier : Type u) where
-  Equal : Carrier → Carrier → Prop
-  EqualReflexive : ∀ x : Carrier, Equal x x
-  EqualLeibniz :
-    ∀ {x y : Carrier}, Equal x y →
-      ∀ Property : Carrier → Prop, Property x → Property y
-
-export EqualityRelation (Equal EqualReflexive EqualLeibniz)
-
-/--
-`EqualityTheory` is the generic theory surface for in-house equality.
-
-Logical form:
-
-```lean
-def EqualityTheory (Carrier : Type u) : (Carrier → Carrier → Prop) → Prop :=
-  IdentityTheory (FullLeibniz Carrier)
-```
--/
-def EqualityTheory (Carrier : Type u) : (Carrier → Carrier → Prop) → Prop :=
-  IdentityTheory (FullLeibniz Carrier)
-
-/--
-`IsEqualityRelation` packages a relation satisfying the in-house equality
-theory.
-
-Logical form:
-
-```lean
-structure IsEqualityRelation (Equal : Carrier → Carrier → Prop) : Prop where
+  Equal : Carrier -> Carrier -> Prop
   satisfiesEqualityTheory : EqualityTheory Carrier Equal
 ```
 -/
-structure IsEqualityRelation {Carrier : Type u}
-    (Equal : Carrier → Carrier → Prop) : Prop where
+class EqualityRelation (Carrier : Type u) where
+  Equal : Carrier -> Carrier -> Prop
   satisfiesEqualityTheory : EqualityTheory Carrier Equal
 
-/--
-`EqualityRelation.ofIsEqualityRelation` builds the equality interface from a
-proof that a relation satisfies the generic equality theory.
+export EqualityRelation (Equal)
 
-Logical form:
+/-- Equality is reflexive because its presentation satisfies the generic
+identity theory.
 
-```lean
-def EqualityRelation.ofIsEqualityRelation
-    {Carrier : Type u} {Equal : Carrier → Carrier → Prop}
-    (h : IsEqualityRelation Equal) : EqualityRelation Carrier
-```
+Logical form: `forall x, Equal x x`.
+-/
+theorem EqualReflexive {Carrier : Type u} [EqualityRelation Carrier] :
+    forall x : Carrier, Equal x x := by
+  sorry
+
+/-- Equality transports every predicate because its presentation satisfies
+the generic full-Leibniz identity theory.
+
+Logical form: `Equal x y -> P x -> P y`.
+-/
+theorem EqualLeibniz {Carrier : Type u} [EqualityRelation Carrier]
+    {x y : Carrier} (hxy : Equal x y) (Property : Carrier -> Prop) :
+    Property x -> Property y := by
+  sorry
+
+/-- `IsEqualityRelation` is the named equality presentation certificate.
+
+Logical form: `EqualityTheory Carrier Equal`.
+-/
+abbrev IsEqualityRelation {Carrier : Type u}
+    (Equal : Carrier -> Carrier -> Prop) : Prop :=
+  EqualityTheory Carrier Equal
+
+/-- Build an equality presentation from its generic identity certificate.
+
+Logical form: `IsEqualityRelation Equal -> EqualityRelation Carrier`.
 -/
 @[reducible] def EqualityRelation.ofIsEqualityRelation
-    {Carrier : Type u} {Equal : Carrier → Carrier → Prop}
-    (h : IsEqualityRelation Equal) : EqualityRelation Carrier where
-  Equal := Equal
-  EqualReflexive := h.satisfiesEqualityTheory.reflexive
-  EqualLeibniz :=
-    fun {x y} hxy Property hp =>
-      h.satisfiesEqualityTheory.leibniz x y hxy Property trivial hp
+    {Carrier : Type u} {Equal : Carrier -> Carrier -> Prop}
+    (h : IsEqualityRelation Equal) : EqualityRelation Carrier := by
+  sorry
 
 end LRA.Identity

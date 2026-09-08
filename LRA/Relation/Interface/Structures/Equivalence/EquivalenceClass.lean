@@ -6,7 +6,7 @@ import LRA.Set.Interface.Laws.Membership
 namespace LRA.Relation
 
 open LRA.Set
-open scoped LRA.Identity.Construction.Mathlib
+open scoped LRA.Identity.Constructions.Mathlib
 
 universe u v
 

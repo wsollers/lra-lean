@@ -32,7 +32,10 @@ Required capabilities:
 1. Enforce architecture rules derived from the documents above, especially:
    - correct placement of `Interface/ModelTheory`
    - correct placement of `Interface/UniversalAlgebra`
-   - correct placement of `Realizations`
+   - correct placement of concrete backends under
+     `Constructions/<Construction>/`
+   - correct placement of construction-local `Satisfies/` or
+     `Satisfy_<Target>.lean` certificates
    - prohibition of legacy `Construction/ModelTheory` where not explicitly
      allowed
    - prohibition of imports from deleted or forbidden legacy `LRA.Volume*.*`

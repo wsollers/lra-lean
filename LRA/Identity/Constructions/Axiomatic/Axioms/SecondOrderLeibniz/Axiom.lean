@@ -1,6 +1,6 @@
 import LRA.Identity.Constructions.Axiomatic.Axioms.Common
 
-namespace LRA.Identity.Construction.Axiomatic
+namespace LRA.Identity.Constructions.Axiomatic
 
 universe u
 
@@ -9,7 +9,7 @@ universe u
 
 Predicate logic:
 
-  Property x → Property y end LRA.Identity.Construction.Axiomatic
+  Property x → Property y end LRA.Identity.Constructions.Axiomatic
 
 Predicate logic (unfolded):
 
@@ -20,7 +20,7 @@ Predicate logic (unfolded):
     h : Ax_IdentityRelation x y
     Property : Carrier → Prop
   Prove
-    LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x y → ∀ (Property : Carrier → Prop), Property x → Property y
+    LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x y → ∀ (Property : Carrier → Prop), Property x → Property y
 
 Logical form (Lean):
 
@@ -53,4 +53,4 @@ axiom Ax_LeibnizLaw {Carrier : Type u} {x y : Carrier}
     (h : Ax_IdentityRelation x y) (Property : Carrier → Prop) :
     Property x → Property y
 
-end LRA.Identity.Construction.Axiomatic
+end LRA.Identity.Constructions.Axiomatic

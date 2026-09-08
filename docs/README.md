@@ -23,6 +23,8 @@ otherwise. In practice that includes:
 - repair plans and migration ledgers such as `docs/p0-repair/`,
   `docs/algebraic-structures-repair/`, and `docs/landau-satisfaction/`;
 - audit and commentary files such as `docs/structure-audit-inventory.md`;
+- the current Identity migration analysis in
+  `docs/architecture/identity-iece-architecture.md`;
 - tool-specific prompt packs under `docs/tool-prompts/`;
 - subject-local design notes such as `LRA/Analysis/MetricSpace/DesignDoc.md`.
 

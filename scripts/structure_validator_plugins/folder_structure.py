@@ -9,12 +9,11 @@ name = "folder_structure"
 
 MODEL_THEORY_REQUIRED = {"LStructure.lean", "Theory.lean", "Model.lean"}
 MODEL_THEORY_FORBIDDEN = {"Axioms.lean", "Satisfaction.lean", "Structure.lean"}
-CORE_QUARANTINE_DIRS = {"Examples", "Failures", "Interop", "Realizations"}
+CORE_QUARANTINE_DIRS = {"Examples", "Failures", "Interop"}
 CORE_QUARANTINE_FILES = {
     "Examples.lean",
     "Failures.lean",
     "Interop.lean",
-    "Realizations.lean",
 }
 
 
@@ -160,7 +159,9 @@ def _check_legacy_modeltheory(directory: Path, args: object) -> list[Finding]:
             path=legacy_dir,
             message=(
                 "legacy `Construction/ModelTheory` location is disallowed for validated "
-                "targets; move concrete backends under `Realizations/`"
+                "targets; move generic logical material to `Interface/ModelTheory/` "
+                "or concrete backend material beneath a named "
+                "`Constructions/<Construction>/` owner"
             ),
         )
     ]

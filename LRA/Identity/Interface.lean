@@ -1,5 +1,9 @@
 import LRA.Identity.Interface.Identity
 import LRA.Identity.Interface.Equality
+import LRA.Identity.Interface.Syntax
+import LRA.Identity.Interface.ZeroOrder
+import LRA.Identity.Interface.FirstOrder
+import LRA.Identity.Interface.SecondOrder
 import LRA.Identity.Interface.Logic
 import LRA.Identity.Interface.ModelTheory
 import LRA.Identity.Interface.UniversalAlgebra

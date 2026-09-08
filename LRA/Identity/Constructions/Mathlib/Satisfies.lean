@@ -1,13 +1,15 @@
-import LRA.Identity.Constructions.Axiomatic.Axioms.SecondOrderLeibniz.Definitions
+import LRA.Identity.Interface.Identity
 
-namespace LRA.Identity.Construction.Mathlib
+namespace LRA.Identity.Constructions.Mathlib
 
 universe u
 
 scoped instance instIdentityRelation (Carrier : Type u) :
     LRA.Identity.IdentityRelation Carrier where
   Ident := Eq
-  IdentReflexive := fun _ => rfl
-  IdentLeibniz := fun h _ hp => h ▸ hp
+  IdentReflexive := by
+    sorry
+  IdentLeibniz := by
+    sorry
 
-end LRA.Identity.Construction.Mathlib
+end LRA.Identity.Constructions.Mathlib

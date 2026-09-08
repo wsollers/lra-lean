@@ -1,7 +1,7 @@
 import LRA.Identity.Constructions.Axiomatic.Satisfies.Equality
 import LRA.Identity.Laws.Equality
 
-namespace LRA.Identity.Construction.Axiomatic
+namespace LRA.Identity.Constructions.Axiomatic
 
 universe u
 
@@ -18,7 +18,7 @@ theorem axiomaticEqualRfl {Carrier : Type u} (x : Carrier) :
 -/
 theorem axiomaticEqualRfl {Carrier : Type u} (x : Carrier) :
     @LRA.Identity.Equal Carrier (instEqualityRelation Carrier) x x := by
-  exact axiomaticIdentityReflexivity x
+  sorry
 
 /--
 `axiomaticIdentIsDiagonal` identifies axiomatic identity with axiomatic
@@ -36,10 +36,6 @@ theorem axiomaticIdentIsDiagonal {Carrier : Type u} (x y : Carrier) :
 theorem axiomaticIdentIsDiagonal {Carrier : Type u} (x y : Carrier) :
     Ax_IdentityRelation x y ↔
       @LRA.Identity.Equal Carrier (instEqualityRelation Carrier) x y := by
-  constructor
-  · intro h
-    exact h
-  · intro h
-    exact h
+  sorry
 
-end LRA.Identity.Construction.Axiomatic
+end LRA.Identity.Constructions.Axiomatic

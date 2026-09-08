@@ -5,7 +5,7 @@ import LRA.Identity.Constructions.Mathlib
 namespace LRA.Relation
 
 open LRA.Set
-open scoped LRA.Identity.Construction.Mathlib
+open scoped LRA.Identity.Constructions.Mathlib
 
 universe u v w
 

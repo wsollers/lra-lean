@@ -1,4 +1,4 @@
-# Interface / ModelTheory / UniversalAlgebra Standardization Inventory
+# Interface / Constructions / Satisfaction Standardization Inventory
 
 This document is the working migration matrix for standardizing subject layout
 around:
@@ -6,11 +6,20 @@ around:
 - `Interface/`
 - `Interface/ModelTheory/`
 - `Interface/UniversalAlgebra/`
-- `Realizations/`
+- `Constructions/<Construction>/`
+- construction-local `Satisfies/` or `Satisfy_<Target>.lean`
 - `Interop/`
 
 The governing standard is
 [repository-architecture.md](/F:/repos/lra-lean/docs/architecture/repository-architecture.md:1).
+
+> **Corrected architecture note (2026-09-07).** Earlier revisions of this
+> inventory treated `Realizations/` as the standard owner of concrete
+> backends. That collapsed a construction with the separate fact that it
+> realizes an interface. Concrete backends remain under
+> `Constructions/<Construction>/`; realization or satisfaction certificates
+> belong beneath that construction. Existing `Realizations/` paths are
+> migration debt to classify, not templates for new work.
 
 ## Success Gate
 
@@ -67,7 +76,8 @@ Notes:
 - `Axioms.lean` should fold into or rename toward `Theory.lean`.
 - `Satisfaction.lean` should be reconsidered as either:
   - material incorporated into `Model.lean`, or
-  - realization/backend proof material moved to `Realizations/`.
+  - backend proof material moved beneath the responsible construction as a
+    `Satisfies/` or `Satisfy_<Target>.lean` certificate.
 - `EuclideanSpace/Interface/ModelTheory/Structure.lean` should rename to
   `LStructure.lean`.
 
@@ -131,7 +141,8 @@ Representative paths:
 Migration target:
 
 - if the file is backend satisfaction or implementation packaging:
-  move to `Realizations/`
+  identify the named backend under `Constructions/<Construction>/` and place
+  the satisfaction certificate there
 - if the file is genuine formal interface logic:
   move under `Interface/ModelTheory/`
 
@@ -139,7 +150,7 @@ Examples:
 
 - `LRA/Analysis/MetricSpace/Construction/ModelTheory/EuclideanRn.lean`
   should move to something like
-  `LRA/Analysis/MetricSpace/Realizations/Euclidean.lean`
+  `LRA/Analysis/MetricSpace/Constructions/Euclidean/Satisfies/MetricSpace.lean`
 
 Priority: highest.
 
@@ -181,7 +192,8 @@ Why first:
 
 Target:
 
-- standardize `Interface`, native model data, `Laws`, `Realizations`, `Interop`
+- standardize `Interface`, native model data, `Laws`, `Constructions`,
+  construction-local satisfaction, and `Interop`
 - leave full `Interface/ModelTheory` optional unless immediately needed
 
 Gate:
@@ -251,10 +263,10 @@ Why last:
 
 | Area | Current issue | Target | Priority |
 |---|---|---|---|
-| `Analysis/MetricSpace` | legacy `Construction/ModelTheory` | `Realizations/` plus interface-native structure | highest |
+| `Analysis/MetricSpace` | legacy `Construction/ModelTheory` plus a later mistaken `Realizations/` move | `Constructions/Euclidean/` plus interface-native structure and construction-local satisfaction | highest |
 | `EuclideanSpace/Interface` | `Structure.lean`, split model-theory naming | `Interface/ModelTheory/{LStructure,Theory,Model}` | high |
 | `AlgebraicStructures/*/Interface/ModelTheory` | old `Axioms/Satisfaction` shape | new interface model-theory triplet | high |
-| `MeasureTheory/AlgebraOfSets/*/Construction/ModelTheory` | legacy location plus `Language/Signature` split | interface contract or realizations, clarified naming | high |
+| `MeasureTheory/AlgebraOfSets/*/Construction/ModelTheory` | legacy location plus `Language/Signature` split | interface contract or named construction-local satisfaction, clarified naming | high |
 | `Set/Model` | old top-level model pattern | eventual move or explicit grandfathering | medium-high |
 | `Identity/Model` | old top-level model pattern | eventual move or explicit grandfathering | medium |
 | `VolumeII/Arithmetic/Model` | historical special case | separate review later | deferred |
@@ -264,8 +276,8 @@ Why last:
 The next concrete chunk should be:
 
 1. build a path-by-path migration map for `LRA/Analysis/MetricSpace`
-2. move or rename the legacy Euclidean realization out of
-   `Construction/ModelTheory`
+2. move the Euclidean construction and its satisfaction certificate out of
+   both legacy `Construction/ModelTheory` and mistaken `Realizations/` paths
 3. tighten the validator for that subject so the legacy allowance is no longer
    needed
 

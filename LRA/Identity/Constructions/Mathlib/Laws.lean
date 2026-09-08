@@ -1,4 +1,6 @@
 import LRA.Identity.Constructions.Mathlib.Satisfies
+import LRA.Identity.Constructions.Mathlib.Laws.Identity
+import LRA.Identity.Constructions.Mathlib.Laws.LogicalLevels
 import LRA.Identity.Constructions.Mathlib.Satisfies.Equality
 import LRA.Identity.Laws.Primitive
 import LRA.Identity.Laws.Equality
@@ -6,4 +8,3 @@ import LRA.Identity.Laws.Equivalence
 import LRA.Identity.Laws.Congruence
 import LRA.Identity.Laws.UniversalAlgebra
 import LRA.Identity.Laws.ModelTheory
-

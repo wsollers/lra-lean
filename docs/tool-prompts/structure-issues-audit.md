@@ -53,7 +53,9 @@ Focus areas:
 - NumberSystems architecture drift
 - improper or legacy `ModelTheory` placement
 - improper `UniversalAlgebra` placement
-- `Realizations` placement and usage
+- `Constructions/<Construction>` placement and usage
+- construction-local satisfaction-certificate placement
+- deprecated `Realizations/` paths introduced by the superseded architecture
 - validator blind spots
 
 Known broken import families to seed the audit:

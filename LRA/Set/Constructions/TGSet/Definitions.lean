@@ -4,7 +4,7 @@ import LRA.Identity.Constructions.Mathlib
 
 namespace LRA.Set.Constructions.TGSet
 
-open scoped LRA.Identity.Construction.Mathlib
+open scoped LRA.Identity.Constructions.Mathlib
 
 /--
 `ExistsAndUnique` TODO

@@ -13,7 +13,7 @@ open LRA.Identity
 
 Predicate logic:
 
-  (∀ x y ∈ Carrier), LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x y ↔ x = y
+  (∀ x y ∈ Carrier), LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x y ↔ x = y
 
 Predicate logic (unfolded):
 
@@ -22,13 +22,13 @@ Predicate logic (unfolded):
   Objects
     x y : Carrier
   Prove
-    LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x y ↔ x = y
+    LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x y ↔ x = y
 
 Logical form (Lean):
 
 ```lean
 theorem axiomaticIsEq {Carrier : Type u} (x y : Carrier) :
-    LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x y ↔ x = y
+    LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x y ↔ x = y
 ```
 
 Type-theoretic form:
@@ -51,11 +51,11 @@ Related proof moves: constructor, .mp, .mpr
 
 -/
 theorem axiomaticIsEq {Carrier : Type u} (x y : Carrier) :
-    LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x y ↔ x = y := by
+    LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x y ↔ x = y := by
   sorry
 
 #print axioms IdentAgreesWithLeanEq
-#print axioms LRA.Identity.Construction.Mathlib.instIdentityRelation
+#print axioms LRA.Identity.Constructions.Mathlib.instIdentityRelation
 #print axioms axiomaticIsEq
 
 end LRA.Identity.Interop

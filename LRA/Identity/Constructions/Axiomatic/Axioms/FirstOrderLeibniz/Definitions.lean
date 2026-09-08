@@ -1,56 +1,24 @@
 import LRA.Identity.Constructions.Axiomatic.Axioms.Common
-import LRA.Identity.Constructions.Axiomatic.Axioms.FirstOrderLeibniz.Axiom
-import LRA.Identity.Interface.Logic.FirstOrder.Language
+import LRA.Identity.Interface.Logic.FOL.Theory
 
-namespace LRA.Identity
+namespace LRA.Identity.Constructions.Axiomatic
 
-/--
-`EqualityFirstOrderTheory` TODO
+/-- `FirstOrderLeibnizPrinciple` is the construction-local FOL Leibniz
+principle for the predicates definable in one explicitly selected model and
+variable language.
 
-Predicate logic:
-
-  ∀ {Carrier : Type u_1} (Admissible : (Carrier → Prop) → Prop) (R : Carrier → Carrier → Prop), LRA.Identity.IdentityTheory Admissible R
-
-Predicate logic (unfolded):
-
-  Ambient
-    (implicit ambient)
-  Objects
-    (none)
-  Prove
-    LRA.Identity.IdentityTheory Admissible R
-
-Logical form (Lean):
-
+Logical form:
 ```lean
-abbrev EqualityFirstOrderTheory {Carrier : Type _}
-    (Admissible : (Carrier → Prop) → Prop)
-    (R : Carrier → Carrier → Prop) : Prop :=
-  IdentityTheory Admissible R
+LRA.Identity.Logic.FOL.LeibnizSchema
+  (LRA.Identity.Logic.FOL.FormulaDefinable Variable M)
+  (Ax_IdentityRelation : M.Domain -> M.Domain -> Prop)
 ```
-
-Type-theoretic form:
-
-  TODO
-
-Proof use:
-
-  TODO
-
-After unfold / common proof state:
-
-  TODO
-
-Common confusions:
-
-  TODO
-
-Related proof moves: intro, unfold
-
 -/
-abbrev EqualityFirstOrderTheory {Carrier : Type _}
-    (Admissible : (Carrier → Prop) → Prop)
-    (R : Carrier → Carrier → Prop) : Prop :=
-  IdentityTheory Admissible R
+abbrev FirstOrderLeibnizPrinciple
+    {S : LRA.Logic.Signature} (Variable : Type) [DecidableEq Variable]
+    (M : LRA.Logic.FirstOrder.Interpretation S) : Prop :=
+  LRA.Identity.Logic.FOL.LeibnizSchema
+    (LRA.Identity.Logic.FOL.FormulaDefinable Variable M)
+    (Ax_IdentityRelation : M.Domain -> M.Domain -> Prop)
 
-end LRA.Identity
+end LRA.Identity.Constructions.Axiomatic

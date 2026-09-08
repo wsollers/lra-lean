@@ -1,3 +1,3 @@
 import LRA.Identity.Interface.Logic.FirstOrder.Language
 import LRA.Identity.Interface.Logic.FirstOrder.Syntax
-import LRA.Identity.Constructions.Axiomatic.Axioms.FirstOrderLeibniz.Definitions
+import LRA.Identity.Interface.Logic.FOL.Theory

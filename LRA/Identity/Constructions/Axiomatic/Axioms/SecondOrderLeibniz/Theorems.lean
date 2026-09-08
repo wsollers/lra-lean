@@ -24,7 +24,7 @@ theorem IdentityRelation.satisfiesIdentityTheory (Carrier : Type u)
 
 end LRA.Identity
 
-namespace LRA.Identity.Construction.Axiomatic
+namespace LRA.Identity.Constructions.Axiomatic
 
 universe u
 
@@ -49,7 +49,7 @@ theorem axiomaticLeibnizLaw {Carrier : Type u} {x y : Carrier}
 -/
 theorem axiomaticLeibnizLaw {Carrier : Type u} {x y : Carrier}
     (h : Ax_IdentityRelation x y) (Property : Carrier → Prop) :
-    Property x → Property y :=
-  Ax_LeibnizLaw h Property
+    Property x → Property y := by
+  sorry
 
-end LRA.Identity.Construction.Axiomatic
+end LRA.Identity.Constructions.Axiomatic

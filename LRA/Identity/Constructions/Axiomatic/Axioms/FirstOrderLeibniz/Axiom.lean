@@ -1,54 +1,19 @@
-namespace LRA.Identity
+import LRA.Identity.Constructions.Axiomatic.Axioms.FirstOrderLeibniz.Definitions
 
-universe u
+namespace LRA.Identity.Constructions.Axiomatic
 
-/--
-`FirstOrderLeibnizAxiom` TODO
+/-- `Ax_FirstOrderLeibnizLaw` postulates Leibniz substitution for exactly the
+unary predicates definable in the selected first-order model and variable
+language. It is independent of the unrestricted second-order Leibniz axiom.
 
-Predicate logic:
-
-  ∀ {Carrier : Type u} (Admissible : (Carrier → Prop) → Prop) (R : Carrier → Carrier → Prop) (x y : Carrier), R x y → ∀ (P : Carrier → Prop), (Admissible P ∧ P x) → P y
-
-Predicate logic (unfolded):
-
-  Ambient
-    (implicit ambient)
-  Objects
-    (none)
-  Prove
-    R x y → ∀ (P : Carrier → Prop), (Admissible P ∧ P x) → P y
-
-Logical form (Lean):
-
+Logical form:
 ```lean
-def FirstOrderLeibnizAxiom {Carrier : Type u}
-    (Admissible : (Carrier → Prop) → Prop)
-    (R : Carrier → Carrier → Prop) : Prop :=
-  ∀ x y, R x y → ∀ P : Carrier → Prop, Admissible P → P x → P y
+FirstOrderLeibnizPrinciple Variable M
 ```
-
-Type-theoretic form:
-
-  TODO
-
-Proof use:
-
-  TODO
-
-After unfold / common proof state:
-
-  TODO
-
-Common confusions:
-
-  TODO
-
-Related proof moves: intro, unfold
-
 -/
-def FirstOrderLeibnizAxiom {Carrier : Type u}
-    (Admissible : (Carrier → Prop) → Prop)
-    (R : Carrier → Carrier → Prop) : Prop :=
-  ∀ x y, R x y → ∀ P : Carrier → Prop, Admissible P → P x → P y
+axiom Ax_FirstOrderLeibnizLaw
+    {S : LRA.Logic.Signature} (Variable : Type) [DecidableEq Variable]
+    (M : LRA.Logic.FirstOrder.Interpretation S) :
+    FirstOrderLeibnizPrinciple Variable M
 
-end LRA.Identity
+end LRA.Identity.Constructions.Axiomatic

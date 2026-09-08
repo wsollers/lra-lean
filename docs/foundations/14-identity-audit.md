@@ -1,5 +1,16 @@
 # Identity: Direct-Inspection Findings (`[REWORK — CORRECTED]`, and a policy correction)
 
+> **Superseded as a current architecture report (2026-09-07).** This file
+> records a useful historical correction, but its file tree and completion
+> counts describe an earlier revision of `LRA/Identity`. The current direct
+> inspection and the construction/interface/satisfaction migration analysis
+> are in
+> [`docs/architecture/identity-iece-architecture.md`](../architecture/identity-iece-architecture.md).
+> In particular, after the IECE reorganization the present tree has 83 `sorry`
+> occurrences across 38 Lean files, not the three reported below. New proof
+> bodies are intentionally stubbed by project-owner direction. Retain the remainder as historical audit
+> context only.
+
 [← Back to Index](00-index.md)
 
 **Why this file exists.** `13-audit-round-2.md` (Round 2 of the three-way audit) made a claim about `Identity`'s logical-congruence content that was **wrong**, traced to trusting a stale `Identity/ProofsToDo.md` instead of reading actual source. This file records the direct-inspection findings that corrected it, and states the resulting policy: **`ProofsToDo.md` files are never an audit source, in any file, going forward** — they are a personal proof-planning aid the project owner uses, regenerated on demand and frequently out of sync with source by design (per explicit instruction). Every claim about implementation status in this document arc must trace to actual `.lean` source and a real `sorry` count, never to a `ProofsToDo.md` file.

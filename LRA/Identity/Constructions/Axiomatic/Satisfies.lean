@@ -2,3 +2,11 @@ import LRA.Identity.Constructions.Axiomatic.Axioms.Reflexivity.Satisfies
 import LRA.Identity.Constructions.Axiomatic.Axioms.SecondOrderLeibniz.Satisfies
 import LRA.Identity.Constructions.Axiomatic.Axioms.FirstOrderLeibniz.Satisfies
 import LRA.Identity.Constructions.Axiomatic.Satisfies.Equality
+import LRA.Identity.Constructions.Axiomatic.Satisfies.Generic
+import LRA.Identity.Constructions.Axiomatic.Satisfies.FOL
+import LRA.Identity.Constructions.Axiomatic.Satisfies.SOLHenkin
+import LRA.Identity.Constructions.Axiomatic.Satisfies.SOLFull
+import LRA.Identity.Constructions.Axiomatic.Satisfies.UniversalAlgebra
+import LRA.Identity.Constructions.Axiomatic.Satisfies.ZeroOrder
+import LRA.Identity.Constructions.Axiomatic.Satisfies.FirstOrder
+import LRA.Identity.Constructions.Axiomatic.Satisfies.SecondOrder

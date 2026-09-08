@@ -1,6 +1,6 @@
 import LRA.Identity.Constructions.Axiomatic.Axioms.Common
 
-namespace LRA.Identity.Construction.Axiomatic
+namespace LRA.Identity.Constructions.Axiomatic
 
 universe u
 
@@ -10,7 +10,7 @@ axiomatic identity/equality relation.
 
 Predicate logic:
 
-  (∀ x ∈ Carrier), Ax_IdentityRelation x x end LRA.Identity.Construction.Axiomatic
+  (∀ x ∈ Carrier), Ax_IdentityRelation x x end LRA.Identity.Constructions.Axiomatic
 
 Predicate logic (unfolded):
 
@@ -19,7 +19,7 @@ Predicate logic (unfolded):
   Objects
     x : Carrier
   Prove
-    LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x x
+    LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x x
 
 Logical form (Lean):
 
@@ -50,4 +50,4 @@ Related proof moves: TODO
 axiom Ax_IdentityReflexivity {Carrier : Type u} (x : Carrier) :
     Ax_IdentityRelation x x
 
-end LRA.Identity.Construction.Axiomatic
+end LRA.Identity.Constructions.Axiomatic

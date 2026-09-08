@@ -1,74 +1,23 @@
+import LRA.Identity.Constructions.Axiomatic.Axioms.FirstOrderLeibniz.Axiom
 import LRA.Identity.Constructions.Axiomatic.Axioms.Reflexivity.Satisfies
-import LRA.Identity.Constructions.Axiomatic.Axioms.FirstOrderLeibniz.Theorems
-import LRA.Identity.Constructions.Axiomatic.Axioms.SecondOrderLeibniz.Theorems
 
-namespace LRA.Identity.Construction.Axiomatic
+namespace LRA.Identity.Constructions.Axiomatic
 
-universe u
+/-- The axiomatic relation satisfies the FOL identity theory determined by
+the predicates definable in the specified model. Its Leibniz component comes
+from the independent first-order axiom, not the unrestricted SOL axiom.
 
-/--
-`axiomaticIdentityRelation_satisfiesFirstOrderLeibniz` TODO
-
-Predicate logic:
-
-  LRA.Identity.EqualityFirstOrderTheory Admissible Ax_IdentityRelation ∈ Carrier → Carrier → Prop
-
-Predicate logic (unfolded):
-
-  Ambient
-    (Carrier)
-  Objects
-    Admissible : (Carrier → Prop) → Prop
-  Prove
-    LRA.Identity.IdentityTheory Admissible LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation
-
-Logical form (Lean):
-
+Logical form:
 ```lean
-theorem axiomaticIdentityRelation_satisfiesFirstOrderLeibniz
-    (Carrier : Type u) (Admissible : (Carrier → Prop) → Prop) :
-    LRA.Identity.EqualityFirstOrderTheory Admissible
-      (Ax_IdentityRelation : Carrier → Carrier → Prop)
+LRA.Identity.Logic.FOL.ModelIdentityTheory Variable M
+  (Ax_IdentityRelation : M.Domain -> M.Domain -> Prop)
 ```
-
-Type-theoretic form:
-
-  TODO
-
-Proof use:
-
-  TODO
-
-After unfold / common proof state:
-
-  TODO
-
-Common confusions:
-
-  TODO
-
-Related proof moves: intro
-
 -/
-theorem axiomaticIdentityRelation_satisfiesFirstOrderLeibniz
-    (Carrier : Type u) (Admissible : (Carrier → Prop) → Prop) :
-    LRA.Identity.EqualityFirstOrderTheory Admissible
-      (Ax_IdentityRelation : Carrier → Carrier → Prop) := by
-  --unfold
+theorem SatisfiesFOLModelIdentity
+    {S : LRA.Logic.Signature} (Variable : Type) [DecidableEq Variable]
+    (M : LRA.Logic.FirstOrder.Interpretation S) :
+    LRA.Identity.Logic.FOL.ModelIdentityTheory Variable M
+      (Ax_IdentityRelation : M.Domain -> M.Domain -> Prop) := by
+  sorry
 
-  constructor
-  . -- reflexive
-    intro x
-    exact axiomaticIdentityReflexivity x
-
-
-  . -- leibniz
-    intro x y
-    intro Rxy
-    intro P
-    intro pIsAdmissible
-    intro Px
-    exact axiomaticLeibnizLaw Rxy P Px
-
-
-end LRA.Identity.Construction.Axiomatic
+end LRA.Identity.Constructions.Axiomatic

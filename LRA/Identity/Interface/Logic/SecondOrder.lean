@@ -1,1 +1,1 @@
-import LRA.Identity.Constructions.Axiomatic.Axioms.SecondOrderLeibniz.Definitions
+import LRA.Identity.Interface.Logic.SOL

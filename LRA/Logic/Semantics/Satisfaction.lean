@@ -1,5 +1,4 @@
 import Mathlib.Tactic.Tauto
-import LRA.Identity
 import LRA.Logic.Syntax.FirstOrder.Formula
 import LRA.Logic.Semantics.TermEvaluation
 import LRA.Logic.Semantics.Assignment

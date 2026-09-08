@@ -2,14 +2,16 @@ import LRA.Identity.Constructions.Axiomatic.Axioms.Reflexivity.Satisfies
 import LRA.Identity.Constructions.Axiomatic.Axioms.SecondOrderLeibniz.Definitions
 import LRA.Identity.Constructions.Axiomatic.Axioms.SecondOrderLeibniz.Theorems
 
-namespace LRA.Identity.Construction.Axiomatic
+namespace LRA.Identity.Constructions.Axiomatic
 
 universe u
 
 noncomputable scoped instance instIdentityRelation (Carrier : Type u) :
     LRA.Identity.IdentityRelation Carrier where
   Ident := Ax_IdentityRelation
-  IdentReflexive := axiomaticIdentityRelation_satisfiesReflexivity Carrier
-  IdentLeibniz := axiomaticLeibnizLaw
+  IdentReflexive := by
+    sorry
+  IdentLeibniz := by
+    sorry
 
-end LRA.Identity.Construction.Axiomatic
+end LRA.Identity.Constructions.Axiomatic

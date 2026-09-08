@@ -1,7 +1,7 @@
 import LRA.Identity.Constructions.Axiomatic.Axioms.Reflexivity.Axiom
 import LRA.Identity.Constructions.Axiomatic.Axioms.Reflexivity.Definitions
 
-namespace LRA.Identity.Construction.Axiomatic
+namespace LRA.Identity.Constructions.Axiomatic
 
 universe u
 
@@ -17,8 +17,8 @@ theorem axiomaticIdentityReflexivity {Carrier : Type u} (x : Carrier) :
 ```
 -/
 theorem axiomaticIdentityReflexivity {Carrier : Type u} (x : Carrier) :
-    Ax_IdentityRelation x x :=
-  Ax_IdentityReflexivity x
+    Ax_IdentityRelation x x := by
+  sorry
 
 /--
 `Ax_EqualityReflexivity` is the legacy equality-facing theorem wrapper for
@@ -34,8 +34,8 @@ theorem Ax_EqualityReflexivity {Carrier : Type u} (x : Carrier) :
 ```
 -/
 theorem Ax_EqualityReflexivity {Carrier : Type u} (x : Carrier) :
-    Ax_IdentityRelation x x :=
-  axiomaticIdentityReflexivity x
+    Ax_IdentityRelation x x := by
+  sorry
 
 /--
 `axiomaticIdentityRelation_isReflexive` TODO
@@ -51,7 +51,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.Identity.Construction.Axiomatic.Ax_IdentityRelation x x
+    LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x x
 
 Logical form (Lean):
 
@@ -81,8 +81,7 @@ Related proof moves: intro
 -/
 theorem axiomaticIdentityRelation_isReflexive (Carrier : Type u) :
     LRA.Identity.IsReflexiveIdentityRelation (Ax_IdentityRelation : Carrier → Carrier → Prop) := by
-  intro x
-  exact axiomaticIdentityReflexivity x
+  sorry
 
 
-end LRA.Identity.Construction.Axiomatic
+end LRA.Identity.Constructions.Axiomatic

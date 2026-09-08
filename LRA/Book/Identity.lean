@@ -2,6 +2,8 @@ import LRA.Identity.Laws
 
 namespace LRA.Book.Identity
 
+universe u
+
 /--
 `Ident` TODO
 
@@ -16,7 +18,9 @@ Predicate logic (unfolded):
 Logical form (Lean):
 
 ```lean
-abbrev Ident := LRA.Identity.Ident
+abbrev Ident {Carrier : Type u} [LRA.Identity.IdentityRelation Carrier]
+    (left right : Carrier) : Prop :=
+  LRA.Identity.Ident left right
 ```
 
 Type-theoretic form:
@@ -38,7 +42,9 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-abbrev Ident := LRA.Identity.Ident
+abbrev Ident {Carrier : Type u} [LRA.Identity.IdentityRelation Carrier]
+    (left right : Carrier) : Prop :=
+  LRA.Identity.Ident left right
 /--
 `Distinct` TODO
 
@@ -81,7 +87,9 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-abbrev Distinct := LRA.Identity.Distinct
+abbrev Distinct {Carrier : Type u} [LRA.Identity.IdentityRelation Carrier]
+    (left right : Carrier) : Prop :=
+  LRA.Identity.Distinct left right
 /--
 `HasWitness` `HasWitness P` states that at least one element of `Carrier` satisfies `P`.
 
@@ -124,7 +132,8 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-abbrev HasWitness := LRA.Identity.HasWitness
+abbrev HasWitness {Carrier : Type u} (P : Carrier → Prop) : Prop :=
+  LRA.Identity.HasWitness P
 /--
 `HasNoWitness` TODO
 
@@ -167,7 +176,8 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-abbrev HasNoWitness := LRA.Identity.HasNoWitness
+abbrev HasNoWitness {Carrier : Type u} (P : Carrier → Prop) : Prop :=
+  LRA.Identity.HasNoWitness P
 /--
 `AtMostOne` `AtMostOne P` states that any two witnesses of `P` are identified by the active `IdentityRelation`.  It does not assert that a witness exists.
 
@@ -210,7 +220,9 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-abbrev AtMostOne := LRA.Identity.AtMostOne
+abbrev AtMostOne {Carrier : Type u} [LRA.Identity.IdentityRelation Carrier]
+    (P : Carrier → Prop) : Prop :=
+  LRA.Identity.AtMostOne P
 /--
 `NotAtMostOne` TODO
 
@@ -253,7 +265,9 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-abbrev NotAtMostOne := LRA.Identity.NotAtMostOne
+abbrev NotAtMostOne {Carrier : Type u} [LRA.Identity.IdentityRelation Carrier]
+    (P : Carrier → Prop) : Prop :=
+  LRA.Identity.NotAtMostOne P
 /--
 `ExactlyOne` `ExactlyOne P` states that `P` has a witness and that all its witnesses are identified by the active `IdentityRelation`.  Use this identity-polymorphic notion when uniqueness should be expressed via `Ident`; use Lean's `ExistsAndUnique` when native equality is intended.
 
@@ -296,7 +310,9 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-abbrev ExactlyOne := LRA.Identity.ExactlyOne
+abbrev ExactlyOne {Carrier : Type u} [LRA.Identity.IdentityRelation Carrier]
+    (P : Carrier → Prop) : Prop :=
+  LRA.Identity.ExactlyOne P
 /--
 `AtLeastTwo` TODO
 
@@ -339,7 +355,8 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-abbrev AtLeastTwo := LRA.Identity.AtLeastTwo
+abbrev AtLeastTwo (Carrier : Type u) [LRA.Identity.IdentityRelation Carrier] : Prop :=
+  LRA.Identity.AtLeastTwo Carrier
 /--
 `AtMostTwo` TODO
 
@@ -382,6 +399,7 @@ Common confusions:
 Related proof moves: unfold
 
 -/
-abbrev AtMostTwo := LRA.Identity.AtMostTwo
+abbrev AtMostTwo (Carrier : Type u) [LRA.Identity.IdentityRelation Carrier] : Prop :=
+  LRA.Identity.AtMostTwo Carrier
 
 end LRA.Book.Identity
