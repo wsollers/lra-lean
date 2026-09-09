@@ -11,33 +11,33 @@ Predicate logic:
 
   structure TopologyDefinition (X : Type u) where
 
-  IsOpen : Set X → Prop
+    IsOpen : Set X → Prop
 
-  isOpen_univ : IsOpen Set.univ
+    isOpen_univ : IsOpen Set.univ
 
-  isOpen_empty : IsOpen ∅
+    isOpen_empty : IsOpen ∅
 
-  isOpen_sUnion :
-    ∀ S : Set (Set X), (∀ U, U ∈ S → IsOpen U) → IsOpen (⋃₀ S)
+    isOpen_sUnion :
+      ∀ S : Set (Set X), (∀ U, U ∈ S → IsOpen U) → IsOpen (⋃₀ S)
 
-  isOpen_inter :
-    ∀ U V : Set X, IsOpen U → IsOpen V → IsOpen (U ∩ V)
+    isOpen_inter :
+      ∀ U V : Set X, IsOpen U → IsOpen V → IsOpen (U ∩ V)
 
 Predicate logic (unfolded):
 
   structure TopologyDefinition (X : Type u) where
 
-  IsOpen : Set X → Prop
+    IsOpen : Set X → Prop
 
-  isOpen_univ : IsOpen Set.univ
+    isOpen_univ : IsOpen Set.univ
 
-  isOpen_empty : IsOpen ∅
+    isOpen_empty : IsOpen ∅
 
-  isOpen_sUnion :
-    ∀ S : Set (Set X), (∀ U, U ∈ S → IsOpen U) → IsOpen (⋃₀ S)
+    isOpen_sUnion :
+      ∀ S : Set (Set X), (∀ U, U ∈ S → IsOpen U) → IsOpen (⋃₀ S)
 
-  isOpen_inter :
-    ∀ U V : Set X, IsOpen U → IsOpen V → IsOpen (U ∩ V) (source fallback; no compiled unfold data available)
+    isOpen_inter :
+      ∀ U V : Set X, IsOpen U → IsOpen V → IsOpen (U ∩ V) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

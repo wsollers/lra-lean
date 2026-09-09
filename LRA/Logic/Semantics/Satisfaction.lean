@@ -14,7 +14,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : (a b : Variable) → Decidable (a = b)] (M : LRA.Logic.FirstOrder.Interpretation S) (assignment : Variable → M.1) (a : LRA.Logic.FirstOrder.Formula S Variable), (LRA.Logic.FirstOrder.Formula.brecOn.go (motive := fun x => (Variable → M.Domain) → Prop) a (LRA.Logic.FirstOrder.Satisfies._f M)).1 assignment
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (LRA.Logic.FirstOrder.Formula.brecOn.go (motive := fun x => (Variable → M.Domain) → Prop) a (LRA.Logic.FirstOrder.Satisfies._f M)).1 assignment
 
 Logical form (Lean):
 
@@ -78,11 +83,19 @@ def Satisfies
 
 Predicate logic:
 
-  Satisfies M assignment (Formula.and φ ψ) ↔ (Satisfies M assignment φ ∧ Satisfies M assignment ψ)
+  ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : DecidableVariable] = M : LRA.Logic.FirstOrder.Interpretation S (assignment : Variable → M.Domain) (φ ψ : LRA.Logic.FirstOrder.Formula S Variable), LRA.Logic.FirstOrder.Satisfies M assignment (φ.and ψ) ↔ (LRA.Logic.FirstOrder.Satisfies M assignment φ ∧ LRA.Logic.FirstOrder.Satisfies M assignment ψ)
 
 Predicate logic (unfolded):
 
-  ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : (a b : Variable) → Decidable (a = b)] (M : LRA.Logic.FirstOrder.Interpretation S) (assignment : Variable → M.1) (φ ψ : LRA.Logic.FirstOrder.Formula S Variable), LRA.Logic.FirstOrder.Satisfies M assignment (φ.impl ψ.neg).neg ↔ (LRA.Logic.FirstOrder.Satisfies M assignment φ ∧ LRA.Logic.FirstOrder.Satisfies M assignment ψ)
+  Ambient
+    (Variable)
+  Objects
+    S : Signature
+    M : Interpretation S
+    assignment : Variable -> M.Domain
+    φ ψ : Formula S Variable
+  Prove
+    LRA.Logic.FirstOrder.Satisfies M assignment (φ.and ψ) ↔ (LRA.Logic.FirstOrder.Satisfies M assignment φ ∧ LRA.Logic.FirstOrder.Satisfies M assignment ψ)
 
 Logical form (Lean):
 
@@ -126,11 +139,20 @@ theorem satisfiesAndIffSatisfiesBoth
 
 Predicate logic:
 
-  (∀ v ∈ Variable), Satisfies M assignment (Formula.existsQ v φ) ↔ ∃ a ∈ M.Domain, Satisfies M (updateAssignment assignment v a) φ
+  ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : DecidableVariable] = M : LRA.Logic.FirstOrder.Interpretation S (assignment : Variable → M.Domain) (v : Variable) (φ : LRA.Logic.FirstOrder.Formula S Variable), LRA.Logic.FirstOrder.Satisfies M assignment (LRA.Logic.FirstOrder.Formula.existsQ v φ) ↔ Exists fun a => LRA.Logic.FirstOrder.Satisfies M (LRA.Logic.updateAssignment assignment v a) φ
 
 Predicate logic (unfolded):
 
-  ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : (a b : Variable) → Decidable (a = b)] (M : LRA.Logic.FirstOrder.Interpretation S) (assignment : Variable → M.1) (v : Variable) (φ : LRA.Logic.FirstOrder.Formula S Variable), LRA.Logic.FirstOrder.Satisfies M assignment (LRA.Logic.FirstOrder.Formula.forallQ v φ.neg).neg ↔ Exists fun a => LRA.Logic.FirstOrder.Satisfies M (fun v' => Decidable.rec (fun h => (fun x => assignment v') h) (fun h => (fun x => a) h) (inst v' v)) φ
+  Ambient
+    (Variable)
+  Objects
+    S : Signature
+    M : Interpretation S
+    assignment : Variable -> M.Domain
+    v : Variable
+    φ : Formula S Variable
+  Prove
+    LRA.Logic.FirstOrder.Satisfies M assignment (LRA.Logic.FirstOrder.Formula.existsQ v φ) ↔ Exists fun a => LRA.Logic.FirstOrder.Satisfies M (LRA.Logic.updateAssignment assignment v a) φ
 
 Logical form (Lean):
 

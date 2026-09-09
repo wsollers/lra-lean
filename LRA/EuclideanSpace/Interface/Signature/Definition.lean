@@ -8,14 +8,14 @@ namespace LRA.EuclideanSpace
 Predicate logic:
 
   inductive TarskiRelationSymbol where
-  | between
-  | congruent
+    | between
+    | congruent
 
 Predicate logic (unfolded):
 
   inductive TarskiRelationSymbol where
-  | between
-  | congruent (source fallback; no compiled unfold data available)
+    | between
+    | congruent (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -54,18 +54,18 @@ inductive TarskiRelationSymbol where
 Predicate logic:
 
   def TarskiFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
-  Symbol := TarskiRelationSymbol
-  arity
-    | .between => 3
-    | .congruent => 4
+    Symbol := TarskiRelationSymbol
+    arity
+      | .between => 3
+      | .congruent => 4
 
 Predicate logic (unfolded):
 
   def TarskiFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
-  Symbol := TarskiRelationSymbol
-  arity
-    | .between => 3
-    | .congruent => 4 (source fallback; no compiled unfold data available)
+    Symbol := TarskiRelationSymbol
+    arity
+      | .between => 3
+      | .congruent => 4 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -108,16 +108,16 @@ def TarskiFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
 Predicate logic:
 
   def TarskiFirstOrderSignature : LRA.Logic.Signature where
-  Functions := ⟨Empty, Empty.elim⟩
-  Relations := TarskiFirstOrderRelations
-  Constants := Empty
+    Functions := ⟨Empty, Empty.elim⟩
+    Relations := TarskiFirstOrderRelations
+    Constants := Empty
 
 Predicate logic (unfolded):
 
   def TarskiFirstOrderSignature : LRA.Logic.Signature where
-  Functions := ⟨Empty, Empty.elim⟩
-  Relations := TarskiFirstOrderRelations
-  Constants := Empty (source fallback; no compiled unfold data available)
+    Functions := ⟨Empty, Empty.elim⟩
+    Relations := TarskiFirstOrderRelations
+    Constants := Empty (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

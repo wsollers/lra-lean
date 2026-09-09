@@ -12,18 +12,18 @@ universe u
 Predicate logic:
 
   def OperationPower {Carrier : Type u}
-    (operation : BinaryEndoOperation Carrier)
-    (identity element : Carrier) : Nat → Carrier
-  | 0 => identity
-  | Nat.succ exponent => operation (OperationPower operation identity element exponent) element
+      (operation : BinaryEndoOperation Carrier)
+      (identity element : Carrier) : Nat → Carrier
+    | 0 => identity
+    | Nat.succ exponent => operation (OperationPower operation identity element exponent) element
 
 Predicate logic (unfolded):
 
   def OperationPower {Carrier : Type u}
-    (operation : BinaryEndoOperation Carrier)
-    (identity element : Carrier) : Nat → Carrier
-  | 0 => identity
-  | Nat.succ exponent => operation (OperationPower operation identity element exponent) element (source fallback; no compiled unfold data available)
+      (operation : BinaryEndoOperation Carrier)
+      (identity element : Carrier) : Nat → Carrier
+    | 0 => identity
+    | Nat.succ exponent => operation (OperationPower operation identity element exponent) element (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -66,18 +66,18 @@ def OperationPower {Carrier : Type u}
 Predicate logic:
 
   def PositivePower {Carrier : Type u}
-    (operation : BinaryEndoOperation Carrier)
-    (element : Carrier) : Nat → Carrier
-  | 0 => element
-  | Nat.succ exponent => operation (PositivePower operation element exponent) element
+      (operation : BinaryEndoOperation Carrier)
+      (element : Carrier) : Nat → Carrier
+    | 0 => element
+    | Nat.succ exponent => operation (PositivePower operation element exponent) element
 
 Predicate logic (unfolded):
 
   def PositivePower {Carrier : Type u}
-    (operation : BinaryEndoOperation Carrier)
-    (element : Carrier) : Nat → Carrier
-  | 0 => element
-  | Nat.succ exponent => operation (PositivePower operation element exponent) element (source fallback; no compiled unfold data available)
+      (operation : BinaryEndoOperation Carrier)
+      (element : Carrier) : Nat → Carrier
+    | 0 => element
+    | Nat.succ exponent => operation (PositivePower operation element exponent) element (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -123,7 +123,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (operation : Carrier → Carrier → Carrier) (zero element : Carrier), Exists fun positiveExponent => LRA.Operation.Laws.Nilpotent.PositivePower operation element positiveExponent = zero
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun positiveExponent => LRA.Operation.Laws.Nilpotent.PositivePower operation element positiveExponent = zero
 
 Logical form (Lean):
 

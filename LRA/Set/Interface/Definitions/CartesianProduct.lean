@@ -17,24 +17,24 @@ variable {DomainObject RangeObject RelationObject : Type v}
 Predicate logic:
 
   def CartesianProductOf [HasPairing Left Right Pair]
-    [Membership Left DomainObject] [Membership Right RangeObject]
-    [HasSeparation Pair RelationObject]
-    (left : DomainObject) (right : RangeObject)
-    (ambientPairs : RelationObject) : RelationObject :=
-  HasSeparation.separation ambientPairs
-    (fun member => ∃ (a : Left) (b : Right),
-      member = OrderedPair a b ∧ a ∈ left ∧ b ∈ right)
+      [Membership Left DomainObject] [Membership Right RangeObject]
+      [HasSeparation Pair RelationObject]
+      (left : DomainObject) (right : RangeObject)
+      (ambientPairs : RelationObject) : RelationObject :=
+    HasSeparation.separation ambientPairs
+      (fun member => ∃ (a : Left) (b : Right),
+        member = OrderedPair a b ∧ a ∈ left ∧ b ∈ right)
 
 Predicate logic (unfolded):
 
   def CartesianProductOf [HasPairing Left Right Pair]
-    [Membership Left DomainObject] [Membership Right RangeObject]
-    [HasSeparation Pair RelationObject]
-    (left : DomainObject) (right : RangeObject)
-    (ambientPairs : RelationObject) : RelationObject :=
-  HasSeparation.separation ambientPairs
-    (fun member => ∃ (a : Left) (b : Right),
-      member = OrderedPair a b ∧ a ∈ left ∧ b ∈ right) (source fallback; no compiled unfold data available)
+      [Membership Left DomainObject] [Membership Right RangeObject]
+      [HasSeparation Pair RelationObject]
+      (left : DomainObject) (right : RangeObject)
+      (ambientPairs : RelationObject) : RelationObject :=
+    HasSeparation.separation ambientPairs
+      (fun member => ∃ (a : Left) (b : Right),
+        member = OrderedPair a b ∧ a ∈ left ∧ b ∈ right) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

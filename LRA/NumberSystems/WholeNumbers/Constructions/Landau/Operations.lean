@@ -17,18 +17,18 @@ variable (natural_data : NaturalArithmeticForWholeNumbers Element SetObject)
 Predicate logic:
 
   noncomputable def addition : Carrier natural_data → Carrier natural_data → Carrier natural_data
-  | none, right => right
-  | left, none => left
-  | some left, some right =>
-      some (LandauAddition natural_data.model left right)
+    | none, right => right
+    | left, none => left
+    | some left, some right =>
+        some (LandauAddition natural_data.model left right)
 
 Predicate logic (unfolded):
 
   noncomputable def addition : Carrier natural_data → Carrier natural_data → Carrier natural_data
-  | none, right => right
-  | left, none => left
-  | some left, some right =>
-      some (LandauAddition natural_data.model left right) (source fallback; no compiled unfold data available)
+    | none, right => right
+    | left, none => left
+    | some left, some right =>
+        some (LandauAddition natural_data.model left right) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -71,18 +71,18 @@ noncomputable def addition : Carrier natural_data → Carrier natural_data → C
 Predicate logic:
 
   noncomputable def multiplication : Carrier natural_data → Carrier natural_data → Carrier natural_data
-  | none, _ => none
-  | _, none => none
-  | some left, some right =>
-      some (LandauMultiplication natural_data.model left right)
+    | none, _ => none
+    | _, none => none
+    | some left, some right =>
+        some (LandauMultiplication natural_data.model left right)
 
 Predicate logic (unfolded):
 
   noncomputable def multiplication : Carrier natural_data → Carrier natural_data → Carrier natural_data
-  | none, _ => none
-  | _, none => none
-  | some left, some right =>
-      some (LandauMultiplication natural_data.model left right) (source fallback; no compiled unfold data available)
+    | none, _ => none
+    | _, none => none
+    | some left, some right =>
+        some (LandauMultiplication natural_data.model left right) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

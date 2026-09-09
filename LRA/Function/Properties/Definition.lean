@@ -9,18 +9,23 @@ universe u v
 
 Predicate logic:
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (y : Codomain) (x₁ x₂ : Domain), (function.Graph x₁ y ∧ function.Graph x₂ y) → x₁ = x₂
+  ∀ {α : Type u} {β : Type v} (R : LRA.Relation.HeterogeneousBinaryRelation α β) (y : β) (x₁ x₂ : α), (R x₁ y ∧ R x₂ y) → x₁ = x₂
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (y : Codomain) (x₁ x₂ : Domain), (function x₁ = y ∧ function x₂ = y) → x₁ = x₂
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (R x₁ y ∧ R x₂ y) → x₁ = x₂
 
 Logical form (Lean):
 
 ```lean
-abbrev Injective {Domain : Type u} {Codomain : Type v}
-    (function : LRA.Function Domain Codomain) : Prop :=
-  LRA.Relation.LeftUnique (Graph function)
+def LeftUnique {α : Type u} {β : Type v}
+    (R : HeterogeneousBinaryRelation α β) : Prop :=
+  ∀ y x₁ x₂, R x₁ y → R x₂ y → x₁ = x₂
 ```
 
 Type-theoretic form:
@@ -51,18 +56,23 @@ abbrev Injective {Domain : Type u} {Codomain : Type v}
 
 Predicate logic:
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (y : Codomain), Exists fun x => function.Graph x y
+  ∀ {α : Type u} {β : Type v} (R : LRA.Relation.HeterogeneousBinaryRelation α β) (y : β), Exists fun x => R x y
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (y : Codomain), Exists fun x => function x = y
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun x => R x y
 
 Logical form (Lean):
 
 ```lean
-abbrev Surjective {Domain : Type u} {Codomain : Type v}
-    (function : LRA.Function Domain Codomain) : Prop :=
-  LRA.Relation.RightTotal (Graph function)
+def RightTotal {α : Type u} {β : Type v}
+    (R : HeterogeneousBinaryRelation α β) : Prop :=
+  ∀ y, ∃ x, R x y
 ```
 
 Type-theoretic form:
@@ -97,7 +107,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain), (∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂ ∧ ∀ (y : Codomain), Exists fun x => function x = y)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ (∀ (y : Codomain), Exists fun x => function x = y))
 
 Logical form (Lean):
 

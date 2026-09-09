@@ -14,7 +14,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {Beta : Type v} (sourceRelation : Alpha → Alpha → Prop) (targetRelation : Beta → Beta → Prop) (map : Alpha → Beta) (left right : Alpha), sourceRelation left right → targetRelation (map right) (map left)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    sourceRelation left right → targetRelation (map right) (map left)
 
 Logical form (Lean):
 

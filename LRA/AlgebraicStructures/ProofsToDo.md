@@ -37,7 +37,7 @@ Predicate logic (unfolded):
     ∈ S LRA.AlgebraicStructures.MagmaLaws (Subtype fun x => x) ∈ S
 Transliterated theorem: (∀ a b, a ∈ S → b ∈ S → a * b ∈ S) → letI
 Logical form (Lean): {A : Type u} [Mul A] {S : LRA.Set.LRA_Set A} (closed : ∀ a b, a ∈ S → b ∈ S → a * b ∈ S) [Nonempty {x // x ∈ S}] : letI
-Source: ./Magma/Constructions/Set/ClosedSubset.lean#L20
+Source: [`./Magma/Constructions/Set/ClosedSubset.lean#L103`](./Magma/Constructions/Set/ClosedSubset.lean#L103)
 
 
 
@@ -54,7 +54,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.MagmaLaws M
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Magma/Constructions/Mathlib/Laws.lean
+Source: [`./Magma/Constructions/Mathlib/Laws.lean`](./Magma/Constructions/Mathlib/Laws.lean)
 
 
 
@@ -71,7 +71,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.MultiplicativeSemigroupLaws R → ∀ (a b c : R), { hMul := fun a b => inst.mul a b }.hMul ({ hMul := fun a b => inst.mul a b }.hMul a b) c = { hMul := fun a b => inst.mul a b }.hMul a ({ hMul := fun a b => inst.mul a b }.hMul b c)
 Transliterated theorem: ∀ a b c : R, (a * b) * c = a * (b * c)
 Logical form (Lean): [Mul R] [Nonempty R] [MultiplicativeSemigroupLaws R] : ∀ a b c : R, (a * b) * c = a * (b * c)
-Source: ./Semigroup/Interface/Laws/Definition.lean#L18
+Source: [`./Semigroup/Interface/Laws/Definition.lean#L99`](./Semigroup/Interface/Laws/Definition.lean#L99)
 
 
 
@@ -88,7 +88,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.MultiplicativeSemigroupLaws A → ∀ {S : A → Prop} (closed : ∀ (a b : A), a ∈ S → b ∈ S → { hMul := fun a b => inst.mul a b }.hMul a b ∈ S) [inst_2 : Nonempty (Subtype fun x => x)], ∈ S LRA.AlgebraicStructures.MultiplicativeSemigroupLaws (Subtype fun x => x) ∈ S
 Transliterated theorem: (∀ a b, a ∈ S → b ∈ S → a * b ∈ S) → letI
 Logical form (Lean): {A : Type u} [Mul A] [Nonempty A] [MultiplicativeSemigroupLaws A] {S : LRA.Set.LRA_Set A} (closed : ∀ a b, a ∈ S → b ∈ S → a * b ∈ S) [Nonempty {x // x ∈ S}] : letI
-Source: ./Semigroup/Constructions/Set/ClosedSubset.lean#L14
+Source: [`./Semigroup/Constructions/Set/ClosedSubset.lean#L54`](./Semigroup/Constructions/Set/ClosedSubset.lean#L54)
 
 
 
@@ -105,7 +105,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.MultiplicativeCommutativeLaws R → ∀ (a b : R), { hMul := fun a b => inst.mul a b }.hMul a b = { hMul := fun a b => inst.mul a b }.hMul b a
 Transliterated theorem: ∀ a b : R, a * b = b * a
 Logical form (Lean): [Mul R] [MultiplicativeCommutativeLaws R] : ∀ a b : R, a * b = b * a
-Source: ./CommutativeSemigroup/Interface/Laws/Definition.lean#L25
+Source: [`./CommutativeSemigroup/Interface/Laws/Definition.lean#L100`](./CommutativeSemigroup/Interface/Laws/Definition.lean#L100)
 
 
 
@@ -122,7 +122,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.CommutativeSemigroupLaws A → ∀ {S : A → Prop} (closed : ∀ (a b : A), a ∈ S → b ∈ S → { hMul := fun a b => inst.mul a b }.hMul a b ∈ S) [inst_2 : Nonempty (Subtype fun x => x)], ∈ S LRA.AlgebraicStructures.CommutativeSemigroupLaws (Subtype fun x => x) ∈ S
 Transliterated theorem: (∀ a b, a ∈ S → b ∈ S → a * b ∈ S) → letI
 Logical form (Lean): {A : Type u} [Mul A] [Nonempty A] [CommutativeSemigroupLaws A] {S : LRA.Set.LRA_Set A} (closed : ∀ a b, a ∈ S → b ∈ S → a * b ∈ S) [Nonempty {x // x ∈ S}] : letI
-Source: ./CommutativeSemigroup/Constructions/Set/ClosedSubset.lean#L15
+Source: [`./CommutativeSemigroup/Constructions/Set/ClosedSubset.lean#L55`](./CommutativeSemigroup/Constructions/Set/ClosedSubset.lean#L55)
 
 
 
@@ -139,7 +139,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.CommutativeSemigroupLaws R
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./CommutativeSemigroup/Constructions/Mathlib/Laws.lean
+Source: [`./CommutativeSemigroup/Constructions/Mathlib/Laws.lean`](./CommutativeSemigroup/Constructions/Mathlib/Laws.lean)
 
 
 
@@ -156,7 +156,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.MultiplicativeIdentityLaws R → ∀ (a : R), { hMul := fun a b => inst.mul a b }.hMul 1 a = a
 Transliterated theorem: ∀ a : R, 1 * a = a
 Logical form (Lean): [Mul R] [OfNat R 1] [MultiplicativeIdentityLaws R] : ∀ a : R, 1 * a = a
-Source: ./Monoid/Interface/Laws/Definition.lean#L27
+Source: [`./Monoid/Interface/Laws/Definition.lean#L150`](./Monoid/Interface/Laws/Definition.lean#L150)
 
 
 
@@ -173,7 +173,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.MultiplicativeIdentityLaws R → ∀ (a : R), { hMul := fun a b => inst.mul a b }.hMul a 1 = a
 Transliterated theorem: ∀ a : R, a * 1 = a
 Logical form (Lean): [Mul R] [OfNat R 1] [MultiplicativeIdentityLaws R] : ∀ a : R, a * 1 = a
-Source: ./Monoid/Interface/Laws/Definition.lean#L30
+Source: [`./Monoid/Interface/Laws/Definition.lean#L195`](./Monoid/Interface/Laws/Definition.lean#L195)
 
 
 
@@ -190,7 +190,7 @@ Predicate logic (unfolded):
     1 ∈ S → Nonempty (Subtype fun x => x) ∈ S
 Transliterated theorem: (1 ∈ A ∈ S) → Nonempty {x // x ∈ S}
 Logical form (Lean): {A : Type u} [OfNat A 1] {S : LRA.Set.LRA_Set A} (hOne : (1 : A) ∈ S) : Nonempty {x // x ∈ S}
-Source: ./Monoid/Constructions/Set/ClosedSubset.lean#L20
+Source: [`./Monoid/Constructions/Set/ClosedSubset.lean#L101`](./Monoid/Constructions/Set/ClosedSubset.lean#L101)
 
 
 
@@ -207,7 +207,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.MonoidLaws A → ∀ {S : A → Prop} (closed : ∀ (a b : A), a ∈ S → b ∈ S → { hMul := fun a b => inst.mul a b }.hMul a b ∈ S) (hOne : 1), ∈ SLRA.AlgebraicStructures.MonoidLaws (Subtype fun x => x) ∈ S
 Transliterated theorem: (∀ a b, a ∈ S → b ∈ S → a * b ∈ S ∧ 1 ∈ A ∈ S) → letI
 Logical form (Lean): {A : Type u} [Mul A] [OfNat A 1] [Nonempty A] [MonoidLaws A] {S : LRA.Set.LRA_Set A} (closed : ∀ a b, a ∈ S → b ∈ S → a * b ∈ S) (hOne : (1 : A) ∈ S) : letI
-Source: ./Monoid/Constructions/Set/ClosedSubset.lean#L27
+Source: [`./Monoid/Constructions/Set/ClosedSubset.lean#L152`](./Monoid/Constructions/Set/ClosedSubset.lean#L152)
 
 
 
@@ -224,7 +224,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.MonoidLaws R
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Monoid/Constructions/Mathlib/Laws.lean
+Source: [`./Monoid/Constructions/Mathlib/Laws.lean`](./Monoid/Constructions/Mathlib/Laws.lean)
 
 
 
@@ -241,7 +241,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.CommutativeMonoidLaws A → ∀ {S : A → Prop} (closed : ∀ (a b : A), a ∈ S → b ∈ S → { hMul := fun a b => inst.mul a b }.hMul a b ∈ S) (hOne : 1), ∈ S LRA.AlgebraicStructures.CommutativeMonoidLaws (Subtype fun x => x) ∈ S
 Transliterated theorem: (∀ a b, a ∈ S → b ∈ S → a * b ∈ S ∧ 1 ∈ A ∈ S) → letI
 Logical form (Lean): {A : Type u} [Mul A] [OfNat A 1] [Nonempty A] [CommutativeMonoidLaws A] {S : LRA.Set.LRA_Set A} (closed : ∀ a b, a ∈ S → b ∈ S → a * b ∈ S) (hOne : (1 : A) ∈ S) : letI
-Source: ./CommutativeMonoid/Constructions/Set/ClosedSubset.lean#L16
+Source: [`./CommutativeMonoid/Constructions/Set/ClosedSubset.lean#L57`](./CommutativeMonoid/Constructions/Set/ClosedSubset.lean#L57)
 
 
 
@@ -258,7 +258,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.CommutativeMonoidLaws R
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./CommutativeMonoid/Constructions/Mathlib/Laws.lean
+Source: [`./CommutativeMonoid/Constructions/Mathlib/Laws.lean`](./CommutativeMonoid/Constructions/Mathlib/Laws.lean)
 
 
 
@@ -272,10 +272,10 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.MultiplicativeGroupInverseLaws R → ∀ (a : R), { hMul := fun a b => inst.mul a b }.hMul (a) ≤ a = 1
+    LRA.AlgebraicStructures.MultiplicativeGroupInverseLaws R → ∀ (a : R), { hMul := fun a b => inst.mul a b }.hMul (inst_1.1 a) a = 1
 Transliterated theorem: ∀ a : R, a⁻¹ * a = 1
 Logical form (Lean): [Mul R] [Inv R] [OfNat R 1] [MultiplicativeGroupInverseLaws R] : ∀ a : R, a⁻¹ * a = 1
-Source: ./Group/Interface/Laws/Definition.lean#L39
+Source: [`./Group/Interface/Laws/Definition.lean#L171`](./Group/Interface/Laws/Definition.lean#L171)
 
 
 
@@ -289,10 +289,10 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.MultiplicativeGroupInverseLaws R → ∀ (a : R), { hMul := fun a b => inst.mul a b }.hMul a (a) ≤ =1
+    LRA.AlgebraicStructures.MultiplicativeGroupInverseLaws R → ∀ (a : R), { hMul := fun a b => inst.mul a b }.hMul a (inst_1.1 a) = 1
 Transliterated theorem: ∀ a : R, a * a⁻¹ = 1
 Logical form (Lean): [Mul R] [Inv R] [OfNat R 1] [MultiplicativeGroupInverseLaws R] : ∀ a : R, a * a⁻¹ = 1
-Source: ./Group/Interface/Laws/Definition.lean#L43
+Source: [`./Group/Interface/Laws/Definition.lean#L218`](./Group/Interface/Laws/Definition.lean#L218)
 
 
 
@@ -306,10 +306,10 @@ Predicate logic (unfolded):
   Objects
     S : LRA.Set.LRA_Set A
   Prove
-    LRA.AlgebraicStructures.MonoidLaws A → ∀ {S : A → Prop} (closed : ∀ (a b : A), a ∈ S → b ∈ S → { hMul := fun a b => inst.mul a b }.hMul a b ∈ S) (hOne : 1) ∈ S (hInvClosed : ∀ (a : A), a ∈ S → a ≤ ∈S), (∀ (a : A), a ∈ S → ({ hMul := fun a b => inst.mul a b }.hMul (a) ≤ a = 1 ∧ { hMul := fun a b => inst.mul a b }.hMul a (a) ≤ =1)) → LRA.AlgebraicStructures.GroupLaws (Subtype fun x => x) ∈ S
+    LRA.AlgebraicStructures.MonoidLaws A → ∀ {S : A → Prop} (closed : ∀ (a b : A), a ∈ S → b ∈ S → { hMul := fun a b => inst.mul a b }.hMul a b ∈ S) (hOne : 1) ∈ S (hInvClosed : ∀ (a : A), a ∈ S → inst_1.1 a ∈ S), (∀ (a : A), a ∈ S → ({ hMul := fun a b => inst.mul a b }.hMul (inst_1.1 a) a = 1 ∧ { hMul := fun a b => inst.mul a b }.hMul a (inst_1.1 a) = 1)) → LRA.AlgebraicStructures.GroupLaws (Subtype fun x => x) ∈ S
 Transliterated theorem: (∀ a b, a ∈ S → b ∈ S → a * b ∈ S ∧ 1 ∈ A ∈ S ∧ ∀ a, a ∈ S → a⁻¹ ∈ S ∧ ∀ a, a ∈ S → a⁻¹ * a = 1 ∧ a * a⁻¹ = 1) → letI
 Logical form (Lean): {A : Type u} [Mul A] [Inv A] [OfNat A 1] [Nonempty A] [MonoidLaws A] {S : LRA.Set.LRA_Set A} (closed : ∀ a b, a ∈ S → b ∈ S → a * b ∈ S) (hOne : (1 : A) ∈ S) (hInvClosed : ∀ a, a ∈ S → a⁻¹ ∈ S) (hInvCancel : ∀ a, a ∈ S → a⁻¹ * a = 1 ∧ a * a⁻¹ = 1) : letI
-Source: ./Group/Constructions/Set/ClosedSubset.lean#L29
+Source: [`./Group/Constructions/Set/ClosedSubset.lean#L110`](./Group/Constructions/Set/ClosedSubset.lean#L110)
 
 
 
@@ -326,7 +326,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.GroupLaws R
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Group/Constructions/Mathlib/Laws.lean
+Source: [`./Group/Constructions/Mathlib/Laws.lean`](./Group/Constructions/Mathlib/Laws.lean)
 
 
 
@@ -343,7 +343,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.AdditiveSemigroupLaws R → ∀ (a b c : R), { hAdd := fun a b => inst.add a b }.hAdd ({ hAdd := fun a b => inst.add a b }.hAdd a b) c = { hAdd := fun a b => inst.add a b }.hAdd a ({ hAdd := fun a b => inst.add a b }.hAdd b c)
 Transliterated theorem: ∀ a b c : R, (a + b) + c = a + (b + c)
 Logical form (Lean): [Add R] [Nonempty R] [AdditiveSemigroupLaws R] : ∀ a b c : R, (a + b) + c = a + (b + c)
-Source: ./AdditiveSemigroup/Interface/Laws/Definition.lean#L24
+Source: [`./AdditiveSemigroup/Interface/Laws/Definition.lean#L99`](./AdditiveSemigroup/Interface/Laws/Definition.lean#L99)
 
 
 
@@ -360,7 +360,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.AdditiveSemigroupLaws A → ∀ {S : A → Prop} (closed : ∀ (a b : A), a ∈ S → b ∈ S → { hAdd := fun a b => inst.add a b }.hAdd a b ∈ S) [inst_2 : Nonempty (Subtype fun x => x)], ∈ S LRA.AlgebraicStructures.AdditiveSemigroupLaws (Subtype fun x => x) ∈ S
 Transliterated theorem: (∀ a b, a ∈ S → b ∈ S → a + b ∈ S) → letI
 Logical form (Lean): {A : Type u} [Add A] [Nonempty A] [AdditiveSemigroupLaws A] {S : LRA.Set.LRA_Set A} (closed : ∀ a b, a ∈ S → b ∈ S → a + b ∈ S) [Nonempty {x // x ∈ S}] : letI
-Source: ./AdditiveSemigroup/Constructions/Set/ClosedSubset.lean#L20
+Source: [`./AdditiveSemigroup/Constructions/Set/ClosedSubset.lean#L100`](./AdditiveSemigroup/Constructions/Set/ClosedSubset.lean#L100)
 
 
 
@@ -377,7 +377,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.AdditiveSemigroupLaws R
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./AdditiveSemigroup/Constructions/Mathlib/Laws.lean
+Source: [`./AdditiveSemigroup/Constructions/Mathlib/Laws.lean`](./AdditiveSemigroup/Constructions/Mathlib/Laws.lean)
 
 
 
@@ -394,7 +394,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.AdditiveCommutativeLaws R → ∀ (a b : R), { hAdd := fun a b => inst.add a b }.hAdd a b = { hAdd := fun a b => inst.add a b }.hAdd b a
 Transliterated theorem: ∀ a b : R, a + b = b + a
 Logical form (Lean): [Add R] [AdditiveCommutativeLaws R] : ∀ a b : R, a + b = b + a
-Source: ./AdditiveCommutativeSemigroup/Interface/Laws/Definition.lean#L25
+Source: [`./AdditiveCommutativeSemigroup/Interface/Laws/Definition.lean#L100`](./AdditiveCommutativeSemigroup/Interface/Laws/Definition.lean#L100)
 
 
 
@@ -411,7 +411,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.AdditiveCommutativeSemigroupLaws A → ∀ {S : A → Prop} (closed : ∀ (a b : A), a ∈ S → b ∈ S → { hAdd := fun a b => inst.add a b }.hAdd a b ∈ S) [inst_2 : Nonempty (Subtype fun x => x)], ∈ S LRA.AlgebraicStructures.AdditiveCommutativeSemigroupLaws (Subtype fun x => x) ∈ S
 Transliterated theorem: (∀ a b, a ∈ S → b ∈ S → a + b ∈ S) → letI
 Logical form (Lean): {A : Type u} [Add A] [Nonempty A] [AdditiveCommutativeSemigroupLaws A] {S : LRA.Set.LRA_Set A} (closed : ∀ a b, a ∈ S → b ∈ S → a + b ∈ S) [Nonempty {x // x ∈ S}] : letI
-Source: ./AdditiveCommutativeSemigroup/Constructions/Set/ClosedSubset.lean#L14
+Source: [`./AdditiveCommutativeSemigroup/Constructions/Set/ClosedSubset.lean#L54`](./AdditiveCommutativeSemigroup/Constructions/Set/ClosedSubset.lean#L54)
 
 
 
@@ -428,7 +428,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.AdditiveCommutativeSemigroupLaws R
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./AdditiveCommutativeSemigroup/Constructions/Mathlib/Laws.lean
+Source: [`./AdditiveCommutativeSemigroup/Constructions/Mathlib/Laws.lean`](./AdditiveCommutativeSemigroup/Constructions/Mathlib/Laws.lean)
 
 
 
@@ -445,7 +445,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.AdditiveIdentityLaws R → ∀ (a : R), { hAdd := fun a b => inst.add a b }.hAdd 0 a = a
 Transliterated theorem: ∀ a : R, 0 + a = a
 Logical form (Lean): [Add R] [OfNat R 0] [AdditiveIdentityLaws R] : ∀ a : R, 0 + a = a
-Source: ./AdditiveMonoid/Interface/Laws/Definition.lean#L28
+Source: [`./AdditiveMonoid/Interface/Laws/Definition.lean#L150`](./AdditiveMonoid/Interface/Laws/Definition.lean#L150)
 
 
 
@@ -462,7 +462,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.AdditiveIdentityLaws R → ∀ (a : R), { hAdd := fun a b => inst.add a b }.hAdd a 0 = a
 Transliterated theorem: ∀ a : R, a + 0 = a
 Logical form (Lean): [Add R] [OfNat R 0] [AdditiveIdentityLaws R] : ∀ a : R, a + 0 = a
-Source: ./AdditiveMonoid/Interface/Laws/Definition.lean#L31
+Source: [`./AdditiveMonoid/Interface/Laws/Definition.lean#L195`](./AdditiveMonoid/Interface/Laws/Definition.lean#L195)
 
 
 
@@ -479,7 +479,7 @@ Predicate logic (unfolded):
     0 ∈ S → Nonempty (Subtype fun x => x) ∈ S
 Transliterated theorem: (0 ∈ A ∈ S) → Nonempty {x // x ∈ S}
 Logical form (Lean): {A : Type u} [OfNat A 0] {S : LRA.Set.LRA_Set A} (hZero : (0 : A) ∈ S) : Nonempty {x // x ∈ S}
-Source: ./AdditiveMonoid/Constructions/Set/ClosedSubset.lean#L17
+Source: [`./AdditiveMonoid/Constructions/Set/ClosedSubset.lean#L100`](./AdditiveMonoid/Constructions/Set/ClosedSubset.lean#L100)
 
 
 
@@ -496,7 +496,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.AdditiveMonoidLaws A → ∀ {S : A → Prop} (closed : ∀ (a b : A), a ∈ S → b ∈ S → { hAdd := fun a b => inst.add a b }.hAdd a b ∈ S) (hZero : 0), ∈ S LRA.AlgebraicStructures.AdditiveMonoidLaws (Subtype fun x => x) ∈ S
 Transliterated theorem: (∀ a b, a ∈ S → b ∈ S → a + b ∈ S ∧ 0 ∈ A ∈ S) → letI
 Logical form (Lean): {A : Type u} [Add A] [OfNat A 0] [Nonempty A] [AdditiveMonoidLaws A] {S : LRA.Set.LRA_Set A} (closed : ∀ a b, a ∈ S → b ∈ S → a + b ∈ S) (hZero : (0 : A) ∈ S) : letI
-Source: ./AdditiveMonoid/Constructions/Set/ClosedSubset.lean#L24
+Source: [`./AdditiveMonoid/Constructions/Set/ClosedSubset.lean#L151`](./AdditiveMonoid/Constructions/Set/ClosedSubset.lean#L151)
 
 
 
@@ -513,7 +513,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.AdditiveMonoidLaws R
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./AdditiveMonoid/Constructions/Mathlib/Laws.lean
+Source: [`./AdditiveMonoid/Constructions/Mathlib/Laws.lean`](./AdditiveMonoid/Constructions/Mathlib/Laws.lean)
 
 
 
@@ -530,7 +530,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.AdditiveInverseLaws R → ∀ (a : R), { hAdd := fun a b => inst.add a b }.hAdd (inst_1.neg a) a = 0
 Transliterated theorem: ∀ a : R, -a + a = 0
 Logical form (Lean): [Add R] [Neg R] [OfNat R 0] [AdditiveInverseLaws R] : ∀ a : R, -a + a = 0
-Source: ./AdditiveGroup/Interface/Laws/Definition.lean#L42
+Source: [`./AdditiveGroup/Interface/Laws/Definition.lean#L213`](./AdditiveGroup/Interface/Laws/Definition.lean#L213)
 
 
 
@@ -547,7 +547,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.AdditiveInverseLaws R → ∀ (a : R), { hAdd := fun a b => inst.add a b }.hAdd a (inst_1.neg a) = 0
 Transliterated theorem: ∀ a : R, a + -a = 0
 Logical form (Lean): [Add R] [Neg R] [OfNat R 0] [AdditiveInverseLaws R] : ∀ a : R, a + -a = 0
-Source: ./AdditiveGroup/Interface/Laws/Definition.lean#L46
+Source: [`./AdditiveGroup/Interface/Laws/Definition.lean#L260`](./AdditiveGroup/Interface/Laws/Definition.lean#L260)
 
 
 
@@ -564,7 +564,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.SubtractionCompatibilityLaw R → ∀ (a b : R), { hSub := fun a b => inst.sub a b }.hSub a b = { hAdd := fun a b => inst_1.add a b }.hAdd a (inst_2.neg b)
 Transliterated theorem: ∀ a b : R, a - b = a + -b
 Logical form (Lean): [Sub R] [Add R] [Neg R] [SubtractionCompatibilityLaw R] : ∀ a b : R, a - b = a + -b
-Source: ./AdditiveGroup/Interface/Laws/Definition.lean#L50
+Source: [`./AdditiveGroup/Interface/Laws/Definition.lean#L307`](./AdditiveGroup/Interface/Laws/Definition.lean#L307)
 
 
 
@@ -581,7 +581,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.AdditiveMonoidLaws A → ∀ {S : A → Prop} (closed : ∀ (a b : A), a ∈ S → b ∈ S → { hAdd := fun a b => inst.add a b }.hAdd a b ∈ S) (hZero : 0) ∈ S (hNegClosed : ∀ (a : A), a ∈ S → inst_1.neg a ∈ S), (∀ (a : A), a ∈ S → ({ hAdd := fun a b => inst.add a b }.hAdd (inst_1.neg a) a = 0 ∧ { hAdd := fun a b => inst.add a b }.hAdd a (inst_1.neg a) = 0)) → LRA.AlgebraicStructures.AdditiveGroupLaws (Subtype fun x => x) ∈ S
 Transliterated theorem: (∀ a b, a ∈ S → b ∈ S → a + b ∈ S ∧ 0 ∈ A ∈ S ∧ ∀ a, a ∈ S → -a ∈ S ∧ ∀ a, a ∈ S → -a + a = 0 ∧ a + -a = 0) → letI
 Logical form (Lean): {A : Type u} [Add A] [Neg A] [OfNat A 0] [Nonempty A] [AdditiveMonoidLaws A] {S : LRA.Set.LRA_Set A} (closed : ∀ a b, a ∈ S → b ∈ S → a + b ∈ S) (hZero : (0 : A) ∈ S) (hNegClosed : ∀ a, a ∈ S → -a ∈ S) (hNegCancel : ∀ a, a ∈ S → -a + a = 0 ∧ a + -a = 0) : letI
-Source: ./AdditiveGroup/Constructions/Set/ClosedSubset.lean#L28
+Source: [`./AdditiveGroup/Constructions/Set/ClosedSubset.lean#L110`](./AdditiveGroup/Constructions/Set/ClosedSubset.lean#L110)
 
 
 
@@ -598,7 +598,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.AdditiveGroupLaws R
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./AdditiveGroup/Constructions/Mathlib/Laws.lean
+Source: [`./AdditiveGroup/Constructions/Mathlib/Laws.lean`](./AdditiveGroup/Constructions/Mathlib/Laws.lean)
 
 
 
@@ -615,7 +615,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.AbelianGroupLaws R
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./AbelianGroup/Constructions/Mathlib/Laws.lean
+Source: [`./AbelianGroup/Constructions/Mathlib/Laws.lean`](./AbelianGroup/Constructions/Mathlib/Laws.lean)
 
 
 
@@ -632,7 +632,7 @@ Predicate logic (unfolded):
     ((∀ (first second third : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) first second) third = (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) first ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) second third)) ∧ ((∀ (first second : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) first second = (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) second first) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) element element = element)))
 Transliterated theorem: MeetSemilatticeLaws Carrier ∈ = R (· ⊓ ·)
 Logical form (Lean): {R : Type u} [SemilatticeInf R] : MeetSemilatticeLaws (Carrier := R) (· ⊓ ·)
-Source: ./MeetSemilattice/Constructions/Mathlib/Laws.lean#L13
+Source: [`./MeetSemilattice/Constructions/Mathlib/Laws.lean#L50`](./MeetSemilattice/Constructions/Mathlib/Laws.lean#L50)
 
 
 
@@ -650,7 +650,7 @@ Predicate logic (unfolded):
     ((∀ (first second third : Carrier), meet (meet first second) third = meet first (meet second third)) ∧ ((∀ (first second : Carrier), meet first second = meet second first) ∧ (∀ (element : Carrier), meet element element = element))) → ((∀ (x : Carrier), meet x x = x) ∧ ((∀ (x y : Carrier), meet x y = x → meet y x = y → x = y) ∧ (∀ (x y z : Carrier), meet x y = x → meet y z = y → meet x z = x)))
 Transliterated theorem: LRA.Order.PartialOrder (InducedOrder meet)
 Logical form (Lean): {Carrier : Type u} {meet : LRA.Operation.BinaryEndoOperation Carrier} (h : MeetSemilatticeLaws meet) : LRA.Order.PartialOrder (InducedOrder meet)
-Source: ./MeetSemilattice/Constructions/OrderTheoretic/InducedOrder.lean#L19
+Source: [`./MeetSemilattice/Constructions/OrderTheoretic/InducedOrder.lean#L100`](./MeetSemilattice/Constructions/OrderTheoretic/InducedOrder.lean#L100)
 
 
 
@@ -668,7 +668,7 @@ Predicate logic (unfolded):
     ((∀ (first second third : Carrier), meet (meet first second) third = meet first (meet second third)) ∧ ((∀ (first second : Carrier), meet first second = meet second first) ∧ (∀ (element : Carrier), meet element element = element))) → ∀ (left right : Carrier), Exists fun m => (meet m left = m ∧ (meet m right = m ∧ (∀ (lower : Carrier), meet lower left = lower → meet lower right = lower → meet lower m = lower)))
 Transliterated theorem: ∀ left right, ∃ m, LRA.Order.Meet (InducedOrder meet) left right m
 Logical form (Lean): {Carrier : Type u} {meet : LRA.Operation.BinaryEndoOperation Carrier} (h : MeetSemilatticeLaws meet) : ∀ left right, ∃ m, LRA.Order.Meet (InducedOrder meet) left right m
-Source: ./MeetSemilattice/Constructions/OrderTheoretic/InducedOrder.lean#L27
+Source: [`./MeetSemilattice/Constructions/OrderTheoretic/InducedOrder.lean#L150`](./MeetSemilattice/Constructions/OrderTheoretic/InducedOrder.lean#L150)
 
 
 
@@ -686,7 +686,7 @@ Predicate logic (unfolded):
     ((∀ (first second third : Carrier), meet (meet first second) third = meet first (meet second third)) ∧ ((∀ (first second : Carrier), meet first second = meet second first) ∧ (∀ (element : Carrier), meet element element = element))) → (((∀ (x : Carrier), meet x x = x) ∧ ((∀ (x y : Carrier), meet x y = x → meet y x = y → x = y) ∧ (∀ (x y z : Carrier), meet x y = x → meet y z = y → meet x z = x))) ∧ (∀ (left right : Carrier), Exists fun meet_1 => (meet meet_1 left = meet_1 ∧ (meet meet_1 right = meet_1 ∧ (∀ (lower : Carrier), meet lower left = lower → meet lower right = lower → meet lower meet_1 = lower)))))
 Transliterated theorem: LRA.Order.MeetSemilattice (InducedOrder meet)
 Logical form (Lean): {Carrier : Type u} {meet : LRA.Operation.BinaryEndoOperation Carrier} (h : MeetSemilatticeLaws meet) : LRA.Order.MeetSemilattice (InducedOrder meet)
-Source: ./MeetSemilattice/Constructions/OrderTheoretic/InducedOrder.lean#L35
+Source: [`./MeetSemilattice/Constructions/OrderTheoretic/InducedOrder.lean#L200`](./MeetSemilattice/Constructions/OrderTheoretic/InducedOrder.lean#L200)
 
 
 
@@ -703,7 +703,7 @@ Predicate logic (unfolded):
     ((∀ (first second third : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) first second) third = (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) first ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) second third)) ∧ ((∀ (first second : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) first second = (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) second first) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) element element = element)))
 Transliterated theorem: JoinSemilatticeLaws Carrier ∈ = R (· ⊔ ·)
 Logical form (Lean): {R : Type u} [SemilatticeSup R] : JoinSemilatticeLaws (Carrier := R) (· ⊔ ·)
-Source: ./JoinSemilattice/Constructions/Mathlib/Laws.lean#L13
+Source: [`./JoinSemilattice/Constructions/Mathlib/Laws.lean#L50`](./JoinSemilattice/Constructions/Mathlib/Laws.lean#L50)
 
 
 
@@ -721,7 +721,7 @@ Predicate logic (unfolded):
     ((∀ (first second third : Carrier), join (join first second) third = join first (join second third)) ∧ ((∀ (first second : Carrier), join first second = join second first) ∧ (∀ (element : Carrier), join element element = element))) → ((∀ (x : Carrier), join x x = x) ∧ ((∀ (x y : Carrier), join x y = y → join y x = x → x = y) ∧ (∀ (x y z : Carrier), join x y = y → join y z = z → join x z = z)))
 Transliterated theorem: LRA.Order.PartialOrder (InducedOrder join)
 Logical form (Lean): {Carrier : Type u} {join : LRA.Operation.BinaryEndoOperation Carrier} (h : JoinSemilatticeLaws join) : LRA.Order.PartialOrder (InducedOrder join)
-Source: ./JoinSemilattice/Constructions/OrderTheoretic/InducedOrder.lean#L16
+Source: [`./JoinSemilattice/Constructions/OrderTheoretic/InducedOrder.lean#L100`](./JoinSemilattice/Constructions/OrderTheoretic/InducedOrder.lean#L100)
 
 
 
@@ -739,7 +739,7 @@ Predicate logic (unfolded):
     ((∀ (first second third : Carrier), join (join first second) third = join first (join second third)) ∧ ((∀ (first second : Carrier), join first second = join second first) ∧ (∀ (element : Carrier), join element element = element))) → ∀ (left right : Carrier), Exists fun j => (join left j = j ∧ (join right j = j ∧ (∀ (upper : Carrier), join left upper = upper → join right upper = upper → join j upper = upper)))
 Transliterated theorem: ∀ left right, ∃ j, LRA.Order.Join (InducedOrder join) left right j
 Logical form (Lean): {Carrier : Type u} {join : LRA.Operation.BinaryEndoOperation Carrier} (h : JoinSemilatticeLaws join) : ∀ left right, ∃ j, LRA.Order.Join (InducedOrder join) left right j
-Source: ./JoinSemilattice/Constructions/OrderTheoretic/InducedOrder.lean#L24
+Source: [`./JoinSemilattice/Constructions/OrderTheoretic/InducedOrder.lean#L150`](./JoinSemilattice/Constructions/OrderTheoretic/InducedOrder.lean#L150)
 
 
 
@@ -757,7 +757,7 @@ Predicate logic (unfolded):
     ((∀ (first second third : Carrier), join (join first second) third = join first (join second third)) ∧ ((∀ (first second : Carrier), join first second = join second first) ∧ (∀ (element : Carrier), join element element = element))) → (((∀ (x : Carrier), join x x = x) ∧ ((∀ (x y : Carrier), join x y = y → join y x = x → x = y) ∧ (∀ (x y z : Carrier), join x y = y → join y z = z → join x z = z))) ∧ (∀ (left right : Carrier), Exists fun join_1 => (join left join_1 = join_1 ∧ (join right join_1 = join_1 ∧ (∀ (upper : Carrier), join left upper = upper → join right upper = upper → join join_1 upper = upper)))))
 Transliterated theorem: LRA.Order.JoinSemilattice (InducedOrder join)
 Logical form (Lean): {Carrier : Type u} {join : LRA.Operation.BinaryEndoOperation Carrier} (h : JoinSemilatticeLaws join) : LRA.Order.JoinSemilattice (InducedOrder join)
-Source: ./JoinSemilattice/Constructions/OrderTheoretic/InducedOrder.lean#L32
+Source: [`./JoinSemilattice/Constructions/OrderTheoretic/InducedOrder.lean#L200`](./JoinSemilattice/Constructions/OrderTheoretic/InducedOrder.lean#L200)
 
 
 
@@ -774,7 +774,7 @@ Predicate logic (unfolded):
     (((∀ (first second third : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) first second) third = (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) first ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) second third)) ∧ ((∀ (first second : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) first second = (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) second first) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) element element = element))) ∧ (((∀ (first second third : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) first second) third = (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) first ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) second third)) ∧ ((∀ (first second : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) first second = (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) second first) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) element element = element))) ∧ ((∀ (left right : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left right) = left) ∧ (∀ (left right : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left right) = left))))
 Transliterated theorem: LatticeLaws Carrier ∈ = R (· ⊔ ·) (· ⊓ ·)
 Logical form (Lean): {R : Type u} [_root_.Lattice R] : LatticeLaws (Carrier := R) (· ⊔ ·) (· ⊓ ·)
-Source: ./Lattice/Constructions/Mathlib/Laws.lean#L14
+Source: [`./Lattice/Constructions/Mathlib/Laws.lean#L50`](./Lattice/Constructions/Mathlib/Laws.lean#L50)
 
 
 
@@ -791,7 +791,7 @@ Predicate logic (unfolded):
     ((((∀ (first second third : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) first second) third = (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) first ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) second third)) ∧ ((∀ (first second : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) first second = (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) second first) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) element element = element))) ∧ (((∀ (first second third : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) first second) third = (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) first ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) second third)) ∧ ((∀ (first second : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) first second = (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) second first) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) element element = element))) ∧ ((∀ (left right : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left right) = left) ∧ (∀ (left right : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left right) = left)))) ∧ (((∀ (element : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) inst_1.toBot.1 element = element) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) element inst_1.toBot.1 = element)) ∧ ((∀ (element : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) inst_1.toTop.1 element = element) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) element inst_1.toTop.1 = element))))
 Transliterated theorem: LRA.AlgebraicStructures.BoundedLatticeLaws Carrier ∈ = R (· ⊔ ·) (· ⊓ ·) ⊥ ⊤
 Logical form (Lean): {R : Type u} [_root_.Lattice R] [_root_.BoundedOrder R] : LRA.AlgebraicStructures.BoundedLatticeLaws (Carrier := R) (· ⊔ ·) (· ⊓ ·) ⊥ ⊤
-Source: ./BoundedLattice/Constructions/Mathlib/Laws.lean#L15
+Source: [`./BoundedLattice/Constructions/Mathlib/Laws.lean#L52`](./BoundedLattice/Constructions/Mathlib/Laws.lean#L52)
 
 
 
@@ -808,7 +808,7 @@ Predicate logic (unfolded):
     ((((∀ (first second third : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) first second) third = (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) first ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) second third)) ∧ ((∀ (first second : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) first second = (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) second first) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) element element = element))) ∧ (((∀ (first second third : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) first second) third = (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) first ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) second third)) ∧ ((∀ (first second : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) first second = (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) second first) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) element element = element))) ∧ ((∀ (left right : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left right) = left) ∧ (∀ (left right : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left right) = left)))) ∧ (((∀ (left right third : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) right third) = (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left right) ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left third)) ∧ (∀ (left right third : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left right) third = (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left third) ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) right third))) ∧ ((∀ (left right third : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) right third) = (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left right) ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left third)) ∧ (∀ (left right third : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left right) third = (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left third) ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) right third)))))
 Transliterated theorem: LRA.AlgebraicStructures.DistributiveLatticeLaws Carrier ∈ = R (· ⊔ ·) (· ⊓ ·)
 Logical form (Lean): {R : Type u} [_root_.DistribLattice R] : LRA.AlgebraicStructures.DistributiveLatticeLaws (Carrier := R) (· ⊔ ·) (· ⊓ ·)
-Source: ./DistributiveLattice/Constructions/Mathlib/Laws.lean#L11
+Source: [`./DistributiveLattice/Constructions/Mathlib/Laws.lean#L51`](./DistributiveLattice/Constructions/Mathlib/Laws.lean#L51)
 
 
 
@@ -825,7 +825,7 @@ Predicate logic (unfolded):
     (((((∀ (first second third : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) first second) third = (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) first ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) second third)) ∧ ((∀ (first second : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) first second = (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) second first) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) element element = element))) ∧ (((∀ (first second third : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) first second) third = (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) first ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) second third)) ∧ ((∀ (first second : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) first second = (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) second first) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) element element = element))) ∧ ((∀ (left right : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left right) = left) ∧ (∀ (left right : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left right) = left)))) ∧ (((∀ (element : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) inst.toBot.1 element = element) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) element inst.toBot.1 = element)) ∧ ((∀ (element : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) inst.toTop.1 element = element) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) element inst.toTop.1 = element)))) ∧ (((((∀ (first second third : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) first second) third = (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) first ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) second third)) ∧ ((∀ (first second : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) first second = (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) second first) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) element element = element))) ∧ (((∀ (first second third : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) first second) third = (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) first ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) second third)) ∧ ((∀ (first second : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) first second = (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) second first) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) element element = element))) ∧ ((∀ (left right : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left right) = left) ∧ (∀ (left right : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left right) = left)))) ∧ (((∀ (left right third : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) right third) = (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left right) ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left third)) ∧ (∀ (left right third : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left right) third = (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left third) ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) right third))) ∧ ((∀ (left right third : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) right third) = (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left right) ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left third)) ∧ (∀ (left right third : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left right) third = (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left third) ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) right third))))) ∧ ((∀ (element : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) element (inst.toCompl.1 element) = inst.toTop.1) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) element (inst.toCompl.1 element) = inst.toBot.1))))
 Transliterated theorem: LRA.AlgebraicStructures.BooleanAlgebraLaws Carrier ∈ = R (· ⊔ ·) (· ⊓ ·) Compl.compl ⊥ ⊤
 Logical form (Lean): {R : Type u} [_root_.BooleanAlgebra R] : LRA.AlgebraicStructures.BooleanAlgebraLaws (Carrier := R) (· ⊔ ·) (· ⊓ ·) Compl.compl ⊥ ⊤
-Source: ./BooleanAlgebra/Constructions/Mathlib/Laws.lean#L12
+Source: [`./BooleanAlgebra/Constructions/Mathlib/Laws.lean#L51`](./BooleanAlgebra/Constructions/Mathlib/Laws.lean#L51)
 
 
 
@@ -842,7 +842,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.DistributiveLaws R → ∀ (a b c : R), { hMul := fun a b => inst_1.mul a b }.hMul a ({ hAdd := fun a b => inst.add a b }.hAdd b c) = { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul a b) ({ hMul := fun a b => inst_1.mul a b }.hMul a c)
 Transliterated theorem: ∀ a b c : R, a * (b + c) = a * b + a * c
 Logical form (Lean): : ∀ a b c : R, a * (b + c) = a * b + a * c
-Source: ./Semiring/Interface/Laws/Distributive.lean#L109
+Source: [`./Semiring/Interface/Laws/Distributive.lean#L114`](./Semiring/Interface/Laws/Distributive.lean#L114)
 
 
 
@@ -859,7 +859,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.DistributiveLaws R → ∀ (a b c : R), { hMul := fun a b => inst_1.mul a b }.hMul ({ hAdd := fun a b => inst.add a b }.hAdd a b) c = { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul a c) ({ hMul := fun a b => inst_1.mul a b }.hMul b c)
 Transliterated theorem: ∀ a b c : R, (a + b) * c = a * c + b * c
 Logical form (Lean): : ∀ a b c : R, (a + b) * c = a * c + b * c
-Source: ./Semiring/Interface/Laws/Distributive.lean#L147
+Source: [`./Semiring/Interface/Laws/Distributive.lean#L157`](./Semiring/Interface/Laws/Distributive.lean#L157)
 
 
 
@@ -876,7 +876,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.ZeroAbsorbingLaws R → ∀ (a : R), { hMul := fun a b => inst.mul a b }.hMul 0 a = 0
 Transliterated theorem: ∀ a : R, 0 * a = 0
 Logical form (Lean): [Mul R] [OfNat R 0] [ZeroAbsorbingLaws R] : ∀ a : R, 0 * a = 0
-Source: ./Semiring/Interface/Laws/Definition.lean#L162
+Source: [`./Semiring/Interface/Laws/Definition.lean#L167`](./Semiring/Interface/Laws/Definition.lean#L167)
 
 
 
@@ -893,7 +893,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.ZeroAbsorbingLaws R → ∀ (a : R), { hMul := fun a b => inst.mul a b }.hMul a 0 = 0
 Transliterated theorem: ∀ a : R, a * 0 = 0
 Logical form (Lean): [Mul R] [OfNat R 0] [ZeroAbsorbingLaws R] : ∀ a : R, a * 0 = 0
-Source: ./Semiring/Interface/Laws/Definition.lean#L202
+Source: [`./Semiring/Interface/Laws/Definition.lean#L212`](./Semiring/Interface/Laws/Definition.lean#L212)
 
 
 
@@ -910,7 +910,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.SemiringLaws R
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Semiring/Constructions/Mathlib/Laws.lean
+Source: [`./Semiring/Constructions/Mathlib/Laws.lean`](./Semiring/Constructions/Mathlib/Laws.lean)
 
 
 
@@ -927,7 +927,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.CommutativeSemiringLaws R
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./CommutativeSemiring/Constructions/Mathlib/Laws.lean
+Source: [`./CommutativeSemiring/Constructions/Mathlib/Laws.lean`](./CommutativeSemiring/Constructions/Mathlib/Laws.lean)
 
 
 
@@ -944,7 +944,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.AdditiveCancellativeLaws R → ((∀ (fixed first second : R), (fun a b => { hAdd := fun a b => inst.add a b }.hAdd a b) fixed first = (fun a b => { hAdd := fun a b => inst.add a b }.hAdd a b) fixed second → first = second) ∧ (∀ (first second fixed : R), (fun a b => { hAdd := fun a b => inst.add a b }.hAdd a b) first fixed = (fun a b => { hAdd := fun a b => inst.add a b }.hAdd a b) second fixed → first = second))
 Transliterated theorem: LRA.Operation.Laws.Cancellation.TwoSidedCancellative fun a b ∈ R => a + b
 Logical form (Lean): [Add R] [AdditiveCancellativeLaws R] : LRA.Operation.Laws.Cancellation.TwoSidedCancellative (fun a b : R => a + b)
-Source: ./CommutativeSemiringWithoutZero/Interface/Laws/Definition.lean#L167
+Source: [`./CommutativeSemiringWithoutZero/Interface/Laws/Definition.lean#L209`](./CommutativeSemiringWithoutZero/Interface/Laws/Definition.lean#L209)
 
 
 
@@ -961,7 +961,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.MultiplicativeCancellativeLaws R → ((∀ (fixed first second : R), (fun a b => { hMul := fun a b => inst.mul a b }.hMul a b) fixed first = (fun a b => { hMul := fun a b => inst.mul a b }.hMul a b) fixed second → first = second) ∧ (∀ (first second fixed : R), (fun a b => { hMul := fun a b => inst.mul a b }.hMul a b) first fixed = (fun a b => { hMul := fun a b => inst.mul a b }.hMul a b) second fixed → first = second))
 Transliterated theorem: LRA.Operation.Laws.Cancellation.TwoSidedCancellative fun a b ∈ R => a * b
 Logical form (Lean): [Mul R] [MultiplicativeCancellativeLaws R] : LRA.Operation.Laws.Cancellation.TwoSidedCancellative (fun a b : R => a * b)
-Source: ./CommutativeSemiringWithoutZero/Interface/Laws/Definition.lean#L170
+Source: [`./CommutativeSemiringWithoutZero/Interface/Laws/Definition.lean#L254`](./CommutativeSemiringWithoutZero/Interface/Laws/Definition.lean#L254)
 
 
 
@@ -978,7 +978,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.RingLaws R
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Ring/Constructions/Mathlib/Laws.lean
+Source: [`./Ring/Constructions/Mathlib/Laws.lean`](./Ring/Constructions/Mathlib/Laws.lean)
 
 
 
@@ -995,7 +995,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.CommutativeRingLaws R
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./CommutativeRing/Constructions/Mathlib/Laws.lean
+Source: [`./CommutativeRing/Constructions/Mathlib/Laws.lean`](./CommutativeRing/Constructions/Mathlib/Laws.lean)
 
 
 
@@ -1012,7 +1012,7 @@ Predicate logic (unfolded):
     (LRA.AlgebraicStructures.NontrivialityLaw R ∧ 1 = 0) → False
 Transliterated theorem: 1 ∈ R ≠ 0
 Logical form (Lean): [OfNat R 0] [OfNat R 1] [NontrivialityLaw R] : (1 : R) ≠ 0
-Source: ./NontrivialRing/Interface/Laws/Definition.lean#L136
+Source: [`./NontrivialRing/Interface/Laws/Definition.lean#L141`](./NontrivialRing/Interface/Laws/Definition.lean#L141)
 
 
 
@@ -1029,7 +1029,7 @@ Predicate logic (unfolded):
     NeZero 1 → ∀ [inst_1 : Nonempty R], LRA.AlgebraicStructures.NontrivialRingLaws R
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./NontrivialRing/Constructions/Mathlib/Laws.lean
+Source: [`./NontrivialRing/Constructions/Mathlib/Laws.lean`](./NontrivialRing/Constructions/Mathlib/Laws.lean)
 
 
 
@@ -1046,7 +1046,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.NoZeroDivisorsLaw R → ∀ (a b : R), { hMul := fun a b => inst.mul a b }.hMul a b = 0 → Or (a = 0)(b = 0)
 Transliterated theorem: ∀ a b : R, a * b = 0 → a = 0 ∨ b = 0
 Logical form (Lean): [Mul R] [OfNat R 0] [NoZeroDivisorsLaw R] : ∀ a b : R, a * b = 0 → a = 0 ∨ b = 0
-Source: ./IntegralDomain/Interface/Laws/Definition.lean#L137
+Source: [`./IntegralDomain/Interface/Laws/Definition.lean#L142`](./IntegralDomain/Interface/Laws/Definition.lean#L142)
 
 
 
@@ -1063,7 +1063,7 @@ Predicate logic (unfolded):
     IsDomain R → ∀ [inst_1 : Nonempty R], LRA.AlgebraicStructures.IntegralDomainLaws R
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./IntegralDomain/Constructions/Mathlib/Laws.lean
+Source: [`./IntegralDomain/Constructions/Mathlib/Laws.lean`](./IntegralDomain/Constructions/Mathlib/Laws.lean)
 
 
 
@@ -1077,10 +1077,10 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.MultiplicativeInverseLaws R → ∀ (a : R), (a = 0 → False) → { hMul := fun a b => inst.mul a b }.hMul a (a) ≤ =1
+    LRA.AlgebraicStructures.MultiplicativeInverseLaws R → ∀ (a : R), (a = 0 → False) → { hMul := fun a b => inst.mul a b }.hMul a (inst_1.1 a) = 1
 Transliterated theorem: ∀ a : R, a ≠ 0 → a * a⁻¹ = 1
 Logical form (Lean): [Mul R] [Inv R] [OfNat R 0] [OfNat R 1] [MultiplicativeInverseLaws R] : ∀ a : R, a ≠ 0 → a * a⁻¹ = 1
-Source: ./DivisionRing/Interface/Laws/Definition.lean#L200
+Source: [`./DivisionRing/Interface/Laws/Definition.lean#L205`](./DivisionRing/Interface/Laws/Definition.lean#L205)
 
 
 
@@ -1094,10 +1094,10 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.MultiplicativeInverseLaws R → 0 ≤ =0
+    LRA.AlgebraicStructures.MultiplicativeInverseLaws R → inst_1.1 0 = 0
 Transliterated theorem: 0 ∈ R⁻¹ = 0
 Logical form (Lean): [Mul R] [Inv R] [OfNat R 0] [OfNat R 1] [MultiplicativeInverseLaws R] : (0 : R)⁻¹ = 0
-Source: ./DivisionRing/Interface/Laws/Definition.lean#L242
+Source: [`./DivisionRing/Interface/Laws/Definition.lean#L252`](./DivisionRing/Interface/Laws/Definition.lean#L252)
 
 
 
@@ -1114,7 +1114,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.DivisionCompatibilityLaw R → ∀ (a b : R), { hDiv := fun a b => inst.div a b }.hDiv a b = { hMul := fun a b => inst_1.mul a b }.hMul a (inst_2.1 b)
 Transliterated theorem: ∀ a b : R, a / b = a * b⁻¹
 Logical form (Lean): [Div R] [Mul R] [Inv R] [DivisionCompatibilityLaw R] : ∀ a b : R, a / b = a * b⁻¹
-Source: ./DivisionRing/Interface/Laws/Definition.lean#L284
+Source: [`./DivisionRing/Interface/Laws/Definition.lean#L299`](./DivisionRing/Interface/Laws/Definition.lean#L299)
 
 
 
@@ -1131,7 +1131,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.DivisionRingLaws R
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./DivisionRing/Constructions/Mathlib/Laws.lean
+Source: [`./DivisionRing/Constructions/Mathlib/Laws.lean`](./DivisionRing/Constructions/Mathlib/Laws.lean)
 
 
 
@@ -1148,7 +1148,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.FieldLaws R
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Field/Constructions/Mathlib/Laws.lean
+Source: [`./Field/Constructions/Mathlib/Laws.lean`](./Field/Constructions/Mathlib/Laws.lean)
 
 
 
@@ -1165,7 +1165,7 @@ Predicate logic (unfolded):
     IsOrderedMonoid R → ∀ [inst_2 : Nonempty R], LRA.AlgebraicStructures.OrderedGroupLaws R
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./OrderedGroup/Constructions/Mathlib/Laws.lean
+Source: [`./OrderedGroup/Constructions/Mathlib/Laws.lean`](./OrderedGroup/Constructions/Mathlib/Laws.lean)
 
 
 
@@ -1182,7 +1182,7 @@ Predicate logic (unfolded):
     IsOrderedMonoid R → ∀ [inst_2 : Nonempty R], LRA.AlgebraicStructures.LinearlyOrderedGroupLaws R
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./LinearlyOrderedGroup/Constructions/Mathlib/Laws.lean
+Source: [`./LinearlyOrderedGroup/Constructions/Mathlib/Laws.lean`](./LinearlyOrderedGroup/Constructions/Mathlib/Laws.lean)
 
 
 
@@ -1199,7 +1199,7 @@ Predicate logic (unfolded):
     IsOrderedRing R → ∀ [inst_2 : Nonempty R], LRA.AlgebraicStructures.OrderedSemiringLaws R
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./OrderedSemiring/Constructions/Mathlib/Laws.lean
+Source: [`./OrderedSemiring/Constructions/Mathlib/Laws.lean`](./OrderedSemiring/Constructions/Mathlib/Laws.lean)
 
 
 
@@ -1216,7 +1216,7 @@ Predicate logic (unfolded):
     IsOrderedRing R → ∀ [inst_2 : Nonempty R], LRA.AlgebraicStructures.OrderedRingLaws R
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./OrderedRing/Constructions/Mathlib/Laws.lean
+Source: [`./OrderedRing/Constructions/Mathlib/Laws.lean`](./OrderedRing/Constructions/Mathlib/Laws.lean)
 
 
 
@@ -1233,7 +1233,7 @@ Predicate logic (unfolded):
     IsStrictOrderedRing R → ∀ [inst_2 : Nonempty R], LRA.AlgebraicStructures.LinearlyOrderedRingLaws R
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./LinearlyOrderedRing/Constructions/Mathlib/Laws.lean
+Source: [`./LinearlyOrderedRing/Constructions/Mathlib/Laws.lean`](./LinearlyOrderedRing/Constructions/Mathlib/Laws.lean)
 
 
 
@@ -1250,7 +1250,7 @@ Predicate logic (unfolded):
     IsStrictOrderedRing R → ∀ [inst_2 : Nonempty R], LRA.AlgebraicStructures.OrderedFieldLaws R
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./OrderedField/Constructions/Mathlib/Laws.lean
+Source: [`./OrderedField/Constructions/Mathlib/Laws.lean`](./OrderedField/Constructions/Mathlib/Laws.lean)
 
 
 
@@ -1267,7 +1267,7 @@ Predicate logic (unfolded):
     IsStrictOrderedRing R → ∀ [inst_2 : Nonempty R], (LRA.AlgebraicStructures.OrderedFieldLaws R ∧ (LRA.Order.OrderCompletenessLaws R (R → Prop)))
 Transliterated theorem: CompleteOrderedFieldLaws R (Set R)
 Logical form (Lean): {R : Type u} [_root_.Field R] [_root_.ConditionallyCompleteLinearOrder R] [_root_.IsStrictOrderedRing R] [Nonempty R] : CompleteOrderedFieldLaws R (Set R)
-Source: ./CompleteOrderedField/Constructions/Mathlib/Laws.lean#L11
+Source: [`./CompleteOrderedField/Constructions/Mathlib/Laws.lean#L55`](./CompleteOrderedField/Constructions/Mathlib/Laws.lean#L55)
 
 
 
@@ -1284,7 +1284,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.ArchimedeanLaw R → ∀ (x : R), inst_1.lt 0 x → ∀ (point : R), Exists fun element => (LRA.Set.Constructions.instMembershipTypeSet.1 (fun y => Exists fun n => y = LRA.AlgebraicStructures.IteratedSelfSum n x) element ∧ (fun x1 x2 => inst_1.lt x1 x2) point element)
 Transliterated theorem: forall x : R, 0 < x -> LRA.Order.Cofinal · < · ∈ R → R → Prop (Multiples x)
 Logical form (Lean): [Add R] [LT R] [OfNat R 0] [ArchimedeanLaw R] : forall x : R, 0 < x -> LRA.Order.Cofinal (· < · : R → R → Prop) (Multiples x)
-Source: ./Archimedean/Interface/Laws/Definition.lean#L40
+Source: [`./Archimedean/Interface/Laws/Definition.lean#L196`](./Archimedean/Interface/Laws/Definition.lean#L196)
 
 
 
@@ -1302,7 +1302,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.IteratedSelfSum n x = instHSMul.1 ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1) x
 Transliterated theorem: (∀ n ∈ Nat ∀ x ∈ R), IteratedSelfSum n x = (n + 1) • x
 Logical form (Lean): {R : Type u} [AddMonoid R] (n : Nat) (x : R) : IteratedSelfSum n x = (n + 1) • x
-Source: ./Archimedean/Constructions/Mathlib/Laws.lean#L10
+Source: [`./Archimedean/Constructions/Mathlib/Laws.lean#L51`](./Archimedean/Constructions/Mathlib/Laws.lean#L51)
 
 
 
@@ -1319,7 +1319,7 @@ Predicate logic (unfolded):
     (CovariantClass R R (fun x1 x2 => { hAdd := fun a b => inst.toAddCommSemigroup.toAddCommMagma.1.add a b }.hAdd x1 x2) fun x1 x2 => inst_1.toPreorder.2.lt x1 x2 ∧ Archimedean R) → LRA.AlgebraicStructures.ArchimedeanLaw R
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Archimedean/Constructions/Mathlib/Laws.lean
+Source: [`./Archimedean/Constructions/Mathlib/Laws.lean`](./Archimedean/Constructions/Mathlib/Laws.lean)
 
 
 
@@ -1333,10 +1333,10 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.SuccessorLaws R → ∀ (a : R), a ≤ ≤=a
+    LRA.AlgebraicStructures.SuccessorLaws R → ∀ (a : R), inst_1.1 (inst.1 a) = a
 Transliterated theorem: ∀ a : R, Pred (Succ a) = a
 Logical form (Lean): [HasSuccessor R] [HasPredecessor R] [SuccessorLaws R] : ∀ a : R, Pred (Succ a) = a
-Source: ./DiscreteInteger/Interface/Laws/Definition.lean#L77
+Source: [`./DiscreteInteger/Interface/Laws/Definition.lean#L489`](./DiscreteInteger/Interface/Laws/Definition.lean#L489)
 
 
 
@@ -1350,10 +1350,10 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.SuccessorLaws R → ∀ (a : R), a ≤ ≤=a
+    LRA.AlgebraicStructures.SuccessorLaws R → ∀ (a : R), inst.1 (inst_1.1 a) = a
 Transliterated theorem: ∀ a : R, Succ (Pred a) = a
 Logical form (Lean): [HasSuccessor R] [HasPredecessor R] [SuccessorLaws R] : ∀ a : R, Succ (Pred a) = a
-Source: ./DiscreteInteger/Interface/Laws/Definition.lean#L80
+Source: [`./DiscreteInteger/Interface/Laws/Definition.lean#L534`](./DiscreteInteger/Interface/Laws/Definition.lean#L534)
 
 
 
@@ -1367,10 +1367,10 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.SuccessorLaws R → ∀ (a b : R), a ≤ =b ≤ → a = b
+    LRA.AlgebraicStructures.SuccessorLaws R → ∀ (a b : R), inst.1 a = inst.1 b → a = b
 Transliterated theorem: ∀ a b : R, Succ a = Succ b → a = b
 Logical form (Lean): [HasSuccessor R] [HasPredecessor R] [SuccessorLaws R] : ∀ a b : R, Succ a = Succ b → a = b
-Source: ./DiscreteInteger/Interface/Laws/Definition.lean#L83
+Source: [`./DiscreteInteger/Interface/Laws/Definition.lean#L580`](./DiscreteInteger/Interface/Laws/Definition.lean#L580)
 
 
 
@@ -1384,10 +1384,10 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.SuccessorLaws R → ∀ (a b : R), a ≤ =b ≤ → a = b
+    LRA.AlgebraicStructures.SuccessorLaws R → ∀ (a b : R), inst_1.1 a = inst_1.1 b → a = b
 Transliterated theorem: ∀ a b : R, Pred a = Pred b → a = b
 Logical form (Lean): [HasSuccessor R] [HasPredecessor R] [SuccessorLaws R] : ∀ a b : R, Pred a = Pred b → a = b
-Source: ./DiscreteInteger/Interface/Laws/Definition.lean#L87
+Source: [`./DiscreteInteger/Interface/Laws/Definition.lean#L627`](./DiscreteInteger/Interface/Laws/Definition.lean#L627)
 
 
 
@@ -1401,10 +1401,10 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.SuccessorAdditionLaw R → ∀ (a : R), a ≤ ={ hAdd := fun a b => inst_1.add a b }.hAdd a 1
+    LRA.AlgebraicStructures.SuccessorAdditionLaw R → ∀ (a : R), inst.1 a = { hAdd := fun a b => inst_1.add a b }.hAdd a 1
 Transliterated theorem: ∀ a : R, Succ a = a + 1
 Logical form (Lean): [HasSuccessor R] [Add R] [OfNat R 1] [SuccessorAdditionLaw R] : ∀ a : R, Succ a = a + 1
-Source: ./DiscreteInteger/Interface/Laws/Definition.lean#L91
+Source: [`./DiscreteInteger/Interface/Laws/Definition.lean#L674`](./DiscreteInteger/Interface/Laws/Definition.lean#L674)
 
 
 
@@ -1418,10 +1418,10 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.SuccessorMultiplicationLaws R → ∀ (a b : R), { hMul := fun a b => inst_3.mul a b }.hMul a (b) ≤ ={ hAdd := fun a b => inst_2.add a b }.hAdd ({ hMul := fun a b => inst_3.mul a b }.hMul a b) a
+    LRA.AlgebraicStructures.SuccessorMultiplicationLaws R → ∀ (a b : R), { hMul := fun a b => inst_3.mul a b }.hMul a (inst.1 b) = { hAdd := fun a b => inst_2.add a b }.hAdd ({ hMul := fun a b => inst_3.mul a b }.hMul a b) a
 Transliterated theorem: ∀ a b : R, a * Succ b = a * b + a
 Logical form (Lean): [HasSuccessor R] [HasPredecessor R] [Add R] [Mul R] [Neg R] [SuccessorMultiplicationLaws R] : ∀ a b : R, a * Succ b = a * b + a
-Source: ./DiscreteInteger/Interface/Laws/Definition.lean#L95
+Source: [`./DiscreteInteger/Interface/Laws/Definition.lean#L721`](./DiscreteInteger/Interface/Laws/Definition.lean#L721)
 
 
 
@@ -1435,10 +1435,10 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.SuccessorMultiplicationLaws R → ∀ (a b : R), { hMul := fun a b => inst_3.mul a b }.hMul a (b) ≤ ={ hAdd := fun a b => inst_2.add a b }.hAdd ({ hMul := fun a b => inst_3.mul a b }.hMul a b) (inst_4.neg a)
+    LRA.AlgebraicStructures.SuccessorMultiplicationLaws R → ∀ (a b : R), { hMul := fun a b => inst_3.mul a b }.hMul a (inst_1.1 b) = { hAdd := fun a b => inst_2.add a b }.hAdd ({ hMul := fun a b => inst_3.mul a b }.hMul a b) (inst_4.neg a)
 Transliterated theorem: ∀ a b : R, a * Pred b = a * b + -a
 Logical form (Lean): [HasSuccessor R] [HasPredecessor R] [Add R] [Mul R] [Neg R] [SuccessorMultiplicationLaws R] : ∀ a b : R, a * Pred b = a * b + -a
-Source: ./DiscreteInteger/Interface/Laws/Definition.lean#L99
+Source: [`./DiscreteInteger/Interface/Laws/Definition.lean#L768`](./DiscreteInteger/Interface/Laws/Definition.lean#L768)
 
 
 
@@ -1455,7 +1455,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.DiscretenessLaw R → ∀ (x : R) (n : Nat), (instLTNat.lt 0 n ∧ LRA.AlgebraicStructures.SuccIterate n x = x) → False
 Transliterated theorem: ∀ x ∈ R n ∈ Nat, 0 < n → SuccIterate n x ≠ x
 Logical form (Lean): [HasSuccessor R] [HasPredecessor R] [OfNat R 0] [DiscretenessLaw R] : ∀ (x : R) (n : Nat), 0 < n → SuccIterate n x ≠ x
-Source: ./DiscreteInteger/Interface/Laws/Definition.lean#L103
+Source: [`./DiscreteInteger/Interface/Laws/Definition.lean#L815`](./DiscreteInteger/Interface/Laws/Definition.lean#L815)
 
 
 
@@ -1469,10 +1469,10 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.DiscretenessLaw R → ∀ (motive : R → Prop), (motive 0 ∧ ((∀ (a : R), motive a → motive (a)) ≤ ∧ (∀ (a : R), motive a → motive (a)))) ≤ → ∀ (a : R), motive a
+    LRA.AlgebraicStructures.DiscretenessLaw R → ∀ (motive : R → Prop), (motive 0 ∧ ((∀ (a : R), motive a → motive (inst.1 a)) ∧ (∀ (a : R), motive a → motive (inst_1.1 a)))) → ∀ (a : R), motive a
 Transliterated theorem: ∀ motive ∈ R → Prop, motive 0 → (∀ a, motive a → motive (Succ a)) → (∀ a, motive a → motive (Pred a)) → ∀ a, motive a
 Logical form (Lean): [HasSuccessor R] [HasPredecessor R] [OfNat R 0] [DiscretenessLaw R] : ∀ (motive : R → Prop), motive 0 → (∀ a, motive a → motive (Succ a)) → (∀ a, motive a → motive (Pred a)) → ∀ a, motive a
-Source: ./DiscreteInteger/Interface/Laws/Definition.lean#L107
+Source: [`./DiscreteInteger/Interface/Laws/Definition.lean#L866`](./DiscreteInteger/Interface/Laws/Definition.lean#L866)
 
 
 
@@ -1489,7 +1489,7 @@ Predicate logic (unfolded):
     (a ∈ LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Examples.PositiveReals ∧ b ∈ LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Examples.PositiveReals) → { hAdd := fun a b => Real.instAdd.add a b }.hAdd a b ∈ LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Examples.PositiveReals
 Transliterated theorem: ∀ a b, a ∈ PositiveReals → b ∈ PositiveReals → a + b ∈ PositiveReals
 Logical form (Lean): : ∀ a b, a ∈ PositiveReals → b ∈ PositiveReals → a + b ∈ PositiveReals
-Source: ./AdditiveCommutativeSemigroup/Examples/OpenIntervalUnderAddition.lean#L16
+Source: [`./AdditiveCommutativeSemigroup/Examples/OpenIntervalUnderAddition.lean#L99`](./AdditiveCommutativeSemigroup/Examples/OpenIntervalUnderAddition.lean#L99)
 
 
 
@@ -1506,7 +1506,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.AdditiveCommutativeSemigroupLaws (Subtype fun x => x) ∈ LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Examples.PositiveReals
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./AdditiveCommutativeSemigroup/Examples/OpenIntervalUnderAddition.lean
+Source: [`./AdditiveCommutativeSemigroup/Examples/OpenIntervalUnderAddition.lean`](./AdditiveCommutativeSemigroup/Examples/OpenIntervalUnderAddition.lean)
 
 
 
@@ -1523,7 +1523,7 @@ Predicate logic (unfolded):
     Nonempty (Subtype fun x => x) ∈ LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Examples.PositiveReals
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./AdditiveCommutativeSemigroup/Examples/OpenIntervalUnderAddition.lean
+Source: [`./AdditiveCommutativeSemigroup/Examples/OpenIntervalUnderAddition.lean`](./AdditiveCommutativeSemigroup/Examples/OpenIntervalUnderAddition.lean)
 
 
 
@@ -1540,7 +1540,7 @@ Predicate logic (unfolded):
     (a ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.EvenIntegers ∧ b ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.EvenIntegers) → { hAdd := fun a b => Int.instAdd.add a b }.hAdd a b ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.EvenIntegers
 Transliterated theorem: ∀ a b, a ∈ EvenIntegers → b ∈ EvenIntegers → a + b ∈ EvenIntegers
 Logical form (Lean): : ∀ a b, a ∈ EvenIntegers → b ∈ EvenIntegers → a + b ∈ EvenIntegers
-Source: ./AdditiveSemigroup/Examples/EvenIntegersUnderAddition.lean#L17
+Source: [`./AdditiveSemigroup/Examples/EvenIntegersUnderAddition.lean#L100`](./AdditiveSemigroup/Examples/EvenIntegersUnderAddition.lean#L100)
 
 
 
@@ -1557,7 +1557,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.AdditiveSemigroupLaws Int
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./AdditiveSemigroup/Examples/EvenIntegersUnderAddition.lean
+Source: [`./AdditiveSemigroup/Examples/EvenIntegersUnderAddition.lean`](./AdditiveSemigroup/Examples/EvenIntegersUnderAddition.lean)
 
 
 
@@ -1574,7 +1574,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.AdditiveSemigroupLaws (Subtype fun n => n) ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.EvenIntegers
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./AdditiveSemigroup/Examples/EvenIntegersUnderAddition.lean
+Source: [`./AdditiveSemigroup/Examples/EvenIntegersUnderAddition.lean`](./AdditiveSemigroup/Examples/EvenIntegersUnderAddition.lean)
 
 
 
@@ -1591,7 +1591,7 @@ Predicate logic (unfolded):
     Nonempty (Subtype fun n => n) ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.EvenIntegers
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./AdditiveSemigroup/Examples/EvenIntegersUnderAddition.lean
+Source: [`./AdditiveSemigroup/Examples/EvenIntegersUnderAddition.lean`](./AdditiveSemigroup/Examples/EvenIntegersUnderAddition.lean)
 
 
 
@@ -1608,7 +1608,7 @@ Predicate logic (unfolded):
     (a ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveNaturals ∧ b ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveNaturals) → { hAdd := fun a b => instAddNat.add a b }.hAdd a b ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveNaturals
 Transliterated theorem: ∀ a b, a ∈ PositiveNaturals → b ∈ PositiveNaturals → a + b ∈ PositiveNaturals
 Logical form (Lean): : ∀ a b, a ∈ PositiveNaturals → b ∈ PositiveNaturals → a + b ∈ PositiveNaturals
-Source: ./AdditiveSemigroup/Examples/PositiveNaturalsUnderAddition.lean#L17
+Source: [`./AdditiveSemigroup/Examples/PositiveNaturalsUnderAddition.lean#L100`](./AdditiveSemigroup/Examples/PositiveNaturalsUnderAddition.lean#L100)
 
 
 
@@ -1625,7 +1625,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.AdditiveSemigroupLaws (Subtype fun n => n) ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveNaturals
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./AdditiveSemigroup/Examples/PositiveNaturalsUnderAddition.lean
+Source: [`./AdditiveSemigroup/Examples/PositiveNaturalsUnderAddition.lean`](./AdditiveSemigroup/Examples/PositiveNaturalsUnderAddition.lean)
 
 
 
@@ -1642,7 +1642,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.AdditiveSemigroupLaws Nat
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./AdditiveSemigroup/Examples/PositiveNaturalsUnderAddition.lean
+Source: [`./AdditiveSemigroup/Examples/PositiveNaturalsUnderAddition.lean`](./AdditiveSemigroup/Examples/PositiveNaturalsUnderAddition.lean)
 
 
 
@@ -1659,7 +1659,7 @@ Predicate logic (unfolded):
     Nonempty (Subtype fun n => n) ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveNaturals
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./AdditiveSemigroup/Examples/PositiveNaturalsUnderAddition.lean
+Source: [`./AdditiveSemigroup/Examples/PositiveNaturalsUnderAddition.lean`](./AdditiveSemigroup/Examples/PositiveNaturalsUnderAddition.lean)
 
 
 
@@ -1676,7 +1676,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.AdditiveCommutativeLaws Nat
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./AdditiveCommutativeSemigroup/Examples/PositiveNaturalsUnderAddition.lean
+Source: [`./AdditiveCommutativeSemigroup/Examples/PositiveNaturalsUnderAddition.lean`](./AdditiveCommutativeSemigroup/Examples/PositiveNaturalsUnderAddition.lean)
 
 
 
@@ -1693,7 +1693,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.AdditiveCommutativeSemigroupLaws (Subtype fun n => n) ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveNaturals
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./AdditiveCommutativeSemigroup/Examples/PositiveNaturalsUnderAddition.lean
+Source: [`./AdditiveCommutativeSemigroup/Examples/PositiveNaturalsUnderAddition.lean`](./AdditiveCommutativeSemigroup/Examples/PositiveNaturalsUnderAddition.lean)
 
 
 
@@ -1710,7 +1710,7 @@ Predicate logic (unfolded):
     (Exists fun e => ((∀ (element : Subtype fun n => n), ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveNaturals (fun a b => { hAdd := fun a b => LRA.AlgebraicStructures.AdditiveSemigroup.Examples.instAddSubtypeNatMemLRA_SetPositiveNaturals.add a b }.hAdd a b) e element = element) ∧ (∀ (element : Subtype fun n => n), ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveNaturals (fun a b => { hAdd := fun a b => LRA.AlgebraicStructures.AdditiveSemigroup.Examples.instAddSubtypeNatMemLRA_SetPositiveNaturals.add a b }.hAdd a b) element e = element))) → False
 Transliterated theorem: ¬ ∃ e ∈ {n // n ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveNaturals}, TwoSidedIdentity fun a b ∈ {n // n ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveNaturals} => a + b e
 Logical form (Lean): : ¬ ∃ e : {n // n ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveNaturals}, TwoSidedIdentity (fun a b : {n // n ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveNaturals} => a + b) e
-Source: ./AdditiveMonoid/Failures/PositiveNaturalsHaveNoIdentity.lean#L16
+Source: [`./AdditiveMonoid/Failures/PositiveNaturalsHaveNoIdentity.lean#L53`](./AdditiveMonoid/Failures/PositiveNaturalsHaveNoIdentity.lean#L53)
 
 
 
@@ -1727,7 +1727,7 @@ Predicate logic (unfolded):
     (a ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveEvenNaturals ∧ b ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveEvenNaturals) → { hAdd := fun a b => instAddNat.add a b }.hAdd a b ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveEvenNaturals
 Transliterated theorem: ∀ a b, a ∈ PositiveEvenNaturals → b ∈ PositiveEvenNaturals → a + b ∈ PositiveEvenNaturals
 Logical form (Lean): : ∀ a b, a ∈ PositiveEvenNaturals → b ∈ PositiveEvenNaturals → a + b ∈ PositiveEvenNaturals
-Source: ./AdditiveSemigroup/Examples/PositiveEvenNaturalsUnderAddition.lean#L16
+Source: [`./AdditiveSemigroup/Examples/PositiveEvenNaturalsUnderAddition.lean#L100`](./AdditiveSemigroup/Examples/PositiveEvenNaturalsUnderAddition.lean#L100)
 
 
 
@@ -1744,7 +1744,7 @@ Predicate logic (unfolded):
     Nonempty (Subtype fun n => n) ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveEvenNaturals
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./AdditiveSemigroup/Examples/PositiveEvenNaturalsUnderAddition.lean
+Source: [`./AdditiveSemigroup/Examples/PositiveEvenNaturalsUnderAddition.lean`](./AdditiveSemigroup/Examples/PositiveEvenNaturalsUnderAddition.lean)
 
 
 
@@ -1761,7 +1761,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.AdditiveSemigroupLaws (Subtype fun n => n) ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveEvenNaturals
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./AdditiveSemigroup/Examples/PositiveEvenNaturalsUnderAddition.lean
+Source: [`./AdditiveSemigroup/Examples/PositiveEvenNaturalsUnderAddition.lean`](./AdditiveSemigroup/Examples/PositiveEvenNaturalsUnderAddition.lean)
 
 
 
@@ -1778,7 +1778,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.AdditiveCommutativeSemigroupLaws (Subtype fun n => n) ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveEvenNaturals
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./AdditiveCommutativeSemigroup/Examples/PositiveEvenNaturalsUnderAddition.lean
+Source: [`./AdditiveCommutativeSemigroup/Examples/PositiveEvenNaturalsUnderAddition.lean`](./AdditiveCommutativeSemigroup/Examples/PositiveEvenNaturalsUnderAddition.lean)
 
 
 
@@ -1796,7 +1796,7 @@ Predicate logic (unfolded):
     Nat.instDvd.1 ({ hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul a.1 b.1) (a.1.gcd b.1)) n
 Transliterated theorem: Nat.lcm a.1 b.1 ∣ n
 Logical form (Lean): (a b : Divisors n) : Nat.lcm a.1 b.1 ∣ n
-Source: ./BoundedLattice/Examples/DivisorLattice.lean#L16
+Source: [`./BoundedLattice/Examples/DivisorLattice.lean#L88`](./BoundedLattice/Examples/DivisorLattice.lean#L88)
 
 
 
@@ -1814,7 +1814,7 @@ Predicate logic (unfolded):
     Nat.instDvd.1 (a.1.gcd b.1) n
 Transliterated theorem: Nat.gcd a.1 b.1 ∣ n
 Logical form (Lean): (a b : Divisors n) : Nat.gcd a.1 b.1 ∣ n
-Source: ./BoundedLattice/Examples/DivisorLattice.lean#L18
+Source: [`./BoundedLattice/Examples/DivisorLattice.lean#L132`](./BoundedLattice/Examples/DivisorLattice.lean#L132)
 
 
 
@@ -1831,7 +1831,7 @@ Predicate logic (unfolded):
     ((((∀ (first second third : Subtype fun d => Nat.instDvd.1 d n), ⟨instHDiv.hDiv (instHMul.hMul (LRA.AlgebraicStructures.BoundedLattice.Examples.divisorJoin first second).val third.val) ((LRA.AlgebraicStructures.BoundedLattice.Examples.divisorJoin first second).val.gcd third.val), ⋯⟩ = ⟨instHDiv.hDiv (instHMul.hMul first.val (LRA.AlgebraicStructures.BoundedLattice.Examples.divisorJoin second third).val) (first.val.gcd (LRA.AlgebraicStructures.BoundedLattice.Examples.divisorJoin second third).val), ⋯⟩) ∧ ((∀ (first second : Subtype fun d => Nat.instDvd.1 d n), ⟨instHDiv.hDiv (instHMul.hMul first.val second.val) (first.val.gcd second.val), ⋯⟩ = ⟨instHDiv.hDiv (instHMul.hMul second.val first.val) (second.val.gcd first.val), ⋯⟩) ∧ (∀ (element : Subtype fun d => Nat.instDvd.1 d n), ⟨instHDiv.hDiv (instHMul.hMul element.val element.val) (element.val.gcd element.val), ⋯⟩ = element))) ∧ (((∀ (first second third : Subtype fun d => Nat.instDvd.1 d n), ⟨(LRA.AlgebraicStructures.BoundedLattice.Examples.divisorMeet first second).1.gcd third.1, ⋯⟩ = ⟨first.1.gcd (LRA.AlgebraicStructures.BoundedLattice.Examples.divisorMeet second third).1, ⋯⟩) ∧ ((∀ (first second : Subtype fun d => Nat.instDvd.1 d n), ⟨first.1.gcd second.1, ⋯⟩ = ⟨second.1.gcd first.1, ⋯⟩) ∧ (∀ (element : Subtype fun d => Nat.instDvd.1 d n), ⟨element.1.gcd element.1, ⋯⟩ = element))) ∧ ((∀ (left right : Subtype fun d => Nat.instDvd.1 d n), ⟨instHDiv.hDiv (instHMul.hMul left.val (LRA.AlgebraicStructures.BoundedLattice.Examples.divisorMeet left right).val) (left.val.gcd (LRA.AlgebraicStructures.BoundedLattice.Examples.divisorMeet left right).val), ⋯⟩ = left) ∧ (∀ (left right : Subtype fun d => Nat.instDvd.1 d n), ⟨left.1.gcd (LRA.AlgebraicStructures.BoundedLattice.Examples.divisorJoin left right).1, ⋯⟩ = left)))) ∧ (((∀ (element : Subtype fun d => Nat.instDvd.1 d n), ⟨{ hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul ⟨1, ⋯⟩.1 element.1) (⟨1, ⋯⟩.1.gcd element.1), ⋯⟩ = element) ∧ (∀ (element : Subtype fun d => Nat.instDvd.1 d n), ⟨{ hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul element.1 ⟨1, ⋯⟩.1) (element.1.gcd ⟨1, ⋯⟩.1), ⋯⟩ = element)) ∧ ((∀ (element : Subtype fun d => Nat.instDvd.1 d n), ⟨⟨n, ⋯⟩.1.gcd element.1, ⋯⟩ = element) ∧ (∀ (element : Subtype fun d => Nat.instDvd.1 d n), ⟨element.1.gcd ⟨n, ⋯⟩.1, ⋯⟩ = element))))
 Transliterated theorem: LRA.AlgebraicStructures.BoundedLatticeLaws (divisorJoin n ∈ = n) (divisorMeet n ∈ = n) ⟨1, one_dvd n⟩ ∈ Divisors n ⟨n, dvd_refl n⟩ ∈ Divisors n
 Logical form (Lean): : LRA.AlgebraicStructures.BoundedLatticeLaws (divisorJoin (n := n)) (divisorMeet (n := n)) (⟨1, one_dvd n⟩ : Divisors n) (⟨n, dvd_refl n⟩ : Divisors n)
-Source: ./BoundedLattice/Examples/DivisorLattice.lean#L23
+Source: [`./BoundedLattice/Examples/DivisorLattice.lean#L253`](./BoundedLattice/Examples/DivisorLattice.lean#L253)
 
 
 
@@ -1848,7 +1848,7 @@ Predicate logic (unfolded):
     ((((∀ (first second third : α → Prop), first ∪ second ∪ third = first ∪ second ∪ third) ∧ ((∀ (first second : α → Prop), first ∪ second = second ∪ first) ∧ (∀ (element : α → Prop), element ∪ element = element))) ∧ (((∀ (first second third : α → Prop), first ∩ second ∩ third = first ∩ second ∩ third) ∧ ((∀ (first second : α → Prop), first ∩ second = second ∩ first) ∧ (∀ (element : α → Prop), element ∩ element = element))) ∧ ((∀ (left right : α → Prop), left ∪ left ∩ right = left) ∧ (∀ (left right : α → Prop), left ∩ left ∪ right = left)))) ∧ (((∀ (element : α → Prop), Set.instEmptyCollection.1 ∪ element = element) ∧ (∀ (element : α → Prop), element ∪ Set.instEmptyCollection.1 = element)) ∧ ((∀ (element : α → Prop), fun _a => True ∩ element = element) ∧ (∀ (element : α → Prop), element ∩ fun_a => True = element))))
 Transliterated theorem: LRA.AlgebraicStructures.BoundedLatticeLaws Union.union ∈ LRA.Set.LRA_Set α → LRA.Set.LRA_Set α → LRA.Set.LRA_Set α Inter.inter ∈ LRA.Set.LRA_Set α → LRA.Set.LRA_Set α → LRA.Set.LRA_Set α ∅ ∈ LRA.Set.LRA_Set α Set.univ ∈ LRA.Set.LRA_Set α
 Logical form (Lean): {α : Type u} : LRA.AlgebraicStructures.BoundedLatticeLaws (Union.union : LRA.Set.LRA_Set α → LRA.Set.LRA_Set α → LRA.Set.LRA_Set α) (Inter.inter : LRA.Set.LRA_Set α → LRA.Set.LRA_Set α → LRA.Set.LRA_Set α) (∅ : LRA.Set.LRA_Set α) (Set.univ : LRA.Set.LRA_Set α)
-Source: ./BoundedLattice/Examples/PowerSetLattice.lean#L10
+Source: [`./BoundedLattice/Examples/PowerSetLattice.lean#L52`](./BoundedLattice/Examples/PowerSetLattice.lean#L52)
 
 
 
@@ -1865,7 +1865,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.CommutativeMonoidLaws (LRA.AlgebraicStructures.CommutativeMonoid.Examples.PowerSetUnderUnion α)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./CommutativeMonoid/Examples/PowerSetUnderUnion.lean
+Source: [`./CommutativeMonoid/Examples/PowerSetUnderUnion.lean`](./CommutativeMonoid/Examples/PowerSetUnderUnion.lean)
 
 
 
@@ -1882,7 +1882,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.CommutativeSemigroupLaws LRA.AlgebraicStructures.CommutativeSemigroup.Examples.RealsUnderMin
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./CommutativeSemigroup/Examples/MinMaxOnReals.lean
+Source: [`./CommutativeSemigroup/Examples/MinMaxOnReals.lean`](./CommutativeSemigroup/Examples/MinMaxOnReals.lean)
 
 
 
@@ -1899,7 +1899,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.CommutativeSemigroupLaws LRA.AlgebraicStructures.CommutativeSemigroup.Examples.RealsUnderMax
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./CommutativeSemigroup/Examples/MinMaxOnReals.lean
+Source: [`./CommutativeSemigroup/Examples/MinMaxOnReals.lean`](./CommutativeSemigroup/Examples/MinMaxOnReals.lean)
 
 
 
@@ -1916,7 +1916,7 @@ Predicate logic (unfolded):
     (a ∈ LRA.AlgebraicStructures.CommutativeSemigroup.Examples.PositiveEvenNaturals ∧ b ∈ LRA.AlgebraicStructures.CommutativeSemigroup.Examples.PositiveEvenNaturals) → { hMul := fun a b => LRA.AlgebraicStructures.CommutativeSemigroup.Examples.instMulNaturalsUnderMultiplication.mul a b }.hMul a b ∈ LRA.AlgebraicStructures.CommutativeSemigroup.Examples.PositiveEvenNaturals
 Transliterated theorem: ∀ a b, a ∈ PositiveEvenNaturals → b ∈ PositiveEvenNaturals → a * b ∈ PositiveEvenNaturals
 Logical form (Lean): : ∀ a b, a ∈ PositiveEvenNaturals → b ∈ PositiveEvenNaturals → a * b ∈ PositiveEvenNaturals
-Source: ./CommutativeSemigroup/Examples/PositiveEvenNaturalsUnderMultiplication.lean#L33
+Source: [`./CommutativeSemigroup/Examples/PositiveEvenNaturalsUnderMultiplication.lean#L157`](./CommutativeSemigroup/Examples/PositiveEvenNaturalsUnderMultiplication.lean#L157)
 
 
 
@@ -1933,7 +1933,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.CommutativeSemigroupLaws LRA.AlgebraicStructures.CommutativeSemigroup.Examples.NaturalsUnderMultiplication
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./CommutativeSemigroup/Examples/PositiveEvenNaturalsUnderMultiplication.lean
+Source: [`./CommutativeSemigroup/Examples/PositiveEvenNaturalsUnderMultiplication.lean`](./CommutativeSemigroup/Examples/PositiveEvenNaturalsUnderMultiplication.lean)
 
 
 
@@ -1950,7 +1950,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.CommutativeSemigroupLaws (Subtype fun n => n) ∈ LRA.AlgebraicStructures.CommutativeSemigroup.Examples.PositiveEvenNaturals
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./CommutativeSemigroup/Examples/PositiveEvenNaturalsUnderMultiplication.lean
+Source: [`./CommutativeSemigroup/Examples/PositiveEvenNaturalsUnderMultiplication.lean`](./CommutativeSemigroup/Examples/PositiveEvenNaturalsUnderMultiplication.lean)
 
 
 
@@ -1967,7 +1967,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.CommutativeSemigroupLaws (LRA.AlgebraicStructures.CommutativeSemigroup.Examples.IntersectionSemilattice α)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./CommutativeSemigroup/Examples/Semilattices.lean
+Source: [`./CommutativeSemigroup/Examples/Semilattices.lean`](./CommutativeSemigroup/Examples/Semilattices.lean)
 
 
 
@@ -1984,7 +1984,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.CommutativeSemigroupLaws (LRA.AlgebraicStructures.CommutativeSemigroup.Examples.UnionSemilattice α)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./CommutativeSemigroup/Examples/Semilattices.lean
+Source: [`./CommutativeSemigroup/Examples/Semilattices.lean`](./CommutativeSemigroup/Examples/Semilattices.lean)
 
 
 
@@ -2001,7 +2001,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.SuccessorLaws Int
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./DiscreteInteger/Examples/Integers.lean
+Source: [`./DiscreteInteger/Examples/Integers.lean`](./DiscreteInteger/Examples/Integers.lean)
 
 
 
@@ -2018,7 +2018,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.SuccessorAdditionLaw Int
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./DiscreteInteger/Examples/Integers.lean
+Source: [`./DiscreteInteger/Examples/Integers.lean`](./DiscreteInteger/Examples/Integers.lean)
 
 
 
@@ -2035,7 +2035,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.SuccessorMultiplicationLaws Int
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./DiscreteInteger/Examples/Integers.lean
+Source: [`./DiscreteInteger/Examples/Integers.lean`](./DiscreteInteger/Examples/Integers.lean)
 
 
 
@@ -2052,7 +2052,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.DiscretenessLaw Int
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./DiscreteInteger/Examples/Integers.lean
+Source: [`./DiscreteInteger/Examples/Integers.lean`](./DiscreteInteger/Examples/Integers.lean)
 
 
 
@@ -2069,7 +2069,7 @@ Predicate logic (unfolded):
     ((((∀ (first second third : Nat), { hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul (instHDiv.hDiv (instHMul.hMul first second) (first.gcd second)) third) ((instHDiv.hDiv (instHMul.hMul first second) (first.gcd second)).gcd third) = { hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul first (instHDiv.hDiv (instHMul.hMul second third) (second.gcd third))) (first.gcd (instHDiv.hDiv (instHMul.hMul second third) (second.gcd third)))) ∧ ((∀ (first second : Nat), { hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul first second) (first.gcd second) = { hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul second first) (second.gcd first)) ∧ (∀ (element : Nat), { hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul element element) (element.gcd element) = element))) ∧ (((∀ (first second third : Nat), (first.gcd second).gcd third = first.gcd (second.gcd third)) ∧ ((∀ (first second : Nat), first.gcd second = second.gcd first) ∧ (∀ (element : Nat), element.gcd element = element))) ∧ ((∀ (left right : Nat), { hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul left (left.gcd right)) (left.gcd (left.gcd right)) = left) ∧ (∀ (left right : Nat), left.gcd ({ hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul left right) (left.gcd right)) = left)))) ∧ (((∀ (left right third : Nat), { hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul left (right.gcd third)) (left.gcd (right.gcd third)) = ({ hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul left right) (left.gcd right)).gcd ({ hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul left third) (left.gcd third))) ∧ (∀ (left right third : Nat), { hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul (left.gcd right) third) ((left.gcd right).gcd third) = ({ hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul left third) (left.gcd third)).gcd ({ hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul right third) (right.gcd third)))) ∧ ((∀ (left right third : Nat), left.gcd ({ hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul right third) (right.gcd third)) = { hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul (left.gcd right) (left.gcd third)) ((left.gcd right).gcd (left.gcd third))) ∧ (∀ (left right third : Nat), ({ hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul left right) (left.gcd right)).gcd third = { hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul (left.gcd third) (right.gcd third)) ((left.gcd third).gcd (right.gcd third))))))
 Transliterated theorem: LRA.AlgebraicStructures.DistributiveLatticeLaws Nat.lcm Nat.gcd
 Logical form (Lean): : LRA.AlgebraicStructures.DistributiveLatticeLaws Nat.lcm Nat.gcd
-Source: ./DistributiveLattice/Examples/DivisorLattice.lean#L11
+Source: [`./DistributiveLattice/Examples/DivisorLattice.lean#L48`](./DistributiveLattice/Examples/DivisorLattice.lean#L48)
 
 
 
@@ -2086,7 +2086,7 @@ Predicate logic (unfolded):
     ((((∀ (first second third : α → Prop), first ∪ second ∪ third = first ∪ second ∪ third) ∧ ((∀ (first second : α → Prop), first ∪ second = second ∪ first) ∧ (∀ (element : α → Prop), element ∪ element = element))) ∧ (((∀ (first second third : α → Prop), first ∩ second ∩ third = first ∩ second ∩ third) ∧ ((∀ (first second : α → Prop), first ∩ second = second ∩ first) ∧ (∀ (element : α → Prop), element ∩ element = element))) ∧ ((∀ (left right : α → Prop), left ∪ left ∩ right = left) ∧ (∀ (left right : α → Prop), left ∩ left ∪ right = left)))) ∧ (((∀ (left right third : α → Prop), left ∪ right ∩ third = left ∪ right ∩ left ∪ third) ∧ (∀ (left right third : α → Prop), left ∩ right ∪ third = left ∪ third ∩ right ∪ third)) ∧ ((∀ (left right third : α → Prop), left ∩ right ∪ third = left ∩ right ∪ left ∩ third) ∧ (∀ (left right third : α → Prop), left ∪ right ∩ third = left ∩ third ∪ right ∩ third))))
 Transliterated theorem: LRA.AlgebraicStructures.DistributiveLatticeLaws Union.union ∈ LRA.Set.LRA_Set α → LRA.Set.LRA_Set α → LRA.Set.LRA_Set α Inter.inter ∈ LRA.Set.LRA_Set α → LRA.Set.LRA_Set α → LRA.Set.LRA_Set α
 Logical form (Lean): {α : Type u} : LRA.AlgebraicStructures.DistributiveLatticeLaws (Union.union : LRA.Set.LRA_Set α → LRA.Set.LRA_Set α → LRA.Set.LRA_Set α) (Inter.inter : LRA.Set.LRA_Set α → LRA.Set.LRA_Set α → LRA.Set.LRA_Set α)
-Source: ./DistributiveLattice/Examples/PowerSetLattice.lean#L11
+Source: [`./DistributiveLattice/Examples/PowerSetLattice.lean#L51`](./DistributiveLattice/Examples/PowerSetLattice.lean#L51)
 
 
 
@@ -2103,7 +2103,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.GroupLaws LRA.AlgebraicStructures.Group.Examples.IntegersUnderAddition
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Group/Examples/IntegersUnderAddition.lean
+Source: [`./Group/Examples/IntegersUnderAddition.lean`](./Group/Examples/IntegersUnderAddition.lean)
 
 
 
@@ -2120,7 +2120,7 @@ Predicate logic (unfolded):
     (a ∈ LRA.AlgebraicStructures.Group.Examples.NonzeroReals ∧ b ∈ LRA.AlgebraicStructures.Group.Examples.NonzeroReals) → { hMul := fun a b => Real.instMul.mul a b }.hMul a b ∈ LRA.AlgebraicStructures.Group.Examples.NonzeroReals
 Transliterated theorem: ∀ a b, a ∈ NonzeroReals → b ∈ NonzeroReals → a * b ∈ NonzeroReals
 Logical form (Lean): : ∀ a b, a ∈ NonzeroReals → b ∈ NonzeroReals → a * b ∈ NonzeroReals
-Source: ./Group/Examples/NonzeroRealsUnderMultiplication.lean#L18
+Source: [`./Group/Examples/NonzeroRealsUnderMultiplication.lean#L92`](./Group/Examples/NonzeroRealsUnderMultiplication.lean#L92)
 
 
 
@@ -2137,7 +2137,7 @@ Predicate logic (unfolded):
     1 ∈ LRA.AlgebraicStructures.Group.Examples.NonzeroReals
 Transliterated theorem: 1 ∈ Real ∈ NonzeroReals
 Logical form (Lean): : (1 : Real) ∈ NonzeroReals
-Source: ./Group/Examples/NonzeroRealsUnderMultiplication.lean#L21
+Source: [`./Group/Examples/NonzeroRealsUnderMultiplication.lean#L136`](./Group/Examples/NonzeroRealsUnderMultiplication.lean#L136)
 
 
 
@@ -2154,7 +2154,7 @@ Predicate logic (unfolded):
     a ∈ LRA.AlgebraicStructures.Group.Examples.NonzeroReals → Real.instInv.1 a ∈ LRA.AlgebraicStructures.Group.Examples.NonzeroReals
 Transliterated theorem: ∀ a, a ∈ NonzeroReals → a⁻¹ ∈ NonzeroReals
 Logical form (Lean): : ∀ a, a ∈ NonzeroReals → a⁻¹ ∈ NonzeroReals
-Source: ./Group/Examples/NonzeroRealsUnderMultiplication.lean#L23
+Source: [`./Group/Examples/NonzeroRealsUnderMultiplication.lean#L180`](./Group/Examples/NonzeroRealsUnderMultiplication.lean#L180)
 
 
 
@@ -2171,7 +2171,7 @@ Predicate logic (unfolded):
     a ∈ LRA.AlgebraicStructures.Group.Examples.NonzeroReals → ({ hMul := fun a b => Real.instMul.mul a b }.hMul (Real.instInv.1 a) a = 1 ∧ { hMul := fun a b => Real.instMul.mul a b }.hMul a (Real.instInv.1 a) = 1)
 Transliterated theorem: ∀ a, a ∈ NonzeroReals → a⁻¹ * a = 1 ∧ a * a⁻¹ = 1
 Logical form (Lean): : ∀ a, a ∈ NonzeroReals → a⁻¹ * a = 1 ∧ a * a⁻¹ = 1
-Source: ./Group/Examples/NonzeroRealsUnderMultiplication.lean#L26
+Source: [`./Group/Examples/NonzeroRealsUnderMultiplication.lean#L225`](./Group/Examples/NonzeroRealsUnderMultiplication.lean#L225)
 
 
 
@@ -2188,7 +2188,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.GroupLaws (Subtype fun x => x) ∈ LRA.AlgebraicStructures.Group.Examples.NonzeroReals
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Group/Examples/NonzeroRealsUnderMultiplication.lean
+Source: [`./Group/Examples/NonzeroRealsUnderMultiplication.lean`](./Group/Examples/NonzeroRealsUnderMultiplication.lean)
 
 
 
@@ -2205,7 +2205,7 @@ Predicate logic (unfolded):
     ((∀ (first second third : α → Prop), first ∪ second ∪ third = first ∪ second ∪ third) ∧ ((∀ (first second : α → Prop), first ∪ second = second ∪ first) ∧ (∀ (element : α → Prop), element ∪ element = element)))
 Transliterated theorem: LRA.AlgebraicStructures.JoinSemilatticeLaws Union.union ∈ LRA.Set.LRA_Set α → LRA.Set.LRA_Set α → LRA.Set.LRA_Set α
 Logical form (Lean): {α : Type u} : LRA.AlgebraicStructures.JoinSemilatticeLaws (Union.union : LRA.Set.LRA_Set α → LRA.Set.LRA_Set α → LRA.Set.LRA_Set α)
-Source: ./JoinSemilattice/Examples/UnionSemilattice.lean#L13
+Source: [`./JoinSemilattice/Examples/UnionSemilattice.lean#L50`](./JoinSemilattice/Examples/UnionSemilattice.lean#L50)
 
 
 
@@ -2222,7 +2222,7 @@ Predicate logic (unfolded):
     (((∀ (first second third : Nat), { hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul ({ hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul first second) (first.gcd second)) third) (({ hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul first second) (first.gcd second)).gcd third) = { hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul first ({ hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul second third) (second.gcd third))) (first.gcd ({ hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul second third) (second.gcd third)))) ∧ ((∀ (first second : Nat), { hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul first second) (first.gcd second) = { hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul second first) (second.gcd first)) ∧ (∀ (element : Nat), { hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul element element) (element.gcd element) = element))) ∧ (((∀ (first second third : Nat), (first.gcd second).gcd third = first.gcd (second.gcd third)) ∧ ((∀ (first second : Nat), first.gcd second = second.gcd first) ∧ (∀ (element : Nat), element.gcd element = element))) ∧ ((∀ (left right : Nat), { hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul left (left.gcd right)) (left.gcd (left.gcd right)) = left) ∧ (∀ (left right : Nat), left.gcd ({ hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul left right) (left.gcd right)) = left))))
 Transliterated theorem: LRA.AlgebraicStructures.LatticeLaws Nat.lcm Nat.gcd
 Logical form (Lean): : LRA.AlgebraicStructures.LatticeLaws Nat.lcm Nat.gcd
-Source: ./Lattice/Examples/DivisibilityLattice.lean#L14
+Source: [`./Lattice/Examples/DivisibilityLattice.lean#L48`](./Lattice/Examples/DivisibilityLattice.lean#L48)
 
 
 
@@ -2239,7 +2239,7 @@ Predicate logic (unfolded):
     (((∀ (first second third : α → Prop), first ∪ second ∪ third = first ∪ second ∪ third) ∧ ((∀ (first second : α → Prop), first ∪ second = second ∪ first) ∧ (∀ (element : α → Prop), element ∪ element = element))) ∧ (((∀ (first second third : α → Prop), first ∩ second ∩ third = first ∩ second ∩ third) ∧ ((∀ (first second : α → Prop), first ∩ second = second ∩ first) ∧ (∀ (element : α → Prop), element ∩ element = element))) ∧ ((∀ (left right : α → Prop), left ∪ left ∩ right = left) ∧ (∀ (left right : α → Prop), left ∩ left ∪ right = left))))
 Transliterated theorem: LRA.AlgebraicStructures.LatticeLaws Union.union ∈ LRA.Set.LRA_Set α → LRA.Set.LRA_Set α → LRA.Set.LRA_Set α Inter.inter ∈ LRA.Set.LRA_Set α → LRA.Set.LRA_Set α → LRA.Set.LRA_Set α
 Logical form (Lean): {α : Type u} : LRA.AlgebraicStructures.LatticeLaws (Union.union : LRA.Set.LRA_Set α → LRA.Set.LRA_Set α → LRA.Set.LRA_Set α) (Inter.inter : LRA.Set.LRA_Set α → LRA.Set.LRA_Set α → LRA.Set.LRA_Set α)
-Source: ./Lattice/Examples/PowerSetLattice.lean#L13
+Source: [`./Lattice/Examples/PowerSetLattice.lean#L51`](./Lattice/Examples/PowerSetLattice.lean#L51)
 
 
 
@@ -2256,7 +2256,7 @@ Predicate logic (unfolded):
     (∀ (a b c : LRA.AlgebraicStructures.Magma.Examples.IntegersUnderSubtraction), { hMul := fun a b => LRA.AlgebraicStructures.Magma.Examples.instMulIntegersUnderSubtraction.mul a b }.hMul ({ hMul := fun a b => LRA.AlgebraicStructures.Magma.Examples.instMulIntegersUnderSubtraction.mul a b }.hMul a b) c = { hMul := fun a b => LRA.AlgebraicStructures.Magma.Examples.instMulIntegersUnderSubtraction.mul a b }.hMul a ({ hMul := fun a b => LRA.AlgebraicStructures.Magma.Examples.instMulIntegersUnderSubtraction.mul a b }.hMul b c)) → False
 Transliterated theorem: ¬ ∀ a b c : IntegersUnderSubtraction, (a * b) * c = a * (b * c)
 Logical form (Lean): : ¬ ∀ a b c : IntegersUnderSubtraction, (a * b) * c = a * (b * c)
-Source: ./Magma/Examples/IntegersUnderSubtraction.lean#L15
+Source: [`./Magma/Examples/IntegersUnderSubtraction.lean#L96`](./Magma/Examples/IntegersUnderSubtraction.lean#L96)
 
 
 
@@ -2273,7 +2273,7 @@ Predicate logic (unfolded):
     (A ∈ LRA.AlgebraicStructures.Magma.Examples.NonemptyZFCSets ∧ B ∈ LRA.AlgebraicStructures.Magma.Examples.NonemptyZFCSets) → { hMul := fun a b => LRA.AlgebraicStructures.Magma.Examples.instMulZFCSet.mul a b }.hMul A B ∈ LRA.AlgebraicStructures.Magma.Examples.NonemptyZFCSets
 Transliterated theorem: ∀ A B, A ∈ NonemptyZFCSets → B ∈ NonemptyZFCSets → A * B ∈ NonemptyZFCSets
 Logical form (Lean): : ∀ A B, A ∈ NonemptyZFCSets → B ∈ NonemptyZFCSets → A * B ∈ NonemptyZFCSets
-Source: ./Magma/Examples/NonemptyZFCSetsUnderUnion.lean#L21
+Source: [`./Magma/Examples/NonemptyZFCSetsUnderUnion.lean#L104`](./Magma/Examples/NonemptyZFCSetsUnderUnion.lean#L104)
 
 
 
@@ -2290,7 +2290,7 @@ Predicate logic (unfolded):
     (a ∈ LRA.AlgebraicStructures.Magma.Examples.NonzeroReals ∧ b ∈ LRA.AlgebraicStructures.Magma.Examples.NonzeroReals) → { hMul := fun a b => LRA.AlgebraicStructures.Magma.Examples.instMulRealsUnderDivision.mul a b }.hMul a b ∈ LRA.AlgebraicStructures.Magma.Examples.NonzeroReals
 Transliterated theorem: ∀ a b, a ∈ NonzeroReals → b ∈ NonzeroReals → a * b ∈ NonzeroReals
 Logical form (Lean): : ∀ a b, a ∈ NonzeroReals → b ∈ NonzeroReals → a * b ∈ NonzeroReals
-Source: ./Magma/Examples/NonzeroRealsUnderDivision.lean#L18
+Source: [`./Magma/Examples/NonzeroRealsUnderDivision.lean#L140`](./Magma/Examples/NonzeroRealsUnderDivision.lean#L140)
 
 
 
@@ -2307,7 +2307,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.MagmaLaws (Subtype fun x => x) ∈ LRA.AlgebraicStructures.Magma.Examples.NonzeroReals
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Magma/Examples/NonzeroRealsUnderDivision.lean
+Source: [`./Magma/Examples/NonzeroRealsUnderDivision.lean`](./Magma/Examples/NonzeroRealsUnderDivision.lean)
 
 
 
@@ -2324,7 +2324,7 @@ Predicate logic (unfolded):
     (∀ (a b c : LRA.AlgebraicStructures.Magma.Examples.RPS), { hMul := fun a b => LRA.AlgebraicStructures.Magma.Examples.instMulRPS.mul a b }.hMul ({ hMul := fun a b => LRA.AlgebraicStructures.Magma.Examples.instMulRPS.mul a b }.hMul a b) c = { hMul := fun a b => LRA.AlgebraicStructures.Magma.Examples.instMulRPS.mul a b }.hMul a ({ hMul := fun a b => LRA.AlgebraicStructures.Magma.Examples.instMulRPS.mul a b }.hMul b c)) → False
 Transliterated theorem: ¬ ∀ a b c : RPS, (a * b) * c = a * (b * c)
 Logical form (Lean): : ¬ ∀ a b c : RPS, (a * b) * c = a * (b * c)
-Source: ./Magma/Examples/RockPaperScissors.lean#L22
+Source: [`./Magma/Examples/RockPaperScissors.lean#L154`](./Magma/Examples/RockPaperScissors.lean#L154)
 
 
 
@@ -2341,7 +2341,7 @@ Predicate logic (unfolded):
     (Exists fun e => ((∀ (element : LRA.AlgebraicStructures.Magma.Examples.RPS), (fun a b => { hMul := fun a b => LRA.AlgebraicStructures.Magma.Examples.instMulRPS.mul a b }.hMul a b) e element = element) ∧ (∀ (element : LRA.AlgebraicStructures.Magma.Examples.RPS), (fun a b => { hMul := fun a b => LRA.AlgebraicStructures.Magma.Examples.instMulRPS.mul a b }.hMul a b) element e = element))) → False
 Transliterated theorem: ¬ ∃ e ∈ RPS, TwoSidedIdentity fun a b ∈ RPS => a * b e
 Logical form (Lean): : ¬ ∃ e : RPS, TwoSidedIdentity (fun a b : RPS => a * b) e
-Source: ./Magma/Examples/IdentityNotRequired.lean#L10
+Source: [`./Magma/Examples/IdentityNotRequired.lean#L50`](./Magma/Examples/IdentityNotRequired.lean#L50)
 
 
 
@@ -2358,7 +2358,7 @@ Predicate logic (unfolded):
     ((∀ (first second third : Nat), (first.gcd second).gcd third = first.gcd (second.gcd third)) ∧ ((∀ (first second : Nat), first.gcd second = second.gcd first) ∧ (∀ (element : Nat), element.gcd element = element)))
 Transliterated theorem: LRA.AlgebraicStructures.MeetSemilatticeLaws Nat.gcd
 Logical form (Lean): : LRA.AlgebraicStructures.MeetSemilatticeLaws Nat.gcd
-Source: ./MeetSemilattice/Examples/GcdOnNaturals.lean#L13
+Source: [`./MeetSemilattice/Examples/GcdOnNaturals.lean#L48`](./MeetSemilattice/Examples/GcdOnNaturals.lean#L48)
 
 
 
@@ -2375,7 +2375,7 @@ Predicate logic (unfolded):
     ((∀ (first second third : α → Prop), first ∩ second ∩ third = first ∩ second ∩ third) ∧ ((∀ (first second : α → Prop), first ∩ second = second ∩ first) ∧ (∀ (element : α → Prop), element ∩ element = element)))
 Transliterated theorem: LRA.AlgebraicStructures.MeetSemilatticeLaws Inter.inter ∈ LRA.Set.LRA_Set α → LRA.Set.LRA_Set α → LRA.Set.LRA_Set α
 Logical form (Lean): {α : Type u} : LRA.AlgebraicStructures.MeetSemilatticeLaws (Inter.inter : LRA.Set.LRA_Set α → LRA.Set.LRA_Set α → LRA.Set.LRA_Set α)
-Source: ./MeetSemilattice/Examples/IntersectionSemilattice.lean#L11
+Source: [`./MeetSemilattice/Examples/IntersectionSemilattice.lean#L50`](./MeetSemilattice/Examples/IntersectionSemilattice.lean#L50)
 
 
 
@@ -2392,7 +2392,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.MonoidLaws (LRA.AlgebraicStructures.Monoid.Examples.Words Alphabet)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Monoid/Examples/FreeMonoidOnWords.lean
+Source: [`./Monoid/Examples/FreeMonoidOnWords.lean`](./Monoid/Examples/FreeMonoidOnWords.lean)
 
 
 
@@ -2409,7 +2409,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.MonoidLaws LRA.AlgebraicStructures.Monoid.Examples.NaturalNumbersUnderAddition
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Monoid/Examples/NaturalNumbersUnderAddition.lean
+Source: [`./Monoid/Examples/NaturalNumbersUnderAddition.lean`](./Monoid/Examples/NaturalNumbersUnderAddition.lean)
 
 
 
@@ -2426,7 +2426,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.MultiplicativeCommutativeLaws LRA.AlgebraicStructures.Monoid.Examples.NaturalNumbersUnderAddition
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./CommutativeMonoid/Examples/NaturalNumbersUnderAddition.lean
+Source: [`./CommutativeMonoid/Examples/NaturalNumbersUnderAddition.lean`](./CommutativeMonoid/Examples/NaturalNumbersUnderAddition.lean)
 
 
 
@@ -2443,7 +2443,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.CommutativeMonoidLaws LRA.AlgebraicStructures.Monoid.Examples.NaturalNumbersUnderAddition
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./CommutativeMonoid/Examples/NaturalNumbersUnderAddition.lean
+Source: [`./CommutativeMonoid/Examples/NaturalNumbersUnderAddition.lean`](./CommutativeMonoid/Examples/NaturalNumbersUnderAddition.lean)
 
 
 
@@ -2460,7 +2460,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.MonoidLaws (LRA.AlgebraicStructures.Monoid.Examples.Transformations S)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Monoid/Examples/TransformationMonoid.lean
+Source: [`./Monoid/Examples/TransformationMonoid.lean`](./Monoid/Examples/TransformationMonoid.lean)
 
 
 
@@ -2477,7 +2477,7 @@ Predicate logic (unfolded):
     (a ∈ LRA.AlgebraicStructures.Semigroup.Examples.EvenIntegers ∧ b ∈ LRA.AlgebraicStructures.Semigroup.Examples.EvenIntegers) → { hMul := fun a b => Int.instMul.mul a b }.hMul a b ∈ LRA.AlgebraicStructures.Semigroup.Examples.EvenIntegers
 Transliterated theorem: ∀ a b, a ∈ EvenIntegers → b ∈ EvenIntegers → a * b ∈ EvenIntegers
 Logical form (Lean): : ∀ a b, a ∈ EvenIntegers → b ∈ EvenIntegers → a * b ∈ EvenIntegers
-Source: ./Semigroup/Examples/EvenIntegersUnderMultiplication.lean#L18
+Source: [`./Semigroup/Examples/EvenIntegersUnderMultiplication.lean#L101`](./Semigroup/Examples/EvenIntegersUnderMultiplication.lean#L101)
 
 
 
@@ -2494,7 +2494,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.MultiplicativeSemigroupLaws (Subtype fun n => n) ∈ LRA.AlgebraicStructures.Semigroup.Examples.EvenIntegers
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Semigroup/Examples/EvenIntegersUnderMultiplication.lean
+Source: [`./Semigroup/Examples/EvenIntegersUnderMultiplication.lean`](./Semigroup/Examples/EvenIntegersUnderMultiplication.lean)
 
 
 
@@ -2511,7 +2511,7 @@ Predicate logic (unfolded):
     ((a ∈ fun l => l = List.nil → False) ∧ (b ∈ fun l => l = List.nil → False)) → { hMul := fun a b => { mul := fun x1 x2 => instHAppendOfAppend.1 x1 x2 }.mul a b }.hMul a b ∈ fun l => l = List.nil → False
 Transliterated theorem: ∀ a b, a ∈ NonemptyLists → b ∈ NonemptyLists → a * b ∈ NonemptyLists ∈ LRA.Set.LRA_Set (List Alphabet)
 Logical form (Lean): : ∀ a b, a ∈ NonemptyLists → b ∈ NonemptyLists → a * b ∈ (NonemptyLists : LRA.Set.LRA_Set (List Alphabet))
-Source: ./Semigroup/Examples/NonemptyListsUnderConcatenation.lean#L26
+Source: [`./Semigroup/Examples/NonemptyListsUnderConcatenation.lean#L110`](./Semigroup/Examples/NonemptyListsUnderConcatenation.lean#L110)
 
 
 
@@ -2528,7 +2528,7 @@ Predicate logic (unfolded):
     (a ∈ LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegers ∧ b ∈ LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegers) → { hMul := fun a b => LRA.AlgebraicStructures.Semigroup.Examples.instMulNaturalsUnderAddition.mul a b }.hMul a b ∈ LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegers
 Transliterated theorem: ∀ a b, a ∈ PositiveIntegers → b ∈ PositiveIntegers → a * b ∈ PositiveIntegers
 Logical form (Lean): : ∀ a b, a ∈ PositiveIntegers → b ∈ PositiveIntegers → a * b ∈ PositiveIntegers
-Source: ./Semigroup/Examples/PositiveIntegersUnderAddition.lean#L27
+Source: [`./Semigroup/Examples/PositiveIntegersUnderAddition.lean#L149`](./Semigroup/Examples/PositiveIntegersUnderAddition.lean#L149)
 
 
 
@@ -2545,7 +2545,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.CommutativeSemigroupLaws (Subtype fun n => n) ∈ LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegers
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./CommutativeSemigroup/Examples/PositiveIntegersUnderAddition.lean
+Source: [`./CommutativeSemigroup/Examples/PositiveIntegersUnderAddition.lean`](./CommutativeSemigroup/Examples/PositiveIntegersUnderAddition.lean)
 
 
 
@@ -2562,7 +2562,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.MultiplicativeCommutativeLaws LRA.AlgebraicStructures.Semigroup.Examples.NaturalsUnderAddition
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./CommutativeSemigroup/Examples/PositiveIntegersUnderAddition.lean
+Source: [`./CommutativeSemigroup/Examples/PositiveIntegersUnderAddition.lean`](./CommutativeSemigroup/Examples/PositiveIntegersUnderAddition.lean)
 
 
 
@@ -2579,7 +2579,7 @@ Predicate logic (unfolded):
     (Exists fun e => ((∀ (element : Subtype fun n => n), ∈ LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegers (fun a b => { hMul := fun a b => LRA.AlgebraicStructures.Semigroup.Examples.instMulSubtypeNaturalsUnderAdditionMemLRA_SetPositiveIntegers.mul a b }.hMul a b) e element = element) ∧ (∀ (element : Subtype fun n => n), ∈ LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegers (fun a b => { hMul := fun a b => LRA.AlgebraicStructures.Semigroup.Examples.instMulSubtypeNaturalsUnderAdditionMemLRA_SetPositiveIntegers.mul a b }.hMul a b) element e = element))) → False
 Transliterated theorem: ¬ ∃ e ∈ {n // n ∈ LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegers}, TwoSidedIdentity fun a b ∈ {n // n ∈ LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegers} => a * b e
 Logical form (Lean): : ¬ ∃ e : {n // n ∈ LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegers}, TwoSidedIdentity (fun a b : {n // n ∈ LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegers} => a * b) e
-Source: ./Monoid/Failures/PositiveIntegersHaveNoIdentity.lean#L16
+Source: [`./Monoid/Failures/PositiveIntegersHaveNoIdentity.lean#L53`](./Monoid/Failures/PositiveIntegersHaveNoIdentity.lean#L53)
 
 
 
@@ -2596,7 +2596,7 @@ Predicate logic (unfolded):
     (Exists fun e => ((∀ (element : Subtype fun n => n), ∈ LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegers (fun a b => { hMul := fun a b => LRA.AlgebraicStructures.Semigroup.Examples.instMulSubtypeNaturalsUnderAdditionMemLRA_SetPositiveIntegers.mul a b }.hMul a b) e element = element) ∧ (∀ (element : Subtype fun n => n), ∈ LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegers (fun a b => { hMul := fun a b => LRA.AlgebraicStructures.Semigroup.Examples.instMulSubtypeNaturalsUnderAdditionMemLRA_SetPositiveIntegers.mul a b }.hMul a b) element e = element))) → False
 Transliterated theorem: ¬ ∃ e ∈ {n // n ∈ PositiveIntegers}, TwoSidedIdentity fun a b ∈ {n // n ∈ PositiveIntegers} => a * b e
 Logical form (Lean): : ¬ ∃ e : {n // n ∈ PositiveIntegers}, TwoSidedIdentity (fun a b : {n // n ∈ PositiveIntegers} => a * b) e
-Source: ./Semigroup/Examples/IdentityNotRequired.lean#L12
+Source: [`./Semigroup/Examples/IdentityNotRequired.lean#L51`](./Semigroup/Examples/IdentityNotRequired.lean#L51)
 
 ## Axioms / Assumptions
 
@@ -2623,7 +2623,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.MultiplicativeSemigroupLaws R
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Semigroup/Constructions/Mathlib/Laws.lean
+Source: [`./Semigroup/Constructions/Mathlib/Laws.lean`](./Semigroup/Constructions/Mathlib/Laws.lean)
 
 
 
@@ -2640,7 +2640,7 @@ Predicate logic (unfolded):
     ((∀ (first second third : Carrier), meet (meet first second) third = meet first (meet second third)) ∧ ((∀ (first second : Carrier), meet first second = meet second first) ∧ (∀ (element : Carrier), meet element element = element)))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./MeetSemilattice/Interface/Laws/Definition.lean
+Source: [`./MeetSemilattice/Interface/Laws/Definition.lean`](./MeetSemilattice/Interface/Laws/Definition.lean)
 
 
 
@@ -2657,7 +2657,7 @@ Predicate logic (unfolded):
     meet a a_1 = a
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./MeetSemilattice/Constructions/OrderTheoretic/InducedOrder.lean
+Source: [`./MeetSemilattice/Constructions/OrderTheoretic/InducedOrder.lean`](./MeetSemilattice/Constructions/OrderTheoretic/InducedOrder.lean)
 
 
 
@@ -2674,7 +2674,7 @@ Predicate logic (unfolded):
     ((∀ (first second third : Carrier), join (join first second) third = join first (join second third)) ∧ ((∀ (first second : Carrier), join first second = join second first) ∧ (∀ (element : Carrier), join element element = element)))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./JoinSemilattice/Interface/Laws/Definition.lean
+Source: [`./JoinSemilattice/Interface/Laws/Definition.lean`](./JoinSemilattice/Interface/Laws/Definition.lean)
 
 
 
@@ -2691,7 +2691,7 @@ Predicate logic (unfolded):
     join a a_1 = a_1
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./JoinSemilattice/Constructions/OrderTheoretic/InducedOrder.lean
+Source: [`./JoinSemilattice/Constructions/OrderTheoretic/InducedOrder.lean`](./JoinSemilattice/Constructions/OrderTheoretic/InducedOrder.lean)
 
 
 
@@ -2708,7 +2708,7 @@ Predicate logic (unfolded):
     (((∀ (first second third : Carrier), join (join first second) third = join first (join second third)) ∧ ((∀ (first second : Carrier), join first second = join second first) ∧ (∀ (element : Carrier), join element element = element))) ∧ (((∀ (first second third : Carrier), meet (meet first second) third = meet first (meet second third)) ∧ ((∀ (first second : Carrier), meet first second = meet second first) ∧ (∀ (element : Carrier), meet element element = element))) ∧ ((∀ (left right : Carrier), join left (meet left right) = left) ∧ (∀ (left right : Carrier), meet left (join left right) = left))))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Lattice/Interface/Laws/Definition.lean
+Source: [`./Lattice/Interface/Laws/Definition.lean`](./Lattice/Interface/Laws/Definition.lean)
 
 
 
@@ -2725,7 +2725,7 @@ Predicate logic (unfolded):
     ((((∀ (first second third : Carrier), join (join first second) third = join first (join second third)) ∧ ((∀ (first second : Carrier), join first second = join second first) ∧ (∀ (element : Carrier), join element element = element))) ∧ (((∀ (first second third : Carrier), meet (meet first second) third = meet first (meet second third)) ∧ ((∀ (first second : Carrier), meet first second = meet second first) ∧ (∀ (element : Carrier), meet element element = element))) ∧ ((∀ (left right : Carrier), join left (meet left right) = left) ∧ (∀ (left right : Carrier), meet left (join left right) = left)))) ∧ (((∀ (element : Carrier), join bottom element = element) ∧ (∀ (element : Carrier), join element bottom = element)) ∧ ((∀ (element : Carrier), meet top element = element) ∧ (∀ (element : Carrier), meet element top = element))))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./BoundedLattice/Interface/Laws/Definition.lean
+Source: [`./BoundedLattice/Interface/Laws/Definition.lean`](./BoundedLattice/Interface/Laws/Definition.lean)
 
 
 
@@ -2742,7 +2742,7 @@ Predicate logic (unfolded):
     ((((∀ (first second third : Carrier), join (join first second) third = join first (join second third)) ∧ ((∀ (first second : Carrier), join first second = join second first) ∧ (∀ (element : Carrier), join element element = element))) ∧ (((∀ (first second third : Carrier), meet (meet first second) third = meet first (meet second third)) ∧ ((∀ (first second : Carrier), meet first second = meet second first) ∧ (∀ (element : Carrier), meet element element = element))) ∧ ((∀ (left right : Carrier), join left (meet left right) = left) ∧ (∀ (left right : Carrier), meet left (join left right) = left)))) ∧ (((∀ (left right third : Carrier), join left (meet right third) = meet (join left right) (join left third)) ∧ (∀ (left right third : Carrier), join (meet left right) third = meet (join left third) (join right third))) ∧ ((∀ (left right third : Carrier), meet left (join right third) = join (meet left right) (meet left third)) ∧ (∀ (left right third : Carrier), meet (join left right) third = join (meet left third) (meet right third)))))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./DistributiveLattice/Interface/Laws/Definition.lean
+Source: [`./DistributiveLattice/Interface/Laws/Definition.lean`](./DistributiveLattice/Interface/Laws/Definition.lean)
 
 
 
@@ -2759,7 +2759,7 @@ Predicate logic (unfolded):
     (((((∀ (first second third : Carrier), join (join first second) third = join first (join second third)) ∧ ((∀ (first second : Carrier), join first second = join second first) ∧ (∀ (element : Carrier), join element element = element))) ∧ (((∀ (first second third : Carrier), meet (meet first second) third = meet first (meet second third)) ∧ ((∀ (first second : Carrier), meet first second = meet second first) ∧ (∀ (element : Carrier), meet element element = element))) ∧ ((∀ (left right : Carrier), join left (meet left right) = left) ∧ (∀ (left right : Carrier), meet left (join left right) = left)))) ∧ (((∀ (element : Carrier), join bottom element = element) ∧ (∀ (element : Carrier), join element bottom = element)) ∧ ((∀ (element : Carrier), meet top element = element) ∧ (∀ (element : Carrier), meet element top = element)))) ∧ (((((∀ (first second third : Carrier), join (join first second) third = join first (join second third)) ∧ ((∀ (first second : Carrier), join first second = join second first) ∧ (∀ (element : Carrier), join element element = element))) ∧ (((∀ (first second third : Carrier), meet (meet first second) third = meet first (meet second third)) ∧ ((∀ (first second : Carrier), meet first second = meet second first) ∧ (∀ (element : Carrier), meet element element = element))) ∧ ((∀ (left right : Carrier), join left (meet left right) = left) ∧ (∀ (left right : Carrier), meet left (join left right) = left)))) ∧ (((∀ (left right third : Carrier), join left (meet right third) = meet (join left right) (join left third)) ∧ (∀ (left right third : Carrier), join (meet left right) third = meet (join left third) (join right third))) ∧ ((∀ (left right third : Carrier), meet left (join right third) = join (meet left right) (meet left third)) ∧ (∀ (left right third : Carrier), meet (join left right) third = join (meet left third) (meet right third))))) ∧ ((∀ (element : Carrier), join element (complement element) = top) ∧ (∀ (element : Carrier), meet element (complement element) = bottom))))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./BooleanAlgebra/Interface/Laws/Definition.lean
+Source: [`./BooleanAlgebra/Interface/Laws/Definition.lean`](./BooleanAlgebra/Interface/Laws/Definition.lean)
 
 
 
@@ -2776,7 +2776,7 @@ Predicate logic (unfolded):
     value = signature.toZeroOneBundle.2 → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./OrderedField/Interface/ModelTheory/LStructure.lean
+Source: [`./OrderedField/Interface/ModelTheory/LStructure.lean`](./OrderedField/Interface/ModelTheory/LStructure.lean)
 
 
 
@@ -2793,7 +2793,7 @@ Predicate logic (unfolded):
     (LRA.AlgebraicStructures.OrderedFieldLaws R ∧ LRA.Order.OrderCompletenessLaws R SetObject)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./CompleteOrderedField/Interface/Laws/Definition.lean
+Source: [`./CompleteOrderedField/Interface/Laws/Definition.lean`](./CompleteOrderedField/Interface/Laws/Definition.lean)
 
 
 
@@ -2810,7 +2810,7 @@ Predicate logic (unfolded):
     Exists fun n => a = LRA.AlgebraicStructures.IteratedSelfSum n x
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Archimedean/Interface/Laws/Definition.lean
+Source: [`./Archimedean/Interface/Laws/Definition.lean`](./Archimedean/Interface/Laws/Definition.lean)
 
 
 
@@ -2827,7 +2827,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.AdditiveInverseLaws R
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./MathlibBridge.lean
+Source: [`./MathlibBridge.lean`](./MathlibBridge.lean)
 
 
 
@@ -2844,7 +2844,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.ZeroAbsorbingLaws R
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./MathlibBridge.lean
+Source: [`./MathlibBridge.lean`](./MathlibBridge.lean)
 
 
 
@@ -2861,7 +2861,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.AdditiveIdentityLaws R
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./MathlibBridge.lean
+Source: [`./MathlibBridge.lean`](./MathlibBridge.lean)
 
 
 
@@ -2878,7 +2878,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.AdditiveCommutativeLaws R
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./MathlibBridge.lean
+Source: [`./MathlibBridge.lean`](./MathlibBridge.lean)
 
 
 
@@ -2895,7 +2895,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.DivisionCompatibilityLaw R
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./MathlibBridge.lean
+Source: [`./MathlibBridge.lean`](./MathlibBridge.lean)
 
 
 
@@ -2912,7 +2912,7 @@ Predicate logic (unfolded):
     NoZeroDivisors R → LRA.AlgebraicStructures.NoZeroDivisorsLaw R
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./MathlibBridge.lean
+Source: [`./MathlibBridge.lean`](./MathlibBridge.lean)
 
 
 
@@ -2929,7 +2929,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.MultiplicativeIdentityLaws R
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./MathlibBridge.lean
+Source: [`./MathlibBridge.lean`](./MathlibBridge.lean)
 
 
 
@@ -2946,7 +2946,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.DistributiveLaws R
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./MathlibBridge.lean
+Source: [`./MathlibBridge.lean`](./MathlibBridge.lean)
 
 
 
@@ -2963,7 +2963,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.MultiplicativeInverseLaws R
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./MathlibBridge.lean
+Source: [`./MathlibBridge.lean`](./MathlibBridge.lean)
 
 
 
@@ -2980,7 +2980,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.MultiplicativeCommutativeLaws R
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./MathlibBridge.lean
+Source: [`./MathlibBridge.lean`](./MathlibBridge.lean)
 
 
 
@@ -2997,7 +2997,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.SubtractionCompatibilityLaw R
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./MathlibBridge.lean
+Source: [`./MathlibBridge.lean`](./MathlibBridge.lean)
 
 
 
@@ -3014,7 +3014,7 @@ Predicate logic (unfolded):
     Real.lt✝ 0 a
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./AdditiveCommutativeSemigroup/Examples/OpenIntervalUnderAddition.lean
+Source: [`./AdditiveCommutativeSemigroup/Examples/OpenIntervalUnderAddition.lean`](./AdditiveCommutativeSemigroup/Examples/OpenIntervalUnderAddition.lean)
 
 
 
@@ -3031,7 +3031,7 @@ Predicate logic (unfolded):
     Exists fun r => a = { hAdd := fun a b => Int.instAdd.add a b }.hAdd r r
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./AdditiveSemigroup/Examples/EvenIntegersUnderAddition.lean
+Source: [`./AdditiveSemigroup/Examples/EvenIntegersUnderAddition.lean`](./AdditiveSemigroup/Examples/EvenIntegersUnderAddition.lean)
 
 
 
@@ -3048,7 +3048,7 @@ Predicate logic (unfolded):
     (Nat.succ 0).le a
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./AdditiveSemigroup/Examples/PositiveNaturalsUnderAddition.lean
+Source: [`./AdditiveSemigroup/Examples/PositiveNaturalsUnderAddition.lean`](./AdditiveSemigroup/Examples/PositiveNaturalsUnderAddition.lean)
 
 
 
@@ -3065,7 +3065,7 @@ Predicate logic (unfolded):
     (instLTNat.lt 0 a ∧ Exists fun r => a = { hAdd := fun a b => instAddNat.add a b }.hAdd r r)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./AdditiveSemigroup/Examples/PositiveEvenNaturalsUnderAddition.lean
+Source: [`./AdditiveSemigroup/Examples/PositiveEvenNaturalsUnderAddition.lean`](./AdditiveSemigroup/Examples/PositiveEvenNaturalsUnderAddition.lean)
 
 
 
@@ -3082,7 +3082,7 @@ Predicate logic (unfolded):
     Nonempty (LRA.AlgebraicStructures.CommutativeMonoid.Examples.PowerSetUnderUnion α)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./CommutativeMonoid/Examples/PowerSetUnderUnion.lean
+Source: [`./CommutativeMonoid/Examples/PowerSetUnderUnion.lean`](./CommutativeMonoid/Examples/PowerSetUnderUnion.lean)
 
 
 
@@ -3099,7 +3099,7 @@ Predicate logic (unfolded):
     Nonempty LRA.AlgebraicStructures.CommutativeSemigroup.Examples.RealsUnderMin
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./CommutativeSemigroup/Examples/MinMaxOnReals.lean
+Source: [`./CommutativeSemigroup/Examples/MinMaxOnReals.lean`](./CommutativeSemigroup/Examples/MinMaxOnReals.lean)
 
 
 
@@ -3116,7 +3116,7 @@ Predicate logic (unfolded):
     Nonempty LRA.AlgebraicStructures.CommutativeSemigroup.Examples.RealsUnderMax
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./CommutativeSemigroup/Examples/MinMaxOnReals.lean
+Source: [`./CommutativeSemigroup/Examples/MinMaxOnReals.lean`](./CommutativeSemigroup/Examples/MinMaxOnReals.lean)
 
 
 
@@ -3133,7 +3133,7 @@ Predicate logic (unfolded):
     Nonempty (Subtype fun n => n) ∈ LRA.AlgebraicStructures.CommutativeSemigroup.Examples.PositiveEvenNaturals
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./CommutativeSemigroup/Examples/PositiveEvenNaturalsUnderMultiplication.lean
+Source: [`./CommutativeSemigroup/Examples/PositiveEvenNaturalsUnderMultiplication.lean`](./CommutativeSemigroup/Examples/PositiveEvenNaturalsUnderMultiplication.lean)
 
 
 
@@ -3150,7 +3150,7 @@ Predicate logic (unfolded):
     Nonempty LRA.AlgebraicStructures.CommutativeSemigroup.Examples.NaturalsUnderMultiplication
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./CommutativeSemigroup/Examples/PositiveEvenNaturalsUnderMultiplication.lean
+Source: [`./CommutativeSemigroup/Examples/PositiveEvenNaturalsUnderMultiplication.lean`](./CommutativeSemigroup/Examples/PositiveEvenNaturalsUnderMultiplication.lean)
 
 
 
@@ -3167,7 +3167,7 @@ Predicate logic (unfolded):
     (instLTNat.lt 0 a.1 ∧ Exists fun r => a.1 = { hAdd := fun a b => instAddNat.add a b }.hAdd r r)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./CommutativeSemigroup/Examples/PositiveEvenNaturalsUnderMultiplication.lean
+Source: [`./CommutativeSemigroup/Examples/PositiveEvenNaturalsUnderMultiplication.lean`](./CommutativeSemigroup/Examples/PositiveEvenNaturalsUnderMultiplication.lean)
 
 
 
@@ -3184,7 +3184,7 @@ Predicate logic (unfolded):
     Nonempty (LRA.AlgebraicStructures.CommutativeSemigroup.Examples.UnionSemilattice α)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./CommutativeSemigroup/Examples/Semilattices.lean
+Source: [`./CommutativeSemigroup/Examples/Semilattices.lean`](./CommutativeSemigroup/Examples/Semilattices.lean)
 
 
 
@@ -3201,7 +3201,7 @@ Predicate logic (unfolded):
     Nonempty (LRA.AlgebraicStructures.CommutativeSemigroup.Examples.IntersectionSemilattice α)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./CommutativeSemigroup/Examples/Semilattices.lean
+Source: [`./CommutativeSemigroup/Examples/Semilattices.lean`](./CommutativeSemigroup/Examples/Semilattices.lean)
 
 
 
@@ -3218,7 +3218,7 @@ Predicate logic (unfolded):
     Nonempty LRA.AlgebraicStructures.Group.Examples.IntegersUnderAddition
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Group/Examples/IntegersUnderAddition.lean
+Source: [`./Group/Examples/IntegersUnderAddition.lean`](./Group/Examples/IntegersUnderAddition.lean)
 
 
 
@@ -3235,7 +3235,7 @@ Predicate logic (unfolded):
     a = 0 → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Group/Examples/NonzeroRealsUnderMultiplication.lean
+Source: [`./Group/Examples/NonzeroRealsUnderMultiplication.lean`](./Group/Examples/NonzeroRealsUnderMultiplication.lean)
 
 
 
@@ -3252,7 +3252,7 @@ Predicate logic (unfolded):
     Nonempty (Subtype fun x => x) ∈ LRA.AlgebraicStructures.Group.Examples.NonzeroReals
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Group/Examples/NonzeroRealsUnderMultiplication.lean
+Source: [`./Group/Examples/NonzeroRealsUnderMultiplication.lean`](./Group/Examples/NonzeroRealsUnderMultiplication.lean)
 
 
 
@@ -3269,7 +3269,7 @@ Predicate logic (unfolded):
     Nonempty LRA.AlgebraicStructures.Magma.Examples.IntegersUnderSubtraction
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Magma/Examples/IntegersUnderSubtraction.lean
+Source: [`./Magma/Examples/IntegersUnderSubtraction.lean`](./Magma/Examples/IntegersUnderSubtraction.lean)
 
 
 
@@ -3286,7 +3286,7 @@ Predicate logic (unfolded):
     Exists fun x => LRA.Set.Constructions.instMembershipZFCSet.1 a x
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Magma/Examples/NonemptyZFCSetsUnderUnion.lean
+Source: [`./Magma/Examples/NonemptyZFCSetsUnderUnion.lean`](./Magma/Examples/NonemptyZFCSetsUnderUnion.lean)
 
 
 
@@ -3303,7 +3303,7 @@ Predicate logic (unfolded):
     a.1 = 0 → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Magma/Examples/NonzeroRealsUnderDivision.lean
+Source: [`./Magma/Examples/NonzeroRealsUnderDivision.lean`](./Magma/Examples/NonzeroRealsUnderDivision.lean)
 
 
 
@@ -3320,7 +3320,7 @@ Predicate logic (unfolded):
     Nonempty (Subtype fun x => x) ∈ LRA.AlgebraicStructures.Magma.Examples.NonzeroReals
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Magma/Examples/NonzeroRealsUnderDivision.lean
+Source: [`./Magma/Examples/NonzeroRealsUnderDivision.lean`](./Magma/Examples/NonzeroRealsUnderDivision.lean)
 
 
 
@@ -3337,7 +3337,7 @@ Predicate logic (unfolded):
     Nonempty LRA.AlgebraicStructures.Magma.Examples.RPS
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Magma/Examples/RockPaperScissors.lean
+Source: [`./Magma/Examples/RockPaperScissors.lean`](./Magma/Examples/RockPaperScissors.lean)
 
 
 
@@ -3354,7 +3354,7 @@ Predicate logic (unfolded):
     Nonempty (LRA.AlgebraicStructures.Monoid.Examples.Words Alphabet)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Monoid/Examples/FreeMonoidOnWords.lean
+Source: [`./Monoid/Examples/FreeMonoidOnWords.lean`](./Monoid/Examples/FreeMonoidOnWords.lean)
 
 
 
@@ -3371,7 +3371,7 @@ Predicate logic (unfolded):
     Nonempty LRA.AlgebraicStructures.Monoid.Examples.NaturalNumbersUnderAddition
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Monoid/Examples/NaturalNumbersUnderAddition.lean
+Source: [`./Monoid/Examples/NaturalNumbersUnderAddition.lean`](./Monoid/Examples/NaturalNumbersUnderAddition.lean)
 
 
 
@@ -3388,7 +3388,7 @@ Predicate logic (unfolded):
     Nonempty (LRA.AlgebraicStructures.Monoid.Examples.Transformations S)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Monoid/Examples/TransformationMonoid.lean
+Source: [`./Monoid/Examples/TransformationMonoid.lean`](./Monoid/Examples/TransformationMonoid.lean)
 
 
 
@@ -3405,7 +3405,7 @@ Predicate logic (unfolded):
     Exists fun r => a = { hAdd := fun a b => Int.instAdd.add a b }.hAdd r r
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Semigroup/Examples/EvenIntegersUnderMultiplication.lean
+Source: [`./Semigroup/Examples/EvenIntegersUnderMultiplication.lean`](./Semigroup/Examples/EvenIntegersUnderMultiplication.lean)
 
 
 
@@ -3422,7 +3422,7 @@ Predicate logic (unfolded):
     Nonempty (Subtype fun n => n) ∈ LRA.AlgebraicStructures.Semigroup.Examples.EvenIntegers
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Semigroup/Examples/EvenIntegersUnderMultiplication.lean
+Source: [`./Semigroup/Examples/EvenIntegersUnderMultiplication.lean`](./Semigroup/Examples/EvenIntegersUnderMultiplication.lean)
 
 
 
@@ -3439,7 +3439,7 @@ Predicate logic (unfolded):
     Nonempty Alphabet → LRA.AlgebraicStructures.MultiplicativeSemigroupLaws (List Alphabet)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Semigroup/Examples/NonemptyListsUnderConcatenation.lean
+Source: [`./Semigroup/Examples/NonemptyListsUnderConcatenation.lean`](./Semigroup/Examples/NonemptyListsUnderConcatenation.lean)
 
 
 
@@ -3456,7 +3456,7 @@ Predicate logic (unfolded):
     Nonempty Alphabet → Nonempty (Subtype fun l => l) ∈ fun l => l = List.nil → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Semigroup/Examples/NonemptyListsUnderConcatenation.lean
+Source: [`./Semigroup/Examples/NonemptyListsUnderConcatenation.lean`](./Semigroup/Examples/NonemptyListsUnderConcatenation.lean)
 
 
 
@@ -3473,7 +3473,7 @@ Predicate logic (unfolded):
     Nonempty (List Alphabet)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Semigroup/Examples/NonemptyListsUnderConcatenation.lean
+Source: [`./Semigroup/Examples/NonemptyListsUnderConcatenation.lean`](./Semigroup/Examples/NonemptyListsUnderConcatenation.lean)
 
 
 
@@ -3490,7 +3490,7 @@ Predicate logic (unfolded):
     a = List.nil → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Semigroup/Examples/NonemptyListsUnderConcatenation.lean
+Source: [`./Semigroup/Examples/NonemptyListsUnderConcatenation.lean`](./Semigroup/Examples/NonemptyListsUnderConcatenation.lean)
 
 
 
@@ -3507,7 +3507,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.MultiplicativeSemigroupLaws (Subtype fun l => l) ∈ fun l => l = List.nil → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Semigroup/Examples/NonemptyListsUnderConcatenation.lean
+Source: [`./Semigroup/Examples/NonemptyListsUnderConcatenation.lean`](./Semigroup/Examples/NonemptyListsUnderConcatenation.lean)
 
 
 
@@ -3524,7 +3524,7 @@ Predicate logic (unfolded):
     Nonempty LRA.AlgebraicStructures.Semigroup.Examples.NaturalsUnderAddition
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Semigroup/Examples/PositiveIntegersUnderAddition.lean
+Source: [`./Semigroup/Examples/PositiveIntegersUnderAddition.lean`](./Semigroup/Examples/PositiveIntegersUnderAddition.lean)
 
 
 
@@ -3541,7 +3541,7 @@ Predicate logic (unfolded):
     Nonempty (Subtype fun n => n) ∈ LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegers
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Semigroup/Examples/PositiveIntegersUnderAddition.lean
+Source: [`./Semigroup/Examples/PositiveIntegersUnderAddition.lean`](./Semigroup/Examples/PositiveIntegersUnderAddition.lean)
 
 
 
@@ -3558,7 +3558,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.MultiplicativeSemigroupLaws (Subtype fun n => n) ∈ LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegers
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Semigroup/Examples/PositiveIntegersUnderAddition.lean
+Source: [`./Semigroup/Examples/PositiveIntegersUnderAddition.lean`](./Semigroup/Examples/PositiveIntegersUnderAddition.lean)
 
 
 
@@ -3575,7 +3575,7 @@ Predicate logic (unfolded):
     LRA.AlgebraicStructures.MultiplicativeSemigroupLaws LRA.AlgebraicStructures.Semigroup.Examples.NaturalsUnderAddition
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Semigroup/Examples/PositiveIntegersUnderAddition.lean
+Source: [`./Semigroup/Examples/PositiveIntegersUnderAddition.lean`](./Semigroup/Examples/PositiveIntegersUnderAddition.lean)
 
 
 
@@ -3592,4 +3592,4 @@ Predicate logic (unfolded):
     (Nat.succ 0).le a.1
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Semigroup/Examples/PositiveIntegersUnderAddition.lean
+Source: [`./Semigroup/Examples/PositiveIntegersUnderAddition.lean`](./Semigroup/Examples/PositiveIntegersUnderAddition.lean)

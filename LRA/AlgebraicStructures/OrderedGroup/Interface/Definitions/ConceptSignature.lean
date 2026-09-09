@@ -9,12 +9,12 @@ namespace LRA.AlgebraicStructures
 Predicate logic:
 
   abbrev OrderedGroupConceptSignature :=
-  GroupConceptSignature
+    GroupConceptSignature
 
 Predicate logic (unfolded):
 
   abbrev OrderedGroupConceptSignature :=
-  GroupConceptSignature (source fallback; no compiled unfold data available)
+    GroupConceptSignature (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

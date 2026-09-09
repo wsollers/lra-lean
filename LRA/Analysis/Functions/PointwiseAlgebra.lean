@@ -350,11 +350,18 @@ noncomputable def PointwiseReciprocal (f : ℝ → ℝ) : ℝ → ℝ := fun x =
 
 Predicate logic:
 
-  (∀ x ∈ A, PointwiseSum f g x = f x + g x) ∧ (∀ x ∈ A, PointwiseDiff f g x = f x - g x) ∧ (∀ x ∈ A, PointwiseProd f g x = f x * g x) ∧ (∀ x ∈ A, PointwiseScalarMul lam f x = lam * f x) ∧ (∀ x ∈ A, PointwiseAbs f x = |f x|) ∧ (∀ x ∈ A, PointwiseMax f g x = max (f x) (g x)) ∧ (∀ x ∈ A, PointwiseMin f g x = min (f x) (g x))
+  ∀ (f g : Real → Real) (lam : Real) (A : Set Real), ((∀ (x : Real), x ∈ A → LRA.Analysis.Functions.PointwiseSum f g x = instHAdd.hAdd (f x) (g x)) ∧ ((∀ (x : Real), x ∈ A → LRA.Analysis.Functions.PointwiseDiff f g x = instHSub.hSub (f x) (g x)) ∧ ((∀ (x : Real), x ∈ A → LRA.Analysis.Functions.PointwiseProd f g x = instHMul.hMul (f x) (g x)) ∧ ((∀ (x : Real), x ∈ A → LRA.Analysis.Functions.PointwiseScalarMul lam f x = instHMul.hMul lam (f x)) ∧ ((∀ (x : Real), x ∈ A → LRA.Analysis.Functions.PointwiseAbs f x = abs (f x)) ∧ ((∀ (x : Real), x ∈ A → LRA.Analysis.Functions.PointwiseMax f g x = Real.instMax.max (f x) (g x)) ∧ (∀ (x : Real), x ∈ A → LRA.Analysis.Functions.PointwiseMin f g x = Real.instMin.min (f x) (g x))))))))
 
 Predicate logic (unfolded):
 
-  ∀ (f g : Real → Real) (lam : Real) (A : Real → Prop), (∀ (x : Real), Set.instMembership.1 A x → instHAdd.1 (f x) (g x) = instHAdd.1 (f x) (g x) ∧ (∀ (x : Real), Set.instMembership.1 A x → instHSub.1 (f x) (g x) = instHSub.1 (f x) (g x) ∧ (∀ (x : Real), Set.instMembership.1 A x → instHMul.1 (f x) (g x) = instHMul.1 (f x) (g x) ∧ (∀ (x : Real), Set.instMembership.1 A x → instHMul.1 lam (f x) = instHMul.1 lam (f x) ∧ (∀ (x : Real), Set.instMembership.1 A x → SemilatticeSup.toMax.1 (f x) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (f x)) = SemilatticeSup.toMax.1 (f x) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (f x)) ∧ (∀ (x : Real), Set.instMembership.1 A x → Real.instMax.1 (f x) (g x) = Real.instMax.1 (f x) (g x) ∧ ∀ (x : Real), Set.instMembership.1 A x → Real.instMin.1 (f x) (g x) = Real.instMin.1 (f x) (g x)))))))
+  Ambient
+    (ℝ)
+  Objects
+    f g : ℝ → ℝ
+    lam : ℝ
+    A : Set ℝ
+  Prove
+    ((∀ (x : Real), x ∈ A → { hAdd := fun a b => Real.instAdd.add a b }.hAdd (f x) (g x) = { hAdd := fun a b => Real.instAdd.add a b }.hAdd (f x) (g x)) ∧ ((∀ (x : Real), x ∈ A → { hSub := fun a b => Real.instSub.sub a b }.hSub (f x) (g x) = { hSub := fun a b => Real.instSub.sub a b }.hSub (f x) (g x)) ∧ ((∀ (x : Real), x ∈ A → { hMul := fun a b => Real.instMul.mul a b }.hMul (f x) (g x) = { hMul := fun a b => Real.instMul.mul a b }.hMul (f x) (g x)) ∧ ((∀ (x : Real), x ∈ A → { hMul := fun a b => Real.instMul.mul a b }.hMul lam (f x) = { hMul := fun a b => Real.instMul.mul a b }.hMul lam (f x)) ∧ ((∀ (x : Real), x ∈ A → abs (f x) = abs (f x)) ∧ ((∀ (x : Real), x ∈ A → Real.instMax.1 (f x) (g x) = Real.instMax.1 (f x) (g x)) ∧ (∀ (x : Real), x ∈ A → Real.instMin.1 (f x) (g x) = Real.instMin.1 (f x) (g x))))))))
 
 Logical form (Lean):
 
@@ -402,11 +409,17 @@ theorem FunctionAlgebraClosure (f g : ℝ → ℝ) (lam : ℝ) (A : Set ℝ) :
 
 Predicate logic:
 
-  (∀ x ∈ A, g x ≠ 0) → ∀ x ∈ A, PointwiseQuotient f g x = f x / g x
+  ∀ (f g : Real → Real) (A : Set Real), (∀ (x : Real), x ∈ A → Ne (g x) 0) → ∀ (x : Real), x ∈ A → LRA.Analysis.Functions.PointwiseQuotient f g x = instHDiv.hDiv (f x) (g x)
 
 Predicate logic (unfolded):
 
-  ∀ (f g : Real → Real) (A : Real → Prop), (∀ (x : Real), Set.instMembership.1 A x → g x = Zero.toOfNat0.1 → False) → ∀ (x : Real), Set.instMembership.1 A x → instHDiv.1 (f x) (g x) = instHDiv.1 (f x) (g x)
+  Ambient
+    (ℝ)
+  Objects
+    f g : ℝ → ℝ
+    A : Set ℝ
+  Prove
+    (∀ (x : Real), x ∈ A → g x = 0 → False) → ∀ (x : Real), x ∈ A → { hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv (f x) (g x) = { hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv (f x) (g x)
 
 Logical form (Lean):
 
@@ -442,11 +455,17 @@ theorem FunctionQuotientClosure (f g : ℝ → ℝ) (A : Set ℝ)
 
 Predicate logic:
 
-  ∀ x ∈ A, PointwiseMax f g x = (f x + g x + |f x - g x|) / 2 ∧ PointwiseMin f g x = (f x + g x - |f x - g x|) / 2
+  ∀ (f g : Real → Real) (A : Set Real) (x : Real), x ∈ A → (LRA.Analysis.Functions.PointwiseMax f g x = instHDiv.hDiv (instHAdd.hAdd (instHAdd.hAdd (f x) (g x)) (abs (instHSub.hSub (f x) (g x)))) 2 ∧ LRA.Analysis.Functions.PointwiseMin f g x = instHDiv.hDiv (instHSub.hSub (instHAdd.hAdd (f x) (g x)) (abs (instHSub.hSub (f x) (g x)))) 2)
 
 Predicate logic (unfolded):
 
-  ∀ (f g : Real → Real) (A : Real → Prop) (x : Real), Set.instMembership.1 A x → (Real.instMax.1 (f x) (g x) = instHDiv.1 (instHAdd.1 (instHAdd.1 (f x) (g x)) (SemilatticeSup.toMax.1 (instHSub.1 (f x) (g x)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (f x) (g x))))) instOfNatAtLeastTwo.1 ∧ Real.instMin.1 (f x) (g x) = instHDiv.1 (instHSub.1 (instHAdd.1 (f x) (g x)) (SemilatticeSup.toMax.1 (instHSub.1 (f x) (g x)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (f x) (g x))))) instOfNatAtLeastTwo.1)
+  Ambient
+    (ℝ)
+  Objects
+    f g : ℝ → ℝ
+    A : Set ℝ
+  Prove
+    x ∈ A → (Real.instMax.1 (f x) (g x) = { hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd (f x) (g x)) (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f x) (g x)))) 2 ∧ Real.instMin.1 (f x) (g x) = { hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv ({ hSub := fun a b => Real.instSub.sub a b }.hSub ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd (f x) (g x)) (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f x) (g x)))) 2)
 
 Logical form (Lean):
 
@@ -484,11 +503,17 @@ theorem PointwiseMaxMinAbsoluteValueFormulas (f g : ℝ → ℝ) (A : Set ℝ) :
 
 Predicate logic:
 
-  ∀ x ∈ A, PointwiseMin f g x ≤ f x ∧ f x ≤ PointwiseMax f g x ∧ PointwiseMin f g x ≤ g x ∧ g x ≤ PointwiseMax f g x
+  ∀ (f g : Real → Real) (A : Set Real) (x : Real), x ∈ A → (Real.instLE.le (LRA.Analysis.Functions.PointwiseMin f g x) (f x) ∧ (Real.instLE.le (f x) (LRA.Analysis.Functions.PointwiseMax f g x) ∧ (Real.instLE.le (LRA.Analysis.Functions.PointwiseMin f g x) (g x) ∧ Real.instLE.le (g x) (LRA.Analysis.Functions.PointwiseMax f g x))))
 
 Predicate logic (unfolded):
 
-  ∀ (f g : Real → Real) (A : Real → Prop) (x : Real), Set.instMembership.1 A x → (Real.instLE.1 (Real.instMin.1 (f x) (g x)) (f x) ∧ (Real.instLE.1 (f x) (Real.instMax.1 (f x) (g x)) ∧ (Real.instLE.1 (Real.instMin.1 (f x) (g x)) (g x) ∧ Real.instLE.1 (g x) (Real.instMax.1 (f x) (g x)))))
+  Ambient
+    (ℝ)
+  Objects
+    f g : ℝ → ℝ
+    A : Set ℝ
+  Prove
+    x ∈ A → (Real.instLE.le (Real.instMin.1 (f x) (g x)) (f x) ∧ (Real.instLE.le (f x) (Real.instMax.1 (f x) (g x)) ∧ (Real.instLE.le (Real.instMin.1 (f x) (g x)) (g x) ∧ Real.instLE.le (g x) (Real.instMax.1 (f x) (g x)))))
 
 Logical form (Lean):
 
@@ -526,11 +551,18 @@ theorem PointwiseMaxMinBounds (f g : ℝ → ℝ) (A : Set ℝ) :
 
 Predicate logic:
 
-  (x₀ ∈ A ∧ g x₀ = 0) → ¬ (∀ x ∈ A, g x ≠ 0)
+  ∀ (a g : Real → Real) (A : Set Real) (x₀ : Real), (x₀ ∈ A ∧ g x₀ = 0) → ¬ ∀ (x : Real), x ∈ A → Ne (g x) 0
 
 Predicate logic (unfolded):
 
-  ∀ (a g : Real → Real) (A : Real → Prop) (x₀ : Real), (Set.instMembership.1 A x₀ ∧ (g x₀ = Zero.toOfNat0.1 ∧ ∀ (x : Real), Set.instMembership.1 A x → g x = Zero.toOfNat0.1 → False)) → False
+  Ambient
+    (ℝ)
+  Objects
+    f g : ℝ → ℝ
+    A : Set ℝ
+    x₀ : ℝ
+  Prove
+    (x₀ ∈ A ∧ (g x₀ = 0 ∧ (∀ (x : Real), x ∈ A → g x = 0 → False))) → False
 
 Logical form (Lean):
 

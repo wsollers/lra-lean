@@ -11,11 +11,16 @@ universe u
 
 Predicate logic:
 
-  (∀ input ∈ Carrier), IdentityFunction Carrier input = input
+  ∀ {Carrier : Type u} (input : Carrier), LRA.Function.IdentityFunction Carrier input = input
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (input : Carrier), input = input
+  Ambient
+    (Carrier)
+  Objects
+    input : Carrier
+  Prove
+    input = input
 
 Logical form (Lean):
 
@@ -53,11 +58,16 @@ theorem IdentityFunctionValue
 
 Predicate logic:
 
-  Injective (IdentityFunction Carrier)
+  ∀ {Carrier : Type u}, LRA.Function.Injective (LRA.Function.IdentityFunction Carrier)
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (y x₁ x₂ : Carrier), (x₁ = y ∧ x₂ = y) → x₁ = x₂
+  Ambient
+    (Carrier)
+  Objects
+    (none)
+  Prove
+    (x₁ = y ∧ x₂ = y) → x₁ = x₂
 
 Logical form (Lean):
 
@@ -93,11 +103,16 @@ theorem IdentityFunctionInjective {Carrier : Type u} :
 
 Predicate logic:
 
-  Surjective (IdentityFunction Carrier)
+  ∀ {Carrier : Type u}, LRA.Function.Surjective (LRA.Function.IdentityFunction Carrier)
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (y : Carrier), Exists fun x => x = y
+  Ambient
+    (Carrier)
+  Objects
+    (none)
+  Prove
+    Exists fun x => x = y
 
 Logical form (Lean):
 
@@ -133,11 +148,16 @@ theorem IdentityFunctionSurjective {Carrier : Type u} :
 
 Predicate logic:
 
-  Bijective (IdentityFunction Carrier)
+  ∀ {Carrier : Type u}, LRA.Function.Bijective (LRA.Function.IdentityFunction Carrier)
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u}, (∀ (y x₁ x₂ : Carrier), x₁ = y → x₂ = y → x₁ = x₂ ∧ ∀ (y : Carrier), Exists fun x => x = y)
+  Ambient
+    (Carrier)
+  Objects
+    (none)
+  Prove
+    ((∀ (y x₁ x₂ : Carrier), x₁ = y → x₂ = y → x₁ = x₂) ∧ (∀ (y : Carrier), Exists fun x => x = y))
 
 Logical form (Lean):
 
@@ -173,11 +193,16 @@ theorem IdentityFunctionBijective {Carrier : Type u} :
 
 Predicate logic:
 
-  TwoSidedInverse (IdentityFunction Carrier) (IdentityFunction Carrier)
+  ∀ (Carrier : Type u), LRA.Function.TwoSidedInverse (LRA.Function.IdentityFunction Carrier) (LRA.Function.IdentityFunction Carrier)
 
 Predicate logic (unfolded):
 
-  ∀ (Carrier : Type u), (∀ (input : Carrier), input = input ∧ ∀ (output : Carrier), output = output)
+  Ambient
+    (Carrier)
+  Objects
+    (none)
+  Prove
+    ((∀ (input : Carrier), input = input) ∧ (∀ (output : Carrier), output = output))
 
 Logical form (Lean):
 

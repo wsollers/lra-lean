@@ -16,16 +16,16 @@ universe u
 Predicate logic:
 
   def complexNumbersModel (R : Type u)
-    [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] :
-    LRA.ModelTheory.FirstOrder.Model ComplexNumbersFirstOrderSignature :=
-  fieldFirstOrderModel (ComplexNumber R)
+      [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] :
+      LRA.ModelTheory.FirstOrder.Model ComplexNumbersFirstOrderSignature :=
+    fieldFirstOrderModel (ComplexNumber R)
 
 Predicate logic (unfolded):
 
   def complexNumbersModel (R : Type u)
-    [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] :
-    LRA.ModelTheory.FirstOrder.Model ComplexNumbersFirstOrderSignature :=
-  fieldFirstOrderModel (ComplexNumber R) (source fallback; no compiled unfold data available)
+      [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] :
+      LRA.ModelTheory.FirstOrder.Model ComplexNumbersFirstOrderSignature :=
+    fieldFirstOrderModel (ComplexNumber R) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -66,14 +66,14 @@ def complexNumbersModel (R : Type u)
 Predicate logic:
 
   noncomputable def complexNumbersOverMathlibReals :
-    LRA.ModelTheory.FirstOrder.Model ComplexNumbersFirstOrderSignature :=
-  complexNumbersModel Real
+      LRA.ModelTheory.FirstOrder.Model ComplexNumbersFirstOrderSignature :=
+    complexNumbersModel Real
 
 Predicate logic (unfolded):
 
   noncomputable def complexNumbersOverMathlibReals :
-    LRA.ModelTheory.FirstOrder.Model ComplexNumbersFirstOrderSignature :=
-  complexNumbersModel Real (source fallback; no compiled unfold data available)
+      LRA.ModelTheory.FirstOrder.Model ComplexNumbersFirstOrderSignature :=
+    complexNumbersModel Real (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

@@ -16,7 +16,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (relation : Element → Element → Prop) (dominated dominating : SetObject) (element : Element), inst.1 dominated element → Exists fun other => (inst.1 dominating other ∧ relation element other)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    inst.1 dominated element → Exists fun other => (inst.1 dominating other ∧ relation element other)
 
 Logical form (Lean):
 

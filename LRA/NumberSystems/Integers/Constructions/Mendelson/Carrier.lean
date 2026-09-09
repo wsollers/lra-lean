@@ -9,12 +9,12 @@ namespace LRA.NumberSystems.Integers.Mendelson
 Predicate logic:
 
   abbrev PositiveNaturalPairData :=
-  QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs
+    QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs
 
 Predicate logic (unfolded):
 
   abbrev PositiveNaturalPairData :=
-  QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs (source fallback; no compiled unfold data available)
+    QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -51,14 +51,14 @@ abbrev PositiveNaturalPairData :=
 Predicate logic:
 
   structure PositivePair (positive_data : PositiveNaturalPairData) where
-  left : positive_data.carrier
-  right : positive_data.carrier
+    left : positive_data.carrier
+    right : positive_data.carrier
 
 Predicate logic (unfolded):
 
   structure PositivePair (positive_data : PositiveNaturalPairData) where
-  left : positive_data.carrier
-  right : positive_data.carrier (source fallback; no compiled unfold data available)
+    left : positive_data.carrier
+    right : positive_data.carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

@@ -7,11 +7,16 @@ namespace LRA.Order.OrderedSets.Preorder
 
 Predicate logic:
 
-  LRA.Relation.Reflexive preorder.relation
+  ∀ {Carrier : Type u} (preorder : LRA.Order.OrderedSets.Preorder.PreorderRelation Carrier), LRA.Relation.Reflexive preorder.relation
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (preorder : LRA.Order.OrderedSets.Preorder.PreorderRelation Carrier) (x : Carrier), preorder.1 x x
+  Ambient
+    (Carrier)
+  Objects
+    preorder : PreorderRelation Carrier
+  Prove
+    preorder.1 x x
 
 Logical form (Lean):
 
@@ -51,11 +56,16 @@ theorem PreorderRelationIsReflexive
 
 Predicate logic:
 
-  LRA.Relation.Transitive preorder.relation
+  ∀ {Carrier : Type u} (preorder : LRA.Order.OrderedSets.Preorder.PreorderRelation Carrier), LRA.Relation.Transitive preorder.relation
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (preorder : LRA.Order.OrderedSets.Preorder.PreorderRelation Carrier) (x y z : Carrier), (preorder.1 x y ∧ preorder.1 y z) → preorder.1 x z
+  Ambient
+    (Carrier)
+  Objects
+    preorder : PreorderRelation Carrier
+  Prove
+    (preorder.1 x y ∧ preorder.1 y z) → preorder.1 x z
 
 Logical form (Lean):
 

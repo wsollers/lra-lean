@@ -7,11 +7,16 @@ namespace LRA.Analysis.StructureOfRealLine
 
 Predicate logic:
 
-  ¬ ∃ enumerate ∈ ℕ → ℝ, ∀ x : ℝ, x ∈ Set.Icc 0 ∈ ℝ 1 → ∃ index ∈ ℕ, enumerate index = x
+  ¬ Exists fun enumerate => ∀ (x : Real), x ∈ Set.Icc 0 1 → Exists fun index => enumerate index = x
 
 Predicate logic (unfolded):
 
-  (Exists fun enumerate => ∀ (x : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 Zero.toOfNat0.1 x ∧ Real.instPreorder.toLE.1 x One.toOfNat1.1)) x → Exists fun index => enumerate index = x) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun enumerate => ∀ (x : Real), x ∈ fun x => (Real.instPreorder.1.le 0 x ∧ Real.instPreorder.1.le x 1) → Exists fun index => enumerate index = x) → False
 
 Logical form (Lean):
 

@@ -8,11 +8,16 @@ namespace LRA.Set.Constructions.TGSet
 
 Predicate logic:
 
-  forall A B : Set, A ∪ B = B ∪ A
+  ∀ (A B : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGA ∪ B = LRA.Set.Constructions.TGB ∪ A
 
 Predicate logic (unfolded):
 
-  ∀ (A B : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGSet.instUnion.1 A B = LRA.Set.Constructions.TGSet.instUnion.1 B A
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TGA ∪ B = LRA.Set.Constructions.TGB ∪ A
 
 Logical form (Lean):
 
@@ -47,11 +52,16 @@ theorem UnionCommutative : forall A B : Set, A ∪ B = B ∪ A := by
 
 Predicate logic:
 
-  forall A B C : Set, (A ∪ B) ∪ C = A ∪ (B ∪ C)
+  ∀ (A B C : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGLRA.Set.Constructions.TGA ∪ B ∪ C = LRA.Set.Constructions.TGA ∪ LRA.Set.Constructions.TGB ∪ C
 
 Predicate logic (unfolded):
 
-  ∀ (A B C : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGSet.instUnion.1 (LRA.Set.Constructions.TGSet.instUnion.1 A B) C = LRA.Set.Constructions.TGSet.instUnion.1 A (LRA.Set.Constructions.TGSet.instUnion.1 B C)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TGLRA.Set.Constructions.TGA ∪ B ∪ C = LRA.Set.Constructions.TGA ∪ LRA.Set.Constructions.TGB ∪ C
 
 Logical form (Lean):
 
@@ -88,11 +98,16 @@ theorem UnionAssociative :
 
 Predicate logic:
 
-  forall A : Set, ∅ ∈ Set ∪ A = A
+  ∀ (A : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGLRA.Set.Constructions.TGSet.instEmptyCollection.emptyCollection ∪ A = A
 
 Predicate logic (unfolded):
 
-  ∀ (A : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGSet.instUnion.1 LRA.Set.Constructions.TGSet.instEmptyCollection.1 A = A
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TGLRA.Set.Constructions.TGSet.instEmptyCollection.1 ∪ A = A
 
 Logical form (Lean):
 
@@ -127,11 +142,16 @@ theorem EmptyUnion : forall A : Set, (∅ : Set) ∪ A = A := by
 
 Predicate logic:
 
-  forall A : Set, A ∪ ∅ ∈ Set = A
+  ∀ (A : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGA ∪ LRA.Set.Constructions.TGSet.instEmptyCollection.emptyCollection = A
 
 Predicate logic (unfolded):
 
-  ∀ (A : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGSet.instUnion.1 A LRA.Set.Constructions.TGSet.instEmptyCollection.1 = A
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TGA ∪ LRA.Set.Constructions.TGSet.instEmptyCollection.1 = A
 
 Logical form (Lean):
 
@@ -166,11 +186,16 @@ theorem UnionEmpty : forall A : Set, A ∪ (∅ : Set) = A := by
 
 Predicate logic:
 
-  forall A : Set, A ∪ A = A
+  ∀ (A : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGA ∪ A = A
 
 Predicate logic (unfolded):
 
-  ∀ (A : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGSet.instUnion.1 A A = A
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TGA ∪ A = A
 
 Logical form (Lean):
 
@@ -205,11 +230,16 @@ theorem UnionIdempotent : forall A : Set, A ∪ A = A := by
 
 Predicate logic:
 
-  forall A1 A2 B1 B2 : Set, A1 ⊆ A2 -> B1 ⊆ B2 -> A1 ∪ B1 ⊆ A2 ∪ B2
+  ∀ (A1 A2 B1 B2 : LRA.Set.Constructions.TGSet.Set), (LRA.Set.Constructions.TGSet.instHasSubset.Subset A1 A2 ∧ LRA.Set.Constructions.TGSet.instHasSubset.Subset B1 B2) → LRA.Set.Constructions.TGSet.instHasSubset.Subset (LRA.Set.Constructions.TGA1 ∪ B1) (LRA.Set.Constructions.TGA2 ∪ B2)
 
 Predicate logic (unfolded):
 
-  ∀ (A1 A2 B1 B2 : LRA.Set.Constructions.TGSet.Set), (LRA.Set.Constructions.TGSet.instHasSubset.1 A1 A2 ∧ LRA.Set.Constructions.TGSet.instHasSubset.1 B1 B2) → LRA.Set.Constructions.TGSet.instHasSubset.1 (LRA.Set.Constructions.TGSet.instUnion.1 A1 B1) (LRA.Set.Constructions.TGSet.instUnion.1 A2 B2)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (LRA.Set.Constructions.TGSet.instHasSubset.1 A1 A2 ∧ LRA.Set.Constructions.TGSet.instHasSubset.1 B1 B2) → LRA.Set.Constructions.TGSet.instHasSubset.1 (LRA.Set.Constructions.TGA1 ∪ B1) (LRA.Set.Constructions.TGA2 ∪ B2)
 
 Logical form (Lean):
 
@@ -246,11 +276,16 @@ theorem UnionMonotone :
 
 Predicate logic:
 
-  forall A B : Set, A ⊆ B <-> A ∪ B = B
+  ∀ (A B : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGSet.instHasSubset.Subset A B ↔ LRA.Set.Constructions.TGA ∪ B = B
 
 Predicate logic (unfolded):
 
-  ∀ (A B : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGSet.instHasSubset.1 A B ↔ LRA.Set.Constructions.TGSet.instUnion.1 A B = B
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TGSet.instHasSubset.Subset A B ↔ LRA.Set.Constructions.TGA ∪ B = B
 
 Logical form (Lean):
 

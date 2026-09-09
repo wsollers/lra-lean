@@ -7,11 +7,17 @@ namespace LRA.Order.OrderedSets.PartialOrder
 
 Predicate logic:
 
-  LRA.Relation.Reflexive relation
+  ∀ {Carrier : Type u} (relation : LRA.Order.OrderedSets.OrderRelation Carrier), LRA.Order.PartialOrder relation → LRA.Relation.Reflexive relation
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop), (∀ (x : Carrier), relation x x ∧ (∀ (x y : Carrier), relation x y → relation y x → x = y ∧ ∀ (x y z : Carrier), relation x y → relation y z → relation x z)) → ∀ (x : Carrier), relation x x
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Order.OrderedSets.OrderRelation Carrier
+    relationIsPartialOrder : LRA.Order.PartialOrder relation
+  Prove
+    ((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x → x = y) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z))) → ∀ (x : Carrier), relation x x
 
 Logical form (Lean):
 
@@ -53,11 +59,17 @@ theorem PartialOrderIsReflexive
 
 Predicate logic:
 
-  LRA.Relation.Antisymmetric relation
+  ∀ {Carrier : Type u} (relation : LRA.Order.OrderedSets.OrderRelation Carrier), LRA.Order.PartialOrder relation → LRA.Relation.Antisymmetric relation
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop), (∀ (x : Carrier), relation x x ∧ (∀ (x y : Carrier), relation x y → relation y x → x = y ∧ ∀ (x y z : Carrier), relation x y → relation y z → relation x z)) → ∀ (x y : Carrier), (relation x y ∧ relation y x) → x = y
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Order.OrderedSets.OrderRelation Carrier
+    relationIsPartialOrder : LRA.Order.PartialOrder relation
+  Prove
+    ((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x → x = y) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z))) → ∀ (x y : Carrier), (relation x y ∧ relation y x) → x = y
 
 Logical form (Lean):
 
@@ -99,11 +111,17 @@ theorem PartialOrderIsAntisymmetric
 
 Predicate logic:
 
-  LRA.Relation.Transitive relation
+  ∀ {Carrier : Type u} (relation : LRA.Order.OrderedSets.OrderRelation Carrier), LRA.Order.PartialOrder relation → LRA.Relation.Transitive relation
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop), (∀ (x : Carrier), relation x x ∧ (∀ (x y : Carrier), relation x y → relation y x → x = y ∧ ∀ (x y z : Carrier), relation x y → relation y z → relation x z)) → ∀ (x y z : Carrier), (relation x y ∧ relation y z) → relation x z
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Order.OrderedSets.OrderRelation Carrier
+    relationIsPartialOrder : LRA.Order.PartialOrder relation
+  Prove
+    ((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x → x = y) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z))) → ∀ (x y z : Carrier), (relation x y ∧ relation y z) → relation x z
 
 Logical form (Lean):
 
@@ -145,11 +163,16 @@ theorem PartialOrderIsTransitive
 
 Predicate logic:
 
-  LRA.Relation.Reflexive order.relation
+  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.PartialOrderRelation Carrier), LRA.Relation.Reflexive order.relation
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.PartialOrderRelation Carrier) (x : Carrier), order.1 x x
+  Ambient
+    (Carrier)
+  Objects
+    order : PartialOrderRelation Carrier
+  Prove
+    order.1 x x
 
 Logical form (Lean):
 
@@ -189,11 +212,16 @@ theorem PartialOrderRelationIsReflexive
 
 Predicate logic:
 
-  LRA.Relation.Antisymmetric order.relation
+  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.PartialOrderRelation Carrier), LRA.Relation.Antisymmetric order.relation
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.PartialOrderRelation Carrier) (x y : Carrier), (order.1 x y ∧ order.1 y x) → x = y
+  Ambient
+    (Carrier)
+  Objects
+    order : PartialOrderRelation Carrier
+  Prove
+    (order.1 x y ∧ order.1 y x) → x = y
 
 Logical form (Lean):
 
@@ -233,11 +261,16 @@ theorem PartialOrderRelationIsAntisymmetric
 
 Predicate logic:
 
-  LRA.Relation.Transitive order.relation
+  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.PartialOrderRelation Carrier), LRA.Relation.Transitive order.relation
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.PartialOrderRelation Carrier) (x y z : Carrier), (order.1 x y ∧ order.1 y z) → order.1 x z
+  Ambient
+    (Carrier)
+  Objects
+    order : PartialOrderRelation Carrier
+  Prove
+    (order.1 x y ∧ order.1 y z) → order.1 x z
 
 Logical form (Lean):
 

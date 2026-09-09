@@ -5,22 +5,142 @@ namespace LRA.Identity.Constructions.Mathlib
 
 universe u
 
-/-- The canonical equality structure realized by Lean's native equality.
+/--
+`CanonicalEqualityStructure` TODO
 
-Logical form: `equalityInterpretation x y <-> x = y`.
+Predicate logic:
+
+  noncomputable def CanonicalEqualityStructure
+      (Carrier : Type u) [Nonempty Carrier] :
+      LRA.Identity.EqualityStructure
+
+Predicate logic (unfolded):
+
+  noncomputable def CanonicalEqualityStructure
+      (Carrier : Type u) [Nonempty Carrier] :
+      LRA.Identity.EqualityStructure
+
+Logical form (Lean):
+
+```lean
+noncomputable def CanonicalEqualityStructure
+    (Carrier : Type u) [Nonempty Carrier] :
+    LRA.Identity.EqualityStructure
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
 -/
 noncomputable def CanonicalEqualityStructure
     (Carrier : Type u) [Nonempty Carrier] :
     LRA.Identity.EqualityStructure := by
   sorry
 
-/-- The canonical FOL equality model realized by native equality. -/
+/--
+`CanonicalFOLModel` TODO
+
+Predicate logic:
+
+  noncomputable def CanonicalFOLModel
+      (Carrier : Type u) [Nonempty Carrier] :
+      LRA.ModelTheory.FirstOrder.Model LRA.Identity.pureEqualitySignature
+
+Predicate logic (unfolded):
+
+  noncomputable def CanonicalFOLModel
+      (Carrier : Type u) [Nonempty Carrier] :
+      LRA.ModelTheory.FirstOrder.Model LRA.Identity.pureEqualitySignature
+
+Logical form (Lean):
+
+```lean
+noncomputable def CanonicalFOLModel
+    (Carrier : Type u) [Nonempty Carrier] :
+    LRA.ModelTheory.FirstOrder.Model LRA.Identity.pureEqualitySignature
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 noncomputable def CanonicalFOLModel
     (Carrier : Type u) [Nonempty Carrier] :
     LRA.ModelTheory.FirstOrder.Model LRA.Identity.pureEqualitySignature := by
   sorry
 
-/-- The canonical full-SOL equality model realized by native equality. -/
+/--
+`CanonicalSOLFullModel` TODO
+
+Predicate logic:
+
+  noncomputable def CanonicalSOLFullModel
+      (Carrier : Type u) [Nonempty Carrier] :
+      LRA.ModelTheory.SecondOrder.FullModel LRA.Identity.pureEqualitySignature
+
+Predicate logic (unfolded):
+
+  noncomputable def CanonicalSOLFullModel
+      (Carrier : Type u) [Nonempty Carrier] :
+      LRA.ModelTheory.SecondOrder.FullModel LRA.Identity.pureEqualitySignature
+
+Logical form (Lean):
+
+```lean
+noncomputable def CanonicalSOLFullModel
+    (Carrier : Type u) [Nonempty Carrier] :
+    LRA.ModelTheory.SecondOrder.FullModel LRA.Identity.pureEqualitySignature
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 noncomputable def CanonicalSOLFullModel
     (Carrier : Type u) [Nonempty Carrier] :
     LRA.ModelTheory.SecondOrder.FullModel LRA.Identity.pureEqualitySignature := by

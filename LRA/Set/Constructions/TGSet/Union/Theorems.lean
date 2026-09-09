@@ -10,11 +10,16 @@ namespace LRA.Set.Constructions.TGSet
 
 Predicate logic:
 
-  (∀ A ∈ Set), exists U : Set, IsUnionOf A U
+  ∀ (A : LRA.Set.Constructions.TGSet.Set), Exists fun U => LRA.Set.Constructions.TGSet.IsUnionOf A U
 
 Predicate logic (unfolded):
 
-  ∀ (A : LRA.Set.Constructions.TGSet.Set), Exists fun U => ∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 U x ↔ Exists fun B => (LRA.Set.instMembershipTGSet.1 A B ∧ LRA.Set.instMembershipTGSet.1 B x)
+  Ambient
+    (implicit ambient)
+  Objects
+    A : Set
+  Prove
+    Exists fun U => ∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.1 U x ↔ Exists fun B => (LRA.Set.Constructions.instMembershipTGSet.1 A B ∧ LRA.Set.Constructions.instMembershipTGSet.1 B x)
 
 Logical form (Lean):
 
@@ -49,11 +54,16 @@ theorem UnionOverExists (A : Set) : exists U : Set, IsUnionOf A U := by
 
 Predicate logic:
 
-  (IsUnionOf A U ∧ IsUnionOf A V) → V = U
+  ∀ {A U V : LRA.Set.Constructions.TGSet.Set}, (LRA.Set.Constructions.TGSet.IsUnionOf A U ∧ LRA.Set.Constructions.TGSet.IsUnionOf A V) → V = U
 
 Predicate logic (unfolded):
 
-  ∀ {A U V : LRA.Set.Constructions.TGSet.Set}, (∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 U x ↔ Exists fun B => (LRA.Set.instMembershipTGSet.1 A B ∧ LRA.Set.instMembershipTGSet.1 B x) ∧ ∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 V x ↔ Exists fun B => (LRA.Set.instMembershipTGSet.1 A B ∧ LRA.Set.instMembershipTGSet.1 B x)) → V = U
+  Ambient
+    (implicit ambient)
+  Objects
+    A U V : Set
+  Prove
+    ((∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.1 U x ↔ Exists fun B => (LRA.Set.Constructions.instMembershipTGSet.1 A B ∧ LRA.Set.Constructions.instMembershipTGSet.1 B x)) ∧ (∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.1 V x ↔ Exists fun B => (LRA.Set.Constructions.instMembershipTGSet.1 A B ∧ LRA.Set.Constructions.instMembershipTGSet.1 B x))) → V = U
 
 Logical form (Lean):
 
@@ -93,12 +103,12 @@ theorem UnionOverIsUnique {A U V : Set}
 Predicate logic:
 
   noncomputable def TheUnionOver (A : Set) : Set :=
-  Classical.choose (UnionOverExists A)
+    Classical.choose (UnionOverExists A)
 
 Predicate logic (unfolded):
 
   noncomputable def TheUnionOver (A : Set) : Set :=
-  Classical.choose (UnionOverExists A) (source fallback; no compiled unfold data available)
+    Classical.choose (UnionOverExists A) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -134,11 +144,16 @@ noncomputable def TheUnionOver (A : Set) : Set :=
 
 Predicate logic:
 
-  (∀ A ∈ Set), IsUnionOf A (TheUnionOver A)
+  ∀ (A : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGSet.IsUnionOf A (LRA.Set.Constructions.TGSet.TheUnionOver A)
 
 Predicate logic (unfolded):
 
-  ∀ (A x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 (Classical.indefiniteDescription (LRA.Set.Constructions.TGSet.IsUnionOf A) ⋯).1 x ↔ Exists fun B => (LRA.Set.instMembershipTGSet.1 A B ∧ LRA.Set.instMembershipTGSet.1 B x)
+  Ambient
+    (implicit ambient)
+  Objects
+    A : Set
+  Prove
+    LRA.Set.Constructions.instMembershipTGSet.1 (Classical.indefiniteDescription (LRA.Set.Constructions.TGSet.IsUnionOf A) ⋯).1 x ↔ Exists fun B => (LRA.Set.Constructions.instMembershipTGSet.1 A B ∧ LRA.Set.Constructions.instMembershipTGSet.1 B x)
 
 Logical form (Lean):
 
@@ -174,12 +189,12 @@ theorem TheUnionOverIsUnionOf (A : Set) : IsUnionOf A (TheUnionOver A) := by
 Predicate logic:
 
   noncomputable def TheUnion (A B : Set) : Set :=
-  TheUnionOver (PairSet A B)
+    TheUnionOver (PairSet A B)
 
 Predicate logic (unfolded):
 
   noncomputable def TheUnion (A B : Set) : Set :=
-  TheUnionOver (PairSet A B) (source fallback; no compiled unfold data available)
+    TheUnionOver (PairSet A B) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -215,11 +230,16 @@ noncomputable def TheUnion (A B : Set) : Set :=
 
 Predicate logic:
 
-  (∀ A B x ∈ Set), x ∈ TheUnion A B <-> x ∈ A ∨ x ∈ B
+  ∀ (A B x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem (LRA.Set.Constructions.TGSet.TheUnion A B) x ↔ Or (LRA.Set.Constructions.instMembershipTGSet.mem A x) (LRA.Set.Constructions.instMembershipTGSet.mem B x)
 
 Predicate logic (unfolded):
 
-  ∀ (A B x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 (Classical.indefiniteDescription (LRA.Set.Constructions.TGSet.IsUnionOf (LRA.Set.Constructions.TGSet.PairSet A B)) ⋯).1 x ↔ Or (LRA.Set.instMembershipTGSet.1 A x) (LRA.Set.instMembershipTGSet.1 B x)
+  Ambient
+    (implicit ambient)
+  Objects
+    A B x : Set
+  Prove
+    LRA.Set.Constructions.instMembershipTGSet.mem (LRA.Set.Constructions.TGSet.TheUnion A B) x ↔ Or (LRA.Set.Constructions.instMembershipTGSet.mem A x) (LRA.Set.Constructions.instMembershipTGSet.mem B x)
 
 Logical form (Lean):
 

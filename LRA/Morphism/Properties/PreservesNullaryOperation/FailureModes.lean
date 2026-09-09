@@ -13,7 +13,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Source : Type u} {Target : Type v} (function : Source → Target) (sourceElement : Source) (targetElement : Target), function sourceElement = targetElement → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    function sourceElement = targetElement → False
 
 Logical form (Lean):
 
@@ -56,12 +61,12 @@ def FailsPreservesNullaryOperation {Source : Type u} {Target : Type v}
 Predicate logic:
 
   def ConstantZeroNaturalToIntegerFunction (_ : Nat) : Int :=
-  0
+    0
 
 Predicate logic (unfolded):
 
   def ConstantZeroNaturalToIntegerFunction (_ : Nat) : Int :=
-  0 (source fallback; no compiled unfold data available)
+    0 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

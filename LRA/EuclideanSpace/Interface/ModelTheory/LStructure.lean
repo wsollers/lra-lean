@@ -49,18 +49,18 @@ abbrev TarskiStructure := LRA.ModelTheory.FirstOrder.Model TarskiFirstOrderSigna
 Predicate logic:
 
   def BuildTarskiStructure {Point : Type u} [Nonempty Point]
-    (between : Point -> Point -> Point -> Prop)
-    (congruent : Point -> Point -> Point -> Point -> Prop) :
-    TarskiStructure where
-  Domain
+      (between : Point -> Point -> Point -> Prop)
+      (congruent : Point -> Point -> Point -> Point -> Prop) :
+      TarskiStructure where
+    Domain
 
 Predicate logic (unfolded):
 
   def BuildTarskiStructure {Point : Type u} [Nonempty Point]
-    (between : Point -> Point -> Point -> Prop)
-    (congruent : Point -> Point -> Point -> Point -> Prop) :
-    TarskiStructure where
-  Domain (source fallback; no compiled unfold data available)
+      (between : Point -> Point -> Point -> Prop)
+      (congruent : Point -> Point -> Point -> Point -> Prop) :
+      TarskiStructure where
+    Domain (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

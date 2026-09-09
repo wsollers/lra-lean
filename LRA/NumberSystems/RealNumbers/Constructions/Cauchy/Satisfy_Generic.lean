@@ -5,11 +5,26 @@ namespace LRA.NumberSystems.RealNumbers.Cauchy
 open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 open LRA.NumberSystems.RationalNumbers
 
-/-- The Cauchy-sequence construction satisfies the generic ℝ interface: for
-any rational number system and choice of absolute value data on it, the
-quotient-of-Cauchy-sequences carrier is a `RealModel`.
+/--
+`satisfiesGeneric` The Cauchy-sequence construction satisfies the generic ℝ interface: for any rational number system and choice of absolute value data on it, the quotient-of-Cauchy-sequences carrier is a `RealModel`.
 
-Logical form:
+Predicate logic:
+
+  noncomputable abbrev satisfiesGeneric
+      (rationalSystem : RationalNumberSystem)
+      (absolute_value_data : RationalMetricData rationalSystem) :
+      LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel :=
+    CauchyRealizesRealModel rationalSystem absolute_value_data
+
+Predicate logic (unfolded):
+
+  noncomputable abbrev satisfiesGeneric
+      (rationalSystem : RationalNumberSystem)
+      (absolute_value_data : RationalMetricData rationalSystem) :
+      LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel :=
+    CauchyRealizesRealModel rationalSystem absolute_value_data (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
 
 ```lean
 noncomputable abbrev satisfiesGeneric
@@ -18,6 +33,25 @@ noncomputable abbrev satisfiesGeneric
     LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel :=
   CauchyRealizesRealModel rationalSystem absolute_value_data
 ```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
 -/
 noncomputable abbrev satisfiesGeneric
     (rationalSystem : RationalNumberSystem)

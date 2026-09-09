@@ -10,11 +10,16 @@ universe u v
 
 Predicate logic:
 
-  (∀ element, left element ↔ right element) → left = right
+  ∀ {α : Type u} {left right : LRA.Set.SetClass α}, (∀ (element : α), left element ↔ right element) → left = right
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} {left right : α → Prop}, (∀ (element : α), left element ↔ right element) → left = right
+  Ambient
+    (α)
+  Objects
+    left right : SetClass α
+  Prove
+    (∀ (element : α), left element ↔ right element) → left = right
 
 Logical form (Lean):
 
@@ -53,11 +58,16 @@ theorem SetClassExtensionality {α : Type u} {left right : SetClass α}
 
 Predicate logic:
 
-  (∀ A ∈ U), Represents A (ClassOfSet A)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (setObject : SetObject), LRA.Set.Represents setObject (LRA.Set.ClassOfSet setObject)
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (setObject : SetObject) (element : Element), inst.1 setObject element ↔ inst.1 setObject element
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    setObject : SetObject
+  Prove
+    inst.1 setObject element ↔ inst.1 setObject element
 
 Logical form (Lean):
 

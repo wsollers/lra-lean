@@ -9,11 +9,16 @@ namespace LRA.Set.Constructions.TGSet
 
 Predicate logic:
 
-  exists A : Set, IsEmptySet A
+  Exists fun A => LRA.Set.Constructions.TGSet.IsEmptySet A
 
 Predicate logic (unfolded):
 
-  Exists fun A => ∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 A x → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun A => ∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.1 A x → False
 
 Logical form (Lean):
 
@@ -48,11 +53,16 @@ theorem EmptySetExists : exists A : Set, IsEmptySet A := by
 
 Predicate logic:
 
-  (IsEmptySet A ∧ IsEmptySet B) → B = A
+  ∀ {A B : LRA.Set.Constructions.TGSet.Set}, (LRA.Set.Constructions.TGSet.IsEmptySet A ∧ LRA.Set.Constructions.TGSet.IsEmptySet B) → B = A
 
 Predicate logic (unfolded):
 
-  ∀ {A B : LRA.Set.Constructions.TGSet.Set}, (∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 A x → False ∧ ∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 B x → False) → B = A
+  Ambient
+    (implicit ambient)
+  Objects
+    A B : Set
+  Prove
+    ((∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.1 A x → False) ∧ (∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.1 B x → False)) → B = A
 
 Logical form (Lean):
 
@@ -89,11 +99,16 @@ theorem EmptySetIsUnique {A B : Set} (AIsEmpty : IsEmptySet A) (BIsEmpty : IsEmp
 
 Predicate logic:
 
-  ExistsAndUnique IsEmptySet
+  LRA.Set.Constructions.TGSet.ExistsAndUnique LRA.Set.Constructions.TGSet.IsEmptySet
 
 Predicate logic (unfolded):
 
-  (Exists fun witness => ∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 witness x → False ∧ ∀ (left right : LRA.Set.Constructions.TGSet.Set), (∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 left x → False) → (∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 right x → False) → left = right)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((Exists fun x => ∀ (x_1 : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.1 x x_1 → False) ∧ (∀ (left right : LRA.Set.Constructions.TGSet.Set), (∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.1 left x → False) → (∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.1 right x → False) → (LRA.Identity.Constructions.Mathlib.instIdentityRelation LRA.Set.Constructions.TGSet.Set).1 left right))
 
 Logical form (Lean):
 
@@ -129,12 +144,12 @@ theorem EmptySetExistsAndIsUnique : ExistsAndUnique IsEmptySet := by
 Predicate logic:
 
   noncomputable def TheEmptySet : Set :=
-  Classical.choose EmptySetExists
+    Classical.choose EmptySetExists
 
 Predicate logic (unfolded):
 
   noncomputable def TheEmptySet : Set :=
-  Classical.choose EmptySetExists (source fallback; no compiled unfold data available)
+    Classical.choose EmptySetExists (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -170,11 +185,16 @@ noncomputable def TheEmptySet : Set :=
 
 Predicate logic:
 
-  IsEmptySet TheEmptySet
+  LRA.Set.Constructions.TGSet.IsEmptySet LRA.Set.Constructions.TGSet.TheEmptySet
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 LRA.Set.Constructions.TGSet.TheEmptySet x → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.instMembershipTGSet.1 LRA.Set.Constructions.TGSet.TheEmptySet x → False
 
 Logical form (Lean):
 

@@ -15,7 +15,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (operation : Carrier → Carrier → Carrier), (∀ (first second : Carrier), operation first second = operation second first) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (first second : Carrier), operation first second = operation second first) → False
 
 Logical form (Lean):
 
@@ -54,12 +59,12 @@ def FailsCommutative {Carrier : Type u}
 Predicate logic:
 
   def NaturalSubtraction : BinaryEndoOperation Nat :=
-  fun left right => left - right
+    fun left right => left - right
 
 Predicate logic (unfolded):
 
   def NaturalSubtraction : BinaryEndoOperation Nat :=
-  fun left right => left - right (source fallback; no compiled unfold data available)
+    fun left right => left - right (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -95,11 +100,16 @@ def NaturalSubtraction : BinaryEndoOperation Nat :=
 
 Predicate logic:
 
-  FailsCommutative NaturalSubtraction
+  LRA.Operation.Laws.Commutative.FailsCommutative LRA.Operation.Laws.Commutative.NaturalSubtraction
 
 Predicate logic (unfolded):
 
-  (∀ (first second : Nat), instHSub.1 first second = instHSub.1 second first) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (first second : Nat), { hSub := fun a b => instSubNat.sub a b }.hSub first second = { hSub := fun a b => instSubNat.sub a b }.hSub second first) → False
 
 Logical form (Lean):
 

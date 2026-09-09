@@ -11,11 +11,18 @@ universe u
 
 Predicate logic:
 
-  (∀ first second third ∈ Carrier), operation (operation first second) third = operation first (operation second third)
+  ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Associative.Associative operation → ∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {operation : Carrier → Carrier → Carrier}, (∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)) → ∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    law : Associative operation
+    first second third : Carrier
+  Prove
+    (∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)) → ∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)
 
 Logical form (Lean):
 

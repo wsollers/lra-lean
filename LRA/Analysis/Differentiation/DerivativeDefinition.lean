@@ -9,11 +9,16 @@ namespace LRA.Analysis.Differentiation
 
 Predicate logic:
 
-  ∀ (D : Real) (f : Real → Real) (A : Set Real) (c ε : Real), GT.gt ε 0 → Exists fun δ => (GT.gt δ 0 ∧ ∀ (h : Real), Set.instMembership.mem A (instHAdd.hAdd c h) → Real.instLT.lt 0 (abs h) → Real.instLT.lt (abs h) δ → Real.instLT.lt (abs (instHSub.hSub (instHDiv.hDiv (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) h) D)) ε)
+  ∀ (D : Real) (f : Real → Real) (A : Set Real) (c ε : Real), GT.gt ε 0 → Exists fun δ => (GT.gt δ 0 ∧ (∀ (h : Real), instHAdd.hAdd c h ∈ A → Real.instLT.lt 0 (abs h) → Real.instLT.lt (abs h) δ → Real.instLT.lt (abs (instHSub.hSub (instHDiv.hDiv (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) h) D)) ε))
 
 Predicate logic (unfolded):
 
-  ∀ (D : Real) (f : Real → Real) (A : Real → Prop) (c ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (h : Real), Set.instMembership.1 A (instHAdd.1 c h) → Real.instLT.1 Zero.toOfNat0.1 (SemilatticeSup.toMax.1 h (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 h)) → Real.instLT.1 (SemilatticeSup.toMax.1 h (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 h)) δ → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (instHDiv.1 (instHSub.1 (f (instHAdd.hAdd c h)) (f c)) h) D) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (instHDiv.1 (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) h) D))) ε)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Real.instLT.lt 0 ε → Exists fun δ => (Real.instLT.lt 0 δ ∧ (∀ (h : Real), { hAdd := fun a b => Real.instAdd.add a b }.hAdd c h ∈ A → Real.instLT.lt 0 (abs h) → Real.instLT.lt (abs h) δ → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd c h)) (f c)) h) D)) ε))
 
 Logical form (Lean):
 
@@ -51,11 +56,16 @@ def Derivative (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
 
 Predicate logic:
 
-  ∀ (D : Real) (f : Real → Real) (A : Set Real) (c : Real), Exists fun α => (LRA.Analysis.Limits.TendsTo α A c 0 ∧ ∀ (x : Real), Set.instMembership.mem A x → f x = instHAdd.hAdd (instHAdd.hAdd (f c) (instHMul.hMul D (instHSub.hSub x c))) (instHMul.hMul (α x) (instHSub.hSub x c)))
+  ∀ (D : Real) (f : Real → Real) (A : Set Real) (c : Real), Exists fun α => (LRA.Analysis.Limits.TendsTo α A c 0 ∧ (∀ (x : Real), x ∈ A → f x = instHAdd.hAdd (instHAdd.hAdd (f c) (instHMul.hMul D (instHSub.hSub x c))) (instHMul.hMul (α x) (instHSub.hSub x c))))
 
 Predicate logic (unfolded):
 
-  ∀ (D : Real) (f : Real → Real) (A : Real → Prop) (c : Real), Exists fun α => (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (x : Real), Set.instMembership.1 A x → Real.instLT.1 Zero.toOfNat0.1 (SemilatticeSup.toMax.1 (instHSub.1 x c) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 x c))) → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 x c) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 x c))) δ → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (α x) Zero.toOfNat0.1) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (α x) 0))) ε) ∧ ∀ (x : Real), Set.instMembership.1 A x → f x = instHAdd.1 (instHAdd.1 (f c) (instHMul.1 D (instHSub.1 x c))) (instHMul.1 (α x) (instHSub.1 x c)))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun α => ((∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun δ => (Real.instLT.lt 0 δ ∧ (∀ (x : Real), x ∈ A → Real.instLT.lt 0 (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x c)) → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x c)) δ → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (α x) 0)) ε))) ∧ (∀ (x : Real), x ∈ A → f x = { hAdd := fun a b => Real.instAdd.add a b }.hAdd ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd (f c) ({ hMul := fun a b => Real.instMul.mul a b }.hMul D ({ hSub := fun a b => Real.instSub.sub a b }.hSub x c))) ({ hMul := fun a b => Real.instMul.mul a b }.hMul (α x) ({ hSub := fun a b => Real.instSub.sub a b }.hSub x c))))
 
 Logical form (Lean):
 
@@ -99,7 +109,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (A : Real → Prop) (c : Real), Exists fun D => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (h : Real), Set.instMembership.1 A (instHAdd.1 c h) → Real.instLT.1 Zero.toOfNat0.1 (SemilatticeSup.toMax.1 h (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 h)) → Real.instLT.1 (SemilatticeSup.toMax.1 h (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 h)) δ → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (instHDiv.1 (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) h) D) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (instHDiv.hDiv (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) h) D))) ε)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun D => ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun δ => (Real.instLT.lt 0 δ ∧ (∀ (h : Real), { hAdd := fun a b => Real.instAdd.add a b }.hAdd c h ∈ A → Real.instLT.lt 0 (abs h) → Real.instLT.lt (abs h) δ → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd c h)) (f c)) h) D)) ε))
 
 Logical form (Lean):
 
@@ -135,11 +150,16 @@ def IsDifferentiable (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
 
 Predicate logic:
 
-  ∀ (D : Real) (f : Real → Real) (A : Set Real) (c ε : Real), GT.gt ε 0 → Exists fun U => (Exists fun δ => (GT.gt δ 0 ∧ U = LRA.Analysis.Continuity.RelativeNeighborhood A c δ) ∧ ∀ (x : Real), Set.instMembership.mem U x → Ne x c → Real.instLT.lt (abs (instHSub.hSub (instHDiv.hDiv (instHSub.hSub (f x) (f c)) (instHSub.hSub x c)) D)) ε)
+  ∀ (D : Real) (f : Real → Real) (A : Set Real) (c ε : Real), GT.gt ε 0 → Exists fun U => ((Exists fun δ => (GT.gt δ 0 ∧ U = LRA.Analysis.Continuity.RelativeNeighborhood A c δ)) ∧ (∀ (x : Real), x ∈ U → Ne x c → Real.instLT.lt (abs (instHSub.hSub (instHDiv.hDiv (instHSub.hSub (f x) (f c)) (instHSub.hSub x c)) D)) ε))
 
 Predicate logic (unfolded):
 
-  ∀ (D : Real) (f : Real → Real) (A : Real → Prop) (c ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun U => (Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ U = funx => (Set.instMembership.1 A x ∧ Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 x c) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub x c))) δ)) ∧ ∀ (x : Real), Set.instMembership.1 U x → (x = c → False) → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (instHDiv.1 (instHSub.1 (f x) (f c)) (instHSub.1 x c)) D) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (instHDiv.1 (instHSub.hSub (f x) (f c)) (instHSub.hSub x c)) D))) ε)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Real.instLT.lt 0 ε → Exists fun U => ((Exists fun δ => (Real.instLT.lt 0 δ ∧ (U = funx => (x ∈ A ∧ Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x c)) δ)))) ∧ (∀ (x : Real), x ∈ U → (x = c → False) → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f x) (f c)) ({ hSub := fun a b => Real.instSub.sub a b }.hSub x c)) D)) ε))
 
 Logical form (Lean):
 
@@ -177,11 +197,16 @@ def DerivativeNeighborhood (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) :
 
 Predicate logic:
 
-  ∀ (D : Real) (f : Real → Real) (A : Set Real) (c : Real) (xs : Nat → Real), (∀ (n : Nat), Set.instMembership.mem A (xs n) ∧ (∀ (n : Nat), Ne (xs n) c ∧ ∀ (ε : Real), GT.gt ε 0 → Exists fun N => ∀ (n : Nat), GE.ge n N → Real.instLT.lt (abs (instHSub.hSub (xs n) c)) ε)) → ∀ (ε : Real), GT.gt ε 0 → Exists fun N => ∀ (n : Nat), GE.ge n N → Real.instLT.lt (abs (instHSub.hSub (instHDiv.hDiv (instHSub.hSub (f (xs n)) (f c)) (instHSub.hSub (xs n) c)) D)) ε
+  ∀ (D : Real) (f : Real → Real) (A : Set Real) (c : Real) (xs : Nat → Real), ((∀ (n : Nat), xs n ∈ A) ∧ ((∀ (n : Nat), Ne (xs n) c) ∧ (∀ (ε : Real), GT.gt ε 0 → Exists fun N => ∀ (n : Nat), GE.ge n N → Real.instLT.lt (abs (instHSub.hSub (xs n) c)) ε))) → ∀ (ε : Real), GT.gt ε 0 → Exists fun N => ∀ (n : Nat), GE.ge n N → Real.instLT.lt (abs (instHSub.hSub (instHDiv.hDiv (instHSub.hSub (f (xs n)) (f c)) (instHSub.hSub (xs n) c)) D)) ε
 
 Predicate logic (unfolded):
 
-  ∀ (D : Real) (f : Real → Real) (A : Real → Prop) (c : Real) (xs : Nat → Real), (∀ (n : Nat), Set.instMembership.1 A (xs n) ∧ (∀ (n : Nat), xs n = c → False ∧ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (xs n) c) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (xs n) c))) ε)) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (instHDiv.1 (instHSub.1 (f (xs n)) (f c)) (instHSub.1 (xs n) c)) D) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (instHDiv.1 (instHSub.hSub (f (xs n)) (f c)) (instHSub.hSub (xs n) c)) D))) ε
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (n : Nat), xs n ∈ A) ∧ ((∀ (n : Nat), xs n = c → False) ∧ (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (xs n) c)) ε))) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f (xs n)) (f c)) ({ hSub := fun a b => Real.instSub.sub a b }.hSub (xs n) c)) D)) ε
 
 Logical form (Lean):
 
@@ -221,11 +246,19 @@ def DerivativeSequential (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : P
 
 Predicate logic:
 
-  (ℝ → ℝ) → Derivative D f A c ↔ DerivativeNeighborhood D f A c ∧ DerivativeSequential D f A c
+  ∀ (D : Real) (f : Real → Real) (A : Set Real) (c : Real), LRA.Analysis.Differentiation.Derivative D f A c ↔ (LRA.Analysis.Differentiation.DerivativeNeighborhood D f A c ∧ LRA.Analysis.Differentiation.DerivativeSequential D f A c)
 
 Predicate logic (unfolded):
 
-  ∀ (D : Real) (f : Real → Real) (A : Real → Prop) (c : Real), ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (h : Real), Set.instMembership.1 A (instHAdd.1 c h) → Real.instLT.1 Zero.toOfNat0.1 (SemilatticeSup.toMax.1 h (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 h)) → Real.instLT.1 (SemilatticeSup.toMax.1 h (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 h)) δ → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (instHDiv.1 (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) h) D) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (instHDiv.hDiv (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) h) D))) ε) ↔ (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun U => (Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ U = funx => (Set.instMembership.1 A x ∧ Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.hSub x c) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg (instHSub.hSub x c))) δ)) ∧ ∀ (x : Real), Set.instMembership.1 U x → (x = c → False) → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (instHDiv.1 (instHSub.hSub (f x) (f c)) (instHSub.hSub x c)) D) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (instHDiv.hDiv (instHSub.hSub (f x) (f c)) (instHSub.hSub x c)) D))) ε) ∧ ∀ (xs : Nat → Real), (∀ (n : Nat), Set.instMembership.1 A (xs n)) → (∀ (n : Nat), xs n = c → False) → (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (xs n) c) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (xs n) c))) ε) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (instHDiv.1 (instHSub.hSub (f (xs n)) (f c)) (instHSub.hSub (xs n) c)) D) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (instHDiv.hDiv (instHSub.hSub (f (xs n)) (f c)) (instHSub.hSub (xs n) c)) D))) ε)
+  Ambient
+    (ℝ)
+  Objects
+    D : ℝ
+    f : ℝ → ℝ
+    A : Set ℝ
+    c : ℝ
+  Prove
+    LRA.Analysis.Differentiation.Derivative D f A c ↔ (LRA.Analysis.Differentiation.DerivativeNeighborhood D f A c ∧ LRA.Analysis.Differentiation.DerivativeSequential D f A c)
 
 Logical form (Lean):
 
@@ -261,11 +294,19 @@ theorem DerivativeEquivalence (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ
 
 Predicate logic:
 
-  (ℝ → ℝ) → Derivative D f A c ↔ (∀ ε > 0, ∃ δ > 0, ∀ x ∈ A, 0 < |x - c| → |x - c| < δ → |(f x - f c) / (x - c) - D| < ε)
+  ∀ (D : Real) (f : Real → Real) (A : Set Real) (c : Real), LRA.Analysis.Differentiation.Derivative D f A c ↔ ∀ (ε : Real), GT.gt ε 0 → Exists fun δ => (GT.gt δ 0 ∧ (∀ (x : Real), x ∈ A → Real.instLT.lt 0 (abs (instHSub.hSub x c)) → Real.instLT.lt (abs (instHSub.hSub x c)) δ → Real.instLT.lt (abs (instHSub.hSub (instHDiv.hDiv (instHSub.hSub (f x) (f c)) (instHSub.hSub x c)) D)) ε))
 
 Predicate logic (unfolded):
 
-  ∀ (D : Real) (f : Real → Real) (A : Real → Prop) (c : Real), ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (h : Real), Set.instMembership.1 A (instHAdd.1 c h) → Real.instLT.1 Zero.toOfNat0.1 (SemilatticeSup.toMax.1 h (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 h)) → Real.instLT.1 (SemilatticeSup.toMax.1 h (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 h)) δ → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (instHDiv.1 (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) h) D) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (instHDiv.hDiv (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) h) D))) ε) ↔ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (x : Real), Set.instMembership.1 A x → Real.instLT.1 Zero.toOfNat0.1 (SemilatticeSup.toMax.1 (instHSub.1 x c) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 x c))) → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 x c) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 x c))) δ → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (instHDiv.1 (instHSub.1 (f x) (f c)) (instHSub.1 x c)) D) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (instHDiv.1 (instHSub.hSub (f x) (f c)) (instHSub.hSub x c)) D))) ε)
+  Ambient
+    (ℝ)
+  Objects
+    D : ℝ
+    f : ℝ → ℝ
+    A : Set ℝ
+    c : ℝ
+  Prove
+    LRA.Analysis.Differentiation.Derivative D f A c ↔ ∀ (ε : Real), GT.gt ε 0 → Exists fun δ => (GT.gt δ 0 ∧ (∀ (x : Real), x ∈ A → Real.instLT.lt 0 (abs (instHSub.hSub x c)) → Real.instLT.lt (abs (instHSub.hSub x c)) δ → Real.instLT.lt (abs (instHSub.hSub (instHDiv.hDiv (instHSub.hSub (f x) (f c)) (instHSub.hSub x c)) D)) ε))
 
 Logical form (Lean):
 
@@ -305,11 +346,18 @@ theorem DerivativeHFormEquivalence (D : ℝ) (f : ℝ → ℝ) (A : Set ℝ) (c 
 
 Predicate logic:
 
-  (ℝ → ℝ ∧ IsDifferentiable f A c) → LRA.Analysis.Continuity.ContinuousAtPoint f A c
+  ∀ (f : Real → Real) (A : Set Real) (c : Real), LRA.Analysis.Differentiation.IsDifferentiable f A c → LRA.Analysis.Continuity.ContinuousAtPoint f A c
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (A : Real → Prop) (c : Real), (Exists fun D => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (h : Real), Set.instMembership.1 A (instHAdd.1 c h) → Real.instLT.1 Zero.toOfNat0.1 (SemilatticeSup.toMax.1 h (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 h)) → Real.instLT.1 (SemilatticeSup.toMax.1 h (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 h)) δ → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (instHDiv.hDiv (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) h) D) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (instHDiv.hDiv (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) h) D))) ε)) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (x : Real), Set.instMembership.1 A x → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 x c) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 x c))) δ → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (f x) (f c)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (f x) (f c)))) ε)
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    A : Set ℝ
+    c : ℝ
+  Prove
+    (Exists fun D => ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun δ => (Real.instLT.lt 0 δ ∧ (∀ (h : Real), { hAdd := fun a b => Real.instAdd.add a b }.hAdd c h ∈ A → Real.instLT.lt 0 (abs h) → Real.instLT.lt (abs h) δ → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd c h)) (f c)) h) D)) ε))) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun δ => (Real.instLT.lt 0 δ ∧ (∀ (x : Real), x ∈ A → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x c)) δ → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f x) (f c))) ε))
 
 Logical form (Lean):
 
@@ -347,11 +395,20 @@ theorem DifferentiableImpliesContinuous (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ
 
 Predicate logic:
 
-  (ℝ → ℝ ∧ ∃ xs ∈ ℕ → ℝ, LRA.Analysis.Limits.ApproachesButNotEqual xs A c) → D₁ = D₂
+  ∀ (f : Real → Real) (A : Set Real) (c D₁ D₂ : Real), (Exists fun xs => LRA.Analysis.Limits.ApproachesButNotEqual xs A c ∧ (LRA.Analysis.Differentiation.Derivative D₁ f A c ∧ LRA.Analysis.Differentiation.Derivative D₂ f A c)) → D₁ = D₂
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (A : Real → Prop) (c D₁ D₂ : Real), (Exists fun xs => (∀ (n : Nat), Set.instMembership.1 A (xs n) ∧ (∀ (n : Nat), xs n = c → False ∧ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (xs n) c) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (xs n) c))) ε)) ∧ (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (h : Real), Set.instMembership.1 A (instHAdd.1 c h) → Real.instLT.1 Zero.toOfNat0.1 (SemilatticeSup.toMax.1 h (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 h)) → Real.instLT.1 (SemilatticeSup.toMax.1 h (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 h)) δ → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (instHDiv.1 (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) h) D₁) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (instHDiv.hDiv (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) h) D₁))) ε) ∧ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (h : Real), Set.instMembership.1 A (instHAdd.1 c h) → Real.instLT.1 Zero.toOfNat0.1 (SemilatticeSup.toMax.1 h (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 h)) → Real.instLT.1 (SemilatticeSup.toMax.1 h (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 h)) δ → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (instHDiv.1 (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) h) D₂) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (instHDiv.hDiv (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) h) D₂))) ε))) → D₁ = D₂
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    A : Set ℝ
+    c D₁ D₂ : ℝ
+    h₁ : Derivative D₁ f A c
+    h₂ : Derivative D₂ f A c
+  Prove
+    ((Exists fun xs => ((∀ (n : Nat), xs n ∈ A) ∧ ((∀ (n : Nat), xs n = c → False) ∧ (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (xs n) c)) ε)))) ∧ ((∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun δ => (Real.instLT.lt 0 δ ∧ (∀ (h : Real), { hAdd := fun a b => Real.instAdd.add a b }.hAdd c h ∈ A → Real.instLT.lt 0 (abs h) → Real.instLT.lt (abs h) δ → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd c h)) (f c)) h) D₁)) ε))) ∧ (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun δ => (Real.instLT.lt 0 δ ∧ (∀ (h : Real), { hAdd := fun a b => Real.instAdd.add a b }.hAdd c h ∈ A → Real.instLT.lt 0 (abs h) → Real.instLT.lt (abs h) δ → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd c h)) (f c)) h) D₂)) ε))))) → D₁ = D₂
 
 Logical form (Lean):
 

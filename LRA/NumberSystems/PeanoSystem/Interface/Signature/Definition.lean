@@ -8,12 +8,12 @@ namespace LRA.NumberSystems.PeanoSystem.Interface.Signature
 Predicate logic:
 
   inductive PeanoFunctionSymbol where
-  | successor
+    | successor
 
 Predicate logic (unfolded):
 
   inductive PeanoFunctionSymbol where
-  | successor (source fallback; no compiled unfold data available)
+    | successor (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -88,18 +88,18 @@ def PeanoRelationSymbol : Type := Empty
 Predicate logic:
 
   inductive PeanoConstantSymbol where
-  | one
+    | one
 
 Predicate logic (unfolded):
 
   inductive PeanoConstantSymbol where
-  | one (source fallback; no compiled unfold data available)
+    | one (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
 inductive PeanoConstantSymbol where
-  | base
+  | one
 ```
 
 Type-theoretic form:
@@ -130,16 +130,16 @@ inductive PeanoConstantSymbol where
 Predicate logic:
 
   def PeanoFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
-  Symbol := PeanoFunctionSymbol
-  arity
-    | .successor => 1
+    Symbol := PeanoFunctionSymbol
+    arity
+      | .successor => 1
 
 Predicate logic (unfolded):
 
   def PeanoFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
-  Symbol := PeanoFunctionSymbol
-  arity
-    | .successor => 1 (source fallback; no compiled unfold data available)
+    Symbol := PeanoFunctionSymbol
+    arity
+      | .successor => 1 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -180,14 +180,14 @@ def PeanoFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
 Predicate logic:
 
   def PeanoFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
-  Symbol := PeanoRelationSymbol
-  arity := Empty.elim
+    Symbol := PeanoRelationSymbol
+    arity := Empty.elim
 
 Predicate logic (unfolded):
 
   def PeanoFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
-  Symbol := PeanoRelationSymbol
-  arity := Empty.elim (source fallback; no compiled unfold data available)
+    Symbol := PeanoRelationSymbol
+    arity := Empty.elim (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -226,16 +226,16 @@ def PeanoFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
 Predicate logic:
 
   def PeanoFirstOrderSignature : LRA.Logic.Signature where
-  Functions := PeanoFirstOrderFunctions
-  Relations := PeanoFirstOrderRelations
-  Constants := PeanoConstantSymbol
+    Functions := PeanoFirstOrderFunctions
+    Relations := PeanoFirstOrderRelations
+    Constants := PeanoConstantSymbol
 
 Predicate logic (unfolded):
 
   def PeanoFirstOrderSignature : LRA.Logic.Signature where
-  Functions := PeanoFirstOrderFunctions
-  Relations := PeanoFirstOrderRelations
-  Constants := PeanoConstantSymbol (source fallback; no compiled unfold data available)
+    Functions := PeanoFirstOrderFunctions
+    Relations := PeanoFirstOrderRelations
+    Constants := PeanoConstantSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

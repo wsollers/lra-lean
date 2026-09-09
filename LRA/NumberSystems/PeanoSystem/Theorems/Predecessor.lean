@@ -16,7 +16,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (predecessor element : Element), ps.2 predecessor = element
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ps.2 predecessor = element
 
 Logical form (Lean):
 
@@ -56,11 +61,16 @@ def PredecessorInPeanoSystem
 
 Predicate logic:
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (element : Element), Exists fun predecessor => (ps.successor predecessor = element ∧ ∀ (other_predecessor : Element), ps.successor other_predecessor = element → other_predecessor = predecessor)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (element : Element), Exists fun predecessor => (ps.successor predecessor = element ∧ (∀ (other_predecessor : Element), ps.successor other_predecessor = element → other_predecessor = predecessor))
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (element : Element), Exists fun predecessor => (ps.2 predecessor = element ∧ ∀ (other_predecessor : Element), ps.2 other_predecessor = element → other_predecessor = predecessor)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun predecessor => (ps.2 predecessor = element ∧ (∀ (other_predecessor : Element), ps.2 other_predecessor = element → other_predecessor = predecessor))
 
 Logical form (Lean):
 
@@ -108,11 +118,17 @@ def UniquePredecessor
 
 Predicate logic:
 
-  (∀ x ∈ Element), UniquePredecessor ps (ps.successor x)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (element : Element), LRA.NumberSystems.PeanoSystem.UniquePredecessor ps (ps.successor element)
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (element : Element), Exists fun predecessor => (ps.2 predecessor = ps.2 element ∧ ∀ (other_predecessor : Element), ps.2 other_predecessor = ps.2 element → other_predecessor = predecessor)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ps : PeanoSystem Element SetObject
+    element : Element
+  Prove
+    Exists fun predecessor => (ps.2 predecessor = ps.2 element ∧ (∀ (other_predecessor : Element), ps.2 other_predecessor = ps.2 element → other_predecessor = predecessor))
 
 Logical form (Lean):
 
@@ -152,11 +168,17 @@ theorem SuccessorsHaveUniquePredecessors
 
 Predicate logic:
 
-  (∀ x y z ∈ Element), PredecessorInPeanoSystem ps x z -> PredecessorInPeanoSystem ps y z -> x = y
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (first_predecessor second_predecessor element : Element), (LRA.NumberSystems.PeanoSystem.PredecessorInPeanoSystem ps first_predecessor element ∧ LRA.NumberSystems.PeanoSystem.PredecessorInPeanoSystem ps second_predecessor element) → first_predecessor = second_predecessor
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (first_predecessor second_predecessor element : Element), (ps.2 first_predecessor = element ∧ ps.2 second_predecessor = element) → first_predecessor = second_predecessor
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ps : PeanoSystem Element SetObject
+    first_predecessor second_predecessor element : Element
+  Prove
+    (ps.2 first_predecessor = element ∧ ps.2 second_predecessor = element) → first_predecessor = second_predecessor
 
 Logical form (Lean):
 
@@ -200,16 +222,22 @@ theorem PredecessorUnique
 
 Predicate logic:
 
-  (∀ x ∈ Element), x ≠ ps.base -> exists predecessor : Element, ps.successor predecessor = x
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (element : Element), Ne element ps.base → Exists fun predecessor => ps.successor predecessor = element
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (element : Element), (element = ps.1 → False) → Exists fun predecessor => ps.2 predecessor = element
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ps : PeanoSystem Element SetObject
+    element : Element
+  Prove
+    (element = ps.1 → False) → Exists fun predecessor => ps.2 predecessor = element
 
 Logical form (Lean):
 
 ```lean
-theorem NonBaseElementsHaveAPredecessor
+theorem NonOneElementsHaveAPredecessor
     (ps : PeanoSystem Element SetObject)
     (element : Element) :
     element ≠ ps.base ->
@@ -248,16 +276,22 @@ theorem NonOneElementsHaveAPredecessor
 
 Predicate logic:
 
-  (∀ x ∈ Element), x ≠ ps.base -> UniquePredecessor ps x
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (element : Element), Ne element ps.base → LRA.NumberSystems.PeanoSystem.UniquePredecessor ps element
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (element : Element), (element = ps.1 → False) → Exists fun predecessor => (ps.2 predecessor = element ∧ ∀ (other_predecessor : Element), ps.2 other_predecessor = element → other_predecessor = predecessor)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ps : PeanoSystem Element SetObject
+    element : Element
+  Prove
+    (element = ps.1 → False) → Exists fun predecessor => (ps.2 predecessor = element ∧ (∀ (other_predecessor : Element), ps.2 other_predecessor = element → other_predecessor = predecessor))
 
 Logical form (Lean):
 
 ```lean
-theorem PredecessorExistsUniqueAwayFromBase
+theorem PredecessorExistsUniqueAwayFromOne
     (ps : PeanoSystem Element SetObject)
     (element : Element) :
     element ≠ ps.base -> UniquePredecessor ps element
@@ -292,16 +326,22 @@ theorem PredecessorExistsUniqueAwayFromOne
 
 Predicate logic:
 
-  (∀ x ∈ Element), x ≠ ps.base <-> UniquePredecessor ps x
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (element : Element), Ne element ps.base ↔ LRA.NumberSystems.PeanoSystem.UniquePredecessor ps element
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (element : Element), element = ps.1 → False ↔ Exists fun predecessor => (ps.2 predecessor = element ∧ ∀ (other_predecessor : Element), ps.2 other_predecessor = element → other_predecessor = predecessor)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ps : PeanoSystem Element SetObject
+    element : Element
+  Prove
+    Ne element ps.base ↔ LRA.NumberSystems.PeanoSystem.UniquePredecessor ps element
 
 Logical form (Lean):
 
 ```lean
-theorem UniquePredecessorCharacterizationAwayFromBase
+theorem UniquePredecessorCharacterizationAwayFromOne
     (ps : PeanoSystem Element SetObject)
     (element : Element) :
     element ≠ ps.base <-> UniquePredecessor ps element

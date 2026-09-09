@@ -8,12 +8,12 @@ namespace LRA.AlgebraicStructures.CompleteOrderedField.Interface.Signature
 Predicate logic:
 
   abbrev CompleteOrderedFieldFirstOrderSignature :=
-  LRA.AlgebraicStructures.OrderedField.Interface.Signature.OrderedFieldFirstOrderSignature
+    LRA.AlgebraicStructures.OrderedField.Interface.Signature.OrderedFieldFirstOrderSignature
 
 Predicate logic (unfolded):
 
   abbrev CompleteOrderedFieldFirstOrderSignature :=
-  LRA.AlgebraicStructures.OrderedField.Interface.Signature.OrderedFieldFirstOrderSignature (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.OrderedField.Interface.Signature.OrderedFieldFirstOrderSignature (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

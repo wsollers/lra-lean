@@ -6,24 +6,74 @@ namespace LRA.NumberSystems.WholeNumbers.Interface.ModelTheory
 
 open LRA.NumberSystems.WholeNumbers.Interface.UniversalAlgebra
 
-/-- Any `WholeNumberModel`'s own `add`/`mul`/`zero`/`one` interpreted as the
-universal-algebra structure carrying `WholeNumbersAlgebraicSignature` —
-generic over every backend, not tied to a specific carrier.
+/--
+`genericAlgebra` Any `WholeNumberModel`'s own `add`/`mul`/`zero`/`one` interpreted as the universal-algebra structure carrying `WholeNumbersAlgebraicSignature` — generic over every backend, not tied to a specific carrier.
 
-Logical form:
+Predicate logic:
+
+  def genericAlgebra (M : WholeNumberModel) :
+      LRA.Identity.AlgebraicStructure WholeNumbersAlgebraicSignature where
+    Carrier := M.Carrier
+    carrierNonempty := M.carrierNonempty
+    interpretOperation := fun symbol args =>
+      match symbol with
+      | .add => args ⟨0, by decide⟩ + args ⟨1, by decide⟩
+      | .mul => args ⟨0, by decide⟩ * args ⟨1, by decide⟩
+    interpretConstant := fun symbol =>
+      match symbol with
+      | .zero => 0
+      | .one => 1
+
+Predicate logic (unfolded):
+
+  def genericAlgebra (M : WholeNumberModel) :
+      LRA.Identity.AlgebraicStructure WholeNumbersAlgebraicSignature where
+    Carrier := M.Carrier
+    carrierNonempty := M.carrierNonempty
+    interpretOperation := fun symbol args =>
+      match symbol with
+      | .add => args ⟨0, by decide⟩ + args ⟨1, by decide⟩
+      | .mul => args ⟨0, by decide⟩ * args ⟨1, by decide⟩
+    interpretConstant := fun symbol =>
+      match symbol with
+      | .zero => 0
+      | .one => 1 (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
 
 ```lean
 def genericAlgebra (M : WholeNumberModel) :
     LRA.Identity.AlgebraicStructure WholeNumbersAlgebraicSignature where
   Carrier := M.Carrier
   carrierNonempty := M.carrierNonempty
-  interpretOperation
-    | .add, args => args ⟨0, by decide⟩ + args ⟨1, by decide⟩
-    | .mul, args => args ⟨0, by decide⟩ * args ⟨1, by decide⟩
-  interpretConstant
+  interpretOperation := fun symbol args =>
+    match symbol with
+    | .add => args ⟨0, by decide⟩ + args ⟨1, by decide⟩
+    | .mul => args ⟨0, by decide⟩ * args ⟨1, by decide⟩
+  interpretConstant := fun symbol =>
+    match symbol with
     | .zero => 0
     | .one => 1
 ```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
 -/
 def genericAlgebra (M : WholeNumberModel) :
     LRA.Identity.AlgebraicStructure WholeNumbersAlgebraicSignature where

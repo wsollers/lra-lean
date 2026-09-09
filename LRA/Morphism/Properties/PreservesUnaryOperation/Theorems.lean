@@ -9,11 +9,20 @@ universe u v
 
 Predicate logic:
 
-  (∀ element ∈ Source), function (sourceOperation element) = targetOperation (function element)
+  ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceOperation : LRA.Operation.UnaryEndoOperation Source} {targetOperation : LRA.Operation.UnaryEndoOperation Target}, LRA.Morphism.PreservesUnaryOperation function sourceOperation targetOperation → ∀ (element : Source), function (sourceOperation element) = targetOperation (function element)
 
 Predicate logic (unfolded):
 
-  ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceOperation : Source → Source} {targetOperation : Target → Target}, (∀ (element : Source), function (sourceOperation element) = targetOperation (function element)) → ∀ (element : Source), function (sourceOperation element) = targetOperation (function element)
+  Ambient
+    (Source, Target)
+  Objects
+    function : Source → Target
+    sourceOperation : LRA.Operation.UnaryEndoOperation Source
+    targetOperation : LRA.Operation.UnaryEndoOperation Target
+    law : PreservesUnaryOperation function sourceOperation targetOperation
+    element : Source
+  Prove
+    (∀ (element : Source), function (sourceOperation element) = targetOperation (function element)) → ∀ (element : Source), function (sourceOperation element) = targetOperation (function element)
 
 Logical form (Lean):
 

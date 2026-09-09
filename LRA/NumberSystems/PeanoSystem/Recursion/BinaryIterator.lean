@@ -18,7 +18,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (parameterType target : Type w) (initialValueForParameter : parameterType → target) (stepRuleForParameter : parameterType → target → target) (operation : parameterType → Element → target) (parameterValue : parameterType), (operation parameterValue ps.1 = initialValueForParameter parameterValue ∧ ∀ (element : Element), operation parameterValue (ps.2 element) = stepRuleForParameter parameterValue (operation parameterValue element))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (operation parameterValue ps.1 = initialValueForParameter parameterValue ∧ (∀ (element : Element), operation parameterValue (ps.2 element) = stepRuleForParameter parameterValue (operation parameterValue element)))
 
 Logical form (Lean):
 
@@ -76,11 +81,18 @@ def BinaryIteratorOperationClauses
 
 Predicate logic:
 
-  exists operation : parameterType -> Element -> target, BinaryIteratorOperationClauses ps parameterType target initialValueForParameter stepRuleForParameter operation
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (parameterType target : Type w) (initialValueForParameter : parameterType → target) (stepRuleForParameter : parameterType → target → target), Exists fun operation => LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses ps parameterType target initialValueForParameter stepRuleForParameter operation
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (parameterType target : Type w) (initialValueForParameter : parameterType → target) (stepRuleForParameter : parameterType → target → target), Exists fun operation => ∀ (parameterValue : parameterType), (operation parameterValue ps.1 = initialValueForParameter parameterValue ∧ ∀ (element : Element), operation parameterValue (ps.2 element) = stepRuleForParameter parameterValue (operation parameterValue element))
+  Ambient
+    (Element, SetObject, parameterType, target, ∈)
+  Objects
+    ps : PeanoSystem Element SetObject
+    initialValueForParameter : parameterType -> target
+    stepRuleForParameter : parameterType -> target -> target
+  Prove
+    Exists fun operation => ∀ (parameterValue : parameterType), (operation parameterValue ps.1 = initialValueForParameter parameterValue ∧ (∀ (element : Element), operation parameterValue (ps.2 element) = stepRuleForParameter parameterValue (operation parameterValue element)))
 
 Logical form (Lean):
 
@@ -138,11 +150,19 @@ theorem ExistenceOfBinaryIteratorOperation
 
 Predicate logic:
 
-  BinaryIteratorOperationClauses ps parameterType target initialValueForParameter stepRuleForParameter firstOperation -> BinaryIteratorOperationClauses ps parameterType target initialValueForParameter stepRuleForParameter secondOperation -> firstOperation = secondOperation
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (parameterType target : Type w) (initialValueForParameter : parameterType → target) (stepRuleForParameter : parameterType → target → target) (firstOperation secondOperation : parameterType → Element → target), (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses ps parameterType target initialValueForParameter stepRuleForParameter firstOperation ∧ LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses ps parameterType target initialValueForParameter stepRuleForParameter secondOperation) → firstOperation = secondOperation
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (parameterType target : Type w) (initialValueForParameter : parameterType → target) (stepRuleForParameter : parameterType → target → target) (firstOperation secondOperation : parameterType → Element → target), (∀ (parameterValue : parameterType), (firstOperation parameterValue ps.1 = initialValueForParameter parameterValue ∧ ∀ (element : Element), firstOperation parameterValue (ps.2 element) = stepRuleForParameter parameterValue (firstOperation parameterValue element)) ∧ ∀ (parameterValue : parameterType), (secondOperation parameterValue ps.1 = initialValueForParameter parameterValue ∧ ∀ (element : Element), secondOperation parameterValue (ps.2 element) = stepRuleForParameter parameterValue (secondOperation parameterValue element))) → firstOperation = secondOperation
+  Ambient
+    (Element, SetObject, parameterType, target, ∈)
+  Objects
+    ps : PeanoSystem Element SetObject
+    initialValueForParameter : parameterType -> target
+    stepRuleForParameter : parameterType -> target -> target
+    firstOperation secondOperation : parameterType -> Element -> target
+  Prove
+    ((∀ (parameterValue : parameterType), (firstOperation parameterValue ps.1 = initialValueForParameter parameterValue ∧ (∀ (element : Element), firstOperation parameterValue (ps.2 element) = stepRuleForParameter parameterValue (firstOperation parameterValue element)))) ∧ (∀ (parameterValue : parameterType), (secondOperation parameterValue ps.1 = initialValueForParameter parameterValue ∧ (∀ (element : Element), secondOperation parameterValue (ps.2 element) = stepRuleForParameter parameterValue (secondOperation parameterValue element))))) → firstOperation = secondOperation
 
 Logical form (Lean):
 
@@ -218,11 +238,18 @@ theorem UniquenessOfBinaryIteratorOperations
 
 Predicate logic:
 
-  exists operation : parameterType -> Element -> target, BinaryIteratorOperationClauses ps parameterType target initialValueForParameter stepRuleForParameter operation ∧ forall otherOperation : parameterType -> Element -> target, BinaryIteratorOperationClauses ps parameterType target initialValueForParameter stepRuleForParameter otherOperation -> otherOperation = operation
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (parameterType target : Type w) (initialValueForParameter : parameterType → target) (stepRuleForParameter : parameterType → target → target), Exists fun operation => (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses ps parameterType target initialValueForParameter stepRuleForParameter operation ∧ (∀ (otherOperation : parameterType → Element → target), LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses ps parameterType target initialValueForParameter stepRuleForParameter otherOperation → otherOperation = operation))
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (parameterType target : Type w) (initialValueForParameter : parameterType → target) (stepRuleForParameter : parameterType → target → target), Exists fun operation => (∀ (parameterValue : parameterType), (operation parameterValue ps.1 = initialValueForParameter parameterValue ∧ ∀ (element : Element), operation parameterValue (ps.2 element) = stepRuleForParameter parameterValue (operation parameterValue element)) ∧ ∀ (otherOperation : parameterType → Element → target), (∀ (parameterValue : parameterType), (otherOperation parameterValue ps.1 = initialValueForParameter parameterValue ∧ ∀ (element : Element), otherOperation parameterValue (ps.2 element) = stepRuleForParameter parameterValue (otherOperation parameterValue element))) → otherOperation = operation)
+  Ambient
+    (Element, SetObject, parameterType, target, ∈)
+  Objects
+    ps : PeanoSystem Element SetObject
+    initialValueForParameter : parameterType -> target
+    stepRuleForParameter : parameterType -> target -> target
+  Prove
+    Exists fun operation => ((∀ (parameterValue : parameterType), (operation parameterValue ps.1 = initialValueForParameter parameterValue ∧ (∀ (element : Element), operation parameterValue (ps.2 element) = stepRuleForParameter parameterValue (operation parameterValue element)))) ∧ (∀ (otherOperation : parameterType → Element → target), (∀ (parameterValue : parameterType), (otherOperation parameterValue ps.1 = initialValueForParameter parameterValue ∧ (∀ (element : Element), otherOperation parameterValue (ps.2 element) = stepRuleForParameter parameterValue (otherOperation parameterValue element)))) → otherOperation = operation))
 
 Logical form (Lean):
 

@@ -21,11 +21,22 @@ universe u v w
 
 Predicate logic:
 
-  Join targetRelation (forward left) (forward right) (forward join)
+  ∀ {Alpha : Type u} {Beta : Type v} {sourceRelation : LRA.Relation.Endorelation Alpha} {targetRelation : LRA.Relation.Endorelation Beta} {forward : Alpha → Beta} {inverse : Beta → Alpha}, LRA.Order.OrderIsomorphism sourceRelation targetRelation forward inverse → ∀ {left right join : Alpha}, LRA.Order.Join sourceRelation left right join → LRA.Order.Join targetRelation (forward left) (forward right) (forward join)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {Beta : Type v} {sourceRelation : Alpha → Alpha → Prop} {targetRelation : Beta → Beta → Prop} {forward : Alpha → Beta} {inverse : Beta → Alpha}, (∀ (source : Alpha), inverse (forward source) = source ∧ (∀ (target : Beta), forward (inverse target) = target ∧ (∀ (left right : Alpha), sourceRelation left right → targetRelation (forward left) (forward right) ∧ ∀ (left right : Alpha), targetRelation (forward left) (forward right) → sourceRelation left right))) → ∀ {left right join : Alpha}, (sourceRelation left join ∧ (sourceRelation right join ∧ ∀ (upper : Alpha), sourceRelation left upper → sourceRelation right upper → sourceRelation join upper)) → (targetRelation (forward left) (forward join) ∧ (targetRelation (forward right) (forward join) ∧ ∀ (upper : Beta), targetRelation (forward left) upper → targetRelation (forward right) upper → targetRelation (forward join) upper))
+  Ambient
+    (Alpha, Beta)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    forward : Alpha -> Beta
+    inverse : Beta -> Alpha
+    mapsAreIsomorphism : OrderIsomorphism sourceRelation targetRelation forward inverse
+    left right join : Alpha
+    joinIsJoin : Join sourceRelation left right join
+  Prove
+    ((∀ (source : Alpha), inverse (forward source) = source) ∧ ((∀ (target : Beta), forward (inverse target) = target) ∧ ((∀ (left right : Alpha), sourceRelation left right → targetRelation (forward left) (forward right)) ∧ (∀ (left right : Alpha), targetRelation (forward left) (forward right) → sourceRelation left right)))) → ∀ {left right join : Alpha}, (sourceRelation left join ∧ (sourceRelation right join ∧ (∀ (upper : Alpha), sourceRelation left upper → sourceRelation right upper → sourceRelation join upper))) → (targetRelation (forward left) (forward join) ∧ (targetRelation (forward right) (forward join) ∧ (∀ (upper : Beta), targetRelation (forward left) upper → targetRelation (forward right) upper → targetRelation (forward join) upper)))
 
 Logical form (Lean):
 
@@ -77,11 +88,22 @@ theorem OrderIsomorphismPreservesJoin
 
 Predicate logic:
 
-  Meet targetRelation (forward left) (forward right) (forward meet)
+  ∀ {Alpha : Type u} {Beta : Type v} {sourceRelation : LRA.Relation.Endorelation Alpha} {targetRelation : LRA.Relation.Endorelation Beta} {forward : Alpha → Beta} {inverse : Beta → Alpha}, LRA.Order.OrderIsomorphism sourceRelation targetRelation forward inverse → ∀ {left right meet : Alpha}, LRA.Order.Meet sourceRelation left right meet → LRA.Order.Meet targetRelation (forward left) (forward right) (forward meet)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {Beta : Type v} {sourceRelation : Alpha → Alpha → Prop} {targetRelation : Beta → Beta → Prop} {forward : Alpha → Beta} {inverse : Beta → Alpha}, (∀ (source : Alpha), inverse (forward source) = source ∧ (∀ (target : Beta), forward (inverse target) = target ∧ (∀ (left right : Alpha), sourceRelation left right → targetRelation (forward left) (forward right) ∧ ∀ (left right : Alpha), targetRelation (forward left) (forward right) → sourceRelation left right))) → ∀ {left right meet : Alpha}, (sourceRelation meet left ∧ (sourceRelation meet right ∧ ∀ (lower : Alpha), sourceRelation lower left → sourceRelation lower right → sourceRelation lower meet)) → (targetRelation (forward meet) (forward left) ∧ (targetRelation (forward meet) (forward right) ∧ ∀ (lower : Beta), targetRelation lower (forward left) → targetRelation lower (forward right) → targetRelation lower (forward meet)))
+  Ambient
+    (Alpha, Beta)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    forward : Alpha -> Beta
+    inverse : Beta -> Alpha
+    mapsAreIsomorphism : OrderIsomorphism sourceRelation targetRelation forward inverse
+    left right meet : Alpha
+    meetIsMeet : Meet sourceRelation left right meet
+  Prove
+    ((∀ (source : Alpha), inverse (forward source) = source) ∧ ((∀ (target : Beta), forward (inverse target) = target) ∧ ((∀ (left right : Alpha), sourceRelation left right → targetRelation (forward left) (forward right)) ∧ (∀ (left right : Alpha), targetRelation (forward left) (forward right) → sourceRelation left right)))) → ∀ {left right meet : Alpha}, (sourceRelation meet left ∧ (sourceRelation meet right ∧ (∀ (lower : Alpha), sourceRelation lower left → sourceRelation lower right → sourceRelation lower meet))) → (targetRelation (forward meet) (forward left) ∧ (targetRelation (forward meet) (forward right) ∧ (∀ (lower : Beta), targetRelation lower (forward left) → targetRelation lower (forward right) → targetRelation lower (forward meet))))
 
 Logical form (Lean):
 
@@ -133,11 +155,20 @@ theorem OrderIsomorphismPreservesMeet
 
 Predicate logic:
 
-  OrderIsomorphism targetRelation sourceRelation inverse forward
+  ∀ {Alpha : Type u} {Beta : Type v} {sourceRelation : LRA.Relation.Endorelation Alpha} {targetRelation : LRA.Relation.Endorelation Beta} {forward : Alpha → Beta} {inverse : Beta → Alpha}, LRA.Order.OrderIsomorphism sourceRelation targetRelation forward inverse → LRA.Order.OrderIsomorphism targetRelation sourceRelation inverse forward
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {Beta : Type v} {sourceRelation : Alpha → Alpha → Prop} {targetRelation : Beta → Beta → Prop} {forward : Alpha → Beta} {inverse : Beta → Alpha}, (∀ (source : Alpha), inverse (forward source) = source ∧ (∀ (target : Beta), forward (inverse target) = target ∧ (∀ (left right : Alpha), sourceRelation left right → targetRelation (forward left) (forward right) ∧ ∀ (left right : Alpha), targetRelation (forward left) (forward right) → sourceRelation left right))) → (∀ (source : Beta), forward (inverse source) = source ∧ (∀ (target : Alpha), inverse (forward target) = target ∧ (∀ (left right : Beta), targetRelation left right → sourceRelation (inverse left) (inverse right) ∧ ∀ (left right : Beta), sourceRelation (inverse left) (inverse right) → targetRelation left right)))
+  Ambient
+    (Alpha, Beta)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    forward : Alpha -> Beta
+    inverse : Beta -> Alpha
+    mapsAreIsomorphism : OrderIsomorphism sourceRelation targetRelation forward inverse
+  Prove
+    ((∀ (source : Alpha), inverse (forward source) = source) ∧ ((∀ (target : Beta), forward (inverse target) = target) ∧ ((∀ (left right : Alpha), sourceRelation left right → targetRelation (forward left) (forward right)) ∧ (∀ (left right : Alpha), targetRelation (forward left) (forward right) → sourceRelation left right)))) → ((∀ (source : Beta), forward (inverse source) = source) ∧ ((∀ (target : Alpha), inverse (forward target) = target) ∧ ((∀ (left right : Beta), targetRelation left right → sourceRelation (inverse left) (inverse right)) ∧ (∀ (left right : Beta), sourceRelation (inverse left) (inverse right) → targetRelation left right))))
 
 Logical form (Lean):
 
@@ -185,11 +216,24 @@ theorem OrderIsomorphismInverse
 
 Predicate logic:
 
-  OrderIsomorphism sourceRelation targetRelation (fun element => secondForward (firstForward element)) (fun element => firstInverse (secondInverse element))
+  ∀ {Alpha : Type u} {Beta : Type v} {Gamma : Type w} {sourceRelation : LRA.Relation.Endorelation Alpha} {middleRelation : LRA.Relation.Endorelation Beta} {targetRelation : LRA.Relation.Endorelation Gamma} {firstForward : Alpha → Beta} {firstInverse : Beta → Alpha} {secondForward : Beta → Gamma} {secondInverse : Gamma → Beta}, (LRA.Order.OrderIsomorphism sourceRelation middleRelation firstForward firstInverse ∧ LRA.Order.OrderIsomorphism middleRelation targetRelation secondForward secondInverse) → LRA.Order.OrderIsomorphism sourceRelation targetRelation (fun element => secondForward (firstForward element)) fun element => firstInverse (secondInverse element)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {Beta : Type v} {Gamma : Type w} {sourceRelation : Alpha → Alpha → Prop} {middleRelation : Beta → Beta → Prop} {targetRelation : Gamma → Gamma → Prop} {firstForward : Alpha → Beta} {firstInverse : Beta → Alpha} {secondForward : Beta → Gamma} {secondInverse : Gamma → Beta}, ((∀ (source : Alpha), firstInverse (firstForward source) = source ∧ (∀ (target : Beta), firstForward (firstInverse target) = target ∧ (∀ (left right : Alpha), sourceRelation left right → middleRelation (firstForward left) (firstForward right) ∧ ∀ (left right : Alpha), middleRelation (firstForward left) (firstForward right) → sourceRelation left right))) ∧ (∀ (source : Beta), secondInverse (secondForward source) = source ∧ (∀ (target : Gamma), secondForward (secondInverse target) = target ∧ (∀ (left right : Beta), middleRelation left right → targetRelation (secondForward left) (secondForward right) ∧ ∀ (left right : Beta), targetRelation (secondForward left) (secondForward right) → middleRelation left right)))) → (∀ (source : Alpha), (fun element => firstInverse (secondInverse element)) ((fun element => secondForward (firstForward element)) source) = source ∧ (∀ (target : Gamma), (fun element => secondForward (firstForward element)) ((fun element => firstInverse (secondInverse element)) target) = target ∧ (∀ (left right : Alpha), sourceRelation left right → targetRelation ((fun element => secondForward (firstForward element)) left) ((fun element => secondForward (firstForward element)) right) ∧ ∀ (left right : Alpha), targetRelation ((fun element => secondForward (firstForward element)) left) ((fun element => secondForward (firstForward element)) right) → sourceRelation left right)))
+  Ambient
+    (Alpha, Beta, Gamma)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    middleRelation : LRA.Relation.Endorelation Beta
+    targetRelation : LRA.Relation.Endorelation Gamma
+    firstForward : Alpha -> Beta
+    firstInverse : Beta -> Alpha
+    secondForward : Beta -> Gamma
+    secondInverse : Gamma -> Beta
+    firstMapsAreIsomorphism : OrderIsomorphism sourceRelation middleRelation firstForward firstInverse
+    secondMapsAreIsomorphism : OrderIsomorphism middleRelation targetRelation secondForward secondInverse
+  Prove
+    (((∀ (source : Alpha), firstInverse (firstForward source) = source) ∧ ((∀ (target : Beta), firstForward (firstInverse target) = target) ∧ ((∀ (left right : Alpha), sourceRelation left right → middleRelation (firstForward left) (firstForward right)) ∧ (∀ (left right : Alpha), middleRelation (firstForward left) (firstForward right) → sourceRelation left right)))) ∧ ((∀ (source : Beta), secondInverse (secondForward source) = source) ∧ ((∀ (target : Gamma), secondForward (secondInverse target) = target) ∧ ((∀ (left right : Beta), middleRelation left right → targetRelation (secondForward left) (secondForward right)) ∧ (∀ (left right : Beta), targetRelation (secondForward left) (secondForward right) → middleRelation left right))))) → ((∀ (source : Alpha), (fun element => firstInverse (secondInverse element)) ((fun element => secondForward (firstForward element)) source) = source) ∧ ((∀ (target : Gamma), (fun element => secondForward (firstForward element)) ((fun element => firstInverse (secondInverse element)) target) = target) ∧ ((∀ (left right : Alpha), sourceRelation left right → targetRelation ((fun element => secondForward (firstForward element)) left) ((fun element => secondForward (firstForward element)) right)) ∧ (∀ (left right : Alpha), targetRelation ((fun element => secondForward (firstForward element)) left) ((fun element => secondForward (firstForward element)) right) → sourceRelation left right))))
 
 Logical form (Lean):
 
@@ -261,11 +305,25 @@ variable {map : Alpha → Beta}
 
 Predicate logic:
 
-  (∀ subset ∈ SourceSet ∀ imageSet ∈ TargetSet), UpperBound targetRelation imageSet (map bound)
+  ∀ {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x} [inst : Membership Alpha SourceSet] [inst_1 : Membership Beta TargetSet] {sourceRelation : LRA.Relation.Endorelation Alpha} {targetRelation : LRA.Relation.Endorelation Beta} {map : Alpha → Beta} (subset : SourceSet) (imageSet : TargetSet), LRA.Set.Represents imageSet (LRA.Function.ImageClass map (LRA.Set.ClassOfSet subset)) → ∀ {inverse : Beta → Alpha}, LRA.Order.OrderIsomorphism sourceRelation targetRelation map inverse → ∀ {bound : Alpha}, LRA.Order.UpperBound sourceRelation subset bound → LRA.Order.UpperBound targetRelation imageSet (map bound)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x} [inst : Membership Alpha SourceSet] [inst_1 : Membership Beta TargetSet] {sourceRelation : Alpha → Alpha → Prop} {targetRelation : Beta → Beta → Prop} {map : Alpha → Beta} (subset : SourceSet) (imageSet : TargetSet), (∀ (element : Beta), inst_1.1 imageSet element ↔ Exists fun x => (inst.1 subset x ∧ map x = element)) → ∀ {inverse : Beta → Alpha}, (∀ (source : Alpha), inverse (map source) = source ∧ (∀ (target : Beta), map (inverse target) = target ∧ (∀ (left right : Alpha), sourceRelation left right → targetRelation (map left) (map right) ∧ ∀ (left right : Alpha), targetRelation (map left) (map right) → sourceRelation left right))) → ∀ {bound : Alpha}, (∀ (element : Alpha), inst.1 subset element → sourceRelation element bound) → ∀ (element : Beta), inst_1.1 imageSet element → targetRelation element (map bound)
+  Ambient
+    (Alpha, Beta, SourceSet, TargetSet, ∈)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    map : Alpha → Beta
+    subset : SourceSet
+    imageSet : TargetSet
+    representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))
+    inverse : Beta → Alpha
+    mapsAreIsomorphism : OrderIsomorphism sourceRelation targetRelation map inverse
+    bound : Alpha
+    boundIsUpper : UpperBound sourceRelation subset bound
+  Prove
+    (∀ (element : Beta), inst_1.1 imageSet element ↔ Exists fun x => (inst.1 subset x ∧ map x = element)) → ∀ {inverse : Beta → Alpha}, ((∀ (source : Alpha), inverse (map source) = source) ∧ ((∀ (target : Beta), map (inverse target) = target) ∧ ((∀ (left right : Alpha), sourceRelation left right → targetRelation (map left) (map right)) ∧ (∀ (left right : Alpha), targetRelation (map left) (map right) → sourceRelation left right)))) → ∀ {bound : Alpha}, (∀ (element : Alpha), inst.1 subset element → sourceRelation element bound) → ∀ (element : Beta), inst_1.1 imageSet element → targetRelation element (map bound)
 
 Logical form (Lean):
 
@@ -317,11 +375,25 @@ theorem OrderIsomorphismPreservesUpperBound
 
 Predicate logic:
 
-  (∀ subset ∈ SourceSet ∀ imageSet ∈ TargetSet), LowerBound targetRelation imageSet (map bound)
+  ∀ {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x} [inst : Membership Alpha SourceSet] [inst_1 : Membership Beta TargetSet] {sourceRelation : LRA.Relation.Endorelation Alpha} {targetRelation : LRA.Relation.Endorelation Beta} {map : Alpha → Beta} (subset : SourceSet) (imageSet : TargetSet), LRA.Set.Represents imageSet (LRA.Function.ImageClass map (LRA.Set.ClassOfSet subset)) → ∀ {inverse : Beta → Alpha}, LRA.Order.OrderIsomorphism sourceRelation targetRelation map inverse → ∀ {bound : Alpha}, LRA.Order.LowerBound sourceRelation subset bound → LRA.Order.LowerBound targetRelation imageSet (map bound)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x} [inst : Membership Alpha SourceSet] [inst_1 : Membership Beta TargetSet] {sourceRelation : Alpha → Alpha → Prop} {targetRelation : Beta → Beta → Prop} {map : Alpha → Beta} (subset : SourceSet) (imageSet : TargetSet), (∀ (element : Beta), inst_1.1 imageSet element ↔ Exists fun x => (inst.1 subset x ∧ map x = element)) → ∀ {inverse : Beta → Alpha}, (∀ (source : Alpha), inverse (map source) = source ∧ (∀ (target : Beta), map (inverse target) = target ∧ (∀ (left right : Alpha), sourceRelation left right → targetRelation (map left) (map right) ∧ ∀ (left right : Alpha), targetRelation (map left) (map right) → sourceRelation left right))) → ∀ {bound : Alpha}, (∀ (element : Alpha), inst.1 subset element → sourceRelation bound element) → ∀ (element : Beta), inst_1.1 imageSet element → targetRelation (map bound) element
+  Ambient
+    (Alpha, Beta, SourceSet, TargetSet, ∈)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    map : Alpha → Beta
+    subset : SourceSet
+    imageSet : TargetSet
+    representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))
+    inverse : Beta → Alpha
+    mapsAreIsomorphism : OrderIsomorphism sourceRelation targetRelation map inverse
+    bound : Alpha
+    boundIsLower : LowerBound sourceRelation subset bound
+  Prove
+    (∀ (element : Beta), inst_1.1 imageSet element ↔ Exists fun x => (inst.1 subset x ∧ map x = element)) → ∀ {inverse : Beta → Alpha}, ((∀ (source : Alpha), inverse (map source) = source) ∧ ((∀ (target : Beta), map (inverse target) = target) ∧ ((∀ (left right : Alpha), sourceRelation left right → targetRelation (map left) (map right)) ∧ (∀ (left right : Alpha), targetRelation (map left) (map right) → sourceRelation left right)))) → ∀ {bound : Alpha}, (∀ (element : Alpha), inst.1 subset element → sourceRelation bound element) → ∀ (element : Beta), inst_1.1 imageSet element → targetRelation (map bound) element
 
 Logical form (Lean):
 
@@ -373,11 +445,25 @@ theorem OrderIsomorphismPreservesLowerBound
 
 Predicate logic:
 
-  (∀ subset ∈ SourceSet ∀ imageSet ∈ TargetSet), Supremum targetRelation imageSet (map supremum)
+  ∀ {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x} [inst : Membership Alpha SourceSet] [inst_1 : Membership Beta TargetSet] {sourceRelation : LRA.Relation.Endorelation Alpha} {targetRelation : LRA.Relation.Endorelation Beta} {map : Alpha → Beta} (subset : SourceSet) (imageSet : TargetSet), LRA.Set.Represents imageSet (LRA.Function.ImageClass map (LRA.Set.ClassOfSet subset)) → ∀ {inverse : Beta → Alpha}, LRA.Order.OrderIsomorphism sourceRelation targetRelation map inverse → ∀ {supremum : Alpha}, LRA.Order.Supremum sourceRelation subset supremum → LRA.Order.Supremum targetRelation imageSet (map supremum)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x} [inst : Membership Alpha SourceSet] [inst_1 : Membership Beta TargetSet] {sourceRelation : Alpha → Alpha → Prop} {targetRelation : Beta → Beta → Prop} {map : Alpha → Beta} (subset : SourceSet) (imageSet : TargetSet), (∀ (element : Beta), inst_1.1 imageSet element ↔ Exists fun x => (inst.1 subset x ∧ map x = element)) → ∀ {inverse : Beta → Alpha}, (∀ (source : Alpha), inverse (map source) = source ∧ (∀ (target : Beta), map (inverse target) = target ∧ (∀ (left right : Alpha), sourceRelation left right → targetRelation (map left) (map right) ∧ ∀ (left right : Alpha), targetRelation (map left) (map right) → sourceRelation left right))) → ∀ {supremum : Alpha}, (∀ (element : Alpha), inst.1 subset element → sourceRelation element supremum ∧ ∀ (bound : Alpha), (∀ (element : Alpha), inst.1 subset element → sourceRelation element bound) → sourceRelation supremum bound) → (∀ (element : Beta), inst_1.1 imageSet element → targetRelation element (map supremum) ∧ ∀ (bound : Beta), (∀ (element : Beta), inst_1.1 imageSet element → targetRelation element bound) → targetRelation (map supremum) bound)
+  Ambient
+    (Alpha, Beta, SourceSet, TargetSet, ∈)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    map : Alpha → Beta
+    subset : SourceSet
+    imageSet : TargetSet
+    representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))
+    inverse : Beta → Alpha
+    mapsAreIsomorphism : OrderIsomorphism sourceRelation targetRelation map inverse
+    supremum : Alpha
+    supremumIsSupremum : Supremum sourceRelation subset supremum
+  Prove
+    (∀ (element : Beta), inst_1.1 imageSet element ↔ Exists fun x => (inst.1 subset x ∧ map x = element)) → ∀ {inverse : Beta → Alpha}, ((∀ (source : Alpha), inverse (map source) = source) ∧ ((∀ (target : Beta), map (inverse target) = target) ∧ ((∀ (left right : Alpha), sourceRelation left right → targetRelation (map left) (map right)) ∧ (∀ (left right : Alpha), targetRelation (map left) (map right) → sourceRelation left right)))) → ∀ {supremum : Alpha}, ((∀ (element : Alpha), inst.1 subset element → sourceRelation element supremum) ∧ (∀ (bound : Alpha), (∀ (element : Alpha), inst.1 subset element → sourceRelation element bound) → sourceRelation supremum bound)) → ((∀ (element : Beta), inst_1.1 imageSet element → targetRelation element (map supremum)) ∧ (∀ (bound : Beta), (∀ (element : Beta), inst_1.1 imageSet element → targetRelation element bound) → targetRelation (map supremum) bound))
 
 Logical form (Lean):
 
@@ -429,11 +515,25 @@ theorem OrderIsomorphismPreservesSupremum
 
 Predicate logic:
 
-  (∀ subset ∈ SourceSet ∀ imageSet ∈ TargetSet), Infimum targetRelation imageSet (map infimum)
+  ∀ {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x} [inst : Membership Alpha SourceSet] [inst_1 : Membership Beta TargetSet] {sourceRelation : LRA.Relation.Endorelation Alpha} {targetRelation : LRA.Relation.Endorelation Beta} {map : Alpha → Beta} (subset : SourceSet) (imageSet : TargetSet), LRA.Set.Represents imageSet (LRA.Function.ImageClass map (LRA.Set.ClassOfSet subset)) → ∀ {inverse : Beta → Alpha}, LRA.Order.OrderIsomorphism sourceRelation targetRelation map inverse → ∀ {infimum : Alpha}, LRA.Order.Infimum sourceRelation subset infimum → LRA.Order.Infimum targetRelation imageSet (map infimum)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x} [inst : Membership Alpha SourceSet] [inst_1 : Membership Beta TargetSet] {sourceRelation : Alpha → Alpha → Prop} {targetRelation : Beta → Beta → Prop} {map : Alpha → Beta} (subset : SourceSet) (imageSet : TargetSet), (∀ (element : Beta), inst_1.1 imageSet element ↔ Exists fun x => (inst.1 subset x ∧ map x = element)) → ∀ {inverse : Beta → Alpha}, (∀ (source : Alpha), inverse (map source) = source ∧ (∀ (target : Beta), map (inverse target) = target ∧ (∀ (left right : Alpha), sourceRelation left right → targetRelation (map left) (map right) ∧ ∀ (left right : Alpha), targetRelation (map left) (map right) → sourceRelation left right))) → ∀ {infimum : Alpha}, (∀ (element : Alpha), inst.1 subset element → sourceRelation infimum element ∧ ∀ (bound : Alpha), (∀ (element : Alpha), inst.1 subset element → sourceRelation bound element) → sourceRelation bound infimum) → (∀ (element : Beta), inst_1.1 imageSet element → targetRelation (map infimum) element ∧ ∀ (bound : Beta), (∀ (element : Beta), inst_1.1 imageSet element → targetRelation bound element) → targetRelation bound (map infimum))
+  Ambient
+    (Alpha, Beta, SourceSet, TargetSet, ∈)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    map : Alpha → Beta
+    subset : SourceSet
+    imageSet : TargetSet
+    representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))
+    inverse : Beta → Alpha
+    mapsAreIsomorphism : OrderIsomorphism sourceRelation targetRelation map inverse
+    infimum : Alpha
+    infimumIsInfimum : Infimum sourceRelation subset infimum
+  Prove
+    (∀ (element : Beta), inst_1.1 imageSet element ↔ Exists fun x => (inst.1 subset x ∧ map x = element)) → ∀ {inverse : Beta → Alpha}, ((∀ (source : Alpha), inverse (map source) = source) ∧ ((∀ (target : Beta), map (inverse target) = target) ∧ ((∀ (left right : Alpha), sourceRelation left right → targetRelation (map left) (map right)) ∧ (∀ (left right : Alpha), targetRelation (map left) (map right) → sourceRelation left right)))) → ∀ {infimum : Alpha}, ((∀ (element : Alpha), inst.1 subset element → sourceRelation infimum element) ∧ (∀ (bound : Alpha), (∀ (element : Alpha), inst.1 subset element → sourceRelation bound element) → sourceRelation bound infimum)) → ((∀ (element : Beta), inst_1.1 imageSet element → targetRelation (map infimum) element) ∧ (∀ (bound : Beta), (∀ (element : Beta), inst_1.1 imageSet element → targetRelation bound element) → targetRelation bound (map infimum)))
 
 Logical form (Lean):
 
@@ -485,11 +585,25 @@ theorem OrderIsomorphismPreservesInfimum
 
 Predicate logic:
 
-  (∀ subset ∈ SourceSet ∀ imageSet ∈ TargetSet), Infimum targetRelation imageSet (map supremum)
+  ∀ {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x} [inst : Membership Alpha SourceSet] [inst_1 : Membership Beta TargetSet] {sourceRelation : LRA.Relation.Endorelation Alpha} {targetRelation : LRA.Relation.Endorelation Beta} {map : Alpha → Beta} (subset : SourceSet) (imageSet : TargetSet), LRA.Set.Represents imageSet (LRA.Function.ImageClass map (LRA.Set.ClassOfSet subset)) → ∀ {inverse : Beta → Alpha}, LRA.Order.OrderIsomorphism sourceRelation (LRA.Relation.Converse targetRelation) map inverse → ∀ {supremum : Alpha}, LRA.Order.Supremum sourceRelation subset supremum → LRA.Order.Infimum targetRelation imageSet (map supremum)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x} [inst : Membership Alpha SourceSet] [inst_1 : Membership Beta TargetSet] {sourceRelation : Alpha → Alpha → Prop} {targetRelation : Beta → Beta → Prop} {map : Alpha → Beta} (subset : SourceSet) (imageSet : TargetSet), (∀ (element : Beta), inst_1.1 imageSet element ↔ Exists fun x => (inst.1 subset x ∧ map x = element)) → ∀ {inverse : Beta → Alpha}, (∀ (source : Alpha), inverse (map source) = source ∧ (∀ (target : Beta), map (inverse target) = target ∧ (∀ (left right : Alpha), sourceRelation left right → targetRelation (map right) (map left) ∧ ∀ (left right : Alpha), targetRelation (map right) (map left) → sourceRelation left right))) → ∀ {supremum : Alpha}, (∀ (element : Alpha), inst.1 subset element → sourceRelation element supremum ∧ ∀ (bound : Alpha), (∀ (element : Alpha), inst.1 subset element → sourceRelation element bound) → sourceRelation supremum bound) → (∀ (element : Beta), inst_1.1 imageSet element → targetRelation (map supremum) element ∧ ∀ (bound : Beta), (∀ (element : Beta), inst_1.1 imageSet element → targetRelation bound element) → targetRelation bound (map supremum))
+  Ambient
+    (Alpha, Beta, SourceSet, TargetSet, ∈)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    map : Alpha → Beta
+    subset : SourceSet
+    imageSet : TargetSet
+    representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))
+    inverse : Beta → Alpha
+    mapsAreIsomorphism : OrderIsomorphism sourceRelation (LRA.Relation.Converse targetRelation) map inverse
+    supremum : Alpha
+    supremumIsSupremum : Supremum sourceRelation subset supremum
+  Prove
+    (∀ (element : Beta), inst_1.1 imageSet element ↔ Exists fun x => (inst.1 subset x ∧ map x = element)) → ∀ {inverse : Beta → Alpha}, ((∀ (source : Alpha), inverse (map source) = source) ∧ ((∀ (target : Beta), map (inverse target) = target) ∧ ((∀ (left right : Alpha), sourceRelation left right → targetRelation (map right) (map left)) ∧ (∀ (left right : Alpha), targetRelation (map right) (map left) → sourceRelation left right)))) → ∀ {supremum : Alpha}, ((∀ (element : Alpha), inst.1 subset element → sourceRelation element supremum) ∧ (∀ (bound : Alpha), (∀ (element : Alpha), inst.1 subset element → sourceRelation element bound) → sourceRelation supremum bound)) → ((∀ (element : Beta), inst_1.1 imageSet element → targetRelation (map supremum) element) ∧ (∀ (bound : Beta), (∀ (element : Beta), inst_1.1 imageSet element → targetRelation bound element) → targetRelation bound (map supremum)))
 
 Logical form (Lean):
 
@@ -541,11 +655,25 @@ theorem OrderIsomorphismToConverseSendsSupremumToInfimum
 
 Predicate logic:
 
-  (∀ subset ∈ SourceSet ∀ imageSet ∈ TargetSet), Supremum targetRelation imageSet (map infimum)
+  ∀ {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x} [inst : Membership Alpha SourceSet] [inst_1 : Membership Beta TargetSet] {sourceRelation : LRA.Relation.Endorelation Alpha} {targetRelation : LRA.Relation.Endorelation Beta} {map : Alpha → Beta} (subset : SourceSet) (imageSet : TargetSet), LRA.Set.Represents imageSet (LRA.Function.ImageClass map (LRA.Set.ClassOfSet subset)) → ∀ {inverse : Beta → Alpha}, LRA.Order.OrderIsomorphism sourceRelation (LRA.Relation.Converse targetRelation) map inverse → ∀ {infimum : Alpha}, LRA.Order.Infimum sourceRelation subset infimum → LRA.Order.Supremum targetRelation imageSet (map infimum)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x} [inst : Membership Alpha SourceSet] [inst_1 : Membership Beta TargetSet] {sourceRelation : Alpha → Alpha → Prop} {targetRelation : Beta → Beta → Prop} {map : Alpha → Beta} (subset : SourceSet) (imageSet : TargetSet), (∀ (element : Beta), inst_1.1 imageSet element ↔ Exists fun x => (inst.1 subset x ∧ map x = element)) → ∀ {inverse : Beta → Alpha}, (∀ (source : Alpha), inverse (map source) = source ∧ (∀ (target : Beta), map (inverse target) = target ∧ (∀ (left right : Alpha), sourceRelation left right → targetRelation (map right) (map left) ∧ ∀ (left right : Alpha), targetRelation (map right) (map left) → sourceRelation left right))) → ∀ {infimum : Alpha}, (∀ (element : Alpha), inst.1 subset element → sourceRelation infimum element ∧ ∀ (bound : Alpha), (∀ (element : Alpha), inst.1 subset element → sourceRelation bound element) → sourceRelation bound infimum) → (∀ (element : Beta), inst_1.1 imageSet element → targetRelation element (map infimum) ∧ ∀ (bound : Beta), (∀ (element : Beta), inst_1.1 imageSet element → targetRelation element bound) → targetRelation (map infimum) bound)
+  Ambient
+    (Alpha, Beta, SourceSet, TargetSet, ∈)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    map : Alpha → Beta
+    subset : SourceSet
+    imageSet : TargetSet
+    representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))
+    inverse : Beta → Alpha
+    mapsAreIsomorphism : OrderIsomorphism sourceRelation (LRA.Relation.Converse targetRelation) map inverse
+    infimum : Alpha
+    infimumIsInfimum : Infimum sourceRelation subset infimum
+  Prove
+    (∀ (element : Beta), inst_1.1 imageSet element ↔ Exists fun x => (inst.1 subset x ∧ map x = element)) → ∀ {inverse : Beta → Alpha}, ((∀ (source : Alpha), inverse (map source) = source) ∧ ((∀ (target : Beta), map (inverse target) = target) ∧ ((∀ (left right : Alpha), sourceRelation left right → targetRelation (map right) (map left)) ∧ (∀ (left right : Alpha), targetRelation (map right) (map left) → sourceRelation left right)))) → ∀ {infimum : Alpha}, ((∀ (element : Alpha), inst.1 subset element → sourceRelation infimum element) ∧ (∀ (bound : Alpha), (∀ (element : Alpha), inst.1 subset element → sourceRelation bound element) → sourceRelation bound infimum)) → ((∀ (element : Beta), inst_1.1 imageSet element → targetRelation element (map infimum)) ∧ (∀ (bound : Beta), (∀ (element : Beta), inst_1.1 imageSet element → targetRelation element bound) → targetRelation (map infimum) bound))
 
 Logical form (Lean):
 

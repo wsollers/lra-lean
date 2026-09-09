@@ -7,14 +7,14 @@ namespace LRA.NumberSystems.Integers.Pfefer
 Predicate logic:
 
   structure ConstructionPlan where
-  source : String
-  status : String
+    source : String
+    status : String
 
 Predicate logic (unfolded):
 
   structure ConstructionPlan where
-  source : String
-  status : String (source fallback; no compiled unfold data available)
+    source : String
+    status : String (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -53,14 +53,14 @@ structure ConstructionPlan where
 Predicate logic:
 
   def plan : ConstructionPlan where
-  source := "Pfefer canonical integer construction"
-  status := "pending formalization"
+    source := "Pfefer canonical integer construction"
+    status := "pending formalization"
 
 Predicate logic (unfolded):
 
   def plan : ConstructionPlan where
-  source := "Pfefer canonical integer construction"
-  status := "pending formalization" (source fallback; no compiled unfold data available)
+    source := "Pfefer canonical integer construction"
+    status := "pending formalization" (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

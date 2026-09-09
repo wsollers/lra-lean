@@ -10,11 +10,17 @@ variable {rationalSystem : RationalNumberSystem}
 
 Predicate logic:
 
-  ∀ precision firstIndex secondIndex : Nat, max (first.Modulus (precision + 1)) (second.Modulus (precision + 1)) ≤ firstIndex → max (first.Modulus (precision + 1)) (second.Modulus (precision + 1)) ≤ secondIndex → let difference
+  ∀ {rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem} (first second : LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyApproximation rationalSystem) (precision firstIndex secondIndex : Nat), (instLENat.le (Nat.instMax.max (first.Modulus (instHAdd.hAdd precision 1)) (second.Modulus (instHAdd.hAdd precision 1))) firstIndex ∧ instLENat.le (Nat.instMax.max (first.Modulus (instHAdd.hAdd precision 1)) (second.Modulus (instHAdd.hAdd precision 1))) secondIndex) → have difference := instHAdd.hAdd (instHAdd.hAdd (first.Approximate firstIndex) (second.Approximate firstIndex)) (rationalSystem.FieldModel.negInst.neg (instHAdd.hAdd (first.Approximate secondIndex) (second.Approximate secondIndex))); (rationalSystem.FieldModel.ltInst.lt (rationalSystem.FieldModel.negInst.neg (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)) difference ∧ rationalSystem.FieldModel.ltInst.lt difference (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision))
 
 Predicate logic (unfolded):
 
-  ∀ {rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem} (first second : LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyApproximation rationalSystem) (precision firstIndex secondIndex : Nat), (instLENat.1 (Nat.instMax.1 (first.2 (instHAdd.1 precision (instOfNatNat 1).1)) (second.2 (instHAdd.1 precision (instOfNatNat 1).1))) firstIndex ∧ instLENat.1 (Nat.instMax.1 (first.2 (instHAdd.1 precision (instOfNatNat 1).1)) (second.2 (instHAdd.1 precision (instOfNatNat 1).1))) secondIndex) → have difference := instHAdd.hAdd (instHAdd.hAdd (first.Approximate firstIndex) (second.Approximate firstIndex)) (rationalSystem.FieldModel.negInst.neg (instHAdd.hAdd (first.Approximate secondIndex) (second.Approximate secondIndex))); (rationalSystem.FieldModel.ltInst.lt (rationalSystem.FieldModel.negInst.neg (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)) difference ∧ rationalSystem.FieldModel.ltInst.lt difference (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision))
+  Ambient
+    (implicit ambient)
+  Objects
+    rationalSystem : RationalNumberSystem
+    first second : EffectiveCauchyApproximation rationalSystem
+  Prove
+    (instLENat.le (Nat.instMax.1 (first.2 ({ hAdd := fun a b => instAddNat.add a b }.hAdd precision 1)) (second.2 ({ hAdd := fun a b => instAddNat.add a b }.hAdd precision 1))) firstIndex ∧ instLENat.le (Nat.instMax.1 (first.2 ({ hAdd := fun a b => instAddNat.add a b }.hAdd precision 1)) (second.2 ({ hAdd := fun a b => instAddNat.add a b }.hAdd precision 1))) secondIndex) → have difference := instHAdd.hAdd (instHAdd.hAdd (first.Approximate firstIndex) (second.Approximate firstIndex)) (rationalSystem.FieldModel.negInst.neg (instHAdd.hAdd (first.Approximate secondIndex) (second.Approximate secondIndex))); (rationalSystem.FieldModel.ltInst.lt (rationalSystem.FieldModel.negInst.neg (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)) difference ∧ rationalSystem.FieldModel.ltInst.lt difference (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision))
 
 Logical form (Lean):
 
@@ -67,20 +73,20 @@ theorem representative_addition_cauchy_at_precision
 Predicate logic:
 
   def representative_addition
-    (first second : EffectiveCauchyApproximation rationalSystem) :
-    EffectiveCauchyApproximation rationalSystem where
-  Approximate := fun index => first.Approximate index + second.Approximate index
-  Modulus := fun precision => max (first.Modulus (precision + 1)) (second.Modulus (precision + 1))
-  CauchyAtPrecision := representative_addition_cauchy_at_precision first second
+      (first second : EffectiveCauchyApproximation rationalSystem) :
+      EffectiveCauchyApproximation rationalSystem where
+    Approximate := fun index => first.Approximate index + second.Approximate index
+    Modulus := fun precision => max (first.Modulus (precision + 1)) (second.Modulus (precision + 1))
+    CauchyAtPrecision := representative_addition_cauchy_at_precision first second
 
 Predicate logic (unfolded):
 
   def representative_addition
-    (first second : EffectiveCauchyApproximation rationalSystem) :
-    EffectiveCauchyApproximation rationalSystem where
-  Approximate := fun index => first.Approximate index + second.Approximate index
-  Modulus := fun precision => max (first.Modulus (precision + 1)) (second.Modulus (precision + 1))
-  CauchyAtPrecision := representative_addition_cauchy_at_precision first second (source fallback; no compiled unfold data available)
+      (first second : EffectiveCauchyApproximation rationalSystem) :
+      EffectiveCauchyApproximation rationalSystem where
+    Approximate := fun index => first.Approximate index + second.Approximate index
+    Modulus := fun precision => max (first.Modulus (precision + 1)) (second.Modulus (precision + 1))
+    CauchyAtPrecision := representative_addition_cauchy_at_precision first second (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -124,11 +130,17 @@ def representative_addition
 
 Predicate logic:
 
-  ∀ precision firstIndex secondIndex : Nat, representative.Modulus precision ≤ firstIndex → representative.Modulus precision ≤ secondIndex → let difference
+  ∀ {rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem} (representative : LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyApproximation rationalSystem) (precision firstIndex secondIndex : Nat), (instLENat.le (representative.Modulus precision) firstIndex ∧ instLENat.le (representative.Modulus precision) secondIndex) → have difference := instHAdd.hAdd (rationalSystem.FieldModel.negInst.neg (representative.Approximate firstIndex)) (rationalSystem.FieldModel.negInst.neg (rationalSystem.FieldModel.negInst.neg (representative.Approximate secondIndex))); (rationalSystem.FieldModel.ltInst.lt (rationalSystem.FieldModel.negInst.neg (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)) difference ∧ rationalSystem.FieldModel.ltInst.lt difference (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision))
 
 Predicate logic (unfolded):
 
-  ∀ {rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem} (representative : LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyApproximation rationalSystem) (precision firstIndex secondIndex : Nat), (instLENat.1 (representative.2 precision) firstIndex ∧ instLENat.1 (representative.2 precision) secondIndex) → have difference := instHAdd.hAdd (rationalSystem.FieldModel.negInst.neg (representative.Approximate firstIndex)) (rationalSystem.FieldModel.negInst.neg (rationalSystem.FieldModel.negInst.neg (representative.Approximate secondIndex))); (rationalSystem.FieldModel.ltInst.lt (rationalSystem.FieldModel.negInst.neg (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)) difference ∧ rationalSystem.FieldModel.ltInst.lt difference (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision))
+  Ambient
+    (implicit ambient)
+  Objects
+    rationalSystem : RationalNumberSystem
+    representative : EffectiveCauchyApproximation rationalSystem
+  Prove
+    (instLENat.le (representative.2 precision) firstIndex ∧ instLENat.le (representative.2 precision) secondIndex) → have difference := instHAdd.hAdd (rationalSystem.FieldModel.negInst.neg (representative.Approximate firstIndex)) (rationalSystem.FieldModel.negInst.neg (rationalSystem.FieldModel.negInst.neg (representative.Approximate secondIndex))); (rationalSystem.FieldModel.ltInst.lt (rationalSystem.FieldModel.negInst.neg (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)) difference ∧ rationalSystem.FieldModel.ltInst.lt difference (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision))
 
 Logical form (Lean):
 
@@ -181,20 +193,20 @@ theorem representative_negation_cauchy_at_precision
 Predicate logic:
 
   def representative_negation
-    (representative : EffectiveCauchyApproximation rationalSystem) :
-    EffectiveCauchyApproximation rationalSystem where
-  Approximate := fun index => -representative.Approximate index
-  Modulus := representative.Modulus
-  CauchyAtPrecision := representative_negation_cauchy_at_precision representative
+      (representative : EffectiveCauchyApproximation rationalSystem) :
+      EffectiveCauchyApproximation rationalSystem where
+    Approximate := fun index => -representative.Approximate index
+    Modulus := representative.Modulus
+    CauchyAtPrecision := representative_negation_cauchy_at_precision representative
 
 Predicate logic (unfolded):
 
   def representative_negation
-    (representative : EffectiveCauchyApproximation rationalSystem) :
-    EffectiveCauchyApproximation rationalSystem where
-  Approximate := fun index => -representative.Approximate index
-  Modulus := representative.Modulus
-  CauchyAtPrecision := representative_negation_cauchy_at_precision representative (source fallback; no compiled unfold data available)
+      (representative : EffectiveCauchyApproximation rationalSystem) :
+      EffectiveCauchyApproximation rationalSystem where
+    Approximate := fun index => -representative.Approximate index
+    Modulus := representative.Modulus
+    CauchyAtPrecision := representative_negation_cauchy_at_precision representative (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -238,11 +250,17 @@ def representative_negation
 
 Predicate logic:
 
-  ∀ precision firstIndex secondIndex : Nat, max (first.Modulus (precision + 1)) (second.Modulus (precision + 1)) ≤ firstIndex → max (first.Modulus (precision + 1)) (second.Modulus (precision + 1)) ≤ secondIndex → let difference
+  ∀ {rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem} (first second : LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyApproximation rationalSystem) (precision firstIndex secondIndex : Nat), (instLENat.le (Nat.instMax.max (first.Modulus (instHAdd.hAdd precision 1)) (second.Modulus (instHAdd.hAdd precision 1))) firstIndex ∧ instLENat.le (Nat.instMax.max (first.Modulus (instHAdd.hAdd precision 1)) (second.Modulus (instHAdd.hAdd precision 1))) secondIndex) → have difference := instHAdd.hAdd (instHMul.hMul (first.Approximate firstIndex) (second.Approximate firstIndex)) (rationalSystem.FieldModel.negInst.neg (instHMul.hMul (first.Approximate secondIndex) (second.Approximate secondIndex))); (rationalSystem.FieldModel.ltInst.lt (rationalSystem.FieldModel.negInst.neg (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)) difference ∧ rationalSystem.FieldModel.ltInst.lt difference (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision))
 
 Predicate logic (unfolded):
 
-  ∀ {rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem} (first second : LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyApproximation rationalSystem) (precision firstIndex secondIndex : Nat), (instLENat.1 (Nat.instMax.1 (first.2 (instHAdd.1 precision (instOfNatNat 1).1)) (second.2 (instHAdd.1 precision (instOfNatNat 1).1))) firstIndex ∧ instLENat.1 (Nat.instMax.1 (first.2 (instHAdd.1 precision (instOfNatNat 1).1)) (second.2 (instHAdd.1 precision (instOfNatNat 1).1))) secondIndex) → have difference := instHAdd.hAdd (instHMul.hMul (first.Approximate firstIndex) (second.Approximate firstIndex)) (rationalSystem.FieldModel.negInst.neg (instHMul.hMul (first.Approximate secondIndex) (second.Approximate secondIndex))); (rationalSystem.FieldModel.ltInst.lt (rationalSystem.FieldModel.negInst.neg (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)) difference ∧ rationalSystem.FieldModel.ltInst.lt difference (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision))
+  Ambient
+    (implicit ambient)
+  Objects
+    rationalSystem : RationalNumberSystem
+    first second : EffectiveCauchyApproximation rationalSystem
+  Prove
+    (instLENat.le (Nat.instMax.1 (first.2 ({ hAdd := fun a b => instAddNat.add a b }.hAdd precision 1)) (second.2 ({ hAdd := fun a b => instAddNat.add a b }.hAdd precision 1))) firstIndex ∧ instLENat.le (Nat.instMax.1 (first.2 ({ hAdd := fun a b => instAddNat.add a b }.hAdd precision 1)) (second.2 ({ hAdd := fun a b => instAddNat.add a b }.hAdd precision 1))) secondIndex) → have difference := instHAdd.hAdd (instHMul.hMul (first.Approximate firstIndex) (second.Approximate firstIndex)) (rationalSystem.FieldModel.negInst.neg (instHMul.hMul (first.Approximate secondIndex) (second.Approximate secondIndex))); (rationalSystem.FieldModel.ltInst.lt (rationalSystem.FieldModel.negInst.neg (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)) difference ∧ rationalSystem.FieldModel.ltInst.lt difference (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision))
 
 Logical form (Lean):
 
@@ -295,20 +313,20 @@ theorem representative_multiplication_cauchy_at_precision
 Predicate logic:
 
   def representative_multiplication
-    (first second : EffectiveCauchyApproximation rationalSystem) :
-    EffectiveCauchyApproximation rationalSystem where
-  Approximate := fun index => first.Approximate index * second.Approximate index
-  Modulus := fun precision => max (first.Modulus (precision + 1)) (second.Modulus (precision + 1))
-  CauchyAtPrecision := representative_multiplication_cauchy_at_precision first second
+      (first second : EffectiveCauchyApproximation rationalSystem) :
+      EffectiveCauchyApproximation rationalSystem where
+    Approximate := fun index => first.Approximate index * second.Approximate index
+    Modulus := fun precision => max (first.Modulus (precision + 1)) (second.Modulus (precision + 1))
+    CauchyAtPrecision := representative_multiplication_cauchy_at_precision first second
 
 Predicate logic (unfolded):
 
   def representative_multiplication
-    (first second : EffectiveCauchyApproximation rationalSystem) :
-    EffectiveCauchyApproximation rationalSystem where
-  Approximate := fun index => first.Approximate index * second.Approximate index
-  Modulus := fun precision => max (first.Modulus (precision + 1)) (second.Modulus (precision + 1))
-  CauchyAtPrecision := representative_multiplication_cauchy_at_precision first second (source fallback; no compiled unfold data available)
+      (first second : EffectiveCauchyApproximation rationalSystem) :
+      EffectiveCauchyApproximation rationalSystem where
+    Approximate := fun index => first.Approximate index * second.Approximate index
+    Modulus := fun precision => max (first.Modulus (precision + 1)) (second.Modulus (precision + 1))
+    CauchyAtPrecision := representative_multiplication_cauchy_at_precision first second (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

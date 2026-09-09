@@ -18,11 +18,16 @@ variable [CommutativeRingLaws R]
 
 Predicate logic:
 
-  of_real 0 ∈ R = 0 ∈ ComplexNumber R
+  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R 0] [inst_4 : OfNat R 1], LRA.AlgebraicStructures.CommutativeRingLaws R → LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.of_real 0 = 0
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R (instOfNatNat 0).1] [inst_4 : OfNat R (instOfNatNat 1).1], LRA.AlgebraicStructures.CommutativeRingLaws R → { real_part := inst_3.1, imaginary_part := inst_3.1 } = LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.instOfNatComplexNumberOfNatNat.1
+  Ambient
+    (R)
+  Objects
+    (none)
+  Prove
+    LRA.AlgebraicStructures.CommutativeRingLaws R → { real_part := 0, imaginary_part := 0 } = 0
 
 Logical form (Lean):
 
@@ -56,11 +61,16 @@ theorem of_real_preserves_zero : of_real (0 : R) = (0 : ComplexNumber R) := by
 
 Predicate logic:
 
-  of_real 1 ∈ R = 1 ∈ ComplexNumber R
+  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R 0] [inst_4 : OfNat R 1], LRA.AlgebraicStructures.CommutativeRingLaws R → LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.of_real 1 = 1
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R (instOfNatNat 0).1] [inst_4 : OfNat R (instOfNatNat 1).1], LRA.AlgebraicStructures.CommutativeRingLaws R → { real_part := inst_4.1, imaginary_part := inst_3.1 } = LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.instOfNatComplexNumberOfNatNat_1.1
+  Ambient
+    (R)
+  Objects
+    (none)
+  Prove
+    LRA.AlgebraicStructures.CommutativeRingLaws R → { real_part := 1, imaginary_part := 0 } = 1
 
 Logical form (Lean):
 
@@ -94,11 +104,16 @@ theorem of_real_preserves_one : of_real (1 : R) = (1 : ComplexNumber R) := by
 
 Predicate logic:
 
-  (∀ first second ∈ R), of_real (first + second) = of_real first + of_real second
+  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R 0] [inst_4 : OfNat R 1], LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (first second : R), LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.of_real (instHAdd.hAdd first second) = instHAdd.hAdd (LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.of_real first) (LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.of_real second)
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R (instOfNatNat 0).1] [inst_4 : OfNat R (instOfNatNat 1).1], LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (first second : R), { real_part := instHAdd.1 first second, imaginary_part := inst_3.1 } = instHAdd.1 { real_part := first, imaginary_part := inst_3.1 } { real_part := second, imaginary_part := inst_3.1 }
+  Ambient
+    (R)
+  Objects
+    first second : R
+  Prove
+    LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (first second : R), { real_part := { hAdd := fun a b => inst.add a b }.hAdd first second, imaginary_part := 0 } = { hAdd := fun a b => { add := fun first second => { real_part := { hAdd := fun a b => inst.add a b }.hAdd first.1 second.1, imaginary_part := { hAdd := fun a b => inst.add a b }.hAdd first.2 second.2 } }.add a b }.hAdd { real_part := first, imaginary_part := 0 } { real_part := second, imaginary_part := 0 }
 
 Logical form (Lean):
 
@@ -134,11 +149,16 @@ theorem of_real_preserves_addition (first second : R) :
 
 Predicate logic:
 
-  (∀ value ∈ R), of_real (-value) = -(of_real value)
+  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R 0] [inst_4 : OfNat R 1], LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (value : R), LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.of_real (inst_2.neg value) = LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.instNegComplexNumber.neg (LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.of_real value)
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R (instOfNatNat 0).1] [inst_4 : OfNat R (instOfNatNat 1).1], LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (value : R), { real_part := inst_2.1 value, imaginary_part := inst_3.1 } = LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.instNegComplexNumber.1 { real_part := value, imaginary_part := inst_3.1 }
+  Ambient
+    (R)
+  Objects
+    value : R
+  Prove
+    LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (value : R), { real_part := inst_2.neg value, imaginary_part := 0 } = { neg := fun value => { real_part := inst_2.neg value.1, imaginary_part := inst_2.neg value.2 } }.neg { real_part := value, imaginary_part := 0 }
 
 Logical form (Lean):
 
@@ -174,11 +194,16 @@ theorem of_real_preserves_negation (value : R) :
 
 Predicate logic:
 
-  (∀ first second ∈ R), of_real (first * second) = of_real first * of_real second
+  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R 0] [inst_4 : OfNat R 1], LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (first second : R), LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.of_real (instHMul.hMul first second) = instHMul.hMul (LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.of_real first) (LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.of_real second)
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R (instOfNatNat 0).1] [inst_4 : OfNat R (instOfNatNat 1).1], LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (first second : R), { real_part := instHMul.1 first second, imaginary_part := inst_3.1 } = instHMul.1 { real_part := first, imaginary_part := inst_3.1 } { real_part := second, imaginary_part := inst_3.1 }
+  Ambient
+    (R)
+  Objects
+    first second : R
+  Prove
+    LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (first second : R), { real_part := { hMul := fun a b => inst_1.mul a b }.hMul first second, imaginary_part := 0 } = { hMul := fun a b => { mul := fun first second => { real_part := { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul first.1 second.1) (inst_2.neg ({ hMul := fun a b => inst_1.mul a b }.hMul first.2 second.2)), imaginary_part := { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul first.1 second.2) ({ hMul := fun a b => inst_1.mul a b }.hMul first.2 second.1) } }.mul a b }.hMul { real_part := first, imaginary_part := 0 } { real_part := second, imaginary_part := 0 }
 
 Logical form (Lean):
 
@@ -214,11 +239,16 @@ theorem of_real_preserves_multiplication (first second : R) :
 
 Predicate logic:
 
-  (∀ first second ∈ R), (of_real first = of_real second) → first = second
+  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R 0] [inst_4 : OfNat R 1], LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (first second : R), LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.of_real first = LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.of_real second → first = second
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R (instOfNatNat 0).1] [inst_4 : OfNat R (instOfNatNat 1).1], LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (first second : R), { real_part := first, imaginary_part := inst_3.1 } = { real_part := second, imaginary_part := inst_3.1 } → first = second
+  Ambient
+    (R)
+  Objects
+    first second : R
+  Prove
+    LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (first second : R), { real_part := first, imaginary_part := 0 } = { real_part := second, imaginary_part := 0 } → first = second
 
 Logical form (Lean):
 
@@ -257,18 +287,18 @@ end EmbeddingTheorems
 Predicate logic:
 
   structure Polynomial (R : Type u) [OfNat R 0] where
-  degree : Nat
-  coefficient : Fin (degree + 1) → ComplexNumber R
-  leading_coefficient_nonzero :
-    degree ≠ 0 → coefficient ⟨degree, Nat.lt_succ_self degree⟩ ≠ 0
+    degree : Nat
+    coefficient : Fin (degree + 1) → ComplexNumber R
+    leading_coefficient_nonzero :
+      degree ≠ 0 → coefficient ⟨degree, Nat.lt_succ_self degree⟩ ≠ 0
 
 Predicate logic (unfolded):
 
   structure Polynomial (R : Type u) [OfNat R 0] where
-  degree : Nat
-  coefficient : Fin (degree + 1) → ComplexNumber R
-  leading_coefficient_nonzero :
-    degree ≠ 0 → coefficient ⟨degree, Nat.lt_succ_self degree⟩ ≠ 0 (source fallback; no compiled unfold data available)
+    degree : Nat
+    coefficient : Fin (degree + 1) → ComplexNumber R
+    leading_coefficient_nonzero :
+      degree ≠ 0 → coefficient ⟨degree, Nat.lt_succ_self degree⟩ ≠ 0 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -311,16 +341,16 @@ structure Polynomial (R : Type u) [OfNat R 0] where
 Predicate logic:
 
   def Polynomial.evaluate [OfNat R 0] [Add R] [Mul R]
-    (polynomial : Polynomial R)
-    (input : ComplexNumber R) : ComplexNumber R :=
-  sorry
+      (polynomial : Polynomial R)
+      (input : ComplexNumber R) : ComplexNumber R :=
+    sorry
 
 Predicate logic (unfolded):
 
   def Polynomial.evaluate [OfNat R 0] [Add R] [Mul R]
-    (polynomial : Polynomial R)
-    (input : ComplexNumber R) : ComplexNumber R :=
-  sorry (source fallback; no compiled unfold data available)
+      (polynomial : Polynomial R)
+      (input : ComplexNumber R) : ComplexNumber R :=
+    sorry (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -364,7 +394,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : OfNat R (instOfNatNat 0).1] (polynomial : LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.Polynomial R), polynomial.1 = instOfNatNat 0.1 → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    polynomial.1 = 0 → False
 
 Logical form (Lean):
 
@@ -400,11 +435,17 @@ def Polynomial.nonconstant [OfNat R 0] (polynomial : Polynomial R) : Prop :=
 
 Predicate logic:
 
-  ∃ root ∈ ComplexNumber R, Polynomial.evaluate polynomial root = 0 ∈ ComplexNumber R
+  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : Inv R] [inst_4 : OfNat R 0] [inst_5 : OfNat R 1] [inst_6 : LE R], (LRA.AlgebraicStructures.OrderedFieldLaws R ∧ LRA.Order.OrderCompletenessLaws R (Set R)) → ∀ (polynomial : LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.Polynomial R), polynomial.nonconstant → Exists fun root => polynomial.evaluate root = 0
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : Inv R] [inst_4 : OfNat R (instOfNatNat 0).1] [inst_5 : OfNat R (instOfNatNat 1).1] [inst_6 : LE R], (LRA.AlgebraicStructures.OrderedFieldLaws R ∧ LRA.Order.OrderCompletenessLaws R (R → Prop)) → ∀ (polynomial : LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.Polynomial R), (polynomial.1 = instOfNatNat 0.1 → False) → Exists fun root => sorry ((((((((((((((((((`LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.Behavior.num (instOfNatNat 471).1).num (instOfNatNat 2).1).num (instOfNatNat 471).1).num (instOfNatNat 7).1).num (instOfNatNat 2).1).num (instOfNatNat 7).1).str "_sorry").str "_@").str "LRA").str "NumberSystems").str "ComplexNumbers").str "Constructions").str "OrderedPairs").str "Behavior").num (instOfNatNat 2612511948).1).str "_hygCtx").str "_hyg").num (instOfNatNat 20).1) = LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.instOfNatComplexNumberOfNatNat.1
+  Ambient
+    (R, ≤)
+  Objects
+    polynomial : Polynomial R
+    polynomial_nonconstant : Polynomial.nonconstant polynomial
+  Prove
+    (LRA.AlgebraicStructures.OrderedFieldLaws R ∧ (LRA.Order.OrderCompletenessLaws R (R → Prop))) → ∀ (polynomial : LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.Polynomial R), (polynomial.1 = 0 → False) → Exists fun root => sorry = 0
 
 Logical form (Lean):
 

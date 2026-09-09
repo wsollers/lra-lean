@@ -17,20 +17,20 @@ universe u
 Predicate logic:
 
   def FinitePrefix
-    {integerModel : IntegerModel.{u}}
-    (fraction : InfiniteSimpleContinuedFraction integerModel)
-    (depth : Nat) : FiniteSimpleContinuedFraction integerModel where
-  Head := fraction 0
-  Tail := (List.range depth).map (fun index => fraction (index + 1))
+      {integerModel : IntegerModel.{u}}
+      (fraction : InfiniteSimpleContinuedFraction integerModel)
+      (depth : Nat) : FiniteSimpleContinuedFraction integerModel where
+    Head := fraction 0
+    Tail := (List.range depth).map (fun index => fraction (index + 1))
 
 Predicate logic (unfolded):
 
   def FinitePrefix
-    {integerModel : IntegerModel.{u}}
-    (fraction : InfiniteSimpleContinuedFraction integerModel)
-    (depth : Nat) : FiniteSimpleContinuedFraction integerModel where
-  Head := fraction 0
-  Tail := (List.range depth).map (fun index => fraction (index + 1)) (source fallback; no compiled unfold data available)
+      {integerModel : IntegerModel.{u}}
+      (fraction : InfiniteSimpleContinuedFraction integerModel)
+      (depth : Nat) : FiniteSimpleContinuedFraction integerModel where
+    Head := fraction 0
+    Tail := (List.range depth).map (fun index => fraction (index + 1)) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -78,7 +78,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (fraction : Nat → rationalSystem.IntegerSystem.Model.1) (depth : Nat) (value : rationalSystem.FieldModel.1), LRA.NumberSystems.RationalNumbers.ContinuedFractions.CoefficientsEvaluateTo rationalSystem (List.cons (LRA.NumberSystems.RealNumbers.ContinuedFractions.FinitePrefix fraction depth).1 (LRA.NumberSystems.RealNumbers.ContinuedFractions.FinitePrefix fraction depth).2) value
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.NumberSystems.RationalNumbers.ContinuedFractions.CoefficientsEvaluateTo rationalSystem (List.cons (LRA.NumberSystems.RealNumbers.ContinuedFractions.FinitePrefix fraction depth).1 (LRA.NumberSystems.RealNumbers.ContinuedFractions.FinitePrefix fraction depth).2) value
 
 Logical form (Lean):
 
@@ -128,7 +133,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (realExtension : LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem) (fraction : Nat → rationalSystem.IntegerSystem.Model.1) (limit epsilon : realExtension.RealModel.toDenselyOrderedFieldModel.1), realExtension.RealModel.ltInst.1 realExtension.RealModel.zeroInst.1 epsilon → Exists fun N => ∀ (depth : Nat), instLENat.1 N depth → Exists fun convergent => (LRA.NumberSystems.RationalNumbers.ContinuedFractions.CoefficientsEvaluateTo rationalSystem (List.cons (LRA.NumberSystems.RealNumbers.ContinuedFractions.FinitePrefix fraction depth).1 (LRA.NumberSystems.RealNumbers.ContinuedFractions.FinitePrefix fraction depth).2) convergent ∧ (realExtension.RealModel.leInst.1 (realExtension.RealModel.negInst.1 epsilon) (instHAdd.1 (realExtension.DenseOrderedFieldEmbedding.1 convergent) (realExtension.RealModel.negInst.1 limit)) ∧ realExtension.RealModel.leInst.1 (instHAdd.1 (realExtension.DenseOrderedFieldEmbedding.1 convergent) (realExtension.RealModel.negInst.1 limit)) epsilon))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    realExtension.RealModel.8.lt 0 epsilon → Exists fun N => ∀ (depth : Nat), instLENat.le N depth → Exists fun convergent => (LRA.NumberSystems.RationalNumbers.ContinuedFractions.CoefficientsEvaluateTo rationalSystem (List.cons (LRA.NumberSystems.RealNumbers.ContinuedFractions.FinitePrefix fraction depth).1 (LRA.NumberSystems.RealNumbers.ContinuedFractions.FinitePrefix fraction depth).2) convergent ∧ (realExtension.RealModel.9.le (realExtension.RealModel.4.neg epsilon) ({ hAdd := fun a b => realExtension.RealModel.2.add a b }.hAdd (realExtension.DenseOrderedFieldEmbedding.1 convergent) (realExtension.RealModel.4.neg limit)) ∧ realExtension.RealModel.9.le ({ hAdd := fun a b => realExtension.RealModel.2.add a b }.hAdd (realExtension.DenseOrderedFieldEmbedding.1 convergent) (realExtension.RealModel.4.neg limit)) epsilon))
 
 Logical form (Lean):
 
@@ -188,7 +198,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (realExtension : LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem) (fraction : Nat → rationalSystem.IntegerSystem.Model.1) (value : realExtension.RealModel.toDenselyOrderedFieldModel.1), (∀ (index : Nat), rationalSystem.IntegerSystem.Model.ltInst.1 rationalSystem.IntegerSystem.Model.zeroInst.1 (fraction (instHAdd.1 index (instOfNatNat 1).1)) ∧ ∀ (epsilon : realExtension.RealModel.toDenselyOrderedFieldModel.1), realExtension.RealModel.ltInst.1 realExtension.RealModel.zeroInst.1 epsilon → Exists fun N => ∀ (depth : Nat), instLENat.1 N depth → Exists fun convergent => (LRA.NumberSystems.RationalNumbers.ContinuedFractions.CoefficientsEvaluateTo rationalSystem (List.cons (LRA.NumberSystems.RealNumbers.ContinuedFractions.FinitePrefix fraction depth).1 (LRA.NumberSystems.RealNumbers.ContinuedFractions.FinitePrefix fraction depth).2) convergent ∧ (realExtension.RealModel.leInst.1 (realExtension.RealModel.negInst.1 epsilon) (instHAdd.1 (realExtension.DenseOrderedFieldEmbedding.1 convergent) (realExtension.RealModel.negInst.1 value)) ∧ realExtension.RealModel.leInst.1 (instHAdd.1 (realExtension.DenseOrderedFieldEmbedding.1 convergent) (realExtension.RealModel.negInst.1 value)) epsilon)))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (index : Nat), rationalSystem.IntegerSystem.Model.7.lt 0 (fraction ({ hAdd := fun a b => instAddNat.add a b }.hAdd index 1))) ∧ (∀ (epsilon : realExtension.RealModel.1), realExtension.RealModel.8.lt 0 epsilon → Exists fun N => ∀ (depth : Nat), instLENat.le N depth → Exists fun convergent => (LRA.NumberSystems.RationalNumbers.ContinuedFractions.CoefficientsEvaluateTo rationalSystem (List.cons (LRA.NumberSystems.RealNumbers.ContinuedFractions.FinitePrefix fraction depth).1 (LRA.NumberSystems.RealNumbers.ContinuedFractions.FinitePrefix fraction depth).2) convergent ∧ (realExtension.RealModel.9.le (realExtension.RealModel.4.neg epsilon) ({ hAdd := fun a b => realExtension.RealModel.2.add a b }.hAdd (realExtension.DenseOrderedFieldEmbedding.1 convergent) (realExtension.RealModel.4.neg value)) ∧ realExtension.RealModel.9.le ({ hAdd := fun a b => realExtension.RealModel.2.add a b }.hAdd (realExtension.DenseOrderedFieldEmbedding.1 convergent) (realExtension.RealModel.4.neg value)) epsilon))))
 
 Logical form (Lean):
 
@@ -234,11 +249,16 @@ def IsInfiniteSimpleContinuedFractionExpansionOf
 
 Predicate logic:
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (realExtension : LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem) (value : realExtension.RealModel.Carrier), (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rationalSystem realExtension value ∧ Exists fun a => Exists fun b => Exists fun c => (Ne a 0 ∧ have embedInteger := fun z => realExtension.DenseOrderedFieldEmbedding.ToReal (rationalSystem.IntegerEmbedding.ToField z); instHAdd.hAdd (instHAdd.hAdd (instHMul.hMul (embedInteger a) (instHMul.hMul value value)) (instHMul.hMul (embedInteger b) value)) (embedInteger c) = 0))
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (realExtension : LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem) (value : realExtension.RealModel.Carrier), (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rationalSystem realExtension value ∧ (Exists fun a => Exists fun b => Exists fun c => (Ne a 0 ∧ have embedInteger := fun z => realExtension.DenseOrderedFieldEmbedding.ToReal (rationalSystem.IntegerEmbedding.ToField z); instHAdd.hAdd (instHAdd.hAdd (instHMul.hMul (embedInteger a) (instHMul.hMul value value)) (instHMul.hMul (embedInteger b) value)) (embedInteger c) = 0)))
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (realExtension : LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem) (value : realExtension.RealModel.toDenselyOrderedFieldModel.1), ((Exists fun rational_value => realExtension.DenseOrderedFieldEmbedding.1 rational_value = value) → False ∧ Exists fun a => Exists fun b => Exists fun c => (a = rationalSystem.IntegerSystem.Model.zeroInst.1 → False ∧ have embedInteger := fun z => realExtension.DenseOrderedFieldEmbedding.ToReal (rationalSystem.IntegerEmbedding.ToField z); instHAdd.hAdd (instHAdd.hAdd (instHMul.hMul (embedInteger a) (instHMul.hMul value value)) (instHMul.hMul (embedInteger b) value)) (embedInteger c) = 0))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((Exists fun rational_value => realExtension.DenseOrderedFieldEmbedding.1 rational_value = value) → False) ∧ (Exists fun a => Exists fun b => Exists fun c => ((a = 0 → False) ∧ have embedInteger := fun z => realExtension.DenseOrderedFieldEmbedding.ToReal (rationalSystem.IntegerEmbedding.ToField z); instHAdd.hAdd (instHAdd.hAdd (instHMul.hMul (embedInteger a) (instHMul.hMul value value)) (instHMul.hMul (embedInteger b) value)) (embedInteger c) = 0)))
 
 Logical form (Lean):
 

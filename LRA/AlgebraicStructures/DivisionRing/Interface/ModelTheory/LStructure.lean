@@ -14,16 +14,16 @@ open LRA.AlgebraicStructures.DivisionRing.Interface.Signature
 Predicate logic:
 
   def BuildDivisionRingModel
-    (signature : LRA.AlgebraicStructures.DivisionRingConceptSignature) :
-    LRA.ModelTheory.FirstOrder.Model DivisionRingFirstOrderSignature where
-  Domain
+      (signature : LRA.AlgebraicStructures.DivisionRingConceptSignature) :
+      LRA.ModelTheory.FirstOrder.Model DivisionRingFirstOrderSignature where
+    Domain
 
 Predicate logic (unfolded):
 
   def BuildDivisionRingModel
-    (signature : LRA.AlgebraicStructures.DivisionRingConceptSignature) :
-    LRA.ModelTheory.FirstOrder.Model DivisionRingFirstOrderSignature where
-  Domain (source fallback; no compiled unfold data available)
+      (signature : LRA.AlgebraicStructures.DivisionRingConceptSignature) :
+      LRA.ModelTheory.FirstOrder.Model DivisionRingFirstOrderSignature where
+    Domain (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -76,20 +76,20 @@ def BuildDivisionRingModel
 Predicate logic:
 
   def divisionRingFirstOrderModel (R : Type u)
-    [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] :
-    LRA.ModelTheory.FirstOrder.Model DivisionRingFirstOrderSignature :=
-  BuildDivisionRingModel
-    { carrier := R, zero := 0, one := 1, add := (· + ·),
-      neg := (- ·), multiply := (· * ·), inv := (·⁻¹) }
+      [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] :
+      LRA.ModelTheory.FirstOrder.Model DivisionRingFirstOrderSignature :=
+    BuildDivisionRingModel
+      { carrier := R, zero := 0, one := 1, add := (· + ·),
+        neg := (- ·), multiply := (· * ·), inv := (·⁻¹) }
 
 Predicate logic (unfolded):
 
   def divisionRingFirstOrderModel (R : Type u)
-    [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] :
-    LRA.ModelTheory.FirstOrder.Model DivisionRingFirstOrderSignature :=
-  BuildDivisionRingModel
-    { carrier := R, zero := 0, one := 1, add := (· + ·),
-      neg := (- ·), multiply := (· * ·), inv := (·⁻¹) } (source fallback; no compiled unfold data available)
+      [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] :
+      LRA.ModelTheory.FirstOrder.Model DivisionRingFirstOrderSignature :=
+    BuildDivisionRingModel
+      { carrier := R, zero := 0, one := 1, add := (· + ·),
+        neg := (- ·), multiply := (· * ·), inv := (·⁻¹) } (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

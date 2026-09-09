@@ -15,11 +15,17 @@ variable (inclusion : LRA.Function Subdomain Domain)
 
 Predicate logic:
 
-  RestrictsTo (Restriction original inclusion) original inclusion
+  ∀ {Subdomain : Type u} {Domain : Type v} {Codomain : Type w} (original : LRA.Function Domain Codomain) (inclusion : LRA.Function Subdomain Domain), (original.Restriction inclusion).RestrictsTo original inclusion
 
 Predicate logic (unfolded):
 
-  ∀ {Subdomain : Type u} {Domain : Type v} {Codomain : Type w} (original : Domain → Codomain) (inclusion : Subdomain → Domain) (input : Subdomain), original (inclusion input) = original (inclusion input)
+  Ambient
+    (Subdomain, Domain, Codomain)
+  Objects
+    original : LRA.Function Domain Codomain
+    inclusion : LRA.Function Subdomain Domain
+  Prove
+    original (inclusion input) = original (inclusion input)
 
 Logical form (Lean):
 
@@ -55,11 +61,17 @@ theorem RestrictionRestrictsTo :
 
 Predicate logic:
 
-  Restriction original inclusion = Compose original inclusion
+  ∀ {Subdomain : Type u} {Domain : Type v} {Codomain : Type w} (original : LRA.Function Domain Codomain) (inclusion : LRA.Function Subdomain Domain), original.Restriction inclusion = original.Compose inclusion
 
 Predicate logic (unfolded):
 
-  ∀ {Subdomain : Type u} {Domain : Type v} {Codomain : Type w} (original : Domain → Codomain) (inclusion : Subdomain → Domain), fun input => original (inclusion input) = funinput => original (inclusion input)
+  Ambient
+    (Subdomain, Domain, Codomain)
+  Objects
+    original : LRA.Function Domain Codomain
+    inclusion : LRA.Function Subdomain Domain
+  Prove
+    fun input => original (inclusion input) = funinput => original (inclusion input)
 
 Logical form (Lean):
 
@@ -95,11 +107,19 @@ theorem RestrictionEqualsCompose :
 
 Predicate logic:
 
-  Injective (Restriction original inclusion)
+  ∀ {Subdomain : Type u} {Domain : Type v} {Codomain : Type w} (original : LRA.Function Domain Codomain) (inclusion : LRA.Function Subdomain Domain), (original.Injective ∧ inclusion.Injective) → (original.Restriction inclusion).Injective
 
 Predicate logic (unfolded):
 
-  ∀ {Subdomain : Type u} {Domain : Type v} {Codomain : Type w} (original : Domain → Codomain) (inclusion : Subdomain → Domain), (∀ (y : Codomain) (x₁ x₂ : Domain), original x₁ = y → original x₂ = y → x₁ = x₂ ∧ ∀ (y : Domain) (x₁ x₂ : Subdomain), inclusion x₁ = y → inclusion x₂ = y → x₁ = x₂) → ∀ (y : Codomain) (x₁ x₂ : Subdomain), (original (inclusion x₁) = y ∧ original (inclusion x₂) = y) → x₁ = x₂
+  Ambient
+    (Subdomain, Domain, Codomain)
+  Objects
+    original : LRA.Function Domain Codomain
+    inclusion : LRA.Function Subdomain Domain
+    originalInjective : Injective original
+    inclusionInjective : Injective inclusion
+  Prove
+    ((∀ (y : Codomain) (x₁ x₂ : Domain), original x₁ = y → original x₂ = y → x₁ = x₂) ∧ (∀ (y : Domain) (x₁ x₂ : Subdomain), inclusion x₁ = y → inclusion x₂ = y → x₁ = x₂)) → ∀ (y : Codomain) (x₁ x₂ : Subdomain), (original (inclusion x₁) = y ∧ original (inclusion x₂) = y) → x₁ = x₂
 
 Logical form (Lean):
 
@@ -139,11 +159,19 @@ theorem RestrictionInjective
 
 Predicate logic:
 
-  Surjective (Restriction original inclusion)
+  ∀ {Subdomain : Type u} {Domain : Type v} {Codomain : Type w} (original : LRA.Function Domain Codomain) (inclusion : LRA.Function Subdomain Domain), (original.Surjective ∧ inclusion.Surjective) → (original.Restriction inclusion).Surjective
 
 Predicate logic (unfolded):
 
-  ∀ {Subdomain : Type u} {Domain : Type v} {Codomain : Type w} (original : Domain → Codomain) (inclusion : Subdomain → Domain), (∀ (y : Codomain), Exists fun x => original x = y ∧ ∀ (y : Domain), Exists fun x => inclusion x = y) → ∀ (y : Codomain), Exists fun x => original (inclusion x) = y
+  Ambient
+    (Subdomain, Domain, Codomain)
+  Objects
+    original : LRA.Function Domain Codomain
+    inclusion : LRA.Function Subdomain Domain
+    originalSurjective : Surjective original
+    inclusionSurjective : Surjective inclusion
+  Prove
+    ((∀ (y : Codomain), Exists fun x => original x = y) ∧ (∀ (y : Domain), Exists fun x => inclusion x = y)) → ∀ (y : Codomain), Exists fun x => original (inclusion x) = y
 
 Logical form (Lean):
 

@@ -15,23 +15,23 @@ open LRA.NumberSystems.PeanoSystem.Interface.Signature
 Predicate logic:
 
   structure PeanoSignature where
-  carrier : Type u
-  one : LRA.Operation.NullaryOperation carrier
-  successor : LRA.Operation.UnaryOperation carrier
+    carrier : Type u
+    one : LRA.Operation.NullaryOperation carrier
+    successor : LRA.Operation.UnaryOperation carrier
 
 Predicate logic (unfolded):
 
   structure PeanoSignature where
-  carrier : Type u
-  one : LRA.Operation.NullaryOperation carrier
-  successor : LRA.Operation.UnaryOperation carrier (source fallback; no compiled unfold data available)
+    carrier : Type u
+    one : LRA.Operation.NullaryOperation carrier
+    successor : LRA.Operation.UnaryOperation carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
 structure PeanoSignature where
   carrier : Type u
-  base : LRA.Operation.NullaryOperation carrier
+  one : LRA.Operation.NullaryOperation carrier
   successor : LRA.Operation.UnaryOperation carrier
 ```
 
@@ -65,12 +65,12 @@ structure PeanoSignature where
 Predicate logic:
 
   abbrev PeanoLStructure :=
-  LRA.ModelTheory.FirstOrder.Model PeanoFirstOrderSignature
+    LRA.ModelTheory.FirstOrder.Model PeanoFirstOrderSignature
 
 Predicate logic (unfolded):
 
   abbrev PeanoLStructure :=
-  LRA.ModelTheory.FirstOrder.Model PeanoFirstOrderSignature (source fallback; no compiled unfold data available)
+    LRA.ModelTheory.FirstOrder.Model PeanoFirstOrderSignature (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -107,28 +107,28 @@ abbrev PeanoLStructure :=
 Predicate logic:
 
   def BuildPeanoLStructure
-    (signature : PeanoSignature) :
-    PeanoLStructure where
-  Domain := signature.carrier
-  domainNonempty := ⟨signature.base⟩
-  interpretFunction
-    | .successor, args => signature.successor (args ⟨0, by decide⟩)
-  interpretRelation := fun RelationSymbol => nomatch RelationSymbol
-  interpretConstant
-    | .base => signature.base
+      (signature : PeanoSignature) :
+      PeanoLStructure where
+    Domain := signature.carrier
+    domainNonempty := ⟨signature.one⟩
+    interpretFunction
+      | .successor, args => signature.successor (args ⟨0, by decide⟩)
+    interpretRelation := fun RelationSymbol => nomatch RelationSymbol
+    interpretConstant
+      | .one => signature.one
 
 Predicate logic (unfolded):
 
   def BuildPeanoLStructure
-    (signature : PeanoSignature) :
-    PeanoLStructure where
-  Domain := signature.carrier
-  domainNonempty := ⟨signature.one⟩
-  interpretFunction
-    | .successor, args => signature.successor (args ⟨0, by decide⟩)
-  interpretRelation := fun RelationSymbol => nomatch RelationSymbol
-  interpretConstant
-    | .one => signature.one (source fallback; no compiled unfold data available)
+      (signature : PeanoSignature) :
+      PeanoLStructure where
+    Domain := signature.carrier
+    domainNonempty := ⟨signature.one⟩
+    interpretFunction
+      | .successor, args => signature.successor (args ⟨0, by decide⟩)
+    interpretRelation := fun RelationSymbol => nomatch RelationSymbol
+    interpretConstant
+      | .one => signature.one (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -219,16 +219,16 @@ abbrev BuildPeanoModel := BuildPeanoLStructure
 Predicate logic:
 
   def peanoFirstOrderModel (R : Type u) [OfNat R 1]
-    [LRA.AlgebraicStructures.HasSuccessor R] :
-    PeanoLStructure :=
-  BuildPeanoLStructure { carrier := R, one := 1, successor := LRA.AlgebraicStructures.Succ }
+      [LRA.AlgebraicStructures.HasSuccessor R] :
+      PeanoLStructure :=
+    BuildPeanoLStructure { carrier := R, one := 1, successor := LRA.AlgebraicStructures.Succ }
 
 Predicate logic (unfolded):
 
   def peanoFirstOrderModel (R : Type u) [OfNat R 1]
-    [LRA.AlgebraicStructures.HasSuccessor R] :
-    PeanoLStructure :=
-  BuildPeanoLStructure { carrier := R, one := 1, successor := LRA.AlgebraicStructures.Succ } (source fallback; no compiled unfold data available)
+      [LRA.AlgebraicStructures.HasSuccessor R] :
+      PeanoLStructure :=
+    BuildPeanoLStructure { carrier := R, one := 1, successor := LRA.AlgebraicStructures.Succ } (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

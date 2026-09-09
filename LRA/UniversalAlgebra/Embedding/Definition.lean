@@ -14,26 +14,26 @@ universe u v
 Predicate logic:
 
   structure Embedding {S : Signature}
-    (M : Model.{u} S) (N : Model.{v} S) extends Homomorphism M N where
-  injective :
-    ∀ first second : M.Domain, map first = map second → first = second
-  reflectsRelation :
-    ∀ (relationSymbol : S.RelationSymbol)
-      (arguments : Fin (S.relationArity relationSymbol) → M.Domain),
-      N.interpretRelation relationSymbol (fun i => map (arguments i)) →
-        M.interpretRelation relationSymbol arguments
+      (M : Model.{u} S) (N : Model.{v} S) extends Homomorphism M N where
+    injective :
+      ∀ first second : M.Domain, map first = map second → first = second
+    reflectsRelation :
+      ∀ (relationSymbol : S.RelationSymbol)
+        (arguments : Fin (S.relationArity relationSymbol) → M.Domain),
+        N.interpretRelation relationSymbol (fun i => map (arguments i)) →
+          M.interpretRelation relationSymbol arguments
 
 Predicate logic (unfolded):
 
   structure Embedding {S : Signature}
-    (M : Model.{u} S) (N : Model.{v} S) extends Homomorphism M N where
-  injective :
-    ∀ first second : M.Domain, map first = map second → first = second
-  reflectsRelation :
-    ∀ (relationSymbol : S.RelationSymbol)
-      (arguments : Fin (S.relationArity relationSymbol) → M.Domain),
-      N.interpretRelation relationSymbol (fun i => map (arguments i)) →
-        M.interpretRelation relationSymbol arguments (source fallback; no compiled unfold data available)
+      (M : Model.{u} S) (N : Model.{v} S) extends Homomorphism M N where
+    injective :
+      ∀ first second : M.Domain, map first = map second → first = second
+    reflectsRelation :
+      ∀ (relationSymbol : S.RelationSymbol)
+        (arguments : Fin (S.relationArity relationSymbol) → M.Domain),
+        N.interpretRelation relationSymbol (fun i => map (arguments i)) →
+          M.interpretRelation relationSymbol arguments (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -84,16 +84,16 @@ structure Embedding {S : Signature}
 Predicate logic:
 
   def Embedding.id {S : Signature} (M : Model.{u} S) : Embedding M M where
-  toHomomorphism := Homomorphism.id M
-  injective := fun _ _ equality => equality
-  reflectsRelation := fun _ _ holds => holds
+    toHomomorphism := Homomorphism.id M
+    injective := fun _ _ equality => equality
+    reflectsRelation := fun _ _ holds => holds
 
 Predicate logic (unfolded):
 
   def Embedding.id {S : Signature} (M : Model.{u} S) : Embedding M M where
-  toHomomorphism := Homomorphism.id M
-  injective := fun _ _ equality => equality
-  reflectsRelation := fun _ _ holds => holds (source fallback; no compiled unfold data available)
+    toHomomorphism := Homomorphism.id M
+    injective := fun _ _ equality => equality
+    reflectsRelation := fun _ _ holds => holds (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

@@ -10,11 +10,16 @@ variable (F : Type*)
 
 Predicate logic:
 
-  ∀ (F : Type u_1) [inst : Preorder F] (a b : Nat → F), (Monotone a ∧ (Antitone b ∧ ∀ (n : Nat), inst.le (a n) (b n))) → Exists fun x => ∀ (n : Nat), (inst.le (a n) x ∧ inst.le x (b n))
+  ∀ (F : Type u_1) [inst : Preorder F] (a b : Nat → F), (Monotone a ∧ (Antitone b ∧ (∀ (n : Nat), inst.le (a n) (b n)))) → Exists fun x => ∀ (n : Nat), (inst.le (a n) x ∧ inst.le x (b n))
 
 Predicate logic (unfolded):
 
-  ∀ (F : Type u_1) [inst : Preorder F] (a b : Nat → F), (∀ ⦃a_1 b : Nat⦄, Nat.instPreorder.toLE.1 a_1 b → inst.toLE.1 (a a_1) (a b) ∧ (∀ ⦃a b_1 : Nat⦄, Nat.instPreorder.toLE.1 a b_1 → inst.toLE.1 (b b_1) (b a) ∧ ∀ (n : Nat), inst.toLE.1 (a n) (b n))) → Exists fun x => ∀ (n : Nat), (inst.toLE.1 (a n) x ∧ inst.toLE.1 x (b n))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ ⦃a_1 b : Nat⦄, Nat.instPreorder.1.le a_1 b → inst.1.le (a a_1) (a b)) ∧ ((∀ ⦃a b_1 : Nat⦄, Nat.instPreorder.1.le a b_1 → inst.1.le (b b_1) (b a)) ∧ (∀ (n : Nat), inst.1.le (a n) (b n)))) → Exists fun x => ∀ (n : Nat), (inst.1.le (a n) x ∧ inst.1.le x (b n))
 
 Logical form (Lean):
 
@@ -54,11 +59,16 @@ variable (a b : ℕ → ℝ)
 
 Predicate logic:
 
-  ∀ (a b : Nat → Real), (∀ (n : Nat), Real.instLE.le (a n) (b n) ∧ ∀ (n : Nat), Set.instLE.le (Set.Icc (a (instHAdd.hAdd n 1)) (b (instHAdd.hAdd n 1))) (Set.Icc (a n) (b n)))
+  ∀ (a b : Nat → Real), ((∀ (n : Nat), Real.instLE.le (a n) (b n)) ∧ (∀ (n : Nat), Set.instLE.le (Set.Icc (a (instHAdd.hAdd n 1)) (b (instHAdd.hAdd n 1))) (Set.Icc (a n) (b n))))
 
 Predicate logic (unfolded):
 
-  ∀ (a b : Nat → Real), (∀ (n : Nat), Real.instLE.1 (a n) (b n) ∧ ∀ (n : Nat), Set.instLE.1 (fun x => (Real.instPreorder.toLE.1 (a (instHAdd.1 n (instOfNatNat 1).1)) x ∧ Real.instPreorder.toLE.1 x (b (instHAdd.1 n (instOfNatNat 1).1)))) fun x => (Real.instPreorder.toLE.1 (a n) x ∧ Real.instPreorder.toLE.1 x (b n)))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (n : Nat), Real.instLE.le (a n) (b n)) ∧ (∀ (n : Nat), { le := fun s₁ s₂ => ∀ ⦃a : Real⦄, a ∈ s₁ → a ∈ s₂}.le (fun x => (Real.instPreorder.1.le (a ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1)) x ∧ Real.instPreorder.1.le x (b ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1)))) fun x => (Real.instPreorder.1.le (a n) x ∧ Real.instPreorder.1.le x (b n))))
 
 Logical form (Lean):
 

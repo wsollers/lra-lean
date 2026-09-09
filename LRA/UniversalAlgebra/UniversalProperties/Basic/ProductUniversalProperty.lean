@@ -8,42 +8,42 @@ universe u v
 Predicate logic:
 
   structure ProductUniversalProperty
-    (Object : Type u)
-    (Arrow : Object -> Object -> Type v)
-    (leftObject rightObject productObject : Object) where
-  LeftProjection : Arrow productObject leftObject
-  RightProjection : Arrow productObject rightObject
-  ExistsMediator :
-    forall sourceObject,
-      Arrow sourceObject leftObject ->
-      Arrow sourceObject rightObject ->
-        Nonempty (Arrow sourceObject productObject)
-  UniqueMediator :
-    forall sourceObject
-      (_leftMap : Arrow sourceObject leftObject)
-      (_rightMap : Arrow sourceObject rightObject)
-      (firstMediator secondMediator : Arrow sourceObject productObject),
-        firstMediator = secondMediator
+      (Object : Type u)
+      (Arrow : Object -> Object -> Type v)
+      (leftObject rightObject productObject : Object) where
+    LeftProjection : Arrow productObject leftObject
+    RightProjection : Arrow productObject rightObject
+    ExistsMediator :
+      forall sourceObject,
+        Arrow sourceObject leftObject ->
+        Arrow sourceObject rightObject ->
+          Nonempty (Arrow sourceObject productObject)
+    UniqueMediator :
+      forall sourceObject
+        (_leftMap : Arrow sourceObject leftObject)
+        (_rightMap : Arrow sourceObject rightObject)
+        (firstMediator secondMediator : Arrow sourceObject productObject),
+          firstMediator = secondMediator
 
 Predicate logic (unfolded):
 
   structure ProductUniversalProperty
-    (Object : Type u)
-    (Arrow : Object -> Object -> Type v)
-    (leftObject rightObject productObject : Object) where
-  LeftProjection : Arrow productObject leftObject
-  RightProjection : Arrow productObject rightObject
-  ExistsMediator :
-    forall sourceObject,
-      Arrow sourceObject leftObject ->
-      Arrow sourceObject rightObject ->
-        Nonempty (Arrow sourceObject productObject)
-  UniqueMediator :
-    forall sourceObject
-      (_leftMap : Arrow sourceObject leftObject)
-      (_rightMap : Arrow sourceObject rightObject)
-      (firstMediator secondMediator : Arrow sourceObject productObject),
-        firstMediator = secondMediator (source fallback; no compiled unfold data available)
+      (Object : Type u)
+      (Arrow : Object -> Object -> Type v)
+      (leftObject rightObject productObject : Object) where
+    LeftProjection : Arrow productObject leftObject
+    RightProjection : Arrow productObject rightObject
+    ExistsMediator :
+      forall sourceObject,
+        Arrow sourceObject leftObject ->
+        Arrow sourceObject rightObject ->
+          Nonempty (Arrow sourceObject productObject)
+    UniqueMediator :
+      forall sourceObject
+        (_leftMap : Arrow sourceObject leftObject)
+        (_rightMap : Arrow sourceObject rightObject)
+        (firstMediator secondMediator : Arrow sourceObject productObject),
+          firstMediator = secondMediator (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

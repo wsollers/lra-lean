@@ -10,12 +10,12 @@ namespace LRA.Set.Constructions.TGSet
 Predicate logic:
 
   noncomputable def SingletonSet (element : Set) : Set :=
-  PairSet element element
+    PairSet element element
 
 Predicate logic (unfolded):
 
   noncomputable def SingletonSet (element : Set) : Set :=
-  PairSet element element (source fallback; no compiled unfold data available)
+    PairSet element element (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -52,12 +52,12 @@ noncomputable def SingletonSet (element : Set) : Set :=
 Predicate logic:
 
   noncomputable def KuratowskiPair (first second : Set) : Set :=
-  PairSet (SingletonSet first) (PairSet first second)
+    PairSet (SingletonSet first) (PairSet first second)
 
 Predicate logic (unfolded):
 
   noncomputable def KuratowskiPair (first second : Set) : Set :=
-  PairSet (SingletonSet first) (PairSet first second) (source fallback; no compiled unfold data available)
+    PairSet (SingletonSet first) (PairSet first second) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -93,11 +93,16 @@ noncomputable def KuratowskiPair (first second : Set) : Set :=
 
 Predicate logic:
 
-  (∀ element candidate ∈ Set), candidate ∈ SingletonSet element <-> candidate = element
+  ∀ (element candidate : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem (LRA.Set.Constructions.TGSet.SingletonSet element) candidate ↔ candidate = element
 
 Predicate logic (unfolded):
 
-  ∀ (element candidate : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 (Classical.indefiniteDescription (LRA.Set.Constructions.TGSet.IsPairSet element element) ⋯).1 candidate ↔ candidate = element
+  Ambient
+    (implicit ambient)
+  Objects
+    element candidate : Set
+  Prove
+    LRA.Set.Constructions.instMembershipTGSet.mem (LRA.Set.Constructions.TGSet.SingletonSet element) candidate ↔ candidate = element
 
 Logical form (Lean):
 
@@ -134,11 +139,16 @@ theorem MemberOfSingletonSet (element candidate : Set) :
 
 Predicate logic:
 
-  (∀ firstLeft secondLeft firstRight secondRight ∈ Set), KuratowskiPair firstLeft firstRight = KuratowskiPair secondLeft secondRight <-> firstLeft = secondLeft ∧ firstRight = secondRight
+  ∀ (firstLeft secondLeft firstRight secondRight : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGSet.KuratowskiPair firstLeft firstRight = LRA.Set.Constructions.TGSet.KuratowskiPair secondLeft secondRight ↔ (firstLeft = secondLeft ∧ firstRight = secondRight)
 
 Predicate logic (unfolded):
 
-  ∀ (firstLeft secondLeft firstRight secondRight : LRA.Set.Constructions.TGSet.Set), Classical.indefiniteDescription (LRA.Set.Constructions.TGSet.IsPairSet (LRA.Set.Constructions.TGSet.SingletonSet firstLeft) (LRA.Set.Constructions.TGSet.PairSet firstLeft firstRight)) ⋯ = .1 (Classical.indefiniteDescription (LRA.Set.Constructions.TGSet.IsPairSet (LRA.Set.Constructions.TGSet.SingletonSet secondLeft) (LRA.Set.Constructions.TGSet.PairSet secondLeft secondRight)) ⋯).1 ↔ (firstLeft = secondLeft ∧ firstRight = secondRight)
+  Ambient
+    (implicit ambient)
+  Objects
+    firstLeft secondLeft firstRight secondRight : Set
+  Prove
+    LRA.Set.Constructions.TGSet.KuratowskiPair firstLeft firstRight = LRA.Set.Constructions.TGSet.KuratowskiPair secondLeft secondRight ↔ (firstLeft = secondLeft ∧ firstRight = secondRight)
 
 Logical form (Lean):
 

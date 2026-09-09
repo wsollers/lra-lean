@@ -8,16 +8,16 @@ universe u
 Predicate logic:
 
   class SubsetLaws (α : Type u) [HasSubset α] : Prop where
-  SubsetReflexive : ∀ A : α, A ⊆ A
-  SubsetTransitive : ∀ A B C : α, A ⊆ B → B ⊆ C → A ⊆ C
-  SetEqualityIffMutualSubset : ∀ A B : α, A = B ↔ A ⊆ B ∧ B ⊆ A
+    SubsetReflexive : ∀ A : α, A ⊆ A
+    SubsetTransitive : ∀ A B C : α, A ⊆ B → B ⊆ C → A ⊆ C
+    SetEqualityIffMutualSubset : ∀ A B : α, A = B ↔ A ⊆ B ∧ B ⊆ A
 
 Predicate logic (unfolded):
 
   class SubsetLaws (α : Type u) [HasSubset α] : Prop where
-  SubsetReflexive : ∀ A : α, A ⊆ A
-  SubsetTransitive : ∀ A B C : α, A ⊆ B → B ⊆ C → A ⊆ C
-  SetEqualityIffMutualSubset : ∀ A B : α, A = B ↔ A ⊆ B ∧ B ⊆ A (source fallback; no compiled unfold data available)
+    SubsetReflexive : ∀ A : α, A ⊆ A
+    SubsetTransitive : ∀ A B C : α, A ⊆ B → B ⊆ C → A ⊆ C
+    SetEqualityIffMutualSubset : ∀ A B : α, A = B ↔ A ⊆ B ∧ B ⊆ A (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -59,11 +59,16 @@ variable {α : Type u} [HasSubset α] [SubsetLaws α]
 
 Predicate logic:
 
-  ∀ A : α, A ⊆ A
+  ∀ {α : Type u} [inst : HasSubset α], LRA.Set.SubsetLaws α → ∀ (A : α), inst.Subset A A
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : HasSubset α], LRA.Set.SubsetLaws α → ∀ (A : α), inst.1 A A
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.SubsetLaws α → ∀ (A : α), inst.1 A A
 
 Logical form (Lean):
 
@@ -101,11 +106,16 @@ theorem SubsetReflexive : ∀ A : α, A ⊆ A := by
 
 Predicate logic:
 
-  ∀ A B C : α, A ⊆ B → B ⊆ C → A ⊆ C
+  ∀ {α : Type u} [inst : HasSubset α], LRA.Set.SubsetLaws α → ∀ (A B C : α), (inst.Subset A B ∧ inst.Subset B C) → inst.Subset A C
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : HasSubset α], LRA.Set.SubsetLaws α → ∀ (A B C : α), (inst.1 A B ∧ inst.1 B C) → inst.1 A C
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.SubsetLaws α → ∀ (A B C : α), (inst.1 A B ∧ inst.1 B C) → inst.1 A C
 
 Logical form (Lean):
 
@@ -140,11 +150,16 @@ theorem SubsetTransitive : ∀ A B C : α, A ⊆ B → B ⊆ C → A ⊆ C :=
 
 Predicate logic:
 
-  ∀ A B : α, A = B ↔ A ⊆ B ∧ B ⊆ A
+  ∀ {α : Type u} [inst : HasSubset α], LRA.Set.SubsetLaws α → ∀ (A B : α), A = B ↔ (inst.Subset A B ∧ inst.Subset B A)
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : HasSubset α], LRA.Set.SubsetLaws α → ∀ (A B : α), A = B ↔ (inst.1 A B ∧ inst.1 B A)
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.SubsetLaws α → ∀ (A B : α), A = B ↔ (inst.Subset A B ∧ inst.Subset B A)
 
 Logical form (Lean):
 

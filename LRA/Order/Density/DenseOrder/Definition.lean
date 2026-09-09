@@ -14,7 +14,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {alpha : Type u} (relation : alpha → alpha → Prop), ((∀ (x : alpha), relation x x → False ∧ ∀ (x y z : alpha), relation x y → relation y z → relation x z) ∧ ∀ (x y : alpha), relation x y → Exists fun z => (relation x z ∧ relation z y))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : alpha), relation x x → False) ∧ (∀ (x y z : alpha), relation x y → relation y z → relation x z)) ∧ (∀ (x y : alpha), relation x y → Exists fun z => (relation x z ∧ relation z y)))
 
 Logical form (Lean):
 
@@ -53,14 +58,14 @@ def DenseOrder {alpha : Type u}
 Predicate logic:
 
   class DenseOrderLaw (R : Type u) [LT R] : Prop where
-  ExistsBetween :
-    forall a b : R, a < b -> exists middle : R, a < middle /\ middle < b
+    ExistsBetween :
+      forall a b : R, a < b -> exists middle : R, a < middle /\ middle < b
 
 Predicate logic (unfolded):
 
   class DenseOrderLaw (R : Type u) [LT R] : Prop where
-  ExistsBetween :
-    forall a b : R, a < b -> exists middle : R, a < middle /\ middle < b (source fallback; no compiled unfold data available)
+    ExistsBetween :
+      forall a b : R, a < b -> exists middle : R, a < middle /\ middle < b (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -102,11 +107,16 @@ variable {R : Type u}
 
 Predicate logic:
 
-  forall a b : R, a < b -> exists middle : R, a < middle ∧ middle < b
+  ∀ {R : Type u} [inst : LT R], LRA.Order.DenseOrderLaw R → ∀ (a b : R), inst.lt a b → Exists fun middle => (inst.lt a middle ∧ inst.lt middle b)
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : LT R], LRA.Order.DenseOrderLaw R → ∀ (a b : R), inst.1 a b → Exists fun middle => (inst.1 a middle ∧ inst.1 middle b)
+  Ambient
+    (R, <)
+  Objects
+    (none)
+  Prove
+    LRA.Order.DenseOrderLaw R → ∀ (a b : R), inst.lt a b → Exists fun middle => (inst.lt a middle ∧ inst.lt middle b)
 
 Logical form (Lean):
 

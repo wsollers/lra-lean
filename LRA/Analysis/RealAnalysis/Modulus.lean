@@ -48,11 +48,16 @@ noncomputable def AbsR (a : ℝ) : ℝ := if a ≥ 0 then a else -a
 
 Predicate logic:
 
-  AbsR a ≥ 0
+  ∀ (a : Real), GE.ge (LRA.Analysis.RealAnalysis.AbsR a) 0
 
 Predicate logic (unfolded):
 
-  ∀ (a : Real), Real.instLE.1 Zero.toOfNat0.1 (Decidable.rec (fun h => (fun x => Real.instNeg.1 a) h) (fun h => (fun x => a) h) inferInstance)
+  Ambient
+    (ℝ)
+  Objects
+    a : ℝ
+  Prove
+    Real.instLE.le 0 (Decidable.rec (fun h => (fun x => Real.instNeg.neg a) h) (fun h => (fun x => a) h) (Real.linearOrder.toDecidableLE 0 a))
 
 Logical form (Lean):
 
@@ -86,11 +91,16 @@ theorem AbsoluteValueNonneg (a : ℝ) : AbsR a ≥ 0 := by
 
 Predicate logic:
 
-  AbsR a = 0 ↔ a = 0
+  ∀ (a : Real), LRA.Analysis.RealAnalysis.AbsR a = 0 ↔ a = 0
 
 Predicate logic (unfolded):
 
-  ∀ (a : Real), Decidable.rec (fun h => (fun x => Real.instNeg.1 a) h) (fun h => (fun x => a) h) (Real.linearOrder.6 0 a) = Zero.toOfNat0.1 ↔ a = Zero.toOfNat0.1
+  Ambient
+    (ℝ)
+  Objects
+    a : ℝ
+  Prove
+    LRA.Analysis.RealAnalysis.AbsR a = 0 ↔ a = 0
 
 Logical form (Lean):
 
@@ -124,11 +134,16 @@ theorem AbsoluteValueZeroIffZero (a : ℝ) : AbsR a = 0 ↔ a = 0 := by
 
 Predicate logic:
 
-  AbsR a = a ∨ AbsR a = -a
+  ∀ (a : Real), Or (LRA.Analysis.RealAnalysis.AbsR a = a)(LRA.Analysis.RealAnalysis.AbsR a = Real.instNeg.neg a)
 
 Predicate logic (unfolded):
 
-  ∀ (a : Real), Or (Decidable.rec (fun h => (fun x => Real.instNeg.1 a) h) (fun h => (fun x => a) h) (Real.linearOrder.6 0 a) = a) (Decidable.rec (fun h => (fun x => Real.instNeg.1 a) h) (fun h => (fun x => a) h) (Real.linearOrder.6 0 a) = Real.instNeg.1 a)
+  Ambient
+    (ℝ)
+  Objects
+    a : ℝ
+  Prove
+    Or (Decidable.rec (fun h => (fun x => Real.instNeg.neg a) h) (fun h => (fun x => a) h) (Real.linearOrder.6 0 a) = a) (Decidable.rec (fun h => (fun x => Real.instNeg.neg a) h) (fun h => (fun x => a) h) (Real.linearOrder.6 0 a) = Real.instNeg.neg a)
 
 Logical form (Lean):
 
@@ -162,11 +177,16 @@ theorem AbsoluteValueSelfOrNeg (a : ℝ) : AbsR a = a ∨ AbsR a = -a := by
 
 Predicate logic:
 
-  AbsR (-a) = AbsR a
+  ∀ (a : Real), LRA.Analysis.RealAnalysis.AbsR (Real.instNeg.neg a) = LRA.Analysis.RealAnalysis.AbsR a
 
 Predicate logic (unfolded):
 
-  ∀ (a : Real), Decidable.rec (fun h => (fun x => Real.instNeg.1 (Real.instNeg.1 a)) h) (fun h => (fun x => Real.instNeg.1 a) h) (Real.linearOrder.6 0 (Real.instNeg.neg a)) = Decidable.rec (fun h => (fun x => Real.instNeg.1 a) h) (fun h => (fun x => a) h) (Real.linearOrder.6 0 a)
+  Ambient
+    (ℝ)
+  Objects
+    a : ℝ
+  Prove
+    Decidable.rec (fun h => (fun x => Real.instNeg.neg (Real.instNeg.neg a)) h) (fun h => (fun x => Real.instNeg.neg a) h) (Real.linearOrder.6 0 (Real.instNeg.neg a)) = Decidable.rec (fun h => (fun x => Real.instNeg.neg a) h) (fun h => (fun x => a) h) (Real.linearOrder.6 0 a)
 
 Logical form (Lean):
 
@@ -200,11 +220,16 @@ theorem AbsoluteValueSymmetric (a : ℝ) : AbsR (-a) = AbsR a := by
 
 Predicate logic:
 
-  AbsR (a * b) = AbsR a * AbsR b
+  ∀ (a b : Real), LRA.Analysis.RealAnalysis.AbsR (instHMul.hMul a b) = instHMul.hMul (LRA.Analysis.RealAnalysis.AbsR a) (LRA.Analysis.RealAnalysis.AbsR b)
 
 Predicate logic (unfolded):
 
-  ∀ (a b : Real), Decidable.rec (fun h => (fun x => Real.instNeg.1 (instHMul.1 a b)) h) (fun h => (fun x => instHMul.1 a b) h) (Real.linearOrder.6 0 (instHMul.hMul a b)) = instHMul.1 (Decidable.rec (fun h => (fun x => Real.instNeg.1 a) h) (fun h => (fun x => a) h) (Real.linearOrder.toDecidableLE 0 a)) (Decidable.rec (fun h => (fun x => Real.instNeg.1 b) h) (fun h => (fun x => b) h) (Real.linearOrder.toDecidableLE 0 b))
+  Ambient
+    (ℝ)
+  Objects
+    a b : ℝ
+  Prove
+    Decidable.rec (fun h => (fun x => Real.instNeg.neg ({ hMul := fun a b => Real.instMul.mul a b }.hMul a b)) h) (fun h => (fun x => { hMul := fun a b => Real.instMul.mul a b }.hMul a b) h) (Real.linearOrder.6 0 (instHMul.hMul a b)) = { hMul := fun a b => Real.instMul.mul a b }.hMul (Decidable.rec (fun h => (fun x => Real.instNeg.neg a) h) (fun h => (fun x => a) h) (Real.linearOrder.6 0 a)) (Decidable.rec (fun h => (fun x => Real.instNeg.neg b) h) (fun h => (fun x => b) h) (Real.linearOrder.6 0 b))
 
 Logical form (Lean):
 
@@ -238,11 +263,17 @@ theorem AbsoluteValueProduct (a b : ℝ) : AbsR (a * b) = AbsR a * AbsR b := by
 
 Predicate logic:
 
-  AbsR (a / b) = AbsR a / AbsR b
+  ∀ (a b : Real), Ne b 0 → LRA.Analysis.RealAnalysis.AbsR (instHDiv.hDiv a b) = instHDiv.hDiv (LRA.Analysis.RealAnalysis.AbsR a) (LRA.Analysis.RealAnalysis.AbsR b)
 
 Predicate logic (unfolded):
 
-  ∀ (a b : Real), (b = Zero.toOfNat0.1 → False) → Decidable.rec (fun h => (fun x => Real.instNeg.1 (instHDiv.1 a b)) h) (fun h => (fun x => instHDiv.1 a b) h) (Real.linearOrder.6 0 (instHDiv.hDiv a b)) = instHDiv.1 (Decidable.rec (fun h => (fun x => Real.instNeg.1 a) h) (fun h => (fun x => a) h) (Real.linearOrder.toDecidableLE 0 a)) (Decidable.rec (fun h => (fun x => Real.instNeg.1 b) h) (fun h => (fun x => b) h) (Real.linearOrder.toDecidableLE 0 b))
+  Ambient
+    (ℝ)
+  Objects
+    a b : ℝ
+    hb : b ≠ 0
+  Prove
+    (b = 0 → False) → Decidable.rec (fun h => (fun x => Real.instNeg.neg ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv a b)) h) (fun h => (fun x => { hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv a b) h) (Real.linearOrder.6 0 (instHDiv.hDiv a b)) = { hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv (Decidable.rec (fun h => (fun x => Real.instNeg.neg a) h) (fun h => (fun x => a) h) (Real.linearOrder.6 0 a)) (Decidable.rec (fun h => (fun x => Real.instNeg.neg b) h) (fun h => (fun x => b) h) (Real.linearOrder.6 0 b))
 
 Logical form (Lean):
 
@@ -278,11 +309,16 @@ theorem AbsoluteValueQuotient (a b : ℝ) (hb : b ≠ 0) :
 
 Predicate logic:
 
-  -AbsR a ≤ a ∧ a ≤ AbsR a
+  ∀ (a : Real), (Real.instLE.le (Real.instNeg.neg (LRA.Analysis.RealAnalysis.AbsR a)) a ∧ Real.instLE.le a (LRA.Analysis.RealAnalysis.AbsR a))
 
 Predicate logic (unfolded):
 
-  ∀ (a : Real), (Real.instLE.1 (Real.instNeg.1 (Decidable.rec (fun h => (fun x => Real.instNeg.1 a) h) (fun h => (fun x => a) h) inferInstance)) a ∧ Real.instLE.1 a (Decidable.rec (fun h => (fun x => Real.instNeg.1 a) h) (fun h => (fun x => a) h) (Real.linearOrder.toDecidableLE 0 a)))
+  Ambient
+    (ℝ)
+  Objects
+    a : ℝ
+  Prove
+    (Real.instLE.le (Real.instNeg.neg (Decidable.rec (fun h => (fun x => Real.instNeg.neg a) h) (fun h => (fun x => a) h) (Real.linearOrder.6 0 a))) a ∧ Real.instLE.le a (Decidable.rec (fun h => (fun x => Real.instNeg.neg a) h) (fun h => (fun x => a) h) (Real.linearOrder.6 0 a)))
 
 Logical form (Lean):
 
@@ -316,11 +352,17 @@ theorem AbsoluteValueBounds (a : ℝ) : -AbsR a ≤ a ∧ a ≤ AbsR a := by
 
 Predicate logic:
 
-  AbsR a ≤ r ↔ -r ≤ a ∧ a ≤ r
+  ∀ (a r : Real), GE.ge r 0 → Real.instLE.le (LRA.Analysis.RealAnalysis.AbsR a) r ↔ (Real.instLE.le (Real.instNeg.neg r) a ∧ Real.instLE.le a r)
 
 Predicate logic (unfolded):
 
-  ∀ (a r : Real), Real.instLE.1 Zero.toOfNat0.1 r → Real.instLE.1 (Decidable.rec (fun h => (fun x => Real.instNeg.1 a) h) (fun h => (fun x => a) h) (Real.linearOrder.toDecidableLE 0 a)) r ↔ (Real.instLE.1 (Real.instNeg.1 r) a ∧ Real.instLE.1 a r)
+  Ambient
+    (ℝ)
+  Objects
+    a r : ℝ
+    hr : r ≥ 0
+  Prove
+    GE.ge r 0 → Real.instLE.le (LRA.Analysis.RealAnalysis.AbsR a) r ↔ (Real.instLE.le (Real.instNeg.neg r) a ∧ Real.instLE.le a r)
 
 Logical form (Lean):
 
@@ -356,11 +398,17 @@ theorem AbsoluteValueLeIff (a r : ℝ) (hr : r ≥ 0) :
 
 Predicate logic:
 
-  AbsR a < r ↔ -r < a ∧ a < r
+  ∀ (a r : Real), GT.gt r 0 → Real.instLT.lt (LRA.Analysis.RealAnalysis.AbsR a) r ↔ (Real.instLT.lt (Real.instNeg.neg r) a ∧ Real.instLT.lt a r)
 
 Predicate logic (unfolded):
 
-  ∀ (a r : Real), Real.instLT.1 Zero.toOfNat0.1 r → Real.instLT.1 (Decidable.rec (fun h => (fun x => Real.instNeg.1 a) h) (fun h => (fun x => a) h) (Real.linearOrder.toDecidableLE 0 a)) r ↔ (Real.instLT.1 (Real.instNeg.1 r) a ∧ Real.instLT.1 a r)
+  Ambient
+    (ℝ)
+  Objects
+    a r : ℝ
+    hr : r > 0
+  Prove
+    GT.gt r 0 → Real.instLT.lt (LRA.Analysis.RealAnalysis.AbsR a) r ↔ (Real.instLT.lt (Real.instNeg.neg r) a ∧ Real.instLT.lt a r)
 
 Logical form (Lean):
 
@@ -396,11 +444,16 @@ theorem AbsoluteValueLtIff (a r : ℝ) (hr : r > 0) :
 
 Predicate logic:
 
-  AbsR (AbsR a - AbsR b) ≤ AbsR (a - b)
+  ∀ (a b : Real), Real.instLE.le (LRA.Analysis.RealAnalysis.AbsR (instHSub.hSub (LRA.Analysis.RealAnalysis.AbsR a) (LRA.Analysis.RealAnalysis.AbsR b))) (LRA.Analysis.RealAnalysis.AbsR (instHSub.hSub a b))
 
 Predicate logic (unfolded):
 
-  ∀ (a b : Real), Real.instLE.1 (Decidable.rec (fun h => (fun x => Real.instNeg.1 (instHSub.1 (LRA.Analysis.RealAnalysis.AbsR a) (LRA.Analysis.RealAnalysis.AbsR b))) h) (fun h => (fun x => instHSub.1 (ite (GE.ge a 0) a (Real.instNeg.neg a)) (ite (GE.ge b 0) b (Real.instNeg.neg b))) h) (Real.linearOrder.toDecidableLE 0 (instHSub.hSub (LRA.Analysis.RealAnalysis.AbsR a) (LRA.Analysis.RealAnalysis.AbsR b)))) (Decidable.rec (fun h => (fun x => Real.instNeg.1 (instHSub.1 a b)) h) (fun h => (fun x => instHSub.1 a b) h) (Real.linearOrder.toDecidableLE 0 (instHSub.hSub a b)))
+  Ambient
+    (ℝ)
+  Objects
+    a b : ℝ
+  Prove
+    Real.instLE.le (Decidable.rec (fun h => (fun x => Real.instNeg.neg ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Decidable.rec (fun h => (fun x => Real.instNeg.neg a) h) (fun h => (fun x => a) h) (Real.decidableLE 0 a)) (Decidable.rec (fun h => (fun x => Real.instNeg.neg b) h) (fun h => (fun x => b) h) (Real.decidableLE 0 b)))) h) (fun h => (fun x => { hSub := fun a b => Real.instSub.sub a b }.hSub (Decidable.rec (fun h => (fun x => Real.instNeg.neg a) h) (fun h => (fun x => a) h) (Real.decidableLE 0 a)) (Decidable.rec (fun h => (fun x => Real.instNeg.neg b) h) (fun h => (fun x => b) h) (Real.decidableLE 0 b))) h) (Real.linearOrder.6 0 (instHSub.hSub (LRA.Analysis.RealAnalysis.AbsR a) (LRA.Analysis.RealAnalysis.AbsR b)))) (Decidable.rec (fun h => (fun x => Real.instNeg.neg ({ hSub := fun a b => Real.instSub.sub a b }.hSub a b)) h) (fun h => (fun x => { hSub := fun a b => Real.instSub.sub a b }.hSub a b) h) (Real.linearOrder.6 0 (instHSub.hSub a b)))
 
 Logical form (Lean):
 
@@ -436,11 +489,17 @@ theorem ReverseTriangleInequality (a b : ℝ) :
 
 Predicate logic:
 
-  (Fin n → ℝ) → AbsR (Finset.univ.sum a) ≤ Finset.univ.sum (fun i => AbsR (a i))
+  ∀ (n : Nat) (a : Fin n → Real), Real.instLE.le (LRA.Analysis.RealAnalysis.AbsR (Finset.univ.sum a)) (Finset.univ.sum fun i => LRA.Analysis.RealAnalysis.AbsR (a i))
 
 Predicate logic (unfolded):
 
-  ∀ (n : Nat) (a : Fin n → Real), Real.instLE.1 (Decidable.rec (fun h => (fun x => Real.instNeg.1 (Multiset.map a Finset.univ.val).sum) h) (fun h => (fun x => Multiset.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 (Multiset.map a Finset.univ.val)) h) (Real.linearOrder.toDecidableLE 0 (Finset.univ.sum a))) (Quot.lift (fun l => List.foldr (fun x1 x2 => instHAdd.1 x1 x2) Zero.toOfNat0.1 l) ⋯ (Quot.liftOn Finset.univ.val (fun l => Multiset.ofList (List.map (fun i => LRA.Analysis.RealAnalysis.AbsR (a i)) l)) ⋯))
+  Ambient
+    (ℕ)
+  Objects
+    n : ℕ
+    a : Fin n → ℝ
+  Prove
+    Real.instLE.le (Decidable.rec (fun h => (fun x => Real.instNeg.neg (Quot.liftOn (Multiset.map a Finset.univ.val) (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯)) h) (fun h => (fun x => Quot.liftOn (Multiset.map a Finset.univ.val) (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯) h) (Real.linearOrder.6 0 (Finset.univ.sum a))) (Quot.lift (fun l => List.foldr (fun x1 x2 => { hAdd := fun a b => Real.instAddCommMonoid.toAddZeroClass.toAddZero.2.add a b }.hAdd x1 x2) 0 l) ⋯ (Quot.lift (fun l => Multiset.ofList (List.map (fun i => LRA.Analysis.RealAnalysis.AbsR (a i)) l)) ⋯ Finset.univ.val))
 
 Logical form (Lean):
 

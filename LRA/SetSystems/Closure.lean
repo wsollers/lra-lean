@@ -50,7 +50,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (collection : Carrier → Prop) (object : Carrier), collection object
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    collection object
 
 Logical form (Lean):
 
@@ -92,7 +97,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (collection predicate : Carrier → Prop) (object : Carrier), predicate object → collection object
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    predicate object → collection object
 
 Logical form (Lean):
 
@@ -134,7 +144,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (collection : Carrier → Prop) (object : Carrier), collection object
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    collection object
 
 Logical form (Lean):
 
@@ -176,7 +191,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (collection : Carrier → Prop) (operation : Carrier → Carrier) (object : Carrier), collection object → collection (operation object)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    collection object → collection (operation object)
 
 Logical form (Lean):
 
@@ -218,7 +238,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (collection : Carrier → Prop) (operation : Carrier → Carrier → Carrier) (left right : Carrier), (collection left ∧ collection right) → collection (operation left right)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (collection left ∧ collection right) → collection (operation left right)
 
 Logical form (Lean):
 
@@ -262,7 +287,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (collection : Carrier → Prop) {Index : Type w} (operation : (Index → Carrier) → Carrier) (family : Index → Carrier), (∀ (index : Index), collection (family index)) → collection (operation family)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (index : Index), collection (family index)) → collection (operation family)
 
 Logical form (Lean):
 
@@ -308,7 +338,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (collection : Carrier → Prop) (operation : (Nat → Carrier) → Carrier) (family : Nat → Carrier), (∀ (index : Nat), collection (family index)) → collection (operation family)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (index : Nat), collection (family index)) → collection (operation family)
 
 Logical form (Lean):
 
@@ -346,11 +381,16 @@ def ClosedUnderCountable {Carrier : Type u} (collection : Collection Carrier)
 
 Predicate logic:
 
-  ∀ {Carrier : Type u} (collection : LRA.SetSystems.Collection Carrier) (operation : List Carrier → Carrier) (objects : List Carrier), (∀ (object : Carrier), List.instMembership.mem objects object → collection object) → collection (operation objects)
+  ∀ {Carrier : Type u} (collection : LRA.SetSystems.Collection Carrier) (operation : List Carrier → Carrier) (objects : List Carrier), (∀ (object : Carrier), List.object ∈ objects → collection object) → collection (operation objects)
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (collection : Carrier → Prop) (operation : List Carrier → Carrier) (objects : List Carrier), (∀ (object : Carrier), List.instMembership.1 objects object → collection object) → collection (operation objects)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (object : Carrier), List.object ∈ objects → collection object) → collection (operation objects)
 
 Logical form (Lean):
 

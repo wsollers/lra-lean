@@ -8,7 +8,7 @@ namespace LRA.EuclideanSpace
 
 Predicate logic:
 
-  (∀ n ∈ Nat ∀ p ∈ TarskiPoint), (Fin (n + 1) → TarskiPoint) → CoincidesOrDeterminedByDistances TarskiPoint n p points end LRA.EuclideanSpace
+  ∀ (n : Nat) (p : LRA.EuclideanSpace.TarskiPoint) (points : Fin (instHAdd.hAdd n 1) → LRA.EuclideanSpace.TarskiPoint), LRA.EuclideanSpace.AffinelyIndependent LRA.EuclideanSpace.TarskiPoint n points → LRA.EuclideanSpace.CoincidesOrDeterminedByDistances LRA.EuclideanSpace.TarskiPoint n p points
 
 Predicate logic (unfolded):
 

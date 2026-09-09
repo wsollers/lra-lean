@@ -11,11 +11,21 @@ universe u v
 
 Predicate logic:
 
-  (∀ A ∈ U ∀ x y ∈ Element), x = y
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {relation : LRA.Relation.Endorelation Element}, LRA.Relation.Antisymmetric relation → ∀ {subset : SetObject} {first second : Element}, (LRA.Order.GreatestElement relation subset first ∧ LRA.Order.GreatestElement relation subset second) → first = second
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {relation : Element → Element → Prop}, (∀ (x y : Element), relation x y → relation y x → x = y) → ∀ {subset : SetObject} {first second : Element}, ((inst.1 subset first ∧ ∀ (element : Element), inst.1 subset element → relation element first) ∧ (inst.1 subset second ∧ ∀ (element : Element), inst.1 subset element → relation element second)) → first = second
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsAntisymmetric : LRA.Relation.Antisymmetric relation
+    subset : SetObject
+    first second : Element
+    firstIsGreatest : GreatestElement relation subset first
+    secondIsGreatest : GreatestElement relation subset second
+  Prove
+    (∀ (x y : Element), relation x y → relation y x → x = y) → ∀ {subset : SetObject} {first second : Element}, ((inst.1 subset first ∧ (∀ (element : Element), inst.1 subset element → relation element first)) ∧ (inst.1 subset second ∧ (∀ (element : Element), inst.1 subset element → relation element second))) → first = second
 
 Logical form (Lean):
 
@@ -67,11 +77,19 @@ open scoped LRA.Set
 
 Predicate logic:
 
-  (∀ A B ∈ U ∀ x ∈ Element), (x ∈ B) → GreatestElement(x, A ∩ B)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ {relation : LRA.Relation.Endorelation Element} {subset retainedBy : SetObject} {greatest : Element}, (LRA.Order.GreatestElement relation subset greatest ∧ greatest ∈ retainedBy) → LRA.Order.GreatestElement relation (subset ∩ retainedBy)greatest
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {subset retainedBy : SetObject} {greatest : Element}, ((inst.1 subset greatest ∧ ∀ (element : Element), inst.1 subset element → relation element greatest) ∧ inst.1 retainedBy greatest) → (inst.1 (inst_2.1 subset retainedBy) greatest ∧ ∀ (element : Element), inst.1 (inst_2.1 subset retainedBy) element → relation element greatest)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset retainedBy : SetObject
+    greatest : Element
+    greatestIsGreatest : GreatestElement relation subset greatest
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {subset retainedBy : SetObject} {greatest : Element}, ((inst.1 subset greatest ∧ (∀ (element : Element), inst.1 subset element → relation element greatest)) ∧ inst.1 retainedBy greatest) → (inst.1 (inst_2.1 subset retainedBy) greatest ∧ (∀ (element : Element), inst.1 (inst_2.1 subset retainedBy) element → relation element greatest))
 
 Logical form (Lean):
 
@@ -125,11 +143,20 @@ theorem GreatestElementRetainedByIntersection
 
 Predicate logic:
 
-  (∀ A B ∈ U ∀ x ∈ Element), GreatestElement(x, A \ B)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ {relation : LRA.Relation.Endorelation Element} {subset removed : SetObject} {greatest : Element}, (LRA.Order.GreatestElement relation subset greatest ∧ ¬ greatest ∈ removed) → LRA.Order.GreatestElement relation (subset \ removed)greatest
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {subset removed : SetObject} {greatest : Element}, ((inst.1 subset greatest ∧ ∀ (element : Element), inst.1 subset element → relation element greatest) ∧ inst.1 removed greatest → False) → (inst.1 (inst_3.1 subset removed) greatest ∧ ∀ (element : Element), inst.1 (inst_3.1 subset removed) element → relation element greatest)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset removed : SetObject
+    greatest : Element
+    greatestIsGreatest : GreatestElement relation subset greatest
+    greatestIsNotRemoved : greatest ∉ removed
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {subset removed : SetObject} {greatest : Element}, ((inst.1 subset greatest ∧ (∀ (element : Element), inst.1 subset element → relation element greatest)) ∧ (inst.1 removed greatest → False)) → (inst.1 (inst_3.1 subset removed) greatest ∧ (∀ (element : Element), inst.1 (inst_3.1 subset removed) element → relation element greatest))
 
 Logical form (Lean):
 
@@ -183,11 +210,19 @@ theorem GreatestElementRetainedByDifference
 
 Predicate logic:
 
-  (∀ A B ∈ U ∀ x ∈ Element), (x ∈ (A ∆ B)) → GreatestElement(x, A ∆ B)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasSymmDiff SetObject] [inst_2 : Union SetObject] [inst_3 : Inter SetObject] [inst_4 : SDiff SetObject] [inst_5 : EmptyCollection SetObject] [inst_6 : HasSubset SetObject], (LRA.Set.MembershipLaws Element SetObject ∧ LRA.Set.SymmDiffMembershipLaws Element SetObject) → ∀ {relation : LRA.Relation.Endorelation Element} {leftSubset rightSubset : SetObject} {greatest : Element}, (LRA.Order.GreatestElement relation (leftSubset ∪ rightSubset)greatest ∧ greatest ∈ inst_1.symmDiff leftSubset rightSubset) → LRA.Order.GreatestElement relation (inst_1.symmDiff leftSubset rightSubset) greatest
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasSymmDiff SetObject] [inst_2 : Union SetObject] [inst_3 : Inter SetObject] [inst_4 : SDiff SetObject] [inst_5 : EmptyCollection SetObject] [inst_6 : HasSubset SetObject], (LRA.Set.MembershipLaws Element SetObject ∧ LRA.Set.SymmDiffMembershipLaws Element SetObject) → ∀ {relation : Element → Element → Prop} {leftSubset rightSubset : SetObject} {greatest : Element}, ((inst.1 (inst_2.1 leftSubset rightSubset) greatest ∧ ∀ (element : Element), inst.1 (inst_2.1 leftSubset rightSubset) element → relation element greatest) ∧ inst.1 (inst_1.1 leftSubset rightSubset) greatest) → (inst.1 (inst_1.1 leftSubset rightSubset) greatest ∧ ∀ (element : Element), inst.1 (inst_1.1 leftSubset rightSubset) element → relation element greatest)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    leftSubset rightSubset : SetObject
+    greatest : Element
+    greatestIsGreatestOfUnion : GreatestElement relation (leftSubset ∪ rightSubset) greatest
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ LRA.Set.SymmDiffMembershipLaws Element SetObject) → ∀ {relation : Element → Element → Prop} {leftSubset rightSubset : SetObject} {greatest : Element}, ((inst.1 (inst_2.1 leftSubset rightSubset) greatest ∧ (∀ (element : Element), inst.1 (inst_2.1 leftSubset rightSubset) element → relation element greatest)) ∧ inst.1 (inst_1.1 leftSubset rightSubset) greatest) → (inst.1 (inst_1.1 leftSubset rightSubset) greatest ∧ (∀ (element : Element), inst.1 (inst_1.1 leftSubset rightSubset) element → relation element greatest))
 
 Logical form (Lean):
 
@@ -243,11 +278,20 @@ theorem GreatestElementRetainedBySymmetricDifference
 
 Predicate logic:
 
-  (∀ A B ∈ U ∀ x ∈ Element), GreatestElement(x, A ∪ B)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ {relation : LRA.Relation.Endorelation Element} {leftSubset rightSubset : SetObject} {greatest : Element}, (LRA.Order.GreatestElement relation leftSubset greatest ∧ LRA.Order.UpperBound relation rightSubset greatest) → LRA.Order.GreatestElement relation (leftSubset ∪ rightSubset)greatest
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {leftSubset rightSubset : SetObject} {greatest : Element}, ((inst.1 leftSubset greatest ∧ ∀ (element : Element), inst.1 leftSubset element → relation element greatest) ∧ ∀ (element : Element), inst.1 rightSubset element → relation element greatest) → (inst.1 (inst_1.1 leftSubset rightSubset) greatest ∧ ∀ (element : Element), inst.1 (inst_1.1 leftSubset rightSubset) element → relation element greatest)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    leftSubset rightSubset : SetObject
+    greatest : Element
+    greatestIsGreatestOfLeft : GreatestElement relation leftSubset greatest
+    greatestBoundsRight : UpperBound relation rightSubset greatest
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {leftSubset rightSubset : SetObject} {greatest : Element}, ((inst.1 leftSubset greatest ∧ (∀ (element : Element), inst.1 leftSubset element → relation element greatest)) ∧ (∀ (element : Element), inst.1 rightSubset element → relation element greatest)) → (inst.1 (inst_1.1 leftSubset rightSubset) greatest ∧ (∀ (element : Element), inst.1 (inst_1.1 leftSubset rightSubset) element → relation element greatest))
 
 Logical form (Lean):
 

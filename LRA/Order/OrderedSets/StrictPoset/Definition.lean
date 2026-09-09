@@ -10,16 +10,16 @@ universe u
 Predicate logic:
 
   structure StrictPoset where
-  Carrier : Type u
-  StrictRelation : LRA.Relation.Endorelation Carrier
-  StrictRelationIsStrictOrder : LRA.Order.StrictOrder StrictRelation
+    Carrier : Type u
+    StrictRelation : LRA.Relation.Endorelation Carrier
+    StrictRelationIsStrictOrder : LRA.Order.StrictOrder StrictRelation
 
 Predicate logic (unfolded):
 
   structure StrictPoset where
-  Carrier : Type u
-  StrictRelation : LRA.Relation.Endorelation Carrier
-  StrictRelationIsStrictOrder : LRA.Order.StrictOrder StrictRelation (source fallback; no compiled unfold data available)
+    Carrier : Type u
+    StrictRelation : LRA.Relation.Endorelation Carrier
+    StrictRelationIsStrictOrder : LRA.Order.StrictOrder StrictRelation (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

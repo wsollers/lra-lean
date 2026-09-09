@@ -13,7 +13,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {Beta : Type v} {Gamma : Type w} (rightRelation : Beta → Gamma → Prop) (leftRelation : Alpha → Beta → Prop) (a : Alpha) (a_1 : Gamma), Exists fun middle => (leftRelation a middle ∧ rightRelation middle a_1)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun middle => (leftRelation a middle ∧ rightRelation middle a_1)
 
 Logical form (Lean):
 

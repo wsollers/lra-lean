@@ -8,11 +8,17 @@ open LRA.NumberSystems.RationalNumbers
 
 Predicate logic:
 
-  (∀ rationalSystem ∈ RationalNumberSystem ∀ value ∈ rationalSystem.FieldModel.Carrier), ∀ precision firstIndex secondIndex : Nat, 0 ≤ firstIndex → 0 ≤ secondIndex → let difference
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (value : rationalSystem.FieldModel.Carrier) (precision firstIndex secondIndex : Nat), (instLENat.le 0 firstIndex ∧ instLENat.le 0 secondIndex) → have difference := instHAdd.hAdd value (rationalSystem.FieldModel.negInst.neg value); (rationalSystem.FieldModel.ltInst.lt (rationalSystem.FieldModel.negInst.neg (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)) difference ∧ rationalSystem.FieldModel.ltInst.lt difference (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision))
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (value : rationalSystem.FieldModel.1) (precision firstIndex secondIndex : Nat), (instLENat.1 (instOfNatNat 0).1 firstIndex ∧ instLENat.1 (instOfNatNat 0).1 secondIndex) → have difference := instHAdd.hAdd value (rationalSystem.FieldModel.negInst.neg value); (rationalSystem.FieldModel.ltInst.lt (rationalSystem.FieldModel.negInst.neg (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)) difference ∧ rationalSystem.FieldModel.ltInst.lt difference (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision))
+  Ambient
+    (implicit ambient)
+  Objects
+    rationalSystem : RationalNumberSystem
+    value : rationalSystem.FieldModel.Carrier
+  Prove
+    (instLENat.le 0 firstIndex ∧ instLENat.le 0 secondIndex) → have difference := instHAdd.hAdd value (rationalSystem.FieldModel.negInst.neg value); (rationalSystem.FieldModel.ltInst.lt (rationalSystem.FieldModel.negInst.neg (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)) difference ∧ rationalSystem.FieldModel.ltInst.lt difference (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision))
 
 Logical form (Lean):
 
@@ -63,22 +69,22 @@ theorem rational_embedding_cauchy_at_precision
 Predicate logic:
 
   noncomputable def rational_embedding
-    (rationalSystem : RationalNumberSystem)
-    (value : rationalSystem.FieldModel.Carrier) :
-    EffectiveCauchyApproximation rationalSystem where
-  Approximate := fun _ => value
-  Modulus := fun _ => 0
-  CauchyAtPrecision := rational_embedding_cauchy_at_precision rationalSystem value
+      (rationalSystem : RationalNumberSystem)
+      (value : rationalSystem.FieldModel.Carrier) :
+      EffectiveCauchyApproximation rationalSystem where
+    Approximate := fun _ => value
+    Modulus := fun _ => 0
+    CauchyAtPrecision := rational_embedding_cauchy_at_precision rationalSystem value
 
 Predicate logic (unfolded):
 
   noncomputable def rational_embedding
-    (rationalSystem : RationalNumberSystem)
-    (value : rationalSystem.FieldModel.Carrier) :
-    EffectiveCauchyApproximation rationalSystem where
-  Approximate := fun _ => value
-  Modulus := fun _ => 0
-  CauchyAtPrecision := rational_embedding_cauchy_at_precision rationalSystem value (source fallback; no compiled unfold data available)
+      (rationalSystem : RationalNumberSystem)
+      (value : rationalSystem.FieldModel.Carrier) :
+      EffectiveCauchyApproximation rationalSystem where
+    Approximate := fun _ => value
+    Modulus := fun _ => 0
+    CauchyAtPrecision := rational_embedding_cauchy_at_precision rationalSystem value (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -125,14 +131,14 @@ noncomputable def rational_embedding
 Predicate logic:
 
   noncomputable def zero
-    (rationalSystem : RationalNumberSystem) : EffectiveCauchyApproximation rationalSystem :=
-  rational_embedding rationalSystem 0
+      (rationalSystem : RationalNumberSystem) : EffectiveCauchyApproximation rationalSystem :=
+    rational_embedding rationalSystem 0
 
 Predicate logic (unfolded):
 
   noncomputable def zero
-    (rationalSystem : RationalNumberSystem) : EffectiveCauchyApproximation rationalSystem :=
-  rational_embedding rationalSystem 0 (source fallback; no compiled unfold data available)
+      (rationalSystem : RationalNumberSystem) : EffectiveCauchyApproximation rationalSystem :=
+    rational_embedding rationalSystem 0 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -171,14 +177,14 @@ noncomputable def zero
 Predicate logic:
 
   noncomputable def one
-    (rationalSystem : RationalNumberSystem) : EffectiveCauchyApproximation rationalSystem :=
-  rational_embedding rationalSystem 1
+      (rationalSystem : RationalNumberSystem) : EffectiveCauchyApproximation rationalSystem :=
+    rational_embedding rationalSystem 1
 
 Predicate logic (unfolded):
 
   noncomputable def one
-    (rationalSystem : RationalNumberSystem) : EffectiveCauchyApproximation rationalSystem :=
-  rational_embedding rationalSystem 1 (source fallback; no compiled unfold data available)
+      (rationalSystem : RationalNumberSystem) : EffectiveCauchyApproximation rationalSystem :=
+    rational_embedding rationalSystem 1 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -220,7 +226,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem} (first second : LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyApproximation rationalSystem), Exists fun precision => Exists fun threshold => ∀ (index : Nat), instLENat.1 threshold index → rationalSystem.FieldModel.leInst.1 (instHAdd.1 (first.1 index) (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)) (second.1 index)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun precision => Exists fun threshold => ∀ (index : Nat), instLENat.le threshold index → rationalSystem.FieldModel.9.le ({ hAdd := fun a b => rationalSystem.FieldModel.2.add a b }.hAdd (first.1 index) (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)) (second.1 index)
 
 Logical form (Lean):
 
@@ -266,11 +277,16 @@ def representative_strict_order
 
 Predicate logic:
 
-  (∀ rationalSystem ∈ RationalNumberSystem), LRA.UniversalAlgebra.Quotient.relation_respects (ApproximationSetoid rationalSystem) (representative_strict_order rationalSystem ∈ = rationalSystem)
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), LRA.UniversalAlgebra.Quotient.relation_respects (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem) LRA.NumberSystems.RealNumbers.EffectiveCauchy.representative_strict_order
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (first_representative first_replacement second_representative second_replacement : LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyApproximation rationalSystem), ((LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1 first_representative first_replacement ∧ (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1 second_representative second_replacement) → Exists fun precision => Exists fun threshold => ∀ (index : Nat), instLENat.1 threshold index → rationalSystem.FieldModel.leInst.1 (instHAdd.1 (first_representative.1 index) (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)) (second_representative.1 index) ↔ Exists fun precision => Exists fun threshold => ∀ (index : Nat), instLENat.1 threshold index → rationalSystem.FieldModel.leInst.1 (instHAdd.1 (first_replacement.1 index) (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)) (second_replacement.1 index)
+  Ambient
+    (implicit ambient)
+  Objects
+    rationalSystem : RationalNumberSystem
+  Prove
+    ((LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1 first_representative first_replacement ∧ (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1 second_representative second_replacement) → Exists fun precision => Exists fun threshold => ∀ (index : Nat), instLENat.le threshold index → rationalSystem.FieldModel.9.le ({ hAdd := fun a b => rationalSystem.FieldModel.2.add a b }.hAdd (first_representative.1 index) (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)) (second_representative.1 index) ↔ Exists fun precision => Exists fun threshold => ∀ (index : Nat), instLENat.le threshold index → rationalSystem.FieldModel.9.le ({ hAdd := fun a b => rationalSystem.FieldModel.2.add a b }.hAdd (first_replacement.1 index) (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)) (second_replacement.1 index)
 
 Logical form (Lean):
 
@@ -312,11 +328,16 @@ theorem representative_strict_order_respects_equivalence
 
 Predicate logic:
 
-  (∀ rationalSystem ∈ RationalNumberSystem), LRA.Operation.Laws.QuotientCompatible.RelationIsProper (ApproximationSetoid rationalSystem) (representative_strict_order rationalSystem ∈ = rationalSystem)
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), LRA.Operation.Laws.QuotientCompatible.RelationIsProper (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem) LRA.NumberSystems.RealNumbers.EffectiveCauchy.representative_strict_order
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), LRA.Operation.Laws.QuotientCompatible.RelationIsProper { r := fun first second => ∀ (precision : Nat), Exists fun index => ∀ (n : Nat), instLENat.1 index n → have difference := instHAdd.hAdd (first.Approximate n) (rationalSystem.FieldModel.negInst.neg (second.Approximate n)); (rationalSystem.FieldModel.ltInst.lt (rationalSystem.FieldModel.negInst.neg (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)) difference ∧ rationalSystem.FieldModel.ltInst.lt difference (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)), iseqv := ⋯ } fun first second => Exists fun precision => Exists fun threshold => ∀ (index : Nat), instLENat.1 threshold index → rationalSystem.FieldModel.leInst.1 (instHAdd.1 (first.1 index) (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)) (second.1 index)
+  Ambient
+    (implicit ambient)
+  Objects
+    rationalSystem : RationalNumberSystem
+  Prove
+    LRA.Operation.Laws.QuotientCompatible.RelationIsProper { r := fun first second => ∀ (precision : Nat), Exists fun index => ∀ (n : Nat), instLENat.le index n → have difference := instHAdd.hAdd (first.Approximate n) (rationalSystem.FieldModel.negInst.neg (second.Approximate n)); (rationalSystem.FieldModel.ltInst.lt (rationalSystem.FieldModel.negInst.neg (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)) difference ∧ rationalSystem.FieldModel.ltInst.lt difference (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)), iseqv := ⋯ } fun first second => Exists fun precision => Exists fun threshold => ∀ (index : Nat), instLENat.le threshold index → rationalSystem.FieldModel.9.le ({ hAdd := fun a b => rationalSystem.FieldModel.2.add a b }.hAdd (first.1 index) (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)) (second.1 index)
 
 Logical form (Lean):
 

@@ -10,12 +10,12 @@ namespace LRA.ModelTheory.FirstOrder
 Predicate logic:
 
   abbrev Automorphism {S : Signature} (M : Model S) : Type :=
-  ModelIsomorphism M M
+    ModelIsomorphism M M
 
 Predicate logic (unfolded):
 
   abbrev Automorphism {S : Signature} (M : Model S) : Type :=
-  ModelIsomorphism M M (source fallback; no compiled unfold data available)
+    ModelIsomorphism M M (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -52,22 +52,22 @@ abbrev Automorphism {S : Signature} (M : Model S) : Type :=
 Predicate logic:
 
   def Automorphism.identity {S : Signature} (M : Model S) : Automorphism M where
-  toFun := id
-  injective := Function.injective_id
-  preservesFunction _ _ := rfl
-  preservesConstant _ := rfl
-  preservesRelation _ _ := Iff.rfl
-  surjective := Function.surjective_id
+    toFun := id
+    injective := Function.injective_id
+    preservesFunction _ _ := rfl
+    preservesConstant _ := rfl
+    preservesRelation _ _ := Iff.rfl
+    surjective := Function.surjective_id
 
 Predicate logic (unfolded):
 
   def Automorphism.identity {S : Signature} (M : Model S) : Automorphism M where
-  toFun := id
-  injective := Function.injective_id
-  preservesFunction _ _ := rfl
-  preservesConstant _ := rfl
-  preservesRelation _ _ := Iff.rfl
-  surjective := Function.surjective_id (source fallback; no compiled unfold data available)
+    toFun := id
+    injective := Function.injective_id
+    preservesFunction _ _ := rfl
+    preservesConstant _ := rfl
+    preservesRelation _ _ := Iff.rfl
+    surjective := Function.surjective_id (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

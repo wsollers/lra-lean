@@ -10,6 +10,45 @@ a linear order), associative, and commutative. Wrapped in one-field structures
 since `ℝ` already carries its own `Mul` (ordinary multiplication), distinct from
 either of these. -/
 
+/--
+`RealsUnderMin` TODO
+
+Predicate logic:
+
+  structure RealsUnderMin where
+    val : Real
+
+Predicate logic (unfolded):
+
+  structure RealsUnderMin where
+    val : Real (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+structure RealsUnderMin where
+  val : Real
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 structure RealsUnderMin where
   val : Real
 
@@ -23,6 +62,45 @@ instance : LRA.AlgebraicStructures.CommutativeSemigroupLaws RealsUnderMin where
   MulCommutative := by
     intro a b
     sorry
+/--
+`RealsUnderMax` TODO
+
+Predicate logic:
+
+  structure RealsUnderMax where
+    val : Real
+
+Predicate logic (unfolded):
+
+  structure RealsUnderMax where
+    val : Real (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+structure RealsUnderMax where
+  val : Real
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 structure RealsUnderMax where
   val : Real
 

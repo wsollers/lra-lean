@@ -8,12 +8,12 @@ namespace LRA.NumberSystems.WholeNumbers.Interface.Signature
 Predicate logic:
 
   abbrev WholeNumbersFunctionSymbol :=
-  LRA.AlgebraicStructures.OrderedSemiring.Interface.Signature.OrderedSemiringFunctionSymbol
+    LRA.AlgebraicStructures.OrderedSemiring.Interface.Signature.OrderedSemiringFunctionSymbol
 
 Predicate logic (unfolded):
 
   abbrev WholeNumbersFunctionSymbol :=
-  LRA.AlgebraicStructures.OrderedSemiring.Interface.Signature.OrderedSemiringFunctionSymbol (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.OrderedSemiring.Interface.Signature.OrderedSemiringFunctionSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -50,12 +50,12 @@ abbrev WholeNumbersFunctionSymbol :=
 Predicate logic:
 
   abbrev WholeNumbersRelationSymbol :=
-  LRA.AlgebraicStructures.OrderedSemiring.Interface.Signature.OrderedSemiringRelationSymbol
+    LRA.AlgebraicStructures.OrderedSemiring.Interface.Signature.OrderedSemiringRelationSymbol
 
 Predicate logic (unfolded):
 
   abbrev WholeNumbersRelationSymbol :=
-  LRA.AlgebraicStructures.OrderedSemiring.Interface.Signature.OrderedSemiringRelationSymbol (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.OrderedSemiring.Interface.Signature.OrderedSemiringRelationSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -92,12 +92,12 @@ abbrev WholeNumbersRelationSymbol :=
 Predicate logic:
 
   abbrev WholeNumbersConstantSymbol :=
-  LRA.AlgebraicStructures.OrderedSemiring.Interface.Signature.OrderedSemiringConstantSymbol
+    LRA.AlgebraicStructures.OrderedSemiring.Interface.Signature.OrderedSemiringConstantSymbol
 
 Predicate logic (unfolded):
 
   abbrev WholeNumbersConstantSymbol :=
-  LRA.AlgebraicStructures.OrderedSemiring.Interface.Signature.OrderedSemiringConstantSymbol (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.OrderedSemiring.Interface.Signature.OrderedSemiringConstantSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -134,12 +134,12 @@ abbrev WholeNumbersConstantSymbol :=
 Predicate logic:
 
   def WholeNumbersFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.OrderedSemiring.Interface.Signature.OrderedSemiringFirstOrderFunctions
+    LRA.AlgebraicStructures.OrderedSemiring.Interface.Signature.OrderedSemiringFirstOrderFunctions
 
 Predicate logic (unfolded):
 
   def WholeNumbersFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.OrderedSemiring.Interface.Signature.OrderedSemiringFirstOrderFunctions (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.OrderedSemiring.Interface.Signature.OrderedSemiringFirstOrderFunctions (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -176,12 +176,12 @@ def WholeNumbersFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols :=
 Predicate logic:
 
   def WholeNumbersFirstOrderRelations : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.OrderedSemiring.Interface.Signature.OrderedSemiringFirstOrderRelations
+    LRA.AlgebraicStructures.OrderedSemiring.Interface.Signature.OrderedSemiringFirstOrderRelations
 
 Predicate logic (unfolded):
 
   def WholeNumbersFirstOrderRelations : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.OrderedSemiring.Interface.Signature.OrderedSemiringFirstOrderRelations (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.OrderedSemiring.Interface.Signature.OrderedSemiringFirstOrderRelations (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -218,12 +218,12 @@ def WholeNumbersFirstOrderRelations : LRA.Logic.ArityIndexedSymbols :=
 Predicate logic:
 
   def WholeNumbersFirstOrderSignature : LRA.Logic.Signature :=
-  LRA.AlgebraicStructures.OrderedSemiring.Interface.Signature.OrderedSemiringFirstOrderSignature
+    LRA.AlgebraicStructures.OrderedSemiring.Interface.Signature.OrderedSemiringFirstOrderSignature
 
 Predicate logic (unfolded):
 
   def WholeNumbersFirstOrderSignature : LRA.Logic.Signature :=
-  LRA.AlgebraicStructures.OrderedSemiring.Interface.Signature.OrderedSemiringFirstOrderSignature (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.OrderedSemiring.Interface.Signature.OrderedSemiringFirstOrderSignature (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

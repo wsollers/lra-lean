@@ -13,12 +13,12 @@ open LRA.AlgebraicStructures.CompleteOrderedField.Interface.Signature
 Predicate logic:
 
   abbrev CompleteOrderedFieldSignature :=
-  LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory.OrderedFieldSignature
+    LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory.OrderedFieldSignature
 
 Predicate logic (unfolded):
 
   abbrev CompleteOrderedFieldSignature :=
-  LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory.OrderedFieldSignature (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory.OrderedFieldSignature (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -55,16 +55,16 @@ abbrev CompleteOrderedFieldSignature :=
 Predicate logic:
 
   def BuildCompleteOrderedFieldFirstOrderReduct
-    (signature : CompleteOrderedFieldSignature) :
-    LRA.ModelTheory.FirstOrder.Model CompleteOrderedFieldFirstOrderSignature :=
-  LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory.BuildOrderedFieldModel signature
+      (signature : CompleteOrderedFieldSignature) :
+      LRA.ModelTheory.FirstOrder.Model CompleteOrderedFieldFirstOrderSignature :=
+    LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory.BuildOrderedFieldModel signature
 
 Predicate logic (unfolded):
 
   def BuildCompleteOrderedFieldFirstOrderReduct
-    (signature : CompleteOrderedFieldSignature) :
-    LRA.ModelTheory.FirstOrder.Model CompleteOrderedFieldFirstOrderSignature :=
-  LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory.BuildOrderedFieldModel signature (source fallback; no compiled unfold data available)
+      (signature : CompleteOrderedFieldSignature) :
+      LRA.ModelTheory.FirstOrder.Model CompleteOrderedFieldFirstOrderSignature :=
+    LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory.BuildOrderedFieldModel signature (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -105,16 +105,16 @@ def BuildCompleteOrderedFieldFirstOrderReduct
 Predicate logic:
 
   def completeOrderedFieldFirstOrderReduct (R : Type u)
-    [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] [LT R] [LE R] :
-    LRA.ModelTheory.FirstOrder.Model CompleteOrderedFieldFirstOrderSignature :=
-  LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory.orderedFieldFirstOrderModel R
+      [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] [LT R] [LE R] :
+      LRA.ModelTheory.FirstOrder.Model CompleteOrderedFieldFirstOrderSignature :=
+    LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory.orderedFieldFirstOrderModel R
 
 Predicate logic (unfolded):
 
   def completeOrderedFieldFirstOrderReduct (R : Type u)
-    [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] [LT R] [LE R] :
-    LRA.ModelTheory.FirstOrder.Model CompleteOrderedFieldFirstOrderSignature :=
-  LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory.orderedFieldFirstOrderModel R (source fallback; no compiled unfold data available)
+      [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] [LT R] [LE R] :
+      LRA.ModelTheory.FirstOrder.Model CompleteOrderedFieldFirstOrderSignature :=
+    LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory.orderedFieldFirstOrderModel R (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

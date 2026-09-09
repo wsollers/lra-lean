@@ -14,14 +14,14 @@ namespace LRA.Analysis.Sequences
 Predicate logic:
 
   noncomputable def NewtonSeqSqrtTwo : ℕ → ℝ
-  | 0 => 3 / 2
-  | n + 1 => (NewtonSeqSqrtTwo n + 2 / NewtonSeqSqrtTwo n) / 2
+    | 0 => 3 / 2
+    | n + 1 => (NewtonSeqSqrtTwo n + 2 / NewtonSeqSqrtTwo n) / 2
 
 Predicate logic (unfolded):
 
   noncomputable def NewtonSeqSqrtTwo : ℕ → ℝ
-  | 0 => 3 / 2
-  | n + 1 => (NewtonSeqSqrtTwo n + 2 / NewtonSeqSqrtTwo n) / 2 (source fallback; no compiled unfold data available)
+    | 0 => 3 / 2
+    | n + 1 => (NewtonSeqSqrtTwo n + 2 / NewtonSeqSqrtTwo n) / 2 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -59,11 +59,16 @@ noncomputable def NewtonSeqSqrtTwo : ℕ → ℝ
 
 Predicate logic:
 
-  ConvergesTo NewtonSeqSqrtTwo (Real.sqrt 2)
+  LRA.Analysis.Sequences.ConvergesTo LRA.Analysis.Sequences.NewtonSeqSqrtTwo (Real.sqrt 2)
 
 Predicate logic (unfolded):
 
-  ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (LRA.Analysis.Sequences.NewtonSeqSqrtTwo n) instOfNatAtLeastTwo.1.sqrt) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (LRA.Analysis.Sequences.NewtonSeqSqrtTwo n) (Real.sqrt 2)))) ε
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (LRA.Analysis.Sequences.NewtonSeqSqrtTwo n) (Real.sqrt 2))) ε
 
 Logical form (Lean):
 
@@ -100,12 +105,12 @@ theorem NewtonApproximationSqrtTwo :
 Predicate logic:
 
   noncomputable def FactorialPartialSums : RealSequence :=
-  fun n => ∑ k ∈ Finset.range (n + 1), (1 : ℝ) / (Nat.factorial k)
+    fun n => ∑ k ∈ Finset.range (n + 1), (1 : ℝ) / (Nat.factorial k)
 
 Predicate logic (unfolded):
 
   noncomputable def FactorialPartialSums : RealSequence :=
-  fun n => ∑ k ∈ Finset.range (n + 1), (1 : ℝ) / (Nat.factorial k) (source fallback; no compiled unfold data available)
+    fun n => ∑ k ∈ Finset.range (n + 1), (1 : ℝ) / (Nat.factorial k) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -141,11 +146,16 @@ noncomputable def FactorialPartialSums : RealSequence :=
 
 Predicate logic:
 
-  ConvergesTo FactorialPartialSums (Real.exp 1)
+  LRA.Analysis.Sequences.ConvergesTo LRA.Analysis.Sequences.FactorialPartialSums (Real.exp 1)
 
 Predicate logic (unfolded):
 
-  ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 ((Finset.range (instHAdd.hAdd n 1)).sum fun k => instHDiv.hDiv 1 k.factorial.cast) (Complex.exp (Complex.ofReal 1)).re) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (LRA.Analysis.Sequences.FactorialPartialSums n) (Real.exp 1)))) ε
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Quot.lift (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯ (Multiset.map (fun k => instHDiv.hDiv 1 k.factorial.cast) (Finset.range (instHAdd.hAdd n 1)).val)) (Complex.exp (Complex.ofReal 1)).1)) ε
 
 Logical form (Lean):
 
@@ -182,12 +192,12 @@ theorem FactorialPartialSumsApproximateE :
 Predicate logic:
 
   noncomputable def CompoundInterestSeq : RealSequence :=
-  fun n => (1 + 1 / ((n : ℝ) + 1)) ^ (n + 1)
+    fun n => (1 + 1 / ((n : ℝ) + 1)) ^ (n + 1)
 
 Predicate logic (unfolded):
 
   noncomputable def CompoundInterestSeq : RealSequence :=
-  fun n => (1 + 1 / ((n : ℝ) + 1)) ^ (n + 1) (source fallback; no compiled unfold data available)
+    fun n => (1 + 1 / ((n : ℝ) + 1)) ^ (n + 1) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -223,11 +233,16 @@ noncomputable def CompoundInterestSeq : RealSequence :=
 
 Predicate logic:
 
-  ConvergesTo CompoundInterestSeq (Real.exp 1)
+  LRA.Analysis.Sequences.ConvergesTo LRA.Analysis.Sequences.CompoundInterestSeq (Real.exp 1)
 
 Predicate logic (unfolded):
 
-  ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (instHPow.hPow (instHAdd.hAdd 1 (instHDiv.hDiv 1 (instHAdd.hAdd n.cast 1))) (instHAdd.hAdd n 1)) (Complex.exp (Complex.ofReal 1)).re) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (LRA.Analysis.Sequences.CompoundInterestSeq n) (Real.exp 1)))) ε
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (instHPow.1 ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd 1 ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv 1 ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd (Real.instNatCast.1 n) 1))) ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1)) (Complex.exp (Complex.ofReal 1)).1)) ε
 
 Logical form (Lean):
 
@@ -264,12 +279,12 @@ theorem CompoundInterestApproximationE :
 Predicate logic:
 
   noncomputable def DecimalTruncationSeq (α : ℝ) : RealSequence :=
-  fun n => (⌊10 ^ n * α⌋ : ℝ) / 10 ^ n
+    fun n => (⌊10 ^ n * α⌋ : ℝ) / 10 ^ n
 
 Predicate logic (unfolded):
 
   noncomputable def DecimalTruncationSeq (α : ℝ) : RealSequence :=
-  fun n => (⌊10 ^ n * α⌋ : ℝ) / 10 ^ n (source fallback; no compiled unfold data available)
+    fun n => (⌊10 ^ n * α⌋ : ℝ) / 10 ^ n (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -305,11 +320,16 @@ noncomputable def DecimalTruncationSeq (α : ℝ) : RealSequence :=
 
 Predicate logic:
 
-  ConvergesTo (DecimalTruncationSeq α) α
+  ∀ (α : Real), LRA.Analysis.Sequences.ConvergesTo (LRA.Analysis.Sequences.DecimalTruncationSeq α) α
 
 Predicate logic (unfolded):
 
-  ∀ (α ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (instHDiv.hDiv (Int.floor (instHMul.hMul (instHPow.hPow 10 n) α)).cast (instHPow.hPow 10 n)) α) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (LRA.Analysis.Sequences.DecimalTruncationSeq α n) α))) ε
+  Ambient
+    (ℝ)
+  Objects
+    α : ℝ
+  Prove
+    Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv (Real.instIntCast.1 (Real.instFloorRing.1 (instHMul.hMul (instHPow.hPow 10 n) α))) (instHPow.1 10 n)) α)) ε
 
 Logical form (Lean):
 

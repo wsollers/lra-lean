@@ -13,7 +13,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (A : Type u), Exists fun n => Exists fun f => (∀ (y : Fin n) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂ ∧ ∀ (y : Fin n), Exists fun x => f x = y)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun n => Exists fun f => ((∀ (y : Fin n) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Fin n), Exists fun x => f x = y))
 
 Logical form (Lean):
 
@@ -53,7 +58,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (A : Type u), (Exists fun n => Exists fun f => (∀ (y : Fin n) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂ ∧ ∀ (y : Fin n), Exists fun x => f x = y)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun n => Exists fun f => ((∀ (y : Fin n) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Fin n), Exists fun x => f x = y))) → False
 
 Logical form (Lean):
 

@@ -34,20 +34,20 @@ open Classical in
 Predicate logic:
 
   noncomputable def totalInverse
-    (rational_model : RationalModel)
-    (value : Carrier rational_model) : Carrier rational_model :=
-  if value_nonzero : value ≠ zero rational_model
-  then inverse rational_model value value_nonzero
-  else zero rational_model
+      (rational_model : RationalModel)
+      (value : Carrier rational_model) : Carrier rational_model :=
+    if value_nonzero : value ≠ zero rational_model
+    then inverse rational_model value value_nonzero
+    else zero rational_model
 
 Predicate logic (unfolded):
 
   noncomputable def totalInverse
-    (rational_model : RationalModel)
-    (value : Carrier rational_model) : Carrier rational_model :=
-  if value_nonzero : value ≠ zero rational_model
-  then inverse rational_model value value_nonzero
-  else zero rational_model (source fallback; no compiled unfold data available)
+      (rational_model : RationalModel)
+      (value : Carrier rational_model) : Carrier rational_model :=
+    if value_nonzero : value ≠ zero rational_model
+    then inverse rational_model value value_nonzero
+    else zero rational_model (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -116,7 +116,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (first second : Quot (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.representative_setoid rational_model).1), Or ((Classical.indefiniteDescription (fun x => ∀ (first_representative second_representative : LRA.NumberSystems.RealNumbers.PrimitiveIntervals.Representative rational_model), x (Quotient.mk (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.representative_setoid rational_model) first_representative) (Quotient.mk (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.representative_setoid rational_model) second_representative) ↔ LRA.NumberSystems.RealNumbers.PrimitiveIntervals.representative_strict_order rational_model first_representative second_representative) ⋯).1 first second) (first = second)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or ((Classical.indefiniteDescription (fun x => ∀ (first_representative second_representative : LRA.NumberSystems.RealNumbers.PrimitiveIntervals.Representative rational_model), x (Quotient.mk (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.representative_setoid rational_model) first_representative) (Quotient.mk (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.representative_setoid rational_model) second_representative) ↔ LRA.NumberSystems.RealNumbers.PrimitiveIntervals.representative_strict_order rational_model first_representative second_representative) ⋯).1 first second) (first = second)
 
 Logical form (Lean):
 
@@ -159,11 +164,16 @@ noncomputable instance CarrierLE (rational_model : RationalModel) :
 
 Predicate logic:
 
-  (∀ rational_model ∈ RationalModel), OrderedFieldLaws (Carrier rational_model)
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), LRA.AlgebraicStructures.OrderedFieldLaws (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.Carrier rational_model)
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), LRA.AlgebraicStructures.OrderedFieldLaws (Quot (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.representative_setoid rational_model).1)
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_model : RationalModel
+  Prove
+    LRA.AlgebraicStructures.OrderedFieldLaws (Quot (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.representative_setoid rational_model).1)
 
 Logical form (Lean):
 
@@ -201,11 +211,16 @@ theorem carrier_field_cert
 
 Predicate logic:
 
-  (∀ rational_model ∈ RationalModel), StrictOrderCompatibilityLaw (Carrier rational_model)
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), LRA.Order.StrictOrderCompatibilityLaw (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.Carrier rational_model)
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), LRA.Order.StrictOrderCompatibilityLaw (Quot (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.representative_setoid rational_model).1)
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_model : RationalModel
+  Prove
+    LRA.Order.StrictOrderCompatibilityLaw (Quot (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.representative_setoid rational_model).1)
 
 Logical form (Lean):
 
@@ -243,11 +258,16 @@ theorem carrier_strict_order_cert
 
 Predicate logic:
 
-  (∀ rational_model ∈ RationalModel), DenseOrderLaw (Carrier rational_model)
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), LRA.Order.DenseOrderLaw (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.Carrier rational_model)
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), LRA.Order.DenseOrderLaw (Quot (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.representative_setoid rational_model).1)
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_model : RationalModel
+  Prove
+    LRA.Order.DenseOrderLaw (Quot (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.representative_setoid rational_model).1)
 
 Logical form (Lean):
 
@@ -285,11 +305,16 @@ theorem carrier_dense_order_cert
 
 Predicate logic:
 
-  (∀ rational_model ∈ RationalModel), OrderCompletenessLaws (Carrier rational_model) (Set (Carrier rational_model))
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), LRA.Order.OrderCompletenessLaws (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.Carrier rational_model) (Set (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.Carrier rational_model))
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), LRA.Order.OrderCompletenessLaws (Quot (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.representative_setoid rational_model).1) (Quot (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.representative_setoid rational_model).1 → Prop)
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_model : RationalModel
+  Prove
+    LRA.Order.OrderCompletenessLaws (Quot (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.representative_setoid rational_model).1) (Quot (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.representative_setoid rational_model).1 → Prop)
 
 Logical form (Lean):
 
@@ -328,16 +353,16 @@ theorem carrier_completeness_cert
 Predicate logic:
 
   noncomputable def PrimitiveIntervalsRealizesRationalModel
-    (rational_model : RationalModel) :
-    LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel where
-  Carrier
+      (rational_model : RationalModel) :
+      LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel where
+    Carrier
 
 Predicate logic (unfolded):
 
   noncomputable def PrimitiveIntervalsRealizesRationalModel
-    (rational_model : RationalModel) :
-    LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel where
-  Carrier (source fallback; no compiled unfold data available)
+      (rational_model : RationalModel) :
+      LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel where
+    Carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -389,16 +414,16 @@ noncomputable def PrimitiveIntervalsRealizesRationalModel
 Predicate logic:
 
   noncomputable def PrimitiveIntervalsRealizesRealModel
-    (rational_model : RationalModel) :
-    LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel where
-  Carrier
+      (rational_model : RationalModel) :
+      LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel where
+    Carrier
 
 Predicate logic (unfolded):
 
   noncomputable def PrimitiveIntervalsRealizesRealModel
-    (rational_model : RationalModel) :
-    LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel where
-  Carrier (source fallback; no compiled unfold data available)
+      (rational_model : RationalModel) :
+      LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel where
+    Carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -450,11 +475,16 @@ noncomputable def PrimitiveIntervalsRealizesRealModel
 
 Predicate logic:
 
-  (∀ rationalSystem ∈ RationalNumberSystem), ∃ realExtension ∈ LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem, realExtension.RealModel.Carrier = Carrier rationalSystem.FieldModel
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), Exists fun realExtension => realExtension.RealModel.Carrier = LRA.NumberSystems.RealNumbers.PrimitiveIntervals.Carrier rationalSystem.FieldModel
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), Exists fun realExtension => realExtension.RealModel.toDenselyOrderedFieldModel.1 = Quot (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.representative_setoid rationalSystem.FieldModel).1
+  Ambient
+    (implicit ambient)
+  Objects
+    rationalSystem : RationalNumberSystem
+  Prove
+    Exists fun realExtension => realExtension.RealModel.1 = Quot (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.representative_setoid rationalSystem.FieldModel).1
 
 Logical form (Lean):
 

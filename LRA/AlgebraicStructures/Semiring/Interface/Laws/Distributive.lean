@@ -10,22 +10,22 @@ universe u
 Predicate logic:
 
   class DistributiveLaws (R : Type u) [Add R] [Mul R] : Prop where
-  LeftDistributive :
-    LRA.Operation.Laws.Distributive.LeftDistributive
-      (fun a b : R => a * b) (fun a b : R => a + b)
-  RightDistributive :
-    LRA.Operation.Laws.Distributive.RightDistributive
-      (fun a b : R => a * b) (fun a b : R => a + b)
+    LeftDistributive :
+      LRA.Operation.Laws.Distributive.LeftDistributive
+        (fun a b : R => a * b) (fun a b : R => a + b)
+    RightDistributive :
+      LRA.Operation.Laws.Distributive.RightDistributive
+        (fun a b : R => a * b) (fun a b : R => a + b)
 
 Predicate logic (unfolded):
 
   class DistributiveLaws (R : Type u) [Add R] [Mul R] : Prop where
-  LeftDistributive :
-    LRA.Operation.Laws.Distributive.LeftDistributive
-      (fun a b : R => a * b) (fun a b : R => a + b)
-  RightDistributive :
-    LRA.Operation.Laws.Distributive.RightDistributive
-      (fun a b : R => a * b) (fun a b : R => a + b) (source fallback; no compiled unfold data available)
+    LeftDistributive :
+      LRA.Operation.Laws.Distributive.LeftDistributive
+        (fun a b : R => a * b) (fun a b : R => a + b)
+    RightDistributive :
+      LRA.Operation.Laws.Distributive.RightDistributive
+        (fun a b : R => a * b) (fun a b : R => a + b) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -75,11 +75,16 @@ variable {R : Type u} [Add R] [Mul R] [DistributiveLaws R]
 
 Predicate logic:
 
-  ∀ a b c : R, a * (b + c) = a * b + a * c
+  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R], LRA.AlgebraicStructures.DistributiveLaws R → ∀ (a b c : R), instHMul.hMul a (instHAdd.hAdd b c) = instHAdd.hAdd (instHMul.hMul a b) (instHMul.hMul a c)
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R], LRA.AlgebraicStructures.DistributiveLaws R → ∀ (a b c : R), instHMul.1 a (instHAdd.1 b c) = instHAdd.1 (instHMul.1 a b) (instHMul.1 a c)
+  Ambient
+    (R)
+  Objects
+    (none)
+  Prove
+    LRA.AlgebraicStructures.DistributiveLaws R → ∀ (a b c : R), { hMul := fun a b => inst_1.mul a b }.hMul a ({ hAdd := fun a b => inst.add a b }.hAdd b c) = { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul a b) ({ hMul := fun a b => inst_1.mul a b }.hMul a c)
 
 Logical form (Lean):
 
@@ -113,11 +118,16 @@ theorem LeftDistributive : ∀ a b c : R, a * (b + c) = a * b + a * c := by
 
 Predicate logic:
 
-  ∀ a b c : R, (a + b) * c = a * c + b * c
+  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R], LRA.AlgebraicStructures.DistributiveLaws R → ∀ (a b c : R), instHMul.hMul (instHAdd.hAdd a b) c = instHAdd.hAdd (instHMul.hMul a c) (instHMul.hMul b c)
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R], LRA.AlgebraicStructures.DistributiveLaws R → ∀ (a b c : R), instHMul.1 (instHAdd.1 a b) c = instHAdd.1 (instHMul.1 a c) (instHMul.1 b c)
+  Ambient
+    (R)
+  Objects
+    (none)
+  Prove
+    LRA.AlgebraicStructures.DistributiveLaws R → ∀ (a b c : R), { hMul := fun a b => inst_1.mul a b }.hMul ({ hAdd := fun a b => inst.add a b }.hAdd a b) c = { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul a c) ({ hMul := fun a b => inst_1.mul a b }.hMul b c)
 
 Logical form (Lean):
 

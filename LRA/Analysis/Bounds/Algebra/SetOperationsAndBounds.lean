@@ -12,11 +12,17 @@ variable {S : Type*}
 
 Predicate logic:
 
-  (IsUpperBound u A ∧ IsUpperBound u B) → IsUpperBound u (A ∪ B)
+  ∀ {S : Type u_1} [inst : LE S] {A B : Set S} {u : S}, (LRA.Analysis.Bounds.IsUpperBound u A ∧ LRA.Analysis.Bounds.IsUpperBound u B) → LRA.Analysis.Bounds.IsUpperBound u (A ∪ B)
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : LE S] {A B : S → Prop} {u : S}, ((∀ (x : S), Set.instMembership.1 A x → inst.1 x u) ∧ (∀ (x : S), Set.instMembership.1 B x → inst.1 x u)) → ∀ (x : S), Set.instMembership.1 (Set.instUnion.1 A B) x → inst.1 x u
+  Ambient
+    (S, ≤)
+  Objects
+    A B : Set S
+    u : S
+  Prove
+    ((∀ (x : S), x ∈ A → inst.le x u) ∧ (∀ (x : S), x ∈ B → inst.le x u)) → ∀ (x : S), x ∈ A ∪ B → inst.le x u
 
 Logical form (Lean):
 
@@ -56,11 +62,17 @@ theorem UnionPreservesUpperBounds [LE S] {A B : Set S} {u : S}
 
 Predicate logic:
 
-  (IsLowerBound l A ∧ IsLowerBound l B) → IsLowerBound l (A ∪ B)
+  ∀ {S : Type u_1} [inst : LE S] {A B : Set S} {l : S}, (LRA.Analysis.Bounds.IsLowerBound l A ∧ LRA.Analysis.Bounds.IsLowerBound l B) → LRA.Analysis.Bounds.IsLowerBound l (A ∪ B)
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : LE S] {A B : S → Prop} {l : S}, (∀ (x : S), Set.instMembership.1 A x → inst.1 l x ∧ ∀ (x : S), Set.instMembership.1 B x → inst.1 l x) → ∀ (x : S), Set.instMembership.1 (Set.instUnion.1 A B) x → inst.1 l x
+  Ambient
+    (S, ≤)
+  Objects
+    A B : Set S
+    l : S
+  Prove
+    ((∀ (x : S), x ∈ A → inst.le l x) ∧ (∀ (x : S), x ∈ B → inst.le l x)) → ∀ (x : S), x ∈ A ∪ B → inst.le l x
 
 Logical form (Lean):
 
@@ -100,11 +112,16 @@ theorem UnionPreservesLowerBounds [LE S] {A B : Set S} {l : S}
 
 Predicate logic:
 
-  IsBoundedAbove (A ∪ B) ↔ IsBoundedAbove A ∧ IsBoundedAbove B
+  ∀ {S : Type u_1} [inst : LE S] {A B : Set S}, LRA.Analysis.Bounds.IsBoundedAbove (A ∪ B) ↔ (LRA.Analysis.Bounds.IsBoundedAbove A ∧ LRA.Analysis.Bounds.IsBoundedAbove B)
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : LE S] {A B : S → Prop}, Exists fun u => ∀ (x : S), Set.instMembership.1 (Set.instUnion.1 A B) x → inst.1 x u ↔ (Exists fun u => ∀ (x : S), Set.instMembership.1 A x → inst.1 x u ∧ Exists fun u => ∀ (x : S), Set.instMembership.1 B x → inst.1 x u)
+  Ambient
+    (S, ≤)
+  Objects
+    A B : Set S
+  Prove
+    LRA.Analysis.Bounds.IsBoundedAbove (A ∪ B) ↔ (LRA.Analysis.Bounds.IsBoundedAbove A ∧ LRA.Analysis.Bounds.IsBoundedAbove B)
 
 Logical form (Lean):
 
@@ -140,11 +157,16 @@ theorem UnionBoundedAboveIffPiecesBoundedAbove [LE S] {A B : Set S} :
 
 Predicate logic:
 
-  IsBoundedBelow (A ∪ B) ↔ IsBoundedBelow A ∧ IsBoundedBelow B
+  ∀ {S : Type u_1} [inst : LE S] {A B : Set S}, LRA.Analysis.Bounds.IsBoundedBelow (A ∪ B) ↔ (LRA.Analysis.Bounds.IsBoundedBelow A ∧ LRA.Analysis.Bounds.IsBoundedBelow B)
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : LE S] {A B : S → Prop}, Exists fun l => ∀ (x : S), Set.instMembership.1 (Set.instUnion.1 A B) x → inst.1 l x ↔ (Exists fun l => ∀ (x : S), Set.instMembership.1 A x → inst.1 l x ∧ Exists fun l => ∀ (x : S), Set.instMembership.1 B x → inst.1 l x)
+  Ambient
+    (S, ≤)
+  Objects
+    A B : Set S
+  Prove
+    LRA.Analysis.Bounds.IsBoundedBelow (A ∪ B) ↔ (LRA.Analysis.Bounds.IsBoundedBelow A ∧ LRA.Analysis.Bounds.IsBoundedBelow B)
 
 Logical form (Lean):
 
@@ -180,11 +202,16 @@ theorem UnionBoundedBelowIffPiecesBoundedBelow [LE S] {A B : Set S} :
 
 Predicate logic:
 
-  IsBounded (A ∪ B) ↔ IsBounded A ∧ IsBounded B
+  ∀ {S : Type u_1} [inst : LE S] {A B : Set S}, LRA.Analysis.Bounds.IsBounded (A ∪ B) ↔ (LRA.Analysis.Bounds.IsBounded A ∧ LRA.Analysis.Bounds.IsBounded B)
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : LE S] {A B : S → Prop}, (Exists fun u => ∀ (x : S), Set.instMembership.1 (Set.instUnion.1 A B) x → inst.1 x u ∧ Exists fun l => ∀ (x : S), Set.instMembership.1 (Set.instUnion.1 A B) x → inst.1 l x) ↔ ((Exists fun u => ∀ (x : S), Set.instMembership.1 A x → inst.1 x u ∧ Exists fun l => ∀ (x : S), Set.instMembership.1 A x → inst.1 l x) ∧ (Exists fun u => ∀ (x : S), Set.instMembership.1 B x → inst.1 x u ∧ Exists fun l => ∀ (x : S), Set.instMembership.1 B x → inst.1 l x))
+  Ambient
+    (S, ≤)
+  Objects
+    A B : Set S
+  Prove
+    LRA.Analysis.Bounds.IsBounded (A ∪ B) ↔ (LRA.Analysis.Bounds.IsBounded A ∧ LRA.Analysis.Bounds.IsBounded B)
 
 Logical form (Lean):
 
@@ -220,11 +247,18 @@ theorem UnionBoundedIffPiecesBounded [LE S] {A B : Set S} :
 
 Predicate logic:
 
-  (IsUpperBound u A) → IsUpperBound u C
+  ∀ {S : Type u_1} [inst : Preorder S] {C A : Set S} {u : S}, (Set.instLE.le C A ∧ LRA.Analysis.Bounds.IsUpperBound u A) → LRA.Analysis.Bounds.IsUpperBound u C
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : Preorder S] {C A : S → Prop} {u : S}, (Set.instLE.1 C A ∧ ∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 x u) → ∀ (x : S), Set.instMembership.1 C x → inst.toLE.1 x u
+  Ambient
+    (S, ≤)
+  Objects
+    C A : Set S
+    u : S
+    subsetHypothesis : C ⊆ A
+  Prove
+    (({ le := fun s₁ s₂ => ∀ ⦃a : S⦄, a ∈ s₁ → a ∈ s₂}.le C A) ∧ (∀ (x : S), x ∈ A → inst.1.le x u)) → ∀ (x : S), x ∈ C → inst.1.le x u
 
 Logical form (Lean):
 
@@ -264,11 +298,18 @@ theorem SubsetsPreserveUpperBounds [Preorder S] {C A : Set S} {u : S}
 
 Predicate logic:
 
-  (IsLowerBound l A) → IsLowerBound l C
+  ∀ {S : Type u_1} [inst : Preorder S] {C A : Set S} {l : S}, (Set.instLE.le C A ∧ LRA.Analysis.Bounds.IsLowerBound l A) → LRA.Analysis.Bounds.IsLowerBound l C
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : Preorder S] {C A : S → Prop} {l : S}, (Set.instLE.1 C A ∧ ∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 l x) → ∀ (x : S), Set.instMembership.1 C x → inst.toLE.1 l x
+  Ambient
+    (S, ≤)
+  Objects
+    C A : Set S
+    l : S
+    subsetHypothesis : C ⊆ A
+  Prove
+    (({ le := fun s₁ s₂ => ∀ ⦃a : S⦄, a ∈ s₁ → a ∈ s₂}.le C A) ∧ (∀ (x : S), x ∈ A → inst.1.le l x)) → ∀ (x : S), x ∈ C → inst.1.le l x
 
 Logical form (Lean):
 
@@ -308,11 +349,17 @@ theorem SubsetsPreserveLowerBounds [Preorder S] {C A : Set S} {l : S}
 
 Predicate logic:
 
-  (IsUpperBound u A) → IsUpperBound u (A ∩ B)
+  ∀ {S : Type u_1} [inst : LE S] {A B : Set S} {u : S}, LRA.Analysis.Bounds.IsUpperBound u A → LRA.Analysis.Bounds.IsUpperBound u (A ∩ B)
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : LE S] {A B : S → Prop} {u : S}, (∀ (x : S), Set.instMembership.1 A x → inst.1 x u) → ∀ (x : S), Set.instMembership.1 (Set.instInter.1 A B) x → inst.1 x u
+  Ambient
+    (S, ≤)
+  Objects
+    A B : Set S
+    u : S
+  Prove
+    (∀ (x : S), x ∈ A → inst.le x u) → ∀ (x : S), x ∈ A ∩ B → inst.le x u
 
 Logical form (Lean):
 
@@ -350,11 +397,17 @@ theorem IntersectionsInheritUpperBounds [LE S] {A B : Set S} {u : S}
 
 Predicate logic:
 
-  (IsLowerBound l A) → IsLowerBound l (A ∩ B)
+  ∀ {S : Type u_1} [inst : LE S] {A B : Set S} {l : S}, LRA.Analysis.Bounds.IsLowerBound l A → LRA.Analysis.Bounds.IsLowerBound l (A ∩ B)
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : LE S] {A B : S → Prop} {l : S}, (∀ (x : S), Set.instMembership.1 A x → inst.1 l x) → ∀ (x : S), Set.instMembership.1 (Set.instInter.1 A B) x → inst.1 l x
+  Ambient
+    (S, ≤)
+  Objects
+    A B : Set S
+    l : S
+  Prove
+    (∀ (x : S), x ∈ A → inst.le l x) → ∀ (x : S), x ∈ A ∩ B → inst.le l x
 
 Logical form (Lean):
 
@@ -392,11 +445,17 @@ theorem IntersectionsInheritLowerBounds [LE S] {A B : Set S} {l : S}
 
 Predicate logic:
 
-  (IsUpperBound u A) → IsUpperBound u (A \ B)
+  ∀ {S : Type u_1} [inst : LE S] {A B : Set S} {u : S}, LRA.Analysis.Bounds.IsUpperBound u A → LRA.Analysis.Bounds.IsUpperBound u (A \ B)
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : LE S] {A B : S → Prop} {u : S}, (∀ (x : S), Set.instMembership.1 A x → inst.1 x u) → ∀ (x : S), Set.instMembership.1 (Set.instSDiff.1 A B) x → inst.1 x u
+  Ambient
+    (S, ≤)
+  Objects
+    A B : Set S
+    u : S
+  Prove
+    (∀ (x : S), x ∈ A → inst.le x u) → ∀ (x : S), x ∈ A \ B → inst.le x u
 
 Logical form (Lean):
 
@@ -434,11 +493,17 @@ theorem DifferencesInheritUpperBounds [LE S] {A B : Set S} {u : S}
 
 Predicate logic:
 
-  (IsLowerBound l A) → IsLowerBound l (A \ B)
+  ∀ {S : Type u_1} [inst : LE S] {A B : Set S} {l : S}, LRA.Analysis.Bounds.IsLowerBound l A → LRA.Analysis.Bounds.IsLowerBound l (A \ B)
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : LE S] {A B : S → Prop} {l : S}, (∀ (x : S), Set.instMembership.1 A x → inst.1 l x) → ∀ (x : S), Set.instMembership.1 (Set.instSDiff.1 A B) x → inst.1 l x
+  Ambient
+    (S, ≤)
+  Objects
+    A B : Set S
+    l : S
+  Prove
+    (∀ (x : S), x ∈ A → inst.le l x) → ∀ (x : S), x ∈ A \ B → inst.le l x
 
 Logical form (Lean):
 
@@ -476,11 +541,17 @@ theorem DifferencesInheritLowerBounds [LE S] {A B : Set S} {l : S}
 
 Predicate logic:
 
-  (IsUpperBound u T) → IsUpperBound u (T \ A)
+  ∀ {S : Type u_1} [inst : LE S] {A T : Set S} {u : S}, LRA.Analysis.Bounds.IsUpperBound u T → LRA.Analysis.Bounds.IsUpperBound u (T \ A)
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : LE S] {A T : S → Prop} {u : S}, (∀ (x : S), Set.instMembership.1 T x → inst.1 x u) → ∀ (x : S), Set.instMembership.1 (Set.instSDiff.1 T A) x → inst.1 x u
+  Ambient
+    (S, ≤)
+  Objects
+    A T : Set S
+    u : S
+  Prove
+    (∀ (x : S), x ∈ T → inst.le x u) → ∀ (x : S), x ∈ T \ A → inst.le x u
 
 Logical form (Lean):
 
@@ -518,11 +589,17 @@ theorem ComplementsInheritUpperBounds [LE S] {A T : Set S} {u : S}
 
 Predicate logic:
 
-  (IsLowerBound l T) → IsLowerBound l (T \ A)
+  ∀ {S : Type u_1} [inst : LE S] {A T : Set S} {l : S}, LRA.Analysis.Bounds.IsLowerBound l T → LRA.Analysis.Bounds.IsLowerBound l (T \ A)
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : LE S] {A T : S → Prop} {l : S}, (∀ (x : S), Set.instMembership.1 T x → inst.1 l x) → ∀ (x : S), Set.instMembership.1 (Set.instSDiff.1 T A) x → inst.1 l x
+  Ambient
+    (S, ≤)
+  Objects
+    A T : Set S
+    l : S
+  Prove
+    (∀ (x : S), x ∈ T → inst.le l x) → ∀ (x : S), x ∈ T \ A → inst.le l x
 
 Logical form (Lean):
 

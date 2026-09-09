@@ -8,12 +8,12 @@ namespace LRA.AlgebraicStructures.Field.Interface.Signature
 Predicate logic:
 
   abbrev FieldFunctionSymbol :=
-  LRA.AlgebraicStructures.DivisionRing.Interface.Signature.DivisionRingFunctionSymbol
+    LRA.AlgebraicStructures.DivisionRing.Interface.Signature.DivisionRingFunctionSymbol
 
 Predicate logic (unfolded):
 
   abbrev FieldFunctionSymbol :=
-  LRA.AlgebraicStructures.DivisionRing.Interface.Signature.DivisionRingFunctionSymbol (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.DivisionRing.Interface.Signature.DivisionRingFunctionSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -50,12 +50,12 @@ abbrev FieldFunctionSymbol :=
 Predicate logic:
 
   abbrev FieldRelationSymbol :=
-  LRA.AlgebraicStructures.DivisionRing.Interface.Signature.DivisionRingRelationSymbol
+    LRA.AlgebraicStructures.DivisionRing.Interface.Signature.DivisionRingRelationSymbol
 
 Predicate logic (unfolded):
 
   abbrev FieldRelationSymbol :=
-  LRA.AlgebraicStructures.DivisionRing.Interface.Signature.DivisionRingRelationSymbol (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.DivisionRing.Interface.Signature.DivisionRingRelationSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -92,12 +92,12 @@ abbrev FieldRelationSymbol :=
 Predicate logic:
 
   abbrev FieldConstantSymbol :=
-  LRA.AlgebraicStructures.DivisionRing.Interface.Signature.DivisionRingConstantSymbol
+    LRA.AlgebraicStructures.DivisionRing.Interface.Signature.DivisionRingConstantSymbol
 
 Predicate logic (unfolded):
 
   abbrev FieldConstantSymbol :=
-  LRA.AlgebraicStructures.DivisionRing.Interface.Signature.DivisionRingConstantSymbol (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.DivisionRing.Interface.Signature.DivisionRingConstantSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -134,12 +134,12 @@ abbrev FieldConstantSymbol :=
 Predicate logic:
 
   def FieldFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.DivisionRing.Interface.Signature.DivisionRingFirstOrderFunctions
+    LRA.AlgebraicStructures.DivisionRing.Interface.Signature.DivisionRingFirstOrderFunctions
 
 Predicate logic (unfolded):
 
   def FieldFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.DivisionRing.Interface.Signature.DivisionRingFirstOrderFunctions (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.DivisionRing.Interface.Signature.DivisionRingFirstOrderFunctions (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -176,12 +176,12 @@ def FieldFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols :=
 Predicate logic:
 
   def FieldFirstOrderRelations : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.DivisionRing.Interface.Signature.DivisionRingFirstOrderRelations
+    LRA.AlgebraicStructures.DivisionRing.Interface.Signature.DivisionRingFirstOrderRelations
 
 Predicate logic (unfolded):
 
   def FieldFirstOrderRelations : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.DivisionRing.Interface.Signature.DivisionRingFirstOrderRelations (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.DivisionRing.Interface.Signature.DivisionRingFirstOrderRelations (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -218,12 +218,12 @@ def FieldFirstOrderRelations : LRA.Logic.ArityIndexedSymbols :=
 Predicate logic:
 
   def FieldFirstOrderSignature : LRA.Logic.Signature :=
-  LRA.AlgebraicStructures.DivisionRing.Interface.Signature.DivisionRingFirstOrderSignature
+    LRA.AlgebraicStructures.DivisionRing.Interface.Signature.DivisionRingFirstOrderSignature
 
 Predicate logic (unfolded):
 
   def FieldFirstOrderSignature : LRA.Logic.Signature :=
-  LRA.AlgebraicStructures.DivisionRing.Interface.Signature.DivisionRingFirstOrderSignature (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.DivisionRing.Interface.Signature.DivisionRingFirstOrderSignature (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

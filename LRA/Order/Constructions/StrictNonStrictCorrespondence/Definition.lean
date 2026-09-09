@@ -18,7 +18,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (strictRelation : Alpha → Alpha → Prop) (a a_1 : Alpha), Or (strictRelation a a_1) (a = a_1)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (strictRelation a a_1) (a = a_1)
 
 Logical form (Lean):
 
@@ -62,7 +67,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (nonStrictRelation : Alpha → Alpha → Prop) (a a_1 : Alpha), (nonStrictRelation a a_1 ∧ a = a_1 → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (nonStrictRelation a a_1 ∧ (a = a_1 → False))
 
 Logical form (Lean):
 
@@ -102,11 +112,16 @@ def StrictFromNonStrict {Alpha : Type u}
 
 Predicate logic:
 
-  (∀ poset ∈ Poset), LRA.Order.StrictOrder (StrictFromNonStrict poset.NonStrictOrder)
+  ∀ (poset : LRA.Order.Poset), LRA.Order.StrictOrder (LRA.Order.StrictFromNonStrict poset.NonStrictOrder)
 
 Predicate logic (unfolded):
 
-  ∀ (poset : LRA.Order.Poset), (∀ (x : poset.1), (poset.2 x x ∧ ¬ x = x) → False ∧ ∀ (x y z : poset.1), (poset.2 x y ∧ x = y → False) → (poset.2 y z ∧ y = z → False) → (poset.2 x z ∧ x = z → False))
+  Ambient
+    (implicit ambient)
+  Objects
+    poset : Poset
+  Prove
+    ((∀ (x : poset.1), (poset.2 x x ∧ ¬ x = x) → False) ∧ (∀ (x y z : poset.1), (poset.2 x y ∧ (x = y → False)) → (poset.2 y z ∧ (y = z → False)) → (poset.2 x z ∧ (x = z → False))))
 
 Logical form (Lean):
 
@@ -143,16 +158,16 @@ theorem StrictRelationOfPosetIsStrictOrder (poset : Poset) :
 Predicate logic:
 
   def StrictPosetOfPoset (poset : Poset) : StrictPoset where
-  Carrier := poset.Carrier
-  StrictRelation := StrictFromNonStrict poset.NonStrictOrder
-  StrictRelationIsStrictOrder := StrictRelationOfPosetIsStrictOrder poset
+    Carrier := poset.Carrier
+    StrictRelation := StrictFromNonStrict poset.NonStrictOrder
+    StrictRelationIsStrictOrder := StrictRelationOfPosetIsStrictOrder poset
 
 Predicate logic (unfolded):
 
   def StrictPosetOfPoset (poset : Poset) : StrictPoset where
-  Carrier := poset.Carrier
-  StrictRelation := StrictFromNonStrict poset.NonStrictOrder
-  StrictRelationIsStrictOrder := StrictRelationOfPosetIsStrictOrder poset (source fallback; no compiled unfold data available)
+    Carrier := poset.Carrier
+    StrictRelation := StrictFromNonStrict poset.NonStrictOrder
+    StrictRelationIsStrictOrder := StrictRelationOfPosetIsStrictOrder poset (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -192,11 +207,16 @@ def StrictPosetOfPoset (poset : Poset) : StrictPoset where
 
 Predicate logic:
 
-  (∀ strictPoset ∈ StrictPoset), LRA.Order.PartialOrder (NonStrictFromStrict strictPoset.StrictRelation)
+  ∀ (strictPoset : LRA.Order.StrictPoset), LRA.Order.PartialOrder (LRA.Order.NonStrictFromStrict strictPoset.StrictRelation)
 
 Predicate logic (unfolded):
 
-  ∀ (strictPoset : LRA.Order.StrictPoset), (∀ (x : strictPoset.1), Or (strictPoset.2 x x) (x = x) ∧ (∀ (x y : strictPoset.1), Or (strictPoset.2 x y) (x = y) → Or (strictPoset.2 y x) (y = x) → x = y ∧ ∀ (x y z : strictPoset.1), Or (strictPoset.2 x y) (x = y) → Or (strictPoset.2 y z) (y = z) → Or (strictPoset.2 x z) (x = z)))
+  Ambient
+    (implicit ambient)
+  Objects
+    strictPoset : StrictPoset
+  Prove
+    ((∀ (x : strictPoset.1), Or (strictPoset.2 x x) (x = x)) ∧ ((∀ (x y : strictPoset.1), Or (strictPoset.2 x y) (x = y) → Or (strictPoset.2 y x) (y = x) → x = y) ∧ (∀ (x y z : strictPoset.1), Or (strictPoset.2 x y) (x = y) → Or (strictPoset.2 y z) (y = z) → Or (strictPoset.2 x z) (x = z))))
 
 Logical form (Lean):
 
@@ -237,18 +257,18 @@ theorem NonStrictRelationOfStrictPosetIsPartialOrder
 Predicate logic:
 
   def PosetOfStrictPoset (strictPoset : StrictPoset) : Poset where
-  Carrier := strictPoset.Carrier
-  NonStrictOrder := NonStrictFromStrict strictPoset.StrictRelation
-  NonStrictOrderIsPartialOrder :=
-    NonStrictRelationOfStrictPosetIsPartialOrder strictPoset
+    Carrier := strictPoset.Carrier
+    NonStrictOrder := NonStrictFromStrict strictPoset.StrictRelation
+    NonStrictOrderIsPartialOrder :=
+      NonStrictRelationOfStrictPosetIsPartialOrder strictPoset
 
 Predicate logic (unfolded):
 
   def PosetOfStrictPoset (strictPoset : StrictPoset) : Poset where
-  Carrier := strictPoset.Carrier
-  NonStrictOrder := NonStrictFromStrict strictPoset.StrictRelation
-  NonStrictOrderIsPartialOrder :=
-    NonStrictRelationOfStrictPosetIsPartialOrder strictPoset (source fallback; no compiled unfold data available)
+    Carrier := strictPoset.Carrier
+    NonStrictOrder := NonStrictFromStrict strictPoset.StrictRelation
+    NonStrictOrderIsPartialOrder :=
+      NonStrictRelationOfStrictPosetIsPartialOrder strictPoset (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

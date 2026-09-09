@@ -16,28 +16,28 @@ variable [Membership Element SetObject]
 Predicate logic:
 
   noncomputable def LandauMultiplication
-    (model : PeanoSystem Element SetObject) :
-    Element -> Element -> Element :=
-  Classical.choose
-    (ExistenceOfBinaryIteratorOperation
-      model
-      Element
-      Element
-      (fun left => left)
-      (fun left value => LandauAddition model value left))
+      (model : PeanoSystem Element SetObject) :
+      Element -> Element -> Element :=
+    Classical.choose
+      (ExistenceOfBinaryIteratorOperation
+        model
+        Element
+        Element
+        (fun left => left)
+        (fun left value => LandauAddition model value left))
 
 Predicate logic (unfolded):
 
   noncomputable def LandauMultiplication
-    (model : PeanoSystem Element SetObject) :
-    Element -> Element -> Element :=
-  Classical.choose
-    (ExistenceOfBinaryIteratorOperation
-      model
-      Element
-      Element
-      (fun left => left)
-      (fun left value => LandauAddition model value left)) (source fallback; no compiled unfold data available)
+      (model : PeanoSystem Element SetObject) :
+      Element -> Element -> Element :=
+    Classical.choose
+      (ExistenceOfBinaryIteratorOperation
+        model
+        Element
+        Element
+        (fun left => left)
+        (fun left value => LandauAddition model value left)) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -89,11 +89,16 @@ noncomputable def LandauMultiplication
 
 Predicate logic:
 
-  BinaryIteratorOperationClauses model Element Element (fun left => left) (fun left value => LandauAddition model value left) (LandauMultiplication model)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (model : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) (fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) (LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauMultiplication model)
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (model : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (parameterValue : Element), ((Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).1 parameterValue model.1 = (fun left => left) parameterValue ∧ ∀ (element : Element), (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).1 parameterValue (model.2 element) = (fun left value => (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => model.successor left) fun x value => model.successor value) ⋯).1 value left) parameterValue ((Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).1 parameterValue element))
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    model : PeanoSystem Element SetObject
+  Prove
+    ((Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).1 parameterValue model.1 = (fun left => left) parameterValue ∧ (∀ (element : Element), (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).1 parameterValue (model.2 element) = (fun left value => (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => model.successor left) fun x value => model.successor value) ⋯).1 value left) parameterValue ((Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).1 parameterValue element)))
 
 Logical form (Lean):
 
@@ -143,11 +148,16 @@ theorem LandauMultiplicationClauses
 
 Predicate logic:
 
-  exists multiplication : Element -> Element -> Element, BinaryIteratorOperationClauses model Element Element (fun left => left) (fun left value => LandauAddition model value left) multiplication ∧ forall otherMultiplication : Element -> Element -> Element, BinaryIteratorOperationClauses model Element Element (fun left => left) (fun left value => LandauAddition model value left) otherMultiplication -> otherMultiplication = multiplication
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (model : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), Exists fun multiplication => (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) (fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) multiplication ∧ (∀ (otherMultiplication : Element → Element → Element), LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) (fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) otherMultiplication → otherMultiplication = multiplication))
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (model : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), Exists fun multiplication => (∀ (parameterValue : Element), (multiplication parameterValue model.1 = (fun left => left) parameterValue ∧ ∀ (element : Element), multiplication parameterValue (model.2 element) = (fun left value => (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => model.successor left) fun x value => model.successor value) ⋯).1 value left) parameterValue (multiplication parameterValue element)) ∧ ∀ (otherMultiplication : Element → Element → Element), (∀ (parameterValue : Element), (otherMultiplication parameterValue model.1 = (fun left => left) parameterValue ∧ ∀ (element : Element), otherMultiplication parameterValue (model.2 element) = (fun left value => (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => model.successor left) fun x value => model.successor value) ⋯).1 value left) parameterValue (otherMultiplication parameterValue element))) → otherMultiplication = multiplication)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    model : PeanoSystem Element SetObject
+  Prove
+    Exists fun multiplication => ((∀ (parameterValue : Element), (multiplication parameterValue model.1 = (fun left => left) parameterValue ∧ (∀ (element : Element), multiplication parameterValue (model.2 element) = (fun left value => (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => model.successor left) fun x value => model.successor value) ⋯).1 value left) parameterValue (multiplication parameterValue element)))) ∧ (∀ (otherMultiplication : Element → Element → Element), (∀ (parameterValue : Element), (otherMultiplication parameterValue model.1 = (fun left => left) parameterValue ∧ (∀ (element : Element), otherMultiplication parameterValue (model.2 element) = (fun left value => (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => model.successor left) fun x value => model.successor value) ⋯).1 value left) parameterValue (otherMultiplication parameterValue element)))) → otherMultiplication = multiplication))
 
 Logical form (Lean):
 
@@ -217,11 +227,17 @@ theorem LandauMultiplicationWellDefined
 
 Predicate logic:
 
-  (∀ x ∈ Element), LandauMultiplication model x model.base = x
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (model : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (left : Element), LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauMultiplication model left model.base = left
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (model : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (left : Element), (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).1 left model.1 = left
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    model : PeanoSystem Element SetObject
+    left : Element
+  Prove
+    (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).1 left model.1 = left
 
 Logical form (Lean):
 
@@ -261,11 +277,17 @@ theorem LandauMultiplicationWithOne
 
 Predicate logic:
 
-  (∀ x y ∈ Element), LandauMultiplication model x (model.successor y) = LandauAddition model (LandauMultiplication model x y) x
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (model : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (left right : Element), LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauMultiplication model left (model.successor right) = LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model (LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauMultiplication model left right) left
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (model : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (left right : Element), (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).1 left (model.2 right) = (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => model.successor left) fun x value => model.successor value) ⋯).1 ((Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).1 left right) left
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    model : PeanoSystem Element SetObject
+    left right : Element
+  Prove
+    (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).1 left (model.2 right) = (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => model.successor left) fun x value => model.successor value) ⋯).1 ((Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).1 left right) left
 
 Logical form (Lean):
 
@@ -307,11 +329,16 @@ theorem LandauMultiplicationSuccessorOnRight
 
 Predicate logic:
 
-  LRA.Operation.Laws.Distributive.RightDistributive (LandauMultiplication model) (LandauAddition model)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (model : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), LRA.Operation.Laws.Distributive.RightDistributive (LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauMultiplication model) (LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model)
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (model : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (left right third : Element), (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).1 ((Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => model.successor left) fun x value => model.successor value) ⋯).val left right) third = (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => model.successor left) fun x value => model.successor value) ⋯).1 ((Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).val left third) ((Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).val right third)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    model : PeanoSystem Element SetObject
+  Prove
+    (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).1 ((Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => model.successor left) fun x value => model.successor value) ⋯).val left right) third = (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => model.successor left) fun x value => model.successor value) ⋯).1 ((Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).val left third) ((Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).val right third)
 
 Logical form (Lean):
 
@@ -353,11 +380,16 @@ theorem LandauMultiplicationDistributesOverAddition
 
 Predicate logic:
 
-  LRA.Operation.Laws.Distributive.LeftDistributive (LandauMultiplication model) (LandauAddition model)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (model : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), LRA.Operation.Laws.Distributive.LeftDistributive (LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauMultiplication model) (LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model)
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (model : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (left right third : Element), (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).1 left ((Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => model.successor left) fun x value => model.successor value) ⋯).val right third) = (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => model.successor left) fun x value => model.successor value) ⋯).1 ((Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).val left right) ((Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).val left third)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    model : PeanoSystem Element SetObject
+  Prove
+    (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).1 left ((Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => model.successor left) fun x value => model.successor value) ⋯).val right third) = (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => model.successor left) fun x value => model.successor value) ⋯).1 ((Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).val left right) ((Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).val left third)
 
 Logical form (Lean):
 
@@ -399,11 +431,16 @@ theorem LandauLeftDistributivityOfMultiplicationOverAddition
 
 Predicate logic:
 
-  LRA.Operation.Laws.Distributive.TwoSidedDistributive (LandauMultiplication model) (LandauAddition model)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (model : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), LRA.Operation.Laws.Distributive.TwoSidedDistributive (LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauMultiplication model) (LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model)
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (model : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), (∀ (left right third : Element), (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).1 left (Classical.choose ⋯ right third) = (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => model.successor left) fun x value => model.successor value) ⋯).1 (Classical.choose ⋯ left right) (Classical.choose ⋯ left third) ∧ ∀ (left right third : Element), (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).1 (Classical.choose ⋯ left right) third = (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => model.successor left) fun x value => model.successor value) ⋯).1 (Classical.choose ⋯ left third) (Classical.choose ⋯ right third))
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    model : PeanoSystem Element SetObject
+  Prove
+    ((∀ (left right third : Element), (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).1 left (Classical.choose ⋯ right third) = (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => model.successor left) fun x value => model.successor value) ⋯).1 (Classical.choose ⋯ left right) (Classical.choose ⋯ left third)) ∧ (∀ (left right third : Element), (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).1 (Classical.choose ⋯ left right) third = (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => model.successor left) fun x value => model.successor value) ⋯).1 (Classical.choose ⋯ left third) (Classical.choose ⋯ right third)))
 
 Logical form (Lean):
 
@@ -445,11 +482,16 @@ theorem LandauMultiplicationDistributesOverAdditionBothSides
 
 Predicate logic:
 
-  LRA.Operation.Laws.Associative.Associative (LandauMultiplication model)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (model : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), LRA.Operation.Laws.Associative.Associative (LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauMultiplication model)
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (model : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (first second third : Element), (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).1 ((Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).val first second) third = (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).1 first ((Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).val second third)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    model : PeanoSystem Element SetObject
+  Prove
+    (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).1 ((Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).val first second) third = (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).1 first ((Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).val second third)
 
 Logical form (Lean):
 
@@ -487,11 +529,16 @@ theorem LandauMultiplicationIsAssociative
 
 Predicate logic:
 
-  LRA.Operation.Laws.Commutative.Commutative (LandauMultiplication model)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (model : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), LRA.Operation.Laws.Commutative.Commutative (LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauMultiplication model)
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (model : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (first second : Element), (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).1 first second = (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).1 second first
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    model : PeanoSystem Element SetObject
+  Prove
+    (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).1 first second = (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.BinaryIteratorOperationClauses model Element Element (fun left => left) fun left value => LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition model value left) ⋯).1 second first
 
 Logical form (Lean):
 

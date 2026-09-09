@@ -11,11 +11,17 @@ universe u
 
 Predicate logic:
 
-  (∀ left right candidate ∈ Alpha), Join (LRA.Relation.Converse relation) left right candidate ↔ Meet relation left right candidate
+  ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha) (left right candidate : Alpha), LRA.Order.Join (LRA.Relation.Converse relation) left right candidate ↔ LRA.Order.Meet relation left right candidate
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (relation : Alpha → Alpha → Prop) (left right candidate : Alpha), (relation candidate left ∧ (relation candidate right ∧ ∀ (upper : Alpha), relation upper left → relation upper right → relation upper candidate)) ↔ (relation candidate left ∧ (relation candidate right ∧ ∀ (lower : Alpha), relation lower left → relation lower right → relation lower candidate))
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    left right candidate : Alpha
+  Prove
+    LRA.Order.Join (LRA.Relation.Converse relation) left right candidate ↔ LRA.Order.Meet relation left right candidate
 
 Logical form (Lean):
 

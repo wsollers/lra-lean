@@ -10,16 +10,16 @@ universe u v
 Predicate logic:
 
   class ExtensionalityLaw (Element : outParam (Type u)) (SetObject : Type v)
-    [Membership Element SetObject] : Prop where
-  SetExtensionality :
-    ∀ {A B : SetObject}, (∀ x : Element, x ∈ A ↔ x ∈ B) → A = B
+      [Membership Element SetObject] : Prop where
+    SetExtensionality :
+      ∀ {A B : SetObject}, (∀ x : Element, x ∈ A ↔ x ∈ B) → A = B
 
 Predicate logic (unfolded):
 
   class ExtensionalityLaw (Element : outParam (Type u)) (SetObject : Type v)
-    [Membership Element SetObject] : Prop where
-  SetExtensionality :
-    ∀ {A B : SetObject}, (∀ x : Element, x ∈ A ↔ x ∈ B) → A = B (source fallback; no compiled unfold data available)
+      [Membership Element SetObject] : Prop where
+    SetExtensionality :
+      ∀ {A B : SetObject}, (∀ x : Element, x ∈ A ↔ x ∈ B) → A = B (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -60,34 +60,34 @@ class ExtensionalityLaw (Element : outParam (Type u)) (SetObject : Type v)
 Predicate logic:
 
   class MembershipLaws (Element : outParam (Type u)) (SetObject : Type v)
-    [Membership Element SetObject] [Union SetObject] [Inter SetObject]
-    [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] :
-    Prop where
-  EmptyMembership : ∀ x : Element, x ∉ (∅ : SetObject)
-  UnionMembership :
-    ∀ (A B : SetObject) (x : Element), x ∈ A ∪ B ↔ x ∈ A ∨ x ∈ B
-  IntersectionMembership :
-    ∀ (A B : SetObject) (x : Element), x ∈ A ∩ B ↔ x ∈ A ∧ x ∈ B
-  DifferenceMembership :
-    ∀ (A B : SetObject) (x : Element), x ∈ A \ B ↔ x ∈ A ∧ x ∉ B
-  SubsetIffAllMembers :
-    ∀ A B : SetObject, A ⊆ B ↔ ∀ x : Element, x ∈ A → x ∈ B
+      [Membership Element SetObject] [Union SetObject] [Inter SetObject]
+      [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] :
+      Prop where
+    EmptyMembership : ∀ x : Element, x ∉ (∅ : SetObject)
+    UnionMembership :
+      ∀ (A B : SetObject) (x : Element), x ∈ A ∪ B ↔ x ∈ A ∨ x ∈ B
+    IntersectionMembership :
+      ∀ (A B : SetObject) (x : Element), x ∈ A ∩ B ↔ x ∈ A ∧ x ∈ B
+    DifferenceMembership :
+      ∀ (A B : SetObject) (x : Element), x ∈ A \ B ↔ x ∈ A ∧ x ∉ B
+    SubsetIffAllMembers :
+      ∀ A B : SetObject, A ⊆ B ↔ ∀ x : Element, x ∈ A → x ∈ B
 
 Predicate logic (unfolded):
 
   class MembershipLaws (Element : outParam (Type u)) (SetObject : Type v)
-    [Membership Element SetObject] [Union SetObject] [Inter SetObject]
-    [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] :
-    Prop where
-  EmptyMembership : ∀ x : Element, x ∉ (∅ : SetObject)
-  UnionMembership :
-    ∀ (A B : SetObject) (x : Element), x ∈ A ∪ B ↔ x ∈ A ∨ x ∈ B
-  IntersectionMembership :
-    ∀ (A B : SetObject) (x : Element), x ∈ A ∩ B ↔ x ∈ A ∧ x ∈ B
-  DifferenceMembership :
-    ∀ (A B : SetObject) (x : Element), x ∈ A \ B ↔ x ∈ A ∧ x ∉ B
-  SubsetIffAllMembers :
-    ∀ A B : SetObject, A ⊆ B ↔ ∀ x : Element, x ∈ A → x ∈ B (source fallback; no compiled unfold data available)
+      [Membership Element SetObject] [Union SetObject] [Inter SetObject]
+      [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] :
+      Prop where
+    EmptyMembership : ∀ x : Element, x ∉ (∅ : SetObject)
+    UnionMembership :
+      ∀ (A B : SetObject) (x : Element), x ∈ A ∪ B ↔ x ∈ A ∨ x ∈ B
+    IntersectionMembership :
+      ∀ (A B : SetObject) (x : Element), x ∈ A ∩ B ↔ x ∈ A ∧ x ∈ B
+    DifferenceMembership :
+      ∀ (A B : SetObject) (x : Element), x ∈ A \ B ↔ x ∈ A ∧ x ∉ B
+    SubsetIffAllMembers :
+      ∀ A B : SetObject, A ⊆ B ↔ ∀ x : Element, x ∈ A → x ∈ B (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -146,20 +146,20 @@ class MembershipLaws (Element : outParam (Type u)) (SetObject : Type v)
 Predicate logic:
 
   class SeparationLaws (Element : outParam (Type u)) (SetObject : Type v)
-    [Membership Element SetObject] [HasSeparation Element SetObject] :
-    Prop where
-  SeparationMembership :
-    ∀ (A : SetObject) (property : Element → Prop) (x : Element),
-      x ∈ HasSeparation.separation A property ↔ x ∈ A ∧ property x
+      [Membership Element SetObject] [HasSeparation Element SetObject] :
+      Prop where
+    SeparationMembership :
+      ∀ (A : SetObject) (property : Element → Prop) (x : Element),
+        x ∈ HasSeparation.separation A property ↔ x ∈ A ∧ property x
 
 Predicate logic (unfolded):
 
   class SeparationLaws (Element : outParam (Type u)) (SetObject : Type v)
-    [Membership Element SetObject] [HasSeparation Element SetObject] :
-    Prop where
-  SeparationMembership :
-    ∀ (A : SetObject) (property : Element → Prop) (x : Element),
-      x ∈ HasSeparation.separation A property ↔ x ∈ A ∧ property x (source fallback; no compiled unfold data available)
+      [Membership Element SetObject] [HasSeparation Element SetObject] :
+      Prop where
+    SeparationMembership :
+      ∀ (A : SetObject) (property : Element → Prop) (x : Element),
+        x ∈ HasSeparation.separation A property ↔ x ∈ A ∧ property x (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -204,22 +204,22 @@ class SeparationLaws (Element : outParam (Type u)) (SetObject : Type v)
 Predicate logic:
 
   class UniversalMembershipLaws
-    (Element : outParam (Type u)) (SetObject : Type v)
-    [Membership Element SetObject] [HasUniversal SetObject]
-    [HasComplement SetObject] : Prop where
-  UniversalMembership : ∀ x : Element, x ∈ (𝒰 : SetObject)
-  ComplementMembership :
-    ∀ (A : SetObject) (x : Element), x ∈ Aᶜ ↔ x ∉ A
+      (Element : outParam (Type u)) (SetObject : Type v)
+      [Membership Element SetObject] [HasUniversal SetObject]
+      [HasComplement SetObject] : Prop where
+    UniversalMembership : ∀ x : Element, x ∈ (𝒰 : SetObject)
+    ComplementMembership :
+      ∀ (A : SetObject) (x : Element), x ∈ Aᶜ ↔ x ∉ A
 
 Predicate logic (unfolded):
 
   class UniversalMembershipLaws
-    (Element : outParam (Type u)) (SetObject : Type v)
-    [Membership Element SetObject] [HasUniversal SetObject]
-    [HasComplement SetObject] : Prop where
-  UniversalMembership : ∀ x : Element, x ∈ (𝒰 : SetObject)
-  ComplementMembership :
-    ∀ (A : SetObject) (x : Element), x ∈ Aᶜ ↔ x ∉ A (source fallback; no compiled unfold data available)
+      (Element : outParam (Type u)) (SetObject : Type v)
+      [Membership Element SetObject] [HasUniversal SetObject]
+      [HasComplement SetObject] : Prop where
+    UniversalMembership : ∀ x : Element, x ∈ (𝒰 : SetObject)
+    ComplementMembership :
+      ∀ (A : SetObject) (x : Element), x ∈ Aᶜ ↔ x ∉ A (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -266,20 +266,20 @@ class UniversalMembershipLaws
 Predicate logic:
 
   class SymmDiffMembershipLaws
-    (Element : outParam (Type u)) (SetObject : Type v)
-    [Membership Element SetObject] [HasSymmDiff SetObject] : Prop where
-  SymmetricDifferenceMembership :
-    ∀ (A B : SetObject) (x : Element),
-      x ∈ A ∆ B ↔ (x ∈ A ∧ x ∉ B) ∨ (x ∈ B ∧ x ∉ A)
+      (Element : outParam (Type u)) (SetObject : Type v)
+      [Membership Element SetObject] [HasSymmDiff SetObject] : Prop where
+    SymmetricDifferenceMembership :
+      ∀ (A B : SetObject) (x : Element),
+        x ∈ A ∆ B ↔ (x ∈ A ∧ x ∉ B) ∨ (x ∈ B ∧ x ∉ A)
 
 Predicate logic (unfolded):
 
   class SymmDiffMembershipLaws
-    (Element : outParam (Type u)) (SetObject : Type v)
-    [Membership Element SetObject] [HasSymmDiff SetObject] : Prop where
-  SymmetricDifferenceMembership :
-    ∀ (A B : SetObject) (x : Element),
-      x ∈ A ∆ B ↔ (x ∈ A ∧ x ∉ B) ∨ (x ∈ B ∧ x ∉ A) (source fallback; no compiled unfold data available)
+      (Element : outParam (Type u)) (SetObject : Type v)
+      [Membership Element SetObject] [HasSymmDiff SetObject] : Prop where
+    SymmetricDifferenceMembership :
+      ∀ (A B : SetObject) (x : Element),
+        x ∈ A ∆ B ↔ (x ∈ A ∧ x ∉ B) ∨ (x ∈ B ∧ x ∉ A) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -324,18 +324,18 @@ class SymmDiffMembershipLaws
 Predicate logic:
 
   class PowersetMembershipLaws (SetObject : Type u) (Collection : Type v)
-    [Membership SetObject Collection] [HasSubset SetObject]
-    [HasPowerset SetObject Collection] : Prop where
-  PowersetMembership :
-    ∀ A B : SetObject, B ∈ (HasPowerset.powerset A : Collection) ↔ B ⊆ A
+      [Membership SetObject Collection] [HasSubset SetObject]
+      [HasPowerset SetObject Collection] : Prop where
+    PowersetMembership :
+      ∀ A B : SetObject, B ∈ (HasPowerset.powerset A : Collection) ↔ B ⊆ A
 
 Predicate logic (unfolded):
 
   class PowersetMembershipLaws (SetObject : Type u) (Collection : Type v)
-    [Membership SetObject Collection] [HasSubset SetObject]
-    [HasPowerset SetObject Collection] : Prop where
-  PowersetMembership :
-    ∀ A B : SetObject, B ∈ (HasPowerset.powerset A : Collection) ↔ B ⊆ A (source fallback; no compiled unfold data available)
+      [Membership SetObject Collection] [HasSubset SetObject]
+      [HasPowerset SetObject Collection] : Prop where
+    PowersetMembership :
+      ∀ A B : SetObject, B ∈ (HasPowerset.powerset A : Collection) ↔ B ⊆ A (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -381,11 +381,16 @@ variable {Element : Type u} {SetObject : Type v}
 
 Predicate logic:
 
-  (∀ A B ∈ U), (∀ x : Element, x ∈ A ↔ x ∈ B) → A = B
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject], LRA.Set.ExtensionalityLaw Element SetObject → ∀ {A B : SetObject}, (∀ (x : Element), x ∈ A ↔ x ∈ B) → A = B
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject], LRA.Set.ExtensionalityLaw Element SetObject → ∀ {A B : SetObject}, (∀ (x : Element), inst.1 A x ↔ inst.1 B x) → A = B
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    A B : SetObject
+  Prove
+    LRA.Set.ExtensionalityLaw Element SetObject → ∀ {A B : SetObject}, (∀ (x : Element), x ∈ A ↔ x ∈ B) → A = B
 
 Logical form (Lean):
 
@@ -427,11 +432,16 @@ theorem SetExtensionality
 
 Predicate logic:
 
-  ∀ x : Element, x ∉ ∅ ∈ SetObject
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ (x : Element), ¬ x ∈ inst_4.emptyCollection
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ (x : Element), inst.1 inst_4.1 x → False
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    (none)
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ (x : Element), inst.1 inst_4.1 x → False
 
 Logical form (Lean):
 
@@ -474,11 +484,16 @@ theorem EmptyMembership
 
 Predicate logic:
 
-  ∀ A B ∈ SetObject x ∈ Element, x ∈ A ∪ B ↔ x ∈ A ∨ x ∈ B
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ (A B : SetObject) (x : Element), x ∈ A ∪ B ↔ Or (x) ∈ A(x) ∈ B
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ (A B : SetObject) (x : Element), inst.1 (inst_1.1 A B) x ↔ Or (inst.1 A x) (inst.1 B x)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    (none)
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ (A B : SetObject) (x : Element), x ∈ A ∪ B ↔ Or (x) ∈ A(x) ∈ B
 
 Logical form (Lean):
 
@@ -521,11 +536,16 @@ theorem UnionMembership
 
 Predicate logic:
 
-  ∀ A B ∈ SetObject x ∈ Element, x ∈ A ∩ B ↔ x ∈ A ∧ x ∈ B
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ (A B : SetObject) (x : Element), x ∈ A ∩ B ↔ (x ∈ A ∧ x ∈ B)
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ (A B : SetObject) (x : Element), inst.1 (inst_2.1 A B) x ↔ (inst.1 A x ∧ inst.1 B x)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    (none)
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ (A B : SetObject) (x : Element), x ∈ A ∩ B ↔ (x ∈ A ∧ x ∈ B)
 
 Logical form (Lean):
 
@@ -568,11 +588,16 @@ theorem IntersectionMembership
 
 Predicate logic:
 
-  ∀ A B ∈ SetObject x ∈ Element, x ∈ A \ B ↔ x ∈ A ∧ x ∉ B
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ (A B : SetObject) (x : Element), x ∈ A \ B ↔ (x ∈ A ∧ ¬ x ∈ B)
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ (A B : SetObject) (x : Element), inst.1 (inst_3.1 A B) x ↔ (inst.1 A x ∧ inst.1 B x → False)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    (none)
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ (A B : SetObject) (x : Element), x ∈ A \ B ↔ (x ∈ A ∧ ¬ x ∈ B)
 
 Logical form (Lean):
 
@@ -615,11 +640,16 @@ theorem DifferenceMembership
 
 Predicate logic:
 
-  ∀ A B : SetObject, A ⊆ B ↔ ∀ x : Element, x ∈ A → x ∈ B
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ (A B : SetObject), inst_5.Subset A B ↔ ∀ (x : Element), x ∈ A → x ∈ B
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ (A B : SetObject), inst_5.1 A B ↔ ∀ (x : Element), inst.1 A x → inst.1 B x
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    (none)
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ (A B : SetObject), inst_5.Subset A B ↔ ∀ (x : Element), x ∈ A → x ∈ B
 
 Logical form (Lean):
 
@@ -662,11 +692,16 @@ theorem SubsetIffAllMembers
 
 Predicate logic:
 
-  ∀ A ∈ SetObject property ∈ Element → Prop x ∈ Element, x ∈ HasSeparation.separation A property ↔ x ∈ A ∧ property x
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasSeparation Element SetObject], LRA.Set.SeparationLaws Element SetObject → ∀ (A : SetObject) (property : Element → Prop) (x : Element), x ∈ inst_1.separation A property ↔ (x ∈ A ∧ property x)
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasSeparation Element SetObject], LRA.Set.SeparationLaws Element SetObject → ∀ (A : SetObject) (property : Element → Prop) (x : Element), inst.1 (inst_1.1 A property) x ↔ (inst.1 A x ∧ property x)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    (none)
+  Prove
+    LRA.Set.SeparationLaws Element SetObject → ∀ (A : SetObject) (property : Element → Prop) (x : Element), x ∈ inst_1.separation A property ↔ (x ∈ A ∧ property x)
 
 Logical form (Lean):
 
@@ -709,11 +744,16 @@ theorem SeparationMembership
 
 Predicate logic:
 
-  ∀ x : Element, x ∈ 𝒰 ∈ SetObject
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasUniversal SetObject] [inst_2 : LRA.Set.HasComplement SetObject], LRA.Set.UniversalMembershipLaws Element SetObject → ∀ (x : Element), x ∈ inst_1.universal
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasUniversal SetObject] [inst_2 : LRA.Set.HasComplement SetObject], LRA.Set.UniversalMembershipLaws Element SetObject → ∀ (x : Element), inst.1 inst_1.1 x
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    (none)
+  Prove
+    LRA.Set.UniversalMembershipLaws Element SetObject → ∀ (x : Element), inst.1 inst_1.1 x
 
 Logical form (Lean):
 
@@ -754,11 +794,16 @@ theorem UniversalMembership
 
 Predicate logic:
 
-  ∀ A ∈ SetObject x ∈ Element, x ∈ Aᶜ ↔ x ∉ A
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasUniversal SetObject] [inst_2 : LRA.Set.HasComplement SetObject], LRA.Set.UniversalMembershipLaws Element SetObject → ∀ (A : SetObject) (x : Element), x ∈ inst_2.complement A ↔ ¬ x ∈ A
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasUniversal SetObject] [inst_2 : LRA.Set.HasComplement SetObject], LRA.Set.UniversalMembershipLaws Element SetObject → ∀ (A : SetObject) (x : Element), inst.1 (inst_2.1 A) x ↔ inst.1 A x → False
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    (none)
+  Prove
+    LRA.Set.UniversalMembershipLaws Element SetObject → ∀ (A : SetObject) (x : Element), x ∈ inst_2.complement A ↔ ¬ x ∈ A
 
 Logical form (Lean):
 
@@ -799,11 +844,16 @@ theorem ComplementMembership
 
 Predicate logic:
 
-  ∀ A B ∈ SetObject x ∈ Element, x ∈ A ∆ B ↔ (x ∈ A ∧ x ∉ B) ∨ (x ∈ B ∧ x ∉ A)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasSymmDiff SetObject], LRA.Set.SymmDiffMembershipLaws Element SetObject → ∀ (A B : SetObject) (x : Element), x ∈ inst_1.symmDiff A B ↔ Or ((x ∈ A ∧ ¬ x ∈ B)) ((x ∈ B ∧ ¬ x ∈ A))
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasSymmDiff SetObject], LRA.Set.SymmDiffMembershipLaws Element SetObject → ∀ (A B : SetObject) (x : Element), inst.1 (inst_1.1 A B) x ↔ Or ((inst.1 A x ∧ inst.1 B x → False)) ((inst.1 B x ∧ inst.1 A x → False))
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    (none)
+  Prove
+    LRA.Set.SymmDiffMembershipLaws Element SetObject → ∀ (A B : SetObject) (x : Element), x ∈ inst_1.symmDiff A B ↔ Or ((x ∈ A ∧ ¬ x ∈ B)) ((x ∈ B ∧ ¬ x ∈ A))
 
 Logical form (Lean):
 
@@ -846,11 +896,16 @@ theorem SymmetricDifferenceMembership
 
 Predicate logic:
 
-  ∀ A B : SetObject, B ∈ HasPowerset.powerset A ∈ Collection ↔ B ⊆ A
+  ∀ {SetObject : Type u} {Collection : Type v} [inst : Membership SetObject Collection] [inst_1 : HasSubset SetObject] [inst_2 : LRA.Set.HasPowerset SetObject Collection], LRA.Set.PowersetMembershipLaws SetObject Collection → ∀ (A B : SetObject), B ∈ inst_2.powerset A ↔ inst_1.Subset B A
 
 Predicate logic (unfolded):
 
-  ∀ {SetObject : Type u} {Collection : Type v} [inst : Membership SetObject Collection] [inst_1 : HasSubset SetObject] [inst_2 : LRA.Set.HasPowerset SetObject Collection], LRA.Set.PowersetMembershipLaws SetObject Collection → ∀ (A B : SetObject), inst.1 (inst_2.1 A) B ↔ inst_1.1 B A
+  Ambient
+    (Element, SetObject, Collection, ∈)
+  Objects
+    (none)
+  Prove
+    LRA.Set.PowersetMembershipLaws SetObject Collection → ∀ (A B : SetObject), B ∈ inst_2.powerset A ↔ inst_1.Subset B A
 
 Logical form (Lean):
 

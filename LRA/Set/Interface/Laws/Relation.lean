@@ -16,11 +16,18 @@ variable {RelationObject DomainObject RangeObject : Type v}
 
 Predicate logic:
 
-  (∀ first second ∈ RelationObject ∀ input ∈ Left ∀ output ∈ Right), Relates (first ∪ second) input output ↔ Relates first input output ∨ Relates second input output
+  ∀ {Left Right Pair : Type u} {RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Union RelationObject] [inst_3 : Inter RelationObject] [inst_4 : SDiff RelationObject] [inst_5 : EmptyCollection RelationObject] [inst_6 : HasSubset RelationObject], LRA.Set.MembershipLaws Pair RelationObject → ∀ (first second : RelationObject) (input : Left) (output : Right), LRA.Set.Relates (first ∪ second)input output ↔ Or (LRA.Set.Relates first input output) (LRA.Set.Relates second input output)
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Union RelationObject] [inst_3 : Inter RelationObject] [inst_4 : SDiff RelationObject] [inst_5 : EmptyCollection RelationObject] [inst_6 : HasSubset RelationObject], LRA.Set.MembershipLaws Pair RelationObject → ∀ (first second : RelationObject) (input : Left) (output : Right), inst_1.1 (inst_2.1 first second) (inst.1 input output) ↔ Or (inst_1.1 first (inst.1 input output)) (inst_1.1 second (inst.1 input output))
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, ∈)
+  Objects
+    first second : RelationObject
+    input : Left
+    output : Right
+  Prove
+    LRA.Set.MembershipLaws Pair RelationObject → ∀ (first second : RelationObject) (input : Left) (output : Right), LRA.Set.Relates (first ∪ second)input output ↔ Or (LRA.Set.Relates first input output) (LRA.Set.Relates second input output)
 
 Logical form (Lean):
 
@@ -69,11 +76,18 @@ theorem RelatesUnion
 
 Predicate logic:
 
-  (∀ first second ∈ RelationObject ∀ input ∈ Left ∀ output ∈ Right), Relates (first ∩ second) input output ↔ Relates first input output ∧ Relates second input output
+  ∀ {Left Right Pair : Type u} {RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Union RelationObject] [inst_3 : Inter RelationObject] [inst_4 : SDiff RelationObject] [inst_5 : EmptyCollection RelationObject] [inst_6 : HasSubset RelationObject], LRA.Set.MembershipLaws Pair RelationObject → ∀ (first second : RelationObject) (input : Left) (output : Right), LRA.Set.Relates (first ∩ second)input output ↔ (LRA.Set.Relates first input output ∧ LRA.Set.Relates second input output)
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Union RelationObject] [inst_3 : Inter RelationObject] [inst_4 : SDiff RelationObject] [inst_5 : EmptyCollection RelationObject] [inst_6 : HasSubset RelationObject], LRA.Set.MembershipLaws Pair RelationObject → ∀ (first second : RelationObject) (input : Left) (output : Right), inst_1.1 (inst_3.1 first second) (inst.1 input output) ↔ (inst_1.1 first (inst.1 input output) ∧ inst_1.1 second (inst.1 input output))
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, ∈)
+  Objects
+    first second : RelationObject
+    input : Left
+    output : Right
+  Prove
+    LRA.Set.MembershipLaws Pair RelationObject → ∀ (first second : RelationObject) (input : Left) (output : Right), LRA.Set.Relates (first ∩ second)input output ↔ (LRA.Set.Relates first input output ∧ LRA.Set.Relates second input output)
 
 Logical form (Lean):
 
@@ -122,11 +136,18 @@ theorem RelatesIntersection
 
 Predicate logic:
 
-  (∀ relation ∈ RelationObject ∀ ambientDomain ∈ DomainObject ∀ input ∈ Left), input ∈ DomainOf Right relation ambientDomain ↔ input ∈ ambientDomain ∧ ∃ output ∈ Right, Relates relation input output
+  ∀ {Left Right Pair : Type u} {RelationObject DomainObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : LRA.Set.HasSeparation Left DomainObject], LRA.Set.SeparationLaws Left DomainObject → ∀ (relation : RelationObject) (ambientDomain : DomainObject) (input : Left), input ∈ LRA.Set.DomainOf Right relation ambientDomain ↔ (input ∈ ambientDomain ∧ Exists fun output => LRA.Set.Relates relation input output)
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {RelationObject DomainObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : LRA.Set.HasSeparation Left DomainObject], LRA.Set.SeparationLaws Left DomainObject → ∀ (relation : RelationObject) (ambientDomain : DomainObject) (input : Left), inst_2.1 (inst_3.1 ambientDomain fun input => Exists fun output => inst_1.1 relation (inst.pair input output)) input ↔ (inst_2.1 ambientDomain input ∧ Exists fun output => inst_1.1 relation (inst.1 input output))
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, ∈)
+  Objects
+    relation : RelationObject
+    ambientDomain : DomainObject
+    input : Left
+  Prove
+    LRA.Set.SeparationLaws Left DomainObject → ∀ (relation : RelationObject) (ambientDomain : DomainObject) (input : Left), input ∈ LRA.Set.DomainOf Right relation ambientDomain ↔ (input ∈ ambientDomain ∧ Exists fun output => LRA.Set.Relates relation input output)
 
 Logical form (Lean):
 
@@ -177,11 +198,18 @@ theorem MemberOfDomainOf
 
 Predicate logic:
 
-  (∀ relation ∈ RelationObject ∀ ambientRange ∈ RangeObject ∀ output ∈ Right), output ∈ RangeOf Left relation ambientRange ↔ output ∈ ambientRange ∧ ∃ input ∈ Left, Relates relation input output
+  ∀ {Left Right Pair : Type u} {RelationObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Right RangeObject] [inst_3 : LRA.Set.HasSeparation Right RangeObject], LRA.Set.SeparationLaws Right RangeObject → ∀ (relation : RelationObject) (ambientRange : RangeObject) (output : Right), output ∈ LRA.Set.RangeOf Left relation ambientRange ↔ (output ∈ ambientRange ∧ Exists fun input => LRA.Set.Relates relation input output)
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {RelationObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Right RangeObject] [inst_3 : LRA.Set.HasSeparation Right RangeObject], LRA.Set.SeparationLaws Right RangeObject → ∀ (relation : RelationObject) (ambientRange : RangeObject) (output : Right), inst_2.1 (inst_3.1 ambientRange fun output => Exists fun input => inst_1.1 relation (inst.pair input output)) output ↔ (inst_2.1 ambientRange output ∧ Exists fun input => inst_1.1 relation (inst.1 input output))
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, ∈)
+  Objects
+    relation : RelationObject
+    ambientRange : RangeObject
+    output : Right
+  Prove
+    LRA.Set.SeparationLaws Right RangeObject → ∀ (relation : RelationObject) (ambientRange : RangeObject) (output : Right), output ∈ LRA.Set.RangeOf Left relation ambientRange ↔ (output ∈ ambientRange ∧ Exists fun input => LRA.Set.Relates relation input output)
 
 Logical form (Lean):
 
@@ -232,11 +260,19 @@ theorem MemberOfRangeOf
 
 Predicate logic:
 
-  (∀ relation ∈ RelationObject ∀ inputs ∈ DomainObject ∀ ambientRange ∈ RangeObject ∀ output ∈ Right), output ∈ ImageOf relation inputs ambientRange ↔ output ∈ ambientRange ∧ ∃ input ∈ Left, input ∈ inputs ∧ Relates relation input output
+  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Right RangeObject], LRA.Set.SeparationLaws Right RangeObject → ∀ (relation : RelationObject) (inputs : DomainObject) (ambientRange : RangeObject) (output : Right), output ∈ LRA.Set.ImageOf relation inputs ambientRange ↔ (output ∈ ambientRange ∧ (Exists fun input => (input ∈ inputs ∧ LRA.Set.Relates relation input output)))
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Right RangeObject], LRA.Set.SeparationLaws Right RangeObject → ∀ (relation : RelationObject) (inputs : DomainObject) (ambientRange : RangeObject) (output : Right), inst_3.1 (inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 inputs input ∧ inst_1.1 relation (inst.pair input output))) output ↔ (inst_3.1 ambientRange output ∧ Exists fun input => (inst_2.1 inputs input ∧ inst_1.1 relation (inst.1 input output)))
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, ∈)
+  Objects
+    relation : RelationObject
+    inputs : DomainObject
+    ambientRange : RangeObject
+    output : Right
+  Prove
+    LRA.Set.SeparationLaws Right RangeObject → ∀ (relation : RelationObject) (inputs : DomainObject) (ambientRange : RangeObject) (output : Right), output ∈ LRA.Set.ImageOf relation inputs ambientRange ↔ (output ∈ ambientRange ∧ (Exists fun input => (input ∈ inputs ∧ LRA.Set.Relates relation input output)))
 
 Logical form (Lean):
 
@@ -289,11 +325,19 @@ theorem MemberOfImageOf
 
 Predicate logic:
 
-  (∀ relation ∈ RelationObject ∀ outputs ∈ RangeObject ∀ ambientDomain ∈ DomainObject ∀ input ∈ Left), input ∈ PreimageOf relation outputs ambientDomain ↔ input ∈ ambientDomain ∧ ∃ output ∈ Right, output ∈ outputs ∧ Relates relation input output
+  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Right RangeObject] [inst_3 : Membership Left DomainObject] [inst_4 : LRA.Set.HasSeparation Left DomainObject], LRA.Set.SeparationLaws Left DomainObject → ∀ (relation : RelationObject) (outputs : RangeObject) (ambientDomain : DomainObject) (input : Left), input ∈ LRA.Set.PreimageOf relation outputs ambientDomain ↔ (input ∈ ambientDomain ∧ (Exists fun output => (output ∈ outputs ∧ LRA.Set.Relates relation input output)))
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Right RangeObject] [inst_3 : Membership Left DomainObject] [inst_4 : LRA.Set.HasSeparation Left DomainObject], LRA.Set.SeparationLaws Left DomainObject → ∀ (relation : RelationObject) (outputs : RangeObject) (ambientDomain : DomainObject) (input : Left), inst_3.1 (inst_4.1 ambientDomain fun input => Exists fun output => (inst_2.1 outputs output ∧ inst_1.1 relation (inst.pair input output))) input ↔ (inst_3.1 ambientDomain input ∧ Exists fun output => (inst_2.1 outputs output ∧ inst_1.1 relation (inst.1 input output)))
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, ∈)
+  Objects
+    relation : RelationObject
+    outputs : RangeObject
+    ambientDomain : DomainObject
+    input : Left
+  Prove
+    LRA.Set.SeparationLaws Left DomainObject → ∀ (relation : RelationObject) (outputs : RangeObject) (ambientDomain : DomainObject) (input : Left), input ∈ LRA.Set.PreimageOf relation outputs ambientDomain ↔ (input ∈ ambientDomain ∧ (Exists fun output => (output ∈ outputs ∧ LRA.Set.Relates relation input output)))
 
 Logical form (Lean):
 
@@ -348,11 +392,19 @@ theorem MemberOfPreimageOf
 
 Predicate logic:
 
-  (∀ relation ∈ RelationObject ∀ output ∈ Right ∀ ambientDomain ∈ DomainObject ∀ input ∈ Left), input ∈ FiberOf relation output ambientDomain ↔ input ∈ ambientDomain ∧ Relates relation input output
+  ∀ {Left Right Pair : Type u} {RelationObject DomainObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : LRA.Set.HasSeparation Left DomainObject], LRA.Set.SeparationLaws Left DomainObject → ∀ (relation : RelationObject) (output : Right) (ambientDomain : DomainObject) (input : Left), input ∈ LRA.Set.FiberOf relation output ambientDomain ↔ (input ∈ ambientDomain ∧ LRA.Set.Relates relation input output)
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {RelationObject DomainObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : LRA.Set.HasSeparation Left DomainObject], LRA.Set.SeparationLaws Left DomainObject → ∀ (relation : RelationObject) (output : Right) (ambientDomain : DomainObject) (input : Left), inst_2.1 (inst_3.1 ambientDomain fun input => inst_1.1 relation (inst.pair input output)) input ↔ (inst_2.1 ambientDomain input ∧ inst_1.1 relation (inst.1 input output))
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, ∈)
+  Objects
+    relation : RelationObject
+    output : Right
+    ambientDomain : DomainObject
+    input : Left
+  Prove
+    LRA.Set.SeparationLaws Left DomainObject → ∀ (relation : RelationObject) (output : Right) (ambientDomain : DomainObject) (input : Left), input ∈ LRA.Set.FiberOf relation output ambientDomain ↔ (input ∈ ambientDomain ∧ LRA.Set.Relates relation input output)
 
 Logical form (Lean):
 
@@ -401,11 +453,19 @@ theorem MemberOfFiberOf
 
 Predicate logic:
 
-  (∀ relation ∈ RelationObject ∀ ambientReversed ∈ ReversedObject ∀ input ∈ Left ∀ output ∈ Right), Relates (InverseOf Left Right relation ambientReversed) output input ↔ OrderedPair output input ∈ ReversedPair ∈ ambientReversed ∧ Relates relation input output
+  ∀ {Left Right Pair : Type u} {RelationObject : Type v} {ReversedPair : Type u} {ReversedObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasPairing Right Left ReversedPair] [inst_2 : Membership Pair RelationObject] [inst_3 : Membership ReversedPair ReversedObject] [inst_4 : LRA.Set.HasSeparation ReversedPair ReversedObject], (LRA.Set.SeparationLaws ReversedPair ReversedObject ∧ LRA.Set.PairingLaws Right Left ReversedPair) → ∀ (relation : RelationObject) (ambientReversed : ReversedObject) (input : Left) (output : Right), LRA.Set.Relates (LRA.Set.InverseOf Left Right relation ambientReversed) output input ↔ (LRA.Set.OrderedPair output input ∈ ambientReversed ∧ LRA.Set.Relates relation input output)
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {RelationObject : Type v} {ReversedPair : Type u} {ReversedObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasPairing Right Left ReversedPair] [inst_2 : Membership Pair RelationObject] [inst_3 : Membership ReversedPair ReversedObject] [inst_4 : LRA.Set.HasSeparation ReversedPair ReversedObject], (LRA.Set.SeparationLaws ReversedPair ReversedObject ∧ LRA.Set.PairingLaws Right Left ReversedPair) → ∀ (relation : RelationObject) (ambientReversed : ReversedObject) (input : Left) (output : Right), inst_3.1 (inst_4.1 ambientReversed fun reversed => Exists fun input => Exists fun output => (reversed = inst_1.1 output input ∧ inst_2.1 relation (LRA.Set.OrderedPair input output))) (inst_1.1 output input) ↔ (inst_3.1 ambientReversed (inst_1.1 output input) ∧ inst_2.1 relation (inst.1 input output))
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, ReversedPair, ReversedObject, ∈)
+  Objects
+    relation : RelationObject
+    ambientReversed : ReversedObject
+    input : Left
+    output : Right
+  Prove
+    (LRA.Set.SeparationLaws ReversedPair ReversedObject ∧ LRA.Set.PairingLaws Right Left ReversedPair) → ∀ (relation : RelationObject) (ambientReversed : ReversedObject) (input : Left) (output : Right), LRA.Set.Relates (LRA.Set.InverseOf Left Right relation ambientReversed) output input ↔ (LRA.Set.OrderedPair output input ∈ ambientReversed ∧ LRA.Set.Relates relation input output)
 
 Logical form (Lean):
 
@@ -466,11 +526,19 @@ theorem RelatesInverseOf {ReversedPair : Type u}
 
 Predicate logic:
 
-  (∀ relation ∈ RelationObject ∀ inputs ∈ DomainObject ∀ input ∈ Left ∀ output ∈ Right), Relates (RestrictionOf Right relation inputs) input output ↔ Relates relation input output ∧ input ∈ inputs
+  ∀ {Left Right Pair : Type u} {RelationObject DomainObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : LRA.Set.HasSeparation Pair RelationObject], LRA.Set.SeparationLaws Pair RelationObject → ∀ [inst_3 : Membership Left DomainObject], LRA.Set.PairingLaws Left Right Pair → ∀ (relation : RelationObject) (inputs : DomainObject) (input : Left) (output : Right), LRA.Set.Relates (LRA.Set.RestrictionOf Right relation inputs) input output ↔ (LRA.Set.Relates relation input output ∧ input ∈ inputs)
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {RelationObject DomainObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : LRA.Set.HasSeparation Pair RelationObject], LRA.Set.SeparationLaws Pair RelationObject → ∀ [inst_3 : Membership Left DomainObject], LRA.Set.PairingLaws Left Right Pair → ∀ (relation : RelationObject) (inputs : DomainObject) (input : Left) (output : Right), inst_1.1 (inst_2.1 relation fun member => Exists fun input => Exists fun output => (member = inst.1 input output ∧ inst_3.1 inputs input)) (inst.1 input output) ↔ (inst_1.1 relation (inst.1 input output) ∧ inst_3.1 inputs input)
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, ∈)
+  Objects
+    relation : RelationObject
+    inputs : DomainObject
+    input : Left
+    output : Right
+  Prove
+    LRA.Set.SeparationLaws Pair RelationObject → ∀ [inst_3 : Membership Left DomainObject], LRA.Set.PairingLaws Left Right Pair → ∀ (relation : RelationObject) (inputs : DomainObject) (input : Left) (output : Right), LRA.Set.Relates (LRA.Set.RestrictionOf Right relation inputs) input output ↔ (LRA.Set.Relates relation input output ∧ input ∈ inputs)
 
 Logical form (Lean):
 
@@ -523,11 +591,17 @@ theorem RelatesRestrictionOf
 
 Predicate logic:
 
-  (∀ relation ∈ RelationObject ∀ inputs ∈ DomainObject), RestrictionOf Right relation inputs ⊆ relation
+  ∀ {Left Right Pair : Type u} {RelationObject DomainObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : LRA.Set.HasSeparation Pair RelationObject], LRA.Set.SeparationLaws Pair RelationObject → ∀ [inst_3 : Union RelationObject] [inst_4 : Inter RelationObject] [inst_5 : SDiff RelationObject] [inst_6 : EmptyCollection RelationObject] [inst_7 : HasSubset RelationObject], LRA.Set.MembershipLaws Pair RelationObject → ∀ [inst_8 : Membership Left DomainObject] (relation : RelationObject) (inputs : DomainObject), inst_7.Subset (LRA.Set.RestrictionOf Right relation inputs) relation
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {RelationObject DomainObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : LRA.Set.HasSeparation Pair RelationObject], LRA.Set.SeparationLaws Pair RelationObject → ∀ [inst_3 : Union RelationObject] [inst_4 : Inter RelationObject] [inst_5 : SDiff RelationObject] [inst_6 : EmptyCollection RelationObject] [inst_7 : HasSubset RelationObject], LRA.Set.MembershipLaws Pair RelationObject → ∀ [inst_8 : Membership Left DomainObject] (relation : RelationObject) (inputs : DomainObject), inst_7.1 (inst_2.1 relation fun member => Exists fun input => Exists fun output => (member = inst.1 input output ∧ inst_8.1 inputs input)) relation
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, ∈)
+  Objects
+    relation : RelationObject
+    inputs : DomainObject
+  Prove
+    LRA.Set.SeparationLaws Pair RelationObject → ∀ [inst_3 : Union RelationObject] [inst_4 : Inter RelationObject] [inst_5 : SDiff RelationObject] [inst_6 : EmptyCollection RelationObject] [inst_7 : HasSubset RelationObject], LRA.Set.MembershipLaws Pair RelationObject → ∀ [inst_8 : Membership Left DomainObject] (relation : RelationObject) (inputs : DomainObject), inst_7.1 (inst_2.1 relation fun member => Exists fun input => Exists fun output => (member = inst.1 input output ∧ inst_8.1 inputs input)) relation
 
 Logical form (Lean):
 
@@ -580,11 +654,17 @@ theorem RestrictionIsSubset
 
 Predicate logic:
 
-  (∀ relation ∈ RelationObject ∀ inputs ∈ DomainObject), (IsFunctionalSet Left Right relation) → IsFunctionalSet Left Right (RestrictionOf Right relation inputs)
+  ∀ {Left Right Pair : Type u} {RelationObject DomainObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : LRA.Set.HasSeparation Pair RelationObject], LRA.Set.SeparationLaws Pair RelationObject → ∀ [inst_3 : Membership Left DomainObject], LRA.Set.PairingLaws Left Right Pair → ∀ (relation : RelationObject) (inputs : DomainObject), LRA.Set.IsFunctionalSet Left Right relation → LRA.Set.IsFunctionalSet Left Right (LRA.Set.RestrictionOf Right relation inputs)
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {RelationObject DomainObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : LRA.Set.HasSeparation Pair RelationObject], LRA.Set.SeparationLaws Pair RelationObject → ∀ [inst_3 : Membership Left DomainObject], LRA.Set.PairingLaws Left Right Pair → ∀ (relation : RelationObject) (inputs : DomainObject), (∀ (member : Pair), inst_1.1 relation member → Exists fun input => Exists fun output => member = inst.1 input output ∧ ∀ (input : Left) (firstOutput secondOutput : Right), inst_1.1 relation (inst.1 input firstOutput) → inst_1.1 relation (inst.1 input secondOutput) → firstOutput = secondOutput) → (∀ (member : Pair), inst_1.1 (inst_2.1 relation fun member => Exists fun input => Exists fun output => (member = inst.pair input output ∧ inst_3.1 inputs input)) member → Exists fun input => Exists fun output => member = inst.1 input output ∧ ∀ (input : Left) (firstOutput secondOutput : Right), inst_1.1 (inst_2.1 relation fun member => Exists fun input => Exists fun output => (member = LRA.Set.OrderedPair input output ∧ input ∈ inputs)) (inst.1 input firstOutput) → inst_1.1 (inst_2.1 relation fun member => Exists fun input => Exists fun output => (member = LRA.Set.OrderedPair input output ∧ input ∈ inputs)) (inst.1 input secondOutput) → firstOutput = secondOutput)
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, ∈)
+  Objects
+    relation : RelationObject
+    inputs : DomainObject
+  Prove
+    LRA.Set.SeparationLaws Pair RelationObject → ∀ [inst_3 : Membership Left DomainObject], LRA.Set.PairingLaws Left Right Pair → ∀ (relation : RelationObject) (inputs : DomainObject), ((∀ (member : Pair), inst_1.1 relation member → Exists fun input => Exists fun output => member = inst.1 input output) ∧ (∀ (input : Left) (firstOutput secondOutput : Right), inst_1.1 relation (inst.1 input firstOutput) → inst_1.1 relation (inst.1 input secondOutput) → firstOutput = secondOutput)) → ((∀ (member : Pair), inst_1.1 (inst_2.1 relation fun member => Exists fun input => Exists fun output => (member = inst.pair input output ∧ inst_3.1 inputs input)) member → Exists fun input => Exists fun output => member = inst.1 input output) ∧ (∀ (input : Left) (firstOutput secondOutput : Right), inst_1.1 (inst_2.1 relation fun member => Exists fun input => Exists fun output => (member = LRA.Set.OrderedPair input output ∧ input ∈ inputs)) (inst.1 input firstOutput) → inst_1.1 (inst_2.1 relation fun member => Exists fun input => Exists fun output => (member = LRA.Set.OrderedPair input output ∧ input ∈ inputs)) (inst.1 input secondOutput) → firstOutput = secondOutput))
 
 Logical form (Lean):
 
@@ -635,11 +715,16 @@ theorem RestrictionOfFunctionalIsFunctional
 
 Predicate logic:
 
-  (∀ first second ∈ RelationObject), (IsFunctionalSet Left Right first ∧ IsFunctionalSet Left Right second ∧ ∀ input ∈ Left firstOutput secondOutput ∈ Right, Relates first input firstOutput → Relates second input secondOutput → firstOutput = secondOutput) → IsFunctionalSet Left Right (first ∪ second)
+  ∀ {Left Right Pair : Type u} {RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Union RelationObject] [inst_3 : Inter RelationObject] [inst_4 : SDiff RelationObject] [inst_5 : EmptyCollection RelationObject] [inst_6 : HasSubset RelationObject], LRA.Set.MembershipLaws Pair RelationObject → ∀ (first second : RelationObject), (LRA.Set.IsFunctionalSet Left Right first ∧ (LRA.Set.IsFunctionalSet Left Right second ∧ (∀ (input : Left) (firstOutput secondOutput : Right), LRA.Set.Relates first input firstOutput → LRA.Set.Relates second input secondOutput → firstOutput = secondOutput))) → LRA.Set.IsFunctionalSet Left Right (first ∪ second)
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Union RelationObject] [inst_3 : Inter RelationObject] [inst_4 : SDiff RelationObject] [inst_5 : EmptyCollection RelationObject] [inst_6 : HasSubset RelationObject], LRA.Set.MembershipLaws Pair RelationObject → ∀ (first second : RelationObject), ((∀ (member : Pair), inst_1.1 first member → Exists fun input => Exists fun output => member = inst.1 input output ∧ ∀ (input : Left) (firstOutput secondOutput : Right), inst_1.1 first (inst.1 input firstOutput) → inst_1.1 first (inst.1 input secondOutput) → firstOutput = secondOutput) ∧ ((∀ (member : Pair), inst_1.1 second member → Exists fun input => Exists fun output => member = inst.1 input output ∧ ∀ (input : Left) (firstOutput secondOutput : Right), inst_1.1 second (inst.1 input firstOutput) → inst_1.1 second (inst.1 input secondOutput) → firstOutput = secondOutput) ∧ ∀ (input : Left) (firstOutput secondOutput : Right), inst_1.1 first (inst.1 input firstOutput) → inst_1.1 second (inst.1 input secondOutput) → firstOutput = secondOutput)) → (∀ (member : Pair), inst_1.1 (inst_2.1 first second) member → Exists fun input => Exists fun output => member = inst.1 input output ∧ ∀ (input : Left) (firstOutput secondOutput : Right), inst_1.1 (inst_2.1 first second) (inst.1 input firstOutput) → inst_1.1 (inst_2.1 first second) (inst.1 input secondOutput) → firstOutput = secondOutput)
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, ∈)
+  Objects
+    first second : RelationObject
+  Prove
+    LRA.Set.MembershipLaws Pair RelationObject → ∀ (first second : RelationObject), (((∀ (member : Pair), inst_1.1 first member → Exists fun input => Exists fun output => member = inst.1 input output) ∧ (∀ (input : Left) (firstOutput secondOutput : Right), inst_1.1 first (inst.1 input firstOutput) → inst_1.1 first (inst.1 input secondOutput) → firstOutput = secondOutput)) ∧ (((∀ (member : Pair), inst_1.1 second member → Exists fun input => Exists fun output => member = inst.1 input output) ∧ (∀ (input : Left) (firstOutput secondOutput : Right), inst_1.1 second (inst.1 input firstOutput) → inst_1.1 second (inst.1 input secondOutput) → firstOutput = secondOutput)) ∧ (∀ (input : Left) (firstOutput secondOutput : Right), inst_1.1 first (inst.1 input firstOutput) → inst_1.1 second (inst.1 input secondOutput) → firstOutput = secondOutput))) → ((∀ (member : Pair), inst_1.1 (inst_2.1 first second) member → Exists fun input => Exists fun output => member = inst.1 input output) ∧ (∀ (input : Left) (firstOutput secondOutput : Right), inst_1.1 (inst_2.1 first second) (inst.1 input firstOutput) → inst_1.1 (inst_2.1 first second) (inst.1 input secondOutput) → firstOutput = secondOutput))
 
 Logical form (Lean):
 
@@ -698,11 +783,19 @@ theorem UnionOfCompatibleFunctionalIsFunctional
 
 Predicate logic:
 
-  (∀ ambientPairs ∈ RelationObject ∀ input ∈ Left ∀ output ∈ Right), (Left → Right) → Relates (GraphSetOf map ambientPairs) input output ↔ OrderedPair input output ∈ Pair ∈ ambientPairs ∧ map input = output
+  ∀ {Left Right Pair : Type u} {RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : LRA.Set.HasSeparation Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ (map : Left → Right) (ambientPairs : RelationObject) (input : Left) (output : Right), LRA.Set.Relates (LRA.Set.GraphSetOf map ambientPairs) input output ↔ (LRA.Set.OrderedPair input output ∈ ambientPairs ∧ map input = output)
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : LRA.Set.HasSeparation Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ (map : Left → Right) (ambientPairs : RelationObject) (input : Left) (output : Right), inst_1.1 (inst_2.1 ambientPairs fun member => Exists fun input => member = inst.1 input (map input)) (inst.1 input output) ↔ (inst_1.1 ambientPairs (inst.1 input output) ∧ map input = output)
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, ∈)
+  Objects
+    map : Left → Right
+    ambientPairs : RelationObject
+    input : Left
+    output : Right
+  Prove
+    (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ (map : Left → Right) (ambientPairs : RelationObject) (input : Left) (output : Right), LRA.Set.Relates (LRA.Set.GraphSetOf map ambientPairs) input output ↔ (LRA.Set.OrderedPair input output ∈ ambientPairs ∧ map input = output)
 
 Logical form (Lean):
 
@@ -755,11 +848,17 @@ theorem RelatesGraphSetOf
 
 Predicate logic:
 
-  (∀ ambientPairs ∈ RelationObject), (Left → Right) → IsFunctionalSet Left Right (GraphSetOf map ambientPairs)
+  ∀ {Left Right Pair : Type u} {RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : LRA.Set.HasSeparation Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ (map : Left → Right) (ambientPairs : RelationObject), LRA.Set.IsFunctionalSet Left Right (LRA.Set.GraphSetOf map ambientPairs)
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : LRA.Set.HasSeparation Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ (map : Left → Right) (ambientPairs : RelationObject), (∀ (member : Pair), inst_1.1 (inst_2.1 ambientPairs fun member => Exists fun input => member = inst.pair input (map input)) member → Exists fun input => Exists fun output => member = inst.1 input output ∧ ∀ (input : Left) (firstOutput secondOutput : Right), inst_1.1 (inst_2.1 ambientPairs fun member => Exists fun input => member = LRA.Set.OrderedPair input (map input)) (inst.1 input firstOutput) → inst_1.1 (inst_2.1 ambientPairs fun member => Exists fun input => member = LRA.Set.OrderedPair input (map input)) (inst.1 input secondOutput) → firstOutput = secondOutput)
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, ∈)
+  Objects
+    map : Left → Right
+    ambientPairs : RelationObject
+  Prove
+    (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ (map : Left → Right) (ambientPairs : RelationObject), ((∀ (member : Pair), inst_1.1 (inst_2.1 ambientPairs fun member => Exists fun input => member = inst.pair input (map input)) member → Exists fun input => Exists fun output => member = inst.1 input output) ∧ (∀ (input : Left) (firstOutput secondOutput : Right), inst_1.1 (inst_2.1 ambientPairs fun member => Exists fun input => member = LRA.Set.OrderedPair input (map input)) (inst.1 input firstOutput) → inst_1.1 (inst_2.1 ambientPairs fun member => Exists fun input => member = LRA.Set.OrderedPair input (map input)) (inst.1 input secondOutput) → firstOutput = secondOutput))
 
 Logical form (Lean):
 
@@ -806,11 +905,19 @@ theorem GraphSetOfIsFunctional
 
 Predicate logic:
 
-  (∀ relation ∈ RelationObject ∀ input ∈ Left ∀ output ∈ Right), (IsSingleValued Left Right relation ∧ ∃ someOutput ∈ Right, Relates relation input someOutput) → AppliedTo relation input hits = output
+  ∀ {Left Right Pair : Type u} {RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] (relation : RelationObject), LRA.Set.IsSingleValued Left Right relation → ∀ (input : Left) (output : Right), LRA.Set.Relates relation input output → ∀ (hits : Exists fun someOutput => LRA.Set.Relates relation input someOutput), LRA.Set.AppliedTo relation input hits = output
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] (relation : RelationObject), (∀ (input : Left) (firstOutput secondOutput : Right), inst_1.1 relation (inst.1 input firstOutput) → inst_1.1 relation (inst.1 input secondOutput) → firstOutput = secondOutput) → ∀ (input : Left) (output : Right), inst_1.1 relation (inst.1 input output) → ∀ (hits : Exists fun someOutput => inst_1.1 relation (inst.1 input someOutput)), Classical.indefiniteDescription (LRA.Set.Relates relation input) hits = .1output
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, ∈)
+  Objects
+    relation : RelationObject
+    input : Left
+    output : Right
+    relates : Relates relation input output
+  Prove
+    (∀ (input : Left) (firstOutput secondOutput : Right), inst_1.1 relation (inst.1 input firstOutput) → inst_1.1 relation (inst.1 input secondOutput) → firstOutput = secondOutput) → ∀ (input : Left) (output : Right), inst_1.1 relation (inst.1 input output) → ∀ (hits : Exists fun someOutput => inst_1.1 relation (inst.1 input someOutput)), Classical.indefiniteDescription (LRA.Set.Relates relation input) hits = .1output
 
 Logical form (Lean):
 
@@ -868,11 +975,18 @@ variable [ExtensionalityLaw Right RangeObject]
 
 Predicate logic:
 
-  (∀ relation ∈ RelationObject ∀ left right ∈ DomainObject ∀ ambientRange ∈ RangeObject), ImageOf relation (left ∪ right) ambientRange = ImageOf relation left ambientRange ∪ ImageOf relation right ambientRange
+  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Right RangeObject], (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject], (LRA.Set.MembershipLaws Left DomainObject ∧ LRA.Set.MembershipLaws Right RangeObject) → ∀ (relation : RelationObject) (left right : DomainObject) (ambientRange : RangeObject), LRA.Set.ImageOf relation (left ∪ right)ambientRange = LRA.Set.ImageOf relation left ambientRange ∪ LRA.Set.ImageOf relation right ambientRange
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Right RangeObject], (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject], (LRA.Set.MembershipLaws Left DomainObject ∧ LRA.Set.MembershipLaws Right RangeObject) → ∀ (relation : RelationObject) (left right : DomainObject) (ambientRange : RangeObject), inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 (inst_5.1 left right) input ∧ inst_1.1 relation (inst.1 input output)) = inst_10.1 (inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 left input ∧ inst_1.1 relation (inst.pair input output))) (inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 right input ∧ inst_1.1 relation (inst.pair input output)))
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, ∈)
+  Objects
+    relation : RelationObject
+    left right : DomainObject
+    ambientRange : RangeObject
+  Prove
+    (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject], (LRA.Set.MembershipLaws Left DomainObject ∧ LRA.Set.MembershipLaws Right RangeObject) → ∀ (relation : RelationObject) (left right : DomainObject) (ambientRange : RangeObject), inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 (inst_5.1 left right) input ∧ inst_1.1 relation (inst.1 input output)) = inst_10.1 (inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 left input ∧ inst_1.1 relation (inst.pair input output))) (inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 right input ∧ inst_1.1 relation (inst.pair input output)))
 
 Logical form (Lean):
 
@@ -925,11 +1039,17 @@ theorem ImageOfUnion
 
 Predicate logic:
 
-  (∀ relation ∈ RelationObject ∀ ambientRange ∈ RangeObject), ImageOf relation ∅ ∈ DomainObject ambientRange = ∅ ∈ RangeObject
+  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Right RangeObject], (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject], (LRA.Set.MembershipLaws Left DomainObject ∧ LRA.Set.MembershipLaws Right RangeObject) → ∀ (relation : RelationObject) (ambientRange : RangeObject), LRA.Set.ImageOf relation inst_8.emptyCollection ambientRange = inst_13.emptyCollection
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Right RangeObject], (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject], (LRA.Set.MembershipLaws Left DomainObject ∧ LRA.Set.MembershipLaws Right RangeObject) → ∀ (relation : RelationObject) (ambientRange : RangeObject), inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 inst_8.1 input ∧ inst_1.1 relation (inst.1 input output)) = inst_13.1
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, ∈)
+  Objects
+    relation : RelationObject
+    ambientRange : RangeObject
+  Prove
+    (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject], (LRA.Set.MembershipLaws Left DomainObject ∧ LRA.Set.MembershipLaws Right RangeObject) → ∀ (relation : RelationObject) (ambientRange : RangeObject), inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 inst_8.1 input ∧ inst_1.1 relation (inst.1 input output)) = inst_13.1
 
 Logical form (Lean):
 
@@ -978,11 +1098,19 @@ theorem ImageOfEmpty
 
 Predicate logic:
 
-  (∀ relation ∈ RelationObject ∀ smaller larger ∈ DomainObject ∀ ambientRange ∈ RangeObject), ImageOf relation smaller ambientRange ⊆ ImageOf relation larger ambientRange
+  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Right RangeObject], (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ [inst_5 : HasSubset DomainObject] [inst_6 : HasSubset RangeObject] (relation : RelationObject) (smaller larger : DomainObject) (ambientRange : RangeObject), inst_5.Subset smaller larger → inst_6.Subset (LRA.Set.ImageOf relation smaller ambientRange) (LRA.Set.ImageOf relation larger ambientRange)
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Right RangeObject], (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ [inst_5 : HasSubset DomainObject] [inst_6 : HasSubset RangeObject] (relation : RelationObject) (smaller larger : DomainObject) (ambientRange : RangeObject), inst_5.1 smaller larger → inst_6.1 (inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 smaller input ∧ inst_1.1 relation (inst.pair input output))) (inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 larger input ∧ inst_1.1 relation (inst.pair input output)))
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, ∈)
+  Objects
+    relation : RelationObject
+    smaller larger : DomainObject
+    ambientRange : RangeObject
+    inclusion : smaller ⊆ larger
+  Prove
+    (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ [inst_5 : HasSubset DomainObject] [inst_6 : HasSubset RangeObject] (relation : RelationObject) (smaller larger : DomainObject) (ambientRange : RangeObject), inst_5.1 smaller larger → inst_6.1 (inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 smaller input ∧ inst_1.1 relation (inst.pair input output))) (inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 larger input ∧ inst_1.1 relation (inst.pair input output)))
 
 Logical form (Lean):
 
@@ -1023,11 +1151,18 @@ theorem ImageOfMonotone [HasSubset DomainObject] [HasSubset RangeObject]
 
 Predicate logic:
 
-  (∀ relation ∈ RelationObject ∀ left right ∈ DomainObject ∀ ambientRange ∈ RangeObject), ImageOf relation (left ∩ right) ambientRange ⊆ ImageOf relation left ambientRange ∩ ImageOf relation right ambientRange
+  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Right RangeObject], (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ [inst_5 : Inter DomainObject] [inst_6 : Inter RangeObject] [inst_7 : HasSubset RangeObject] (relation : RelationObject) (left right : DomainObject) (ambientRange : RangeObject), inst_7.Subset (LRA.Set.ImageOf relation (left ∩ right)ambientRange) (LRA.Set.ImageOf relation left ambientRange ∩ LRA.Set.ImageOf relation right ambientRange)
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Right RangeObject], (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ [inst_5 : Inter DomainObject] [inst_6 : Inter RangeObject] [inst_7 : HasSubset RangeObject] (relation : RelationObject) (left right : DomainObject) (ambientRange : RangeObject), inst_7.1 (inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 (inst_5.1 left right) input ∧ inst_1.1 relation (inst.pair input output))) (inst_6.1 (inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 left input ∧ inst_1.1 relation (LRA.Set.OrderedPair input output))) (inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 right input ∧ inst_1.1 relation (LRA.Set.OrderedPair input output))))
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, ∈)
+  Objects
+    relation : RelationObject
+    left right : DomainObject
+    ambientRange : RangeObject
+  Prove
+    (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ [inst_5 : Inter DomainObject] [inst_6 : Inter RangeObject] [inst_7 : HasSubset RangeObject] (relation : RelationObject) (left right : DomainObject) (ambientRange : RangeObject), inst_7.1 (inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 (inst_5.1 left right) input ∧ inst_1.1 relation (inst.pair input output))) (inst_6.1 (inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 left input ∧ inst_1.1 relation (LRA.Set.OrderedPair input output))) (inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 right input ∧ inst_1.1 relation (LRA.Set.OrderedPair input output))))
 
 Logical form (Lean):
 
@@ -1072,11 +1207,18 @@ theorem ImageOfIntersectionSubset
 
 Predicate logic:
 
-  (∀ relation ∈ RelationObject ∀ left right ∈ DomainObject ∀ ambientRange ∈ RangeObject), ImageOf relation left ambientRange \ ImageOf relation right ambientRange ⊆ ImageOf relation (left \ right) ambientRange
+  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Right RangeObject], (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ [inst_5 : SDiff DomainObject] [inst_6 : SDiff RangeObject] [inst_7 : HasSubset RangeObject] (relation : RelationObject) (left right : DomainObject) (ambientRange : RangeObject), inst_7.Subset (LRA.Set.ImageOf relation left ambientRange \ LRA.Set.ImageOf relation right ambientRange) (LRA.Set.ImageOf relation (left \ right)ambientRange)
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Right RangeObject], (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ [inst_5 : SDiff DomainObject] [inst_6 : SDiff RangeObject] [inst_7 : HasSubset RangeObject] (relation : RelationObject) (left right : DomainObject) (ambientRange : RangeObject), inst_7.1 (inst_6.1 (inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 left input ∧ inst_1.1 relation (LRA.Set.OrderedPair input output))) (inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 right input ∧ inst_1.1 relation (LRA.Set.OrderedPair input output)))) (inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 (inst_5.1 left right) input ∧ inst_1.1 relation (inst.pair input output)))
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, ∈)
+  Objects
+    relation : RelationObject
+    left right : DomainObject
+    ambientRange : RangeObject
+  Prove
+    (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ [inst_5 : SDiff DomainObject] [inst_6 : SDiff RangeObject] [inst_7 : HasSubset RangeObject] (relation : RelationObject) (left right : DomainObject) (ambientRange : RangeObject), inst_7.1 (inst_6.1 (inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 left input ∧ inst_1.1 relation (LRA.Set.OrderedPair input output))) (inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 right input ∧ inst_1.1 relation (LRA.Set.OrderedPair input output)))) (inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 (inst_5.1 left right) input ∧ inst_1.1 relation (inst.pair input output)))
 
 Logical form (Lean):
 
@@ -1121,11 +1263,18 @@ theorem DifferenceOfImagesSubsetImageOfDifference
 
 Predicate logic:
 
-  (∀ relation ∈ RelationObject ∀ ambientRange ∈ RangeObject), (Index → DomainObject) → ImageOf relation (HasIndexedUnion.indexedUnion family) ambientRange = HasIndexedUnion.indexedUnion (fun index => ImageOf relation (family index) ambientRange)
+  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Right RangeObject], (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ {Index : Type u} [inst_5 : LRA.Set.HasIndexedUnion DomainObject] [inst_6 : LRA.Set.HasIndexedUnion RangeObject] (relation : RelationObject) (family : Index → DomainObject) (ambientRange : RangeObject), LRA.Set.ImageOf relation (inst_5.indexedUnion family) ambientRange = inst_6.indexedUnion fun index => LRA.Set.ImageOf relation (family index) ambientRange
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Right RangeObject], (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ {Index : Type u} [inst_5 : LRA.Set.HasIndexedUnion DomainObject] [inst_6 : LRA.Set.HasIndexedUnion RangeObject] (relation : RelationObject) (family : Index → DomainObject) (ambientRange : RangeObject), inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 (inst_5.1 family) input ∧ inst_1.1 relation (inst.1 input output)) = inst_6.1 fun index => inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 (family index) input ∧ inst_1.1 relation (inst.pair input output))
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, Index, ∈)
+  Objects
+    relation : RelationObject
+    family : Index → DomainObject
+    ambientRange : RangeObject
+  Prove
+    (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ {Index : Type u} [inst_5 : LRA.Set.HasIndexedUnion DomainObject] [inst_6 : LRA.Set.HasIndexedUnion RangeObject] (relation : RelationObject) (family : Index → DomainObject) (ambientRange : RangeObject), inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 (inst_5.1 family) input ∧ inst_1.1 relation (inst.1 input output)) = inst_6.1 fun index => inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 (family index) input ∧ inst_1.1 relation (inst.pair input output))
 
 Logical form (Lean):
 
@@ -1172,11 +1321,18 @@ theorem ImageOfIndexedUnion {Index : Type u}
 
 Predicate logic:
 
-  (∀ relation ∈ RelationObject ∀ ambientRange ∈ RangeObject), (Index → DomainObject) → ImageOf relation (HasIndexedIntersection.indexedIntersection family) ambientRange ⊆ HasIndexedIntersection.indexedIntersection (fun index => ImageOf relation (family index) ambientRange)
+  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Right RangeObject], (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ {Index : Type u} [inst_5 : LRA.Set.HasIndexedIntersection DomainObject] [inst_6 : LRA.Set.HasIndexedIntersection RangeObject] [inst_7 : HasSubset RangeObject] (relation : RelationObject) (family : Index → DomainObject) (ambientRange : RangeObject), inst_7.Subset (LRA.Set.ImageOf relation (inst_5.indexedIntersection family) ambientRange) (inst_6.indexedIntersection fun index => LRA.Set.ImageOf relation (family index) ambientRange)
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Right RangeObject], (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ {Index : Type u} [inst_5 : LRA.Set.HasIndexedIntersection DomainObject] [inst_6 : LRA.Set.HasIndexedIntersection RangeObject] [inst_7 : HasSubset RangeObject] (relation : RelationObject) (family : Index → DomainObject) (ambientRange : RangeObject), inst_7.1 (inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 (inst_5.1 family) input ∧ inst_1.1 relation (inst.pair input output))) (inst_6.1 fun index => inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 (family index) input ∧ inst_1.1 relation (LRA.Set.OrderedPair input output)))
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, Index, ∈)
+  Objects
+    relation : RelationObject
+    family : Index → DomainObject
+    ambientRange : RangeObject
+  Prove
+    (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ {Index : Type u} [inst_5 : LRA.Set.HasIndexedIntersection DomainObject] [inst_6 : LRA.Set.HasIndexedIntersection RangeObject] [inst_7 : HasSubset RangeObject] (relation : RelationObject) (family : Index → DomainObject) (ambientRange : RangeObject), inst_7.1 (inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 (inst_5.1 family) input ∧ inst_1.1 relation (inst.pair input output))) (inst_6.1 fun index => inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 (family index) input ∧ inst_1.1 relation (LRA.Set.OrderedPair input output)))
 
 Logical form (Lean):
 
@@ -1225,11 +1381,18 @@ theorem ImageOfIndexedIntersectionSubset {Index : Type u}
 
 Predicate logic:
 
-  (∀ relation ∈ RelationObject ∀ ambientRange ∈ RangeObject), (Nat → DomainObject) → ImageOf relation (HasCountableUnion.countableUnion family) ambientRange = HasCountableUnion.countableUnion (fun index => ImageOf relation (family index) ambientRange)
+  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Right RangeObject], (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ [inst_5 : LRA.Set.HasCountableUnion DomainObject] [inst_6 : LRA.Set.HasCountableUnion RangeObject] (relation : RelationObject) (family : Nat → DomainObject) (ambientRange : RangeObject), LRA.Set.ImageOf relation (inst_5.countableUnion family) ambientRange = inst_6.countableUnion fun index => LRA.Set.ImageOf relation (family index) ambientRange
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Right RangeObject], (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ [inst_5 : LRA.Set.HasCountableUnion DomainObject] [inst_6 : LRA.Set.HasCountableUnion RangeObject] (relation : RelationObject) (family : Nat → DomainObject) (ambientRange : RangeObject), inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 (inst_5.1 family) input ∧ inst_1.1 relation (inst.1 input output)) = inst_6.1 fun index => inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 (family index) input ∧ inst_1.1 relation (inst.pair input output))
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, ∈)
+  Objects
+    relation : RelationObject
+    family : Nat → DomainObject
+    ambientRange : RangeObject
+  Prove
+    (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ [inst_5 : LRA.Set.HasCountableUnion DomainObject] [inst_6 : LRA.Set.HasCountableUnion RangeObject] (relation : RelationObject) (family : Nat → DomainObject) (ambientRange : RangeObject), inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 (inst_5.1 family) input ∧ inst_1.1 relation (inst.1 input output)) = inst_6.1 fun index => inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 (family index) input ∧ inst_1.1 relation (inst.pair input output))
 
 Logical form (Lean):
 
@@ -1276,11 +1439,18 @@ theorem ImageOfCountableUnion
 
 Predicate logic:
 
-  (∀ relation ∈ RelationObject ∀ ambientRange ∈ RangeObject), (Nat → DomainObject) → ImageOf relation (HasCountableIntersection.countableIntersection family) ambientRange ⊆ HasCountableIntersection.countableIntersection (fun index => ImageOf relation (family index) ambientRange)
+  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Right RangeObject], (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ [inst_5 : LRA.Set.HasCountableIntersection DomainObject] [inst_6 : LRA.Set.HasCountableIntersection RangeObject] [inst_7 : HasSubset RangeObject] (relation : RelationObject) (family : Nat → DomainObject) (ambientRange : RangeObject), inst_7.Subset (LRA.Set.ImageOf relation (inst_5.countableIntersection family) ambientRange) (inst_6.countableIntersection fun index => LRA.Set.ImageOf relation (family index) ambientRange)
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Right RangeObject], (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ [inst_5 : LRA.Set.HasCountableIntersection DomainObject] [inst_6 : LRA.Set.HasCountableIntersection RangeObject] [inst_7 : HasSubset RangeObject] (relation : RelationObject) (family : Nat → DomainObject) (ambientRange : RangeObject), inst_7.1 (inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 (inst_5.1 family) input ∧ inst_1.1 relation (inst.pair input output))) (inst_6.1 fun index => inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 (family index) input ∧ inst_1.1 relation (LRA.Set.OrderedPair input output)))
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, ∈)
+  Objects
+    relation : RelationObject
+    family : Nat → DomainObject
+    ambientRange : RangeObject
+  Prove
+    (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ [inst_5 : LRA.Set.HasCountableIntersection DomainObject] [inst_6 : LRA.Set.HasCountableIntersection RangeObject] [inst_7 : HasSubset RangeObject] (relation : RelationObject) (family : Nat → DomainObject) (ambientRange : RangeObject), inst_7.1 (inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 (inst_5.1 family) input ∧ inst_1.1 relation (inst.pair input output))) (inst_6.1 fun index => inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 (family index) input ∧ inst_1.1 relation (LRA.Set.OrderedPair input output)))
 
 Logical form (Lean):
 
@@ -1329,11 +1499,18 @@ theorem ImageOfCountableIntersectionSubset
 
 Predicate logic:
 
-  (∀ first second ∈ RelationObject ∀ inputs ∈ DomainObject ∀ ambientRange ∈ RangeObject), (∀ input ∈ Left output ∈ Right, Relates first input output ↔ Relates second input output) → ImageOf first inputs ambientRange = ImageOf second inputs ambientRange
+  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Right RangeObject], (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ (first second : RelationObject) (inputs : DomainObject) (ambientRange : RangeObject), (∀ (input : Left) (output : Right), LRA.Set.Relates first input output ↔ LRA.Set.Relates second input output) → LRA.Set.ImageOf first inputs ambientRange = LRA.Set.ImageOf second inputs ambientRange
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Right RangeObject], (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ (first second : RelationObject) (inputs : DomainObject) (ambientRange : RangeObject), (∀ (input : Left) (output : Right), inst_1.1 first (inst.1 input output) ↔ inst_1.1 second (inst.1 input output)) → inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 inputs input ∧ inst_1.1 first (inst.1 input output)) = inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 inputs input ∧ inst_1.1 second (inst.1 input output))
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, ∈)
+  Objects
+    first second : RelationObject
+    inputs : DomainObject
+    ambientRange : RangeObject
+  Prove
+    (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ (first second : RelationObject) (inputs : DomainObject) (ambientRange : RangeObject), (∀ (input : Left) (output : Right), LRA.Set.Relates first input output ↔ LRA.Set.Relates second input output) → LRA.Set.ImageOf first inputs ambientRange = LRA.Set.ImageOf second inputs ambientRange
 
 Logical form (Lean):
 
@@ -1378,11 +1555,18 @@ theorem ImageOfCongrRelation
 
 Predicate logic:
 
-  (∀ relation ∈ RelationObject ∀ left right ∈ DomainObject ∀ ambientRange ∈ RangeObject), (∀ input : Left, input ∈ left ↔ input ∈ right) → ImageOf relation left ambientRange = ImageOf relation right ambientRange
+  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Right RangeObject], (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ (relation : RelationObject) (left right : DomainObject) (ambientRange : RangeObject), (∀ (input : Left), input ∈ left ↔ input ∈ right) → LRA.Set.ImageOf relation left ambientRange = LRA.Set.ImageOf relation right ambientRange
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Right RangeObject], (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ (relation : RelationObject) (left right : DomainObject) (ambientRange : RangeObject), (∀ (input : Left), inst_2.1 left input ↔ inst_2.1 right input) → inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 left input ∧ inst_1.1 relation (inst.1 input output)) = inst_4.1 ambientRange fun output => Exists fun input => (inst_2.1 right input ∧ inst_1.1 relation (inst.1 input output))
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, ∈)
+  Objects
+    relation : RelationObject
+    left right : DomainObject
+    ambientRange : RangeObject
+  Prove
+    (LRA.Set.SeparationLaws Right RangeObject ∧ LRA.Set.ExtensionalityLaw Right RangeObject) → ∀ (relation : RelationObject) (left right : DomainObject) (ambientRange : RangeObject), (∀ (input : Left), input ∈ left ↔ input ∈ right) → LRA.Set.ImageOf relation left ambientRange = LRA.Set.ImageOf relation right ambientRange
 
 Logical form (Lean):
 
@@ -1436,11 +1620,18 @@ variable [ExtensionalityLaw Left DomainObject]
 
 Predicate logic:
 
-  (∀ relation ∈ RelationObject ∀ left right ∈ RangeObject ∀ ambientDomain ∈ DomainObject), PreimageOf relation (left ∪ right) ambientDomain = PreimageOf relation left ambientDomain ∪ PreimageOf relation right ambientDomain
+  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Left DomainObject], (LRA.Set.SeparationLaws Left DomainObject ∧ LRA.Set.ExtensionalityLaw Left DomainObject) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject], (LRA.Set.MembershipLaws Left DomainObject ∧ LRA.Set.MembershipLaws Right RangeObject) → ∀ (relation : RelationObject) (left right : RangeObject) (ambientDomain : DomainObject), LRA.Set.PreimageOf relation (left ∪ right)ambientDomain = LRA.Set.PreimageOf relation left ambientDomain ∪ LRA.Set.PreimageOf relation right ambientDomain
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Left DomainObject], (LRA.Set.SeparationLaws Left DomainObject ∧ LRA.Set.ExtensionalityLaw Left DomainObject) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject], (LRA.Set.MembershipLaws Left DomainObject ∧ LRA.Set.MembershipLaws Right RangeObject) → ∀ (relation : RelationObject) (left right : RangeObject) (ambientDomain : DomainObject), inst_4.1 ambientDomain fun input => Exists fun output => (inst_3.1 (inst_10.1 left right) output ∧ inst_1.1 relation (inst.1 input output)) = inst_5.1 (inst_4.1 ambientDomain fun input => Exists fun output => (inst_3.1 left output ∧ inst_1.1 relation (inst.pair input output))) (inst_4.1 ambientDomain fun input => Exists fun output => (inst_3.1 right output ∧ inst_1.1 relation (inst.pair input output)))
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, ∈)
+  Objects
+    relation : RelationObject
+    left right : RangeObject
+    ambientDomain : DomainObject
+  Prove
+    (LRA.Set.SeparationLaws Left DomainObject ∧ LRA.Set.ExtensionalityLaw Left DomainObject) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject], (LRA.Set.MembershipLaws Left DomainObject ∧ LRA.Set.MembershipLaws Right RangeObject) → ∀ (relation : RelationObject) (left right : RangeObject) (ambientDomain : DomainObject), inst_4.1 ambientDomain fun input => Exists fun output => (inst_3.1 (inst_10.1 left right) output ∧ inst_1.1 relation (inst.1 input output)) = inst_5.1 (inst_4.1 ambientDomain fun input => Exists fun output => (inst_3.1 left output ∧ inst_1.1 relation (inst.pair input output))) (inst_4.1 ambientDomain fun input => Exists fun output => (inst_3.1 right output ∧ inst_1.1 relation (inst.pair input output)))
 
 Logical form (Lean):
 
@@ -1495,11 +1686,17 @@ theorem PreimageOfUnion
 
 Predicate logic:
 
-  (∀ relation ∈ RelationObject ∀ ambientDomain ∈ DomainObject), PreimageOf relation ∅ ∈ RangeObject ambientDomain = ∅ ∈ DomainObject
+  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Left DomainObject], (LRA.Set.SeparationLaws Left DomainObject ∧ LRA.Set.ExtensionalityLaw Left DomainObject) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject], (LRA.Set.MembershipLaws Left DomainObject ∧ LRA.Set.MembershipLaws Right RangeObject) → ∀ (relation : RelationObject) (ambientDomain : DomainObject), LRA.Set.PreimageOf relation inst_13.emptyCollection ambientDomain = inst_8.emptyCollection
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Left DomainObject], (LRA.Set.SeparationLaws Left DomainObject ∧ LRA.Set.ExtensionalityLaw Left DomainObject) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject], (LRA.Set.MembershipLaws Left DomainObject ∧ LRA.Set.MembershipLaws Right RangeObject) → ∀ (relation : RelationObject) (ambientDomain : DomainObject), inst_4.1 ambientDomain fun input => Exists fun output => (inst_3.1 inst_13.1 output ∧ inst_1.1 relation (inst.1 input output)) = inst_8.1
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, ∈)
+  Objects
+    relation : RelationObject
+    ambientDomain : DomainObject
+  Prove
+    (LRA.Set.SeparationLaws Left DomainObject ∧ LRA.Set.ExtensionalityLaw Left DomainObject) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject], (LRA.Set.MembershipLaws Left DomainObject ∧ LRA.Set.MembershipLaws Right RangeObject) → ∀ (relation : RelationObject) (ambientDomain : DomainObject), inst_4.1 ambientDomain fun input => Exists fun output => (inst_3.1 inst_13.1 output ∧ inst_1.1 relation (inst.1 input output)) = inst_8.1
 
 Logical form (Lean):
 
@@ -1548,11 +1745,19 @@ theorem PreimageOfEmpty
 
 Predicate logic:
 
-  (∀ relation ∈ RelationObject ∀ smaller larger ∈ RangeObject ∀ ambientDomain ∈ DomainObject), PreimageOf relation smaller ambientDomain ⊆ PreimageOf relation larger ambientDomain
+  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Left DomainObject], (LRA.Set.SeparationLaws Left DomainObject ∧ LRA.Set.ExtensionalityLaw Left DomainObject) → ∀ [inst_5 : HasSubset DomainObject] [inst_6 : HasSubset RangeObject] (relation : RelationObject) (smaller larger : RangeObject) (ambientDomain : DomainObject), inst_6.Subset smaller larger → inst_5.Subset (LRA.Set.PreimageOf relation smaller ambientDomain) (LRA.Set.PreimageOf relation larger ambientDomain)
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Left DomainObject], (LRA.Set.SeparationLaws Left DomainObject ∧ LRA.Set.ExtensionalityLaw Left DomainObject) → ∀ [inst_5 : HasSubset DomainObject] [inst_6 : HasSubset RangeObject] (relation : RelationObject) (smaller larger : RangeObject) (ambientDomain : DomainObject), inst_6.1 smaller larger → inst_5.1 (inst_4.1 ambientDomain fun input => Exists fun output => (inst_3.1 smaller output ∧ inst_1.1 relation (inst.pair input output))) (inst_4.1 ambientDomain fun input => Exists fun output => (inst_3.1 larger output ∧ inst_1.1 relation (inst.pair input output)))
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, ∈)
+  Objects
+    relation : RelationObject
+    smaller larger : RangeObject
+    ambientDomain : DomainObject
+    inclusion : smaller ⊆ larger
+  Prove
+    (LRA.Set.SeparationLaws Left DomainObject ∧ LRA.Set.ExtensionalityLaw Left DomainObject) → ∀ [inst_5 : HasSubset DomainObject] [inst_6 : HasSubset RangeObject] (relation : RelationObject) (smaller larger : RangeObject) (ambientDomain : DomainObject), inst_6.1 smaller larger → inst_5.1 (inst_4.1 ambientDomain fun input => Exists fun output => (inst_3.1 smaller output ∧ inst_1.1 relation (inst.pair input output))) (inst_4.1 ambientDomain fun input => Exists fun output => (inst_3.1 larger output ∧ inst_1.1 relation (inst.pair input output)))
 
 Logical form (Lean):
 
@@ -1595,11 +1800,18 @@ theorem PreimageOfMonotone [HasSubset DomainObject] [HasSubset RangeObject]
 
 Predicate logic:
 
-  (∀ relation ∈ RelationObject ∀ outputs ∈ RangeObject ∀ ambientDomain ∈ DomainObject), PreimageOf relation outputs ambientDomain ⊆ ambientDomain
+  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Left DomainObject], (LRA.Set.SeparationLaws Left DomainObject ∧ LRA.Set.ExtensionalityLaw Left DomainObject) → ∀ [inst_5 : HasSubset DomainObject] (relation : RelationObject) (outputs : RangeObject) (ambientDomain : DomainObject), inst_5.Subset (LRA.Set.PreimageOf relation outputs ambientDomain) ambientDomain
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Left DomainObject], (LRA.Set.SeparationLaws Left DomainObject ∧ LRA.Set.ExtensionalityLaw Left DomainObject) → ∀ [inst_5 : HasSubset DomainObject] (relation : RelationObject) (outputs : RangeObject) (ambientDomain : DomainObject), inst_5.1 (inst_4.1 ambientDomain fun input => Exists fun output => (inst_3.1 outputs output ∧ inst_1.1 relation (inst.pair input output))) ambientDomain
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, ∈)
+  Objects
+    relation : RelationObject
+    outputs : RangeObject
+    ambientDomain : DomainObject
+  Prove
+    (LRA.Set.SeparationLaws Left DomainObject ∧ LRA.Set.ExtensionalityLaw Left DomainObject) → ∀ [inst_5 : HasSubset DomainObject] (relation : RelationObject) (outputs : RangeObject) (ambientDomain : DomainObject), inst_5.1 (inst_4.1 ambientDomain fun input => Exists fun output => (inst_3.1 outputs output ∧ inst_1.1 relation (inst.pair input output))) ambientDomain
 
 Logical form (Lean):
 
@@ -1640,11 +1852,18 @@ theorem PreimageOfSubsetAmbient [HasSubset DomainObject]
 
 Predicate logic:
 
-  (∀ relation ∈ RelationObject ∀ ambientDomain ∈ DomainObject), (Index → RangeObject) → PreimageOf relation (HasIndexedUnion.indexedUnion family) ambientDomain = HasIndexedUnion.indexedUnion (fun index => PreimageOf relation (family index) ambientDomain)
+  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Left DomainObject], (LRA.Set.SeparationLaws Left DomainObject ∧ LRA.Set.ExtensionalityLaw Left DomainObject) → ∀ {Index : Type u} [inst_5 : LRA.Set.HasIndexedUnion DomainObject] [inst_6 : LRA.Set.HasIndexedUnion RangeObject] (relation : RelationObject) (family : Index → RangeObject) (ambientDomain : DomainObject), LRA.Set.PreimageOf relation (inst_6.indexedUnion family) ambientDomain = inst_5.indexedUnion fun index => LRA.Set.PreimageOf relation (family index) ambientDomain
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Left DomainObject], (LRA.Set.SeparationLaws Left DomainObject ∧ LRA.Set.ExtensionalityLaw Left DomainObject) → ∀ {Index : Type u} [inst_5 : LRA.Set.HasIndexedUnion DomainObject] [inst_6 : LRA.Set.HasIndexedUnion RangeObject] (relation : RelationObject) (family : Index → RangeObject) (ambientDomain : DomainObject), inst_4.1 ambientDomain fun input => Exists fun output => (inst_3.1 (inst_6.1 family) output ∧ inst_1.1 relation (inst.1 input output)) = inst_5.1 fun index => inst_4.1 ambientDomain fun input => Exists fun output => (inst_3.1 (family index) output ∧ inst_1.1 relation (inst.pair input output))
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, Index, ∈)
+  Objects
+    relation : RelationObject
+    family : Index → RangeObject
+    ambientDomain : DomainObject
+  Prove
+    (LRA.Set.SeparationLaws Left DomainObject ∧ LRA.Set.ExtensionalityLaw Left DomainObject) → ∀ {Index : Type u} [inst_5 : LRA.Set.HasIndexedUnion DomainObject] [inst_6 : LRA.Set.HasIndexedUnion RangeObject] (relation : RelationObject) (family : Index → RangeObject) (ambientDomain : DomainObject), inst_4.1 ambientDomain fun input => Exists fun output => (inst_3.1 (inst_6.1 family) output ∧ inst_1.1 relation (inst.1 input output)) = inst_5.1 fun index => inst_4.1 ambientDomain fun input => Exists fun output => (inst_3.1 (family index) output ∧ inst_1.1 relation (inst.pair input output))
 
 Logical form (Lean):
 
@@ -1691,11 +1910,18 @@ theorem PreimageOfIndexedUnion {Index : Type u}
 
 Predicate logic:
 
-  (∀ relation ∈ RelationObject ∀ ambientDomain ∈ DomainObject), (Nat → RangeObject) → PreimageOf relation (HasCountableUnion.countableUnion family) ambientDomain = HasCountableUnion.countableUnion (fun index => PreimageOf relation (family index) ambientDomain)
+  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Left DomainObject], (LRA.Set.SeparationLaws Left DomainObject ∧ LRA.Set.ExtensionalityLaw Left DomainObject) → ∀ [inst_5 : LRA.Set.HasCountableUnion DomainObject] [inst_6 : LRA.Set.HasCountableUnion RangeObject] (relation : RelationObject) (family : Nat → RangeObject) (ambientDomain : DomainObject), LRA.Set.PreimageOf relation (inst_6.countableUnion family) ambientDomain = inst_5.countableUnion fun index => LRA.Set.PreimageOf relation (family index) ambientDomain
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Left DomainObject], (LRA.Set.SeparationLaws Left DomainObject ∧ LRA.Set.ExtensionalityLaw Left DomainObject) → ∀ [inst_5 : LRA.Set.HasCountableUnion DomainObject] [inst_6 : LRA.Set.HasCountableUnion RangeObject] (relation : RelationObject) (family : Nat → RangeObject) (ambientDomain : DomainObject), inst_4.1 ambientDomain fun input => Exists fun output => (inst_3.1 (inst_6.1 family) output ∧ inst_1.1 relation (inst.1 input output)) = inst_5.1 fun index => inst_4.1 ambientDomain fun input => Exists fun output => (inst_3.1 (family index) output ∧ inst_1.1 relation (inst.pair input output))
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, ∈)
+  Objects
+    relation : RelationObject
+    family : Nat → RangeObject
+    ambientDomain : DomainObject
+  Prove
+    (LRA.Set.SeparationLaws Left DomainObject ∧ LRA.Set.ExtensionalityLaw Left DomainObject) → ∀ [inst_5 : LRA.Set.HasCountableUnion DomainObject] [inst_6 : LRA.Set.HasCountableUnion RangeObject] (relation : RelationObject) (family : Nat → RangeObject) (ambientDomain : DomainObject), inst_4.1 ambientDomain fun input => Exists fun output => (inst_3.1 (inst_6.1 family) output ∧ inst_1.1 relation (inst.1 input output)) = inst_5.1 fun index => inst_4.1 ambientDomain fun input => Exists fun output => (inst_3.1 (family index) output ∧ inst_1.1 relation (inst.pair input output))
 
 Logical form (Lean):
 
@@ -1742,11 +1968,18 @@ theorem PreimageOfCountableUnion
 
 Predicate logic:
 
-  (∀ first second ∈ RelationObject ∀ outputs ∈ RangeObject ∀ ambientDomain ∈ DomainObject), (∀ input ∈ Left output ∈ Right, Relates first input output ↔ Relates second input output) → PreimageOf first outputs ambientDomain = PreimageOf second outputs ambientDomain
+  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Left DomainObject], (LRA.Set.SeparationLaws Left DomainObject ∧ LRA.Set.ExtensionalityLaw Left DomainObject) → ∀ (first second : RelationObject) (outputs : RangeObject) (ambientDomain : DomainObject), (∀ (input : Left) (output : Right), LRA.Set.Relates first input output ↔ LRA.Set.Relates second input output) → LRA.Set.PreimageOf first outputs ambientDomain = LRA.Set.PreimageOf second outputs ambientDomain
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Left DomainObject], (LRA.Set.SeparationLaws Left DomainObject ∧ LRA.Set.ExtensionalityLaw Left DomainObject) → ∀ (first second : RelationObject) (outputs : RangeObject) (ambientDomain : DomainObject), (∀ (input : Left) (output : Right), inst_1.1 first (inst.1 input output) ↔ inst_1.1 second (inst.1 input output)) → inst_4.1 ambientDomain fun input => Exists fun output => (inst_3.1 outputs output ∧ inst_1.1 first (inst.1 input output)) = inst_4.1 ambientDomain fun input => Exists fun output => (inst_3.1 outputs output ∧ inst_1.1 second (inst.1 input output))
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, ∈)
+  Objects
+    first second : RelationObject
+    outputs : RangeObject
+    ambientDomain : DomainObject
+  Prove
+    (LRA.Set.SeparationLaws Left DomainObject ∧ LRA.Set.ExtensionalityLaw Left DomainObject) → ∀ (first second : RelationObject) (outputs : RangeObject) (ambientDomain : DomainObject), (∀ (input : Left) (output : Right), LRA.Set.Relates first input output ↔ LRA.Set.Relates second input output) → LRA.Set.PreimageOf first outputs ambientDomain = LRA.Set.PreimageOf second outputs ambientDomain
 
 Logical form (Lean):
 
@@ -1793,11 +2026,18 @@ theorem PreimageOfCongrRelation
 
 Predicate logic:
 
-  (∀ relation ∈ RelationObject ∀ left right ∈ RangeObject ∀ ambientDomain ∈ DomainObject), (∀ output : Right, output ∈ left ↔ output ∈ right) → PreimageOf relation left ambientDomain = PreimageOf relation right ambientDomain
+  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Left DomainObject], (LRA.Set.SeparationLaws Left DomainObject ∧ LRA.Set.ExtensionalityLaw Left DomainObject) → ∀ (relation : RelationObject) (left right : RangeObject) (ambientDomain : DomainObject), (∀ (output : Right), output ∈ left ↔ output ∈ right) → LRA.Set.PreimageOf relation left ambientDomain = LRA.Set.PreimageOf relation right ambientDomain
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Left DomainObject], (LRA.Set.SeparationLaws Left DomainObject ∧ LRA.Set.ExtensionalityLaw Left DomainObject) → ∀ (relation : RelationObject) (left right : RangeObject) (ambientDomain : DomainObject), (∀ (output : Right), inst_3.1 left output ↔ inst_3.1 right output) → inst_4.1 ambientDomain fun input => Exists fun output => (inst_3.1 left output ∧ inst_1.1 relation (inst.1 input output)) = inst_4.1 ambientDomain fun input => Exists fun output => (inst_3.1 right output ∧ inst_1.1 relation (inst.1 input output))
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, ∈)
+  Objects
+    relation : RelationObject
+    left right : RangeObject
+    ambientDomain : DomainObject
+  Prove
+    (LRA.Set.SeparationLaws Left DomainObject ∧ LRA.Set.ExtensionalityLaw Left DomainObject) → ∀ (relation : RelationObject) (left right : RangeObject) (ambientDomain : DomainObject), (∀ (output : Right), output ∈ left ↔ output ∈ right) → LRA.Set.PreimageOf relation left ambientDomain = LRA.Set.PreimageOf relation right ambientDomain
 
 Logical form (Lean):
 
@@ -1846,11 +2086,21 @@ section CompositionAndIdentity
 
 Predicate logic:
 
-  (∀ first ∈ FirstObject ∀ second ∈ SecondObject ∀ composite ∈ CompositeObject ∀ inputs ∈ DomainObject ∀ ambientMid ∈ MidObject ∀ ambientRange ∈ RangeObject), (∀ input ∈ Left output ∈ Right, Relates composite input output ↔ ∃ middle ∈ Mid, Relates first input middle ∧ Relates second middle output) → ImageOf composite inputs ambientRange = ImageOf second (ImageOf first inputs ambientMid) ambientRange
+  ∀ {Left Mid Right FirstPair SecondPair CompositePair : Type u} {FirstObject SecondObject CompositeObject DomainObject MidObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Mid FirstPair] [inst_1 : LRA.Set.HasPairing Mid Right SecondPair] [inst_2 : LRA.Set.HasPairing Left Right CompositePair] [inst_3 : Membership FirstPair FirstObject] [inst_4 : Membership SecondPair SecondObject] [inst_5 : Membership CompositePair CompositeObject] [inst_6 : Membership Left DomainObject] [inst_7 : Membership Mid MidObject] [inst_8 : Membership Right RangeObject] [inst_9 : LRA.Set.HasSeparation Mid MidObject] [inst_10 : LRA.Set.HasSeparation Right RangeObject], LRA.Set.ExtensionalityLaw Right RangeObject → ∀ (first : FirstObject) (second : SecondObject) (composite : CompositeObject) (inputs : DomainObject) (ambientMid : MidObject) (ambientRange : RangeObject), (∀ (input : Left) (output : Right), LRA.Set.Relates composite input output ↔ Exists fun middle => (LRA.Set.Relates first input middle ∧ LRA.Set.Relates second middle output)) → LRA.Set.ImageOf composite inputs ambientRange = LRA.Set.ImageOf second (LRA.Set.ImageOf first inputs ambientMid) ambientRange
 
 Predicate logic (unfolded):
 
-  ∀ {Left Mid Right FirstPair SecondPair CompositePair : Type u} {FirstObject SecondObject CompositeObject DomainObject MidObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Mid FirstPair] [inst_1 : LRA.Set.HasPairing Mid Right SecondPair] [inst_2 : LRA.Set.HasPairing Left Right CompositePair] [inst_3 : Membership FirstPair FirstObject] [inst_4 : Membership SecondPair SecondObject] [inst_5 : Membership CompositePair CompositeObject] [inst_6 : Membership Left DomainObject] [inst_7 : Membership Mid MidObject] [inst_8 : Membership Right RangeObject] [inst_9 : LRA.Set.HasSeparation Mid MidObject] [inst_10 : LRA.Set.HasSeparation Right RangeObject], LRA.Set.ExtensionalityLaw Right RangeObject → ∀ (first : FirstObject) (second : SecondObject) (composite : CompositeObject) (inputs : DomainObject) (ambientMid : MidObject) (ambientRange : RangeObject), (∀ (input : Left) (output : Right), inst_5.1 composite (inst_2.1 input output) ↔ Exists fun middle => (inst_3.1 first (inst.1 input middle) ∧ inst_4.1 second (inst_1.1 middle output))) → inst_10.1 ambientRange fun output => Exists fun input => (inst_6.1 inputs input ∧ inst_5.1 composite (inst_2.1 input output)) = inst_10.1 ambientRange fun output => Exists fun input => (inst_7.1 (inst_9.1 ambientMid fun output => Exists fun input => (inst_6.1 inputs input ∧ LRA.Set.OrderedPair input output ∈ first)) input ∧ inst_4.1 second (inst_1.1 input output))
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, Mid, FirstPair, SecondPair, CompositePair, FirstObject, SecondObject, CompositeObject, MidObject, ∈)
+  Objects
+    first : FirstObject
+    second : SecondObject
+    composite : CompositeObject
+    inputs : DomainObject
+    ambientMid : MidObject
+    ambientRange : RangeObject
+  Prove
+    LRA.Set.ExtensionalityLaw Right RangeObject → ∀ (first : FirstObject) (second : SecondObject) (composite : CompositeObject) (inputs : DomainObject) (ambientMid : MidObject) (ambientRange : RangeObject), (∀ (input : Left) (output : Right), LRA.Set.Relates composite input output ↔ Exists fun middle => (LRA.Set.Relates first input middle ∧ LRA.Set.Relates second middle output)) → LRA.Set.ImageOf composite inputs ambientRange = LRA.Set.ImageOf second (LRA.Set.ImageOf first inputs ambientMid) ambientRange
 
 Logical form (Lean):
 
@@ -1921,11 +2171,21 @@ theorem ImageOfCompositionOf
 
 Predicate logic:
 
-  (∀ first ∈ FirstObject ∀ second ∈ SecondObject ∀ composite ∈ CompositeObject ∀ outputs ∈ RangeObject ∀ ambientDomain ∈ DomainObject ∀ ambientMid ∈ MidObject), (∀ input ∈ Left output ∈ Right, Relates composite input output ↔ ∃ middle ∈ Mid, Relates first input middle ∧ Relates second middle output) → PreimageOf composite outputs ambientDomain = PreimageOf first (PreimageOf second outputs ambientMid) ambientDomain
+  ∀ {Left Mid Right FirstPair SecondPair CompositePair : Type u} {FirstObject SecondObject CompositeObject DomainObject MidObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Mid FirstPair] [inst_1 : LRA.Set.HasPairing Mid Right SecondPair] [inst_2 : LRA.Set.HasPairing Left Right CompositePair] [inst_3 : Membership FirstPair FirstObject] [inst_4 : Membership SecondPair SecondObject] [inst_5 : Membership CompositePair CompositeObject] [inst_6 : Membership Left DomainObject] [inst_7 : Membership Mid MidObject] [inst_8 : Membership Right RangeObject] [inst_9 : LRA.Set.HasSeparation Left DomainObject] [inst_10 : LRA.Set.HasSeparation Mid MidObject], LRA.Set.ExtensionalityLaw Left DomainObject → ∀ (first : FirstObject) (second : SecondObject) (composite : CompositeObject) (outputs : RangeObject) (ambientDomain : DomainObject) (ambientMid : MidObject), (∀ (input : Left) (output : Right), LRA.Set.Relates composite input output ↔ Exists fun middle => (LRA.Set.Relates first input middle ∧ LRA.Set.Relates second middle output)) → LRA.Set.PreimageOf composite outputs ambientDomain = LRA.Set.PreimageOf first (LRA.Set.PreimageOf second outputs ambientMid) ambientDomain
 
 Predicate logic (unfolded):
 
-  ∀ {Left Mid Right FirstPair SecondPair CompositePair : Type u} {FirstObject SecondObject CompositeObject DomainObject MidObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Mid FirstPair] [inst_1 : LRA.Set.HasPairing Mid Right SecondPair] [inst_2 : LRA.Set.HasPairing Left Right CompositePair] [inst_3 : Membership FirstPair FirstObject] [inst_4 : Membership SecondPair SecondObject] [inst_5 : Membership CompositePair CompositeObject] [inst_6 : Membership Left DomainObject] [inst_7 : Membership Mid MidObject] [inst_8 : Membership Right RangeObject] [inst_9 : LRA.Set.HasSeparation Left DomainObject] [inst_10 : LRA.Set.HasSeparation Mid MidObject], LRA.Set.ExtensionalityLaw Left DomainObject → ∀ (first : FirstObject) (second : SecondObject) (composite : CompositeObject) (outputs : RangeObject) (ambientDomain : DomainObject) (ambientMid : MidObject), (∀ (input : Left) (output : Right), inst_5.1 composite (inst_2.1 input output) ↔ Exists fun middle => (inst_3.1 first (inst.1 input middle) ∧ inst_4.1 second (inst_1.1 middle output))) → inst_9.1 ambientDomain fun input => Exists fun output => (inst_8.1 outputs output ∧ inst_5.1 composite (inst_2.1 input output)) = inst_9.1 ambientDomain fun input => Exists fun output => (inst_7.1 (inst_10.1 ambientMid fun input => Exists fun output => (inst_8.1 outputs output ∧ LRA.Set.OrderedPair input output ∈ second)) output ∧ inst_3.1 first (inst.1 input output))
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, Mid, FirstPair, SecondPair, CompositePair, FirstObject, SecondObject, CompositeObject, MidObject, ∈)
+  Objects
+    first : FirstObject
+    second : SecondObject
+    composite : CompositeObject
+    outputs : RangeObject
+    ambientDomain : DomainObject
+    ambientMid : MidObject
+  Prove
+    LRA.Set.ExtensionalityLaw Left DomainObject → ∀ (first : FirstObject) (second : SecondObject) (composite : CompositeObject) (outputs : RangeObject) (ambientDomain : DomainObject) (ambientMid : MidObject), (∀ (input : Left) (output : Right), LRA.Set.Relates composite input output ↔ Exists fun middle => (LRA.Set.Relates first input middle ∧ LRA.Set.Relates second middle output)) → LRA.Set.PreimageOf composite outputs ambientDomain = LRA.Set.PreimageOf first (LRA.Set.PreimageOf second outputs ambientMid) ambientDomain
 
 Logical form (Lean):
 
@@ -1996,11 +2256,19 @@ theorem PreimageOfCompositionOf
 
 Predicate logic:
 
-  (∀ composite ∈ RelationObject ∀ smaller larger ∈ RangeObject ∀ ambientDomain ∈ DomainObject), PreimageOf composite smaller ambientDomain ⊆ PreimageOf composite larger ambientDomain
+  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] (a : Membership Left DomainObject) [inst_2 : Membership Right RangeObject] [inst_3 : LRA.Set.HasSeparation Left DomainObject] [inst_4 : HasSubset DomainObject] [inst_5 : HasSubset RangeObject] (composite : RelationObject) (smaller larger : RangeObject) (ambientDomain : DomainObject), inst_5.Subset smaller larger → inst_4.Subset (LRA.Set.PreimageOf composite smaller ambientDomain) (LRA.Set.PreimageOf composite larger ambientDomain)
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] (a : Membership Left DomainObject) [inst_2 : Membership Right RangeObject] [inst_3 : LRA.Set.HasSeparation Left DomainObject] [inst_4 : HasSubset DomainObject] [inst_5 : HasSubset RangeObject] (composite : RelationObject) (smaller larger : RangeObject) (ambientDomain : DomainObject), inst_5.1 smaller larger → inst_4.1 (inst_3.1 ambientDomain fun input => Exists fun output => (inst_2.1 smaller output ∧ inst_1.1 composite (inst.pair input output))) (inst_3.1 ambientDomain fun input => Exists fun output => (inst_2.1 larger output ∧ inst_1.1 composite (inst.pair input output)))
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, ∈)
+  Objects
+    composite : RelationObject
+    smaller larger : RangeObject
+    ambientDomain : DomainObject
+    inclusion : smaller ⊆ larger
+  Prove
+    inst_5.1 smaller larger → inst_4.1 (inst_3.1 ambientDomain fun input => Exists fun output => (inst_2.1 smaller output ∧ inst_1.1 composite (inst.pair input output))) (inst_3.1 ambientDomain fun input => Exists fun output => (inst_2.1 larger output ∧ inst_1.1 composite (inst.pair input output)))
 
 Logical form (Lean):
 
@@ -2051,11 +2319,17 @@ theorem PreimageOfCompositionMonotone
 
 Predicate logic:
 
-  (∀ identity ∈ RelationObject ∀ inputs ambientDomain ∈ DomainObject), (∀ leftElement rightElement : Left, Relates identity leftElement rightElement ↔ leftElement = rightElement ∧ ∀ input : Left, input ∈ inputs → input ∈ ambientDomain) → ImageOf identity inputs ambientDomain = inputs
+  ∀ {Left Pair : Type u} {RelationObject DomainObject : Type v} [inst : LRA.Set.HasPairing Left Left Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : LRA.Set.HasSeparation Left DomainObject], LRA.Set.ExtensionalityLaw Left DomainObject → ∀ (identity : RelationObject) (inputs ambientDomain : DomainObject), ((∀ (leftElement rightElement : Left), LRA.Set.Relates identity leftElement rightElement ↔ leftElement = rightElement) ∧ (∀ (input : Left), input ∈ inputs → input ∈ ambientDomain)) → LRA.Set.ImageOf identity inputs ambientDomain = inputs
 
 Predicate logic (unfolded):
 
-  ∀ {Left Pair : Type u} {RelationObject DomainObject : Type v} [inst : LRA.Set.HasPairing Left Left Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : LRA.Set.HasSeparation Left DomainObject], LRA.Set.ExtensionalityLaw Left DomainObject → ∀ (identity : RelationObject) (inputs ambientDomain : DomainObject), (∀ (leftElement rightElement : Left), inst_1.1 identity (inst.1 leftElement rightElement) ↔ leftElement = rightElement ∧ ∀ (input : Left), inst_2.1 inputs input → inst_2.1 ambientDomain input) → inst_3.1 ambientDomain fun output => Exists fun input => (inst_2.1 inputs input ∧ inst_1.1 identity (inst.1 input output)) = inputs
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, ∈)
+  Objects
+    identity : RelationObject
+    inputs ambientDomain : DomainObject
+  Prove
+    LRA.Set.ExtensionalityLaw Left DomainObject → ∀ (identity : RelationObject) (inputs ambientDomain : DomainObject), ((∀ (leftElement rightElement : Left), LRA.Set.Relates identity leftElement rightElement ↔ leftElement = rightElement) ∧ (∀ (input : Left), input ∈ inputs → input ∈ ambientDomain)) → LRA.Set.ImageOf identity inputs ambientDomain = inputs
 
 Logical form (Lean):
 
@@ -2108,11 +2382,17 @@ theorem ImageOfIdentityOn
 
 Predicate logic:
 
-  (∀ identity ∈ RelationObject ∀ outputs ambientDomain ∈ DomainObject), (∀ leftElement rightElement : Left, Relates identity leftElement rightElement ↔ leftElement = rightElement ∧ ∀ output : Left, output ∈ outputs → output ∈ ambientDomain) → PreimageOf identity outputs ambientDomain = outputs
+  ∀ {Left Pair : Type u} {RelationObject DomainObject : Type v} [inst : LRA.Set.HasPairing Left Left Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : LRA.Set.HasSeparation Left DomainObject], LRA.Set.ExtensionalityLaw Left DomainObject → ∀ (identity : RelationObject) (outputs ambientDomain : DomainObject), ((∀ (leftElement rightElement : Left), LRA.Set.Relates identity leftElement rightElement ↔ leftElement = rightElement) ∧ (∀ (output : Left), output ∈ outputs → output ∈ ambientDomain)) → LRA.Set.PreimageOf identity outputs ambientDomain = outputs
 
 Predicate logic (unfolded):
 
-  ∀ {Left Pair : Type u} {RelationObject DomainObject : Type v} [inst : LRA.Set.HasPairing Left Left Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : LRA.Set.HasSeparation Left DomainObject], LRA.Set.ExtensionalityLaw Left DomainObject → ∀ (identity : RelationObject) (outputs ambientDomain : DomainObject), (∀ (leftElement rightElement : Left), inst_1.1 identity (inst.1 leftElement rightElement) ↔ leftElement = rightElement ∧ ∀ (output : Left), inst_2.1 outputs output → inst_2.1 ambientDomain output) → inst_3.1 ambientDomain fun input => Exists fun output => (inst_2.1 outputs output ∧ inst_1.1 identity (inst.1 input output)) = outputs
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, ∈)
+  Objects
+    identity : RelationObject
+    outputs ambientDomain : DomainObject
+  Prove
+    LRA.Set.ExtensionalityLaw Left DomainObject → ∀ (identity : RelationObject) (outputs ambientDomain : DomainObject), ((∀ (leftElement rightElement : Left), LRA.Set.Relates identity leftElement rightElement ↔ leftElement = rightElement) ∧ (∀ (output : Left), output ∈ outputs → output ∈ ambientDomain)) → LRA.Set.PreimageOf identity outputs ambientDomain = outputs
 
 Logical form (Lean):
 
@@ -2165,11 +2445,19 @@ theorem PreimageOfIdentityOn
 
 Predicate logic:
 
-  (∀ relation ∈ RelationObject ∀ outputs ∈ RangeObject ∀ output ∈ Right ∀ ambientDomain ∈ DomainObject), (∀ candidate : Right, candidate ∈ outputs ↔ candidate = output) → PreimageOf relation outputs ambientDomain = FiberOf relation output ambientDomain
+  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Left DomainObject], LRA.Set.ExtensionalityLaw Left DomainObject → ∀ (relation : RelationObject) (outputs : RangeObject) (output : Right) (ambientDomain : DomainObject), (∀ (candidate : Right), candidate ∈ outputs ↔ candidate = output) → LRA.Set.PreimageOf relation outputs ambientDomain = LRA.Set.FiberOf relation output ambientDomain
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {RelationObject DomainObject RangeObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : LRA.Set.HasSeparation Left DomainObject], LRA.Set.ExtensionalityLaw Left DomainObject → ∀ (relation : RelationObject) (outputs : RangeObject) (output : Right) (ambientDomain : DomainObject), (∀ (candidate : Right), inst_3.1 outputs candidate ↔ candidate = output) → inst_4.1 ambientDomain fun input => Exists fun output => (inst_3.1 outputs output ∧ inst_1.1 relation (inst.1 input output)) = inst_4.1 ambientDomain fun input => inst_1.1 relation (inst.1 input output)
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, ∈)
+  Objects
+    relation : RelationObject
+    outputs : RangeObject
+    output : Right
+    ambientDomain : DomainObject
+  Prove
+    LRA.Set.ExtensionalityLaw Left DomainObject → ∀ (relation : RelationObject) (outputs : RangeObject) (output : Right) (ambientDomain : DomainObject), (∀ (candidate : Right), candidate ∈ outputs ↔ candidate = output) → LRA.Set.PreimageOf relation outputs ambientDomain = LRA.Set.FiberOf relation output ambientDomain
 
 Logical form (Lean):
 
@@ -2219,6 +2507,53 @@ theorem PreimageOfSingletonIsFiberOf
 
 end CompositionAndIdentity
 
+/--
+`AppliedToRelates` TODO
+
+Predicate logic:
+
+  ∀ {Left Right Pair : Type u} {RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : Membership Pair RelationObject] (relation : RelationObject) (input : Left) (hits : Exists fun output => LRA.Set.Relates relation input output), LRA.Set.Relates relation input (LRA.Set.AppliedTo relation input hits)
+
+Predicate logic (unfolded):
+
+  Ambient
+    (Left, Right, Pair, RelationObject, DomainObject, RangeObject, ∈)
+  Objects
+    relation : RelationObject
+    input : Left
+  Prove
+    inst_1.1 relation (inst.1 input (Classical.indefiniteDescription (LRA.Set.Relates relation input) hits).val)
+
+Logical form (Lean):
+
+```lean
+theorem AppliedToRelates {Left Right Pair : Type u}
+    {RelationObject : Type v}
+    [HasPairing Left Right Pair] [Membership Pair RelationObject]
+    (relation : RelationObject) (input : Left)
+    (hits : ∃ output : Right, Relates relation input output) :
+    Relates relation input (AppliedTo relation input hits)
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: use, rcases
+
+-/
 theorem AppliedToRelates {Left Right Pair : Type u}
     {RelationObject : Type v}
     [HasPairing Left Right Pair] [Membership Pair RelationObject]

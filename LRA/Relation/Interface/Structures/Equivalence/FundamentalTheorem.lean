@@ -15,7 +15,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (partition : LRA.Relation.Partition Element SetObject) (a a_1 : Element), Exists fun index => (inst.1 (partition.3 index) a ∧ inst.1 (partition.3 index) a_1)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun index => (inst.1 (partition.3 index) a ∧ inst.1 (partition.3 index) a_1)
 
 Logical form (Lean):
 
@@ -61,11 +66,18 @@ def EquivalenceFromPartition
 
 Predicate logic:
 
-  (∀ A ∈ U), ∀ first second, first ∈ A -> second ∈ A -> (EquivalenceFromPartition (PartitionFromEquivalence A relation relationIsEquivalence) first second ↔ relation first second)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasSeparation Element SetObject] [inst_2 : LRA.Set.SeparationLaws Element SetObject] [inst_3 : LRA.Set.ExtensionalityLaw Element SetObject] (ambient : SetObject) (relation : LRA.Relation.Endorelation Element) (relationIsEquivalence : LRA.Relation.EquivalenceRelation relation) (first second : Element), (first ∈ ambient ∧ second ∈ ambient) → LRA.Relation.EquivalenceFromPartition (LRA.Relation.PartitionFromEquivalence ambient relation relationIsEquivalence) first second ↔ relation first second
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasSeparation Element SetObject] [inst_2 : LRA.Set.SeparationLaws Element SetObject] [inst_3 : LRA.Set.ExtensionalityLaw Element SetObject] (ambient : SetObject) (relation : Element → Element → Prop) (relationIsEquivalence : (∀ (x : Element), relation x x ∧ (∀ (x y : Element), relation x y → relation y x ∧ ∀ (x y z : Element), relation x y → relation y z → relation x z))) (first second : Element), (inst.1 ambient first ∧ inst.1 ambient second) → Exists fun index => (inst.1 ((LRA.Relation.PartitionFromEquivalence ambient relation relationIsEquivalence).3 index) first ∧ inst.1 ((LRA.Relation.PartitionFromEquivalence ambient relation relationIsEquivalence).3 index) second) ↔ relation first second
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ambient : SetObject
+    relation : Endorelation Element
+    relationIsEquivalence : EquivalenceRelation relation
+  Prove
+    (first ∈ ambient ∧ second ∈ ambient) → LRA.Relation.EquivalenceFromPartition (LRA.Relation.PartitionFromEquivalence ambient relation relationIsEquivalence) first second ↔ relation first second
 
 Logical form (Lean):
 

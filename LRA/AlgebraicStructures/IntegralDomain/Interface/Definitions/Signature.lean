@@ -8,12 +8,12 @@ namespace LRA.AlgebraicStructures.IntegralDomain.Interface.Signature
 Predicate logic:
 
   abbrev IntegralDomainFirstOrderSignature :=
-  LRA.AlgebraicStructures.CommutativeRing.Interface.Signature.CommutativeRingFirstOrderSignature
+    LRA.AlgebraicStructures.CommutativeRing.Interface.Signature.CommutativeRingFirstOrderSignature
 
 Predicate logic (unfolded):
 
   abbrev IntegralDomainFirstOrderSignature :=
-  LRA.AlgebraicStructures.CommutativeRing.Interface.Signature.CommutativeRingFirstOrderSignature (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.CommutativeRing.Interface.Signature.CommutativeRingFirstOrderSignature (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

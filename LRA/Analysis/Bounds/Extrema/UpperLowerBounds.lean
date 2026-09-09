@@ -11,11 +11,16 @@ variable {F : Type*}
 
 Predicate logic:
 
-  ∀ {F : Type u_1} [inst : LE F] (b : F) (A : Set F), Or (∀ (a : F), Set.instMembership.mem A a → inst.le a b) (∀ (a : F), Set.instMembership.mem A a → inst.le b a)
+  ∀ {F : Type u_1} [inst : LE F] (b : F) (A : Set F), Or (∀ (a : F), a ∈ A → inst.le a b) (∀ (a : F), a ∈ A → inst.le b a)
 
 Predicate logic (unfolded):
 
-  ∀ {F : Type u_1} [inst : LE F] (b : F) (A : F → Prop), Or (∀ (a : F), Set.instMembership.1 A a → inst.1 a b) (∀ (a : F), Set.instMembership.1 A a → inst.1 b a)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (∀ (a : F), a ∈ A → inst.le a b) (∀ (a : F), a ∈ A → inst.le b a)
 
 Logical form (Lean):
 
@@ -51,11 +56,16 @@ def IsBound [LE F] (b : F) (A : Set F) : Prop :=
 
 Predicate logic:
 
-  IsBounded A ↔ ∃ M, 0 ≤ M ∧ ∀ a ∈ A, |a| ≤ M
+  ∀ {F : Type u_1} [inst : AddCommGroup F] [inst_1 : LinearOrder F], IsOrderedAddMonoid F → ∀ (A : Set F), LRA.Analysis.Bounds.IsBounded A ↔ Exists fun M => (instDistribLatticeOfLinearOrder.toSemilatticeInf.le 0 M ∧ (∀ (a : F), a ∈ A → instDistribLatticeOfLinearOrder.toSemilatticeInf.le (abs a) M))
 
 Predicate logic (unfolded):
 
-  ∀ {F : Type u_1} [inst : AddCommGroup F] [inst_1 : LinearOrder F], IsOrderedAddMonoid F → ∀ (A : F → Prop), (Exists fun u => ∀ (x : F), Set.instMembership.1 A x → instDistribLatticeOfLinearOrder.toSemilatticeInf.toLE.1 x u ∧ Exists fun l => ∀ (x : F), Set.instMembership.1 A x → instDistribLatticeOfLinearOrder.toSemilatticeInf.toLE.1 l x) ↔ Exists fun M => (instDistribLatticeOfLinearOrder.toSemilatticeInf.toLE.1 Zero.toOfNat0.1 M ∧ ∀ (a : F), Set.instMembership.1 A a → instDistribLatticeOfLinearOrder.toSemilatticeInf.toLE.1 (SemilatticeSup.toMax.1 a (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 a)) M)
+  Ambient
+    (F, ≤)
+  Objects
+    A : Set F
+  Prove
+    IsOrderedAddMonoid F → ∀ (A : Set F), LRA.Analysis.Bounds.IsBounded A ↔ Exists fun M => (instDistribLatticeOfLinearOrder.toSemilatticeInf.le 0 M ∧ (∀ (a : F), a ∈ A → instDistribLatticeOfLinearOrder.toSemilatticeInf.le (abs a) M))
 
 Logical form (Lean):
 

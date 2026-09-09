@@ -9,11 +9,15 @@ universe u
 
 Predicate logic:
 
-  abbrev Ident := LRA.Identity.Ident
+  abbrev Ident {Carrier : Type u} [LRA.Identity.IdentityRelation Carrier]
+      (left right : Carrier) : Prop :=
+    LRA.Identity.Ident left right
 
 Predicate logic (unfolded):
 
-  abbrev Ident := LRA.Identity.Ident (source fallback; no compiled unfold data available)
+  abbrev Ident {Carrier : Type u} [LRA.Identity.IdentityRelation Carrier]
+      (left right : Carrier) : Prop :=
+    LRA.Identity.Ident left right (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -59,12 +63,12 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    left ≤ right → False
+    inst.Ident left right → False
 
 Logical form (Lean):
 
 ```lean
-def Distinct {Carrier : Type u} [IdentityRelation Carrier] (left right : Carrier) : Prop :=
+def Distinct (left right : Carrier) : Prop :=
   ¬ Ident left right
 ```
 
@@ -91,7 +95,7 @@ abbrev Distinct {Carrier : Type u} [LRA.Identity.IdentityRelation Carrier]
     (left right : Carrier) : Prop :=
   LRA.Identity.Distinct left right
 /--
-`HasWitness` `HasWitness P` states that at least one element of `Carrier` satisfies `P`.
+`HasWitness` TODO
 
 Predicate logic:
 
@@ -129,7 +133,7 @@ Common confusions:
 
   TODO
 
-Related proof moves: unfold
+Related proof moves: intro, use, rcases, unfold
 
 -/
 abbrev HasWitness {Carrier : Type u} (P : Carrier → Prop) : Prop :=
@@ -173,13 +177,13 @@ Common confusions:
 
   TODO
 
-Related proof moves: unfold
+Related proof moves: intro, use, rcases, unfold
 
 -/
 abbrev HasNoWitness {Carrier : Type u} (P : Carrier → Prop) : Prop :=
   LRA.Identity.HasNoWitness P
 /--
-`AtMostOne` `AtMostOne P` states that any two witnesses of `P` are identified by the active `IdentityRelation`.  It does not assert that a witness exists.
+`AtMostOne` TODO
 
 Predicate logic:
 
@@ -192,7 +196,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (P left ∧ P right) → left ≤ right
+    (P left ∧ P right) → inst.Ident left right
 
 Logical form (Lean):
 
@@ -217,7 +221,7 @@ Common confusions:
 
   TODO
 
-Related proof moves: unfold
+Related proof moves: intro, unfold
 
 -/
 abbrev AtMostOne {Carrier : Type u} [LRA.Identity.IdentityRelation Carrier]
@@ -237,7 +241,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun left => Exists fun right => (P left ∧ (P right ∧ (left ≤ right → False)))
+    Exists fun left => Exists fun right => (P left ∧ (P right ∧ (inst.Ident left right → False)))
 
 Logical form (Lean):
 
@@ -262,14 +266,14 @@ Common confusions:
 
   TODO
 
-Related proof moves: unfold
+Related proof moves: intro, constructor, cases, rcases, use, unfold
 
 -/
 abbrev NotAtMostOne {Carrier : Type u} [LRA.Identity.IdentityRelation Carrier]
     (P : Carrier → Prop) : Prop :=
   LRA.Identity.NotAtMostOne P
 /--
-`ExactlyOne` `ExactlyOne P` states that `P` has a witness and that all its witnesses are identified by the active `IdentityRelation`.  Use this identity-polymorphic notion when uniqueness should be expressed via `Ident`; use Lean's `ExistsAndUnique` when native equality is intended.
+`ExactlyOne` TODO
 
 Predicate logic:
 
@@ -282,7 +286,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (Exists fun x => P x ∧ (∀ (left right : Carrier), P left → P right → left ≤ right))
+    (Exists fun x => P x ∧ (∀ (left right : Carrier), P left → P right → inst.Ident left right))
 
 Logical form (Lean):
 
@@ -307,7 +311,7 @@ Common confusions:
 
   TODO
 
-Related proof moves: unfold
+Related proof moves: intro, constructor, cases, rcases, unfold
 
 -/
 abbrev ExactlyOne {Carrier : Type u} [LRA.Identity.IdentityRelation Carrier]
@@ -327,7 +331,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun x => Exists fun y => x ≤ y → False
+    Exists fun x => Exists fun y => inst.Ident x y → False
 
 Logical form (Lean):
 
@@ -352,7 +356,7 @@ Common confusions:
 
   TODO
 
-Related proof moves: unfold
+Related proof moves: use, rcases, unfold
 
 -/
 abbrev AtLeastTwo (Carrier : Type u) [LRA.Identity.IdentityRelation Carrier] : Prop :=
@@ -371,7 +375,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Or (x ≤ y)(Or (y ≤ z)(x ≤ z))
+    Or (inst.Ident x y) (Or (inst.Ident y z) (inst.Ident x z))
 
 Logical form (Lean):
 
@@ -396,7 +400,7 @@ Common confusions:
 
   TODO
 
-Related proof moves: unfold
+Related proof moves: intro, Or.inl, Or.inr, cases, rcases, unfold
 
 -/
 abbrev AtMostTwo (Carrier : Type u) [LRA.Identity.IdentityRelation Carrier] : Prop :=

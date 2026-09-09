@@ -9,11 +9,16 @@ universe u v w
 
 Predicate logic:
 
-  Curry (Uncurry function) = function
+  ∀ {Left : Type u} {Right : Type v} {Codomain : Type w} (function : LRA.Function.BinaryFunction Left Right Codomain), LRA.Function.Curry (LRA.Function.Uncurry function) = function
 
 Predicate logic (unfolded):
 
-  ∀ {Left : Type u} {Right : Type v} {Codomain : Type w} (function : Left → Right → Codomain), fun left right => function { fst := left, snd := right }.1 { fst := left, snd := right }.2 = function
+  Ambient
+    (Left, Right, Codomain)
+  Objects
+    function : BinaryFunction Left Right Codomain
+  Prove
+    fun left right => function { fst := left, snd := right }.1 { fst := left, snd := right }.2 = function
 
 Logical form (Lean):
 
@@ -53,11 +58,16 @@ theorem CurryAfterUncurry
 
 Predicate logic:
 
-  Uncurry (Curry function) = function
+  ∀ {Left : Type u} {Right : Type v} {Codomain : Type w} (function : LRA.Function.ProductDomainFunction Left Right Codomain), LRA.Function.Uncurry (LRA.Function.Curry function) = function
 
 Predicate logic (unfolded):
 
-  ∀ {Left : Type u} {Right : Type v} {Codomain : Type w} (function : Prod Left Right → Codomain), fun pair => function { fst := pair.1, snd := pair.2 } = function
+  Ambient
+    (Left, Right, Codomain)
+  Objects
+    function : ProductDomainFunction Left Right Codomain
+  Prove
+    fun pair => function { fst := pair.1, snd := pair.2 } = function
 
 Logical form (Lean):
 
@@ -97,11 +107,18 @@ theorem UncurryAfterCurry
 
 Predicate logic:
 
-  (∀ input ∈ Domain), FirstProjection LeftCodomain RightCodomain (Product left right input) = left input
+  ∀ {Domain : Type u} {LeftCodomain : Type v} {RightCodomain : Type w} (left : LRA.Function Domain LeftCodomain) (right : LRA.Function Domain RightCodomain) (input : Domain), LRA.Function.FirstProjection LeftCodomain RightCodomain (left.Product right input) = left input
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {LeftCodomain : Type v} {RightCodomain : Type w} (left : Domain → LeftCodomain) (right : Domain → RightCodomain) (input : Domain), LRA.Function.Product left right input = .1(left input)
+  Ambient
+    (Domain, LeftCodomain, RightCodomain)
+  Objects
+    left : LRA.Function Domain LeftCodomain
+    right : LRA.Function Domain RightCodomain
+    input : Domain
+  Prove
+    LRA.Function.Product left right input = .1(left input)
 
 Logical form (Lean):
 
@@ -147,11 +164,18 @@ theorem FirstProjectionProductValue
 
 Predicate logic:
 
-  (∀ input ∈ Domain), SecondProjection LeftCodomain RightCodomain (Product left right input) = right input
+  ∀ {Domain : Type u} {LeftCodomain : Type v} {RightCodomain : Type w} (left : LRA.Function Domain LeftCodomain) (right : LRA.Function Domain RightCodomain) (input : Domain), LRA.Function.SecondProjection LeftCodomain RightCodomain (left.Product right input) = right input
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {LeftCodomain : Type v} {RightCodomain : Type w} (left : Domain → LeftCodomain) (right : Domain → RightCodomain) (input : Domain), LRA.Function.Product left right input = .2(right input)
+  Ambient
+    (Domain, LeftCodomain, RightCodomain)
+  Objects
+    left : LRA.Function Domain LeftCodomain
+    right : LRA.Function Domain RightCodomain
+    input : Domain
+  Prove
+    LRA.Function.Product left right input = .2(right input)
 
 Logical form (Lean):
 

@@ -8,16 +8,16 @@ namespace LRA.ModelTheoryTheory.SetAlgebras
 Predicate logic:
 
   inductive SetAlgebraFunctionSymbol where
-  | join
-  | meet
-  | complement
+    | join
+    | meet
+    | complement
 
 Predicate logic (unfolded):
 
   inductive SetAlgebraFunctionSymbol where
-  | join
-  | meet
-  | complement (source fallback; no compiled unfold data available)
+    | join
+    | meet
+    | complement (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -96,14 +96,14 @@ def SetAlgebraRelationSymbol : Type := Empty
 Predicate logic:
 
   inductive SetAlgebraConstantSymbol where
-  | zero
-  | one
+    | zero
+    | one
 
 Predicate logic (unfolded):
 
   inductive SetAlgebraConstantSymbol where
-  | zero
-  | one (source fallback; no compiled unfold data available)
+    | zero
+    | one (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -142,20 +142,20 @@ inductive SetAlgebraConstantSymbol where
 Predicate logic:
 
   def SetAlgebraFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
-  Symbol := SetAlgebraFunctionSymbol
-  arity
-    | .join => 2
-    | .meet => 2
-    | .complement => 1
+    Symbol := SetAlgebraFunctionSymbol
+    arity
+      | .join => 2
+      | .meet => 2
+      | .complement => 1
 
 Predicate logic (unfolded):
 
   def SetAlgebraFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
-  Symbol := SetAlgebraFunctionSymbol
-  arity
-    | .join => 2
-    | .meet => 2
-    | .complement => 1 (source fallback; no compiled unfold data available)
+    Symbol := SetAlgebraFunctionSymbol
+    arity
+      | .join => 2
+      | .meet => 2
+      | .complement => 1 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -200,14 +200,14 @@ def SetAlgebraFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
 Predicate logic:
 
   def SetAlgebraFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
-  Symbol := SetAlgebraRelationSymbol
-  arity := Empty.elim
+    Symbol := SetAlgebraRelationSymbol
+    arity := Empty.elim
 
 Predicate logic (unfolded):
 
   def SetAlgebraFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
-  Symbol := SetAlgebraRelationSymbol
-  arity := Empty.elim (source fallback; no compiled unfold data available)
+    Symbol := SetAlgebraRelationSymbol
+    arity := Empty.elim (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -246,16 +246,16 @@ def SetAlgebraFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
 Predicate logic:
 
   def SetAlgebraFirstOrderSignature : LRA.Logic.Signature where
-  Functions := SetAlgebraFirstOrderFunctions
-  Relations := SetAlgebraFirstOrderRelations
-  Constants := SetAlgebraConstantSymbol
+    Functions := SetAlgebraFirstOrderFunctions
+    Relations := SetAlgebraFirstOrderRelations
+    Constants := SetAlgebraConstantSymbol
 
 Predicate logic (unfolded):
 
   def SetAlgebraFirstOrderSignature : LRA.Logic.Signature where
-  Functions := SetAlgebraFirstOrderFunctions
-  Relations := SetAlgebraFirstOrderRelations
-  Constants := SetAlgebraConstantSymbol (source fallback; no compiled unfold data available)
+    Functions := SetAlgebraFirstOrderFunctions
+    Relations := SetAlgebraFirstOrderRelations
+    Constants := SetAlgebraConstantSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

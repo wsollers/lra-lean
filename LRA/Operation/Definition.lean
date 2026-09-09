@@ -8,12 +8,12 @@ universe u v w
 Predicate logic:
 
   abbrev Operation (Domain : Type u) (Codomain : Type v) :=
-  Domain → Codomain
+    Domain → Codomain
 
 Predicate logic (unfolded):
 
   abbrev Operation (Domain : Type u) (Codomain : Type v) :=
-  Domain → Codomain (source fallback; no compiled unfold data available)
+    Domain → Codomain (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -88,12 +88,12 @@ abbrev NullaryOperation (Codomain : Type u) := Codomain
 Predicate logic:
 
   abbrev HeterogeneousUnaryOperation (Domain : Type u) (Codomain : Type v) :=
-  Operation Domain Codomain
+    Operation Domain Codomain
 
 Predicate logic (unfolded):
 
   abbrev HeterogeneousUnaryOperation (Domain : Type u) (Codomain : Type v) :=
-  Operation Domain Codomain (source fallback; no compiled unfold data available)
+    Operation Domain Codomain (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -130,12 +130,12 @@ abbrev HeterogeneousUnaryOperation (Domain : Type u) (Codomain : Type v) :=
 Predicate logic:
 
   abbrev UnaryOperation (Carrier : Type u) :=
-  HeterogeneousUnaryOperation Carrier Carrier
+    HeterogeneousUnaryOperation Carrier Carrier
 
 Predicate logic (unfolded):
 
   abbrev UnaryOperation (Carrier : Type u) :=
-  HeterogeneousUnaryOperation Carrier Carrier (source fallback; no compiled unfold data available)
+    HeterogeneousUnaryOperation Carrier Carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -248,14 +248,14 @@ abbrev UnaryEndoOperation (Carrier : Type u) := UnaryOperation Carrier
 Predicate logic:
 
   abbrev HeterogeneousBinaryOperation
-    (Left : Type u) (Right : Type v) (Codomain : Type w) :=
-  Left → Right → Codomain
+      (Left : Type u) (Right : Type v) (Codomain : Type w) :=
+    Left → Right → Codomain
 
 Predicate logic (unfolded):
 
   abbrev HeterogeneousBinaryOperation
-    (Left : Type u) (Right : Type v) (Codomain : Type w) :=
-  Left → Right → Codomain (source fallback; no compiled unfold data available)
+      (Left : Type u) (Right : Type v) (Codomain : Type w) :=
+    Left → Right → Codomain (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -294,12 +294,12 @@ abbrev HeterogeneousBinaryOperation
 Predicate logic:
 
   abbrev BinaryOperation (Carrier : Type u) :=
-  HeterogeneousBinaryOperation Carrier Carrier Carrier
+    HeterogeneousBinaryOperation Carrier Carrier Carrier
 
 Predicate logic (unfolded):
 
   abbrev BinaryOperation (Carrier : Type u) :=
-  HeterogeneousBinaryOperation Carrier Carrier Carrier (source fallback; no compiled unfold data available)
+    HeterogeneousBinaryOperation Carrier Carrier Carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -374,12 +374,12 @@ abbrev BinaryEndoOperation (Carrier : Type u) := BinaryOperation Carrier
 Predicate logic:
 
   abbrev ExternalBinaryOperation (Scalar : Type u) (Carrier : Type v) :=
-  HeterogeneousBinaryOperation Scalar Carrier Carrier
+    HeterogeneousBinaryOperation Scalar Carrier Carrier
 
 Predicate logic (unfolded):
 
   abbrev ExternalBinaryOperation (Scalar : Type u) (Carrier : Type v) :=
-  HeterogeneousBinaryOperation Scalar Carrier Carrier (source fallback; no compiled unfold data available)
+    HeterogeneousBinaryOperation Scalar Carrier Carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -416,14 +416,14 @@ abbrev ExternalBinaryOperation (Scalar : Type u) (Carrier : Type v) :=
 Predicate logic:
 
   def EndomapComposition (Carrier : Type u) :
-    BinaryEndoOperation (Carrier → Carrier) :=
-  fun second first input => second (first input)
+      BinaryEndoOperation (Carrier → Carrier) :=
+    fun second first input => second (first input)
 
 Predicate logic (unfolded):
 
   def EndomapComposition (Carrier : Type u) :
-    BinaryEndoOperation (Carrier → Carrier) :=
-  fun second first input => second (first input) (source fallback; no compiled unfold data available)
+      BinaryEndoOperation (Carrier → Carrier) :=
+    fun second first input => second (first input) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -462,12 +462,12 @@ def EndomapComposition (Carrier : Type u) :
 Predicate logic:
 
   def EndomapIdentity (Carrier : Type u) : Carrier → Carrier :=
-  fun input => input
+    fun input => input
 
 Predicate logic (unfolded):
 
   def EndomapIdentity (Carrier : Type u) : Carrier → Carrier :=
-  fun input => input (source fallback; no compiled unfold data available)
+    fun input => input (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -504,16 +504,16 @@ def EndomapIdentity (Carrier : Type u) : Carrier → Carrier :=
 Predicate logic:
 
   def PointwiseBinaryOperation {Domain : Type u} {Codomain : Type v}
-    (operation : BinaryEndoOperation Codomain) :
-    BinaryEndoOperation (Domain → Codomain) :=
-  fun first second input => operation (first input) (second input)
+      (operation : BinaryEndoOperation Codomain) :
+      BinaryEndoOperation (Domain → Codomain) :=
+    fun first second input => operation (first input) (second input)
 
 Predicate logic (unfolded):
 
   def PointwiseBinaryOperation {Domain : Type u} {Codomain : Type v}
-    (operation : BinaryEndoOperation Codomain) :
-    BinaryEndoOperation (Domain → Codomain) :=
-  fun first second input => operation (first input) (second input) (source fallback; no compiled unfold data available)
+      (operation : BinaryEndoOperation Codomain) :
+      BinaryEndoOperation (Domain → Codomain) :=
+    fun first second input => operation (first input) (second input) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -554,16 +554,16 @@ def PointwiseBinaryOperation {Domain : Type u} {Codomain : Type v}
 Predicate logic:
 
   def PointwiseUnaryOperation {Domain : Type u} {Codomain : Type v}
-    (operation : UnaryEndoOperation Codomain) :
-    UnaryEndoOperation (Domain → Codomain) :=
-  fun map input => operation (map input)
+      (operation : UnaryEndoOperation Codomain) :
+      UnaryEndoOperation (Domain → Codomain) :=
+    fun map input => operation (map input)
 
 Predicate logic (unfolded):
 
   def PointwiseUnaryOperation {Domain : Type u} {Codomain : Type v}
-    (operation : UnaryEndoOperation Codomain) :
-    UnaryEndoOperation (Domain → Codomain) :=
-  fun map input => operation (map input) (source fallback; no compiled unfold data available)
+      (operation : UnaryEndoOperation Codomain) :
+      UnaryEndoOperation (Domain → Codomain) :=
+    fun map input => operation (map input) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -604,14 +604,14 @@ def PointwiseUnaryOperation {Domain : Type u} {Codomain : Type v}
 Predicate logic:
 
   structure PartialUnaryOperation (Carrier : Type u) where
-  Domain : Carrier → Prop
-  Value : ∀ input, Domain input → Carrier
+    Domain : Carrier → Prop
+    Value : ∀ input, Domain input → Carrier
 
 Predicate logic (unfolded):
 
   structure PartialUnaryOperation (Carrier : Type u) where
-  Domain : Carrier → Prop
-  Value : ∀ input, Domain input → Carrier (source fallback; no compiled unfold data available)
+    Domain : Carrier → Prop
+    Value : ∀ input, Domain input → Carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -650,14 +650,14 @@ structure PartialUnaryOperation (Carrier : Type u) where
 Predicate logic:
 
   structure PartialBinaryOperation (Carrier : Type u) where
-  Domain : Carrier → Carrier → Prop
-  Value : ∀ left right, Domain left right → Carrier
+    Domain : Carrier → Carrier → Prop
+    Value : ∀ left right, Domain left right → Carrier
 
 Predicate logic (unfolded):
 
   structure PartialBinaryOperation (Carrier : Type u) where
-  Domain : Carrier → Carrier → Prop
-  Value : ∀ left right, Domain left right → Carrier (source fallback; no compiled unfold data available)
+    Domain : Carrier → Carrier → Prop
+    Value : ∀ left right, Domain left right → Carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

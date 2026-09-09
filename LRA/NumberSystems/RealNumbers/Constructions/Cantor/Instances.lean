@@ -19,16 +19,16 @@ open LRA.Order
 Predicate logic:
 
   noncomputable def quotient_addition
-    (fieldModel : RationalModel) :
-    Carrier fieldModel → Carrier fieldModel → Carrier fieldModel :=
-  Classical.choose (addition_is_proper fieldModel).induced_operation_exists
+      (fieldModel : RationalModel) :
+      Carrier fieldModel → Carrier fieldModel → Carrier fieldModel :=
+    Classical.choose (addition_is_proper fieldModel).induced_operation_exists
 
 Predicate logic (unfolded):
 
   noncomputable def quotient_addition
-    (fieldModel : RationalModel) :
-    Carrier fieldModel → Carrier fieldModel → Carrier fieldModel :=
-  Classical.choose (addition_is_proper fieldModel).induced_operation_exists (source fallback; no compiled unfold data available)
+      (fieldModel : RationalModel) :
+      Carrier fieldModel → Carrier fieldModel → Carrier fieldModel :=
+    Classical.choose (addition_is_proper fieldModel).induced_operation_exists (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -69,16 +69,16 @@ noncomputable def quotient_addition
 Predicate logic:
 
   noncomputable def quotient_multiplication
-    (fieldModel : RationalModel) :
-    Carrier fieldModel → Carrier fieldModel → Carrier fieldModel :=
-  Classical.choose (multiplication_is_proper fieldModel).induced_operation_exists
+      (fieldModel : RationalModel) :
+      Carrier fieldModel → Carrier fieldModel → Carrier fieldModel :=
+    Classical.choose (multiplication_is_proper fieldModel).induced_operation_exists
 
 Predicate logic (unfolded):
 
   noncomputable def quotient_multiplication
-    (fieldModel : RationalModel) :
-    Carrier fieldModel → Carrier fieldModel → Carrier fieldModel :=
-  Classical.choose (multiplication_is_proper fieldModel).induced_operation_exists (source fallback; no compiled unfold data available)
+      (fieldModel : RationalModel) :
+      Carrier fieldModel → Carrier fieldModel → Carrier fieldModel :=
+    Classical.choose (multiplication_is_proper fieldModel).induced_operation_exists (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -119,16 +119,16 @@ noncomputable def quotient_multiplication
 Predicate logic:
 
   noncomputable def quotient_negation
-    (fieldModel : RationalModel) :
-    Carrier fieldModel → Carrier fieldModel :=
-  (negation_is_proper fieldModel).inducedOperation
+      (fieldModel : RationalModel) :
+      Carrier fieldModel → Carrier fieldModel :=
+    (negation_is_proper fieldModel).inducedOperation
 
 Predicate logic (unfolded):
 
   noncomputable def quotient_negation
-    (fieldModel : RationalModel) :
-    Carrier fieldModel → Carrier fieldModel :=
-  (negation_is_proper fieldModel).inducedOperation (source fallback; no compiled unfold data available)
+      (fieldModel : RationalModel) :
+      Carrier fieldModel → Carrier fieldModel :=
+    (negation_is_proper fieldModel).inducedOperation (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -172,7 +172,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (a a_1 : Quot (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel).1), (Classical.indefiniteDescription (fun x => ∀ (first second : LRA.NumberSystems.RealNumbers.Cantor.NestedIntervalSequence fieldModel), x (Quotient.mk (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel) first) (Quotient.mk (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel) second) ↔ LRA.NumberSystems.RealNumbers.Cantor.representative_strict_order fieldModel first second) ⋯).1 a a_1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Classical.indefiniteDescription (fun x => ∀ (first second : LRA.NumberSystems.RealNumbers.Cantor.NestedIntervalSequence fieldModel), x (Quotient.mk (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel) first) (Quotient.mk (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel) second) ↔ LRA.NumberSystems.RealNumbers.Cantor.representative_strict_order fieldModel first second) ⋯).1 a a_1
 
 Logical form (Lean):
 
@@ -216,7 +221,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (first second : Quot (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel).1), Or ((Classical.indefiniteDescription (fun x => ∀ (first second : LRA.NumberSystems.RealNumbers.Cantor.NestedIntervalSequence fieldModel), x (Quotient.mk (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel) first) (Quotient.mk (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel) second) ↔ LRA.NumberSystems.RealNumbers.Cantor.representative_strict_order fieldModel first second) ⋯).1 first second) (first = second)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or ((Classical.indefiniteDescription (fun x => ∀ (first second : LRA.NumberSystems.RealNumbers.Cantor.NestedIntervalSequence fieldModel), x (Quotient.mk (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel) first) (Quotient.mk (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel) second) ↔ LRA.NumberSystems.RealNumbers.Cantor.representative_strict_order fieldModel first second) ⋯).1 first second) (first = second)
 
 Logical form (Lean):
 
@@ -257,12 +267,12 @@ def quotient_nonstrict_order
 Predicate logic:
 
   noncomputable def quotient_zero (fieldModel : RationalModel) : Carrier fieldModel :=
-  Quotient.mk _ (zero fieldModel)
+    Quotient.mk _ (zero fieldModel)
 
 Predicate logic (unfolded):
 
   noncomputable def quotient_zero (fieldModel : RationalModel) : Carrier fieldModel :=
-  Quotient.mk _ (zero fieldModel) (source fallback; no compiled unfold data available)
+    Quotient.mk _ (zero fieldModel) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -299,12 +309,12 @@ noncomputable def quotient_zero (fieldModel : RationalModel) : Carrier fieldMode
 Predicate logic:
 
   noncomputable def quotient_one (fieldModel : RationalModel) : Carrier fieldModel :=
-  Quotient.mk _ (one fieldModel)
+    Quotient.mk _ (one fieldModel)
 
 Predicate logic (unfolded):
 
   noncomputable def quotient_one (fieldModel : RationalModel) : Carrier fieldModel :=
-  Quotient.mk _ (one fieldModel) (source fallback; no compiled unfold data available)
+    Quotient.mk _ (one fieldModel) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -361,11 +371,18 @@ noncomputable instance CarrierLE (fieldModel : RationalModel) :
 
 Predicate logic:
 
-  (∀ fieldModel ∈ RationalModel), ∃ reciprocal ∈ Carrier fieldModel, value * reciprocal = 1 ∈ Carrier fieldModel ∧ ∀ other, value * other = 1 ∈ Carrier fieldModel → other = reciprocal
+  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (value : LRA.NumberSystems.RealNumbers.Cantor.Carrier fieldModel), Ne value 0 → Exists fun reciprocal => (instHMul.hMul value reciprocal = 1 ∧ (∀ (other : LRA.NumberSystems.RealNumbers.Cantor.Carrier fieldModel), instHMul.hMul value other = 1 → other = reciprocal))
 
 Predicate logic (unfolded):
 
-  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (value : Quot (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel).1), (value = LRA.NumberSystems.RealNumbers.Cantor.CarrierZero fieldModel.1 → False) → Exists fun reciprocal => (instHMul.1 value reciprocal = LRA.NumberSystems.RealNumbers.Cantor.CarrierOne fieldModel.1 ∧ ∀ (other : Quot (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel).1), instHMul.1 value other = LRA.NumberSystems.RealNumbers.Cantor.CarrierOne fieldModel.1 → other = reciprocal)
+  Ambient
+    (implicit ambient)
+  Objects
+    fieldModel : RationalModel
+    value : Carrier fieldModel
+    value_nonzero : value ≠ (0 : Carrier fieldModel)
+  Prove
+    (value = 0 → False) → Exists fun reciprocal => (({ hMul := fun a b => { mul := (Classical.indefiniteDescription (fun x => ∀ (first second : LRA.NumberSystems.RealNumbers.Cantor.NestedIntervalSequence fieldModel), x (Quotient.mk (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel) first) (Quotient.mk (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel) second) = Quotient.mk (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel) (LRA.NumberSystems.RealNumbers.Cantor.multiplication fieldModel first second)) ⋯).1 }.mul a b }.hMul value reciprocal = 1) ∧ (∀ (other : Quot (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel).1), { hMul := fun a b => { mul := (Classical.indefiniteDescription (fun x => ∀ (first second : LRA.NumberSystems.RealNumbers.Cantor.NestedIntervalSequence fieldModel), x (Quotient.mk (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel) first) (Quotient.mk (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel) second) = Quotient.mk (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel) (LRA.NumberSystems.RealNumbers.Cantor.multiplication fieldModel first second)) ⋯).1 }.mul a b }.hMul value other = 1 → other = reciprocal))
 
 Logical form (Lean):
 
@@ -412,18 +429,18 @@ theorem reciprocal_exists_uniquely
 Predicate logic:
 
   noncomputable def inverse
-    (fieldModel : RationalModel)
-    (value : Carrier fieldModel)
-    (value_nonzero : value ≠ (0 : Carrier fieldModel)) : Carrier fieldModel :=
-  Classical.choose (reciprocal_exists_uniquely fieldModel value value_nonzero)
+      (fieldModel : RationalModel)
+      (value : Carrier fieldModel)
+      (value_nonzero : value ≠ (0 : Carrier fieldModel)) : Carrier fieldModel :=
+    Classical.choose (reciprocal_exists_uniquely fieldModel value value_nonzero)
 
 Predicate logic (unfolded):
 
   noncomputable def inverse
-    (fieldModel : RationalModel)
-    (value : Carrier fieldModel)
-    (value_nonzero : value ≠ (0 : Carrier fieldModel)) : Carrier fieldModel :=
-  Classical.choose (reciprocal_exists_uniquely fieldModel value value_nonzero) (source fallback; no compiled unfold data available)
+      (fieldModel : RationalModel)
+      (value : Carrier fieldModel)
+      (value_nonzero : value ≠ (0 : Carrier fieldModel)) : Carrier fieldModel :=
+    Classical.choose (reciprocal_exists_uniquely fieldModel value value_nonzero) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -468,20 +485,20 @@ open Classical in
 Predicate logic:
 
   noncomputable def totalInverse
-    (fieldModel : RationalModel)
-    (value : Carrier fieldModel) : Carrier fieldModel :=
-  if value_nonzero : value ≠ (0 : Carrier fieldModel)
-  then inverse fieldModel value value_nonzero
-  else (0 : Carrier fieldModel)
+      (fieldModel : RationalModel)
+      (value : Carrier fieldModel) : Carrier fieldModel :=
+    if value_nonzero : value ≠ (0 : Carrier fieldModel)
+    then inverse fieldModel value value_nonzero
+    else (0 : Carrier fieldModel)
 
 Predicate logic (unfolded):
 
   noncomputable def totalInverse
-    (fieldModel : RationalModel)
-    (value : Carrier fieldModel) : Carrier fieldModel :=
-  if value_nonzero : value ≠ (0 : Carrier fieldModel)
-  then inverse fieldModel value value_nonzero
-  else (0 : Carrier fieldModel) (source fallback; no compiled unfold data available)
+      (fieldModel : RationalModel)
+      (value : Carrier fieldModel) : Carrier fieldModel :=
+    if value_nonzero : value ≠ (0 : Carrier fieldModel)
+    then inverse fieldModel value value_nonzero
+    else (0 : Carrier fieldModel) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -528,11 +545,16 @@ noncomputable instance CarrierInv (fieldModel : RationalModel) :
 
 Predicate logic:
 
-  (∀ fieldModel ∈ RationalModel), OrderedFieldLaws (Carrier fieldModel)
+  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), LRA.AlgebraicStructures.OrderedFieldLaws (LRA.NumberSystems.RealNumbers.Cantor.Carrier fieldModel)
 
 Predicate logic (unfolded):
 
-  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), LRA.AlgebraicStructures.OrderedFieldLaws (Quot (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel).1)
+  Ambient
+    (implicit ambient)
+  Objects
+    fieldModel : RationalModel
+  Prove
+    LRA.AlgebraicStructures.OrderedFieldLaws (Quot (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel).1)
 
 Logical form (Lean):
 
@@ -570,11 +592,16 @@ theorem carrier_field_cert
 
 Predicate logic:
 
-  (∀ fieldModel ∈ RationalModel), StrictOrderCompatibilityLaw (Carrier fieldModel)
+  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), LRA.Order.StrictOrderCompatibilityLaw (LRA.NumberSystems.RealNumbers.Cantor.Carrier fieldModel)
 
 Predicate logic (unfolded):
 
-  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), LRA.Order.StrictOrderCompatibilityLaw (Quot (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel).1)
+  Ambient
+    (implicit ambient)
+  Objects
+    fieldModel : RationalModel
+  Prove
+    LRA.Order.StrictOrderCompatibilityLaw (Quot (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel).1)
 
 Logical form (Lean):
 
@@ -612,11 +639,16 @@ theorem carrier_strict_order_cert
 
 Predicate logic:
 
-  (∀ fieldModel ∈ RationalModel), DenseOrderLaw (Carrier fieldModel)
+  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), LRA.Order.DenseOrderLaw (LRA.NumberSystems.RealNumbers.Cantor.Carrier fieldModel)
 
 Predicate logic (unfolded):
 
-  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), LRA.Order.DenseOrderLaw (Quot (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel).1)
+  Ambient
+    (implicit ambient)
+  Objects
+    fieldModel : RationalModel
+  Prove
+    LRA.Order.DenseOrderLaw (Quot (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel).1)
 
 Logical form (Lean):
 
@@ -654,11 +686,16 @@ theorem carrier_dense_order_cert
 
 Predicate logic:
 
-  (∀ fieldModel ∈ RationalModel), OrderCompletenessLaws (Carrier fieldModel) (Set (Carrier fieldModel))
+  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), LRA.Order.OrderCompletenessLaws (LRA.NumberSystems.RealNumbers.Cantor.Carrier fieldModel) (Set (LRA.NumberSystems.RealNumbers.Cantor.Carrier fieldModel))
 
 Predicate logic (unfolded):
 
-  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), LRA.Order.OrderCompletenessLaws (Quot (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel).1) (Quot (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel).1 → Prop)
+  Ambient
+    (implicit ambient)
+  Objects
+    fieldModel : RationalModel
+  Prove
+    LRA.Order.OrderCompletenessLaws (Quot (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel).1) (Quot (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid fieldModel).1 → Prop)
 
 Logical form (Lean):
 
@@ -697,16 +734,16 @@ theorem carrier_completeness_cert
 Predicate logic:
 
   noncomputable def CantorRealizesRationalModel
-    (fieldModel : RationalModel) :
-    LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel where
-  Carrier
+      (fieldModel : RationalModel) :
+      LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel where
+    Carrier
 
 Predicate logic (unfolded):
 
   noncomputable def CantorRealizesRationalModel
-    (fieldModel : RationalModel) :
-    LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel where
-  Carrier (source fallback; no compiled unfold data available)
+      (fieldModel : RationalModel) :
+      LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel where
+    Carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -758,16 +795,16 @@ noncomputable def CantorRealizesRationalModel
 Predicate logic:
 
   noncomputable def CantorRealizesRealModel
-    (fieldModel : RationalModel) :
-    LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel where
-  Carrier
+      (fieldModel : RationalModel) :
+      LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel where
+    Carrier
 
 Predicate logic (unfolded):
 
   noncomputable def CantorRealizesRealModel
-    (fieldModel : RationalModel) :
-    LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel where
-  Carrier (source fallback; no compiled unfold data available)
+      (fieldModel : RationalModel) :
+      LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel where
+    Carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -819,11 +856,16 @@ noncomputable def CantorRealizesRealModel
 
 Predicate logic:
 
-  (∀ rationalSystem ∈ RationalNumberSystem), ∃ realExtension ∈ LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem, realExtension.RealModel.Carrier = Carrier rationalSystem.FieldModel
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), Exists fun realExtension => realExtension.RealModel.Carrier = LRA.NumberSystems.RealNumbers.Cantor.Carrier rationalSystem.FieldModel
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), Exists fun realExtension => realExtension.RealModel.toDenselyOrderedFieldModel.1 = Quot (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid rationalSystem.FieldModel).1
+  Ambient
+    (implicit ambient)
+  Objects
+    rationalSystem : RationalNumberSystem
+  Prove
+    Exists fun realExtension => realExtension.RealModel.1 = Quot (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid rationalSystem.FieldModel).1
 
 Logical form (Lean):
 

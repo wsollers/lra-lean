@@ -20,11 +20,21 @@ universe u v w
 
 Predicate logic:
 
-  Function.Injective map
+  ∀ {Alpha : Type u} {Beta : Type v} {sourceRelation : LRA.Relation.Endorelation Alpha} {targetRelation : LRA.Relation.Endorelation Beta} {map : Alpha → Beta}, (LRA.Relation.Antisymmetric sourceRelation ∧ (LRA.Relation.Reflexive targetRelation ∧ LRA.Order.OrderEmbedding sourceRelation targetRelation map)) → LRA.Function.Injective map
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {Beta : Type v} {sourceRelation : Alpha → Alpha → Prop} {targetRelation : Beta → Beta → Prop} {map : Alpha → Beta}, (∀ (x y : Alpha), sourceRelation x y → sourceRelation y x → x = y ∧ (∀ (x : Beta), targetRelation x x ∧ (∀ (left right : Alpha), sourceRelation left right → targetRelation (map left) (map right) ∧ ∀ (left right : Alpha), targetRelation (map left) (map right) → sourceRelation left right))) → ∀ (y : Beta) (x₁ x₂ : Alpha), (map x₁ = y ∧ map x₂ = y) → x₁ = x₂
+  Ambient
+    (Alpha, Beta)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    map : Alpha -> Beta
+    sourceIsAntisymmetric : LRA.Relation.Antisymmetric sourceRelation
+    targetIsReflexive : LRA.Relation.Reflexive targetRelation
+    mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map
+  Prove
+    ((∀ (x y : Alpha), sourceRelation x y → sourceRelation y x → x = y) ∧ ((∀ (x : Beta), targetRelation x x) ∧ ((∀ (left right : Alpha), sourceRelation left right → targetRelation (map left) (map right)) ∧ (∀ (left right : Alpha), targetRelation (map left) (map right) → sourceRelation left right)))) → ∀ (y : Beta) (x₁ x₂ : Alpha), (map x₁ = y ∧ map x₂ = y) → x₁ = x₂
 
 Logical form (Lean):
 
@@ -74,11 +84,22 @@ theorem OrderEmbeddingInjective
 
 Predicate logic:
 
-  OrderEmbedding sourceRelation targetRelation (fun element => secondMap (firstMap element))
+  ∀ {Alpha : Type u} {Beta : Type v} {Gamma : Type w} {sourceRelation : LRA.Relation.Endorelation Alpha} {middleRelation : LRA.Relation.Endorelation Beta} {targetRelation : LRA.Relation.Endorelation Gamma} {firstMap : Alpha → Beta} {secondMap : Beta → Gamma}, (LRA.Order.OrderEmbedding sourceRelation middleRelation firstMap ∧ LRA.Order.OrderEmbedding middleRelation targetRelation secondMap) → LRA.Order.OrderEmbedding sourceRelation targetRelation fun element => secondMap (firstMap element)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {Beta : Type v} {Gamma : Type w} {sourceRelation : Alpha → Alpha → Prop} {middleRelation : Beta → Beta → Prop} {targetRelation : Gamma → Gamma → Prop} {firstMap : Alpha → Beta} {secondMap : Beta → Gamma}, ((∀ (left right : Alpha), sourceRelation left right → middleRelation (firstMap left) (firstMap right) ∧ ∀ (left right : Alpha), middleRelation (firstMap left) (firstMap right) → sourceRelation left right) ∧ (∀ (left right : Beta), middleRelation left right → targetRelation (secondMap left) (secondMap right) ∧ ∀ (left right : Beta), targetRelation (secondMap left) (secondMap right) → middleRelation left right)) → (∀ (left right : Alpha), sourceRelation left right → targetRelation ((fun element => secondMap (firstMap element)) left) ((fun element => secondMap (firstMap element)) right) ∧ ∀ (left right : Alpha), targetRelation ((fun element => secondMap (firstMap element)) left) ((fun element => secondMap (firstMap element)) right) → sourceRelation left right)
+  Ambient
+    (Alpha, Beta, Gamma)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    middleRelation : LRA.Relation.Endorelation Beta
+    targetRelation : LRA.Relation.Endorelation Gamma
+    firstMap : Alpha -> Beta
+    secondMap : Beta -> Gamma
+    firstMapIsEmbedding : OrderEmbedding sourceRelation middleRelation firstMap
+    secondMapIsEmbedding : OrderEmbedding middleRelation targetRelation secondMap
+  Prove
+    (((∀ (left right : Alpha), sourceRelation left right → middleRelation (firstMap left) (firstMap right)) ∧ (∀ (left right : Alpha), middleRelation (firstMap left) (firstMap right) → sourceRelation left right)) ∧ ((∀ (left right : Beta), middleRelation left right → targetRelation (secondMap left) (secondMap right)) ∧ (∀ (left right : Beta), targetRelation (secondMap left) (secondMap right) → middleRelation left right))) → ((∀ (left right : Alpha), sourceRelation left right → targetRelation ((fun element => secondMap (firstMap element)) left) ((fun element => secondMap (firstMap element)) right)) ∧ (∀ (left right : Alpha), targetRelation ((fun element => secondMap (firstMap element)) left) ((fun element => secondMap (firstMap element)) right) → sourceRelation left right))
 
 Logical form (Lean):
 
@@ -138,11 +159,24 @@ variable {map : Alpha → Beta}
 
 Predicate logic:
 
-  (∀ subset ∈ SourceSet ∀ imageSet ∈ TargetSet), UpperBound targetRelation imageSet (map bound)
+  ∀ {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x} [inst : Membership Alpha SourceSet] [inst_1 : Membership Beta TargetSet] {sourceRelation : LRA.Relation.Endorelation Alpha} {targetRelation : LRA.Relation.Endorelation Beta} {map : Alpha → Beta} (subset : SourceSet) (imageSet : TargetSet), (LRA.Set.Represents imageSet (LRA.Function.ImageClass map (LRA.Set.ClassOfSet subset)) ∧ LRA.Order.OrderEmbedding sourceRelation targetRelation map) → ∀ {bound : Alpha}, LRA.Order.UpperBound sourceRelation subset bound → LRA.Order.UpperBound targetRelation imageSet (map bound)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x} [inst : Membership Alpha SourceSet] [inst_1 : Membership Beta TargetSet] {sourceRelation : Alpha → Alpha → Prop} {targetRelation : Beta → Beta → Prop} {map : Alpha → Beta} (subset : SourceSet) (imageSet : TargetSet), (∀ (element : Beta), inst_1.1 imageSet element ↔ Exists fun x => (inst.1 subset x ∧ map x = element) ∧ (∀ (left right : Alpha), sourceRelation left right → targetRelation (map left) (map right) ∧ ∀ (left right : Alpha), targetRelation (map left) (map right) → sourceRelation left right)) → ∀ {bound : Alpha}, (∀ (element : Alpha), inst.1 subset element → sourceRelation element bound) → ∀ (element : Beta), inst_1.1 imageSet element → targetRelation element (map bound)
+  Ambient
+    (Alpha, Beta, SourceSet, TargetSet, ∈)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    map : Alpha → Beta
+    subset : SourceSet
+    imageSet : TargetSet
+    representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))
+    mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map
+    bound : Alpha
+    boundIsUpper : UpperBound sourceRelation subset bound
+  Prove
+    ((∀ (element : Beta), inst_1.1 imageSet element ↔ Exists fun x => (inst.1 subset x ∧ map x = element)) ∧ ((∀ (left right : Alpha), sourceRelation left right → targetRelation (map left) (map right)) ∧ (∀ (left right : Alpha), targetRelation (map left) (map right) → sourceRelation left right))) → ∀ {bound : Alpha}, (∀ (element : Alpha), inst.1 subset element → sourceRelation element bound) → ∀ (element : Beta), inst_1.1 imageSet element → targetRelation element (map bound)
 
 Logical form (Lean):
 
@@ -190,11 +224,24 @@ theorem OrderEmbeddingSendsUpperBoundToImageUpperBound
 
 Predicate logic:
 
-  (∀ subset ∈ SourceSet ∀ imageSet ∈ TargetSet), LowerBound targetRelation imageSet (map bound)
+  ∀ {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x} [inst : Membership Alpha SourceSet] [inst_1 : Membership Beta TargetSet] {sourceRelation : LRA.Relation.Endorelation Alpha} {targetRelation : LRA.Relation.Endorelation Beta} {map : Alpha → Beta} (subset : SourceSet) (imageSet : TargetSet), (LRA.Set.Represents imageSet (LRA.Function.ImageClass map (LRA.Set.ClassOfSet subset)) ∧ LRA.Order.OrderEmbedding sourceRelation targetRelation map) → ∀ {bound : Alpha}, LRA.Order.LowerBound sourceRelation subset bound → LRA.Order.LowerBound targetRelation imageSet (map bound)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x} [inst : Membership Alpha SourceSet] [inst_1 : Membership Beta TargetSet] {sourceRelation : Alpha → Alpha → Prop} {targetRelation : Beta → Beta → Prop} {map : Alpha → Beta} (subset : SourceSet) (imageSet : TargetSet), (∀ (element : Beta), inst_1.1 imageSet element ↔ Exists fun x => (inst.1 subset x ∧ map x = element) ∧ (∀ (left right : Alpha), sourceRelation left right → targetRelation (map left) (map right) ∧ ∀ (left right : Alpha), targetRelation (map left) (map right) → sourceRelation left right)) → ∀ {bound : Alpha}, (∀ (element : Alpha), inst.1 subset element → sourceRelation bound element) → ∀ (element : Beta), inst_1.1 imageSet element → targetRelation (map bound) element
+  Ambient
+    (Alpha, Beta, SourceSet, TargetSet, ∈)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    map : Alpha → Beta
+    subset : SourceSet
+    imageSet : TargetSet
+    representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))
+    mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map
+    bound : Alpha
+    boundIsLower : LowerBound sourceRelation subset bound
+  Prove
+    ((∀ (element : Beta), inst_1.1 imageSet element ↔ Exists fun x => (inst.1 subset x ∧ map x = element)) ∧ ((∀ (left right : Alpha), sourceRelation left right → targetRelation (map left) (map right)) ∧ (∀ (left right : Alpha), targetRelation (map left) (map right) → sourceRelation left right))) → ∀ {bound : Alpha}, (∀ (element : Alpha), inst.1 subset element → sourceRelation bound element) → ∀ (element : Beta), inst_1.1 imageSet element → targetRelation (map bound) element
 
 Logical form (Lean):
 
@@ -242,11 +289,23 @@ theorem OrderEmbeddingSendsLowerBoundToImageLowerBound
 
 Predicate logic:
 
-  (∀ subset ∈ SourceSet ∀ imageSet ∈ TargetSet ∀ bound ∈ Alpha), UpperBound sourceRelation subset bound ↔ LRA.Function.PreimageClass map (fun output => UpperBound targetRelation imageSet output) bound
+  ∀ {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x} [inst : Membership Alpha SourceSet] [inst_1 : Membership Beta TargetSet] {sourceRelation : LRA.Relation.Endorelation Alpha} {targetRelation : LRA.Relation.Endorelation Beta} {map : Alpha → Beta} (subset : SourceSet) (imageSet : TargetSet), (LRA.Set.Represents imageSet (LRA.Function.ImageClass map (LRA.Set.ClassOfSet subset)) ∧ LRA.Order.OrderEmbedding sourceRelation targetRelation map) → ∀ (bound : Alpha), LRA.Order.UpperBound sourceRelation subset bound ↔ LRA.Function.PreimageClass map (fun output => LRA.Order.UpperBound targetRelation imageSet output) bound
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x} [inst : Membership Alpha SourceSet] [inst_1 : Membership Beta TargetSet] {sourceRelation : Alpha → Alpha → Prop} {targetRelation : Beta → Beta → Prop} {map : Alpha → Beta} (subset : SourceSet) (imageSet : TargetSet), (∀ (element : Beta), inst_1.1 imageSet element ↔ Exists fun x => (inst.1 subset x ∧ map x = element) ∧ (∀ (left right : Alpha), sourceRelation left right → targetRelation (map left) (map right) ∧ ∀ (left right : Alpha), targetRelation (map left) (map right) → sourceRelation left right)) → ∀ (bound : Alpha), ∀ (element : Alpha), inst.1 subset element → sourceRelation element bound ↔ Exists fun y => ((fun output => ∀ (element : Beta), inst_1.1 imageSet element → targetRelation element output) y ∧ map bound = y)
+  Ambient
+    (Alpha, Beta, SourceSet, TargetSet, ∈)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    map : Alpha → Beta
+    subset : SourceSet
+    imageSet : TargetSet
+    representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))
+    mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map
+    bound : Alpha
+  Prove
+    (LRA.Set.Represents imageSet (LRA.Function.ImageClass map (LRA.Set.ClassOfSet subset)) ∧ LRA.Order.OrderEmbedding sourceRelation targetRelation map) → ∀ (bound : Alpha), LRA.Order.UpperBound sourceRelation subset bound ↔ LRA.Function.PreimageClass map (fun output => LRA.Order.UpperBound targetRelation imageSet output) bound
 
 Logical form (Lean):
 
@@ -296,11 +355,23 @@ theorem OrderEmbeddingUpperBoundsPreimageIff
 
 Predicate logic:
 
-  (∀ subset ∈ SourceSet ∀ imageSet ∈ TargetSet ∀ bound ∈ Alpha), LowerBound sourceRelation subset bound ↔ LRA.Function.PreimageClass map (fun output => LowerBound targetRelation imageSet output) bound
+  ∀ {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x} [inst : Membership Alpha SourceSet] [inst_1 : Membership Beta TargetSet] {sourceRelation : LRA.Relation.Endorelation Alpha} {targetRelation : LRA.Relation.Endorelation Beta} {map : Alpha → Beta} (subset : SourceSet) (imageSet : TargetSet), (LRA.Set.Represents imageSet (LRA.Function.ImageClass map (LRA.Set.ClassOfSet subset)) ∧ LRA.Order.OrderEmbedding sourceRelation targetRelation map) → ∀ (bound : Alpha), LRA.Order.LowerBound sourceRelation subset bound ↔ LRA.Function.PreimageClass map (fun output => LRA.Order.LowerBound targetRelation imageSet output) bound
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x} [inst : Membership Alpha SourceSet] [inst_1 : Membership Beta TargetSet] {sourceRelation : Alpha → Alpha → Prop} {targetRelation : Beta → Beta → Prop} {map : Alpha → Beta} (subset : SourceSet) (imageSet : TargetSet), (∀ (element : Beta), inst_1.1 imageSet element ↔ Exists fun x => (inst.1 subset x ∧ map x = element) ∧ (∀ (left right : Alpha), sourceRelation left right → targetRelation (map left) (map right) ∧ ∀ (left right : Alpha), targetRelation (map left) (map right) → sourceRelation left right)) → ∀ (bound : Alpha), ∀ (element : Alpha), inst.1 subset element → sourceRelation bound element ↔ Exists fun y => ((fun output => ∀ (element : Beta), inst_1.1 imageSet element → targetRelation output element) y ∧ map bound = y)
+  Ambient
+    (Alpha, Beta, SourceSet, TargetSet, ∈)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    map : Alpha → Beta
+    subset : SourceSet
+    imageSet : TargetSet
+    representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))
+    mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map
+    bound : Alpha
+  Prove
+    (LRA.Set.Represents imageSet (LRA.Function.ImageClass map (LRA.Set.ClassOfSet subset)) ∧ LRA.Order.OrderEmbedding sourceRelation targetRelation map) → ∀ (bound : Alpha), LRA.Order.LowerBound sourceRelation subset bound ↔ LRA.Function.PreimageClass map (fun output => LRA.Order.LowerBound targetRelation imageSet output) bound
 
 Logical form (Lean):
 
@@ -350,11 +421,24 @@ theorem OrderEmbeddingLowerBoundsPreimageIff
 
 Predicate logic:
 
-  (∀ subset ∈ SourceSet ∀ imageSet ∈ TargetSet), GreatestElement targetRelation imageSet (map greatest)
+  ∀ {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x} [inst : Membership Alpha SourceSet] [inst_1 : Membership Beta TargetSet] {sourceRelation : LRA.Relation.Endorelation Alpha} {targetRelation : LRA.Relation.Endorelation Beta} {map : Alpha → Beta} (subset : SourceSet) (imageSet : TargetSet), (LRA.Set.Represents imageSet (LRA.Function.ImageClass map (LRA.Set.ClassOfSet subset)) ∧ LRA.Order.OrderEmbedding sourceRelation targetRelation map) → ∀ {greatest : Alpha}, LRA.Order.GreatestElement sourceRelation subset greatest → LRA.Order.GreatestElement targetRelation imageSet (map greatest)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x} [inst : Membership Alpha SourceSet] [inst_1 : Membership Beta TargetSet] {sourceRelation : Alpha → Alpha → Prop} {targetRelation : Beta → Beta → Prop} {map : Alpha → Beta} (subset : SourceSet) (imageSet : TargetSet), (∀ (element : Beta), inst_1.1 imageSet element ↔ Exists fun x => (inst.1 subset x ∧ map x = element) ∧ (∀ (left right : Alpha), sourceRelation left right → targetRelation (map left) (map right) ∧ ∀ (left right : Alpha), targetRelation (map left) (map right) → sourceRelation left right)) → ∀ {greatest : Alpha}, (inst.1 subset greatest ∧ ∀ (element : Alpha), inst.1 subset element → sourceRelation element greatest) → (inst_1.1 imageSet (map greatest) ∧ ∀ (element : Beta), inst_1.1 imageSet element → targetRelation element (map greatest))
+  Ambient
+    (Alpha, Beta, SourceSet, TargetSet, ∈)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    map : Alpha → Beta
+    subset : SourceSet
+    imageSet : TargetSet
+    representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))
+    mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map
+    greatest : Alpha
+    greatestIsGreatest : GreatestElement sourceRelation subset greatest
+  Prove
+    ((∀ (element : Beta), inst_1.1 imageSet element ↔ Exists fun x => (inst.1 subset x ∧ map x = element)) ∧ ((∀ (left right : Alpha), sourceRelation left right → targetRelation (map left) (map right)) ∧ (∀ (left right : Alpha), targetRelation (map left) (map right) → sourceRelation left right))) → ∀ {greatest : Alpha}, (inst.1 subset greatest ∧ (∀ (element : Alpha), inst.1 subset element → sourceRelation element greatest)) → (inst_1.1 imageSet (map greatest) ∧ (∀ (element : Beta), inst_1.1 imageSet element → targetRelation element (map greatest)))
 
 Logical form (Lean):
 
@@ -402,11 +486,24 @@ theorem OrderEmbeddingPreservesGreatestElement
 
 Predicate logic:
 
-  (∀ subset ∈ SourceSet ∀ imageSet ∈ TargetSet), LeastElement targetRelation imageSet (map least)
+  ∀ {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x} [inst : Membership Alpha SourceSet] [inst_1 : Membership Beta TargetSet] {sourceRelation : LRA.Relation.Endorelation Alpha} {targetRelation : LRA.Relation.Endorelation Beta} {map : Alpha → Beta} (subset : SourceSet) (imageSet : TargetSet), (LRA.Set.Represents imageSet (LRA.Function.ImageClass map (LRA.Set.ClassOfSet subset)) ∧ LRA.Order.OrderEmbedding sourceRelation targetRelation map) → ∀ {least : Alpha}, LRA.Order.LeastElement sourceRelation subset least → LRA.Order.LeastElement targetRelation imageSet (map least)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {Beta : Type v} {SourceSet : Type w} {TargetSet : Type x} [inst : Membership Alpha SourceSet] [inst_1 : Membership Beta TargetSet] {sourceRelation : Alpha → Alpha → Prop} {targetRelation : Beta → Beta → Prop} {map : Alpha → Beta} (subset : SourceSet) (imageSet : TargetSet), (∀ (element : Beta), inst_1.1 imageSet element ↔ Exists fun x => (inst.1 subset x ∧ map x = element) ∧ (∀ (left right : Alpha), sourceRelation left right → targetRelation (map left) (map right) ∧ ∀ (left right : Alpha), targetRelation (map left) (map right) → sourceRelation left right)) → ∀ {least : Alpha}, (inst.1 subset least ∧ ∀ (element : Alpha), inst.1 subset element → sourceRelation least element) → (inst_1.1 imageSet (map least) ∧ ∀ (element : Beta), inst_1.1 imageSet element → targetRelation (map least) element)
+  Ambient
+    (Alpha, Beta, SourceSet, TargetSet, ∈)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    targetRelation : LRA.Relation.Endorelation Beta
+    map : Alpha → Beta
+    subset : SourceSet
+    imageSet : TargetSet
+    representsImage : Represents imageSet (LRA.Function.ImageClass map (ClassOfSet subset))
+    mapIsEmbedding : OrderEmbedding sourceRelation targetRelation map
+    least : Alpha
+    leastIsLeast : LeastElement sourceRelation subset least
+  Prove
+    ((∀ (element : Beta), inst_1.1 imageSet element ↔ Exists fun x => (inst.1 subset x ∧ map x = element)) ∧ ((∀ (left right : Alpha), sourceRelation left right → targetRelation (map left) (map right)) ∧ (∀ (left right : Alpha), targetRelation (map left) (map right) → sourceRelation left right))) → ∀ {least : Alpha}, (inst.1 subset least ∧ (∀ (element : Alpha), inst.1 subset element → sourceRelation least element)) → (inst_1.1 imageSet (map least) ∧ (∀ (element : Beta), inst_1.1 imageSet element → targetRelation (map least) element))
 
 Logical form (Lean):
 

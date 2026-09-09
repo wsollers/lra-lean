@@ -17,18 +17,18 @@ open LRA.Order
 Predicate logic:
 
   noncomputable def quotient_addition
-    (rationalSystem : RationalNumberSystem) :
-    EffectiveCauchyReal rationalSystem →
-      EffectiveCauchyReal rationalSystem → EffectiveCauchyReal rationalSystem :=
-  Classical.choose (addition_is_proper rationalSystem).induced_operation_exists
+      (rationalSystem : RationalNumberSystem) :
+      EffectiveCauchyReal rationalSystem →
+        EffectiveCauchyReal rationalSystem → EffectiveCauchyReal rationalSystem :=
+    Classical.choose (addition_is_proper rationalSystem).induced_operation_exists
 
 Predicate logic (unfolded):
 
   noncomputable def quotient_addition
-    (rationalSystem : RationalNumberSystem) :
-    EffectiveCauchyReal rationalSystem →
-      EffectiveCauchyReal rationalSystem → EffectiveCauchyReal rationalSystem :=
-  Classical.choose (addition_is_proper rationalSystem).induced_operation_exists (source fallback; no compiled unfold data available)
+      (rationalSystem : RationalNumberSystem) :
+      EffectiveCauchyReal rationalSystem →
+        EffectiveCauchyReal rationalSystem → EffectiveCauchyReal rationalSystem :=
+    Classical.choose (addition_is_proper rationalSystem).induced_operation_exists (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -71,18 +71,18 @@ noncomputable def quotient_addition
 Predicate logic:
 
   noncomputable def quotient_multiplication
-    (rationalSystem : RationalNumberSystem) :
-    EffectiveCauchyReal rationalSystem →
-      EffectiveCauchyReal rationalSystem → EffectiveCauchyReal rationalSystem :=
-  Classical.choose (multiplication_is_proper rationalSystem).induced_operation_exists
+      (rationalSystem : RationalNumberSystem) :
+      EffectiveCauchyReal rationalSystem →
+        EffectiveCauchyReal rationalSystem → EffectiveCauchyReal rationalSystem :=
+    Classical.choose (multiplication_is_proper rationalSystem).induced_operation_exists
 
 Predicate logic (unfolded):
 
   noncomputable def quotient_multiplication
-    (rationalSystem : RationalNumberSystem) :
-    EffectiveCauchyReal rationalSystem →
-      EffectiveCauchyReal rationalSystem → EffectiveCauchyReal rationalSystem :=
-  Classical.choose (multiplication_is_proper rationalSystem).induced_operation_exists (source fallback; no compiled unfold data available)
+      (rationalSystem : RationalNumberSystem) :
+      EffectiveCauchyReal rationalSystem →
+        EffectiveCauchyReal rationalSystem → EffectiveCauchyReal rationalSystem :=
+    Classical.choose (multiplication_is_proper rationalSystem).induced_operation_exists (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -125,16 +125,16 @@ noncomputable def quotient_multiplication
 Predicate logic:
 
   noncomputable def quotient_negation
-    (rationalSystem : RationalNumberSystem) :
-    EffectiveCauchyReal rationalSystem → EffectiveCauchyReal rationalSystem :=
-  (negation_is_proper rationalSystem).inducedOperation
+      (rationalSystem : RationalNumberSystem) :
+      EffectiveCauchyReal rationalSystem → EffectiveCauchyReal rationalSystem :=
+    (negation_is_proper rationalSystem).inducedOperation
 
 Predicate logic (unfolded):
 
   noncomputable def quotient_negation
-    (rationalSystem : RationalNumberSystem) :
-    EffectiveCauchyReal rationalSystem → EffectiveCauchyReal rationalSystem :=
-  (negation_is_proper rationalSystem).inducedOperation (source fallback; no compiled unfold data available)
+      (rationalSystem : RationalNumberSystem) :
+      EffectiveCauchyReal rationalSystem → EffectiveCauchyReal rationalSystem :=
+    (negation_is_proper rationalSystem).inducedOperation (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -178,7 +178,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (a a_1 : Quot (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1), (Classical.indefiniteDescription (fun x => ∀ (first second : LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyApproximation rationalSystem), x (Quotient.mk (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem) first) (Quotient.mk (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem) second) ↔ LRA.NumberSystems.RealNumbers.EffectiveCauchy.representative_strict_order first second) ⋯).1 a a_1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Classical.indefiniteDescription (fun x => ∀ (first second : LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyApproximation rationalSystem), x (Quotient.mk (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem) first) (Quotient.mk (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem) second) ↔ LRA.NumberSystems.RealNumbers.EffectiveCauchy.representative_strict_order first second) ⋯).1 a a_1
 
 Logical form (Lean):
 
@@ -222,7 +227,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (first second : Quot (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1), Or ((Classical.indefiniteDescription (fun x => ∀ (first second : LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyApproximation rationalSystem), x (Quotient.mk (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem) first) (Quotient.mk (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem) second) ↔ LRA.NumberSystems.RealNumbers.EffectiveCauchy.representative_strict_order first second) ⋯).1 first second) (first = second)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or ((Classical.indefiniteDescription (fun x => ∀ (first second : LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyApproximation rationalSystem), x (Quotient.mk (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem) first) (Quotient.mk (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem) second) ↔ LRA.NumberSystems.RealNumbers.EffectiveCauchy.representative_strict_order first second) ⋯).1 first second) (first = second)
 
 Logical form (Lean):
 
@@ -263,12 +273,12 @@ def quotient_nonstrict_order
 Predicate logic:
 
   noncomputable def quotient_zero (rationalSystem : RationalNumberSystem) : EffectiveCauchyReal rationalSystem :=
-  Quotient.mk _ (zero rationalSystem)
+    Quotient.mk _ (zero rationalSystem)
 
 Predicate logic (unfolded):
 
   noncomputable def quotient_zero (rationalSystem : RationalNumberSystem) : EffectiveCauchyReal rationalSystem :=
-  Quotient.mk _ (zero rationalSystem) (source fallback; no compiled unfold data available)
+    Quotient.mk _ (zero rationalSystem) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -305,12 +315,12 @@ noncomputable def quotient_zero (rationalSystem : RationalNumberSystem) : Effect
 Predicate logic:
 
   noncomputable def quotient_one (rationalSystem : RationalNumberSystem) : EffectiveCauchyReal rationalSystem :=
-  Quotient.mk _ (one rationalSystem)
+    Quotient.mk _ (one rationalSystem)
 
 Predicate logic (unfolded):
 
   noncomputable def quotient_one (rationalSystem : RationalNumberSystem) : EffectiveCauchyReal rationalSystem :=
-  Quotient.mk _ (one rationalSystem) (source fallback; no compiled unfold data available)
+    Quotient.mk _ (one rationalSystem) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -367,11 +377,18 @@ noncomputable instance CarrierLE (rationalSystem : RationalNumberSystem) :
 
 Predicate logic:
 
-  (∀ rationalSystem ∈ RationalNumberSystem), ∃ reciprocal ∈ EffectiveCauchyReal rationalSystem, value * reciprocal = 1 ∈ EffectiveCauchyReal rationalSystem ∧ ∀ other, value * other = 1 ∈ EffectiveCauchyReal rationalSystem → other = reciprocal
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (value : LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyReal rationalSystem), Ne value 0 → Exists fun reciprocal => (instHMul.hMul value reciprocal = 1 ∧ (∀ (other : LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyReal rationalSystem), instHMul.hMul value other = 1 → other = reciprocal))
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (value : Quot (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1), (value = LRA.NumberSystems.RealNumbers.EffectiveCauchy.CarrierZero rationalSystem.1 → False) → Exists fun reciprocal => (instHMul.1 value reciprocal = LRA.NumberSystems.RealNumbers.EffectiveCauchy.CarrierOne rationalSystem.1 ∧ ∀ (other : Quot (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1), instHMul.1 value other = LRA.NumberSystems.RealNumbers.EffectiveCauchy.CarrierOne rationalSystem.1 → other = reciprocal)
+  Ambient
+    (implicit ambient)
+  Objects
+    rationalSystem : RationalNumberSystem
+    value : EffectiveCauchyReal rationalSystem
+    value_nonzero : value ≠ (0 : EffectiveCauchyReal rationalSystem)
+  Prove
+    (value = 0 → False) → Exists fun reciprocal => (({ hMul := fun a b => { mul := (Classical.indefiniteDescription (fun x => ∀ (first second : LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyApproximation rationalSystem), x (Quotient.mk (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem) first) (Quotient.mk (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem) second) = Quotient.mk (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem) (LRA.NumberSystems.RealNumbers.EffectiveCauchy.representative_multiplication first second)) ⋯).1 }.mul a b }.hMul value reciprocal = 1) ∧ (∀ (other : Quot (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1), { hMul := fun a b => { mul := (Classical.indefiniteDescription (fun x => ∀ (first second : LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyApproximation rationalSystem), x (Quotient.mk (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem) first) (Quotient.mk (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem) second) = Quotient.mk (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem) (LRA.NumberSystems.RealNumbers.EffectiveCauchy.representative_multiplication first second)) ⋯).1 }.mul a b }.hMul value other = 1 → other = reciprocal))
 
 Logical form (Lean):
 
@@ -418,20 +435,20 @@ theorem reciprocal_exists_uniquely
 Predicate logic:
 
   noncomputable def inverse
-    (rationalSystem : RationalNumberSystem)
-    (value : EffectiveCauchyReal rationalSystem)
-    (value_nonzero : value ≠ (0 : EffectiveCauchyReal rationalSystem)) :
-    EffectiveCauchyReal rationalSystem :=
-  Classical.choose (reciprocal_exists_uniquely rationalSystem value value_nonzero)
+      (rationalSystem : RationalNumberSystem)
+      (value : EffectiveCauchyReal rationalSystem)
+      (value_nonzero : value ≠ (0 : EffectiveCauchyReal rationalSystem)) :
+      EffectiveCauchyReal rationalSystem :=
+    Classical.choose (reciprocal_exists_uniquely rationalSystem value value_nonzero)
 
 Predicate logic (unfolded):
 
   noncomputable def inverse
-    (rationalSystem : RationalNumberSystem)
-    (value : EffectiveCauchyReal rationalSystem)
-    (value_nonzero : value ≠ (0 : EffectiveCauchyReal rationalSystem)) :
-    EffectiveCauchyReal rationalSystem :=
-  Classical.choose (reciprocal_exists_uniquely rationalSystem value value_nonzero) (source fallback; no compiled unfold data available)
+      (rationalSystem : RationalNumberSystem)
+      (value : EffectiveCauchyReal rationalSystem)
+      (value_nonzero : value ≠ (0 : EffectiveCauchyReal rationalSystem)) :
+      EffectiveCauchyReal rationalSystem :=
+    Classical.choose (reciprocal_exists_uniquely rationalSystem value value_nonzero) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -478,20 +495,20 @@ open Classical in
 Predicate logic:
 
   noncomputable def totalInverse
-    (rationalSystem : RationalNumberSystem)
-    (value : EffectiveCauchyReal rationalSystem) : EffectiveCauchyReal rationalSystem :=
-  if value_nonzero : value ≠ (0 : EffectiveCauchyReal rationalSystem)
-  then inverse rationalSystem value value_nonzero
-  else (0 : EffectiveCauchyReal rationalSystem)
+      (rationalSystem : RationalNumberSystem)
+      (value : EffectiveCauchyReal rationalSystem) : EffectiveCauchyReal rationalSystem :=
+    if value_nonzero : value ≠ (0 : EffectiveCauchyReal rationalSystem)
+    then inverse rationalSystem value value_nonzero
+    else (0 : EffectiveCauchyReal rationalSystem)
 
 Predicate logic (unfolded):
 
   noncomputable def totalInverse
-    (rationalSystem : RationalNumberSystem)
-    (value : EffectiveCauchyReal rationalSystem) : EffectiveCauchyReal rationalSystem :=
-  if value_nonzero : value ≠ (0 : EffectiveCauchyReal rationalSystem)
-  then inverse rationalSystem value value_nonzero
-  else (0 : EffectiveCauchyReal rationalSystem) (source fallback; no compiled unfold data available)
+      (rationalSystem : RationalNumberSystem)
+      (value : EffectiveCauchyReal rationalSystem) : EffectiveCauchyReal rationalSystem :=
+    if value_nonzero : value ≠ (0 : EffectiveCauchyReal rationalSystem)
+    then inverse rationalSystem value value_nonzero
+    else (0 : EffectiveCauchyReal rationalSystem) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -538,11 +555,16 @@ noncomputable instance CarrierInv (rationalSystem : RationalNumberSystem) :
 
 Predicate logic:
 
-  (∀ rationalSystem ∈ RationalNumberSystem), OrderedFieldLaws (EffectiveCauchyReal rationalSystem)
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), LRA.AlgebraicStructures.OrderedFieldLaws (LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyReal rationalSystem)
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), LRA.AlgebraicStructures.OrderedFieldLaws (Quot (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1)
+  Ambient
+    (implicit ambient)
+  Objects
+    rationalSystem : RationalNumberSystem
+  Prove
+    LRA.AlgebraicStructures.OrderedFieldLaws (Quot (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1)
 
 Logical form (Lean):
 
@@ -580,11 +602,16 @@ theorem carrier_field_cert
 
 Predicate logic:
 
-  (∀ rationalSystem ∈ RationalNumberSystem), StrictOrderCompatibilityLaw (EffectiveCauchyReal rationalSystem)
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), LRA.Order.StrictOrderCompatibilityLaw (LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyReal rationalSystem)
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), LRA.Order.StrictOrderCompatibilityLaw (Quot (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1)
+  Ambient
+    (implicit ambient)
+  Objects
+    rationalSystem : RationalNumberSystem
+  Prove
+    LRA.Order.StrictOrderCompatibilityLaw (Quot (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1)
 
 Logical form (Lean):
 
@@ -622,11 +649,16 @@ theorem carrier_strict_order_cert
 
 Predicate logic:
 
-  (∀ rationalSystem ∈ RationalNumberSystem), DenseOrderLaw (EffectiveCauchyReal rationalSystem)
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), LRA.Order.DenseOrderLaw (LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyReal rationalSystem)
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), LRA.Order.DenseOrderLaw (Quot (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1)
+  Ambient
+    (implicit ambient)
+  Objects
+    rationalSystem : RationalNumberSystem
+  Prove
+    LRA.Order.DenseOrderLaw (Quot (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1)
 
 Logical form (Lean):
 
@@ -664,11 +696,16 @@ theorem carrier_dense_order_cert
 
 Predicate logic:
 
-  (∀ rationalSystem ∈ RationalNumberSystem), OrderCompletenessLaws (EffectiveCauchyReal rationalSystem) (Set (EffectiveCauchyReal rationalSystem))
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), LRA.Order.OrderCompletenessLaws (LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyReal rationalSystem) (Set (LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyReal rationalSystem))
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), LRA.Order.OrderCompletenessLaws (Quot (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1) (Quot (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1 → Prop)
+  Ambient
+    (implicit ambient)
+  Objects
+    rationalSystem : RationalNumberSystem
+  Prove
+    LRA.Order.OrderCompletenessLaws (Quot (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1) (Quot (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1 → Prop)
 
 Logical form (Lean):
 
@@ -709,16 +746,16 @@ theorem carrier_completeness_cert
 Predicate logic:
 
   noncomputable def EffectiveCauchyRealizesRationalModel
-    (rationalSystem : RationalNumberSystem) :
-    LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel where
-  Carrier
+      (rationalSystem : RationalNumberSystem) :
+      LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel where
+    Carrier
 
 Predicate logic (unfolded):
 
   noncomputable def EffectiveCauchyRealizesRationalModel
-    (rationalSystem : RationalNumberSystem) :
-    LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel where
-  Carrier (source fallback; no compiled unfold data available)
+      (rationalSystem : RationalNumberSystem) :
+      LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel where
+    Carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -770,16 +807,16 @@ noncomputable def EffectiveCauchyRealizesRationalModel
 Predicate logic:
 
   noncomputable def EffectiveCauchyRealizesRealModel
-    (rationalSystem : RationalNumberSystem) :
-    LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel where
-  Carrier
+      (rationalSystem : RationalNumberSystem) :
+      LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel where
+    Carrier
 
 Predicate logic (unfolded):
 
   noncomputable def EffectiveCauchyRealizesRealModel
-    (rationalSystem : RationalNumberSystem) :
-    LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel where
-  Carrier (source fallback; no compiled unfold data available)
+      (rationalSystem : RationalNumberSystem) :
+      LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel where
+    Carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

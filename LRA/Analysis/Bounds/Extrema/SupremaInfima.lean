@@ -10,11 +10,17 @@ variable {S : Type*}
 
 Predicate logic:
 
-  (IsSupremum s A) → IsUpperBound s A
+  ∀ {S : Type u_1} [inst : Preorder S] {A : Set S} {s : S}, LRA.Analysis.Bounds.IsSupremum s A → LRA.Analysis.Bounds.IsUpperBound s A
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : Preorder S] {A : S → Prop} {s : S}, (∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 x s ∧ ∀ (u : S), (∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 x u) → inst.toLE.1 s u) → ∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 x s
+  Ambient
+    (S, ≤)
+  Objects
+    A : Set S
+    s : S
+  Prove
+    ((∀ (x : S), x ∈ A → inst.1.le x s) ∧ (∀ (u : S), (∀ (x : S), x ∈ A → inst.1.le x u) → inst.1.le s u)) → ∀ (x : S), x ∈ A → inst.1.le x s
 
 Logical form (Lean):
 
@@ -50,11 +56,17 @@ theorem SupremumIsUpperBound [Preorder S] {A : Set S} {s : S}
 
 Predicate logic:
 
-  (IsInfimum i A) → IsLowerBound i A
+  ∀ {S : Type u_1} [inst : Preorder S] {A : Set S} {i : S}, LRA.Analysis.Bounds.IsInfimum i A → LRA.Analysis.Bounds.IsLowerBound i A
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : Preorder S] {A : S → Prop} {i : S}, (∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 i x ∧ ∀ (l : S), (∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 l x) → inst.toLE.1 l i) → ∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 i x
+  Ambient
+    (S, ≤)
+  Objects
+    A : Set S
+    i : S
+  Prove
+    ((∀ (x : S), x ∈ A → inst.1.le i x) ∧ (∀ (l : S), (∀ (x : S), x ∈ A → inst.1.le l x) → inst.1.le l i)) → ∀ (x : S), x ∈ A → inst.1.le i x
 
 Logical form (Lean):
 
@@ -90,11 +102,18 @@ theorem InfimumIsLowerBound [Preorder S] {A : Set S} {i : S}
 
 Predicate logic:
 
-  (IsUpperBound u B) → IsUpperBound u A
+  ∀ {S : Type u_1} [inst : Preorder S] {A B : Set S} {u : S}, (Set.instLE.le A B ∧ LRA.Analysis.Bounds.IsUpperBound u B) → LRA.Analysis.Bounds.IsUpperBound u A
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : Preorder S] {A B : S → Prop} {u : S}, (Set.instLE.1 A B ∧ ∀ (x : S), Set.instMembership.1 B x → inst.toLE.1 x u) → ∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 x u
+  Ambient
+    (S, ≤)
+  Objects
+    A B : Set S
+    u : S
+    subsetHypothesis : A ⊆ B
+  Prove
+    (({ le := fun s₁ s₂ => ∀ ⦃a : S⦄, a ∈ s₁ → a ∈ s₂}.le A B) ∧ (∀ (x : S), x ∈ B → inst.1.le x u)) → ∀ (x : S), x ∈ A → inst.1.le x u
 
 Logical form (Lean):
 
@@ -132,11 +151,18 @@ theorem SubsetPreservesUpperBounds [Preorder S] {A B : Set S} {u : S}
 
 Predicate logic:
 
-  (IsLowerBound l B) → IsLowerBound l A
+  ∀ {S : Type u_1} [inst : Preorder S] {A B : Set S} {l : S}, (Set.instLE.le A B ∧ LRA.Analysis.Bounds.IsLowerBound l B) → LRA.Analysis.Bounds.IsLowerBound l A
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : Preorder S] {A B : S → Prop} {l : S}, (Set.instLE.1 A B ∧ ∀ (x : S), Set.instMembership.1 B x → inst.toLE.1 l x) → ∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 l x
+  Ambient
+    (S, ≤)
+  Objects
+    A B : Set S
+    l : S
+    subsetHypothesis : A ⊆ B
+  Prove
+    (({ le := fun s₁ s₂ => ∀ ⦃a : S⦄, a ∈ s₁ → a ∈ s₂}.le A B) ∧ (∀ (x : S), x ∈ B → inst.1.le l x)) → ∀ (x : S), x ∈ A → inst.1.le l x
 
 Logical form (Lean):
 
@@ -174,11 +200,18 @@ theorem SubsetPreservesLowerBounds [Preorder S] {A B : Set S} {l : S}
 
 Predicate logic:
 
-  (IsSupremum sA A ∧ IsSupremum sB B) → sA ≤ sB
+  ∀ {S : Type u_1} [inst : PartialOrder S] {A B : Set S} {sA sB : S}, (Set.instLE.le A B ∧ (LRA.Analysis.Bounds.IsSupremum sA A ∧ LRA.Analysis.Bounds.IsSupremum sB B)) → inst.le sA sB
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : PartialOrder S] {A B : S → Prop} {sA sB : S}, (Set.instLE.1 A B ∧ ((∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 x sA ∧ ∀ (u : S), (∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 x u) → inst.toLE.1 sA u) ∧ (∀ (x : S), Set.instMembership.1 B x → inst.toLE.1 x sB ∧ ∀ (u : S), (∀ (x : S), Set.instMembership.1 B x → inst.toLE.1 x u) → inst.toLE.1 sB u))) → inst.toLE.1 sA sB
+  Ambient
+    (S, ≤)
+  Objects
+    A B : Set S
+    sA sB : S
+    subsetHypothesis : A ⊆ B
+  Prove
+    (({ le := fun s₁ s₂ => ∀ ⦃a : S⦄, a ∈ s₁ → a ∈ s₂}.le A B) ∧ (((∀ (x : S), x ∈ A → inst.toPreorder.1.le x sA) ∧ (∀ (u : S), (∀ (x : S), x ∈ A → inst.toPreorder.1.le x u) → inst.toPreorder.1.le sA u)) ∧ ((∀ (x : S), x ∈ B → inst.toPreorder.1.le x sB) ∧ (∀ (u : S), (∀ (x : S), x ∈ B → inst.toPreorder.1.le x u) → inst.toPreorder.1.le sB u)))) → inst.toPreorder.1.le sA sB
 
 Logical form (Lean):
 
@@ -220,11 +253,18 @@ theorem SupremumMonotoneUnderInclusion [PartialOrder S] {A B : Set S} {sA sB : S
 
 Predicate logic:
 
-  (IsInfimum iA A ∧ IsInfimum iB B) → iB ≤ iA
+  ∀ {S : Type u_1} [inst : PartialOrder S] {A B : Set S} {iA iB : S}, (Set.instLE.le A B ∧ (LRA.Analysis.Bounds.IsInfimum iA A ∧ LRA.Analysis.Bounds.IsInfimum iB B)) → inst.le iB iA
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : PartialOrder S] {A B : S → Prop} {iA iB : S}, (Set.instLE.1 A B ∧ ((∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 iA x ∧ ∀ (l : S), (∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 l x) → inst.toLE.1 l iA) ∧ (∀ (x : S), Set.instMembership.1 B x → inst.toLE.1 iB x ∧ ∀ (l : S), (∀ (x : S), Set.instMembership.1 B x → inst.toLE.1 l x) → inst.toLE.1 l iB))) → inst.toLE.1 iB iA
+  Ambient
+    (S, ≤)
+  Objects
+    A B : Set S
+    iA iB : S
+    subsetHypothesis : A ⊆ B
+  Prove
+    (({ le := fun s₁ s₂ => ∀ ⦃a : S⦄, a ∈ s₁ → a ∈ s₂}.le A B) ∧ (((∀ (x : S), x ∈ A → inst.toPreorder.1.le iA x) ∧ (∀ (l : S), (∀ (x : S), x ∈ A → inst.toPreorder.1.le l x) → inst.toPreorder.1.le l iA)) ∧ ((∀ (x : S), x ∈ B → inst.toPreorder.1.le iB x) ∧ (∀ (l : S), (∀ (x : S), x ∈ B → inst.toPreorder.1.le l x) → inst.toPreorder.1.le l iB)))) → inst.toPreorder.1.le iB iA
 
 Logical form (Lean):
 
@@ -266,11 +306,17 @@ theorem InfimumAntitoneUnderInclusion [PartialOrder S] {A B : Set S} {iA iB : S}
 
 Predicate logic:
 
-  (IsSupremum s A) → IsUpperBound u A ↔ s ≤ u
+  ∀ {S : Type u_1} [inst : PartialOrder S] {A : Set S} {s u : S}, LRA.Analysis.Bounds.IsSupremum s A → LRA.Analysis.Bounds.IsUpperBound u A ↔ inst.le s u
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : PartialOrder S] {A : S → Prop} {s u : S}, (∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 x s ∧ ∀ (u : S), (∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 x u) → inst.toLE.1 s u) → ∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 x u ↔ inst.toLE.1 s u
+  Ambient
+    (S, ≤)
+  Objects
+    A : Set S
+    s u : S
+  Prove
+    LRA.Analysis.Bounds.IsSupremum s A → LRA.Analysis.Bounds.IsUpperBound u A ↔ inst.le s u
 
 Logical form (Lean):
 
@@ -308,11 +354,17 @@ theorem UpperBoundIffSupremumLe [PartialOrder S] {A : Set S} {s u : S}
 
 Predicate logic:
 
-  (IsInfimum i A) → IsLowerBound l A ↔ l ≤ i
+  ∀ {S : Type u_1} [inst : PartialOrder S] {A : Set S} {i l : S}, LRA.Analysis.Bounds.IsInfimum i A → LRA.Analysis.Bounds.IsLowerBound l A ↔ inst.le l i
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : PartialOrder S] {A : S → Prop} {i l : S}, (∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 i x ∧ ∀ (l : S), (∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 l x) → inst.toLE.1 l i) → ∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 l x ↔ inst.toLE.1 l i
+  Ambient
+    (S, ≤)
+  Objects
+    A : Set S
+    i l : S
+  Prove
+    LRA.Analysis.Bounds.IsInfimum i A → LRA.Analysis.Bounds.IsLowerBound l A ↔ inst.le l i
 
 Logical form (Lean):
 
@@ -350,11 +402,17 @@ theorem LowerBoundIffLeInfimum [PartialOrder S] {A : Set S} {i l : S}
 
 Predicate logic:
 
-  (IsSupremum s A) → ∀ x ∈ A, x ≤ s
+  ∀ {S : Type u_1} [inst : Preorder S] {A : Set S} {s : S}, LRA.Analysis.Bounds.IsSupremum s A → ∀ (x : S), x ∈ A → inst.le x s
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : Preorder S] {A : S → Prop} {s : S}, (∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 x s ∧ ∀ (u : S), (∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 x u) → inst.toLE.1 s u) → ∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 x s
+  Ambient
+    (S, ≤)
+  Objects
+    A : Set S
+    s : S
+  Prove
+    ((∀ (x : S), x ∈ A → inst.1.le x s) ∧ (∀ (u : S), (∀ (x : S), x ∈ A → inst.1.le x u) → inst.1.le s u)) → ∀ (x : S), x ∈ A → inst.1.le x s
 
 Logical form (Lean):
 
@@ -392,11 +450,17 @@ theorem EveryElementLeSupremum [Preorder S] {A : Set S} {s : S}
 
 Predicate logic:
 
-  (IsInfimum i A) → ∀ x ∈ A, i ≤ x
+  ∀ {S : Type u_1} [inst : Preorder S] {A : Set S} {i : S}, LRA.Analysis.Bounds.IsInfimum i A → ∀ (x : S), x ∈ A → inst.le i x
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : Preorder S] {A : S → Prop} {i : S}, (∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 i x ∧ ∀ (l : S), (∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 l x) → inst.toLE.1 l i) → ∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 i x
+  Ambient
+    (S, ≤)
+  Objects
+    A : Set S
+    i : S
+  Prove
+    ((∀ (x : S), x ∈ A → inst.1.le i x) ∧ (∀ (l : S), (∀ (x : S), x ∈ A → inst.1.le l x) → inst.1.le l i)) → ∀ (x : S), x ∈ A → inst.1.le i x
 
 Logical form (Lean):
 
@@ -434,11 +498,17 @@ theorem InfimumLeEveryElement [Preorder S] {A : Set S} {i : S}
 
 Predicate logic:
 
-  (IsInfimum i A ∧ IsSupremum s A) → i ≤ s
+  ∀ {S : Type u_1} [inst : PartialOrder S] {A : Set S} {i s : S}, (LRA.Analysis.Bounds.IsInfimum i A ∧ LRA.Analysis.Bounds.IsSupremum s A) → inst.le i s
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : PartialOrder S] {A : S → Prop} {i s : S}, ((∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 i x ∧ ∀ (l : S), (∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 l x) → inst.toLE.1 l i) ∧ (∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 x s ∧ ∀ (u : S), (∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 x u) → inst.toLE.1 s u)) → inst.toLE.1 i s
+  Ambient
+    (S, ≤)
+  Objects
+    A : Set S
+    i s : S
+  Prove
+    (((∀ (x : S), x ∈ A → inst.toPreorder.1.le i x) ∧ (∀ (l : S), (∀ (x : S), x ∈ A → inst.toPreorder.1.le l x) → inst.toPreorder.1.le l i)) ∧ ((∀ (x : S), x ∈ A → inst.toPreorder.1.le x s) ∧ (∀ (u : S), (∀ (x : S), x ∈ A → inst.toPreorder.1.le x u) → inst.toPreorder.1.le s u))) → inst.toPreorder.1.le i s
 
 Logical form (Lean):
 
@@ -476,11 +546,16 @@ theorem InfimumLeSupremum [PartialOrder S] {A : Set S} {i s : S}
 
 Predicate logic:
 
-  ∃ A ∈ Set ℝ s ∈ ℝ, A.Nonempty ∧ IsSupremum s A ∧ s ∉ A
+  Exists fun A => Exists fun s => (A.Nonempty ∧ (LRA.Analysis.Bounds.IsSupremum s A ∧ ¬ s ∈ A))
 
 Predicate logic (unfolded):
 
-  Exists fun A => Exists fun s => (Exists fun x => Set.instMembership.1 A x ∧ ((∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x s ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 s u) ∧ Set.instMembership.1 A s → False))
+  Ambient
+    (S)
+  Objects
+    (none)
+  Prove
+    Exists fun A => Exists fun s => (Exists fun x => x ∈ A ∧ (((∀ (x : Real), x ∈ A → Real.instPreorder.1.le x s) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le x u) → Real.instPreorder.1.le s u)) ∧ (s ∈ A → False)))
 
 Logical form (Lean):
 
@@ -516,11 +591,16 @@ theorem SupremumNeedNotBelongToSet :
 
 Predicate logic:
 
-  ∃ A ∈ Set ℝ i ∈ ℝ, A.Nonempty ∧ IsInfimum i A ∧ i ∉ A
+  Exists fun A => Exists fun i => (A.Nonempty ∧ (LRA.Analysis.Bounds.IsInfimum i A ∧ ¬ i ∈ A))
 
 Predicate logic (unfolded):
 
-  Exists fun A => Exists fun i => (Exists fun x => Set.instMembership.1 A x ∧ ((∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 i x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l i) ∧ Set.instMembership.1 A i → False))
+  Ambient
+    (S)
+  Objects
+    (none)
+  Prove
+    Exists fun A => Exists fun i => (Exists fun x => x ∈ A ∧ (((∀ (x : Real), x ∈ A → Real.instPreorder.1.le i x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l i)) ∧ (i ∈ A → False)))
 
 Logical form (Lean):
 
@@ -556,11 +636,17 @@ theorem InfimumNeedNotBelongToSet :
 
 Predicate logic:
 
-  (IsSupremum sA A ∧ IsSupremum sB B ∧ ∀ a ∈ A, ∃ b ∈ B, a ≤ b) → sA ≤ sB
+  ∀ {S : Type u_1} [inst : PartialOrder S] {A B : Set S} {sA sB : S}, (LRA.Analysis.Bounds.IsSupremum sA A ∧ (LRA.Analysis.Bounds.IsSupremum sB B ∧ (∀ (a : S), a ∈ A → Exists fun b => (b ∈ B ∧ inst.le a b)))) → inst.le sA sB
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : PartialOrder S] {A B : S → Prop} {sA sB : S}, ((∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 x sA ∧ ∀ (u : S), (∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 x u) → inst.toLE.1 sA u) ∧ ((∀ (x : S), Set.instMembership.1 B x → inst.toLE.1 x sB ∧ ∀ (u : S), (∀ (x : S), Set.instMembership.1 B x → inst.toLE.1 x u) → inst.toLE.1 sB u) ∧ ∀ (a : S), Set.instMembership.1 A a → Exists fun b => (Set.instMembership.1 B b ∧ inst.toLE.1 a b))) → inst.toLE.1 sA sB
+  Ambient
+    (S, ≤)
+  Objects
+    A B : Set S
+    sA sB : S
+  Prove
+    (((∀ (x : S), x ∈ A → inst.toPreorder.1.le x sA) ∧ (∀ (u : S), (∀ (x : S), x ∈ A → inst.toPreorder.1.le x u) → inst.toPreorder.1.le sA u)) ∧ (((∀ (x : S), x ∈ B → inst.toPreorder.1.le x sB) ∧ (∀ (u : S), (∀ (x : S), x ∈ B → inst.toPreorder.1.le x u) → inst.toPreorder.1.le sB u)) ∧ (∀ (a : S), a ∈ A → Exists fun b => (b ∈ B ∧ inst.toPreorder.1.le a b)))) → inst.toPreorder.1.le sA sB
 
 Logical form (Lean):
 
@@ -600,11 +686,17 @@ theorem SupremumComparisonByDominatingSet [PartialOrder S] {A B : Set S} {sA sB 
 
 Predicate logic:
 
-  (∀ nonemptyHypothesis ∈ A.Nonempty), (∃ u, IsUpperBound u A) → ∃! s : ℝ, IsSupremum s A
+  ∀ {A : Set Real}, (A.Nonempty ∧ Exists fun u => LRA.Analysis.Bounds.IsUpperBound u A) → ExistsUnique fun s => LRA.Analysis.Bounds.IsSupremum s A
 
 Predicate logic (unfolded):
 
-  ∀ {A : Real → Prop}, (Exists fun x => Set.instMembership.1 A x ∧ Exists fun u => ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 x u) → Exists fun x => ((fun s => (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x s ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 s u)) x ∧ ∀ (y : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x y ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 y u) → y = x)
+  Ambient
+    (S)
+  Objects
+    A : Set ℝ
+    nonemptyHypothesis : A.Nonempty
+  Prove
+    (Exists fun x => x ∈ A ∧ (Exists fun u => ∀ (x : Real), x ∈ A → Real.instLE.le x u)) → Exists fun x => (((fun s => ((∀ (x : Real), x ∈ A → Real.instPreorder.1.le x s) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le x u) → Real.instPreorder.1.le s u))) x) ∧ (∀ (y : Real), ((∀ (x : Real), x ∈ A → Real.instPreorder.1.le x y) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le x u) → Real.instPreorder.1.le y u)) → y = x))
 
 Logical form (Lean):
 
@@ -644,11 +736,17 @@ theorem LubPropertyGivesSupremum {A : Set ℝ}
 
 Predicate logic:
 
-  (∀ nonemptyHypothesis ∈ A.Nonempty), (∃ l, IsLowerBound l A) → ∃! i : ℝ, IsInfimum i A
+  ∀ {A : Set Real}, (A.Nonempty ∧ Exists fun l => LRA.Analysis.Bounds.IsLowerBound l A) → ExistsUnique fun i => LRA.Analysis.Bounds.IsInfimum i A
 
 Predicate logic (unfolded):
 
-  ∀ {A : Real → Prop}, (Exists fun x => Set.instMembership.1 A x ∧ Exists fun l => ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 l x) → Exists fun x => ((fun i => (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 i x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l i)) x ∧ ∀ (y : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 y x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l y) → y = x)
+  Ambient
+    (S)
+  Objects
+    A : Set ℝ
+    nonemptyHypothesis : A.Nonempty
+  Prove
+    (Exists fun x => x ∈ A ∧ (Exists fun l => ∀ (x : Real), x ∈ A → Real.instLE.le l x)) → Exists fun x => (((fun i => ((∀ (x : Real), x ∈ A → Real.instPreorder.1.le i x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l i))) x) ∧ (∀ (y : Real), ((∀ (x : Real), x ∈ A → Real.instPreorder.1.le y x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l y)) → y = x))
 
 Logical form (Lean):
 
@@ -688,11 +786,17 @@ theorem GlbPropertyGivesInfimum {A : Set ℝ}
 
 Predicate logic:
 
-  (∀ nonemptyHypothesis ∈ A.Nonempty), (IsBounded A) → ∃! s ∈ ℝ, IsSupremum s A ∧ ∃! i ∈ ℝ, IsInfimum i A
+  ∀ {A : Set Real}, (A.Nonempty ∧ LRA.Analysis.Bounds.IsBounded A) → (ExistsUnique fun s => LRA.Analysis.Bounds.IsSupremum s A ∧ ExistsUnique fun i => LRA.Analysis.Bounds.IsInfimum i A)
 
 Predicate logic (unfolded):
 
-  ∀ {A : Real → Prop}, (Exists fun x => Set.instMembership.1 A x ∧ (Exists fun u => ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 x u ∧ Exists fun l => ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 l x)) → (Exists fun x => ((fun s => (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x s ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 s u)) x ∧ ∀ (y : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x y ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 y u) → y = x) ∧ Exists fun x => ((fun i => (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 i x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l i)) x ∧ ∀ (y : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 y x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l y) → y = x))
+  Ambient
+    (S)
+  Objects
+    A : Set ℝ
+    nonemptyHypothesis : A.Nonempty
+  Prove
+    (Exists fun x => x ∈ A ∧ ((Exists fun u => ∀ (x : Real), x ∈ A → Real.instLE.le x u) ∧ (Exists fun l => ∀ (x : Real), x ∈ A → Real.instLE.le l x))) → ((Exists fun x => (((fun s => ((∀ (x : Real), x ∈ A → Real.instPreorder.1.le x s) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le x u) → Real.instPreorder.1.le s u))) x) ∧ (∀ (y : Real), ((∀ (x : Real), x ∈ A → Real.instPreorder.1.le x y) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le x u) → Real.instPreorder.1.le y u)) → y = x))) ∧ (Exists fun x => (((fun i => ((∀ (x : Real), x ∈ A → Real.instPreorder.1.le i x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l i))) x) ∧ (∀ (y : Real), ((∀ (x : Real), x ∈ A → Real.instPreorder.1.le y x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l y)) → y = x))))
 
 Logical form (Lean):
 

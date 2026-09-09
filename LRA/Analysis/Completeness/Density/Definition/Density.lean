@@ -11,11 +11,16 @@ namespace LRA.Analysis.Completeness
 
 Predicate logic:
 
-  ∀ {S : Type u_1} [inst : Preorder S] (D : Set S) (x y : S), (fun x1 x2 => inst.lt x1 x2) x y → Exists fun d => (Set.instMembership.mem D d ∧ ((fun x1 x2 => inst.lt x1 x2) x d ∧ (fun x1 x2 => inst.lt x1 x2) d y))
+  ∀ {S : Type u_1} [inst : Preorder S] (D : Set S) (x y : S), (fun x1 x2 => inst.lt x1 x2) x y → Exists fun d => (d ∈ D ∧ ((fun x1 x2 => inst.lt x1 x2) x d ∧ (fun x1 x2 => inst.lt x1 x2) d y))
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : Preorder S] (D : S → Prop) (x y : S), inst.toLT.1 x y → Exists fun d => (Set.instMembership.1 D d ∧ ((fun x1 x2 => inst.toLT.1 x1 x2) x d ∧ (fun x1 x2 => inst.toLT.1 x1 x2) d y))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    inst.2.lt x y → Exists fun d => (d ∈ D ∧ ((fun x1 x2 => inst.2.lt x1 x2) x d ∧ (fun x1 x2 => inst.2.lt x1 x2) d y))
 
 Logical form (Lean):
 
@@ -55,7 +60,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (x : Real), Exists fun y => Real.instRatCast.1 y = x
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun y => Real.instRatCast.1 y = x
 
 Logical form (Lean):
 
@@ -95,7 +105,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (x : Real), Set.instMembership.1 (fun x => Exists fun y => Real.instRatCast.1 y = x)x → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    x ∈ fun x => Exists fun y => Real.instRatCast.1 y = x → False
 
 Logical form (Lean):
 

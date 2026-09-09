@@ -7,14 +7,14 @@ namespace LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor
 Predicate logic:
 
   inductive P : Type where
-  | succZero : P
-  | succ : P → P
+    | succZero : P
+    | succ : P → P
 
 Predicate logic (unfolded):
 
   inductive P : Type where
-  | succZero : P
-  | succ : P → P (source fallback; no compiled unfold data available)
+    | succZero : P
+    | succ : P → P (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -53,14 +53,14 @@ inductive P : Type where
 Predicate logic:
 
   inductive N : Type where
-  | predZero : N
-  | pred : N → N
+    | predZero : N
+    | pred : N → N
 
 Predicate logic (unfolded):
 
   inductive N : Type where
-  | predZero : N
-  | pred : N → N (source fallback; no compiled unfold data available)
+    | predZero : N
+    | pred : N → N (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -99,16 +99,16 @@ inductive N : Type where
 Predicate logic:
 
   inductive Z : Type where
-  | zero : Z
-  | pos : P → Z
-  | neg : N → Z
+    | zero : Z
+    | pos : P → Z
+    | neg : N → Z
 
 Predicate logic (unfolded):
 
   inductive Z : Type where
-  | zero : Z
-  | pos : P → Z
-  | neg : N → Z (source fallback; no compiled unfold data available)
+    | zero : Z
+    | pos : P → Z
+    | neg : N → Z (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -151,22 +151,22 @@ open Z
 Predicate logic:
 
   def succ : Z → Z
-  | zero => pos P.succZero
-  | pos p => pos (P.succ p)
-  | neg n =>
-      match n with
-      | N.predZero => zero
-      | N.pred n' => neg n'
+    | zero => pos P.succZero
+    | pos p => pos (P.succ p)
+    | neg n =>
+        match n with
+        | N.predZero => zero
+        | N.pred n' => neg n'
 
 Predicate logic (unfolded):
 
   def succ : Z → Z
-  | zero => pos P.succZero
-  | pos p => pos (P.succ p)
-  | neg n =>
-      match n with
-      | N.predZero => zero
-      | N.pred n' => neg n' (source fallback; no compiled unfold data available)
+    | zero => pos P.succZero
+    | pos p => pos (P.succ p)
+    | neg n =>
+        match n with
+        | N.predZero => zero
+        | N.pred n' => neg n' (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -213,22 +213,22 @@ def succ : Z → Z
 Predicate logic:
 
   def pred : Z → Z
-  | zero => neg N.predZero
-  | pos p =>
-      match p with
-      | P.succZero => zero
-      | P.succ p' => pos p'
-  | neg n => neg (N.pred n)
+    | zero => neg N.predZero
+    | pos p =>
+        match p with
+        | P.succZero => zero
+        | P.succ p' => pos p'
+    | neg n => neg (N.pred n)
 
 Predicate logic (unfolded):
 
   def pred : Z → Z
-  | zero => neg N.predZero
-  | pos p =>
-      match p with
-      | P.succZero => zero
-      | P.succ p' => pos p'
-  | neg n => neg (N.pred n) (source fallback; no compiled unfold data available)
+    | zero => neg N.predZero
+    | pos p =>
+        match p with
+        | P.succZero => zero
+        | P.succ p' => pos p'
+    | neg n => neg (N.pred n) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

@@ -13,7 +13,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {SmallDomain : Type u} {LargeDomain : Type v} {Codomain : Type w} (original : SmallDomain → Codomain) (inclusion : SmallDomain → LargeDomain), Exists fun first => Exists fun second => (first = second → False ∧ (∀ (input : SmallDomain), first (inclusion input) = original input ∧ ∀ (input : SmallDomain), second (inclusion input) = original input))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun first => Exists fun second => ((first = second → False) ∧ ((∀ (input : SmallDomain), first (inclusion input) = original input) ∧ (∀ (input : SmallDomain), second (inclusion input) = original input)))
 
 Logical form (Lean):
 

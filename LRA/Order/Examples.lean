@@ -11,14 +11,14 @@ namespace LRA.Order
 Predicate logic:
 
   def NaturalAdditionForOrderCompatibility :
-    LRA.Operation.BinaryEndoOperation Nat :=
-  fun left right => left + right
+      LRA.Operation.BinaryEndoOperation Nat :=
+    fun left right => left + right
 
 Predicate logic (unfolded):
 
   def NaturalAdditionForOrderCompatibility :
-    LRA.Operation.BinaryEndoOperation Nat :=
-  fun left right => left + right (source fallback; no compiled unfold data available)
+      LRA.Operation.BinaryEndoOperation Nat :=
+    fun left right => left + right (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -56,11 +56,16 @@ def NaturalAdditionForOrderCompatibility :
 
 Predicate logic:
 
-  RightTranslationPreservesRelation fun left right ∈ Nat => left <= right NaturalAdditionForOrderCompatibility
+  LRA.Order.RightTranslationPreservesRelation (fun left right => instLENat.le left right) LRA.Order.NaturalAdditionForOrderCompatibility
 
 Predicate logic (unfolded):
 
-  ∀ (left right fixed : Nat), instLENat.1 left right → (fun left right => instLENat.1 left right) (instHAdd.1 left fixed) (instHAdd.1 right fixed)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    instLENat.le left right → (fun left right => instLENat.le left right) ({ hAdd := fun a b => instAddNat.add a b }.hAdd left fixed) ({ hAdd := fun a b => instAddNat.add a b }.hAdd right fixed)
 
 Logical form (Lean):
 
@@ -101,14 +106,14 @@ theorem NaturalAdditionRightTranslationPreservesLessEqual :
 Predicate logic:
 
   def NaturalSubtractionForOrderCompatibilityExample :
-    LRA.Operation.BinaryEndoOperation Nat :=
-  fun left right => left - right
+      LRA.Operation.BinaryEndoOperation Nat :=
+    fun left right => left - right
 
 Predicate logic (unfolded):
 
   def NaturalSubtractionForOrderCompatibilityExample :
-    LRA.Operation.BinaryEndoOperation Nat :=
-  fun left right => left - right (source fallback; no compiled unfold data available)
+      LRA.Operation.BinaryEndoOperation Nat :=
+    fun left right => left - right (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -146,11 +151,16 @@ def NaturalSubtractionForOrderCompatibilityExample :
 
 Predicate logic:
 
-  RightTranslationPreservesRelation fun left right ∈ Nat => left <= right NaturalSubtractionForOrderCompatibilityExample
+  LRA.Order.RightTranslationPreservesRelation (fun left right => instLENat.le left right) LRA.Order.NaturalSubtractionForOrderCompatibilityExample
 
 Predicate logic (unfolded):
 
-  ∀ (left right fixed : Nat), instLENat.1 left right → (fun left right => instLENat.1 left right) (instHSub.1 left fixed) (instHSub.1 right fixed)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    instLENat.le left right → (fun left right => instLENat.le left right) ({ hSub := fun a b => instSubNat.sub a b }.hSub left fixed) ({ hSub := fun a b => instSubNat.sub a b }.hSub right fixed)
 
 Logical form (Lean):
 
@@ -194,11 +204,16 @@ namespace LRA.Order.OrderedSets.PartialOrder
 
 Predicate logic:
 
-  LRA.Order.PartialOrder fun left right ∈ Nat => left <= right
+  LRA.Order.PartialOrder fun left right => instLENat.le left right
 
 Predicate logic (unfolded):
 
-  (∀ (x : Nat), (fun left right => instLENat.1 left right) x x ∧ (∀ (x y : Nat), instLENat.1 x y → instLENat.1 y x → x = y ∧ ∀ (x y z : Nat), instLENat.1 x y → instLENat.1 y z → (fun left right => instLENat.1 left right) x z))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Nat), (fun left right => instLENat.le left right) x x) ∧ ((∀ (x y : Nat), instLENat.le x y → instLENat.le y x → x = y) ∧ (∀ (x y z : Nat), instLENat.le x y → instLENat.le y z → (fun left right => instLENat.le left right) x z)))
 
 Logical form (Lean):
 
@@ -235,16 +250,16 @@ theorem NaturalNumberLessEqualIsPartialOrder :
 Predicate logic:
 
   def NaturalNumberNonStrictPartialOrder :
-    NonStrictPartialOrder Nat where
-  relation := fun left right => left <= right
-  relationIsPartialOrder := NaturalNumberLessEqualIsPartialOrder
+      NonStrictPartialOrder Nat where
+    relation := fun left right => left <= right
+    relationIsPartialOrder := NaturalNumberLessEqualIsPartialOrder
 
 Predicate logic (unfolded):
 
   def NaturalNumberNonStrictPartialOrder :
-    NonStrictPartialOrder Nat where
-  relation := fun left right => left <= right
-  relationIsPartialOrder := NaturalNumberLessEqualIsPartialOrder (source fallback; no compiled unfold data available)
+      NonStrictPartialOrder Nat where
+    relation := fun left right => left <= right
+    relationIsPartialOrder := NaturalNumberLessEqualIsPartialOrder (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -289,11 +304,16 @@ example :
 
 Predicate logic:
 
-  LRA.Order.PartialOrder fun left right ∈ Bool => left = right
+  LRA.Order.PartialOrder fun left right => left = right
 
 Predicate logic (unfolded):
 
-  (∀ (x : Bool), (fun left right => left = right)x x ∧ (∀ (x y : Bool), x = y → y = x → x = y ∧ ∀ (x y z : Bool), x = y → y = z → (fun left right => left = right)x z))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Bool), (fun left right => left = right)x x) ∧ ((∀ (x y : Bool), x = y → y = x → x = y) ∧ (∀ (x y z : Bool), x = y → y = z → (fun left right => left = right)x z)))
 
 Logical form (Lean):
 
@@ -330,16 +350,16 @@ theorem BooleanEqualityIsPartialOrder :
 Predicate logic:
 
   def BooleanEqualityNonStrictPartialOrder :
-    NonStrictPartialOrder Bool where
-  relation := fun left right => left = right
-  relationIsPartialOrder := BooleanEqualityIsPartialOrder
+      NonStrictPartialOrder Bool where
+    relation := fun left right => left = right
+    relationIsPartialOrder := BooleanEqualityIsPartialOrder
 
 Predicate logic (unfolded):
 
   def BooleanEqualityNonStrictPartialOrder :
-    NonStrictPartialOrder Bool where
-  relation := fun left right => left = right
-  relationIsPartialOrder := BooleanEqualityIsPartialOrder (source fallback; no compiled unfold data available)
+      NonStrictPartialOrder Bool where
+    relation := fun left right => left = right
+    relationIsPartialOrder := BooleanEqualityIsPartialOrder (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -384,11 +404,16 @@ example :
 
 Predicate logic:
 
-  LRA.Order.PartialOrder fun left right ∈ Nat => left ∣ right
+  LRA.Order.PartialOrder fun left right => Nat.instDvd.dvd left right
 
 Predicate logic (unfolded):
 
-  (∀ (x : Nat), (fun left right => Nat.instDvd.1 left right) x x ∧ (∀ (x y : Nat), Nat.instDvd.1 x y → Nat.instDvd.1 y x → x = y ∧ ∀ (x y z : Nat), Nat.instDvd.1 x y → Nat.instDvd.1 y z → (fun left right => Nat.instDvd.1 left right) x z))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Nat), (fun left right => Nat.instDvd.1 left right) x x) ∧ ((∀ (x y : Nat), Nat.instDvd.1 x y → Nat.instDvd.1 y x → x = y) ∧ (∀ (x y z : Nat), Nat.instDvd.1 x y → Nat.instDvd.1 y z → (fun left right => Nat.instDvd.1 left right) x z)))
 
 Logical form (Lean):
 
@@ -426,11 +451,16 @@ theorem DivisibilityIsPartialOrder :
 
 Predicate logic:
 
-  LRA.Order.PartialOrder fun left right ∈ Set Alpha => left ⊆ right
+  ∀ (Alpha : Type u), LRA.Order.PartialOrder fun left right => Set.instLE.le left right
 
 Predicate logic (unfolded):
 
-  ∀ (Alpha : Type u), (∀ (x : Alpha → Prop), (fun left right => Set.instLE.1 left right) x x ∧ (∀ (x y : Alpha → Prop), Set.instLE.1 x y → Set.instLE.1 y x → x = y ∧ ∀ (x y z : Alpha → Prop), Set.instLE.1 x y → Set.instLE.1 y z → (fun left right => Set.instLE.1 left right) x z))
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Alpha → Prop), (fun left right => { le := fun s₁ s₂ => ∀ ⦃a : Alpha⦄, a ∈ s₁ → a ∈ s₂}.le left right) x x) ∧ ((∀ (x y : Alpha → Prop), { le := fun s₁ s₂ => ∀ ⦃a : Alpha⦄, a ∈ s₁ → a ∈ s₂}.le x y → { le := fun s₁ s₂ => ∀ ⦃a : Alpha⦄, a ∈ s₁ → a ∈ s₂}.le y x → x = y) ∧ (∀ (x y z : Alpha → Prop), { le := fun s₁ s₂ => ∀ ⦃a : Alpha⦄, a ∈ s₁ → a ∈ s₂}.le x y → { le := fun s₁ s₂ => ∀ ⦃a : Alpha⦄, a ∈ s₁ → a ∈ s₂}.le y z → (fun left right => { le := fun s₁ s₂ => ∀ ⦃a : Alpha⦄, a ∈ s₁ → a ∈ s₂}.le left right) x z)))
 
 Logical form (Lean):
 
@@ -472,11 +502,16 @@ namespace LRA.Order.OrderedSets.Poset
 
 Predicate logic:
 
-  LRA.Order.PartialOrder fun left right ∈ Nat => left <= right
+  LRA.Order.PartialOrder fun left right => instLENat.le left right
 
 Predicate logic (unfolded):
 
-  (∀ (x : Nat), (fun left right => instLENat.1 left right) x x ∧ (∀ (x y : Nat), instLENat.1 x y → instLENat.1 y x → x = y ∧ ∀ (x y z : Nat), instLENat.1 x y → instLENat.1 y z → (fun left right => instLENat.1 left right) x z))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Nat), (fun left right => instLENat.le left right) x x) ∧ ((∀ (x y : Nat), instLENat.le x y → instLENat.le y x → x = y) ∧ (∀ (x y z : Nat), instLENat.le x y → instLENat.le y z → (fun left right => instLENat.le left right) x z)))
 
 Logical form (Lean):
 
@@ -513,16 +548,16 @@ theorem NaturalNumberOrderIsPartialOrder :
 Predicate logic:
 
   def NaturalNumberPoset : LRA.Order.Poset where
-  Carrier := Nat
-  NonStrictOrder := fun left right => left <= right
-  NonStrictOrderIsPartialOrder := NaturalNumberOrderIsPartialOrder
+    Carrier := Nat
+    NonStrictOrder := fun left right => left <= right
+    NonStrictOrderIsPartialOrder := NaturalNumberOrderIsPartialOrder
 
 Predicate logic (unfolded):
 
   def NaturalNumberPoset : LRA.Order.Poset where
-  Carrier := Nat
-  NonStrictOrder := fun left right => left <= right
-  NonStrictOrderIsPartialOrder := NaturalNumberOrderIsPartialOrder (source fallback; no compiled unfold data available)
+    Carrier := Nat
+    NonStrictOrder := fun left right => left <= right
+    NonStrictOrderIsPartialOrder := NaturalNumberOrderIsPartialOrder (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -570,11 +605,16 @@ namespace LRA.Order.OrderedSets.Preorder
 
 Predicate logic:
 
-  LRA.Order.Preorder fun _ _ ∈ Bool => True
+  LRA.Order.Preorder fun x x_1 => True
 
 Predicate logic (unfolded):
 
-  (∀ (x : Bool), (fun x x_1 => True) x x ∧ ∀ (x y z : Bool), True → True → (fun x x_1 => True) x z)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Bool), (fun x x_1 => True) x x) ∧ (∀ (x y z : Bool), True → True → (fun x x_1 => True) x z))
 
 Logical form (Lean):
 
@@ -611,14 +651,14 @@ theorem BooleanUniversalRelationIsPreorder :
 Predicate logic:
 
   def BooleanUniversalPreorder : PreorderRelation Bool where
-  relation := fun _ _ => True
-  isPreorder := BooleanUniversalRelationIsPreorder
+    relation := fun _ _ => True
+    isPreorder := BooleanUniversalRelationIsPreorder
 
 Predicate logic (unfolded):
 
   def BooleanUniversalPreorder : PreorderRelation Bool where
-  relation := fun _ _ => True
-  isPreorder := BooleanUniversalRelationIsPreorder (source fallback; no compiled unfold data available)
+    relation := fun _ _ => True
+    isPreorder := BooleanUniversalRelationIsPreorder (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -663,11 +703,16 @@ namespace LRA.Order.OrderedSets.StrictOrder
 
 Predicate logic:
 
-  LRA.Order.StrictOrder fun left right ∈ Nat => left < right
+  LRA.Order.StrictOrder fun left right => instLTNat.lt left right
 
 Predicate logic (unfolded):
 
-  (∀ (x : Nat), instLTNat.1 x x → False ∧ ∀ (x y z : Nat), instLTNat.1 x y → instLTNat.1 y z → (fun left right => instLTNat.1 left right) x z)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Nat), instLTNat.lt x x → False) ∧ (∀ (x y z : Nat), instLTNat.lt x y → instLTNat.lt y z → (fun left right => instLTNat.lt left right) x z))
 
 Logical form (Lean):
 
@@ -704,16 +749,16 @@ theorem NaturalNumberLessThanIsStrictOrder :
 Predicate logic:
 
   def NaturalNumberStrictOrder :
-    StrictOrderRelation Nat where
-  relation := fun left right => left < right
-  relationIsStrictOrder := NaturalNumberLessThanIsStrictOrder
+      StrictOrderRelation Nat where
+    relation := fun left right => left < right
+    relationIsStrictOrder := NaturalNumberLessThanIsStrictOrder
 
 Predicate logic (unfolded):
 
   def NaturalNumberStrictOrder :
-    StrictOrderRelation Nat where
-  relation := fun left right => left < right
-  relationIsStrictOrder := NaturalNumberLessThanIsStrictOrder (source fallback; no compiled unfold data available)
+      StrictOrderRelation Nat where
+    relation := fun left right => left < right
+    relationIsStrictOrder := NaturalNumberLessThanIsStrictOrder (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

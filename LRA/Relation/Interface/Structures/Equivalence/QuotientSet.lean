@@ -25,11 +25,16 @@ variable [HasPowerset SetObject Collection]
 
 Predicate logic:
 
-  ∀ {Element : Type u} {SetObject : Type v} {Collection : Type w} [inst : Membership Element SetObject] [inst_1 : Membership SetObject Collection] [inst_2 : LRA.Set.HasSeparation Element SetObject] [inst_3 : LRA.Set.HasPowerset SetObject Collection] (quotient : Collection) (ambient : SetObject) (relation : LRA.Relation.Endorelation Element) (candidate : SetObject), candidate ∈ quotient ↔ (candidate ∈ inst_3.powerset ambient ∧ Exists fun representative => (representative ∈ ambient ∧ candidate = LRA.Relation.EquivalenceClass ambient relation representative))
+  ∀ {Element : Type u} {SetObject : Type v} {Collection : Type w} [inst : Membership Element SetObject] [inst_1 : Membership SetObject Collection] [inst_2 : LRA.Set.HasSeparation Element SetObject] [inst_3 : LRA.Set.HasPowerset SetObject Collection] (quotient : Collection) (ambient : SetObject) (relation : LRA.Relation.Endorelation Element) (candidate : SetObject), candidate ∈ quotient ↔ (candidate ∈ inst_3.powerset ambient ∧ (Exists fun representative => (representative ∈ ambient ∧ candidate = LRA.Relation.EquivalenceClass ambient relation representative)))
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} {Collection : Type w} [inst : Membership Element SetObject] [inst_1 : Membership SetObject Collection] [inst_2 : LRA.Set.HasSeparation Element SetObject] [inst_3 : LRA.Set.HasPowerset SetObject Collection] (quotient : Collection) (ambient : SetObject) (relation : Element → Element → Prop) (candidate : SetObject), inst_1.1 quotient candidate ↔ (inst_1.1 (inst_3.1 ambient) candidate ∧ Exists fun representative => (inst.1 ambient representative ∧ candidate = inst_2.1 ambient fun candidate => relation candidate representative))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    candidate ∈ quotient ↔ (candidate ∈ inst_3.powerset ambient ∧ (Exists fun representative => (representative ∈ ambient ∧ candidate = LRA.Relation.EquivalenceClass ambient relation representative)))
 
 Logical form (Lean):
 
@@ -86,24 +91,24 @@ variable [HasSeparation SetObject Collection]
 Predicate logic:
 
   def QuotientSet
-    (ambient : SetObject)
-    (relation : Endorelation Element) : Collection :=
-  HasSeparation.separation (HasPowerset.powerset ambient : Collection)
-    (fun candidate =>
-      ∃ representative : Element,
-        representative ∈ ambient ∧
-          candidate = EquivalenceClass ambient relation representative)
+      (ambient : SetObject)
+      (relation : Endorelation Element) : Collection :=
+    HasSeparation.separation (HasPowerset.powerset ambient : Collection)
+      (fun candidate =>
+        ∃ representative : Element,
+          representative ∈ ambient ∧
+            candidate = EquivalenceClass ambient relation representative)
 
 Predicate logic (unfolded):
 
   def QuotientSet
-    (ambient : SetObject)
-    (relation : Endorelation Element) : Collection :=
-  HasSeparation.separation (HasPowerset.powerset ambient : Collection)
-    (fun candidate =>
-      ∃ representative : Element,
-        representative ∈ ambient ∧
-          candidate = EquivalenceClass ambient relation representative) (source fallback; no compiled unfold data available)
+      (ambient : SetObject)
+      (relation : Endorelation Element) : Collection :=
+    HasSeparation.separation (HasPowerset.powerset ambient : Collection)
+      (fun candidate =>
+        ∃ representative : Element,
+          representative ∈ ambient ∧
+            candidate = EquivalenceClass ambient relation representative) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -160,11 +165,17 @@ variable [ExtensionalityLaw Element SetObject]
 
 Predicate logic:
 
-  (∀ A ∈ U), ∃ quotient ∈ Collection, IsQuotientSetOf quotient A relation
+  ∀ {Element : Type u} {SetObject : Type v} {Collection : Type w} [inst : Membership Element SetObject] [inst_1 : Membership SetObject Collection] [inst_2 : LRA.Set.HasSeparation Element SetObject] [inst_3 : LRA.Set.HasPowerset SetObject Collection] [inst_4 : LRA.Set.HasSeparation SetObject Collection], (LRA.Set.SeparationLaws SetObject Collection ∧ LRA.Set.ExtensionalityLaw SetObject Collection) → ∀ [inst_5 : HasSubset SetObject], (LRA.Set.PowersetMembershipLaws SetObject Collection ∧ (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject)) → ∀ (ambient : SetObject) (relation : LRA.Relation.Endorelation Element), Exists fun quotient => LRA.Relation.IsQuotientSetOf quotient ambient relation
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} {Collection : Type w} [inst : Membership Element SetObject] [inst_1 : Membership SetObject Collection] [inst_2 : LRA.Set.HasSeparation Element SetObject] [inst_3 : LRA.Set.HasPowerset SetObject Collection] [inst_4 : LRA.Set.HasSeparation SetObject Collection], (LRA.Set.SeparationLaws SetObject Collection ∧ LRA.Set.ExtensionalityLaw SetObject Collection) → ∀ [inst_5 : HasSubset SetObject], (LRA.Set.PowersetMembershipLaws SetObject Collection ∧ (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject)) → ∀ (ambient : SetObject) (relation : Element → Element → Prop), Exists fun quotient => ∀ (candidate : SetObject), inst_1.1 quotient candidate ↔ (inst_1.1 (inst_3.1 ambient) candidate ∧ Exists fun representative => (inst.1 ambient representative ∧ candidate = inst_2.1 ambient fun candidate => relation candidate representative))
+  Ambient
+    (Element, SetObject, Collection, ∈)
+  Objects
+    ambient : SetObject
+    relation : Endorelation Element
+  Prove
+    (LRA.Set.SeparationLaws SetObject Collection ∧ LRA.Set.ExtensionalityLaw SetObject Collection) → ∀ [inst_5 : HasSubset SetObject], (LRA.Set.PowersetMembershipLaws SetObject Collection ∧ (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject)) → ∀ (ambient : SetObject) (relation : Element → Element → Prop), Exists fun quotient => ∀ (candidate : SetObject), inst_1.1 quotient candidate ↔ (inst_1.1 (inst_3.1 ambient) candidate ∧ (Exists fun representative => (inst.1 ambient representative ∧ candidate = inst_2.1 ambient fun candidate => relation candidate representative)))
 
 Logical form (Lean):
 
@@ -206,12 +217,17 @@ theorem QuotientSetExists
 
 Predicate logic:
 
-  (∀ A ∈ U), LRA.Identity.AtMostOne fun quotient ∈ Collection =>
-    IsQuotientSetOf quotient A relation
+  ∀ {Element : Type u} {SetObject : Type v} {Collection : Type w} [inst : Membership Element SetObject] [inst_1 : Membership SetObject Collection] [inst_2 : LRA.Set.HasSeparation Element SetObject] [inst_3 : LRA.Set.HasPowerset SetObject Collection] [inst_4 : LRA.Set.HasSeparation SetObject Collection], (LRA.Set.SeparationLaws SetObject Collection ∧ LRA.Set.ExtensionalityLaw SetObject Collection) → ∀ [inst_5 : HasSubset SetObject], (LRA.Set.PowersetMembershipLaws SetObject Collection ∧ (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject)) → ∀ (ambient : SetObject) (relation : LRA.Relation.Endorelation Element), LRA.Identity.AtMostOne fun quotient => LRA.Relation.IsQuotientSetOf quotient ambient relation
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} {Collection : Type w} [inst : Membership Element SetObject] [inst_1 : Membership SetObject Collection] [inst_2 : LRA.Set.HasSeparation Element SetObject] [inst_3 : LRA.Set.HasPowerset SetObject Collection] [inst_4 : LRA.Set.HasSeparation SetObject Collection], (LRA.Set.SeparationLaws SetObject Collection ∧ LRA.Set.ExtensionalityLaw SetObject Collection) → ∀ [inst_5 : HasSubset SetObject], (LRA.Set.PowersetMembershipLaws SetObject Collection ∧ (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject)) → ∀ (ambient : SetObject) (relation : Element → Element → Prop) (left right : Collection), (∀ (candidate : SetObject), inst_1.1 left candidate ↔ (inst_1.1 (inst_3.1 ambient) candidate ∧ Exists fun representative => (inst.1 ambient representative ∧ candidate = inst_2.1 ambient fun candidate => relation candidate representative)) ∧ ∀ (candidate : SetObject), inst_1.1 right candidate ↔ (inst_1.1 (inst_3.1 ambient) candidate ∧ Exists fun representative => (inst.1 ambient representative ∧ candidate = inst_2.1 ambient fun candidate => relation candidate representative))) → left = right
+  Ambient
+    (Element, SetObject, Collection, ∈)
+  Objects
+    ambient : SetObject
+    relation : Endorelation Element
+  Prove
+    (LRA.Set.SeparationLaws SetObject Collection ∧ LRA.Set.ExtensionalityLaw SetObject Collection) → ∀ [inst_5 : HasSubset SetObject], (LRA.Set.PowersetMembershipLaws SetObject Collection ∧ (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject)) → ∀ (ambient : SetObject) (relation : Element → Element → Prop) (left right : Collection), ((∀ (candidate : SetObject), inst_1.1 left candidate ↔ (inst_1.1 (inst_3.1 ambient) candidate ∧ (Exists fun representative => (inst.1 ambient representative ∧ candidate = inst_2.1 ambient fun candidate => relation candidate representative)))) ∧ (∀ (candidate : SetObject), inst_1.1 right candidate ↔ (inst_1.1 (inst_3.1 ambient) candidate ∧ (Exists fun representative => (inst.1 ambient representative ∧ candidate = inst_2.1 ambient fun candidate => relation candidate representative))))) → (LRA.Identity.Constructions.Mathlib.instIdentityRelation Collection).1 left right
 
 Logical form (Lean):
 
@@ -255,12 +271,17 @@ theorem QuotientSetUnique
 
 Predicate logic:
 
-  (∀ A ∈ U), LRA.Identity.ExactlyOne fun quotient ∈ Collection =>
-    IsQuotientSetOf quotient A relation
+  ∀ {Element : Type u} {SetObject : Type v} {Collection : Type w} [inst : Membership Element SetObject] [inst_1 : Membership SetObject Collection] [inst_2 : LRA.Set.HasSeparation Element SetObject] [inst_3 : LRA.Set.HasPowerset SetObject Collection] [inst_4 : LRA.Set.HasSeparation SetObject Collection], (LRA.Set.SeparationLaws SetObject Collection ∧ LRA.Set.ExtensionalityLaw SetObject Collection) → ∀ [inst_5 : HasSubset SetObject], (LRA.Set.PowersetMembershipLaws SetObject Collection ∧ (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject)) → ∀ (ambient : SetObject) (relation : LRA.Relation.Endorelation Element), LRA.Identity.ExactlyOne fun quotient => LRA.Relation.IsQuotientSetOf quotient ambient relation
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} {Collection : Type w} [inst : Membership Element SetObject] [inst_1 : Membership SetObject Collection] [inst_2 : LRA.Set.HasSeparation Element SetObject] [inst_3 : LRA.Set.HasPowerset SetObject Collection] [inst_4 : LRA.Set.HasSeparation SetObject Collection], (LRA.Set.SeparationLaws SetObject Collection ∧ LRA.Set.ExtensionalityLaw SetObject Collection) → ∀ [inst_5 : HasSubset SetObject], (LRA.Set.PowersetMembershipLaws SetObject Collection ∧ (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject)) → ∀ (ambient : SetObject) (relation : Element → Element → Prop), (Exists fun witness => (fun quotient => ∀ (candidate : SetObject), inst_1.1 quotient candidate ↔ (inst_1.1 (inst_3.1 ambient) candidate ∧ Exists fun representative => (inst.1 ambient representative ∧ candidate = inst_2.1 ambient fun candidate => relation candidate representative))) witness ∧ ∀ (left right : Collection), (∀ (candidate : SetObject), inst_1.1 left candidate ↔ (inst_1.1 (inst_3.1 ambient) candidate ∧ Exists fun representative => (inst.1 ambient representative ∧ candidate = inst_2.1 ambient fun candidate => relation candidate representative))) → (∀ (candidate : SetObject), inst_1.1 right candidate ↔ (inst_1.1 (inst_3.1 ambient) candidate ∧ Exists fun representative => (inst.1 ambient representative ∧ candidate = inst_2.1 ambient fun candidate => relation candidate representative))) → left = right)
+  Ambient
+    (Element, SetObject, Collection, ∈)
+  Objects
+    ambient : SetObject
+    relation : Endorelation Element
+  Prove
+    (LRA.Set.SeparationLaws SetObject Collection ∧ LRA.Set.ExtensionalityLaw SetObject Collection) → ∀ [inst_5 : HasSubset SetObject], (LRA.Set.PowersetMembershipLaws SetObject Collection ∧ (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject)) → ∀ (ambient : SetObject) (relation : Element → Element → Prop), ((Exists fun x => (fun quotient => ∀ (candidate : SetObject), inst_1.1 quotient candidate ↔ (inst_1.1 (inst_3.1 ambient) candidate ∧ (Exists fun representative => (inst.1 ambient representative ∧ candidate = inst_2.1 ambient fun candidate => relation candidate representative)))) x) ∧ (∀ (left right : Collection), (∀ (candidate : SetObject), inst_1.1 left candidate ↔ (inst_1.1 (inst_3.1 ambient) candidate ∧ (Exists fun representative => (inst.1 ambient representative ∧ candidate = inst_2.1 ambient fun candidate => relation candidate representative)))) → (∀ (candidate : SetObject), inst_1.1 right candidate ↔ (inst_1.1 (inst_3.1 ambient) candidate ∧ (Exists fun representative => (inst.1 ambient representative ∧ candidate = inst_2.1 ambient fun candidate => relation candidate representative)))) → (LRA.Identity.Constructions.Mathlib.instIdentityRelation Collection).1 left right))
 
 Logical form (Lean):
 
@@ -304,11 +325,18 @@ theorem QuotientSetExistsAndUnique
 
 Predicate logic:
 
-  (∀ A ∈ U ∀ B ∈ U), B ∈ QuotientSet Collection ∈ = Collection A relation ↔ B ∈ HasPowerset.powerset A ∈ Collection ∧ ∃ representative ∈ Element, representative ∈ A ∧ B = EquivalenceClass A relation representative
+  ∀ {Element : Type u} {SetObject : Type v} {Collection : Type w} [inst : Membership Element SetObject] [inst_1 : Membership SetObject Collection] [inst_2 : LRA.Set.HasSeparation Element SetObject] [inst_3 : LRA.Set.HasPowerset SetObject Collection] [inst_4 : LRA.Set.HasSeparation SetObject Collection], (LRA.Set.SeparationLaws SetObject Collection ∧ LRA.Set.ExtensionalityLaw SetObject Collection) → ∀ [inst_5 : HasSubset SetObject], (LRA.Set.PowersetMembershipLaws SetObject Collection ∧ (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject)) → ∀ (ambient : SetObject) (relation : LRA.Relation.Endorelation Element) (candidate : SetObject), candidate ∈ LRA.Relation.QuotientSet ambient relation ↔ (candidate ∈ inst_3.powerset ambient ∧ (Exists fun representative => (representative ∈ ambient ∧ candidate = LRA.Relation.EquivalenceClass ambient relation representative)))
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} {Collection : Type w} [inst : Membership Element SetObject] [inst_1 : Membership SetObject Collection] [inst_2 : LRA.Set.HasSeparation Element SetObject] [inst_3 : LRA.Set.HasPowerset SetObject Collection] [inst_4 : LRA.Set.HasSeparation SetObject Collection], (LRA.Set.SeparationLaws SetObject Collection ∧ LRA.Set.ExtensionalityLaw SetObject Collection) → ∀ [inst_5 : HasSubset SetObject], (LRA.Set.PowersetMembershipLaws SetObject Collection ∧ (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject)) → ∀ (ambient : SetObject) (relation : Element → Element → Prop) (candidate : SetObject), inst_1.1 (inst_4.1 (inst_3.1 ambient) fun candidate => Exists fun representative => (inst.1 ambient representative ∧ candidate = inst_2.1 ambient fun candidate => relation candidate representative)) candidate ↔ (inst_1.1 (inst_3.1 ambient) candidate ∧ Exists fun representative => (inst.1 ambient representative ∧ candidate = inst_2.1 ambient fun candidate => relation candidate representative))
+  Ambient
+    (Element, SetObject, Collection, ∈)
+  Objects
+    ambient : SetObject
+    relation : Endorelation Element
+    candidate : SetObject
+  Prove
+    (LRA.Set.SeparationLaws SetObject Collection ∧ LRA.Set.ExtensionalityLaw SetObject Collection) → ∀ [inst_5 : HasSubset SetObject], (LRA.Set.PowersetMembershipLaws SetObject Collection ∧ (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject)) → ∀ (ambient : SetObject) (relation : LRA.Relation.Endorelation Element) (candidate : SetObject), candidate ∈ LRA.Relation.QuotientSet ambient relation ↔ (candidate ∈ inst_3.powerset ambient ∧ (Exists fun representative => (representative ∈ ambient ∧ candidate = LRA.Relation.EquivalenceClass ambient relation representative)))
 
 Logical form (Lean):
 
@@ -363,18 +391,18 @@ end WithPowerset
 Predicate logic:
 
   def QuotientProjection
-    (ambient : SetObject)
-    (relation : Endorelation Element) :
-    Element -> SetObject :=
-  fun element => EquivalenceClass ambient relation element
+      (ambient : SetObject)
+      (relation : Endorelation Element) :
+      Element -> SetObject :=
+    fun element => EquivalenceClass ambient relation element
 
 Predicate logic (unfolded):
 
   def QuotientProjection
-    (ambient : SetObject)
-    (relation : Endorelation Element) :
-    Element -> SetObject :=
-  fun element => EquivalenceClass ambient relation element (source fallback; no compiled unfold data available)
+      (ambient : SetObject)
+      (relation : Endorelation Element) :
+      Element -> SetObject :=
+    fun element => EquivalenceClass ambient relation element (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -417,18 +445,18 @@ def QuotientProjection
 Predicate logic:
 
   def QuotientClassElement
-    (ambient : SetObject)
-    (relation : Endorelation Element) :
-    Element -> SetObject :=
-  QuotientProjection ambient relation
+      (ambient : SetObject)
+      (relation : Endorelation Element) :
+      Element -> SetObject :=
+    QuotientProjection ambient relation
 
 Predicate logic (unfolded):
 
   def QuotientClassElement
-    (ambient : SetObject)
-    (relation : Endorelation Element) :
-    Element -> SetObject :=
-  QuotientProjection ambient relation (source fallback; no compiled unfold data available)
+      (ambient : SetObject)
+      (relation : Endorelation Element) :
+      Element -> SetObject :=
+    QuotientProjection ambient relation (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -475,11 +503,20 @@ variable [ExtensionalityLaw Element SetObject]
 
 Predicate logic:
 
-  (∀ A ∈ U ∀ x y ∈ Element), QuotientProjection A relation x = QuotientProjection A relation y
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasSeparation Element SetObject], (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject) → ∀ {ambient : SetObject} {relation : LRA.Relation.Endorelation Element}, LRA.Relation.EquivalenceRelation relation → ∀ {firstRepresentative secondRepresentative : Element}, relation firstRepresentative secondRepresentative → LRA.Relation.QuotientProjection ambient relation firstRepresentative = LRA.Relation.QuotientProjection ambient relation secondRepresentative
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasSeparation Element SetObject], (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject) → ∀ {ambient : SetObject} {relation : Element → Element → Prop}, (∀ (x : Element), relation x x ∧ (∀ (x y : Element), relation x y → relation y x ∧ ∀ (x y z : Element), relation x y → relation y z → relation x z)) → ∀ {firstRepresentative secondRepresentative : Element}, relation firstRepresentative secondRepresentative → inst_1.1 ambient fun candidate => relation candidate firstRepresentative = inst_1.1 ambient fun candidate => relation candidate secondRepresentative
+  Ambient
+    (Element, SetObject, Collection, ∈)
+  Objects
+    ambient : SetObject
+    relation : Endorelation Element
+    relationIsEquivalence : EquivalenceRelation relation
+    firstRepresentative secondRepresentative : Element
+    representativesRelated : relation firstRepresentative secondRepresentative
+  Prove
+    (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject) → ∀ {ambient : SetObject} {relation : Element → Element → Prop}, ((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) → ∀ {firstRepresentative secondRepresentative : Element}, relation firstRepresentative secondRepresentative → inst_1.1 ambient fun candidate => relation candidate firstRepresentative = inst_1.1 ambient fun candidate => relation candidate secondRepresentative
 
 Logical form (Lean):
 
@@ -527,11 +564,20 @@ theorem QuotientProjectionWellDefined
 
 Predicate logic:
 
-  (∀ A ∈ U ∀ x y ∈ Element), QuotientClassElement A relation x = QuotientClassElement A relation y
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasSeparation Element SetObject], (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject) → ∀ {ambient : SetObject} {relation : LRA.Relation.Endorelation Element}, LRA.Relation.EquivalenceRelation relation → ∀ {firstRepresentative secondRepresentative : Element}, relation firstRepresentative secondRepresentative → LRA.Relation.QuotientClassElement ambient relation firstRepresentative = LRA.Relation.QuotientClassElement ambient relation secondRepresentative
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasSeparation Element SetObject], (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject) → ∀ {ambient : SetObject} {relation : Element → Element → Prop}, (∀ (x : Element), relation x x ∧ (∀ (x y : Element), relation x y → relation y x ∧ ∀ (x y z : Element), relation x y → relation y z → relation x z)) → ∀ {firstRepresentative secondRepresentative : Element}, relation firstRepresentative secondRepresentative → inst_1.1 ambient fun candidate => relation candidate firstRepresentative = inst_1.1 ambient fun candidate => relation candidate secondRepresentative
+  Ambient
+    (Element, SetObject, Collection, ∈)
+  Objects
+    ambient : SetObject
+    relation : Endorelation Element
+    relationIsEquivalence : EquivalenceRelation relation
+    firstRepresentative secondRepresentative : Element
+    representativesRelated : relation firstRepresentative secondRepresentative
+  Prove
+    (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject) → ∀ {ambient : SetObject} {relation : Element → Element → Prop}, ((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) → ∀ {firstRepresentative secondRepresentative : Element}, relation firstRepresentative secondRepresentative → inst_1.1 ambient fun candidate => relation candidate firstRepresentative = inst_1.1 ambient fun candidate => relation candidate secondRepresentative
 
 Logical form (Lean):
 

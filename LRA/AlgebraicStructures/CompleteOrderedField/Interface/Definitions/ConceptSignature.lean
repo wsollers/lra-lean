@@ -9,12 +9,12 @@ namespace LRA.AlgebraicStructures
 Predicate logic:
 
   abbrev CompleteOrderedFieldConceptSignature :=
-  OrderedFieldConceptSignature
+    OrderedFieldConceptSignature
 
 Predicate logic (unfolded):
 
   abbrev CompleteOrderedFieldConceptSignature :=
-  OrderedFieldConceptSignature (source fallback; no compiled unfold data available)
+    OrderedFieldConceptSignature (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

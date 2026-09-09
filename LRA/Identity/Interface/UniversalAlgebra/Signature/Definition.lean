@@ -17,7 +17,7 @@ Predicate logic (unfolded):
   structure AlgebraicSignature where
     OperationSymbol : Type u
     arity : OperationSymbol → Nat
-    ConstantSymbol : Type v (source fallback; no compiled unfold data available)
+    ConstantSymbol : Type v
 
 Logical form (Lean):
 

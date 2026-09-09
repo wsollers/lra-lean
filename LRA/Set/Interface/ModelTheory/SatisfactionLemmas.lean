@@ -13,11 +13,18 @@ open LRA.ModelTheory.FirstOrder
 
 Predicate logic:
 
-  Satisfies M assignment (iffF φ ψ) ↔ (Satisfies M assignment φ ↔ Satisfies M assignment ψ)
+  ∀ {M : LRA.ModelTheory.FirstOrder.Model LRA.Set.ModelTheory.MembershipSignature} {assignment : Nat → M.Domain} {φ ψ : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat}, LRA.Logic.FirstOrder.Satisfies M assignment (LRA.Set.ModelTheory.iffF φ ψ) ↔ LRA.Logic.FirstOrder.Satisfies M assignment φ ↔ LRA.Logic.FirstOrder.Satisfies M assignment ψ
 
 Predicate logic (unfolded):
 
-  ∀ {M : LRA.ModelTheory.FirstOrder.Model LRA.Set.ModelTheory.MembershipSignature} {assignment : Nat → M.1} {φ ψ : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat}, LRA.Logic.FirstOrder.Satisfies M assignment ((φ.impl ψ).impl (ψ.impl φ).neg).neg ↔ LRA.Logic.FirstOrder.Satisfies M assignment φ ↔ LRA.Logic.FirstOrder.Satisfies M assignment ψ
+  Ambient
+    (Nat)
+  Objects
+    M : Model MembershipSignature
+    assignment : Nat → M.Domain
+    φ ψ : Formula MembershipSignature Nat
+  Prove
+    LRA.Logic.FirstOrder.Satisfies M assignment (LRA.Set.ModelTheory.iffF φ ψ) ↔ LRA.Logic.FirstOrder.Satisfies M assignment φ ↔ LRA.Logic.FirstOrder.Satisfies M assignment ψ
 
 Logical form (Lean):
 
@@ -60,11 +67,18 @@ theorem satisfiesIffF {M : Model MembershipSignature}
 
 Predicate logic:
 
-  Satisfies M assignment (orF φ ψ) ↔ (Satisfies M assignment φ ∨ Satisfies M assignment ψ)
+  ∀ {M : LRA.ModelTheory.FirstOrder.Model LRA.Set.ModelTheory.MembershipSignature} {assignment : Nat → M.Domain} {φ ψ : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat}, LRA.Logic.FirstOrder.Satisfies M assignment (LRA.Set.ModelTheory.orF φ ψ) ↔ Or (LRA.Logic.FirstOrder.Satisfies M assignment φ) (LRA.Logic.FirstOrder.Satisfies M assignment ψ)
 
 Predicate logic (unfolded):
 
-  ∀ {M : LRA.ModelTheory.FirstOrder.Model LRA.Set.ModelTheory.MembershipSignature} {assignment : Nat → M.1} {φ ψ : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat}, LRA.Logic.FirstOrder.Satisfies M assignment (φ.neg.impl ψ) ↔ Or (LRA.Logic.FirstOrder.Satisfies M assignment φ) (LRA.Logic.FirstOrder.Satisfies M assignment ψ)
+  Ambient
+    (Nat)
+  Objects
+    M : Model MembershipSignature
+    assignment : Nat → M.Domain
+    φ ψ : Formula MembershipSignature Nat
+  Prove
+    LRA.Logic.FirstOrder.Satisfies M assignment (LRA.Set.ModelTheory.orF φ ψ) ↔ Or (LRA.Logic.FirstOrder.Satisfies M assignment φ) (LRA.Logic.FirstOrder.Satisfies M assignment ψ)
 
 Logical form (Lean):
 

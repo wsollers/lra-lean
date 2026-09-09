@@ -13,18 +13,18 @@ universe u
 Predicate logic:
 
   noncomputable def toMathlibLinearOrder
-    (R : Type u) [LT R] [LE R]
-    [LinearOrderLaws R] [StrictOrderCompatibilityLaw R] :
-    LinearOrder R where
-  le
+      (R : Type u) [LT R] [LE R]
+      [LinearOrderLaws R] [StrictOrderCompatibilityLaw R] :
+      LinearOrder R where
+    le
 
 Predicate logic (unfolded):
 
   noncomputable def toMathlibLinearOrder
-    (R : Type u) [LT R] [LE R]
-    [LinearOrderLaws R] [StrictOrderCompatibilityLaw R] :
-    LinearOrder R where
-  le (source fallback; no compiled unfold data available)
+      (R : Type u) [LT R] [LE R]
+      [LinearOrderLaws R] [StrictOrderCompatibilityLaw R] :
+      LinearOrder R where
+    le (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

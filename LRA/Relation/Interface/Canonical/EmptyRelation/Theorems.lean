@@ -10,11 +10,16 @@ universe u v
 
 Predicate logic:
 
-  RightUnique fun _input ∈ Domain => fun _output : Codomain => False
+  ∀ {Domain : Type u} {Codomain : Type v}, LRA.Relation.RightUnique fun _input _output => False
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (a : Domain) (y₁ y₂ : Codomain), (False ∧ False) → y₁ = y₂
+  Ambient
+    (Domain, Codomain)
+  Objects
+    (none)
+  Prove
+    (False ∧ False) → y₁ = y₂
 
 Logical form (Lean):
 

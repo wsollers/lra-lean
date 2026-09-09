@@ -14,12 +14,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  Ambient
-    (implicit ambient)
-  Objects
-    (none)
-  Prove
-    a = a_1
+  ∀ (Carrier : Type u) (a a_1 : Carrier), a = a_1
 
 Logical form (Lean):
 
@@ -69,7 +64,7 @@ Predicate logic (unfolded):
     carrierNonempty : Nonempty Carrier
     equalityInterpretation : Carrier -> Carrier -> Prop
     satisfiesIdentityTheory :
-      IdentityTheory (FullLeibniz Carrier) equalityInterpretation (source fallback; no compiled unfold data available)
+      IdentityTheory (FullLeibniz Carrier) equalityInterpretation
 
 Logical form (Lean):
 

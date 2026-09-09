@@ -11,11 +11,16 @@ universe u v
 
 Predicate logic:
 
-  Injective function ↔ ∀ output left right, FiberClass function output left → FiberClass function output right → left = right
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.Injective ↔ ∀ (output : Codomain) (left right : Domain), function.FiberClass output left → function.FiberClass output right → left = right
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain), ∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂ ↔ ∀ (output : Codomain) (left right : Domain), function left = output → function right = output → left = right
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+  Prove
+    function.Injective ↔ ∀ (output : Codomain) (left right : Domain), function.FiberClass output left → function.FiberClass output right → left = right
 
 Logical form (Lean):
 
@@ -63,11 +68,16 @@ theorem InjectiveIffFibersSubsingleton
 
 Predicate logic:
 
-  Surjective function ↔ ∀ output, ∃ input, FiberClass function output input
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.Surjective ↔ ∀ (output : Codomain), Exists fun input => function.FiberClass output input
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain), ∀ (y : Codomain), Exists fun x => function x = y ↔ ∀ (output : Codomain), Exists fun input => function input = output
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+  Prove
+    function.Surjective ↔ ∀ (output : Codomain), Exists fun input => function.FiberClass output input
 
 Logical form (Lean):
 
@@ -109,11 +119,16 @@ theorem SurjectiveIffFibersNonempty
 
 Predicate logic:
 
-  Injective function ↔ SingleValued (LRA.Relation.Converse (Graph function))
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.Injective ↔ LRA.Function.SingleValued (LRA.Relation.Converse function.Graph)
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain), ∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂ ↔ ∀ (x : Codomain) (y₁ y₂ : Domain), function y₁ = x → function y₂ = x → y₁ = y₂
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+  Prove
+    function.Injective ↔ LRA.Function.SingleValued (LRA.Relation.Converse function.Graph)
 
 Logical form (Lean):
 
@@ -155,11 +170,16 @@ theorem InjectiveIffConverseSingleValued
 
 Predicate logic:
 
-  Surjective function ↔ Total (LRA.Relation.Converse (Graph function))
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.Surjective ↔ LRA.Function.Total (LRA.Relation.Converse function.Graph)
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain), ∀ (y : Codomain), Exists fun x => function x = y ↔ ∀ (x : Codomain), Exists fun y => function y = x
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+  Prove
+    function.Surjective ↔ LRA.Function.Total (LRA.Relation.Converse function.Graph)
 
 Logical form (Lean):
 
@@ -201,11 +221,16 @@ theorem SurjectiveIffConverseTotal
 
 Predicate logic:
 
-  Bijective function ↔ IsFunctionRelation (LRA.Relation.Converse (Graph function))
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.Bijective ↔ LRA.Function.IsFunctionRelation (LRA.Relation.Converse function.Graph)
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain), (∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂ ∧ ∀ (y : Codomain), Exists fun x => function x = y) ↔ (∀ (x : Codomain), Exists fun y => function y = x ∧ ∀ (x : Codomain) (y₁ y₂ : Domain), function y₁ = x → function y₂ = x → y₁ = y₂)
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+  Prove
+    function.Bijective ↔ LRA.Function.IsFunctionRelation (LRA.Relation.Converse function.Graph)
 
 Logical form (Lean):
 
@@ -247,11 +272,16 @@ theorem BijectiveIffConverseIsFunctionRelation
 
 Predicate logic:
 
-  IsFunctionRelation (Graph function)
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), LRA.Function.IsFunctionRelation function.Graph
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain), (∀ (x : Domain), Exists fun y => function x = y ∧ ∀ (x : Domain) (y₁ y₂ : Codomain), function x = y₁ → function x = y₂ → y₁ = y₂)
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+  Prove
+    ((∀ (x : Domain), Exists fun y => function x = y) ∧ (∀ (x : Domain) (y₁ y₂ : Codomain), function x = y₁ → function x = y₂ → y₁ = y₂))
 
 Logical form (Lean):
 
@@ -291,11 +321,16 @@ theorem GraphIsFunctionRelation
 
 Predicate logic:
 
-  Injective function ↔ ∀ left right, function left = function right → left = right
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.Injective ↔ ∀ (left right : Domain), function left = function right → left = right
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain), ∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂ ↔ ∀ (left right : Domain), function left = function right → left = right
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+  Prove
+    function.Injective ↔ ∀ (left right : Domain), function left = function right → left = right
 
 Logical form (Lean):
 
@@ -333,11 +368,16 @@ theorem InjectiveIffStandard {Domain : Type u} {Codomain : Type v}
 
 Predicate logic:
 
-  Surjective function ↔ ∀ output, ∃ input, function input = output
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.Surjective ↔ ∀ (output : Codomain), Exists fun input => function input = output
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain), ∀ (y : Codomain), Exists fun x => function x = y ↔ ∀ (output : Codomain), Exists fun input => function input = output
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+  Prove
+    function.Surjective ↔ ∀ (output : Codomain), Exists fun input => function input = output
 
 Logical form (Lean):
 
@@ -375,11 +415,16 @@ theorem SurjectiveIffStandard {Domain : Type u} {Codomain : Type v}
 
 Predicate logic:
 
-  Surjective function ↔ ∀ output : Codomain, RangeClass function output
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.Surjective ↔ ∀ (output : Codomain), function.RangeClass output
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain), ∀ (y : Codomain), Exists fun x => function x = y ↔ ∀ (output : Codomain), Exists fun x => function x = output
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+  Prove
+    function.Surjective ↔ ∀ (output : Codomain), function.RangeClass output
 
 Logical form (Lean):
 

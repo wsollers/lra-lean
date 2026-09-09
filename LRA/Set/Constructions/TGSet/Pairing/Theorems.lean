@@ -9,11 +9,16 @@ namespace LRA.Set.Constructions.TGSet
 
 Predicate logic:
 
-  (∀ x1 x2 ∈ Set), exists P : Set, IsPairSet x1 x2 P
+  ∀ (x1 x2 : LRA.Set.Constructions.TGSet.Set), Exists fun P => LRA.Set.Constructions.TGSet.IsPairSet x1 x2 P
 
 Predicate logic (unfolded):
 
-  ∀ (x1 x2 : LRA.Set.Constructions.TGSet.Set), Exists fun P => ∀ (w : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 P w ↔ Or (w = x1)(w = x2)
+  Ambient
+    (implicit ambient)
+  Objects
+    x1 x2 : Set
+  Prove
+    Exists fun P => ∀ (w : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.1 P w ↔ Or (w = x1)(w = x2)
 
 Logical form (Lean):
 
@@ -48,11 +53,16 @@ theorem PairSetExists (x1 x2 : Set) : exists P : Set, IsPairSet x1 x2 P := by
 
 Predicate logic:
 
-  (IsPairSet x1 x2 P ∧ IsPairSet x1 x2 G) → G = P
+  ∀ {x1 x2 P G : LRA.Set.Constructions.TGSet.Set}, (LRA.Set.Constructions.TGSet.IsPairSet x1 x2 P ∧ LRA.Set.Constructions.TGSet.IsPairSet x1 x2 G) → G = P
 
 Predicate logic (unfolded):
 
-  ∀ {x1 x2 P G : LRA.Set.Constructions.TGSet.Set}, (∀ (w : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 P w ↔ Or (w = x1)(w = x2) ∧ ∀ (w : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 G w ↔ Or (w = x1)(w = x2)) → G = P
+  Ambient
+    (implicit ambient)
+  Objects
+    x1 x2 P G : Set
+  Prove
+    ((∀ (w : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.1 P w ↔ Or (w = x1)(w = x2)) ∧ (∀ (w : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.1 G w ↔ Or (w = x1)(w = x2))) → G = P
 
 Logical form (Lean):
 
@@ -91,11 +101,16 @@ theorem PairSetIsUnique {x1 x2 P G : Set}
 
 Predicate logic:
 
-  (∀ x1 x2 ∈ Set), ExistsAndUnique fun P ∈ Set => IsPairSet x1 x2 P
+  ∀ (x1 x2 : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGSet.ExistsAndUnique fun P => LRA.Set.Constructions.TGSet.IsPairSet x1 x2 P
 
 Predicate logic (unfolded):
 
-  ∀ (x1 x2 : LRA.Set.Constructions.TGSet.Set), (Exists fun witness => (fun P => ∀ (w : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 P w ↔ Or (w = x1)(w = x2)) witness ∧ ∀ (left right : LRA.Set.Constructions.TGSet.Set), (∀ (w : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 left w ↔ Or (w = x1)(w = x2)) → (∀ (w : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 right w ↔ Or (w = x1)(w = x2)) → left = right)
+  Ambient
+    (implicit ambient)
+  Objects
+    x1 x2 : Set
+  Prove
+    ((Exists fun x => (fun P => ∀ (w : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.1 P w ↔ Or (w = x1)(w = x2)) x) ∧ (∀ (left right : LRA.Set.Constructions.TGSet.Set), (∀ (w : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.1 left w ↔ Or (w = x1)(w = x2)) → (∀ (w : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.1 right w ↔ Or (w = x1)(w = x2)) → (LRA.Identity.Constructions.Mathlib.instIdentityRelation LRA.Set.Constructions.TGSet.Set).1 left right))
 
 Logical form (Lean):
 
@@ -133,12 +148,12 @@ theorem PairingOutputExistsAndIsUnique (x1 x2 : Set) :
 Predicate logic:
 
   noncomputable def PairSet (x1 x2 : Set) : Set :=
-  Classical.choose (PairSetExists x1 x2)
+    Classical.choose (PairSetExists x1 x2)
 
 Predicate logic (unfolded):
 
   noncomputable def PairSet (x1 x2 : Set) : Set :=
-  Classical.choose (PairSetExists x1 x2) (source fallback; no compiled unfold data available)
+    Classical.choose (PairSetExists x1 x2) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -174,11 +189,16 @@ noncomputable def PairSet (x1 x2 : Set) : Set :=
 
 Predicate logic:
 
-  (∀ x1 x2 w ∈ Set), w ∈ PairSet x1 x2 <-> w = x1 ∨ w = x2
+  ∀ (x1 x2 w : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem (LRA.Set.Constructions.TGSet.PairSet x1 x2) w ↔ Or (w = x1)(w = x2)
 
 Predicate logic (unfolded):
 
-  ∀ (x1 x2 w : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 (Classical.indefiniteDescription (LRA.Set.Constructions.TGSet.IsPairSet x1 x2) ⋯).1 w ↔ Or (w = x1)(w = x2)
+  Ambient
+    (implicit ambient)
+  Objects
+    x1 x2 w : Set
+  Prove
+    LRA.Set.Constructions.instMembershipTGSet.mem (LRA.Set.Constructions.TGSet.PairSet x1 x2) w ↔ Or (w = x1)(w = x2)
 
 Logical form (Lean):
 

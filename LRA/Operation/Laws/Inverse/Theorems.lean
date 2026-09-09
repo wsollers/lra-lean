@@ -11,11 +11,20 @@ universe u
 
 Predicate logic:
 
-  (∀ element ∈ Carrier), operation (inverse element) element = identity
+  ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier} {inverse : LRA.Operation.UnaryEndoOperation Carrier}, LRA.Operation.Laws.Inverse.LeftInverse operation identity inverse → ∀ (element : Carrier), operation (inverse element) element = identity
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {operation : Carrier → Carrier → Carrier} {identity : Carrier} {inverse : Carrier → Carrier}, (∀ (element : Carrier), operation (inverse element) element = identity) → ∀ (element : Carrier), operation (inverse element) element = identity
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    identity : Carrier
+    inverse : UnaryEndoOperation Carrier
+    law : LeftInverse operation identity inverse
+    element : Carrier
+  Prove
+    (∀ (element : Carrier), operation (inverse element) element = identity) → ∀ (element : Carrier), operation (inverse element) element = identity
 
 Logical form (Lean):
 
@@ -61,11 +70,20 @@ theorem LeftInverse.apply {Carrier : Type u}
 
 Predicate logic:
 
-  (∀ element ∈ Carrier), operation element (inverse element) = identity
+  ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier} {inverse : LRA.Operation.UnaryEndoOperation Carrier}, LRA.Operation.Laws.Inverse.RightInverse operation identity inverse → ∀ (element : Carrier), operation element (inverse element) = identity
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {operation : Carrier → Carrier → Carrier} {identity : Carrier} {inverse : Carrier → Carrier}, (∀ (element : Carrier), operation element (inverse element) = identity) → ∀ (element : Carrier), operation element (inverse element) = identity
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    identity : Carrier
+    inverse : UnaryEndoOperation Carrier
+    law : RightInverse operation identity inverse
+    element : Carrier
+  Prove
+    (∀ (element : Carrier), operation element (inverse element) = identity) → ∀ (element : Carrier), operation element (inverse element) = identity
 
 Logical form (Lean):
 
@@ -111,11 +129,18 @@ theorem RightInverse.apply {Carrier : Type u}
 
 Predicate logic:
 
-  operation inverse element = identity
+  ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity element inverse : Carrier}, LRA.Operation.Laws.Inverse.LeftInverseOf operation identity element inverse → operation inverse element = identity
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {operation : Carrier → Carrier → Carrier} {identity element inverse : Carrier}, operation inverse element = identity → operation inverse element = identity
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    identity element inverse : Carrier
+    law : LeftInverseOf operation identity element inverse
+  Prove
+    operation inverse element = identity → operation inverse element = identity
 
 Logical form (Lean):
 
@@ -157,11 +182,18 @@ theorem LeftInverseOf.apply {Carrier : Type u}
 
 Predicate logic:
 
-  operation element inverse = identity
+  ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity element inverse : Carrier}, LRA.Operation.Laws.Inverse.RightInverseOf operation identity element inverse → operation element inverse = identity
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {operation : Carrier → Carrier → Carrier} {identity element inverse : Carrier}, operation element inverse = identity → operation element inverse = identity
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    identity element inverse : Carrier
+    law : RightInverseOf operation identity element inverse
+  Prove
+    operation element inverse = identity → operation element inverse = identity
 
 Logical form (Lean):
 
@@ -203,11 +235,18 @@ theorem RightInverseOf.apply {Carrier : Type u}
 
 Predicate logic:
 
-  LeftInverseOf operation identity element inverse
+  ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity element inverse : Carrier}, LRA.Operation.Laws.Inverse.TwoSidedInverseOf operation identity element inverse → LRA.Operation.Laws.Inverse.LeftInverseOf operation identity element inverse
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {operation : Carrier → Carrier → Carrier} {identity element inverse : Carrier}, (operation inverse element = identity ∧ operation element inverse = identity) → operation inverse element = identity
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    identity element inverse : Carrier
+    law : TwoSidedInverseOf operation identity element inverse
+  Prove
+    (operation inverse element = identity ∧ operation element inverse = identity) → operation inverse element = identity
 
 Logical form (Lean):
 
@@ -249,11 +288,18 @@ theorem TwoSidedInverseOf.left {Carrier : Type u}
 
 Predicate logic:
 
-  RightInverseOf operation identity element inverse
+  ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity element inverse : Carrier}, LRA.Operation.Laws.Inverse.TwoSidedInverseOf operation identity element inverse → LRA.Operation.Laws.Inverse.RightInverseOf operation identity element inverse
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {operation : Carrier → Carrier → Carrier} {identity element inverse : Carrier}, (operation inverse element = identity ∧ operation element inverse = identity) → operation element inverse = identity
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    identity element inverse : Carrier
+    law : TwoSidedInverseOf operation identity element inverse
+  Prove
+    (operation inverse element = identity ∧ operation element inverse = identity) → operation element inverse = identity
 
 Logical form (Lean):
 
@@ -295,11 +341,19 @@ theorem TwoSidedInverseOf.right {Carrier : Type u}
 
 Predicate logic:
 
-  TwoSidedInverseOf operation identity element inverse
+  ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity element inverse : Carrier}, (LRA.Operation.Laws.Inverse.LeftInverseOf operation identity element inverse ∧ LRA.Operation.Laws.Inverse.RightInverseOf operation identity element inverse) → LRA.Operation.Laws.Inverse.TwoSidedInverseOf operation identity element inverse
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {operation : Carrier → Carrier → Carrier} {identity element inverse : Carrier}, (operation inverse element = identity ∧ operation element inverse = identity) → (operation inverse element = identity ∧ operation element inverse = identity)
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    identity element inverse : Carrier
+    leftLaw : LeftInverseOf operation identity element inverse
+    rightLaw : RightInverseOf operation identity element inverse
+  Prove
+    (operation inverse element = identity ∧ operation element inverse = identity) → (operation inverse element = identity ∧ operation element inverse = identity)
 
 Logical form (Lean):
 
@@ -343,11 +397,20 @@ theorem TwoSidedInverseOf.of_left_right {Carrier : Type u}
 
 Predicate logic:
 
-  ∃ inverse, LeftInverseOf operation identity element inverse
+  ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity element : Carrier}, (LRA.Operation.Laws.Inverse.LeftInvertibleOn eligible operation identity ∧ eligible element) → Exists fun inverse => LRA.Operation.Laws.Inverse.LeftInverseOf operation identity element inverse
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : Carrier → Carrier → Carrier} {identity element : Carrier}, (∀ (element : Carrier), eligible element → Exists fun inverse => operation inverse element = identity ∧ eligible element) → Exists fun inverse => operation inverse element = identity
+  Ambient
+    (Carrier)
+  Objects
+    eligible : Carrier → Prop
+    operation : BinaryEndoOperation Carrier
+    identity element : Carrier
+    law : LeftInvertibleOn eligible operation identity
+    eligible_element : eligible element
+  Prove
+    ((∀ (element : Carrier), eligible element → Exists fun inverse => operation inverse element = identity) ∧ eligible element) → Exists fun inverse => operation inverse element = identity
 
 Logical form (Lean):
 
@@ -393,11 +456,20 @@ theorem LeftInvertibleOn.apply {Carrier : Type u}
 
 Predicate logic:
 
-  ∃ inverse, RightInverseOf operation identity element inverse
+  ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity element : Carrier}, (LRA.Operation.Laws.Inverse.RightInvertibleOn eligible operation identity ∧ eligible element) → Exists fun inverse => LRA.Operation.Laws.Inverse.RightInverseOf operation identity element inverse
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : Carrier → Carrier → Carrier} {identity element : Carrier}, (∀ (element : Carrier), eligible element → Exists fun inverse => operation element inverse = identity ∧ eligible element) → Exists fun inverse => operation element inverse = identity
+  Ambient
+    (Carrier)
+  Objects
+    eligible : Carrier → Prop
+    operation : BinaryEndoOperation Carrier
+    identity element : Carrier
+    law : RightInvertibleOn eligible operation identity
+    eligible_element : eligible element
+  Prove
+    ((∀ (element : Carrier), eligible element → Exists fun inverse => operation element inverse = identity) ∧ eligible element) → Exists fun inverse => operation element inverse = identity
 
 Logical form (Lean):
 
@@ -443,11 +515,20 @@ theorem RightInvertibleOn.apply {Carrier : Type u}
 
 Predicate logic:
 
-  ∃ inverse, TwoSidedInverseOf operation identity element inverse
+  ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity element : Carrier}, (LRA.Operation.Laws.Inverse.TwoSidedInvertibleOn eligible operation identity ∧ eligible element) → Exists fun inverse => LRA.Operation.Laws.Inverse.TwoSidedInverseOf operation identity element inverse
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : Carrier → Carrier → Carrier} {identity element : Carrier}, (∀ (element : Carrier), eligible element → Exists fun inverse => (operation inverse element = identity ∧ operation element inverse = identity) ∧ eligible element) → Exists fun inverse => (operation inverse element = identity ∧ operation element inverse = identity)
+  Ambient
+    (Carrier)
+  Objects
+    eligible : Carrier → Prop
+    operation : BinaryEndoOperation Carrier
+    identity element : Carrier
+    law : TwoSidedInvertibleOn eligible operation identity
+    eligible_element : eligible element
+  Prove
+    ((∀ (element : Carrier), eligible element → Exists fun inverse => (operation inverse element = identity ∧ operation element inverse = identity)) ∧ eligible element) → Exists fun inverse => (operation inverse element = identity ∧ operation element inverse = identity)
 
 Logical form (Lean):
 
@@ -493,11 +574,19 @@ theorem TwoSidedInvertibleOn.apply {Carrier : Type u}
 
 Predicate logic:
 
-  LeftInverse operation identity inverse
+  ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier} {inverse : LRA.Operation.UnaryEndoOperation Carrier}, LRA.Operation.Laws.Inverse.TwoSidedInverse operation identity inverse → LRA.Operation.Laws.Inverse.LeftInverse operation identity inverse
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {operation : Carrier → Carrier → Carrier} {identity : Carrier} {inverse : Carrier → Carrier}, (∀ (element : Carrier), operation (inverse element) element = identity ∧ ∀ (element : Carrier), operation element (inverse element) = identity) → ∀ (element : Carrier), operation (inverse element) element = identity
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    identity : Carrier
+    inverse : UnaryEndoOperation Carrier
+    law : TwoSidedInverse operation identity inverse
+  Prove
+    ((∀ (element : Carrier), operation (inverse element) element = identity) ∧ (∀ (element : Carrier), operation element (inverse element) = identity)) → ∀ (element : Carrier), operation (inverse element) element = identity
 
 Logical form (Lean):
 
@@ -541,11 +630,19 @@ theorem TwoSidedInverse.left {Carrier : Type u}
 
 Predicate logic:
 
-  RightInverse operation identity inverse
+  ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier} {inverse : LRA.Operation.UnaryEndoOperation Carrier}, LRA.Operation.Laws.Inverse.TwoSidedInverse operation identity inverse → LRA.Operation.Laws.Inverse.RightInverse operation identity inverse
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {operation : Carrier → Carrier → Carrier} {identity : Carrier} {inverse : Carrier → Carrier}, (∀ (element : Carrier), operation (inverse element) element = identity ∧ ∀ (element : Carrier), operation element (inverse element) = identity) → ∀ (element : Carrier), operation element (inverse element) = identity
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    identity : Carrier
+    inverse : UnaryEndoOperation Carrier
+    law : TwoSidedInverse operation identity inverse
+  Prove
+    ((∀ (element : Carrier), operation (inverse element) element = identity) ∧ (∀ (element : Carrier), operation element (inverse element) = identity)) → ∀ (element : Carrier), operation element (inverse element) = identity
 
 Logical form (Lean):
 
@@ -589,11 +686,20 @@ theorem TwoSidedInverse.right {Carrier : Type u}
 
 Predicate logic:
 
-  TwoSidedInverse operation identity inverse
+  ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier} {inverse : LRA.Operation.UnaryEndoOperation Carrier}, (LRA.Operation.Laws.Inverse.LeftInverse operation identity inverse ∧ LRA.Operation.Laws.Inverse.RightInverse operation identity inverse) → LRA.Operation.Laws.Inverse.TwoSidedInverse operation identity inverse
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {operation : Carrier → Carrier → Carrier} {identity : Carrier} {inverse : Carrier → Carrier}, (∀ (element : Carrier), operation (inverse element) element = identity ∧ ∀ (element : Carrier), operation element (inverse element) = identity) → (∀ (element : Carrier), operation (inverse element) element = identity ∧ ∀ (element : Carrier), operation element (inverse element) = identity)
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    identity : Carrier
+    inverse : UnaryEndoOperation Carrier
+    leftLaw : LeftInverse operation identity inverse
+    rightLaw : RightInverse operation identity inverse
+  Prove
+    ((∀ (element : Carrier), operation (inverse element) element = identity) ∧ (∀ (element : Carrier), operation element (inverse element) = identity)) → ((∀ (element : Carrier), operation (inverse element) element = identity) ∧ (∀ (element : Carrier), operation element (inverse element) = identity))
 
 Logical form (Lean):
 

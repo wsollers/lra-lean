@@ -16,7 +16,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (multiplication : Alpha → Alpha → Alpha) (a a_1 : Alpha), Exists fun witness => a_1 = multiplication a witness
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun witness => a_1 = multiplication a witness
 
 Logical form (Lean):
 
@@ -62,7 +67,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (multiplication : Alpha → Alpha → Alpha) (a a_1 : Alpha), (Exists fun witness => a_1 = multiplication a witness ∧ Exists fun witness => a = multiplication a_1 witness)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun witness => a_1 = multiplication a witness ∧ Exists fun witness => a = multiplication a_1 witness)
 
 Logical form (Lean):
 
@@ -104,11 +114,19 @@ def AssociatedByDivisibility {Alpha : Type u}
 
 Predicate logic:
 
-  LRA.Order.Preorder (Divides multiplication)
+  ∀ {Alpha : Type u} {multiplication : LRA.Operation.BinaryOperation Alpha} {identity : Alpha}, (LRA.Operation.Laws.Associative.Associative multiplication ∧ LRA.Operation.Laws.Identity.TwoSidedIdentity multiplication identity) → LRA.Order.Preorder (LRA.Operation.Divides multiplication)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {multiplication : Alpha → Alpha → Alpha} {identity : Alpha}, (∀ (first second third : Alpha), multiplication (multiplication first second) third = multiplication first (multiplication second third) ∧ (∀ (element : Alpha), multiplication identity element = element ∧ ∀ (element : Alpha), multiplication element identity = element)) → (∀ (x : Alpha), Exists fun witness => x = multiplication x witness ∧ ∀ (x y z : Alpha), (Exists fun witness => y = multiplication x witness) → (Exists fun witness => z = multiplication y witness) → Exists fun witness => z = multiplication x witness)
+  Ambient
+    (Alpha)
+  Objects
+    multiplication : BinaryOperation Alpha
+    identity : Alpha
+    multiplicationIsAssociative : LRA.Operation.Laws.Associative.Associative multiplication
+    identityIsTwoSided : LRA.Operation.Laws.Identity.TwoSidedIdentity multiplication identity
+  Prove
+    ((∀ (first second third : Alpha), multiplication (multiplication first second) third = multiplication first (multiplication second third)) ∧ ((∀ (element : Alpha), multiplication identity element = element) ∧ (∀ (element : Alpha), multiplication element identity = element))) → ((∀ (x : Alpha), Exists fun witness => x = multiplication x witness) ∧ (∀ (x y z : Alpha), (Exists fun witness => y = multiplication x witness) → (Exists fun witness => z = multiplication y witness) → Exists fun witness => z = multiplication x witness))
 
 Logical form (Lean):
 

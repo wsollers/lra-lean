@@ -15,22 +15,22 @@ open LRA.NumberSystems.IntegerStructure.Interface.Signature
 Predicate logic:
 
   structure IntegerStructureSignature where
-  carrier : Type u
-  zero : LRA.Operation.NullaryOperation carrier
-  one : LRA.Operation.NullaryOperation carrier
-  negativeOne : LRA.Operation.NullaryOperation carrier
-  successor : LRA.Operation.UnaryOperation carrier
-  predecessor : LRA.Operation.UnaryOperation carrier
+    carrier : Type u
+    zero : LRA.Operation.NullaryOperation carrier
+    one : LRA.Operation.NullaryOperation carrier
+    negativeOne : LRA.Operation.NullaryOperation carrier
+    successor : LRA.Operation.UnaryOperation carrier
+    predecessor : LRA.Operation.UnaryOperation carrier
 
 Predicate logic (unfolded):
 
   structure IntegerStructureSignature where
-  carrier : Type u
-  zero : LRA.Operation.NullaryOperation carrier
-  one : LRA.Operation.NullaryOperation carrier
-  negativeOne : LRA.Operation.NullaryOperation carrier
-  successor : LRA.Operation.UnaryOperation carrier
-  predecessor : LRA.Operation.UnaryOperation carrier (source fallback; no compiled unfold data available)
+    carrier : Type u
+    zero : LRA.Operation.NullaryOperation carrier
+    one : LRA.Operation.NullaryOperation carrier
+    negativeOne : LRA.Operation.NullaryOperation carrier
+    successor : LRA.Operation.UnaryOperation carrier
+    predecessor : LRA.Operation.UnaryOperation carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -77,12 +77,12 @@ structure IntegerStructureSignature where
 Predicate logic:
 
   abbrev IntegerStructureLStructure :=
-  LRA.ModelTheory.FirstOrder.Model IntegerFirstOrderSignature
+    LRA.ModelTheory.FirstOrder.Model IntegerFirstOrderSignature
 
 Predicate logic (unfolded):
 
   abbrev IntegerStructureLStructure :=
-  LRA.ModelTheory.FirstOrder.Model IntegerFirstOrderSignature (source fallback; no compiled unfold data available)
+    LRA.ModelTheory.FirstOrder.Model IntegerFirstOrderSignature (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -119,34 +119,34 @@ abbrev IntegerStructureLStructure :=
 Predicate logic:
 
   def BuildIntegerStructureLStructure
-    (signature : IntegerStructureSignature) :
-    IntegerStructureLStructure where
-  Domain := signature.carrier
-  domainNonempty := ⟨signature.zero⟩
-  interpretFunction
-    | .successor, args => signature.successor (args ⟨0, by decide⟩)
-    | .predecessor, args => signature.predecessor (args ⟨0, by decide⟩)
-  interpretRelation := fun RelationSymbol => nomatch RelationSymbol
-  interpretConstant
-    | .zero => signature.zero
-    | .one => signature.one
-    | .negativeOne => signature.negativeOne
+      (signature : IntegerStructureSignature) :
+      IntegerStructureLStructure where
+    Domain := signature.carrier
+    domainNonempty := ⟨signature.zero⟩
+    interpretFunction
+      | .successor, args => signature.successor (args ⟨0, by decide⟩)
+      | .predecessor, args => signature.predecessor (args ⟨0, by decide⟩)
+    interpretRelation := fun RelationSymbol => nomatch RelationSymbol
+    interpretConstant
+      | .zero => signature.zero
+      | .one => signature.one
+      | .negativeOne => signature.negativeOne
 
 Predicate logic (unfolded):
 
   def BuildIntegerStructureLStructure
-    (signature : IntegerStructureSignature) :
-    IntegerStructureLStructure where
-  Domain := signature.carrier
-  domainNonempty := ⟨signature.zero⟩
-  interpretFunction
-    | .successor, args => signature.successor (args ⟨0, by decide⟩)
-    | .predecessor, args => signature.predecessor (args ⟨0, by decide⟩)
-  interpretRelation := fun RelationSymbol => nomatch RelationSymbol
-  interpretConstant
-    | .zero => signature.zero
-    | .one => signature.one
-    | .negativeOne => signature.negativeOne (source fallback; no compiled unfold data available)
+      (signature : IntegerStructureSignature) :
+      IntegerStructureLStructure where
+    Domain := signature.carrier
+    domainNonempty := ⟨signature.zero⟩
+    interpretFunction
+      | .successor, args => signature.successor (args ⟨0, by decide⟩)
+      | .predecessor, args => signature.predecessor (args ⟨0, by decide⟩)
+    interpretRelation := fun RelationSymbol => nomatch RelationSymbol
+    interpretConstant
+      | .zero => signature.zero
+      | .one => signature.one
+      | .negativeOne => signature.negativeOne (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -243,30 +243,30 @@ abbrev BuildIntegerStructureModel := BuildIntegerStructureLStructure
 Predicate logic:
 
   def integerStructureFirstOrderModel (R : Type u) [OfNat R 0] [OfNat R 1]
-    [LRA.AlgebraicStructures.HasSuccessor R]
-    [LRA.AlgebraicStructures.HasPredecessor R] (negativeOneValue : R) :
-    IntegerStructureLStructure :=
-  BuildIntegerStructureLStructure
-    { carrier := R
-      zero := 0
-      one := 1
-      negativeOne := negativeOneValue
-      successor := LRA.AlgebraicStructures.Succ
-      predecessor := LRA.AlgebraicStructures.Pred }
+      [LRA.AlgebraicStructures.HasSuccessor R]
+      [LRA.AlgebraicStructures.HasPredecessor R] (negativeOneValue : R) :
+      IntegerStructureLStructure :=
+    BuildIntegerStructureLStructure
+      { carrier := R
+        zero := 0
+        one := 1
+        negativeOne := negativeOneValue
+        successor := LRA.AlgebraicStructures.Succ
+        predecessor := LRA.AlgebraicStructures.Pred }
 
 Predicate logic (unfolded):
 
   def integerStructureFirstOrderModel (R : Type u) [OfNat R 0] [OfNat R 1]
-    [LRA.AlgebraicStructures.HasSuccessor R]
-    [LRA.AlgebraicStructures.HasPredecessor R] (negativeOneValue : R) :
-    IntegerStructureLStructure :=
-  BuildIntegerStructureLStructure
-    { carrier := R
-      zero := 0
-      one := 1
-      negativeOne := negativeOneValue
-      successor := LRA.AlgebraicStructures.Succ
-      predecessor := LRA.AlgebraicStructures.Pred } (source fallback; no compiled unfold data available)
+      [LRA.AlgebraicStructures.HasSuccessor R]
+      [LRA.AlgebraicStructures.HasPredecessor R] (negativeOneValue : R) :
+      IntegerStructureLStructure :=
+    BuildIntegerStructureLStructure
+      { carrier := R
+        zero := 0
+        one := 1
+        negativeOne := negativeOneValue
+        successor := LRA.AlgebraicStructures.Succ
+        predecessor := LRA.AlgebraicStructures.Pred } (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

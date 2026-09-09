@@ -8,28 +8,28 @@ universe u
 Predicate logic:
 
   class UnionLaws (α : Type u)
-    [Union α] [EmptyCollection α] [HasSubset α] : Prop where
-  UnionCommutative : ∀ A B : α, A ∪ B = B ∪ A
-  UnionAssociative : ∀ A B C : α, (A ∪ B) ∪ C = A ∪ (B ∪ C)
-  EmptyUnion : ∀ A : α, (∅ : α) ∪ A = A
-  UnionEmpty : ∀ A : α, A ∪ (∅ : α) = A
-  UnionIdempotent : ∀ A : α, A ∪ A = A
-  UnionMonotone :
-    ∀ A₁ A₂ B₁ B₂ : α, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∪ B₁ ⊆ A₂ ∪ B₂
-  SubsetIffUnionEqRight : ∀ A B : α, A ⊆ B ↔ A ∪ B = B
+      [Union α] [EmptyCollection α] [HasSubset α] : Prop where
+    UnionCommutative : ∀ A B : α, A ∪ B = B ∪ A
+    UnionAssociative : ∀ A B C : α, (A ∪ B) ∪ C = A ∪ (B ∪ C)
+    EmptyUnion : ∀ A : α, (∅ : α) ∪ A = A
+    UnionEmpty : ∀ A : α, A ∪ (∅ : α) = A
+    UnionIdempotent : ∀ A : α, A ∪ A = A
+    UnionMonotone :
+      ∀ A₁ A₂ B₁ B₂ : α, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∪ B₁ ⊆ A₂ ∪ B₂
+    SubsetIffUnionEqRight : ∀ A B : α, A ⊆ B ↔ A ∪ B = B
 
 Predicate logic (unfolded):
 
   class UnionLaws (α : Type u)
-    [Union α] [EmptyCollection α] [HasSubset α] : Prop where
-  UnionCommutative : ∀ A B : α, A ∪ B = B ∪ A
-  UnionAssociative : ∀ A B C : α, (A ∪ B) ∪ C = A ∪ (B ∪ C)
-  EmptyUnion : ∀ A : α, (∅ : α) ∪ A = A
-  UnionEmpty : ∀ A : α, A ∪ (∅ : α) = A
-  UnionIdempotent : ∀ A : α, A ∪ A = A
-  UnionMonotone :
-    ∀ A₁ A₂ B₁ B₂ : α, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∪ B₁ ⊆ A₂ ∪ B₂
-  SubsetIffUnionEqRight : ∀ A B : α, A ⊆ B ↔ A ∪ B = B (source fallback; no compiled unfold data available)
+      [Union α] [EmptyCollection α] [HasSubset α] : Prop where
+    UnionCommutative : ∀ A B : α, A ∪ B = B ∪ A
+    UnionAssociative : ∀ A B C : α, (A ∪ B) ∪ C = A ∪ (B ∪ C)
+    EmptyUnion : ∀ A : α, (∅ : α) ∪ A = A
+    UnionEmpty : ∀ A : α, A ∪ (∅ : α) = A
+    UnionIdempotent : ∀ A : α, A ∪ A = A
+    UnionMonotone :
+      ∀ A₁ A₂ B₁ B₂ : α, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∪ B₁ ⊆ A₂ ∪ B₂
+    SubsetIffUnionEqRight : ∀ A B : α, A ⊆ B ↔ A ∪ B = B (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -84,11 +84,16 @@ variable [UnionLaws α]
 
 Predicate logic:
 
-  ∀ A B : α, A ∪ B = B ∪ A
+  ∀ {α : Type u} [inst : Union α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.UnionLaws α → ∀ (A B : α), A ∪ B = B ∪ A
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : Union α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.UnionLaws α → ∀ (A B : α), inst.1 A B = inst.1 B A
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.UnionLaws α → ∀ (A B : α), inst.1 A B = inst.1 B A
 
 Logical form (Lean):
 
@@ -123,11 +128,16 @@ theorem UnionCommutative : ∀ A B : α, A ∪ B = B ∪ A := by
 
 Predicate logic:
 
-  ∀ A B C : α, (A ∪ B) ∪ C = A ∪ (B ∪ C)
+  ∀ {α : Type u} [inst : Union α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.UnionLaws α → ∀ (A B C : α), A ∪ B ∪ C = A ∪ B ∪ C
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : Union α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.UnionLaws α → ∀ (A B C : α), inst.1 (inst.1 A B) C = inst.1 A (inst.1 B C)
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.UnionLaws α → ∀ (A B C : α), inst.1 (inst.1 A B) C = inst.1 A (inst.1 B C)
 
 Logical form (Lean):
 
@@ -162,11 +172,16 @@ theorem UnionAssociative : ∀ A B C : α, (A ∪ B) ∪ C = A ∪ (B ∪ C) := 
 
 Predicate logic:
 
-  ∀ A : α, ∅ ∈ α ∪ A = A
+  ∀ {α : Type u} [inst : Union α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.UnionLaws α → ∀ (A : α), inst_1.emptyCollection ∪ A = A
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : Union α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.UnionLaws α → ∀ (A : α), inst.1 inst_1.1 A = A
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.UnionLaws α → ∀ (A : α), inst.1 inst_1.1 A = A
 
 Logical form (Lean):
 
@@ -201,11 +216,16 @@ theorem EmptyUnion : ∀ A : α, (∅ : α) ∪ A = A := by
 
 Predicate logic:
 
-  ∀ A : α, A ∪ ∅ ∈ α = A
+  ∀ {α : Type u} [inst : Union α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.UnionLaws α → ∀ (A : α), A ∪ inst_1.emptyCollection = A
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : Union α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.UnionLaws α → ∀ (A : α), inst.1 A inst_1.1 = A
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.UnionLaws α → ∀ (A : α), inst.1 A inst_1.1 = A
 
 Logical form (Lean):
 
@@ -240,11 +260,16 @@ theorem UnionEmpty : ∀ A : α, A ∪ (∅ : α) = A := by
 
 Predicate logic:
 
-  ∀ A : α, A ∪ A = A
+  ∀ {α : Type u} [inst : Union α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.UnionLaws α → ∀ (A : α), A ∪ A = A
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : Union α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.UnionLaws α → ∀ (A : α), inst.1 A A = A
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.UnionLaws α → ∀ (A : α), inst.1 A A = A
 
 Logical form (Lean):
 
@@ -279,11 +304,16 @@ theorem UnionIdempotent : ∀ A : α, A ∪ A = A := by
 
 Predicate logic:
 
-  ∀ A₁ A₂ B₁ B₂ : α, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∪ B₁ ⊆ A₂ ∪ B₂
+  ∀ {α : Type u} [inst : Union α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.UnionLaws α → ∀ (A₁ A₂ B₁ B₂ : α), (inst_2.Subset A₁ A₂ ∧ inst_2.Subset B₁ B₂) → inst_2.Subset (A₁ ∪ B₁)(A₂ ∪ B₂)
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : Union α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.UnionLaws α → ∀ (A₁ A₂ B₁ B₂ : α), (inst_2.1 A₁ A₂ ∧ inst_2.1 B₁ B₂) → inst_2.1 (inst.1 A₁ B₁) (inst.1 A₂ B₂)
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.UnionLaws α → ∀ (A₁ A₂ B₁ B₂ : α), (inst_2.1 A₁ A₂ ∧ inst_2.1 B₁ B₂) → inst_2.1 (inst.1 A₁ B₁) (inst.1 A₂ B₂)
 
 Logical form (Lean):
 
@@ -320,11 +350,16 @@ theorem UnionMonotone :
 
 Predicate logic:
 
-  ∀ A B : α, A ⊆ B ↔ A ∪ B = B
+  ∀ {α : Type u} [inst : Union α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.UnionLaws α → ∀ (A B : α), inst_2.Subset A B ↔ A ∪ B = B
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : Union α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.UnionLaws α → ∀ (A B : α), inst_2.1 A B ↔ inst.1 A B = B
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.UnionLaws α → ∀ (A B : α), inst_2.Subset A B ↔ A ∪ B = B
 
 Logical form (Lean):
 

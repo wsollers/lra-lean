@@ -14,66 +14,66 @@ variable [Membership Element SetObject]
 Predicate logic:
 
   structure NaturalArithmeticForWholeNumbers
-    (Element : Type u) (SetObject : Type v)
-    [Membership Element SetObject] where
-  model : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject
-  strictOrder : Element → Element → Prop
-  strictOrder_trichotomous :
-    ∀ first second,
-      strictOrder first second ∨ first = second ∨ strictOrder second first
-  strictOrder_transitive :
-    ∀ first second third,
-      strictOrder first second →
-      strictOrder second third →
-      strictOrder first third
-  addition_preserves_and_reflects_strictOrder :
-    ∀ first second translation,
-      strictOrder first second ↔
-        strictOrder
-          (LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition
-            model first translation)
-          (LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition
-            model second translation)
-  multiplication_preserves_and_reflects_strictOrder :
-    ∀ first second factor,
-      strictOrder first second ↔
-        strictOrder
-          (LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauMultiplication
-            model first factor)
-          (LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauMultiplication
-            model second factor)
+      (Element : Type u) (SetObject : Type v)
+      [Membership Element SetObject] where
+    model : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject
+    strictOrder : Element → Element → Prop
+    strictOrder_trichotomous :
+      ∀ first second,
+        strictOrder first second ∨ first = second ∨ strictOrder second first
+    strictOrder_transitive :
+      ∀ first second third,
+        strictOrder first second →
+        strictOrder second third →
+        strictOrder first third
+    addition_preserves_and_reflects_strictOrder :
+      ∀ first second translation,
+        strictOrder first second ↔
+          strictOrder
+            (LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition
+              model first translation)
+            (LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition
+              model second translation)
+    multiplication_preserves_and_reflects_strictOrder :
+      ∀ first second factor,
+        strictOrder first second ↔
+          strictOrder
+            (LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauMultiplication
+              model first factor)
+            (LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauMultiplication
+              model second factor)
 
 Predicate logic (unfolded):
 
   structure NaturalArithmeticForWholeNumbers
-    (Element : Type u) (SetObject : Type v)
-    [Membership Element SetObject] where
-  model : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject
-  strictOrder : Element → Element → Prop
-  strictOrder_trichotomous :
-    ∀ first second,
-      strictOrder first second ∨ first = second ∨ strictOrder second first
-  strictOrder_transitive :
-    ∀ first second third,
-      strictOrder first second →
-      strictOrder second third →
-      strictOrder first third
-  addition_preserves_and_reflects_strictOrder :
-    ∀ first second translation,
-      strictOrder first second ↔
-        strictOrder
-          (LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition
-            model first translation)
-          (LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition
-            model second translation)
-  multiplication_preserves_and_reflects_strictOrder :
-    ∀ first second factor,
-      strictOrder first second ↔
-        strictOrder
-          (LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauMultiplication
-            model first factor)
-          (LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauMultiplication
-            model second factor) (source fallback; no compiled unfold data available)
+      (Element : Type u) (SetObject : Type v)
+      [Membership Element SetObject] where
+    model : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject
+    strictOrder : Element → Element → Prop
+    strictOrder_trichotomous :
+      ∀ first second,
+        strictOrder first second ∨ first = second ∨ strictOrder second first
+    strictOrder_transitive :
+      ∀ first second third,
+        strictOrder first second →
+        strictOrder second third →
+        strictOrder first third
+    addition_preserves_and_reflects_strictOrder :
+      ∀ first second translation,
+        strictOrder first second ↔
+          strictOrder
+            (LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition
+              model first translation)
+            (LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddition
+              model second translation)
+    multiplication_preserves_and_reflects_strictOrder :
+      ∀ first second factor,
+        strictOrder first second ↔
+          strictOrder
+            (LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauMultiplication
+              model first factor)
+            (LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauMultiplication
+              model second factor) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -166,14 +166,14 @@ variable (natural_data : NaturalArithmeticForWholeNumbers Element SetObject)
 Predicate logic:
 
   abbrev Carrier
-    (_natural_data : NaturalArithmeticForWholeNumbers Element SetObject) :=
-  Option Element
+      (_natural_data : NaturalArithmeticForWholeNumbers Element SetObject) :=
+    Option Element
 
 Predicate logic (unfolded):
 
   abbrev Carrier
-    (_natural_data : NaturalArithmeticForWholeNumbers Element SetObject) :=
-  Option Element (source fallback; no compiled unfold data available)
+      (_natural_data : NaturalArithmeticForWholeNumbers Element SetObject) :=
+    Option Element (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -326,14 +326,14 @@ def naturalEmbedding (value : Element) : Carrier natural_data := some value
 Predicate logic:
 
   def successor : Carrier natural_data → Carrier natural_data
-  | none => some natural_data.model.base
-  | some value => some (natural_data.model.successor value)
+    | none => some natural_data.model.base
+    | some value => some (natural_data.model.successor value)
 
 Predicate logic (unfolded):
 
   def successor : Carrier natural_data → Carrier natural_data
-  | none => some natural_data.model.base
-  | some value => some (natural_data.model.successor value) (source fallback; no compiled unfold data available)
+    | none => some natural_data.model.base
+    | some value => some (natural_data.model.successor value) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -375,7 +375,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.WholeNumbers.Constructions.Landau.NaturalArithmeticForWholeNumbers Element SetObject) (a a_1 : Option Element), Option.rec (Option.rec ((fun _ => False) Unit.unit) (fun val => (fun val => (fun val => True) val) val) a_1) (fun val => (fun val => Option.rec ((fun val => False) val) (fun val_1 => (fun val_2 => (fun left right => natural_data.2 left right) val val_2) val_1) a_1) val) a
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Option.rec (Option.rec ((fun _ => False) Unit.unit) (fun val => (fun val => (fun val => True) val) val) a_1) (fun val => (fun val => Option.rec ((fun val => False) val) (fun val_1 => (fun val_2 => (fun left right => natural_data.2 left right) val val_2) val_1) a_1) val) a
 
 Logical form (Lean):
 
@@ -421,7 +426,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.WholeNumbers.Constructions.Landau.NaturalArithmeticForWholeNumbers Element SetObject) (left right : Option Element), Or (Option.rec (Option.rec ((fun _ => False) Unit.unit) (fun val => (fun val => (fun val => True) val) val) right) (fun val => (fun val => Option.rec ((fun val => False) val) (fun val_1 => (fun val_2 => (fun left right => natural_data.2 left right) val val_2) val_1) right) val) left) (left = right)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (Option.rec (Option.rec ((fun _ => False) Unit.unit) (fun val => (fun val => (fun val => True) val) val) right) (fun val => (fun val => Option.rec ((fun val => False) val) (fun val_1 => (fun val_2 => (fun left right => natural_data.2 left right) val val_2) val_1) right) val) left) (left = right)
 
 Logical form (Lean):
 

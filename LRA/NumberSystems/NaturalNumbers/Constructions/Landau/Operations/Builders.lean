@@ -18,13 +18,13 @@ variable [Membership Element SetObject]
 
 Predicate logic:
 
-  def LandauOneOn (model : PeanoSystem Element SetObject) : OfNat Element 1 :=
-  ⟨model.base⟩
+  abbrev LandauOneOn (model : PeanoSystem Element SetObject) : OfNat Element 1 :=
+    ⟨model.base⟩
 
 Predicate logic (unfolded):
 
-  def LandauOneOn (model : PeanoSystem Element SetObject) : OfNat Element 1 :=
-  ⟨model.base⟩ (source fallback; no compiled unfold data available)
+  abbrev LandauOneOn (model : PeanoSystem Element SetObject) : OfNat Element 1 :=
+    ⟨model.base⟩ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -60,15 +60,15 @@ abbrev LandauOneOn (model : PeanoSystem Element SetObject) : OfNat Element 1 :=
 
 Predicate logic:
 
-  def LandauSuccOn (model : PeanoSystem Element SetObject) :
-    HasSuccessor Element :=
-  ⟨model.successor⟩
+  abbrev LandauSuccOn (model : PeanoSystem Element SetObject) :
+      HasSuccessor Element :=
+    ⟨model.successor⟩
 
 Predicate logic (unfolded):
 
-  def LandauSuccOn (model : PeanoSystem Element SetObject) :
-    HasSuccessor Element :=
-  ⟨model.successor⟩ (source fallback; no compiled unfold data available)
+  abbrev LandauSuccOn (model : PeanoSystem Element SetObject) :
+      HasSuccessor Element :=
+    ⟨model.successor⟩ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -102,8 +102,46 @@ abbrev LandauSuccOn (model : PeanoSystem Element SetObject) :
   ⟨model.successor⟩
 
 /--
-`LandauNonemptyOn` packages the distinguished `one` element as the witness
-needed by bundled semigroup-style interfaces.
+`LandauNonemptyOn` packages the distinguished `one` element as the witness needed by bundled semigroup-style interfaces.
+
+Predicate logic:
+
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (a : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), Nonempty Element
+
+Predicate logic (unfolded):
+
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    model : PeanoSystem Element SetObject
+  Prove
+    Nonempty Element
+
+Logical form (Lean):
+
+```lean
+theorem LandauNonemptyOn (model : PeanoSystem Element SetObject) :
+    Nonempty Element
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
 -/
 theorem LandauNonemptyOn (model : PeanoSystem Element SetObject) :
     Nonempty Element := by
@@ -113,15 +151,15 @@ theorem LandauNonemptyOn (model : PeanoSystem Element SetObject) :
 
 Predicate logic:
 
-  noncomputable def LandauAddOn (model : PeanoSystem Element SetObject) :
-    Add Element :=
-  ⟨LandauAddition model⟩
+  noncomputable abbrev LandauAddOn (model : PeanoSystem Element SetObject) :
+      Add Element :=
+    ⟨LandauAddition model⟩
 
 Predicate logic (unfolded):
 
-  noncomputable def LandauAddOn (model : PeanoSystem Element SetObject) :
-    Add Element :=
-  ⟨LandauAddition model⟩ (source fallback; no compiled unfold data available)
+  noncomputable abbrev LandauAddOn (model : PeanoSystem Element SetObject) :
+      Add Element :=
+    ⟨LandauAddition model⟩ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -159,15 +197,15 @@ noncomputable abbrev LandauAddOn (model : PeanoSystem Element SetObject) :
 
 Predicate logic:
 
-  noncomputable def LandauMulOn (model : PeanoSystem Element SetObject) :
-    Mul Element :=
-  ⟨LandauMultiplication model⟩
+  noncomputable abbrev LandauMulOn (model : PeanoSystem Element SetObject) :
+      Mul Element :=
+    ⟨LandauMultiplication model⟩
 
 Predicate logic (unfolded):
 
-  noncomputable def LandauMulOn (model : PeanoSystem Element SetObject) :
-    Mul Element :=
-  ⟨LandauMultiplication model⟩ (source fallback; no compiled unfold data available)
+  noncomputable abbrev LandauMulOn (model : PeanoSystem Element SetObject) :
+      Mul Element :=
+    ⟨LandauMultiplication model⟩ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -205,28 +243,25 @@ noncomputable abbrev LandauMulOn (model : PeanoSystem Element SetObject) :
 
 Predicate logic:
 
-  noncomputable def LandauAdditiveSemigroupLawsOn
-    (model : PeanoSystem Element SetObject) :
-    @AdditiveSemigroupLaws Element (LandauAddOn model) :=
-  @AdditiveSemigroupLaws.mk Element (LandauAddOn model)
-    (LandauAdditionIsAssociative model)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (model : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), have x := LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddOn model; have x_1 := ⋯; LRA.AlgebraicStructures.AdditiveSemigroupLaws Element
 
 Predicate logic (unfolded):
 
-  noncomputable def LandauAdditiveSemigroupLawsOn
-    (model : PeanoSystem Element SetObject) :
-    @AdditiveSemigroupLaws Element (LandauAddOn model) :=
-  @AdditiveSemigroupLaws.mk Element (LandauAddOn model)
-    (LandauAdditionIsAssociative model) (source fallback; no compiled unfold data available)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    model : PeanoSystem Element SetObject
+  Prove
+    have x := LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddOn model; have x_1 := ⋯; LRA.AlgebraicStructures.AdditiveSemigroupLaws Element
 
 Logical form (Lean):
 
 ```lean
-noncomputable def LandauAdditiveSemigroupLawsOn
+theorem LandauAdditiveSemigroupLawsOn
     (model : PeanoSystem Element SetObject) :
-    @AdditiveSemigroupLaws Element (LandauAddOn model) (LandauNonemptyOn model) :=
-  @AdditiveSemigroupLaws.mk Element (LandauAddOn model) (LandauNonemptyOn model)
-    (LandauAdditionIsAssociative model)
+    let _ : Add Element := LandauAddOn model
+    let _ : Nonempty Element := LandauNonemptyOn model
+    AdditiveSemigroupLaws Element
 ```
 
 Type-theoretic form:
@@ -259,27 +294,23 @@ theorem LandauAdditiveSemigroupLawsOn
 
 Predicate logic:
 
-  noncomputable def LandauAdditiveCommutativeLawsOn
-    (model : PeanoSystem Element SetObject) :
-    @AdditiveCommutativeLaws Element (LandauAddOn model) :=
-  @AdditiveCommutativeLaws.mk Element (LandauAddOn model)
-    (LandauAdditionIsCommutative model)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (model : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), LRA.AlgebraicStructures.AdditiveCommutativeLaws Element
 
 Predicate logic (unfolded):
 
-  noncomputable def LandauAdditiveCommutativeLawsOn
-    (model : PeanoSystem Element SetObject) :
-    @AdditiveCommutativeLaws Element (LandauAddOn model) :=
-  @AdditiveCommutativeLaws.mk Element (LandauAddOn model)
-    (LandauAdditionIsCommutative model) (source fallback; no compiled unfold data available)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    model : PeanoSystem Element SetObject
+  Prove
+    LRA.AlgebraicStructures.AdditiveCommutativeLaws Element
 
 Logical form (Lean):
 
 ```lean
 theorem LandauAdditiveCommutativeLawsOn
     (model : PeanoSystem Element SetObject) :
-    @AdditiveCommutativeLaws Element (LandauAddOn model) := by
-  sorry
+    @AdditiveCommutativeLaws Element (LandauAddOn model)
 ```
 
 Type-theoretic form:
@@ -310,28 +341,25 @@ theorem LandauAdditiveCommutativeLawsOn
 
 Predicate logic:
 
-  noncomputable def LandauMultiplicativeSemigroupLawsOn
-    (model : PeanoSystem Element SetObject) :
-    @MultiplicativeSemigroupLaws Element (LandauMulOn model) :=
-  @MultiplicativeSemigroupLaws.mk Element (LandauMulOn model)
-    (LandauMultiplicationIsAssociative model)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (model : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), have x := LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauMulOn model; have x_1 := ⋯; LRA.AlgebraicStructures.MultiplicativeSemigroupLaws Element
 
 Predicate logic (unfolded):
 
-  noncomputable def LandauMultiplicativeSemigroupLawsOn
-    (model : PeanoSystem Element SetObject) :
-    @MultiplicativeSemigroupLaws Element (LandauMulOn model) :=
-  @MultiplicativeSemigroupLaws.mk Element (LandauMulOn model)
-    (LandauMultiplicationIsAssociative model) (source fallback; no compiled unfold data available)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    model : PeanoSystem Element SetObject
+  Prove
+    have x := LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauMulOn model; have x_1 := ⋯; LRA.AlgebraicStructures.MultiplicativeSemigroupLaws Element
 
 Logical form (Lean):
 
 ```lean
-noncomputable def LandauMultiplicativeSemigroupLawsOn
+theorem LandauMultiplicativeSemigroupLawsOn
     (model : PeanoSystem Element SetObject) :
-    @MultiplicativeSemigroupLaws Element (LandauMulOn model) (LandauNonemptyOn model) :=
-  @MultiplicativeSemigroupLaws.mk Element (LandauMulOn model) (LandauNonemptyOn model)
-    (LandauMultiplicationIsAssociative model)
+    let _ : Mul Element := LandauMulOn model
+    let _ : Nonempty Element := LandauNonemptyOn model
+    MultiplicativeSemigroupLaws Element
 ```
 
 Type-theoretic form:
@@ -364,27 +392,23 @@ theorem LandauMultiplicativeSemigroupLawsOn
 
 Predicate logic:
 
-  noncomputable def LandauMultiplicativeCommutativeLawsOn
-    (model : PeanoSystem Element SetObject) :
-    @MultiplicativeCommutativeLaws Element (LandauMulOn model) :=
-  @MultiplicativeCommutativeLaws.mk Element (LandauMulOn model)
-    (LandauMultiplicationIsCommutative model)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (model : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), LRA.AlgebraicStructures.MultiplicativeCommutativeLaws Element
 
 Predicate logic (unfolded):
 
-  noncomputable def LandauMultiplicativeCommutativeLawsOn
-    (model : PeanoSystem Element SetObject) :
-    @MultiplicativeCommutativeLaws Element (LandauMulOn model) :=
-  @MultiplicativeCommutativeLaws.mk Element (LandauMulOn model)
-    (LandauMultiplicationIsCommutative model) (source fallback; no compiled unfold data available)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    model : PeanoSystem Element SetObject
+  Prove
+    LRA.AlgebraicStructures.MultiplicativeCommutativeLaws Element
 
 Logical form (Lean):
 
 ```lean
 theorem LandauMultiplicativeCommutativeLawsOn
     (model : PeanoSystem Element SetObject) :
-    @MultiplicativeCommutativeLaws Element (LandauMulOn model) := by
-  sorry
+    @MultiplicativeCommutativeLaws Element (LandauMulOn model)
 ```
 
 Type-theoretic form:
@@ -415,29 +439,23 @@ theorem LandauMultiplicativeCommutativeLawsOn
 
 Predicate logic:
 
-  noncomputable def LandauDistributiveLawsOn
-    (model : PeanoSystem Element SetObject) :
-    @DistributiveLaws Element (LandauAddOn model) (LandauMulOn model) :=
-  @DistributiveLaws.mk Element (LandauAddOn model) (LandauMulOn model)
-    (LandauLeftDistributivityOfMultiplicationOverAddition model)
-    (LandauMultiplicationDistributesOverAddition model)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (model : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), LRA.AlgebraicStructures.DistributiveLaws Element
 
 Predicate logic (unfolded):
 
-  noncomputable def LandauDistributiveLawsOn
-    (model : PeanoSystem Element SetObject) :
-    @DistributiveLaws Element (LandauAddOn model) (LandauMulOn model) :=
-  @DistributiveLaws.mk Element (LandauAddOn model) (LandauMulOn model)
-    (LandauLeftDistributivityOfMultiplicationOverAddition model)
-    (LandauMultiplicationDistributesOverAddition model) (source fallback; no compiled unfold data available)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    model : PeanoSystem Element SetObject
+  Prove
+    LRA.AlgebraicStructures.DistributiveLaws Element
 
 Logical form (Lean):
 
 ```lean
 theorem LandauDistributiveLawsOn
     (model : PeanoSystem Element SetObject) :
-    @DistributiveLaws Element (LandauAddOn model) (LandauMulOn model) := by
-  sorry
+    @DistributiveLaws Element (LandauAddOn model) (LandauMulOn model)
 ```
 
 Type-theoretic form:

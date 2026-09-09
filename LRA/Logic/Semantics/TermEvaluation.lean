@@ -9,20 +9,20 @@ namespace LRA.Logic.FirstOrder
 Predicate logic:
 
   def evaluateTerm
-    {S : Signature} {Variable : Type} (M : Interpretation S) (assignment : Variable -> M.Domain) :
-    Term S Variable -> M.Domain
-  | .var v => assignment v
-  | .const c => M.interpretConstant c
-  | .apply f args => M.interpretFunction f (fun i => evaluateTerm M assignment (args i))
+      {S : Signature} {Variable : Type} (M : Interpretation S) (assignment : Variable -> M.Domain) :
+      Term S Variable -> M.Domain
+    | .var v => assignment v
+    | .const c => M.interpretConstant c
+    | .apply f args => M.interpretFunction f (fun i => evaluateTerm M assignment (args i))
 
 Predicate logic (unfolded):
 
   def evaluateTerm
-    {S : Signature} {Variable : Type} (M : Interpretation S) (assignment : Variable -> M.Domain) :
-    Term S Variable -> M.Domain
-  | .var v => assignment v
-  | .const c => M.interpretConstant c
-  | .apply f args => M.interpretFunction f (fun i => evaluateTerm M assignment (args i)) (source fallback; no compiled unfold data available)
+      {S : Signature} {Variable : Type} (M : Interpretation S) (assignment : Variable -> M.Domain) :
+      Term S Variable -> M.Domain
+    | .var v => assignment v
+    | .const c => M.interpretConstant c
+    | .apply f args => M.interpretFunction f (fun i => evaluateTerm M assignment (args i)) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

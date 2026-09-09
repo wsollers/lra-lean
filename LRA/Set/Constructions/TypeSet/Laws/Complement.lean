@@ -12,11 +12,16 @@ variable {Alpha : Type u}
 
 Predicate logic:
 
-  ∀ A : LRA.Set.Constructions.TypeSet Alpha, Aᶜᶜ = A
+  ∀ {Alpha : Type u} (A : LRA.Set.Constructions.TypeSet Alpha), LRA.Set.Constructions.TypeSet.instHasComplement.complement (LRA.Set.Constructions.TypeSet.instHasComplement.complement A) = A
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A : Alpha → Prop), LRA.Set.Constructions.TypeSet.instHasComplement.1 (LRA.Set.Constructions.TypeSet.instHasComplement.1 A) = A
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TypeSet.instHasComplement.1 (LRA.Set.Constructions.TypeSet.instHasComplement.1 A) = A
 
 Logical form (Lean):
 
@@ -53,11 +58,16 @@ theorem DoubleComplement :
 
 Predicate logic:
 
-  ∅ ∈ LRA.Set.Constructions.TypeSet Alphaᶜ = 𝒰 ∈ LRA.Set.Constructions.TypeSet Alpha
+  ∀ {Alpha : Type u}, LRA.Set.Constructions.TypeSet.instHasComplement.complement LRA.Set.Constructions.TypeSet.instEmptyCollection.emptyCollection = LRA.Set.Constructions.TypeSet.instHasUniversal.universal
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u}, LRA.Set.Constructions.TypeSet.instHasComplement.1 LRA.Set.Constructions.TypeSet.instEmptyCollection.1 = LRA.Set.Constructions.TypeSet.instHasUniversal.1
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TypeSet.instHasComplement.1 LRA.Set.Constructions.TypeSet.instEmptyCollection.1 = LRA.Set.Constructions.TypeSet.instHasUniversal.1
 
 Logical form (Lean):
 
@@ -94,11 +104,16 @@ theorem ComplementEmpty :
 
 Predicate logic:
 
-  𝒰 ∈ LRA.Set.Constructions.TypeSet Alphaᶜ = ∅ ∈ LRA.Set.Constructions.TypeSet Alpha
+  ∀ {Alpha : Type u}, LRA.Set.Constructions.TypeSet.instHasComplement.complement LRA.Set.Constructions.TypeSet.instHasUniversal.universal = LRA.Set.Constructions.TypeSet.instEmptyCollection.emptyCollection
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u}, LRA.Set.Constructions.TypeSet.instHasComplement.1 LRA.Set.Constructions.TypeSet.instHasUniversal.1 = LRA.Set.Constructions.TypeSet.instEmptyCollection.1
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TypeSet.instHasComplement.1 LRA.Set.Constructions.TypeSet.instHasUniversal.1 = LRA.Set.Constructions.TypeSet.instEmptyCollection.1
 
 Logical form (Lean):
 
@@ -135,11 +150,16 @@ theorem ComplementUniversal :
 
 Predicate logic:
 
-  ∀ A : LRA.Set.Constructions.TypeSet Alpha, A ∪ Aᶜ = 𝒰 ∈ LRA.Set.Constructions.TypeSet Alpha
+  ∀ {Alpha : Type u} (A : LRA.Set.Constructions.TypeSet Alpha), LRA.Set.Constructions.TypeA ∪ LRA.Set.Constructions.TypeSet.instHasComplement.complement A = LRA.Set.Constructions.TypeSet.instHasUniversal.universal
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A : Alpha → Prop), LRA.Set.Constructions.TypeSet.instUnion.1 A (LRA.Set.Constructions.TypeSet.instHasComplement.1 A) = LRA.Set.Constructions.TypeSet.instHasUniversal.1
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TypeA ∪ LRA.Set.Constructions.TypeSet.instHasComplement.1 A = LRA.Set.Constructions.TypeSet.instHasUniversal.1
 
 Logical form (Lean):
 
@@ -178,11 +198,16 @@ theorem UnionComplement :
 
 Predicate logic:
 
-  ∀ A : LRA.Set.Constructions.TypeSet Alpha, A ∩ Aᶜ = ∅ ∈ LRA.Set.Constructions.TypeSet Alpha
+  ∀ {Alpha : Type u} (A : LRA.Set.Constructions.TypeSet Alpha), LRA.Set.Constructions.TypeA ∩ LRA.Set.Constructions.TypeSet.instHasComplement.complement A = LRA.Set.Constructions.TypeSet.instEmptyCollection.emptyCollection
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A : Alpha → Prop), LRA.Set.Constructions.TypeSet.instInter.1 A (LRA.Set.Constructions.TypeSet.instHasComplement.1 A) = LRA.Set.Constructions.TypeSet.instEmptyCollection.1
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TypeA ∩ LRA.Set.Constructions.TypeSet.instHasComplement.1 A = LRA.Set.Constructions.TypeSet.instEmptyCollection.1
 
 Logical form (Lean):
 
@@ -221,11 +246,16 @@ theorem IntersectionComplement :
 
 Predicate logic:
 
-  ∀ A B : LRA.Set.Constructions.TypeSet Alpha, (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ
+  ∀ {Alpha : Type u} (A B : LRA.Set.Constructions.TypeSet Alpha), LRA.Set.Constructions.TypeSet.instHasComplement.complement (LRA.Set.Constructions.TypeA ∪ B) = LRA.Set.Constructions.TypeLRA.Set.Constructions.TypeSet.instHasComplement.complement A ∩ LRA.Set.Constructions.TypeSet.instHasComplement.complement B
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A B : Alpha → Prop), LRA.Set.Constructions.TypeSet.instHasComplement.1 (LRA.Set.Constructions.TypeSet.instUnion.1 A B) = LRA.Set.Constructions.TypeSet.instInter.1 (LRA.Set.Constructions.TypeSet.instHasComplement.1 A) (LRA.Set.Constructions.TypeSet.instHasComplement.1 B)
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TypeSet.instHasComplement.1 (LRA.Set.Constructions.TypeA ∪ B) = LRA.Set.Constructions.TypeLRA.Set.Constructions.TypeSet.instHasComplement.1 A ∩ LRA.Set.Constructions.TypeSet.instHasComplement.1 B
 
 Logical form (Lean):
 
@@ -262,11 +292,16 @@ theorem DeMorganUnion :
 
 Predicate logic:
 
-  ∀ A B : LRA.Set.Constructions.TypeSet Alpha, (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ
+  ∀ {Alpha : Type u} (A B : LRA.Set.Constructions.TypeSet Alpha), LRA.Set.Constructions.TypeSet.instHasComplement.complement (LRA.Set.Constructions.TypeA ∩ B) = LRA.Set.Constructions.TypeLRA.Set.Constructions.TypeSet.instHasComplement.complement A ∪ LRA.Set.Constructions.TypeSet.instHasComplement.complement B
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A B : Alpha → Prop), LRA.Set.Constructions.TypeSet.instHasComplement.1 (LRA.Set.Constructions.TypeSet.instInter.1 A B) = LRA.Set.Constructions.TypeSet.instUnion.1 (LRA.Set.Constructions.TypeSet.instHasComplement.1 A) (LRA.Set.Constructions.TypeSet.instHasComplement.1 B)
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TypeSet.instHasComplement.1 (LRA.Set.Constructions.TypeA ∩ B) = LRA.Set.Constructions.TypeLRA.Set.Constructions.TypeSet.instHasComplement.1 A ∪ LRA.Set.Constructions.TypeSet.instHasComplement.1 B
 
 Logical form (Lean):
 
@@ -303,11 +338,16 @@ theorem DeMorganIntersection :
 
 Predicate logic:
 
-  ∀ A B : LRA.Set.Constructions.TypeSet Alpha, A \ B = A ∩ Bᶜ
+  ∀ {Alpha : Type u} (A B : LRA.Set.Constructions.TypeSet Alpha), LRA.Set.Constructions.TypeA \ B = LRA.Set.Constructions.TypeA ∩ LRA.Set.Constructions.TypeSet.instHasComplement.complement B
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A B : Alpha → Prop), LRA.Set.Constructions.TypeSet.instSDiff.1 A B = LRA.Set.Constructions.TypeSet.instInter.1 A (LRA.Set.Constructions.TypeSet.instHasComplement.1 B)
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TypeA \ B = LRA.Set.Constructions.TypeA ∩ LRA.Set.Constructions.TypeSet.instHasComplement.1 B
 
 Logical form (Lean):
 
@@ -344,11 +384,16 @@ theorem DifferenceAsIntersectionComplement :
 
 Predicate logic:
 
-  ∀ A : LRA.Set.Constructions.TypeSet Alpha, A \ 𝒰 ∈ LRA.Set.Constructions.TypeSet Alpha = ∅ ∈ LRA.Set.Constructions.TypeSet Alpha
+  ∀ {Alpha : Type u} (A : LRA.Set.Constructions.TypeSet Alpha), LRA.Set.Constructions.TypeA \ LRA.Set.Constructions.TypeSet.instHasUniversal.universal = LRA.Set.Constructions.TypeSet.instEmptyCollection.emptyCollection
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A : Alpha → Prop), LRA.Set.Constructions.TypeSet.instSDiff.1 A LRA.Set.Constructions.TypeSet.instHasUniversal.1 = LRA.Set.Constructions.TypeSet.instEmptyCollection.1
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TypeA \ LRA.Set.Constructions.TypeSet.instHasUniversal.1 = LRA.Set.Constructions.TypeSet.instEmptyCollection.1
 
 Logical form (Lean):
 
@@ -387,11 +432,16 @@ theorem DifferenceUniversal :
 
 Predicate logic:
 
-  ∀ A : LRA.Set.Constructions.TypeSet Alpha, 𝒰 ∈ LRA.Set.Constructions.TypeSet Alpha \ A = Aᶜ
+  ∀ {Alpha : Type u} (A : LRA.Set.Constructions.TypeSet Alpha), LRA.Set.Constructions.TypeLRA.Set.Constructions.TypeSet.instHasUniversal.universal \ A = LRA.Set.Constructions.TypeSet.instHasComplement.complement A
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A : Alpha → Prop), LRA.Set.Constructions.TypeSet.instSDiff.1 LRA.Set.Constructions.TypeSet.instHasUniversal.1 A = LRA.Set.Constructions.TypeSet.instHasComplement.1 A
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TypeLRA.Set.Constructions.TypeSet.instHasUniversal.1 \ A = LRA.Set.Constructions.TypeSet.instHasComplement.1 A
 
 Logical form (Lean):
 

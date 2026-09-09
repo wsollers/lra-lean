@@ -13,7 +13,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain), Exists fun first => Exists fun second => (first = second → False ∧ (∀ (input : Domain), first (function input) = input ∧ ∀ (input : Domain), second (function input) = input))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun first => Exists fun second => ((first = second → False) ∧ ((∀ (input : Domain), first (function input) = input) ∧ (∀ (input : Domain), second (function input) = input)))
 
 Logical form (Lean):
 
@@ -57,7 +62,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain), Exists fun first => Exists fun second => (first = second → False ∧ (∀ (output : Codomain), function (first output) = output ∧ ∀ (output : Codomain), function (second output) = output))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun first => Exists fun second => ((first = second → False) ∧ ((∀ (output : Codomain), function (first output) = output) ∧ (∀ (output : Codomain), function (second output) = output)))
 
 Logical form (Lean):
 

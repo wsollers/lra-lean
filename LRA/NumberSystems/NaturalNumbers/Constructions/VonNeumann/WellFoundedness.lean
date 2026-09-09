@@ -10,11 +10,16 @@ open LRA.Set.Constructions.ZFCSet.Axioms
 
 Predicate logic:
 
-  ∀ element : NaturalElement, NaturalSuccessor element ≠ NaturalZero
+  ∀ (element : LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.NaturalElement), Ne (LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.NaturalSuccessor element) LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.NaturalZero
 
 Predicate logic (unfolded):
 
-  ∀ (element : LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.NaturalElement), ⟨Classical.choose ⋯, ⋯⟩ = LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.NaturalZero → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ⟨Classical.choose ⋯, ⋯⟩ = LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.NaturalZero → False
 
 Logical form (Lean):
 
@@ -50,11 +55,16 @@ theorem NaturalZeroIsNotSuccessor :
 
 Predicate logic:
 
-  ∀ first second : NaturalElement, NaturalSuccessor first = NaturalSuccessor second → first = second
+  ∀ (first second : LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.NaturalElement), LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.NaturalSuccessor first = LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.NaturalSuccessor second → first = second
 
 Predicate logic (unfolded):
 
-  ∀ (first second : LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.NaturalElement), ⟨(Classical.indefiniteDescription (LRA.Set.Constructions.ZFCSet.Axioms.IsUnionOf (LRA.Set.Constructions.ZFCSet.Axioms.PairSet first.val (LRA.Set.Constructions.ZFCSet.Axioms.TheSingleton first.val))) ⋯).1, ⋯⟩ = ⟨(Classical.indefiniteDescription (LRA.Set.Constructions.ZFCSet.Axioms.IsUnionOf (LRA.Set.Constructions.ZFCSet.Axioms.PairSet second.val (LRA.Set.Constructions.ZFCSet.Axioms.TheSingleton second.val))) ⋯).1, ⋯⟩ → first = second
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ⟨(Classical.indefiniteDescription (LRA.Set.Constructions.ZFCSet.Axioms.IsUnionOf (LRA.Set.Constructions.ZFCSet.Axioms.PairSet first.val (LRA.Set.Constructions.ZFCSet.Axioms.TheSingleton first.val))) ⋯).1, ⋯⟩ = ⟨(Classical.indefiniteDescription (LRA.Set.Constructions.ZFCSet.Axioms.IsUnionOf (LRA.Set.Constructions.ZFCSet.Axioms.PairSet second.val (LRA.Set.Constructions.ZFCSet.Axioms.TheSingleton second.val))) ⋯).1, ⋯⟩ → first = second
 
 Logical form (Lean):
 
@@ -92,11 +102,16 @@ theorem NaturalSuccessorInjective :
 
 Predicate logic:
 
-  ∀ subset : LRA.Set.Constructions.ZFCSet, NaturalZero ∈ subset → ∀ element ∈ NaturalElement, element ∈ subset → NaturalSuccessor element ∈ subset → ∀ element : NaturalElement, element ∈ subset
+  ∀ (subset : LRA.Set.Constructions.ZFCSet), (LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.instMembershipNaturalElementZFCSet.mem subset LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.NaturalZero ∧ (∀ (element : LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.NaturalElement), LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.instMembershipNaturalElementZFCSet.mem subset element → LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.instMembershipNaturalElementZFCSet.mem subset (LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.NaturalSuccessor element))) → ∀ (element : LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.NaturalElement), LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.instMembershipNaturalElementZFCSet.mem subset element
 
 Predicate logic (unfolded):
 
-  ∀ (subset : LRA.Set.Constructions.ZFCSet), (LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.instMembershipNaturalElementZFCSet.1 subset LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.NaturalZero ∧ ∀ (element : LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.NaturalElement), LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.instMembershipNaturalElementZFCSet.1 subset element → LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.instMembershipNaturalElementZFCSet.1 subset ⟨(Classical.indefiniteDescription (LRA.Set.Constructions.ZFCSet.Axioms.IsUnionOf (LRA.Set.Constructions.ZFCSet.Axioms.PairSet element.val (LRA.Set.Constructions.ZFCSet.Axioms.TheSingleton element.val))) ⋯).val, ⋯⟩) → ∀ (element : LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.NaturalElement), LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.instMembershipNaturalElementZFCSet.1 subset element
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.instMembershipNaturalElementZFCSet.1 subset LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.NaturalZero ∧ (∀ (element : LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.NaturalElement), LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.instMembershipNaturalElementZFCSet.1 subset element → LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.instMembershipNaturalElementZFCSet.1 subset ⟨(Classical.indefiniteDescription (LRA.Set.Constructions.ZFCSet.Axioms.IsUnionOf (LRA.Set.Constructions.ZFCSet.Axioms.PairSet element.val (LRA.Set.Constructions.ZFCSet.Axioms.TheSingleton element.val))) ⋯).val, ⋯⟩)) → ∀ (element : LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.NaturalElement), LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.instMembershipNaturalElementZFCSet.1 subset element
 
 Logical form (Lean):
 
@@ -139,22 +154,22 @@ theorem NaturalInductionPrinciple :
 Predicate logic:
 
   noncomputable def VonNeumannPeanoSystem :
-    LRA.NumberSystems.PeanoSystem.PeanoSystem NaturalElement LRA.Set.Constructions.ZFCSet where
-  base := NaturalZero
-  successor := NaturalSuccessor
-  one_not_successor := NaturalZeroIsNotSuccessor
-  successor_injective := NaturalSuccessorInjective
-  induction := NaturalInductionPrinciple
+      LRA.NumberSystems.PeanoSystem.PeanoSystem NaturalElement LRA.Set.Constructions.ZFCSet where
+    base := NaturalZero
+    successor := NaturalSuccessor
+    one_not_successor := NaturalZeroIsNotSuccessor
+    successor_injective := NaturalSuccessorInjective
+    induction := NaturalInductionPrinciple
 
 Predicate logic (unfolded):
 
   noncomputable def VonNeumannPeanoSystem :
-    LRA.NumberSystems.PeanoSystem.PeanoSystem NaturalElement LRA.Set.Constructions.ZFCSet where
-  base := NaturalZero
-  successor := NaturalSuccessor
-  one_not_successor := NaturalZeroIsNotSuccessor
-  successor_injective := NaturalSuccessorInjective
-  induction := NaturalInductionPrinciple (source fallback; no compiled unfold data available)
+      LRA.NumberSystems.PeanoSystem.PeanoSystem NaturalElement LRA.Set.Constructions.ZFCSet where
+    base := NaturalZero
+    successor := NaturalSuccessor
+    one_not_successor := NaturalZeroIsNotSuccessor
+    successor_injective := NaturalSuccessorInjective
+    induction := NaturalInductionPrinciple (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

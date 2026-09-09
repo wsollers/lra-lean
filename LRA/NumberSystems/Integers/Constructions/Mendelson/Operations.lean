@@ -9,18 +9,18 @@ namespace LRA.NumberSystems.Integers.Mendelson
 Predicate logic:
 
   def representative_addition
-    (positive_data : PositiveNaturalPairData)
-    (first second : PositivePair positive_data) : PositivePair positive_data where
-  left := positive_data.addition first.left second.left
-  right := positive_data.addition first.right second.right
+      (positive_data : PositiveNaturalPairData)
+      (first second : PositivePair positive_data) : PositivePair positive_data where
+    left := positive_data.addition first.left second.left
+    right := positive_data.addition first.right second.right
 
 Predicate logic (unfolded):
 
   def representative_addition
-    (positive_data : PositiveNaturalPairData)
-    (first second : PositivePair positive_data) : PositivePair positive_data where
-  left := positive_data.addition first.left second.left
-  right := positive_data.addition first.right second.right (source fallback; no compiled unfold data available)
+      (positive_data : PositiveNaturalPairData)
+      (first second : PositivePair positive_data) : PositivePair positive_data where
+    left := positive_data.addition first.left second.left
+    right := positive_data.addition first.right second.right (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -63,18 +63,18 @@ def representative_addition
 Predicate logic:
 
   def representative_negation
-    (positive_data : PositiveNaturalPairData)
-    (value : PositivePair positive_data) : PositivePair positive_data where
-  left := value.right
-  right := value.left
+      (positive_data : PositiveNaturalPairData)
+      (value : PositivePair positive_data) : PositivePair positive_data where
+    left := value.right
+    right := value.left
 
 Predicate logic (unfolded):
 
   def representative_negation
-    (positive_data : PositiveNaturalPairData)
-    (value : PositivePair positive_data) : PositivePair positive_data where
-  left := value.right
-  right := value.left (source fallback; no compiled unfold data available)
+      (positive_data : PositiveNaturalPairData)
+      (value : PositivePair positive_data) : PositivePair positive_data where
+    left := value.right
+    right := value.left (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -117,30 +117,30 @@ def representative_negation
 Predicate logic:
 
   def representative_multiplication
-    (positive_data : PositiveNaturalPairData)
-    (first second : PositivePair positive_data) : PositivePair positive_data where
-  left :=
-    positive_data.addition
-      (positive_data.multiplication first.left second.left)
-      (positive_data.multiplication first.right second.right)
-  right :=
-    positive_data.addition
-      (positive_data.multiplication first.left second.right)
-      (positive_data.multiplication first.right second.left)
+      (positive_data : PositiveNaturalPairData)
+      (first second : PositivePair positive_data) : PositivePair positive_data where
+    left :=
+      positive_data.addition
+        (positive_data.multiplication first.left second.left)
+        (positive_data.multiplication first.right second.right)
+    right :=
+      positive_data.addition
+        (positive_data.multiplication first.left second.right)
+        (positive_data.multiplication first.right second.left)
 
 Predicate logic (unfolded):
 
   def representative_multiplication
-    (positive_data : PositiveNaturalPairData)
-    (first second : PositivePair positive_data) : PositivePair positive_data where
-  left :=
-    positive_data.addition
-      (positive_data.multiplication first.left second.left)
-      (positive_data.multiplication first.right second.right)
-  right :=
-    positive_data.addition
-      (positive_data.multiplication first.left second.right)
-      (positive_data.multiplication first.right second.left) (source fallback; no compiled unfold data available)
+      (positive_data : PositiveNaturalPairData)
+      (first second : PositivePair positive_data) : PositivePair positive_data where
+    left :=
+      positive_data.addition
+        (positive_data.multiplication first.left second.left)
+        (positive_data.multiplication first.right second.right)
+    right :=
+      positive_data.addition
+        (positive_data.multiplication first.left second.right)
+        (positive_data.multiplication first.right second.left) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -198,7 +198,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (positive_data : LRA.NumberSystems.Integers.Mendelson.PositiveNaturalPairData) (value : LRA.NumberSystems.Integers.Mendelson.PositivePair positive_data), (positive_data.6 value.2 value.1 ∧ positive_data.4 value.1 { left := positive_data.one, right := positive_data.one }.2 = positive_data.4 { left := positive_data.one, right := positive_data.one }.1 value.2 → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (positive_data.6 value.2 value.1 ∧ (positive_data.4 value.1 { left := positive_data.one, right := positive_data.one }.2 = positive_data.4 { left := positive_data.one, right := positive_data.one }.1 value.2 → False))
 
 Logical form (Lean):
 
@@ -246,7 +251,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (positive_data : LRA.NumberSystems.Integers.Mendelson.PositiveNaturalPairData) (first second : LRA.NumberSystems.Integers.Mendelson.PositivePair positive_data), (positive_data.6 { left := positive_data.addition second.left first.right, right := positive_data.addition first.left second.right }.2 { left := positive_data.addition second.left first.right, right := positive_data.addition first.left second.right }.1 ∧ positive_data.4 { left := positive_data.addition second.left first.right, right := positive_data.addition first.left second.right }.1 { left := positive_data.one, right := positive_data.one }.2 = positive_data.4 { left := positive_data.one, right := positive_data.one }.1 { left := positive_data.addition second.left first.right, right := positive_data.addition first.left second.right }.2 → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (positive_data.6 { left := positive_data.addition second.left first.right, right := positive_data.addition first.left second.right }.2 { left := positive_data.addition second.left first.right, right := positive_data.addition first.left second.right }.1 ∧ (positive_data.4 { left := positive_data.addition second.left first.right, right := positive_data.addition first.left second.right }.1 { left := positive_data.one, right := positive_data.one }.2 = positive_data.4 { left := positive_data.one, right := positive_data.one }.1 { left := positive_data.addition second.left first.right, right := positive_data.addition first.left second.right }.2 → False))
 
 Logical form (Lean):
 

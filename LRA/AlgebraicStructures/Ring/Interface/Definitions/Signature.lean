@@ -8,16 +8,16 @@ namespace LRA.AlgebraicStructures.Ring.Interface.Signature
 Predicate logic:
 
   inductive RingFunctionSymbol where
-  | add
-  | mul
-  | neg
+    | add
+    | mul
+    | neg
 
 Predicate logic (unfolded):
 
   inductive RingFunctionSymbol where
-  | add
-  | mul
-  | neg (source fallback; no compiled unfold data available)
+    | add
+    | mul
+    | neg (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -96,14 +96,14 @@ def RingRelationSymbol : Type := Empty
 Predicate logic:
 
   inductive RingConstantSymbol where
-  | zero
-  | one
+    | zero
+    | one
 
 Predicate logic (unfolded):
 
   inductive RingConstantSymbol where
-  | zero
-  | one (source fallback; no compiled unfold data available)
+    | zero
+    | one (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -142,20 +142,20 @@ inductive RingConstantSymbol where
 Predicate logic:
 
   def RingFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
-  Symbol := RingFunctionSymbol
-  arity
-    | .add => 2
-    | .mul => 2
-    | .neg => 1
+    Symbol := RingFunctionSymbol
+    arity
+      | .add => 2
+      | .mul => 2
+      | .neg => 1
 
 Predicate logic (unfolded):
 
   def RingFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
-  Symbol := RingFunctionSymbol
-  arity
-    | .add => 2
-    | .mul => 2
-    | .neg => 1 (source fallback; no compiled unfold data available)
+    Symbol := RingFunctionSymbol
+    arity
+      | .add => 2
+      | .mul => 2
+      | .neg => 1 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -200,14 +200,14 @@ def RingFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
 Predicate logic:
 
   def RingFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
-  Symbol := RingRelationSymbol
-  arity := Empty.elim
+    Symbol := RingRelationSymbol
+    arity := Empty.elim
 
 Predicate logic (unfolded):
 
   def RingFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
-  Symbol := RingRelationSymbol
-  arity := Empty.elim (source fallback; no compiled unfold data available)
+    Symbol := RingRelationSymbol
+    arity := Empty.elim (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -246,16 +246,16 @@ def RingFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
 Predicate logic:
 
   def RingFirstOrderSignature : LRA.Logic.Signature where
-  Functions := RingFirstOrderFunctions
-  Relations := RingFirstOrderRelations
-  Constants := RingConstantSymbol
+    Functions := RingFirstOrderFunctions
+    Relations := RingFirstOrderRelations
+    Constants := RingConstantSymbol
 
 Predicate logic (unfolded):
 
   def RingFirstOrderSignature : LRA.Logic.Signature where
-  Functions := RingFirstOrderFunctions
-  Relations := RingFirstOrderRelations
-  Constants := RingConstantSymbol (source fallback; no compiled unfold data available)
+    Functions := RingFirstOrderFunctions
+    Relations := RingFirstOrderRelations
+    Constants := RingConstantSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

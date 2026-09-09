@@ -10,11 +10,16 @@ universe u
 
 Predicate logic:
 
-  RelationIncluded relation (TransitiveClosure relation)
+  ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha), LRA.Relation.RelationIncluded relation (LRA.Relation.TransitiveClosure relation)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (relation : Alpha → Alpha → Prop) (x y : Alpha), relation x y → LRA.Relation.TransitiveClosure relation x y
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+  Prove
+    relation x y → LRA.Relation.TransitiveClosure relation x y
 
 Logical form (Lean):
 
@@ -52,11 +57,16 @@ theorem RelationIncludedInTransitiveClosure
 
 Predicate logic:
 
-  Transitive (TransitiveClosure relation)
+  ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha), LRA.Relation.Transitive (LRA.Relation.TransitiveClosure relation)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (relation : Alpha → Alpha → Prop) (x y z : Alpha), (LRA.Relation.TransitiveClosure relation x y ∧ LRA.Relation.TransitiveClosure relation y z) → LRA.Relation.TransitiveClosure relation x z
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+  Prove
+    (LRA.Relation.TransitiveClosure relation x y ∧ LRA.Relation.TransitiveClosure relation y z) → LRA.Relation.TransitiveClosure relation x z
 
 Logical form (Lean):
 
@@ -94,11 +104,18 @@ theorem TransitiveClosureIsTransitive
 
 Predicate logic:
 
-  RelationIncluded (TransitiveClosure relation) target
+  ∀ {Alpha : Type u} (relation target : LRA.Relation.Endorelation Alpha), (LRA.Relation.RelationIncluded relation target ∧ LRA.Relation.Transitive target) → LRA.Relation.RelationIncluded (LRA.Relation.TransitiveClosure relation) target
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (relation target : Alpha → Alpha → Prop), (∀ (x y : Alpha), relation x y → target x y ∧ ∀ (x y z : Alpha), target x y → target y z → target x z) → ∀ (x y : Alpha), LRA.Relation.TransitiveClosure relation x y → target x y
+  Ambient
+    (Alpha)
+  Objects
+    relation target : Endorelation Alpha
+    relationIncluded : RelationIncluded relation target
+    targetTransitive : Transitive target
+  Prove
+    ((∀ (x y : Alpha), relation x y → target x y) ∧ (∀ (x y z : Alpha), target x y → target y z → target x z)) → ∀ (x y : Alpha), LRA.Relation.TransitiveClosure relation x y → target x y
 
 Logical form (Lean):
 

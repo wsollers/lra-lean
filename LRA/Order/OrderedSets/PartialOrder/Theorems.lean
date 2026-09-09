@@ -7,11 +7,16 @@ namespace LRA.Order.OrderedSets.PartialOrder
 
 Predicate logic:
 
-  (∀ element ∈ Carrier), (NonStrictPartialOrder Carrier) → order.relation element element
+  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier) (element : Carrier), order.relation element element
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.PartialOrderRelation Carrier) (element : Carrier), order.1 element element
+  Ambient
+    (Carrier)
+  Objects
+    element : Carrier
+  Prove
+    order.1 element element
 
 Logical form (Lean):
 
@@ -53,11 +58,18 @@ theorem NonStrictRelatesSelf
 
 Predicate logic:
 
-  (∀ left right ∈ Carrier), (NonStrictPartialOrder Carrier) → left = right
+  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier) (left right : Carrier), (order.relation left right ∧ order.relation right left) → left = right
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.PartialOrderRelation Carrier) (left right : Carrier), (order.1 left right ∧ order.1 right left) → left = right
+  Ambient
+    (Carrier)
+  Objects
+    left right : Carrier
+    leftRelatedToRight : order.relation left right
+    rightRelatedToLeft : order.relation right left
+  Prove
+    (order.1 left right ∧ order.1 right left) → left = right
 
 Logical form (Lean):
 
@@ -103,11 +115,18 @@ theorem NonStrictMutualRelationImpliesEqual
 
 Predicate logic:
 
-  (∀ left right ∈ Carrier), (NonStrictPartialOrder Carrier) → left = right
+  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier) (left right : Carrier), (order.relation left right ∧ order.relation right left) → left = right
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.PartialOrderRelation Carrier) (left right : Carrier), (order.1 left right ∧ order.1 right left) → left = right
+  Ambient
+    (Carrier)
+  Objects
+    left right : Carrier
+    leftRelatedToRight : order.relation left right
+    rightRelatedToLeft : order.relation right left
+  Prove
+    (order.1 left right ∧ order.1 right left) → left = right
 
 Logical form (Lean):
 

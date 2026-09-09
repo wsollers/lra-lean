@@ -8,14 +8,14 @@ namespace LRA.NumberSystems.Arithmetic.Model
 Predicate logic:
 
   inductive ArithmeticRingFunctionSymbol where
-  | add
-  | mul
+    | add
+    | mul
 
 Predicate logic (unfolded):
 
   inductive ArithmeticRingFunctionSymbol where
-  | add
-  | mul (source fallback; no compiled unfold data available)
+    | add
+    | mul (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -92,14 +92,14 @@ def ArithmeticRingRelationSymbol : Type := Empty
 Predicate logic:
 
   inductive ArithmeticRingConstantSymbol where
-  | zero
-  | one
+    | zero
+    | one
 
 Predicate logic (unfolded):
 
   inductive ArithmeticRingConstantSymbol where
-  | zero
-  | one (source fallback; no compiled unfold data available)
+    | zero
+    | one (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -138,18 +138,18 @@ inductive ArithmeticRingConstantSymbol where
 Predicate logic:
 
   def ArithmeticRingFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
-  Symbol := ArithmeticRingFunctionSymbol
-  arity
-    | .add => 2
-    | .mul => 2
+    Symbol := ArithmeticRingFunctionSymbol
+    arity
+      | .add => 2
+      | .mul => 2
 
 Predicate logic (unfolded):
 
   def ArithmeticRingFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
-  Symbol := ArithmeticRingFunctionSymbol
-  arity
-    | .add => 2
-    | .mul => 2 (source fallback; no compiled unfold data available)
+    Symbol := ArithmeticRingFunctionSymbol
+    arity
+      | .add => 2
+      | .mul => 2 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -192,14 +192,14 @@ def ArithmeticRingFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
 Predicate logic:
 
   def ArithmeticRingFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
-  Symbol := ArithmeticRingRelationSymbol
-  arity := Empty.elim
+    Symbol := ArithmeticRingRelationSymbol
+    arity := Empty.elim
 
 Predicate logic (unfolded):
 
   def ArithmeticRingFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
-  Symbol := ArithmeticRingRelationSymbol
-  arity := Empty.elim (source fallback; no compiled unfold data available)
+    Symbol := ArithmeticRingRelationSymbol
+    arity := Empty.elim (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -238,16 +238,16 @@ def ArithmeticRingFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
 Predicate logic:
 
   def ArithmeticRingFirstOrderSignature : LRA.Logic.Signature where
-  Functions := ArithmeticRingFirstOrderFunctions
-  Relations := ArithmeticRingFirstOrderRelations
-  Constants := ArithmeticRingConstantSymbol
+    Functions := ArithmeticRingFirstOrderFunctions
+    Relations := ArithmeticRingFirstOrderRelations
+    Constants := ArithmeticRingConstantSymbol
 
 Predicate logic (unfolded):
 
   def ArithmeticRingFirstOrderSignature : LRA.Logic.Signature where
-  Functions := ArithmeticRingFirstOrderFunctions
-  Relations := ArithmeticRingFirstOrderRelations
-  Constants := ArithmeticRingConstantSymbol (source fallback; no compiled unfold data available)
+    Functions := ArithmeticRingFirstOrderFunctions
+    Relations := ArithmeticRingFirstOrderRelations
+    Constants := ArithmeticRingConstantSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

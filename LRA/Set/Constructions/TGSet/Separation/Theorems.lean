@@ -9,11 +9,17 @@ namespace LRA.Set.Constructions.TGSet
 
 Predicate logic:
 
-  (∀ A ∈ Set), exists B : Set, IsSeparatedSubset A property B
+  ∀ (A : LRA.Set.Constructions.TGSet.Set) (property : LRA.Set.Constructions.TGSet.Set → Prop), Exists fun B => LRA.Set.Constructions.TGSet.IsSeparatedSubset A property B
 
 Predicate logic (unfolded):
 
-  ∀ (A : LRA.Set.Constructions.TGSet.Set) (property : LRA.Set.Constructions.TGSet.Set → Prop), Exists fun B => ∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 B x ↔ (LRA.Set.instMembershipTGSet.1 A x ∧ property x)
+  Ambient
+    (implicit ambient)
+  Objects
+    A : Set
+    property : Set -> Prop
+  Prove
+    Exists fun B => ∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.1 B x ↔ (LRA.Set.Constructions.instMembershipTGSet.1 A x ∧ property x)
 
 Logical form (Lean):
 
@@ -50,11 +56,18 @@ theorem SeparatedSubsetExists (A : Set) (property : Set -> Prop) :
 
 Predicate logic:
 
-  (IsSeparatedSubset A property B ∧ IsSeparatedSubset A property C) → C = B
+  ∀ {A : LRA.Set.Constructions.TGSet.Set} {property : LRA.Set.Constructions.TGSet.Set → Prop} {B C : LRA.Set.Constructions.TGSet.Set}, (LRA.Set.Constructions.TGSet.IsSeparatedSubset A property B ∧ LRA.Set.Constructions.TGSet.IsSeparatedSubset A property C) → C = B
 
 Predicate logic (unfolded):
 
-  ∀ {A : LRA.Set.Constructions.TGSet.Set} {property : LRA.Set.Constructions.TGSet.Set → Prop} {B C : LRA.Set.Constructions.TGSet.Set}, (∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 B x ↔ (LRA.Set.instMembershipTGSet.1 A x ∧ property x) ∧ ∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 C x ↔ (LRA.Set.instMembershipTGSet.1 A x ∧ property x)) → C = B
+  Ambient
+    (implicit ambient)
+  Objects
+    A : Set
+    property : Set -> Prop
+    B C : Set
+  Prove
+    ((∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.1 B x ↔ (LRA.Set.Constructions.instMembershipTGSet.1 A x ∧ property x)) ∧ (∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.1 C x ↔ (LRA.Set.Constructions.instMembershipTGSet.1 A x ∧ property x))) → C = B
 
 Logical form (Lean):
 
@@ -96,12 +109,12 @@ theorem SeparatedSubsetIsUnique {A : Set} {property : Set -> Prop} {B C : Set}
 Predicate logic:
 
   noncomputable def TheSeparatedSubset (A : Set) (property : Set -> Prop) : Set :=
-  Classical.choose (SeparatedSubsetExists A property)
+    Classical.choose (SeparatedSubsetExists A property)
 
 Predicate logic (unfolded):
 
   noncomputable def TheSeparatedSubset (A : Set) (property : Set -> Prop) : Set :=
-  Classical.choose (SeparatedSubsetExists A property) (source fallback; no compiled unfold data available)
+    Classical.choose (SeparatedSubsetExists A property) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -137,11 +150,17 @@ noncomputable def TheSeparatedSubset (A : Set) (property : Set -> Prop) : Set :=
 
 Predicate logic:
 
-  (∀ A ∈ Set), IsSeparatedSubset A property (TheSeparatedSubset A property)
+  ∀ (A : LRA.Set.Constructions.TGSet.Set) (property : LRA.Set.Constructions.TGSet.Set → Prop), LRA.Set.Constructions.TGSet.IsSeparatedSubset A property (LRA.Set.Constructions.TGSet.TheSeparatedSubset A property)
 
 Predicate logic (unfolded):
 
-  ∀ (A : LRA.Set.Constructions.TGSet.Set) (property : LRA.Set.Constructions.TGSet.Set → Prop) (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 (Classical.indefiniteDescription (LRA.Set.Constructions.TGSet.IsSeparatedSubset A property) ⋯).1 x ↔ (LRA.Set.instMembershipTGSet.1 A x ∧ property x)
+  Ambient
+    (implicit ambient)
+  Objects
+    A : Set
+    property : Set -> Prop
+  Prove
+    LRA.Set.Constructions.instMembershipTGSet.1 (Classical.indefiniteDescription (LRA.Set.Constructions.TGSet.IsSeparatedSubset A property) ⋯).1 x ↔ (LRA.Set.Constructions.instMembershipTGSet.1 A x ∧ property x)
 
 Logical form (Lean):
 

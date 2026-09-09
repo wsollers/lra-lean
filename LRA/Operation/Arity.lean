@@ -10,12 +10,12 @@ universe u
 Predicate logic:
 
   abbrev NaryOperation (arity : Nat) (Alpha : Type u) :=
-  (Fin arity → Alpha) → Alpha
+    (Fin arity → Alpha) → Alpha
 
 Predicate logic (unfolded):
 
   abbrev NaryOperation (arity : Nat) (Alpha : Type u) :=
-  (Fin arity → Alpha) → Alpha (source fallback; no compiled unfold data available)
+    (Fin arity → Alpha) → Alpha (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -52,14 +52,14 @@ abbrev NaryOperation (arity : Nat) (Alpha : Type u) :=
 Predicate logic:
 
   def NullaryAsNary {Alpha : Type u}
-    (constant : NullaryOperation Alpha) : NaryOperation 0 Alpha :=
-  fun _ => constant
+      (constant : NullaryOperation Alpha) : NaryOperation 0 Alpha :=
+    fun _ => constant
 
 Predicate logic (unfolded):
 
   def NullaryAsNary {Alpha : Type u}
-    (constant : NullaryOperation Alpha) : NaryOperation 0 Alpha :=
-  fun _ => constant (source fallback; no compiled unfold data available)
+      (constant : NullaryOperation Alpha) : NaryOperation 0 Alpha :=
+    fun _ => constant (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -98,14 +98,14 @@ def NullaryAsNary {Alpha : Type u}
 Predicate logic:
 
   def UnaryAsNary {Alpha : Type u}
-    (operation : UnaryOperation Alpha) : NaryOperation 1 Alpha :=
-  fun input => operation (input ⟨0, by decide⟩)
+      (operation : UnaryOperation Alpha) : NaryOperation 1 Alpha :=
+    fun input => operation (input ⟨0, by decide⟩)
 
 Predicate logic (unfolded):
 
   def UnaryAsNary {Alpha : Type u}
-    (operation : UnaryOperation Alpha) : NaryOperation 1 Alpha :=
-  fun input => operation (input ⟨0, by decide⟩) (source fallback; no compiled unfold data available)
+      (operation : UnaryOperation Alpha) : NaryOperation 1 Alpha :=
+    fun input => operation (input ⟨0, by decide⟩) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -144,14 +144,14 @@ def UnaryAsNary {Alpha : Type u}
 Predicate logic:
 
   def BinaryAsNary {Alpha : Type u}
-    (operation : BinaryOperation Alpha) : NaryOperation 2 Alpha :=
-  fun input => operation (input ⟨0, by decide⟩) (input ⟨1, by decide⟩)
+      (operation : BinaryOperation Alpha) : NaryOperation 2 Alpha :=
+    fun input => operation (input ⟨0, by decide⟩) (input ⟨1, by decide⟩)
 
 Predicate logic (unfolded):
 
   def BinaryAsNary {Alpha : Type u}
-    (operation : BinaryOperation Alpha) : NaryOperation 2 Alpha :=
-  fun input => operation (input ⟨0, by decide⟩) (input ⟨1, by decide⟩) (source fallback; no compiled unfold data available)
+      (operation : BinaryOperation Alpha) : NaryOperation 2 Alpha :=
+    fun input => operation (input ⟨0, by decide⟩) (input ⟨1, by decide⟩) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

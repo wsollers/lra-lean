@@ -16,7 +16,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (relation : Element → Element → Prop) (subset : SetObject) (greatest : Element), (inst.1 subset greatest ∧ ∀ (element : Element), inst.1 subset element → relation element greatest)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (inst.1 subset greatest ∧ (∀ (element : Element), inst.1 subset element → relation element greatest))
 
 Logical form (Lean):
 

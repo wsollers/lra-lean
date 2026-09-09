@@ -15,14 +15,14 @@ open LRA.AlgebraicStructures.OrderedGroup.Interface.Signature
 Predicate logic:
 
   structure OrderedGroupSignature extends LRA.AlgebraicStructures.GroupConceptSignature where
-  StrictOrder : LRA.Relation.Endorelation carrier
-  NonstrictOrder : LRA.Relation.Endorelation carrier
+    StrictOrder : LRA.Relation.Endorelation carrier
+    NonstrictOrder : LRA.Relation.Endorelation carrier
 
 Predicate logic (unfolded):
 
   structure OrderedGroupSignature extends LRA.AlgebraicStructures.GroupConceptSignature where
-  StrictOrder : LRA.Relation.Endorelation carrier
-  NonstrictOrder : LRA.Relation.Endorelation carrier (source fallback; no compiled unfold data available)
+    StrictOrder : LRA.Relation.Endorelation carrier
+    NonstrictOrder : LRA.Relation.Endorelation carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -61,16 +61,16 @@ structure OrderedGroupSignature extends LRA.AlgebraicStructures.GroupConceptSign
 Predicate logic:
 
   def BuildOrderedGroupModel
-    (signature : OrderedGroupSignature) :
-    LRA.ModelTheory.FirstOrder.Model OrderedGroupFirstOrderSignature where
-  Domain
+      (signature : OrderedGroupSignature) :
+      LRA.ModelTheory.FirstOrder.Model OrderedGroupFirstOrderSignature where
+    Domain
 
 Predicate logic (unfolded):
 
   def BuildOrderedGroupModel
-    (signature : OrderedGroupSignature) :
-    LRA.ModelTheory.FirstOrder.Model OrderedGroupFirstOrderSignature where
-  Domain (source fallback; no compiled unfold data available)
+      (signature : OrderedGroupSignature) :
+      LRA.ModelTheory.FirstOrder.Model OrderedGroupFirstOrderSignature where
+    Domain (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -121,18 +121,18 @@ def BuildOrderedGroupModel
 Predicate logic:
 
   def orderedGroupFirstOrderModel (R : Type u) [Mul R] [Inv R] [OfNat R 1] [LT R] [LE R] :
-    LRA.ModelTheory.FirstOrder.Model OrderedGroupFirstOrderSignature :=
-  BuildOrderedGroupModel
-    { carrier := R, one := 1, multiply := (· * ·), inverse := (·⁻¹),
-      StrictOrder := (· < ·), NonstrictOrder := (· ≤ ·) }
+      LRA.ModelTheory.FirstOrder.Model OrderedGroupFirstOrderSignature :=
+    BuildOrderedGroupModel
+      { carrier := R, one := 1, multiply := (· * ·), inverse := (·⁻¹),
+        StrictOrder := (· < ·), NonstrictOrder := (· ≤ ·) }
 
 Predicate logic (unfolded):
 
   def orderedGroupFirstOrderModel (R : Type u) [Mul R] [Inv R] [OfNat R 1] [LT R] [LE R] :
-    LRA.ModelTheory.FirstOrder.Model OrderedGroupFirstOrderSignature :=
-  BuildOrderedGroupModel
-    { carrier := R, one := 1, multiply := (· * ·), inverse := (·⁻¹),
-      StrictOrder := (· < ·), NonstrictOrder := (· ≤ ·) } (source fallback; no compiled unfold data available)
+      LRA.ModelTheory.FirstOrder.Model OrderedGroupFirstOrderSignature :=
+    BuildOrderedGroupModel
+      { carrier := R, one := 1, multiply := (· * ·), inverse := (·⁻¹),
+        StrictOrder := (· < ·), NonstrictOrder := (· ≤ ·) } (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

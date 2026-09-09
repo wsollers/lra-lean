@@ -12,14 +12,14 @@ open LRA.Set.Constructions
 Predicate logic:
 
   inductive PresburgerElement where
-  | zero
-  | succ (n : PresburgerElement)
+    | zero
+    | succ (n : PresburgerElement)
 
 Predicate logic (unfolded):
 
   inductive PresburgerElement where
-  | zero
-  | succ (n : PresburgerElement) (source fallback; no compiled unfold data available)
+    | zero
+    | succ (n : PresburgerElement) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -61,7 +61,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (a a_1 : LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.PresburgerElement), (LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.PresburgerElement.brecOn.go (motive := fun x => LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.PresburgerElement → Prop) a LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.PresburgerLessThan._f).1 a_1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.PresburgerElement.brecOn.go (motive := fun x => LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.PresburgerElement → Prop) a LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.PresburgerLessThan._f).1 a_1
 
 Logical form (Lean):
 
@@ -101,11 +106,16 @@ def PresburgerLessThan : PresburgerElement → PresburgerElement → Prop
 
 Predicate logic:
 
-  ∀ n : PresburgerElement, PresburgerElement.succ n ≠ PresburgerElement.zero
+  ∀ (n : LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.PresburgerElement), Ne n.succ LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.PresburgerElement.zero
 
 Predicate logic (unfolded):
 
-  ∀ (n : LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.PresburgerElement), n.succ = LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.PresburgerElement.zero → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    n.succ = LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.PresburgerElement.zero → False
 
 Logical form (Lean):
 
@@ -141,11 +151,16 @@ theorem PresburgerZeroIsNotSuccessor :
 
 Predicate logic:
 
-  ∀ m n : PresburgerElement, PresburgerElement.succ m = PresburgerElement.succ n → m = n
+  ∀ (m n : LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.PresburgerElement), m.succ = n.succ → m = n
 
 Predicate logic (unfolded):
 
-  ∀ (m n : LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.PresburgerElement), m.succ = n.succ → m = n
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    m.succ = n.succ → m = n
 
 Logical form (Lean):
 
@@ -183,11 +198,16 @@ theorem PresburgerSuccessorInjective :
 
 Predicate logic:
 
-  ∀ subset : TypeSet PresburgerElement, PresburgerElement.zero ∈ subset → ∀ n ∈ PresburgerElement, n ∈ subset → PresburgerElement.succ n ∈ subset → ∀ n : PresburgerElement, n ∈ subset
+  ∀ (subset : LRA.Set.Constructions.TypeSet LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.PresburgerElement), (LRA.Set.Constructions.instMembershipTypeSet.mem subset LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.PresburgerElement.zero ∧ (∀ (n : LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.PresburgerElement), LRA.Set.Constructions.instMembershipTypeSet.mem subset n → LRA.Set.Constructions.instMembershipTypeSet.mem subset n.succ)) → ∀ (n : LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.PresburgerElement), LRA.Set.Constructions.instMembershipTypeSet.mem subset n
 
 Predicate logic (unfolded):
 
-  ∀ (subset : LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.PresburgerElement → Prop), (LRA.Set.instMembershipPredicateSet.1 subset LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.PresburgerElement.zero ∧ ∀ (n : LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.PresburgerElement), LRA.Set.instMembershipPredicateSet.1 subset n → LRA.Set.instMembershipPredicateSet.1 subset n.succ) → ∀ (n : LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.PresburgerElement), LRA.Set.instMembershipPredicateSet.1 subset n
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (LRA.Set.Constructions.instMembershipTypeSet.1 subset LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.PresburgerElement.zero ∧ (∀ (n : LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.PresburgerElement), LRA.Set.Constructions.instMembershipTypeSet.1 subset n → LRA.Set.Constructions.instMembershipTypeSet.1 subset n.succ)) → ∀ (n : LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.PresburgerElement), LRA.Set.Constructions.instMembershipTypeSet.1 subset n
 
 Logical form (Lean):
 
@@ -230,48 +250,48 @@ theorem PresburgerInductionPrinciple :
 Predicate logic:
 
   structure PresburgerModel (Element : Type u) (SetObject : Type v)
-    [Membership Element SetObject] where
-  zero : Element
-  successor : Element -> Element
-  zero_not_successor :
-    forall element : Element,
-      successor element ≠ zero
-  successor_injective :
-    forall first_element second_element : Element,
-      successor first_element = successor second_element ->
-      first_element = second_element
-  induction :
-    forall subset : SetObject,
-      zero ∈ subset ->
-      (forall element : Element,
-        element ∈ subset ->
-        successor element ∈ subset) ->
+      [Membership Element SetObject] where
+    zero : Element
+    successor : Element -> Element
+    zero_not_successor :
       forall element : Element,
-        element ∈ subset
-  lessThan : Element -> Element -> Prop
+        successor element ≠ zero
+    successor_injective :
+      forall first_element second_element : Element,
+        successor first_element = successor second_element ->
+        first_element = second_element
+    induction :
+      forall subset : SetObject,
+        zero ∈ subset ->
+        (forall element : Element,
+          element ∈ subset ->
+          successor element ∈ subset) ->
+        forall element : Element,
+          element ∈ subset
+    lessThan : Element -> Element -> Prop
 
 Predicate logic (unfolded):
 
   structure PresburgerModel (Element : Type u) (SetObject : Type v)
-    [Membership Element SetObject] where
-  zero : Element
-  successor : Element -> Element
-  zero_not_successor :
-    forall element : Element,
-      successor element ≠ zero
-  successor_injective :
-    forall first_element second_element : Element,
-      successor first_element = successor second_element ->
-      first_element = second_element
-  induction :
-    forall subset : SetObject,
-      zero ∈ subset ->
-      (forall element : Element,
-        element ∈ subset ->
-        successor element ∈ subset) ->
+      [Membership Element SetObject] where
+    zero : Element
+    successor : Element -> Element
+    zero_not_successor :
       forall element : Element,
-        element ∈ subset
-  lessThan : Element -> Element -> Prop (source fallback; no compiled unfold data available)
+        successor element ≠ zero
+    successor_injective :
+      forall first_element second_element : Element,
+        successor first_element = successor second_element ->
+        first_element = second_element
+    induction :
+      forall subset : SetObject,
+        zero ∈ subset ->
+        (forall element : Element,
+          element ∈ subset ->
+          successor element ∈ subset) ->
+        forall element : Element,
+          element ∈ subset
+    lessThan : Element -> Element -> Prop (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -344,26 +364,26 @@ structure PresburgerModel (Element : Type u) (SetObject : Type v)
 Predicate logic:
 
   def PresburgerModel.toPeanoSystem
-    {Element : Type u} {SetObject : Type v} [Membership Element SetObject]
-    (model : PresburgerModel Element SetObject) :
-    LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject where
-  base := model.zero
-  successor := model.successor
-  one_not_successor := model.zero_not_successor
-  successor_injective := model.successor_injective
-  induction := model.induction
+      {Element : Type u} {SetObject : Type v} [Membership Element SetObject]
+      (model : PresburgerModel Element SetObject) :
+      LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject where
+    base := model.zero
+    successor := model.successor
+    one_not_successor := model.zero_not_successor
+    successor_injective := model.successor_injective
+    induction := model.induction
 
 Predicate logic (unfolded):
 
   def PresburgerModel.toPeanoSystem
-    {Element : Type u} {SetObject : Type v} [Membership Element SetObject]
-    (model : PresburgerModel Element SetObject) :
-    LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject where
-  base := model.zero
-  successor := model.successor
-  one_not_successor := model.zero_not_successor
-  successor_injective := model.successor_injective
-  induction := model.induction (source fallback; no compiled unfold data available)
+      {Element : Type u} {SetObject : Type v} [Membership Element SetObject]
+      (model : PresburgerModel Element SetObject) :
+      LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject where
+    base := model.zero
+    successor := model.successor
+    one_not_successor := model.zero_not_successor
+    successor_injective := model.successor_injective
+    induction := model.induction (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

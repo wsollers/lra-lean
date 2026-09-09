@@ -11,6 +11,45 @@ itself (it always contains `∅`). Wrapped in one-field structures for the same
 reason as elsewhere in this tree — `Set α` needs its own `*`, distinct from any
 `Mul` instance `α` itself might carry. -/
 
+/--
+`UnionSemilattice` TODO
+
+Predicate logic:
+
+  structure UnionSemilattice (α : Type u) where
+    val : LRA.Set.LRA_Set α
+
+Predicate logic (unfolded):
+
+  structure UnionSemilattice (α : Type u) where
+    val : LRA.Set.LRA_Set α (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+structure UnionSemilattice (α : Type u) where
+  val : LRA.Set.LRA_Set α
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 structure UnionSemilattice (α : Type u) where
   val : LRA.Set.LRA_Set α
 
@@ -25,6 +64,45 @@ instance {α : Type u} :
   MulCommutative := by
     intro a b
     sorry
+/--
+`IntersectionSemilattice` TODO
+
+Predicate logic:
+
+  structure IntersectionSemilattice (α : Type u) where
+    val : LRA.Set.LRA_Set α
+
+Predicate logic (unfolded):
+
+  structure IntersectionSemilattice (α : Type u) where
+    val : LRA.Set.LRA_Set α (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+structure IntersectionSemilattice (α : Type u) where
+  val : LRA.Set.LRA_Set α
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 structure IntersectionSemilattice (α : Type u) where
   val : LRA.Set.LRA_Set α
 

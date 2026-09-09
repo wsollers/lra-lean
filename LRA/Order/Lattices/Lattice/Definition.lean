@@ -10,11 +10,16 @@ universe u
 
 Predicate logic:
 
-  ∀ {alpha : Type u} (relation : LRA.Relation.Endorelation alpha), (LRA.Order.PartialOrder relation ∧ ∀ (left right : alpha), (Exists fun join => LRA.Order.Join relation left right join ∧ Exists fun meet => LRA.Order.Meet relation left right meet))
+  ∀ {alpha : Type u} (relation : LRA.Relation.Endorelation alpha), (LRA.Order.PartialOrder relation ∧ (∀ (left right : alpha), (Exists fun join => LRA.Order.Join relation left right join ∧ Exists fun meet => LRA.Order.Meet relation left right meet)))
 
 Predicate logic (unfolded):
 
-  ∀ {alpha : Type u} (relation : alpha → alpha → Prop), ((∀ (x : alpha), relation x x ∧ (∀ (x y : alpha), relation x y → relation y x → x = y ∧ ∀ (x y z : alpha), relation x y → relation y z → relation x z)) ∧ ∀ (left right : alpha), (Exists fun join => (relation left join ∧ (relation right join ∧ ∀ (upper : alpha), relation left upper → relation right upper → relation join upper)) ∧ Exists fun meet => (relation meet left ∧ (relation meet right ∧ ∀ (lower : alpha), relation lower left → relation lower right → relation lower meet))))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : alpha), relation x x) ∧ ((∀ (x y : alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : alpha), relation x y → relation y z → relation x z))) ∧ (∀ (left right : alpha), ((Exists fun join => (relation left join ∧ (relation right join ∧ (∀ (upper : alpha), relation left upper → relation right upper → relation join upper)))) ∧ (Exists fun meet => (relation meet left ∧ (relation meet right ∧ (∀ (lower : alpha), relation lower left → relation lower right → relation lower meet)))))))
 
 Logical form (Lean):
 

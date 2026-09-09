@@ -9,12 +9,12 @@ namespace LRA.AlgebraicStructures
 Predicate logic:
 
   abbrev AbelianGroupConceptSignature :=
-  AdditiveGroupConceptSignature
+    AdditiveGroupConceptSignature
 
 Predicate logic (unfolded):
 
   abbrev AbelianGroupConceptSignature :=
-  AdditiveGroupConceptSignature (source fallback; no compiled unfold data available)
+    AdditiveGroupConceptSignature (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

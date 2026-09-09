@@ -11,11 +11,19 @@ universe u
 
 Predicate logic:
 
-  (∀ element ∈ Carrier), operation identity element = element
+  ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}, LRA.Operation.Laws.Identity.LeftIdentity operation identity → ∀ (element : Carrier), operation identity element = element
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {operation : Carrier → Carrier → Carrier} {identity : Carrier}, (∀ (element : Carrier), operation identity element = element) → ∀ (element : Carrier), operation identity element = element
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    identity : Carrier
+    law : LeftIdentity operation identity
+    element : Carrier
+  Prove
+    (∀ (element : Carrier), operation identity element = element) → ∀ (element : Carrier), operation identity element = element
 
 Logical form (Lean):
 
@@ -59,11 +67,19 @@ theorem LeftIdentity.apply {Carrier : Type u}
 
 Predicate logic:
 
-  (∀ element ∈ Carrier), operation element identity = element
+  ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}, LRA.Operation.Laws.Identity.RightIdentity operation identity → ∀ (element : Carrier), operation element identity = element
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {operation : Carrier → Carrier → Carrier} {identity : Carrier}, (∀ (element : Carrier), operation element identity = element) → ∀ (element : Carrier), operation element identity = element
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    identity : Carrier
+    law : RightIdentity operation identity
+    element : Carrier
+  Prove
+    (∀ (element : Carrier), operation element identity = element) → ∀ (element : Carrier), operation element identity = element
 
 Logical form (Lean):
 
@@ -107,11 +123,18 @@ theorem RightIdentity.apply {Carrier : Type u}
 
 Predicate logic:
 
-  LeftIdentity operation identity
+  ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}, LRA.Operation.Laws.Identity.TwoSidedIdentity operation identity → LRA.Operation.Laws.Identity.LeftIdentity operation identity
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {operation : Carrier → Carrier → Carrier} {identity : Carrier}, (∀ (element : Carrier), operation identity element = element ∧ ∀ (element : Carrier), operation element identity = element) → ∀ (element : Carrier), operation identity element = element
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    identity : Carrier
+    law : TwoSidedIdentity operation identity
+  Prove
+    ((∀ (element : Carrier), operation identity element = element) ∧ (∀ (element : Carrier), operation element identity = element)) → ∀ (element : Carrier), operation identity element = element
 
 Logical form (Lean):
 
@@ -153,11 +176,18 @@ theorem TwoSidedIdentity.left {Carrier : Type u}
 
 Predicate logic:
 
-  RightIdentity operation identity
+  ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}, LRA.Operation.Laws.Identity.TwoSidedIdentity operation identity → LRA.Operation.Laws.Identity.RightIdentity operation identity
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {operation : Carrier → Carrier → Carrier} {identity : Carrier}, (∀ (element : Carrier), operation identity element = element ∧ ∀ (element : Carrier), operation element identity = element) → ∀ (element : Carrier), operation element identity = element
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    identity : Carrier
+    law : TwoSidedIdentity operation identity
+  Prove
+    ((∀ (element : Carrier), operation identity element = element) ∧ (∀ (element : Carrier), operation element identity = element)) → ∀ (element : Carrier), operation element identity = element
 
 Logical form (Lean):
 
@@ -199,11 +229,19 @@ theorem TwoSidedIdentity.right {Carrier : Type u}
 
 Predicate logic:
 
-  TwoSidedIdentity operation identity
+  ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}, (LRA.Operation.Laws.Identity.LeftIdentity operation identity ∧ LRA.Operation.Laws.Identity.RightIdentity operation identity) → LRA.Operation.Laws.Identity.TwoSidedIdentity operation identity
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {operation : Carrier → Carrier → Carrier} {identity : Carrier}, (∀ (element : Carrier), operation identity element = element ∧ ∀ (element : Carrier), operation element identity = element) → (∀ (element : Carrier), operation identity element = element ∧ ∀ (element : Carrier), operation element identity = element)
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    identity : Carrier
+    leftLaw : LeftIdentity operation identity
+    rightLaw : RightIdentity operation identity
+  Prove
+    ((∀ (element : Carrier), operation identity element = element) ∧ (∀ (element : Carrier), operation element identity = element)) → ((∀ (element : Carrier), operation identity element = element) ∧ (∀ (element : Carrier), operation element identity = element))
 
 Logical form (Lean):
 

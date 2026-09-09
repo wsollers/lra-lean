@@ -6,21 +6,135 @@ namespace LRA.Identity.Constructions.Axiomatic
 
 universe u
 
-/-- An equality structure realized by the axiomatic identity relation.
+/--
+`EqualityStructure` TODO
 
-Logical form: `equalityInterpretation = Ax_IdentityRelation`.
+Predicate logic:
+
+  noncomputable def EqualityStructure
+      (Carrier : Type u) [Nonempty Carrier] :
+      LRA.Identity.EqualityStructure
+
+Predicate logic (unfolded):
+
+  noncomputable def EqualityStructure
+      (Carrier : Type u) [Nonempty Carrier] :
+      LRA.Identity.EqualityStructure
+
+Logical form (Lean):
+
+```lean
+noncomputable def EqualityStructure
+    (Carrier : Type u) [Nonempty Carrier] :
+    LRA.Identity.EqualityStructure
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
 -/
 noncomputable def EqualityStructure
     (Carrier : Type u) [Nonempty Carrier] :
     LRA.Identity.EqualityStructure := by
   sorry
 
-/-- The axiomatic construction viewed as a pure-equality FOL model. -/
+/--
+`FOLModel` TODO
+
+Predicate logic:
+
+  noncomputable def FOLModel (Carrier : Type u) [Nonempty Carrier] :
+      LRA.ModelTheory.FirstOrder.Model LRA.Identity.pureEqualitySignature
+
+Predicate logic (unfolded):
+
+  noncomputable def FOLModel (Carrier : Type u) [Nonempty Carrier] :
+      LRA.ModelTheory.FirstOrder.Model LRA.Identity.pureEqualitySignature
+
+Logical form (Lean):
+
+```lean
+noncomputable def FOLModel (Carrier : Type u) [Nonempty Carrier] :
+    LRA.ModelTheory.FirstOrder.Model LRA.Identity.pureEqualitySignature
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 noncomputable def FOLModel (Carrier : Type u) [Nonempty Carrier] :
     LRA.ModelTheory.FirstOrder.Model LRA.Identity.pureEqualitySignature := by
   sorry
 
-/-- The axiomatic construction viewed with full second-order semantics. -/
+/--
+`SOLFullModel` TODO
+
+Predicate logic:
+
+  noncomputable def SOLFullModel (Carrier : Type u) [Nonempty Carrier] :
+      LRA.ModelTheory.SecondOrder.FullModel LRA.Identity.pureEqualitySignature
+
+Predicate logic (unfolded):
+
+  noncomputable def SOLFullModel (Carrier : Type u) [Nonempty Carrier] :
+      LRA.ModelTheory.SecondOrder.FullModel LRA.Identity.pureEqualitySignature
+
+Logical form (Lean):
+
+```lean
+noncomputable def SOLFullModel (Carrier : Type u) [Nonempty Carrier] :
+    LRA.ModelTheory.SecondOrder.FullModel LRA.Identity.pureEqualitySignature
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 noncomputable def SOLFullModel (Carrier : Type u) [Nonempty Carrier] :
     LRA.ModelTheory.SecondOrder.FullModel LRA.Identity.pureEqualitySignature := by
   sorry

@@ -55,18 +55,18 @@ abbrev ActiveGaussianInteger := GaussianInteger LRA.NumberSystems.Integers.Polis
 Predicate logic:
 
   def gaussianArithmeticRingModel (R : Type u)
-    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] :
-    LRA.ModelTheory.FirstOrder.Model GaussianIntegersFirstOrderSignature :=
-  LRA.AlgebraicStructures.IntegralDomain.Interface.ModelTheory.integralDomainFirstOrderModel
-    (GaussianInteger R)
+      [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] :
+      LRA.ModelTheory.FirstOrder.Model GaussianIntegersFirstOrderSignature :=
+    LRA.AlgebraicStructures.IntegralDomain.Interface.ModelTheory.integralDomainFirstOrderModel
+      (GaussianInteger R)
 
 Predicate logic (unfolded):
 
   def gaussianArithmeticRingModel (R : Type u)
-    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] :
-    LRA.ModelTheory.FirstOrder.Model GaussianIntegersFirstOrderSignature :=
-  LRA.AlgebraicStructures.IntegralDomain.Interface.ModelTheory.integralDomainFirstOrderModel
-    (GaussianInteger R) (source fallback; no compiled unfold data available)
+      [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] :
+      LRA.ModelTheory.FirstOrder.Model GaussianIntegersFirstOrderSignature :=
+    LRA.AlgebraicStructures.IntegralDomain.Interface.ModelTheory.integralDomainFirstOrderModel
+      (GaussianInteger R) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -109,14 +109,14 @@ def gaussianArithmeticRingModel (R : Type u)
 Predicate logic:
 
   def GaussianArithmeticRingModel :
-    LRA.ModelTheory.FirstOrder.Model GaussianIntegersFirstOrderSignature :=
-  gaussianArithmeticRingModel LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
+      LRA.ModelTheory.FirstOrder.Model GaussianIntegersFirstOrderSignature :=
+    gaussianArithmeticRingModel LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z
 
 Predicate logic (unfolded):
 
   def GaussianArithmeticRingModel :
-    LRA.ModelTheory.FirstOrder.Model GaussianIntegersFirstOrderSignature :=
-  gaussianArithmeticRingModel LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z (source fallback; no compiled unfold data available)
+      LRA.ModelTheory.FirstOrder.Model GaussianIntegersFirstOrderSignature :=
+    gaussianArithmeticRingModel LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

@@ -84,11 +84,16 @@ noncomputable def RelativeError (x xTilde : ℝ) : ℝ := AbsoluteError x xTilde
 
 Predicate logic:
 
-  AbsoluteError (x + y) (xTilde + yTilde) ≤ AbsoluteError x xTilde + AbsoluteError y yTilde
+  ∀ (x y xTilde yTilde : Real), Real.instLE.le (LRA.Analysis.RealAnalysis.AbsoluteError (instHAdd.hAdd x y) (instHAdd.hAdd xTilde yTilde)) (instHAdd.hAdd (LRA.Analysis.RealAnalysis.AbsoluteError x xTilde) (LRA.Analysis.RealAnalysis.AbsoluteError y yTilde))
 
 Predicate logic (unfolded):
 
-  ∀ (x y xTilde yTilde : Real), Real.instLE.1 (SemilatticeSup.toMax.1 (instHSub.1 (instHAdd.1 x y) (instHAdd.1 xTilde yTilde)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (instHAdd.hAdd x y) (instHAdd.hAdd xTilde yTilde)))) (instHAdd.1 (SemilatticeSup.toMax.1 (instHSub.1 x xTilde) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub x xTilde))) (SemilatticeSup.toMax.1 (instHSub.1 y yTilde) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub y yTilde))))
+  Ambient
+    (ℝ)
+  Objects
+    x y xTilde yTilde : ℝ
+  Prove
+    Real.instLE.le (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd x y) ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd xTilde yTilde))) ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x xTilde)) (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub y yTilde)))
 
 Logical form (Lean):
 
@@ -126,11 +131,16 @@ theorem AbsoluteErrorSum (x y xTilde yTilde : ℝ) :
 
 Predicate logic:
 
-  AbsoluteError (x * y) (xTilde * yTilde) ≤ |xTilde| * AbsoluteError y yTilde + |yTilde| * AbsoluteError x xTilde + AbsoluteError x xTilde * AbsoluteError y yTilde
+  ∀ (x y xTilde yTilde : Real), Real.instLE.le (LRA.Analysis.RealAnalysis.AbsoluteError (instHMul.hMul x y) (instHMul.hMul xTilde yTilde)) (instHAdd.hAdd (instHAdd.hAdd (instHMul.hMul (abs xTilde) (LRA.Analysis.RealAnalysis.AbsoluteError y yTilde)) (instHMul.hMul (abs yTilde) (LRA.Analysis.RealAnalysis.AbsoluteError x xTilde))) (instHMul.hMul (LRA.Analysis.RealAnalysis.AbsoluteError x xTilde) (LRA.Analysis.RealAnalysis.AbsoluteError y yTilde)))
 
 Predicate logic (unfolded):
 
-  ∀ (x y xTilde yTilde : Real), Real.instLE.1 (SemilatticeSup.toMax.1 (instHSub.1 (instHMul.1 x y) (instHMul.1 xTilde yTilde)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (instHMul.hMul x y) (instHMul.hMul xTilde yTilde)))) (instHAdd.1 (instHAdd.1 (instHMul.1 (SemilatticeSup.toMax.1 xTilde (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg xTilde)) (SemilatticeSup.toMax.max (instHSub.hSub y yTilde) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg (instHSub.hSub y yTilde)))) (instHMul.1 (SemilatticeSup.toMax.1 yTilde (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg yTilde)) (SemilatticeSup.toMax.max (instHSub.hSub x xTilde) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg (instHSub.hSub x xTilde))))) (instHMul.1 (SemilatticeSup.toMax.1 (instHSub.hSub x xTilde) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg (instHSub.hSub x xTilde))) (SemilatticeSup.toMax.1 (instHSub.hSub y yTilde) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg (instHSub.hSub y yTilde)))))
+  Ambient
+    (ℝ)
+  Objects
+    x y xTilde yTilde : ℝ
+  Prove
+    Real.instLE.le (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ({ hMul := fun a b => Real.instMul.mul a b }.hMul x y) ({ hMul := fun a b => Real.instMul.mul a b }.hMul xTilde yTilde))) ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd ({ hMul := fun a b => Real.instMul.mul a b }.hMul (abs xTilde) (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub y yTilde))) ({ hMul := fun a b => Real.instMul.mul a b }.hMul (abs yTilde) (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x xTilde)))) ({ hMul := fun a b => Real.instMul.mul a b }.hMul (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x xTilde)) (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub y yTilde))))
 
 Logical form (Lean):
 
@@ -170,11 +180,18 @@ theorem AbsoluteErrorProduct (x y xTilde yTilde : ℝ) :
 
 Predicate logic:
 
-  (RelativeError y yTilde < 1) → AbsoluteError (x / y) (xTilde / yTilde) ≤ (|xTilde| * AbsoluteError y yTilde + |yTilde| * AbsoluteError x xTilde) / yTilde ^ 2 * (1 / (1 - RelativeError y yTilde))
+  ∀ (x y xTilde yTilde : Real), (Ne y 0 ∧ (Ne yTilde 0 ∧ Real.instLT.lt (LRA.Analysis.RealAnalysis.RelativeError y yTilde) 1)) → Real.instLE.le (LRA.Analysis.RealAnalysis.AbsoluteError (instHDiv.hDiv x y) (instHDiv.hDiv xTilde yTilde)) (instHMul.hMul (instHDiv.hDiv (instHAdd.hAdd (instHMul.hMul (abs xTilde) (LRA.Analysis.RealAnalysis.AbsoluteError y yTilde)) (instHMul.hMul (abs yTilde) (LRA.Analysis.RealAnalysis.AbsoluteError x xTilde))) (instHPow.hPow yTilde 2)) (instHDiv.hDiv 1 (instHSub.hSub 1 (LRA.Analysis.RealAnalysis.RelativeError y yTilde))))
 
 Predicate logic (unfolded):
 
-  ∀ (x y xTilde yTilde : Real), (y = Zero.toOfNat0.1 → False ∧ (yTilde = Zero.toOfNat0.1 → False ∧ Real.instLT.1 (instHDiv.1 (SemilatticeSup.toMax.1 (instHSub.hSub y yTilde) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg (instHSub.hSub y yTilde))) (SemilatticeSup.toMax.1 yTilde (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 yTilde))) One.toOfNat1.1)) → Real.instLE.1 (SemilatticeSup.toMax.1 (instHSub.1 (instHDiv.1 x y) (instHDiv.1 xTilde yTilde)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (instHDiv.hDiv x y) (instHDiv.hDiv xTilde yTilde)))) (instHMul.1 (instHDiv.1 (instHAdd.1 (instHMul.1 (SemilatticeSup.toMax.max xTilde (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg xTilde)) (abs (instHSub.hSub y yTilde))) (instHMul.1 (SemilatticeSup.toMax.max yTilde (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg yTilde)) (abs (instHSub.hSub x xTilde)))) (instHPow.1 yTilde (instOfNatNat 2).1)) (instHDiv.1 One.toOfNat1.1 (instHSub.1 One.toOfNat1.1 (instHDiv.1 (LRA.Analysis.RealAnalysis.AbsoluteError y yTilde) (abs yTilde)))))
+  Ambient
+    (ℝ)
+  Objects
+    x y xTilde yTilde : ℝ
+    hy : y ≠ 0
+    hyTilde : yTilde ≠ 0
+  Prove
+    ((y = 0 → False) ∧ ((yTilde = 0 → False) ∧ Real.instLT.lt ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub y yTilde)) (abs yTilde)) 1)) → Real.instLE.le (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv x y) ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv xTilde yTilde))) ({ hMul := fun a b => Real.instMul.mul a b }.hMul ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd ({ hMul := fun a b => Real.instMul.mul a b }.hMul (abs xTilde) (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub y yTilde))) ({ hMul := fun a b => Real.instMul.mul a b }.hMul (abs yTilde) (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x xTilde)))) (instHPow.1 yTilde 2)) ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv 1 ({ hSub := fun a b => Real.instSub.sub a b }.hSub 1 ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub y yTilde)) (abs yTilde)))))
 
 Logical form (Lean):
 
@@ -218,11 +235,18 @@ theorem AbsoluteErrorQuotient (x y xTilde yTilde : ℝ)
 
 Predicate logic:
 
-  RelativeError (x * y) (xTilde * yTilde) ≤ RelativeError x xTilde + RelativeError y yTilde + RelativeError x xTilde * RelativeError y yTilde
+  ∀ (x y xTilde yTilde : Real), (Ne xTilde 0 ∧ Ne yTilde 0) → Real.instLE.le (LRA.Analysis.RealAnalysis.RelativeError (instHMul.hMul x y) (instHMul.hMul xTilde yTilde)) (instHAdd.hAdd (instHAdd.hAdd (LRA.Analysis.RealAnalysis.RelativeError x xTilde) (LRA.Analysis.RealAnalysis.RelativeError y yTilde)) (instHMul.hMul (LRA.Analysis.RealAnalysis.RelativeError x xTilde) (LRA.Analysis.RealAnalysis.RelativeError y yTilde)))
 
 Predicate logic (unfolded):
 
-  ∀ (x y xTilde yTilde : Real), (xTilde = Zero.toOfNat0.1 → False ∧ yTilde = Zero.toOfNat0.1 → False) → Real.instLE.1 (instHDiv.1 (SemilatticeSup.toMax.1 (instHSub.hSub (instHMul.hMul x y) (instHMul.hMul xTilde yTilde)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg (instHSub.hSub (instHMul.hMul x y) (instHMul.hMul xTilde yTilde)))) (SemilatticeSup.toMax.1 (instHMul.1 xTilde yTilde) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHMul.hMul xTilde yTilde)))) (instHAdd.1 (instHAdd.1 (instHDiv.1 (abs (instHSub.hSub x xTilde)) (SemilatticeSup.toMax.max xTilde (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg xTilde))) (instHDiv.1 (abs (instHSub.hSub y yTilde)) (SemilatticeSup.toMax.max yTilde (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg yTilde)))) (instHMul.1 (instHDiv.1 (abs (instHSub.hSub x xTilde)) (SemilatticeSup.toMax.max xTilde (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg xTilde))) (instHDiv.1 (abs (instHSub.hSub y yTilde)) (SemilatticeSup.toMax.max yTilde (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg yTilde)))))
+  Ambient
+    (ℝ)
+  Objects
+    x y xTilde yTilde : ℝ
+    hxTilde : xTilde ≠ 0
+    hyTilde : yTilde ≠ 0
+  Prove
+    ((xTilde = 0 → False) ∧ (yTilde = 0 → False)) → Real.instLE.le ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ({ hMul := fun a b => Real.instMul.mul a b }.hMul x y) ({ hMul := fun a b => Real.instMul.mul a b }.hMul xTilde yTilde))) (abs ({ hMul := fun a b => Real.instMul.mul a b }.hMul xTilde yTilde))) ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x xTilde)) (abs xTilde)) ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub y yTilde)) (abs yTilde))) ({ hMul := fun a b => Real.instMul.mul a b }.hMul ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x xTilde)) (abs xTilde)) ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub y yTilde)) (abs yTilde))))
 
 Logical form (Lean):
 
@@ -264,11 +288,18 @@ theorem RelativeErrorProduct (x y xTilde yTilde : ℝ)
 
 Predicate logic:
 
-  (RelativeError y yTilde < 1) → RelativeError (x / y) (xTilde / yTilde) ≤ (RelativeError x xTilde + RelativeError y yTilde) / (1 - RelativeError y yTilde)
+  ∀ (x y xTilde yTilde : Real), (Ne xTilde 0 ∧ (Ne yTilde 0 ∧ Real.instLT.lt (LRA.Analysis.RealAnalysis.RelativeError y yTilde) 1)) → Real.instLE.le (LRA.Analysis.RealAnalysis.RelativeError (instHDiv.hDiv x y) (instHDiv.hDiv xTilde yTilde)) (instHDiv.hDiv (instHAdd.hAdd (LRA.Analysis.RealAnalysis.RelativeError x xTilde) (LRA.Analysis.RealAnalysis.RelativeError y yTilde)) (instHSub.hSub 1 (LRA.Analysis.RealAnalysis.RelativeError y yTilde)))
 
 Predicate logic (unfolded):
 
-  ∀ (x y xTilde yTilde : Real), (xTilde = Zero.toOfNat0.1 → False ∧ (yTilde = Zero.toOfNat0.1 → False ∧ Real.instLT.1 (instHDiv.1 (SemilatticeSup.toMax.1 (instHSub.hSub y yTilde) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg (instHSub.hSub y yTilde))) (SemilatticeSup.toMax.1 yTilde (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 yTilde))) One.toOfNat1.1)) → Real.instLE.1 (instHDiv.1 (SemilatticeSup.toMax.1 (instHSub.hSub (instHDiv.hDiv x y) (instHDiv.hDiv xTilde yTilde)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg (instHSub.hSub (instHDiv.hDiv x y) (instHDiv.hDiv xTilde yTilde)))) (SemilatticeSup.toMax.1 (instHDiv.1 xTilde yTilde) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHDiv.hDiv xTilde yTilde)))) (instHDiv.1 (instHAdd.1 (instHDiv.1 (abs (instHSub.hSub x xTilde)) (SemilatticeSup.toMax.max xTilde (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg xTilde))) (instHDiv.1 (abs (instHSub.hSub y yTilde)) (SemilatticeSup.toMax.max yTilde (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg yTilde)))) (instHSub.1 One.toOfNat1.1 (instHDiv.1 (abs (instHSub.hSub y yTilde)) (SemilatticeSup.toMax.max yTilde (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg yTilde)))))
+  Ambient
+    (ℝ)
+  Objects
+    x y xTilde yTilde : ℝ
+    hxTilde : xTilde ≠ 0
+    hyTilde : yTilde ≠ 0
+  Prove
+    ((xTilde = 0 → False) ∧ ((yTilde = 0 → False) ∧ Real.instLT.lt ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub y yTilde)) (abs yTilde)) 1)) → Real.instLE.le ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv x y) ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv xTilde yTilde))) (abs ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv xTilde yTilde))) ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x xTilde)) (abs xTilde)) ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub y yTilde)) (abs yTilde))) ({ hSub := fun a b => Real.instSub.sub a b }.hSub 1 ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub y yTilde)) (abs yTilde))))
 
 Logical form (Lean):
 

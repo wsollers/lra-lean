@@ -13,7 +13,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {alpha : Type u} (strictRelation : alpha → alpha → Prop) (left right : alpha), Or ((strictRelation left right ∧ ∀ (middle : alpha), (strictRelation left middle ∧ strictRelation middle right) → False)) ((strictRelation right left ∧ ∀ (middle : alpha), (strictRelation right middle ∧ strictRelation middle left) → False))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or ((strictRelation left right ∧ (∀ (middle : alpha), (strictRelation left middle ∧ strictRelation middle right) → False))) ((strictRelation right left ∧ (∀ (middle : alpha), (strictRelation right middle ∧ strictRelation middle left) → False)))
 
 Logical form (Lean):
 

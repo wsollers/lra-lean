@@ -16,7 +16,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) (operation : Carrier → Carrier) {left right : Carrier}, relation left right → relation (operation left) (operation right)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    relation left right → relation (operation left) (operation right)
 
 Logical form (Lean):
 
@@ -62,7 +67,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) (operation : Carrier → Carrier → Carrier) {left₁ left₂ right₁ right₂ : Carrier}, (relation left₁ left₂ ∧ relation right₁ right₂) → relation (operation left₁ right₁) (operation left₂ right₂)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (relation left₁ left₂ ∧ relation right₁ right₂) → relation (operation left₁ right₁) (operation left₂ right₂)
 
 Logical form (Lean):
 
@@ -110,7 +120,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) (operation : Carrier → Carrier), ((∀ (x : Carrier), relation x x ∧ (∀ (x y : Carrier), relation x y → relation y x ∧ ∀ (x y z : Carrier), relation x y → relation y z → relation x z)) ∧ ∀ {left right : Carrier}, relation left right → relation (operation left) (operation right))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z))) ∧ (∀ {left right : Carrier}, relation left right → relation (operation left) (operation right)))
 
 Logical form (Lean):
 
@@ -156,7 +171,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) (operation : Carrier → Carrier → Carrier), ((∀ (x : Carrier), relation x x ∧ (∀ (x y : Carrier), relation x y → relation y x ∧ ∀ (x y z : Carrier), relation x y → relation y z → relation x z)) ∧ ∀ {left₁ left₂ right₁ right₂ : Carrier}, relation left₁ left₂ → relation right₁ right₂ → relation (operation left₁ right₁) (operation left₂ right₂))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z))) ∧ (∀ {left₁ left₂ right₁ right₂ : Carrier}, relation left₁ left₂ → relation right₁ right₂ → relation (operation left₁ right₁) (operation left₂ right₂)))
 
 Logical form (Lean):
 

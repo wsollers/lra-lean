@@ -12,16 +12,16 @@ open LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.ModelTheor
 Predicate logic:
 
   def naturalNumbersModel
-    (natural_model : LRA.AlgebraicStructures.CommutativeSemiringWithoutZeroConceptSignature) :
-    LRA.ModelTheory.FirstOrder.Model NaturalNumbersFirstOrderSignature :=
-  BuildCommutativeSemiringWithoutZeroModel natural_model
+      (natural_model : LRA.AlgebraicStructures.CommutativeSemiringWithoutZeroConceptSignature) :
+      LRA.ModelTheory.FirstOrder.Model NaturalNumbersFirstOrderSignature :=
+    BuildCommutativeSemiringWithoutZeroModel natural_model
 
 Predicate logic (unfolded):
 
   def naturalNumbersModel
-    (natural_model : LRA.AlgebraicStructures.CommutativeSemiringWithoutZeroConceptSignature) :
-    LRA.ModelTheory.FirstOrder.Model NaturalNumbersFirstOrderSignature :=
-  BuildCommutativeSemiringWithoutZeroModel natural_model (source fallback; no compiled unfold data available)
+      (natural_model : LRA.AlgebraicStructures.CommutativeSemiringWithoutZeroConceptSignature) :
+      LRA.ModelTheory.FirstOrder.Model NaturalNumbersFirstOrderSignature :=
+    BuildCommutativeSemiringWithoutZeroModel natural_model (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

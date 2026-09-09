@@ -14,18 +14,18 @@ universe u
 Predicate logic:
 
   def EmbedIntegerCoefficient
-    (rationalSystem : RationalNumberSystem.{u})
-    (coefficient : rationalSystem.IntegerSystem.Model.Carrier) :
-    rationalSystem.FieldModel.Carrier :=
-  rationalSystem.IntegerEmbedding.ToField coefficient
+      (rationalSystem : RationalNumberSystem.{u})
+      (coefficient : rationalSystem.IntegerSystem.Model.Carrier) :
+      rationalSystem.FieldModel.Carrier :=
+    rationalSystem.IntegerEmbedding.ToField coefficient
 
 Predicate logic (unfolded):
 
   def EmbedIntegerCoefficient
-    (rationalSystem : RationalNumberSystem.{u})
-    (coefficient : rationalSystem.IntegerSystem.Model.Carrier) :
-    rationalSystem.FieldModel.Carrier :=
-  rationalSystem.IntegerEmbedding.ToField coefficient (source fallback; no compiled unfold data available)
+      (rationalSystem : RationalNumberSystem.{u})
+      (coefficient : rationalSystem.IntegerSystem.Model.Carrier) :
+      rationalSystem.FieldModel.Carrier :=
+    rationalSystem.IntegerEmbedding.ToField coefficient (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -71,7 +71,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (a : List rationalSystem.IntegerSystem.Model.1) (a_1 : rationalSystem.FieldModel.1), (List.brecOn.go (motive := fun x => rationalSystem.FieldModel.Carrier → Prop) a (LRA.NumberSystems.RationalNumbers.ContinuedFractions.CoefficientsEvaluateTo._f rationalSystem)).1 a_1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (List.brecOn.go (motive := fun x => rationalSystem.FieldModel.Carrier → Prop) a (LRA.NumberSystems.RationalNumbers.ContinuedFractions.CoefficientsEvaluateTo._f rationalSystem)).1 a_1
 
 Logical form (Lean):
 
@@ -133,7 +138,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (fraction : LRA.Arithmetic.ContinuedFractions.FiniteSimpleContinuedFraction rationalSystem.IntegerSystem.1) (value : rationalSystem.FieldModel.1), LRA.NumberSystems.RationalNumbers.ContinuedFractions.CoefficientsEvaluateTo rationalSystem (List.cons fraction.1 fraction.2) value
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.NumberSystems.RationalNumbers.ContinuedFractions.CoefficientsEvaluateTo rationalSystem (List.cons fraction.1 fraction.2) value
 
 Logical form (Lean):
 
@@ -179,11 +189,17 @@ def FiniteSimpleContinuedFractionEvaluatesTo
 
 Predicate logic:
 
-  (∀ value ∈ rationalSystem.FieldModel.Carrier), ∃ fraction ∈ FiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model, IsCanonicalSimpleContinuedFraction fraction ∧ FiniteSimpleContinuedFractionEvaluatesTo rationalSystem fraction value ∧ ∀ other : FiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model, IsCanonicalSimpleContinuedFraction other → FiniteSimpleContinuedFractionEvaluatesTo rationalSystem other value → other = fraction
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (value : rationalSystem.FieldModel.Carrier), Exists fun fraction => (LRA.Arithmetic.ContinuedFractions.IsCanonicalSimpleContinuedFraction fraction ∧ (LRA.NumberSystems.RationalNumbers.ContinuedFractions.FiniteSimpleContinuedFractionEvaluatesTo rationalSystem fraction value ∧ (∀ (other : LRA.Arithmetic.ContinuedFractions.FiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model), LRA.Arithmetic.ContinuedFractions.IsCanonicalSimpleContinuedFraction other → LRA.NumberSystems.RationalNumbers.ContinuedFractions.FiniteSimpleContinuedFractionEvaluatesTo rationalSystem other value → other = fraction)))
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (value : rationalSystem.FieldModel.1), Exists fun fraction => ((∀ (coefficient : rationalSystem.IntegerSystem.Model.1), List.instMembership.1 fraction.2 coefficient → rationalSystem.IntegerSystem.Model.ltInst.1 rationalSystem.IntegerSystem.Model.zeroInst.1 coefficient ∧ Or (fraction.2 = List.nil) (Exists fun initialSegment => Exists fun last => (fraction.2 = instHAppendOfAppend.1 initialSegment (List.cons last List.nil) ∧ rationalSystem.IntegerSystem.Model.ltInst.1 rationalSystem.IntegerSystem.Model.oneInst.1 last))) ∧ (LRA.NumberSystems.RationalNumbers.ContinuedFractions.CoefficientsEvaluateTo rationalSystem (List.cons fraction.1 fraction.2) value ∧ ∀ (other : LRA.Arithmetic.ContinuedFractions.FiniteSimpleContinuedFraction rationalSystem.IntegerSystem.1), (∀ (coefficient : rationalSystem.IntegerSystem.Model.1), List.instMembership.1 other.2 coefficient → rationalSystem.IntegerSystem.Model.ltInst.1 rationalSystem.IntegerSystem.Model.zeroInst.1 coefficient ∧ Or (other.2 = List.nil) (Exists fun initialSegment => Exists fun last => (other.2 = instHAppendOfAppend.1 initialSegment (List.cons last List.nil) ∧ rationalSystem.IntegerSystem.Model.ltInst.1 rationalSystem.IntegerSystem.Model.oneInst.1 last))) → LRA.NumberSystems.RationalNumbers.ContinuedFractions.CoefficientsEvaluateTo rationalSystem (List.cons other.1 other.2) value → other = fraction))
+  Ambient
+    (implicit ambient)
+  Objects
+    rationalSystem : RationalNumberSystem.{u}
+    value : rationalSystem.FieldModel.Carrier
+  Prove
+    Exists fun fraction => (((∀ (coefficient : rationalSystem.IntegerSystem.Model.1), List.coefficient ∈ fraction.2 → rationalSystem.IntegerSystem.Model.7.lt 0 coefficient) ∧ (Or (fraction.2 = List.nil) (Exists fun initialSegment => Exists fun last => (fraction.2 = instHAppendOfAppend.1 initialSegment (List.cons last List.nil) ∧ rationalSystem.IntegerSystem.Model.7.lt 1 last)))) ∧ (LRA.NumberSystems.RationalNumbers.ContinuedFractions.CoefficientsEvaluateTo rationalSystem (List.cons fraction.1 fraction.2) value ∧ (∀ (other : LRA.Arithmetic.ContinuedFractions.FiniteSimpleContinuedFraction rationalSystem.IntegerSystem.1), ((∀ (coefficient : rationalSystem.IntegerSystem.Model.1), List.coefficient ∈ other.2 → rationalSystem.IntegerSystem.Model.7.lt 0 coefficient) ∧ (Or (other.2 = List.nil) (Exists fun initialSegment => Exists fun last => (other.2 = instHAppendOfAppend.1 initialSegment (List.cons last List.nil) ∧ rationalSystem.IntegerSystem.Model.7.lt 1 last)))) → LRA.NumberSystems.RationalNumbers.ContinuedFractions.CoefficientsEvaluateTo rationalSystem (List.cons other.1 other.2) value → other = fraction)))
 
 Logical form (Lean):
 

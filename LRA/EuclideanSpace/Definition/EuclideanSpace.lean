@@ -8,12 +8,12 @@ universe u
 Predicate logic:
 
   structure EuclideanSpaceDefinition where
-  Carrier : Type u
+    Carrier : Type u
 
 Predicate logic (unfolded):
 
   structure EuclideanSpaceDefinition where
-  Carrier : Type u (source fallback; no compiled unfold data available)
+    Carrier : Type u (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

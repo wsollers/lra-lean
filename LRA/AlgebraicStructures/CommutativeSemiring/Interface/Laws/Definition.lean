@@ -11,22 +11,22 @@ universe u
 Predicate logic:
 
   class abbrev CommutativeSemiringLaws (R : Type u)
-    [Add R] [Mul R] [OfNat R 0] [OfNat R 1] [Nonempty R] : Prop :=
-  AdditiveSemigroupLaws R, AdditiveIdentityLaws R,
-  AdditiveCommutativeLaws R,
-  MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R,
-  MultiplicativeCommutativeLaws R,
-  ZeroAbsorbingLaws R, DistributiveLaws R
+      [Add R] [Mul R] [OfNat R 0] [OfNat R 1] [Nonempty R] : Prop :=
+    AdditiveSemigroupLaws R, AdditiveIdentityLaws R,
+    AdditiveCommutativeLaws R,
+    MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R,
+    MultiplicativeCommutativeLaws R,
+    ZeroAbsorbingLaws R, DistributiveLaws R
 
 Predicate logic (unfolded):
 
   class abbrev CommutativeSemiringLaws (R : Type u)
-    [Add R] [Mul R] [OfNat R 0] [OfNat R 1] [Nonempty R] : Prop :=
-  AdditiveSemigroupLaws R, AdditiveIdentityLaws R,
-  AdditiveCommutativeLaws R,
-  MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R,
-  MultiplicativeCommutativeLaws R,
-  ZeroAbsorbingLaws R, DistributiveLaws R (source fallback; no compiled unfold data available)
+      [Add R] [Mul R] [OfNat R 0] [OfNat R 1] [Nonempty R] : Prop :=
+    AdditiveSemigroupLaws R, AdditiveIdentityLaws R,
+    AdditiveCommutativeLaws R,
+    MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R,
+    MultiplicativeCommutativeLaws R,
+    ZeroAbsorbingLaws R, DistributiveLaws R (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

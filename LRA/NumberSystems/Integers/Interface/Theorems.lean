@@ -10,11 +10,16 @@ universe u
 
 Predicate logic:
 
-  LRA.Carrier.IsCountable integerSystem.Model.Carrier
+  ∀ (integerSystem : LRA.NumberSystems.Integers.IntegerNumberSystem), LRA.Carrier.IsCountable integerSystem.Model.Carrier
 
 Predicate logic (unfolded):
 
-  ∀ (integerSystem : LRA.NumberSystems.Integers.IntegerNumberSystem), Exists fun f => ∀ (y : Nat) (x₁ x₂ : integerSystem.Model.1), f x₁ = y → f x₂ = y → x₁ = x₂
+  Ambient
+    (implicit ambient)
+  Objects
+    integerSystem : IntegerNumberSystem.{u}
+  Prove
+    Exists fun f => ∀ (y : Nat) (x₁ x₂ : integerSystem.Model.1), f x₁ = y → f x₂ = y → x₁ = x₂
 
 Logical form (Lean):
 

@@ -17,7 +17,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (value a : rational_model.signature.toCarrierBundle.1), rational_model.ltInst.1 a value
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    rational_model.ltInst.1 a value
 
 Logical form (Lean):
 
@@ -57,7 +62,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (first second : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper lower : rational_model.signature.toCarrierBundle.1), lower_set upper → rational_model.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rational_model.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.toOrderedRingSignature.2 value greater))))) (a : rational_model.signature.toCarrierBundle.1), Exists fun left => Exists fun right => (first.1 left ∧ (second.1 right ∧ a = rational_model.signature.toBooleanRingOperationBundle.2 left right))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun left => Exists fun right => (first.1 left ∧ (second.1 right ∧ a = rational_model.signature.toBooleanRingOperationBundle.2 left right))
 
 Logical form (Lean):
 
@@ -105,7 +115,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (cut : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper lower : rational_model.signature.toCarrierBundle.1), lower_set upper → rational_model.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rational_model.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.toOrderedRingSignature.2 value greater))))) (a : rational_model.signature.toCarrierBundle.1), Exists fun excluded => (cut.1 excluded → False ∧ rational_model.signature.toOrderedRingSignature.2 a (rational_model.signature.toRingConceptSignature.2 excluded))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun excluded => ((cut.1 excluded → False) ∧ rational_model.signature.toOrderedRingSignature.2 a (rational_model.signature.toRingConceptSignature.2 excluded))
 
 Logical form (Lean):
 
@@ -153,7 +168,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (first second : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper lower : rational_model.signature.toCarrierBundle.1), lower_set upper → rational_model.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rational_model.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.toOrderedRingSignature.2 value greater))))) (a : rational_model.signature.toCarrierBundle.1), Or (rational_model.signature.toOrderedRingSignature.2 a rational_model.signature.toZeroOneBundle.2) (Exists fun left => Exists fun right => (first.1 left ∧ (second.1 right ∧ (rational_model.signature.toOrderedRingSignature.2 rational_model.signature.toZeroOneBundle.2 left ∧ (rational_model.signature.toOrderedRingSignature.2 rational_model.signature.toZeroOneBundle.2 right ∧ rational_model.signature.toOrderedRingSignature.2 a (rational_model.signature.toBooleanRingOperationBundle.3 left right))))))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (rational_model.signature.toOrderedRingSignature.2 a rational_model.signature.toZeroOneBundle.2) (Exists fun left => Exists fun right => (first.1 left ∧ (second.1 right ∧ (rational_model.signature.toOrderedRingSignature.2 rational_model.signature.toZeroOneBundle.2 left ∧ (rational_model.signature.toOrderedRingSignature.2 rational_model.signature.toZeroOneBundle.2 right ∧ rational_model.signature.toOrderedRingSignature.2 a (rational_model.signature.toBooleanRingOperationBundle.3 left right))))))
 
 Logical form (Lean):
 
@@ -211,7 +231,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (family : (Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper lower : rational_model.signature.toCarrierBundle.1), lower_set upper → rational_model.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rational_model.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.toOrderedRingSignature.2 value greater))))) → Prop) (a : rational_model.signature.toCarrierBundle.1), Exists fun cut => (family cut ∧ cut.1 a)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun cut => (family cut ∧ cut.1 a)
 
 Logical form (Lean):
 

@@ -21,8 +21,92 @@ instance : Nonempty (List Alphabet) := ⟨[]⟩
 instance [Nonempty Alphabet] :
     LRA.AlgebraicStructures.MultiplicativeSemigroupLaws (List Alphabet) where
   MulAssociative := List.append_assoc
+/--
+`NonemptyLists` TODO
+
+Predicate logic:
+
+  ∀ {Alphabet : Type u} (a : List Alphabet), a = List.nil → False
+
+Predicate logic (unfolded):
+
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    a = List.nil → False
+
+Logical form (Lean):
+
+```lean
+def NonemptyLists : LRA.Set.LRA_Set (List Alphabet) := {l | l ≠ []}
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 def NonemptyLists : LRA.Set.LRA_Set (List Alphabet) := {l | l ≠ []}
 
+/--
+`nonemptyListsClosedUnderConcatenation` TODO
+
+Predicate logic:
+
+  ∀ {Alphabet : Type u} (a b : List Alphabet), (a ∈ LRA.AlgebraicStructures.Semigroup.Examples.NonemptyLists ∧ b ∈ LRA.AlgebraicStructures.Semigroup.Examples.NonemptyLists) → instHMul.hMul a b ∈ LRA.AlgebraicStructures.Semigroup.Examples.NonemptyLists
+
+Predicate logic (unfolded):
+
+  Ambient
+    (Alphabet)
+  Objects
+    (none)
+  Prove
+    ((a ∈ fun l => l = List.nil → False) ∧ (b ∈ fun l => l = List.nil → False)) → { hMul := fun a b => { mul := fun x1 x2 => instHAppendOfAppend.1 x1 x2 }.mul a b }.hMul a b ∈ fun l => l = List.nil → False
+
+Logical form (Lean):
+
+```lean
+theorem nonemptyListsClosedUnderConcatenation :
+    ∀ a b, a ∈ NonemptyLists → b ∈ NonemptyLists →
+      a * b ∈ (NonemptyLists : LRA.Set.LRA_Set (List Alphabet))
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro
+
+-/
 theorem nonemptyListsClosedUnderConcatenation :
     ∀ a b, a ∈ NonemptyLists → b ∈ NonemptyLists →
       a * b ∈ (NonemptyLists : LRA.Set.LRA_Set (List Alphabet)) := by

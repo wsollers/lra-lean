@@ -6,18 +6,18 @@ namespace LRA.ProofTheory.System.Takeuti
 Predicate logic:
 
   structure Alphabet where
-  FreeVar : Type
-  BoundVar : Type
-  FunctionSymbol : Nat -> Type
-  PredicateSymbol : Nat -> Type
+    FreeVar : Type
+    BoundVar : Type
+    FunctionSymbol : Nat -> Type
+    PredicateSymbol : Nat -> Type
 
 Predicate logic (unfolded):
 
   structure Alphabet where
-  FreeVar : Type
-  BoundVar : Type
-  FunctionSymbol : Nat -> Type
-  PredicateSymbol : Nat -> Type (source fallback; no compiled unfold data available)
+    FreeVar : Type
+    BoundVar : Type
+    FunctionSymbol : Nat -> Type
+    PredicateSymbol : Nat -> Type (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

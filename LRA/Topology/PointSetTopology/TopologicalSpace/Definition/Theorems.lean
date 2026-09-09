@@ -13,7 +13,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} [inst : TopologicalSpace X] (E : X → Prop), inst.1 (Set.instCompl.1 E)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    inst.1 (Set.instCompl.1 E)
 
 Logical form (Lean):
 
@@ -53,7 +58,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (X : Type u) [inst : TopologicalSpace X] (a : X → Prop), inst.1 (Set.instCompl.1 a)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    inst.1 (Set.instCompl.1 a)
 
 Logical form (Lean):
 
@@ -91,11 +101,16 @@ open Set
 
 Predicate logic:
 
-  ∀ S ∈ Set (Set X, (∀ C ∈ S, IsClosed C) → IsClosed (⋂₀ S)) ∧ ∀ C D ∈ Set X, IsClosed C → IsClosed D → IsClosed (C ∪ D) ∧ IsClosed univ ∈ Set X ∧ IsClosed ∅ ∈ Set X
+  ∀ {X : Type u} [inst : TopologicalSpace X], ((∀ (S : Set (Set X)), (∀ (C : Set X), C ∈ S → IsClosed C) → IsClosed S.sInter) ∧ ((∀ (C D : Set X), IsClosed C → IsClosed D → IsClosed (C ∪ D)) ∧ (IsClosed Set.univ ∧ IsClosed Set.instEmptyCollection.emptyCollection)))
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} [inst : TopologicalSpace X], (∀ (S : (X → Prop) → Prop), (∀ (C : X → Prop), Set.instMembership.1 S C → IsClosed C) → IsClosed (Set.instInfSet.1 S) ∧ (∀ (C D : X → Prop), IsClosed C → IsClosed D → IsClosed (Set.instUnion.1 C D) ∧ (IsClosed fun _a => True ∧ IsClosed Set.instEmptyCollection.1)))
+  Ambient
+    (X)
+  Objects
+    (none)
+  Prove
+    ((∀ (S : (X → Prop) → Prop), (∀ (C : X → Prop), C ∈ S → IsClosed C) → IsClosed (Set.instInfSet.1 S)) ∧ ((∀ (C D : X → Prop), IsClosed C → IsClosed D → IsClosed (C ∪ D)) ∧ (IsClosed fun _a => True ∧ IsClosed Set.instEmptyCollection.1)))
 
 Logical form (Lean):
 
@@ -139,11 +154,16 @@ theorem closed_sets_in_topological_space
 
 Predicate logic:
 
-  (∀ S ⊆ F, ⋂₀ S ∈ F ∧ ∀ C ∈ F, ∀ D ∈ F, C ∪ D ∈ F ∧ univ ∈ F ∧ ∅ ∈ F) → ∃ topologicalSpace ∈ TopologicalSpace X, ∀ C : Set X, @IsClosed X topologicalSpace C ↔ C ∈ F
+  ∀ {X : Type u} (F : Set (Set X)), ((∀ (S : Set (Set X)), Set.instLE.le S F → S.sInter ∈ F) ∧ ((∀ (C : Set X), C ∈ F → ∀ (D : Set X), D ∈ F → C ∪ D ∈ F) ∧ (Set.univ ∈ F ∧ Set.instEmptyCollection.emptyCollection ∈ F))) → Exists fun topologicalSpace => ∀ (C : Set X), IsClosed C ↔ C ∈ F
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} (F : (X → Prop) → Prop), (∀ (S : (X → Prop) → Prop), Set.instLE.1 S F → Set.instMembership.1 F (Set.instInfSet.1 S) ∧ (∀ (C : X → Prop), Set.instMembership.1 F C → ∀ (D : X → Prop), Set.instMembership.1 F D → Set.instMembership.1 F (Set.instUnion.1 C D) ∧ (Set.instMembership.1 F fun _a => True ∧ Set.instMembership.1 F Set.instEmptyCollection.1))) → Exists fun topologicalSpace => ∀ (C : X → Prop), IsClosed C ↔ Set.instMembership.1 F C
+  Ambient
+    (X)
+  Objects
+    F : Set (Set X)
+  Prove
+    ((∀ (S : Set (Set X)), Set.instLE.le S F → S.sInter ∈ F) ∧ ((∀ (C : Set X), C ∈ F → ∀ (D : Set X), D ∈ F → C ∪ D ∈ F) ∧ (Set.univ ∈ F ∧ Set.instEmptyCollection.emptyCollection ∈ F))) → Exists fun topologicalSpace => ∀ (C : Set X), IsClosed C ↔ C ∈ F
 
 Logical form (Lean):
 
@@ -193,11 +213,16 @@ theorem TopologyFromClosedSetAxioms
 
 Predicate logic:
 
-  ∀ {X : Type u} [inst : TopologicalSpace X] (E : Set X) (a : X) (t : Set X), Set.instMembership.mem (setOf fun K => (Set.instLE.le E K ∧ IsClosed K)) t → Set.instMembership.mem t a
+  ∀ {X : Type u} [inst : TopologicalSpace X] (E : Set X) (a : X) (t : Set X), t ∈ setOf fun K => (Set.instLE.le E K ∧ IsClosed K) → a ∈ t
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} [inst : TopologicalSpace X] (E : X → Prop) (a : X) (t : X → Prop), Set.instMembership.1 (fun K => (Set.instLE.1 E K ∧ IsClosed K)) t → Set.instMembership.1 t a
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    t ∈ fun K => (({ le := fun s₁ s₂ => ∀ ⦃a : X⦄, a ∈ s₁ → a ∈ s₂}.le E K) ∧ IsClosed K) → a ∈ t
 
 Logical form (Lean):
 
@@ -233,11 +258,17 @@ def TopologicalClosureDefinition {X : Type u} [TopologicalSpace X] (E : Set X) :
 
 Predicate logic:
 
-  TopologicalClosureDefinition A ⊆ TopologicalClosureDefinition B
+  ∀ {X : Type u} [inst : TopologicalSpace X] {A B : Set X}, Set.instLE.le A B → Set.instLE.le (LRA.Topology.TopologicalClosureDefinition A) (LRA.Topology.TopologicalClosureDefinition B)
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} [inst : TopologicalSpace X] {A B : X → Prop}, Set.instLE.1 A B → Set.instLE.1 (Set.instInfSet.1 fun K => (Set.instLE.1 A K ∧ IsClosed K)) (Set.instInfSet.1 fun K => (Set.instLE.1 B K ∧ IsClosed K))
+  Ambient
+    (X)
+  Objects
+    A B : Set X
+    subset : A ⊆ B
+  Prove
+    { le := fun s₁ s₂ => ∀ ⦃a : X⦄, a ∈ s₁ → a ∈ s₂}.le A B → { le := fun s₁ s₂ => ∀ ⦃a : X⦄, a ∈ s₁ → a ∈ s₂}.le (Set.instInfSet.1 fun K => (({ le := fun s₁ s₂ => ∀ ⦃a : X⦄, a ∈ s₁ → a ∈ s₂}.le A K) ∧ IsClosed K)) (Set.instInfSet.1 fun K => (({ le := fun s₁ s₂ => ∀ ⦃a : X⦄, a ∈ s₁ → a ∈ s₂}.le B K) ∧ IsClosed K))
 
 Logical form (Lean):
 

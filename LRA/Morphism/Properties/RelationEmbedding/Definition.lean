@@ -15,7 +15,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Source : Type u} {Target : Type v} (function : Source → Target) (sourceRelation : Source → Source → Prop) (targetRelation : Target → Target → Prop), (∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right) ∧ ∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)) ∧ (∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right))
 
 Logical form (Lean):
 
@@ -63,7 +68,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Source : Type u} {Target : Type v} (function : Source → Target) (sourceRelation : Source → Source → Prop) (targetRelation : Target → Target → Prop), (∀ (y : Target) (x₁ x₂ : Source), function x₁ = y → function x₂ = y → x₁ = x₂ ∧ (∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right) ∧ ∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (y : Target) (x₁ x₂ : Source), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ ((∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)) ∧ (∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right)))
 
 Logical form (Lean):
 

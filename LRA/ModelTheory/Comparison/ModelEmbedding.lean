@@ -11,34 +11,34 @@ namespace LRA.ModelTheory.FirstOrder
 Predicate logic:
 
   structure ModelEmbedding {S : Signature} (M₁ M₂ : Model S) where
-  toFun : M₁.Domain -> M₂.Domain
-  injective : Function.Injective toFun
-  preservesFunction :
-    ∀ (f : S.FunctionSymbol) (args : Fin (S.functionArity f) -> M₁.Domain),
-      toFun (M₁.interpretFunction f args) =
-        M₂.interpretFunction f (fun i => toFun (args i))
-  preservesConstant :
-    ∀ c, toFun (M₁.interpretConstant c) = M₂.interpretConstant c
-  preservesRelation :
-    ∀ (r : S.RelationSymbol) (args : Fin (S.relationArity r) -> M₁.Domain),
-      M₁.interpretRelation r args ↔
-        M₂.interpretRelation r (fun i => toFun (args i))
+    toFun : M₁.Domain -> M₂.Domain
+    injective : Function.Injective toFun
+    preservesFunction :
+      ∀ (f : S.FunctionSymbol) (args : Fin (S.functionArity f) -> M₁.Domain),
+        toFun (M₁.interpretFunction f args) =
+          M₂.interpretFunction f (fun i => toFun (args i))
+    preservesConstant :
+      ∀ c, toFun (M₁.interpretConstant c) = M₂.interpretConstant c
+    preservesRelation :
+      ∀ (r : S.RelationSymbol) (args : Fin (S.relationArity r) -> M₁.Domain),
+        M₁.interpretRelation r args ↔
+          M₂.interpretRelation r (fun i => toFun (args i))
 
 Predicate logic (unfolded):
 
   structure ModelEmbedding {S : Signature} (M₁ M₂ : Model S) where
-  toFun : M₁.Domain -> M₂.Domain
-  injective : Function.Injective toFun
-  preservesFunction :
-    ∀ (f : S.FunctionSymbol) (args : Fin (S.functionArity f) -> M₁.Domain),
-      toFun (M₁.interpretFunction f args) =
-        M₂.interpretFunction f (fun i => toFun (args i))
-  preservesConstant :
-    ∀ c, toFun (M₁.interpretConstant c) = M₂.interpretConstant c
-  preservesRelation :
-    ∀ (r : S.RelationSymbol) (args : Fin (S.relationArity r) -> M₁.Domain),
-      M₁.interpretRelation r args ↔
-        M₂.interpretRelation r (fun i => toFun (args i)) (source fallback; no compiled unfold data available)
+    toFun : M₁.Domain -> M₂.Domain
+    injective : Function.Injective toFun
+    preservesFunction :
+      ∀ (f : S.FunctionSymbol) (args : Fin (S.functionArity f) -> M₁.Domain),
+        toFun (M₁.interpretFunction f args) =
+          M₂.interpretFunction f (fun i => toFun (args i))
+    preservesConstant :
+      ∀ c, toFun (M₁.interpretConstant c) = M₂.interpretConstant c
+    preservesRelation :
+      ∀ (r : S.RelationSymbol) (args : Fin (S.relationArity r) -> M₁.Domain),
+        M₁.interpretRelation r args ↔
+          M₂.interpretRelation r (fun i => toFun (args i)) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

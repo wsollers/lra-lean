@@ -11,20 +11,20 @@ universe u
 Predicate logic:
 
   structure ArithmeticRingSignature where
-  carrier : Type u
-  zero : LRA.Operation.NullaryOperation carrier
-  one : LRA.Operation.NullaryOperation carrier
-  addition : LRA.Operation.BinaryOperation carrier
-  multiplication : LRA.Operation.BinaryOperation carrier
+    carrier : Type u
+    zero : LRA.Operation.NullaryOperation carrier
+    one : LRA.Operation.NullaryOperation carrier
+    addition : LRA.Operation.BinaryOperation carrier
+    multiplication : LRA.Operation.BinaryOperation carrier
 
 Predicate logic (unfolded):
 
   structure ArithmeticRingSignature where
-  carrier : Type u
-  zero : LRA.Operation.NullaryOperation carrier
-  one : LRA.Operation.NullaryOperation carrier
-  addition : LRA.Operation.BinaryOperation carrier
-  multiplication : LRA.Operation.BinaryOperation carrier (source fallback; no compiled unfold data available)
+    carrier : Type u
+    zero : LRA.Operation.NullaryOperation carrier
+    one : LRA.Operation.NullaryOperation carrier
+    addition : LRA.Operation.BinaryOperation carrier
+    multiplication : LRA.Operation.BinaryOperation carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -69,16 +69,16 @@ structure ArithmeticRingSignature where
 Predicate logic:
 
   def BuildArithmeticRingModel
-    (signature : ArithmeticRingSignature) :
-    LRA.ModelTheory.FirstOrder.Model ArithmeticRingFirstOrderSignature where
-  Domain
+      (signature : ArithmeticRingSignature) :
+      LRA.ModelTheory.FirstOrder.Model ArithmeticRingFirstOrderSignature where
+    Domain
 
 Predicate logic (unfolded):
 
   def BuildArithmeticRingModel
-    (signature : ArithmeticRingSignature) :
-    LRA.ModelTheory.FirstOrder.Model ArithmeticRingFirstOrderSignature where
-  Domain (source fallback; no compiled unfold data available)
+      (signature : ArithmeticRingSignature) :
+      LRA.ModelTheory.FirstOrder.Model ArithmeticRingFirstOrderSignature where
+    Domain (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -129,20 +129,20 @@ def BuildArithmeticRingModel
 Predicate logic:
 
   def arithmeticRingFirstOrderModel (R : Type u)
-    [Add R] [Mul R] [OfNat R 0] [OfNat R 1] :
-    LRA.ModelTheory.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
-  BuildArithmeticRingModel
-    { carrier := R, zero := 0, one := 1, addition := (· + ·),
-      multiplication := (· * ·) }
+      [Add R] [Mul R] [OfNat R 0] [OfNat R 1] :
+      LRA.ModelTheory.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
+    BuildArithmeticRingModel
+      { carrier := R, zero := 0, one := 1, addition := (· + ·),
+        multiplication := (· * ·) }
 
 Predicate logic (unfolded):
 
   def arithmeticRingFirstOrderModel (R : Type u)
-    [Add R] [Mul R] [OfNat R 0] [OfNat R 1] :
-    LRA.ModelTheory.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
-  BuildArithmeticRingModel
-    { carrier := R, zero := 0, one := 1, addition := (· + ·),
-      multiplication := (· * ·) } (source fallback; no compiled unfold data available)
+      [Add R] [Mul R] [OfNat R 0] [OfNat R 1] :
+      LRA.ModelTheory.FirstOrder.Model ArithmeticRingFirstOrderSignature :=
+    BuildArithmeticRingModel
+      { carrier := R, zero := 0, one := 1, addition := (· + ·),
+        multiplication := (· * ·) } (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

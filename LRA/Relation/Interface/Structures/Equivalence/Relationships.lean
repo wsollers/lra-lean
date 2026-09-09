@@ -10,11 +10,16 @@ universe u
 
 Predicate logic:
 
-  EquivalenceRelation (IdentityRelation α)
+  ∀ {α : Type u}, LRA.Relation.EquivalenceRelation (LRA.Relation.IdentityRelation α)
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u}, (∀ (x : α), x = x ∧ (∀ (x y : α), x = y → y = x ∧ ∀ (x y z : α), x = y → y = z → x = z))
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : α), x = x) ∧ ((∀ (x y : α), x = y → y = x) ∧ (∀ (x y z : α), x = y → y = z → x = z)))
 
 Logical form (Lean):
 

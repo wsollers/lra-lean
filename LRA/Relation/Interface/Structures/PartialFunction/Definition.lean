@@ -13,7 +13,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (relation : Domain → Codomain → Prop) (x : Domain) (y₁ y₂ : Codomain), (relation x y₁ ∧ relation x y₂) → y₁ = y₂
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (relation x y₁ ∧ relation x y₂) → y₁ = y₂
 
 Logical form (Lean):
 
@@ -54,16 +59,16 @@ def PartialFunctionRelation
 Predicate logic:
 
   structure PartialFunction
-    (Domain : Type u) (Codomain : Type v) where
-  graph : HeterogeneousBinaryRelation Domain Codomain
-  rightUnique : RightUnique graph
+      (Domain : Type u) (Codomain : Type v) where
+    graph : HeterogeneousBinaryRelation Domain Codomain
+    rightUnique : RightUnique graph
 
 Predicate logic (unfolded):
 
   structure PartialFunction
-    (Domain : Type u) (Codomain : Type v) where
-  graph : HeterogeneousBinaryRelation Domain Codomain
-  rightUnique : RightUnique graph (source fallback; no compiled unfold data available)
+      (Domain : Type u) (Codomain : Type v) where
+    graph : HeterogeneousBinaryRelation Domain Codomain
+    rightUnique : RightUnique graph (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -104,12 +109,12 @@ structure PartialFunction
 Predicate logic:
 
   abbrev PartialEndofunction (Carrier : Type u) :=
-  PartialFunction Carrier Carrier
+    PartialFunction Carrier Carrier
 
 Predicate logic (unfolded):
 
   abbrev PartialEndofunction (Carrier : Type u) :=
-  PartialFunction Carrier Carrier (source fallback; no compiled unfold data available)
+    PartialFunction Carrier Carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

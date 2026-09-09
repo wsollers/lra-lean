@@ -37,10 +37,10 @@ Predicate logic (unfolded):
     A : SetObject
     AIsMember : algebra.IsMember A
   Prove
-    algebra.toRingOfSets.1 A → algebra.toRingOfSets.1 (ambient ≤ A)
+    algebra.toRingOfSets.1 A → algebra.toRingOfSets.1 (inst_2.1 ambient A)
 Transliterated theorem: (∀ A ∈ U), algebra.IsMember (ambient \ A)
 Logical form (Lean): (algebra : AlgebraOfSets ambient) (A : SetObject) (AIsMember : algebra.IsMember A) : algebra.IsMember (ambient \ A)
-Source: ./AlgebraOfSets.lean#L104
+Source: [`./AlgebraOfSets.lean#L112`](./AlgebraOfSets.lean#L112)
 
 
 
@@ -56,10 +56,10 @@ Predicate logic (unfolded):
     generator : SetObject → Prop
     admissible : GeneratorAdmissible ambient generator
   Prove
-    (Exists fun sigma => ∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → ∀ (A : SetObject), (∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 A) → A ≤ ambient
+    (Exists fun sigma => ∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → ∀ (A : SetObject), (∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 A) → inst_4.1 A ambient
 Transliterated theorem: (∀ A ∈ U), ∀ A, GeneratedSigmaAlgebraCollection A generator A → A ⊆ A
 Logical form (Lean): (ambient : SetObject) (generator : SetObject → Prop) (admissible : GeneratorAdmissible ambient generator) : ∀ A, GeneratedSigmaAlgebraCollection ambient generator A → A ⊆ ambient
-Source: ./GeneratedSigmaAlgebra.lean#L148
+Source: [`./GeneratedSigmaAlgebra.lean#L165`](./GeneratedSigmaAlgebra.lean#L165)
 
 
 
@@ -77,7 +77,7 @@ Predicate logic (unfolded):
     (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 inst_3.1
 Transliterated theorem: (∀ A ∈ U), GeneratedSigmaAlgebraCollection A generator ∅ ∈ SetObject
 Logical form (Lean): (ambient : SetObject) (generator : SetObject → Prop) : GeneratedSigmaAlgebraCollection ambient generator (∅ : SetObject)
-Source: ./GeneratedSigmaAlgebra.lean#L192
+Source: [`./GeneratedSigmaAlgebra.lean#L215`](./GeneratedSigmaAlgebra.lean#L215)
 
 
 
@@ -92,10 +92,10 @@ Predicate logic (unfolded):
     ambient : SetObject
     generator : SetObject → Prop
   Prove
-    ((∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 A) ∧ (∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 B)) → ∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 (A ≤ B)
+    ((∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 A) ∧ (∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 B)) → ∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 (inst.1 A B)
 Transliterated theorem: (∀ A ∈ U), ∀ A B, GeneratedSigmaAlgebraCollection A generator A → GeneratedSigmaAlgebraCollection A generator B → GeneratedSigmaAlgebraCollection A generator (A ∪ B)
 Logical form (Lean): (ambient : SetObject) (generator : SetObject → Prop) : ∀ A B, GeneratedSigmaAlgebraCollection ambient generator A → GeneratedSigmaAlgebraCollection ambient generator B → GeneratedSigmaAlgebraCollection ambient generator (A ∪ B)
-Source: ./GeneratedSigmaAlgebra.lean#L237
+Source: [`./GeneratedSigmaAlgebra.lean#L266`](./GeneratedSigmaAlgebra.lean#L266)
 
 
 
@@ -110,10 +110,10 @@ Predicate logic (unfolded):
     ambient : SetObject
     generator : SetObject → Prop
   Prove
-    ((∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 A) ∧ (∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 B)) → ∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 (A ≤ B)
+    ((∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 A) ∧ (∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 B)) → ∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 (inst_1.1 A B)
 Transliterated theorem: (∀ A ∈ U), ∀ A B, GeneratedSigmaAlgebraCollection A generator A → GeneratedSigmaAlgebraCollection A generator B → GeneratedSigmaAlgebraCollection A generator (A ∩ B)
 Logical form (Lean): (ambient : SetObject) (generator : SetObject → Prop) : ∀ A B, GeneratedSigmaAlgebraCollection ambient generator A → GeneratedSigmaAlgebraCollection ambient generator B → GeneratedSigmaAlgebraCollection ambient generator (A ∩ B)
-Source: ./GeneratedSigmaAlgebra.lean#L285
+Source: [`./GeneratedSigmaAlgebra.lean#L320`](./GeneratedSigmaAlgebra.lean#L320)
 
 
 
@@ -128,10 +128,10 @@ Predicate logic (unfolded):
     ambient : SetObject
     generator : SetObject → Prop
   Prove
-    ((∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 A) ∧ (∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 B)) → ∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 (A ≤ B)
+    ((∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 A) ∧ (∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 B)) → ∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 (inst_2.1 A B)
 Transliterated theorem: (∀ A ∈ U), ∀ A B, GeneratedSigmaAlgebraCollection A generator A → GeneratedSigmaAlgebraCollection A generator B → GeneratedSigmaAlgebraCollection A generator (A \ B)
 Logical form (Lean): (ambient : SetObject) (generator : SetObject → Prop) : ∀ A B, GeneratedSigmaAlgebraCollection ambient generator A → GeneratedSigmaAlgebraCollection ambient generator B → GeneratedSigmaAlgebraCollection ambient generator (A \ B)
-Source: ./GeneratedSigmaAlgebra.lean#L333
+Source: [`./GeneratedSigmaAlgebra.lean#L374`](./GeneratedSigmaAlgebra.lean#L374)
 
 
 
@@ -146,10 +146,10 @@ Predicate logic (unfolded):
     ambient : SetObject
     generator : SetObject → Prop
   Prove
-    ((∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 A) ∧ (∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 B)) → ∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 (A ≤ B)
+    ((∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 A) ∧ (∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 B)) → ∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 (inst_5.1 A B)
 Transliterated theorem: (∀ A ∈ U), ∀ A B, GeneratedSigmaAlgebraCollection A generator A → GeneratedSigmaAlgebraCollection A generator B → GeneratedSigmaAlgebraCollection A generator (A ∆ B)
 Logical form (Lean): (ambient : SetObject) (generator : SetObject → Prop) : ∀ A B, GeneratedSigmaAlgebraCollection ambient generator A → GeneratedSigmaAlgebraCollection ambient generator B → GeneratedSigmaAlgebraCollection ambient generator (A ∆ B)
-Source: ./GeneratedSigmaAlgebra.lean#L381
+Source: [`./GeneratedSigmaAlgebra.lean#L428`](./GeneratedSigmaAlgebra.lean#L428)
 
 
 
@@ -167,7 +167,7 @@ Predicate logic (unfolded):
     (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 ambient
 Transliterated theorem: (∀ A ∈ U), GeneratedSigmaAlgebraCollection A generator A
 Logical form (Lean): (ambient : SetObject) (generator : SetObject → Prop) : GeneratedSigmaAlgebraCollection ambient generator ambient
-Source: ./GeneratedSigmaAlgebra.lean#L426
+Source: [`./GeneratedSigmaAlgebra.lean#L479`](./GeneratedSigmaAlgebra.lean#L479)
 
 
 
@@ -185,7 +185,7 @@ Predicate logic (unfolded):
     (∀ (index : Nat) (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 (family index)) → ∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 (inst_6.1 family)
 Transliterated theorem: (∀ A ∈ U), ∀ family : Nat → SetObject, (∀ index, GeneratedSigmaAlgebraCollection A generator (family index)) → GeneratedSigmaAlgebraCollection A generator (HasCountableUnion.countableUnion family)
 Logical form (Lean): (ambient : SetObject) (generator : SetObject → Prop) : ∀ family : Nat → SetObject, (∀ index, GeneratedSigmaAlgebraCollection ambient generator (family index)) → GeneratedSigmaAlgebraCollection ambient generator (HasCountableUnion.countableUnion family)
-Source: ./GeneratedSigmaAlgebra.lean#L472
+Source: [`./GeneratedSigmaAlgebra.lean#L531`](./GeneratedSigmaAlgebra.lean#L531)
 
 
 
@@ -206,7 +206,7 @@ Predicate logic (unfolded):
     generator G → (LRA.SetSystems.GeneratedSigmaAlgebra ambient generator admissible).toRingOfSets.1 G
 Transliterated theorem: (∀ A ∈ U ∀ B ∈ U), (GeneratedSigmaAlgebra A generator admissible).IsMember B
 Logical form (Lean): (ambient : SetObject) (generator : SetObject → Prop) (admissible : GeneratorAdmissible ambient generator) (G : SetObject) (GIsGenerator : generator G) : (GeneratedSigmaAlgebra ambient generator admissible).IsMember G
-Source: ./GeneratedSigmaAlgebra.lean#L586
+Source: [`./GeneratedSigmaAlgebra.lean#L654`](./GeneratedSigmaAlgebra.lean#L654)
 
 
 
@@ -226,7 +226,7 @@ Predicate logic (unfolded):
     (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → ∀ (A : SetObject), (LRA.SetSystems.GeneratedSigmaAlgebra ambient generator admissible).toRingOfSets.1 A → sigma.toRingOfSets.1 A
 Transliterated theorem: (∀ A ∈ U), (∀ G, generator G → sigma.IsMember G) → ∀ A, (GeneratedSigmaAlgebra A generator admissible).IsMember A → sigma.IsMember A
 Logical form (Lean): (ambient : SetObject) (generator : SetObject → Prop) (admissible : GeneratorAdmissible ambient generator) (sigma : SigmaAlgebraOfSets ambient) (sigmaAdmitsGenerators : ∀ G, generator G → sigma.IsMember G) : ∀ A, (GeneratedSigmaAlgebra ambient generator admissible).IsMember A → sigma.IsMember A
-Source: ./GeneratedSigmaAlgebra.lean#L634
+Source: [`./GeneratedSigmaAlgebra.lean#L710`](./GeneratedSigmaAlgebra.lean#L710)
 
 
 
@@ -245,7 +245,7 @@ Predicate logic (unfolded):
     ((Exists fun sigma => ∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → False) → (((Exists fun sigma => ∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → False) ∧ (∀ (A : SetObject) (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 A))
 Transliterated theorem: (∀ A ∈ U), GeneratedSigmaAlgebraCollectionVacuous A generator
 Logical form (Lean): (ambient : SetObject) (generator : SetObject → Prop) (notAdmissible : ¬ GeneratorAdmissible ambient generator) : GeneratedSigmaAlgebraCollectionVacuous ambient generator
-Source: ./GeneratedSigmaAlgebra/FailureModes.lean#L101
+Source: [`./GeneratedSigmaAlgebra/FailureModes.lean#L113`](./GeneratedSigmaAlgebra/FailureModes.lean#L113)
 
 
 
@@ -262,7 +262,7 @@ Predicate logic (unfolded):
     (Exists fun sigma => ∀ (G : Nat → Prop), G = LRA.SetSystems.ZeroSingleton → sigma.toRingOfSets.1 G) → False
 Transliterated theorem: ¬ GeneratorAdmissible EmptyNatAmbient ZeroSingletonGenerator
 Logical form (Lean): : ¬ GeneratorAdmissible EmptyNatAmbient ZeroSingletonGenerator
-Source: ./GeneratedSigmaAlgebra/FailureModes.lean#L259
+Source: [`./GeneratedSigmaAlgebra/FailureModes.lean#L291`](./GeneratedSigmaAlgebra/FailureModes.lean#L291)
 
 
 
@@ -279,7 +279,7 @@ Predicate logic (unfolded):
     ((∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets LRA.SetSystems.EmptyNatAmbient), (∀ (G : Nat → Prop), G = LRA.SetSystems.ZeroSingleton → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 LRA.SetSystems.ZeroSingleton) ∧ (LRA.Set.Constructions.TypeSet.instHasSubset.1 LRA.SetSystems.ZeroSingleton LRA.SetSystems.EmptyNatAmbient → False))
 Transliterated theorem: GeneratedSigmaAlgebraCollection EmptyNatAmbient ZeroSingletonGenerator ZeroSingleton ∧ ¬ ZeroSingleton ⊆ EmptyNatAmbient
 Logical form (Lean): : GeneratedSigmaAlgebraCollection EmptyNatAmbient ZeroSingletonGenerator ZeroSingleton ∧ ¬ ZeroSingleton ⊆ EmptyNatAmbient
-Source: ./GeneratedSigmaAlgebra/FailureModes.lean#L301
+Source: [`./GeneratedSigmaAlgebra/FailureModes.lean#L338`](./GeneratedSigmaAlgebra/FailureModes.lean#L338)
 
 
 
@@ -296,7 +296,7 @@ Predicate logic (unfolded):
     True → { le := fun s₁ s₂ => ∀ ⦃a : Point⦄, a ∈ s₁ → a ∈ s₂}.le A fun _a => True
 Transliterated theorem: ∀ A : ActiveSet Point, True → A ⊆ Set.univ
 Logical form (Lean): (Point : Type) : ∀ A : ActiveSet Point, True → A ⊆ Set.univ
-Source: ./Examples.lean#L90
+Source: [`./Examples.lean#L95`](./Examples.lean#L95)
 
 
 
@@ -307,7 +307,7 @@ Predicate logic: ∀ (Point : Type) (A B : LRA.SetSystems.Instantiations.ActiveS
 Predicate logic (unfolded): ∀ (Point : Type) (A B : LRA.SetSystems.Instantiations.ActiveSet Point), True → True → True [unfold error: unavailable]
 Transliterated theorem: ∀ A B : ActiveSet Point, True → True → True
 Logical form (Lean): (Point : Type) : ∀ A B : ActiveSet Point, True → True → True
-Source: ./Examples.lean#L130
+Source: [`./Examples.lean#L135`](./Examples.lean#L135)
 
 
 
@@ -318,7 +318,7 @@ Predicate logic: ∀ (Point : Type) (A B : LRA.SetSystems.Instantiations.ActiveS
 Predicate logic (unfolded): ∀ (Point : Type) (A B : LRA.SetSystems.Instantiations.ActiveSet Point), True → True → True [unfold error: unavailable]
 Transliterated theorem: ∀ A B : ActiveSet Point, True → True → True
 Logical form (Lean): (Point : Type) : ∀ A B : ActiveSet Point, True → True → True
-Source: ./Examples.lean#L170
+Source: [`./Examples.lean#L175`](./Examples.lean#L175)
 
 
 
@@ -329,7 +329,7 @@ Predicate logic: ∀ (Point : Type) (A B : LRA.SetSystems.Instantiations.ActiveS
 Predicate logic (unfolded): ∀ (Point : Type) (A B : LRA.SetSystems.Instantiations.ActiveSet Point), True → True → True [unfold error: unavailable]
 Transliterated theorem: ∀ A B : ActiveSet Point, True → True → True
 Logical form (Lean): (Point : Type) : ∀ A B : ActiveSet Point, True → True → True
-Source: ./Examples.lean#L210
+Source: [`./Examples.lean#L215`](./Examples.lean#L215)
 
 
 
@@ -340,7 +340,7 @@ Predicate logic: ∀ (Point : Type) (A B : LRA.SetSystems.Instantiations.ActiveS
 Predicate logic (unfolded): ∀ (Point : Type) (A B : LRA.SetSystems.Instantiations.ActiveSet Point), True → True → True [unfold error: unavailable]
 Transliterated theorem: ∀ A B : ActiveSet Point, True → True → True
 Logical form (Lean): (Point : Type) : ∀ A B : ActiveSet Point, True → True → True
-Source: ./Examples.lean#L250
+Source: [`./Examples.lean#L255`](./Examples.lean#L255)
 
 
 
@@ -357,7 +357,7 @@ Predicate logic (unfolded):
     Or (A = Set.instEmptyCollection.1)(A = fun_a => True) → { le := fun s₁ s₂ => ∀ ⦃a : Point⦄, a ∈ s₁ → a ∈ s₂}.le A fun _a => True
 Transliterated theorem: ∀ A : ActiveSet Point, (A = ∅ ∨ A = Set.univ) → A ⊆ Set.univ
 Logical form (Lean): (Point : Type) : ∀ A : ActiveSet Point, (A = ∅ ∨ A = Set.univ) → A ⊆ Set.univ
-Source: ./Examples.lean#L364
+Source: [`./Examples.lean#L374`](./Examples.lean#L374)
 
 
 
@@ -374,7 +374,7 @@ Predicate logic (unfolded):
     Or (Set.instEmptyCollection.1 = Set.instEmptyCollection.1)(Set.instEmptyCollection.1 = fun_a => True)
 Transliterated theorem: (∅ ∈ ActiveSet Point = ∅ ∨ ∅ ∈ ActiveSet Point = Set.univ)
 Logical form (Lean): (Point : Type) : ((∅ : ActiveSet Point) = ∅ ∨ (∅ : ActiveSet Point) = Set.univ)
-Source: ./Examples.lean#L404
+Source: [`./Examples.lean#L419`](./Examples.lean#L419)
 
 
 
@@ -391,7 +391,7 @@ Predicate logic (unfolded):
     (Or (A = Set.instEmptyCollection.1)(A = fun_a => True) ∧ Or (B = Set.instEmptyCollection.1)(B = fun_a => True)) → Or (A ∪ B = Set.instEmptyCollection.1)(A ∪ B = fun_a => True)
 Transliterated theorem: ∀ A B : ActiveSet Point, (A = ∅ ∨ A = Set.univ) → (B = ∅ ∨ B = Set.univ) → (A ∪ B = ∅ ∨ A ∪ B = Set.univ)
 Logical form (Lean): (Point : Type) : ∀ A B : ActiveSet Point, (A = ∅ ∨ A = Set.univ) → (B = ∅ ∨ B = Set.univ) → (A ∪ B = ∅ ∨ A ∪ B = Set.univ)
-Source: ./Examples.lean#L447
+Source: [`./Examples.lean#L467`](./Examples.lean#L467)
 
 
 
@@ -408,7 +408,7 @@ Predicate logic (unfolded):
     (Or (A = Set.instEmptyCollection.1)(A = fun_a => True) ∧ Or (B = Set.instEmptyCollection.1)(B = fun_a => True)) → Or (A ∩ B = Set.instEmptyCollection.1)(A ∩ B = fun_a => True)
 Transliterated theorem: ∀ A B : ActiveSet Point, (A = ∅ ∨ A = Set.univ) → (B = ∅ ∨ B = Set.univ) → (A ∩ B = ∅ ∨ A ∩ B = Set.univ)
 Logical form (Lean): (Point : Type) : ∀ A B : ActiveSet Point, (A = ∅ ∨ A = Set.univ) → (B = ∅ ∨ B = Set.univ) → (A ∩ B = ∅ ∨ A ∩ B = Set.univ)
-Source: ./Examples.lean#L493
+Source: [`./Examples.lean#L518`](./Examples.lean#L518)
 
 
 
@@ -425,7 +425,7 @@ Predicate logic (unfolded):
     (Or (A = Set.instEmptyCollection.1)(A = fun_a => True) ∧ Or (B = Set.instEmptyCollection.1)(B = fun_a => True)) → Or (A \ B = Set.instEmptyCollection.1)(A \ B = fun_a => True)
 Transliterated theorem: ∀ A B : ActiveSet Point, (A = ∅ ∨ A = Set.univ) → (B = ∅ ∨ B = Set.univ) → (A \ B = ∅ ∨ A \ B = Set.univ)
 Logical form (Lean): (Point : Type) : ∀ A B : ActiveSet Point, (A = ∅ ∨ A = Set.univ) → (B = ∅ ∨ B = Set.univ) → (A \ B = ∅ ∨ A \ B = Set.univ)
-Source: ./Examples.lean#L539
+Source: [`./Examples.lean#L569`](./Examples.lean#L569)
 
 
 
@@ -442,7 +442,7 @@ Predicate logic (unfolded):
     (Or (A = Set.instEmptyCollection.1)(A = fun_a => True) ∧ Or (B = Set.instEmptyCollection.1)(B = fun_a => True)) → Or (LRA.Set.MathlibPredicateSet.instHasSymmDiffSet.1 A B = Set.instEmptyCollection.1) (LRA.Set.MathlibPredicateSet.instHasSymmDiffSet.1 A B = fun_a => True)
 Transliterated theorem: ∀ A B : ActiveSet Point, (A = ∅ ∨ A = Set.univ) → (B = ∅ ∨ B = Set.univ) → (A ∆ B = ∅ ∨ A ∆ B = Set.univ)
 Logical form (Lean): (Point : Type) : ∀ A B : ActiveSet Point, (A = ∅ ∨ A = Set.univ) → (B = ∅ ∨ B = Set.univ) → (A ∆ B = ∅ ∨ A ∆ B = Set.univ)
-Source: ./Examples.lean#L585
+Source: [`./Examples.lean#L620`](./Examples.lean#L620)
 
 
 
@@ -459,7 +459,7 @@ Predicate logic (unfolded):
     Or (fun _a => True = Set.instEmptyCollection.1)(fun _a => True = fun_a => True)
 Transliterated theorem: (Set.univ ∈ ActiveSet Point = ∅ ∨ Set.univ ∈ ActiveSet Point = Set.univ)
 Logical form (Lean): (Point : Type) : ((Set.univ : ActiveSet Point) = ∅ ∨ (Set.univ : ActiveSet Point) = Set.univ)
-Source: ./Examples.lean#L629
+Source: [`./Examples.lean#L669`](./Examples.lean#L669)
 
 
 
@@ -476,7 +476,7 @@ Predicate logic (unfolded):
     (∀ (index : Nat), (LRA.SetSystems.Instantiations.activeSetAlgebra Point).toRingOfSets.1 (family index)) → (LRA.SetSystems.Instantiations.activeSetAlgebra Point).toRingOfSets.1 (LRA.Set.MathlibPredicateSet.instHasCountableUnionSet.1 family)
 Transliterated theorem: ∀ family : Nat → ActiveSet Point, (∀ index, (activeSetAlgebra Point).IsMember (family index)) → (activeSetAlgebra Point).IsMember (HasCountableUnion.countableUnion family)
 Logical form (Lean): (Point : Type) : ∀ family : Nat → ActiveSet Point, (∀ index, (activeSetAlgebra Point).IsMember (family index)) → (activeSetAlgebra Point).IsMember (HasCountableUnion.countableUnion family)
-Source: ./Examples.lean#L751
+Source: [`./Examples.lean#L796`](./Examples.lean#L796)
 
 
 
@@ -493,7 +493,7 @@ Predicate logic (unfolded):
     True → LRA.Set.Constructions.TypeSet.instHasSubset.1 A fun x => True
 Transliterated theorem: ∀ A : LRA.Set.Constructions.TypeSet Point, True → A ⊆ LRA.Set.Constructions.TypeSet.Universal Point
 Logical form (Lean): (Point : Type) : ∀ A : LRA.Set.Constructions.TypeSet Point, True → A ⊆ LRA.Set.Constructions.TypeSet.Universal Point
-Source: ./Examples.lean#L845
+Source: [`./Examples.lean#L895`](./Examples.lean#L895)
 
 
 
@@ -504,7 +504,7 @@ Predicate logic: ∀ (Point : Type) (A B : LRA.Set.Constructions.TypeSet Point),
 Predicate logic (unfolded): ∀ (Point : Type) (A B : LRA.Set.Constructions.TypeSet Point), True → True → True [unfold error: unavailable]
 Transliterated theorem: ∀ A B : LRA.Set.Constructions.TypeSet Point, True → True → True
 Logical form (Lean): (Point : Type) : ∀ A B : LRA.Set.Constructions.TypeSet Point, True → True → True
-Source: ./Examples.lean#L886
+Source: [`./Examples.lean#L936`](./Examples.lean#L936)
 
 
 
@@ -515,7 +515,7 @@ Predicate logic: ∀ (Point : Type) (A B : LRA.Set.Constructions.TypeSet Point),
 Predicate logic (unfolded): ∀ (Point : Type) (A B : LRA.Set.Constructions.TypeSet Point), True → True → True [unfold error: unavailable]
 Transliterated theorem: ∀ A B : LRA.Set.Constructions.TypeSet Point, True → True → True
 Logical form (Lean): (Point : Type) : ∀ A B : LRA.Set.Constructions.TypeSet Point, True → True → True
-Source: ./Examples.lean#L926
+Source: [`./Examples.lean#L976`](./Examples.lean#L976)
 
 
 
@@ -526,7 +526,7 @@ Predicate logic: ∀ (Point : Type) (A B : LRA.Set.Constructions.TypeSet Point),
 Predicate logic (unfolded): ∀ (Point : Type) (A B : LRA.Set.Constructions.TypeSet Point), True → True → True [unfold error: unavailable]
 Transliterated theorem: ∀ A B : LRA.Set.Constructions.TypeSet Point, True → True → True
 Logical form (Lean): (Point : Type) : ∀ A B : LRA.Set.Constructions.TypeSet Point, True → True → True
-Source: ./Examples.lean#L966
+Source: [`./Examples.lean#L1016`](./Examples.lean#L1016)
 
 
 
@@ -537,7 +537,7 @@ Predicate logic: ∀ (Point : Type) (A B : LRA.Set.Constructions.TypeSet Point),
 Predicate logic (unfolded): ∀ (Point : Type) (A B : LRA.Set.Constructions.TypeSet Point), True → True → True [unfold error: unavailable]
 Transliterated theorem: ∀ A B : LRA.Set.Constructions.TypeSet Point, True → True → True
 Logical form (Lean): (Point : Type) : ∀ A B : LRA.Set.Constructions.TypeSet Point, True → True → True
-Source: ./Examples.lean#L1006
+Source: [`./Examples.lean#L1056`](./Examples.lean#L1056)
 
 ## Axioms / Assumptions
 
@@ -564,7 +564,7 @@ Predicate logic (unfolded):
     collection object
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Closure.lean
+Source: [`./Closure.lean`](./Closure.lean)
 
 
 
@@ -581,7 +581,7 @@ Predicate logic (unfolded):
     collection object
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Closure.lean
+Source: [`./Closure.lean`](./Closure.lean)
 
 
 
@@ -598,7 +598,7 @@ Predicate logic (unfolded):
     collection object → collection (operation object)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Closure.lean
+Source: [`./Closure.lean`](./Closure.lean)
 
 
 
@@ -615,7 +615,7 @@ Predicate logic (unfolded):
     (collection left ∧ collection right) → collection (operation left right)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Closure.lean
+Source: [`./Closure.lean`](./Closure.lean)
 
 
 
@@ -632,7 +632,7 @@ Predicate logic (unfolded):
     predicate object → collection object
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Closure.lean
+Source: [`./Closure.lean`](./Closure.lean)
 
 
 
@@ -649,7 +649,7 @@ Predicate logic (unfolded):
     (∀ (object : Carrier), List.object ∈ objects → collection object) → collection (operation objects)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Closure.lean
+Source: [`./Closure.lean`](./Closure.lean)
 
 
 
@@ -666,7 +666,7 @@ Predicate logic (unfolded):
     (∀ (index : Index), collection (family index)) → collection (operation family)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Closure.lean
+Source: [`./Closure.lean`](./Closure.lean)
 
 
 
@@ -683,7 +683,7 @@ Predicate logic (unfolded):
     (∀ (index : Nat), collection (family index)) → collection (operation family)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Closure.lean
+Source: [`./Closure.lean`](./Closure.lean)
 
 
 
@@ -700,7 +700,7 @@ Predicate logic (unfolded):
     (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 a
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./GeneratedSigmaAlgebra.lean
+Source: [`./GeneratedSigmaAlgebra.lean`](./GeneratedSigmaAlgebra.lean)
 
 
 
@@ -717,7 +717,7 @@ Predicate logic (unfolded):
     Exists fun sigma => ∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./GeneratedSigmaAlgebra.lean
+Source: [`./GeneratedSigmaAlgebra.lean`](./GeneratedSigmaAlgebra.lean)
 
 
 
@@ -734,7 +734,7 @@ Predicate logic (unfolded):
     (((Exists fun sigma => ∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → False) ∧ (∀ (A : SetObject) (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 A))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./GeneratedSigmaAlgebra/FailureModes.lean
+Source: [`./GeneratedSigmaAlgebra/FailureModes.lean`](./GeneratedSigmaAlgebra/FailureModes.lean)
 
 
 
@@ -751,7 +751,7 @@ Predicate logic (unfolded):
     False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./GeneratedSigmaAlgebra/FailureModes.lean
+Source: [`./GeneratedSigmaAlgebra/FailureModes.lean`](./GeneratedSigmaAlgebra/FailureModes.lean)
 
 
 
@@ -768,7 +768,7 @@ Predicate logic (unfolded):
     a = 0
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./GeneratedSigmaAlgebra/FailureModes.lean
+Source: [`./GeneratedSigmaAlgebra/FailureModes.lean`](./GeneratedSigmaAlgebra/FailureModes.lean)
 
 
 
@@ -785,4 +785,4 @@ Predicate logic (unfolded):
     candidate = LRA.SetSystems.ZeroSingleton
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./GeneratedSigmaAlgebra/FailureModes.lean
+Source: [`./GeneratedSigmaAlgebra/FailureModes.lean`](./GeneratedSigmaAlgebra/FailureModes.lean)

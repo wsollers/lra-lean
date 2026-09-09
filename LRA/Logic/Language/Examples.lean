@@ -9,12 +9,12 @@ namespace LRA.Logic
 Predicate logic:
 
   inductive MonoidFunctionSymbol where
-  | mul
+    | mul
 
 Predicate logic (unfolded):
 
   inductive MonoidFunctionSymbol where
-  | mul (source fallback; no compiled unfold data available)
+    | mul (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -89,12 +89,12 @@ def MonoidRelationSymbol : Type := Empty
 Predicate logic:
 
   inductive MonoidConstantSymbol where
-  | one
+    | one
 
 Predicate logic (unfolded):
 
   inductive MonoidConstantSymbol where
-  | one (source fallback; no compiled unfold data available)
+    | one (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -131,16 +131,16 @@ inductive MonoidConstantSymbol where
 Predicate logic:
 
   def monoidFunctions : ArityIndexedSymbols where
-  Symbol := MonoidFunctionSymbol
-  arity
-    | .mul => 2
+    Symbol := MonoidFunctionSymbol
+    arity
+      | .mul => 2
 
 Predicate logic (unfolded):
 
   def monoidFunctions : ArityIndexedSymbols where
-  Symbol := MonoidFunctionSymbol
-  arity
-    | .mul => 2 (source fallback; no compiled unfold data available)
+    Symbol := MonoidFunctionSymbol
+    arity
+      | .mul => 2 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -181,14 +181,14 @@ def monoidFunctions : ArityIndexedSymbols where
 Predicate logic:
 
   def monoidRelations : ArityIndexedSymbols where
-  Symbol := MonoidRelationSymbol
-  arity := Empty.elim
+    Symbol := MonoidRelationSymbol
+    arity := Empty.elim
 
 Predicate logic (unfolded):
 
   def monoidRelations : ArityIndexedSymbols where
-  Symbol := MonoidRelationSymbol
-  arity := Empty.elim (source fallback; no compiled unfold data available)
+    Symbol := MonoidRelationSymbol
+    arity := Empty.elim (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -227,16 +227,16 @@ def monoidRelations : ArityIndexedSymbols where
 Predicate logic:
 
   def monoidSignature : Signature where
-  Functions := monoidFunctions
-  Relations := monoidRelations
-  Constants := MonoidConstantSymbol
+    Functions := monoidFunctions
+    Relations := monoidRelations
+    Constants := MonoidConstantSymbol
 
 Predicate logic (unfolded):
 
   def monoidSignature : Signature where
-  Functions := monoidFunctions
-  Relations := monoidRelations
-  Constants := MonoidConstantSymbol (source fallback; no compiled unfold data available)
+    Functions := monoidFunctions
+    Relations := monoidRelations
+    Constants := MonoidConstantSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -276,11 +276,16 @@ def monoidSignature : Signature where
 
 Predicate logic:
 
-  monoidSignature.IsBinaryFunctionSymbol .mul
+  LRA.Logic.monoidSignature.IsBinaryFunctionSymbol LRA.Logic.MonoidFunctionSymbol.mul
 
 Predicate logic (unfolded):
 
-  LRA.Logic.monoidSignature.Functions.2 LRA.Logic.MonoidFunctionSymbol.mul = instOfNatNat 2.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.monoidSignature.Functions.2 LRA.Logic.MonoidFunctionSymbol.mul = 2
 
 Logical form (Lean):
 
@@ -317,12 +322,12 @@ theorem monoidSignature.mulIsBinary :
 Predicate logic:
 
   inductive AdditiveMonoidFunctionSymbol where
-  | add
+    | add
 
 Predicate logic (unfolded):
 
   inductive AdditiveMonoidFunctionSymbol where
-  | add (source fallback; no compiled unfold data available)
+    | add (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -397,12 +402,12 @@ def AdditiveMonoidRelationSymbol : Type := Empty
 Predicate logic:
 
   inductive AdditiveMonoidConstantSymbol where
-  | zero
+    | zero
 
 Predicate logic (unfolded):
 
   inductive AdditiveMonoidConstantSymbol where
-  | zero (source fallback; no compiled unfold data available)
+    | zero (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -439,16 +444,16 @@ inductive AdditiveMonoidConstantSymbol where
 Predicate logic:
 
   def additiveMonoidFunctions : ArityIndexedSymbols where
-  Symbol := AdditiveMonoidFunctionSymbol
-  arity
-    | .add => 2
+    Symbol := AdditiveMonoidFunctionSymbol
+    arity
+      | .add => 2
 
 Predicate logic (unfolded):
 
   def additiveMonoidFunctions : ArityIndexedSymbols where
-  Symbol := AdditiveMonoidFunctionSymbol
-  arity
-    | .add => 2 (source fallback; no compiled unfold data available)
+    Symbol := AdditiveMonoidFunctionSymbol
+    arity
+      | .add => 2 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -489,14 +494,14 @@ def additiveMonoidFunctions : ArityIndexedSymbols where
 Predicate logic:
 
   def additiveMonoidRelations : ArityIndexedSymbols where
-  Symbol := AdditiveMonoidRelationSymbol
-  arity := Empty.elim
+    Symbol := AdditiveMonoidRelationSymbol
+    arity := Empty.elim
 
 Predicate logic (unfolded):
 
   def additiveMonoidRelations : ArityIndexedSymbols where
-  Symbol := AdditiveMonoidRelationSymbol
-  arity := Empty.elim (source fallback; no compiled unfold data available)
+    Symbol := AdditiveMonoidRelationSymbol
+    arity := Empty.elim (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -535,16 +540,16 @@ def additiveMonoidRelations : ArityIndexedSymbols where
 Predicate logic:
 
   def additiveMonoidSignature : Signature where
-  Functions := additiveMonoidFunctions
-  Relations := additiveMonoidRelations
-  Constants := AdditiveMonoidConstantSymbol
+    Functions := additiveMonoidFunctions
+    Relations := additiveMonoidRelations
+    Constants := AdditiveMonoidConstantSymbol
 
 Predicate logic (unfolded):
 
   def additiveMonoidSignature : Signature where
-  Functions := additiveMonoidFunctions
-  Relations := additiveMonoidRelations
-  Constants := AdditiveMonoidConstantSymbol (source fallback; no compiled unfold data available)
+    Functions := additiveMonoidFunctions
+    Relations := additiveMonoidRelations
+    Constants := AdditiveMonoidConstantSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -584,11 +589,16 @@ def additiveMonoidSignature : Signature where
 
 Predicate logic:
 
-  additiveMonoidSignature.IsBinaryFunctionSymbol .add
+  LRA.Logic.additiveMonoidSignature.IsBinaryFunctionSymbol LRA.Logic.AdditiveMonoidFunctionSymbol.add
 
 Predicate logic (unfolded):
 
-  LRA.Logic.additiveMonoidSignature.Functions.2 LRA.Logic.AdditiveMonoidFunctionSymbol.add = instOfNatNat 2.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.additiveMonoidSignature.Functions.2 LRA.Logic.AdditiveMonoidFunctionSymbol.add = 2
 
 Logical form (Lean):
 
@@ -625,16 +635,16 @@ theorem additiveMonoidSignature.addIsBinary :
 Predicate logic:
 
   inductive OrderedRingFunctionSymbol where
-  | add
-  | mul
-  | neg
+    | add
+    | mul
+    | neg
 
 Predicate logic (unfolded):
 
   inductive OrderedRingFunctionSymbol where
-  | add
-  | mul
-  | neg (source fallback; no compiled unfold data available)
+    | add
+    | mul
+    | neg (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -675,12 +685,12 @@ inductive OrderedRingFunctionSymbol where
 Predicate logic:
 
   inductive OrderedRingRelationSymbol where
-  | lt
+    | lt
 
 Predicate logic (unfolded):
 
   inductive OrderedRingRelationSymbol where
-  | lt (source fallback; no compiled unfold data available)
+    | lt (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -717,14 +727,14 @@ inductive OrderedRingRelationSymbol where
 Predicate logic:
 
   inductive OrderedRingConstantSymbol where
-  | zero
-  | one
+    | zero
+    | one
 
 Predicate logic (unfolded):
 
   inductive OrderedRingConstantSymbol where
-  | zero
-  | one (source fallback; no compiled unfold data available)
+    | zero
+    | one (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -763,20 +773,20 @@ inductive OrderedRingConstantSymbol where
 Predicate logic:
 
   def orderedRingFunctions : ArityIndexedSymbols where
-  Symbol := OrderedRingFunctionSymbol
-  arity
-    | .add => 2
-    | .mul => 2
-    | .neg => 1
+    Symbol := OrderedRingFunctionSymbol
+    arity
+      | .add => 2
+      | .mul => 2
+      | .neg => 1
 
 Predicate logic (unfolded):
 
   def orderedRingFunctions : ArityIndexedSymbols where
-  Symbol := OrderedRingFunctionSymbol
-  arity
-    | .add => 2
-    | .mul => 2
-    | .neg => 1 (source fallback; no compiled unfold data available)
+    Symbol := OrderedRingFunctionSymbol
+    arity
+      | .add => 2
+      | .mul => 2
+      | .neg => 1 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -821,16 +831,16 @@ def orderedRingFunctions : ArityIndexedSymbols where
 Predicate logic:
 
   def orderedRingRelations : ArityIndexedSymbols where
-  Symbol := OrderedRingRelationSymbol
-  arity
-    | .lt => 2
+    Symbol := OrderedRingRelationSymbol
+    arity
+      | .lt => 2
 
 Predicate logic (unfolded):
 
   def orderedRingRelations : ArityIndexedSymbols where
-  Symbol := OrderedRingRelationSymbol
-  arity
-    | .lt => 2 (source fallback; no compiled unfold data available)
+    Symbol := OrderedRingRelationSymbol
+    arity
+      | .lt => 2 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -871,16 +881,16 @@ def orderedRingRelations : ArityIndexedSymbols where
 Predicate logic:
 
   def orderedRingSignature : Signature where
-  Functions := orderedRingFunctions
-  Relations := orderedRingRelations
-  Constants := OrderedRingConstantSymbol
+    Functions := orderedRingFunctions
+    Relations := orderedRingRelations
+    Constants := OrderedRingConstantSymbol
 
 Predicate logic (unfolded):
 
   def orderedRingSignature : Signature where
-  Functions := orderedRingFunctions
-  Relations := orderedRingRelations
-  Constants := OrderedRingConstantSymbol (source fallback; no compiled unfold data available)
+    Functions := orderedRingFunctions
+    Relations := orderedRingRelations
+    Constants := OrderedRingConstantSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -920,11 +930,16 @@ def orderedRingSignature : Signature where
 
 Predicate logic:
 
-  orderedRingSignature.IsBinaryFunctionSymbol .add
+  LRA.Logic.orderedRingSignature.IsBinaryFunctionSymbol LRA.Logic.OrderedRingFunctionSymbol.add
 
 Predicate logic (unfolded):
 
-  LRA.Logic.orderedRingSignature.Functions.2 LRA.Logic.OrderedRingFunctionSymbol.add = instOfNatNat 2.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.orderedRingSignature.Functions.2 LRA.Logic.OrderedRingFunctionSymbol.add = 2
 
 Logical form (Lean):
 
@@ -960,11 +975,16 @@ theorem orderedRingSignature.addIsBinary :
 
 Predicate logic:
 
-  orderedRingSignature.IsBinaryFunctionSymbol .mul
+  LRA.Logic.orderedRingSignature.IsBinaryFunctionSymbol LRA.Logic.OrderedRingFunctionSymbol.mul
 
 Predicate logic (unfolded):
 
-  LRA.Logic.orderedRingSignature.Functions.2 LRA.Logic.OrderedRingFunctionSymbol.mul = instOfNatNat 2.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.orderedRingSignature.Functions.2 LRA.Logic.OrderedRingFunctionSymbol.mul = 2
 
 Logical form (Lean):
 
@@ -1000,11 +1020,16 @@ theorem orderedRingSignature.mulIsBinary :
 
 Predicate logic:
 
-  orderedRingSignature.IsUnaryFunctionSymbol .neg
+  LRA.Logic.orderedRingSignature.IsUnaryFunctionSymbol LRA.Logic.OrderedRingFunctionSymbol.neg
 
 Predicate logic (unfolded):
 
-  LRA.Logic.orderedRingSignature.Functions.2 LRA.Logic.OrderedRingFunctionSymbol.neg = instOfNatNat 1.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.orderedRingSignature.Functions.2 LRA.Logic.OrderedRingFunctionSymbol.neg = 1
 
 Logical form (Lean):
 
@@ -1040,11 +1065,16 @@ theorem orderedRingSignature.negIsUnary :
 
 Predicate logic:
 
-  orderedRingSignature.IsBinaryRelationSymbol .lt
+  LRA.Logic.orderedRingSignature.IsBinaryRelationSymbol LRA.Logic.OrderedRingRelationSymbol.lt
 
 Predicate logic (unfolded):
 
-  LRA.Logic.orderedRingSignature.Relations.2 LRA.Logic.OrderedRingRelationSymbol.lt = instOfNatNat 2.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.orderedRingSignature.Relations.2 LRA.Logic.OrderedRingRelationSymbol.lt = 2
 
 Logical form (Lean):
 

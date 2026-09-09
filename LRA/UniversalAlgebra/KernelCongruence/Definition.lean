@@ -16,30 +16,30 @@ universe u v
 Predicate logic:
 
   def kernelCongruence {S : Signature}
-    {M : Model.{u} S} {N : Model.{v} S}
-    (homomorphism : Homomorphism M N) : Congruence M where
-  rel := kernelRelation homomorphism
-  iseqv := kernelRelationIsEquivalence homomorphism
-  compatible := fun functionSymbol leftArguments rightArguments related => by
-    show homomorphism.map _ = homomorphism.map _
-    rw [homomorphism.preservesFunction, homomorphism.preservesFunction]
-    congr 1
-    funext i
-    exact related i
+      {M : Model.{u} S} {N : Model.{v} S}
+      (homomorphism : Homomorphism M N) : Congruence M where
+    rel := kernelRelation homomorphism
+    iseqv := kernelRelationIsEquivalence homomorphism
+    compatible := fun functionSymbol leftArguments rightArguments related => by
+      show homomorphism.map _ = homomorphism.map _
+      rw [homomorphism.preservesFunction, homomorphism.preservesFunction]
+      congr 1
+      funext i
+      exact related i
 
 Predicate logic (unfolded):
 
   def kernelCongruence {S : Signature}
-    {M : Model.{u} S} {N : Model.{v} S}
-    (homomorphism : Homomorphism M N) : Congruence M where
-  rel := kernelRelation homomorphism
-  iseqv := kernelRelationIsEquivalence homomorphism
-  compatible := fun functionSymbol leftArguments rightArguments related => by
-    show homomorphism.map _ = homomorphism.map _
-    rw [homomorphism.preservesFunction, homomorphism.preservesFunction]
-    congr 1
-    funext i
-    exact related i (source fallback; no compiled unfold data available)
+      {M : Model.{u} S} {N : Model.{v} S}
+      (homomorphism : Homomorphism M N) : Congruence M where
+    rel := kernelRelation homomorphism
+    iseqv := kernelRelationIsEquivalence homomorphism
+    compatible := fun functionSymbol leftArguments rightArguments related => by
+      show homomorphism.map _ = homomorphism.map _
+      rw [homomorphism.preservesFunction, homomorphism.preservesFunction]
+      congr 1
+      funext i
+      exact related i (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -93,11 +93,19 @@ def kernelCongruence {S : Signature}
 
 Predicate logic:
 
-  (∀ target : N.Domain, ∃ source, homomorphism.map source = target) → Isomorphic (quotientModel (kernelCongruence homomorphism)) N
+  ∀ {S : LRA.Logic.Signature} {M : LRA.ModelTheory.FirstOrder.Model S} {N : LRA.ModelTheory.FirstOrder.Model S} (homomorphism : LRA.UniversalAlgebra.Homomorphism M N), (∀ (target : N.Domain), Exists fun source => homomorphism.map source = target) → LRA.UniversalAlgebra.Isomorphic (LRA.UniversalAlgebra.quotientModel (LRA.UniversalAlgebra.kernelCongruence homomorphism)) N
 
 Predicate logic (unfolded):
 
-  ∀ {S : LRA.Logic.Signature} {M : LRA.ModelTheory.FirstOrder.Model S} {N : LRA.ModelTheory.FirstOrder.Model S} (homomorphism : LRA.UniversalAlgebra.Homomorphism M N), (∀ (target : N.1), Exists fun source => homomorphism.1 source = target) → Nonempty (LRA.UniversalAlgebra.Isomorphism { Domain := Quot (LRA.UniversalAlgebra.kernelCongruence homomorphism).1, domainNonempty := ⋯, equalityIsDiagonal := ⋯, interpretFunction := fun functionSymbol arguments => Quot.mk (LRA.UniversalAlgebra.kernelCongruence homomorphism).1 (M.5 functionSymbol fun i => (Classical.indefiniteDescription (fun x => Quot.mk (LRA.UniversalAlgebra.kernelCongruence homomorphism).rel x = arguments i) ⋯).1), interpretRelation := fun relationSymbol arguments => M.6 relationSymbol fun i => (Classical.indefiniteDescription (fun x => Quot.mk (LRA.UniversalAlgebra.kernelCongruence homomorphism).rel x = arguments i) ⋯).1, interpretConstant := fun constantSymbol => Quot.mk (LRA.UniversalAlgebra.kernelCongruence homomorphism).1 (M.7 constantSymbol) } N)
+  Ambient
+    (implicit ambient)
+  Objects
+    S : Signature
+    M : Model.{u} S
+    N : Model.{v} S
+    homomorphism : Homomorphism M N
+  Prove
+    (∀ (target : N.1), Exists fun source => homomorphism.1 source = target) → Nonempty (LRA.UniversalAlgebra.Isomorphism { Domain := Quot (LRA.UniversalAlgebra.kernelCongruence homomorphism).1, domainNonempty := ⋯, equalityIsDiagonal := ⋯, interpretFunction := fun functionSymbol arguments => Quot.mk (LRA.UniversalAlgebra.kernelCongruence homomorphism).1 (M.5 functionSymbol fun i => (Classical.indefiniteDescription (fun x => Quot.mk (LRA.UniversalAlgebra.kernelCongruence homomorphism).rel x = arguments i) ⋯).1), interpretRelation := fun relationSymbol arguments => M.6 relationSymbol fun i => (Classical.indefiniteDescription (fun x => Quot.mk (LRA.UniversalAlgebra.kernelCongruence homomorphism).rel x = arguments i) ⋯).1, interpretConstant := fun constantSymbol => Quot.mk (LRA.UniversalAlgebra.kernelCongruence homomorphism).1 (M.7 constantSymbol) } N)
 
 Logical form (Lean):
 

@@ -10,11 +10,16 @@ namespace LRA.Analysis.RealAnalysis
 
 Predicate logic:
 
-  (∀ n, a n ≤ b n ∧ ∀ n, a n ≤ a (n + 1) ∧ b (n + 1) ≤ b n) → ∃ x ∈ ℝ, ∀ n, a n ≤ x ∧ x ≤ b n
+  ∀ (a b : Nat → Real), ((∀ (n : Nat), Real.instLE.le (a n) (b n)) ∧ (∀ (n : Nat), (Real.instLE.le (a n) (a (instHAdd.hAdd n 1)) ∧ Real.instLE.le (b (instHAdd.hAdd n 1)) (b n)))) → Exists fun x => ∀ (n : Nat), (Real.instLE.le (a n) x ∧ Real.instLE.le x (b n))
 
 Predicate logic (unfolded):
 
-  ∀ (a b : Nat → Real), (∀ (n : Nat), Real.instLE.1 (a n) (b n) ∧ ∀ (n : Nat), (Real.instLE.1 (a n) (a (instHAdd.1 n (instOfNatNat 1).1)) ∧ Real.instLE.1 (b (instHAdd.1 n (instOfNatNat 1).1)) (b n))) → Exists fun x => ∀ (n : Nat), (Real.instLE.1 (a n) x ∧ Real.instLE.1 x (b n))
+  Ambient
+    (ℕ, ℝ)
+  Objects
+    a b : ℕ → ℝ
+  Prove
+    ((∀ (n : Nat), Real.instLE.le (a n) (b n)) ∧ (∀ (n : Nat), (Real.instLE.le (a n) (a ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1)) ∧ Real.instLE.le (b ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1)) (b n)))) → Exists fun x => ∀ (n : Nat), (Real.instLE.le (a n) x ∧ Real.instLE.le x (b n))
 
 Logical form (Lean):
 
@@ -54,11 +59,18 @@ theorem NestedIntervalProperty (a b : ℕ → ℝ)
 
 Predicate logic:
 
-  (ℝ → ℝ ∧ a < b ∧ (f a < L ∧ L < f b) ∨ (f a > L ∧ L > f b)) → ∃ c ∈ Set.Ioo a b, f c = L
+  ∀ (f : Real → Real) (a b L : Real), (Real.instLT.lt a b ∧ (ContinuousOn f (Set.Icc a b) ∧ (Or ((Real.instLT.lt (f a) L ∧ Real.instLT.lt L (f b))) ((GT.gt (f a) L ∧ GT.gt L (f b)))))) → Exists fun c => (c ∈ Set.Ioo a b ∧ f c = L)
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (a b L : Real), (Real.instLT.1 a b ∧ (∀ (x : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) x → Filter.instPartialOrder.toLE.1 { sets := setOf fun x_1 => Set.instMembership.mem (nhdsWithin x (Set.Icc a b)).sets (Set.preimage f x_1), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds (f x)) ∧ Or ((Real.instLT.1 (f a) L ∧ Real.instLT.1 L (f b))) ((Real.instLT.1 L (f a) ∧ Real.instLT.1 (f b) L)))) → Exists fun c => (Set.instMembership.1 (fun x => (Real.instPreorder.toLT.1 a x ∧ Real.instPreorder.toLT.1 x b)) c ∧ f c = L)
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    a b L : ℝ
+    hf : ContinuousOn f (Set.Icc a b)
+  Prove
+    (Real.instLT.lt a b ∧ ((∀ (x : Real), x ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b) → Filter.instPartialOrder.toPreorder.1.le { sets := fun x_1 => .sets ∈ nhdsWithin x (Set.Icc a b)(Set.preimage f x_1), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds (f x))) ∧ (Or ((Real.instLT.lt (f a) L ∧ Real.instLT.lt L (f b))) ((Real.instLT.lt L (f a) ∧ Real.instLT.lt (f b) L))))) → Exists fun c => ((c ∈ fun x => (Real.instPreorder.2.lt a x ∧ Real.instPreorder.2.lt x b)) ∧ f c = L)
 
 Logical form (Lean):
 
@@ -98,11 +110,16 @@ theorem IvtBisection (f : ℝ → ℝ) (a b L : ℝ) (hab : a < b)
 
 Predicate logic:
 
-  ¬ ∃ x ∈ ℕ → ℝ, Function.Surjective x
+  ¬ Exists fun x => Function.Surjective x
 
 Predicate logic (unfolded):
 
-  (Exists fun x => ∀ (b : Real), Exists fun a => x a = b) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun x => ∀ (b : Real), Exists fun a => x a = b) → False
 
 Logical form (Lean):
 

@@ -12,11 +12,16 @@ variable [Membership Element SetObject]
 
 Predicate logic:
 
-  forall first second : Element, ps.successor first = ps.successor second -> first = second
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (first second : Element), ps.successor first = ps.successor second → first = second
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (first second : Element), ps.2 first = ps.2 second → first = second
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ps : PeanoSystem Element SetObject
+  Prove
+    ps.2 first = ps.2 second → first = second
 
 Logical form (Lean):
 
@@ -56,16 +61,21 @@ theorem SuccessorInjective
 
 Predicate logic:
 
-  forall element : Element, ps.successor element ≠ ps.base
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (element : Element), Ne (ps.successor element) ps.base
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (element : Element), ps.2 element = ps.1 → False
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ps : PeanoSystem Element SetObject
+  Prove
+    ps.2 element = ps.1 → False
 
 Logical form (Lean):
 
 ```lean
-theorem BaseIsNotSuccessor
+theorem OneIsNotSuccessor
     (ps : PeanoSystem Element SetObject) :
     forall element : Element,
       ps.successor element ≠ ps.base
@@ -100,11 +110,18 @@ theorem OneIsNotSuccessor
 
 Predicate logic:
 
-  (∀ x y ∈ Element), ps.successor x ≠ ps.successor y
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (first_element second_element : Element), Ne first_element second_element → Ne (ps.successor first_element) (ps.successor second_element)
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (first_element second_element : Element), (first_element = second_element → False ∧ ps.2 first_element = ps.2 second_element) → False
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ps : PeanoSystem Element SetObject
+    first_element second_element : Element
+    elements_not_equal : first_element ≠ second_element
+  Prove
+    ((first_element = second_element → False) ∧ ps.2 first_element = ps.2 second_element) → False
 
 Logical form (Lean):
 
@@ -146,11 +163,17 @@ theorem SuccessorPreservesInequality
 
 Predicate logic:
 
-  (∀ x y ∈ Element), ps.successor x ≠ ps.successor y -> x ≠ y
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (first second : Element), Ne (ps.successor first) (ps.successor second) → Ne first second
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (first second : Element), (ps.2 first = ps.2 second → False ∧ first = second) → False
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ps : PeanoSystem Element SetObject
+    first second : Element
+  Prove
+    ((ps.2 first = ps.2 second → False) ∧ first = second) → False
 
 Logical form (Lean):
 
@@ -190,16 +213,21 @@ theorem SuccessorInequalityReflection
 
 Predicate logic:
 
-  forall element : Element, element = ps.base ∨ exists predecessor : Element, ps.successor predecessor = element
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (element : Element), Or (element = ps.base)(Exists fun predecessor => ps.successor predecessor = element)
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (element : Element), Or (element = ps.1)(Exists fun predecessor => ps.2 predecessor = element)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ps : PeanoSystem Element SetObject
+  Prove
+    Or (element = ps.1)(Exists fun predecessor => ps.2 predecessor = element)
 
 Logical form (Lean):
 
 ```lean
-theorem EveryElementIsBaseOrASuccessor
+theorem EveryElementIsOneOrASuccessor
     (ps : PeanoSystem Element SetObject) :
     forall element : Element,
       element = ps.base \/
@@ -238,11 +266,16 @@ theorem EveryElementIsOneOrASuccessor
 
 Predicate logic:
 
-  forall element : Element, ps.successor element ≠ element
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (element : Element), Ne (ps.successor element) element
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (element : Element), ps.2 element = element → False
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ps : PeanoSystem Element SetObject
+  Prove
+    ps.2 element = element → False
 
 Logical form (Lean):
 
@@ -282,16 +315,22 @@ theorem NoObjectIsItsOwnSuccessor
 
 Predicate logic:
 
-  (∀ x ∈ Element), forall predecessor ∈ Element, ps.successor predecessor ≠ x <-> x = ps.base
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (element : Element), ∀ (predecessor : Element), Ne (ps.successor predecessor) element ↔ element = ps.base
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (element : Element), ∀ (predecessor : Element), ps.2 predecessor = element → False ↔ element = ps.1
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ps : PeanoSystem Element SetObject
+    element : Element
+  Prove
+    ∀ (predecessor : Element), Ne (ps.successor predecessor) element ↔ element = ps.base
 
 Logical form (Lean):
 
 ```lean
-theorem BaseIsUniqueNonSuccessor
+theorem OneIsUniqueNonSuccessor
     (ps : PeanoSystem Element SetObject)
     (element : Element) :
     (forall predecessor : Element,

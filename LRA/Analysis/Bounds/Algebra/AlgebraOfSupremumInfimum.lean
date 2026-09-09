@@ -16,11 +16,16 @@ open LRA.Analysis.Bounds
 
 Predicate logic:
 
-  ∀ (A : Set Real) (a : Real), Exists fun a_1 => (Set.instMembership.mem A a_1 ∧ (fun a => Real.instInv.inv a) a_1 = a)
+  ∀ (A : Set Real) (a : Real), Exists fun a_1 => (a_1 ∈ A ∧ (fun a => Real.instInv.inv a) a_1 = a)
 
 Predicate logic (unfolded):
 
-  ∀ (A : Real → Prop) (a : Real), Exists fun a_1 => (Set.instMembership.1 A a_1 ∧ (fun a => Real.instInv.1 a) a_1 = a)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun a_1 => (a_1 ∈ A ∧ (fun a => Real.instInv.1 a) a_1 = a)
 
 Logical form (Lean):
 
@@ -56,11 +61,16 @@ def Reciprocal (A : Set ℝ) : Set ℝ :=
 
 Predicate logic:
 
-  ∀ (scale : Real) (A : Set Real) (a : Real), Exists fun a_1 => (Set.instMembership.mem A a_1 ∧ (fun a => instHMul.hMul scale a) a_1 = a)
+  ∀ (scale : Real) (A : Set Real) (a : Real), Exists fun a_1 => (a_1 ∈ A ∧ (fun a => instHMul.hMul scale a) a_1 = a)
 
 Predicate logic (unfolded):
 
-  ∀ (scale : Real) (A : Real → Prop) (a : Real), Exists fun a_1 => (Set.instMembership.1 A a_1 ∧ (fun a => instHMul.1 scale a) a_1 = a)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun a_1 => (a_1 ∈ A ∧ (fun a => { hMul := fun a b => Real.instMul.mul a b }.hMul scale a) a_1 = a)
 
 Logical form (Lean):
 
@@ -96,11 +106,16 @@ def ScalarImage (scale : ℝ) (A : Set ℝ) : Set ℝ :=
 
 Predicate logic:
 
-  ∀ {S : Type u_1} [inst : Preorder S] (ambient : Set S) (u : S) (A : Set S), (Set.instMembership.mem ambient u ∧ LRA.Analysis.Bounds.IsUpperBound u A)
+  ∀ {S : Type u_1} [inst : Preorder S] (ambient : Set S) (u : S) (A : Set S), (u ∈ ambient ∧ LRA.Analysis.Bounds.IsUpperBound u A)
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : Preorder S] (ambient : S → Prop) (u : S) (A : S → Prop), (Set.instMembership.1 ambient u ∧ ∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 x u)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (u ∈ ambient ∧ (∀ (x : S), x ∈ A → inst.1.le x u))
 
 Logical form (Lean):
 
@@ -136,11 +151,16 @@ def IsRelativeUpperBound [Preorder S] (ambient : Set S) (u : S) (A : Set S) : Pr
 
 Predicate logic:
 
-  ∀ {S : Type u_1} [inst : Preorder S] (ambient : Set S) (l : S) (A : Set S), (Set.instMembership.mem ambient l ∧ LRA.Analysis.Bounds.IsLowerBound l A)
+  ∀ {S : Type u_1} [inst : Preorder S] (ambient : Set S) (l : S) (A : Set S), (l ∈ ambient ∧ LRA.Analysis.Bounds.IsLowerBound l A)
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : Preorder S] (ambient : S → Prop) (l : S) (A : S → Prop), (Set.instMembership.1 ambient l ∧ ∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 l x)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (l ∈ ambient ∧ (∀ (x : S), x ∈ A → inst.1.le l x))
 
 Logical form (Lean):
 
@@ -176,11 +196,16 @@ def IsRelativeLowerBound [Preorder S] (ambient : Set S) (l : S) (A : Set S) : Pr
 
 Predicate logic:
 
-  ∀ {S : Type u_1} [inst : Preorder S] (ambient : Set S) (s : S) (A : Set S), (LRA.Analysis.Bounds.Algebra.IsRelativeUpperBound ambient s A ∧ ∀ (u : S), LRA.Analysis.Bounds.Algebra.IsRelativeUpperBound ambient u A → inst.le s u)
+  ∀ {S : Type u_1} [inst : Preorder S] (ambient : Set S) (s : S) (A : Set S), (LRA.Analysis.Bounds.Algebra.IsRelativeUpperBound ambient s A ∧ (∀ (u : S), LRA.Analysis.Bounds.Algebra.IsRelativeUpperBound ambient u A → inst.le s u))
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : Preorder S] (ambient : S → Prop) (s : S) (A : S → Prop), ((Set.instMembership.1 ambient s ∧ ∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 x s) ∧ ∀ (u : S), (Set.instMembership.1 ambient u ∧ ∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 x u) → inst.toLE.1 s u)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((s ∈ ambient ∧ (∀ (x : S), x ∈ A → inst.1.le x s)) ∧ (∀ (u : S), (u ∈ ambient ∧ (∀ (x : S), x ∈ A → inst.1.le x u)) → inst.1.le s u))
 
 Logical form (Lean):
 
@@ -218,11 +243,16 @@ def IsRelativeSupremum [Preorder S] (ambient : Set S) (s : S) (A : Set S) : Prop
 
 Predicate logic:
 
-  ∀ {S : Type u_1} [inst : Preorder S] (ambient : Set S) (i : S) (A : Set S), (LRA.Analysis.Bounds.Algebra.IsRelativeLowerBound ambient i A ∧ ∀ (l : S), LRA.Analysis.Bounds.Algebra.IsRelativeLowerBound ambient l A → inst.le l i)
+  ∀ {S : Type u_1} [inst : Preorder S] (ambient : Set S) (i : S) (A : Set S), (LRA.Analysis.Bounds.Algebra.IsRelativeLowerBound ambient i A ∧ (∀ (l : S), LRA.Analysis.Bounds.Algebra.IsRelativeLowerBound ambient l A → inst.le l i))
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : Preorder S] (ambient : S → Prop) (i : S) (A : S → Prop), ((Set.instMembership.1 ambient i ∧ ∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 i x) ∧ ∀ (l : S), (Set.instMembership.1 ambient l ∧ ∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 l x) → inst.toLE.1 l i)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((i ∈ ambient ∧ (∀ (x : S), x ∈ A → inst.1.le i x)) ∧ (∀ (l : S), (l ∈ ambient ∧ (∀ (x : S), x ∈ A → inst.1.le l x)) → inst.1.le l i))
 
 Logical form (Lean):
 
@@ -260,11 +290,19 @@ def IsRelativeInfimum [Preorder S] (ambient : Set S) (i : S) (A : Set S) : Prop 
 
 Predicate logic:
 
-  (∀ nonemptyHypothesis ∈ A.Nonempty), (IsSupremum s A) → IsSupremum (s + c) (A + {c})
+  ∀ {A : Set Real}, A.Nonempty → ∀ {s : Real}, LRA.Analysis.Bounds.IsSupremum s A → ∀ (c : Real), LRA.Analysis.Bounds.IsSupremum (instHAdd.hAdd s c) (instHAdd.hAdd A (Set.instSingletonSet.singleton c))
 
 Predicate logic (unfolded):
 
-  ∀ {A : Real → Prop}, (Exists fun x => Set.instMembership.1 A x) → ∀ {s : Real}, (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x s ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 s u) → ∀ (c : Real), (∀ (x : Real), Set.instMembership.1 (instHAdd.1 A (Set.instSingletonSet.1 c)) x → Real.instPreorder.toLE.1 x (instHAdd.1 s c) ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 (instHAdd.1 A (Set.instSingletonSet.1 c)) x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 (instHAdd.1 s c) u)
+  Ambient
+    (ℝ)
+  Objects
+    A : Set ℝ
+    nonemptyHypothesis : A.Nonempty
+    s : ℝ
+    c : ℝ
+  Prove
+    (Exists fun x => x) ∈ A → ∀ {s : Real}, ((∀ (x : Real), x ∈ A → Real.instPreorder.1.le x s) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le x u) → Real.instPreorder.1.le s u)) → ∀ (c : Real), ((∀ (x : Real), x ∈ { hAdd := fun a b => { add := fun s t => setOf fun c => Exists fun a => (a ∈ s ∧ (Exists fun b => (b ∈ t ∧ (fun x1 x2 => instHAdd.hAdd x1 x2) a b = c))) }.add a b }.hAdd A (Set.instSingletonSet.1 c) → Real.instPreorder.1.le x ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd s c)) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ { hAdd := fun a b => { add := fun s t => setOf fun c => Exists fun a => (a ∈ s ∧ (Exists fun b => (b ∈ t ∧ (fun x1 x2 => instHAdd.hAdd x1 x2) a b = c))) }.add a b }.hAdd A (Set.instSingletonSet.1 c) → Real.instPreorder.1.le x u) → Real.instPreorder.1.le ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd s c) u))
 
 Logical form (Lean):
 
@@ -304,11 +342,19 @@ theorem TranslationPreservesSuprema {A : Set ℝ}
 
 Predicate logic:
 
-  (∀ nonemptyHypothesis ∈ A.Nonempty), (IsInfimum i A) → IsInfimum (i + c) (A + {c})
+  ∀ {A : Set Real}, A.Nonempty → ∀ {i : Real}, LRA.Analysis.Bounds.IsInfimum i A → ∀ (c : Real), LRA.Analysis.Bounds.IsInfimum (instHAdd.hAdd i c) (instHAdd.hAdd A (Set.instSingletonSet.singleton c))
 
 Predicate logic (unfolded):
 
-  ∀ {A : Real → Prop}, (Exists fun x => Set.instMembership.1 A x) → ∀ {i : Real}, (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 i x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l i) → ∀ (c : Real), (∀ (x : Real), Set.instMembership.1 (instHAdd.1 A (Set.instSingletonSet.1 c)) x → Real.instPreorder.toLE.1 (instHAdd.1 i c) x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 (instHAdd.1 A (Set.instSingletonSet.1 c)) x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l (instHAdd.1 i c))
+  Ambient
+    (ℝ)
+  Objects
+    A : Set ℝ
+    nonemptyHypothesis : A.Nonempty
+    i : ℝ
+    c : ℝ
+  Prove
+    (Exists fun x => x) ∈ A → ∀ {i : Real}, ((∀ (x : Real), x ∈ A → Real.instPreorder.1.le i x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l i)) → ∀ (c : Real), ((∀ (x : Real), x ∈ { hAdd := fun a b => { add := fun s t => setOf fun c => Exists fun a => (a ∈ s ∧ (Exists fun b => (b ∈ t ∧ (fun x1 x2 => instHAdd.hAdd x1 x2) a b = c))) }.add a b }.hAdd A (Set.instSingletonSet.1 c) → Real.instPreorder.1.le ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd i c) x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ { hAdd := fun a b => { add := fun s t => setOf fun c => Exists fun a => (a ∈ s ∧ (Exists fun b => (b ∈ t ∧ (fun x1 x2 => instHAdd.hAdd x1 x2) a b = c))) }.add a b }.hAdd A (Set.instSingletonSet.1 c) → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd i c)))
 
 Logical form (Lean):
 
@@ -348,11 +394,19 @@ theorem TranslationPreservesInfima {A : Set ℝ}
 
 Predicate logic:
 
-  (∀ nonemptyHypothesis ∈ A.Nonempty), (IsSupremum s A) → IsSupremum (scale * s) (ScalarImage scale A)
+  ∀ {A : Set Real}, A.Nonempty → ∀ {s scale : Real}, (LRA.Analysis.Bounds.IsSupremum s A ∧ GT.gt scale 0) → LRA.Analysis.Bounds.IsSupremum (instHMul.hMul scale s) (LRA.Analysis.Bounds.Algebra.ScalarImage scale A)
 
 Predicate logic (unfolded):
 
-  ∀ {A : Real → Prop}, (Exists fun x => Set.instMembership.1 A x) → ∀ {s scale : Real}, ((∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x s ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 s u) ∧ Real.instLT.1 Zero.toOfNat0.1 scale) → (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.mem A a ∧ (fun a => instHMul.hMul scale a) a = x)) x → Real.instPreorder.toLE.1 x (instHMul.1 scale s) ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.mem A a ∧ (fun a => instHMul.hMul scale a) a = x)) x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 (instHMul.1 scale s) u)
+  Ambient
+    (ℝ)
+  Objects
+    A : Set ℝ
+    nonemptyHypothesis : A.Nonempty
+    s scale : ℝ
+    positiveScaleHypothesis : scale > 0
+  Prove
+    (Exists fun x => x) ∈ A → ∀ {s scale : Real}, (((∀ (x : Real), x ∈ A → Real.instPreorder.1.le x s) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le x u) → Real.instPreorder.1.le s u)) ∧ Real.instLT.lt 0 scale) → ((∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ A ∧ (fun a => instHMul.hMul scale a) a = x) → Real.instPreorder.1.le x ({ hMul := fun a b => Real.instMul.mul a b }.hMul scale s)) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ A ∧ (fun a => instHMul.hMul scale a) a = x) → Real.instPreorder.1.le x u) → Real.instPreorder.1.le ({ hMul := fun a b => Real.instMul.mul a b }.hMul scale s) u))
 
 Logical form (Lean):
 
@@ -394,11 +448,19 @@ theorem PositiveScalarMultiplicationPreservesSuprema {A : Set ℝ}
 
 Predicate logic:
 
-  (∀ nonemptyHypothesis ∈ A.Nonempty), (IsInfimum i A) → IsInfimum (scale * i) (ScalarImage scale A)
+  ∀ {A : Set Real}, A.Nonempty → ∀ {i scale : Real}, (LRA.Analysis.Bounds.IsInfimum i A ∧ GT.gt scale 0) → LRA.Analysis.Bounds.IsInfimum (instHMul.hMul scale i) (LRA.Analysis.Bounds.Algebra.ScalarImage scale A)
 
 Predicate logic (unfolded):
 
-  ∀ {A : Real → Prop}, (Exists fun x => Set.instMembership.1 A x) → ∀ {i scale : Real}, ((∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 i x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l i) ∧ Real.instLT.1 Zero.toOfNat0.1 scale) → (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.mem A a ∧ (fun a => instHMul.hMul scale a) a = x)) x → Real.instPreorder.toLE.1 (instHMul.1 scale i) x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.mem A a ∧ (fun a => instHMul.hMul scale a) a = x)) x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l (instHMul.1 scale i))
+  Ambient
+    (ℝ)
+  Objects
+    A : Set ℝ
+    nonemptyHypothesis : A.Nonempty
+    i scale : ℝ
+    positiveScaleHypothesis : scale > 0
+  Prove
+    (Exists fun x => x) ∈ A → ∀ {i scale : Real}, (((∀ (x : Real), x ∈ A → Real.instPreorder.1.le i x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l i)) ∧ Real.instLT.lt 0 scale) → ((∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ A ∧ (fun a => instHMul.hMul scale a) a = x) → Real.instPreorder.1.le ({ hMul := fun a b => Real.instMul.mul a b }.hMul scale i) x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ A ∧ (fun a => instHMul.hMul scale a) a = x) → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l ({ hMul := fun a b => Real.instMul.mul a b }.hMul scale i)))
 
 Logical form (Lean):
 
@@ -440,11 +502,18 @@ theorem PositiveScalarMultiplicationPreservesInfima {A : Set ℝ}
 
 Predicate logic:
 
-  (∀ nonemptyHypothesis ∈ A.Nonempty), (IsInfimum i A ∧ scale < 0) → IsSupremum (scale * i) (ScalarImage scale A)
+  ∀ {A : Set Real}, A.Nonempty → ∀ {i scale : Real}, (LRA.Analysis.Bounds.IsInfimum i A ∧ Real.instLT.lt scale 0) → LRA.Analysis.Bounds.IsSupremum (instHMul.hMul scale i) (LRA.Analysis.Bounds.Algebra.ScalarImage scale A)
 
 Predicate logic (unfolded):
 
-  ∀ {A : Real → Prop}, (Exists fun x => Set.instMembership.1 A x) → ∀ {i scale : Real}, ((∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 i x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l i) ∧ Real.instLT.1 scale Zero.toOfNat0.1) → (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.mem A a ∧ (fun a => instHMul.hMul scale a) a = x)) x → Real.instPreorder.toLE.1 x (instHMul.1 scale i) ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.mem A a ∧ (fun a => instHMul.hMul scale a) a = x)) x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 (instHMul.1 scale i) u)
+  Ambient
+    (ℝ)
+  Objects
+    A : Set ℝ
+    nonemptyHypothesis : A.Nonempty
+    i scale : ℝ
+  Prove
+    (Exists fun x => x) ∈ A → ∀ {i scale : Real}, (((∀ (x : Real), x ∈ A → Real.instPreorder.1.le i x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l i)) ∧ Real.instLT.lt scale 0) → ((∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ A ∧ (fun a => instHMul.hMul scale a) a = x) → Real.instPreorder.1.le x ({ hMul := fun a b => Real.instMul.mul a b }.hMul scale i)) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ A ∧ (fun a => instHMul.hMul scale a) a = x) → Real.instPreorder.1.le x u) → Real.instPreorder.1.le ({ hMul := fun a b => Real.instMul.mul a b }.hMul scale i) u))
 
 Logical form (Lean):
 
@@ -486,11 +555,18 @@ theorem NegativeScalarMultiplicationSendsInfimaToSuprema {A : Set ℝ}
 
 Predicate logic:
 
-  (∀ nonemptyHypothesis ∈ A.Nonempty), (IsSupremum s A ∧ scale < 0) → IsInfimum (scale * s) (ScalarImage scale A)
+  ∀ {A : Set Real}, A.Nonempty → ∀ {s scale : Real}, (LRA.Analysis.Bounds.IsSupremum s A ∧ Real.instLT.lt scale 0) → LRA.Analysis.Bounds.IsInfimum (instHMul.hMul scale s) (LRA.Analysis.Bounds.Algebra.ScalarImage scale A)
 
 Predicate logic (unfolded):
 
-  ∀ {A : Real → Prop}, (Exists fun x => Set.instMembership.1 A x) → ∀ {s scale : Real}, ((∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x s ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 s u) ∧ Real.instLT.1 scale Zero.toOfNat0.1) → (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.mem A a ∧ (fun a => instHMul.hMul scale a) a = x)) x → Real.instPreorder.toLE.1 (instHMul.1 scale s) x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.mem A a ∧ (fun a => instHMul.hMul scale a) a = x)) x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l (instHMul.1 scale s))
+  Ambient
+    (ℝ)
+  Objects
+    A : Set ℝ
+    nonemptyHypothesis : A.Nonempty
+    s scale : ℝ
+  Prove
+    (Exists fun x => x) ∈ A → ∀ {s scale : Real}, (((∀ (x : Real), x ∈ A → Real.instPreorder.1.le x s) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le x u) → Real.instPreorder.1.le s u)) ∧ Real.instLT.lt scale 0) → ((∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ A ∧ (fun a => instHMul.hMul scale a) a = x) → Real.instPreorder.1.le ({ hMul := fun a b => Real.instMul.mul a b }.hMul scale s) x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ A ∧ (fun a => instHMul.hMul scale a) a = x) → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l ({ hMul := fun a b => Real.instMul.mul a b }.hMul scale s)))
 
 Logical form (Lean):
 
@@ -532,11 +608,18 @@ theorem NegativeScalarMultiplicationSendsSupremaToInfima {A : Set ℝ}
 
 Predicate logic:
 
-  (∀ nonemptyHypothesis ∈ A.Nonempty), (IsInfimum i A) → IsSupremum (-i) (-A)
+  ∀ {A : Set Real}, A.Nonempty → ∀ {i : Real}, LRA.Analysis.Bounds.IsInfimum i A → LRA.Analysis.Bounds.IsSupremum (Real.instNeg.neg i) (Set.neg.neg A)
 
 Predicate logic (unfolded):
 
-  ∀ {A : Real → Prop}, (Exists fun x => Set.instMembership.1 A x) → ∀ {i : Real}, (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 i x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l i) → (∀ (x : Real), Set.instMembership.1 (Set.neg.1 A) x → Real.instPreorder.toLE.1 x (Real.instNeg.1 i) ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 (Set.neg.1 A) x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 (Real.instNeg.1 i) u)
+  Ambient
+    (ℝ)
+  Objects
+    A : Set ℝ
+    nonemptyHypothesis : A.Nonempty
+    i : ℝ
+  Prove
+    (Exists fun x => x) ∈ A → ∀ {i : Real}, ((∀ (x : Real), x ∈ A → Real.instPreorder.1.le i x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l i)) → ((∀ (x : Real), x ∈ { neg := fun s x => Real.instNeg.neg x ∈ s }.neg A → Real.instPreorder.1.le x (Real.instNeg.neg i)) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ { neg := fun s x => Real.instNeg.neg x ∈ s }.neg A → Real.instPreorder.1.le x u) → Real.instPreorder.1.le (Real.instNeg.neg i) u))
 
 Logical form (Lean):
 
@@ -576,11 +659,19 @@ theorem NegationExchangesInfimaAndSuprema {A : Set ℝ}
 
 Predicate logic:
 
-  (∀ leftNonemptyHypothesis ∈ A.Nonempty ∀ rightNonemptyHypothesis ∈ B.Nonempty), (IsSupremum sA A ∧ IsSupremum sB B) → IsSupremum (sA + sB) (A + B)
+  ∀ {A B : Set Real}, (A.Nonempty ∧ B.Nonempty) → ∀ {sA sB : Real}, (LRA.Analysis.Bounds.IsSupremum sA A ∧ LRA.Analysis.Bounds.IsSupremum sB B) → LRA.Analysis.Bounds.IsSupremum (instHAdd.hAdd sA sB) (instHAdd.hAdd A B)
 
 Predicate logic (unfolded):
 
-  ∀ {A B : Real → Prop}, (Exists fun x => Set.instMembership.1 A x ∧ Exists fun x => Set.instMembership.1 B x) → ∀ {sA sB : Real}, ((∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x sA ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 sA u) ∧ (∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 x sB ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 sB u)) → (∀ (x : Real), Set.instMembership.1 (instHAdd.1 A B) x → Real.instPreorder.toLE.1 x (instHAdd.1 sA sB) ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 (instHAdd.1 A B) x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 (instHAdd.1 sA sB) u)
+  Ambient
+    (ℝ)
+  Objects
+    A B : Set ℝ
+    leftNonemptyHypothesis : A.Nonempty
+    rightNonemptyHypothesis : B.Nonempty
+    sA sB : ℝ
+  Prove
+    (Exists fun x => x ∈ A ∧ Exists fun x => x ∈ B) → ∀ {sA sB : Real}, (((∀ (x : Real), x ∈ A → Real.instPreorder.1.le x sA) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le x u) → Real.instPreorder.1.le sA u)) ∧ ((∀ (x : Real), x ∈ B → Real.instPreorder.1.le x sB) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ B → Real.instPreorder.1.le x u) → Real.instPreorder.1.le sB u))) → ((∀ (x : Real), x ∈ { hAdd := fun a b => { add := fun s t => setOf fun c => Exists fun a => (a ∈ s ∧ (Exists fun b => (b ∈ t ∧ (fun x1 x2 => instHAdd.hAdd x1 x2) a b = c))) }.add a b }.hAdd A B → Real.instPreorder.1.le x ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd sA sB)) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ { hAdd := fun a b => { add := fun s t => setOf fun c => Exists fun a => (a ∈ s ∧ (Exists fun b => (b ∈ t ∧ (fun x1 x2 => instHAdd.hAdd x1 x2) a b = c))) }.add a b }.hAdd A B → Real.instPreorder.1.le x u) → Real.instPreorder.1.le ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd sA sB) u))
 
 Logical form (Lean):
 
@@ -626,11 +717,19 @@ theorem SupremumOfPointwiseSum {A B : Set ℝ}
 
 Predicate logic:
 
-  (∀ leftNonemptyHypothesis ∈ A.Nonempty ∀ rightNonemptyHypothesis ∈ B.Nonempty), (IsInfimum iA A ∧ IsInfimum iB B) → IsInfimum (iA + iB) (A + B)
+  ∀ {A B : Set Real}, (A.Nonempty ∧ B.Nonempty) → ∀ {iA iB : Real}, (LRA.Analysis.Bounds.IsInfimum iA A ∧ LRA.Analysis.Bounds.IsInfimum iB B) → LRA.Analysis.Bounds.IsInfimum (instHAdd.hAdd iA iB) (instHAdd.hAdd A B)
 
 Predicate logic (unfolded):
 
-  ∀ {A B : Real → Prop}, (Exists fun x => Set.instMembership.1 A x ∧ Exists fun x => Set.instMembership.1 B x) → ∀ {iA iB : Real}, ((∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 iA x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l iA) ∧ (∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 iB x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l iB)) → (∀ (x : Real), Set.instMembership.1 (instHAdd.1 A B) x → Real.instPreorder.toLE.1 (instHAdd.1 iA iB) x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 (instHAdd.1 A B) x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l (instHAdd.1 iA iB))
+  Ambient
+    (ℝ)
+  Objects
+    A B : Set ℝ
+    leftNonemptyHypothesis : A.Nonempty
+    rightNonemptyHypothesis : B.Nonempty
+    iA iB : ℝ
+  Prove
+    (Exists fun x => x ∈ A ∧ Exists fun x => x ∈ B) → ∀ {iA iB : Real}, (((∀ (x : Real), x ∈ A → Real.instPreorder.1.le iA x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l iA)) ∧ ((∀ (x : Real), x ∈ B → Real.instPreorder.1.le iB x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ B → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l iB))) → ((∀ (x : Real), x ∈ { hAdd := fun a b => { add := fun s t => setOf fun c => Exists fun a => (a ∈ s ∧ (Exists fun b => (b ∈ t ∧ (fun x1 x2 => instHAdd.hAdd x1 x2) a b = c))) }.add a b }.hAdd A B → Real.instPreorder.1.le ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd iA iB) x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ { hAdd := fun a b => { add := fun s t => setOf fun c => Exists fun a => (a ∈ s ∧ (Exists fun b => (b ∈ t ∧ (fun x1 x2 => instHAdd.hAdd x1 x2) a b = c))) }.add a b }.hAdd A B → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd iA iB)))
 
 Logical form (Lean):
 
@@ -676,11 +775,19 @@ theorem InfimumOfPointwiseSum {A B : Set ℝ}
 
 Predicate logic:
 
-  (∀ leftNonemptyHypothesis ∈ A.Nonempty ∀ rightNonemptyHypothesis ∈ B.Nonempty), (IsSupremum sA A ∧ IsInfimum iB B) → IsSupremum (sA - iB) (A - B)
+  ∀ {A B : Set Real}, (A.Nonempty ∧ B.Nonempty) → ∀ {sA iB : Real}, (LRA.Analysis.Bounds.IsSupremum sA A ∧ LRA.Analysis.Bounds.IsInfimum iB B) → LRA.Analysis.Bounds.IsSupremum (instHSub.hSub sA iB) (instHSub.hSub A B)
 
 Predicate logic (unfolded):
 
-  ∀ {A B : Real → Prop}, (Exists fun x => Set.instMembership.1 A x ∧ Exists fun x => Set.instMembership.1 B x) → ∀ {sA iB : Real}, ((∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x sA ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 sA u) ∧ (∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 iB x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l iB)) → (∀ (x : Real), Set.instMembership.1 (instHSub.1 A B) x → Real.instPreorder.toLE.1 x (instHSub.1 sA iB) ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 (instHSub.1 A B) x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 (instHSub.1 sA iB) u)
+  Ambient
+    (ℝ)
+  Objects
+    A B : Set ℝ
+    leftNonemptyHypothesis : A.Nonempty
+    rightNonemptyHypothesis : B.Nonempty
+    sA iB : ℝ
+  Prove
+    (Exists fun x => x ∈ A ∧ Exists fun x => x ∈ B) → ∀ {sA iB : Real}, (((∀ (x : Real), x ∈ A → Real.instPreorder.1.le x sA) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le x u) → Real.instPreorder.1.le sA u)) ∧ ((∀ (x : Real), x ∈ B → Real.instPreorder.1.le iB x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ B → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l iB))) → ((∀ (x : Real), x ∈ { hSub := fun a b => { sub := fun s t => setOf fun c => Exists fun a => (a ∈ s ∧ (Exists fun b => (b ∈ t ∧ (fun x1 x2 => instHSub.hSub x1 x2) a b = c))) }.sub a b }.hSub A B → Real.instPreorder.1.le x ({ hSub := fun a b => Real.instSub.sub a b }.hSub sA iB)) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ { hSub := fun a b => { sub := fun s t => setOf fun c => Exists fun a => (a ∈ s ∧ (Exists fun b => (b ∈ t ∧ (fun x1 x2 => instHSub.hSub x1 x2) a b = c))) }.sub a b }.hSub A B → Real.instPreorder.1.le x u) → Real.instPreorder.1.le ({ hSub := fun a b => Real.instSub.sub a b }.hSub sA iB) u))
 
 Logical form (Lean):
 
@@ -726,11 +833,19 @@ theorem SupremumOfPointwiseDifference {A B : Set ℝ}
 
 Predicate logic:
 
-  (∀ leftNonemptyHypothesis ∈ A.Nonempty ∀ rightNonemptyHypothesis ∈ B.Nonempty), (IsInfimum iA A ∧ IsSupremum sB B) → IsInfimum (iA - sB) (A - B)
+  ∀ {A B : Set Real}, (A.Nonempty ∧ B.Nonempty) → ∀ {iA sB : Real}, (LRA.Analysis.Bounds.IsInfimum iA A ∧ LRA.Analysis.Bounds.IsSupremum sB B) → LRA.Analysis.Bounds.IsInfimum (instHSub.hSub iA sB) (instHSub.hSub A B)
 
 Predicate logic (unfolded):
 
-  ∀ {A B : Real → Prop}, (Exists fun x => Set.instMembership.1 A x ∧ Exists fun x => Set.instMembership.1 B x) → ∀ {iA sB : Real}, ((∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 iA x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l iA) ∧ (∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 x sB ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 sB u)) → (∀ (x : Real), Set.instMembership.1 (instHSub.1 A B) x → Real.instPreorder.toLE.1 (instHSub.1 iA sB) x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 (instHSub.1 A B) x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l (instHSub.1 iA sB))
+  Ambient
+    (ℝ)
+  Objects
+    A B : Set ℝ
+    leftNonemptyHypothesis : A.Nonempty
+    rightNonemptyHypothesis : B.Nonempty
+    iA sB : ℝ
+  Prove
+    (Exists fun x => x ∈ A ∧ Exists fun x => x ∈ B) → ∀ {iA sB : Real}, (((∀ (x : Real), x ∈ A → Real.instPreorder.1.le iA x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l iA)) ∧ ((∀ (x : Real), x ∈ B → Real.instPreorder.1.le x sB) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ B → Real.instPreorder.1.le x u) → Real.instPreorder.1.le sB u))) → ((∀ (x : Real), x ∈ { hSub := fun a b => { sub := fun s t => setOf fun c => Exists fun a => (a ∈ s ∧ (Exists fun b => (b ∈ t ∧ (fun x1 x2 => instHSub.hSub x1 x2) a b = c))) }.sub a b }.hSub A B → Real.instPreorder.1.le ({ hSub := fun a b => Real.instSub.sub a b }.hSub iA sB) x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ { hSub := fun a b => { sub := fun s t => setOf fun c => Exists fun a => (a ∈ s ∧ (Exists fun b => (b ∈ t ∧ (fun x1 x2 => instHSub.hSub x1 x2) a b = c))) }.sub a b }.hSub A B → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l ({ hSub := fun a b => Real.instSub.sub a b }.hSub iA sB)))
 
 Logical form (Lean):
 
@@ -776,11 +891,19 @@ theorem InfimumOfPointwiseDifference {A B : Set ℝ}
 
 Predicate logic:
 
-  (∀ nonemptyHypothesis ∈ A.Nonempty), (IsBounded A ∧ IsSupremum s A ∧ IsInfimum i A) → IsSupremum (if scale > 0 then scale * s else if scale = 0 then 0 else scale * i) (ScalarImage scale A)
+  ∀ {A : Set Real}, (A.Nonempty ∧ LRA.Analysis.Bounds.IsBounded A) → ∀ (scale : Real) {s i : Real}, (LRA.Analysis.Bounds.IsSupremum s A ∧ LRA.Analysis.Bounds.IsInfimum i A) → LRA.Analysis.Bounds.IsSupremum (ite (GT.gt scale 0) (instHMul.hMul scale s) (ite (scale = 0)0 (instHMul.hMul scale i))) (LRA.Analysis.Bounds.Algebra.ScalarImage scale A)
 
 Predicate logic (unfolded):
 
-  ∀ {A : Real → Prop}, (Exists fun x => Set.instMembership.1 A x ∧ (Exists fun u => ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 x u ∧ Exists fun l => ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 l x)) → ∀ (scale : Real) {s i : Real}, ((∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x s ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 s u) ∧ (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 i x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l i)) → (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.mem A a ∧ (fun a => instHMul.hMul scale a) a = x)) x → Real.instPreorder.toLE.1 x (Decidable.rec (fun h => (fun x => Decidable.casesOn (scale.decidable0) = fun x => instHMul.hMul scale i fun x => 0) h) (fun h => (fun x => instHMul.1 scale s) h) inferInstance) ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.mem A a ∧ (fun a => instHMul.hMul scale a) a = x)) x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 (Decidable.rec (fun h => (fun x => Decidable.rec (fun h => (fun x => instHMul.hMul scale i) h) (fun h => (fun x => 0) h) (scale.decidable0)) = h) (fun h => (fun x => instHMul.1 scale s) h) (Real.linearOrder.toDecidableLT 0 scale)) u)
+  Ambient
+    (ℝ)
+  Objects
+    A : Set ℝ
+    nonemptyHypothesis : A.Nonempty
+    scale : ℝ
+    s i : ℝ
+  Prove
+    (Exists fun x => x ∈ A ∧ ((Exists fun u => ∀ (x : Real), x ∈ A → Real.instLE.le x u) ∧ (Exists fun l => ∀ (x : Real), x ∈ A → Real.instLE.le l x))) → ∀ (scale : Real) {s i : Real}, (((∀ (x : Real), x ∈ A → Real.instPreorder.1.le x s) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le x u) → Real.instPreorder.1.le s u)) ∧ ((∀ (x : Real), x ∈ A → Real.instPreorder.1.le i x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l i))) → ((∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ A ∧ (fun a => instHMul.hMul scale a) a = x) → Real.instPreorder.1.le x (Decidable.rec (fun h => (fun x => Decidable.rec (fun h => (fun x => instHMul.hMul scale i) h) (fun h => (fun x => 0) h) (scale.decidable0)) = h) (fun h => (fun x => { hMul := fun a b => Real.instMul.mul a b }.hMul scale s) h) (Real.linearOrder.toDecidableLT 0 scale))) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ A ∧ (fun a => instHMul.hMul scale a) a = x) → Real.instPreorder.1.le x u) → Real.instPreorder.1.le (Decidable.rec (fun h => (fun x => Decidable.rec (fun h => (fun x => { hMul := fun a b => Real.instMul.mul a b }.hMul scale i) h) (fun h => (fun x => 0) h) inferInstance) h) (fun h => (fun x => { hMul := fun a b => Real.instMul.mul a b }.hMul scale s) h) (Real.linearOrder.8 0 scale)) u))
 
 Logical form (Lean):
 
@@ -830,11 +953,18 @@ theorem SupremumOfDilation {A : Set ℝ}
 
 Predicate logic:
 
-  (∀ nonemptyHypothesis ∈ A.Nonempty), (IsSupremum s A ∧ IsInfimum i A) → IsSupremum (max |i| |s|) (abs '' A)
+  ∀ {A : Set Real}, A.Nonempty → ∀ {s i : Real}, (LRA.Analysis.Bounds.IsSupremum s A ∧ LRA.Analysis.Bounds.IsInfimum i A) → LRA.Analysis.Bounds.IsSupremum (Real.instMax.max (abs i) (abs s)) (Set.image abs A)
 
 Predicate logic (unfolded):
 
-  ∀ {A : Real → Prop}, (Exists fun x => Set.instMembership.1 A x) → ∀ {s i : Real}, ((∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x s ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 s u) ∧ (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 i x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l i)) → (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.1 A a ∧ SemilatticeSup.toMax.max a (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg a) = x)) x → Real.instPreorder.toLE.1 x (Real.instMax.1 (SemilatticeSup.toMax.1 i (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg i)) (SemilatticeSup.toMax.1 s (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg s))) ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.1 A a ∧ SemilatticeSup.toMax.max a (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg a) = x)) x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 (Real.instMax.1 (SemilatticeSup.toMax.1 i (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 i)) (SemilatticeSup.toMax.1 s (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 s))) u)
+  Ambient
+    (ℝ)
+  Objects
+    A : Set ℝ
+    nonemptyHypothesis : A.Nonempty
+    s i : ℝ
+  Prove
+    (Exists fun x => x) ∈ A → ∀ {s i : Real}, (((∀ (x : Real), x ∈ A → Real.instPreorder.1.le x s) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le x u) → Real.instPreorder.1.le s u)) ∧ ((∀ (x : Real), x ∈ A → Real.instPreorder.1.le i x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l i))) → ((∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ A ∧ abs a = x) → Real.instPreorder.1.le x (Real.instMax.1 (abs i) (abs s))) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ A ∧ abs a = x) → Real.instPreorder.1.le x u) → Real.instPreorder.1.le (Real.instMax.1 (abs i) (abs s)) u))
 
 Logical form (Lean):
 
@@ -876,11 +1006,18 @@ theorem SupremumOfAbsoluteValueImage {A : Set ℝ}
 
 Predicate logic:
 
-  (∀ nonemptyHypothesis ∈ A.Nonempty), (IsBounded A ∧ IsSupremum s A ∧ IsInfimum i A ∧ 0 < i ∨ s < 0) → IsSupremum i⁻¹ (Reciprocal A)
+  ∀ {A : Set Real}, (A.Nonempty ∧ LRA.Analysis.Bounds.IsBounded A) → ∀ {s i : Real}, (LRA.Analysis.Bounds.IsSupremum s A ∧ (LRA.Analysis.Bounds.IsInfimum i A ∧ Or (Real.instLT.lt 0 i) (Real.instLT.lt s 0))) → LRA.Analysis.Bounds.IsSupremum (Real.instInv.inv i) (LRA.Analysis.Bounds.Algebra.Reciprocal A)
 
 Predicate logic (unfolded):
 
-  ∀ {A : Real → Prop}, (Exists fun x => Set.instMembership.1 A x ∧ (Exists fun u => ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 x u ∧ Exists fun l => ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 l x)) → ∀ {s i : Real}, ((∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x s ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 s u) ∧ ((∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 i x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l i) ∧ Or (Real.instLT.1 Zero.toOfNat0.1 i) (Real.instLT.1 s Zero.toOfNat0.1))) → (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.mem A a ∧ (fun a => Real.instInv.inv a) a = x)) x → Real.instPreorder.toLE.1 x (Real.instInv.1 i) ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.mem A a ∧ (fun a => Real.instInv.inv a) a = x)) x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 (Real.instInv.1 i) u)
+  Ambient
+    (ℝ)
+  Objects
+    A : Set ℝ
+    nonemptyHypothesis : A.Nonempty
+    s i : ℝ
+  Prove
+    (Exists fun x => x ∈ A ∧ ((Exists fun u => ∀ (x : Real), x ∈ A → Real.instLE.le x u) ∧ (Exists fun l => ∀ (x : Real), x ∈ A → Real.instLE.le l x))) → ∀ {s i : Real}, (((∀ (x : Real), x ∈ A → Real.instPreorder.1.le x s) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le x u) → Real.instPreorder.1.le s u)) ∧ (((∀ (x : Real), x ∈ A → Real.instPreorder.1.le i x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l i)) ∧ Or (Real.instLT.lt 0 i) (Real.instLT.lt s 0))) → ((∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ A ∧ (fun a => Real.instInv.inv a) a = x) → Real.instPreorder.1.le x (Real.instInv.1 i)) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ A ∧ (fun a => Real.instInv.inv a) a = x) → Real.instPreorder.1.le x u) → Real.instPreorder.1.le (Real.instInv.1 i) u))
 
 Logical form (Lean):
 
@@ -928,11 +1065,18 @@ theorem SupremumOfReciprocalSet {A : Set ℝ}
 
 Predicate logic:
 
-  (∀ nonemptyHypothesis ∈ A.Nonempty), (IsBounded A ∧ IsSupremum s A ∧ IsInfimum i A ∧ 0 < i ∨ s < 0) → IsInfimum s⁻¹ (Reciprocal A)
+  ∀ {A : Set Real}, (A.Nonempty ∧ LRA.Analysis.Bounds.IsBounded A) → ∀ {s i : Real}, (LRA.Analysis.Bounds.IsSupremum s A ∧ (LRA.Analysis.Bounds.IsInfimum i A ∧ Or (Real.instLT.lt 0 i) (Real.instLT.lt s 0))) → LRA.Analysis.Bounds.IsInfimum (Real.instInv.inv s) (LRA.Analysis.Bounds.Algebra.Reciprocal A)
 
 Predicate logic (unfolded):
 
-  ∀ {A : Real → Prop}, (Exists fun x => Set.instMembership.1 A x ∧ (Exists fun u => ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 x u ∧ Exists fun l => ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 l x)) → ∀ {s i : Real}, ((∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x s ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 s u) ∧ ((∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 i x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l i) ∧ Or (Real.instLT.1 Zero.toOfNat0.1 i) (Real.instLT.1 s Zero.toOfNat0.1))) → (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.mem A a ∧ (fun a => Real.instInv.inv a) a = x)) x → Real.instPreorder.toLE.1 (Real.instInv.1 s) x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.mem A a ∧ (fun a => Real.instInv.inv a) a = x)) x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l (Real.instInv.1 s))
+  Ambient
+    (ℝ)
+  Objects
+    A : Set ℝ
+    nonemptyHypothesis : A.Nonempty
+    s i : ℝ
+  Prove
+    (Exists fun x => x ∈ A ∧ ((Exists fun u => ∀ (x : Real), x ∈ A → Real.instLE.le x u) ∧ (Exists fun l => ∀ (x : Real), x ∈ A → Real.instLE.le l x))) → ∀ {s i : Real}, (((∀ (x : Real), x ∈ A → Real.instPreorder.1.le x s) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le x u) → Real.instPreorder.1.le s u)) ∧ (((∀ (x : Real), x ∈ A → Real.instPreorder.1.le i x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l i)) ∧ Or (Real.instLT.lt 0 i) (Real.instLT.lt s 0))) → ((∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ A ∧ (fun a => Real.instInv.inv a) a = x) → Real.instPreorder.1.le (Real.instInv.1 s) x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ A ∧ (fun a => Real.instInv.inv a) a = x) → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l (Real.instInv.1 s)))
 
 Logical form (Lean):
 
@@ -980,11 +1124,19 @@ theorem InfimumOfReciprocalSet {A : Set ℝ}
 
 Predicate logic:
 
-  (∀ leftNonemptyHypothesis ∈ A.Nonempty ∀ rightNonemptyHypothesis ∈ B.Nonempty), (IsSupremum sA A ∧ IsInfimum iA A ∧ IsSupremum sB B ∧ IsInfimum iB B) → IsSupremum (max (max (iA * iB) (iA * sB)) (max (sA * iB) (sA * sB))) (A * B)
+  ∀ {A B : Set Real}, (A.Nonempty ∧ B.Nonempty) → ∀ {sA sB iA iB : Real}, (LRA.Analysis.Bounds.IsSupremum sA A ∧ (LRA.Analysis.Bounds.IsInfimum iA A ∧ (LRA.Analysis.Bounds.IsSupremum sB B ∧ LRA.Analysis.Bounds.IsInfimum iB B))) → LRA.Analysis.Bounds.IsSupremum (Real.instMax.max (Real.instMax.max (instHMul.hMul iA iB) (instHMul.hMul iA sB)) (Real.instMax.max (instHMul.hMul sA iB) (instHMul.hMul sA sB))) (instHMul.hMul A B)
 
 Predicate logic (unfolded):
 
-  ∀ {A B : Real → Prop}, (Exists fun x => Set.instMembership.1 A x ∧ Exists fun x => Set.instMembership.1 B x) → ∀ {sA sB iA iB : Real}, ((∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x sA ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 sA u) ∧ ((∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 iA x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l iA) ∧ ((∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 x sB ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 sB u) ∧ (∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 iB x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l iB)))) → (∀ (x : Real), Set.instMembership.1 (instHMul.1 A B) x → Real.instPreorder.toLE.1 x (Real.instMax.1 (Real.instMax.1 (instHMul.1 iA iB) (instHMul.1 iA sB)) (Real.instMax.1 (instHMul.1 sA iB) (instHMul.1 sA sB))) ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 (instHMul.1 A B) x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 (Real.instMax.1 (Real.instMax.1 (instHMul.1 iA iB) (instHMul.1 iA sB)) (Real.instMax.1 (instHMul.1 sA iB) (instHMul.1 sA sB))) u)
+  Ambient
+    (ℝ)
+  Objects
+    A B : Set ℝ
+    leftNonemptyHypothesis : A.Nonempty
+    rightNonemptyHypothesis : B.Nonempty
+    sA sB iA iB : ℝ
+  Prove
+    (Exists fun x => x ∈ A ∧ Exists fun x => x ∈ B) → ∀ {sA sB iA iB : Real}, (((∀ (x : Real), x ∈ A → Real.instPreorder.1.le x sA) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le x u) → Real.instPreorder.1.le sA u)) ∧ (((∀ (x : Real), x ∈ A → Real.instPreorder.1.le iA x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l iA)) ∧ (((∀ (x : Real), x ∈ B → Real.instPreorder.1.le x sB) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ B → Real.instPreorder.1.le x u) → Real.instPreorder.1.le sB u)) ∧ ((∀ (x : Real), x ∈ B → Real.instPreorder.1.le iB x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ B → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l iB))))) → ((∀ (x : Real), x ∈ { hMul := fun a b => { mul := fun s t => setOf fun c => Exists fun a => (a ∈ s ∧ (Exists fun b => (b ∈ t ∧ (fun x1 x2 => instHMul.hMul x1 x2) a b = c))) }.mul a b }.hMul A B → Real.instPreorder.1.le x (Real.instMax.1 (Real.instMax.1 ({ hMul := fun a b => Real.instMul.mul a b }.hMul iA iB) ({ hMul := fun a b => Real.instMul.mul a b }.hMul iA sB)) (Real.instMax.1 ({ hMul := fun a b => Real.instMul.mul a b }.hMul sA iB) ({ hMul := fun a b => Real.instMul.mul a b }.hMul sA sB)))) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ { hMul := fun a b => { mul := fun s t => setOf fun c => Exists fun a => (a ∈ s ∧ (Exists fun b => (b ∈ t ∧ (fun x1 x2 => instHMul.hMul x1 x2) a b = c))) }.mul a b }.hMul A B → Real.instPreorder.1.le x u) → Real.instPreorder.1.le (Real.instMax.1 (Real.instMax.1 ({ hMul := fun a b => Real.instMul.mul a b }.hMul iA iB) ({ hMul := fun a b => Real.instMul.mul a b }.hMul iA sB)) (Real.instMax.1 ({ hMul := fun a b => Real.instMul.mul a b }.hMul sA iB) ({ hMul := fun a b => Real.instMul.mul a b }.hMul sA sB))) u))
 
 Logical form (Lean):
 
@@ -1038,11 +1190,19 @@ theorem SupremumOfPointwiseProduct {A B : Set ℝ}
 
 Predicate logic:
 
-  (∀ leftNonemptyHypothesis ∈ A.Nonempty ∀ rightNonemptyHypothesis ∈ B.Nonempty), (IsSupremum sA A ∧ IsInfimum iA A ∧ IsSupremum sB B ∧ IsInfimum iB B) → IsInfimum (min (min (iA * iB) (iA * sB)) (min (sA * iB) (sA * sB))) (A * B)
+  ∀ {A B : Set Real}, (A.Nonempty ∧ B.Nonempty) → ∀ {sA sB iA iB : Real}, (LRA.Analysis.Bounds.IsSupremum sA A ∧ (LRA.Analysis.Bounds.IsInfimum iA A ∧ (LRA.Analysis.Bounds.IsSupremum sB B ∧ LRA.Analysis.Bounds.IsInfimum iB B))) → LRA.Analysis.Bounds.IsInfimum (Real.instMin.min (Real.instMin.min (instHMul.hMul iA iB) (instHMul.hMul iA sB)) (Real.instMin.min (instHMul.hMul sA iB) (instHMul.hMul sA sB))) (instHMul.hMul A B)
 
 Predicate logic (unfolded):
 
-  ∀ {A B : Real → Prop}, (Exists fun x => Set.instMembership.1 A x ∧ Exists fun x => Set.instMembership.1 B x) → ∀ {sA sB iA iB : Real}, ((∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x sA ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 sA u) ∧ ((∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 iA x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l iA) ∧ ((∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 x sB ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 sB u) ∧ (∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 iB x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l iB)))) → (∀ (x : Real), Set.instMembership.1 (instHMul.1 A B) x → Real.instPreorder.toLE.1 (Real.instMin.1 (Real.instMin.1 (instHMul.1 iA iB) (instHMul.1 iA sB)) (Real.instMin.1 (instHMul.1 sA iB) (instHMul.1 sA sB))) x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 (instHMul.1 A B) x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l (Real.instMin.1 (Real.instMin.1 (instHMul.1 iA iB) (instHMul.1 iA sB)) (Real.instMin.1 (instHMul.1 sA iB) (instHMul.1 sA sB))))
+  Ambient
+    (ℝ)
+  Objects
+    A B : Set ℝ
+    leftNonemptyHypothesis : A.Nonempty
+    rightNonemptyHypothesis : B.Nonempty
+    sA sB iA iB : ℝ
+  Prove
+    (Exists fun x => x ∈ A ∧ Exists fun x => x ∈ B) → ∀ {sA sB iA iB : Real}, (((∀ (x : Real), x ∈ A → Real.instPreorder.1.le x sA) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le x u) → Real.instPreorder.1.le sA u)) ∧ (((∀ (x : Real), x ∈ A → Real.instPreorder.1.le iA x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l iA)) ∧ (((∀ (x : Real), x ∈ B → Real.instPreorder.1.le x sB) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ B → Real.instPreorder.1.le x u) → Real.instPreorder.1.le sB u)) ∧ ((∀ (x : Real), x ∈ B → Real.instPreorder.1.le iB x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ B → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l iB))))) → ((∀ (x : Real), x ∈ { hMul := fun a b => { mul := fun s t => setOf fun c => Exists fun a => (a ∈ s ∧ (Exists fun b => (b ∈ t ∧ (fun x1 x2 => instHMul.hMul x1 x2) a b = c))) }.mul a b }.hMul A B → Real.instPreorder.1.le (Real.instMin.1 (Real.instMin.1 ({ hMul := fun a b => Real.instMul.mul a b }.hMul iA iB) ({ hMul := fun a b => Real.instMul.mul a b }.hMul iA sB)) (Real.instMin.1 ({ hMul := fun a b => Real.instMul.mul a b }.hMul sA iB) ({ hMul := fun a b => Real.instMul.mul a b }.hMul sA sB))) x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ { hMul := fun a b => { mul := fun s t => setOf fun c => Exists fun a => (a ∈ s ∧ (Exists fun b => (b ∈ t ∧ (fun x1 x2 => instHMul.hMul x1 x2) a b = c))) }.mul a b }.hMul A B → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l (Real.instMin.1 (Real.instMin.1 ({ hMul := fun a b => Real.instMul.mul a b }.hMul iA iB) ({ hMul := fun a b => Real.instMul.mul a b }.hMul iA sB)) (Real.instMin.1 ({ hMul := fun a b => Real.instMul.mul a b }.hMul sA iB) ({ hMul := fun a b => Real.instMul.mul a b }.hMul sA sB)))))
 
 Logical form (Lean):
 
@@ -1096,11 +1256,19 @@ theorem InfimumOfPointwiseProduct {A B : Set ℝ}
 
 Predicate logic:
 
-  (∀ leftNonemptyHypothesis ∈ A.Nonempty ∀ rightNonemptyHypothesis ∈ B.Nonempty), (IsSupremum sA A ∧ IsInfimum iA A ∧ IsSupremum sB B ∧ IsInfimum iB B ∧ 0 < iB ∨ sB < 0) → IsSupremum (max (max (iA / iB) (iA / sB)) (max (sA / iB) (sA / sB))) (A * Reciprocal B)
+  ∀ {A B : Set Real}, (A.Nonempty ∧ B.Nonempty) → ∀ {sA sB iA iB : Real}, (LRA.Analysis.Bounds.IsSupremum sA A ∧ (LRA.Analysis.Bounds.IsInfimum iA A ∧ (LRA.Analysis.Bounds.IsSupremum sB B ∧ (LRA.Analysis.Bounds.IsInfimum iB B ∧ Or (Real.instLT.lt 0 iB) (Real.instLT.lt sB 0))))) → LRA.Analysis.Bounds.IsSupremum (Real.instMax.max (Real.instMax.max (instHDiv.hDiv iA iB) (instHDiv.hDiv iA sB)) (Real.instMax.max (instHDiv.hDiv sA iB) (instHDiv.hDiv sA sB))) (instHMul.hMul A (LRA.Analysis.Bounds.Algebra.Reciprocal B))
 
 Predicate logic (unfolded):
 
-  ∀ {A B : Real → Prop}, (Exists fun x => Set.instMembership.1 A x ∧ Exists fun x => Set.instMembership.1 B x) → ∀ {sA sB iA iB : Real}, ((∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x sA ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 sA u) ∧ ((∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 iA x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l iA) ∧ ((∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 x sB ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 sB u) ∧ ((∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 iB x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l iB) ∧ Or (Real.instLT.1 Zero.toOfNat0.1 iB) (Real.instLT.1 sB Zero.toOfNat0.1))))) → (∀ (x : Real), Set.instMembership.1 (instHMul.1 A (setOf fun x => Exists fun a => (Set.instMembership.mem B a ∧ (fun a => Real.instInv.inv a) a = x))) x → Real.instPreorder.toLE.1 x (Real.instMax.1 (Real.instMax.1 (instHDiv.1 iA iB) (instHDiv.1 iA sB)) (Real.instMax.1 (instHDiv.1 sA iB) (instHDiv.1 sA sB))) ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 (instHMul.1 A (setOf fun x => Exists fun a => (Set.instMembership.mem B a ∧ (fun a => Real.instInv.inv a) a = x))) x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 (Real.instMax.1 (Real.instMax.1 (instHDiv.1 iA iB) (instHDiv.1 iA sB)) (Real.instMax.1 (instHDiv.1 sA iB) (instHDiv.1 sA sB))) u)
+  Ambient
+    (ℝ)
+  Objects
+    A B : Set ℝ
+    leftNonemptyHypothesis : A.Nonempty
+    rightNonemptyHypothesis : B.Nonempty
+    sA sB iA iB : ℝ
+  Prove
+    (Exists fun x => x ∈ A ∧ Exists fun x => x ∈ B) → ∀ {sA sB iA iB : Real}, (((∀ (x : Real), x ∈ A → Real.instPreorder.1.le x sA) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le x u) → Real.instPreorder.1.le sA u)) ∧ (((∀ (x : Real), x ∈ A → Real.instPreorder.1.le iA x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l iA)) ∧ (((∀ (x : Real), x ∈ B → Real.instPreorder.1.le x sB) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ B → Real.instPreorder.1.le x u) → Real.instPreorder.1.le sB u)) ∧ (((∀ (x : Real), x ∈ B → Real.instPreorder.1.le iB x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ B → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l iB)) ∧ Or (Real.instLT.lt 0 iB) (Real.instLT.lt sB 0))))) → ((∀ (x : Real), x ∈ { hMul := fun a b => { mul := fun s t => setOf fun c => Exists fun a => (a ∈ s ∧ (Exists fun b => (b ∈ t ∧ (fun x1 x2 => instHMul.hMul x1 x2) a b = c))) }.mul a b }.hMul A fun x => Exists fun a => (a ∈ B ∧ (fun a => Real.instInv.inv a) a = x) → Real.instPreorder.1.le x (Real.instMax.1 (Real.instMax.1 ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv iA iB) ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv iA sB)) (Real.instMax.1 ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv sA iB) ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv sA sB)))) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ { hMul := fun a b => { mul := fun s t => setOf fun c => Exists fun a => (a ∈ s ∧ (Exists fun b => (b ∈ t ∧ (fun x1 x2 => instHMul.hMul x1 x2) a b = c))) }.mul a b }.hMul A fun x => Exists fun a => (a ∈ B ∧ (fun a => Real.instInv.inv a) a = x) → Real.instPreorder.1.le x u) → Real.instPreorder.1.le (Real.instMax.1 (Real.instMax.1 ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv iA iB) ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv iA sB)) (Real.instMax.1 ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv sA iB) ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv sA sB))) u))
 
 Logical form (Lean):
 
@@ -1156,11 +1324,19 @@ theorem SupremumOfQuotientSet {A B : Set ℝ}
 
 Predicate logic:
 
-  (∀ leftNonemptyHypothesis ∈ A.Nonempty ∀ rightNonemptyHypothesis ∈ B.Nonempty), (IsSupremum sA A ∧ IsInfimum iA A ∧ IsSupremum sB B ∧ IsInfimum iB B ∧ 0 < iB ∨ sB < 0) → IsInfimum (min (min (iA / iB) (iA / sB)) (min (sA / iB) (sA / sB))) (A * Reciprocal B)
+  ∀ {A B : Set Real}, (A.Nonempty ∧ B.Nonempty) → ∀ {sA sB iA iB : Real}, (LRA.Analysis.Bounds.IsSupremum sA A ∧ (LRA.Analysis.Bounds.IsInfimum iA A ∧ (LRA.Analysis.Bounds.IsSupremum sB B ∧ (LRA.Analysis.Bounds.IsInfimum iB B ∧ Or (Real.instLT.lt 0 iB) (Real.instLT.lt sB 0))))) → LRA.Analysis.Bounds.IsInfimum (Real.instMin.min (Real.instMin.min (instHDiv.hDiv iA iB) (instHDiv.hDiv iA sB)) (Real.instMin.min (instHDiv.hDiv sA iB) (instHDiv.hDiv sA sB))) (instHMul.hMul A (LRA.Analysis.Bounds.Algebra.Reciprocal B))
 
 Predicate logic (unfolded):
 
-  ∀ {A B : Real → Prop}, (Exists fun x => Set.instMembership.1 A x ∧ Exists fun x => Set.instMembership.1 B x) → ∀ {sA sB iA iB : Real}, ((∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x sA ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 sA u) ∧ ((∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 iA x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l iA) ∧ ((∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 x sB ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 sB u) ∧ ((∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 iB x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l iB) ∧ Or (Real.instLT.1 Zero.toOfNat0.1 iB) (Real.instLT.1 sB Zero.toOfNat0.1))))) → (∀ (x : Real), Set.instMembership.1 (instHMul.1 A (setOf fun x => Exists fun a => (Set.instMembership.mem B a ∧ (fun a => Real.instInv.inv a) a = x))) x → Real.instPreorder.toLE.1 (Real.instMin.1 (Real.instMin.1 (instHDiv.1 iA iB) (instHDiv.1 iA sB)) (Real.instMin.1 (instHDiv.1 sA iB) (instHDiv.1 sA sB))) x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 (instHMul.1 A (setOf fun x => Exists fun a => (Set.instMembership.mem B a ∧ (fun a => Real.instInv.inv a) a = x))) x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l (Real.instMin.1 (Real.instMin.1 (instHDiv.1 iA iB) (instHDiv.1 iA sB)) (Real.instMin.1 (instHDiv.1 sA iB) (instHDiv.1 sA sB))))
+  Ambient
+    (ℝ)
+  Objects
+    A B : Set ℝ
+    leftNonemptyHypothesis : A.Nonempty
+    rightNonemptyHypothesis : B.Nonempty
+    sA sB iA iB : ℝ
+  Prove
+    (Exists fun x => x ∈ A ∧ Exists fun x => x ∈ B) → ∀ {sA sB iA iB : Real}, (((∀ (x : Real), x ∈ A → Real.instPreorder.1.le x sA) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le x u) → Real.instPreorder.1.le sA u)) ∧ (((∀ (x : Real), x ∈ A → Real.instPreorder.1.le iA x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l iA)) ∧ (((∀ (x : Real), x ∈ B → Real.instPreorder.1.le x sB) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ B → Real.instPreorder.1.le x u) → Real.instPreorder.1.le sB u)) ∧ (((∀ (x : Real), x ∈ B → Real.instPreorder.1.le iB x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ B → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l iB)) ∧ Or (Real.instLT.lt 0 iB) (Real.instLT.lt sB 0))))) → ((∀ (x : Real), x ∈ { hMul := fun a b => { mul := fun s t => setOf fun c => Exists fun a => (a ∈ s ∧ (Exists fun b => (b ∈ t ∧ (fun x1 x2 => instHMul.hMul x1 x2) a b = c))) }.mul a b }.hMul A fun x => Exists fun a => (a ∈ B ∧ (fun a => Real.instInv.inv a) a = x) → Real.instPreorder.1.le (Real.instMin.1 (Real.instMin.1 ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv iA iB) ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv iA sB)) (Real.instMin.1 ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv sA iB) ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv sA sB))) x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ { hMul := fun a b => { mul := fun s t => setOf fun c => Exists fun a => (a ∈ s ∧ (Exists fun b => (b ∈ t ∧ (fun x1 x2 => instHMul.hMul x1 x2) a b = c))) }.mul a b }.hMul A fun x => Exists fun a => (a ∈ B ∧ (fun a => Real.instInv.inv a) a = x) → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l (Real.instMin.1 (Real.instMin.1 ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv iA iB) ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv iA sB)) (Real.instMin.1 ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv sA iB) ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv sA sB)))))
 
 Logical form (Lean):
 
@@ -1216,11 +1392,17 @@ theorem InfimumOfQuotientSet {A B : Set ℝ}
 
 Predicate logic:
 
-  (IsUpperBound uA A ∧ IsUpperBound uB B) → IsUpperBound (uA + uB) (A + B)
+  ∀ {A B : Set Real} {uA uB : Real}, (LRA.Analysis.Bounds.IsUpperBound uA A ∧ LRA.Analysis.Bounds.IsUpperBound uB B) → LRA.Analysis.Bounds.IsUpperBound (instHAdd.hAdd uA uB) (instHAdd.hAdd A B)
 
 Predicate logic (unfolded):
 
-  ∀ {A B : Real → Prop} {uA uB : Real}, (∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 x uA ∧ ∀ (x : Real), Set.instMembership.1 B x → Real.instLE.1 x uB) → ∀ (x : Real), Set.instMembership.1 (instHAdd.1 A B) x → Real.instLE.1 x (instHAdd.1 uA uB)
+  Ambient
+    (ℝ)
+  Objects
+    A B : Set ℝ
+    uA uB : ℝ
+  Prove
+    ((∀ (x : Real), x ∈ A → Real.instLE.le x uA) ∧ (∀ (x : Real), x ∈ B → Real.instLE.le x uB)) → ∀ (x : Real), x ∈ { hAdd := fun a b => { add := fun s t c => Exists fun a => (a ∈ s ∧ (Exists fun b => (b ∈ t ∧ (fun x1 x2 => instHAdd.hAdd x1 x2) a b = c))) }.add a b }.hAdd A B → Real.instLE.le x ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd uA uB)
 
 Logical form (Lean):
 
@@ -1260,11 +1442,17 @@ theorem PointwiseSumPreservesUpperBounds {A B : Set ℝ} {uA uB : ℝ}
 
 Predicate logic:
 
-  (IsLowerBound lA A ∧ IsLowerBound lB B) → IsLowerBound (lA + lB) (A + B)
+  ∀ {A B : Set Real} {lA lB : Real}, (LRA.Analysis.Bounds.IsLowerBound lA A ∧ LRA.Analysis.Bounds.IsLowerBound lB B) → LRA.Analysis.Bounds.IsLowerBound (instHAdd.hAdd lA lB) (instHAdd.hAdd A B)
 
 Predicate logic (unfolded):
 
-  ∀ {A B : Real → Prop} {lA lB : Real}, (∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 lA x ∧ ∀ (x : Real), Set.instMembership.1 B x → Real.instLE.1 lB x) → ∀ (x : Real), Set.instMembership.1 (instHAdd.1 A B) x → Real.instLE.1 (instHAdd.1 lA lB) x
+  Ambient
+    (ℝ)
+  Objects
+    A B : Set ℝ
+    lA lB : ℝ
+  Prove
+    ((∀ (x : Real), x ∈ A → Real.instLE.le lA x) ∧ (∀ (x : Real), x ∈ B → Real.instLE.le lB x)) → ∀ (x : Real), x ∈ { hAdd := fun a b => { add := fun s t c => Exists fun a => (a ∈ s ∧ (Exists fun b => (b ∈ t ∧ (fun x1 x2 => instHAdd.hAdd x1 x2) a b = c))) }.add a b }.hAdd A B → Real.instLE.le ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd lA lB) x
 
 Logical form (Lean):
 
@@ -1304,11 +1492,18 @@ theorem PointwiseSumPreservesLowerBounds {A B : Set ℝ} {lA lB : ℝ}
 
 Predicate logic:
 
-  {u | IsRelativeUpperBound S u A} = S ∩ {u | IsRelativeUpperBound T u A}
+  ∀ {P : Type u_1} [inst : Preorder P] {A S T : Set P}, (Set.instLE.le A S ∧ Set.instLE.le S T) → setOf fun u => LRA.Analysis.Bounds.Algebra.IsRelativeUpperBound S u A = S ∩ setOf fun u => LRA.Analysis.Bounds.Algebra.IsRelativeUpperBound T u A
 
 Predicate logic (unfolded):
 
-  ∀ {P : Type u_1} [inst : Preorder P] {A S T : P → Prop}, (Set.instLE.1 A S ∧ Set.instLE.1 S T) → fun u => (Set.instMembership.1 S u ∧ ∀ (x : P), Set.instMembership.1 A x → inst.toLE.1 x u) = Set.instInter.1 S fun u => (Set.instMembership.1 T u ∧ ∀ (x : P), Set.instMembership.1 A x → inst.toLE.1 x u)
+  Ambient
+    (≤)
+  Objects
+    A S T : Set P
+    setContainedInSmallerAmbient : A ⊆ S
+    smallerAmbientContainedInLarger : S ⊆ T
+  Prove
+    (({ le := fun s₁ s₂ => ∀ ⦃a : P⦄, a ∈ s₁ → a ∈ s₂}.le A S) ∧ ({ le := fun s₁ s₂ => ∀ ⦃a : P⦄, a ∈ s₁ → a ∈ s₂}.le S T)) → fun u => (u ∈ S ∧ (∀ (x : P), x ∈ A → inst.1.le x u)) = S ∩ funu => (u ∈ T ∧ (∀ (x : P), x ∈ A → inst.1.le x u))
 
 Logical form (Lean):
 
@@ -1350,11 +1545,16 @@ theorem RelativeUpperBoundsRespectAmbientOrder [Preorder P] {A S T : Set P}
 
 Predicate logic:
 
-  ∃ A S T ∈ Set ℝ, A ⊆ S ∧ S ⊆ T ∧ ∃ sS sT ∈ ℝ, IsRelativeSupremum S sS A ∧ IsRelativeSupremum T sT A ∧ sS ≠ sT
+  Exists fun A => Exists fun S => Exists fun T => (Set.instLE.le A S ∧ (Set.instLE.le S T ∧ (Exists fun sS => Exists fun sT => (LRA.Analysis.Bounds.Algebra.IsRelativeSupremum S sS A ∧ (LRA.Analysis.Bounds.Algebra.IsRelativeSupremum T sT A ∧ Ne sS sT)))))
 
 Predicate logic (unfolded):
 
-  Exists fun A => Exists fun S => Exists fun T => (Set.instLE.1 A S ∧ (Set.instLE.1 S T ∧ Exists fun sS => Exists fun sT => (((Set.instMembership.1 S sS ∧ ∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x sS) ∧ ∀ (u : Real), (Set.instMembership.1 S u ∧ ∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 sS u) ∧ (((Set.instMembership.1 T sT ∧ ∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x sT) ∧ ∀ (u : Real), (Set.instMembership.1 T u ∧ ∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 sT u) ∧ sS = sT → False))))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun A => Exists fun S => Exists fun T => (({ le := fun s₁ s₂ => ∀ ⦃a : Real⦄, a ∈ s₁ → a ∈ s₂}.le A S) ∧ (({ le := fun s₁ s₂ => ∀ ⦃a : Real⦄, a ∈ s₁ → a ∈ s₂}.le S T) ∧ (Exists fun sS => Exists fun sT => (((sS ∈ S ∧ (∀ (x : Real), x ∈ A → Real.instPreorder.1.le x sS)) ∧ (∀ (u : Real), (u ∈ S ∧ (∀ (x : Real), x ∈ A → Real.instPreorder.1.le x u)) → Real.instPreorder.1.le sS u)) ∧ (((sT ∈ T ∧ (∀ (x : Real), x ∈ A → Real.instPreorder.1.le x sT)) ∧ (∀ (u : Real), (u ∈ T ∧ (∀ (x : Real), x ∈ A → Real.instPreorder.1.le x u)) → Real.instPreorder.1.le sT u)) ∧ (sS = sT → False))))))
 
 Logical form (Lean):
 
@@ -1394,11 +1594,16 @@ theorem RelativeSupremaCanDependOnAmbientSet :
 
 Predicate logic:
 
-  ∃ A S T ∈ Set ℝ, A ⊆ S ∧ S ⊆ T ∧ (∃ s, IsRelativeSupremum T s A) ∧ ¬(∃ s, IsRelativeUpperBound S s A)
+  Exists fun A => Exists fun S => Exists fun T => (Set.instLE.le A S ∧ (Set.instLE.le S T ∧ (Exists fun s => LRA.Analysis.Bounds.Algebra.IsRelativeSupremum T s A ∧ ¬ Exists fun s => LRA.Analysis.Bounds.Algebra.IsRelativeUpperBound S s A)))
 
 Predicate logic (unfolded):
 
-  Exists fun A => Exists fun S => Exists fun T => (Set.instLE.1 A S ∧ (Set.instLE.1 S T ∧ (Exists fun s => ((Set.instMembership.1 T s ∧ ∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x s) ∧ ∀ (u : Real), (Set.instMembership.1 T u ∧ ∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 s u) ∧ (Exists fun s => (Set.instMembership.1 S s ∧ ∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x s)) → False)))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun A => Exists fun S => Exists fun T => (({ le := fun s₁ s₂ => ∀ ⦃a : Real⦄, a ∈ s₁ → a ∈ s₂}.le A S) ∧ (({ le := fun s₁ s₂ => ∀ ⦃a : Real⦄, a ∈ s₁ → a ∈ s₂}.le S T) ∧ ((Exists fun s => ((s ∈ T ∧ (∀ (x : Real), x ∈ A → Real.instPreorder.1.le x s)) ∧ (∀ (u : Real), (u ∈ T ∧ (∀ (x : Real), x ∈ A → Real.instPreorder.1.le x u)) → Real.instPreorder.1.le s u))) ∧ ((Exists fun s => (s ∈ S ∧ (∀ (x : Real), x ∈ A → Real.instPreorder.1.le x s))) → False))))
 
 Logical form (Lean):
 
@@ -1438,11 +1643,16 @@ theorem RelativeSupremumExistenceCanDependOnAmbientSet :
 
 Predicate logic:
 
-  {q : ℚ | q ^ 2 < 2}.Nonempty ∧ ∃ u ∈ ℚ, IsUpperBound u {q : ℚ | q ^ 2 < 2} ∧ ¬∃ s ∈ ℚ, IsSupremum s {q : ℚ | q ^ 2 < 2}
+  (setOf fun q => Rat.instLT.lt (instHPow.hPow q 2) 2 ∧ .Nonempty) ((Exists fun u => LRA.Analysis.Bounds.IsUpperBound u (setOf fun q => Rat.instLT.lt (instHPow.hPow q 2) 2) ∧ ¬ Exists fun s => LRA.Analysis.Bounds.IsSupremum s (setOf fun q => Rat.instLT.lt (instHPow.hPow q 2) 2)))
 
 Predicate logic (unfolded):
 
-  (Exists fun x => Set.instMembership.1 (fun q => Rat.instLT.1 (instHPow.1 q (instOfNatNat 2).1) Rat.instOfNat.1) x ∧ (Exists fun u => ∀ (x : Rat), Set.instMembership.1 (fun q => Rat.instLT.1 (instHPow.1 q (instOfNatNat 2).1) Rat.instOfNat.1) x → Rat.instLE.1 x u ∧ (Exists fun s => (∀ (x : Rat), Set.instMembership.1 (fun q => Rat.instLT.1 (instHPow.hPow q 2) 2) x → Rat.instPreorder.toLE.1 x s ∧ ∀ (u : Rat), (∀ (x : Rat), Set.instMembership.1 (fun q => Rat.instLT.1 (instHPow.hPow q 2) 2) x → Rat.instPreorder.toLE.1 x u) → Rat.instPreorder.toLE.1 s u)) → False))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun x => x ∈ fun q => Rat.instLT.lt (instHPow.1 q 2) 2 ∧ ((Exists fun u => ∀ (x : Rat), x ∈ fun q => Rat.instLT.lt (instHPow.1 q 2) 2 → Rat.instLE.le x u) ∧ ((Exists fun s => ((∀ (x : Rat), x ∈ fun q => Rat.instLT.lt (instHPow.1 q 2) 2 → Rat.instPreorder.1.le x s) ∧ (∀ (u : Rat), (∀ (x : Rat), x ∈ fun q => Rat.instLT.lt (instHPow.1 q 2) 2 → Rat.instPreorder.1.le x u) → Rat.instPreorder.1.le s u))) → False)))
 
 Logical form (Lean):
 

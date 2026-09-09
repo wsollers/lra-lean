@@ -11,17 +11,17 @@ Predicate logic:
 
   structure TopologicalSpaceDefinition where
 
-  Carrier : Type u
+    Carrier : Type u
 
-  topology : TopologyDefinition Carrier
+    topology : TopologyDefinition Carrier
 
 Predicate logic (unfolded):
 
   structure TopologicalSpaceDefinition where
 
-  Carrier : Type u
+    Carrier : Type u
 
-  topology : TopologyDefinition Carrier (source fallback; no compiled unfold data available)
+    topology : TopologyDefinition Carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

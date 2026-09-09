@@ -17,9 +17,56 @@ variable {Element : Type u} {SetObject : Type v}
 variable [Membership Element SetObject]
 variable (natural_data : NaturalArithmeticForWholeNumbers Element SetObject)
 
-/-- The whole-number Landau input package carries an underlying one-based
-natural arithmetic surface, so its `model` can be reused directly as a
-`CommutativeSemiringWithoutZeroLaws` witness on the Chapter I carrier. -/
+/--
+`underlyingNaturalCommutativeSemiringWithoutZeroLawsOn` The whole-number Landau input package carries an underlying one-based natural arithmetic surface, so its `model` can be reused directly as a `CommutativeSemiringWithoutZeroLaws` witness on the Chapter I carrier.
+
+Predicate logic:
+
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.WholeNumbers.Constructions.Landau.NaturalArithmeticForWholeNumbers Element SetObject), have x := LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddOn natural_data.model; have x_1 := LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauMulOn natural_data.model; have x_2 := LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauOneOn natural_data.model; have x_3 := ⋯; LRA.AlgebraicStructures.CommutativeSemiringWithoutZeroLaws Element
+
+Predicate logic (unfolded):
+
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    natural_data : NaturalArithmeticForWholeNumbers Element SetObject
+  Prove
+    have x := LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauAddOn natural_data.model; have x_1 := LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauMulOn natural_data.model; have x_2 := LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauOneOn natural_data.model; have x_3 := ⋯; LRA.AlgebraicStructures.CommutativeSemiringWithoutZeroLaws Element
+
+Logical form (Lean):
+
+```lean
+theorem underlyingNaturalCommutativeSemiringWithoutZeroLawsOn :
+    let _ : Add Element :=
+      LandauAddOn natural_data.model
+    let _ : Mul Element :=
+      LandauMulOn natural_data.model
+    let _ : OfNat Element 1 :=
+      LandauOneOn natural_data.model
+    let _ : Nonempty Element :=
+      LandauNonemptyOn natural_data.model
+    CommutativeSemiringWithoutZeroLaws Element
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 theorem underlyingNaturalCommutativeSemiringWithoutZeroLawsOn :
     let _ : Add Element :=
       LandauAddOn natural_data.model
@@ -36,11 +83,11 @@ theorem underlyingNaturalCommutativeSemiringWithoutZeroLawsOn :
 
 Predicate logic:
 
-  def zeroOn : OfNat (Carrier natural_data) 0 := ⟨zero natural_data⟩
+  abbrev zeroOn : OfNat (Carrier natural_data) 0 := ⟨zero natural_data⟩
 
 Predicate logic (unfolded):
 
-  def zeroOn : OfNat (Carrier natural_data) 0 := ⟨zero natural_data⟩ (source fallback; no compiled unfold data available)
+  abbrev zeroOn : OfNat (Carrier natural_data) 0 := ⟨zero natural_data⟩ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -74,11 +121,11 @@ abbrev zeroOn : OfNat (Carrier natural_data) 0 := ⟨zero natural_data⟩
 
 Predicate logic:
 
-  def oneOn : OfNat (Carrier natural_data) 1 := ⟨one natural_data⟩
+  abbrev oneOn : OfNat (Carrier natural_data) 1 := ⟨one natural_data⟩
 
 Predicate logic (unfolded):
 
-  def oneOn : OfNat (Carrier natural_data) 1 := ⟨one natural_data⟩ (source fallback; no compiled unfold data available)
+  abbrev oneOn : OfNat (Carrier natural_data) 1 := ⟨one natural_data⟩ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -112,13 +159,13 @@ abbrev oneOn : OfNat (Carrier natural_data) 1 := ⟨one natural_data⟩
 
 Predicate logic:
 
-  def succOn : HasSuccessor (Carrier natural_data) :=
-  ⟨successor natural_data⟩
+  abbrev succOn : HasSuccessor (Carrier natural_data) :=
+    ⟨successor natural_data⟩
 
 Predicate logic (unfolded):
 
-  def succOn : HasSuccessor (Carrier natural_data) :=
-  ⟨successor natural_data⟩ (source fallback; no compiled unfold data available)
+  abbrev succOn : HasSuccessor (Carrier natural_data) :=
+    ⟨successor natural_data⟩ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -150,8 +197,45 @@ abbrev succOn : HasSuccessor (Carrier natural_data) :=
   ⟨successor natural_data⟩
 
 /--
-`nonemptyOn` packages the distinguished `one` element as the witness required
-by semigroup-strength and stronger bundled interfaces.
+`nonemptyOn` packages the distinguished `one` element as the witness required by semigroup-strength and stronger bundled interfaces.
+
+Predicate logic:
+
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.WholeNumbers.Constructions.Landau.NaturalArithmeticForWholeNumbers Element SetObject), Nonempty (LRA.NumberSystems.WholeNumbers.Constructions.Landau.Carrier natural_data)
+
+Predicate logic (unfolded):
+
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    natural_data : NaturalArithmeticForWholeNumbers Element SetObject
+  Prove
+    Nonempty (Option Element)
+
+Logical form (Lean):
+
+```lean
+theorem nonemptyOn : Nonempty (Carrier natural_data)
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
 -/
 theorem nonemptyOn : Nonempty (Carrier natural_data) := by
   sorry
@@ -160,13 +244,13 @@ theorem nonemptyOn : Nonempty (Carrier natural_data) := by
 
 Predicate logic:
 
-  noncomputable def addOn : Add (Carrier natural_data) :=
-  ⟨addition natural_data⟩
+  noncomputable abbrev addOn : Add (Carrier natural_data) :=
+    ⟨addition natural_data⟩
 
 Predicate logic (unfolded):
 
-  noncomputable def addOn : Add (Carrier natural_data) :=
-  ⟨addition natural_data⟩ (source fallback; no compiled unfold data available)
+  noncomputable abbrev addOn : Add (Carrier natural_data) :=
+    ⟨addition natural_data⟩ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -202,13 +286,13 @@ noncomputable abbrev addOn : Add (Carrier natural_data) :=
 
 Predicate logic:
 
-  noncomputable def mulOn : Mul (Carrier natural_data) :=
-  ⟨multiplication natural_data⟩
+  noncomputable abbrev mulOn : Mul (Carrier natural_data) :=
+    ⟨multiplication natural_data⟩
 
 Predicate logic (unfolded):
 
-  noncomputable def mulOn : Mul (Carrier natural_data) :=
-  ⟨multiplication natural_data⟩ (source fallback; no compiled unfold data available)
+  noncomputable abbrev mulOn : Mul (Carrier natural_data) :=
+    ⟨multiplication natural_data⟩ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -244,11 +328,11 @@ noncomputable abbrev mulOn : Mul (Carrier natural_data) :=
 
 Predicate logic:
 
-  def ltOn : LT (Carrier natural_data) := ⟨strictOrder natural_data⟩
+  abbrev ltOn : LT (Carrier natural_data) := ⟨strictOrder natural_data⟩
 
 Predicate logic (unfolded):
 
-  def ltOn : LT (Carrier natural_data) := ⟨strictOrder natural_data⟩ (source fallback; no compiled unfold data available)
+  abbrev ltOn : LT (Carrier natural_data) := ⟨strictOrder natural_data⟩ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -282,11 +366,11 @@ abbrev ltOn : LT (Carrier natural_data) := ⟨strictOrder natural_data⟩
 
 Predicate logic:
 
-  def leOn : LE (Carrier natural_data) := ⟨nonstrictOrder natural_data⟩
+  abbrev leOn : LE (Carrier natural_data) := ⟨nonstrictOrder natural_data⟩
 
 Predicate logic (unfolded):
 
-  def leOn : LE (Carrier natural_data) := ⟨nonstrictOrder natural_data⟩ (source fallback; no compiled unfold data available)
+  abbrev leOn : LE (Carrier natural_data) := ⟨nonstrictOrder natural_data⟩ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -320,28 +404,26 @@ abbrev leOn : LE (Carrier natural_data) := ⟨nonstrictOrder natural_data⟩
 
 Predicate logic:
 
-  noncomputable def additiveSemigroupLawsOn :
-    @AdditiveSemigroupLaws (Carrier natural_data) (addOn natural_data) :=
-  @AdditiveSemigroupLaws.mk (Carrier natural_data) (addOn natural_data)
-    (additive_structure natural_data).1
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.WholeNumbers.Constructions.Landau.NaturalArithmeticForWholeNumbers Element SetObject), have x := LRA.NumberSystems.WholeNumbers.Constructions.Landau.addOn natural_data; have x_1 := ⋯; LRA.AlgebraicStructures.AdditiveSemigroupLaws (LRA.NumberSystems.WholeNumbers.Constructions.Landau.Carrier natural_data)
 
 Predicate logic (unfolded):
 
-  noncomputable def additiveSemigroupLawsOn :
-    @AdditiveSemigroupLaws (Carrier natural_data) (addOn natural_data) :=
-  @AdditiveSemigroupLaws.mk (Carrier natural_data) (addOn natural_data)
-    (additive_structure natural_data).1 (source fallback; no compiled unfold data available)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    natural_data : NaturalArithmeticForWholeNumbers Element SetObject
+    natural_data : NaturalArithmeticForWholeNumbers Element SetObject
+  Prove
+    have x := LRA.NumberSystems.WholeNumbers.Constructions.Landau.addOn natural_data; have x_1 := ⋯; LRA.AlgebraicStructures.AdditiveSemigroupLaws (LRA.NumberSystems.WholeNumbers.Constructions.Landau.Carrier natural_data)
 
 Logical form (Lean):
 
 ```lean
-theorem additiveSemigroupLawsOn :
+theorem additiveSemigroupLawsOn
+    (natural_data : NaturalArithmeticForWholeNumbers Element SetObject) :
     let _ : Add (Carrier natural_data) := addOn natural_data
     let _ : Nonempty (Carrier natural_data) := nonemptyOn natural_data
-    AdditiveSemigroupLaws (Carrier natural_data) := by
-  letI : Add (Carrier natural_data) := addOn natural_data
-  letI : Nonempty (Carrier natural_data) := nonemptyOn natural_data
-  exact ⟨(additive_structure natural_data).1⟩
+    AdditiveSemigroupLaws (Carrier natural_data)
 ```
 
 Type-theoretic form:
@@ -374,24 +456,22 @@ theorem additiveSemigroupLawsOn
 
 Predicate logic:
 
-  noncomputable def additiveCommutativeLawsOn :
-    @AdditiveCommutativeLaws (Carrier natural_data) (addOn natural_data) :=
-  @AdditiveCommutativeLaws.mk (Carrier natural_data) (addOn natural_data)
-    (additive_structure natural_data).2.1
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.WholeNumbers.Constructions.Landau.NaturalArithmeticForWholeNumbers Element SetObject), LRA.AlgebraicStructures.AdditiveCommutativeLaws (LRA.NumberSystems.WholeNumbers.Constructions.Landau.Carrier natural_data)
 
 Predicate logic (unfolded):
 
-  noncomputable def additiveCommutativeLawsOn :
-    @AdditiveCommutativeLaws (Carrier natural_data) (addOn natural_data) :=
-  @AdditiveCommutativeLaws.mk (Carrier natural_data) (addOn natural_data)
-    (additive_structure natural_data).2.1 (source fallback; no compiled unfold data available)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    natural_data : NaturalArithmeticForWholeNumbers Element SetObject
+  Prove
+    LRA.AlgebraicStructures.AdditiveCommutativeLaws (Option Element)
 
 Logical form (Lean):
 
 ```lean
 theorem additiveCommutativeLawsOn :
-    @AdditiveCommutativeLaws (Carrier natural_data) (addOn natural_data) := by
-  sorry
+    @AdditiveCommutativeLaws (Carrier natural_data) (addOn natural_data)
 ```
 
 Type-theoretic form:
@@ -421,31 +501,23 @@ theorem additiveCommutativeLawsOn :
 
 Predicate logic:
 
-  noncomputable def additiveIdentityLawsOn :
-    @AdditiveIdentityLaws (Carrier natural_data)
-      (addOn natural_data) (zeroOn natural_data) :=
-  @AdditiveIdentityLaws.mk (Carrier natural_data)
-    (addOn natural_data) (zeroOn natural_data)
-    (fun value => ((additive_structure natural_data).2.2.1 value).1)
-    (fun value => ((additive_structure natural_data).2.2.1 value).2)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.WholeNumbers.Constructions.Landau.NaturalArithmeticForWholeNumbers Element SetObject), LRA.AlgebraicStructures.AdditiveIdentityLaws (LRA.NumberSystems.WholeNumbers.Constructions.Landau.Carrier natural_data)
 
 Predicate logic (unfolded):
 
-  noncomputable def additiveIdentityLawsOn :
-    @AdditiveIdentityLaws (Carrier natural_data)
-      (addOn natural_data) (zeroOn natural_data) :=
-  @AdditiveIdentityLaws.mk (Carrier natural_data)
-    (addOn natural_data) (zeroOn natural_data)
-    (fun value => ((additive_structure natural_data).2.2.1 value).1)
-    (fun value => ((additive_structure natural_data).2.2.1 value).2) (source fallback; no compiled unfold data available)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    natural_data : NaturalArithmeticForWholeNumbers Element SetObject
+  Prove
+    LRA.AlgebraicStructures.AdditiveIdentityLaws (Option Element)
 
 Logical form (Lean):
 
 ```lean
 theorem additiveIdentityLawsOn :
     @AdditiveIdentityLaws (Carrier natural_data)
-      (addOn natural_data) (zeroOn natural_data) := by
-  sorry
+      (addOn natural_data) (zeroOn natural_data)
 ```
 
 Type-theoretic form:
@@ -476,28 +548,26 @@ theorem additiveIdentityLawsOn :
 
 Predicate logic:
 
-  noncomputable def multiplicativeSemigroupLawsOn :
-    @MultiplicativeSemigroupLaws (Carrier natural_data) (mulOn natural_data) :=
-  @MultiplicativeSemigroupLaws.mk (Carrier natural_data) (mulOn natural_data)
-    (semiring_structure natural_data).2.1
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.WholeNumbers.Constructions.Landau.NaturalArithmeticForWholeNumbers Element SetObject), have x := LRA.NumberSystems.WholeNumbers.Constructions.Landau.mulOn natural_data; have x_1 := ⋯; LRA.AlgebraicStructures.MultiplicativeSemigroupLaws (LRA.NumberSystems.WholeNumbers.Constructions.Landau.Carrier natural_data)
 
 Predicate logic (unfolded):
 
-  noncomputable def multiplicativeSemigroupLawsOn :
-    @MultiplicativeSemigroupLaws (Carrier natural_data) (mulOn natural_data) :=
-  @MultiplicativeSemigroupLaws.mk (Carrier natural_data) (mulOn natural_data)
-    (semiring_structure natural_data).2.1 (source fallback; no compiled unfold data available)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    natural_data : NaturalArithmeticForWholeNumbers Element SetObject
+    natural_data : NaturalArithmeticForWholeNumbers Element SetObject
+  Prove
+    have x := LRA.NumberSystems.WholeNumbers.Constructions.Landau.mulOn natural_data; have x_1 := ⋯; LRA.AlgebraicStructures.MultiplicativeSemigroupLaws (LRA.NumberSystems.WholeNumbers.Constructions.Landau.Carrier natural_data)
 
 Logical form (Lean):
 
 ```lean
-theorem multiplicativeSemigroupLawsOn :
+theorem multiplicativeSemigroupLawsOn
+    (natural_data : NaturalArithmeticForWholeNumbers Element SetObject) :
     let _ : Mul (Carrier natural_data) := mulOn natural_data
     let _ : Nonempty (Carrier natural_data) := nonemptyOn natural_data
-    MultiplicativeSemigroupLaws (Carrier natural_data) := by
-  letI : Mul (Carrier natural_data) := mulOn natural_data
-  letI : Nonempty (Carrier natural_data) := nonemptyOn natural_data
-  exact ⟨(semiring_structure natural_data).2.1⟩
+    MultiplicativeSemigroupLaws (Carrier natural_data)
 ```
 
 Type-theoretic form:
@@ -530,24 +600,22 @@ theorem multiplicativeSemigroupLawsOn
 
 Predicate logic:
 
-  noncomputable def multiplicativeCommutativeLawsOn :
-    @MultiplicativeCommutativeLaws (Carrier natural_data) (mulOn natural_data) :=
-  @MultiplicativeCommutativeLaws.mk (Carrier natural_data) (mulOn natural_data)
-    (semiring_structure natural_data).2.2.1
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.WholeNumbers.Constructions.Landau.NaturalArithmeticForWholeNumbers Element SetObject), LRA.AlgebraicStructures.MultiplicativeCommutativeLaws (LRA.NumberSystems.WholeNumbers.Constructions.Landau.Carrier natural_data)
 
 Predicate logic (unfolded):
 
-  noncomputable def multiplicativeCommutativeLawsOn :
-    @MultiplicativeCommutativeLaws (Carrier natural_data) (mulOn natural_data) :=
-  @MultiplicativeCommutativeLaws.mk (Carrier natural_data) (mulOn natural_data)
-    (semiring_structure natural_data).2.2.1 (source fallback; no compiled unfold data available)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    natural_data : NaturalArithmeticForWholeNumbers Element SetObject
+  Prove
+    LRA.AlgebraicStructures.MultiplicativeCommutativeLaws (Option Element)
 
 Logical form (Lean):
 
 ```lean
 theorem multiplicativeCommutativeLawsOn :
-    @MultiplicativeCommutativeLaws (Carrier natural_data) (mulOn natural_data) := by
-  sorry
+    @MultiplicativeCommutativeLaws (Carrier natural_data) (mulOn natural_data)
 ```
 
 Type-theoretic form:
@@ -577,31 +645,23 @@ theorem multiplicativeCommutativeLawsOn :
 
 Predicate logic:
 
-  noncomputable def multiplicativeIdentityLawsOn :
-    @MultiplicativeIdentityLaws (Carrier natural_data)
-      (mulOn natural_data) (oneOn natural_data) :=
-  @MultiplicativeIdentityLaws.mk (Carrier natural_data)
-    (mulOn natural_data) (oneOn natural_data)
-    (fun value => ((semiring_structure natural_data).2.2.2.1 value).1)
-    (fun value => ((semiring_structure natural_data).2.2.2.1 value).2)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.WholeNumbers.Constructions.Landau.NaturalArithmeticForWholeNumbers Element SetObject), LRA.AlgebraicStructures.MultiplicativeIdentityLaws (LRA.NumberSystems.WholeNumbers.Constructions.Landau.Carrier natural_data)
 
 Predicate logic (unfolded):
 
-  noncomputable def multiplicativeIdentityLawsOn :
-    @MultiplicativeIdentityLaws (Carrier natural_data)
-      (mulOn natural_data) (oneOn natural_data) :=
-  @MultiplicativeIdentityLaws.mk (Carrier natural_data)
-    (mulOn natural_data) (oneOn natural_data)
-    (fun value => ((semiring_structure natural_data).2.2.2.1 value).1)
-    (fun value => ((semiring_structure natural_data).2.2.2.1 value).2) (source fallback; no compiled unfold data available)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    natural_data : NaturalArithmeticForWholeNumbers Element SetObject
+  Prove
+    LRA.AlgebraicStructures.MultiplicativeIdentityLaws (Option Element)
 
 Logical form (Lean):
 
 ```lean
 theorem multiplicativeIdentityLawsOn :
     @MultiplicativeIdentityLaws (Carrier natural_data)
-      (mulOn natural_data) (oneOn natural_data) := by
-  sorry
+      (mulOn natural_data) (oneOn natural_data)
 ```
 
 Type-theoretic form:
@@ -632,31 +692,23 @@ theorem multiplicativeIdentityLawsOn :
 
 Predicate logic:
 
-  noncomputable def zeroAbsorbingLawsOn :
-    @ZeroAbsorbingLaws (Carrier natural_data)
-      (mulOn natural_data) (zeroOn natural_data) :=
-  @ZeroAbsorbingLaws.mk (Carrier natural_data)
-    (mulOn natural_data) (zeroOn natural_data)
-    (fun value => ((semiring_structure natural_data).2.2.2.2.1 value).1)
-    (fun value => ((semiring_structure natural_data).2.2.2.2.1 value).2)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.WholeNumbers.Constructions.Landau.NaturalArithmeticForWholeNumbers Element SetObject), LRA.AlgebraicStructures.ZeroAbsorbingLaws (LRA.NumberSystems.WholeNumbers.Constructions.Landau.Carrier natural_data)
 
 Predicate logic (unfolded):
 
-  noncomputable def zeroAbsorbingLawsOn :
-    @ZeroAbsorbingLaws (Carrier natural_data)
-      (mulOn natural_data) (zeroOn natural_data) :=
-  @ZeroAbsorbingLaws.mk (Carrier natural_data)
-    (mulOn natural_data) (zeroOn natural_data)
-    (fun value => ((semiring_structure natural_data).2.2.2.2.1 value).1)
-    (fun value => ((semiring_structure natural_data).2.2.2.2.1 value).2) (source fallback; no compiled unfold data available)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    natural_data : NaturalArithmeticForWholeNumbers Element SetObject
+  Prove
+    LRA.AlgebraicStructures.ZeroAbsorbingLaws (Option Element)
 
 Logical form (Lean):
 
 ```lean
 theorem zeroAbsorbingLawsOn :
     @ZeroAbsorbingLaws (Carrier natural_data)
-      (mulOn natural_data) (zeroOn natural_data) := by
-  sorry
+      (mulOn natural_data) (zeroOn natural_data)
 ```
 
 Type-theoretic form:
@@ -687,29 +739,23 @@ theorem zeroAbsorbingLawsOn :
 
 Predicate logic:
 
-  noncomputable def nontrivialityLawOn :
-    @NontrivialityLaw (Carrier natural_data)
-      (zeroOn natural_data) (oneOn natural_data) :=
-  @NontrivialityLaw.mk (Carrier natural_data)
-    (zeroOn natural_data) (oneOn natural_data)
-    (semiring_structure natural_data).1.symm
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.WholeNumbers.Constructions.Landau.NaturalArithmeticForWholeNumbers Element SetObject), LRA.AlgebraicStructures.NontrivialityLaw (LRA.NumberSystems.WholeNumbers.Constructions.Landau.Carrier natural_data)
 
 Predicate logic (unfolded):
 
-  noncomputable def nontrivialityLawOn :
-    @NontrivialityLaw (Carrier natural_data)
-      (zeroOn natural_data) (oneOn natural_data) :=
-  @NontrivialityLaw.mk (Carrier natural_data)
-    (zeroOn natural_data) (oneOn natural_data)
-    (semiring_structure natural_data).1.symm (source fallback; no compiled unfold data available)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    natural_data : NaturalArithmeticForWholeNumbers Element SetObject
+  Prove
+    LRA.AlgebraicStructures.NontrivialityLaw (Option Element)
 
 Logical form (Lean):
 
 ```lean
 theorem nontrivialityLawOn :
     @NontrivialityLaw (Carrier natural_data)
-      (zeroOn natural_data) (oneOn natural_data) := by
-  sorry
+      (zeroOn natural_data) (oneOn natural_data)
 ```
 
 Type-theoretic form:
@@ -740,29 +786,23 @@ theorem nontrivialityLawOn :
 
 Predicate logic:
 
-  noncomputable def noZeroDivisorsLawOn :
-    @NoZeroDivisorsLaw (Carrier natural_data)
-      (mulOn natural_data) (zeroOn natural_data) :=
-  @NoZeroDivisorsLaw.mk (Carrier natural_data)
-    (mulOn natural_data) (zeroOn natural_data)
-    (semiring_structure natural_data).2.2.2.2.2.2
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.WholeNumbers.Constructions.Landau.NaturalArithmeticForWholeNumbers Element SetObject), LRA.AlgebraicStructures.NoZeroDivisorsLaw (LRA.NumberSystems.WholeNumbers.Constructions.Landau.Carrier natural_data)
 
 Predicate logic (unfolded):
 
-  noncomputable def noZeroDivisorsLawOn :
-    @NoZeroDivisorsLaw (Carrier natural_data)
-      (mulOn natural_data) (zeroOn natural_data) :=
-  @NoZeroDivisorsLaw.mk (Carrier natural_data)
-    (mulOn natural_data) (zeroOn natural_data)
-    (semiring_structure natural_data).2.2.2.2.2.2 (source fallback; no compiled unfold data available)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    natural_data : NaturalArithmeticForWholeNumbers Element SetObject
+  Prove
+    LRA.AlgebraicStructures.NoZeroDivisorsLaw (Option Element)
 
 Logical form (Lean):
 
 ```lean
 theorem noZeroDivisorsLawOn :
     @NoZeroDivisorsLaw (Carrier natural_data)
-      (mulOn natural_data) (zeroOn natural_data) := by
-  sorry
+      (mulOn natural_data) (zeroOn natural_data)
 ```
 
 Type-theoretic form:
@@ -793,31 +833,23 @@ theorem noZeroDivisorsLawOn :
 
 Predicate logic:
 
-  noncomputable def distributiveLawsOn :
-    @DistributiveLaws (Carrier natural_data)
-      (addOn natural_data) (mulOn natural_data) :=
-  @DistributiveLaws.mk (Carrier natural_data)
-    (addOn natural_data) (mulOn natural_data)
-    (semiring_structure natural_data).2.2.2.2.2.1
-    (by sorry)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.WholeNumbers.Constructions.Landau.NaturalArithmeticForWholeNumbers Element SetObject), LRA.AlgebraicStructures.DistributiveLaws (LRA.NumberSystems.WholeNumbers.Constructions.Landau.Carrier natural_data)
 
 Predicate logic (unfolded):
 
-  noncomputable def distributiveLawsOn :
-    @DistributiveLaws (Carrier natural_data)
-      (addOn natural_data) (mulOn natural_data) :=
-  @DistributiveLaws.mk (Carrier natural_data)
-    (addOn natural_data) (mulOn natural_data)
-    (semiring_structure natural_data).2.2.2.2.2.1
-    (by sorry) (source fallback; no compiled unfold data available)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    natural_data : NaturalArithmeticForWholeNumbers Element SetObject
+  Prove
+    LRA.AlgebraicStructures.DistributiveLaws (Option Element)
 
 Logical form (Lean):
 
 ```lean
 theorem distributiveLawsOn :
     @DistributiveLaws (Carrier natural_data)
-      (addOn natural_data) (mulOn natural_data) := by
-  sorry
+      (addOn natural_data) (mulOn natural_data)
 ```
 
 Type-theoretic form:
@@ -848,25 +880,27 @@ theorem distributiveLawsOn :
 
 Predicate logic:
 
-  noncomputable def commutativeSemiringLawsOn :
-    @CommutativeSemiringLaws (Carrier natural_data)
-      (addOn natural_data) (mulOn natural_data)
-      (zeroOn natural_data) (oneOn natural_data)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.WholeNumbers.Constructions.Landau.NaturalArithmeticForWholeNumbers Element SetObject), have x := LRA.NumberSystems.WholeNumbers.Constructions.Landau.addOn natural_data; have x_1 := LRA.NumberSystems.WholeNumbers.Constructions.Landau.mulOn natural_data; have x_2 := LRA.NumberSystems.WholeNumbers.Constructions.Landau.zeroOn natural_data; have x_3 := LRA.NumberSystems.WholeNumbers.Constructions.Landau.oneOn natural_data; have x_4 := ⋯; LRA.AlgebraicStructures.CommutativeSemiringLaws (LRA.NumberSystems.WholeNumbers.Constructions.Landau.Carrier natural_data)
 
 Predicate logic (unfolded):
 
-  noncomputable def commutativeSemiringLawsOn :
-    @CommutativeSemiringLaws (Carrier natural_data)
-      (addOn natural_data) (mulOn natural_data)
-      (zeroOn natural_data) (oneOn natural_data) (source fallback; no compiled unfold data available)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    natural_data : NaturalArithmeticForWholeNumbers Element SetObject
+  Prove
+    have x := LRA.NumberSystems.WholeNumbers.Constructions.Landau.addOn natural_data; have x_1 := LRA.NumberSystems.WholeNumbers.Constructions.Landau.mulOn natural_data; have x_2 := LRA.NumberSystems.WholeNumbers.Constructions.Landau.zeroOn natural_data; have x_3 := LRA.NumberSystems.WholeNumbers.Constructions.Landau.oneOn natural_data; have x_4 := ⋯; LRA.AlgebraicStructures.CommutativeSemiringLaws (LRA.NumberSystems.WholeNumbers.Constructions.Landau.Carrier natural_data)
 
 Logical form (Lean):
 
 ```lean
-noncomputable def commutativeSemiringLawsOn :
-    @CommutativeSemiringLaws (Carrier natural_data)
-      (addOn natural_data) (mulOn natural_data)
-      (zeroOn natural_data) (oneOn natural_data)
+theorem commutativeSemiringLawsOn :
+    let _ : Add (Carrier natural_data) := addOn natural_data
+    let _ : Mul (Carrier natural_data) := mulOn natural_data
+    let _ : OfNat (Carrier natural_data) 0 := zeroOn natural_data
+    let _ : OfNat (Carrier natural_data) 1 := oneOn natural_data
+    let _ : Nonempty (Carrier natural_data) := nonemptyOn natural_data
+    CommutativeSemiringLaws (Carrier natural_data)
 ```
 
 Type-theoretic form:
@@ -901,29 +935,22 @@ theorem commutativeSemiringLawsOn :
 
 Predicate logic:
 
-  noncomputable def partialOrderLawsOn :
-    @PartialOrderLaws (Carrier natural_data) (leOn natural_data) :=
-  @PartialOrderLaws.mk (Carrier natural_data) (leOn natural_data)
-    (nonstrict_order_refl natural_data)
-    (nonstrict_order_antisymm natural_data)
-    (nonstrict_order_trans natural_data)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.WholeNumbers.Constructions.Landau.NaturalArithmeticForWholeNumbers Element SetObject), LRA.Order.PartialOrderLaws (LRA.NumberSystems.WholeNumbers.Constructions.Landau.Carrier natural_data)
 
 Predicate logic (unfolded):
 
-  noncomputable def partialOrderLawsOn :
-    @PartialOrderLaws (Carrier natural_data) (leOn natural_data) :=
-  @PartialOrderLaws.mk (Carrier natural_data) (leOn natural_data)
-    (nonstrict_order_refl natural_data)
-    (nonstrict_order_antisymm natural_data)
-    (nonstrict_order_trans natural_data) (source fallback; no compiled unfold data available)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    natural_data : NaturalArithmeticForWholeNumbers Element SetObject
+  Prove
+    LRA.Order.PartialOrderLaws (Option Element)
 
 Logical form (Lean):
 
 ```lean
 theorem partialOrderLawsOn :
-    @PartialOrderLaws (Carrier natural_data) (leOn natural_data) :=
-  by
-    sorry
+    @PartialOrderLaws (Carrier natural_data) (leOn natural_data)
 ```
 
 Type-theoretic form:
@@ -953,25 +980,22 @@ theorem partialOrderLawsOn :
 
 Predicate logic:
 
-  noncomputable def totalOrderLawOn :
-    @TotalOrderLaw (Carrier natural_data) (leOn natural_data) :=
-  @TotalOrderLaw.mk (Carrier natural_data) (leOn natural_data)
-    (nonstrict_order_total natural_data)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.WholeNumbers.Constructions.Landau.NaturalArithmeticForWholeNumbers Element SetObject), LRA.Order.TotalOrderLaw (LRA.NumberSystems.WholeNumbers.Constructions.Landau.Carrier natural_data)
 
 Predicate logic (unfolded):
 
-  noncomputable def totalOrderLawOn :
-    @TotalOrderLaw (Carrier natural_data) (leOn natural_data) :=
-  @TotalOrderLaw.mk (Carrier natural_data) (leOn natural_data)
-    (nonstrict_order_total natural_data) (source fallback; no compiled unfold data available)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    natural_data : NaturalArithmeticForWholeNumbers Element SetObject
+  Prove
+    LRA.Order.TotalOrderLaw (Option Element)
 
 Logical form (Lean):
 
 ```lean
 theorem totalOrderLawOn :
-    @TotalOrderLaw (Carrier natural_data) (leOn natural_data) :=
-  by
-    sorry
+    @TotalOrderLaw (Carrier natural_data) (leOn natural_data)
 ```
 
 Type-theoretic form:
@@ -1001,25 +1025,23 @@ theorem totalOrderLawOn :
 
 Predicate logic:
 
-  theorem additionRespectsOrderLawsOn :
-    @AdditionRespectsOrderLaws (Carrier natural_data)
-      (addOn natural_data) (leOn natural_data) := by
-  sorry
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.WholeNumbers.Constructions.Landau.NaturalArithmeticForWholeNumbers Element SetObject), LRA.Order.AdditionRespectsOrderLaws (LRA.NumberSystems.WholeNumbers.Constructions.Landau.Carrier natural_data)
 
 Predicate logic (unfolded):
 
-  theorem additionRespectsOrderLawsOn :
-    @AdditionRespectsOrderLaws (Carrier natural_data)
-      (addOn natural_data) (leOn natural_data) := by
-  sorry (source fallback; no compiled unfold data available)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    natural_data : NaturalArithmeticForWholeNumbers Element SetObject
+  Prove
+    LRA.Order.AdditionRespectsOrderLaws (Option Element)
 
 Logical form (Lean):
 
 ```lean
 theorem additionRespectsOrderLawsOn :
     @AdditionRespectsOrderLaws (Carrier natural_data)
-      (addOn natural_data) (leOn natural_data) := by
-  sorry
+      (addOn natural_data) (leOn natural_data)
 ```
 
 Type-theoretic form:
@@ -1050,25 +1072,23 @@ theorem additionRespectsOrderLawsOn :
 
 Predicate logic:
 
-  theorem multiplicationRespectsOrderLawsOn :
-    @MultiplicationRespectsOrderLaws (Carrier natural_data)
-      (mulOn natural_data) (leOn natural_data) (zeroOn natural_data) := by
-  sorry
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.WholeNumbers.Constructions.Landau.NaturalArithmeticForWholeNumbers Element SetObject), LRA.Order.MultiplicationRespectsOrderLaws (LRA.NumberSystems.WholeNumbers.Constructions.Landau.Carrier natural_data)
 
 Predicate logic (unfolded):
 
-  theorem multiplicationRespectsOrderLawsOn :
-    @MultiplicationRespectsOrderLaws (Carrier natural_data)
-      (mulOn natural_data) (leOn natural_data) (zeroOn natural_data) := by
-  sorry (source fallback; no compiled unfold data available)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    natural_data : NaturalArithmeticForWholeNumbers Element SetObject
+  Prove
+    LRA.Order.MultiplicationRespectsOrderLaws (Option Element)
 
 Logical form (Lean):
 
 ```lean
 theorem multiplicationRespectsOrderLawsOn :
     @MultiplicationRespectsOrderLaws (Carrier natural_data)
-      (mulOn natural_data) (leOn natural_data) (zeroOn natural_data) := by
-  sorry
+      (mulOn natural_data) (leOn natural_data) (zeroOn natural_data)
 ```
 
 Type-theoretic form:
@@ -1099,19 +1119,16 @@ theorem multiplicationRespectsOrderLawsOn :
 
 Predicate logic:
 
-  theorem orderedSemiringLawsOn :
-    @OrderedSemiringLaws (Carrier natural_data)
-      (addOn natural_data) (mulOn natural_data)
-      (zeroOn natural_data) (oneOn natural_data) (leOn natural_data) := by
-  sorry
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.WholeNumbers.Constructions.Landau.NaturalArithmeticForWholeNumbers Element SetObject), have x := LRA.NumberSystems.WholeNumbers.Constructions.Landau.addOn natural_data; have x_1 := LRA.NumberSystems.WholeNumbers.Constructions.Landau.mulOn natural_data; have x_2 := LRA.NumberSystems.WholeNumbers.Constructions.Landau.zeroOn natural_data; have x_3 := LRA.NumberSystems.WholeNumbers.Constructions.Landau.oneOn natural_data; have x_4 := LRA.NumberSystems.WholeNumbers.Constructions.Landau.leOn natural_data; have x_5 := ⋯; LRA.AlgebraicStructures.OrderedSemiringLaws (LRA.NumberSystems.WholeNumbers.Constructions.Landau.Carrier natural_data)
 
 Predicate logic (unfolded):
 
-  theorem orderedSemiringLawsOn :
-    @OrderedSemiringLaws (Carrier natural_data)
-      (addOn natural_data) (mulOn natural_data)
-      (zeroOn natural_data) (oneOn natural_data) (leOn natural_data) := by
-  sorry (source fallback; no compiled unfold data available)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    natural_data : NaturalArithmeticForWholeNumbers Element SetObject
+  Prove
+    have x := LRA.NumberSystems.WholeNumbers.Constructions.Landau.addOn natural_data; have x_1 := LRA.NumberSystems.WholeNumbers.Constructions.Landau.mulOn natural_data; have x_2 := LRA.NumberSystems.WholeNumbers.Constructions.Landau.zeroOn natural_data; have x_3 := LRA.NumberSystems.WholeNumbers.Constructions.Landau.oneOn natural_data; have x_4 := LRA.NumberSystems.WholeNumbers.Constructions.Landau.leOn natural_data; have x_5 := ⋯; LRA.AlgebraicStructures.OrderedSemiringLaws (LRA.NumberSystems.WholeNumbers.Constructions.Landau.Carrier natural_data)
 
 Logical form (Lean):
 
@@ -1123,8 +1140,7 @@ theorem orderedSemiringLawsOn :
     let _ : OfNat (Carrier natural_data) 1 := oneOn natural_data
     let _ : LE (Carrier natural_data) := leOn natural_data
     let _ : Nonempty (Carrier natural_data) := nonemptyOn natural_data
-    OrderedSemiringLaws (Carrier natural_data) := by
-  sorry
+    OrderedSemiringLaws (Carrier natural_data)
 ```
 
 Type-theoretic form:
@@ -1155,11 +1171,101 @@ theorem orderedSemiringLawsOn :
     let _ : Nonempty (Carrier natural_data) := nonemptyOn natural_data
     OrderedSemiringLaws (Carrier natural_data) := by
   sorry
+/--
+`quotientOrderedPairsAdditionCancellativeOn` TODO
+
+Predicate logic:
+
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.WholeNumbers.Constructions.Landau.NaturalArithmeticForWholeNumbers Element SetObject), have x := LRA.NumberSystems.WholeNumbers.Constructions.Landau.addOn natural_data; ∀ (first second common : LRA.NumberSystems.WholeNumbers.Constructions.Landau.Carrier natural_data), instHAdd.hAdd first common = instHAdd.hAdd second common → first = second
+
+Predicate logic (unfolded):
+
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    natural_data : NaturalArithmeticForWholeNumbers Element SetObject
+  Prove
+    have x := LRA.NumberSystems.WholeNumbers.Constructions.Landau.addOn natural_data; ∀ (first second common : LRA.NumberSystems.WholeNumbers.Constructions.Landau.Carrier natural_data), instHAdd.hAdd first common = instHAdd.hAdd second common → first = second
+
+Logical form (Lean):
+
+```lean
+theorem quotientOrderedPairsAdditionCancellativeOn :
+    let _ : Add (Carrier natural_data) := addOn natural_data
+    ∀ first second common : Carrier natural_data,
+      first + common = second + common → first = second
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro
+
+-/
 theorem quotientOrderedPairsAdditionCancellativeOn :
     let _ : Add (Carrier natural_data) := addOn natural_data
     ∀ first second common : Carrier natural_data,
       first + common = second + common → first = second := by
   sorry
+/--
+`quotientOrderedPairsAdditionPreservesAndReflectsOrderOn` TODO
+
+Predicate logic:
+
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.WholeNumbers.Constructions.Landau.NaturalArithmeticForWholeNumbers Element SetObject), have x := LRA.NumberSystems.WholeNumbers.Constructions.Landau.addOn natural_data; have x_1 := LRA.NumberSystems.WholeNumbers.Constructions.Landau.leOn natural_data; ∀ (first second translation : LRA.NumberSystems.WholeNumbers.Constructions.Landau.Carrier natural_data), x_1.le (instHAdd.hAdd first translation) (instHAdd.hAdd second translation) ↔ x_1.le first second
+
+Predicate logic (unfolded):
+
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    natural_data : NaturalArithmeticForWholeNumbers Element SetObject
+  Prove
+    have x := LRA.NumberSystems.WholeNumbers.Constructions.Landau.addOn natural_data; have x_1 := LRA.NumberSystems.WholeNumbers.Constructions.Landau.leOn natural_data; ∀ (first second translation : LRA.NumberSystems.WholeNumbers.Constructions.Landau.Carrier natural_data), x_1.le (instHAdd.hAdd first translation) (instHAdd.hAdd second translation) ↔ x_1.le first second
+
+Logical form (Lean):
+
+```lean
+theorem quotientOrderedPairsAdditionPreservesAndReflectsOrderOn :
+    let _ : Add (Carrier natural_data) := addOn natural_data
+    let _ : LE (Carrier natural_data) := leOn natural_data
+    ∀ first second translation : Carrier natural_data,
+      first + translation ≤ second + translation ↔
+        first ≤ second
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, constructor, .mp, .mpr
+
+-/
 theorem quotientOrderedPairsAdditionPreservesAndReflectsOrderOn :
     let _ : Add (Carrier natural_data) := addOn natural_data
     let _ : LE (Carrier natural_data) := leOn natural_data
@@ -1173,31 +1279,18 @@ theorem quotientOrderedPairsAdditionPreservesAndReflectsOrderOn :
 Predicate logic:
 
   noncomputable def quotientOrderedPairsInput :
-    LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs
+      LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs
 
 Predicate logic (unfolded):
 
   noncomputable def quotientOrderedPairsInput :
-    LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs (source fallback; no compiled unfold data available)
+      LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
 noncomputable def quotientOrderedPairsInput :
-    LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs := by
-  letI := zeroOn natural_data
-  letI := oneOn natural_data
-  letI := addOn natural_data
-  letI := mulOn natural_data
-  letI := leOn natural_data
-  letI := nonemptyOn natural_data
-  letI := commutativeSemiringLawsOn natural_data
-  letI := partialOrderLawsOn natural_data
-  exact
-    LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs.ofCarrier
-      (Carrier natural_data)
-      (quotientOrderedPairsAdditionCancellativeOn natural_data)
-      (quotientOrderedPairsAdditionPreservesAndReflectsOrderOn natural_data)
+    LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs
 ```
 
 Type-theoretic form:

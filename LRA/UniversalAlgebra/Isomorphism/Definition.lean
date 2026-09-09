@@ -14,14 +14,14 @@ universe u v
 Predicate logic:
 
   structure Isomorphism {S : Signature}
-    (M : Model.{u} S) (N : Model.{v} S) extends Embedding M N where
-  surjective : ∀ target : N.Domain, ∃ source, map source = target
+      (M : Model.{u} S) (N : Model.{v} S) extends Embedding M N where
+    surjective : ∀ target : N.Domain, ∃ source, map source = target
 
 Predicate logic (unfolded):
 
   structure Isomorphism {S : Signature}
-    (M : Model.{u} S) (N : Model.{v} S) extends Embedding M N where
-  surjective : ∀ target : N.Domain, ∃ source, map source = target (source fallback; no compiled unfold data available)
+      (M : Model.{u} S) (N : Model.{v} S) extends Embedding M N where
+    surjective : ∀ target : N.Domain, ∃ source, map source = target (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -60,14 +60,14 @@ structure Isomorphism {S : Signature}
 Predicate logic:
 
   def Isomorphism.id {S : Signature} (M : Model.{u} S) : Isomorphism M M where
-  toEmbedding := Embedding.id M
-  surjective := fun target => ⟨target, rfl⟩
+    toEmbedding := Embedding.id M
+    surjective := fun target => ⟨target, rfl⟩
 
 Predicate logic (unfolded):
 
   def Isomorphism.id {S : Signature} (M : Model.{u} S) : Isomorphism M M where
-  toEmbedding := Embedding.id M
-  surjective := fun target => ⟨target, rfl⟩ (source fallback; no compiled unfold data available)
+    toEmbedding := Embedding.id M
+    surjective := fun target => ⟨target, rfl⟩ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -109,7 +109,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {S : LRA.Logic.Signature} (M : LRA.ModelTheory.FirstOrder.Model S) (N : LRA.ModelTheory.FirstOrder.Model S), Nonempty (LRA.UniversalAlgebra.Isomorphism M N)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Nonempty (LRA.UniversalAlgebra.Isomorphism M N)
 
 Logical form (Lean):
 
@@ -145,11 +150,18 @@ def Isomorphic {S : Signature} (M : Model.{u} S) (N : Model.{v} S) : Prop :=
 
 Predicate logic:
 
-  Isomorphic M N → Isomorphic N M
+  ∀ {S : LRA.Logic.Signature} {M : LRA.ModelTheory.FirstOrder.Model S} {N : LRA.ModelTheory.FirstOrder.Model S}, LRA.UniversalAlgebra.Isomorphic M N → LRA.UniversalAlgebra.Isomorphic N M
 
 Predicate logic (unfolded):
 
-  ∀ {S : LRA.Logic.Signature} {M : LRA.ModelTheory.FirstOrder.Model S} {N : LRA.ModelTheory.FirstOrder.Model S}, Nonempty (LRA.UniversalAlgebra.Isomorphism M N) → Nonempty (LRA.UniversalAlgebra.Isomorphism N M)
+  Ambient
+    (implicit ambient)
+  Objects
+    S : Signature
+    M : Model.{u} S
+    N : Model.{v} S
+  Prove
+    Nonempty (LRA.UniversalAlgebra.Isomorphism M N) → Nonempty (LRA.UniversalAlgebra.Isomorphism N M)
 
 Logical form (Lean):
 

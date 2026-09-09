@@ -12,16 +12,16 @@ universe u
 Predicate logic:
 
   structure FiniteSimpleContinuedFraction
-    (integerModel : IntegerModel.{u}) where
-  Head : integerModel.Carrier
-  Tail : List integerModel.Carrier
+      (integerModel : IntegerModel.{u}) where
+    Head : integerModel.Carrier
+    Tail : List integerModel.Carrier
 
 Predicate logic (unfolded):
 
   structure FiniteSimpleContinuedFraction
-    (integerModel : IntegerModel.{u}) where
-  Head : integerModel.Carrier
-  Tail : List integerModel.Carrier (source fallback; no compiled unfold data available)
+      (integerModel : IntegerModel.{u}) where
+    Head : integerModel.Carrier
+    Tail : List integerModel.Carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -62,14 +62,14 @@ structure FiniteSimpleContinuedFraction
 Predicate logic:
 
   def InfiniteSimpleContinuedFraction
-    (integerModel : IntegerModel.{u}) : Type u :=
-  Nat → integerModel.Carrier
+      (integerModel : IntegerModel.{u}) : Type u :=
+    Nat → integerModel.Carrier
 
 Predicate logic (unfolded):
 
   def InfiniteSimpleContinuedFraction
-    (integerModel : IntegerModel.{u}) : Type u :=
-  Nat → integerModel.Carrier (source fallback; no compiled unfold data available)
+      (integerModel : IntegerModel.{u}) : Type u :=
+    Nat → integerModel.Carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -107,11 +107,16 @@ def InfiniteSimpleContinuedFraction
 
 Predicate logic:
 
-  ∀ {integerModel : LRA.NumberSystems.Integers.Interface.ModelTheory.IntegerModel} (fraction : LRA.Arithmetic.ContinuedFractions.FiniteSimpleContinuedFraction integerModel), (∀ (coefficient : integerModel.Carrier), List.instMembership.mem fraction.Tail coefficient → integerModel.ltInst.lt 0 coefficient ∧ Or (fraction.Tail = List.nil) (Exists fun initialSegment => Exists fun last => (fraction.Tail = instHAppendOfAppend.hAppend initialSegment (List.cons last List.nil) ∧ integerModel.ltInst.lt 1 last)))
+  ∀ {integerModel : LRA.NumberSystems.Integers.Interface.ModelTheory.IntegerModel} (fraction : LRA.Arithmetic.ContinuedFractions.FiniteSimpleContinuedFraction integerModel), ((∀ (coefficient : integerModel.Carrier), List.coefficient ∈ fraction.Tail → integerModel.ltInst.lt 0 coefficient) ∧ (Or (fraction.Tail = List.nil) (Exists fun initialSegment => Exists fun last => (fraction.Tail = instHAppendOfAppend.hAppend initialSegment (List.cons last List.nil) ∧ integerModel.ltInst.lt 1 last))))
 
 Predicate logic (unfolded):
 
-  ∀ {integerModel : LRA.NumberSystems.Integers.Interface.ModelTheory.IntegerModel} (fraction : LRA.Arithmetic.ContinuedFractions.FiniteSimpleContinuedFraction integerModel), (∀ (coefficient : integerModel.1), List.instMembership.1 fraction.2 coefficient → integerModel.ltInst.1 integerModel.zeroInst.1 coefficient ∧ Or (fraction.2 = List.nil) (Exists fun initialSegment => Exists fun last => (fraction.2 = instHAppendOfAppend.1 initialSegment (List.cons last List.nil) ∧ integerModel.ltInst.1 integerModel.oneInst.1 last)))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (coefficient : integerModel.1), List.coefficient ∈ fraction.2 → integerModel.7.lt 0 coefficient) ∧ (Or (fraction.2 = List.nil) (Exists fun initialSegment => Exists fun last => (fraction.2 = instHAppendOfAppend.1 initialSegment (List.cons last List.nil) ∧ integerModel.7.lt 1 last))))
 
 Logical form (Lean):
 
@@ -163,7 +168,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {integerModel : LRA.NumberSystems.Integers.Interface.ModelTheory.IntegerModel} (fraction : Nat → integerModel.1) (index : Nat), integerModel.ltInst.1 integerModel.zeroInst.1 (fraction (instHAdd.1 index (instOfNatNat 1).1))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    integerModel.7.lt 0 (fraction ({ hAdd := fun a b => instAddNat.add a b }.hAdd index 1))
 
 Logical form (Lean):
 
@@ -203,11 +213,16 @@ def IsProperInfiniteSimpleContinuedFraction
 
 Predicate logic:
 
-  ∀ {integerModel : LRA.NumberSystems.Integers.Interface.ModelTheory.IntegerModel} (fraction : LRA.Arithmetic.ContinuedFractions.InfiniteSimpleContinuedFraction integerModel), Exists fun start => Exists fun period => (Ne period 0 ∧ ∀ (index : Nat), instLENat.le start index → fraction (instHAdd.hAdd index period) = fraction index)
+  ∀ {integerModel : LRA.NumberSystems.Integers.Interface.ModelTheory.IntegerModel} (fraction : LRA.Arithmetic.ContinuedFractions.InfiniteSimpleContinuedFraction integerModel), Exists fun start => Exists fun period => (Ne period 0 ∧ (∀ (index : Nat), instLENat.le start index → fraction (instHAdd.hAdd index period) = fraction index))
 
 Predicate logic (unfolded):
 
-  ∀ {integerModel : LRA.NumberSystems.Integers.Interface.ModelTheory.IntegerModel} (fraction : Nat → integerModel.1), Exists fun start => Exists fun period => (period = instOfNatNat 0.1 → False ∧ ∀ (index : Nat), instLENat.1 start index → fraction (instHAdd.1 index period) = fraction index)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun start => Exists fun period => ((period = 0 → False) ∧ (∀ (index : Nat), instLENat.le start index → fraction ({ hAdd := fun a b => instAddNat.add a b }.hAdd index period) = fraction index))
 
 Logical form (Lean):
 

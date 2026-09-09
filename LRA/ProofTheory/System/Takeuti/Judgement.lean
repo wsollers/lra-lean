@@ -8,14 +8,14 @@ namespace LRA.ProofTheory.System.Takeuti
 Predicate logic:
 
   structure Judgement (L : Alphabet) where
-  antecedent : List (Formula L)
-  succedent : List (Formula L)
+    antecedent : List (Formula L)
+    succedent : List (Formula L)
 
 Predicate logic (unfolded):
 
   structure Judgement (L : Alphabet) where
-  antecedent : List (Formula L)
-  succedent : List (Formula L) (source fallback; no compiled unfold data available)
+    antecedent : List (Formula L)
+    succedent : List (Formula L) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -91,11 +91,16 @@ abbrev Sequent := Judgement
 
 Predicate logic:
 
-  ∀ {L : LRA.ProofTheory.System.Takeuti.Alphabet} (a : L.FreeVar) (J : LRA.ProofTheory.System.Takeuti.Judgement L), Or (Exists fun A => (List.instMembership.mem J.antecedent A ∧ LRA.ProofTheory.System.Takeuti.Formula.FreeVarOccurs a A)) (Exists fun A => (List.instMembership.mem J.succedent A ∧ LRA.ProofTheory.System.Takeuti.Formula.FreeVarOccurs a A))
+  ∀ {L : LRA.ProofTheory.System.Takeuti.Alphabet} (a : L.FreeVar) (J : LRA.ProofTheory.System.Takeuti.Judgement L), Or (Exists fun A => (List.A ∈ J.antecedent ∧ LRA.ProofTheory.System.Takeuti.Formula.FreeVarOccurs a A)) (Exists fun A => (List.A ∈ J.succedent ∧ LRA.ProofTheory.System.Takeuti.Formula.FreeVarOccurs a A))
 
 Predicate logic (unfolded):
 
-  ∀ {L : LRA.ProofTheory.System.Takeuti.Alphabet} (a : L.1) (J : LRA.ProofTheory.System.Takeuti.Judgement L), Or (Exists fun A => (List.instMembership.1 J.1 A ∧ LRA.ProofTheory.System.Takeuti.Formula.FreeVarOccurs a A)) (Exists fun A => (List.instMembership.1 J.2 A ∧ LRA.ProofTheory.System.Takeuti.Formula.FreeVarOccurs a A))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (Exists fun A => (List.A ∈ J.1 ∧ LRA.ProofTheory.System.Takeuti.Formula.FreeVarOccurs a A)) (Exists fun A => (List.A ∈ J.2 ∧ LRA.ProofTheory.System.Takeuti.Formula.FreeVarOccurs a A))
 
 Logical form (Lean):
 
@@ -139,7 +144,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {L : LRA.ProofTheory.System.Takeuti.Alphabet} (J : LRA.ProofTheory.System.Takeuti.Judgement L), J.2.length.le (instOfNatNat 1).1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    J.2.length.le 1
 
 Logical form (Lean):
 

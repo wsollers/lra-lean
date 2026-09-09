@@ -16,7 +16,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem} (first second : LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyApproximation rationalSystem) (precision : Nat), Exists fun index => ∀ (n : Nat), instLENat.1 index n → have difference := instHAdd.hAdd (first.Approximate n) (rationalSystem.FieldModel.negInst.neg (second.Approximate n)); (rationalSystem.FieldModel.ltInst.lt (rationalSystem.FieldModel.negInst.neg (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)) difference ∧ rationalSystem.FieldModel.ltInst.lt difference (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun index => ∀ (n : Nat), instLENat.le index n → have difference := instHAdd.hAdd (first.Approximate n) (rationalSystem.FieldModel.negInst.neg (second.Approximate n)); (rationalSystem.FieldModel.ltInst.lt (rationalSystem.FieldModel.negInst.neg (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)) difference ∧ rationalSystem.FieldModel.ltInst.lt difference (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision))
 
 Logical form (Lean):
 
@@ -64,11 +69,16 @@ def Equivalent
 
 Predicate logic:
 
-  Equivalence (@Equivalent rationalSystem)
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), Equivalence LRA.NumberSystems.RealNumbers.EffectiveCauchy.Equivalent
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), Equivalence fun first second => ∀ (precision : Nat), Exists fun index => ∀ (n : Nat), instLENat.1 index n → have difference := instHAdd.hAdd (first.Approximate n) (rationalSystem.FieldModel.negInst.neg (second.Approximate n)); (rationalSystem.FieldModel.ltInst.lt (rationalSystem.FieldModel.negInst.neg (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)) difference ∧ rationalSystem.FieldModel.ltInst.lt difference (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision))
+  Ambient
+    (implicit ambient)
+  Objects
+    rationalSystem : RationalNumberSystem.{u}
+  Prove
+    Equivalence fun first second => ∀ (precision : Nat), Exists fun index => ∀ (n : Nat), instLENat.le index n → have difference := instHAdd.hAdd (first.Approximate n) (rationalSystem.FieldModel.negInst.neg (second.Approximate n)); (rationalSystem.FieldModel.ltInst.lt (rationalSystem.FieldModel.negInst.neg (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)) difference ∧ rationalSystem.FieldModel.ltInst.lt difference (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision))
 
 Logical form (Lean):
 
@@ -107,18 +117,18 @@ theorem EquivalentIsEquivalence
 Predicate logic:
 
   def ApproximationSetoid
-    (rationalSystem : RationalNumberSystem.{u}) :
-    Setoid (EffectiveCauchyApproximation rationalSystem) where
-  r := Equivalent
-  iseqv := EquivalentIsEquivalence rationalSystem
+      (rationalSystem : RationalNumberSystem.{u}) :
+      Setoid (EffectiveCauchyApproximation rationalSystem) where
+    r := Equivalent
+    iseqv := EquivalentIsEquivalence rationalSystem
 
 Predicate logic (unfolded):
 
   def ApproximationSetoid
-    (rationalSystem : RationalNumberSystem.{u}) :
-    Setoid (EffectiveCauchyApproximation rationalSystem) where
-  r := Equivalent
-  iseqv := EquivalentIsEquivalence rationalSystem (source fallback; no compiled unfold data available)
+      (rationalSystem : RationalNumberSystem.{u}) :
+      Setoid (EffectiveCauchyApproximation rationalSystem) where
+    r := Equivalent
+    iseqv := EquivalentIsEquivalence rationalSystem (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -161,14 +171,14 @@ def ApproximationSetoid
 Predicate logic:
 
   abbrev EffectiveCauchyReal
-    (rationalSystem : RationalNumberSystem.{u}) :=
-  Quotient (ApproximationSetoid rationalSystem)
+      (rationalSystem : RationalNumberSystem.{u}) :=
+    Quotient (ApproximationSetoid rationalSystem)
 
 Predicate logic (unfolded):
 
   abbrev EffectiveCauchyReal
-    (rationalSystem : RationalNumberSystem.{u}) :=
-  Quotient (ApproximationSetoid rationalSystem) (source fallback; no compiled unfold data available)
+      (rationalSystem : RationalNumberSystem.{u}) :=
+    Quotient (ApproximationSetoid rationalSystem) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

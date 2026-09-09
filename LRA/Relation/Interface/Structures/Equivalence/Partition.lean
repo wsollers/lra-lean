@@ -12,40 +12,40 @@ universe u v
 Predicate logic:
 
   structure Partition (Element : Type u) (SetObject : Type v)
-    [Membership Element SetObject] where
-  Carrier : SetObject
-  Index : Type u
-  Block : Index -> SetObject
-  BlocksContained : forall index element,
-    element ∈ Block index -> element ∈ Carrier
-  Covers : forall element : Element, element ∈ Carrier ->
-    exists index, element ∈ Block index
-  NonemptyBlocks : forall index,
-    exists element : Element, element ∈ Block index
-  DisjointOrEqual :
-    forall firstIndex secondIndex,
-      (exists element : Element,
-        element ∈ Block firstIndex /\ element ∈ Block secondIndex) ->
-        Block firstIndex = Block secondIndex
+      [Membership Element SetObject] where
+    Carrier : SetObject
+    Index : Type u
+    Block : Index -> SetObject
+    BlocksContained : forall index element,
+      element ∈ Block index -> element ∈ Carrier
+    Covers : forall element : Element, element ∈ Carrier ->
+      exists index, element ∈ Block index
+    NonemptyBlocks : forall index,
+      exists element : Element, element ∈ Block index
+    DisjointOrEqual :
+      forall firstIndex secondIndex,
+        (exists element : Element,
+          element ∈ Block firstIndex /\ element ∈ Block secondIndex) ->
+          Block firstIndex = Block secondIndex
 
 Predicate logic (unfolded):
 
   structure Partition (Element : Type u) (SetObject : Type v)
-    [Membership Element SetObject] where
-  Carrier : SetObject
-  Index : Type u
-  Block : Index -> SetObject
-  BlocksContained : forall index element,
-    element ∈ Block index -> element ∈ Carrier
-  Covers : forall element : Element, element ∈ Carrier ->
-    exists index, element ∈ Block index
-  NonemptyBlocks : forall index,
-    exists element : Element, element ∈ Block index
-  DisjointOrEqual :
-    forall firstIndex secondIndex,
-      (exists element : Element,
-        element ∈ Block firstIndex /\ element ∈ Block secondIndex) ->
-        Block firstIndex = Block secondIndex (source fallback; no compiled unfold data available)
+      [Membership Element SetObject] where
+    Carrier : SetObject
+    Index : Type u
+    Block : Index -> SetObject
+    BlocksContained : forall index element,
+      element ∈ Block index -> element ∈ Carrier
+    Covers : forall element : Element, element ∈ Carrier ->
+      exists index, element ∈ Block index
+    NonemptyBlocks : forall index,
+      exists element : Element, element ∈ Block index
+    DisjointOrEqual :
+      forall firstIndex secondIndex,
+        (exists element : Element,
+          element ∈ Block firstIndex /\ element ∈ Block secondIndex) ->
+          Block firstIndex = Block secondIndex (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -109,11 +109,19 @@ structure Partition (Element : Type u) (SetObject : Type v)
 
 Predicate logic:
 
-  (∀ A ∈ U ∀ x ∈ Element), ({ element : Element // element ∈ A }) → x ∈ EquivalenceClass A relation representative.1 -> x ∈ A
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasSeparation Element SetObject], (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject) → ∀ (ambient : SetObject) (relation : LRA.Relation.Endorelation Element), LRA.Relation.EquivalenceRelation relation → ∀ (representative : Subtype fun element => element) ∈ ambient(candidate : Element), candidate ∈ LRA.Relation.EquivalenceClass ambient relation representative.val → candidate ∈ ambient
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasSeparation Element SetObject], (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject) → ∀ (ambient : SetObject) (relation : Element → Element → Prop), (∀ (x : Element), relation x x ∧ (∀ (x y : Element), relation x y → relation y x ∧ ∀ (x y z : Element), relation x y → relation y z → relation x z)) → ∀ (representative : Subtype fun element => inst.1 ambient element) (candidate : Element), inst.1 (inst_1.1 ambient fun candidate => relation candidate representative.1) candidate → inst.1 ambient candidate
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ambient : SetObject
+    relation : Endorelation Element
+    relationIsEquivalence : EquivalenceRelation relation
+    candidate : Element
+  Prove
+    (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject) → ∀ (ambient : SetObject) (relation : Element → Element → Prop), ((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) → ∀ (representative : Subtype fun element => inst.1 ambient element) (candidate : Element), inst.1 (inst_1.1 ambient fun candidate => relation candidate representative.1) candidate → inst.1 ambient candidate
 
 Logical form (Lean):
 
@@ -165,11 +173,18 @@ theorem PartitionBlockContained
 
 Predicate logic:
 
-  (∀ A ∈ U), ∀ element : Element, element ∈ A -> ∃ representative ∈ { candidate ∈ Element // candidate ∈ A }, element ∈ EquivalenceClass A relation representative.1
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasSeparation Element SetObject], (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject) → ∀ (ambient : SetObject) (relation : LRA.Relation.Endorelation Element), LRA.Relation.EquivalenceRelation relation → ∀ (element : Element), element ∈ ambient → Exists fun representative => element ∈ LRA.Relation.EquivalenceClass ambient relation representative.val
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasSeparation Element SetObject], (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject) → ∀ (ambient : SetObject) (relation : Element → Element → Prop), (∀ (x : Element), relation x x ∧ (∀ (x y : Element), relation x y → relation y x ∧ ∀ (x y z : Element), relation x y → relation y z → relation x z)) → ∀ (element : Element), inst.1 ambient element → Exists fun representative => inst.1 (inst_1.1 ambient fun candidate => relation candidate representative.1) element
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ambient : SetObject
+    relation : Endorelation Element
+    relationIsEquivalence : EquivalenceRelation relation
+  Prove
+    (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject) → ∀ (ambient : SetObject) (relation : Element → Element → Prop), ((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) → ∀ (element : Element), inst.1 ambient element → Exists fun representative => inst.1 (inst_1.1 ambient fun candidate => relation candidate representative.1) element
 
 Logical form (Lean):
 
@@ -219,11 +234,18 @@ theorem EquivalenceClassesCoverAmbient
 
 Predicate logic:
 
-  (∀ A ∈ U), ∀ representative : { element : Element // element ∈ A }, ∃ candidate ∈ Element, candidate ∈ EquivalenceClass A relation representative.1
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasSeparation Element SetObject], (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject) → ∀ (ambient : SetObject) (relation : LRA.Relation.Endorelation Element), LRA.Relation.EquivalenceRelation relation → ∀ (representative : Subtype fun element => element), ∈ ambient Exists fun candidate => candidate ∈ LRA.Relation.EquivalenceClass ambient relation representative.val
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasSeparation Element SetObject], (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject) → ∀ (ambient : SetObject) (relation : Element → Element → Prop), (∀ (x : Element), relation x x ∧ (∀ (x y : Element), relation x y → relation y x ∧ ∀ (x y z : Element), relation x y → relation y z → relation x z)) → ∀ (representative : Subtype fun element => inst.1 ambient element), Exists fun candidate => inst.1 (inst_1.1 ambient fun candidate => relation candidate representative.1) candidate
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ambient : SetObject
+    relation : Endorelation Element
+    relationIsEquivalence : EquivalenceRelation relation
+  Prove
+    (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject) → ∀ (ambient : SetObject) (relation : Element → Element → Prop), ((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) → ∀ (representative : Subtype fun element => inst.1 ambient element), Exists fun candidate => inst.1 (inst_1.1 ambient fun candidate => relation candidate representative.1) candidate
 
 Logical form (Lean):
 
@@ -273,11 +295,18 @@ theorem EquivalenceClassBlocksNonempty
 
 Predicate logic:
 
-  (∀ A ∈ U), ∀ first second : { element : Element // element ∈ A }, ∃ candidate ∈ Element, candidate ∈ EquivalenceClass A relation first.1 ∧ candidate ∈ EquivalenceClass A relation second.1 -> EquivalenceClass A relation first.1 = EquivalenceClass A relation second.1
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasSeparation Element SetObject], (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject) → ∀ (ambient : SetObject) (relation : LRA.Relation.Endorelation Element), LRA.Relation.EquivalenceRelation relation → ∀ (first second : Subtype fun element => element), ∈ ambient (Exists fun candidate => (candidate ∈ LRA.Relation.EquivalenceClass ambient relation first.val ∧ candidate ∈ LRA.Relation.EquivalenceClass ambient relation second.val)) → LRA.Relation.EquivalenceClass ambient relation first.val = LRA.Relation.EquivalenceClass ambient relation second.val
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasSeparation Element SetObject], (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject) → ∀ (ambient : SetObject) (relation : Element → Element → Prop), (∀ (x : Element), relation x x ∧ (∀ (x y : Element), relation x y → relation y x ∧ ∀ (x y z : Element), relation x y → relation y z → relation x z)) → ∀ (first second : Subtype fun element => inst.1 ambient element), (Exists fun candidate => (inst.1 (inst_1.1 ambient fun candidate => relation candidate first.1) candidate ∧ inst.1 (inst_1.1 ambient fun candidate => relation candidate second.1) candidate)) → inst_1.1 ambient fun candidate => relation candidate first.1 = inst_1.1 ambient fun candidate => relation candidate second.1
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ambient : SetObject
+    relation : Endorelation Element
+    relationIsEquivalence : EquivalenceRelation relation
+  Prove
+    (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.ExtensionalityLaw Element SetObject) → ∀ (ambient : SetObject) (relation : Element → Element → Prop), ((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) → ∀ (first second : Subtype fun element => inst.1 ambient element), (Exists fun candidate => (inst.1 (inst_1.1 ambient fun candidate => relation candidate first.1) candidate ∧ inst.1 (inst_1.1 ambient fun candidate => relation candidate second.1) candidate)) → inst_1.1 ambient fun candidate => relation candidate first.1 = inst_1.1 ambient fun candidate => relation candidate second.1
 
 Logical form (Lean):
 
@@ -334,24 +363,24 @@ theorem EquivalenceClassBlocksDisjointOrEqual
 Predicate logic:
 
   def PartitionFromEquivalence
-    {Element : Type u} {SetObject : Type v}
-    [Membership Element SetObject] [HasSeparation Element SetObject]
-    [SeparationLaws Element SetObject] [ExtensionalityLaw Element SetObject]
-    (ambient : SetObject)
-    (relation : Endorelation Element)
-    (relationIsEquivalence : EquivalenceRelation relation) :
-    Partition Element SetObject
+      {Element : Type u} {SetObject : Type v}
+      [Membership Element SetObject] [HasSeparation Element SetObject]
+      [SeparationLaws Element SetObject] [ExtensionalityLaw Element SetObject]
+      (ambient : SetObject)
+      (relation : Endorelation Element)
+      (relationIsEquivalence : EquivalenceRelation relation) :
+      Partition Element SetObject
 
 Predicate logic (unfolded):
 
   def PartitionFromEquivalence
-    {Element : Type u} {SetObject : Type v}
-    [Membership Element SetObject] [HasSeparation Element SetObject]
-    [SeparationLaws Element SetObject] [ExtensionalityLaw Element SetObject]
-    (ambient : SetObject)
-    (relation : Endorelation Element)
-    (relationIsEquivalence : EquivalenceRelation relation) :
-    Partition Element SetObject (source fallback; no compiled unfold data available)
+      {Element : Type u} {SetObject : Type v}
+      [Membership Element SetObject] [HasSeparation Element SetObject]
+      [SeparationLaws Element SetObject] [ExtensionalityLaw Element SetObject]
+      (ambient : SetObject)
+      (relation : Endorelation Element)
+      (relationIsEquivalence : EquivalenceRelation relation) :
+      Partition Element SetObject (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

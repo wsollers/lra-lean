@@ -10,12 +10,12 @@ universe u
 Predicate logic:
 
   abbrev OrderRelation (Carrier : Type u) :=
-  LRA.Relation.Endorelation Carrier
+    LRA.Relation.Endorelation Carrier
 
 Predicate logic (unfolded):
 
   abbrev OrderRelation (Carrier : Type u) :=
-  LRA.Relation.Endorelation Carrier (source fallback; no compiled unfold data available)
+    LRA.Relation.Endorelation Carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

@@ -13,26 +13,26 @@ open LRA.NumberSystems.RationalNumbers
 Predicate logic:
 
   def representative_addition
-    (rationalSystem : RationalNumberSystem)
-    (absolute_value_data : RationalMetricData rationalSystem)
-    (first second : Representative rationalSystem absolute_value_data) :
-    Sequence rationalSystem :=
-  fun index =>
-    rationalSystem.FieldModel.signature.add
-      (first.sequence index)
-      (second.sequence index)
+      (rationalSystem : RationalNumberSystem)
+      (absolute_value_data : RationalMetricData rationalSystem)
+      (first second : Representative rationalSystem absolute_value_data) :
+      Sequence rationalSystem :=
+    fun index =>
+      rationalSystem.FieldModel.signature.add
+        (first.sequence index)
+        (second.sequence index)
 
 Predicate logic (unfolded):
 
   def representative_addition
-    (rationalSystem : RationalNumberSystem)
-    (absolute_value_data : RationalMetricData rationalSystem)
-    (first second : Representative rationalSystem absolute_value_data) :
-    Sequence rationalSystem :=
-  fun index =>
-    rationalSystem.FieldModel.signature.add
-      (first.sequence index)
-      (second.sequence index) (source fallback; no compiled unfold data available)
+      (rationalSystem : RationalNumberSystem)
+      (absolute_value_data : RationalMetricData rationalSystem)
+      (first second : Representative rationalSystem absolute_value_data) :
+      Sequence rationalSystem :=
+    fun index =>
+      rationalSystem.FieldModel.signature.add
+        (first.sequence index)
+        (second.sequence index) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -83,22 +83,22 @@ def representative_addition
 Predicate logic:
 
   def representative_negation
-    (rationalSystem : RationalNumberSystem)
-    (absolute_value_data : RationalMetricData rationalSystem)
-    (representative : Representative rationalSystem absolute_value_data) :
-    Sequence rationalSystem :=
-  fun index =>
-    rationalSystem.FieldModel.signature.neg (representative.sequence index)
+      (rationalSystem : RationalNumberSystem)
+      (absolute_value_data : RationalMetricData rationalSystem)
+      (representative : Representative rationalSystem absolute_value_data) :
+      Sequence rationalSystem :=
+    fun index =>
+      rationalSystem.FieldModel.signature.neg (representative.sequence index)
 
 Predicate logic (unfolded):
 
   def representative_negation
-    (rationalSystem : RationalNumberSystem)
-    (absolute_value_data : RationalMetricData rationalSystem)
-    (representative : Representative rationalSystem absolute_value_data) :
-    Sequence rationalSystem :=
-  fun index =>
-    rationalSystem.FieldModel.signature.neg (representative.sequence index) (source fallback; no compiled unfold data available)
+      (rationalSystem : RationalNumberSystem)
+      (absolute_value_data : RationalMetricData rationalSystem)
+      (representative : Representative rationalSystem absolute_value_data) :
+      Sequence rationalSystem :=
+    fun index =>
+      rationalSystem.FieldModel.signature.neg (representative.sequence index) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -145,26 +145,26 @@ def representative_negation
 Predicate logic:
 
   def representative_multiplication
-    (rationalSystem : RationalNumberSystem)
-    (absolute_value_data : RationalMetricData rationalSystem)
-    (first second : Representative rationalSystem absolute_value_data) :
-    Sequence rationalSystem :=
-  fun index =>
-    rationalSystem.FieldModel.signature.multiply
-      (first.sequence index)
-      (second.sequence index)
+      (rationalSystem : RationalNumberSystem)
+      (absolute_value_data : RationalMetricData rationalSystem)
+      (first second : Representative rationalSystem absolute_value_data) :
+      Sequence rationalSystem :=
+    fun index =>
+      rationalSystem.FieldModel.signature.multiply
+        (first.sequence index)
+        (second.sequence index)
 
 Predicate logic (unfolded):
 
   def representative_multiplication
-    (rationalSystem : RationalNumberSystem)
-    (absolute_value_data : RationalMetricData rationalSystem)
-    (first second : Representative rationalSystem absolute_value_data) :
-    Sequence rationalSystem :=
-  fun index =>
-    rationalSystem.FieldModel.signature.multiply
-      (first.sequence index)
-      (second.sequence index) (source fallback; no compiled unfold data available)
+      (rationalSystem : RationalNumberSystem)
+      (absolute_value_data : RationalMetricData rationalSystem)
+      (first second : Representative rationalSystem absolute_value_data) :
+      Sequence rationalSystem :=
+    fun index =>
+      rationalSystem.FieldModel.signature.multiply
+        (first.sequence index)
+        (second.sequence index) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

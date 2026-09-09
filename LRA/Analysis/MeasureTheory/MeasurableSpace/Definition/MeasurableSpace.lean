@@ -11,25 +11,25 @@ Predicate logic:
 
   structure MeasurableSpaceDefinitionOn (X : Type u) where
 
-  IsMeasurable : Set X → Prop
+    IsMeasurable : Set X → Prop
 
-  empty_mem : IsMeasurable ∅
+    empty_mem : IsMeasurable ∅
 
-  compl_mem : ∀ A : Set X, IsMeasurable A → IsMeasurable Aᶜ
+    compl_mem : ∀ A : Set X, IsMeasurable A → IsMeasurable Aᶜ
 
-  iUnion_mem : ∀ A : ℕ → Set X, (∀ n, IsMeasurable (A n)) → IsMeasurable (⋃ n, A n)
+    iUnion_mem : ∀ A : ℕ → Set X, (∀ n, IsMeasurable (A n)) → IsMeasurable (⋃ n, A n)
 
 Predicate logic (unfolded):
 
   structure MeasurableSpaceDefinitionOn (X : Type u) where
 
-  IsMeasurable : Set X → Prop
+    IsMeasurable : Set X → Prop
 
-  empty_mem : IsMeasurable ∅
+    empty_mem : IsMeasurable ∅
 
-  compl_mem : ∀ A : Set X, IsMeasurable A → IsMeasurable Aᶜ
+    compl_mem : ∀ A : Set X, IsMeasurable A → IsMeasurable Aᶜ
 
-  iUnion_mem : ∀ A : ℕ → Set X, (∀ n, IsMeasurable (A n)) → IsMeasurable (⋃ n, A n) (source fallback; no compiled unfold data available)
+    iUnion_mem : ∀ A : ℕ → Set X, (∀ n, IsMeasurable (A n)) → IsMeasurable (⋃ n, A n) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -81,17 +81,17 @@ Predicate logic:
 
   structure MeasurableSpaceDefinition where
 
-  Carrier : Type u
+    Carrier : Type u
 
-  measurableSets : MeasurableSpaceDefinitionOn Carrier
+    measurableSets : MeasurableSpaceDefinitionOn Carrier
 
 Predicate logic (unfolded):
 
   structure MeasurableSpaceDefinition where
 
-  Carrier : Type u
+    Carrier : Type u
 
-  measurableSets : MeasurableSpaceDefinitionOn Carrier (source fallback; no compiled unfold data available)
+    measurableSets : MeasurableSpaceDefinitionOn Carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

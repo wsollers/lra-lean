@@ -5,21 +5,15 @@ namespace LRA.Identity.Constructions.Axiomatic
 universe u
 
 /--
-`Ax_IdentityReflexivity` is the reflexivity axiom for the primitive
-axiomatic identity/equality relation.
+`Ax_IdentityReflexivity` TODO
 
 Predicate logic:
 
-  (∀ x ∈ Carrier), Ax_IdentityRelation x x end LRA.Identity.Constructions.Axiomatic
+  ∀ {Carrier : Type u} (x : Carrier), LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x x
 
 Predicate logic (unfolded):
 
-  Ambient
-    (Carrier)
-  Objects
-    x : Carrier
-  Prove
-    LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x x
+  ∀ {Carrier : Type u} (x : Carrier), LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x x
 
 Logical form (Lean):
 

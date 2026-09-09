@@ -8,20 +8,20 @@ namespace LRA.ModelTheoryTheory.SetRings
 Predicate logic:
 
   structure SetRingConceptSignature extends LRA.UniversalAlgebra.InterpretedOperationBundles.CarrierBundle where
-  zero : carrier
-  add : LRA.Operation.BinaryOperation carrier
-  join : LRA.Operation.BinaryOperation carrier
-  meet : LRA.Operation.BinaryOperation carrier
-  difference : LRA.Operation.BinaryOperation carrier
+    zero : carrier
+    add : LRA.Operation.BinaryOperation carrier
+    join : LRA.Operation.BinaryOperation carrier
+    meet : LRA.Operation.BinaryOperation carrier
+    difference : LRA.Operation.BinaryOperation carrier
 
 Predicate logic (unfolded):
 
   structure SetRingConceptSignature extends LRA.UniversalAlgebra.InterpretedOperationBundles.CarrierBundle where
-  zero : carrier
-  add : LRA.Operation.BinaryOperation carrier
-  join : LRA.Operation.BinaryOperation carrier
-  meet : LRA.Operation.BinaryOperation carrier
-  difference : LRA.Operation.BinaryOperation carrier (source fallback; no compiled unfold data available)
+    zero : carrier
+    add : LRA.Operation.BinaryOperation carrier
+    join : LRA.Operation.BinaryOperation carrier
+    meet : LRA.Operation.BinaryOperation carrier
+    difference : LRA.Operation.BinaryOperation carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

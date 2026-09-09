@@ -34,7 +34,7 @@ Predicate logic (unfolded):
     Nonempty Symbol → Nonempty Symbol
 Transliterated theorem: forall Symbol : Type, Nonempty Symbol -> Nonempty Symbol
 Logical form (Lean): : forall Symbol : Type, Nonempty Symbol -> Nonempty Symbol
-Source: ./Language/Symbols.lean#L42
+Source: [`./Language/Symbols.lean#L47`](./Language/Symbols.lean#L47)
 
 
 
@@ -53,7 +53,7 @@ Predicate logic (unfolded):
     LRA.Logic.Propositional.evaluate valuation (φ.impl ψ.neg).neg = Bool.rec ((fun _ => Bool.false) Unit.unit) ((fun _ => LRA.Logic.Propositional.evaluate valuation ψ) Unit.unit) (LRA.Logic.Propositional.evaluate valuation φ)
 Transliterated theorem: evaluate valuation (Formula.and φ ψ) = (evaluate valuation φ && evaluate valuation ψ)
 Logical form (Lean): {L : PropositionalLanguage} (valuation : L.Atoms -> Bool) (φ ψ : Formula L) : evaluate valuation (Formula.and φ ψ) = (evaluate valuation φ && evaluate valuation ψ)
-Source: ./Syntax/Propositional/Formula.lean#L274
+Source: [`./Syntax/Propositional/Formula.lean#L281`](./Syntax/Propositional/Formula.lean#L281)
 
 
 
@@ -72,7 +72,7 @@ Predicate logic (unfolded):
     LRA.Logic.Propositional.evaluate valuation (φ.neg.impl ψ) = Bool.rec ((fun _ => LRA.Logic.Propositional.evaluate valuation ψ) Unit.unit) ((fun _ => Bool.true) Unit.unit) (LRA.Logic.Propositional.evaluate valuation φ)
 Transliterated theorem: evaluate valuation (Formula.or φ ψ) = (evaluate valuation φ || evaluate valuation ψ)
 Logical form (Lean): {L : PropositionalLanguage} (valuation : L.Atoms -> Bool) (φ ψ : Formula L) : evaluate valuation (Formula.or φ ψ) = (evaluate valuation φ || evaluate valuation ψ)
-Source: ./Syntax/Propositional/Formula.lean#L318
+Source: [`./Syntax/Propositional/Formula.lean#L332`](./Syntax/Propositional/Formula.lean#L332)
 
 
 
@@ -91,7 +91,7 @@ Predicate logic (unfolded):
     LRA.Logic.Propositional.evaluate valuation ((φ.impl ψ).impl (ψ.impl φ).neg).neg = instBEqOfDecidable.1 = LRA.Logic.Propositional.evaluate valuation φ (LRA.Logic.Propositional.evaluate valuation ψ)
 Transliterated theorem: evaluate valuation (Formula.iff φ ψ) = (evaluate valuation φ == evaluate valuation ψ)
 Logical form (Lean): {L : PropositionalLanguage} (valuation : L.Atoms -> Bool) (φ ψ : Formula L) : evaluate valuation (Formula.iff φ ψ) = (evaluate valuation φ == evaluate valuation ψ)
-Source: ./Syntax/Propositional/Formula.lean#L362
+Source: [`./Syntax/Propositional/Formula.lean#L383`](./Syntax/Propositional/Formula.lean#L383)
 
 
 
@@ -110,7 +110,7 @@ Predicate logic (unfolded):
     Finset.instPartialOrder.toPreorder.1.le (LRA.Logic.FirstOrder.freeVariablesInTerm (LRA.Logic.FirstOrder.substituteInTerm replacedVariable replacementTerm originalTerm)) (Finset.LRA.Logic.FirstOrder.freeVariablesInTerm originalTerm ∪ LRA.Logic.FirstOrder.freeVariablesInTerm replacementTerm)
 Transliterated theorem: (∀ replacedVariable ∈ Variable), freeVariablesInTerm (substituteInTerm replacedVariable replacementTerm originalTerm) ⊆ freeVariablesInTerm originalTerm ∪ freeVariablesInTerm replacementTerm
 Logical form (Lean): {S : Signature} {Variable : Type} [DecidableEq Variable] (replacedVariable : Variable) (replacementTerm originalTerm : Term S Variable) : freeVariablesInTerm (substituteInTerm replacedVariable replacementTerm originalTerm) ⊆ freeVariablesInTerm originalTerm ∪ freeVariablesInTerm replacementTerm
-Source: ./Syntax/FirstOrder/SubstitutionFreeVariables.lean#L66
+Source: [`./Syntax/FirstOrder/SubstitutionFreeVariables.lean#L53`](./Syntax/FirstOrder/SubstitutionFreeVariables.lean#L53)
 
 
 
@@ -130,7 +130,7 @@ Predicate logic (unfolded):
     Finset.instPartialOrder.toPreorder.1.le (LRA.Logic.FirstOrder.freeVariables (LRA.Logic.FirstOrder.substitute replacedVariable replacementTerm formula)) (Finset.LRA.Logic.FirstOrder.freeVariables formula ∪ LRA.Logic.FirstOrder.freeVariablesInTerm replacementTerm)
 Transliterated theorem: (∀ replacedVariable ∈ Variable), freeVariables (substitute replacedVariable replacementTerm formula) ⊆ freeVariables formula ∪ freeVariablesInTerm replacementTerm
 Logical form (Lean): {S : Signature} {Variable : Type} [DecidableEq Variable] (replacedVariable : Variable) (replacementTerm : Term S Variable) (formula : Formula S Variable) : freeVariables (substitute replacedVariable replacementTerm formula) ⊆ freeVariables formula ∪ freeVariablesInTerm replacementTerm
-Source: ./Syntax/FirstOrder/SubstitutionFreeVariables.lean#L192
+Source: [`./Syntax/FirstOrder/SubstitutionFreeVariables.lean#L108`](./Syntax/FirstOrder/SubstitutionFreeVariables.lean#L108)
 
 
 
@@ -148,7 +148,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.freeVariables sentence.1 = Finset.instEmptyCollection.1
 Transliterated theorem: freeVariables sentence.val = ∅
 Logical form (Lean): {S : Signature} {Variable : Type} [DecidableEq Variable] (sentence : Sentence S Variable) : freeVariables sentence.val = ∅
-Source: ./Syntax/FirstOrder/Sentence.lean#L130
+Source: [`./Syntax/FirstOrder/Sentence.lean#L141`](./Syntax/FirstOrder/Sentence.lean#L141)
 
 
 
@@ -167,7 +167,7 @@ Predicate logic (unfolded):
     Decidable.rec (fun h => (fun x => assignment v) h) (fun h => (fun x => a) h) (inst v v) = a
 Transliterated theorem: (∀ v ∈ Variable ∀ a ∈ Domain), updateAssignment assignment v a v = a
 Logical form (Lean): {Variable : Type} [DecidableEq Variable] {Domain : Type u} (assignment : Variable -> Domain) (v : Variable) (a : Domain) : updateAssignment assignment v a v = a
-Source: ./Semantics/Assignment.lean#L96
+Source: [`./Semantics/Assignment.lean#L103`](./Semantics/Assignment.lean#L103)
 
 
 
@@ -187,7 +187,7 @@ Predicate logic (unfolded):
     (v' = v → False) → Decidable.rec (fun h => (fun x => assignment v') h) (fun h => (fun x => a) h) (inst v' v) = assignment v'
 Transliterated theorem: (∀ v v' ∈ Variable ∀ a ∈ Domain), updateAssignment assignment v a v' = assignment v'
 Logical form (Lean): {Variable : Type} [DecidableEq Variable] {Domain : Type u} (assignment : Variable -> Domain) (v v' : Variable) (a : Domain) (hv : v' ≠ v) : updateAssignment assignment v a v' = assignment v'
-Source: ./Semantics/Assignment.lean#L141
+Source: [`./Semantics/Assignment.lean#L156`](./Semantics/Assignment.lean#L156)
 
 
 
@@ -207,7 +207,7 @@ Predicate logic (unfolded):
     Satisfies M assignment (Formula.and φ ψ) ↔ (Satisfies M assignment φ ∧ Satisfies M assignment ψ)
 Transliterated theorem: Satisfies M assignment (Formula.and φ ψ) ↔ (Satisfies M assignment φ ∧ Satisfies M assignment ψ)
 Logical form (Lean): {S : Signature} {Variable : Type} [DecidableEq Variable] (M : Interpretation S) (assignment : Variable -> M.Domain) (φ ψ : Formula S Variable) : Satisfies M assignment (Formula.and φ ψ) ↔ (Satisfies M assignment φ ∧ Satisfies M assignment ψ)
-Source: ./Semantics/Satisfaction.lean#L118
+Source: [`./Semantics/Satisfaction.lean#L130`](./Semantics/Satisfaction.lean#L130)
 
 
 
@@ -228,7 +228,7 @@ Predicate logic (unfolded):
     Satisfies M assignment (Formula.existsQ v φ) ↔ ∃ a : M.Domain, Satisfies M (updateAssignment assignment v a) φ
 Transliterated theorem: (∀ v ∈ Variable), Satisfies M assignment (Formula.existsQ v φ) ↔ ∃ a ∈ M.Domain, Satisfies M (updateAssignment assignment v a) φ
 Logical form (Lean): {S : Signature} {Variable : Type} [DecidableEq Variable] (M : Interpretation S) (assignment : Variable -> M.Domain) (v : Variable) (φ : Formula S Variable) : Satisfies M assignment (Formula.existsQ v φ) ↔ ∃ a : M.Domain, Satisfies M (updateAssignment assignment v a) φ
-Source: ./Semantics/Satisfaction.lean#L166
+Source: [`./Semantics/Satisfaction.lean#L187`](./Semantics/Satisfaction.lean#L187)
 
 
 
@@ -249,7 +249,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.evaluateTerm M assignment (LRA.Logic.FirstOrder.substituteInTerm replacedVariable replacementTerm originalTerm) = LRA.Logic.FirstOrder.evaluateTerm M (fun v' => Decidable.rec (fun h => (fun x => assignment v') h) (fun h => (fun x => LRA.Logic.FirstOrder.evaluateTerm M assignment replacementTerm) h) (inst v' replacedVariable)) originalTerm
 Transliterated theorem: (∀ replacedVariable ∈ Variable), evaluateTerm M assignment (substituteInTerm replacedVariable replacementTerm originalTerm) = evaluateTerm M (updateAssignment assignment replacedVariable (evaluateTerm M assignment replacementTerm)) originalTerm
 Logical form (Lean): {S : Signature} {Variable : Type} [DecidableEq Variable] (M : Interpretation S) (assignment : Variable -> M.Domain) (replacedVariable : Variable) (replacementTerm originalTerm : Term S Variable) : evaluateTerm M assignment (substituteInTerm replacedVariable replacementTerm originalTerm) = evaluateTerm M (updateAssignment assignment replacedVariable (evaluateTerm M assignment replacementTerm)) originalTerm
-Source: ./Semantics/Substitution.lean#L54
+Source: [`./Semantics/Substitution.lean#L63`](./Semantics/Substitution.lean#L63)
 
 
 
@@ -269,7 +269,7 @@ Predicate logic (unfolded):
     (∀ (candidateVariable : Variable), SetLike.candidateVariable ∈ LRA.Logic.FirstOrder.freeVariablesInTerm term → leftAssignment candidateVariable = rightAssignment candidateVariable) → LRA.Logic.FirstOrder.evaluateTerm M leftAssignment term = LRA.Logic.FirstOrder.evaluateTerm M rightAssignment term
 Transliterated theorem: (∀ candidateVariable, candidateVariable ∈ freeVariablesInTerm term -> leftAssignment candidateVariable = rightAssignment candidateVariable) → evaluateTerm M leftAssignment term = evaluateTerm M rightAssignment term
 Logical form (Lean): {S : Signature} {Variable : Type} [DecidableEq Variable] (M : Interpretation S) {leftAssignment rightAssignment : Variable -> M.Domain} (term : Term S Variable) (assignmentsAgree : ∀ candidateVariable, candidateVariable ∈ freeVariablesInTerm term -> leftAssignment candidateVariable = rightAssignment candidateVariable) : evaluateTerm M leftAssignment term = evaluateTerm M rightAssignment term
-Source: ./Semantics/Substitution.lean#L112
+Source: [`./Semantics/Substitution.lean#L129`](./Semantics/Substitution.lean#L129)
 
 
 
@@ -289,7 +289,7 @@ Predicate logic (unfolded):
     (∀ (candidateVariable : Variable), SetLike.candidateVariable ∈ LRA.Logic.FirstOrder.freeVariablesInTerm replacementTerm → SetLike.candidateVariable ∈ LRA.Logic.FirstOrder.allVariables formula → False) → LRA.Logic.FirstOrder.IsSubstitutable formula replacedVariable replacementTerm
 Transliterated theorem: (∀ replacedVariable ∈ Variable), (∀ candidateVariable, candidateVariable ∈ freeVariablesInTerm replacementTerm -> candidateVariable ∉ allVariables formula) → IsSubstitutable formula replacedVariable replacementTerm
 Logical form (Lean): {S : Signature} {Variable : Type} [DecidableEq Variable] (formula : Formula S Variable) (replacedVariable : Variable) (replacementTerm : Term S Variable) (replacementVariablesAreFresh : ∀ candidateVariable, candidateVariable ∈ freeVariablesInTerm replacementTerm -> candidateVariable ∉ allVariables formula) : IsSubstitutable formula replacedVariable replacementTerm
-Source: ./Semantics/Substitution.lean#L168
+Source: [`./Semantics/Substitution.lean#L193`](./Semantics/Substitution.lean#L193)
 
 
 
@@ -309,7 +309,7 @@ Predicate logic (unfolded):
     Satisfies M leftAssignment formula ↔ Satisfies M rightAssignment formula
 Transliterated theorem: (∀ candidateVariable, candidateVariable ∈ freeVariables formula -> leftAssignment candidateVariable = rightAssignment candidateVariable) → Satisfies M leftAssignment formula ↔ Satisfies M rightAssignment formula
 Logical form (Lean): {S : Signature} {Variable : Type} [DecidableEq Variable] (M : Interpretation S) {leftAssignment rightAssignment : Variable -> M.Domain} (formula : Formula S Variable) (assignmentsAgree : ∀ candidateVariable, candidateVariable ∈ freeVariables formula -> leftAssignment candidateVariable = rightAssignment candidateVariable) : Satisfies M leftAssignment formula ↔ Satisfies M rightAssignment formula
-Source: ./Semantics/Substitution.lean#L254
+Source: [`./Semantics/Substitution.lean#L257`](./Semantics/Substitution.lean#L257)
 
 
 
@@ -331,7 +331,7 @@ Predicate logic (unfolded):
     Satisfies M assignment (substitute replacedVariable replacementTerm formula) ↔ Satisfies M (updateAssignment assignment replacedVariable (evaluateTerm M assignment replacementTerm)) formula
 Transliterated theorem: (∀ replacedVariable ∈ Variable), (IsSubstitutable formula replacedVariable replacementTerm) → Satisfies M assignment (substitute replacedVariable replacementTerm formula) ↔ Satisfies M (updateAssignment assignment replacedVariable (evaluateTerm M assignment replacementTerm)) formula
 Logical form (Lean): {S : Signature} {Variable : Type} [DecidableEq Variable] (M : Interpretation S) (assignment : Variable -> M.Domain) (replacedVariable : Variable) (replacementTerm : Term S Variable) (formula : Formula S Variable) (captureAvoiding : IsSubstitutable formula replacedVariable replacementTerm) : Satisfies M assignment (substitute replacedVariable replacementTerm formula) ↔ Satisfies M (updateAssignment assignment replacedVariable (evaluateTerm M assignment replacementTerm)) formula
-Source: ./Semantics/Substitution.lean#L406
+Source: [`./Semantics/Substitution.lean#L328`](./Semantics/Substitution.lean#L328)
 
 
 
@@ -351,7 +351,7 @@ Predicate logic (unfolded):
     Satisfies M leftAssignment formula ↔ Satisfies M rightAssignment formula
 Transliterated theorem: (IsClosedFormula formula) → Satisfies M leftAssignment formula ↔ Satisfies M rightAssignment formula
 Logical form (Lean): {S : Signature} {Variable : Type} [DecidableEq Variable] (M : Interpretation S) {leftAssignment rightAssignment : Variable -> M.Domain} (formula : Formula S Variable) (closedFormula : IsClosedFormula formula) : Satisfies M leftAssignment formula ↔ Satisfies M rightAssignment formula
-Source: ./Semantics/Sentence.lean#L49
+Source: [`./Semantics/Sentence.lean#L57`](./Semantics/Sentence.lean#L57)
 
 
 
@@ -371,7 +371,7 @@ Predicate logic (unfolded):
     Satisfies M leftAssignment sentence.val ↔ Satisfies M rightAssignment sentence.val
 Transliterated theorem: Satisfies M leftAssignment sentence.val ↔ Satisfies M rightAssignment sentence.val
 Logical form (Lean): {S : Signature} {Variable : Type} [DecidableEq Variable] (M : Interpretation S) {leftAssignment rightAssignment : Variable -> M.Domain} (sentence : Sentence S Variable) : Satisfies M leftAssignment sentence.val ↔ Satisfies M rightAssignment sentence.val
-Source: ./Semantics/Sentence.lean#L100
+Source: [`./Semantics/Sentence.lean#L116`](./Semantics/Sentence.lean#L116)
 
 
 
@@ -388,7 +388,7 @@ Predicate logic (unfolded):
     LRA.Metamathematics.SubstitutionSafety (LRA.Logic.FirstOrder.Formula S Variable) Variable (LRA.Logic.FirstOrder.Term S Variable) LRA.Logic.FirstOrder.IsSubstitutable LRA.Logic.FirstOrder.substitute (fun candidateVariable term => SetLike.candidateVariable) ∈ LRA.Logic.FirstOrder.freeVariablesInTerm term fun formula => (Classical.indefiniteDescription (fun x => Quot.mk (List.isSetoid Variable).r x = LRA.Logic.FirstOrder.freeVariables formula.val) ⋯).1
 Transliterated theorem: SubstitutionSafety (Formula S Variable) Variable (Term S Variable) IsSubstitutable substitute (fun candidateVariable term => candidateVariable ∈ freeVariablesInTerm term) (fun formula => (freeVariables formula).toList) where noCaptureUnderSafety
 Logical form (Lean): {S : Signature} {Variable : Type} [DecidableEq Variable] : SubstitutionSafety (Formula S Variable) Variable (Term S Variable) IsSubstitutable substitute (fun candidateVariable term => candidateVariable ∈ freeVariablesInTerm term) (fun formula => (freeVariables formula).toList) where noCaptureUnderSafety
-Source: ./Metamathematics.lean#L36
+Source: [`./Metamathematics.lean#L36`](./Metamathematics.lean#L36)
 
 
 
@@ -405,7 +405,7 @@ Predicate logic (unfolded):
     LRA.Logic.monoidSignature.Functions.2 LRA.Logic.MonoidFunctionSymbol.mul = 2
 Transliterated theorem: monoidSignature.IsBinaryFunctionSymbol .mul
 Logical form (Lean): : monoidSignature.IsBinaryFunctionSymbol .mul
-Source: ./Language/Examples.lean#L311
+Source: [`./Language/Examples.lean#L316`](./Language/Examples.lean#L316)
 
 
 
@@ -422,7 +422,7 @@ Predicate logic (unfolded):
     LRA.Logic.orderedRingSignature.Functions.2 LRA.Logic.OrderedRingFunctionSymbol.add = 2
 Transliterated theorem: additiveMonoidSignature.IsBinaryFunctionSymbol .add
 Logical form (Lean): : additiveMonoidSignature.IsBinaryFunctionSymbol .add
-Source: ./Language/Examples.lean#L619
+Source: [`./Language/Examples.lean#L629`](./Language/Examples.lean#L629)
 
 
 
@@ -439,7 +439,7 @@ Predicate logic (unfolded):
     LRA.Logic.additiveMonoidSignature.Functions.2 LRA.Logic.AdditiveMonoidFunctionSymbol.add = 2
 Transliterated theorem: orderedRingSignature.IsBinaryFunctionSymbol .add
 Logical form (Lean): : orderedRingSignature.IsBinaryFunctionSymbol .add
-Source: ./Language/Examples.lean#L955
+Source: [`./Language/Examples.lean#L970`](./Language/Examples.lean#L970)
 
 
 
@@ -456,7 +456,7 @@ Predicate logic (unfolded):
     LRA.Logic.orderedRingSignature.Functions.2 LRA.Logic.OrderedRingFunctionSymbol.mul = 2
 Transliterated theorem: orderedRingSignature.IsBinaryFunctionSymbol .mul
 Logical form (Lean): : orderedRingSignature.IsBinaryFunctionSymbol .mul
-Source: ./Language/Examples.lean#L995
+Source: [`./Language/Examples.lean#L1015`](./Language/Examples.lean#L1015)
 
 
 
@@ -473,7 +473,7 @@ Predicate logic (unfolded):
     LRA.Logic.orderedRingSignature.Functions.2 LRA.Logic.OrderedRingFunctionSymbol.neg = 1
 Transliterated theorem: orderedRingSignature.IsUnaryFunctionSymbol .neg
 Logical form (Lean): : orderedRingSignature.IsUnaryFunctionSymbol .neg
-Source: ./Language/Examples.lean#L1035
+Source: [`./Language/Examples.lean#L1060`](./Language/Examples.lean#L1060)
 
 
 
@@ -490,7 +490,7 @@ Predicate logic (unfolded):
     LRA.Logic.orderedRingSignature.Relations.2 LRA.Logic.OrderedRingRelationSymbol.lt = 2
 Transliterated theorem: orderedRingSignature.IsBinaryRelationSymbol .lt
 Logical form (Lean): : orderedRingSignature.IsBinaryRelationSymbol .lt
-Source: ./Language/Examples.lean#L1075
+Source: [`./Language/Examples.lean#L1105`](./Language/Examples.lean#L1105)
 
 
 
@@ -507,7 +507,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies LRA.Logic.FirstOrder.testFOLModel assignment LRA.Logic.FirstOrder.testFOLFormula
 Transliterated theorem: Satisfies testFOLModel assignment testFOLFormula
 Logical form (Lean): (assignment : Nat -> testFOLModel.Domain) : Satisfies testFOLModel assignment testFOLFormula
-Source: ./Semantics/Examples.lean#L288
+Source: [`./Semantics/Examples.lean#L293`](./Semantics/Examples.lean#L293)
 
 
 
@@ -524,7 +524,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies LRA.Logic.FirstOrder.alwaysTrueModel assignment LRA.Logic.FirstOrder.forallRFormula
 Transliterated theorem: Satisfies alwaysTrueModel assignment forallRFormula
 Logical form (Lean): (assignment : Nat -> alwaysTrueModel.Domain) : Satisfies alwaysTrueModel assignment forallRFormula
-Source: ./Semantics/Examples.lean#L668
+Source: [`./Semantics/Examples.lean#L678`](./Semantics/Examples.lean#L678)
 
 
 
@@ -541,7 +541,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies LRA.Logic.FirstOrder.alwaysTrueModel assignment LRA.Logic.FirstOrder.existsRFormula
 Transliterated theorem: Satisfies alwaysTrueModel assignment existsRFormula
 Logical form (Lean): (assignment : Nat -> alwaysTrueModel.Domain) : Satisfies alwaysTrueModel assignment existsRFormula
-Source: ./Semantics/Examples.lean#L708
+Source: [`./Semantics/Examples.lean#L723`](./Semantics/Examples.lean#L723)
 
 
 
@@ -558,7 +558,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies LRA.Logic.FirstOrder.sometimesFalseModel assignment LRA.Logic.FirstOrder.forallRFormula → False
 Transliterated theorem: ¬ Satisfies sometimesFalseModel assignment forallRFormula
 Logical form (Lean): (assignment : Nat -> sometimesFalseModel.Domain) : ¬ Satisfies sometimesFalseModel assignment forallRFormula
-Source: ./Semantics/Examples.lean#L754
+Source: [`./Semantics/Examples.lean#L769`](./Semantics/Examples.lean#L769)
 
 
 
@@ -575,7 +575,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies LRA.Logic.FirstOrder.sometimesFalseModel assignment LRA.Logic.FirstOrder.existsRFormula
 Transliterated theorem: Satisfies sometimesFalseModel assignment existsRFormula
 Logical form (Lean): (assignment : Nat -> sometimesFalseModel.Domain) : Satisfies sometimesFalseModel assignment existsRFormula
-Source: ./Semantics/Examples.lean#L796
+Source: [`./Semantics/Examples.lean#L816`](./Semantics/Examples.lean#L816)
 
 ## Axioms / Assumptions
 
@@ -602,7 +602,7 @@ Predicate logic (unfolded):
     A.2 symbol = 2
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Language/Symbols/Signature.lean
+Source: [`./Language/Symbols/Signature.lean`](./Language/Symbols/Signature.lean)
 
 
 
@@ -619,7 +619,7 @@ Predicate logic (unfolded):
     A.2 symbol = 0
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Language/Symbols/Signature.lean
+Source: [`./Language/Symbols/Signature.lean`](./Language/Symbols/Signature.lean)
 
 
 
@@ -636,7 +636,7 @@ Predicate logic (unfolded):
     A.2 symbol = 1
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Language/Symbols/Signature.lean
+Source: [`./Language/Symbols/Signature.lean`](./Language/Symbols/Signature.lean)
 
 
 
@@ -653,7 +653,7 @@ Predicate logic (unfolded):
     S.Functions.2 symbol = 2
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Language/FirstOrder/Signature.lean
+Source: [`./Language/FirstOrder/Signature.lean`](./Language/FirstOrder/Signature.lean)
 
 
 
@@ -670,7 +670,7 @@ Predicate logic (unfolded):
     S.Relations.2 symbol = 2
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Language/FirstOrder/Signature.lean
+Source: [`./Language/FirstOrder/Signature.lean`](./Language/FirstOrder/Signature.lean)
 
 
 
@@ -687,7 +687,7 @@ Predicate logic (unfolded):
     S.Functions.2 symbol = 1
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Language/FirstOrder/Signature.lean
+Source: [`./Language/FirstOrder/Signature.lean`](./Language/FirstOrder/Signature.lean)
 
 
 
@@ -704,7 +704,7 @@ Predicate logic (unfolded):
     S.Relations.2 symbol = 1
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Language/FirstOrder/Signature.lean
+Source: [`./Language/FirstOrder/Signature.lean`](./Language/FirstOrder/Signature.lean)
 
 
 
@@ -721,7 +721,7 @@ Predicate logic (unfolded):
     (LRA.Logic.FirstOrder.Formula.brecOn.go (motive := fun x => Variable → LRA.Logic.FirstOrder.Term S Variable → Prop) a LRA.Logic.FirstOrder.IsSubstitutable._f).1 a_1 a_2
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Syntax/FirstOrder/IsSubstitutable.lean
+Source: [`./Syntax/FirstOrder/IsSubstitutable.lean`](./Syntax/FirstOrder/IsSubstitutable.lean)
 
 
 
@@ -738,7 +738,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.freeVariables formula = Finset.instEmptyCollection.1
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Syntax/FirstOrder/Sentence.lean
+Source: [`./Syntax/FirstOrder/Sentence.lean`](./Syntax/FirstOrder/Sentence.lean)
 
 
 
@@ -755,7 +755,7 @@ Predicate logic (unfolded):
     Nonempty M.1
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Semantics/Interpretation.lean
+Source: [`./Semantics/Interpretation.lean`](./Semantics/Interpretation.lean)
 
 
 
@@ -772,7 +772,7 @@ Predicate logic (unfolded):
     (LRA.Logic.FirstOrder.Formula.brecOn.go (motive := fun x => (Variable → M.Domain) → Prop) a (LRA.Logic.FirstOrder.Satisfies._f M)).1 assignment
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Semantics/Satisfaction.lean
+Source: [`./Semantics/Satisfaction.lean`](./Semantics/Satisfaction.lean)
 
 
 
@@ -790,7 +790,7 @@ Predicate logic (unfolded):
     LRA.Logic.Propositional.evaluate valuation φ = LRA.Logic.Propositional.evaluate valuation φ
 Transliterated theorem: LogicallyEquivalent φ φ
 Logical form (Lean): {L : PropositionalLanguage} (φ : Formula L) : LogicallyEquivalent φ φ
-Source: ./Semantics/LogicalEquivalence.lean#L14
+Source: [`./Semantics/LogicalEquivalence.lean#L95`](./Semantics/LogicalEquivalence.lean#L95)
 
 
 
@@ -809,7 +809,7 @@ Predicate logic (unfolded):
     (∀ (valuation : L.1 → Bool), LRA.Logic.Propositional.evaluate valuation φ = LRA.Logic.Propositional.evaluate valuation ψ) → ∀ (valuation : L.1 → Bool), LRA.Logic.Propositional.evaluate valuation ψ = LRA.Logic.Propositional.evaluate valuation φ
 Transliterated theorem: LogicallyEquivalent ψ φ
 Logical form (Lean): {L : PropositionalLanguage} {φ ψ : Formula L} (h : LogicallyEquivalent φ ψ) : LogicallyEquivalent ψ φ
-Source: ./Semantics/LogicalEquivalence.lean#L19
+Source: [`./Semantics/LogicalEquivalence.lean#L144`](./Semantics/LogicalEquivalence.lean#L144)
 
 
 
@@ -829,7 +829,7 @@ Predicate logic (unfolded):
     ((∀ (valuation : L.1 → Bool), LRA.Logic.Propositional.evaluate valuation φ = LRA.Logic.Propositional.evaluate valuation ψ) ∧ (∀ (valuation : L.1 → Bool), LRA.Logic.Propositional.evaluate valuation ψ = LRA.Logic.Propositional.evaluate valuation χ)) → ∀ (valuation : L.1 → Bool), LRA.Logic.Propositional.evaluate valuation φ = LRA.Logic.Propositional.evaluate valuation χ
 Transliterated theorem: LogicallyEquivalent φ χ
 Logical form (Lean): {L : PropositionalLanguage} {φ ψ χ : Formula L} (hφψ : LogicallyEquivalent φ ψ) (hψχ : LogicallyEquivalent ψ χ) : LogicallyEquivalent φ χ
-Source: ./Semantics/LogicalEquivalence.lean#L24
+Source: [`./Semantics/LogicalEquivalence.lean#L195`](./Semantics/LogicalEquivalence.lean#L195)
 
 
 
@@ -847,7 +847,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies M assignment φ.1 ↔ LRA.Logic.FirstOrder.Satisfies M assignment φ.1
 Transliterated theorem: SentenceLogicallyEquivalent.{u} φ φ
 Logical form (Lean): {S : Signature} {Variable : Type} [DecidableEq Variable] (φ : Sentence S Variable) : SentenceLogicallyEquivalent.{u} φ φ
-Source: ./Semantics/LogicalEquivalence.lean#L66
+Source: [`./Semantics/LogicalEquivalence.lean#L449`](./Semantics/LogicalEquivalence.lean#L449)
 
 
 
@@ -866,7 +866,7 @@ Predicate logic (unfolded):
     (∀ (M : LRA.Logic.FirstOrder.Interpretation S) (assignment : Variable → M.1), LRA.Logic.FirstOrder.Satisfies M assignment φ.1 ↔ LRA.Logic.FirstOrder.Satisfies M assignment ψ.1) → ∀ (M : LRA.Logic.FirstOrder.Interpretation S) (assignment : Variable → M.1), LRA.Logic.FirstOrder.Satisfies M assignment ψ.1 ↔ LRA.Logic.FirstOrder.Satisfies M assignment φ.1
 Transliterated theorem: SentenceLogicallyEquivalent.{u} ψ φ
 Logical form (Lean): {S : Signature} {Variable : Type} [DecidableEq Variable] {φ ψ : Sentence S Variable} (h : SentenceLogicallyEquivalent.{u} φ ψ) : SentenceLogicallyEquivalent.{u} ψ φ
-Source: ./Semantics/LogicalEquivalence.lean#L72
+Source: [`./Semantics/LogicalEquivalence.lean#L502`](./Semantics/LogicalEquivalence.lean#L502)
 
 
 
@@ -886,7 +886,7 @@ Predicate logic (unfolded):
     ((∀ (M : LRA.Logic.FirstOrder.Interpretation S) (assignment : Variable → M.1), LRA.Logic.FirstOrder.Satisfies M assignment φ.1 ↔ LRA.Logic.FirstOrder.Satisfies M assignment ψ.1) ∧ (∀ (M : LRA.Logic.FirstOrder.Interpretation S) (assignment : Variable → M.1), LRA.Logic.FirstOrder.Satisfies M assignment ψ.1 ↔ LRA.Logic.FirstOrder.Satisfies M assignment χ.1)) → ∀ (M : LRA.Logic.FirstOrder.Interpretation S) (assignment : Variable → M.1), LRA.Logic.FirstOrder.Satisfies M assignment φ.1 ↔ LRA.Logic.FirstOrder.Satisfies M assignment χ.1
 Transliterated theorem: SentenceLogicallyEquivalent.{u} φ χ
 Logical form (Lean): {S : Signature} {Variable : Type} [DecidableEq Variable] {φ ψ χ : Sentence S Variable} (hφψ : SentenceLogicallyEquivalent.{u} φ ψ) (hψχ : SentenceLogicallyEquivalent.{u} ψ χ) : SentenceLogicallyEquivalent.{u} φ χ
-Source: ./Semantics/LogicalEquivalence.lean#L80
+Source: [`./Semantics/LogicalEquivalence.lean#L559`](./Semantics/LogicalEquivalence.lean#L559)
 
 
 
@@ -903,7 +903,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies M assignment a.1 ↔ LRA.Logic.FirstOrder.Satisfies M assignment φ.1
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Semantics/LogicalEquivalence.lean
+Source: [`./Semantics/LogicalEquivalence.lean`](./Semantics/LogicalEquivalence.lean)
 
 
 
@@ -920,7 +920,7 @@ Predicate logic (unfolded):
     LRA.Logic.FirstOrder.Satisfies M assignment φ.1 ↔ LRA.Logic.FirstOrder.Satisfies M assignment ψ.1
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Semantics/LogicalEquivalence.lean
+Source: [`./Semantics/LogicalEquivalence.lean`](./Semantics/LogicalEquivalence.lean)
 
 
 
@@ -937,7 +937,7 @@ Predicate logic (unfolded):
     LRA.Logic.Propositional.evaluate valuation a = LRA.Logic.Propositional.evaluate valuation φ
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Semantics/LogicalEquivalence.lean
+Source: [`./Semantics/LogicalEquivalence.lean`](./Semantics/LogicalEquivalence.lean)
 
 
 
@@ -954,4 +954,4 @@ Predicate logic (unfolded):
     LRA.Logic.Propositional.evaluate valuation φ = LRA.Logic.Propositional.evaluate valuation ψ
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Semantics/LogicalEquivalence.lean
+Source: [`./Semantics/LogicalEquivalence.lean`](./Semantics/LogicalEquivalence.lean)

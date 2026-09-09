@@ -6,58 +6,112 @@ namespace LRA.Identity.Constructions.Axiomatic
 universe u
 
 /--
-`axiomaticIdentityReflexivity` is the immediate theorem wrapper around the
-primitive axiomatic identity/equality reflexivity axiom.
+`axiomaticIdentityReflexivity` TODO
 
-Logical form:
+Predicate logic:
+
+  ∀ {Carrier : Type u} (x : Carrier), LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x x
+
+Predicate logic (unfolded):
+
+  ∀ {Carrier : Type u} (x : Carrier), LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x x
+
+Logical form (Lean):
 
 ```lean
 theorem axiomaticIdentityReflexivity {Carrier : Type u} (x : Carrier) :
-    Ax_IdentityRelation x x
+    Ax_IdentityRelation x x := by
+  have xRx
 ```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
 -/
 theorem axiomaticIdentityReflexivity {Carrier : Type u} (x : Carrier) :
     Ax_IdentityRelation x x := by
-  sorry
+  have xRx := Ax_IdentityReflexivity x
+  exact xRx
+
+
 
 /--
-`Ax_EqualityReflexivity` is the legacy equality-facing theorem wrapper for
-the primitive identity/equality reflexivity axiom. The axiomatic construction
-has one primitive identity/equality relation, so this is a compatibility
-theorem rather than a separate axiom.
+`Ax_EqualityReflexivity` TODO
 
-Logical form:
+Predicate logic:
+
+  ∀ {Carrier : Type u} (x : Carrier), LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x x
+
+Predicate logic (unfolded):
+
+  ∀ {Carrier : Type u} (x : Carrier), LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x x
+
+Logical form (Lean):
 
 ```lean
 theorem Ax_EqualityReflexivity {Carrier : Type u} (x : Carrier) :
-    Ax_IdentityRelation x x
+    Ax_IdentityRelation x x := by
+  have xIx
 ```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
 -/
 theorem Ax_EqualityReflexivity {Carrier : Type u} (x : Carrier) :
     Ax_IdentityRelation x x := by
-  sorry
+  have xIx := Ax_IdentityReflexivity x
+  exact xIx
+
 
 /--
 `axiomaticIdentityRelation_isReflexive` TODO
 
 Predicate logic:
 
-  LRA.Identity.IsReflexiveIdentityRelation Ax_IdentityRelation ∈ Carrier → Carrier → Prop
+  ∀ (Carrier : Type u), LRA.Identity.IsReflexiveIdentityRelation LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation
 
 Predicate logic (unfolded):
 
-  Ambient
-    (Carrier)
-  Objects
-    (none)
-  Prove
-    LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x x
+  ∀ (Carrier : Type u) (x : Carrier), LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x x
 
 Logical form (Lean):
 
 ```lean
 theorem axiomaticIdentityRelation_isReflexive (Carrier : Type u) :
-    LRA.Identity.IsReflexiveIdentityRelation (Ax_IdentityRelation : Carrier → Carrier → Prop)
+    LRA.Identity.IsReflexiveIdentityRelation (Ax_IdentityRelation : Carrier → Carrier → Prop) := by
+  intro x
+  have xIx
 ```
 
 Type-theoretic form:
@@ -81,7 +135,10 @@ Related proof moves: intro
 -/
 theorem axiomaticIdentityRelation_isReflexive (Carrier : Type u) :
     LRA.Identity.IsReflexiveIdentityRelation (Ax_IdentityRelation : Carrier → Carrier → Prop) := by
-  sorry
+  intro x
+  have xIx := Ax_IdentityReflexivity x
+  exact xIx
+
 
 
 end LRA.Identity.Constructions.Axiomatic

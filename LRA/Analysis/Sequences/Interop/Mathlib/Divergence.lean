@@ -9,11 +9,16 @@ namespace LRA.Analysis.Sequences.Interop.Mathlib
 
 Predicate logic:
 
-  (∀ x ∈ LRA.Analysis.Sequences.RealSequence), LRA.Analysis.Sequences.DivergesToPosInf x ↔ Filter.Tendsto x Filter.atTop Filter.atTop
+  ∀ (x : LRA.Analysis.Sequences.RealSequence), LRA.Analysis.Sequences.DivergesToPosInf x ↔ Filter.Tendsto x Filter.atTop Filter.atTop
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.Analysis.Sequences.RealSequence), ∀ (M : Real), Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 M (x n) ↔ Filter.instPartialOrder.toLE.1 { sets := fun x_1 => Set.instMembership.1 Filter.atTop.sets (Set.preimage x x_1), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (Filter.instInfSet.1 (setOf fun x => Exists fun y => (fun a => Filter.principal (Set.Ici a)) y = x))
+  Ambient
+    (implicit ambient)
+  Objects
+    x : LRA.Analysis.Sequences.RealSequence
+  Prove
+    LRA.Analysis.Sequences.DivergesToPosInf x ↔ Filter.Tendsto x Filter.atTop Filter.atTop
 
 Logical form (Lean):
 
@@ -49,11 +54,16 @@ theorem DivergesToPosInfIffTendstoAtTop (x : LRA.Analysis.Sequences.RealSequence
 
 Predicate logic:
 
-  (∀ x ∈ LRA.Analysis.Sequences.RealSequence), LRA.Analysis.Sequences.DivergesToNegInf x ↔ Filter.Tendsto x Filter.atTop Filter.atBot
+  ∀ (x : LRA.Analysis.Sequences.RealSequence), LRA.Analysis.Sequences.DivergesToNegInf x ↔ Filter.Tendsto x Filter.atTop Filter.atBot
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.Analysis.Sequences.RealSequence), ∀ (M : Real), Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (x n) M ↔ Filter.instPartialOrder.toLE.1 { sets := fun x_1 => Set.instMembership.1 Filter.atTop.sets (Set.preimage x x_1), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (Filter.instInfSet.1 (setOf fun x => Exists fun y => (fun a => Filter.principal (Set.Iic a)) y = x))
+  Ambient
+    (implicit ambient)
+  Objects
+    x : LRA.Analysis.Sequences.RealSequence
+  Prove
+    LRA.Analysis.Sequences.DivergesToNegInf x ↔ Filter.Tendsto x Filter.atTop Filter.atBot
 
 Logical form (Lean):
 

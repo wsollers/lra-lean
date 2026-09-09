@@ -15,16 +15,16 @@ variable [Membership Element SetObject]
 Predicate logic:
 
   structure IteratorData (ps : PeanoSystem Element SetObject) where
-  Target : Type w
-  InitialValue : Target
-  StepRule : Target -> Target
+    Target : Type w
+    InitialValue : Target
+    StepRule : Target -> Target
 
 Predicate logic (unfolded):
 
   structure IteratorData (ps : PeanoSystem Element SetObject) where
-  Target : Type w
-  InitialValue : Target
-  StepRule : Target -> Target (source fallback; no compiled unfold data available)
+    Target : Type w
+    InitialValue : Target
+    StepRule : Target -> Target (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -102,11 +102,16 @@ abbrev IteratorDataOnPeanoSystem (ps : PeanoSystem Element SetObject) := Iterato
 
 Predicate logic:
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : target → target) (iterator_function : Element → target), (iterator_function ps.base = initial_value ∧ ∀ (element : Element), iterator_function (ps.successor element) = step_rule (iterator_function element))
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : target → target) (iterator_function : Element → target), (iterator_function ps.base = initial_value ∧ (∀ (element : Element), iterator_function (ps.successor element) = step_rule (iterator_function element)))
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : target → target) (iterator_function : Element → target), (iterator_function ps.1 = initial_value ∧ ∀ (element : Element), iterator_function (ps.2 element) = step_rule (iterator_function element))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (iterator_function ps.1 = initial_value ∧ (∀ (element : Element), iterator_function (ps.2 element) = step_rule (iterator_function element)))
 
 Logical form (Lean):
 
@@ -158,11 +163,16 @@ def IteratorFunctionClauses
 
 Predicate logic:
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (data : LRA.NumberSystems.PeanoSystem.Recursion.IteratorData ps) (relation : Element → data.Target → Prop), (relation ps.base data.InitialValue ∧ ∀ (element : Element) (value : data.Target), relation element value → relation (ps.successor element) (data.StepRule value))
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (data : LRA.NumberSystems.PeanoSystem.Recursion.IteratorData ps) (relation : Element → data.Target → Prop), (relation ps.base data.InitialValue ∧ (∀ (element : Element) (value : data.Target), relation element value → relation (ps.successor element) (data.StepRule value)))
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (data : LRA.NumberSystems.PeanoSystem.Recursion.IteratorData ps) (relation : Element → data.1 → Prop), (relation ps.1 data.2 ∧ ∀ (element : Element) (value : data.1), relation element value → relation (ps.2 element) (data.3 value))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (relation ps.1 data.2 ∧ (∀ (element : Element) (value : data.1), relation element value → relation (ps.2 element) (data.3 value)))
 
 Logical form (Lean):
 
@@ -216,7 +226,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (data : LRA.NumberSystems.PeanoSystem.Recursion.IteratorData ps) (element : Element) (value : data.1) (relation : Element → data.1 → Prop), (relation ps.1 data.2 ∧ ∀ (element : Element) (value : data.1), relation element value → relation (ps.2 element) (data.3 value)) → relation element value
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (relation ps.1 data.2 ∧ (∀ (element : Element) (value : data.1), relation element value → relation (ps.2 element) (data.3 value))) → relation element value
 
 Logical form (Lean):
 
@@ -264,11 +279,17 @@ def MinimalIteratorRelation
 
 Predicate logic:
 
-  IteratorRelation ps data (MinimalIteratorRelation ps data)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (data : LRA.NumberSystems.PeanoSystem.Recursion.IteratorData ps), LRA.NumberSystems.PeanoSystem.Recursion.IteratorRelation ps data (LRA.NumberSystems.PeanoSystem.Recursion.MinimalIteratorRelation ps data)
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (data : LRA.NumberSystems.PeanoSystem.Recursion.IteratorData ps), (∀ (relation : Element → data.1 → Prop), (relation ps.1 data.2 ∧ ∀ (element : Element) (value : data.1), relation element value → relation (ps.2 element) (data.3 value)) → relation ps.1 data.2 ∧ ∀ (element : Element) (value : data.1), (∀ (relation : Element → data.1 → Prop), (relation ps.1 data.2 ∧ ∀ (element : Element) (value : data.1), relation element value → relation (ps.2 element) (data.3 value)) → relation element value) → ∀ (relation : Element → data.1 → Prop), (relation ps.1 data.2 ∧ ∀ (element : Element) (value : data.1), relation element value → relation (ps.2 element) (data.3 value)) → relation (ps.2 element) (data.3 value))
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ps : PeanoSystem Element SetObject
+    data : IteratorData ps
+  Prove
+    ((∀ (relation : Element → data.1 → Prop), (relation ps.1 data.2 ∧ (∀ (element : Element) (value : data.1), relation element value → relation (ps.2 element) (data.3 value))) → relation ps.1 data.2) ∧ (∀ (element : Element) (value : data.1), (∀ (relation : Element → data.1 → Prop), (relation ps.1 data.2 ∧ (∀ (element : Element) (value : data.1), relation element value → relation (ps.2 element) (data.3 value))) → relation element value) → ∀ (relation : Element → data.1 → Prop), (relation ps.1 data.2 ∧ (∀ (element : Element) (value : data.1), relation element value → relation (ps.2 element) (data.3 value))) → relation (ps.2 element) (data.3 value)))
 
 Logical form (Lean):
 
@@ -310,11 +331,17 @@ theorem MinimalIteratorRelationIsIteratorRelation
 
 Predicate logic:
 
-  IteratorRelation ps data (MinimalIteratorRelation ps data)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (data : LRA.NumberSystems.PeanoSystem.Recursion.IteratorData ps), LRA.NumberSystems.PeanoSystem.Recursion.IteratorRelation ps data (LRA.NumberSystems.PeanoSystem.Recursion.MinimalIteratorRelation ps data)
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (data : LRA.NumberSystems.PeanoSystem.Recursion.IteratorData ps), (∀ (relation : Element → data.1 → Prop), (relation ps.1 data.2 ∧ ∀ (element : Element) (value : data.1), relation element value → relation (ps.2 element) (data.3 value)) → relation ps.1 data.2 ∧ ∀ (element : Element) (value : data.1), (∀ (relation : Element → data.1 → Prop), (relation ps.1 data.2 ∧ ∀ (element : Element) (value : data.1), relation element value → relation (ps.2 element) (data.3 value)) → relation element value) → ∀ (relation : Element → data.1 → Prop), (relation ps.1 data.2 ∧ ∀ (element : Element) (value : data.1), relation element value → relation (ps.2 element) (data.3 value)) → relation (ps.2 element) (data.3 value))
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ps : PeanoSystem Element SetObject
+    data : IteratorData ps
+  Prove
+    ((∀ (relation : Element → data.1 → Prop), (relation ps.1 data.2 ∧ (∀ (element : Element) (value : data.1), relation element value → relation (ps.2 element) (data.3 value))) → relation ps.1 data.2) ∧ (∀ (element : Element) (value : data.1), (∀ (relation : Element → data.1 → Prop), (relation ps.1 data.2 ∧ (∀ (element : Element) (value : data.1), relation element value → relation (ps.2 element) (data.3 value))) → relation element value) → ∀ (relation : Element → data.1 → Prop), (relation ps.1 data.2 ∧ (∀ (element : Element) (value : data.1), relation element value → relation (ps.2 element) (data.3 value))) → relation (ps.2 element) (data.3 value)))
 
 Logical form (Lean):
 
@@ -354,11 +381,18 @@ theorem IteratorRelationConsistency
 
 Predicate logic:
 
-  forall element : Element, exists value : data.Target, MinimalIteratorRelation ps data element value
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), LRA.NumberSystems.PeanoSystem.FullPredicateInduction ps → ∀ (data : LRA.NumberSystems.PeanoSystem.Recursion.IteratorData ps) (element : Element), Exists fun value => LRA.NumberSystems.PeanoSystem.Recursion.MinimalIteratorRelation ps data element value
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), (∀ (predicate : Element → Prop), predicate ps.1 → (∀ (element : Element), predicate element → predicate (ps.2 element)) → ∀ (element : Element), predicate element) → ∀ (data : LRA.NumberSystems.PeanoSystem.Recursion.IteratorData ps) (element : Element), Exists fun value => ∀ (relation : Element → data.1 → Prop), (relation ps.1 data.2 ∧ ∀ (element : Element) (value : data.1), relation element value → relation (ps.2 element) (data.3 value)) → relation element value
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ps : PeanoSystem Element SetObject
+    fullInduction : FullPredicateInduction ps
+    data : IteratorData ps
+  Prove
+    (∀ (predicate : Element → Prop), predicate ps.1 → (∀ (element : Element), predicate element → predicate (ps.2 element)) → ∀ (element : Element), predicate element) → ∀ (data : LRA.NumberSystems.PeanoSystem.Recursion.IteratorData ps) (element : Element), Exists fun value => ∀ (relation : Element → data.1 → Prop), (relation ps.1 data.2 ∧ (∀ (element : Element) (value : data.1), relation element value → relation (ps.2 element) (data.3 value))) → relation element value
 
 Logical form (Lean):
 
@@ -404,11 +438,18 @@ theorem MinimalIteratorRelationComplete
 
 Predicate logic:
 
-  forall element : Element, forall first_value second_value : data.Target, MinimalIteratorRelation ps data element first_value -> MinimalIteratorRelation ps data element second_value -> first_value = second_value
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), LRA.NumberSystems.PeanoSystem.FullPredicateInduction ps → ∀ (data : LRA.NumberSystems.PeanoSystem.Recursion.IteratorData ps) (element : Element) (first_value second_value : data.Target), (LRA.NumberSystems.PeanoSystem.Recursion.MinimalIteratorRelation ps data element first_value ∧ LRA.NumberSystems.PeanoSystem.Recursion.MinimalIteratorRelation ps data element second_value) → first_value = second_value
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), (∀ (predicate : Element → Prop), predicate ps.1 → (∀ (element : Element), predicate element → predicate (ps.2 element)) → ∀ (element : Element), predicate element) → ∀ (data : LRA.NumberSystems.PeanoSystem.Recursion.IteratorData ps) (element : Element) (first_value second_value : data.1), (∀ (relation : Element → data.1 → Prop), (relation ps.1 data.2 ∧ ∀ (element : Element) (value : data.1), relation element value → relation (ps.2 element) (data.3 value)) → relation element first_value ∧ ∀ (relation : Element → data.1 → Prop), (relation ps.1 data.2 ∧ ∀ (element : Element) (value : data.1), relation element value → relation (ps.2 element) (data.3 value)) → relation element second_value) → first_value = second_value
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ps : PeanoSystem Element SetObject
+    fullInduction : FullPredicateInduction ps
+    data : IteratorData ps
+  Prove
+    (∀ (predicate : Element → Prop), predicate ps.1 → (∀ (element : Element), predicate element → predicate (ps.2 element)) → ∀ (element : Element), predicate element) → ∀ (data : LRA.NumberSystems.PeanoSystem.Recursion.IteratorData ps) (element : Element) (first_value second_value : data.1), ((∀ (relation : Element → data.1 → Prop), (relation ps.1 data.2 ∧ (∀ (element : Element) (value : data.1), relation element value → relation (ps.2 element) (data.3 value))) → relation element first_value) ∧ (∀ (relation : Element → data.1 → Prop), (relation ps.1 data.2 ∧ (∀ (element : Element) (value : data.1), relation element value → relation (ps.2 element) (data.3 value))) → relation element second_value)) → first_value = second_value
 
 Logical form (Lean):
 
@@ -458,11 +499,18 @@ theorem MinimalIteratorRelationDeterministic
 
 Predicate logic:
 
-  forall element : Element, forall first_value second_value : data.Target, MinimalIteratorRelation ps data element first_value -> MinimalIteratorRelation ps data element second_value -> first_value = second_value
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), LRA.NumberSystems.PeanoSystem.FullPredicateInduction ps → ∀ (data : LRA.NumberSystems.PeanoSystem.Recursion.IteratorData ps) (element : Element) (first_value second_value : data.Target), (LRA.NumberSystems.PeanoSystem.Recursion.MinimalIteratorRelation ps data element first_value ∧ LRA.NumberSystems.PeanoSystem.Recursion.MinimalIteratorRelation ps data element second_value) → first_value = second_value
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), (∀ (predicate : Element → Prop), predicate ps.1 → (∀ (element : Element), predicate element → predicate (ps.2 element)) → ∀ (element : Element), predicate element) → ∀ (data : LRA.NumberSystems.PeanoSystem.Recursion.IteratorData ps) (element : Element) (first_value second_value : data.1), (∀ (relation : Element → data.1 → Prop), (relation ps.1 data.2 ∧ ∀ (element : Element) (value : data.1), relation element value → relation (ps.2 element) (data.3 value)) → relation element first_value ∧ ∀ (relation : Element → data.1 → Prop), (relation ps.1 data.2 ∧ ∀ (element : Element) (value : data.1), relation element value → relation (ps.2 element) (data.3 value)) → relation element second_value) → first_value = second_value
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ps : PeanoSystem Element SetObject
+    fullInduction : FullPredicateInduction ps
+    data : IteratorData ps
+  Prove
+    (∀ (predicate : Element → Prop), predicate ps.1 → (∀ (element : Element), predicate element → predicate (ps.2 element)) → ∀ (element : Element), predicate element) → ∀ (data : LRA.NumberSystems.PeanoSystem.Recursion.IteratorData ps) (element : Element) (first_value second_value : data.1), ((∀ (relation : Element → data.1 → Prop), (relation ps.1 data.2 ∧ (∀ (element : Element) (value : data.1), relation element value → relation (ps.2 element) (data.3 value))) → relation element first_value) ∧ (∀ (relation : Element → data.1 → Prop), (relation ps.1 data.2 ∧ (∀ (element : Element) (value : data.1), relation element value → relation (ps.2 element) (data.3 value))) → relation element second_value)) → first_value = second_value
 
 Logical form (Lean):
 
@@ -512,11 +560,19 @@ theorem ForcedValuesAreUnique
 
 Predicate logic:
 
-  (∀ initial_value ∈ target), exists iterator_function : Element -> target, IteratorFunctionClauses ps target initial_value step_rule iterator_function
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), LRA.NumberSystems.PeanoSystem.FullPredicateInduction ps → ∀ (target : Type w) (initial_value : target) (step_rule : target → target), Exists fun iterator_function => LRA.NumberSystems.PeanoSystem.Recursion.IteratorFunctionClauses ps target initial_value step_rule iterator_function
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), (∀ (predicate : Element → Prop), predicate ps.1 → (∀ (element : Element), predicate element → predicate (ps.2 element)) → ∀ (element : Element), predicate element) → ∀ (target : Type w) (initial_value : target) (step_rule : target → target), Exists fun iterator_function => (iterator_function ps.1 = initial_value ∧ ∀ (element : Element), iterator_function (ps.2 element) = step_rule (iterator_function element))
+  Ambient
+    (Element, SetObject, target, ∈)
+  Objects
+    ps : PeanoSystem Element SetObject
+    fullInduction : FullPredicateInduction ps
+    initial_value : target
+    step_rule : target -> target
+  Prove
+    (∀ (predicate : Element → Prop), predicate ps.1 → (∀ (element : Element), predicate element → predicate (ps.2 element)) → ∀ (element : Element), predicate element) → ∀ (target : Type w) (initial_value : target) (step_rule : target → target), Exists fun iterator_function => (iterator_function ps.1 = initial_value ∧ (∀ (element : Element), iterator_function (ps.2 element) = step_rule (iterator_function element)))
 
 Logical form (Lean):
 
@@ -574,11 +630,20 @@ theorem ExistenceOfIteratorFunction
 
 Predicate logic:
 
-  (∀ initial_value ∈ target), IteratorFunctionClauses ps target initial_value step_rule first_iterator -> IteratorFunctionClauses ps target initial_value step_rule second_iterator -> first_iterator = second_iterator
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), LRA.NumberSystems.PeanoSystem.FullPredicateInduction ps → ∀ (target : Type w) (initial_value : target) (step_rule : target → target) (first_iterator second_iterator : Element → target), (LRA.NumberSystems.PeanoSystem.Recursion.IteratorFunctionClauses ps target initial_value step_rule first_iterator ∧ LRA.NumberSystems.PeanoSystem.Recursion.IteratorFunctionClauses ps target initial_value step_rule second_iterator) → first_iterator = second_iterator
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), (∀ (predicate : Element → Prop), predicate ps.1 → (∀ (element : Element), predicate element → predicate (ps.2 element)) → ∀ (element : Element), predicate element) → ∀ (target : Type w) (initial_value : target) (step_rule : target → target) (first_iterator second_iterator : Element → target), ((first_iterator ps.1 = initial_value ∧ ∀ (element : Element), first_iterator (ps.2 element) = step_rule (first_iterator element)) ∧ (second_iterator ps.1 = initial_value ∧ ∀ (element : Element), second_iterator (ps.2 element) = step_rule (second_iterator element))) → first_iterator = second_iterator
+  Ambient
+    (Element, SetObject, target, ∈)
+  Objects
+    ps : PeanoSystem Element SetObject
+    fullInduction : FullPredicateInduction ps
+    initial_value : target
+    step_rule : target -> target
+    first_iterator second_iterator : Element -> target
+  Prove
+    (∀ (predicate : Element → Prop), predicate ps.1 → (∀ (element : Element), predicate element → predicate (ps.2 element)) → ∀ (element : Element), predicate element) → ∀ (target : Type w) (initial_value : target) (step_rule : target → target) (first_iterator second_iterator : Element → target), ((first_iterator ps.1 = initial_value ∧ (∀ (element : Element), first_iterator (ps.2 element) = step_rule (first_iterator element))) ∧ (second_iterator ps.1 = initial_value ∧ (∀ (element : Element), second_iterator (ps.2 element) = step_rule (second_iterator element)))) → first_iterator = second_iterator
 
 Logical form (Lean):
 
@@ -630,11 +695,19 @@ theorem UniquenessOfIteratorFunctions
 
 Predicate logic:
 
-  (∀ initial_value ∈ target), exists iterator_function : Element -> target, IteratorFunctionClauses ps target initial_value step_rule iterator_function ∧ forall other_iterator : Element -> target, IteratorFunctionClauses ps target initial_value step_rule other_iterator -> other_iterator = iterator_function
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), LRA.NumberSystems.PeanoSystem.FullPredicateInduction ps → ∀ (target : Type w) (initial_value : target) (step_rule : target → target), Exists fun iterator_function => (LRA.NumberSystems.PeanoSystem.Recursion.IteratorFunctionClauses ps target initial_value step_rule iterator_function ∧ (∀ (other_iterator : Element → target), LRA.NumberSystems.PeanoSystem.Recursion.IteratorFunctionClauses ps target initial_value step_rule other_iterator → other_iterator = iterator_function))
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), (∀ (predicate : Element → Prop), predicate ps.1 → (∀ (element : Element), predicate element → predicate (ps.2 element)) → ∀ (element : Element), predicate element) → ∀ (target : Type w) (initial_value : target) (step_rule : target → target), Exists fun iterator_function => ((iterator_function ps.1 = initial_value ∧ ∀ (element : Element), iterator_function (ps.2 element) = step_rule (iterator_function element)) ∧ ∀ (other_iterator : Element → target), (other_iterator ps.1 = initial_value ∧ ∀ (element : Element), other_iterator (ps.2 element) = step_rule (other_iterator element)) → other_iterator = iterator_function)
+  Ambient
+    (Element, SetObject, target, ∈)
+  Objects
+    ps : PeanoSystem Element SetObject
+    fullInduction : FullPredicateInduction ps
+    initial_value : target
+    step_rule : target -> target
+  Prove
+    (∀ (predicate : Element → Prop), predicate ps.1 → (∀ (element : Element), predicate element → predicate (ps.2 element)) → ∀ (element : Element), predicate element) → ∀ (target : Type w) (initial_value : target) (step_rule : target → target), Exists fun iterator_function => ((iterator_function ps.1 = initial_value ∧ (∀ (element : Element), iterator_function (ps.2 element) = step_rule (iterator_function element))) ∧ (∀ (other_iterator : Element → target), (other_iterator ps.1 = initial_value ∧ (∀ (element : Element), other_iterator (ps.2 element) = step_rule (other_iterator element))) → other_iterator = iterator_function))
 
 Logical form (Lean):
 
@@ -709,22 +782,22 @@ theorem IteratorFunctionWellDefined
 Predicate logic:
 
   noncomputable def IteratorGeneratedFunction
-    (ps : PeanoSystem Element SetObject)
-    (fullInduction : FullPredicateInduction ps)
-    (target : Type w)
-    (initial_value : target)
-    (step_rule : target -> target) :
-    Element -> target
+      (ps : PeanoSystem Element SetObject)
+      (fullInduction : FullPredicateInduction ps)
+      (target : Type w)
+      (initial_value : target)
+      (step_rule : target -> target) :
+      Element -> target
 
 Predicate logic (unfolded):
 
   noncomputable def IteratorGeneratedFunction
-    (ps : PeanoSystem Element SetObject)
-    (fullInduction : FullPredicateInduction ps)
-    (target : Type w)
-    (initial_value : target)
-    (step_rule : target -> target) :
-    Element -> target (source fallback; no compiled unfold data available)
+      (ps : PeanoSystem Element SetObject)
+      (fullInduction : FullPredicateInduction ps)
+      (target : Type w)
+      (initial_value : target)
+      (step_rule : target -> target) :
+      Element -> target (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -777,11 +850,19 @@ noncomputable def IteratorGeneratedFunction
 
 Predicate logic:
 
-  (∀ initial_value ∈ target), IteratorGeneratedFunction ps fullInduction target initial_value step_rule ps.base = initial_value
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (fullInduction : LRA.NumberSystems.PeanoSystem.FullPredicateInduction ps) (target : Type w) (initial_value : target) (step_rule : target → target), LRA.NumberSystems.PeanoSystem.Recursion.IteratorGeneratedFunction ps fullInduction target initial_value step_rule ps.base = initial_value
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (fullInduction : ∀ (predicate : Element → Prop), predicate ps.1 → (∀ (element : Element), predicate element → predicate (ps.2 element)) → ∀ (element : Element), predicate element) (target : Type w) (initial_value : target) (step_rule : target → target), (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.IteratorFunctionClauses ps target initial_value step_rule) ⋯).1 ps.1 = initial_value
+  Ambient
+    (Element, SetObject, target, ∈)
+  Objects
+    ps : PeanoSystem Element SetObject
+    fullInduction : FullPredicateInduction ps
+    initial_value : target
+    step_rule : target -> target
+  Prove
+    (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.IteratorFunctionClauses ps target initial_value step_rule) ⋯).1 ps.1 = initial_value
 
 Logical form (Lean):
 
@@ -827,11 +908,20 @@ theorem IteratorBaseValue
 
 Predicate logic:
 
-  (∀ initial_value ∈ target ∀ x ∈ Element), IteratorGeneratedFunction ps fullInduction target initial_value step_rule (ps.successor x) = step_rule (IteratorGeneratedFunction ps fullInduction target initial_value step_rule x)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (fullInduction : LRA.NumberSystems.PeanoSystem.FullPredicateInduction ps) (target : Type w) (initial_value : target) (step_rule : target → target) (element : Element), LRA.NumberSystems.PeanoSystem.Recursion.IteratorGeneratedFunction ps fullInduction target initial_value step_rule (ps.successor element) = step_rule (LRA.NumberSystems.PeanoSystem.Recursion.IteratorGeneratedFunction ps fullInduction target initial_value step_rule element)
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (fullInduction : ∀ (predicate : Element → Prop), predicate ps.1 → (∀ (element : Element), predicate element → predicate (ps.2 element)) → ∀ (element : Element), predicate element) (target : Type w) (initial_value : target) (step_rule : target → target) (element : Element), (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.IteratorFunctionClauses ps target initial_value step_rule) ⋯).1 (ps.2 element) = step_rule ((Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.IteratorFunctionClauses ps target initial_value step_rule) ⋯).1 element)
+  Ambient
+    (Element, SetObject, target, ∈)
+  Objects
+    ps : PeanoSystem Element SetObject
+    fullInduction : FullPredicateInduction ps
+    initial_value : target
+    step_rule : target -> target
+    element : Element
+  Prove
+    (Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.IteratorFunctionClauses ps target initial_value step_rule) ⋯).1 (ps.2 element) = step_rule ((Classical.indefiniteDescription (LRA.NumberSystems.PeanoSystem.Recursion.IteratorFunctionClauses ps target initial_value step_rule) ⋯).1 element)
 
 Logical form (Lean):
 
@@ -882,20 +972,20 @@ theorem IteratorSuccessorStep
 Predicate logic:
 
   noncomputable def IterationOfASelfMap
-    (ps : PeanoSystem Element SetObject)
-    (fullInduction : FullPredicateInduction ps)
-    (initial_value : Element)
-    (step_rule : Element -> Element) : Element -> Element :=
-  IteratorGeneratedFunction ps fullInduction Element initial_value step_rule
+      (ps : PeanoSystem Element SetObject)
+      (fullInduction : FullPredicateInduction ps)
+      (initial_value : Element)
+      (step_rule : Element -> Element) : Element -> Element :=
+    IteratorGeneratedFunction ps fullInduction Element initial_value step_rule
 
 Predicate logic (unfolded):
 
   noncomputable def IterationOfASelfMap
-    (ps : PeanoSystem Element SetObject)
-    (fullInduction : FullPredicateInduction ps)
-    (initial_value : Element)
-    (step_rule : Element -> Element) : Element -> Element :=
-  IteratorGeneratedFunction ps fullInduction Element initial_value step_rule (source fallback; no compiled unfold data available)
+      (ps : PeanoSystem Element SetObject)
+      (fullInduction : FullPredicateInduction ps)
+      (initial_value : Element)
+      (step_rule : Element -> Element) : Element -> Element :=
+    IteratorGeneratedFunction ps fullInduction Element initial_value step_rule (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -939,11 +1029,19 @@ noncomputable def IterationOfASelfMap
 
 Predicate logic:
 
-  (∀ initial_value ∈ target), exists iterator_function : Element -> target, IteratorFunctionClauses ps target initial_value step_rule iterator_function ∧ forall other_iterator : Element -> target, IteratorFunctionClauses ps target initial_value step_rule other_iterator -> other_iterator = iterator_function
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), LRA.NumberSystems.PeanoSystem.FullPredicateInduction ps → ∀ (target : Type w) (initial_value : target) (step_rule : target → target), Exists fun iterator_function => (LRA.NumberSystems.PeanoSystem.Recursion.IteratorFunctionClauses ps target initial_value step_rule iterator_function ∧ (∀ (other_iterator : Element → target), LRA.NumberSystems.PeanoSystem.Recursion.IteratorFunctionClauses ps target initial_value step_rule other_iterator → other_iterator = iterator_function))
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), (∀ (predicate : Element → Prop), predicate ps.1 → (∀ (element : Element), predicate element → predicate (ps.2 element)) → ∀ (element : Element), predicate element) → ∀ (target : Type w) (initial_value : target) (step_rule : target → target), Exists fun iterator_function => ((iterator_function ps.1 = initial_value ∧ ∀ (element : Element), iterator_function (ps.2 element) = step_rule (iterator_function element)) ∧ ∀ (other_iterator : Element → target), (other_iterator ps.1 = initial_value ∧ ∀ (element : Element), other_iterator (ps.2 element) = step_rule (other_iterator element)) → other_iterator = iterator_function)
+  Ambient
+    (Element, SetObject, target, ∈)
+  Objects
+    ps : PeanoSystem Element SetObject
+    fullInduction : FullPredicateInduction ps
+    initial_value : target
+    step_rule : target -> target
+  Prove
+    (∀ (predicate : Element → Prop), predicate ps.1 → (∀ (element : Element), predicate element → predicate (ps.2 element)) → ∀ (element : Element), predicate element) → ∀ (target : Type w) (initial_value : target) (step_rule : target → target), Exists fun iterator_function => ((iterator_function ps.1 = initial_value ∧ (∀ (element : Element), iterator_function (ps.2 element) = step_rule (iterator_function element))) ∧ (∀ (other_iterator : Element → target), (other_iterator ps.1 = initial_value ∧ (∀ (element : Element), other_iterator (ps.2 element) = step_rule (other_iterator element))) → other_iterator = iterator_function))
 
 Logical form (Lean):
 
@@ -1018,16 +1116,16 @@ theorem PeanoIteratorTheorem
 Predicate logic:
 
   def StageDependentStepRule
-    (_ps : PeanoSystem Element SetObject)
-    (target : Type w) : Type (max u w) :=
-  Element -> target -> target
+      (_ps : PeanoSystem Element SetObject)
+      (target : Type w) : Type (max u w) :=
+    Element -> target -> target
 
 Predicate logic (unfolded):
 
   def StageDependentStepRule
-    (_ps : PeanoSystem Element SetObject)
-    (target : Type w) : Type (max u w) :=
-  Element -> target -> target (source fallback; no compiled unfold data available)
+      (_ps : PeanoSystem Element SetObject)
+      (target : Type w) : Type (max u w) :=
+    Element -> target -> target (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1067,11 +1165,16 @@ def StageDependentStepRule
 
 Predicate logic:
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : LRA.NumberSystems.PeanoSystem.Recursion.StageDependentStepRule ps target) (recursive_function : Element → target), (recursive_function ps.base = initial_value ∧ ∀ (element : Element), recursive_function (ps.successor element) = step_rule element (recursive_function element))
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : LRA.NumberSystems.PeanoSystem.Recursion.StageDependentStepRule ps target) (recursive_function : Element → target), (recursive_function ps.base = initial_value ∧ (∀ (element : Element), recursive_function (ps.successor element) = step_rule element (recursive_function element)))
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : Element → target → target) (recursive_function : Element → target), (recursive_function ps.1 = initial_value ∧ ∀ (element : Element), recursive_function (ps.2 element) = step_rule element (recursive_function element))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (recursive_function ps.1 = initial_value ∧ (∀ (element : Element), recursive_function (ps.2 element) = step_rule element (recursive_function element)))
 
 Logical form (Lean):
 
@@ -1127,7 +1230,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (target : Type w) (initial_value : target) (step_rule : Element → target → target), Exists fun recursive_function => (recursive_function ps.1 = initial_value ∧ ∀ (element : Element), recursive_function (ps.2 element) = step_rule element (recursive_function element))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun recursive_function => (recursive_function ps.1 = initial_value ∧ (∀ (element : Element), recursive_function (ps.2 element) = step_rule element (recursive_function element)))
 
 Logical form (Lean):
 
@@ -1175,11 +1283,20 @@ def GeneralRecursiveFunction
 
 Predicate logic:
 
-  (∀ initial_value ∈ target), GeneralRecursiveFunctionClauses ps target initial_value step_rule first_recursive_function -> GeneralRecursiveFunctionClauses ps target initial_value step_rule second_recursive_function -> first_recursive_function = second_recursive_function
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), LRA.NumberSystems.PeanoSystem.FullPredicateInduction ps → ∀ (target : Type w) (initial_value : target) (step_rule : LRA.NumberSystems.PeanoSystem.Recursion.StageDependentStepRule ps target) (first_recursive_function second_recursive_function : Element → target), (LRA.NumberSystems.PeanoSystem.Recursion.GeneralRecursiveFunctionClauses ps target initial_value step_rule first_recursive_function ∧ LRA.NumberSystems.PeanoSystem.Recursion.GeneralRecursiveFunctionClauses ps target initial_value step_rule second_recursive_function) → first_recursive_function = second_recursive_function
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), (∀ (predicate : Element → Prop), predicate ps.1 → (∀ (element : Element), predicate element → predicate (ps.2 element)) → ∀ (element : Element), predicate element) → ∀ (target : Type w) (initial_value : target) (step_rule : Element → target → target) (first_recursive_function second_recursive_function : Element → target), ((first_recursive_function ps.1 = initial_value ∧ ∀ (element : Element), first_recursive_function (ps.2 element) = step_rule element (first_recursive_function element)) ∧ (second_recursive_function ps.1 = initial_value ∧ ∀ (element : Element), second_recursive_function (ps.2 element) = step_rule element (second_recursive_function element))) → first_recursive_function = second_recursive_function
+  Ambient
+    (Element, SetObject, target, ∈)
+  Objects
+    ps : PeanoSystem Element SetObject
+    fullInduction : FullPredicateInduction ps
+    initial_value : target
+    step_rule : StageDependentStepRule ps target
+    first_recursive_function second_recursive_function : Element -> target
+  Prove
+    (∀ (predicate : Element → Prop), predicate ps.1 → (∀ (element : Element), predicate element → predicate (ps.2 element)) → ∀ (element : Element), predicate element) → ∀ (target : Type w) (initial_value : target) (step_rule : Element → target → target) (first_recursive_function second_recursive_function : Element → target), ((first_recursive_function ps.1 = initial_value ∧ (∀ (element : Element), first_recursive_function (ps.2 element) = step_rule element (first_recursive_function element))) ∧ (second_recursive_function ps.1 = initial_value ∧ (∀ (element : Element), second_recursive_function (ps.2 element) = step_rule element (second_recursive_function element)))) → first_recursive_function = second_recursive_function
 
 Logical form (Lean):
 
@@ -1235,11 +1352,19 @@ theorem UniquenessOfGeneralRecursiveFunctions
 
 Predicate logic:
 
-  (∀ initial_value ∈ target), exists recursive_function : Element -> target, GeneralRecursiveFunctionClauses ps target initial_value step_rule recursive_function
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), LRA.NumberSystems.PeanoSystem.FullPredicateInduction ps → ∀ (target : Type w) (initial_value : target) (step_rule : LRA.NumberSystems.PeanoSystem.Recursion.StageDependentStepRule ps target), Exists fun recursive_function => LRA.NumberSystems.PeanoSystem.Recursion.GeneralRecursiveFunctionClauses ps target initial_value step_rule recursive_function
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), (∀ (predicate : Element → Prop), predicate ps.1 → (∀ (element : Element), predicate element → predicate (ps.2 element)) → ∀ (element : Element), predicate element) → ∀ (target : Type w) (initial_value : target) (step_rule : Element → target → target), Exists fun recursive_function => (recursive_function ps.1 = initial_value ∧ ∀ (element : Element), recursive_function (ps.2 element) = step_rule element (recursive_function element))
+  Ambient
+    (Element, SetObject, target, ∈)
+  Objects
+    ps : PeanoSystem Element SetObject
+    fullInduction : FullPredicateInduction ps
+    initial_value : target
+    step_rule : StageDependentStepRule ps target
+  Prove
+    (∀ (predicate : Element → Prop), predicate ps.1 → (∀ (element : Element), predicate element → predicate (ps.2 element)) → ∀ (element : Element), predicate element) → ∀ (target : Type w) (initial_value : target) (step_rule : Element → target → target), Exists fun recursive_function => (recursive_function ps.1 = initial_value ∧ (∀ (element : Element), recursive_function (ps.2 element) = step_rule element (recursive_function element)))
 
 Logical form (Lean):
 
@@ -1289,11 +1414,19 @@ theorem GeneralRecursionByStateEncoding
 
 Predicate logic:
 
-  (∀ initial_value ∈ target), exists recursive_function : Element -> target, GeneralRecursiveFunctionClauses ps target initial_value step_rule recursive_function ∧ forall other_recursive_function : Element -> target, GeneralRecursiveFunctionClauses ps target initial_value step_rule other_recursive_function -> other_recursive_function = recursive_function
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), LRA.NumberSystems.PeanoSystem.FullPredicateInduction ps → ∀ (target : Type w) (initial_value : target) (step_rule : LRA.NumberSystems.PeanoSystem.Recursion.StageDependentStepRule ps target), Exists fun recursive_function => (LRA.NumberSystems.PeanoSystem.Recursion.GeneralRecursiveFunctionClauses ps target initial_value step_rule recursive_function ∧ (∀ (other_recursive_function : Element → target), LRA.NumberSystems.PeanoSystem.Recursion.GeneralRecursiveFunctionClauses ps target initial_value step_rule other_recursive_function → other_recursive_function = recursive_function))
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject), (∀ (predicate : Element → Prop), predicate ps.1 → (∀ (element : Element), predicate element → predicate (ps.2 element)) → ∀ (element : Element), predicate element) → ∀ (target : Type w) (initial_value : target) (step_rule : Element → target → target), Exists fun recursive_function => ((recursive_function ps.1 = initial_value ∧ ∀ (element : Element), recursive_function (ps.2 element) = step_rule element (recursive_function element)) ∧ ∀ (other_recursive_function : Element → target), (other_recursive_function ps.1 = initial_value ∧ ∀ (element : Element), other_recursive_function (ps.2 element) = step_rule element (other_recursive_function element)) → other_recursive_function = recursive_function)
+  Ambient
+    (Element, SetObject, target, ∈)
+  Objects
+    ps : PeanoSystem Element SetObject
+    fullInduction : FullPredicateInduction ps
+    initial_value : target
+    step_rule : StageDependentStepRule ps target
+  Prove
+    (∀ (predicate : Element → Prop), predicate ps.1 → (∀ (element : Element), predicate element → predicate (ps.2 element)) → ∀ (element : Element), predicate element) → ∀ (target : Type w) (initial_value : target) (step_rule : Element → target → target), Exists fun recursive_function => ((recursive_function ps.1 = initial_value ∧ (∀ (element : Element), recursive_function (ps.2 element) = step_rule element (recursive_function element))) ∧ (∀ (other_recursive_function : Element → target), (other_recursive_function ps.1 = initial_value ∧ (∀ (element : Element), other_recursive_function (ps.2 element) = step_rule element (other_recursive_function element))) → other_recursive_function = recursive_function))
 
 Logical form (Lean):
 

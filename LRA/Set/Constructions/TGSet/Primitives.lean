@@ -9,7 +9,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  Type
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Type
 
 Logical form (Lean):
 
@@ -43,7 +48,7 @@ axiom TGSet : Type
 
 Predicate logic:
 
-  TGSet -> TGSet -> Prop instance : Membership TGSet TGSet where mem containingSet element
+  LRA.Set.Constructions.TGSet → LRA.Set.Constructions.TGSet → Prop
 
 Predicate logic (unfolded):
 

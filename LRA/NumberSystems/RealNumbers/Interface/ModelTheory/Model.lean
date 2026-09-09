@@ -15,9 +15,84 @@ open LRA.Order
 
 universe u
 
-/-- ℝ's own generic model: a carrier with the raw field/order instances plus
-the laws a complete ordered field bundles, owned by `RealNumbers` rather than
-shared across number systems. -/
+/--
+`RealModel` ℝ's own generic model: a carrier with the raw field/order instances plus the laws a complete ordered field bundles, owned by `RealNumbers` rather than shared across number systems.
+
+Predicate logic:
+
+  structure RealModel : Type (u + 1) where
+    Carrier : Type u
+    [addInst : Add Carrier]
+    [mulInst : Mul Carrier]
+    [negInst : Neg Carrier]
+    [invInst : Inv Carrier]
+    [zeroInst : OfNat Carrier 0]
+    [oneInst : OfNat Carrier 1]
+    [ltInst : LT Carrier]
+    [leInst : LE Carrier]
+    [carrierNonempty : Nonempty Carrier]
+    [fieldCert : OrderedFieldLaws Carrier]
+    [strictCert : StrictOrderCompatibilityLaw Carrier]
+    [denseCert : DenseOrderLaw Carrier]
+    [completeCert : OrderCompletenessLaws Carrier (Set Carrier)]
+
+Predicate logic (unfolded):
+
+  structure RealModel : Type (u + 1) where
+    Carrier : Type u
+    [addInst : Add Carrier]
+    [mulInst : Mul Carrier]
+    [negInst : Neg Carrier]
+    [invInst : Inv Carrier]
+    [zeroInst : OfNat Carrier 0]
+    [oneInst : OfNat Carrier 1]
+    [ltInst : LT Carrier]
+    [leInst : LE Carrier]
+    [carrierNonempty : Nonempty Carrier]
+    [fieldCert : OrderedFieldLaws Carrier]
+    [strictCert : StrictOrderCompatibilityLaw Carrier]
+    [denseCert : DenseOrderLaw Carrier]
+    [completeCert : OrderCompletenessLaws Carrier (Set Carrier)] (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+structure RealModel : Type (u + 1) where
+  Carrier : Type u
+  [addInst : Add Carrier]
+  [mulInst : Mul Carrier]
+  [negInst : Neg Carrier]
+  [invInst : Inv Carrier]
+  [zeroInst : OfNat Carrier 0]
+  [oneInst : OfNat Carrier 1]
+  [ltInst : LT Carrier]
+  [leInst : LE Carrier]
+  [carrierNonempty : Nonempty Carrier]
+  [fieldCert : OrderedFieldLaws Carrier]
+  [strictCert : StrictOrderCompatibilityLaw Carrier]
+  [denseCert : DenseOrderLaw Carrier]
+  [completeCert : OrderCompletenessLaws Carrier (Set Carrier)]
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 structure RealModel : Type (u + 1) where
   Carrier : Type u
   [addInst : Add Carrier]
@@ -40,12 +115,123 @@ attribute [instance] RealModel.addInst RealModel.mulInst
   RealModel.carrierNonempty RealModel.fieldCert
   RealModel.strictCert RealModel.denseCert RealModel.completeCert
 
+/--
+`RealModel.ofCarrier` TODO
+
+Predicate logic:
+
+  def RealModel.ofCarrier (R : Type u)
+      [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] [LT R] [LE R]
+      [Nonempty R] [OrderedFieldLaws R] [StrictOrderCompatibilityLaw R]
+      [DenseOrderLaw R] [OrderCompletenessLaws R (Set R)] : RealModel :=
+    { Carrier := R }
+
+Predicate logic (unfolded):
+
+  def RealModel.ofCarrier (R : Type u)
+      [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] [LT R] [LE R]
+      [Nonempty R] [OrderedFieldLaws R] [StrictOrderCompatibilityLaw R]
+      [DenseOrderLaw R] [OrderCompletenessLaws R (Set R)] : RealModel :=
+    { Carrier := R } (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+def RealModel.ofCarrier (R : Type u)
+    [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] [LT R] [LE R]
+    [Nonempty R] [OrderedFieldLaws R] [StrictOrderCompatibilityLaw R]
+    [DenseOrderLaw R] [OrderCompletenessLaws R (Set R)] : RealModel :=
+  { Carrier := R }
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 def RealModel.ofCarrier (R : Type u)
     [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] [LT R] [LE R]
     [Nonempty R] [OrderedFieldLaws R] [StrictOrderCompatibilityLaw R]
     [DenseOrderLaw R] [OrderCompletenessLaws R (Set R)] : RealModel :=
   { Carrier := R }
 
+/--
+`RealModel.signature` TODO
+
+Predicate logic:
+
+  def RealModel.signature (M : RealModel) : OrderedFieldSignature where
+    carrier := M.Carrier
+    zero := 0
+    one := 1
+    add := (· + ·)
+    neg := (- ·)
+    multiply := (· * ·)
+    inv := (·⁻¹)
+    le := (· ≤ ·)
+    StrictOrder := (· < ·)
+
+Predicate logic (unfolded):
+
+  def RealModel.signature (M : RealModel) : OrderedFieldSignature where
+    carrier := M.Carrier
+    zero := 0
+    one := 1
+    add := (· + ·)
+    neg := (- ·)
+    multiply := (· * ·)
+    inv := (·⁻¹)
+    le := (· ≤ ·)
+    StrictOrder := (· < ·) (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+def RealModel.signature (M : RealModel) : OrderedFieldSignature where
+  carrier := M.Carrier
+  zero := 0
+  one := 1
+  add := (· + ·)
+  neg := (- ·)
+  multiply := (· * ·)
+  inv := (·⁻¹)
+  le := (· ≤ ·)
+  StrictOrder := (· < ·)
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 def RealModel.signature (M : RealModel) : OrderedFieldSignature where
   carrier := M.Carrier
   zero := 0
@@ -57,6 +243,45 @@ def RealModel.signature (M : RealModel) : OrderedFieldSignature where
   le := (· ≤ ·)
   StrictOrder := (· < ·)
 
+/--
+`mathlibRealModel` TODO
+
+Predicate logic:
+
+  noncomputable def mathlibRealModel : RealModel :=
+    RealModel.ofCarrier Real
+
+Predicate logic (unfolded):
+
+  noncomputable def mathlibRealModel : RealModel :=
+    RealModel.ofCarrier Real (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+noncomputable def mathlibRealModel : RealModel :=
+  RealModel.ofCarrier Real
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 noncomputable def mathlibRealModel : RealModel :=
   RealModel.ofCarrier Real
 

@@ -13,12 +13,12 @@ universe u
 Predicate logic:
 
   abbrev CoordinateTuple (real_model : RealModel) (n : ℕ) : Type u :=
-  Fin n → real_model.Carrier
+    Fin n → real_model.Carrier
 
 Predicate logic (unfolded):
 
   abbrev CoordinateTuple (real_model : RealModel) (n : ℕ) : Type u :=
-  Fin n → real_model.Carrier (source fallback; no compiled unfold data available)
+    Fin n → real_model.Carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -55,14 +55,14 @@ abbrev CoordinateTuple (real_model : RealModel) (n : ℕ) : Type u :=
 Predicate logic:
 
   def OriginCoordinates (real_model : RealModel) (n : ℕ) :
-    CoordinateTuple real_model n :=
-  fun _ => 0
+      CoordinateTuple real_model n :=
+    fun _ => 0
 
 Predicate logic (unfolded):
 
   def OriginCoordinates (real_model : RealModel) (n : ℕ) :
-    CoordinateTuple real_model n :=
-  fun _ => 0 (source fallback; no compiled unfold data available)
+      CoordinateTuple real_model n :=
+    fun _ => 0 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -101,22 +101,22 @@ def OriginCoordinates (real_model : RealModel) (n : ℕ) :
 Predicate logic:
 
   structure CoordinateSystemDefinition
-    (space : EuclideanSpaceDefinition)
-    (real_model : RealModel)
-    (n : ℕ) where
-  origin : space.Carrier
-  coordinates : space.Carrier → CoordinateTuple real_model n
-  pointOf : CoordinateTuple real_model n → space.Carrier
+      (space : EuclideanSpaceDefinition)
+      (real_model : RealModel)
+      (n : ℕ) where
+    origin : space.Carrier
+    coordinates : space.Carrier → CoordinateTuple real_model n
+    pointOf : CoordinateTuple real_model n → space.Carrier
 
 Predicate logic (unfolded):
 
   structure CoordinateSystemDefinition
-    (space : EuclideanSpaceDefinition)
-    (real_model : RealModel)
-    (n : ℕ) where
-  origin : space.Carrier
-  coordinates : space.Carrier → CoordinateTuple real_model n
-  pointOf : CoordinateTuple real_model n → space.Carrier (source fallback; no compiled unfold data available)
+      (space : EuclideanSpaceDefinition)
+      (real_model : RealModel)
+      (n : ℕ) where
+    origin : space.Carrier
+    coordinates : space.Carrier → CoordinateTuple real_model n
+    pointOf : CoordinateTuple real_model n → space.Carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

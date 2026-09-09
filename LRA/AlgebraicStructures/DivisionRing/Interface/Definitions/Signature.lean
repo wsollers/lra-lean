@@ -8,18 +8,18 @@ namespace LRA.AlgebraicStructures.DivisionRing.Interface.Signature
 Predicate logic:
 
   inductive DivisionRingFunctionSymbol where
-  | add
-  | mul
-  | neg
-  | inv
+    | add
+    | mul
+    | neg
+    | inv
 
 Predicate logic (unfolded):
 
   inductive DivisionRingFunctionSymbol where
-  | add
-  | mul
-  | neg
-  | inv (source fallback; no compiled unfold data available)
+    | add
+    | mul
+    | neg
+    | inv (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -100,14 +100,14 @@ def DivisionRingRelationSymbol : Type := Empty
 Predicate logic:
 
   inductive DivisionRingConstantSymbol where
-  | zero
-  | one
+    | zero
+    | one
 
 Predicate logic (unfolded):
 
   inductive DivisionRingConstantSymbol where
-  | zero
-  | one (source fallback; no compiled unfold data available)
+    | zero
+    | one (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -146,22 +146,22 @@ inductive DivisionRingConstantSymbol where
 Predicate logic:
 
   def DivisionRingFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
-  Symbol := DivisionRingFunctionSymbol
-  arity
-    | .add => 2
-    | .mul => 2
-    | .neg => 1
-    | .inv => 1
+    Symbol := DivisionRingFunctionSymbol
+    arity
+      | .add => 2
+      | .mul => 2
+      | .neg => 1
+      | .inv => 1
 
 Predicate logic (unfolded):
 
   def DivisionRingFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
-  Symbol := DivisionRingFunctionSymbol
-  arity
-    | .add => 2
-    | .mul => 2
-    | .neg => 1
-    | .inv => 1 (source fallback; no compiled unfold data available)
+    Symbol := DivisionRingFunctionSymbol
+    arity
+      | .add => 2
+      | .mul => 2
+      | .neg => 1
+      | .inv => 1 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -208,14 +208,14 @@ def DivisionRingFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
 Predicate logic:
 
   def DivisionRingFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
-  Symbol := DivisionRingRelationSymbol
-  arity := Empty.elim
+    Symbol := DivisionRingRelationSymbol
+    arity := Empty.elim
 
 Predicate logic (unfolded):
 
   def DivisionRingFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
-  Symbol := DivisionRingRelationSymbol
-  arity := Empty.elim (source fallback; no compiled unfold data available)
+    Symbol := DivisionRingRelationSymbol
+    arity := Empty.elim (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -254,16 +254,16 @@ def DivisionRingFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
 Predicate logic:
 
   def DivisionRingFirstOrderSignature : LRA.Logic.Signature where
-  Functions := DivisionRingFirstOrderFunctions
-  Relations := DivisionRingFirstOrderRelations
-  Constants := DivisionRingConstantSymbol
+    Functions := DivisionRingFirstOrderFunctions
+    Relations := DivisionRingFirstOrderRelations
+    Constants := DivisionRingConstantSymbol
 
 Predicate logic (unfolded):
 
   def DivisionRingFirstOrderSignature : LRA.Logic.Signature where
-  Functions := DivisionRingFirstOrderFunctions
-  Relations := DivisionRingFirstOrderRelations
-  Constants := DivisionRingConstantSymbol (source fallback; no compiled unfold data available)
+    Functions := DivisionRingFirstOrderFunctions
+    Relations := DivisionRingFirstOrderRelations
+    Constants := DivisionRingConstantSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

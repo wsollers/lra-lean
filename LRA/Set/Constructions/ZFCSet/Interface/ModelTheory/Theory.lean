@@ -24,18 +24,18 @@ open LRA.Set.ModelTheory
 Predicate logic:
 
   def extensionalityFormula : Formula MembershipSignature Nat :=
-  .forallQ 0 (.forallQ 1
-    (.impl
-      (.forallQ 2 (iffF (memF 2 0) (memF 2 1)))
-      (eqF 0 1)))
+    .forallQ 0 (.forallQ 1
+      (.impl
+        (.forallQ 2 (iffF (memF 2 0) (memF 2 1)))
+        (eqF 0 1)))
 
 Predicate logic (unfolded):
 
   def extensionalityFormula : Formula MembershipSignature Nat :=
-  .forallQ 0 (.forallQ 1
-    (.impl
-      (.forallQ 2 (iffF (memF 2 0) (memF 2 1)))
-      (eqF 0 1))) (source fallback; no compiled unfold data available)
+    .forallQ 0 (.forallQ 1
+      (.impl
+        (.forallQ 2 (iffF (memF 2 0) (memF 2 1)))
+        (eqF 0 1))) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -78,12 +78,12 @@ def extensionalityFormula : Formula MembershipSignature Nat :=
 Predicate logic:
 
   def emptySetFormula : Formula MembershipSignature Nat :=
-  .forallQ 0 (.neg (memT (varT 0) emptyT))
+    .forallQ 0 (.neg (memT (varT 0) emptyT))
 
 Predicate logic (unfolded):
 
   def emptySetFormula : Formula MembershipSignature Nat :=
-  .forallQ 0 (.neg (memT (varT 0) emptyT)) (source fallback; no compiled unfold data available)
+    .forallQ 0 (.neg (memT (varT 0) emptyT)) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -120,14 +120,14 @@ def emptySetFormula : Formula MembershipSignature Nat :=
 Predicate logic:
 
   def pairingFormula : Formula MembershipSignature Nat :=
-  .forallQ 0 (.forallQ 1 (Formula.existsQ 2 (.forallQ 3
-    (iffF (memF 3 2) (orF (eqF 3 0) (eqF 3 1))))))
+    .forallQ 0 (.forallQ 1 (Formula.existsQ 2 (.forallQ 3
+      (iffF (memF 3 2) (orF (eqF 3 0) (eqF 3 1))))))
 
 Predicate logic (unfolded):
 
   def pairingFormula : Formula MembershipSignature Nat :=
-  .forallQ 0 (.forallQ 1 (Formula.existsQ 2 (.forallQ 3
-    (iffF (memF 3 2) (orF (eqF 3 0) (eqF 3 1)))))) (source fallback; no compiled unfold data available)
+    .forallQ 0 (.forallQ 1 (Formula.existsQ 2 (.forallQ 3
+      (iffF (memF 3 2) (orF (eqF 3 0) (eqF 3 1)))))) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -166,16 +166,16 @@ def pairingFormula : Formula MembershipSignature Nat :=
 Predicate logic:
 
   def unionFormula : Formula MembershipSignature Nat :=
-  .forallQ 0 (Formula.existsQ 1 (.forallQ 2
-    (iffF (memF 2 1)
-      (Formula.existsQ 3 (Formula.and (memF 3 0) (memF 2 3))))))
+    .forallQ 0 (Formula.existsQ 1 (.forallQ 2
+      (iffF (memF 2 1)
+        (Formula.existsQ 3 (Formula.and (memF 3 0) (memF 2 3))))))
 
 Predicate logic (unfolded):
 
   def unionFormula : Formula MembershipSignature Nat :=
-  .forallQ 0 (Formula.existsQ 1 (.forallQ 2
-    (iffF (memF 2 1)
-      (Formula.existsQ 3 (Formula.and (memF 3 0) (memF 2 3)))))) (source fallback; no compiled unfold data available)
+    .forallQ 0 (Formula.existsQ 1 (.forallQ 2
+      (iffF (memF 2 1)
+        (Formula.existsQ 3 (Formula.and (memF 3 0) (memF 2 3)))))) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -216,16 +216,16 @@ def unionFormula : Formula MembershipSignature Nat :=
 Predicate logic:
 
   def powerSetFormula : Formula MembershipSignature Nat :=
-  .forallQ 0 (Formula.existsQ 1 (.forallQ 2
-    (iffF (memF 2 1)
-      (.forallQ 3 (.impl (memF 3 2) (memF 3 0))))))
+    .forallQ 0 (Formula.existsQ 1 (.forallQ 2
+      (iffF (memF 2 1)
+        (.forallQ 3 (.impl (memF 3 2) (memF 3 0))))))
 
 Predicate logic (unfolded):
 
   def powerSetFormula : Formula MembershipSignature Nat :=
-  .forallQ 0 (Formula.existsQ 1 (.forallQ 2
-    (iffF (memF 2 1)
-      (.forallQ 3 (.impl (memF 3 2) (memF 3 0)))))) (source fallback; no compiled unfold data available)
+    .forallQ 0 (Formula.existsQ 1 (.forallQ 2
+      (iffF (memF 2 1)
+        (.forallQ 3 (.impl (memF 3 2) (memF 3 0)))))) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -266,22 +266,22 @@ def powerSetFormula : Formula MembershipSignature Nat :=
 Predicate logic:
 
   def infinityFormula : Formula MembershipSignature Nat :=
-  Formula.existsQ 0 (Formula.and
-    (memT emptyT (varT 0))
-    (.forallQ 1 (.impl (memF 1 0)
-      (Formula.existsQ 2 (Formula.and
-        (.forallQ 3 (iffF (memF 3 2) (orF (memF 3 1) (eqF 3 1))))
-        (memF 2 0))))))
+    Formula.existsQ 0 (Formula.and
+      (memT emptyT (varT 0))
+      (.forallQ 1 (.impl (memF 1 0)
+        (Formula.existsQ 2 (Formula.and
+          (.forallQ 3 (iffF (memF 3 2) (orF (memF 3 1) (eqF 3 1))))
+          (memF 2 0))))))
 
 Predicate logic (unfolded):
 
   def infinityFormula : Formula MembershipSignature Nat :=
-  Formula.existsQ 0 (Formula.and
-    (memT emptyT (varT 0))
-    (.forallQ 1 (.impl (memF 1 0)
-      (Formula.existsQ 2 (Formula.and
-        (.forallQ 3 (iffF (memF 3 2) (orF (memF 3 1) (eqF 3 1))))
-        (memF 2 0)))))) (source fallback; no compiled unfold data available)
+    Formula.existsQ 0 (Formula.and
+      (memT emptyT (varT 0))
+      (.forallQ 1 (.impl (memF 1 0)
+        (Formula.existsQ 2 (Formula.and
+          (.forallQ 3 (iffF (memF 3 2) (orF (memF 3 1) (eqF 3 1))))
+          (memF 2 0)))))) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -328,20 +328,20 @@ def infinityFormula : Formula MembershipSignature Nat :=
 Predicate logic:
 
   def foundationFormula : Formula MembershipSignature Nat :=
-  .forallQ 0 (.impl
-    (.neg (.equal (varT 0) emptyT))
-    (Formula.existsQ 1 (Formula.and
-      (memF 1 0)
-      (.forallQ 2 (.impl (memF 2 1) (.neg (memF 2 0)))))))
+    .forallQ 0 (.impl
+      (.neg (.equal (varT 0) emptyT))
+      (Formula.existsQ 1 (Formula.and
+        (memF 1 0)
+        (.forallQ 2 (.impl (memF 2 1) (.neg (memF 2 0)))))))
 
 Predicate logic (unfolded):
 
   def foundationFormula : Formula MembershipSignature Nat :=
-  .forallQ 0 (.impl
-    (.neg (.equal (varT 0) emptyT))
-    (Formula.existsQ 1 (Formula.and
-      (memF 1 0)
-      (.forallQ 2 (.impl (memF 2 1) (.neg (memF 2 0))))))) (source fallback; no compiled unfold data available)
+    .forallQ 0 (.impl
+      (.neg (.equal (varT 0) emptyT))
+      (Formula.existsQ 1 (Formula.and
+        (memF 1 0)
+        (.forallQ 2 (.impl (memF 2 1) (.neg (memF 2 0))))))) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -440,11 +440,16 @@ def choiceFormula : Formula MembershipSignature Nat :=
 
 Predicate logic:
 
-  ∀ (property : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat), (¬ SetLike.instMembership.mem (LRA.Logic.FirstOrder.freeVariables property) 1 ∧ ¬ SetLike.instMembership.mem (LRA.Logic.FirstOrder.freeVariables property) 2)
+  ∀ (property : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat), (¬ SetLike.1 ∈ LRA.Logic.FirstOrder.freeVariables property ∧ ¬ SetLike.2 ∈ LRA.Logic.FirstOrder.freeVariables property)
 
 Predicate logic (unfolded):
 
-  ∀ (property : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat), (SetLike.instMembership.1 (LRA.Logic.FirstOrder.freeVariables property) (instOfNatNat 1).1 → False ∧ SetLike.instMembership.1 (LRA.Logic.FirstOrder.freeVariables property) (instOfNatNat 2).1 → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((SetLike.1 ∈ LRA.Logic.FirstOrder.freeVariables property → False) ∧ (SetLike.2 ∈ LRA.Logic.FirstOrder.freeVariables property → False))
 
 Logical form (Lean):
 
@@ -481,16 +486,16 @@ def SeparationHygienic (property : Formula MembershipSignature Nat) : Prop :=
 Predicate logic:
 
   def separationInstance (property : Formula MembershipSignature Nat) :
-    Formula MembershipSignature Nat :=
-  .forallQ 1 (Formula.existsQ 2 (.forallQ 0
-    (iffF (memF 0 2) (Formula.and (memF 0 1) property))))
+      Formula MembershipSignature Nat :=
+    .forallQ 1 (Formula.existsQ 2 (.forallQ 0
+      (iffF (memF 0 2) (Formula.and (memF 0 1) property))))
 
 Predicate logic (unfolded):
 
   def separationInstance (property : Formula MembershipSignature Nat) :
-    Formula MembershipSignature Nat :=
-  .forallQ 1 (Formula.existsQ 2 (.forallQ 0
-    (iffF (memF 0 2) (Formula.and (memF 0 1) property)))) (source fallback; no compiled unfold data available)
+      Formula MembershipSignature Nat :=
+    .forallQ 1 (Formula.existsQ 2 (.forallQ 0
+      (iffF (memF 0 2) (Formula.and (memF 0 1) property)))) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -530,11 +535,16 @@ def separationInstance (property : Formula MembershipSignature Nat) :
 
 Predicate logic:
 
-  ∀ (relation : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat), (¬ SetLike.instMembership.mem (LRA.Logic.FirstOrder.freeVariables relation) 2 ∧ (¬ SetLike.instMembership.mem (LRA.Logic.FirstOrder.freeVariables relation) 3 ∧ ¬ SetLike.instMembership.mem (LRA.Logic.FirstOrder.allVariables relation) 4))
+  ∀ (relation : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat), (¬ SetLike.2 ∈ LRA.Logic.FirstOrder.freeVariables relation ∧ (¬ SetLike.3 ∈ LRA.Logic.FirstOrder.freeVariables relation ∧ ¬ SetLike.4 ∈ LRA.Logic.FirstOrder.allVariables relation))
 
 Predicate logic (unfolded):
 
-  ∀ (relation : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat), (SetLike.instMembership.1 (LRA.Logic.FirstOrder.freeVariables relation) (instOfNatNat 2).1 → False ∧ (SetLike.instMembership.1 (LRA.Logic.FirstOrder.freeVariables relation) (instOfNatNat 3).1 → False ∧ SetLike.instMembership.1 (LRA.Logic.FirstOrder.allVariables relation) (instOfNatNat 4).1 → False))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((SetLike.2 ∈ LRA.Logic.FirstOrder.freeVariables relation → False) ∧ ((SetLike.3 ∈ LRA.Logic.FirstOrder.freeVariables relation → False) ∧ (SetLike.4 ∈ LRA.Logic.FirstOrder.allVariables relation → False)))
 
 Logical form (Lean):
 
@@ -573,32 +583,32 @@ def ReplacementHygienic (relation : Formula MembershipSignature Nat) : Prop :=
 Predicate logic:
 
   def replacementInstance (relation : Formula MembershipSignature Nat) :
-    Formula MembershipSignature Nat :=
-  .forallQ 2 (.impl
-    (.forallQ 0 (.impl (memF 0 2)
-      (Formula.and
-        (Formula.existsQ 1 relation)
-        (.forallQ 1 (.forallQ 4 (.impl
-          (Formula.and relation (substitute 1 (varT 4) relation))
-          (eqF 1 4)))))))
-    (Formula.existsQ 3 (.forallQ 1
-      (iffF (memF 1 3)
-        (Formula.existsQ 0 (Formula.and (memF 0 2) relation))))))
+      Formula MembershipSignature Nat :=
+    .forallQ 2 (.impl
+      (.forallQ 0 (.impl (memF 0 2)
+        (Formula.and
+          (Formula.existsQ 1 relation)
+          (.forallQ 1 (.forallQ 4 (.impl
+            (Formula.and relation (substitute 1 (varT 4) relation))
+            (eqF 1 4)))))))
+      (Formula.existsQ 3 (.forallQ 1
+        (iffF (memF 1 3)
+          (Formula.existsQ 0 (Formula.and (memF 0 2) relation))))))
 
 Predicate logic (unfolded):
 
   def replacementInstance (relation : Formula MembershipSignature Nat) :
-    Formula MembershipSignature Nat :=
-  .forallQ 2 (.impl
-    (.forallQ 0 (.impl (memF 0 2)
-      (Formula.and
-        (Formula.existsQ 1 relation)
-        (.forallQ 1 (.forallQ 4 (.impl
-          (Formula.and relation (substitute 1 (varT 4) relation))
-          (eqF 1 4)))))))
-    (Formula.existsQ 3 (.forallQ 1
-      (iffF (memF 1 3)
-        (Formula.existsQ 0 (Formula.and (memF 0 2) relation)))))) (source fallback; no compiled unfold data available)
+      Formula MembershipSignature Nat :=
+    .forallQ 2 (.impl
+      (.forallQ 0 (.impl (memF 0 2)
+        (Formula.and
+          (Formula.existsQ 1 relation)
+          (.forallQ 1 (.forallQ 4 (.impl
+            (Formula.and relation (substitute 1 (varT 4) relation))
+            (eqF 1 4)))))))
+      (Formula.existsQ 3 (.forallQ 1
+        (iffF (memF 1 3)
+          (Formula.existsQ 0 (Formula.and (memF 0 2) relation)))))) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -654,11 +664,16 @@ def replacementInstance (relation : Formula MembershipSignature Nat) :
 
 Predicate logic:
 
-  IsClosedFormula extensionalityFormula
+  LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.extensionalityFormula
 
 Predicate logic (unfolded):
 
-  LRA.Logic.FirstOrder.freeVariables LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.extensionalityFormula = Finset.instEmptyCollection.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.FirstOrder.freeVariables LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.extensionalityFormula = Finset.instEmptyCollection.1
 
 Logical form (Lean):
 
@@ -693,11 +708,16 @@ theorem extensionalityIsClosed : IsClosedFormula extensionalityFormula := by
 
 Predicate logic:
 
-  IsClosedFormula emptySetFormula
+  LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.emptySetFormula
 
 Predicate logic (unfolded):
 
-  LRA.Logic.FirstOrder.freeVariables LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.emptySetFormula = Finset.instEmptyCollection.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.FirstOrder.freeVariables LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.emptySetFormula = Finset.instEmptyCollection.1
 
 Logical form (Lean):
 
@@ -732,11 +752,16 @@ theorem emptySetIsClosed : IsClosedFormula emptySetFormula := by
 
 Predicate logic:
 
-  IsClosedFormula pairingFormula
+  LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.pairingFormula
 
 Predicate logic (unfolded):
 
-  LRA.Logic.FirstOrder.freeVariables LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.pairingFormula = Finset.instEmptyCollection.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.FirstOrder.freeVariables LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.pairingFormula = Finset.instEmptyCollection.1
 
 Logical form (Lean):
 
@@ -771,11 +796,16 @@ theorem pairingIsClosed : IsClosedFormula pairingFormula := by
 
 Predicate logic:
 
-  IsClosedFormula unionFormula
+  LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.unionFormula
 
 Predicate logic (unfolded):
 
-  LRA.Logic.FirstOrder.freeVariables LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.unionFormula = Finset.instEmptyCollection.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.FirstOrder.freeVariables LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.unionFormula = Finset.instEmptyCollection.1
 
 Logical form (Lean):
 
@@ -810,11 +840,16 @@ theorem unionIsClosed : IsClosedFormula unionFormula := by
 
 Predicate logic:
 
-  IsClosedFormula powerSetFormula
+  LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.powerSetFormula
 
 Predicate logic (unfolded):
 
-  LRA.Logic.FirstOrder.freeVariables LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.powerSetFormula = Finset.instEmptyCollection.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.FirstOrder.freeVariables LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.powerSetFormula = Finset.instEmptyCollection.1
 
 Logical form (Lean):
 
@@ -849,11 +884,16 @@ theorem powerSetIsClosed : IsClosedFormula powerSetFormula := by
 
 Predicate logic:
 
-  IsClosedFormula infinityFormula
+  LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.infinityFormula
 
 Predicate logic (unfolded):
 
-  LRA.Logic.FirstOrder.freeVariables LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.infinityFormula = Finset.instEmptyCollection.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.FirstOrder.freeVariables LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.infinityFormula = Finset.instEmptyCollection.1
 
 Logical form (Lean):
 
@@ -888,11 +928,16 @@ theorem infinityIsClosed : IsClosedFormula infinityFormula := by
 
 Predicate logic:
 
-  IsClosedFormula foundationFormula
+  LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.foundationFormula
 
 Predicate logic (unfolded):
 
-  LRA.Logic.FirstOrder.freeVariables LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.foundationFormula = Finset.instEmptyCollection.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.FirstOrder.freeVariables LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.foundationFormula = Finset.instEmptyCollection.1
 
 Logical form (Lean):
 
@@ -927,11 +972,16 @@ theorem foundationIsClosed : IsClosedFormula foundationFormula := by
 
 Predicate logic:
 
-  IsClosedFormula choiceFormula
+  LRA.Logic.FirstOrder.IsClosedFormula LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.choiceFormula
 
 Predicate logic (unfolded):
 
-  LRA.Logic.FirstOrder.freeVariables LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.choiceFormula = Finset.instEmptyCollection.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.FirstOrder.freeVariables LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.choiceFormula = Finset.instEmptyCollection.1
 
 Logical form (Lean):
 
@@ -967,12 +1017,12 @@ theorem choiceIsClosed : IsClosedFormula choiceFormula := by
 Predicate logic:
 
   def extensionalitySentence : Sentence MembershipSignature Nat :=
-  ⟨extensionalityFormula, extensionalityIsClosed⟩
+    ⟨extensionalityFormula, extensionalityIsClosed⟩
 
 Predicate logic (unfolded):
 
   def extensionalitySentence : Sentence MembershipSignature Nat :=
-  ⟨extensionalityFormula, extensionalityIsClosed⟩ (source fallback; no compiled unfold data available)
+    ⟨extensionalityFormula, extensionalityIsClosed⟩ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1009,12 +1059,12 @@ def extensionalitySentence : Sentence MembershipSignature Nat :=
 Predicate logic:
 
   def emptySetSentence : Sentence MembershipSignature Nat :=
-  ⟨emptySetFormula, emptySetIsClosed⟩
+    ⟨emptySetFormula, emptySetIsClosed⟩
 
 Predicate logic (unfolded):
 
   def emptySetSentence : Sentence MembershipSignature Nat :=
-  ⟨emptySetFormula, emptySetIsClosed⟩ (source fallback; no compiled unfold data available)
+    ⟨emptySetFormula, emptySetIsClosed⟩ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1051,12 +1101,12 @@ def emptySetSentence : Sentence MembershipSignature Nat :=
 Predicate logic:
 
   def pairingSentence : Sentence MembershipSignature Nat :=
-  ⟨pairingFormula, pairingIsClosed⟩
+    ⟨pairingFormula, pairingIsClosed⟩
 
 Predicate logic (unfolded):
 
   def pairingSentence : Sentence MembershipSignature Nat :=
-  ⟨pairingFormula, pairingIsClosed⟩ (source fallback; no compiled unfold data available)
+    ⟨pairingFormula, pairingIsClosed⟩ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1093,12 +1143,12 @@ def pairingSentence : Sentence MembershipSignature Nat :=
 Predicate logic:
 
   def unionSentence : Sentence MembershipSignature Nat :=
-  ⟨unionFormula, unionIsClosed⟩
+    ⟨unionFormula, unionIsClosed⟩
 
 Predicate logic (unfolded):
 
   def unionSentence : Sentence MembershipSignature Nat :=
-  ⟨unionFormula, unionIsClosed⟩ (source fallback; no compiled unfold data available)
+    ⟨unionFormula, unionIsClosed⟩ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1135,12 +1185,12 @@ def unionSentence : Sentence MembershipSignature Nat :=
 Predicate logic:
 
   def powerSetSentence : Sentence MembershipSignature Nat :=
-  ⟨powerSetFormula, powerSetIsClosed⟩
+    ⟨powerSetFormula, powerSetIsClosed⟩
 
 Predicate logic (unfolded):
 
   def powerSetSentence : Sentence MembershipSignature Nat :=
-  ⟨powerSetFormula, powerSetIsClosed⟩ (source fallback; no compiled unfold data available)
+    ⟨powerSetFormula, powerSetIsClosed⟩ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1177,12 +1227,12 @@ def powerSetSentence : Sentence MembershipSignature Nat :=
 Predicate logic:
 
   def infinitySentence : Sentence MembershipSignature Nat :=
-  ⟨infinityFormula, infinityIsClosed⟩
+    ⟨infinityFormula, infinityIsClosed⟩
 
 Predicate logic (unfolded):
 
   def infinitySentence : Sentence MembershipSignature Nat :=
-  ⟨infinityFormula, infinityIsClosed⟩ (source fallback; no compiled unfold data available)
+    ⟨infinityFormula, infinityIsClosed⟩ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1219,12 +1269,12 @@ def infinitySentence : Sentence MembershipSignature Nat :=
 Predicate logic:
 
   def foundationSentence : Sentence MembershipSignature Nat :=
-  ⟨foundationFormula, foundationIsClosed⟩
+    ⟨foundationFormula, foundationIsClosed⟩
 
 Predicate logic (unfolded):
 
   def foundationSentence : Sentence MembershipSignature Nat :=
-  ⟨foundationFormula, foundationIsClosed⟩ (source fallback; no compiled unfold data available)
+    ⟨foundationFormula, foundationIsClosed⟩ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1261,12 +1311,12 @@ def foundationSentence : Sentence MembershipSignature Nat :=
 Predicate logic:
 
   def choiceSentence : Sentence MembershipSignature Nat :=
-  ⟨choiceFormula, choiceIsClosed⟩
+    ⟨choiceFormula, choiceIsClosed⟩
 
 Predicate logic (unfolded):
 
   def choiceSentence : Sentence MembershipSignature Nat :=
-  ⟨choiceFormula, choiceIsClosed⟩ (source fallback; no compiled unfold data available)
+    ⟨choiceFormula, choiceIsClosed⟩ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1303,38 +1353,38 @@ def choiceSentence : Sentence MembershipSignature Nat :=
 Predicate logic:
 
   inductive IsZFCAxiom : Formula MembershipSignature Nat → Prop where
-  | extensionality : IsZFCAxiom extensionalityFormula
-  | emptySet : IsZFCAxiom emptySetFormula
-  | pairing : IsZFCAxiom pairingFormula
-  | union : IsZFCAxiom unionFormula
-  | powerSet : IsZFCAxiom powerSetFormula
-  | infinity : IsZFCAxiom infinityFormula
-  | foundation : IsZFCAxiom foundationFormula
-  | choice : IsZFCAxiom choiceFormula
-  | separation (property : Formula MembershipSignature Nat)
-      (hygienic : SeparationHygienic property) :
-      IsZFCAxiom (separationInstance property)
-  | replacement (relation : Formula MembershipSignature Nat)
-      (hygienic : ReplacementHygienic relation) :
-      IsZFCAxiom (replacementInstance relation)
+    | extensionality : IsZFCAxiom extensionalityFormula
+    | emptySet : IsZFCAxiom emptySetFormula
+    | pairing : IsZFCAxiom pairingFormula
+    | union : IsZFCAxiom unionFormula
+    | powerSet : IsZFCAxiom powerSetFormula
+    | infinity : IsZFCAxiom infinityFormula
+    | foundation : IsZFCAxiom foundationFormula
+    | choice : IsZFCAxiom choiceFormula
+    | separation (property : Formula MembershipSignature Nat)
+        (hygienic : SeparationHygienic property) :
+        IsZFCAxiom (separationInstance property)
+    | replacement (relation : Formula MembershipSignature Nat)
+        (hygienic : ReplacementHygienic relation) :
+        IsZFCAxiom (replacementInstance relation)
 
 Predicate logic (unfolded):
 
   inductive IsZFCAxiom : Formula MembershipSignature Nat → Prop where
-  | extensionality : IsZFCAxiom extensionalityFormula
-  | emptySet : IsZFCAxiom emptySetFormula
-  | pairing : IsZFCAxiom pairingFormula
-  | union : IsZFCAxiom unionFormula
-  | powerSet : IsZFCAxiom powerSetFormula
-  | infinity : IsZFCAxiom infinityFormula
-  | foundation : IsZFCAxiom foundationFormula
-  | choice : IsZFCAxiom choiceFormula
-  | separation (property : Formula MembershipSignature Nat)
-      (hygienic : SeparationHygienic property) :
-      IsZFCAxiom (separationInstance property)
-  | replacement (relation : Formula MembershipSignature Nat)
-      (hygienic : ReplacementHygienic relation) :
-      IsZFCAxiom (replacementInstance relation) (source fallback; no compiled unfold data available)
+    | extensionality : IsZFCAxiom extensionalityFormula
+    | emptySet : IsZFCAxiom emptySetFormula
+    | pairing : IsZFCAxiom pairingFormula
+    | union : IsZFCAxiom unionFormula
+    | powerSet : IsZFCAxiom powerSetFormula
+    | infinity : IsZFCAxiom infinityFormula
+    | foundation : IsZFCAxiom foundationFormula
+    | choice : IsZFCAxiom choiceFormula
+    | separation (property : Formula MembershipSignature Nat)
+        (hygienic : SeparationHygienic property) :
+        IsZFCAxiom (separationInstance property)
+    | replacement (relation : Formula MembershipSignature Nat)
+        (hygienic : ReplacementHygienic relation) :
+        IsZFCAxiom (replacementInstance relation) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1400,7 +1450,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (a : LRA.Logic.FirstOrder.Formula LRA.Set.ModelTheory.MembershipSignature Nat), LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.IsZFCAxiom a
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.ZFCSet.Interface.ModelTheory.IsZFCAxiom a
 
 Logical form (Lean):
 

@@ -13,7 +13,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {L : LRA.ProofTheory.System.Takeuti.Alphabet} (uppers : List (LRA.ProofTheory.System.Takeuti.Judgement L)) (lower : LRA.ProofTheory.System.Takeuti.Judgement L), Exists fun A => Exists fun leftAntecedent => Exists fun leftSuccedent => Exists fun rightAntecedent => Exists fun rightSuccedent => (uppers = List.cons { antecedent := leftAntecedent, succedent := instHAppendOfAppend.1 leftSuccedent (List.cons A List.nil) } (List.cons { antecedent := List.cons A rightAntecedent, succedent := rightSuccedent } List.nil) ∧ lower = { antecedent := instHAppendOfAppend.1 leftAntecedent rightAntecedent, succedent := instHAppendOfAppend.1 leftSuccedent rightSuccedent })
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun A => Exists fun leftAntecedent => Exists fun leftSuccedent => Exists fun rightAntecedent => Exists fun rightSuccedent => (uppers = List.cons { antecedent := leftAntecedent, succedent := instHAppendOfAppend.1 leftSuccedent (List.cons A List.nil) } (List.cons { antecedent := List.cons A rightAntecedent, succedent := rightSuccedent } List.nil) ∧ lower = { antecedent := instHAppendOfAppend.1 leftAntecedent rightAntecedent, succedent := instHAppendOfAppend.1 leftSuccedent rightSuccedent })
 
 Logical form (Lean):
 

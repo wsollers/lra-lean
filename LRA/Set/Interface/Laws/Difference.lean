@@ -8,44 +8,44 @@ universe u
 Predicate logic:
 
   class DifferenceLaws (α : Type u)
-    [SDiff α] [Union α] [Inter α] [EmptyCollection α] [HasSubset α] :
-    Prop where
-  DifferenceMonotoneLeft :
-    ∀ A₁ A₂ B : α, A₁ ⊆ A₂ → A₁ \ B ⊆ A₂ \ B
-  DifferenceAntitoneRight :
-    ∀ A B₁ B₂ : α, B₁ ⊆ B₂ → A \ B₂ ⊆ A \ B₁
-  DifferenceEmpty : ∀ A : α, A \ (∅ : α) = A
-  EmptyDifference : ∀ A : α, (∅ : α) \ A = (∅ : α)
-  DifferenceSelf : ∀ A : α, A \ A = (∅ : α)
-  DifferenceUnion : ∀ A B C : α, A \ (B ∪ C) = (A \ B) ∩ (A \ C)
-  DifferenceIntersection : ∀ A B C : α, A \ (B ∩ C) = (A \ B) ∪ (A \ C)
-  UnionDifferenceDistributes :
-    ∀ A B C : α, (A ∪ B) \ C = (A \ C) ∪ (B \ C)
-  IntersectionDifferenceDistributes :
-    ∀ A B C : α, (A ∩ B) \ C = (A \ C) ∩ (B \ C)
-  DifferenceSubsetLeft : ∀ A B : α, A \ B ⊆ A
-  DifferenceDisjointRight : ∀ A B : α, (A \ B) ∩ B = (∅ : α)
+      [SDiff α] [Union α] [Inter α] [EmptyCollection α] [HasSubset α] :
+      Prop where
+    DifferenceMonotoneLeft :
+      ∀ A₁ A₂ B : α, A₁ ⊆ A₂ → A₁ \ B ⊆ A₂ \ B
+    DifferenceAntitoneRight :
+      ∀ A B₁ B₂ : α, B₁ ⊆ B₂ → A \ B₂ ⊆ A \ B₁
+    DifferenceEmpty : ∀ A : α, A \ (∅ : α) = A
+    EmptyDifference : ∀ A : α, (∅ : α) \ A = (∅ : α)
+    DifferenceSelf : ∀ A : α, A \ A = (∅ : α)
+    DifferenceUnion : ∀ A B C : α, A \ (B ∪ C) = (A \ B) ∩ (A \ C)
+    DifferenceIntersection : ∀ A B C : α, A \ (B ∩ C) = (A \ B) ∪ (A \ C)
+    UnionDifferenceDistributes :
+      ∀ A B C : α, (A ∪ B) \ C = (A \ C) ∪ (B \ C)
+    IntersectionDifferenceDistributes :
+      ∀ A B C : α, (A ∩ B) \ C = (A \ C) ∩ (B \ C)
+    DifferenceSubsetLeft : ∀ A B : α, A \ B ⊆ A
+    DifferenceDisjointRight : ∀ A B : α, (A \ B) ∩ B = (∅ : α)
 
 Predicate logic (unfolded):
 
   class DifferenceLaws (α : Type u)
-    [SDiff α] [Union α] [Inter α] [EmptyCollection α] [HasSubset α] :
-    Prop where
-  DifferenceMonotoneLeft :
-    ∀ A₁ A₂ B : α, A₁ ⊆ A₂ → A₁ \ B ⊆ A₂ \ B
-  DifferenceAntitoneRight :
-    ∀ A B₁ B₂ : α, B₁ ⊆ B₂ → A \ B₂ ⊆ A \ B₁
-  DifferenceEmpty : ∀ A : α, A \ (∅ : α) = A
-  EmptyDifference : ∀ A : α, (∅ : α) \ A = (∅ : α)
-  DifferenceSelf : ∀ A : α, A \ A = (∅ : α)
-  DifferenceUnion : ∀ A B C : α, A \ (B ∪ C) = (A \ B) ∩ (A \ C)
-  DifferenceIntersection : ∀ A B C : α, A \ (B ∩ C) = (A \ B) ∪ (A \ C)
-  UnionDifferenceDistributes :
-    ∀ A B C : α, (A ∪ B) \ C = (A \ C) ∪ (B \ C)
-  IntersectionDifferenceDistributes :
-    ∀ A B C : α, (A ∩ B) \ C = (A \ C) ∩ (B \ C)
-  DifferenceSubsetLeft : ∀ A B : α, A \ B ⊆ A
-  DifferenceDisjointRight : ∀ A B : α, (A \ B) ∩ B = (∅ : α) (source fallback; no compiled unfold data available)
+      [SDiff α] [Union α] [Inter α] [EmptyCollection α] [HasSubset α] :
+      Prop where
+    DifferenceMonotoneLeft :
+      ∀ A₁ A₂ B : α, A₁ ⊆ A₂ → A₁ \ B ⊆ A₂ \ B
+    DifferenceAntitoneRight :
+      ∀ A B₁ B₂ : α, B₁ ⊆ B₂ → A \ B₂ ⊆ A \ B₁
+    DifferenceEmpty : ∀ A : α, A \ (∅ : α) = A
+    EmptyDifference : ∀ A : α, (∅ : α) \ A = (∅ : α)
+    DifferenceSelf : ∀ A : α, A \ A = (∅ : α)
+    DifferenceUnion : ∀ A B C : α, A \ (B ∪ C) = (A \ B) ∩ (A \ C)
+    DifferenceIntersection : ∀ A B C : α, A \ (B ∩ C) = (A \ B) ∪ (A \ C)
+    UnionDifferenceDistributes :
+      ∀ A B C : α, (A ∪ B) \ C = (A \ C) ∪ (B \ C)
+    IntersectionDifferenceDistributes :
+      ∀ A B C : α, (A ∩ B) \ C = (A \ C) ∩ (B \ C)
+    DifferenceSubsetLeft : ∀ A B : α, A \ B ⊆ A
+    DifferenceDisjointRight : ∀ A B : α, (A \ B) ∩ B = (∅ : α) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -117,11 +117,16 @@ variable [DifferenceLaws α]
 
 Predicate logic:
 
-  ∀ A₁ A₂ B : α, A₁ ⊆ A₂ → A₁ \ B ⊆ A₂ \ B
+  ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α] [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A₁ A₂ B : α), inst_4.Subset A₁ A₂ → inst_4.Subset (A₁ \ B)(A₂ \ B)
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α] [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A₁ A₂ B : α), inst_4.1 A₁ A₂ → inst_4.1 (inst.1 A₁ B) (inst.1 A₂ B)
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.DifferenceLaws α → ∀ (A₁ A₂ B : α), inst_4.1 A₁ A₂ → inst_4.1 (inst.1 A₁ B) (inst.1 A₂ B)
 
 Logical form (Lean):
 
@@ -158,11 +163,16 @@ theorem DifferenceMonotoneLeft :
 
 Predicate logic:
 
-  ∀ A B₁ B₂ : α, B₁ ⊆ B₂ → A \ B₂ ⊆ A \ B₁
+  ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α] [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A B₁ B₂ : α), inst_4.Subset B₁ B₂ → inst_4.Subset (A \ B₂)(A \ B₁)
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α] [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A B₁ B₂ : α), inst_4.1 B₁ B₂ → inst_4.1 (inst.1 A B₂) (inst.1 A B₁)
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.DifferenceLaws α → ∀ (A B₁ B₂ : α), inst_4.1 B₁ B₂ → inst_4.1 (inst.1 A B₂) (inst.1 A B₁)
 
 Logical form (Lean):
 
@@ -199,11 +209,16 @@ theorem DifferenceAntitoneRight :
 
 Predicate logic:
 
-  ∀ A : α, A \ ∅ ∈ α = A
+  ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α] [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A : α), A \ inst_3.emptyCollection = A
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α] [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A : α), inst.1 A inst_3.1 = A
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.DifferenceLaws α → ∀ (A : α), inst.1 A inst_3.1 = A
 
 Logical form (Lean):
 
@@ -238,11 +253,16 @@ theorem DifferenceEmpty : ∀ A : α, A \ (∅ : α) = A :=
 
 Predicate logic:
 
-  ∀ A : α, ∅ ∈ α \ A = ∅ ∈ α
+  ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α] [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A : α), inst_3.emptyCollection \ A = inst_3.emptyCollection
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α] [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A : α), inst.1 inst_3.1 A = inst_3.1
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.DifferenceLaws α → ∀ (A : α), inst.1 inst_3.1 A = inst_3.1
 
 Logical form (Lean):
 
@@ -277,11 +297,16 @@ theorem EmptyDifference : ∀ A : α, (∅ : α) \ A = (∅ : α) :=
 
 Predicate logic:
 
-  ∀ A : α, A \ A = ∅ ∈ α
+  ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α] [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A : α), A \ A = inst_3.emptyCollection
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α] [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A : α), inst.1 A A = inst_3.1
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.DifferenceLaws α → ∀ (A : α), inst.1 A A = inst_3.1
 
 Logical form (Lean):
 
@@ -316,11 +341,16 @@ theorem DifferenceSelf : ∀ A : α, A \ A = (∅ : α) :=
 
 Predicate logic:
 
-  ∀ A B C : α, A \ (B ∪ C) = (A \ B) ∩ (A \ C)
+  ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α] [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A B C : α), A \ B ∪ C = A \ B ∩ A \ C
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α] [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A B C : α), inst.1 A (inst_1.1 B C) = inst_2.1 (inst.1 A B) (inst.1 A C)
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.DifferenceLaws α → ∀ (A B C : α), inst.1 A (inst_1.1 B C) = inst_2.1 (inst.1 A B) (inst.1 A C)
 
 Logical form (Lean):
 
@@ -357,11 +387,16 @@ theorem DifferenceUnion :
 
 Predicate logic:
 
-  ∀ A B C : α, A \ (B ∩ C) = (A \ B) ∪ (A \ C)
+  ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α] [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A B C : α), A \ B ∩ C = A \ B ∪ A \ C
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α] [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A B C : α), inst.1 A (inst_2.1 B C) = inst_1.1 (inst.1 A B) (inst.1 A C)
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.DifferenceLaws α → ∀ (A B C : α), inst.1 A (inst_2.1 B C) = inst_1.1 (inst.1 A B) (inst.1 A C)
 
 Logical form (Lean):
 
@@ -398,11 +433,16 @@ theorem DifferenceIntersection :
 
 Predicate logic:
 
-  ∀ A B C : α, (A ∪ B) \ C = (A \ C) ∪ (B \ C)
+  ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α] [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A B C : α), A ∪ B \ C = A \ C ∪ B \ C
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α] [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A B C : α), inst.1 (inst_1.1 A B) C = inst_1.1 (inst.1 A C) (inst.1 B C)
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.DifferenceLaws α → ∀ (A B C : α), inst.1 (inst_1.1 A B) C = inst_1.1 (inst.1 A C) (inst.1 B C)
 
 Logical form (Lean):
 
@@ -439,11 +479,16 @@ theorem UnionDifferenceDistributes :
 
 Predicate logic:
 
-  ∀ A B C : α, (A ∩ B) \ C = (A \ C) ∩ (B \ C)
+  ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α] [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A B C : α), A ∩ B \ C = A \ C ∩ B \ C
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α] [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A B C : α), inst.1 (inst_2.1 A B) C = inst_2.1 (inst.1 A C) (inst.1 B C)
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.DifferenceLaws α → ∀ (A B C : α), inst.1 (inst_2.1 A B) C = inst_2.1 (inst.1 A C) (inst.1 B C)
 
 Logical form (Lean):
 
@@ -480,11 +525,16 @@ theorem IntersectionDifferenceDistributes :
 
 Predicate logic:
 
-  ∀ A B : α, A \ B ⊆ A
+  ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α] [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A B : α), inst_4.Subset (A \ B)A
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α] [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A B : α), inst_4.1 (inst.1 A B) A
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.DifferenceLaws α → ∀ (A B : α), inst_4.1 (inst.1 A B) A
 
 Logical form (Lean):
 
@@ -519,11 +569,16 @@ theorem DifferenceSubsetLeft : ∀ A B : α, A \ B ⊆ A :=
 
 Predicate logic:
 
-  ∀ A B : α, (A \ B) ∩ B = ∅ ∈ α
+  ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α] [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A B : α), A \ B ∩ B = inst_3.emptyCollection
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : SDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : EmptyCollection α] [inst_4 : HasSubset α], LRA.Set.DifferenceLaws α → ∀ (A B : α), inst_2.1 (inst.1 A B) B = inst_3.1
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.DifferenceLaws α → ∀ (A B : α), inst_2.1 (inst.1 A B) B = inst_3.1
 
 Logical form (Lean):
 

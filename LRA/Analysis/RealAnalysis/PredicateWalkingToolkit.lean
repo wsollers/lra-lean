@@ -10,11 +10,16 @@ namespace LRA.Analysis.RealAnalysis
 
 Predicate logic:
 
-  (ℕ → Prop) → (∀ N, ∃ n ≥ N, P n) ↔ ¬ (∃ N, ∀ n ≥ N, ¬ P n)
+  ∀ (P : Nat → Prop), ∀ (N : Nat), Exists fun n => (GE.ge n N ∧ P n) ↔ ¬ Exists fun N => ∀ (n : Nat), GE.ge n N → ¬ P n
 
 Predicate logic (unfolded):
 
-  ∀ (P : Nat → Prop), ∀ (N : Nat), Exists fun n => (instLENat.1 N n ∧ P n) ↔ (Exists fun N => ∀ (n : Nat), instLENat.1 N n → P n → False) → False
+  Ambient
+    (ℕ)
+  Objects
+    P : ℕ → Prop
+  Prove
+    ∀ (N : Nat), Exists fun n => (GE.ge n N ∧ P n) ↔ ¬ Exists fun N => ∀ (n : Nat), GE.ge n N → ¬ P n
 
 Logical form (Lean):
 
@@ -50,11 +55,16 @@ theorem IoEvDichotomy (P : ℕ → Prop) :
 
 Predicate logic:
 
-  (ℕ → ℝ) → ∃ φ ∈ ℕ → ℕ, StrictMono φ ∧ (Monotone (x ∘ φ) ∨ Antitone (x ∘ φ))
+  ∀ (x : Nat → Real), Exists fun φ => (StrictMono φ ∧ Or (Monotone (Function.comp x φ)) (Antitone (Function.comp x φ)))
 
 Predicate logic (unfolded):
 
-  ∀ (x : Nat → Real), Exists fun φ => (∀ ⦃a b : Nat⦄, Nat.instPreorder.toLT.1 a b → Nat.instPreorder.toLT.1 (φ a) (φ b) ∧ Or (∀ ⦃a b : Nat⦄, Nat.instPreorder.toLE.1 a b → Real.instPreorder.toLE.1 (x (φ a)) (x (φ b))) (∀ ⦃a b : Nat⦄, Nat.instPreorder.toLE.1 a b → Real.instPreorder.toLE.1 (x (φ b)) (x (φ a))))
+  Ambient
+    (ℕ, ℝ)
+  Objects
+    x : ℕ → ℝ
+  Prove
+    Exists fun φ => ((∀ ⦃a b : Nat⦄, Nat.instPreorder.2.lt a b → Nat.instPreorder.2.lt (φ a) (φ b)) ∧ (Or (∀ ⦃a b : Nat⦄, Nat.instPreorder.1.le a b → Real.instPreorder.1.le (x (φ a)) (x (φ b))) (∀ ⦃a b : Nat⦄, Nat.instPreorder.1.le a b → Real.instPreorder.1.le (x (φ b)) (x (φ a)))))
 
 Logical form (Lean):
 
@@ -90,11 +100,16 @@ theorem MonotoneSubsequence (x : ℕ → ℝ) :
 
 Predicate logic:
 
-  (ℕ → ℝ ∧ ∃ M, ∀ n, |x n| ≤ M) → ∃ φ ∈ ℕ → ℕ, StrictMono φ ∧ ∃ L ∈ ℝ, Filter.Tendsto (x ∘ φ) Filter.atTop (nhds L)
+  ∀ (x : Nat → Real), (Exists fun M => ∀ (n : Nat), Real.instLE.le (abs (x n)) M) → Exists fun φ => (StrictMono φ ∧ Exists fun L => Filter.Tendsto (Function.comp x φ) Filter.atTop (nhds L))
 
 Predicate logic (unfolded):
 
-  ∀ (x : Nat → Real), (Exists fun M => ∀ (n : Nat), Real.instLE.1 (SemilatticeSup.toMax.1 (x n) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (x n))) M) → Exists fun φ => (∀ ⦃a b : Nat⦄, Nat.instPreorder.toLT.1 a b → Nat.instPreorder.toLT.1 (φ a) (φ b) ∧ Exists fun L => Filter.instPartialOrder.toLE.1 { sets := fun x_1 => Set.instMembership.1 Filter.atTop.sets (Set.preimage (Function.comp x φ) x_1), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds L))
+  Ambient
+    (ℕ, ℝ)
+  Objects
+    x : ℕ → ℝ
+  Prove
+    (Exists fun M => ∀ (n : Nat), Real.instLE.le (abs (x n)) M) → Exists fun φ => ((∀ ⦃a b : Nat⦄, Nat.instPreorder.2.lt a b → Nat.instPreorder.2.lt (φ a) (φ b)) ∧ Exists fun L => Filter.instPartialOrder.toPreorder.1.le { sets := fun x_1 => setOf fun x_2 => Function.comp x φ x_2 ∈ x_1 ∈ Filter.atTop.1, univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds L))
 
 Logical form (Lean):
 

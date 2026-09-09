@@ -15,11 +15,22 @@ open LRA.Analysis.Bounds
 
 Predicate logic:
 
-  (∀ nonemptyHypothesis ∈ A.Nonempty), (IsSupremum s A ∧ s ∈ I) → IsSupremum (f s) (f '' A)
+  ∀ {I A : Set Real}, (Set.instLE.le A I ∧ A.Nonempty) → ∀ {s : Real}, (LRA.Analysis.Bounds.IsSupremum s A ∧ s ∈ I) → ∀ {f : Real → Real}, (MonotoneOn f I ∧ ContinuousWithinAt f I s) → LRA.Analysis.Bounds.IsSupremum (f s) (Set.image f A)
 
 Predicate logic (unfolded):
 
-  ∀ {I A : Real → Prop}, (Set.instLE.1 A I ∧ Exists fun x => Set.instMembership.1 A x) → ∀ {s : Real}, ((∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x s ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 s u) ∧ Set.instMembership.1 I s) → ∀ {f : Real → Real}, (∀ ⦃a : Real⦄, Set.instMembership.1 I a → ∀ ⦃b : Real⦄, Set.instMembership.1 I b → Real.instPreorder.toLE.1 a b → Real.instPreorder.toLE.1 (f a) (f b) ∧ Filter.instPartialOrder.toLE.1 { sets := fun x => Set.instMembership.mem (nhdsWithin s I).sets (Set.preimage f x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds (f s))) → (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.1 A a ∧ f a = x)) x → Real.instPreorder.toLE.1 x (f s) ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.1 A a ∧ f a = x)) x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 (f s) u)
+  Ambient
+    (ℝ)
+  Objects
+    I A : Set ℝ
+    setContainedInDomain : A ⊆ I
+    nonemptyHypothesis : A.Nonempty
+    s : ℝ
+    f : ℝ → ℝ
+    monotoneHypothesis : MonotoneOn f I
+    continuityHypothesis : ContinuousWithinAt f I s
+  Prove
+    (({ le := fun s₁ s₂ => ∀ ⦃a : Real⦄, a ∈ s₁ → a ∈ s₂}.le A I) ∧ Exists fun x => x ∈ A) → ∀ {s : Real}, (((∀ (x : Real), x ∈ A → Real.instPreorder.1.le x s) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le x u) → Real.instPreorder.1.le s u)) ∧ s ∈ I) → ∀ {f : Real → Real}, ((∀ ⦃a : Real⦄, a ∈ I → ∀ ⦃b : Real⦄, b ∈ I → Real.instPreorder.1.le a b → Real.instPreorder.1.le (f a) (f b)) ∧ Filter.instPartialOrder.toPreorder.1.le { sets := fun x => .sets ∈ nhdsWithin s I(Set.preimage f x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds (f s))) → ((∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ A ∧ f a = x) → Real.instPreorder.1.le x (f s)) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ A ∧ f a = x) → Real.instPreorder.1.le x u) → Real.instPreorder.1.le (f s) u))
 
 Logical form (Lean):
 
@@ -71,11 +82,22 @@ theorem IncreasingImagePreservesSuprema {I A : Set ℝ}
 
 Predicate logic:
 
-  (∀ nonemptyHypothesis ∈ A.Nonempty), (IsInfimum i A ∧ i ∈ I) → IsInfimum (f i) (f '' A)
+  ∀ {I A : Set Real}, (Set.instLE.le A I ∧ A.Nonempty) → ∀ {i : Real}, (LRA.Analysis.Bounds.IsInfimum i A ∧ i ∈ I) → ∀ {f : Real → Real}, (MonotoneOn f I ∧ ContinuousWithinAt f I i) → LRA.Analysis.Bounds.IsInfimum (f i) (Set.image f A)
 
 Predicate logic (unfolded):
 
-  ∀ {I A : Real → Prop}, (Set.instLE.1 A I ∧ Exists fun x => Set.instMembership.1 A x) → ∀ {i : Real}, ((∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 i x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l i) ∧ Set.instMembership.1 I i) → ∀ {f : Real → Real}, (∀ ⦃a : Real⦄, Set.instMembership.1 I a → ∀ ⦃b : Real⦄, Set.instMembership.1 I b → Real.instPreorder.toLE.1 a b → Real.instPreorder.toLE.1 (f a) (f b) ∧ Filter.instPartialOrder.toLE.1 { sets := fun x => Set.instMembership.mem (nhdsWithin i I).sets (Set.preimage f x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds (f i))) → (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.1 A a ∧ f a = x)) x → Real.instPreorder.toLE.1 (f i) x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.1 A a ∧ f a = x)) x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l (f i))
+  Ambient
+    (ℝ)
+  Objects
+    I A : Set ℝ
+    setContainedInDomain : A ⊆ I
+    nonemptyHypothesis : A.Nonempty
+    i : ℝ
+    f : ℝ → ℝ
+    monotoneHypothesis : MonotoneOn f I
+    continuityHypothesis : ContinuousWithinAt f I i
+  Prove
+    (({ le := fun s₁ s₂ => ∀ ⦃a : Real⦄, a ∈ s₁ → a ∈ s₂}.le A I) ∧ Exists fun x => x ∈ A) → ∀ {i : Real}, (((∀ (x : Real), x ∈ A → Real.instPreorder.1.le i x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l i)) ∧ i ∈ I) → ∀ {f : Real → Real}, ((∀ ⦃a : Real⦄, a ∈ I → ∀ ⦃b : Real⦄, b ∈ I → Real.instPreorder.1.le a b → Real.instPreorder.1.le (f a) (f b)) ∧ Filter.instPartialOrder.toPreorder.1.le { sets := fun x => .sets ∈ nhdsWithin i I(Set.preimage f x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds (f i))) → ((∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ A ∧ f a = x) → Real.instPreorder.1.le (f i) x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ A ∧ f a = x) → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l (f i)))
 
 Logical form (Lean):
 
@@ -127,11 +149,22 @@ theorem IncreasingImagePreservesInfima {I A : Set ℝ}
 
 Predicate logic:
 
-  (∀ nonemptyHypothesis ∈ A.Nonempty), (IsInfimum i A ∧ i ∈ I) → IsSupremum (f i) (f '' A)
+  ∀ {I A : Set Real}, (Set.instLE.le A I ∧ A.Nonempty) → ∀ {i : Real}, (LRA.Analysis.Bounds.IsInfimum i A ∧ i ∈ I) → ∀ {f : Real → Real}, (AntitoneOn f I ∧ ContinuousWithinAt f I i) → LRA.Analysis.Bounds.IsSupremum (f i) (Set.image f A)
 
 Predicate logic (unfolded):
 
-  ∀ {I A : Real → Prop}, (Set.instLE.1 A I ∧ Exists fun x => Set.instMembership.1 A x) → ∀ {i : Real}, ((∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 i x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l i) ∧ Set.instMembership.1 I i) → ∀ {f : Real → Real}, (∀ ⦃a : Real⦄, Set.instMembership.1 I a → ∀ ⦃b : Real⦄, Set.instMembership.1 I b → Real.instPreorder.toLE.1 a b → Real.instPreorder.toLE.1 (f b) (f a) ∧ Filter.instPartialOrder.toLE.1 { sets := fun x => Set.instMembership.mem (nhdsWithin i I).sets (Set.preimage f x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds (f i))) → (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.1 A a ∧ f a = x)) x → Real.instPreorder.toLE.1 x (f i) ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.1 A a ∧ f a = x)) x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 (f i) u)
+  Ambient
+    (ℝ)
+  Objects
+    I A : Set ℝ
+    setContainedInDomain : A ⊆ I
+    nonemptyHypothesis : A.Nonempty
+    i : ℝ
+    f : ℝ → ℝ
+    antitoneHypothesis : AntitoneOn f I
+    continuityHypothesis : ContinuousWithinAt f I i
+  Prove
+    (({ le := fun s₁ s₂ => ∀ ⦃a : Real⦄, a ∈ s₁ → a ∈ s₂}.le A I) ∧ Exists fun x => x ∈ A) → ∀ {i : Real}, (((∀ (x : Real), x ∈ A → Real.instPreorder.1.le i x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l i)) ∧ i ∈ I) → ∀ {f : Real → Real}, ((∀ ⦃a : Real⦄, a ∈ I → ∀ ⦃b : Real⦄, b ∈ I → Real.instPreorder.1.le a b → Real.instPreorder.1.le (f b) (f a)) ∧ Filter.instPartialOrder.toPreorder.1.le { sets := fun x => .sets ∈ nhdsWithin i I(Set.preimage f x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds (f i))) → ((∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ A ∧ f a = x) → Real.instPreorder.1.le x (f i)) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ A ∧ f a = x) → Real.instPreorder.1.le x u) → Real.instPreorder.1.le (f i) u))
 
 Logical form (Lean):
 
@@ -183,11 +216,22 @@ theorem DecreasingImageSendsInfimaToSuprema {I A : Set ℝ}
 
 Predicate logic:
 
-  (∀ nonemptyHypothesis ∈ A.Nonempty), (IsSupremum s A ∧ s ∈ I) → IsInfimum (f s) (f '' A)
+  ∀ {I A : Set Real}, (Set.instLE.le A I ∧ A.Nonempty) → ∀ {s : Real}, (LRA.Analysis.Bounds.IsSupremum s A ∧ s ∈ I) → ∀ {f : Real → Real}, (AntitoneOn f I ∧ ContinuousWithinAt f I s) → LRA.Analysis.Bounds.IsInfimum (f s) (Set.image f A)
 
 Predicate logic (unfolded):
 
-  ∀ {I A : Real → Prop}, (Set.instLE.1 A I ∧ Exists fun x => Set.instMembership.1 A x) → ∀ {s : Real}, ((∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x s ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 s u) ∧ Set.instMembership.1 I s) → ∀ {f : Real → Real}, (∀ ⦃a : Real⦄, Set.instMembership.1 I a → ∀ ⦃b : Real⦄, Set.instMembership.1 I b → Real.instPreorder.toLE.1 a b → Real.instPreorder.toLE.1 (f b) (f a) ∧ Filter.instPartialOrder.toLE.1 { sets := fun x => Set.instMembership.mem (nhdsWithin s I).sets (Set.preimage f x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds (f s))) → (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.1 A a ∧ f a = x)) x → Real.instPreorder.toLE.1 (f s) x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.1 A a ∧ f a = x)) x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l (f s))
+  Ambient
+    (ℝ)
+  Objects
+    I A : Set ℝ
+    setContainedInDomain : A ⊆ I
+    nonemptyHypothesis : A.Nonempty
+    s : ℝ
+    f : ℝ → ℝ
+    antitoneHypothesis : AntitoneOn f I
+    continuityHypothesis : ContinuousWithinAt f I s
+  Prove
+    (({ le := fun s₁ s₂ => ∀ ⦃a : Real⦄, a ∈ s₁ → a ∈ s₂}.le A I) ∧ Exists fun x => x ∈ A) → ∀ {s : Real}, (((∀ (x : Real), x ∈ A → Real.instPreorder.1.le x s) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le x u) → Real.instPreorder.1.le s u)) ∧ s ∈ I) → ∀ {f : Real → Real}, ((∀ ⦃a : Real⦄, a ∈ I → ∀ ⦃b : Real⦄, b ∈ I → Real.instPreorder.1.le a b → Real.instPreorder.1.le (f b) (f a)) ∧ Filter.instPartialOrder.toPreorder.1.le { sets := fun x => .sets ∈ nhdsWithin s I(Set.preimage f x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds (f s))) → ((∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ A ∧ f a = x) → Real.instPreorder.1.le (f s) x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ A ∧ f a = x) → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l (f s)))
 
 Logical form (Lean):
 
@@ -239,11 +283,24 @@ theorem DecreasingImageSendsSupremaToInfima {I A : Set ℝ}
 
 Predicate logic:
 
-  (∀ nonemptyHypothesis ∈ B.Nonempty), (IsSupremum u B ∧ u ∈ J) → IsSupremum (g u) (g '' B)
+  ∀ {I J B : Set Real} {f g : Real → Real}, (Set.BijOn f I J ∧ (Set.InvOn g f I J ∧ (Set.instLE.le B J ∧ B.Nonempty))) → ∀ {u : Real}, (LRA.Analysis.Bounds.IsSupremum u B ∧ (u ∈ J ∧ (MonotoneOn g J ∧ ContinuousWithinAt g J u))) → LRA.Analysis.Bounds.IsSupremum (g u) (Set.image g B)
 
 Predicate logic (unfolded):
 
-  ∀ {I J B : Real → Prop} {f g : Real → Real}, ((∀ ⦃x : Real⦄, Set.instMembership.1 I x → Set.instMembership.1 J (f x) ∧ (∀ ⦃x₁ : Real⦄, Set.instMembership.1 I x₁ → ∀ ⦃x₂ : Real⦄, Set.instMembership.1 I x₂ → f x₁ = f x₂ → x₁ = x₂ ∧ Set.instLE.1 J fun x => Exists fun a => (Set.instMembership.1 I a ∧ f a = x))) ∧ ((∀ ⦃x : Real⦄, Set.instMembership.1 I x → g (f x) = x ∧ ∀ ⦃x : Real⦄, Set.instMembership.1 J x → f (g x) = x) ∧ (Set.instLE.1 B J ∧ Exists fun x => Set.instMembership.1 B x))) → ∀ {u : Real}, ((∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 x u ∧ ∀ (u_1 : Real), (∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 x u_1) → Real.instPreorder.toLE.1 u u_1) ∧ (Set.instMembership.1 J u ∧ (∀ ⦃a : Real⦄, Set.instMembership.1 J a → ∀ ⦃b : Real⦄, Set.instMembership.1 J b → Real.instPreorder.toLE.1 a b → Real.instPreorder.toLE.1 (g a) (g b) ∧ Filter.instPartialOrder.toLE.1 { sets := fun x => Set.instMembership.mem (nhdsWithin u J).sets (Set.preimage g x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds (g u))))) → (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.1 B a ∧ g a = x)) x → Real.instPreorder.toLE.1 x (g u) ∧ ∀ (u_1 : Real), (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.1 B a ∧ g a = x)) x → Real.instPreorder.toLE.1 x u_1) → Real.instPreorder.toLE.1 (g u) u_1)
+  Ambient
+    (ℝ)
+  Objects
+    I J B : Set ℝ
+    f g : ℝ → ℝ
+    bijectionHypothesis : Set.BijOn f I J
+    inverseHypothesis : Set.InvOn g f I J
+    setContainedInCodomain : B ⊆ J
+    nonemptyHypothesis : B.Nonempty
+    u : ℝ
+    inverseMonotoneHypothesis : MonotoneOn g J
+    inverseContinuityHypothesis : ContinuousWithinAt g J u
+  Prove
+    (((∀ ⦃x : Real⦄, x ∈ I → f x ∈ J) ∧ ((∀ ⦃x₁ : Real⦄, x₁ ∈ I → ∀ ⦃x₂ : Real⦄, x₂ ∈ I → f x₁ = f x₂ → x₁ = x₂) ∧ ({ le := fun s₁ s₂ => ∀ ⦃a : Real⦄, a ∈ s₁ → a ∈ s₂}.le J fun x => Exists fun a => (a ∈ I ∧ f a = x)))) ∧ (((∀ ⦃x : Real⦄, x ∈ I → g (f x) = x) ∧ (∀ ⦃x : Real⦄, x ∈ J → f (g x) = x)) ∧ (({ le := fun s₁ s₂ => ∀ ⦃a : Real⦄, a ∈ s₁ → a ∈ s₂}.le B J) ∧ Exists fun x => x ∈ B))) → ∀ {u : Real}, (((∀ (x : Real), x ∈ B → Real.instPreorder.1.le x u) ∧ (∀ (u_1 : Real), (∀ (x : Real), x ∈ B → Real.instPreorder.1.le x u_1) → Real.instPreorder.1.le u u_1)) ∧ (u ∈ J ∧ ((∀ ⦃a : Real⦄, a ∈ J → ∀ ⦃b : Real⦄, b ∈ J → Real.instPreorder.1.le a b → Real.instPreorder.1.le (g a) (g b)) ∧ Filter.instPartialOrder.toPreorder.1.le { sets := fun x => .sets ∈ nhdsWithin u J(Set.preimage g x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds (g u))))) → ((∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ B ∧ g a = x) → Real.instPreorder.1.le x (g u)) ∧ (∀ (u_1 : Real), (∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ B ∧ g a = x) → Real.instPreorder.1.le x u_1) → Real.instPreorder.1.le (g u) u_1))
 
 Logical form (Lean):
 
@@ -299,11 +356,24 @@ theorem IncreasingInversePreservesSuprema {I J B : Set ℝ}
 
 Predicate logic:
 
-  (∀ nonemptyHypothesis ∈ B.Nonempty), (IsInfimum v B ∧ v ∈ J) → IsInfimum (g v) (g '' B)
+  ∀ {I J B : Set Real} {f g : Real → Real}, (Set.BijOn f I J ∧ (Set.InvOn g f I J ∧ (Set.instLE.le B J ∧ B.Nonempty))) → ∀ {v : Real}, (LRA.Analysis.Bounds.IsInfimum v B ∧ (v ∈ J ∧ (MonotoneOn g J ∧ ContinuousWithinAt g J v))) → LRA.Analysis.Bounds.IsInfimum (g v) (Set.image g B)
 
 Predicate logic (unfolded):
 
-  ∀ {I J B : Real → Prop} {f g : Real → Real}, ((∀ ⦃x : Real⦄, Set.instMembership.1 I x → Set.instMembership.1 J (f x) ∧ (∀ ⦃x₁ : Real⦄, Set.instMembership.1 I x₁ → ∀ ⦃x₂ : Real⦄, Set.instMembership.1 I x₂ → f x₁ = f x₂ → x₁ = x₂ ∧ Set.instLE.1 J fun x => Exists fun a => (Set.instMembership.1 I a ∧ f a = x))) ∧ ((∀ ⦃x : Real⦄, Set.instMembership.1 I x → g (f x) = x ∧ ∀ ⦃x : Real⦄, Set.instMembership.1 J x → f (g x) = x) ∧ (Set.instLE.1 B J ∧ Exists fun x => Set.instMembership.1 B x))) → ∀ {v : Real}, ((∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 v x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l v) ∧ (Set.instMembership.1 J v ∧ (∀ ⦃a : Real⦄, Set.instMembership.1 J a → ∀ ⦃b : Real⦄, Set.instMembership.1 J b → Real.instPreorder.toLE.1 a b → Real.instPreorder.toLE.1 (g a) (g b) ∧ Filter.instPartialOrder.toLE.1 { sets := fun x => Set.instMembership.mem (nhdsWithin v J).sets (Set.preimage g x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds (g v))))) → (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.1 B a ∧ g a = x)) x → Real.instPreorder.toLE.1 (g v) x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.1 B a ∧ g a = x)) x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l (g v))
+  Ambient
+    (ℝ)
+  Objects
+    I J B : Set ℝ
+    f g : ℝ → ℝ
+    bijectionHypothesis : Set.BijOn f I J
+    inverseHypothesis : Set.InvOn g f I J
+    setContainedInCodomain : B ⊆ J
+    nonemptyHypothesis : B.Nonempty
+    v : ℝ
+    inverseMonotoneHypothesis : MonotoneOn g J
+    inverseContinuityHypothesis : ContinuousWithinAt g J v
+  Prove
+    (((∀ ⦃x : Real⦄, x ∈ I → f x ∈ J) ∧ ((∀ ⦃x₁ : Real⦄, x₁ ∈ I → ∀ ⦃x₂ : Real⦄, x₂ ∈ I → f x₁ = f x₂ → x₁ = x₂) ∧ ({ le := fun s₁ s₂ => ∀ ⦃a : Real⦄, a ∈ s₁ → a ∈ s₂}.le J fun x => Exists fun a => (a ∈ I ∧ f a = x)))) ∧ (((∀ ⦃x : Real⦄, x ∈ I → g (f x) = x) ∧ (∀ ⦃x : Real⦄, x ∈ J → f (g x) = x)) ∧ (({ le := fun s₁ s₂ => ∀ ⦃a : Real⦄, a ∈ s₁ → a ∈ s₂}.le B J) ∧ Exists fun x => x ∈ B))) → ∀ {v : Real}, (((∀ (x : Real), x ∈ B → Real.instPreorder.1.le v x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ B → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l v)) ∧ (v ∈ J ∧ ((∀ ⦃a : Real⦄, a ∈ J → ∀ ⦃b : Real⦄, b ∈ J → Real.instPreorder.1.le a b → Real.instPreorder.1.le (g a) (g b)) ∧ Filter.instPartialOrder.toPreorder.1.le { sets := fun x => .sets ∈ nhdsWithin v J(Set.preimage g x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds (g v))))) → ((∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ B ∧ g a = x) → Real.instPreorder.1.le (g v) x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ B ∧ g a = x) → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l (g v)))
 
 Logical form (Lean):
 
@@ -359,11 +429,24 @@ theorem IncreasingInversePreservesInfima {I J B : Set ℝ}
 
 Predicate logic:
 
-  (∀ nonemptyHypothesis ∈ B.Nonempty), (IsInfimum v B ∧ v ∈ J) → IsSupremum (g v) (g '' B)
+  ∀ {I J B : Set Real} {f g : Real → Real}, (Set.BijOn f I J ∧ (Set.InvOn g f I J ∧ (Set.instLE.le B J ∧ B.Nonempty))) → ∀ {v : Real}, (LRA.Analysis.Bounds.IsInfimum v B ∧ (v ∈ J ∧ (AntitoneOn g J ∧ ContinuousWithinAt g J v))) → LRA.Analysis.Bounds.IsSupremum (g v) (Set.image g B)
 
 Predicate logic (unfolded):
 
-  ∀ {I J B : Real → Prop} {f g : Real → Real}, ((∀ ⦃x : Real⦄, Set.instMembership.1 I x → Set.instMembership.1 J (f x) ∧ (∀ ⦃x₁ : Real⦄, Set.instMembership.1 I x₁ → ∀ ⦃x₂ : Real⦄, Set.instMembership.1 I x₂ → f x₁ = f x₂ → x₁ = x₂ ∧ Set.instLE.1 J fun x => Exists fun a => (Set.instMembership.1 I a ∧ f a = x))) ∧ ((∀ ⦃x : Real⦄, Set.instMembership.1 I x → g (f x) = x ∧ ∀ ⦃x : Real⦄, Set.instMembership.1 J x → f (g x) = x) ∧ (Set.instLE.1 B J ∧ Exists fun x => Set.instMembership.1 B x))) → ∀ {v : Real}, ((∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 v x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l v) ∧ (Set.instMembership.1 J v ∧ (∀ ⦃a : Real⦄, Set.instMembership.1 J a → ∀ ⦃b : Real⦄, Set.instMembership.1 J b → Real.instPreorder.toLE.1 a b → Real.instPreorder.toLE.1 (g b) (g a) ∧ Filter.instPartialOrder.toLE.1 { sets := fun x => Set.instMembership.mem (nhdsWithin v J).sets (Set.preimage g x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds (g v))))) → (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.1 B a ∧ g a = x)) x → Real.instPreorder.toLE.1 x (g v) ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.1 B a ∧ g a = x)) x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 (g v) u)
+  Ambient
+    (ℝ)
+  Objects
+    I J B : Set ℝ
+    f g : ℝ → ℝ
+    bijectionHypothesis : Set.BijOn f I J
+    inverseHypothesis : Set.InvOn g f I J
+    setContainedInCodomain : B ⊆ J
+    nonemptyHypothesis : B.Nonempty
+    v : ℝ
+    inverseAntitoneHypothesis : AntitoneOn g J
+    inverseContinuityHypothesis : ContinuousWithinAt g J v
+  Prove
+    (((∀ ⦃x : Real⦄, x ∈ I → f x ∈ J) ∧ ((∀ ⦃x₁ : Real⦄, x₁ ∈ I → ∀ ⦃x₂ : Real⦄, x₂ ∈ I → f x₁ = f x₂ → x₁ = x₂) ∧ ({ le := fun s₁ s₂ => ∀ ⦃a : Real⦄, a ∈ s₁ → a ∈ s₂}.le J fun x => Exists fun a => (a ∈ I ∧ f a = x)))) ∧ (((∀ ⦃x : Real⦄, x ∈ I → g (f x) = x) ∧ (∀ ⦃x : Real⦄, x ∈ J → f (g x) = x)) ∧ (({ le := fun s₁ s₂ => ∀ ⦃a : Real⦄, a ∈ s₁ → a ∈ s₂}.le B J) ∧ Exists fun x => x ∈ B))) → ∀ {v : Real}, (((∀ (x : Real), x ∈ B → Real.instPreorder.1.le v x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ B → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l v)) ∧ (v ∈ J ∧ ((∀ ⦃a : Real⦄, a ∈ J → ∀ ⦃b : Real⦄, b ∈ J → Real.instPreorder.1.le a b → Real.instPreorder.1.le (g b) (g a)) ∧ Filter.instPartialOrder.toPreorder.1.le { sets := fun x => .sets ∈ nhdsWithin v J(Set.preimage g x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds (g v))))) → ((∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ B ∧ g a = x) → Real.instPreorder.1.le x (g v)) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ B ∧ g a = x) → Real.instPreorder.1.le x u) → Real.instPreorder.1.le (g v) u))
 
 Logical form (Lean):
 
@@ -419,11 +502,24 @@ theorem DecreasingInverseSendsInfimaToSuprema {I J B : Set ℝ}
 
 Predicate logic:
 
-  (∀ nonemptyHypothesis ∈ B.Nonempty), (IsSupremum u B ∧ u ∈ J) → IsInfimum (g u) (g '' B)
+  ∀ {I J B : Set Real} {f g : Real → Real}, (Set.BijOn f I J ∧ (Set.InvOn g f I J ∧ (Set.instLE.le B J ∧ B.Nonempty))) → ∀ {u : Real}, (LRA.Analysis.Bounds.IsSupremum u B ∧ (u ∈ J ∧ (AntitoneOn g J ∧ ContinuousWithinAt g J u))) → LRA.Analysis.Bounds.IsInfimum (g u) (Set.image g B)
 
 Predicate logic (unfolded):
 
-  ∀ {I J B : Real → Prop} {f g : Real → Real}, ((∀ ⦃x : Real⦄, Set.instMembership.1 I x → Set.instMembership.1 J (f x) ∧ (∀ ⦃x₁ : Real⦄, Set.instMembership.1 I x₁ → ∀ ⦃x₂ : Real⦄, Set.instMembership.1 I x₂ → f x₁ = f x₂ → x₁ = x₂ ∧ Set.instLE.1 J fun x => Exists fun a => (Set.instMembership.1 I a ∧ f a = x))) ∧ ((∀ ⦃x : Real⦄, Set.instMembership.1 I x → g (f x) = x ∧ ∀ ⦃x : Real⦄, Set.instMembership.1 J x → f (g x) = x) ∧ (Set.instLE.1 B J ∧ Exists fun x => Set.instMembership.1 B x))) → ∀ {u : Real}, ((∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 x u ∧ ∀ (u_1 : Real), (∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 x u_1) → Real.instPreorder.toLE.1 u u_1) ∧ (Set.instMembership.1 J u ∧ (∀ ⦃a : Real⦄, Set.instMembership.1 J a → ∀ ⦃b : Real⦄, Set.instMembership.1 J b → Real.instPreorder.toLE.1 a b → Real.instPreorder.toLE.1 (g b) (g a) ∧ Filter.instPartialOrder.toLE.1 { sets := fun x => Set.instMembership.mem (nhdsWithin u J).sets (Set.preimage g x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds (g u))))) → (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.1 B a ∧ g a = x)) x → Real.instPreorder.toLE.1 (g u) x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.1 B a ∧ g a = x)) x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l (g u))
+  Ambient
+    (ℝ)
+  Objects
+    I J B : Set ℝ
+    f g : ℝ → ℝ
+    bijectionHypothesis : Set.BijOn f I J
+    inverseHypothesis : Set.InvOn g f I J
+    setContainedInCodomain : B ⊆ J
+    nonemptyHypothesis : B.Nonempty
+    u : ℝ
+    inverseAntitoneHypothesis : AntitoneOn g J
+    inverseContinuityHypothesis : ContinuousWithinAt g J u
+  Prove
+    (((∀ ⦃x : Real⦄, x ∈ I → f x ∈ J) ∧ ((∀ ⦃x₁ : Real⦄, x₁ ∈ I → ∀ ⦃x₂ : Real⦄, x₂ ∈ I → f x₁ = f x₂ → x₁ = x₂) ∧ ({ le := fun s₁ s₂ => ∀ ⦃a : Real⦄, a ∈ s₁ → a ∈ s₂}.le J fun x => Exists fun a => (a ∈ I ∧ f a = x)))) ∧ (((∀ ⦃x : Real⦄, x ∈ I → g (f x) = x) ∧ (∀ ⦃x : Real⦄, x ∈ J → f (g x) = x)) ∧ (({ le := fun s₁ s₂ => ∀ ⦃a : Real⦄, a ∈ s₁ → a ∈ s₂}.le B J) ∧ Exists fun x => x ∈ B))) → ∀ {u : Real}, (((∀ (x : Real), x ∈ B → Real.instPreorder.1.le x u) ∧ (∀ (u_1 : Real), (∀ (x : Real), x ∈ B → Real.instPreorder.1.le x u_1) → Real.instPreorder.1.le u u_1)) ∧ (u ∈ J ∧ ((∀ ⦃a : Real⦄, a ∈ J → ∀ ⦃b : Real⦄, b ∈ J → Real.instPreorder.1.le a b → Real.instPreorder.1.le (g b) (g a)) ∧ Filter.instPartialOrder.toPreorder.1.le { sets := fun x => .sets ∈ nhdsWithin u J(Set.preimage g x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds (g u))))) → ((∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ B ∧ g a = x) → Real.instPreorder.1.le (g u) x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ B ∧ g a = x) → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l (g u)))
 
 Logical form (Lean):
 

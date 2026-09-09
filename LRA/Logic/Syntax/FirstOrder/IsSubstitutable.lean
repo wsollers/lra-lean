@@ -11,7 +11,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : (a b : Variable) → Decidable (a = b)] (a : LRA.Logic.FirstOrder.Formula S Variable) (a_1 : Variable) (a_2 : LRA.Logic.FirstOrder.Term S Variable), (LRA.Logic.FirstOrder.Formula.brecOn.go (motive := fun x => Variable → LRA.Logic.FirstOrder.Term S Variable → Prop) a LRA.Logic.FirstOrder.IsSubstitutable._f).1 a_1 a_2
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (LRA.Logic.FirstOrder.Formula.brecOn.go (motive := fun x => Variable → LRA.Logic.FirstOrder.Term S Variable → Prop) a LRA.Logic.FirstOrder.IsSubstitutable._f).1 a_1 a_2
 
 Logical form (Lean):
 

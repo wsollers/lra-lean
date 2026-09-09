@@ -11,25 +11,25 @@ Predicate logic:
 
   structure MetricDefinition (X : Type u) where
 
-  distance : X → X → Real
+    distance : X → X → Real
 
-  positive : ∀ x y : X, 0 ≤ distance x y ∧ (distance x y = 0 ↔ x = y)
+    positive : ∀ x y : X, 0 ≤ distance x y ∧ (distance x y = 0 ↔ x = y)
 
-  symmetric : ∀ x y : X, distance x y = distance y x
+    symmetric : ∀ x y : X, distance x y = distance y x
 
-  triangle : ∀ x y z : X, distance x z ≤ distance x y + distance y z
+    triangle : ∀ x y z : X, distance x z ≤ distance x y + distance y z
 
 Predicate logic (unfolded):
 
   structure MetricDefinition (X : Type u) where
 
-  distance : X → X → Real
+    distance : X → X → Real
 
-  positive : ∀ x y : X, 0 ≤ distance x y ∧ (distance x y = 0 ↔ x = y)
+    positive : ∀ x y : X, 0 ≤ distance x y ∧ (distance x y = 0 ↔ x = y)
 
-  symmetric : ∀ x y : X, distance x y = distance y x
+    symmetric : ∀ x y : X, distance x y = distance y x
 
-  triangle : ∀ x y z : X, distance x z ≤ distance x y + distance y z (source fallback; no compiled unfold data available)
+    triangle : ∀ x y z : X, distance x z ≤ distance x y + distance y z (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

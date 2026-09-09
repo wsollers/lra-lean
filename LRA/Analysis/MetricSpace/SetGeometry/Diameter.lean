@@ -8,11 +8,16 @@ namespace LRA.Analysis.MetricSpace
 
 Predicate logic:
 
-  ∀ {X : Type u} [inst : MetricSpace X] (S : Set X) (a : Real), Exists fun x => (Set.instMembership.mem S x ∧ Exists fun y => (Set.instMembership.mem S y ∧ a = inst.dist x y))
+  ∀ {X : Type u} [inst : MetricSpace X] (S : Set X) (a : Real), Exists fun x => (x ∈ S ∧ (Exists fun y => (y ∈ S ∧ a = inst.dist x y)))
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} [inst : MetricSpace X] (S : X → Prop) (a : Real), Exists fun x => (Set.instMembership.1 S x ∧ Exists fun y => (Set.instMembership.1 S y ∧ a = inst.toDist.1 x y))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun x => (x ∈ S ∧ (Exists fun y => (y ∈ S ∧ a = inst.toDist.1 x y)))
 
 Logical form (Lean):
 
@@ -55,18 +60,18 @@ def diameterSet
 Predicate logic:
 
   noncomputable def diameter
-    {X : Type u}
-    [MetricSpace X]
-    (S : Set X) : Real :=
-  sSup (diameterSet S)
+      {X : Type u}
+      [MetricSpace X]
+      (S : Set X) : Real :=
+    sSup (diameterSet S)
 
 Predicate logic (unfolded):
 
   noncomputable def diameter
-    {X : Type u}
-    [MetricSpace X]
-    (S : Set X) : Real :=
-  sSup (diameterSet S) (source fallback; no compiled unfold data available)
+      {X : Type u}
+      [MetricSpace X]
+      (S : Set X) : Real :=
+    sSup (diameterSet S) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -108,11 +113,17 @@ noncomputable def diameter
 
 Predicate logic:
 
-  diameterSet A ⊆ diameterSet B
+  ∀ {X : Type u} [inst : MetricSpace X] {A B : Set X}, Set.instLE.le A B → Set.instLE.le (LRA.Analysis.MetricSpace.diameterSet A) (LRA.Analysis.MetricSpace.diameterSet B)
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} [inst : MetricSpace X] {A B : X → Prop}, Set.instLE.1 A B → Set.instLE.1 (fun r => Exists fun x => (Set.instMembership.1 A x ∧ Exists fun y => (Set.instMembership.1 A y ∧ r = inst.toDist.1 x y))) fun r => Exists fun x => (Set.instMembership.1 B x ∧ Exists fun y => (Set.instMembership.1 B y ∧ r = inst.toDist.1 x y))
+  Ambient
+    (X)
+  Objects
+    A B : Set X
+    set_inclusion : A ⊆ B
+  Prove
+    { le := fun s₁ s₂ => ∀ ⦃a : X⦄, a ∈ s₁ → a ∈ s₂}.le A B → { le := fun s₁ s₂ => ∀ ⦃a : Real⦄, a ∈ s₁ → a ∈ s₂}.le (fun r => Exists fun x => (x ∈ A ∧ (Exists fun y => (y ∈ A ∧ r = inst.toDist.1 x y)))) fun r => Exists fun x => (x ∈ B ∧ (Exists fun y => (y ∈ B ∧ r = inst.toDist.1 x y)))
 
 Logical form (Lean):
 
@@ -156,11 +167,19 @@ theorem diameterSet_mono
 
 Predicate logic:
 
-  diameter A ≤ diameter B
+  ∀ {X : Type u} [inst : MetricSpace X] {A B : Set X}, (Set.instLE.le A B ∧ (LRA.Analysis.MetricSpace.diameterSet A ∧ .Nonempty)(BddAbove (LRA.Analysis.MetricSpace.diameterSet B))) → Real.instLE.le (LRA.Analysis.MetricSpace.diameter A) (LRA.Analysis.MetricSpace.diameter B)
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} [inst : MetricSpace X] {A B : X → Prop}, (Set.instLE.1 A B ∧ (Exists fun x => Set.instMembership.1 (fun r => Exists fun x => (Set.instMembership.1 A x ∧ Exists fun y => (Set.instMembership.1 A y ∧ r = inst.toDist.1 x y))) x ∧ Exists fun x => Set.instMembership.1 (fun x => ∀ ⦃a : Real⦄, Set.instMembership.1 (LRA.Analysis.MetricSpace.diameterSet B) a → Real.instLE.1 a x) x)) → Real.instLE.1 (Real.instSupSet.1 fun r => Exists fun x => (Set.instMembership.1 A x ∧ Exists fun y => (Set.instMembership.1 A y ∧ r = inst.toDist.1 x y))) (Real.instSupSet.1 fun r => Exists fun x => (Set.instMembership.1 B x ∧ Exists fun y => (Set.instMembership.1 B y ∧ r = inst.toDist.1 x y)))
+  Ambient
+    (X)
+  Objects
+    A B : Set X
+    set_inclusion : A ⊆ B
+    A_diameterSet_nonempty : (diameterSet A).Nonempty
+    B_diameterSet_bddAbove : BddAbove (diameterSet B)
+  Prove
+    (({ le := fun s₁ s₂ => ∀ ⦃a : X⦄, a ∈ s₁ → a ∈ s₂}.le A B) ∧ ((Exists fun x => x ∈ fun r => Exists fun x => (x ∈ A ∧ (Exists fun y => (y ∈ A ∧ r = inst.toDist.1 x y)))) ∧ (Exists fun x => x ∈ fun x => ∀ ⦃a : Real⦄, a ∈ LRA.Analysis.MetricSpace.diameterSet B → Real.instLE.le a x))) → Real.instLE.le (Real.instSupSet.1 fun r => Exists fun x => (x ∈ A ∧ (Exists fun y => (y ∈ A ∧ r = inst.toDist.1 x y)))) (Real.instSupSet.1 fun r => Exists fun x => (x ∈ B ∧ (Exists fun y => (y ∈ B ∧ r = inst.toDist.1 x y))))
 
 Logical form (Lean):
 

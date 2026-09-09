@@ -8,24 +8,24 @@ namespace LRA.ProofTheory.System.Takeuti
 Predicate logic:
 
   inductive Formula (L : Alphabet) : Type
-  | atom : {n : Nat} -> L.PredicateSymbol n -> (Fin n -> FormulaArg L) -> Formula L
-  | neg : Formula L -> Formula L
-  | conj : Formula L -> Formula L -> Formula L
-  | disj : Formula L -> Formula L -> Formula L
-  | impl : Formula L -> Formula L -> Formula L
-  | all : L.BoundVar -> Formula L -> Formula L
-  | ex : L.BoundVar -> Formula L -> Formula L
+    | atom : {n : Nat} -> L.PredicateSymbol n -> (Fin n -> FormulaArg L) -> Formula L
+    | neg : Formula L -> Formula L
+    | conj : Formula L -> Formula L -> Formula L
+    | disj : Formula L -> Formula L -> Formula L
+    | impl : Formula L -> Formula L -> Formula L
+    | all : L.BoundVar -> Formula L -> Formula L
+    | ex : L.BoundVar -> Formula L -> Formula L
 
 Predicate logic (unfolded):
 
   inductive Formula (L : Alphabet) : Type
-  | atom : {n : Nat} -> L.PredicateSymbol n -> (Fin n -> FormulaArg L) -> Formula L
-  | neg : Formula L -> Formula L
-  | conj : Formula L -> Formula L -> Formula L
-  | disj : Formula L -> Formula L -> Formula L
-  | impl : Formula L -> Formula L -> Formula L
-  | all : L.BoundVar -> Formula L -> Formula L
-  | ex : L.BoundVar -> Formula L -> Formula L (source fallback; no compiled unfold data available)
+    | atom : {n : Nat} -> L.PredicateSymbol n -> (Fin n -> FormulaArg L) -> Formula L
+    | neg : Formula L -> Formula L
+    | conj : Formula L -> Formula L -> Formula L
+    | disj : Formula L -> Formula L -> Formula L
+    | impl : Formula L -> Formula L -> Formula L
+    | all : L.BoundVar -> Formula L -> Formula L
+    | ex : L.BoundVar -> Formula L -> Formula L (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -74,16 +74,16 @@ inductive Formula (L : Alphabet) : Type
 Predicate logic:
 
   def Formula.substFreeByArg {L : Alphabet}
-    [DecidableEq L.FreeVar]
-    (a : L.FreeVar) (replacement : FormulaArg L)
-    (formula : Formula L) : Formula L
+      [DecidableEq L.FreeVar]
+      (a : L.FreeVar) (replacement : FormulaArg L)
+      (formula : Formula L) : Formula L
 
 Predicate logic (unfolded):
 
   def Formula.substFreeByArg {L : Alphabet}
-    [DecidableEq L.FreeVar]
-    (a : L.FreeVar) (replacement : FormulaArg L)
-    (formula : Formula L) : Formula L (source fallback; no compiled unfold data available)
+      [DecidableEq L.FreeVar]
+      (a : L.FreeVar) (replacement : FormulaArg L)
+      (formula : Formula L) : Formula L (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -139,16 +139,16 @@ def Formula.substFreeByArg {L : Alphabet}
 Predicate logic:
 
   def Formula.substFreeByTerm {L : Alphabet}
-    [DecidableEq L.FreeVar]
-    (a : L.FreeVar) (t : Term L) (A : Formula L) : Formula L :=
-  A.substFreeByArg a t.toFormulaArg
+      [DecidableEq L.FreeVar]
+      (a : L.FreeVar) (t : Term L) (A : Formula L) : Formula L :=
+    A.substFreeByArg a t.toFormulaArg
 
 Predicate logic (unfolded):
 
   def Formula.substFreeByTerm {L : Alphabet}
-    [DecidableEq L.FreeVar]
-    (a : L.FreeVar) (t : Term L) (A : Formula L) : Formula L :=
-  A.substFreeByArg a t.toFormulaArg (source fallback; no compiled unfold data available)
+      [DecidableEq L.FreeVar]
+      (a : L.FreeVar) (t : Term L) (A : Formula L) : Formula L :=
+    A.substFreeByArg a t.toFormulaArg (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -189,16 +189,16 @@ def Formula.substFreeByTerm {L : Alphabet}
 Predicate logic:
 
   def Formula.substFreeByBound {L : Alphabet}
-    [DecidableEq L.FreeVar]
-    (a : L.FreeVar) (x : L.BoundVar) (A : Formula L) : Formula L :=
-  A.substFreeByArg a (FormulaArg.bound x)
+      [DecidableEq L.FreeVar]
+      (a : L.FreeVar) (x : L.BoundVar) (A : Formula L) : Formula L :=
+    A.substFreeByArg a (FormulaArg.bound x)
 
 Predicate logic (unfolded):
 
   def Formula.substFreeByBound {L : Alphabet}
-    [DecidableEq L.FreeVar]
-    (a : L.FreeVar) (x : L.BoundVar) (A : Formula L) : Formula L :=
-  A.substFreeByArg a (FormulaArg.bound x) (source fallback; no compiled unfold data available)
+      [DecidableEq L.FreeVar]
+      (a : L.FreeVar) (x : L.BoundVar) (A : Formula L) : Formula L :=
+    A.substFreeByArg a (FormulaArg.bound x) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -242,7 +242,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {L : LRA.ProofTheory.System.Takeuti.Alphabet} (a : L.1) (a_1 : LRA.ProofTheory.System.Takeuti.Formula L), (LRA.ProofTheory.System.Takeuti.Formula.brecOn.go a_1 (LRA.ProofTheory.System.Takeuti.Formula.FreeVarOccurs._f a)).1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (LRA.ProofTheory.System.Takeuti.Formula.brecOn.go a_1 (LRA.ProofTheory.System.Takeuti.Formula.FreeVarOccurs._f a)).1
 
 Logical form (Lean):
 
@@ -296,7 +301,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {L : LRA.ProofTheory.System.Takeuti.Alphabet} (x : L.2) (a : LRA.ProofTheory.System.Takeuti.Formula L), (LRA.ProofTheory.System.Takeuti.Formula.brecOn.go a (LRA.ProofTheory.System.Takeuti.Formula.BoundVarOccurs._f x)).1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (LRA.ProofTheory.System.Takeuti.Formula.brecOn.go a (LRA.ProofTheory.System.Takeuti.Formula.BoundVarOccurs._f x)).1
 
 Logical form (Lean):
 
@@ -350,7 +360,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {L : LRA.ProofTheory.System.Takeuti.Alphabet} (x : L.2) (A : LRA.ProofTheory.System.Takeuti.Formula L), LRA.ProofTheory.System.Takeuti.Formula.BoundVarOccurs x A → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.ProofTheory.System.Takeuti.Formula.BoundVarOccurs x A → False
 
 Logical form (Lean):
 

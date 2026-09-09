@@ -8,11 +8,16 @@ namespace LRA.Set.Constructions.TGSet
 
 Predicate logic:
 
-  forall A B C : Set, A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)
+  ∀ (A B C : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGA ∩ LRA.Set.Constructions.TGB ∪ C = LRA.Set.Constructions.TGLRA.Set.Constructions.TGA ∩ B ∪ LRA.Set.Constructions.TGA ∩ C
 
 Predicate logic (unfolded):
 
-  ∀ (A B C : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGSet.instInter.1 A (LRA.Set.Constructions.TGSet.instUnion.1 B C) = LRA.Set.Constructions.TGSet.instUnion.1 (LRA.Set.Constructions.TGSet.instInter.1 A B) (LRA.Set.Constructions.TGSet.instInter.1 A C)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TGA ∩ LRA.Set.Constructions.TGB ∪ C = LRA.Set.Constructions.TGLRA.Set.Constructions.TGA ∩ B ∪ LRA.Set.Constructions.TGA ∩ C
 
 Logical form (Lean):
 
@@ -49,11 +54,16 @@ theorem IntersectionDistributesOverUnion :
 
 Predicate logic:
 
-  forall A B C : Set, A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)
+  ∀ (A B C : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGA ∪ LRA.Set.Constructions.TGB ∩ C = LRA.Set.Constructions.TGLRA.Set.Constructions.TGA ∪ B ∩ LRA.Set.Constructions.TGA ∪ C
 
 Predicate logic (unfolded):
 
-  ∀ (A B C : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGSet.instUnion.1 A (LRA.Set.Constructions.TGSet.instInter.1 B C) = LRA.Set.Constructions.TGSet.instInter.1 (LRA.Set.Constructions.TGSet.instUnion.1 A B) (LRA.Set.Constructions.TGSet.instUnion.1 A C)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TGA ∪ LRA.Set.Constructions.TGB ∩ C = LRA.Set.Constructions.TGLRA.Set.Constructions.TGA ∪ B ∩ LRA.Set.Constructions.TGA ∪ C
 
 Logical form (Lean):
 
@@ -90,11 +100,16 @@ theorem UnionDistributesOverIntersection :
 
 Predicate logic:
 
-  forall A B : Set, A ∪ (A ∩ B) = A
+  ∀ (A B : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGA ∪ LRA.Set.Constructions.TGA ∩ B = A
 
 Predicate logic (unfolded):
 
-  ∀ (A B : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGSet.instUnion.1 A (LRA.Set.Constructions.TGSet.instInter.1 A B) = A
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TGA ∪ LRA.Set.Constructions.TGA ∩ B = A
 
 Logical form (Lean):
 
@@ -131,11 +146,16 @@ theorem AbsorptionUnionIntersection :
 
 Predicate logic:
 
-  forall A B : Set, A ∩ (A ∪ B) = A
+  ∀ (A B : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGA ∩ LRA.Set.Constructions.TGA ∪ B = A
 
 Predicate logic (unfolded):
 
-  ∀ (A B : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGSet.instInter.1 A (LRA.Set.Constructions.TGSet.instUnion.1 A B) = A
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TGA ∩ LRA.Set.Constructions.TGA ∪ B = A
 
 Logical form (Lean):
 

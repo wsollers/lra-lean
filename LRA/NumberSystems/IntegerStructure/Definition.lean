@@ -16,14 +16,14 @@ universe u v
 Predicate logic:
 
   def iterate {Alpha : Type u} (f : Alpha -> Alpha) : Nat -> Alpha -> Alpha
-  | 0, x => x
-  | n + 1, x => f (iterate f n x)
+    | 0, x => x
+    | n + 1, x => f (iterate f n x)
 
 Predicate logic (unfolded):
 
   def iterate {Alpha : Type u} (f : Alpha -> Alpha) : Nat -> Alpha -> Alpha
-  | 0, x => x
-  | n + 1, x => f (iterate f n x) (source fallback; no compiled unfold data available)
+    | 0, x => x
+    | n + 1, x => f (iterate f n x) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -62,52 +62,52 @@ def iterate {Alpha : Type u} (f : Alpha -> Alpha) : Nat -> Alpha -> Alpha
 Predicate logic:
 
   structure IntegerStructure (Element : Type u) (SetObject : Type v)
-    [Membership Element SetObject] where
-  zero : Element
-  one : Element
-  negativeOne : Element
-  successor : Element -> Element
-  predecessor : Element -> Element
-  predecessor_successor :
-    forall element : Element, predecessor (successor element) = element
-  successor_predecessor :
-    forall element : Element, successor (predecessor element) = element
-  successor_zero : successor zero = one
-  predecessor_zero : predecessor zero = negativeOne
-  aperiodic :
-    forall iterations : Nat, 0 < iterations ->
-      iterate successor iterations zero ≠ zero
-  induction :
-    forall subset : SetObject,
-      zero ∈ subset ->
-      (forall element : Element, element ∈ subset -> successor element ∈ subset) ->
-      (forall element : Element, element ∈ subset -> predecessor element ∈ subset) ->
-      forall element : Element, element ∈ subset
+      [Membership Element SetObject] where
+    zero : Element
+    one : Element
+    negativeOne : Element
+    successor : Element -> Element
+    predecessor : Element -> Element
+    predecessor_successor :
+      forall element : Element, predecessor (successor element) = element
+    successor_predecessor :
+      forall element : Element, successor (predecessor element) = element
+    successor_zero : successor zero = one
+    predecessor_zero : predecessor zero = negativeOne
+    aperiodic :
+      forall iterations : Nat, 0 < iterations ->
+        iterate successor iterations zero ≠ zero
+    induction :
+      forall subset : SetObject,
+        zero ∈ subset ->
+        (forall element : Element, element ∈ subset -> successor element ∈ subset) ->
+        (forall element : Element, element ∈ subset -> predecessor element ∈ subset) ->
+        forall element : Element, element ∈ subset
 
 Predicate logic (unfolded):
 
   structure IntegerStructure (Element : Type u) (SetObject : Type v)
-    [Membership Element SetObject] where
-  zero : Element
-  one : Element
-  negativeOne : Element
-  successor : Element -> Element
-  predecessor : Element -> Element
-  predecessor_successor :
-    forall element : Element, predecessor (successor element) = element
-  successor_predecessor :
-    forall element : Element, successor (predecessor element) = element
-  successor_zero : successor zero = one
-  predecessor_zero : predecessor zero = negativeOne
-  aperiodic :
-    forall iterations : Nat, 0 < iterations ->
-      iterate successor iterations zero ≠ zero
-  induction :
-    forall subset : SetObject,
-      zero ∈ subset ->
-      (forall element : Element, element ∈ subset -> successor element ∈ subset) ->
-      (forall element : Element, element ∈ subset -> predecessor element ∈ subset) ->
-      forall element : Element, element ∈ subset (source fallback; no compiled unfold data available)
+      [Membership Element SetObject] where
+    zero : Element
+    one : Element
+    negativeOne : Element
+    successor : Element -> Element
+    predecessor : Element -> Element
+    predecessor_successor :
+      forall element : Element, predecessor (successor element) = element
+    successor_predecessor :
+      forall element : Element, successor (predecessor element) = element
+    successor_zero : successor zero = one
+    predecessor_zero : predecessor zero = negativeOne
+    aperiodic :
+      forall iterations : Nat, 0 < iterations ->
+        iterate successor iterations zero ≠ zero
+    induction :
+      forall subset : SetObject,
+        zero ∈ subset ->
+        (forall element : Element, element ∈ subset -> successor element ∈ subset) ->
+        (forall element : Element, element ∈ subset -> predecessor element ∈ subset) ->
+        forall element : Element, element ∈ subset (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -184,22 +184,22 @@ structure IntegerStructure (Element : Type u) (SetObject : Type v)
 Predicate logic:
 
   structure PredicateSetComprehensionAdequacy
-    (Element : Type u) (SetObject : Type v)
-    [Membership Element SetObject] where
-  Represent : Set Element -> SetObject
-  MembershipIff :
-    forall (predicate : Set Element) (element : Element),
-      element ∈ Represent predicate ↔ predicate element
+      (Element : Type u) (SetObject : Type v)
+      [Membership Element SetObject] where
+    Represent : Set Element -> SetObject
+    MembershipIff :
+      forall (predicate : Set Element) (element : Element),
+        element ∈ Represent predicate ↔ predicate element
 
 Predicate logic (unfolded):
 
   structure PredicateSetComprehensionAdequacy
-    (Element : Type u) (SetObject : Type v)
-    [Membership Element SetObject] where
-  Represent : Set Element -> SetObject
-  MembershipIff :
-    forall (predicate : Set Element) (element : Element),
-      element ∈ Represent predicate ↔ predicate element (source fallback; no compiled unfold data available)
+      (Element : Type u) (SetObject : Type v)
+      [Membership Element SetObject] where
+    Represent : Set Element -> SetObject
+    MembershipIff :
+      forall (predicate : Set Element) (element : Element),
+        element ∈ Represent predicate ↔ predicate element (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -250,11 +250,16 @@ variable [Membership Element SetObject]
 
 Predicate logic:
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (is : LRA.NumberSystems.IntegerStructure.IntegerStructure Element SetObject) (subset : SetObject), (∀ (element : Element), element ∈ subset → is.successor element ∈ subset ∧ ∀ (element : Element), element ∈ subset → is.predecessor element ∈ subset)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (is : LRA.NumberSystems.IntegerStructure.IntegerStructure Element SetObject) (subset : SetObject), ((∀ (element : Element), element ∈ subset → is.successor element ∈ subset) ∧ (∀ (element : Element), element ∈ subset → is.predecessor element ∈ subset))
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (is : LRA.NumberSystems.IntegerStructure.IntegerStructure Element SetObject) (subset : SetObject), (∀ (element : Element), inst.1 subset element → inst.1 subset (is.4 element) ∧ ∀ (element : Element), inst.1 subset element → inst.1 subset (is.5 element))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (element : Element), inst.1 subset element → inst.1 subset (is.4 element)) ∧ (∀ (element : Element), inst.1 subset element → inst.1 subset (is.5 element)))
 
 Logical form (Lean):
 
@@ -300,7 +305,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (is : LRA.NumberSystems.IntegerStructure.IntegerStructure Element SetObject) (subset : SetObject), (inst.1 subset is.1 ∧ (∀ (element : Element), inst.1 subset element → inst.1 subset (is.4 element) ∧ ∀ (element : Element), inst.1 subset element → inst.1 subset (is.5 element)))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (inst.1 subset is.1 ∧ ((∀ (element : Element), inst.1 subset element → inst.1 subset (is.4 element)) ∧ (∀ (element : Element), inst.1 subset element → inst.1 subset (is.5 element))))
 
 Logical form (Lean):
 
@@ -340,11 +350,16 @@ def InductiveSubsetOfIntegerStructure
 
 Predicate logic:
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (is : LRA.NumberSystems.IntegerStructure.IntegerStructure Element SetObject) (predicate : Set Element), (predicate is.zero ∧ (∀ (element : Element), predicate element → predicate (is.successor element) ∧ ∀ (element : Element), predicate element → predicate (is.predecessor element))) → ∀ (element : Element), predicate element
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (is : LRA.NumberSystems.IntegerStructure.IntegerStructure Element SetObject) (predicate : Set Element), (predicate is.zero ∧ ((∀ (element : Element), predicate element → predicate (is.successor element)) ∧ (∀ (element : Element), predicate element → predicate (is.predecessor element)))) → ∀ (element : Element), predicate element
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (is : LRA.NumberSystems.IntegerStructure.IntegerStructure Element SetObject) (predicate : Element → Prop), (predicate is.1 ∧ (∀ (element : Element), predicate element → predicate (is.4 element) ∧ ∀ (element : Element), predicate element → predicate (is.5 element))) → ∀ (element : Element), predicate element
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (predicate is.1 ∧ ((∀ (element : Element), predicate element → predicate (is.4 element)) ∧ (∀ (element : Element), predicate element → predicate (is.5 element)))) → ∀ (element : Element), predicate element
 
 Logical form (Lean):
 
@@ -400,11 +415,17 @@ def FullTwoSidedPredicateInduction
 
 Predicate logic:
 
-  FullTwoSidedPredicateInduction is
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (is : LRA.NumberSystems.IntegerStructure.IntegerStructure Element SetObject) (a : LRA.NumberSystems.IntegerStructure.PredicateSetComprehensionAdequacy Element SetObject), LRA.NumberSystems.IntegerStructure.FullTwoSidedPredicateInduction is
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (is : LRA.NumberSystems.IntegerStructure.IntegerStructure Element SetObject) (a : LRA.NumberSystems.IntegerStructure.PredicateSetComprehensionAdequacy Element SetObject) (predicate : Element → Prop), (predicate is.1 ∧ (∀ (element : Element), predicate element → predicate (is.4 element) ∧ ∀ (element : Element), predicate element → predicate (is.5 element))) → ∀ (element : Element), predicate element
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    is : IntegerStructure Element SetObject
+    adequacy : PredicateSetComprehensionAdequacy Element SetObject
+  Prove
+    (predicate is.1 ∧ ((∀ (element : Element), predicate element → predicate (is.4 element)) ∧ (∀ (element : Element), predicate element → predicate (is.5 element)))) → ∀ (element : Element), predicate element
 
 Logical form (Lean):
 

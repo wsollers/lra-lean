@@ -13,7 +13,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {alpha : Type u} (nonStrictRelation : alpha → alpha → Prop) (a a_1 : alpha), (nonStrictRelation a a_1 ∧ a = a_1 → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (nonStrictRelation a a_1 ∧ (a = a_1 → False))
 
 Logical form (Lean):
 

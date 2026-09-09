@@ -10,40 +10,40 @@ universe u
 Predicate logic:
 
   class SymmDiffLaws (α : Type u)
-    [HasSymmDiff α] [Union α] [Inter α] [SDiff α] [EmptyCollection α]
-    [HasSubset α] : Prop where
-  SymmetricDifferenceAsUnionDifferences :
-    ∀ A B : α, A ∆ B = (A \ B) ∪ (B \ A)
-  SymmetricDifferenceAsUnionDifferenceIntersection :
-    ∀ A B : α, A ∆ B = (A ∪ B) \ (A ∩ B)
-  SymmetricDifferenceCommutative : ∀ A B : α, A ∆ B = B ∆ A
-  SymmetricDifferenceAssociative :
-    ∀ A B C : α, (A ∆ B) ∆ C = A ∆ (B ∆ C)
-  SymmetricDifferenceEmpty : ∀ A : α, A ∆ (∅ : α) = A
-  EmptySymmetricDifference : ∀ A : α, (∅ : α) ∆ A = A
-  SymmetricDifferenceSelf : ∀ A : α, A ∆ A = (∅ : α)
-  SymmetricDifferenceEqEmptyIff :
-    ∀ A B : α, A ∆ B = (∅ : α) ↔ A = B
-  SymmetricDifferenceSubsetUnion : ∀ A B : α, A ∆ B ⊆ A ∪ B
+      [HasSymmDiff α] [Union α] [Inter α] [SDiff α] [EmptyCollection α]
+      [HasSubset α] : Prop where
+    SymmetricDifferenceAsUnionDifferences :
+      ∀ A B : α, A ∆ B = (A \ B) ∪ (B \ A)
+    SymmetricDifferenceAsUnionDifferenceIntersection :
+      ∀ A B : α, A ∆ B = (A ∪ B) \ (A ∩ B)
+    SymmetricDifferenceCommutative : ∀ A B : α, A ∆ B = B ∆ A
+    SymmetricDifferenceAssociative :
+      ∀ A B C : α, (A ∆ B) ∆ C = A ∆ (B ∆ C)
+    SymmetricDifferenceEmpty : ∀ A : α, A ∆ (∅ : α) = A
+    EmptySymmetricDifference : ∀ A : α, (∅ : α) ∆ A = A
+    SymmetricDifferenceSelf : ∀ A : α, A ∆ A = (∅ : α)
+    SymmetricDifferenceEqEmptyIff :
+      ∀ A B : α, A ∆ B = (∅ : α) ↔ A = B
+    SymmetricDifferenceSubsetUnion : ∀ A B : α, A ∆ B ⊆ A ∪ B
 
 Predicate logic (unfolded):
 
   class SymmDiffLaws (α : Type u)
-    [HasSymmDiff α] [Union α] [Inter α] [SDiff α] [EmptyCollection α]
-    [HasSubset α] : Prop where
-  SymmetricDifferenceAsUnionDifferences :
-    ∀ A B : α, A ∆ B = (A \ B) ∪ (B \ A)
-  SymmetricDifferenceAsUnionDifferenceIntersection :
-    ∀ A B : α, A ∆ B = (A ∪ B) \ (A ∩ B)
-  SymmetricDifferenceCommutative : ∀ A B : α, A ∆ B = B ∆ A
-  SymmetricDifferenceAssociative :
-    ∀ A B C : α, (A ∆ B) ∆ C = A ∆ (B ∆ C)
-  SymmetricDifferenceEmpty : ∀ A : α, A ∆ (∅ : α) = A
-  EmptySymmetricDifference : ∀ A : α, (∅ : α) ∆ A = A
-  SymmetricDifferenceSelf : ∀ A : α, A ∆ A = (∅ : α)
-  SymmetricDifferenceEqEmptyIff :
-    ∀ A B : α, A ∆ B = (∅ : α) ↔ A = B
-  SymmetricDifferenceSubsetUnion : ∀ A B : α, A ∆ B ⊆ A ∪ B (source fallback; no compiled unfold data available)
+      [HasSymmDiff α] [Union α] [Inter α] [SDiff α] [EmptyCollection α]
+      [HasSubset α] : Prop where
+    SymmetricDifferenceAsUnionDifferences :
+      ∀ A B : α, A ∆ B = (A \ B) ∪ (B \ A)
+    SymmetricDifferenceAsUnionDifferenceIntersection :
+      ∀ A B : α, A ∆ B = (A ∪ B) \ (A ∩ B)
+    SymmetricDifferenceCommutative : ∀ A B : α, A ∆ B = B ∆ A
+    SymmetricDifferenceAssociative :
+      ∀ A B C : α, (A ∆ B) ∆ C = A ∆ (B ∆ C)
+    SymmetricDifferenceEmpty : ∀ A : α, A ∆ (∅ : α) = A
+    EmptySymmetricDifference : ∀ A : α, (∅ : α) ∆ A = A
+    SymmetricDifferenceSelf : ∀ A : α, A ∆ A = (∅ : α)
+    SymmetricDifferenceEqEmptyIff :
+      ∀ A B : α, A ∆ B = (∅ : α) ↔ A = B
+    SymmetricDifferenceSubsetUnion : ∀ A B : α, A ∆ B ⊆ A ∪ B (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -112,11 +112,16 @@ variable [SymmDiffLaws α]
 
 Predicate logic:
 
-  ∀ A B : α, A ∆ B = (A \ B) ∪ (B \ A)
+  ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α] [inst_4 : EmptyCollection α] [inst_5 : HasSubset α], LRA.Set.SymmDiffLaws α → ∀ (A B : α), inst.symmDiff A B = A \ B ∪ B \ A
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α] [inst_4 : EmptyCollection α] [inst_5 : HasSubset α], LRA.Set.SymmDiffLaws α → ∀ (A B : α), inst.1 A B = inst_1.1 (inst_3.1 A B) (inst_3.1 B A)
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.SymmDiffLaws α → ∀ (A B : α), inst.1 A B = inst_1.1 (inst_3.1 A B) (inst_3.1 B A)
 
 Logical form (Lean):
 
@@ -153,11 +158,16 @@ theorem SymmetricDifferenceAsUnionDifferences :
 
 Predicate logic:
 
-  ∀ A B : α, A ∆ B = (A ∪ B) \ (A ∩ B)
+  ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α] [inst_4 : EmptyCollection α] [inst_5 : HasSubset α], LRA.Set.SymmDiffLaws α → ∀ (A B : α), inst.symmDiff A B = A ∪ B \ A ∩ B
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α] [inst_4 : EmptyCollection α] [inst_5 : HasSubset α], LRA.Set.SymmDiffLaws α → ∀ (A B : α), inst.1 A B = inst_3.1 (inst_1.1 A B) (inst_2.1 A B)
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.SymmDiffLaws α → ∀ (A B : α), inst.1 A B = inst_3.1 (inst_1.1 A B) (inst_2.1 A B)
 
 Logical form (Lean):
 
@@ -194,11 +204,16 @@ theorem SymmetricDifferenceAsUnionDifferenceIntersection :
 
 Predicate logic:
 
-  ∀ A B : α, A ∆ B = B ∆ A
+  ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α] [inst_4 : EmptyCollection α] [inst_5 : HasSubset α], LRA.Set.SymmDiffLaws α → ∀ (A B : α), inst.symmDiff A B = inst.symmDiff B A
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α] [inst_4 : EmptyCollection α] [inst_5 : HasSubset α], LRA.Set.SymmDiffLaws α → ∀ (A B : α), inst.1 A B = inst.1 B A
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.SymmDiffLaws α → ∀ (A B : α), inst.1 A B = inst.1 B A
 
 Logical form (Lean):
 
@@ -233,11 +248,16 @@ theorem SymmetricDifferenceCommutative : ∀ A B : α, A ∆ B = B ∆ A :=
 
 Predicate logic:
 
-  ∀ A B C : α, (A ∆ B) ∆ C = A ∆ (B ∆ C)
+  ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α] [inst_4 : EmptyCollection α] [inst_5 : HasSubset α], LRA.Set.SymmDiffLaws α → ∀ (A B C : α), inst.symmDiff (inst.symmDiff A B) C = inst.symmDiff A (inst.symmDiff B C)
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α] [inst_4 : EmptyCollection α] [inst_5 : HasSubset α], LRA.Set.SymmDiffLaws α → ∀ (A B C : α), inst.1 (inst.1 A B) C = inst.1 A (inst.1 B C)
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.SymmDiffLaws α → ∀ (A B C : α), inst.1 (inst.1 A B) C = inst.1 A (inst.1 B C)
 
 Logical form (Lean):
 
@@ -274,11 +294,16 @@ theorem SymmetricDifferenceAssociative :
 
 Predicate logic:
 
-  ∀ A : α, A ∆ ∅ ∈ α = A
+  ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α] [inst_4 : EmptyCollection α] [inst_5 : HasSubset α], LRA.Set.SymmDiffLaws α → ∀ (A : α), inst.symmDiff A inst_4.emptyCollection = A
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α] [inst_4 : EmptyCollection α] [inst_5 : HasSubset α], LRA.Set.SymmDiffLaws α → ∀ (A : α), inst.1 A inst_4.1 = A
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.SymmDiffLaws α → ∀ (A : α), inst.1 A inst_4.1 = A
 
 Logical form (Lean):
 
@@ -313,11 +338,16 @@ theorem SymmetricDifferenceEmpty : ∀ A : α, A ∆ (∅ : α) = A :=
 
 Predicate logic:
 
-  ∀ A : α, ∅ ∈ α ∆ A = A
+  ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α] [inst_4 : EmptyCollection α] [inst_5 : HasSubset α], LRA.Set.SymmDiffLaws α → ∀ (A : α), inst.symmDiff inst_4.emptyCollection A = A
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α] [inst_4 : EmptyCollection α] [inst_5 : HasSubset α], LRA.Set.SymmDiffLaws α → ∀ (A : α), inst.1 inst_4.1 A = A
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.SymmDiffLaws α → ∀ (A : α), inst.1 inst_4.1 A = A
 
 Logical form (Lean):
 
@@ -352,11 +382,16 @@ theorem EmptySymmetricDifference : ∀ A : α, (∅ : α) ∆ A = A :=
 
 Predicate logic:
 
-  ∀ A : α, A ∆ A = ∅ ∈ α
+  ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α] [inst_4 : EmptyCollection α] [inst_5 : HasSubset α], LRA.Set.SymmDiffLaws α → ∀ (A : α), inst.symmDiff A A = inst_4.emptyCollection
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α] [inst_4 : EmptyCollection α] [inst_5 : HasSubset α], LRA.Set.SymmDiffLaws α → ∀ (A : α), inst.1 A A = inst_4.1
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.SymmDiffLaws α → ∀ (A : α), inst.1 A A = inst_4.1
 
 Logical form (Lean):
 
@@ -391,11 +426,16 @@ theorem SymmetricDifferenceSelf : ∀ A : α, A ∆ A = (∅ : α) :=
 
 Predicate logic:
 
-  ∀ A B : α, A ∆ B = ∅ ∈ α ↔ A = B
+  ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α] [inst_4 : EmptyCollection α] [inst_5 : HasSubset α], LRA.Set.SymmDiffLaws α → ∀ (A B : α), inst.symmDiff A B = inst_4.emptyCollection ↔ A = B
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α] [inst_4 : EmptyCollection α] [inst_5 : HasSubset α], LRA.Set.SymmDiffLaws α → ∀ (A B : α), inst.1 A B = inst_4.1 ↔ A = B
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.SymmDiffLaws α → ∀ (A B : α), inst.symmDiff A B = inst_4.emptyCollection ↔ A = B
 
 Logical form (Lean):
 
@@ -432,11 +472,16 @@ theorem SymmetricDifferenceEqEmptyIff :
 
 Predicate logic:
 
-  ∀ A B : α, A ∆ B ⊆ A ∪ B
+  ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α] [inst_4 : EmptyCollection α] [inst_5 : HasSubset α], LRA.Set.SymmDiffLaws α → ∀ (A B : α), inst_5.Subset (inst.symmDiff A B) (A ∪ B)
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : LRA.Set.HasSymmDiff α] [inst_1 : Union α] [inst_2 : Inter α] [inst_3 : SDiff α] [inst_4 : EmptyCollection α] [inst_5 : HasSubset α], LRA.Set.SymmDiffLaws α → ∀ (A B : α), inst_5.1 (inst.1 A B) (inst_1.1 A B)
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.SymmDiffLaws α → ∀ (A B : α), inst_5.1 (inst.1 A B) (inst_1.1 A B)
 
 Logical form (Lean):
 

@@ -18,7 +18,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {S : LRA.Logic.Signature} {M : LRA.ModelTheory.FirstOrder.Model S} {N : LRA.ModelTheory.FirstOrder.Model S} (homomorphism : LRA.UniversalAlgebra.Homomorphism M N) (a a_1 : M.1), homomorphism.1 a = homomorphism.1 a_1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    homomorphism.1 a = homomorphism.1 a_1
 
 Logical form (Lean):
 
@@ -60,11 +65,19 @@ def kernelRelation {S : Signature}
 
 Predicate logic:
 
-  Equivalence (kernelRelation homomorphism)
+  ∀ {S : LRA.Logic.Signature} {M : LRA.ModelTheory.FirstOrder.Model S} {N : LRA.ModelTheory.FirstOrder.Model S} (homomorphism : LRA.UniversalAlgebra.Homomorphism M N), Equivalence (LRA.UniversalAlgebra.kernelRelation homomorphism)
 
 Predicate logic (unfolded):
 
-  ∀ {S : LRA.Logic.Signature} {M : LRA.ModelTheory.FirstOrder.Model S} {N : LRA.ModelTheory.FirstOrder.Model S} (homomorphism : LRA.UniversalAlgebra.Homomorphism M N), Equivalence fun first second => homomorphism.1 first = homomorphism.1 second
+  Ambient
+    (implicit ambient)
+  Objects
+    S : Signature
+    M : Model.{u} S
+    N : Model.{v} S
+    homomorphism : Homomorphism M N
+  Prove
+    Equivalence fun first second => homomorphism.1 first = homomorphism.1 second
 
 Logical form (Lean):
 

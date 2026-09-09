@@ -11,18 +11,18 @@ universe u
 Predicate logic:
 
   noncomputable def ReferenceNorm
-    {V : Type u}
-    (space : LRA.Analysis.FunctionalAnalysis.InnerProductSpaces.RealInnerProductSpaceDefinition V)
-    (x : V) : Real :=
-  Real.sqrt (space.inner x x)
+      {V : Type u}
+      (space : LRA.Analysis.FunctionalAnalysis.InnerProductSpaces.RealInnerProductSpaceDefinition V)
+      (x : V) : Real :=
+    Real.sqrt (space.inner x x)
 
 Predicate logic (unfolded):
 
   noncomputable def ReferenceNorm
-    {V : Type u}
-    (space : LRA.Analysis.FunctionalAnalysis.InnerProductSpaces.RealInnerProductSpaceDefinition V)
-    (x : V) : Real :=
-  Real.sqrt (space.inner x x) (source fallback; no compiled unfold data available)
+      {V : Type u}
+      (space : LRA.Analysis.FunctionalAnalysis.InnerProductSpaces.RealInnerProductSpaceDefinition V)
+      (x : V) : Real :=
+    Real.sqrt (space.inner x x) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -68,7 +68,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {V : Type u} (space : LRA.Analysis.FunctionalAnalysis.InnerProductSpaces.RealInnerProductSpaceDefinition V) (sequence : Nat → V) (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (m n : Nat), instLENat.1 N m → instLENat.1 N n → Real.instLT.1 (space.2 (space.vectorSpace.2 (sequence m) (space.vectorSpace.3 (sequence n))) (space.vectorSpace.2 (sequence m) (space.vectorSpace.3 (sequence n)))).sqrt ε
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Real.instLT.lt 0 ε → Exists fun N => ∀ (m n : Nat), instLENat.le N m → instLENat.le N n → Real.instLT.lt (space.2 (space.vectorSpace.2 (sequence m) (space.vectorSpace.3 (sequence n))) (space.vectorSpace.2 (sequence m) (space.vectorSpace.3 (sequence n)))).sqrt ε
 
 Logical form (Lean):
 
@@ -116,7 +121,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {V : Type u} (space : LRA.Analysis.FunctionalAnalysis.InnerProductSpaces.RealInnerProductSpaceDefinition V) (sequence : Nat → V) (limit : V) (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (space.2 (space.vectorSpace.2 (sequence n) (space.vectorSpace.3 limit)) (space.vectorSpace.2 (sequence n) (space.vectorSpace.3 limit))).sqrt ε
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (space.2 (space.vectorSpace.2 (sequence n) (space.vectorSpace.3 limit)) (space.vectorSpace.2 (sequence n) (space.vectorSpace.3 limit))).sqrt ε
 
 Logical form (Lean):
 
@@ -164,23 +174,23 @@ Predicate logic:
 
   structure RealHilbertSpaceDefinition (V : Type u) where
 
-  innerProductSpace : LRA.Analysis.FunctionalAnalysis.InnerProductSpaces.RealInnerProductSpaceDefinition V
+    innerProductSpace : LRA.Analysis.FunctionalAnalysis.InnerProductSpaces.RealInnerProductSpaceDefinition V
 
-  complete :
-    ∀ sequence : ℕ → V,
-      IsCauchySequence innerProductSpace sequence →
-      ∃ limit : V, ConvergesTo innerProductSpace sequence limit
+    complete :
+      ∀ sequence : ℕ → V,
+        IsCauchySequence innerProductSpace sequence →
+        ∃ limit : V, ConvergesTo innerProductSpace sequence limit
 
 Predicate logic (unfolded):
 
   structure RealHilbertSpaceDefinition (V : Type u) where
 
-  innerProductSpace : LRA.Analysis.FunctionalAnalysis.InnerProductSpaces.RealInnerProductSpaceDefinition V
+    innerProductSpace : LRA.Analysis.FunctionalAnalysis.InnerProductSpaces.RealInnerProductSpaceDefinition V
 
-  complete :
-    ∀ sequence : ℕ → V,
-      IsCauchySequence innerProductSpace sequence →
-      ∃ limit : V, ConvergesTo innerProductSpace sequence limit (source fallback; no compiled unfold data available)
+    complete :
+      ∀ sequence : ℕ → V,
+        IsCauchySequence innerProductSpace sequence →
+        ∃ limit : V, ConvergesTo innerProductSpace sequence limit (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

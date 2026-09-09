@@ -12,11 +12,72 @@ open LRA.NumberSystems.RationalNumbers
 
 universe u
 
-/-- An order embedding of a `RationalModel` into a `RealModel`: an injective
-field homomorphism that also reflects the order — the shape ℝ's completion
-of ℚ takes, owned here by `RealNumbers` since it is `RealNumbers` that is
-being built from `RationalNumbers`, not a symmetric relationship between two
-peer interfaces. -/
+/--
+`DenseOrderedFieldEmbeddingIntoReal` An order embedding of a `RationalModel` into a `RealModel`: an injective field homomorphism that also reflects the order — the shape ℝ's completion of ℚ takes, owned here by `RealNumbers` since it is `RealNumbers` that is being built from `RationalNumbers`, not a symmetric relationship between two peer interfaces.
+
+Predicate logic:
+
+  structure DenseOrderedFieldEmbeddingIntoReal
+      (RationalSystemModel : RationalModel.{u}) (Real : RealModel.{u}) where
+    ToReal : RationalSystemModel.Carrier → Real.Carrier
+    injective : ∀ a b, ToReal a = ToReal b → a = b
+    PreservesZero : ToReal 0 = 0
+    PreservesOne : ToReal 1 = 1
+    PreservesAddition : ∀ a b, ToReal (a + b) = ToReal a + ToReal b
+    PreservesNegation : ∀ a, ToReal (-a) = -(ToReal a)
+    PreservesMultiplication : ∀ a b, ToReal (a * b) = ToReal a * ToReal b
+    PreservesInverse : ∀ a, a ≠ 0 → ToReal a⁻¹ = (ToReal a)⁻¹
+    PreservesAndReflectsOrder : ∀ a b, ToReal a ≤ ToReal b ↔ a ≤ b
+
+Predicate logic (unfolded):
+
+  structure DenseOrderedFieldEmbeddingIntoReal
+      (RationalSystemModel : RationalModel.{u}) (Real : RealModel.{u}) where
+    ToReal : RationalSystemModel.Carrier → Real.Carrier
+    injective : ∀ a b, ToReal a = ToReal b → a = b
+    PreservesZero : ToReal 0 = 0
+    PreservesOne : ToReal 1 = 1
+    PreservesAddition : ∀ a b, ToReal (a + b) = ToReal a + ToReal b
+    PreservesNegation : ∀ a, ToReal (-a) = -(ToReal a)
+    PreservesMultiplication : ∀ a b, ToReal (a * b) = ToReal a * ToReal b
+    PreservesInverse : ∀ a, a ≠ 0 → ToReal a⁻¹ = (ToReal a)⁻¹
+    PreservesAndReflectsOrder : ∀ a b, ToReal a ≤ ToReal b ↔ a ≤ b (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+structure DenseOrderedFieldEmbeddingIntoReal
+    (RationalSystemModel : RationalModel.{u}) (Real : RealModel.{u}) where
+  ToReal : RationalSystemModel.Carrier → Real.Carrier
+  injective : ∀ a b, ToReal a = ToReal b → a = b
+  PreservesZero : ToReal 0 = 0
+  PreservesOne : ToReal 1 = 1
+  PreservesAddition : ∀ a b, ToReal (a + b) = ToReal a + ToReal b
+  PreservesNegation : ∀ a, ToReal (-a) = -(ToReal a)
+  PreservesMultiplication : ∀ a b, ToReal (a * b) = ToReal a * ToReal b
+  PreservesInverse : ∀ a, a ≠ 0 → ToReal a⁻¹ = (ToReal a)⁻¹
+  PreservesAndReflectsOrder : ∀ a b, ToReal a ≤ ToReal b ↔ a ≤ b
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, constructor, .mp, .mpr
+
+-/
 structure DenseOrderedFieldEmbeddingIntoReal
     (RationalSystemModel : RationalModel.{u}) (Real : RealModel.{u}) where
   ToReal : RationalSystemModel.Carrier → Real.Carrier
@@ -29,10 +90,63 @@ structure DenseOrderedFieldEmbeddingIntoReal
   PreservesInverse : ∀ a, a ≠ 0 → ToReal a⁻¹ = (ToReal a)⁻¹
   PreservesAndReflectsOrder : ∀ a b, ToReal a ≤ ToReal b ↔ a ≤ b
 
-/-- A `CofinalRealExtension` witnesses that a `RealModel` completes a given
-`RationalModel`: the field embeds into it order-preservingly, and the
-embedded copy is cofinal (every real value is bounded above by some embedded
-rational) — the shape a Cauchy/Dedekind/interval completion realizes. -/
+/--
+`CofinalRealExtension` A `CofinalRealExtension` witnesses that a `RealModel` completes a given `RationalModel`: the field embeds into it order-preservingly, and the embedded copy is cofinal (every real value is bounded above by some embedded rational) — the shape a Cauchy/Dedekind/interval completion realizes.
+
+Predicate logic:
+
+  structure CofinalRealExtension (RationalSystemModel : RationalModel.{u}) where
+    RealModel : RealModel.{u}
+    DenseOrderedFieldEmbedding :
+      DenseOrderedFieldEmbeddingIntoReal RationalSystemModel RealModel
+    DenseOrderedFieldEmbeddingIsCofinal :
+      ∀ value : RealModel.Carrier,
+        ∃ bound : RationalSystemModel.Carrier,
+          value < DenseOrderedFieldEmbedding.ToReal bound
+
+Predicate logic (unfolded):
+
+  structure CofinalRealExtension (RationalSystemModel : RationalModel.{u}) where
+    RealModel : RealModel.{u}
+    DenseOrderedFieldEmbedding :
+      DenseOrderedFieldEmbeddingIntoReal RationalSystemModel RealModel
+    DenseOrderedFieldEmbeddingIsCofinal :
+      ∀ value : RealModel.Carrier,
+        ∃ bound : RationalSystemModel.Carrier,
+          value < DenseOrderedFieldEmbedding.ToReal bound (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+structure CofinalRealExtension (RationalSystemModel : RationalModel.{u}) where
+  RealModel : RealModel.{u}
+  DenseOrderedFieldEmbedding :
+    DenseOrderedFieldEmbeddingIntoReal RationalSystemModel RealModel
+  DenseOrderedFieldEmbeddingIsCofinal :
+    ∀ value : RealModel.Carrier,
+      ∃ bound : RationalSystemModel.Carrier,
+        value < DenseOrderedFieldEmbedding.ToReal bound
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, use, rcases
+
+-/
 structure CofinalRealExtension (RationalSystemModel : RationalModel.{u}) where
   RealModel : RealModel.{u}
   DenseOrderedFieldEmbedding :
@@ -48,14 +162,14 @@ structure CofinalRealExtension (RationalSystemModel : RationalModel.{u}) where
 Predicate logic:
 
   structure RationalRealExtension
-    (RationalSystem : RationalNumberSystem.{u})
-    extends CofinalRealExtension RationalSystem.FieldModel
+      (RationalSystem : RationalNumberSystem.{u})
+      extends CofinalRealExtension RationalSystem.FieldModel
 
 Predicate logic (unfolded):
 
   structure RationalRealExtension
-    (RationalSystem : RationalNumberSystem.{u})
-    extends CofinalRealExtension RationalSystem.FieldModel (source fallback; no compiled unfold data available)
+      (RationalSystem : RationalNumberSystem.{u})
+      extends CofinalRealExtension RationalSystem.FieldModel (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -94,18 +208,18 @@ structure RationalRealExtension
 Predicate logic:
 
   def RationalRealExtension.EmbedRational
-    {RationalSystem : RationalNumberSystem.{u}}
-    (Extension : RationalRealExtension RationalSystem) :
-    RationalSystem.FieldModel.Carrier → Extension.RealModel.Carrier :=
-  Extension.DenseOrderedFieldEmbedding.ToReal
+      {RationalSystem : RationalNumberSystem.{u}}
+      (Extension : RationalRealExtension RationalSystem) :
+      RationalSystem.FieldModel.Carrier → Extension.RealModel.Carrier :=
+    Extension.DenseOrderedFieldEmbedding.ToReal
 
 Predicate logic (unfolded):
 
   def RationalRealExtension.EmbedRational
-    {RationalSystem : RationalNumberSystem.{u}}
-    (Extension : RationalRealExtension RationalSystem) :
-    RationalSystem.FieldModel.Carrier → Extension.RealModel.Carrier :=
-  Extension.DenseOrderedFieldEmbedding.ToReal (source fallback; no compiled unfold data available)
+      {RationalSystem : RationalNumberSystem.{u}}
+      (Extension : RationalRealExtension RationalSystem) :
+      RationalSystem.FieldModel.Carrier → Extension.RealModel.Carrier :=
+    Extension.DenseOrderedFieldEmbedding.ToReal (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

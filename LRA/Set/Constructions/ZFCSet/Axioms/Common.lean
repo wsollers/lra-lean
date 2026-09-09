@@ -6,16 +6,90 @@ namespace LRA.Set.Constructions.ZFCSet.Axioms
 
 open scoped LRA.Identity.Constructions.Mathlib
 
+/--
+`Set` TODO
+
+Predicate logic:
+
+  Type
+
+Predicate logic (unfolded):
+
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Type
+
+Logical form (Lean):
+
+```lean
+axiom ZFCSet : Type
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 abbrev Set := LRA.Set.Constructions.ZFCSet
 
 /--
-`ExistsAndUnique property` states that `property` has a witness and all of its
-witnesses are identical. It is the ZFC-set alias for
-`LRA.Identity.ExactlyOne property`.
+`ExistsAndUnique` TODO
 
-This namespace activates the Mathlib identity provider, so `Ident` is Lean
-equality here. Equivalently, it expresses
-`(∃ x, property x) ∧ ∀ x y, property x → property y → x = y`.
+Predicate logic:
+
+  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] (P : Carrier → Prop), (LRA.Identity.HasWitness P ∧ LRA.Identity.AtMostOne P)
+
+Predicate logic (unfolded):
+
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun x => P x ∧ (∀ (left right : Carrier), P left → P right → inst.Ident left right))
+
+Logical form (Lean):
+
+```lean
+def ExactlyOne (P : Carrier → Prop) : Prop :=
+  HasWitness P ∧ AtMostOne P
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, constructor, cases, rcases, unfold
+
 -/
 abbrev ExistsAndUnique (property : Set → Prop) : Prop :=
   LRA.Identity.ExactlyOne property

@@ -11,11 +11,16 @@ universe u v
 
 Predicate logic:
 
-  (IsFinite A) → IsCountable A
+  ∀ (A : Type u), LRA.Cardinality.IsFinite A → LRA.Cardinality.IsCountable A
 
 Predicate logic (unfolded):
 
-  ∀ (A : Type u), (Exists fun n => Exists fun f => (∀ (y : Fin n) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂ ∧ ∀ (y : Fin n), Exists fun x => f x = y)) → Exists fun f => ∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
+  Ambient
+    (A)
+  Objects
+    (none)
+  Prove
+    (Exists fun n => Exists fun f => ((∀ (y : Fin n) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Fin n), Exists fun x => f x = y))) → Exists fun f => ∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
 
 Logical form (Lean):
 
@@ -51,11 +56,16 @@ theorem FiniteImpliesCountable (A : Type u)
 
 Predicate logic:
 
-  (IsCountablyInfinite A) → IsCountable A
+  ∀ (A : Type u), LRA.Cardinality.IsCountablyInfinite A → LRA.Cardinality.IsCountable A
 
 Predicate logic (unfolded):
 
-  ∀ (A : Type u), (Exists fun f => (∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂ ∧ ∀ (y : Nat), Exists fun x => f x = y)) → Exists fun f => ∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
+  Ambient
+    (A)
+  Objects
+    (none)
+  Prove
+    (Exists fun f => ((∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Nat), Exists fun x => f x = y))) → Exists fun f => ∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
 
 Logical form (Lean):
 
@@ -91,11 +101,16 @@ theorem CountablyInfiniteImpliesCountable (A : Type u)
 
 Predicate logic:
 
-  (IsCountablyInfinite A) → IsInfinite A
+  ∀ (A : Type u), LRA.Cardinality.IsCountablyInfinite A → LRA.Cardinality.IsInfinite A
 
 Predicate logic (unfolded):
 
-  ∀ (A : Type u), (Exists fun f => (∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂ ∧ ∀ (y : Nat), Exists fun x => f x = y) ∧ Exists fun n => Exists fun f => (LRA.Relation.LeftUnique (LRA.Function.Graph f) ∧ LRA.Relation.RightTotal (LRA.Function.Graph f))) → False
+  Ambient
+    (A)
+  Objects
+    (none)
+  Prove
+    ((Exists fun f => ((∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Nat), Exists fun x => f x = y))) ∧ (Exists fun n => Exists fun f => (LRA.Relation.LeftUnique (LRA.Function.Graph f) ∧ LRA.Relation.RightTotal (LRA.Function.Graph f)))) → False
 
 Logical form (Lean):
 
@@ -131,11 +146,16 @@ theorem CountablyInfiniteImpliesInfinite (A : Type u)
 
 Predicate logic:
 
-  IsCountable A ↔ IsCountable B
+  ∀ (A : Type u) (B : Type v), LRA.Cardinality.Equinumerous A B → LRA.Cardinality.IsCountable A ↔ LRA.Cardinality.IsCountable B
 
 Predicate logic (unfolded):
 
-  ∀ (A : Type u) (B : Type v), (Exists fun f => (∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂ ∧ ∀ (y : B), Exists fun x => f x = y)) → Exists fun f => ∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂ ↔ Exists fun f => ∀ (y : Nat) (x₁ x₂ : B), f x₁ = y → f x₂ = y → x₁ = x₂
+  Ambient
+    (A, B)
+  Objects
+    equinumerous : Equinumerous A B
+  Prove
+    LRA.Cardinality.Equinumerous A B → LRA.Cardinality.IsCountable A ↔ LRA.Cardinality.IsCountable B
 
 Logical form (Lean):
 
@@ -171,11 +191,16 @@ theorem IsCountableCongr (A : Type u) (B : Type v)
 
 Predicate logic:
 
-  (IsCountable B) → IsCountable A
+  ∀ (A : Type u) (B : Type v), (LRA.Cardinality.Dominates A B ∧ LRA.Cardinality.IsCountable B) → LRA.Cardinality.IsCountable A
 
 Predicate logic (unfolded):
 
-  ∀ (A : Type u) (B : Type v), (Exists fun f => ∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂ ∧ Exists fun f => ∀ (y : Nat) (x₁ x₂ : B), f x₁ = y → f x₂ = y → x₁ = x₂) → Exists fun f => ∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
+  Ambient
+    (A, B)
+  Objects
+    dominatesB : Dominates A B
+  Prove
+    ((Exists fun f => ∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (Exists fun f => ∀ (y : Nat) (x₁ x₂ : B), f x₁ = y → f x₂ = y → x₁ = x₂)) → Exists fun f => ∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
 
 Logical form (Lean):
 
@@ -213,11 +238,16 @@ theorem DominatesCountableIsCountable (A : Type u) (B : Type v)
 
 Predicate logic:
 
-  (Index → Type v ∧ IsCountable Index ∧ ∀ index : Index, IsCountable (family index)) → IsCountable (Sigma family)
+  ∀ {Index : Type u} (family : Index → Type v), (LRA.Cardinality.IsCountable Index ∧ (∀ (index : Index), LRA.Cardinality.IsCountable (family index))) → LRA.Cardinality.IsCountable (Sigma family)
 
 Predicate logic (unfolded):
 
-  ∀ {Index : Type u} (family : Index → Type v), (Exists fun f => ∀ (y : Nat) (x₁ x₂ : Index), f x₁ = y → f x₂ = y → x₁ = x₂ ∧ ∀ (index : Index), Exists fun f => ∀ (y : Nat) (x₁ x₂ : family index), f x₁ = y → f x₂ = y → x₁ = x₂) → Exists fun f => ∀ (y : Nat) (x₁ x₂ : Sigma family), f x₁ = y → f x₂ = y → x₁ = x₂
+  Ambient
+    (Index)
+  Objects
+    family : Index → Type v
+  Prove
+    ((Exists fun f => ∀ (y : Nat) (x₁ x₂ : Index), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (index : Index), Exists fun f => ∀ (y : Nat) (x₁ x₂ : family index), f x₁ = y → f x₂ = y → x₁ = x₂)) → Exists fun f => ∀ (y : Nat) (x₁ x₂ : Sigma family), f x₁ = y → f x₂ = y → x₁ = x₂
 
 Logical form (Lean):
 

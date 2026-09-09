@@ -8,20 +8,20 @@ namespace LRA.Logic.FirstOrder
 Predicate logic:
 
   def substituteInTerm
-    {S : Signature} {Variable : Type} [DecidableEq Variable]
-    (x : Variable) (t : Term S Variable) : Term S Variable -> Term S Variable
-  | .var v => if v = x then t else Term.var v
-  | .const c => Term.const c
-  | .apply f args => Term.apply f (fun i => substituteInTerm x t (args i))
+      {S : Signature} {Variable : Type} [DecidableEq Variable]
+      (x : Variable) (t : Term S Variable) : Term S Variable -> Term S Variable
+    | .var v => if v = x then t else Term.var v
+    | .const c => Term.const c
+    | .apply f args => Term.apply f (fun i => substituteInTerm x t (args i))
 
 Predicate logic (unfolded):
 
   def substituteInTerm
-    {S : Signature} {Variable : Type} [DecidableEq Variable]
-    (x : Variable) (t : Term S Variable) : Term S Variable -> Term S Variable
-  | .var v => if v = x then t else Term.var v
-  | .const c => Term.const c
-  | .apply f args => Term.apply f (fun i => substituteInTerm x t (args i)) (source fallback; no compiled unfold data available)
+      {S : Signature} {Variable : Type} [DecidableEq Variable]
+      (x : Variable) (t : Term S Variable) : Term S Variable -> Term S Variable
+    | .var v => if v = x then t else Term.var v
+    | .const c => Term.const c
+    | .apply f args => Term.apply f (fun i => substituteInTerm x t (args i)) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

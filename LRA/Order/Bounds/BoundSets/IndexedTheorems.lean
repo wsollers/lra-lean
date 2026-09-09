@@ -28,11 +28,17 @@ variable [SubsetLaws SetObject]
 
 Predicate logic:
 
-  UpperBounds relation (HasIndexedUnion.indexedUnion family) = HasIndexedIntersection.indexedIntersection (fun index => UpperBounds relation (family index))
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject] [inst_6 : LRA.Set.HasSeparation Element SetObject] [inst_7 : LRA.Set.HasUniversal SetObject] [inst_8 : LRA.Set.HasComplement SetObject] [inst_9 : LRA.Set.HasIndexedUnion SetObject] [inst_10 : LRA.Set.HasIndexedIntersection SetObject], (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.IndexedMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject))))) → ∀ {Index : Type w} (relation : LRA.Relation.Endorelation Element) (family : Index → SetObject), LRA.Order.UpperBounds relation (inst_9.indexedUnion family) = inst_10.indexedIntersection fun index => LRA.Order.UpperBounds relation (family index)
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject] [inst_6 : LRA.Set.HasSeparation Element SetObject] [inst_7 : LRA.Set.HasUniversal SetObject] [inst_8 : LRA.Set.HasComplement SetObject] [inst_9 : LRA.Set.HasIndexedUnion SetObject] [inst_10 : LRA.Set.HasIndexedIntersection SetObject], (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.IndexedMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject))))) → ∀ {Index : Type w} (relation : Element → Element → Prop) (family : Index → SetObject), inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (inst_9.1 family) element → relation element bound = inst_10.1 fun index => inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (family index) element → relation element bound
+  Ambient
+    (Element, SetObject, Index, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    family : Index -> SetObject
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.IndexedMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject))))) → ∀ {Index : Type w} (relation : Element → Element → Prop) (family : Index → SetObject), inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (inst_9.1 family) element → relation element bound = inst_10.1 fun index => inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (family index) element → relation element bound
 
 Logical form (Lean):
 
@@ -78,11 +84,17 @@ theorem UpperBoundsOfIndexedUnion
 
 Predicate logic:
 
-  LowerBounds relation (HasIndexedUnion.indexedUnion family) = HasIndexedIntersection.indexedIntersection (fun index => LowerBounds relation (family index))
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject] [inst_6 : LRA.Set.HasSeparation Element SetObject] [inst_7 : LRA.Set.HasUniversal SetObject] [inst_8 : LRA.Set.HasComplement SetObject] [inst_9 : LRA.Set.HasIndexedUnion SetObject] [inst_10 : LRA.Set.HasIndexedIntersection SetObject], (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.IndexedMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject))))) → ∀ {Index : Type w} (relation : LRA.Relation.Endorelation Element) (family : Index → SetObject), LRA.Order.LowerBounds relation (inst_9.indexedUnion family) = inst_10.indexedIntersection fun index => LRA.Order.LowerBounds relation (family index)
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject] [inst_6 : LRA.Set.HasSeparation Element SetObject] [inst_7 : LRA.Set.HasUniversal SetObject] [inst_8 : LRA.Set.HasComplement SetObject] [inst_9 : LRA.Set.HasIndexedUnion SetObject] [inst_10 : LRA.Set.HasIndexedIntersection SetObject], (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.IndexedMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject))))) → ∀ {Index : Type w} (relation : Element → Element → Prop) (family : Index → SetObject), inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (inst_9.1 family) element → relation bound element = inst_10.1 fun index => inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (family index) element → relation bound element
+  Ambient
+    (Element, SetObject, Index, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    family : Index -> SetObject
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.IndexedMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject))))) → ∀ {Index : Type w} (relation : Element → Element → Prop) (family : Index → SetObject), inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (inst_9.1 family) element → relation bound element = inst_10.1 fun index => inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (family index) element → relation bound element
 
 Logical form (Lean):
 
@@ -128,11 +140,17 @@ theorem LowerBoundsOfIndexedUnion
 
 Predicate logic:
 
-  HasIndexedUnion.indexedUnion (fun index => UpperBounds relation (family index)) ⊆ UpperBounds relation (HasIndexedIntersection.indexedIntersection family)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject] [inst_6 : LRA.Set.HasSeparation Element SetObject] [inst_7 : LRA.Set.HasUniversal SetObject] [inst_8 : LRA.Set.HasComplement SetObject] [inst_9 : LRA.Set.HasIndexedUnion SetObject] [inst_10 : LRA.Set.HasIndexedIntersection SetObject], (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.IndexedMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject))))) → ∀ {Index : Type w} (relation : LRA.Relation.Endorelation Element) (family : Index → SetObject), inst_5.Subset (inst_9.indexedUnion fun index => LRA.Order.UpperBounds relation (family index)) (LRA.Order.UpperBounds relation (inst_10.indexedIntersection family))
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject] [inst_6 : LRA.Set.HasSeparation Element SetObject] [inst_7 : LRA.Set.HasUniversal SetObject] [inst_8 : LRA.Set.HasComplement SetObject] [inst_9 : LRA.Set.HasIndexedUnion SetObject] [inst_10 : LRA.Set.HasIndexedIntersection SetObject], (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.IndexedMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject))))) → ∀ {Index : Type w} (relation : Element → Element → Prop) (family : Index → SetObject), inst_5.1 (inst_9.1 fun index => inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (family index) element → relation element bound) (inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (inst_10.1 family) element → relation element bound)
+  Ambient
+    (Element, SetObject, Index, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    family : Index -> SetObject
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.IndexedMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject))))) → ∀ {Index : Type w} (relation : Element → Element → Prop) (family : Index → SetObject), inst_5.1 (inst_9.1 fun index => inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (family index) element → relation element bound) (inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (inst_10.1 family) element → relation element bound)
 
 Logical form (Lean):
 
@@ -180,11 +198,17 @@ theorem IndexedUnionOfUpperBoundsContainedInUpperBoundsOfIntersection
 
 Predicate logic:
 
-  HasIndexedUnion.indexedUnion (fun index => LowerBounds relation (family index)) ⊆ LowerBounds relation (HasIndexedIntersection.indexedIntersection family)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject] [inst_6 : LRA.Set.HasSeparation Element SetObject] [inst_7 : LRA.Set.HasUniversal SetObject] [inst_8 : LRA.Set.HasComplement SetObject] [inst_9 : LRA.Set.HasIndexedUnion SetObject] [inst_10 : LRA.Set.HasIndexedIntersection SetObject], (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.IndexedMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject))))) → ∀ {Index : Type w} (relation : LRA.Relation.Endorelation Element) (family : Index → SetObject), inst_5.Subset (inst_9.indexedUnion fun index => LRA.Order.LowerBounds relation (family index)) (LRA.Order.LowerBounds relation (inst_10.indexedIntersection family))
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject] [inst_6 : LRA.Set.HasSeparation Element SetObject] [inst_7 : LRA.Set.HasUniversal SetObject] [inst_8 : LRA.Set.HasComplement SetObject] [inst_9 : LRA.Set.HasIndexedUnion SetObject] [inst_10 : LRA.Set.HasIndexedIntersection SetObject], (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.IndexedMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject))))) → ∀ {Index : Type w} (relation : Element → Element → Prop) (family : Index → SetObject), inst_5.1 (inst_9.1 fun index => inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (family index) element → relation bound element) (inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (inst_10.1 family) element → relation bound element)
+  Ambient
+    (Element, SetObject, Index, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    family : Index -> SetObject
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.IndexedMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject))))) → ∀ {Index : Type w} (relation : Element → Element → Prop) (family : Index → SetObject), inst_5.1 (inst_9.1 fun index => inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (family index) element → relation bound element) (inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (inst_10.1 family) element → relation bound element)
 
 Logical form (Lean):
 

@@ -10,21 +10,21 @@ Predicate logic:
 
   structure MathematicalSpaceDefinition where
 
-  Carrier : Type u
+    Carrier : Type u
 
-  HasStructure : Prop
+    HasStructure : Prop
 
-  hasStructure : HasStructure
+    hasStructure : HasStructure
 
 Predicate logic (unfolded):
 
   structure MathematicalSpaceDefinition where
 
-  Carrier : Type u
+    Carrier : Type u
 
-  HasStructure : Prop
+    HasStructure : Prop
 
-  hasStructure : HasStructure (source fallback; no compiled unfold data available)
+    hasStructure : HasStructure (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

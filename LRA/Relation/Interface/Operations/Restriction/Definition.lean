@@ -15,7 +15,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} {Y : Type v} (R : X → Y → Prop) (A : X → Prop) (a : X) (a_1 : Y), (A a ∧ R a a_1)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (A a ∧ R a a_1)
 
 Logical form (Lean):
 
@@ -59,7 +64,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} {Y : Type v} (R : X → Y → Prop) (B : Y → Prop) (a : X) (a_1 : Y), (R a a_1 ∧ B a_1)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (R a a_1 ∧ B a_1)
 
 Logical form (Lean):
 
@@ -103,7 +113,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} {Y : Type v} (R : X → Y → Prop) (A : X → Prop) (B : Y → Prop) (a : X) (a_1 : Y), (A a ∧ (R a a_1 ∧ B a_1))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (A a ∧ (R a a_1 ∧ B a_1))
 
 Logical form (Lean):
 

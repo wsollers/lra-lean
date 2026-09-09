@@ -10,11 +10,16 @@ namespace LRA.Analysis.StructureOfRealLine
 
 Predicate logic:
 
-  ∀ (U : Set Real) (x : Real), Set.instMembership.mem U x → Exists fun r => (GT.gt r 0 ∧ ∀ (y : Real), Real.instLT.lt (abs (instHSub.hSub x y)) r → Set.instMembership.mem U y)
+  ∀ (U : Set Real) (x : Real), x ∈ U → Exists fun r => (GT.gt r 0 ∧ (∀ (y : Real), Real.instLT.lt (abs (instHSub.hSub x y)) r → y ∈ U))
 
 Predicate logic (unfolded):
 
-  ∀ (U : Real → Prop) (x : Real), Set.instMembership.1 U x → Exists fun r => (Real.instLT.1 Zero.toOfNat0.1 r ∧ ∀ (y : Real), Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 x y) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 x y))) r → Set.instMembership.1 U y)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    x ∈ U → Exists fun r => (Real.instLT.lt 0 r ∧ (∀ (y : Real), Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x y)) r → y ∈ U))
 
 Logical form (Lean):
 
@@ -50,11 +55,16 @@ def IsOpenR (U : Set ℝ) : Prop :=
 
 Predicate logic:
 
-  ∀ (F : Set Real) (x : Real), Set.instMembership.mem (Set.instSDiff.sdiff Set.univ F) x → Exists fun r => (GT.gt r 0 ∧ ∀ (y : Real), Real.instLT.lt (abs (instHSub.hSub x y)) r → Set.instMembership.mem (Set.instSDiff.sdiff Set.univ F) y)
+  ∀ (F : Set Real) (x : Real), x ∈ Set.univ \ F → Exists fun r => (GT.gt r 0 ∧ (∀ (y : Real), Real.instLT.lt (abs (instHSub.hSub x y)) r → y ∈ Set.univ \ F))
 
 Predicate logic (unfolded):
 
-  ∀ (F : Real → Prop) (x : Real), Set.instMembership.1 (Set.instSDiff.1 (fun _a => True) F) x → Exists fun r => (Real.instLT.1 Zero.toOfNat0.1 r ∧ ∀ (y : Real), Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 x y) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 x y))) r → Set.instMembership.1 (Set.instSDiff.1 (fun _a => True) F) y)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    x ∈ fun _a => True \ F → Exists fun r => (Real.instLT.lt 0 r ∧ (∀ (y : Real), Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x y)) r → y ∈ fun _a => True \ F))
 
 Logical form (Lean):
 
@@ -90,11 +100,16 @@ def IsClosedR (F : Set ℝ) : Prop :=
 
 Predicate logic:
 
-  ∀ (K : Set Real) (ι : Type) (U : ι → Set Real), (∀ (i : ι), LRA.Analysis.StructureOfRealLine.IsOpenR (U i) ∧ Set.instLE.le K (Set.iUnion fun i => U i)) → Exists fun J => Set.instLE.le K (Set.iUnion fun i => Set.iUnion fun h => U i)
+  ∀ (K : Set Real) (ι : Type) (U : ι → Set Real), ((∀ (i : ι), LRA.Analysis.StructureOfRealLine.IsOpenR (U i)) ∧ Set.instLE.le K (Set.iUnion fun i => U i)) → Exists fun J => Set.instLE.le K (Set.iUnion fun i => Set.iUnion fun h => U i)
 
 Predicate logic (unfolded):
 
-  ∀ (K : Real → Prop) (ι : Type) (U : ι → Real → Prop), (∀ (i : ι) (x : Real), Set.instMembership.1 (U i) x → Exists fun r => (Real.instLT.1 Zero.toOfNat0.1 r ∧ ∀ (y : Real), Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 x y) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 x y))) r → Set.instMembership.1 (U i) y) ∧ Set.instLE.1 K (Set.instSupSet.1 fun x => Exists fun y => (fun i => U i) y = x)) → Exists fun J => Set.instLE.1 K (Set.instSupSet.1 fun x => Exists fun y => (fun i => Set.iUnion fun h => U i) y = x)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (i : ι) (x : Real), x ∈ U i → Exists fun r => (Real.instLT.lt 0 r ∧ (∀ (y : Real), Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x y)) r → y ∈ U i))) ∧ ({ le := fun s₁ s₂ => ∀ ⦃a : Real⦄, a ∈ s₁ → a ∈ s₂}.le K (Set.instSupSet.1 fun x => Exists fun y => (fun i => U i) y = x))) → Exists fun J => { le := fun s₁ s₂ => ∀ ⦃a : Real⦄, a ∈ s₁ → a ∈ s₂}.le K (Set.instSupSet.1 fun x => Exists fun y => (fun i => iSup fun h => U i) y = x)
 
 Logical form (Lean):
 
@@ -134,11 +149,17 @@ def IsCompactR (K : Set ℝ) : Prop :=
 
 Predicate logic:
 
-  (IsClosedR F ∧ IsCompactR K) → IsCompactR F
+  ∀ (F K : Set Real), (Set.instLE.le F K ∧ (LRA.Analysis.StructureOfRealLine.IsClosedR F ∧ LRA.Analysis.StructureOfRealLine.IsCompactR K)) → LRA.Analysis.StructureOfRealLine.IsCompactR F
 
 Predicate logic (unfolded):
 
-  ∀ (F K : Real → Prop), (Set.instLE.1 F K ∧ (∀ (x : Real), Set.instMembership.1 (Set.instSDiff.1 (fun _a => True) F) x → Exists fun r => (Real.instLT.1 Zero.toOfNat0.1 r ∧ ∀ (y : Real), Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 x y) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub x y))) r → Set.instMembership.1 (Set.instSDiff.1 (fun _a => True) F) y) ∧ ∀ (ι : Type) (U : ι → Real → Prop), (∀ (i : ι) (x : Real), Set.instMembership.1 (U i) x → Exists fun r => (Real.instLT.1 Zero.toOfNat0.1 r ∧ ∀ (y : Real), Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 x y) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub x y))) r → Set.instMembership.1 (U i) y)) → Set.instLE.1 K (Set.instSupSet.1 (setOf fun x => Exists fun y => (fun i => U i) y = x)) → Exists fun J => Set.instLE.1 K (Set.instSupSet.1 (setOf fun x => Exists fun y => (fun i => Set.iUnion fun h => U i) y = x)))) → ∀ (ι : Type) (U : ι → Real → Prop), (∀ (i : ι) (x : Real), Set.instMembership.1 (U i) x → Exists fun r => (Real.instLT.1 Zero.toOfNat0.1 r ∧ ∀ (y : Real), Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 x y) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub x y))) r → Set.instMembership.1 (U i) y) ∧ Set.instLE.1 F (Set.instSupSet.1 (setOf fun x => Exists fun y => (fun i => U i) y = x))) → Exists fun J => Set.instLE.1 F (Set.instSupSet.1 (setOf fun x => Exists fun y => (fun i => Set.iUnion fun h => U i) y = x))
+  Ambient
+    (ℝ)
+  Objects
+    F K : Set ℝ
+    hFK : F ⊆ K
+  Prove
+    (({ le := fun s₁ s₂ => ∀ ⦃a : Real⦄, a ∈ s₁ → a ∈ s₂}.le F K) ∧ ((∀ (x : Real), x ∈ fun _a => True \ F → Exists fun r => (Real.instLT.lt 0 r ∧ (∀ (y : Real), Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x y)) r → y ∈ fun _a => True \ F))) ∧ (∀ (ι : Type) (U : ι → Real → Prop), (∀ (i : ι) (x : Real), x ∈ U i → Exists fun r => (Real.instLT.lt 0 r ∧ (∀ (y : Real), Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x y)) r → y ∈ U i))) → { le := fun s₁ s₂ => ∀ ⦃a : Real⦄, a ∈ s₁ → a ∈ s₂}.le K (Set.instSupSet.1 fun x => Exists fun y => (fun i => U i) y = x) → Exists fun J => { le := fun s₁ s₂ => ∀ ⦃a : Real⦄, a ∈ s₁ → a ∈ s₂}.le K (Set.instSupSet.1 fun x => Exists fun y => (fun i => Set.iUnion fun h => U i) y = x)))) → ∀ (ι : Type) (U : ι → Real → Prop), ((∀ (i : ι) (x : Real), x ∈ U i → Exists fun r => (Real.instLT.lt 0 r ∧ (∀ (y : Real), Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x y)) r → y ∈ U i))) ∧ ({ le := fun s₁ s₂ => ∀ ⦃a : Real⦄, a ∈ s₁ → a ∈ s₂}.le F (Set.instSupSet.1 fun x => Exists fun y => (fun i => U i) y = x))) → Exists fun J => { le := fun s₁ s₂ => ∀ ⦃a : Real⦄, a ∈ s₁ → a ∈ s₂}.le F (Set.instSupSet.1 fun x => Exists fun y => (fun i => Set.iUnion fun h => U i) y = x)
 
 Logical form (Lean):
 
@@ -176,11 +197,16 @@ theorem ClosedSubsetOfCompactIsCompact
 
 Predicate logic:
 
-  ∀ (K : Set Real) (x : Nat → Real), (∀ (n : Nat), Set.instMembership.mem K (x n)) → Exists fun φ => (StrictMono φ ∧ Exists fun L => (Set.instMembership.mem K L ∧ Filter.Tendsto (Function.comp x φ) Filter.atTop (nhds L)))
+  ∀ (K : Set Real) (x : Nat → Real), (∀ (n : Nat), x n ∈ K) → Exists fun φ => (StrictMono φ ∧ (Exists fun L => (L ∈ K ∧ Filter.Tendsto (Function.comp x φ) Filter.atTop (nhds L))))
 
 Predicate logic (unfolded):
 
-  ∀ (K : Real → Prop) (x : Nat → Real), (∀ (n : Nat), Set.instMembership.1 K (x n)) → Exists fun φ => (∀ ⦃a b : Nat⦄, Nat.instPreorder.toLT.1 a b → Nat.instPreorder.toLT.1 (φ a) (φ b) ∧ Exists fun L => (Set.instMembership.1 K L ∧ Filter.instPartialOrder.toLE.1 { sets := fun x_1 => Set.instMembership.1 Filter.atTop.sets (Set.preimage (Function.comp x φ) x_1), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds L)))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (n : Nat), x n ∈ K) → Exists fun φ => ((∀ ⦃a b : Nat⦄, Nat.instPreorder.2.lt a b → Nat.instPreorder.2.lt (φ a) (φ b)) ∧ (Exists fun L => (L ∈ K ∧ Filter.instPartialOrder.toPreorder.1.le { sets := fun x_1 => setOf fun x_2 => Function.comp x φ x_2 ∈ x_1 ∈ Filter.atTop.1, univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds L))))
 
 Logical form (Lean):
 
@@ -220,11 +246,16 @@ def IsSeqCompactR (K : Set ℝ) : Prop :=
 
 Predicate logic:
 
-  IsSeqCompactR K ↔ IsCompactR K
+  ∀ (K : Set Real), LRA.Analysis.StructureOfRealLine.IsSeqCompactR K ↔ LRA.Analysis.StructureOfRealLine.IsCompactR K
 
 Predicate logic (unfolded):
 
-  ∀ (K : Real → Prop), ∀ (x : Nat → Real), (∀ (n : Nat), Set.instMembership.1 K (x n)) → Exists fun φ => (∀ ⦃a b : Nat⦄, Nat.instPreorder.toLT.1 a b → Nat.instPreorder.toLT.1 (φ a) (φ b) ∧ Exists fun L => (Set.instMembership.1 K L ∧ Filter.instPartialOrder.toLE.1 { sets := fun x_1 => Set.instMembership.mem Filter.atTop.sets (Set.preimage (Function.comp x φ) x_1), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds L))) ↔ ∀ (ι : Type) (U : ι → Real → Prop), (∀ (i : ι) (x : Real), Set.instMembership.1 (U i) x → Exists fun r => (Real.instLT.1 Zero.toOfNat0.1 r ∧ ∀ (y : Real), Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 x y) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub x y))) r → Set.instMembership.1 (U i) y)) → Set.instLE.1 K (Set.instSupSet.1 (setOf fun x => Exists fun y => (fun i => U i) y = x)) → Exists fun J => Set.instLE.1 K (Set.instSupSet.1 (setOf fun x => Exists fun y => (fun i => Set.iUnion fun h => U i) y = x))
+  Ambient
+    (ℝ)
+  Objects
+    K : Set ℝ
+  Prove
+    LRA.Analysis.StructureOfRealLine.IsSeqCompactR K ↔ LRA.Analysis.StructureOfRealLine.IsCompactR K
 
 Logical form (Lean):
 

@@ -22,11 +22,16 @@ there's nothing to reconstruct.
 
 Predicate logic:
 
-  (∀ rationalSystem ∈ RationalNumberSystem), LRA.UniversalAlgebra.Quotient.binary_operation_respects (ApproximationSetoid rationalSystem) (representative_addition rationalSystem ∈ = rationalSystem)
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), LRA.UniversalAlgebra.Quotient.binary_operation_respects (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem) LRA.NumberSystems.RealNumbers.EffectiveCauchy.representative_addition
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (first_representative first_replacement second_representative second_replacement : LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyApproximation rationalSystem), ((LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1 first_representative first_replacement ∧ (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1 second_representative second_replacement) → (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1 { Approximate := fun index => instHAdd.1 (first_representative.1 index) (second_representative.1 index), Modulus := fun precision => Nat.instMax.1 (first_representative.2 (instHAdd.1 precision 1)) (second_representative.2 (instHAdd.1 precision 1)), CauchyAtPrecision := ⋯ } { Approximate := fun index => instHAdd.1 (first_replacement.1 index) (second_replacement.1 index), Modulus := fun precision => Nat.instMax.1 (first_replacement.2 (instHAdd.1 precision 1)) (second_replacement.2 (instHAdd.1 precision 1)), CauchyAtPrecision := ⋯ }
+  Ambient
+    (implicit ambient)
+  Objects
+    rationalSystem : RationalNumberSystem
+  Prove
+    ((LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1 first_representative first_replacement ∧ (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1 second_representative second_replacement) → (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1 { Approximate := fun index => { hAdd := fun a b => rationalSystem.FieldModel.2.add a b }.hAdd (first_representative.1 index) (second_representative.1 index), Modulus := fun precision => Nat.instMax.1 (first_representative.2 ({ hAdd := fun a b => instAddNat.add a b }.hAdd precision 1)) (second_representative.2 ({ hAdd := fun a b => instAddNat.add a b }.hAdd precision 1)), CauchyAtPrecision := ⋯ } { Approximate := fun index => { hAdd := fun a b => rationalSystem.FieldModel.2.add a b }.hAdd (first_replacement.1 index) (second_replacement.1 index), Modulus := fun precision => Nat.instMax.1 (first_replacement.2 ({ hAdd := fun a b => instAddNat.add a b }.hAdd precision 1)) (second_replacement.2 ({ hAdd := fun a b => instAddNat.add a b }.hAdd precision 1)), CauchyAtPrecision := ⋯ }
 
 Logical form (Lean):
 
@@ -68,11 +73,16 @@ theorem representative_addition_respects_equivalence
 
 Predicate logic:
 
-  (∀ rationalSystem ∈ RationalNumberSystem), BinaryOperationIsProper fun _ ∈ EffectiveCauchyApproximation rationalSystem => True id (representative_addition rationalSystem ∈ = rationalSystem) (ApproximationSetoid rationalSystem) (representative_addition rationalSystem ∈ = rationalSystem)
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), LRA.Operation.Laws.QuotientCompatible.BinaryOperationIsProper (fun x => True) id LRA.NumberSystems.RealNumbers.EffectiveCauchy.representative_addition (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem) LRA.NumberSystems.RealNumbers.EffectiveCauchy.representative_addition
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), LRA.Operation.Laws.QuotientCompatible.BinaryOperationIsProper (fun x => True) (fun a => a) (fun first second => { Approximate := fun index => instHAdd.1 (first.1 index) (second.1 index), Modulus := fun precision => Nat.instMax.1 (first.2 (instHAdd.1 precision (instOfNatNat 1).1)) (second.2 (instHAdd.1 precision (instOfNatNat 1).1)), CauchyAtPrecision := ⋯ }) { r := fun first second => ∀ (precision : Nat), Exists fun index => ∀ (n : Nat), instLENat.1 index n → have difference := instHAdd.hAdd (first.Approximate n) (rationalSystem.FieldModel.negInst.neg (second.Approximate n)); (rationalSystem.FieldModel.ltInst.lt (rationalSystem.FieldModel.negInst.neg (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)) difference ∧ rationalSystem.FieldModel.ltInst.lt difference (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)), iseqv := ⋯ } fun first second => { Approximate := fun index => instHAdd.1 (first.1 index) (second.1 index), Modulus := fun precision => Nat.instMax.1 (first.2 (instHAdd.1 precision (instOfNatNat 1).1)) (second.2 (instHAdd.1 precision (instOfNatNat 1).1)), CauchyAtPrecision := ⋯ }
+  Ambient
+    (implicit ambient)
+  Objects
+    rationalSystem : RationalNumberSystem
+  Prove
+    LRA.Operation.Laws.QuotientCompatible.BinaryOperationIsProper (fun x => True) (fun a => a) (fun first second => { Approximate := fun index => { hAdd := fun a b => rationalSystem.FieldModel.2.add a b }.hAdd (first.1 index) (second.1 index), Modulus := fun precision => Nat.instMax.1 (first.2 ({ hAdd := fun a b => instAddNat.add a b }.hAdd precision 1)) (second.2 ({ hAdd := fun a b => instAddNat.add a b }.hAdd precision 1)), CauchyAtPrecision := ⋯ }) { r := fun first second => ∀ (precision : Nat), Exists fun index => ∀ (n : Nat), instLENat.le index n → have difference := instHAdd.hAdd (first.Approximate n) (rationalSystem.FieldModel.negInst.neg (second.Approximate n)); (rationalSystem.FieldModel.ltInst.lt (rationalSystem.FieldModel.negInst.neg (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)) difference ∧ rationalSystem.FieldModel.ltInst.lt difference (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)), iseqv := ⋯ } fun first second => { Approximate := fun index => { hAdd := fun a b => rationalSystem.FieldModel.2.add a b }.hAdd (first.1 index) (second.1 index), Modulus := fun precision => Nat.instMax.1 (first.2 ({ hAdd := fun a b => instAddNat.add a b }.hAdd precision 1)) (second.2 ({ hAdd := fun a b => instAddNat.add a b }.hAdd precision 1)), CauchyAtPrecision := ⋯ }
 
 Logical form (Lean):
 
@@ -120,11 +130,16 @@ theorem addition_is_proper
 
 Predicate logic:
 
-  (∀ rationalSystem ∈ RationalNumberSystem), LRA.UniversalAlgebra.Quotient.unary_operation_respects (ApproximationSetoid rationalSystem) (representative_negation rationalSystem ∈ = rationalSystem)
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), LRA.UniversalAlgebra.Quotient.unary_operation_respects (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem) LRA.NumberSystems.RealNumbers.EffectiveCauchy.representative_negation
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (first_representative second_representative : LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyApproximation rationalSystem), (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1 first_representative second_representative → (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1 { Approximate := fun index => rationalSystem.FieldModel.negInst.1 (first_representative.1 index), Modulus := first_representative.2, CauchyAtPrecision := ⋯ } { Approximate := fun index => rationalSystem.FieldModel.negInst.1 (second_representative.1 index), Modulus := second_representative.2, CauchyAtPrecision := ⋯ }
+  Ambient
+    (implicit ambient)
+  Objects
+    rationalSystem : RationalNumberSystem
+  Prove
+    (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1 first_representative second_representative → (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1 { Approximate := fun index => rationalSystem.FieldModel.4.neg (first_representative.1 index), Modulus := first_representative.2, CauchyAtPrecision := ⋯ } { Approximate := fun index => rationalSystem.FieldModel.4.neg (second_representative.1 index), Modulus := second_representative.2, CauchyAtPrecision := ⋯ }
 
 Logical form (Lean):
 
@@ -166,11 +181,16 @@ theorem representative_negation_respects_equivalence
 
 Predicate logic:
 
-  (∀ rationalSystem ∈ RationalNumberSystem), UnaryOperationIsProper fun _ ∈ EffectiveCauchyApproximation rationalSystem => True id (representative_negation rationalSystem ∈ = rationalSystem) (ApproximationSetoid rationalSystem) (representative_negation rationalSystem ∈ = rationalSystem)
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), LRA.Operation.Laws.QuotientCompatible.UnaryOperationIsProper (fun x => True) id LRA.NumberSystems.RealNumbers.EffectiveCauchy.representative_negation (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem) LRA.NumberSystems.RealNumbers.EffectiveCauchy.representative_negation
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), LRA.Operation.Laws.QuotientCompatible.UnaryOperationIsProper (fun x => True) (fun a => a) (fun representative => { Approximate := fun index => rationalSystem.FieldModel.negInst.1 (representative.1 index), Modulus := representative.2, CauchyAtPrecision := ⋯ }) { r := fun first second => ∀ (precision : Nat), Exists fun index => ∀ (n : Nat), instLENat.1 index n → have difference := instHAdd.hAdd (first.Approximate n) (rationalSystem.FieldModel.negInst.neg (second.Approximate n)); (rationalSystem.FieldModel.ltInst.lt (rationalSystem.FieldModel.negInst.neg (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)) difference ∧ rationalSystem.FieldModel.ltInst.lt difference (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)), iseqv := ⋯ } fun representative => { Approximate := fun index => rationalSystem.FieldModel.negInst.1 (representative.1 index), Modulus := representative.2, CauchyAtPrecision := ⋯ }
+  Ambient
+    (implicit ambient)
+  Objects
+    rationalSystem : RationalNumberSystem
+  Prove
+    LRA.Operation.Laws.QuotientCompatible.UnaryOperationIsProper (fun x => True) (fun a => a) (fun representative => { Approximate := fun index => rationalSystem.FieldModel.4.neg (representative.1 index), Modulus := representative.2, CauchyAtPrecision := ⋯ }) { r := fun first second => ∀ (precision : Nat), Exists fun index => ∀ (n : Nat), instLENat.le index n → have difference := instHAdd.hAdd (first.Approximate n) (rationalSystem.FieldModel.negInst.neg (second.Approximate n)); (rationalSystem.FieldModel.ltInst.lt (rationalSystem.FieldModel.negInst.neg (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)) difference ∧ rationalSystem.FieldModel.ltInst.lt difference (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)), iseqv := ⋯ } fun representative => { Approximate := fun index => rationalSystem.FieldModel.4.neg (representative.1 index), Modulus := representative.2, CauchyAtPrecision := ⋯ }
 
 Logical form (Lean):
 
@@ -218,11 +238,16 @@ theorem negation_is_proper
 
 Predicate logic:
 
-  (∀ rationalSystem ∈ RationalNumberSystem), LRA.UniversalAlgebra.Quotient.binary_operation_respects (ApproximationSetoid rationalSystem) (representative_multiplication rationalSystem ∈ = rationalSystem)
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), LRA.UniversalAlgebra.Quotient.binary_operation_respects (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem) LRA.NumberSystems.RealNumbers.EffectiveCauchy.representative_multiplication
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (first_representative first_replacement second_representative second_replacement : LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyApproximation rationalSystem), ((LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1 first_representative first_replacement ∧ (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1 second_representative second_replacement) → (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1 { Approximate := fun index => instHMul.1 (first_representative.1 index) (second_representative.1 index), Modulus := fun precision => Nat.instMax.1 (first_representative.2 (instHAdd.1 precision 1)) (second_representative.2 (instHAdd.1 precision 1)), CauchyAtPrecision := ⋯ } { Approximate := fun index => instHMul.1 (first_replacement.1 index) (second_replacement.1 index), Modulus := fun precision => Nat.instMax.1 (first_replacement.2 (instHAdd.1 precision 1)) (second_replacement.2 (instHAdd.1 precision 1)), CauchyAtPrecision := ⋯ }
+  Ambient
+    (implicit ambient)
+  Objects
+    rationalSystem : RationalNumberSystem
+  Prove
+    ((LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1 first_representative first_replacement ∧ (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1 second_representative second_replacement) → (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1 { Approximate := fun index => { hMul := fun a b => rationalSystem.FieldModel.3.mul a b }.hMul (first_representative.1 index) (second_representative.1 index), Modulus := fun precision => Nat.instMax.1 (first_representative.2 ({ hAdd := fun a b => instAddNat.add a b }.hAdd precision 1)) (second_representative.2 ({ hAdd := fun a b => instAddNat.add a b }.hAdd precision 1)), CauchyAtPrecision := ⋯ } { Approximate := fun index => { hMul := fun a b => rationalSystem.FieldModel.3.mul a b }.hMul (first_replacement.1 index) (second_replacement.1 index), Modulus := fun precision => Nat.instMax.1 (first_replacement.2 ({ hAdd := fun a b => instAddNat.add a b }.hAdd precision 1)) (second_replacement.2 ({ hAdd := fun a b => instAddNat.add a b }.hAdd precision 1)), CauchyAtPrecision := ⋯ }
 
 Logical form (Lean):
 
@@ -264,11 +289,16 @@ theorem representative_multiplication_respects_equivalence
 
 Predicate logic:
 
-  (∀ rationalSystem ∈ RationalNumberSystem), BinaryOperationIsProper fun _ ∈ EffectiveCauchyApproximation rationalSystem => True id (representative_multiplication rationalSystem ∈ = rationalSystem) (ApproximationSetoid rationalSystem) (representative_multiplication rationalSystem ∈ = rationalSystem)
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), LRA.Operation.Laws.QuotientCompatible.BinaryOperationIsProper (fun x => True) id LRA.NumberSystems.RealNumbers.EffectiveCauchy.representative_multiplication (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem) LRA.NumberSystems.RealNumbers.EffectiveCauchy.representative_multiplication
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), LRA.Operation.Laws.QuotientCompatible.BinaryOperationIsProper (fun x => True) (fun a => a) (fun first second => { Approximate := fun index => instHMul.1 (first.1 index) (second.1 index), Modulus := fun precision => Nat.instMax.1 (first.2 (instHAdd.1 precision (instOfNatNat 1).1)) (second.2 (instHAdd.1 precision (instOfNatNat 1).1)), CauchyAtPrecision := ⋯ }) { r := fun first second => ∀ (precision : Nat), Exists fun index => ∀ (n : Nat), instLENat.1 index n → have difference := instHAdd.hAdd (first.Approximate n) (rationalSystem.FieldModel.negInst.neg (second.Approximate n)); (rationalSystem.FieldModel.ltInst.lt (rationalSystem.FieldModel.negInst.neg (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)) difference ∧ rationalSystem.FieldModel.ltInst.lt difference (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)), iseqv := ⋯ } fun first second => { Approximate := fun index => instHMul.1 (first.1 index) (second.1 index), Modulus := fun precision => Nat.instMax.1 (first.2 (instHAdd.1 precision (instOfNatNat 1).1)) (second.2 (instHAdd.1 precision (instOfNatNat 1).1)), CauchyAtPrecision := ⋯ }
+  Ambient
+    (implicit ambient)
+  Objects
+    rationalSystem : RationalNumberSystem
+  Prove
+    LRA.Operation.Laws.QuotientCompatible.BinaryOperationIsProper (fun x => True) (fun a => a) (fun first second => { Approximate := fun index => { hMul := fun a b => rationalSystem.FieldModel.3.mul a b }.hMul (first.1 index) (second.1 index), Modulus := fun precision => Nat.instMax.1 (first.2 ({ hAdd := fun a b => instAddNat.add a b }.hAdd precision 1)) (second.2 ({ hAdd := fun a b => instAddNat.add a b }.hAdd precision 1)), CauchyAtPrecision := ⋯ }) { r := fun first second => ∀ (precision : Nat), Exists fun index => ∀ (n : Nat), instLENat.le index n → have difference := instHAdd.hAdd (first.Approximate n) (rationalSystem.FieldModel.negInst.neg (second.Approximate n)); (rationalSystem.FieldModel.ltInst.lt (rationalSystem.FieldModel.negInst.neg (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)) difference ∧ rationalSystem.FieldModel.ltInst.lt difference (LRA.NumberSystems.RealNumbers.EffectiveCauchy.PrecisionRadius rationalSystem precision)), iseqv := ⋯ } fun first second => { Approximate := fun index => { hMul := fun a b => rationalSystem.FieldModel.3.mul a b }.hMul (first.1 index) (second.1 index), Modulus := fun precision => Nat.instMax.1 (first.2 ({ hAdd := fun a b => instAddNat.add a b }.hAdd precision 1)) (second.2 ({ hAdd := fun a b => instAddNat.add a b }.hAdd precision 1)), CauchyAtPrecision := ⋯ }
 
 Logical form (Lean):
 

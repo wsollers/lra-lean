@@ -84,11 +84,16 @@ def IntervalLength (a b : ℝ) (hab : a ≤ b) : ℝ := b - a
 
 Predicate logic:
 
-  ∀ x y ∈ ℝ, dist' x y ≥ 0 ∧ ∀ x y ∈ ℝ, dist' x y = 0 ↔ x = y ∧ ∀ x y ∈ ℝ, dist' x y = dist' y x ∧ ∀ x y z ∈ ℝ, dist' x z ≤ dist' x y + dist' y z
+  ((∀ (x y : Real), GE.ge (LRA.Analysis.StructureOfRealLine.dist' x y) 0) ∧ ((∀ (x y : Real), LRA.Analysis.StructureOfRealLine.dist' x y = 0 ↔ x = y) ∧ ((∀ (x y : Real), LRA.Analysis.StructureOfRealLine.dist' x y = LRA.Analysis.StructureOfRealLine.dist' y x) ∧ (∀ (x y z : Real), Real.instLE.le (LRA.Analysis.StructureOfRealLine.dist' x z) (instHAdd.hAdd (LRA.Analysis.StructureOfRealLine.dist' x y) (LRA.Analysis.StructureOfRealLine.dist' y z))))))
 
 Predicate logic (unfolded):
 
-  (∀ (x y : Real), Real.instLE.1 Zero.toOfNat0.1 (SemilatticeSup.toMax.1 (instHSub.1 x y) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub x y))) ∧ (∀ (x y : Real), SemilatticeSup.toMax.1 (instHSub.1 x y) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 x y)) = Zero.toOfNat0.1 ↔ x = y ∧ (∀ (x y : Real), SemilatticeSup.toMax.1 (instHSub.1 x y) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 x y)) = SemilatticeSup.toMax.1 (instHSub.1 y x) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 y x)) ∧ ∀ (x y z : Real), Real.instLE.1 (SemilatticeSup.toMax.1 (instHSub.1 x z) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 x z))) (instHAdd.1 (SemilatticeSup.toMax.1 (instHSub.1 x y) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub x y))) (SemilatticeSup.toMax.1 (instHSub.1 y z) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub y z)))))))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x y : Real), GE.ge (LRA.Analysis.StructureOfRealLine.dist' x y) 0) ∧ ((∀ (x y : Real), LRA.Analysis.StructureOfRealLine.dist' x y = 0 ↔ x = y) ∧ ((∀ (x y : Real), LRA.Analysis.StructureOfRealLine.dist' x y = LRA.Analysis.StructureOfRealLine.dist' y x) ∧ (∀ (x y z : Real), Real.instLE.le (LRA.Analysis.StructureOfRealLine.dist' x z) (instHAdd.hAdd (LRA.Analysis.StructureOfRealLine.dist' x y) (LRA.Analysis.StructureOfRealLine.dist' y z))))))
 
 Logical form (Lean):
 
@@ -128,11 +133,16 @@ theorem DistanceIsAMetric :
 
 Predicate logic:
 
-  ∀ A ∈ Set ℝ, A.Nonempty → BddAbove A → ∃ s, IsLUB A s
+  ∀ (A : Set Real), (A.Nonempty ∧ BddAbove A) → Exists fun s => IsLUB A s
 
 Predicate logic (unfolded):
 
-  ∀ (A : Real → Prop), (Exists fun x => Set.instMembership.1 A x ∧ Exists fun x => Set.instMembership.1 (fun x => ∀ ⦃a : Real⦄, Set.instMembership.1 A a → Real.instLE.1 a x) x) → Exists fun s => (Set.instMembership.1 (fun x => ∀ ⦃a : Real⦄, Set.instMembership.1 A a → Real.instLE.1 a x) s ∧ Set.instMembership.1 (fun x => ∀ ⦃a : Real⦄, Set.instMembership.1 (upperBounds A) a → Real.instLE.1 x a) s)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun x => x ∈ A ∧ (Exists fun x => x ∈ fun x => ∀ ⦃a : Real⦄, a ∈ A → Real.instLE.le a x)) → Exists fun s => ((s ∈ fun x => ∀ ⦃a : Real⦄, a ∈ A → Real.instLE.le a x) ∧ (s ∈ fun x => ∀ ⦃a : Real⦄, a ∈ upperBounds A → Real.instLE.le x a))
 
 Logical form (Lean):
 
@@ -168,11 +178,18 @@ theorem RealLineStructuralOrderFacts :
 
 Predicate logic:
 
-  min a b > 0
+  ∀ (a b : Real), (GT.gt a 0 ∧ GT.gt b 0) → GT.gt (Real.instMin.min a b) 0
 
 Predicate logic (unfolded):
 
-  ∀ (a b : Real), (Real.instLT.1 Zero.toOfNat0.1 a ∧ Real.instLT.1 Zero.toOfNat0.1 b) → Real.instLT.1 Zero.toOfNat0.1 (Real.instMin.1 a b)
+  Ambient
+    (ℝ)
+  Objects
+    a b : ℝ
+    ha : a > 0
+    hb : b > 0
+  Prove
+    (Real.instLT.lt 0 a ∧ Real.instLT.lt 0 b) → Real.instLT.lt 0 (Real.instMin.1 a b)
 
 Logical form (Lean):
 
@@ -208,11 +225,17 @@ theorem MinOfPositiveIsPositive (a b : ℝ) (ha : a > 0) (hb : b > 0) :
 
 Predicate logic:
 
-  ε / 2 > 0
+  ∀ (ε : Real), GT.gt ε 0 → GT.gt (instHDiv.hDiv ε 2) 0
 
 Predicate logic (unfolded):
 
-  ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Real.instLT.1 Zero.toOfNat0.1 (instHDiv.1 ε instOfNatAtLeastTwo.1)
+  Ambient
+    (ℝ)
+  Objects
+    ε : ℝ
+    hε : ε > 0
+  Prove
+    Real.instLT.lt 0 ε → Real.instLT.lt 0 ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv ε 2)
 
 Logical form (Lean):
 
@@ -246,11 +269,17 @@ theorem HalfEpsilonIsPositive (ε : ℝ) (hε : ε > 0) : ε / 2 > 0 := by
 
 Predicate logic:
 
-  ε / 2 + ε / 2 = ε
+  ∀ (ε : Real), GT.gt ε 0 → instHAdd.hAdd (instHDiv.hDiv ε 2) (instHDiv.hDiv ε 2) = ε
 
 Predicate logic (unfolded):
 
-  ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → instHAdd.1 (instHDiv.1 ε instOfNatAtLeastTwo.1) (instHDiv.1 ε instOfNatAtLeastTwo.1) = ε
+  Ambient
+    (ℝ)
+  Objects
+    ε : ℝ
+    hε : ε > 0
+  Prove
+    Real.instLT.lt 0 ε → { hAdd := fun a b => Real.instAdd.add a b }.hAdd ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv ε 2) ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv ε 2) = ε
 
 Logical form (Lean):
 
@@ -284,11 +313,16 @@ theorem EpsilonSplitting (ε : ℝ) (hε : ε > 0) : ε / 2 + ε / 2 = ε := by
 
 Predicate logic:
 
-  (0 < δ ∧ δ ≤ a ∧ δ ≤ b) → δ ≤ min a b
+  ∀ (δ a b : Real), (Real.instLT.lt 0 δ ∧ (Real.instLE.le δ a ∧ Real.instLE.le δ b)) → Real.instLE.le δ (Real.instMin.min a b)
 
 Predicate logic (unfolded):
 
-  ∀ (δ a b : Real), (Real.instLT.1 Zero.toOfNat0.1 δ ∧ (Real.instLE.1 δ a ∧ Real.instLE.1 δ b)) → Real.instLE.1 δ (Real.instMin.1 a b)
+  Ambient
+    (ℝ)
+  Objects
+    δ a b : ℝ
+  Prove
+    (Real.instLT.lt 0 δ ∧ (Real.instLE.le δ a ∧ Real.instLE.le δ b)) → Real.instLE.le δ (Real.instMin.1 a b)
 
 Logical form (Lean):
 
@@ -324,11 +358,18 @@ theorem PositiveMinimumBound (δ a b : ℝ) (h1 : 0 < δ) (h2 : δ ≤ a) (h3 : 
 
 Predicate logic:
 
-  ∃ δ, 0 < δ ∧ δ < ε ∧ δ < c
+  ∀ (ε c : Real), (GT.gt ε 0 ∧ GT.gt c 0) → Exists fun δ => (Real.instLT.lt 0 δ ∧ (Real.instLT.lt δ ε ∧ Real.instLT.lt δ c))
 
 Predicate logic (unfolded):
 
-  ∀ (ε c : Real), (Real.instLT.1 Zero.toOfNat0.1 ε ∧ Real.instLT.1 Zero.toOfNat0.1 c) → Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ (Real.instLT.1 δ ε ∧ Real.instLT.1 δ c))
+  Ambient
+    (ℝ)
+  Objects
+    ε c : ℝ
+    hε : ε > 0
+    hc : c > 0
+  Prove
+    (Real.instLT.lt 0 ε ∧ Real.instLT.lt 0 c) → Exists fun δ => (Real.instLT.lt 0 δ ∧ (Real.instLT.lt δ ε ∧ Real.instLT.lt δ c))
 
 Logical form (Lean):
 
@@ -364,11 +405,16 @@ theorem ChoosingSmallerPositive (ε c : ℝ) (hε : ε > 0) (hc : c > 0) :
 
 Predicate logic:
 
-  |x| = dist' x 0
+  ∀ (x : Real), abs x = LRA.Analysis.StructureOfRealLine.dist' x 0
 
 Predicate logic (unfolded):
 
-  ∀ (x : Real), SemilatticeSup.toMax.1 x (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 x) = SemilatticeSup.toMax.1 (instHSub.1 x Zero.toOfNat0.1) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 x Zero.toOfNat0.1))
+  Ambient
+    (ℝ)
+  Objects
+    x : ℝ
+  Prove
+    abs x = abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x 0)
 
 Logical form (Lean):
 
@@ -402,11 +448,16 @@ theorem AbsIsDistanceToZero (x : ℝ) : |x| = dist' x 0 := by
 
 Predicate logic:
 
-  ∀ (A : Set Real), Exists fun M => (GT.gt M 0 ∧ ∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le (abs x) M)
+  ∀ (A : Set Real), Exists fun M => (GT.gt M 0 ∧ (∀ (x : Real), x ∈ A → Real.instLE.le (abs x) M))
 
 Predicate logic (unfolded):
 
-  ∀ (A : Real → Prop), Exists fun M => (Real.instLT.1 Zero.toOfNat0.1 M ∧ ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 (SemilatticeSup.toMax.1 x (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 x)) M)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun M => (Real.instLT.lt 0 M ∧ (∀ (x : Real), x ∈ A → Real.instLE.le (abs x) M))
 
 Logical form (Lean):
 
@@ -440,11 +491,16 @@ def IsBoundedSubset (A : Set ℝ) : Prop := ∃ M > 0, ∀ x ∈ A, |x| ≤ M
 
 Predicate logic:
 
-  forall A B : Set ℝ, A ∪ B = B ∪ A
+  ∀ (A B : Set Real), A ∪ B = B ∪ A
 
 Predicate logic (unfolded):
 
-  ∀ (A B : Real → Prop), Set.instUnion.1 A B = Set.instUnion.1 B A
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    A ∪ B = B ∪ A
 
 Logical form (Lean):
 

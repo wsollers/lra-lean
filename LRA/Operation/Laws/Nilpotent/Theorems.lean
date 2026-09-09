@@ -11,11 +11,18 @@ universe u
 
 Predicate logic:
 
-  ∃ positiveExponent ∈ Nat, PositivePower operation element positiveExponent = zero
+  ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {zero element : Carrier}, LRA.Operation.Laws.Nilpotent.NilpotentElement operation zero element → Exists fun positiveExponent => LRA.Operation.Laws.Nilpotent.PositivePower operation element positiveExponent = zero
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {operation : Carrier → Carrier → Carrier} {zero element : Carrier}, (Exists fun positiveExponent => LRA.Operation.Laws.Nilpotent.PositivePower operation element positiveExponent = zero) → Exists fun positiveExponent => LRA.Operation.Laws.Nilpotent.PositivePower operation element positiveExponent = zero
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    zero element : Carrier
+    law : NilpotentElement operation zero element
+  Prove
+    (Exists fun positiveExponent => LRA.Operation.Laws.Nilpotent.PositivePower operation element positiveExponent = zero) → Exists fun positiveExponent => LRA.Operation.Laws.Nilpotent.PositivePower operation element positiveExponent = zero
 
 Logical form (Lean):
 
@@ -59,11 +66,17 @@ theorem NilpotentElement.apply {Carrier : Type u}
 
 Predicate logic:
 
-  (∀ element ∈ Carrier), PositivePower operation element 0 = element
+  ∀ {Carrier : Type u} (operation : LRA.Operation.BinaryEndoOperation Carrier) (element : Carrier), LRA.Operation.Laws.Nilpotent.PositivePower operation element 0 = element
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (operation : Carrier → Carrier → Carrier) (element : Carrier), LRA.Operation.Laws.Nilpotent.PositivePower operation element (instOfNatNat 0).1 = element
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    element : Carrier
+  Prove
+    LRA.Operation.Laws.Nilpotent.PositivePower operation element 0 = element
 
 Logical form (Lean):
 
@@ -103,11 +116,18 @@ theorem PositivePower.first {Carrier : Type u}
 
 Predicate logic:
 
-  (∀ element ∈ Carrier ∀ exponent ∈ Nat), PositivePower operation element (Nat.succ exponent) = operation (PositivePower operation element exponent) element
+  ∀ {Carrier : Type u} (operation : LRA.Operation.BinaryEndoOperation Carrier) (element : Carrier) (exponent : Nat), LRA.Operation.Laws.Nilpotent.PositivePower operation element exponent.succ = operation (LRA.Operation.Laws.Nilpotent.PositivePower operation element exponent) element
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (operation : Carrier → Carrier → Carrier) (element : Carrier) (exponent : Nat), LRA.Operation.Laws.Nilpotent.PositivePower operation element exponent.succ = operation (LRA.Operation.Laws.Nilpotent.PositivePower operation element exponent) element
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    element : Carrier
+    exponent : Nat
+  Prove
+    LRA.Operation.Laws.Nilpotent.PositivePower operation element exponent.succ = operation (LRA.Operation.Laws.Nilpotent.PositivePower operation element exponent) element
 
 Logical form (Lean):
 
@@ -151,11 +171,17 @@ theorem PositivePower.succ {Carrier : Type u}
 
 Predicate logic:
 
-  (∀ identity element ∈ Carrier), OperationPower operation identity element 1 = operation identity element
+  ∀ {Carrier : Type u} (operation : LRA.Operation.BinaryEndoOperation Carrier) (identity element : Carrier), LRA.Operation.Laws.Nilpotent.OperationPower operation identity element 1 = operation identity element
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (operation : Carrier → Carrier → Carrier) (identity element : Carrier), LRA.Operation.Laws.Nilpotent.OperationPower operation identity element (instOfNatNat 1).1 = operation identity element
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    identity element : Carrier
+  Prove
+    LRA.Operation.Laws.Nilpotent.OperationPower operation identity element 1 = operation identity element
 
 Logical form (Lean):
 
@@ -195,11 +221,18 @@ theorem OperationPower.one {Carrier : Type u}
 
 Predicate logic:
 
-  (∀ identity element ∈ Carrier ∀ exponent ∈ Nat), OperationPower operation identity element (Nat.succ exponent) = operation (OperationPower operation identity element exponent) element
+  ∀ {Carrier : Type u} (operation : LRA.Operation.BinaryEndoOperation Carrier) (identity element : Carrier) (exponent : Nat), LRA.Operation.Laws.Nilpotent.OperationPower operation identity element exponent.succ = operation (LRA.Operation.Laws.Nilpotent.OperationPower operation identity element exponent) element
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (operation : Carrier → Carrier → Carrier) (identity element : Carrier) (exponent : Nat), LRA.Operation.Laws.Nilpotent.OperationPower operation identity element exponent.succ = operation (LRA.Operation.Laws.Nilpotent.OperationPower operation identity element exponent) element
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    identity element : Carrier
+    exponent : Nat
+  Prove
+    LRA.Operation.Laws.Nilpotent.OperationPower operation identity element exponent.succ = operation (LRA.Operation.Laws.Nilpotent.OperationPower operation identity element exponent) element
 
 Logical form (Lean):
 

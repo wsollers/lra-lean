@@ -11,14 +11,14 @@ universe u v
 Predicate logic:
 
   structure PartialFunction (Domain : Type u) (Codomain : Type v) where
-  DefinedAt : Domain → Prop
-  value : ∀ input, DefinedAt input → Codomain
+    DefinedAt : Domain → Prop
+    value : ∀ input, DefinedAt input → Codomain
 
 Predicate logic (unfolded):
 
   structure PartialFunction (Domain : Type u) (Codomain : Type v) where
-  DefinedAt : Domain → Prop
-  value : ∀ input, DefinedAt input → Codomain (source fallback; no compiled unfold data available)
+    DefinedAt : Domain → Prop
+    value : ∀ input, DefinedAt input → Codomain (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -57,12 +57,12 @@ structure PartialFunction (Domain : Type u) (Codomain : Type v) where
 Predicate logic:
 
   abbrev PartialEndofunction (Carrier : Type u) :=
-  PartialFunction Carrier Carrier
+    PartialFunction Carrier Carrier
 
 Predicate logic (unfolded):
 
   abbrev PartialEndofunction (Carrier : Type u) :=
-  PartialFunction Carrier Carrier (source fallback; no compiled unfold data available)
+    PartialFunction Carrier Carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -102,7 +102,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function.PartialFunction Domain Codomain) (a : Domain) (a_1 : Codomain), Exists fun defined => function.2 a defined = a_1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun defined => function.2 a defined = a_1
 
 Logical form (Lean):
 

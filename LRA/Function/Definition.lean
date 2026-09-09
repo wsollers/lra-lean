@@ -55,12 +55,12 @@ universe u v
 Predicate logic:
 
   abbrev FunctionRelation (Domain : Type u) (Codomain : Type v) :=
-  LRA.Relation.HeterogeneousBinaryRelation Domain Codomain
+    LRA.Relation.HeterogeneousBinaryRelation Domain Codomain
 
 Predicate logic (unfolded):
 
   abbrev FunctionRelation (Domain : Type u) (Codomain : Type v) :=
-  LRA.Relation.HeterogeneousBinaryRelation Domain Codomain (source fallback; no compiled unfold data available)
+    LRA.Relation.HeterogeneousBinaryRelation Domain Codomain (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -96,18 +96,23 @@ abbrev FunctionRelation (Domain : Type u) (Codomain : Type v) :=
 
 Predicate logic:
 
-  ∀ {Domain : Type u} {Codomain : Type v} (relation : LRA.Function.FunctionRelation Domain Codomain) (x : Domain) (y₁ y₂ : Codomain), (relation x y₁ ∧ relation x y₂) → y₁ = y₂
+  ∀ {α : Type u} {β : Type v} (R : LRA.Relation.HeterogeneousBinaryRelation α β) (x : α) (y₁ y₂ : β), (R x y₁ ∧ R x y₂) → y₁ = y₂
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (relation : Domain → Codomain → Prop) (x : Domain) (y₁ y₂ : Codomain), (relation x y₁ ∧ relation x y₂) → y₁ = y₂
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (R x y₁ ∧ R x y₂) → y₁ = y₂
 
 Logical form (Lean):
 
 ```lean
-abbrev SingleValued {Domain : Type u} {Codomain : Type v}
-    (relation : FunctionRelation Domain Codomain) : Prop :=
-  LRA.Relation.RightUnique relation
+def RightUnique {α : Type u} {β : Type v}
+    (R : HeterogeneousBinaryRelation α β) : Prop :=
+  ∀ x y₁ y₂, R x y₁ → R x y₂ → y₁ = y₂
 ```
 
 Type-theoretic form:
@@ -138,18 +143,23 @@ abbrev SingleValued {Domain : Type u} {Codomain : Type v}
 
 Predicate logic:
 
-  ∀ {Domain : Type u} {Codomain : Type v} (relation : LRA.Function.FunctionRelation Domain Codomain) (x : Domain), Exists fun y => relation x y
+  ∀ {α : Type u} {β : Type v} (R : LRA.Relation.HeterogeneousBinaryRelation α β) (x : α), Exists fun y => R x y
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (relation : Domain → Codomain → Prop) (x : Domain), Exists fun y => relation x y
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun y => R x y
 
 Logical form (Lean):
 
 ```lean
-abbrev Total {Domain : Type u} {Codomain : Type v}
-    (relation : FunctionRelation Domain Codomain) : Prop :=
-  LRA.Relation.LeftTotal relation
+def LeftTotal {α : Type u} {β : Type v}
+    (R : HeterogeneousBinaryRelation α β) : Prop :=
+  ∀ x, ∃ y, R x y
 ```
 
 Type-theoretic form:
@@ -184,7 +194,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (relation : Domain → Codomain → Prop), (∀ (x : Domain), Exists fun y => relation x y ∧ ∀ (x : Domain) (y₁ y₂ : Codomain), relation x y₁ → relation x y₂ → y₁ = y₂)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Domain), Exists fun y => relation x y) ∧ (∀ (x : Domain) (y₁ y₂ : Codomain), relation x y₁ → relation x y₂ → y₁ = y₂))
 
 Logical form (Lean):
 
@@ -264,7 +279,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (a : Domain) (a_1 : Codomain), function a = a_1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    function a = a_1
 
 Logical form (Lean):
 

@@ -8,11 +8,17 @@ universe u
 
 Predicate logic:
 
-  PartialEquivalenceRelation R
+  ∀ {α : Type u} {R : LRA.Relation.Endorelation α}, LRA.Relation.EquivalenceRelation R → LRA.Relation.PartialEquivalenceRelation R
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} {R : α → α → Prop}, (∀ (x : α), R x x ∧ (∀ (x y : α), R x y → R y x ∧ ∀ (x y z : α), R x y → R y z → R x z)) → (∀ (x y : α), R x y → R y x ∧ ∀ (x y z : α), R x y → R y z → R x z)
+  Ambient
+    (α)
+  Objects
+    R : Endorelation α
+    h : EquivalenceRelation R
+  Prove
+    ((∀ (x : α), R x x) ∧ ((∀ (x y : α), R x y → R y x) ∧ (∀ (x y z : α), R x y → R y z → R x z))) → ((∀ (x y : α), R x y → R y x) ∧ (∀ (x y z : α), R x y → R y z → R x z))
 
 Logical form (Lean):
 
@@ -48,11 +54,17 @@ theorem EquivalenceImpliesPartialEquivalence {α : Type u} {R : Endorelation α}
 
 Predicate logic:
 
-  ToleranceRelation R
+  ∀ {α : Type u} {R : LRA.Relation.Endorelation α}, LRA.Relation.EquivalenceRelation R → LRA.Relation.ToleranceRelation R
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} {R : α → α → Prop}, (∀ (x : α), R x x ∧ (∀ (x y : α), R x y → R y x ∧ ∀ (x y z : α), R x y → R y z → R x z)) → (∀ (x : α), R x x ∧ ∀ (x y : α), R x y → R y x)
+  Ambient
+    (α)
+  Objects
+    R : Endorelation α
+    h : EquivalenceRelation R
+  Prove
+    ((∀ (x : α), R x x) ∧ ((∀ (x y : α), R x y → R y x) ∧ (∀ (x y z : α), R x y → R y z → R x z))) → ((∀ (x : α), R x x) ∧ (∀ (x y : α), R x y → R y x))
 
 Logical form (Lean):
 

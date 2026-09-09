@@ -10,11 +10,17 @@ universe u v
 
 Predicate logic:
 
-  (∀ x ∈ X), ImageClass R (fun z => z = x) = PointImageClass R x
+  ∀ {X : Type u} {Y : Type v} (R : LRA.Relation.HeterogeneousBinaryRelation X Y) (x : X), LRA.Relation.ImageClass R fun z => z = x = LRA.Relation.PointImageClass R x
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} {Y : Type v} (R : X → Y → Prop) (x : X), fun y => Exists fun x_1 => ((fun z => z = x)x_1 ∧ R x_1 y) = funy => R x y
+  Ambient
+    (X, Y)
+  Objects
+    R : HeterogeneousBinaryRelation X Y
+    x : X
+  Prove
+    fun y => Exists fun x_1 => ((fun z => z = x)x_1 ∧ R x_1 y) = funy => R x y
 
 Logical form (Lean):
 
@@ -52,11 +58,17 @@ theorem PointImageClassIsSingletonImage {X : Type u} {Y : Type v}
 
 Predicate logic:
 
-  (∀ y ∈ Y), PreimageClass R (fun z => z = y) = FiberClass R y
+  ∀ {X : Type u} {Y : Type v} (R : LRA.Relation.HeterogeneousBinaryRelation X Y) (y : Y), LRA.Relation.PreimageClass R fun z => z = y = LRA.Relation.FiberClass R y
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} {Y : Type v} (R : X → Y → Prop) (y : Y), fun x => Exists fun y_1 => ((fun z => z = y)y_1 ∧ R x y_1) = funx => R x y
+  Ambient
+    (X, Y)
+  Objects
+    R : HeterogeneousBinaryRelation X Y
+    y : Y
+  Prove
+    fun x => Exists fun y_1 => ((fun z => z = y)y_1 ∧ R x y_1) = funx => R x y
 
 Logical form (Lean):
 

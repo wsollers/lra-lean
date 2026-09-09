@@ -7,11 +7,16 @@ namespace LRA.EuclideanSpace
 
 Predicate logic:
 
-  ∃ a ∈ TarskiPoint, ∀ x y : TarskiPoint, φ x → ψ y → TarskiBetween a x y → ∃ b ∈ TarskiPoint, ∀ x y : TarskiPoint, φ x → ψ y → TarskiBetween x b y end LRA.EuclideanSpace
+  ∀ (φ ψ : LRA.EuclideanSpace.TarskiPoint → Prop), (Exists fun a => ∀ (x y : LRA.EuclideanSpace.TarskiPoint), φ x → ψ y → LRA.EuclideanSpace.TarskiBetween a x y) → Exists fun b => ∀ (x y : LRA.EuclideanSpace.TarskiPoint), φ x → ψ y → LRA.EuclideanSpace.TarskiBetween x b y
 
 Predicate logic (unfolded):
 
-  ∀ (φ ψ : LRA.EuclideanSpace.TarskiPoint → Prop), (Exists fun a => ∀ (x y : LRA.EuclideanSpace.TarskiPoint), φ x → ψ y → LRA.EuclideanSpace.TarskiBetween a x y) → Exists fun b => ∀ (x y : LRA.EuclideanSpace.TarskiPoint), φ x → ψ y → LRA.EuclideanSpace.TarskiBetween x b y
+  Ambient
+    (implicit ambient)
+  Objects
+    φ ψ : TarskiPoint → Prop
+  Prove
+    (Exists fun a => ∀ (x y : LRA.EuclideanSpace.TarskiPoint), φ x → ψ y → LRA.EuclideanSpace.TarskiBetween a x y) → Exists fun b => ∀ (x y : LRA.EuclideanSpace.TarskiPoint), φ x → ψ y → LRA.EuclideanSpace.TarskiBetween x b y
 
 Logical form (Lean):
 

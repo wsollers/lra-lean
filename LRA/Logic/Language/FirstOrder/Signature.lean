@@ -8,16 +8,16 @@ namespace LRA.Logic
 Predicate logic:
 
   structure Signature where
-  Functions : ArityIndexedSymbols
-  Relations : ArityIndexedSymbols
-  Constants : Type
+    Functions : ArityIndexedSymbols
+    Relations : ArityIndexedSymbols
+    Constants : Type
 
 Predicate logic (unfolded):
 
   structure Signature where
-  Functions : ArityIndexedSymbols
-  Relations : ArityIndexedSymbols
-  Constants : Type (source fallback; no compiled unfold data available)
+    Functions : ArityIndexedSymbols
+    Relations : ArityIndexedSymbols
+    Constants : Type (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -96,12 +96,12 @@ abbrev FirstOrderLanguage := Signature
 Predicate logic:
 
   abbrev Signature.FunctionSymbol (S : Signature) : Type :=
-  S.Functions.Symbol
+    S.Functions.Symbol
 
 Predicate logic (unfolded):
 
   abbrev Signature.FunctionSymbol (S : Signature) : Type :=
-  S.Functions.Symbol (source fallback; no compiled unfold data available)
+    S.Functions.Symbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -138,12 +138,12 @@ abbrev Signature.FunctionSymbol (S : Signature) : Type :=
 Predicate logic:
 
   abbrev Signature.RelationSymbol (S : Signature) : Type :=
-  S.Relations.Symbol
+    S.Relations.Symbol
 
 Predicate logic (unfolded):
 
   abbrev Signature.RelationSymbol (S : Signature) : Type :=
-  S.Relations.Symbol (source fallback; no compiled unfold data available)
+    S.Relations.Symbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -180,12 +180,12 @@ abbrev Signature.RelationSymbol (S : Signature) : Type :=
 Predicate logic:
 
   abbrev Signature.ConstantSymbol (S : Signature) : Type :=
-  S.Constants
+    S.Constants
 
 Predicate logic (unfolded):
 
   abbrev Signature.ConstantSymbol (S : Signature) : Type :=
-  S.Constants (source fallback; no compiled unfold data available)
+    S.Constants (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -222,12 +222,12 @@ abbrev Signature.ConstantSymbol (S : Signature) : Type :=
 Predicate logic:
 
   def Signature.functionArity (S : Signature) : S.FunctionSymbol -> Nat :=
-  S.Functions.arity
+    S.Functions.arity
 
 Predicate logic (unfolded):
 
   def Signature.functionArity (S : Signature) : S.FunctionSymbol -> Nat :=
-  S.Functions.arity (source fallback; no compiled unfold data available)
+    S.Functions.arity (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -264,12 +264,12 @@ def Signature.functionArity (S : Signature) : S.FunctionSymbol -> Nat :=
 Predicate logic:
 
   def Signature.relationArity (S : Signature) : S.RelationSymbol -> Nat :=
-  S.Relations.arity
+    S.Relations.arity
 
 Predicate logic (unfolded):
 
   def Signature.relationArity (S : Signature) : S.RelationSymbol -> Nat :=
-  S.Relations.arity (source fallback; no compiled unfold data available)
+    S.Relations.arity (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -309,7 +309,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (S : LRA.Logic.Signature) (symbol : S.Functions.1), S.Functions.2 symbol = instOfNatNat 1.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    S.Functions.2 symbol = 1
 
 Logical form (Lean):
 
@@ -349,7 +354,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (S : LRA.Logic.Signature) (symbol : S.Functions.1), S.Functions.2 symbol = instOfNatNat 2.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    S.Functions.2 symbol = 2
 
 Logical form (Lean):
 
@@ -389,7 +399,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (S : LRA.Logic.Signature) (symbol : S.Relations.1), S.Relations.2 symbol = instOfNatNat 1.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    S.Relations.2 symbol = 1
 
 Logical form (Lean):
 
@@ -429,7 +444,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (S : LRA.Logic.Signature) (symbol : S.Relations.1), S.Relations.2 symbol = instOfNatNat 2.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    S.Relations.2 symbol = 2
 
 Logical form (Lean):
 

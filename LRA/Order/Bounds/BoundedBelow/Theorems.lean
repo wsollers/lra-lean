@@ -14,11 +14,18 @@ universe u v
 
 Predicate logic:
 
-  (∀ A B ∈ U), (forall element, element ∈ A -> element ∈ B) → BoundedBelow(A)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} {smaller larger : SetObject}, ((∀ (element : Element), element ∈ smaller → element ∈ larger) ∧ LRA.Order.BoundedBelow relation larger) → LRA.Order.BoundedBelow relation smaller
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {relation : Element → Element → Prop} {smaller larger : SetObject}, (∀ (element : Element), inst.1 smaller element → inst.1 larger element ∧ Exists fun bound => ∀ (element : Element), inst.1 larger element → relation bound element) → Exists fun bound => ∀ (element : Element), inst.1 smaller element → relation bound element
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    smaller larger : SetObject
+    largerIsBoundedBelow : BoundedBelow relation larger
+  Prove
+    ((∀ (element : Element), inst.1 smaller element → inst.1 larger element) ∧ (Exists fun bound => ∀ (element : Element), inst.1 larger element → relation bound element)) → Exists fun bound => ∀ (element : Element), inst.1 smaller element → relation bound element
 
 Logical form (Lean):
 
@@ -66,11 +73,19 @@ theorem BoundedBelowOfSubcollection
 
 Predicate logic:
 
-  (∀ A B ∈ U), BoundedBelow(A ∪ B) ↔ BoundedBelow(A) ∧ BoundedBelow(B)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ {relation : LRA.Relation.Endorelation Element}, (LRA.Relation.Transitive relation ∧ LRA.Relation.Total relation) → ∀ (leftSubset rightSubset : SetObject), LRA.Order.BoundedBelow relation (leftSubset ∪ rightSubset) ↔ (LRA.Order.BoundedBelow relation leftSubset ∧ LRA.Order.BoundedBelow relation rightSubset)
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop}, (∀ (x y z : Element), relation x y → relation y z → relation x z ∧ ∀ (x y : Element), Or (relation x y) (relation y x)) → ∀ (leftSubset rightSubset : SetObject), Exists fun bound => ∀ (element : Element), inst.1 (inst_1.1 leftSubset rightSubset) element → relation bound element ↔ (Exists fun bound => ∀ (element : Element), inst.1 leftSubset element → relation bound element ∧ Exists fun bound => ∀ (element : Element), inst.1 rightSubset element → relation bound element)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsTransitive : LRA.Relation.Transitive relation
+    relationIsTotal : LRA.Relation.Total relation
+    leftSubset rightSubset : SetObject
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ {relation : LRA.Relation.Endorelation Element}, (LRA.Relation.Transitive relation ∧ LRA.Relation.Total relation) → ∀ (leftSubset rightSubset : SetObject), LRA.Order.BoundedBelow relation (leftSubset ∪ rightSubset) ↔ (LRA.Order.BoundedBelow relation leftSubset ∧ LRA.Order.BoundedBelow relation rightSubset)
 
 Logical form (Lean):
 
@@ -128,11 +143,17 @@ theorem UnionBoundedBelowIffPiecesBoundedBelow
 
 Predicate logic:
 
-  (∀ A B ∈ U), (BoundedBelow(A) ∨ BoundedBelow(B)) → BoundedBelow(A ∩ B)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ {relation : LRA.Relation.Endorelation Element} (leftSubset rightSubset : SetObject), Or (LRA.Order.BoundedBelow relation leftSubset) (LRA.Order.BoundedBelow relation rightSubset) → LRA.Order.BoundedBelow relation (leftSubset ∩ rightSubset)
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} (leftSubset rightSubset : SetObject), Or (Exists fun bound => ∀ (element : Element), inst.1 leftSubset element → relation bound element) (Exists fun bound => ∀ (element : Element), inst.1 rightSubset element → relation bound element) → Exists fun bound => ∀ (element : Element), inst.1 (inst_2.1 leftSubset rightSubset) element → relation bound element
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    leftSubset rightSubset : SetObject
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} (leftSubset rightSubset : SetObject), Or (Exists fun bound => ∀ (element : Element), inst.1 leftSubset element → relation bound element) (Exists fun bound => ∀ (element : Element), inst.1 rightSubset element → relation bound element) → Exists fun bound => ∀ (element : Element), inst.1 (inst_2.1 leftSubset rightSubset) element → relation bound element
 
 Logical form (Lean):
 
@@ -188,11 +209,18 @@ theorem IntersectionBoundedBelow
 
 Predicate logic:
 
-  (∀ A B ∈ U), BoundedBelow(A \ B)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ {relation : LRA.Relation.Endorelation Element} (subset removed : SetObject), LRA.Order.BoundedBelow relation subset → LRA.Order.BoundedBelow relation (subset \ removed)
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} (subset removed : SetObject), (Exists fun bound => ∀ (element : Element), inst.1 subset element → relation bound element) → Exists fun bound => ∀ (element : Element), inst.1 (inst_3.1 subset removed) element → relation bound element
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset removed : SetObject
+    subsetIsBoundedBelow : BoundedBelow relation subset
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} (subset removed : SetObject), (Exists fun bound => ∀ (element : Element), inst.1 subset element → relation bound element) → Exists fun bound => ∀ (element : Element), inst.1 (inst_3.1 subset removed) element → relation bound element
 
 Logical form (Lean):
 
@@ -244,11 +272,19 @@ theorem DifferenceBoundedBelow
 
 Predicate logic:
 
-  (∀ A B ∈ U), BoundedBelow(A ∆ B)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasSymmDiff SetObject] [inst_2 : Union SetObject] [inst_3 : Inter SetObject] [inst_4 : SDiff SetObject] [inst_5 : EmptyCollection SetObject] [inst_6 : HasSubset SetObject], (LRA.Set.MembershipLaws Element SetObject ∧ LRA.Set.SymmDiffMembershipLaws Element SetObject) → ∀ {relation : LRA.Relation.Endorelation Element} (leftSubset rightSubset : SetObject), (LRA.Order.BoundedBelow relation leftSubset ∧ LRA.Order.BoundedBelow relation rightSubset) → LRA.Order.BoundedBelow relation (inst_1.symmDiff leftSubset rightSubset)
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasSymmDiff SetObject] [inst_2 : Union SetObject] [inst_3 : Inter SetObject] [inst_4 : SDiff SetObject] [inst_5 : EmptyCollection SetObject] [inst_6 : HasSubset SetObject], (LRA.Set.MembershipLaws Element SetObject ∧ LRA.Set.SymmDiffMembershipLaws Element SetObject) → ∀ {relation : Element → Element → Prop} (leftSubset rightSubset : SetObject), (Exists fun bound => ∀ (element : Element), inst.1 leftSubset element → relation bound element ∧ Exists fun bound => ∀ (element : Element), inst.1 rightSubset element → relation bound element) → Exists fun bound => ∀ (element : Element), inst.1 (inst_1.1 leftSubset rightSubset) element → relation bound element
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    leftSubset rightSubset : SetObject
+    leftIsBoundedBelow : BoundedBelow relation leftSubset
+    rightIsBoundedBelow : BoundedBelow relation rightSubset
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ LRA.Set.SymmDiffMembershipLaws Element SetObject) → ∀ {relation : Element → Element → Prop} (leftSubset rightSubset : SetObject), ((Exists fun bound => ∀ (element : Element), inst.1 leftSubset element → relation bound element) ∧ (Exists fun bound => ∀ (element : Element), inst.1 rightSubset element → relation bound element)) → Exists fun bound => ∀ (element : Element), inst.1 (inst_1.1 leftSubset rightSubset) element → relation bound element
 
 Logical form (Lean):
 

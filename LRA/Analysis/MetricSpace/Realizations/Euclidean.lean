@@ -53,12 +53,12 @@ abbrev MathlibRn (n : ℕ) := Rn mathlibRealModel n
 Predicate logic:
 
   abbrev coordinates {n : ℕ} (point : MathlibRn n) : Fin n → ℝ :=
-  point.coord
+    point.coord
 
 Predicate logic (unfolded):
 
   abbrev coordinates {n : ℕ} (point : MathlibRn n) : Fin n → ℝ :=
-  point.coord (source fallback; no compiled unfold data available)
+    point.coord (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -94,11 +94,17 @@ abbrev coordinates {n : ℕ} (point : MathlibRn n) : Fin n → ℝ :=
 
 Predicate logic:
 
-  (∀ i : Fin n, coordinates x i = coordinates y i) → x = y
+  ∀ {n : Nat} {x y : LRA.Analysis.MetricSpace.MathlibRn n}, (∀ (i : Fin n), LRA.Analysis.MetricSpace.coordinates x i = LRA.Analysis.MetricSpace.coordinates y i) → x = y
 
 Predicate logic (unfolded):
 
-  ∀ {n : Nat} {x y : LRA.EuclideanSpace.EuclideanPoint LRA.NumberSystems.Interface.ModelTheory.mathlibRealModel n}, (∀ (i : Fin n), x.1 i = y.1 i) → x = y
+  Ambient
+    (ℕ)
+  Objects
+    n : ℕ
+    x y : MathlibRn n
+  Prove
+    (∀ (i : Fin n), x.1 i = y.1 i) → x = y
 
 Logical form (Lean):
 
@@ -135,14 +141,14 @@ theorem MathlibRnExt {n : ℕ} {x y : MathlibRn n}
 Predicate logic:
 
   noncomputable def EuclideanRnMetric (n : ℕ) :
-    MetricDefinition (MathlibRn n) where
-  distance x y
+      MetricDefinition (MathlibRn n) where
+    distance x y
 
 Predicate logic (unfolded):
 
   noncomputable def EuclideanRnMetric (n : ℕ) :
-    MetricDefinition (MathlibRn n) where
-  distance x y (source fallback; no compiled unfold data available)
+      MetricDefinition (MathlibRn n) where
+    distance x y (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -194,16 +200,16 @@ noncomputable def EuclideanRnMetric (n : ℕ) :
 Predicate logic:
 
   noncomputable def EuclideanRnMetricSpaceDefinition (n : ℕ) :
-    MetricSpaceDefinition where
-  Carrier := MathlibRn n
-  metric := EuclideanRnMetric n
+      MetricSpaceDefinition where
+    Carrier := MathlibRn n
+    metric := EuclideanRnMetric n
 
 Predicate logic (unfolded):
 
   noncomputable def EuclideanRnMetricSpaceDefinition (n : ℕ) :
-    MetricSpaceDefinition where
-  Carrier := MathlibRn n
-  metric := EuclideanRnMetric n (source fallback; no compiled unfold data available)
+      MetricSpaceDefinition where
+    Carrier := MathlibRn n
+    metric := EuclideanRnMetric n (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -244,18 +250,18 @@ noncomputable def EuclideanRnMetricSpaceDefinition (n : ℕ) :
 Predicate logic:
 
   structure EuclideanRnMetricSpaceModel (real_model : RealModel) (n : ℕ)
-    where
-  metricSpace : MetricSpaceDefinition
-  euclideanStructure : TarskiStructure
-  carrier_eq : metricSpace.Carrier = euclideanStructure.Domain
+      where
+    metricSpace : MetricSpaceDefinition
+    euclideanStructure : TarskiStructure
+    carrier_eq : metricSpace.Carrier = euclideanStructure.Domain
 
 Predicate logic (unfolded):
 
   structure EuclideanRnMetricSpaceModel (real_model : RealModel) (n : ℕ)
-    where
-  metricSpace : MetricSpaceDefinition
-  euclideanStructure : TarskiStructure
-  carrier_eq : metricSpace.Carrier = euclideanStructure.Domain (source fallback; no compiled unfold data available)
+      where
+    metricSpace : MetricSpaceDefinition
+    euclideanStructure : TarskiStructure
+    carrier_eq : metricSpace.Carrier = euclideanStructure.Domain (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -298,28 +304,28 @@ structure EuclideanRnMetricSpaceModel (real_model : RealModel) (n : ℕ)
 Predicate logic:
 
   def euclideanRnMetricSpaceModelOf
-    (real_model : RealModel) (n : ℕ)
-    (metric : MetricDefinition (Rn real_model n)) :
-    EuclideanRnMetricSpaceModel real_model n where
-  metricSpace := {
-    Carrier := Rn real_model n
-    metric := metric
-  }
-  euclideanStructure := EuclideanTupleModel real_model n
-  carrier_eq := rfl
+      (real_model : RealModel) (n : ℕ)
+      (metric : MetricDefinition (Rn real_model n)) :
+      EuclideanRnMetricSpaceModel real_model n where
+    metricSpace := {
+      Carrier := Rn real_model n
+      metric := metric
+    }
+    euclideanStructure := EuclideanTupleModel real_model n
+    carrier_eq := rfl
 
 Predicate logic (unfolded):
 
   def euclideanRnMetricSpaceModelOf
-    (real_model : RealModel) (n : ℕ)
-    (metric : MetricDefinition (Rn real_model n)) :
-    EuclideanRnMetricSpaceModel real_model n where
-  metricSpace := {
-    Carrier := Rn real_model n
-    metric := metric
-  }
-  euclideanStructure := EuclideanTupleModel real_model n
-  carrier_eq := rfl (source fallback; no compiled unfold data available)
+      (real_model : RealModel) (n : ℕ)
+      (metric : MetricDefinition (Rn real_model n)) :
+      EuclideanRnMetricSpaceModel real_model n where
+    metricSpace := {
+      Carrier := Rn real_model n
+      metric := metric
+    }
+    euclideanStructure := EuclideanTupleModel real_model n
+    carrier_eq := rfl (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -372,18 +378,18 @@ def euclideanRnMetricSpaceModelOf
 Predicate logic:
 
   noncomputable def canonicalEuclideanRnMetricSpaceModel (n : ℕ) :
-    EuclideanRnMetricSpaceModel mathlibRealModel n where
-  metricSpace := EuclideanRnMetricSpaceDefinition n
-  euclideanStructure := EuclideanTupleModel mathlibRealModel n
-  carrier_eq := rfl
+      EuclideanRnMetricSpaceModel mathlibRealModel n where
+    metricSpace := EuclideanRnMetricSpaceDefinition n
+    euclideanStructure := EuclideanTupleModel mathlibRealModel n
+    carrier_eq := rfl
 
 Predicate logic (unfolded):
 
   noncomputable def canonicalEuclideanRnMetricSpaceModel (n : ℕ) :
-    EuclideanRnMetricSpaceModel mathlibRealModel n where
-  metricSpace := EuclideanRnMetricSpaceDefinition n
-  euclideanStructure := EuclideanTupleModel mathlibRealModel n
-  carrier_eq := rfl (source fallback; no compiled unfold data available)
+      EuclideanRnMetricSpaceModel mathlibRealModel n where
+    metricSpace := EuclideanRnMetricSpaceDefinition n
+    euclideanStructure := EuclideanTupleModel mathlibRealModel n
+    carrier_eq := rfl (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

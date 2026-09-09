@@ -9,16 +9,16 @@ namespace LRA.ModelTheoryTheory.SetRings
 Predicate logic:
 
   def BuildSetRingModel
-    (signature : SetRingConceptSignature) :
-    LRA.ModelTheory.FirstOrder.Model SetRingFirstOrderSignature where
-  Domain
+      (signature : SetRingConceptSignature) :
+      LRA.ModelTheory.FirstOrder.Model SetRingFirstOrderSignature where
+    Domain
 
 Predicate logic (unfolded):
 
   def BuildSetRingModel
-    (signature : SetRingConceptSignature) :
-    LRA.ModelTheory.FirstOrder.Model SetRingFirstOrderSignature where
-  Domain (source fallback; no compiled unfold data available)
+      (signature : SetRingConceptSignature) :
+      LRA.ModelTheory.FirstOrder.Model SetRingFirstOrderSignature where
+    Domain (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

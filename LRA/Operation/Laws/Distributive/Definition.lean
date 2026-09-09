@@ -15,7 +15,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (outer inner : Carrier → Carrier → Carrier) (left right third : Carrier), outer left (inner right third) = inner (outer left right) (outer left third)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    outer left (inner right third) = inner (outer left right) (outer left third)
 
 Logical form (Lean):
 
@@ -61,7 +66,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (outer inner : Carrier → Carrier → Carrier) (left right third : Carrier), outer (inner left right) third = inner (outer left third) (outer right third)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    outer (inner left right) third = inner (outer left third) (outer right third)
 
 Logical form (Lean):
 
@@ -107,7 +117,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (outer inner : Carrier → Carrier → Carrier), (∀ (left right third : Carrier), outer left (inner right third) = inner (outer left right) (outer left third) ∧ ∀ (left right third : Carrier), outer (inner left right) third = inner (outer left third) (outer right third))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (left right third : Carrier), outer left (inner right third) = inner (outer left right) (outer left third)) ∧ (∀ (left right third : Carrier), outer (inner left right) third = inner (outer left third) (outer right third)))
 
 Logical form (Lean):
 

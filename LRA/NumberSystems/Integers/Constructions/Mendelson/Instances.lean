@@ -10,11 +10,16 @@ namespace LRA.NumberSystems.Integers.Mendelson
 
 Predicate logic:
 
-  (∀ positiveData ∈ PositiveNaturalPairData), ∃ Element ∈ Type SetObject ∈ Type _ ∈ Membership Element SetObject _ ∈ LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject, Nonempty Element
+  ∀ (a : LRA.NumberSystems.Integers.Mendelson.PositiveNaturalPairData), Exists fun Element => Exists fun SetObject => Exists fun x => Exists fun x => Nonempty Element
 
 Predicate logic (unfolded):
 
-  ∀ (a : LRA.NumberSystems.Integers.Mendelson.PositiveNaturalPairData), Exists fun Element => Exists fun SetObject => Exists fun x => Exists fun x => Nonempty Element
+  Ambient
+    (implicit ambient)
+  Objects
+    positiveData : PositiveNaturalPairData
+  Prove
+    Exists fun Element => Exists fun SetObject => Exists fun x => Exists fun x => Nonempty Element
 
 Logical form (Lean):
 
@@ -58,18 +63,23 @@ theorem PositiveClassesRecoverNaturalNumberModel
 
 Predicate logic:
 
-  (∀ positiveData ∈ PositiveNaturalPairData), ∃ model ∈ LRA.NumberSystems.Interface.ModelTheory.DiscretelyOrderedIntegralDomainModel, model.Carrier = Carrier positiveData
+  ∀ (positiveData : LRA.NumberSystems.Integers.Mendelson.PositiveNaturalPairData), Exists fun model => model.Carrier = LRA.NumberSystems.Integers.Mendelson.Carrier positiveData
 
 Predicate logic (unfolded):
 
-  ∀ (positiveData : LRA.NumberSystems.Integers.Mendelson.PositiveNaturalPairData), Exists fun model => model.1 = Quot (LRA.NumberSystems.Integers.Mendelson.setoid positiveData).1
+  Ambient
+    (implicit ambient)
+  Objects
+    positiveData : PositiveNaturalPairData
+  Prove
+    Exists fun model => model.1 = Quot (LRA.NumberSystems.Integers.Mendelson.setoid positiveData).1
 
 Logical form (Lean):
 
 ```lean
 theorem MendelsonIntegersFormDiscretelyOrderedIntegralDomain
     (positiveData : PositiveNaturalPairData) :
-    ∃ model : LRA.NumberSystems.Interface.ModelTheory.DiscretelyOrderedIntegralDomainModel,
+    ∃ model : LRA.NumberSystems.Integers.Interface.ModelTheory.IntegerModel,
       model.Carrier = Carrier positiveData
 ```
 
@@ -102,11 +112,16 @@ theorem MendelsonIntegersFormDiscretelyOrderedIntegralDomain
 
 Predicate logic:
 
-  (∀ positiveData ∈ PositiveNaturalPairData), ∃ integerSystem ∈ LRA.NumberSystems.Integers.IntegerNumberSystem, integerSystem.Model.Carrier = Carrier positiveData
+  ∀ (positiveData : LRA.NumberSystems.Integers.Mendelson.PositiveNaturalPairData), Exists fun integerSystem => integerSystem.Model.Carrier = LRA.NumberSystems.Integers.Mendelson.Carrier positiveData
 
 Predicate logic (unfolded):
 
-  ∀ (positiveData : LRA.NumberSystems.Integers.Mendelson.PositiveNaturalPairData), Exists fun integerSystem => integerSystem.Model.1 = Quot (LRA.NumberSystems.Integers.Mendelson.setoid positiveData).1
+  Ambient
+    (implicit ambient)
+  Objects
+    positiveData : PositiveNaturalPairData
+  Prove
+    Exists fun integerSystem => integerSystem.Model.1 = Quot (LRA.NumberSystems.Integers.Mendelson.setoid positiveData).1
 
 Logical form (Lean):
 

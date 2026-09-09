@@ -10,11 +10,16 @@ universe u v w
 
 Predicate logic:
 
-  Equinumerous A A
+  ∀ (A : Type u), LRA.Cardinality.Equinumerous A A
 
 Predicate logic (unfolded):
 
-  ∀ (A : Type u), Exists fun f => (∀ (y x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂ ∧ ∀ (y : A), Exists fun x => f x = y)
+  Ambient
+    (A)
+  Objects
+    (none)
+  Prove
+    Exists fun f => ((∀ (y x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : A), Exists fun x => f x = y))
 
 Logical form (Lean):
 
@@ -48,11 +53,16 @@ theorem EquinumerousReflexive (A : Type u) : Equinumerous A A := by
 
 Predicate logic:
 
-  Equinumerous B A
+  ∀ (A : Type u) (B : Type v), LRA.Cardinality.Equinumerous A B → LRA.Cardinality.Equinumerous B A
 
 Predicate logic (unfolded):
 
-  ∀ (A : Type u) (B : Type v), (Exists fun f => (∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂ ∧ ∀ (y : B), Exists fun x => f x = y)) → Exists fun f => (∀ (y : A) (x₁ x₂ : B), f x₁ = y → f x₂ = y → x₁ = x₂ ∧ ∀ (y : A), Exists fun x => f x = y)
+  Ambient
+    (A, B)
+  Objects
+    equinumerous : Equinumerous A B
+  Prove
+    (Exists fun f => ((∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : B), Exists fun x => f x = y))) → Exists fun f => ((∀ (y : A) (x₁ x₂ : B), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : A), Exists fun x => f x = y))
 
 Logical form (Lean):
 
@@ -88,11 +98,17 @@ theorem EquinumerousSymmetric (A : Type u) (B : Type v)
 
 Predicate logic:
 
-  Equinumerous A C
+  ∀ (A : Type u) (B : Type v) (C : Type w), (LRA.Cardinality.Equinumerous A B ∧ LRA.Cardinality.Equinumerous B C) → LRA.Cardinality.Equinumerous A C
 
 Predicate logic (unfolded):
 
-  ∀ (A : Type u) (B : Type v) (C : Type w), (Exists fun f => (∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂ ∧ ∀ (y : B), Exists fun x => f x = y) ∧ Exists fun f => (∀ (y : C) (x₁ x₂ : B), f x₁ = y → f x₂ = y → x₁ = x₂ ∧ ∀ (y : C), Exists fun x => f x = y)) → Exists fun f => (∀ (y : C) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂ ∧ ∀ (y : C), Exists fun x => f x = y)
+  Ambient
+    (A, B, C)
+  Objects
+    firstEquinumerous : Equinumerous A B
+    secondEquinumerous : Equinumerous B C
+  Prove
+    ((Exists fun f => ((∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : B), Exists fun x => f x = y))) ∧ (Exists fun f => ((∀ (y : C) (x₁ x₂ : B), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : C), Exists fun x => f x = y)))) → Exists fun f => ((∀ (y : C) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : C), Exists fun x => f x = y))
 
 Logical form (Lean):
 
@@ -130,11 +146,16 @@ theorem EquinumerousTransitive (A : Type u) (B : Type v) (C : Type w)
 
 Predicate logic:
 
-  Dominates A A
+  ∀ (A : Type u), LRA.Cardinality.Dominates A A
 
 Predicate logic (unfolded):
 
-  ∀ (A : Type u), Exists fun f => ∀ (y x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
+  Ambient
+    (A)
+  Objects
+    (none)
+  Prove
+    Exists fun f => ∀ (y x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
 
 Logical form (Lean):
 
@@ -168,11 +189,17 @@ theorem DominatesReflexive (A : Type u) : Dominates A A := by
 
 Predicate logic:
 
-  Dominates A C
+  ∀ (A : Type u) (B : Type v) (C : Type w), (LRA.Cardinality.Dominates A B ∧ LRA.Cardinality.Dominates B C) → LRA.Cardinality.Dominates A C
 
 Predicate logic (unfolded):
 
-  ∀ (A : Type u) (B : Type v) (C : Type w), (Exists fun f => ∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂ ∧ Exists fun f => ∀ (y : C) (x₁ x₂ : B), f x₁ = y → f x₂ = y → x₁ = x₂) → Exists fun f => ∀ (y : C) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
+  Ambient
+    (A, B, C)
+  Objects
+    firstDominates : Dominates A B
+    secondDominates : Dominates B C
+  Prove
+    ((Exists fun f => ∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (Exists fun f => ∀ (y : C) (x₁ x₂ : B), f x₁ = y → f x₂ = y → x₁ = x₂)) → Exists fun f => ∀ (y : C) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
 
 Logical form (Lean):
 
@@ -210,11 +237,16 @@ theorem DominatesTransitive (A : Type u) (B : Type v) (C : Type w)
 
 Predicate logic:
 
-  Dominates A B
+  ∀ (A : Type u) (B : Type v), LRA.Cardinality.Equinumerous A B → LRA.Cardinality.Dominates A B
 
 Predicate logic (unfolded):
 
-  ∀ (A : Type u) (B : Type v), (Exists fun f => (∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂ ∧ ∀ (y : B), Exists fun x => f x = y)) → Exists fun f => ∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
+  Ambient
+    (A, B)
+  Objects
+    equinumerous : Equinumerous A B
+  Prove
+    (Exists fun f => ((∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : B), Exists fun x => f x = y))) → Exists fun f => ∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
 
 Logical form (Lean):
 
@@ -250,11 +282,17 @@ theorem DominatesOfEquinumerous (A : Type u) (B : Type v)
 
 Predicate logic:
 
-  Equinumerous A B
+  ∀ (A : Type u) (B : Type v), (LRA.Cardinality.Dominates A B ∧ LRA.Cardinality.Dominates B A) → LRA.Cardinality.Equinumerous A B
 
 Predicate logic (unfolded):
 
-  ∀ (A : Type u) (B : Type v), (Exists fun f => ∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂ ∧ Exists fun f => ∀ (y : A) (x₁ x₂ : B), f x₁ = y → f x₂ = y → x₁ = x₂) → Exists fun f => (∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂ ∧ ∀ (y : B), Exists fun x => f x = y)
+  Ambient
+    (A, B)
+  Objects
+    firstDominates : Dominates A B
+    secondDominates : Dominates B A
+  Prove
+    ((Exists fun f => ∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (Exists fun f => ∀ (y : A) (x₁ x₂ : B), f x₁ = y → f x₂ = y → x₁ = x₂)) → Exists fun f => ((∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : B), Exists fun x => f x = y))
 
 Logical form (Lean):
 
@@ -292,11 +330,16 @@ theorem CantorSchroederBernstein (A : Type u) (B : Type v)
 
 Predicate logic:
 
-  ¬ ∃ f ∈ A → (A → Prop), LRA.Function.Surjective f
+  ∀ (A : Type u), ¬ Exists fun f => LRA.Function.Surjective f
 
 Predicate logic (unfolded):
 
-  ∀ (A : Type u), (Exists fun f => ∀ (y : A → Prop), Exists fun x => f x = y) → False
+  Ambient
+    (A)
+  Objects
+    (none)
+  Prove
+    (Exists fun f => ∀ (y : A → Prop), Exists fun x => f x = y) → False
 
 Logical form (Lean):
 
@@ -332,11 +375,16 @@ theorem CantorTheorem (A : Type u) :
 
 Predicate logic:
 
-  StrictlyDominates A (A → Prop)
+  ∀ (A : Type u), LRA.Cardinality.StrictlyDominates A (A → Prop)
 
 Predicate logic (unfolded):
 
-  ∀ (A : Type u), (Exists fun f => ∀ (y : A → Prop) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂ ∧ (Exists fun f => (∀ (y : A → Prop) (x₁ x₂ : A), LRA.Function.Graph f x₁ y → LRA.Function.Graph f x₂ y → x₁ = x₂ ∧ ∀ (y : A → Prop), Exists fun x => LRA.Function.Graph f x y)) → False)
+  Ambient
+    (A)
+  Objects
+    (none)
+  Prove
+    ((Exists fun f => ∀ (y : A → Prop) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ ((Exists fun f => ((∀ (y : A → Prop) (x₁ x₂ : A), LRA.Function.Graph f x₁ y → LRA.Function.Graph f x₂ y → x₁ = x₂) ∧ (∀ (y : A → Prop), Exists fun x => LRA.Function.Graph f x y))) → False))
 
 Logical form (Lean):
 

@@ -2,14 +2,44 @@ import LRA.Identity.Constructions.Axiomatic.Axioms.FirstOrderLeibniz.Definitions
 
 namespace LRA.Identity.Constructions.Axiomatic
 
-/-- `Ax_FirstOrderLeibnizLaw` postulates Leibniz substitution for exactly the
-unary predicates definable in the selected first-order model and variable
-language. It is independent of the unrestricted second-order Leibniz axiom.
+/--
+`Ax_FirstOrderLeibnizLaw` TODO
 
-Logical form:
+Predicate logic:
+
+  ∀ {S : LRA.Logic.Signature} (Variable : Type) [inst : DecidableEq Variable] (M : LRA.Logic.FirstOrder.Interpretation S), LRA.Identity.Constructions.Axiomatic.FirstOrderLeibnizPrinciple Variable M
+
+Predicate logic (unfolded):
+
+  ∀ {S : LRA.Logic.Signature} (Variable : Type) [inst : DecidableEq Variable] (M : LRA.Logic.FirstOrder.Interpretation S) (x y : M.Domain), LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x y → ∀ (P : M.Domain → Prop), ((∃ formula, ∃ distinguished, ∃ assignment, ∀ (value : M.Domain), P value ↔ LRA.Logic.FirstOrder.Satisfies M (LRA.Logic.updateAssignment assignment distinguished value) formula) ∧ P x) → P y
+
+Logical form (Lean):
+
 ```lean
-FirstOrderLeibnizPrinciple Variable M
+axiom Ax_FirstOrderLeibnizLaw
+    {S : LRA.Logic.Signature} (Variable : Type) [DecidableEq Variable]
+    (M : LRA.Logic.FirstOrder.Interpretation S) :
+    FirstOrderLeibnizPrinciple Variable M
 ```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
 -/
 axiom Ax_FirstOrderLeibnizLaw
     {S : LRA.Logic.Signature} (Variable : Type) [DecidableEq Variable]

@@ -11,7 +11,7 @@ Pipeline
     lake env lean --run scripts/DumpProofsToDo.lean   # writes build/proofs-todo-environment.tsv
     python3 scripts/generate_proofs_todo.py            # writes LRA/<Folder>/ProofsToDo.md and LRA/ProofsToDo.md
 
-Each entry gets seven fields:
+Each entry gets eight fields:
 
 * ``Name`` -- as written in source (dot-notation declarations, e.g.
   ``theorem Foo.bar``, keep their prefix). An *anonymous* ``instance``
@@ -63,6 +63,8 @@ Each entry gets seven fields:
   requires in hover-doc comments -- same idea, same content in spirit -- so
   it can be reused as a starting point when a hover doc is later written for
   a declaration that does not have one yet.
+* ``Source`` -- a clickable Markdown reference to the declaration's source
+  line, relative to the generated checklist.
 
 This script (not the Lean dumper) is authoritative for: source line numbers
 (used only to order theorems *within* a file -- Lean forbids forward
@@ -212,7 +214,9 @@ def first_top_level_colon(text: str) -> int | None:
     return None
 
 
-def extract_signature(declaration_text: str, matched_name_end: int) -> str:
+def extract_signature(
+    declaration_text: str, matched_name_end: int, declaration_kind: str = ""
+) -> str:
     """The declaration's own signature, verbatim: everything between its name
     and the first depth-0 `:=` (start of the proof), whitespace-collapsed to
     one line.
@@ -231,7 +235,22 @@ def extract_signature(declaration_text: str, matched_name_end: int) -> str:
     """
     rest = declaration_text[matched_name_end:]
     assigns = top_level_occurrences(rest, ":=")
-    signature = rest[: assigns[0]] if assigns else rest
+    if declaration_kind == "axiom":
+        # Axioms have no `:=` body. The next named declaration normally bounds
+        # `declaration_text`, but an anonymous instance is intentionally absent
+        # from DECL_RE, and a final axiom otherwise runs through the module's
+        # closing `end`. Neither belongs to the axiom's signature.
+        terminator = re.search(
+            r"(?m)^(?:instance(?:\s|:)|end(?:\s|$)|namespace\s|section\s)", rest
+        )
+        boundaries = [*assigns]
+        if terminator is not None:
+            boundaries.append(terminator.start())
+        signature = rest[: min(boundaries)] if boundaries else rest
+    elif assigns:
+        signature = rest[: assigns[0]]
+    else:
+        signature = rest
     return re.sub(r"\s+", " ", signature).strip()
 
 
@@ -288,6 +307,72 @@ def render_predicate_logic_from_signature(signature: str) -> str:
     return conclusion
 
 
+def top_level_arrow_segments(text: str) -> list[str]:
+    """Split a flat outer arrow chain without touching nested function types."""
+    arrows = top_level_occurrences(text, "→")
+    if not arrows:
+        return [text.strip()]
+    segments: list[str] = []
+    start = 0
+    for position in arrows:
+        segments.append(text[start:position].strip())
+        start = position + len("→")
+    segments.append(text[start:].strip())
+    return segments
+
+
+def opaque_predicate_logic(
+    declaration_name: str, signature: str, declaration_kind: str
+) -> str | None:
+    """Render an opaque predicate declaration as an applied predicate term.
+
+    An axiom such as ``R : α → α → Prop`` declares a predicate; it does not
+    assert ``∀ x y, R x y``.  A lambda exposes the atomic formula while
+    preserving that distinction and avoiding a bare function-type signature.
+    """
+    if declaration_kind != "axiom":
+        return None
+    colon = first_top_level_colon(signature)
+    binder_text = signature[:colon].strip() if colon is not None else ""
+    result_type = signature[colon + 1 :].strip() if colon is not None else signature.strip()
+    segments = top_level_arrow_segments(result_type)
+    if len(segments) < 2 or segments[-1] != "Prop":
+        return None
+
+    domain_types = segments[:-1]
+    argument_names_by_arity = {
+        1: ["argument"],
+        2: ["left", "right"],
+        3: ["first", "middle", "last"],
+        4: ["firstStart", "firstEnd", "secondStart", "secondEnd"],
+    }
+    argument_names = argument_names_by_arity.get(
+        len(domain_types), [f"argument{index}" for index in range(1, len(domain_types) + 1)]
+    )
+
+    generated_binders: list[str] = []
+    index = 0
+    while index < len(domain_types):
+        end = index + 1
+        while end < len(domain_types) and domain_types[end] == domain_types[index]:
+            end += 1
+        names = " ".join(argument_names[index:end])
+        generated_binders.append(f"({names} : {domain_types[index]})")
+        index = end
+
+    explicit_parameters: list[str] = []
+    for group in split_binder_groups(binder_text):
+        if group.opener != "(":
+            continue
+        split = split_binder_content(group.content)
+        if split is not None:
+            explicit_parameters.extend(split[0])
+
+    lambda_binders = " ".join(part for part in [binder_text, *generated_binders] if part)
+    applications = " ".join([*explicit_parameters, *argument_names])
+    return f"fun {lambda_binders} => {declaration_name} {applications}".strip()
+
+
 def has_compiled_surface_leak(value: str) -> bool:
     """True when Lean's standalone pretty-printer exposed elaborated internals.
 
@@ -306,6 +391,11 @@ def has_compiled_surface_leak(value: str) -> bool:
 
 def choose_predicate_logic(row: CompiledTheorem, source: SourceTheorem) -> str:
     """Prefer source syntax when compiled pretty-printing leaks internals."""
+    opaque_predicate = opaque_predicate_logic(
+        source.name, theorem_environment_signature(source), row.kind
+    )
+    if opaque_predicate is not None:
+        return opaque_predicate
     compiled = row.pretty_type_uncurried.strip()
     if not compiled or has_compiled_surface_leak(compiled):
         return source.predicate_logic_fallback
@@ -362,9 +452,9 @@ def compiled_atom_to_notation(name: str, args: list[str]) -> str | None:
         return f"{rendered[0]} = {rendered[1]}"
     if name == "Iff" and len(rendered) == 2:
         return f"{rendered[0]} ↔ {rendered[1]}"
-    if re.fullmatch(r"(?:inst(?:_\d+)?|[A-Za-z0-9_.]+toLE)\.1", name) and len(rendered) == 2:
+    if re.fullmatch(r"(?:inst(?:_\d+)?\.le|[A-Za-z0-9_.]+toLE\.1)", name) and len(rendered) == 2:
         return f"{rendered[0]} ≤ {rendered[1]}"
-    if re.fullmatch(r"[A-Za-z0-9_.]+toLT\.1", name) and len(rendered) == 2:
+    if re.fullmatch(r"(?:inst(?:_\d+)?\.lt|[A-Za-z0-9_.]+toLT\.1)", name) and len(rendered) == 2:
         return f"{rendered[0]} < {rendered[1]}"
     if re.fullmatch(r"(?:Set\.)?instMembership(?:\.(?:1|mem))?", name) and len(rendered) == 2:
         return f"{rendered[1]} ∈ {rendered[0]}"
@@ -386,8 +476,10 @@ def compiled_atom_to_notation(name: str, args: list[str]) -> str | None:
 
 
 def rewrite_compiled_prefix_at(text: str, start: int) -> tuple[str, int] | None:
+    if start > 0 and (text[start - 1].isalnum() or text[start - 1] in "_'."):
+        return None
     match = re.match(
-        r"(And|Not|Eq|Iff|(?:inst(?:_\d+)?|[A-Za-z0-9_.]+toLE)\.1|[A-Za-z0-9_.]+toLT\.1|"
+        r"(And|Not|Eq|Iff|inst(?:_\d+)?\.(?:le|lt)|[A-Za-z0-9_.]+toLE\.1|[A-Za-z0-9_.]+toLT\.1|"
         r"(?:Set\.)?instMembership(?:\.(?:1|mem))?|inst(?:_\d+)?\.mem|"
         r"(?:Set\.)?instSDiff(?:\.(?:1|sdiff))?|inst(?:_\d+)?\.sdiff|"
         r"(?:Set\.)?instUnion(?:\.(?:1|union))?|inst(?:_\d+)?\.union|"
@@ -437,8 +529,44 @@ def humanize_compiled_logic(value: str) -> str:
     result = re.sub(r"\s*→\s*", " → ", result)
     result = re.sub(r"\s*↔\s*", " ↔ ", result)
     result = re.sub(r"\s*∧\s*", " ∧ ", result)
+    result = re.sub(
+        r"\bExists\s+fun\s+(\([^)]*\)|[A-Za-z_][A-Za-z0-9_']*)\s*=>",
+        r"∃ \1,",
+        result,
+    )
     result = re.sub(r"\s+", " ", result)
     return result.strip()
+
+
+def restore_named_relation_projections(unfolded: str, predicate: str) -> str:
+    """Restore relation-field names erased by structure unfolding.
+
+    Lean prints the first field of an anonymous typeclass instance as
+    ``inst.1`` (or ``inst_n.1``).  That projection is not intrinsically an
+    order relation: in the identity hierarchy it is ``Ident`` or ``Equal``.
+    Use the corresponding high-level compiled predicate to recover those
+    field names before applying notation cleanup.
+    """
+    result = unfolded
+    relation_fields: dict[str, str] = {
+        match.group(1): match.group(2)
+        for match in re.finditer(r"\b(inst(?:_\d+)?)\.(Ident|Equal)\b", predicate)
+    }
+    for match in re.finditer(
+        r"\[(inst(?:_\d+)?)\s*:\s*(?:LRA\.Identity\.)?(IdentityRelation|EqualityRelation)\b",
+        predicate,
+    ):
+        instance_name, relation_class = match.groups()
+        relation_fields[instance_name] = (
+            "Ident" if relation_class == "IdentityRelation" else "Equal"
+        )
+    for instance_name, field_name in relation_fields.items():
+        result = re.sub(
+            rf"\b{re.escape(instance_name)}\.1\b",
+            f"{instance_name}.{field_name}",
+            result,
+        )
+    return result
 
 
 # ---------------------------------------------------------------------------
@@ -852,7 +980,9 @@ def scan_source_module(path: Path, import_scope_prefix: str) -> SourceModule:
         next_start = matches[index + 1].start() if index + 1 < len(matches) else len(masked)
         declaration_text = masked[match.start() : next_start]
         context_signature = context_signature_before(masked[: match.start()])
-        signature = extract_signature(declaration_text, match.end() - match.start())
+        signature = extract_signature(
+            declaration_text, match.end() - match.start(), keyword
+        )
         assigns = top_level_occurrences(declaration_text, ":=")
         body = declaration_text[assigns[0] + len(":=") :].strip() if assigns else ""
         body = re.sub(r"\s+", " ", body).strip()
@@ -1016,11 +1146,16 @@ def resolve_unfolded(row: CompiledTheorem, uncurried_predicate: str) -> str:
         return f"{uncurried_predicate} [offline preview: unfolding not attempted]"
     if row.unfold_status.startswith("error:"):
         return f"{uncurried_predicate} [unfold error: {row.unfold_status[len('error:'):].strip()}]"
-    unfolded = row.pretty_type_unfolded.strip()
+    unfolded = restore_named_relation_projections(
+        row.pretty_type_unfolded.strip(), uncurried_predicate
+    )
     return humanize_compiled_logic(unfolded) if unfolded else uncurried_predicate
 
 
 def render_unfolded_statement(signature: str, row: CompiledTheorem, uncurried_predicate: str) -> str:
+    opaque_predicate = opaque_predicate_logic(short_name(row.fq_name), signature, row.kind)
+    if opaque_predicate is not None:
+        return f"{opaque_predicate} [opaque predicate axiom: no body to unfold]"
     unfolded = resolve_unfolded(row, uncurried_predicate)
     if row.uses_sorry is None or row.unfold_status.startswith("error:"):
         return unfolded
@@ -1047,6 +1182,8 @@ def reconcile(
     for mod in modules:
         queues: dict[str, deque[CompiledTheorem]] = defaultdict(deque)
         for row in compiled_by_module.get(mod.module, []):
+            if row.kind not in {"theorem", "instance", "axiom"}:
+                continue
             queues[short_name(row.fq_name)].append(row)
 
         filtered_projection_names = {
@@ -1359,6 +1496,11 @@ def audited_folders() -> list[Path]:
     return folders
 
 
+def markdown_file_ref(target: str) -> str:
+    """Render a file target as a clickable Markdown reference."""
+    return f"[`{target}`]({target})"
+
+
 def folder_module_prefix(folder: Path) -> str:
     return f"LRA.{folder.name}"
 
@@ -1479,7 +1621,7 @@ def render_scope(
         lines.extend(render_field("Predicate logic (unfolded)", entry.predicate_logic_unfolded))
         lines.extend(render_field("Transliterated theorem", entry.transliterated_theorem))
         lines.extend(render_field("Logical form (Lean)", entry.logical_form_lean))
-        lines.append(f"Source: {source}")
+        lines.append(f"Source: {markdown_file_ref(source)}")
         return "\n".join(lines)
 
     open_blocks: list[str] = []

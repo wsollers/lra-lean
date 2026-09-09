@@ -11,11 +11,17 @@ universe u
 
 Predicate logic:
 
-  LeftTranslationPreservesRelation relation operation <-> forall fixed, LRA.Order.Monotone relation relation (fun value => operation fixed value)
+  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) (operation : LRA.Operation.BinaryEndoOperation Carrier), LRA.Order.LeftTranslationPreservesRelation relation operation ↔ ∀ (fixed : Carrier), LRA.Order.Monotone relation relation fun value => operation fixed value
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) (operation : Carrier → Carrier → Carrier), ∀ (fixed left right : Carrier), relation left right → relation (operation fixed left) (operation fixed right) ↔ ∀ (fixed left right : Carrier), relation left right → relation ((fun value => operation fixed value) left) ((fun value => operation fixed value) right)
+  Ambient
+    (Carrier)
+  Objects
+    relation : Carrier -> Carrier -> Prop
+    operation : LRA.Operation.BinaryEndoOperation Carrier
+  Prove
+    LRA.Order.LeftTranslationPreservesRelation relation operation ↔ ∀ (fixed : Carrier), LRA.Order.Monotone relation relation fun value => operation fixed value
 
 Logical form (Lean):
 
@@ -63,11 +69,17 @@ theorem LeftTranslationPreservesRelationIffMonotoneTranslations
 
 Predicate logic:
 
-  RightTranslationPreservesRelation relation operation <-> forall fixed, LRA.Order.Monotone relation relation (fun value => operation value fixed)
+  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) (operation : LRA.Operation.BinaryEndoOperation Carrier), LRA.Order.RightTranslationPreservesRelation relation operation ↔ ∀ (fixed : Carrier), LRA.Order.Monotone relation relation fun value => operation value fixed
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) (operation : Carrier → Carrier → Carrier), ∀ (left right fixed : Carrier), relation left right → relation (operation left fixed) (operation right fixed) ↔ ∀ (fixed left right : Carrier), relation left right → relation ((fun value => operation value fixed) left) ((fun value => operation value fixed) right)
+  Ambient
+    (Carrier)
+  Objects
+    relation : Carrier -> Carrier -> Prop
+    operation : LRA.Operation.BinaryEndoOperation Carrier
+  Prove
+    LRA.Order.RightTranslationPreservesRelation relation operation ↔ ∀ (fixed : Carrier), LRA.Order.Monotone relation relation fun value => operation value fixed
 
 Logical form (Lean):
 
@@ -115,11 +127,19 @@ theorem RightTranslationPreservesRelationIffMonotoneTranslations
 
 Predicate logic:
 
-  LeftTranslationPreservesRelation relation operation
+  ∀ {Carrier : Type u} {relation : Carrier → Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier}, (LRA.Relation.Reflexive relation ∧ LRA.Order.CoordinatewisePreservesRelation relation operation) → LRA.Order.LeftTranslationPreservesRelation relation operation
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {relation : Carrier → Carrier → Prop} {operation : Carrier → Carrier → Carrier}, (∀ (x : Carrier), relation x x ∧ ∀ (left₁ left₂ right₁ right₂ : Carrier), relation left₁ left₂ → relation right₁ right₂ → relation (operation left₁ right₁) (operation left₂ right₂)) → ∀ (fixed left right : Carrier), relation left right → relation (operation fixed left) (operation fixed right)
+  Ambient
+    (Carrier)
+  Objects
+    relation : Carrier -> Carrier -> Prop
+    operation : LRA.Operation.BinaryEndoOperation Carrier
+    relationIsReflexive : LRA.Relation.Reflexive relation
+    coordinatewise : CoordinatewisePreservesRelation relation operation
+  Prove
+    ((∀ (x : Carrier), relation x x) ∧ (∀ (left₁ left₂ right₁ right₂ : Carrier), relation left₁ left₂ → relation right₁ right₂ → relation (operation left₁ right₁) (operation left₂ right₂))) → ∀ (fixed left right : Carrier), relation left right → relation (operation fixed left) (operation fixed right)
 
 Logical form (Lean):
 
@@ -167,11 +187,19 @@ theorem CoordinatewisePreservesRelation.left_translation
 
 Predicate logic:
 
-  RightTranslationPreservesRelation relation operation
+  ∀ {Carrier : Type u} {relation : Carrier → Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier}, (LRA.Relation.Reflexive relation ∧ LRA.Order.CoordinatewisePreservesRelation relation operation) → LRA.Order.RightTranslationPreservesRelation relation operation
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {relation : Carrier → Carrier → Prop} {operation : Carrier → Carrier → Carrier}, (∀ (x : Carrier), relation x x ∧ ∀ (left₁ left₂ right₁ right₂ : Carrier), relation left₁ left₂ → relation right₁ right₂ → relation (operation left₁ right₁) (operation left₂ right₂)) → ∀ (left right fixed : Carrier), relation left right → relation (operation left fixed) (operation right fixed)
+  Ambient
+    (Carrier)
+  Objects
+    relation : Carrier -> Carrier -> Prop
+    operation : LRA.Operation.BinaryEndoOperation Carrier
+    relationIsReflexive : LRA.Relation.Reflexive relation
+    coordinatewise : CoordinatewisePreservesRelation relation operation
+  Prove
+    ((∀ (x : Carrier), relation x x) ∧ (∀ (left₁ left₂ right₁ right₂ : Carrier), relation left₁ left₂ → relation right₁ right₂ → relation (operation left₁ right₁) (operation left₂ right₂))) → ∀ (left right fixed : Carrier), relation left right → relation (operation left fixed) (operation right fixed)
 
 Logical form (Lean):
 

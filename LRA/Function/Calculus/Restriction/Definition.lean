@@ -16,7 +16,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Subdomain : Type u} {Domain : Type v} {Codomain : Type w} (restricted : Subdomain → Codomain) (original : Domain → Codomain) (inclusion : Subdomain → Domain) (input : Subdomain), restricted input = original (inclusion input)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    restricted input = original (inclusion input)
 
 Logical form (Lean):
 
@@ -61,20 +66,20 @@ def RestrictsTo
 Predicate logic:
 
   def Restriction
-    {Subdomain : Type u} {Domain : Type v} {Codomain : Type w}
-    (original : LRA.Function Domain Codomain)
-    (inclusion : LRA.Function Subdomain Domain) :
-    LRA.Function Subdomain Codomain :=
-  fun input => original (inclusion input)
+      {Subdomain : Type u} {Domain : Type v} {Codomain : Type w}
+      (original : LRA.Function Domain Codomain)
+      (inclusion : LRA.Function Subdomain Domain) :
+      LRA.Function Subdomain Codomain :=
+    fun input => original (inclusion input)
 
 Predicate logic (unfolded):
 
   def Restriction
-    {Subdomain : Type u} {Domain : Type v} {Codomain : Type w}
-    (original : LRA.Function Domain Codomain)
-    (inclusion : LRA.Function Subdomain Domain) :
-    LRA.Function Subdomain Codomain :=
-  fun input => original (inclusion input) (source fallback; no compiled unfold data available)
+      {Subdomain : Type u} {Domain : Type v} {Codomain : Type w}
+      (original : LRA.Function Domain Codomain)
+      (inclusion : LRA.Function Subdomain Domain) :
+      LRA.Function Subdomain Codomain :=
+    fun input => original (inclusion input) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -122,7 +127,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {SmallDomain : Type u} {LargeDomain : Type v} {Codomain : Type w} (extension : LargeDomain → Codomain) (original : SmallDomain → Codomain) (inclusion : SmallDomain → LargeDomain) (input : SmallDomain), extension (inclusion input) = original input
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    extension (inclusion input) = original input
 
 Logical form (Lean):
 
@@ -166,19 +176,24 @@ def Extends
 
 Predicate logic:
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (source : LRA.Set.SetClass Domain) (a : Domain) (a_1 : Codomain), (source a ∧ function.Graph a a_1)
+  ∀ {X : Type u} {Y : Type v} (R : LRA.Relation.HeterogeneousBinaryRelation X Y) (A : LRA.Set.SetClass X) (a : X) (a_1 : Y), (A a ∧ R a a_1)
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (source : Domain → Prop) (a : Domain) (a_1 : Codomain), (source a ∧ function a = a_1)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (A a ∧ R a a_1)
 
 Logical form (Lean):
 
 ```lean
-abbrev RestrictDomainGraph {Domain : Type u} {Codomain : Type v}
-    (function : LRA.Function Domain Codomain) (source : SetClass Domain) :
-    FunctionRelation Domain Codomain :=
-  LRA.Relation.RestrictDomain (Graph function) source
+def RestrictDomain {X : Type u} {Y : Type v}
+    (R : HeterogeneousBinaryRelation X Y) (A : SetClass X) :
+    HeterogeneousBinaryRelation X Y :=
+  fun x y => A x ∧ R x y
 ```
 
 Type-theoretic form:
@@ -210,19 +225,24 @@ abbrev RestrictDomainGraph {Domain : Type u} {Codomain : Type v}
 
 Predicate logic:
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (target : LRA.Set.SetClass Codomain) (a : Domain) (a_1 : Codomain), (function.Graph a a_1 ∧ target a_1)
+  ∀ {X : Type u} {Y : Type v} (R : LRA.Relation.HeterogeneousBinaryRelation X Y) (B : LRA.Set.SetClass Y) (a : X) (a_1 : Y), (R a a_1 ∧ B a_1)
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (target : Codomain → Prop) (a : Domain) (a_1 : Codomain), (function a = a_1 ∧ target a_1)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (R a a_1 ∧ B a_1)
 
 Logical form (Lean):
 
 ```lean
-abbrev RestrictCodomainGraph {Domain : Type u} {Codomain : Type v}
-    (function : LRA.Function Domain Codomain) (target : SetClass Codomain) :
-    FunctionRelation Domain Codomain :=
-  LRA.Relation.RestrictCodomain (Graph function) target
+def RestrictCodomain {X : Type u} {Y : Type v}
+    (R : HeterogeneousBinaryRelation X Y) (B : SetClass Y) :
+    HeterogeneousBinaryRelation X Y :=
+  fun x y => R x y ∧ B y
 ```
 
 Type-theoretic form:
@@ -254,20 +274,24 @@ abbrev RestrictCodomainGraph {Domain : Type u} {Codomain : Type v}
 
 Predicate logic:
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (source : LRA.Set.SetClass Domain) (target : LRA.Set.SetClass Codomain) (a : Domain) (a_1 : Codomain), (source a ∧ (function.Graph a a_1 ∧ target a_1))
+  ∀ {X : Type u} {Y : Type v} (R : LRA.Relation.HeterogeneousBinaryRelation X Y) (A : LRA.Set.SetClass X) (B : LRA.Set.SetClass Y) (a : X) (a_1 : Y), (A a ∧ (R a a_1 ∧ B a_1))
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (source : Domain → Prop) (target : Codomain → Prop) (a : Domain) (a_1 : Codomain), (source a ∧ (function a = a_1 ∧ target a_1))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (A a ∧ (R a a_1 ∧ B a_1))
 
 Logical form (Lean):
 
 ```lean
-abbrev RestrictGraph {Domain : Type u} {Codomain : Type v}
-    (function : LRA.Function Domain Codomain)
-    (source : SetClass Domain) (target : SetClass Codomain) :
-    FunctionRelation Domain Codomain :=
-  LRA.Relation.Restrict (Graph function) source target
+def Restrict {X : Type u} {Y : Type v}
+    (R : HeterogeneousBinaryRelation X Y) (A : SetClass X) (B : SetClass Y) :
+    HeterogeneousBinaryRelation X Y :=
+  fun x y => A x ∧ R x y ∧ B y
 ```
 
 Type-theoretic form:

@@ -14,11 +14,17 @@ variable [Membership Element SetObject]
 
 Predicate logic:
 
-  (∀ A ∈ U), (ps.base ∈ A ∧ forall element : Element, element ∈ A -> (ps.successor element) ∈ A) → forall element : Element, element ∈ A
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (subset : SetObject), (ps.base ∈ subset ∧ (∀ (element : Element), element ∈ subset → ps.successor element ∈ subset)) → ∀ (element : Element), element ∈ subset
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (subset : SetObject), (inst.1 subset ps.1 ∧ ∀ (element : Element), inst.1 subset element → inst.1 subset (ps.2 element)) → ∀ (element : Element), inst.1 subset element
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ps : PeanoSystem Element SetObject
+    subset : SetObject
+  Prove
+    (inst.1 subset ps.1 ∧ (∀ (element : Element), inst.1 subset element → inst.1 subset (ps.2 element))) → ∀ (element : Element), inst.1 subset element
 
 Logical form (Lean):
 
@@ -70,11 +76,17 @@ theorem PeanoSystemInductionPrinciple
 
 Predicate logic:
 
-  (∀ A ∈ U), (ps.base ∈ A ∧ forall element : Element, element ∈ A -> (ps.successor element) ∈ A) → forall element : Element, element ∈ A
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (subset : SetObject), (ps.base ∈ subset ∧ (∀ (element : Element), element ∈ subset → ps.successor element ∈ subset)) → ∀ (element : Element), element ∈ subset
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (subset : SetObject), (inst.1 subset ps.1 ∧ ∀ (element : Element), inst.1 subset element → inst.1 subset (ps.2 element)) → ∀ (element : Element), inst.1 subset element
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ps : PeanoSystem Element SetObject
+    subset : SetObject
+  Prove
+    (inst.1 subset ps.1 ∧ (∀ (element : Element), inst.1 subset element → inst.1 subset (ps.2 element))) → ∀ (element : Element), inst.1 subset element
 
 Logical form (Lean):
 
@@ -126,11 +138,18 @@ theorem InductionPrincipleForPeanoSystem
 
 Predicate logic:
 
-  (∀ A ∈ U), forall element : Element, element ∈ A
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (subset : SetObject), LRA.NumberSystems.PeanoSystem.InductiveSubsetOfPeanoSystem ps subset → ∀ (element : Element), element ∈ subset
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (subset : SetObject), (inst.1 subset ps.1 ∧ ∀ (element : Element), inst.1 subset element → inst.1 subset (ps.2 element)) → ∀ (element : Element), inst.1 subset element
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ps : PeanoSystem Element SetObject
+    subset : SetObject
+    subset_is_inductive : InductiveSubsetOfPeanoSystem ps subset
+  Prove
+    (inst.1 subset ps.1 ∧ (∀ (element : Element), inst.1 subset element → inst.1 subset (ps.2 element))) → ∀ (element : Element), inst.1 subset element
 
 Logical form (Lean):
 
@@ -174,11 +193,17 @@ theorem SubsetBasedInductionPrinciple
 
 Predicate logic:
 
-  (∀ A ∈ U), (forall element : Element, forall predecessor ∈ Element, predecessor ∈ A -> ps.successor predecessor = element -> predecessor ∈ A -> element ∈ A) → forall element : Element, element ∈ A
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (subset : SetObject), (∀ (element : Element), (∀ (predecessor : Element), predecessor ∈ subset → ps.successor predecessor = element → predecessor) ∈ subset → element) ∈ subset → ∀ (element : Element), element ∈ subset
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (subset : SetObject), (∀ (element : Element), (∀ (predecessor : Element), inst.1 subset predecessor → ps.2 predecessor = element → inst.1 subset predecessor) → inst.1 subset element) → ∀ (element : Element), inst.1 subset element
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ps : PeanoSystem Element SetObject
+    subset : SetObject
+  Prove
+    (∀ (element : Element), (∀ (predecessor : Element), inst.1 subset predecessor → ps.2 predecessor = element → inst.1 subset predecessor) → inst.1 subset element) → ∀ (element : Element), inst.1 subset element
 
 Logical form (Lean):
 
@@ -234,11 +259,18 @@ theorem StrongInductionOnPeanoSystem
 
 Predicate logic:
 
-  (∀ A ∈ U), ∀ element : Element, element ∈ A
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (subset : SetObject), LRA.NumberSystems.PeanoSystem.InductiveSubsetOfPeanoSystem ps subset → ∀ (element : Element), element ∈ subset
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (subset : SetObject), (inst.1 subset ps.1 ∧ ∀ (element : Element), inst.1 subset element → inst.1 subset (ps.2 element)) → ∀ (element : Element), inst.1 subset element
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ps : PeanoSystem Element SetObject
+    subset : SetObject
+    subset_is_inductive : InductiveSubsetOfPeanoSystem ps subset
+  Prove
+    (inst.1 subset ps.1 ∧ (∀ (element : Element), inst.1 subset element → inst.1 subset (ps.2 element))) → ∀ (element : Element), inst.1 subset element
 
 Logical form (Lean):
 
@@ -280,11 +312,18 @@ theorem PeanoMinimality
 
 Predicate logic:
 
-  (∀ A ∈ U), (ps.base ∈ A) → ∀ element : Element, element ∈ A
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (subset : SetObject), (ps.base ∈ subset ∧ LRA.NumberSystems.PeanoSystem.SuccessorClosedSubset ps subset) → ∀ (element : Element), element ∈ subset
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (subset : SetObject), (inst.1 subset ps.1 ∧ ∀ (element : Element), inst.1 subset element → inst.1 subset (ps.2 element)) → ∀ (element : Element), inst.1 subset element
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ps : PeanoSystem Element SetObject
+    subset : SetObject
+    successor_closed : SuccessorClosedSubset ps subset
+  Prove
+    (inst.1 subset ps.1 ∧ (∀ (element : Element), inst.1 subset element → inst.1 subset (ps.2 element))) → ∀ (element : Element), inst.1 subset element
 
 Logical form (Lean):
 

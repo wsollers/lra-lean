@@ -9,20 +9,20 @@ namespace LRA.Analysis.Continuity
 Predicate logic:
 
   structure IntervalPartition (a b : ℝ) where
-  n : ℕ
-  points : Fin (n + 1) → ℝ
-  first_eq : points 0 = a
-  last_eq : points (Fin.last n) = b
-  mono : ∀ i j : Fin (n + 1), (i : ℕ) < (j : ℕ) → points i < points j
+    n : ℕ
+    points : Fin (n + 1) → ℝ
+    first_eq : points 0 = a
+    last_eq : points (Fin.last n) = b
+    mono : ∀ i j : Fin (n + 1), (i : ℕ) < (j : ℕ) → points i < points j
 
 Predicate logic (unfolded):
 
   structure IntervalPartition (a b : ℝ) where
-  n : ℕ
-  points : Fin (n + 1) → ℝ
-  first_eq : points 0 = a
-  last_eq : points (Fin.last n) = b
-  mono : ∀ i j : Fin (n + 1), (i : ℕ) < (j : ℕ) → points i < points j (source fallback; no compiled unfold data available)
+    n : ℕ
+    points : Fin (n + 1) → ℝ
+    first_eq : points 0 = a
+    last_eq : points (Fin.last n) = b
+    mono : ∀ i j : Fin (n + 1), (i : ℕ) < (j : ℕ) → points i < points j (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -67,14 +67,14 @@ structure IntervalPartition (a b : ℝ) where
 Predicate logic:
 
   structure TaggedPartition (a b : ℝ) extends IntervalPartition a b where
-  tag : Fin n → ℝ
-  tag_mem : ∀ i : Fin n, tag i ∈ Set.Icc (points i.castSucc) (points i.succ)
+    tag : Fin n → ℝ
+    tag_mem : ∀ i : Fin n, tag i ∈ Set.Icc (points i.castSucc) (points i.succ)
 
 Predicate logic (unfolded):
 
   structure TaggedPartition (a b : ℝ) extends IntervalPartition a b where
-  tag : Fin n → ℝ
-  tag_mem : ∀ i : Fin n, tag i ∈ Set.Icc (points i.castSucc) (points i.succ) (source fallback; no compiled unfold data available)
+    tag : Fin n → ℝ
+    tag_mem : ∀ i : Fin n, tag i ∈ Set.Icc (points i.castSucc) (points i.succ) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -112,11 +112,16 @@ structure TaggedPartition (a b : ℝ) extends IntervalPartition a b where
 
 Predicate logic:
 
-  ∀ (a b : Real) (δ : Real → Real) (x : Real), Set.instMembership.mem (Set.Icc a b) x → GT.gt (δ x) 0
+  ∀ (a b : Real) (δ : Real → Real) (x : Real), x ∈ Set.Icc a b → GT.gt (δ x) 0
 
 Predicate logic (unfolded):
 
-  ∀ (a b : Real) (δ : Real → Real) (x : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) x → Real.instLT.1 Zero.toOfNat0.1 (δ x)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    x ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b) → Real.instLT.lt 0 (δ x)
 
 Logical form (Lean):
 
@@ -156,7 +161,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {a b : Real} (P : LRA.Analysis.Continuity.TaggedPartition a b) (δ : Real → Real) (i : Fin P.toIntervalPartition.1), (Real.instLE.1 (instHSub.1 (P.2 i) (δ (P.2 i))) (P.toIntervalPartition.2 ⟨i.val, ⋯⟩) ∧ Real.instLE.1 (P.toIntervalPartition.2 (Fin.rec (fun val isLt => (fun val isLt => (fun i h => ⟨instHAdd.1 i 1, ⋯⟩) val isLt) val isLt) i)) (instHAdd.1 (P.2 i) (δ (P.2 i))))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Real.instLE.le ({ hSub := fun a b => Real.instSub.sub a b }.hSub (P.2 i) (δ (P.2 i))) (P.toIntervalPartition.2 ⟨i.1, ⋯⟩) ∧ Real.instLE.le (P.toIntervalPartition.2 (Fin.rec (fun val isLt => (fun val isLt => (fun i h => ⟨{ hAdd := fun a b => instAddNat.add a b }.hAdd i 1, ⋯⟩) val isLt) val isLt) i)) ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd (P.2 i) (δ (P.2 i))))
 
 Logical form (Lean):
 
@@ -196,11 +206,17 @@ def IsDeltaFine {a b : ℝ} (P : TaggedPartition a b) (δ : ℝ → ℝ) : Prop 
 
 Predicate logic:
 
-  (a ≤ b ∧ ℝ → ℝ ∧ IsGauge a b δ) → ∃ P ∈ TaggedPartition a b, IsDeltaFine P δ
+  ∀ (a b : Real), Real.instLE.le a b → ∀ (δ : Real → Real), LRA.Analysis.Continuity.IsGauge a b δ → Exists fun P => LRA.Analysis.Continuity.IsDeltaFine P δ
 
 Predicate logic (unfolded):
 
-  ∀ (a b : Real), Real.instLE.1 a b → ∀ (δ : Real → Real), (∀ (x : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) x → Real.instLT.1 Zero.toOfNat0.1 (δ x)) → Exists fun P => ∀ (i : Fin P.toIntervalPartition.1), (Real.instLE.1 (instHSub.1 (P.2 i) (δ (P.2 i))) (P.toIntervalPartition.2 (Fin.castLE ⋯ i)) ∧ Real.instLE.1 (P.toIntervalPartition.2 (Fin.rec (fun val isLt => (fun val isLt => (fun i h => ⟨instHAdd.hAdd i 1, ⋯⟩) val isLt) val isLt) i)) (instHAdd.1 (P.2 i) (δ (P.2 i))))
+  Ambient
+    (ℝ)
+  Objects
+    a b : ℝ
+    δ : ℝ → ℝ
+  Prove
+    Real.instLE.le a b → ∀ (δ : Real → Real), (∀ (x : Real), x ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b) → Real.instLT.lt 0 (δ x)) → Exists fun P => ∀ (i : Fin P.toIntervalPartition.1), (Real.instLE.le ({ hSub := fun a b => Real.instSub.sub a b }.hSub (P.2 i) (δ (P.2 i))) (P.toIntervalPartition.2 ⟨i.val, ⋯⟩) ∧ Real.instLE.le (P.toIntervalPartition.2 (Fin.rec (fun val isLt => (fun val isLt => (fun i h => ⟨{ hAdd := fun a b => instAddNat.add a b }.hAdd i 1, ⋯⟩) val isLt) val isLt) i)) ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd (P.2 i) (δ (P.2 i))))
 
 Logical form (Lean):
 
@@ -239,12 +255,12 @@ theorem CousinsTheorem (a b : ℝ) (hab : a ≤ b) (δ : ℝ → ℝ)
 Predicate logic:
 
   noncomputable def MeshOf {a b : ℝ} (P : IntervalPartition a b) : ℝ :=
-  0
+    0
 
 Predicate logic (unfolded):
 
   noncomputable def MeshOf {a b : ℝ} (P : IntervalPartition a b) : ℝ :=
-  0 (source fallback; no compiled unfold data available)
+    0 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -284,7 +300,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {a b : Real} (Q P : LRA.Analysis.Continuity.IntervalPartition a b) (i : Fin (instHAdd.1 P.1 (instOfNatNat 1).1)), Exists fun j => Q.2 j = P.2 i
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun j => Q.2 j = P.2 i
 
 Logical form (Lean):
 
@@ -324,7 +345,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {a b : Real} (P₁ P₂ : LRA.Analysis.Continuity.IntervalPartition a b), Exists fun Q => (∀ (i : Fin (instHAdd.1 P₁.1 (instOfNatNat 1).1)), Exists fun j => Q.2 j = P₁.2 i ∧ ∀ (i : Fin (instHAdd.1 P₂.1 (instOfNatNat 1).1)), Exists fun j => Q.2 j = P₂.2 i)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun Q => ((∀ (i : Fin ({ hAdd := fun a b => instAddNat.add a b }.hAdd P₁.1 1)), Exists fun j => Q.2 j = P₁.2 i) ∧ (∀ (i : Fin ({ hAdd := fun a b => instAddNat.add a b }.hAdd P₂.1 1)), Exists fun j => Q.2 j = P₂.2 i))
 
 Logical form (Lean):
 
@@ -360,11 +386,17 @@ def HasCommonRefinement {a b : ℝ} (P₁ P₂ : IntervalPartition a b) : Prop :
 
 Predicate logic:
 
-  HasCommonRefinement P₁ P₂
+  ∀ {a b : Real} (P₁ P₂ : LRA.Analysis.Continuity.IntervalPartition a b), LRA.Analysis.Continuity.HasCommonRefinement P₁ P₂
 
 Predicate logic (unfolded):
 
-  ∀ {a b : Real} (P₁ P₂ : LRA.Analysis.Continuity.IntervalPartition a b), Exists fun Q => (∀ (i : Fin (instHAdd.1 P₁.1 (instOfNatNat 1).1)), Exists fun j => Q.2 j = P₁.2 i ∧ ∀ (i : Fin (instHAdd.1 P₂.1 (instOfNatNat 1).1)), Exists fun j => Q.2 j = P₂.2 i)
+  Ambient
+    (ℝ)
+  Objects
+    a b : ℝ
+    P₁ P₂ : IntervalPartition a b
+  Prove
+    Exists fun Q => ((∀ (i : Fin ({ hAdd := fun a b => instAddNat.add a b }.hAdd P₁.1 1)), Exists fun j => Q.2 j = P₁.2 i) ∧ (∀ (i : Fin ({ hAdd := fun a b => instAddNat.add a b }.hAdd P₂.1 1)), Exists fun j => Q.2 j = P₂.2 i))
 
 Logical form (Lean):
 
@@ -400,11 +432,17 @@ theorem CommonRefinementExists {a b : ℝ} (P₁ P₂ : IntervalPartition a b) :
 
 Predicate logic:
 
-  ∀ x ∈ Set.Icc a b, ∃ i ∈ Fin P.n, x ∈ Set.Icc (P.points i.castSucc) (P.points i.succ)
+  ∀ {a b : Real} (P : LRA.Analysis.Continuity.TaggedPartition a b) (x : Real), x ∈ Set.Icc a b → Exists fun i => x ∈ Set.Icc (P.points i.castSucc) (P.points i.succ)
 
 Predicate logic (unfolded):
 
-  ∀ {a b : Real} (P : LRA.Analysis.Continuity.TaggedPartition a b) (x : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) x → Exists fun i => Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 (P.toIntervalPartition.2 (Fin.castAdd 1 i)) x ∧ Real.instPreorder.toLE.1 x (P.toIntervalPartition.2 (Fin.succ.match_1 (fun x => Fin (instHAdd.hAdd P.n 1)) i fun i h => ⟨instHAdd.hAdd i 1, ⋯⟩)))) x
+  Ambient
+    (ℝ)
+  Objects
+    a b : ℝ
+    P : TaggedPartition a b
+  Prove
+    x ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b) → Exists fun i => x ∈ fun x => (Real.instPreorder.1.le (P.toIntervalPartition.2 (Fin.castLE ⋯ i)) x ∧ Real.instPreorder.1.le x (P.toIntervalPartition.2 (Fin.casesOn i fun val isLt => (fun i h => ⟨instHAdd.hAdd i 1, ⋯⟩) val isLt)))
 
 Logical form (Lean):
 

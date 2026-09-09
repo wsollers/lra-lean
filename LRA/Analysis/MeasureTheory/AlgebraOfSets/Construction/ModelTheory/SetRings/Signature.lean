@@ -8,16 +8,16 @@ namespace LRA.ModelTheoryTheory.SetRings
 Predicate logic:
 
   inductive SetRingFunctionSymbol where
-  | join
-  | meet
-  | difference
+    | join
+    | meet
+    | difference
 
 Predicate logic (unfolded):
 
   inductive SetRingFunctionSymbol where
-  | join
-  | meet
-  | difference (source fallback; no compiled unfold data available)
+    | join
+    | meet
+    | difference (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -96,12 +96,12 @@ def SetRingRelationSymbol : Type := Empty
 Predicate logic:
 
   inductive SetRingConstantSymbol where
-  | zero
+    | zero
 
 Predicate logic (unfolded):
 
   inductive SetRingConstantSymbol where
-  | zero (source fallback; no compiled unfold data available)
+    | zero (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -138,20 +138,20 @@ inductive SetRingConstantSymbol where
 Predicate logic:
 
   def SetRingFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
-  Symbol := SetRingFunctionSymbol
-  arity
-    | .join => 2
-    | .meet => 2
-    | .difference => 2
+    Symbol := SetRingFunctionSymbol
+    arity
+      | .join => 2
+      | .meet => 2
+      | .difference => 2
 
 Predicate logic (unfolded):
 
   def SetRingFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
-  Symbol := SetRingFunctionSymbol
-  arity
-    | .join => 2
-    | .meet => 2
-    | .difference => 2 (source fallback; no compiled unfold data available)
+    Symbol := SetRingFunctionSymbol
+    arity
+      | .join => 2
+      | .meet => 2
+      | .difference => 2 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -196,14 +196,14 @@ def SetRingFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
 Predicate logic:
 
   def SetRingFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
-  Symbol := SetRingRelationSymbol
-  arity := Empty.elim
+    Symbol := SetRingRelationSymbol
+    arity := Empty.elim
 
 Predicate logic (unfolded):
 
   def SetRingFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
-  Symbol := SetRingRelationSymbol
-  arity := Empty.elim (source fallback; no compiled unfold data available)
+    Symbol := SetRingRelationSymbol
+    arity := Empty.elim (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -242,16 +242,16 @@ def SetRingFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
 Predicate logic:
 
   def SetRingFirstOrderSignature : LRA.Logic.Signature where
-  Functions := SetRingFirstOrderFunctions
-  Relations := SetRingFirstOrderRelations
-  Constants := SetRingConstantSymbol
+    Functions := SetRingFirstOrderFunctions
+    Relations := SetRingFirstOrderRelations
+    Constants := SetRingConstantSymbol
 
 Predicate logic (unfolded):
 
   def SetRingFirstOrderSignature : LRA.Logic.Signature where
-  Functions := SetRingFirstOrderFunctions
-  Relations := SetRingFirstOrderRelations
-  Constants := SetRingConstantSymbol (source fallback; no compiled unfold data available)
+    Functions := SetRingFirstOrderFunctions
+    Relations := SetRingFirstOrderRelations
+    Constants := SetRingConstantSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

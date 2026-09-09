@@ -24,7 +24,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} {Index : Type w} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasSeparation Element SetObject] [inst_2 : LRA.Set.HasUniversal SetObject] [inst_3 : LRA.Set.HasIndexedUnion SetObject] [inst_4 : LRA.Set.HasIndexedIntersection SetObject] (relation : Element → Element → Prop) (family : Index → SetObject), inst_1.1 inst_2.1 fun bound => ∀ (element : Element), inst.1 (inst_4.1 family) element → relation element bound = inst_3.1 fun index => inst_1.1 inst_2.1 fun bound => ∀ (element : Element), inst.1 (family index) element → relation element bound → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    inst_1.1 inst_2.1 fun bound => ∀ (element : Element), inst.1 (inst_4.1 family) element → relation element bound = inst_3.1 fun index => inst_1.1 inst_2.1 fun bound => ∀ (element : Element), inst.1 (family index) element → relation element bound → False
 
 Logical form (Lean):
 
@@ -76,11 +81,16 @@ def UpperBoundsFailToPreserveIndexedIntersectionsAsUnions
 
 Predicate logic:
 
-  UpperBoundsFailToPreserveIndexedIntersectionsAsUnions fun left right ∈ Int => left ≤ right fun index ∈ Bool => if index then {1} ∈ Set Int else {0}
+  LRA.Order.UpperBoundsFailToPreserveIndexedIntersectionsAsUnions (fun left right => Int.instLEInt.le left right) fun index => ite (index = Bool.true)(Set.instSingletonSet.singleton 1) (Set.instSingletonSet.singleton 0)
 
 Predicate logic (unfolded):
 
-  LRA.Set.MathlibPredicateSet.instHasSeparationSet.1 LRA.Set.MathlibPredicateSet.instHasUniversalSet.1 fun bound => ∀ (element : Int), Set.instMembership.mem (LRA.Set.MathlibPredicateSet.instHasIndexedIntersectionSet.indexedIntersection fun index => ite (index = Bool.true)(Set.instSingletonSet.singleton 1) (Set.instSingletonSet.singleton 0)) element → (fun left right => Int.instLEInt.le left right) element bound = LRA.Set.MathlibPredicateSet.instHasIndexedUnionSet.1 fun index => LRA.Set.MathlibPredicateSet.instHasSeparationSet.1 LRA.Set.MathlibPredicateSet.instHasUniversalSet.universal (LRA.Order.UpperBound (fun left right => Int.instLEInt.le left right) ((fun index => ite (index = Bool.true)(Set.instSingletonSet.singleton 1) (Set.instSingletonSet.singleton 0)) index)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.MathlibPredicateSet.instHasSeparationSet.1 LRA.Set.MathlibPredicateSet.instHasUniversalSet.1 fun bound => ∀ (element : Int), element ∈ LRA.Set.MathlibPredicateSet.instHasIndexedIntersectionSet.indexedIntersection fun index => ite (index = Bool.true)(Set.instSingletonSet.singleton 1) (Set.instSingletonSet.singleton 0) → (fun left right => Int.instLEInt.le left right) element bound = LRA.Set.MathlibPredicateSet.instHasIndexedUnionSet.1 fun index => LRA.Set.MathlibPredicateSet.instHasSeparationSet.1 LRA.Set.MathlibPredicateSet.instHasUniversalSet.universal (LRA.Order.UpperBound (fun left right => Int.instLEInt.le left right) ((fun index => ite (index = Bool.true)(Set.instSingletonSet.singleton 1) (Set.instSingletonSet.singleton 0)) index)) → False
 
 Logical form (Lean):
 
@@ -124,7 +134,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} {Index : Type w} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasSeparation Element SetObject] [inst_2 : LRA.Set.HasUniversal SetObject] [inst_3 : LRA.Set.HasIndexedUnion SetObject] [inst_4 : LRA.Set.HasIndexedIntersection SetObject] (relation : Element → Element → Prop) (family : Index → SetObject), inst_1.1 inst_2.1 fun bound => ∀ (element : Element), inst.1 (inst_4.1 family) element → relation bound element = inst_3.1 fun index => inst_1.1 inst_2.1 fun bound => ∀ (element : Element), inst.1 (family index) element → relation bound element → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    inst_1.1 inst_2.1 fun bound => ∀ (element : Element), inst.1 (inst_4.1 family) element → relation bound element = inst_3.1 fun index => inst_1.1 inst_2.1 fun bound => ∀ (element : Element), inst.1 (family index) element → relation bound element → False
 
 Logical form (Lean):
 
@@ -176,11 +191,16 @@ def LowerBoundsFailToPreserveIndexedIntersectionsAsUnions
 
 Predicate logic:
 
-  LowerBoundsFailToPreserveIndexedIntersectionsAsUnions fun left right ∈ Int => left ≤ right fun index ∈ Bool => if index then {1} ∈ Set Int else {0}
+  LRA.Order.LowerBoundsFailToPreserveIndexedIntersectionsAsUnions (fun left right => Int.instLEInt.le left right) fun index => ite (index = Bool.true)(Set.instSingletonSet.singleton 1) (Set.instSingletonSet.singleton 0)
 
 Predicate logic (unfolded):
 
-  LRA.Set.MathlibPredicateSet.instHasSeparationSet.1 LRA.Set.MathlibPredicateSet.instHasUniversalSet.1 fun bound => ∀ (element : Int), Set.instMembership.mem (LRA.Set.MathlibPredicateSet.instHasIndexedIntersectionSet.indexedIntersection fun index => ite (index = Bool.true)(Set.instSingletonSet.singleton 1) (Set.instSingletonSet.singleton 0)) element → (fun left right => Int.instLEInt.le left right) bound element = LRA.Set.MathlibPredicateSet.instHasIndexedUnionSet.1 fun index => LRA.Set.MathlibPredicateSet.instHasSeparationSet.1 LRA.Set.MathlibPredicateSet.instHasUniversalSet.universal (LRA.Order.LowerBound (fun left right => Int.instLEInt.le left right) ((fun index => ite (index = Bool.true)(Set.instSingletonSet.singleton 1) (Set.instSingletonSet.singleton 0)) index)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.MathlibPredicateSet.instHasSeparationSet.1 LRA.Set.MathlibPredicateSet.instHasUniversalSet.1 fun bound => ∀ (element : Int), element ∈ LRA.Set.MathlibPredicateSet.instHasIndexedIntersectionSet.indexedIntersection fun index => ite (index = Bool.true)(Set.instSingletonSet.singleton 1) (Set.instSingletonSet.singleton 0) → (fun left right => Int.instLEInt.le left right) bound element = LRA.Set.MathlibPredicateSet.instHasIndexedUnionSet.1 fun index => LRA.Set.MathlibPredicateSet.instHasSeparationSet.1 LRA.Set.MathlibPredicateSet.instHasUniversalSet.universal (LRA.Order.LowerBound (fun left right => Int.instLEInt.le left right) ((fun index => ite (index = Bool.true)(Set.instSingletonSet.singleton 1) (Set.instSingletonSet.singleton 0)) index)) → False
 
 Logical form (Lean):
 
@@ -220,11 +240,16 @@ theorem IntegerSingletonsWitnessLowerBoundsIntersectionFailure :
 
 Predicate logic:
 
-  ∀ {Element : Type u} {SetObject : Type v} {Index : Type w} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasIndexedIntersection SetObject] (relation : LRA.Relation.Endorelation Element) (family : Index → SetObject), (∀ (element : Element), ¬ element ∈ inst_1.indexedIntersection family ∧ ∀ (bound : Element), (LRA.Order.UpperBound relation (inst_1.indexedIntersection family) bound ∧ LRA.Order.LowerBound relation (inst_1.indexedIntersection family) bound))
+  ∀ {Element : Type u} {SetObject : Type v} {Index : Type w} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasIndexedIntersection SetObject] (relation : LRA.Relation.Endorelation Element) (family : Index → SetObject), ((∀ (element : Element), ¬ element ∈ inst_1.indexedIntersection family) ∧ (∀ (bound : Element), (LRA.Order.UpperBound relation (inst_1.indexedIntersection family) bound ∧ LRA.Order.LowerBound relation (inst_1.indexedIntersection family) bound)))
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} {Index : Type w} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasIndexedIntersection SetObject] (relation : Element → Element → Prop) (family : Index → SetObject), (∀ (element : Element), inst.1 (inst_1.1 family) element → False ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 (inst_1.1 family) element → relation element bound ∧ ∀ (element : Element), inst.1 (inst_1.1 family) element → relation bound element))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (element : Element), inst.1 (inst_1.1 family) element → False) ∧ (∀ (bound : Element), ((∀ (element : Element), inst.1 (inst_1.1 family) element → relation element bound) ∧ (∀ (element : Element), inst.1 (inst_1.1 family) element → relation bound element))))
 
 Logical form (Lean):
 
@@ -282,11 +307,16 @@ def EmptyIndexedIntersectionCreatesVacuousBounds
 
 Predicate logic:
 
-  EmptyIndexedIntersectionCreatesVacuousBounds fun left right ∈ Int => left ≤ right fun index ∈ Bool => if index then {1} ∈ Set Int else {0}
+  LRA.Order.EmptyIndexedIntersectionCreatesVacuousBounds (fun left right => Int.instLEInt.le left right) fun index => ite (index = Bool.true)(Set.instSingletonSet.singleton 1) (Set.instSingletonSet.singleton 0)
 
 Predicate logic (unfolded):
 
-  (∀ (element : Int), Set.instMembership.1 (LRA.Set.MathlibPredicateSet.instHasIndexedIntersectionSet.1 fun index => Decidable.rec (fun h => (fun x => Set.instSingletonSet.singleton 0) h) (fun h => (fun x => Set.instSingletonSet.singleton 1) h) (instDecidableEqBool index Bool.true)) element → False ∧ ∀ (bound : Int), (∀ (element : Int), Set.instMembership.1 (LRA.Set.MathlibPredicateSet.instHasIndexedIntersectionSet.1 fun index => Decidable.rec (fun h => (fun x => Set.instSingletonSet.singleton 0) h) (fun h => (fun x => Set.instSingletonSet.singleton 1) h) (instDecidableEqBool index Bool.true)) element → (fun left right => Int.instLEInt.1 left right) element bound ∧ ∀ (element : Int), Set.instMembership.1 (LRA.Set.MathlibPredicateSet.instHasIndexedIntersectionSet.1 fun index => Decidable.rec (fun h => (fun x => Set.instSingletonSet.singleton 0) h) (fun h => (fun x => Set.instSingletonSet.singleton 1) h) (instDecidableEqBool index Bool.true)) element → (fun left right => Int.instLEInt.1 left right) bound element))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (element : Int), element ∈ LRA.Set.MathlibPredicateSet.instHasIndexedIntersectionSet.1 fun index => Decidable.rec (fun h => (fun x => Set.instSingletonSet.singleton 0) h) (fun h => (fun x => Set.instSingletonSet.singleton 1) h) (instDecidableEqBool index Bool.true) → False) ∧ (∀ (bound : Int), ((∀ (element : Int), element ∈ LRA.Set.MathlibPredicateSet.instHasIndexedIntersectionSet.1 fun index => Decidable.rec (fun h => (fun x => Set.instSingletonSet.singleton 0) h) (fun h => (fun x => Set.instSingletonSet.singleton 1) h) (instDecidableEqBool index Bool.true) → (fun left right => Int.instLEInt.le left right) element bound) ∧ (∀ (element : Int), element ∈ LRA.Set.MathlibPredicateSet.instHasIndexedIntersectionSet.1 fun index => Decidable.rec (fun h => (fun x => Set.instSingletonSet.singleton 0) h) (fun h => (fun x => Set.instSingletonSet.singleton 1) h) (instDecidableEqBool index Bool.true) → (fun left right => Int.instLEInt.le left right) bound element))))
 
 Logical form (Lean):
 
@@ -336,7 +366,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (relation : Element → Element → Prop) (subset : SetObject), (Exists fun bound => ∀ (element : Element), inst.1 subset element → relation element bound ∧ Exists fun bound => ∀ (element : Element), inst.1 subset element → relation bound element) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((Exists fun bound => ∀ (element : Element), inst.1 subset element → relation element bound) ∧ (Exists fun bound => ∀ (element : Element), inst.1 subset element → relation bound element)) → False
 
 Logical form (Lean):
 
@@ -382,11 +417,16 @@ section IntegerUniverse
 
 Predicate logic:
 
-  FailsBounded fun left right ∈ Int => left ≤ right Set.univ ∈ Set Int
+  LRA.Order.FailsBounded (fun left right => Int.instLEInt.le left right) Set.univ
 
 Predicate logic (unfolded):
 
-  (Exists fun bound => ∀ (element : Int), Set.instMembership.1 Set.univ element → (fun left right => Int.instLEInt.1 left right) element bound ∧ Exists fun bound => ∀ (element : Int), Set.instMembership.1 Set.univ element → (fun left right => Int.instLEInt.1 left right) bound element) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((Exists fun bound => ∀ (element : Int), element ∈ Set.univ → (fun left right => Int.instLEInt.le left right) element bound) ∧ (Exists fun bound => ∀ (element : Int), element ∈ Set.univ → (fun left right => Int.instLEInt.le left right) bound element)) → False
 
 Logical form (Lean):
 
@@ -428,7 +468,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasComplement SetObject] (relation : Element → Element → Prop) (subset : SetObject), ((Exists fun bound => ∀ (element : Element), inst.1 subset element → relation element bound ∧ Exists fun bound => ∀ (element : Element), inst.1 subset element → relation bound element) ∧ ((Exists fun bound => ∀ (element : Element), inst.1 (inst_1.1 subset) element → relation element bound) → False ∧ (Exists fun bound => ∀ (element : Element), inst.1 (inst_1.1 subset) element → relation bound element) → False))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((Exists fun bound => ∀ (element : Element), inst.1 subset element → relation element bound) ∧ (Exists fun bound => ∀ (element : Element), inst.1 subset element → relation bound element)) ∧ (((Exists fun bound => ∀ (element : Element), inst.1 (inst_1.1 subset) element → relation element bound) → False) ∧ ((Exists fun bound => ∀ (element : Element), inst.1 (inst_1.1 subset) element → relation bound element) → False)))
 
 Logical form (Lean):
 
@@ -476,11 +521,16 @@ def ComplementDestroysTwoSidedBoundedness
 
 Predicate logic:
 
-  (Bounded fun left right ∈ Real => left ≤ right subset) → ComplementDestroysTwoSidedBoundedness fun left right ∈ Real => left ≤ right subset
+  ∀ (subset : Set Real), LRA.Order.Bounded (fun left right => Real.instLE.le left right) subset → LRA.Order.ComplementDestroysTwoSidedBoundedness (fun left right => Real.instLE.le left right) subset
 
 Predicate logic (unfolded):
 
-  ∀ (subset : Real → Prop), (Exists fun bound => ∀ (element : Real), Set.instMembership.1 subset element → (fun left right => Real.instLE.1 left right) element bound ∧ Exists fun bound => ∀ (element : Real), Set.instMembership.1 subset element → (fun left right => Real.instLE.1 left right) bound element) → ((Exists fun bound => ∀ (element : Real), Set.instMembership.1 subset element → (fun left right => Real.instLE.1 left right) element bound ∧ Exists fun bound => ∀ (element : Real), Set.instMembership.1 subset element → (fun left right => Real.instLE.1 left right) bound element) ∧ ((Exists fun bound => ∀ (element : Real), Set.instMembership.1 (LRA.Set.MathlibPredicateSet.instHasComplementSet.1 subset) element → (fun left right => Real.instLE.1 left right) element bound) → False ∧ (Exists fun bound => ∀ (element : Real), Set.instMembership.1 (LRA.Set.MathlibPredicateSet.instHasComplementSet.1 subset) element → (fun left right => Real.instLE.1 left right) bound element) → False))
+  Ambient
+    (Real)
+  Objects
+    subset : Set Real
+  Prove
+    ((Exists fun bound => ∀ (element : Real), element ∈ subset → (fun left right => Real.instLE.le left right) element bound) ∧ (Exists fun bound => ∀ (element : Real), element ∈ subset → (fun left right => Real.instLE.le left right) bound element)) → (((Exists fun bound => ∀ (element : Real), element ∈ subset → (fun left right => Real.instLE.le left right) element bound) ∧ (Exists fun bound => ∀ (element : Real), element ∈ subset → (fun left right => Real.instLE.le left right) bound element)) ∧ (((Exists fun bound => ∀ (element : Real), element ∈ LRA.Set.MathlibPredicateSet.instHasComplementSet.1 subset → (fun left right => Real.instLE.le left right) element bound) → False) ∧ ((Exists fun bound => ∀ (element : Real), element ∈ LRA.Set.MathlibPredicateSet.instHasComplementSet.1 subset → (fun left right => Real.instLE.le left right) bound element) → False)))
 
 Logical form (Lean):
 
@@ -532,7 +582,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (relation : Element → Element → Prop) (subset : SetObject), (Exists fun bound => ∀ (element : Element), inst.1 subset element → relation element bound) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun bound => ∀ (element : Element), inst.1 subset element → relation element bound) → False
 
 Logical form (Lean):
 
@@ -578,11 +633,16 @@ section IntegerUniverse
 
 Predicate logic:
 
-  FailsBoundedAbove fun left right ∈ Int => left ≤ right Set.univ ∈ Set Int
+  LRA.Order.FailsBoundedAbove (fun left right => Int.instLEInt.le left right) Set.univ
 
 Predicate logic (unfolded):
 
-  (Exists fun bound => ∀ (element : Int), Set.instMembership.1 (setOf fun _a => True) element → (fun left right => Int.instLEInt.1 left right) element bound) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun bound => ∀ (element : Int), element ∈ setOf fun _a => True → (fun left right => Int.instLEInt.le left right) element bound) → False
 
 Logical form (Lean):
 
@@ -628,7 +688,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (relation : Element → Element → Prop) (subset : SetObject), (Exists fun bound => ∀ (element : Element), inst.1 subset element → relation bound element) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun bound => ∀ (element : Element), inst.1 subset element → relation bound element) → False
 
 Logical form (Lean):
 
@@ -674,11 +739,16 @@ section IntegerUniverse
 
 Predicate logic:
 
-  FailsBoundedBelow fun left right ∈ Int => left ≤ right Set.univ ∈ Set Int
+  LRA.Order.FailsBoundedBelow (fun left right => Int.instLEInt.le left right) Set.univ
 
 Predicate logic (unfolded):
 
-  (Exists fun bound => ∀ (element : Int), Set.instMembership.1 (setOf fun _a => True) element → (fun left right => Int.instLEInt.1 left right) bound element) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun bound => ∀ (element : Int), element ∈ setOf fun _a => True → (fun left right => Int.instLEInt.le left right) bound element) → False
 
 Logical form (Lean):
 
@@ -724,7 +794,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (relation : Element → Element → Prop) (subset : SetObject) (candidate : Element), (inst.1 subset candidate ∧ ∀ (element : Element), inst.1 subset element → relation element candidate) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (inst.1 subset candidate ∧ (∀ (element : Element), inst.1 subset element → relation element candidate)) → False
 
 Logical form (Lean):
 
@@ -770,11 +845,16 @@ section RealOpenUnitInterval
 
 Predicate logic:
 
-  FailsGreatestElement fun left right ∈ Real => left ≤ right (Set.Ioo 0 1) 1
+  LRA.Order.FailsGreatestElement (fun left right => Real.instLE.le left right) (Set.Ioo 0 1) 1
 
 Predicate logic (unfolded):
 
-  (Set.instMembership.1 (fun x => (Real.instPreorder.lt 0 x ∧ Real.instPreorder.lt x 1)) One.toOfNat1.1 ∧ ∀ (element : Real), Set.instMembership.1 (setOf fun x => (Real.instPreorder.lt 0 x ∧ Real.instPreorder.lt x 1)) element → (fun left right => Real.instLE.1 left right) element One.toOfNat1.1) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((1 ∈ fun x => (Real.instPreorder.lt 0 x ∧ Real.instPreorder.lt x 1)) ∧ (∀ (element : Real), element ∈ setOf fun x => (Real.instPreorder.lt 0 x ∧ Real.instPreorder.lt x 1) → (fun left right => Real.instLE.le left right) element 1)) → False
 
 Logical form (Lean):
 
@@ -822,7 +902,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} (SetObject : Type v) [inst : Membership Element SetObject] (relation : Element → Element → Prop), (∀ (subset : SetObject), (Exists fun element => inst.1 subset element) → (Exists fun bound => ∀ (element : Element), inst.1 subset element → relation bound element) → Exists fun infimum => (∀ (element : Element), inst.1 subset element → relation infimum element ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation bound element) → relation bound infimum)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (subset : SetObject), (Exists fun element => inst.1 subset element) → (Exists fun bound => ∀ (element : Element), inst.1 subset element → relation bound element) → Exists fun infimum => ((∀ (element : Element), inst.1 subset element → relation infimum element) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation bound element) → relation bound infimum))) → False
 
 Logical form (Lean):
 
@@ -866,11 +951,16 @@ section RationalOrder
 
 Predicate logic:
 
-  FailsGreatestLowerBoundProperty (Set Rat) fun left right ∈ Rat => left ≤ right
+  LRA.Order.FailsGreatestLowerBoundProperty (Set Rat) fun left right => Rat.instLE.le left right
 
 Predicate logic (unfolded):
 
-  (∀ (subset : Rat → Prop), (Exists fun element => Set.instMembership.1 subset element) → (Exists fun bound => ∀ (element : Rat), Set.instMembership.1 subset element → (fun left right => Rat.instLE.1 left right) bound element) → Exists fun infimum => (∀ (element : Rat), Set.instMembership.1 subset element → (fun left right => Rat.instLE.1 left right) infimum element ∧ ∀ (bound : Rat), (∀ (element : Rat), Set.instMembership.1 subset element → (fun left right => Rat.instLE.1 left right) bound element) → (fun left right => Rat.instLE.1 left right) bound infimum)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (subset : Rat → Prop), (Exists fun element => element) ∈ subset → (Exists fun bound => ∀ (element : Rat), element ∈ subset → (fun left right => Rat.instLE.le left right) bound element) → Exists fun infimum => ((∀ (element : Rat), element ∈ subset → (fun left right => Rat.instLE.le left right) infimum element) ∧ (∀ (bound : Rat), (∀ (element : Rat), element ∈ subset → (fun left right => Rat.instLE.le left right) bound element) → (fun left right => Rat.instLE.le left right) bound infimum))) → False
 
 Logical form (Lean):
 
@@ -918,7 +1008,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (relation : Element → Element → Prop) (subset : SetObject), (Exists fun candidate => (∀ (element : Element), inst.1 subset element → relation candidate element ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation bound element) → relation bound candidate)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun candidate => ((∀ (element : Element), inst.1 subset element → relation candidate element) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation bound element) → relation bound candidate))) → False
 
 Logical form (Lean):
 
@@ -964,11 +1059,16 @@ section IntegerEmptySet
 
 Predicate logic:
 
-  FailsInfimum fun left right ∈ Int => left ≤ right ∅ ∈ Set Int
+  LRA.Order.FailsInfimum (fun left right => Int.instLEInt.le left right) Set.instEmptyCollection.emptyCollection
 
 Predicate logic (unfolded):
 
-  (Exists fun candidate => (∀ (element : Int), Set.instMembership.1 Set.instEmptyCollection.1 element → (fun left right => Int.instLEInt.1 left right) candidate element ∧ ∀ (bound : Int), (∀ (element : Int), Set.instMembership.1 Set.instEmptyCollection.1 element → (fun left right => Int.instLEInt.1 left right) bound element) → (fun left right => Int.instLEInt.1 left right) bound candidate)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun candidate => ((∀ (element : Int), element ∈ Set.instEmptyCollection.1 → (fun left right => Int.instLEInt.le left right) candidate element) ∧ (∀ (bound : Int), (∀ (element : Int), element ∈ Set.instEmptyCollection.1 → (fun left right => Int.instLEInt.le left right) bound element) → (fun left right => Int.instLEInt.le left right) bound candidate))) → False
 
 Logical form (Lean):
 
@@ -1010,7 +1110,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (relation : Element → Element → Prop) (complement : SetObject → SetObject) (subset : SetObject), (Exists fun infimum => (∀ (element : Element), inst.1 subset element → relation infimum element ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation bound element) → relation bound infimum) ∧ (Exists fun infimum => (∀ (element : Element), inst.1 (complement subset) element → relation infimum element ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 (complement subset) element → relation bound element) → relation bound infimum)) → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((Exists fun infimum => ((∀ (element : Element), inst.1 subset element → relation infimum element) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation bound element) → relation bound infimum))) ∧ ((Exists fun infimum => ((∀ (element : Element), inst.1 (complement subset) element → relation infimum element) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 (complement subset) element → relation bound element) → relation bound infimum))) → False))
 
 Logical form (Lean):
 
@@ -1056,11 +1161,16 @@ def ComplementInfimumFormulaFails
 
 Predicate logic:
 
-  ComplementInfimumFormulaFails fun left right ∈ Int => left ≤ right Set.compl {0} ∈ Set Int
+  LRA.Order.ComplementInfimumFormulaFails (fun left right => Int.instLEInt.le left right) Set.compl (Set.instSingletonSet.singleton 0)
 
 Predicate logic (unfolded):
 
-  (Exists fun infimum => (∀ (element : Int), Set.instMembership.1 (Set.instSingletonSet.1 instOfNat.1) element → (fun left right => Int.instLEInt.1 left right) infimum element ∧ ∀ (bound : Int), (∀ (element : Int), Set.instMembership.1 (Set.instSingletonSet.1 instOfNat.1) element → (fun left right => Int.instLEInt.1 left right) bound element) → (fun left right => Int.instLEInt.1 left right) bound infimum) ∧ (Exists fun infimum => (∀ (element : Int), Set.instMembership.1 (setOf fun a => ¬ Set.instMembership.mem (Set.instSingletonSet.singleton 0) a) element → (fun left right => Int.instLEInt.1 left right) infimum element ∧ ∀ (bound : Int), (∀ (element : Int), Set.instMembership.1 (setOf fun a => ¬ Set.instMembership.mem (Set.instSingletonSet.singleton 0) a) element → (fun left right => Int.instLEInt.1 left right) bound element) → (fun left right => Int.instLEInt.1 left right) bound infimum)) → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((Exists fun infimum => ((∀ (element : Int), element ∈ Set.instSingletonSet.1 0 → (fun left right => Int.instLEInt.le left right) infimum element) ∧ (∀ (bound : Int), (∀ (element : Int), element ∈ Set.instSingletonSet.1 0 → (fun left right => Int.instLEInt.le left right) bound element) → (fun left right => Int.instLEInt.le left right) bound infimum))) ∧ ((Exists fun infimum => ((∀ (element : Int), element ∈ setOf fun a => ¬ a ∈ Set.instSingletonSet.singleton 0 → (fun left right => Int.instLEInt.le left right) infimum element) ∧ (∀ (bound : Int), (∀ (element : Int), element ∈ setOf fun a => ¬ a ∈ Set.instSingletonSet.singleton 0 → (fun left right => Int.instLEInt.le left right) bound element) → (fun left right => Int.instLEInt.le left right) bound infimum))) → False))
 
 Logical form (Lean):
 
@@ -1102,7 +1212,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : SDiff SetObject] (relation : Element → Element → Prop) (left removed : SetObject), (Exists fun infimum => (∀ (element : Element), inst.1 left element → relation infimum element ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 left element → relation bound element) → relation bound infimum) ∧ (Exists fun infimum => (∀ (element : Element), inst.1 removed element → relation infimum element ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 removed element → relation bound element) → relation bound infimum) ∧ (Exists fun infimum => (∀ (element : Element), inst.1 (inst_1.1 left removed) element → relation infimum element ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 (inst_1.1 left removed) element → relation bound element) → relation bound infimum)) → False))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((Exists fun infimum => ((∀ (element : Element), inst.1 left element → relation infimum element) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 left element → relation bound element) → relation bound infimum))) ∧ ((Exists fun infimum => ((∀ (element : Element), inst.1 removed element → relation infimum element) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 removed element → relation bound element) → relation bound infimum))) ∧ ((Exists fun infimum => ((∀ (element : Element), inst.1 (inst_1.1 left removed) element → relation infimum element) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 (inst_1.1 left removed) element → relation bound element) → relation bound infimum))) → False)))
 
 Logical form (Lean):
 
@@ -1150,11 +1265,16 @@ def DifferenceInfimumFormulaFails
 
 Predicate logic:
 
-  DifferenceInfimumFormulaFails fun left right ∈ Int => left ≤ right {0} ∈ Set Int {0} ∈ Set Int
+  LRA.Order.DifferenceInfimumFormulaFails (fun left right => Int.instLEInt.le left right) (Set.instSingletonSet.singleton 0) (Set.instSingletonSet.singleton 0)
 
 Predicate logic (unfolded):
 
-  (Exists fun infimum => (∀ (element : Int), Set.instMembership.1 (Set.instSingletonSet.1 instOfNat.1) element → (fun left right => Int.instLEInt.1 left right) infimum element ∧ ∀ (bound : Int), (∀ (element : Int), Set.instMembership.1 (Set.instSingletonSet.1 instOfNat.1) element → (fun left right => Int.instLEInt.1 left right) bound element) → (fun left right => Int.instLEInt.1 left right) bound infimum) ∧ (Exists fun infimum => (∀ (element : Int), Set.instMembership.1 (Set.instSingletonSet.1 instOfNat.1) element → (fun left right => Int.instLEInt.1 left right) infimum element ∧ ∀ (bound : Int), (∀ (element : Int), Set.instMembership.1 (Set.instSingletonSet.1 instOfNat.1) element → (fun left right => Int.instLEInt.1 left right) bound element) → (fun left right => Int.instLEInt.1 left right) bound infimum) ∧ (Exists fun infimum => (∀ (element : Int), Set.instMembership.1 (Set.instSDiff.1 (Set.instSingletonSet.singleton 0) (Set.instSingletonSet.singleton 0)) element → (fun left right => Int.instLEInt.1 left right) infimum element ∧ ∀ (bound : Int), (∀ (element : Int), Set.instMembership.1 (Set.instSDiff.1 (Set.instSingletonSet.singleton 0) (Set.instSingletonSet.singleton 0)) element → (fun left right => Int.instLEInt.1 left right) bound element) → (fun left right => Int.instLEInt.1 left right) bound infimum)) → False))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((Exists fun infimum => ((∀ (element : Int), element ∈ Set.instSingletonSet.1 0 → (fun left right => Int.instLEInt.le left right) infimum element) ∧ (∀ (bound : Int), (∀ (element : Int), element ∈ Set.instSingletonSet.1 0 → (fun left right => Int.instLEInt.le left right) bound element) → (fun left right => Int.instLEInt.le left right) bound infimum))) ∧ ((Exists fun infimum => ((∀ (element : Int), element ∈ Set.instSingletonSet.1 0 → (fun left right => Int.instLEInt.le left right) infimum element) ∧ (∀ (bound : Int), (∀ (element : Int), element ∈ Set.instSingletonSet.1 0 → (fun left right => Int.instLEInt.le left right) bound element) → (fun left right => Int.instLEInt.le left right) bound infimum))) ∧ ((Exists fun infimum => ((∀ (element : Int), element ∈ Set.instSingletonSet.singleton 0 \ Set.instSingletonSet.singleton 0 → (fun left right => Int.instLEInt.le left right) infimum element) ∧ (∀ (bound : Int), (∀ (element : Int), element ∈ Set.instSingletonSet.singleton 0 \ Set.instSingletonSet.singleton 0 → (fun left right => Int.instLEInt.le left right) bound element) → (fun left right => Int.instLEInt.le left right) bound infimum))) → False)))
 
 Logical form (Lean):
 
@@ -1202,7 +1322,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (relation : Element → Element → Prop) (subset : SetObject) (candidate : Element), (inst.1 subset candidate ∧ ∀ (element : Element), inst.1 subset element → relation candidate element) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (inst.1 subset candidate ∧ (∀ (element : Element), inst.1 subset element → relation candidate element)) → False
 
 Logical form (Lean):
 
@@ -1248,11 +1373,16 @@ section RealOpenUnitInterval
 
 Predicate logic:
 
-  FailsLeastElement fun left right ∈ Real => left ≤ right (Set.Ioo 0 1) 0
+  LRA.Order.FailsLeastElement (fun left right => Real.instLE.le left right) (Set.Ioo 0 1) 0
 
 Predicate logic (unfolded):
 
-  (Set.instMembership.1 (fun x => (Real.instPreorder.lt 0 x ∧ Real.instPreorder.lt x 1)) Zero.toOfNat0.1 ∧ ∀ (element : Real), Set.instMembership.1 (setOf fun x => (Real.instPreorder.lt 0 x ∧ Real.instPreorder.lt x 1)) element → (fun left right => Real.instLE.1 left right) Zero.toOfNat0.1 element) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((0 ∈ fun x => (Real.instPreorder.lt 0 x ∧ Real.instPreorder.lt x 1)) ∧ (∀ (element : Real), element ∈ setOf fun x => (Real.instPreorder.lt 0 x ∧ Real.instPreorder.lt x 1) → (fun left right => Real.instLE.le left right) 0 element)) → False
 
 Logical form (Lean):
 
@@ -1300,7 +1430,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} (SetObject : Type v) [inst : Membership Element SetObject] (relation : Element → Element → Prop), (∀ (subset : SetObject), (Exists fun element => inst.1 subset element) → (Exists fun bound => ∀ (element : Element), inst.1 subset element → relation element bound) → Exists fun supremum => (∀ (element : Element), inst.1 subset element → relation element supremum ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation element bound) → relation supremum bound)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (subset : SetObject), (Exists fun element => inst.1 subset element) → (Exists fun bound => ∀ (element : Element), inst.1 subset element → relation element bound) → Exists fun supremum => ((∀ (element : Element), inst.1 subset element → relation element supremum) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation element bound) → relation supremum bound))) → False
 
 Logical form (Lean):
 
@@ -1344,11 +1479,16 @@ section RationalOrder
 
 Predicate logic:
 
-  FailsLeastUpperBoundProperty (Set Rat) fun left right ∈ Rat => left ≤ right
+  LRA.Order.FailsLeastUpperBoundProperty (Set Rat) fun left right => Rat.instLE.le left right
 
 Predicate logic (unfolded):
 
-  (∀ (subset : Rat → Prop), (Exists fun element => Set.instMembership.1 subset element) → (Exists fun bound => ∀ (element : Rat), Set.instMembership.1 subset element → (fun left right => Rat.instLE.1 left right) element bound) → Exists fun supremum => (∀ (element : Rat), Set.instMembership.1 subset element → (fun left right => Rat.instLE.1 left right) element supremum ∧ ∀ (bound : Rat), (∀ (element : Rat), Set.instMembership.1 subset element → (fun left right => Rat.instLE.1 left right) element bound) → (fun left right => Rat.instLE.1 left right) supremum bound)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (subset : Rat → Prop), (Exists fun element => element) ∈ subset → (Exists fun bound => ∀ (element : Rat), element ∈ subset → (fun left right => Rat.instLE.le left right) element bound) → Exists fun supremum => ((∀ (element : Rat), element ∈ subset → (fun left right => Rat.instLE.le left right) element supremum) ∧ (∀ (bound : Rat), (∀ (element : Rat), element ∈ subset → (fun left right => Rat.instLE.le left right) element bound) → (fun left right => Rat.instLE.le left right) supremum bound))) → False
 
 Logical form (Lean):
 
@@ -1396,7 +1536,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (relation : Element → Element → Prop) (subset : SetObject) (candidate : Element), (∀ (element : Element), inst.1 subset element → relation candidate element) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (element : Element), inst.1 subset element → relation candidate element) → False
 
 Logical form (Lean):
 
@@ -1442,11 +1587,16 @@ section RealOpenUnitInterval
 
 Predicate logic:
 
-  FailsLowerBound fun left right ∈ Real => left ≤ right (Set.Ioo 0 1) 1
+  LRA.Order.FailsLowerBound (fun left right => Real.instLE.le left right) (Set.Ioo 0 1) 1
 
 Predicate logic (unfolded):
 
-  (∀ (element : Real), Set.instMembership.1 (fun x => (Real.instPreorder.lt 0 x ∧ Real.instPreorder.lt x 1)) element → (fun left right => Real.instLE.1 left right) One.toOfNat1.1 element) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (element : Real), element ∈ fun x => (Real.instPreorder.lt 0 x ∧ Real.instPreorder.lt x 1) → (fun left right => Real.instLE.le left right) 1 element) → False
 
 Logical form (Lean):
 
@@ -1492,7 +1642,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (strictRelation nonStrictRelation : Element → Element → Prop) (subset : SetObject) (candidate : Element), ((inst.1 subset candidate ∧ ∀ (element : Element), inst.1 subset element → strictRelation candidate element → False) ∧ (inst.1 subset candidate ∧ ∀ (element : Element), inst.1 subset element → nonStrictRelation element candidate) → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((inst.1 subset candidate ∧ (∀ (element : Element), inst.1 subset element → strictRelation candidate element → False)) ∧ ((inst.1 subset candidate ∧ (∀ (element : Element), inst.1 subset element → nonStrictRelation element candidate)) → False))
 
 Logical form (Lean):
 
@@ -1538,11 +1693,16 @@ def MaximalityFailsToImplyGreatest
 
 Predicate logic:
 
-  MaximalityFailsToImplyGreatest (StrictPart fun left right ∈ Bool => left = right) fun left right ∈ Bool => left = right Set.univ ∈ Set Bool false ∧ MaximalityFailsToImplyGreatest (StrictPart fun left right ∈ Bool => left = right) fun left right ∈ Bool => left = right Set.univ ∈ Set Bool true ∧ false ≠ true
+  (LRA.Order.MaximalityFailsToImplyGreatest (LRA.Order.StrictPart fun left right => left = right) (fun left right => left = right)Set.univ Bool.false ∧ (LRA.Order.MaximalityFailsToImplyGreatest (LRA.Order.StrictPart fun left right => left = right) (fun left right => left = right)Set.univ Bool.true ∧ Ne Bool.false Bool.true))
 
 Predicate logic (unfolded):
 
-  (((Set.instMembership.1 (fun _a => True) Bool.false ∧ ∀ (element : Bool), Set.instMembership.1 (fun _a => True) element → ((fun left right => left = right)Bool.false element ∧ ¬ Bool.false = element) → False) ∧ (Set.instMembership.1 (fun _a => True) Bool.false ∧ ∀ (element : Bool), Set.instMembership.1 (setOf fun _a => True) element → (fun left right => left = right)element Bool.false) → False) ∧ (((Set.instMembership.1 (fun _a => True) Bool.true ∧ ∀ (element : Bool), Set.instMembership.1 (fun _a => True) element → ((fun left right => left = right)Bool.true element ∧ ¬ Bool.true = element) → False) ∧ (Set.instMembership.1 (fun _a => True) Bool.true ∧ ∀ (element : Bool), Set.instMembership.1 (setOf fun _a => True) element → (fun left right => left = right)element Bool.true) → False) ∧ Bool.false = Bool.true → False))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((Bool.false ∈ fun _a => True ∧ (∀ (element : Bool), element ∈ fun _a => True → ((fun left right => left = right)Bool.false element ∧ ¬ Bool.false = element) → False)) ∧ ((Bool.false ∈ fun _a => True ∧ (∀ (element : Bool), element ∈ setOf fun _a => True → (fun left right => left = right)element Bool.false)) → False)) ∧ (((Bool.true ∈ fun _a => True ∧ (∀ (element : Bool), element ∈ fun _a => True → ((fun left right => left = right)Bool.true element ∧ ¬ Bool.true = element) → False)) ∧ ((Bool.true ∈ fun _a => True ∧ (∀ (element : Bool), element ∈ setOf fun _a => True → (fun left right => left = right)element Bool.true)) → False)) ∧ (Bool.false = Bool.true → False)))
 
 Logical form (Lean):
 
@@ -1602,7 +1762,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (strictRelation nonStrictRelation : Element → Element → Prop) (subset : SetObject) (candidate : Element), ((inst.1 subset candidate ∧ ∀ (element : Element), inst.1 subset element → strictRelation element candidate → False) ∧ (inst.1 subset candidate ∧ ∀ (element : Element), inst.1 subset element → nonStrictRelation candidate element) → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((inst.1 subset candidate ∧ (∀ (element : Element), inst.1 subset element → strictRelation element candidate → False)) ∧ ((inst.1 subset candidate ∧ (∀ (element : Element), inst.1 subset element → nonStrictRelation candidate element)) → False))
 
 Logical form (Lean):
 
@@ -1648,11 +1813,16 @@ def MinimalityFailsToImplyLeast
 
 Predicate logic:
 
-  MinimalityFailsToImplyLeast (StrictPart fun left right ∈ Bool => left = right) fun left right ∈ Bool => left = right Set.univ ∈ Set Bool false ∧ MinimalityFailsToImplyLeast (StrictPart fun left right ∈ Bool => left = right) fun left right ∈ Bool => left = right Set.univ ∈ Set Bool true ∧ false ≠ true
+  (LRA.Order.MinimalityFailsToImplyLeast (LRA.Order.StrictPart fun left right => left = right) (fun left right => left = right)Set.univ Bool.false ∧ (LRA.Order.MinimalityFailsToImplyLeast (LRA.Order.StrictPart fun left right => left = right) (fun left right => left = right)Set.univ Bool.true ∧ Ne Bool.false Bool.true))
 
 Predicate logic (unfolded):
 
-  (((Set.instMembership.1 (fun _a => True) Bool.false ∧ ∀ (element : Bool), Set.instMembership.1 (fun _a => True) element → ((fun left right => left = right)element Bool.false ∧ ¬ element = Bool.false) → False) ∧ (Set.instMembership.1 (fun _a => True) Bool.false ∧ ∀ (element : Bool), Set.instMembership.1 (setOf fun _a => True) element → (fun left right => left = right)Bool.false element) → False) ∧ (((Set.instMembership.1 (fun _a => True) Bool.true ∧ ∀ (element : Bool), Set.instMembership.1 (fun _a => True) element → ((fun left right => left = right)element Bool.true ∧ ¬ element = Bool.true) → False) ∧ (Set.instMembership.1 (fun _a => True) Bool.true ∧ ∀ (element : Bool), Set.instMembership.1 (setOf fun _a => True) element → (fun left right => left = right)Bool.true element) → False) ∧ Bool.false = Bool.true → False))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((Bool.false ∈ fun _a => True ∧ (∀ (element : Bool), element ∈ fun _a => True → ((fun left right => left = right)element Bool.false ∧ ¬ element = Bool.false) → False)) ∧ ((Bool.false ∈ fun _a => True ∧ (∀ (element : Bool), element ∈ setOf fun _a => True → (fun left right => left = right)Bool.false element)) → False)) ∧ (((Bool.true ∈ fun _a => True ∧ (∀ (element : Bool), element ∈ fun _a => True → ((fun left right => left = right)element Bool.true ∧ ¬ element = Bool.true) → False)) ∧ ((Bool.true ∈ fun _a => True ∧ (∀ (element : Bool), element ∈ setOf fun _a => True → (fun left right => left = right)Bool.true element)) → False)) ∧ (Bool.false = Bool.true → False)))
 
 Logical form (Lean):
 
@@ -1712,7 +1882,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (relation : Element → Element → Prop) (subset : SetObject), Exists fun first => Exists fun second => (first = second → False ∧ ((∀ (element : Element), inst.1 subset element → relation element first ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation element bound) → relation first bound) ∧ (∀ (element : Element), inst.1 subset element → relation element second ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation element bound) → relation second bound)))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun first => Exists fun second => ((first = second → False) ∧ (((∀ (element : Element), inst.1 subset element → relation element first) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation element bound) → relation first bound)) ∧ ((∀ (element : Element), inst.1 subset element → relation element second) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation element bound) → relation second bound))))
 
 Logical form (Lean):
 
@@ -1762,11 +1937,16 @@ def FailsSupremumUniqueness
 
 Predicate logic:
 
-  Preorder fun _ _ ∈ Bool => True ∧ FailsSupremumUniqueness fun _ _ ∈ Bool => True Set.univ ∈ Set Bool
+  (LRA.Order.Preorder fun x x_1 => True ∧ LRA.Order.FailsSupremumUniqueness (fun x x_1 => True) Set.univ)
 
 Predicate logic (unfolded):
 
-  ((∀ (x : Bool), (fun x x_1 => True) x x ∧ ∀ (x y z : Bool), True → True → (fun x x_1 => True) x z) ∧ Exists fun first => Exists fun second => (first = second → False ∧ ((∀ (element : Bool), Set.instMembership.1 (fun _a => True) element → (fun x x_1 => True) element first ∧ ∀ (bound : Bool), (∀ (element : Bool), Set.instMembership.1 (fun _a => True) element → (fun x x_1 => True) element bound) → (fun x x_1 => True) first bound) ∧ (∀ (element : Bool), Set.instMembership.1 (fun _a => True) element → (fun x x_1 => True) element second ∧ ∀ (bound : Bool), (∀ (element : Bool), Set.instMembership.1 (fun _a => True) element → (fun x x_1 => True) element bound) → (fun x x_1 => True) second bound))))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : Bool), (fun x x_1 => True) x x) ∧ (∀ (x y z : Bool), True → True → (fun x x_1 => True) x z)) ∧ (Exists fun first => Exists fun second => ((first = second → False) ∧ (((∀ (element : Bool), element ∈ fun _a => True → (fun x x_1 => True) element first) ∧ (∀ (bound : Bool), (∀ (element : Bool), element ∈ fun _a => True → (fun x x_1 => True) element bound) → (fun x x_1 => True) first bound)) ∧ ((∀ (element : Bool), element ∈ fun _a => True → (fun x x_1 => True) element second) ∧ (∀ (bound : Bool), (∀ (element : Bool), element ∈ fun _a => True → (fun x x_1 => True) element bound) → (fun x x_1 => True) second bound))))))
 
 Logical form (Lean):
 
@@ -1810,7 +1990,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (relation : Element → Element → Prop) (complement : SetObject → SetObject) (subset : SetObject), (Exists fun supremum => (∀ (element : Element), inst.1 subset element → relation element supremum ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation element bound) → relation supremum bound) ∧ (Exists fun supremum => (∀ (element : Element), inst.1 (complement subset) element → relation element supremum ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 (complement subset) element → relation element bound) → relation supremum bound)) → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((Exists fun supremum => ((∀ (element : Element), inst.1 subset element → relation element supremum) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation element bound) → relation supremum bound))) ∧ ((Exists fun supremum => ((∀ (element : Element), inst.1 (complement subset) element → relation element supremum) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 (complement subset) element → relation element bound) → relation supremum bound))) → False))
 
 Logical form (Lean):
 
@@ -1856,11 +2041,16 @@ def ComplementSupremumFormulaFails
 
 Predicate logic:
 
-  ComplementSupremumFormulaFails fun left right ∈ Int => left ≤ right Set.compl {0} ∈ Set Int
+  LRA.Order.ComplementSupremumFormulaFails (fun left right => Int.instLEInt.le left right) Set.compl (Set.instSingletonSet.singleton 0)
 
 Predicate logic (unfolded):
 
-  (Exists fun supremum => (∀ (element : Int), Set.instMembership.1 (Set.instSingletonSet.1 instOfNat.1) element → (fun left right => Int.instLEInt.1 left right) element supremum ∧ ∀ (bound : Int), (∀ (element : Int), Set.instMembership.1 (Set.instSingletonSet.1 instOfNat.1) element → (fun left right => Int.instLEInt.1 left right) element bound) → (fun left right => Int.instLEInt.1 left right) supremum bound) ∧ (Exists fun supremum => (∀ (element : Int), Set.instMembership.1 (setOf fun a => ¬ Set.instMembership.mem (Set.instSingletonSet.singleton 0) a) element → (fun left right => Int.instLEInt.1 left right) element supremum ∧ ∀ (bound : Int), (∀ (element : Int), Set.instMembership.1 (setOf fun a => ¬ Set.instMembership.mem (Set.instSingletonSet.singleton 0) a) element → (fun left right => Int.instLEInt.1 left right) element bound) → (fun left right => Int.instLEInt.1 left right) supremum bound)) → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((Exists fun supremum => ((∀ (element : Int), element ∈ Set.instSingletonSet.1 0 → (fun left right => Int.instLEInt.le left right) element supremum) ∧ (∀ (bound : Int), (∀ (element : Int), element ∈ Set.instSingletonSet.1 0 → (fun left right => Int.instLEInt.le left right) element bound) → (fun left right => Int.instLEInt.le left right) supremum bound))) ∧ ((Exists fun supremum => ((∀ (element : Int), element ∈ setOf fun a => ¬ a ∈ Set.instSingletonSet.singleton 0 → (fun left right => Int.instLEInt.le left right) element supremum) ∧ (∀ (bound : Int), (∀ (element : Int), element ∈ setOf fun a => ¬ a ∈ Set.instSingletonSet.singleton 0 → (fun left right => Int.instLEInt.le left right) element bound) → (fun left right => Int.instLEInt.le left right) supremum bound))) → False))
 
 Logical form (Lean):
 
@@ -1902,7 +2092,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : SDiff SetObject] (relation : Element → Element → Prop) (left removed : SetObject), (Exists fun supremum => (∀ (element : Element), inst.1 left element → relation element supremum ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 left element → relation element bound) → relation supremum bound) ∧ (Exists fun supremum => (∀ (element : Element), inst.1 removed element → relation element supremum ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 removed element → relation element bound) → relation supremum bound) ∧ (Exists fun supremum => (∀ (element : Element), inst.1 (inst_1.1 left removed) element → relation element supremum ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 (inst_1.1 left removed) element → relation element bound) → relation supremum bound)) → False))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((Exists fun supremum => ((∀ (element : Element), inst.1 left element → relation element supremum) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 left element → relation element bound) → relation supremum bound))) ∧ ((Exists fun supremum => ((∀ (element : Element), inst.1 removed element → relation element supremum) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 removed element → relation element bound) → relation supremum bound))) ∧ ((Exists fun supremum => ((∀ (element : Element), inst.1 (inst_1.1 left removed) element → relation element supremum) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 (inst_1.1 left removed) element → relation element bound) → relation supremum bound))) → False)))
 
 Logical form (Lean):
 
@@ -1950,11 +2145,16 @@ def DifferenceSupremumFormulaFails
 
 Predicate logic:
 
-  DifferenceSupremumFormulaFails fun left right ∈ Int => left ≤ right {0} ∈ Set Int {0} ∈ Set Int
+  LRA.Order.DifferenceSupremumFormulaFails (fun left right => Int.instLEInt.le left right) (Set.instSingletonSet.singleton 0) (Set.instSingletonSet.singleton 0)
 
 Predicate logic (unfolded):
 
-  (Exists fun supremum => (∀ (element : Int), Set.instMembership.1 (Set.instSingletonSet.1 instOfNat.1) element → (fun left right => Int.instLEInt.1 left right) element supremum ∧ ∀ (bound : Int), (∀ (element : Int), Set.instMembership.1 (Set.instSingletonSet.1 instOfNat.1) element → (fun left right => Int.instLEInt.1 left right) element bound) → (fun left right => Int.instLEInt.1 left right) supremum bound) ∧ (Exists fun supremum => (∀ (element : Int), Set.instMembership.1 (Set.instSingletonSet.1 instOfNat.1) element → (fun left right => Int.instLEInt.1 left right) element supremum ∧ ∀ (bound : Int), (∀ (element : Int), Set.instMembership.1 (Set.instSingletonSet.1 instOfNat.1) element → (fun left right => Int.instLEInt.1 left right) element bound) → (fun left right => Int.instLEInt.1 left right) supremum bound) ∧ (Exists fun supremum => (∀ (element : Int), Set.instMembership.1 (Set.instSDiff.1 (Set.instSingletonSet.singleton 0) (Set.instSingletonSet.singleton 0)) element → (fun left right => Int.instLEInt.1 left right) element supremum ∧ ∀ (bound : Int), (∀ (element : Int), Set.instMembership.1 (Set.instSDiff.1 (Set.instSingletonSet.singleton 0) (Set.instSingletonSet.singleton 0)) element → (fun left right => Int.instLEInt.1 left right) element bound) → (fun left right => Int.instLEInt.1 left right) supremum bound)) → False))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((Exists fun supremum => ((∀ (element : Int), element ∈ Set.instSingletonSet.1 0 → (fun left right => Int.instLEInt.le left right) element supremum) ∧ (∀ (bound : Int), (∀ (element : Int), element ∈ Set.instSingletonSet.1 0 → (fun left right => Int.instLEInt.le left right) element bound) → (fun left right => Int.instLEInt.le left right) supremum bound))) ∧ ((Exists fun supremum => ((∀ (element : Int), element ∈ Set.instSingletonSet.1 0 → (fun left right => Int.instLEInt.le left right) element supremum) ∧ (∀ (bound : Int), (∀ (element : Int), element ∈ Set.instSingletonSet.1 0 → (fun left right => Int.instLEInt.le left right) element bound) → (fun left right => Int.instLEInt.le left right) supremum bound))) ∧ ((Exists fun supremum => ((∀ (element : Int), element ∈ Set.instSingletonSet.singleton 0 \ Set.instSingletonSet.singleton 0 → (fun left right => Int.instLEInt.le left right) element supremum) ∧ (∀ (bound : Int), (∀ (element : Int), element ∈ Set.instSingletonSet.singleton 0 \ Set.instSingletonSet.singleton 0 → (fun left right => Int.instLEInt.le left right) element bound) → (fun left right => Int.instLEInt.le left right) supremum bound))) → False)))
 
 Logical form (Lean):
 
@@ -2002,7 +2202,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (relation : Element → Element → Prop) (subset : SetObject) (candidate : Element), (∀ (element : Element), inst.1 subset element → relation element candidate) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (element : Element), inst.1 subset element → relation element candidate) → False
 
 Logical form (Lean):
 
@@ -2048,11 +2253,16 @@ section RealOpenUnitInterval
 
 Predicate logic:
 
-  FailsUpperBound fun left right ∈ Real => left ≤ right (Set.Ioo 0 1) 0
+  LRA.Order.FailsUpperBound (fun left right => Real.instLE.le left right) (Set.Ioo 0 1) 0
 
 Predicate logic (unfolded):
 
-  (∀ (element : Real), Set.instMembership.1 (fun x => (Real.instPreorder.lt 0 x ∧ Real.instPreorder.lt x 1)) element → (fun left right => Real.instLE.1 left right) element Zero.toOfNat0.1) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (element : Real), element ∈ fun x => (Real.instPreorder.lt 0 x ∧ Real.instPreorder.lt x 1) → (fun left right => Real.instLE.le left right) element 0) → False
 
 Logical form (Lean):
 
@@ -2098,7 +2308,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Left : Type u} {Right : Type v} (leftRelation : Left → Left → Prop) (rightRelation : Right → Right → Prop), (∀ (x y : Prod Left Right), Or ((leftRelation x.1 y.1 ∧ rightRelation x.2 y.2)) ((leftRelation y.1 x.1 ∧ rightRelation y.2 x.2))) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (x y : Prod Left Right), Or ((leftRelation x.1 y.1 ∧ rightRelation x.2 y.2)) ((leftRelation y.1 x.1 ∧ rightRelation y.2 x.2))) → False
 
 Logical form (Lean):
 
@@ -2142,11 +2357,16 @@ def ProductOrderFailsTotality
 
 Predicate logic:
 
-  ProductOrderFailsTotality fun left right ∈ Nat => left ≤ right fun left right ∈ Nat => left ≤ right
+  LRA.Order.ProductOrderFailsTotality (fun left right => instLENat.le left right) fun left right => instLENat.le left right
 
 Predicate logic (unfolded):
 
-  (∀ (x y : Prod Nat Nat), Or (((fun left right => instLENat.1 left right) x.1 y.1 ∧ (fun left right => instLENat.1 left right) x.2 y.2)) (((fun left right => instLENat.1 left right) y.1 x.1 ∧ (fun left right => instLENat.1 left right) y.2 x.2))) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (x y : Prod Nat Nat), Or (((fun left right => instLENat.le left right) x.1 y.1 ∧ (fun left right => instLENat.le left right) x.2 y.2)) (((fun left right => instLENat.le left right) y.1 x.1 ∧ (fun left right => instLENat.le left right) y.2 x.2))) → False
 
 Logical form (Lean):
 
@@ -2194,7 +2414,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} (relation : Element → Element → Prop), (((∀ (x : Element), relation x x → False ∧ ∀ (x y z : Element), relation x y → relation y z → relation x z) ∧ ∀ (x y : Element), Or ((relation x y ∧ (x = y → False ∧ relation y x → False))) (Or ((x = y ∧ (relation x y → False ∧ relation y x → False))) ((relation y x ∧ (relation x y → False ∧ x = y → False))))) ∧ ∀ (x y : Element), relation x y → Exists fun z => (relation x z ∧ relation z y)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((((∀ (x : Element), relation x x → False) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z)) ∧ (∀ (x y : Element), Or ((relation x y ∧ ((x = y → False) ∧ (relation y x → False)))) (Or ((x = y ∧ ((relation x y → False) ∧ (relation y x → False)))) ((relation y x ∧ ((relation x y → False) ∧ (x = y → False))))))) ∧ (∀ (x y : Element), relation x y → Exists fun z => (relation x z ∧ relation z y))) → False
 
 Logical form (Lean):
 
@@ -2234,11 +2459,16 @@ def FailsDenseLinearOrder
 
 Predicate logic:
 
-  FailsDenseLinearOrder fun left right ∈ Int => left < right
+  LRA.Order.FailsDenseLinearOrder fun left right => Int.instLTInt.lt left right
 
 Predicate logic (unfolded):
 
-  (((∀ (x : Int), ¬ (fun left right => Int.instLTInt.lt left right) x x ∧ ∀ (x y z : Int), (fun left right => Int.instLTInt.lt left right) x y → (fun left right => Int.instLTInt.lt left right) y z → (fun left right => Int.instLTInt.lt left right) x z) ∧ ∀ (x y : Int), Or (((fun left right => Int.instLTInt.lt left right) x y ∧ (¬ x = y ∧ ¬ (fun left right => Int.instLTInt.lt left right) y x))) (Or ((x = y ∧ (¬ (fun left right => Int.instLTInt.lt left right) x y ∧ ¬ (fun left right => Int.instLTInt.lt left right) y x))) (((fun left right => Int.instLTInt.lt left right) y x ∧ (¬ (fun left right => Int.instLTInt.lt left right) x y ∧ ¬ x = y))))) ∧ ∀ (x y : Int), Int.instLTInt.1 x y → Exists fun z => ((fun left right => Int.instLTInt.1 left right) x z ∧ (fun left right => Int.instLTInt.1 left right) z y)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((((∀ (x : Int), ¬ (fun left right => Int.instLTInt.lt left right) x x) ∧ (∀ (x y z : Int), (fun left right => Int.instLTInt.lt left right) x y → (fun left right => Int.instLTInt.lt left right) y z → (fun left right => Int.instLTInt.lt left right) x z)) ∧ (∀ (x y : Int), Or (((fun left right => Int.instLTInt.lt left right) x y ∧ (¬ x = y ∧ ¬ (fun left right => Int.instLTInt.lt left right) y x))) (Or ((x = y ∧ (¬ (fun left right => Int.instLTInt.lt left right) x y ∧ ¬ (fun left right => Int.instLTInt.lt left right) y x))) (((fun left right => Int.instLTInt.lt left right) y x ∧ (¬ (fun left right => Int.instLTInt.lt left right) x y ∧ ¬ x = y)))))) ∧ (∀ (x y : Int), Int.instLTInt.lt x y → Exists fun z => ((fun left right => Int.instLTInt.lt left right) x z ∧ (fun left right => Int.instLTInt.lt left right) z y))) → False
 
 Logical form (Lean):
 
@@ -2282,7 +2512,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} (relation : Element → Element → Prop), (∀ (x : Element), relation x x) → ∀ (x y : Element), relation x y → Exists fun z => (relation x z ∧ relation z y)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (x : Element), relation x x) → ∀ (x y : Element), relation x y → Exists fun z => (relation x z ∧ relation z y)
 
 Logical form (Lean):
 
@@ -2322,11 +2557,16 @@ def ReflexivityMakesRawDensityVacuous
 
 Predicate logic:
 
-  ReflexivityMakesRawDensityVacuous relation
+  ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha}, LRA.Order.ReflexivityMakesRawDensityVacuous relation
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {relation : Alpha → Alpha → Prop}, (∀ (x : Alpha), relation x x) → ∀ (x y : Alpha), relation x y → Exists fun z => (relation x z ∧ relation z y)
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+  Prove
+    (∀ (x : Alpha), relation x x) → ∀ (x y : Alpha), relation x y → Exists fun z => (relation x z ∧ relation z y)
 
 Logical form (Lean):
 
@@ -2374,7 +2614,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (relation : Element → Element → Prop) (subset : SetObject), (∀ (first second : Element), inst.1 subset first → inst.1 subset second → Or (relation first second) (relation second first)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (first second : Element), inst.1 subset first → inst.1 subset second → Or (relation first second) (relation second first)) → False
 
 Logical form (Lean):
 
@@ -2420,11 +2665,16 @@ section NaturalDivisibility
 
 Predicate logic:
 
-  FailsChain fun left right ∈ Nat => left ∣ right {number | number = 2 ∨ number = 3} ∈ Set Nat
+  LRA.Order.FailsChain (fun left right => Nat.instDvd.dvd left right) (setOf fun number => Or (number = 2)(number = 3))
 
 Predicate logic (unfolded):
 
-  (∀ (first second : Nat), Set.instMembership.1 (fun number => Or (number = instOfNatNat 2.1) (number = instOfNatNat 3.1)) first → Set.instMembership.1 (fun number => Or (number = instOfNatNat 2.1) (number = instOfNatNat 3.1)) second → Or ((fun left right => Nat.instDvd.1 left right) first second) ((fun left right => Nat.instDvd.1 left right) second first)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (first second : Nat), first ∈ fun number => Or (number = 2)(number = 3) → second ∈ fun number => Or (number = 2)(number = 3) → Or ((fun left right => Nat.instDvd.1 left right) first second) ((fun left right => Nat.instDvd.1 left right) second first)) → False
 
 Logical form (Lean):
 
@@ -2472,7 +2722,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (relation : Element → Element → Prop) (subset : SetObject), ((Exists fun element => inst.1 subset element ∧ ∀ (first second : Element), inst.1 subset first → inst.1 subset second → Exists fun upper => (inst.1 subset upper ∧ (relation first upper ∧ relation second upper))) ∧ (∀ (first second : Element), inst.1 subset first → inst.1 subset second → Or (relation first second) (relation second first)) → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((Exists fun element => inst.1 subset element ∧ (∀ (first second : Element), inst.1 subset first → inst.1 subset second → Exists fun upper => (inst.1 subset upper ∧ (relation first upper ∧ relation second upper)))) ∧ ((∀ (first second : Element), inst.1 subset first → inst.1 subset second → Or (relation first second) (relation second first)) → False))
 
 Logical form (Lean):
 
@@ -2516,11 +2771,16 @@ def DirectednessFailsToImplyChain
 
 Predicate logic:
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (relation : LRA.Relation.Endorelation Element) (ambient subset : SetObject), (LRA.Order.Directed relation ambient ∧ (∀ (element : Element), element ∈ subset → element ∈ ambient ∧ ¬ LRA.Order.Directed relation subset))
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (relation : LRA.Relation.Endorelation Element) (ambient subset : SetObject), (LRA.Order.Directed relation ambient ∧ ((∀ (element : Element), element ∈ subset → element ∈ ambient) ∧ ¬ LRA.Order.Directed relation subset))
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (relation : Element → Element → Prop) (ambient subset : SetObject), ((Exists fun element => inst.1 ambient element ∧ ∀ (first second : Element), inst.1 ambient first → inst.1 ambient second → Exists fun upper => (inst.1 ambient upper ∧ (relation first upper ∧ relation second upper))) ∧ (∀ (element : Element), inst.1 subset element → inst.1 ambient element ∧ (Exists fun element => inst.1 subset element ∧ ∀ (first second : Element), inst.1 subset first → inst.1 subset second → Exists fun upper => (inst.1 subset upper ∧ (relation first upper ∧ relation second upper))) → False))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((Exists fun element => inst.1 ambient element ∧ (∀ (first second : Element), inst.1 ambient first → inst.1 ambient second → Exists fun upper => (inst.1 ambient upper ∧ (relation first upper ∧ relation second upper)))) ∧ ((∀ (element : Element), inst.1 subset element → inst.1 ambient element) ∧ ((Exists fun element => inst.1 subset element ∧ (∀ (first second : Element), inst.1 subset first → inst.1 subset second → Exists fun upper => (inst.1 subset upper ∧ (relation first upper ∧ relation second upper)))) → False)))
 
 Logical form (Lean):
 
@@ -2568,11 +2828,16 @@ def DirectednessFailsUnderSubset
 
 Predicate logic:
 
-  let subset : Set Nat
+  have subset := setOf fun element => Or (element = 2)(Or (element = 3)(element = 6));LRA.Order.DirectednessFailsToImplyChain (fun left right => Nat.instDvd.dvd left right) subset
 
 Predicate logic (unfolded):
 
-  have subset := setOf fun element => Or (element = 2)(Or (element = 3)(element = 6));LRA.Order.DirectednessFailsToImplyChain (fun left right => Nat.instDvd.dvd left right) subset
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    have subset := setOf fun element => Or (element = 2)(Or (element = 3)(element = 6));LRA.Order.DirectednessFailsToImplyChain (fun left right => Nat.instDvd.dvd left right) subset
 
 Logical form (Lean):
 
@@ -2612,11 +2877,16 @@ theorem DirectedDoesNotImplyChain :
 
 Predicate logic:
 
-  let relation
+  have relation := fun left right => Nat.instDvd.dvd left right; have ambient := Set.univ; have subset := setOf fun element => Or (element = 2)(element = 3);LRA.Order.DirectednessFailsUnderSubset relation ambient subset
 
 Predicate logic (unfolded):
 
-  have relation := fun left right => Nat.instDvd.dvd left right; have ambient := Set.univ; have subset := setOf fun element => Or (element = 2)(element = 3);LRA.Order.DirectednessFailsUnderSubset relation ambient subset
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    have relation := fun left right => Nat.instDvd.dvd left right; have ambient := Set.univ; have subset := setOf fun element => Or (element = 2)(element = 3);LRA.Order.DirectednessFailsUnderSubset relation ambient subset
 
 Logical form (Lean):
 
@@ -2666,7 +2936,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} (SetObject : Type v) [inst : Membership Element SetObject] (relation : Element → Element → Prop), ((∀ (x : Element), relation x x ∧ (∀ (x y : Element), relation x y → relation y x → x = y ∧ ∀ (x y z : Element), relation x y → relation y z → relation x z)) ∧ ∀ (subset : SetObject), (Exists fun supremum => (∀ (element : Element), inst.1 subset element → relation element supremum ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation element bound) → relation supremum bound) ∧ Exists fun infimum => (∀ (element : Element), inst.1 subset element → relation infimum element ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation bound element) → relation bound infimum))) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x → x = y) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) ∧ (∀ (subset : SetObject), ((Exists fun supremum => ((∀ (element : Element), inst.1 subset element → relation element supremum) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation element bound) → relation supremum bound))) ∧ (Exists fun infimum => ((∀ (element : Element), inst.1 subset element → relation infimum element) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation bound element) → relation bound infimum)))))) → False
 
 Logical form (Lean):
 
@@ -2708,11 +2983,16 @@ def FailsCompleteLattice
 
 Predicate logic:
 
-  LeastUpperBoundProperty (Set Int) fun left right ∈ Int => left ≤ right ∧ FailsCompleteLattice (Set Int) fun left right ∈ Int => left ≤ right
+  (LRA.Order.LeastUpperBoundProperty (Set Int) fun left right => Int.instLEInt.le left right ∧ LRA.Order.FailsCompleteLattice (Set Int) fun left right => Int.instLEInt.le left right)
 
 Predicate logic (unfolded):
 
-  (∀ (subset : Int → Prop), (Exists fun element => Set.instMembership.1 subset element) → (Exists fun bound => ∀ (element : Int), Set.instMembership.1 subset element → (fun left right => Int.instLEInt.1 left right) element bound) → Exists fun supremum => (∀ (element : Int), Set.instMembership.1 subset element → (fun left right => Int.instLEInt.1 left right) element supremum ∧ ∀ (bound : Int), (∀ (element : Int), Set.instMembership.1 subset element → (fun left right => Int.instLEInt.1 left right) element bound) → (fun left right => Int.instLEInt.1 left right) supremum bound) ∧ ((∀ (x : Int), (fun left right => Int.instLEInt.1 left right) x x ∧ (∀ (x y : Int), Int.instLEInt.1 x y → Int.instLEInt.1 y x → x = y ∧ ∀ (x y z : Int), Int.instLEInt.1 x y → Int.instLEInt.1 y z → (fun left right => Int.instLEInt.1 left right) x z)) ∧ ∀ (subset : Int → Prop), (Exists fun supremum => (∀ (element : Int), Set.instMembership.1 subset element → (fun left right => Int.instLEInt.1 left right) element supremum ∧ ∀ (bound : Int), (∀ (element : Int), Set.instMembership.1 subset element → (fun left right => Int.instLEInt.1 left right) element bound) → (fun left right => Int.instLEInt.1 left right) supremum bound) ∧ Exists fun infimum => (∀ (element : Int), Set.instMembership.1 subset element → (fun left right => Int.instLEInt.1 left right) infimum element ∧ ∀ (bound : Int), (∀ (element : Int), Set.instMembership.1 subset element → (fun left right => Int.instLEInt.1 left right) bound element) → (fun left right => Int.instLEInt.1 left right) bound infimum))) → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (subset : Int → Prop), (Exists fun element => element) ∈ subset → (Exists fun bound => ∀ (element : Int), element ∈ subset → (fun left right => Int.instLEInt.le left right) element bound) → Exists fun supremum => ((∀ (element : Int), element ∈ subset → (fun left right => Int.instLEInt.le left right) element supremum) ∧ (∀ (bound : Int), (∀ (element : Int), element ∈ subset → (fun left right => Int.instLEInt.le left right) element bound) → (fun left right => Int.instLEInt.le left right) supremum bound))) ∧ ((((∀ (x : Int), (fun left right => Int.instLEInt.le left right) x x) ∧ ((∀ (x y : Int), Int.instLEInt.le x y → Int.instLEInt.le y x → x = y) ∧ (∀ (x y z : Int), Int.instLEInt.le x y → Int.instLEInt.le y z → (fun left right => Int.instLEInt.le left right) x z))) ∧ (∀ (subset : Int → Prop), ((Exists fun supremum => ((∀ (element : Int), element ∈ subset → (fun left right => Int.instLEInt.le left right) element supremum) ∧ (∀ (bound : Int), (∀ (element : Int), element ∈ subset → (fun left right => Int.instLEInt.le left right) element bound) → (fun left right => Int.instLEInt.le left right) supremum bound))) ∧ (Exists fun infimum => ((∀ (element : Int), element ∈ subset → (fun left right => Int.instLEInt.le left right) infimum element) ∧ (∀ (bound : Int), (∀ (element : Int), element ∈ subset → (fun left right => Int.instLEInt.le left right) bound element) → (fun left right => Int.instLEInt.le left right) bound infimum)))))) → False))
 
 Logical form (Lean):
 
@@ -2760,7 +3040,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} (relation : Element → Element → Prop), (((∀ (x : Element), relation x x ∧ (∀ (x y : Element), relation x y → relation y x → x = y ∧ ∀ (x y z : Element), relation x y → relation y z → relation x z)) ∧ ∀ (left right : Element), (Exists fun join => (relation left join ∧ (relation right join ∧ ∀ (upper : Element), relation left upper → relation right upper → relation join upper)) ∧ Exists fun meet => (relation meet left ∧ (relation meet right ∧ ∀ (lower : Element), relation lower left → relation lower right → relation lower meet)))) ∧ (((∀ (x : Element), relation x x ∧ (∀ (x y : Element), relation x y → relation y x → x = y ∧ ∀ (x y z : Element), relation x y → relation y z → relation x z)) ∧ ∀ (left right : Element), (Exists fun join => (relation left join ∧ (relation right join ∧ ∀ (upper : Element), relation left upper → relation right upper → relation join upper)) ∧ Exists fun meet => (relation meet left ∧ (relation meet right ∧ ∀ (lower : Element), relation lower left → relation lower right → relation lower meet)))) ∧ (∀ (a b c bMeetC leftSide aJoinB aJoinC rightSide : Element), (relation bMeetC b ∧ (relation bMeetC c ∧ ∀ (lower : Element), relation lower b → relation lower c → relation lower bMeetC)) → (relation a leftSide ∧ (relation bMeetC leftSide ∧ ∀ (upper : Element), relation a upper → relation bMeetC upper → relation leftSide upper)) → (relation a aJoinB ∧ (relation b aJoinB ∧ ∀ (upper : Element), relation a upper → relation b upper → relation aJoinB upper)) → (relation a aJoinC ∧ (relation c aJoinC ∧ ∀ (upper : Element), relation a upper → relation c upper → relation aJoinC upper)) → (relation rightSide aJoinB ∧ (relation rightSide aJoinC ∧ ∀ (lower : Element), relation lower aJoinB → relation lower aJoinC → relation lower rightSide)) → leftSide = rightSide ∧ ∀ (a b c bJoinC leftSide aMeetB aMeetC rightSide : Element), (relation b bJoinC ∧ (relation c bJoinC ∧ ∀ (upper : Element), relation b upper → relation c upper → relation bJoinC upper)) → (relation leftSide a ∧ (relation leftSide bJoinC ∧ ∀ (lower : Element), relation lower a → relation lower bJoinC → relation lower leftSide)) → (relation aMeetB a ∧ (relation aMeetB b ∧ ∀ (lower : Element), relation lower a → relation lower b → relation lower aMeetB)) → (relation aMeetC a ∧ (relation aMeetC c ∧ ∀ (lower : Element), relation lower a → relation lower c → relation lower aMeetC)) → (relation aMeetB rightSide ∧ (relation aMeetC rightSide ∧ ∀ (upper : Element), relation aMeetB upper → relation aMeetC upper → relation rightSide upper)) → leftSide = rightSide)) → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x → x = y) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) ∧ (∀ (left right : Element), ((Exists fun join => (relation left join ∧ (relation right join ∧ (∀ (upper : Element), relation left upper → relation right upper → relation join upper)))) ∧ (Exists fun meet => (relation meet left ∧ (relation meet right ∧ (∀ (lower : Element), relation lower left → relation lower right → relation lower meet))))))) ∧ (((((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x → x = y) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) ∧ (∀ (left right : Element), ((Exists fun join => (relation left join ∧ (relation right join ∧ (∀ (upper : Element), relation left upper → relation right upper → relation join upper)))) ∧ (Exists fun meet => (relation meet left ∧ (relation meet right ∧ (∀ (lower : Element), relation lower left → relation lower right → relation lower meet))))))) ∧ ((∀ (a b c bMeetC leftSide aJoinB aJoinC rightSide : Element), (relation bMeetC b ∧ (relation bMeetC c ∧ (∀ (lower : Element), relation lower b → relation lower c → relation lower bMeetC))) → (relation a leftSide ∧ (relation bMeetC leftSide ∧ (∀ (upper : Element), relation a upper → relation bMeetC upper → relation leftSide upper))) → (relation a aJoinB ∧ (relation b aJoinB ∧ (∀ (upper : Element), relation a upper → relation b upper → relation aJoinB upper))) → (relation a aJoinC ∧ (relation c aJoinC ∧ (∀ (upper : Element), relation a upper → relation c upper → relation aJoinC upper))) → (relation rightSide aJoinB ∧ (relation rightSide aJoinC ∧ (∀ (lower : Element), relation lower aJoinB → relation lower aJoinC → relation lower rightSide))) → leftSide = rightSide) ∧ (∀ (a b c bJoinC leftSide aMeetB aMeetC rightSide : Element), (relation b bJoinC ∧ (relation c bJoinC ∧ (∀ (upper : Element), relation b upper → relation c upper → relation bJoinC upper))) → (relation leftSide a ∧ (relation leftSide bJoinC ∧ (∀ (lower : Element), relation lower a → relation lower bJoinC → relation lower leftSide))) → (relation aMeetB a ∧ (relation aMeetB b ∧ (∀ (lower : Element), relation lower a → relation lower b → relation lower aMeetB))) → (relation aMeetC a ∧ (relation aMeetC c ∧ (∀ (lower : Element), relation lower a → relation lower c → relation lower aMeetC))) → (relation aMeetB rightSide ∧ (relation aMeetC rightSide ∧ (∀ (upper : Element), relation aMeetB upper → relation aMeetC upper → relation rightSide upper))) → leftSide = rightSide))) → False))
 
 Logical form (Lean):
 
@@ -2804,7 +3089,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (a a_1 : Fin (instOfNatNat 5).1), Or (a = a_1)(Or (a = Fin.instOfNat.1)(a_1 = Fin.instOfNat.1))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (a = a_1)(Or (a = 0)(a_1 = 4))
 
 Logical form (Lean):
 
@@ -2846,7 +3136,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (a a_1 : Fin (instOfNatNat 5).1), Or (a = a_1) (Or (a = Fin.instOfNat.1)(Or (a_1 = Fin.instOfNat.1)((a = Fin.instOfNat.1 ∧ a_1 = Fin.instOfNat.1))))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (a = a_1)(Or (a = 0)(Or (a_1 = 4)((a = 1 ∧ a_1 = 2))))
 
 Logical form (Lean):
 
@@ -2884,11 +3179,16 @@ def N5Relation : LRA.Relation.Endorelation (Fin 5) :=
 
 Predicate logic:
 
-  FailsDistributiveLattice M3Relation
+  LRA.Order.FailsDistributiveLattice LRA.Order.M3Relation
 
 Predicate logic (unfolded):
 
-  (((∀ (x : Fin (instOfNatNat 5).1), Or (x = x)(Or (x = Fin.instOfNat.1)(x = Fin.instOfNat.1)) ∧ (∀ (x y : Fin (instOfNatNat 5).1), Or (x = y)(Or (x = Fin.instOfNat.1)(y = Fin.instOfNat.1)) → Or (y = x)(Or (y = Fin.instOfNat.1)(x = Fin.instOfNat.1)) → x = y ∧ ∀ (x y z : Fin (instOfNatNat 5).1), Or (x = y)(Or (x = Fin.instOfNat.1)(y = Fin.instOfNat.1)) → Or (y = z)(Or (y = Fin.instOfNat.1)(z = Fin.instOfNat.1)) → Or (x = z)(Or (x = Fin.instOfNat.1)(z = Fin.instOfNat.1)))) ∧ ∀ (left right : Fin (instOfNatNat 5).1), (Exists fun join => (Or (left = join)(Or (left = Fin.instOfNat.1)(join = Fin.instOfNat.1)) ∧ (Or (right = join)(Or (right = Fin.instOfNat.1)(join = Fin.instOfNat.1)) ∧ ∀ (upper : Fin (instOfNatNat 5).1), Or (left = upper)(Or (left = Fin.instOfNat.1)(upper = Fin.instOfNat.1)) → Or (right = upper)(Or (right = Fin.instOfNat.1)(upper = Fin.instOfNat.1)) → Or (join = upper)(Or (join = Fin.instOfNat.1)(upper = Fin.instOfNat.1)))) ∧ Exists fun meet => (Or (meet = left)(Or (meet = Fin.instOfNat.1)(left = Fin.instOfNat.1)) ∧ (Or (meet = right)(Or (meet = Fin.instOfNat.1)(right = Fin.instOfNat.1)) ∧ ∀ (lower : Fin (instOfNatNat 5).1), Or (lower = left)(Or (lower = Fin.instOfNat.1)(left = Fin.instOfNat.1)) → Or (lower = right)(Or (lower = Fin.instOfNat.1)(right = Fin.instOfNat.1)) → Or (lower = meet)(Or (lower = Fin.instOfNat.1)(meet = Fin.instOfNat.1)))))) ∧ (((∀ (x : Fin 5), LRA.Order.M3Relation x x ∧ (∀ (x y : Fin 5), LRA.Order.M3Relation x y → LRA.Order.M3Relation y x → x = y ∧ ∀ (x y z : Fin 5), LRA.Order.M3Relation x y → LRA.Order.M3Relation y z → LRA.Order.M3Relation x z)) ∧ ∀ (left right : Fin (instOfNatNat 5).1), (Exists fun join => (Or (left = join)(Or (left = 0)(join = 4)) ∧ (Or (right = join)(Or (right = 0)(join = 4)) ∧ ∀ (upper : Fin (instOfNatNat 5).1), Or (left = upper)(Or (left = 0)(upper = 4)) → Or (right = upper)(Or (right = 0)(upper = 4)) → Or (join = upper)(Or (join = 0)(upper = 4)))) ∧ Exists fun meet => (Or (meet = left)(Or (meet = 0)(left = 4)) ∧ (Or (meet = right)(Or (meet = 0)(right = 4)) ∧ ∀ (lower : Fin (instOfNatNat 5).1), Or (lower = left)(Or (lower = 0)(left = 4)) → Or (lower = right)(Or (lower = 0)(right = 4)) → Or (lower = meet)(Or (lower = 0)(meet = 4)))))) ∧ (∀ (a b c bMeetC leftSide aJoinB aJoinC rightSide : Fin (instOfNatNat 5).1), (Or (bMeetC = b)(Or (bMeetC = Fin.instOfNat.1)(b = Fin.instOfNat.1)) ∧ (Or (bMeetC = c)(Or (bMeetC = Fin.instOfNat.1)(c = Fin.instOfNat.1)) ∧ ∀ (lower : Fin (instOfNatNat 5).1), Or (lower = b)(Or (lower = Fin.instOfNat.1)(b = Fin.instOfNat.1)) → Or (lower = c)(Or (lower = Fin.instOfNat.1)(c = Fin.instOfNat.1)) → Or (lower = bMeetC)(Or (lower = Fin.instOfNat.1)(bMeetC = Fin.instOfNat.1)))) → (Or (a = leftSide)(Or (a = Fin.instOfNat.1)(leftSide = Fin.instOfNat.1)) ∧ (Or (bMeetC = leftSide)(Or (bMeetC = Fin.instOfNat.1)(leftSide = Fin.instOfNat.1)) ∧ ∀ (upper : Fin (instOfNatNat 5).1), Or (a = upper)(Or (a = Fin.instOfNat.1)(upper = Fin.instOfNat.1)) → Or (bMeetC = upper)(Or (bMeetC = Fin.instOfNat.1)(upper = Fin.instOfNat.1)) → Or (leftSide = upper)(Or (leftSide = Fin.instOfNat.1)(upper = Fin.instOfNat.1)))) → (Or (a = aJoinB)(Or (a = Fin.instOfNat.1)(aJoinB = Fin.instOfNat.1)) ∧ (Or (b = aJoinB)(Or (b = Fin.instOfNat.1)(aJoinB = Fin.instOfNat.1)) ∧ ∀ (upper : Fin (instOfNatNat 5).1), Or (a = upper)(Or (a = Fin.instOfNat.1)(upper = Fin.instOfNat.1)) → Or (b = upper)(Or (b = Fin.instOfNat.1)(upper = Fin.instOfNat.1)) → Or (aJoinB = upper)(Or (aJoinB = Fin.instOfNat.1)(upper = Fin.instOfNat.1)))) → (Or (a = aJoinC)(Or (a = Fin.instOfNat.1)(aJoinC = Fin.instOfNat.1)) ∧ (Or (c = aJoinC)(Or (c = Fin.instOfNat.1)(aJoinC = Fin.instOfNat.1)) ∧ ∀ (upper : Fin (instOfNatNat 5).1), Or (a = upper)(Or (a = Fin.instOfNat.1)(upper = Fin.instOfNat.1)) → Or (c = upper)(Or (c = Fin.instOfNat.1)(upper = Fin.instOfNat.1)) → Or (aJoinC = upper)(Or (aJoinC = Fin.instOfNat.1)(upper = Fin.instOfNat.1)))) → (Or (rightSide = aJoinB)(Or (rightSide = Fin.instOfNat.1)(aJoinB = Fin.instOfNat.1)) ∧ (Or (rightSide = aJoinC)(Or (rightSide = Fin.instOfNat.1)(aJoinC = Fin.instOfNat.1)) ∧ ∀ (lower : Fin (instOfNatNat 5).1), Or (lower = aJoinB)(Or (lower = Fin.instOfNat.1)(aJoinB = Fin.instOfNat.1)) → Or (lower = aJoinC)(Or (lower = Fin.instOfNat.1)(aJoinC = Fin.instOfNat.1)) → Or (lower = rightSide)(Or (lower = Fin.instOfNat.1)(rightSide = Fin.instOfNat.1)))) → leftSide = rightSide ∧ ∀ (a b c bJoinC leftSide aMeetB aMeetC rightSide : Fin (instOfNatNat 5).1), (Or (b = bJoinC)(Or (b = Fin.instOfNat.1)(bJoinC = Fin.instOfNat.1)) ∧ (Or (c = bJoinC)(Or (c = Fin.instOfNat.1)(bJoinC = Fin.instOfNat.1)) ∧ ∀ (upper : Fin (instOfNatNat 5).1), Or (b = upper)(Or (b = Fin.instOfNat.1)(upper = Fin.instOfNat.1)) → Or (c = upper)(Or (c = Fin.instOfNat.1)(upper = Fin.instOfNat.1)) → Or (bJoinC = upper)(Or (bJoinC = Fin.instOfNat.1)(upper = Fin.instOfNat.1)))) → (Or (leftSide = a)(Or (leftSide = Fin.instOfNat.1)(a = Fin.instOfNat.1)) ∧ (Or (leftSide = bJoinC)(Or (leftSide = Fin.instOfNat.1)(bJoinC = Fin.instOfNat.1)) ∧ ∀ (lower : Fin (instOfNatNat 5).1), Or (lower = a)(Or (lower = Fin.instOfNat.1)(a = Fin.instOfNat.1)) → Or (lower = bJoinC)(Or (lower = Fin.instOfNat.1)(bJoinC = Fin.instOfNat.1)) → Or (lower = leftSide)(Or (lower = Fin.instOfNat.1)(leftSide = Fin.instOfNat.1)))) → (Or (aMeetB = a)(Or (aMeetB = Fin.instOfNat.1)(a = Fin.instOfNat.1)) ∧ (Or (aMeetB = b)(Or (aMeetB = Fin.instOfNat.1)(b = Fin.instOfNat.1)) ∧ ∀ (lower : Fin (instOfNatNat 5).1), Or (lower = a)(Or (lower = Fin.instOfNat.1)(a = Fin.instOfNat.1)) → Or (lower = b)(Or (lower = Fin.instOfNat.1)(b = Fin.instOfNat.1)) → Or (lower = aMeetB)(Or (lower = Fin.instOfNat.1)(aMeetB = Fin.instOfNat.1)))) → (Or (aMeetC = a)(Or (aMeetC = Fin.instOfNat.1)(a = Fin.instOfNat.1)) ∧ (Or (aMeetC = c)(Or (aMeetC = Fin.instOfNat.1)(c = Fin.instOfNat.1)) ∧ ∀ (lower : Fin (instOfNatNat 5).1), Or (lower = a)(Or (lower = Fin.instOfNat.1)(a = Fin.instOfNat.1)) → Or (lower = c)(Or (lower = Fin.instOfNat.1)(c = Fin.instOfNat.1)) → Or (lower = aMeetC)(Or (lower = Fin.instOfNat.1)(aMeetC = Fin.instOfNat.1)))) → (Or (aMeetB = rightSide)(Or (aMeetB = Fin.instOfNat.1)(rightSide = Fin.instOfNat.1)) ∧ (Or (aMeetC = rightSide)(Or (aMeetC = Fin.instOfNat.1)(rightSide = Fin.instOfNat.1)) ∧ ∀ (upper : Fin (instOfNatNat 5).1), Or (aMeetB = upper)(Or (aMeetB = Fin.instOfNat.1)(upper = Fin.instOfNat.1)) → Or (aMeetC = upper)(Or (aMeetC = Fin.instOfNat.1)(upper = Fin.instOfNat.1)) → Or (rightSide = upper)(Or (rightSide = Fin.instOfNat.1)(upper = Fin.instOfNat.1)))) → leftSide = rightSide)) → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((((∀ (x : Fin 5), Or (x = x)(Or (x = 0)(x = 4))) ∧ ((∀ (x y : Fin 5), Or (x = y)(Or (x = 0)(y = 4)) → Or (y = x)(Or (y = 0)(x = 4)) → x = y) ∧ (∀ (x y z : Fin 5), Or (x = y)(Or (x = 0)(y = 4)) → Or (y = z)(Or (y = 0)(z = 4)) → Or (x = z)(Or (x = 0)(z = 4))))) ∧ (∀ (left right : Fin 5), ((Exists fun join => (Or (left = join)(Or (left = 0)(join = 4)) ∧ (Or (right = join)(Or (right = 0)(join = 4)) ∧ (∀ (upper : Fin 5), Or (left = upper)(Or (left = 0)(upper = 4)) → Or (right = upper)(Or (right = 0)(upper = 4)) → Or (join = upper)(Or (join = 0)(upper = 4)))))) ∧ (Exists fun meet => (Or (meet = left)(Or (meet = 0)(left = 4)) ∧ (Or (meet = right)(Or (meet = 0)(right = 4)) ∧ (∀ (lower : Fin 5), Or (lower = left)(Or (lower = 0)(left = 4)) → Or (lower = right)(Or (lower = 0)(right = 4)) → Or (lower = meet)(Or (lower = 0)(meet = 4))))))))) ∧ (((((∀ (x : Fin 5), LRA.Order.M3Relation x x) ∧ ((∀ (x y : Fin 5), LRA.Order.M3Relation x y → LRA.Order.M3Relation y x → x = y) ∧ (∀ (x y z : Fin 5), LRA.Order.M3Relation x y → LRA.Order.M3Relation y z → LRA.Order.M3Relation x z))) ∧ (∀ (left right : Fin 5), ((Exists fun join => (Or (left = join)(Or (left = 0)(join = 4)) ∧ (Or (right = join)(Or (right = 0)(join = 4)) ∧ (∀ (upper : Fin 5), Or (left = upper)(Or (left = 0)(upper = 4)) → Or (right = upper)(Or (right = 0)(upper = 4)) → Or (join = upper)(Or (join = 0)(upper = 4)))))) ∧ (Exists fun meet => (Or (meet = left)(Or (meet = 0)(left = 4)) ∧ (Or (meet = right)(Or (meet = 0)(right = 4)) ∧ (∀ (lower : Fin 5), Or (lower = left)(Or (lower = 0)(left = 4)) → Or (lower = right)(Or (lower = 0)(right = 4)) → Or (lower = meet)(Or (lower = 0)(meet = 4))))))))) ∧ ((∀ (a b c bMeetC leftSide aJoinB aJoinC rightSide : Fin 5), (Or (bMeetC = b)(Or (bMeetC = 0)(b = 4)) ∧ (Or (bMeetC = c)(Or (bMeetC = 0)(c = 4)) ∧ (∀ (lower : Fin 5), Or (lower = b)(Or (lower = 0)(b = 4)) → Or (lower = c)(Or (lower = 0)(c = 4)) → Or (lower = bMeetC)(Or (lower = 0)(bMeetC = 4))))) → (Or (a = leftSide)(Or (a = 0)(leftSide = 4)) ∧ (Or (bMeetC = leftSide)(Or (bMeetC = 0)(leftSide = 4)) ∧ (∀ (upper : Fin 5), Or (a = upper)(Or (a = 0)(upper = 4)) → Or (bMeetC = upper)(Or (bMeetC = 0)(upper = 4)) → Or (leftSide = upper)(Or (leftSide = 0)(upper = 4))))) → (Or (a = aJoinB)(Or (a = 0)(aJoinB = 4)) ∧ (Or (b = aJoinB)(Or (b = 0)(aJoinB = 4)) ∧ (∀ (upper : Fin 5), Or (a = upper)(Or (a = 0)(upper = 4)) → Or (b = upper)(Or (b = 0)(upper = 4)) → Or (aJoinB = upper)(Or (aJoinB = 0)(upper = 4))))) → (Or (a = aJoinC)(Or (a = 0)(aJoinC = 4)) ∧ (Or (c = aJoinC)(Or (c = 0)(aJoinC = 4)) ∧ (∀ (upper : Fin 5), Or (a = upper)(Or (a = 0)(upper = 4)) → Or (c = upper)(Or (c = 0)(upper = 4)) → Or (aJoinC = upper)(Or (aJoinC = 0)(upper = 4))))) → (Or (rightSide = aJoinB)(Or (rightSide = 0)(aJoinB = 4)) ∧ (Or (rightSide = aJoinC)(Or (rightSide = 0)(aJoinC = 4)) ∧ (∀ (lower : Fin 5), Or (lower = aJoinB)(Or (lower = 0)(aJoinB = 4)) → Or (lower = aJoinC)(Or (lower = 0)(aJoinC = 4)) → Or (lower = rightSide)(Or (lower = 0)(rightSide = 4))))) → leftSide = rightSide) ∧ (∀ (a b c bJoinC leftSide aMeetB aMeetC rightSide : Fin 5), (Or (b = bJoinC)(Or (b = 0)(bJoinC = 4)) ∧ (Or (c = bJoinC)(Or (c = 0)(bJoinC = 4)) ∧ (∀ (upper : Fin 5), Or (b = upper)(Or (b = 0)(upper = 4)) → Or (c = upper)(Or (c = 0)(upper = 4)) → Or (bJoinC = upper)(Or (bJoinC = 0)(upper = 4))))) → (Or (leftSide = a)(Or (leftSide = 0)(a = 4)) ∧ (Or (leftSide = bJoinC)(Or (leftSide = 0)(bJoinC = 4)) ∧ (∀ (lower : Fin 5), Or (lower = a)(Or (lower = 0)(a = 4)) → Or (lower = bJoinC)(Or (lower = 0)(bJoinC = 4)) → Or (lower = leftSide)(Or (lower = 0)(leftSide = 4))))) → (Or (aMeetB = a)(Or (aMeetB = 0)(a = 4)) ∧ (Or (aMeetB = b)(Or (aMeetB = 0)(b = 4)) ∧ (∀ (lower : Fin 5), Or (lower = a)(Or (lower = 0)(a = 4)) → Or (lower = b)(Or (lower = 0)(b = 4)) → Or (lower = aMeetB)(Or (lower = 0)(aMeetB = 4))))) → (Or (aMeetC = a)(Or (aMeetC = 0)(a = 4)) ∧ (Or (aMeetC = c)(Or (aMeetC = 0)(c = 4)) ∧ (∀ (lower : Fin 5), Or (lower = a)(Or (lower = 0)(a = 4)) → Or (lower = c)(Or (lower = 0)(c = 4)) → Or (lower = aMeetC)(Or (lower = 0)(aMeetC = 4))))) → (Or (aMeetB = rightSide)(Or (aMeetB = 0)(rightSide = 4)) ∧ (Or (aMeetC = rightSide)(Or (aMeetC = 0)(rightSide = 4)) ∧ (∀ (upper : Fin 5), Or (aMeetB = upper)(Or (aMeetB = 0)(upper = 4)) → Or (aMeetC = upper)(Or (aMeetC = 0)(upper = 4)) → Or (rightSide = upper)(Or (rightSide = 0)(upper = 4))))) → leftSide = rightSide))) → False))
 
 Logical form (Lean):
 
@@ -2924,11 +3224,16 @@ theorem M3IsNondistributiveLattice :
 
 Predicate logic:
 
-  FailsDistributiveLattice N5Relation
+  LRA.Order.FailsDistributiveLattice LRA.Order.N5Relation
 
 Predicate logic (unfolded):
 
-  (((∀ (x : Fin (instOfNatNat 5).1), Or (x = x) (Or (x = Fin.instOfNat.1)(Or (x = Fin.instOfNat.1)((x = Fin.instOfNat.1 ∧ x = Fin.instOfNat.1)))) ∧ (∀ (x y : Fin (instOfNatNat 5).1), Or (x = y) (Or (x = Fin.instOfNat.1) (Or (y = Fin.instOfNat.1)((x = Fin.instOfNat.1 ∧ y = Fin.instOfNat.1)))) → Or (y = x) (Or (y = Fin.instOfNat.1) (Or (x = Fin.instOfNat.1)((y = Fin.instOfNat.1 ∧ x = Fin.instOfNat.1)))) → x = y ∧ ∀ (x y z : Fin (instOfNatNat 5).1), Or (x = y) (Or (x = Fin.instOfNat.1) (Or (y = Fin.instOfNat.1)((x = Fin.instOfNat.1 ∧ y = Fin.instOfNat.1)))) → Or (y = z) (Or (y = Fin.instOfNat.1) (Or (z = Fin.instOfNat.1)((y = Fin.instOfNat.1 ∧ z = Fin.instOfNat.1)))) → Or (x = z) (Or (x = Fin.instOfNat.1) (Or (z = Fin.instOfNat.1)((x = Fin.instOfNat.1 ∧ z = Fin.instOfNat.1)))))) ∧ ∀ (left right : Fin (instOfNatNat 5).1), (Exists fun join => (Or (left = join) (Or (left = Fin.instOfNat.1) (Or (join = Fin.instOfNat.1)((left = Fin.instOfNat.1 ∧ join = Fin.instOfNat.1)))) ∧ (Or (right = join) (Or (right = Fin.instOfNat.1) (Or (join = Fin.instOfNat.1)((right = Fin.instOfNat.1 ∧ join = Fin.instOfNat.1)))) ∧ ∀ (upper : Fin (instOfNatNat 5).1), Or (left = upper) (Or (left = Fin.instOfNat.1) (Or (upper = Fin.instOfNat.1)((left = Fin.instOfNat.1 ∧ upper = Fin.instOfNat.1)))) → Or (right = upper) (Or (right = Fin.instOfNat.1) (Or (upper = Fin.instOfNat.1)((right = Fin.instOfNat.1 ∧ upper = Fin.instOfNat.1)))) → Or (join = upper) (Or (join = Fin.instOfNat.1) (Or (upper = Fin.instOfNat.1)((join = Fin.instOfNat.1 ∧ upper = Fin.instOfNat.1)))))) ∧ Exists fun meet => (Or (meet = left) (Or (meet = Fin.instOfNat.1) (Or (left = Fin.instOfNat.1)((meet = Fin.instOfNat.1 ∧ left = Fin.instOfNat.1)))) ∧ (Or (meet = right) (Or (meet = Fin.instOfNat.1) (Or (right = Fin.instOfNat.1)((meet = Fin.instOfNat.1 ∧ right = Fin.instOfNat.1)))) ∧ ∀ (lower : Fin (instOfNatNat 5).1), Or (lower = left) (Or (lower = Fin.instOfNat.1) (Or (left = Fin.instOfNat.1)((lower = Fin.instOfNat.1 ∧ left = Fin.instOfNat.1)))) → Or (lower = right) (Or (lower = Fin.instOfNat.1) (Or (right = Fin.instOfNat.1)((lower = Fin.instOfNat.1 ∧ right = Fin.instOfNat.1)))) → Or (lower = meet) (Or (lower = Fin.instOfNat.1) (Or (meet = Fin.instOfNat.1)((lower = Fin.instOfNat.1 ∧ meet = Fin.instOfNat.1)))))))) ∧ (((∀ (x : Fin 5), LRA.Order.N5Relation x x ∧ (∀ (x y : Fin 5), LRA.Order.N5Relation x y → LRA.Order.N5Relation y x → x = y ∧ ∀ (x y z : Fin 5), LRA.Order.N5Relation x y → LRA.Order.N5Relation y z → LRA.Order.N5Relation x z)) ∧ ∀ (left right : Fin (instOfNatNat 5).1), (Exists fun join => (Or (left = join)(Or (left = 0)(Or (join = 4)((left = 1 ∧ join = 2)))) ∧ (Or (right = join)(Or (right = 0)(Or (join = 4)((right = 1 ∧ join = 2)))) ∧ ∀ (upper : Fin (instOfNatNat 5).1), Or (left = upper)(Or (left = 0)(Or (upper = 4)((left = 1 ∧ upper = 2)))) → Or (right = upper)(Or (right = 0)(Or (upper = 4)((right = 1 ∧ upper = 2)))) → Or (join = upper)(Or (join = 0)(Or (upper = 4)((join = 1 ∧ upper = 2)))))) ∧ Exists fun meet => (Or (meet = left)(Or (meet = 0)(Or (left = 4)((meet = 1 ∧ left = 2)))) ∧ (Or (meet = right)(Or (meet = 0)(Or (right = 4)((meet = 1 ∧ right = 2)))) ∧ ∀ (lower : Fin (instOfNatNat 5).1), Or (lower = left)(Or (lower = 0)(Or (left = 4)((lower = 1 ∧ left = 2)))) → Or (lower = right)(Or (lower = 0)(Or (right = 4)((lower = 1 ∧ right = 2)))) → Or (lower = meet)(Or (lower = 0)(Or (meet = 4)((lower = 1 ∧ meet = 2)))))))) ∧ (∀ (a b c bMeetC leftSide aJoinB aJoinC rightSide : Fin (instOfNatNat 5).1), (Or (bMeetC = b) (Or (bMeetC = Fin.instOfNat.1) (Or (b = Fin.instOfNat.1)((bMeetC = Fin.instOfNat.1 ∧ b = Fin.instOfNat.1)))) ∧ (Or (bMeetC = c) (Or (bMeetC = Fin.instOfNat.1) (Or (c = Fin.instOfNat.1)((bMeetC = Fin.instOfNat.1 ∧ c = Fin.instOfNat.1)))) ∧ ∀ (lower : Fin (instOfNatNat 5).1), Or (lower = b) (Or (lower = Fin.instOfNat.1) (Or (b = Fin.instOfNat.1)((lower = Fin.instOfNat.1 ∧ b = Fin.instOfNat.1)))) → Or (lower = c) (Or (lower = Fin.instOfNat.1) (Or (c = Fin.instOfNat.1)((lower = Fin.instOfNat.1 ∧ c = Fin.instOfNat.1)))) → Or (lower = bMeetC) (Or (lower = Fin.instOfNat.1) (Or (bMeetC = Fin.instOfNat.1) ((lower = Fin.instOfNat.1 ∧ bMeetC = Fin.instOfNat.1)))))) → (Or (a = leftSide) (Or (a = Fin.instOfNat.1) (Or (leftSide = Fin.instOfNat.1)((a = Fin.instOfNat.1 ∧ leftSide = Fin.instOfNat.1)))) ∧ (Or (bMeetC = leftSide) (Or (bMeetC = Fin.instOfNat.1) (Or (leftSide = Fin.instOfNat.1) ((bMeetC = Fin.instOfNat.1 ∧ leftSide = Fin.instOfNat.1)))) ∧ ∀ (upper : Fin (instOfNatNat 5).1), Or (a = upper) (Or (a = Fin.instOfNat.1) (Or (upper = Fin.instOfNat.1)((a = Fin.instOfNat.1 ∧ upper = Fin.instOfNat.1)))) → Or (bMeetC = upper) (Or (bMeetC = Fin.instOfNat.1) (Or (upper = Fin.instOfNat.1) ((bMeetC = Fin.instOfNat.1 ∧ upper = Fin.instOfNat.1)))) → Or (leftSide = upper) (Or (leftSide = Fin.instOfNat.1) (Or (upper = Fin.instOfNat.1) ((leftSide = Fin.instOfNat.1 ∧ upper = Fin.instOfNat.1)))))) → (Or (a = aJoinB) (Or (a = Fin.instOfNat.1) (Or (aJoinB = Fin.instOfNat.1)((a = Fin.instOfNat.1 ∧ aJoinB = Fin.instOfNat.1)))) ∧ (Or (b = aJoinB) (Or (b = Fin.instOfNat.1) (Or (aJoinB = Fin.instOfNat.1)((b = Fin.instOfNat.1 ∧ aJoinB = Fin.instOfNat.1)))) ∧ ∀ (upper : Fin (instOfNatNat 5).1), Or (a = upper) (Or (a = Fin.instOfNat.1) (Or (upper = Fin.instOfNat.1)((a = Fin.instOfNat.1 ∧ upper = Fin.instOfNat.1)))) → Or (b = upper) (Or (b = Fin.instOfNat.1) (Or (upper = Fin.instOfNat.1)((b = Fin.instOfNat.1 ∧ upper = Fin.instOfNat.1)))) → Or (aJoinB = upper) (Or (aJoinB = Fin.instOfNat.1) (Or (upper = Fin.instOfNat.1) ((aJoinB = Fin.instOfNat.1 ∧ upper = Fin.instOfNat.1)))))) → (Or (a = aJoinC) (Or (a = Fin.instOfNat.1) (Or (aJoinC = Fin.instOfNat.1)((a = Fin.instOfNat.1 ∧ aJoinC = Fin.instOfNat.1)))) ∧ (Or (c = aJoinC) (Or (c = Fin.instOfNat.1) (Or (aJoinC = Fin.instOfNat.1)((c = Fin.instOfNat.1 ∧ aJoinC = Fin.instOfNat.1)))) ∧ ∀ (upper : Fin (instOfNatNat 5).1), Or (a = upper) (Or (a = Fin.instOfNat.1) (Or (upper = Fin.instOfNat.1)((a = Fin.instOfNat.1 ∧ upper = Fin.instOfNat.1)))) → Or (c = upper) (Or (c = Fin.instOfNat.1) (Or (upper = Fin.instOfNat.1) ((c = Fin.instOfNat.1 ∧ upper = Fin.instOfNat.1)))) → Or (aJoinC = upper) (Or (aJoinC = Fin.instOfNat.1) (Or (upper = Fin.instOfNat.1) ((aJoinC = Fin.instOfNat.1 ∧ upper = Fin.instOfNat.1)))))) → (Or (rightSide = aJoinB) (Or (rightSide = Fin.instOfNat.1) (Or (aJoinB = Fin.instOfNat.1) ((rightSide = Fin.instOfNat.1 ∧ aJoinB = Fin.instOfNat.1)))) ∧ (Or (rightSide = aJoinC) (Or (rightSide = Fin.instOfNat.1) (Or (aJoinC = Fin.instOfNat.1) ((rightSide = Fin.instOfNat.1 ∧ aJoinC = Fin.instOfNat.1)))) ∧ ∀ (lower : Fin (instOfNatNat 5).1), Or (lower = aJoinB) (Or (lower = Fin.instOfNat.1) (Or (aJoinB = Fin.instOfNat.1) ((lower = Fin.instOfNat.1 ∧ aJoinB = Fin.instOfNat.1)))) → Or (lower = aJoinC) (Or (lower = Fin.instOfNat.1) (Or (aJoinC = Fin.instOfNat.1) ((lower = Fin.instOfNat.1 ∧ aJoinC = Fin.instOfNat.1)))) → Or (lower = rightSide) (Or (lower = Fin.instOfNat.1) (Or (rightSide = Fin.instOfNat.1) ((lower = Fin.instOfNat.1 ∧ rightSide = Fin.instOfNat.1)))))) → leftSide = rightSide ∧ ∀ (a b c bJoinC leftSide aMeetB aMeetC rightSide : Fin (instOfNatNat 5).1), (Or (b = bJoinC) (Or (b = Fin.instOfNat.1) (Or (bJoinC = Fin.instOfNat.1)((b = Fin.instOfNat.1 ∧ bJoinC = Fin.instOfNat.1)))) ∧ (Or (c = bJoinC) (Or (c = Fin.instOfNat.1) (Or (bJoinC = Fin.instOfNat.1)((c = Fin.instOfNat.1 ∧ bJoinC = Fin.instOfNat.1)))) ∧ ∀ (upper : Fin (instOfNatNat 5).1), Or (b = upper) (Or (b = Fin.instOfNat.1) (Or (upper = Fin.instOfNat.1)((b = Fin.instOfNat.1 ∧ upper = Fin.instOfNat.1)))) → Or (c = upper) (Or (c = Fin.instOfNat.1) (Or (upper = Fin.instOfNat.1)((c = Fin.instOfNat.1 ∧ upper = Fin.instOfNat.1)))) → Or (bJoinC = upper) (Or (bJoinC = Fin.instOfNat.1) (Or (upper = Fin.instOfNat.1) ((bJoinC = Fin.instOfNat.1 ∧ upper = Fin.instOfNat.1)))))) → (Or (leftSide = a) (Or (leftSide = Fin.instOfNat.1) (Or (a = Fin.instOfNat.1)((leftSide = Fin.instOfNat.1 ∧ a = Fin.instOfNat.1)))) ∧ (Or (leftSide = bJoinC) (Or (leftSide = Fin.instOfNat.1) (Or (bJoinC = Fin.instOfNat.1)((leftSide = Fin.instOfNat.1 ∧ bJoinC = Fin.instOfNat.1)))) ∧ ∀ (lower : Fin (instOfNatNat 5).1), Or (lower = a) (Or (lower = Fin.instOfNat.1) (Or (a = Fin.instOfNat.1)((lower = Fin.instOfNat.1 ∧ a = Fin.instOfNat.1)))) → Or (lower = bJoinC) (Or (lower = Fin.instOfNat.1) (Or (bJoinC = Fin.instOfNat.1) ((lower = Fin.instOfNat.1 ∧ bJoinC = Fin.instOfNat.1)))) → Or (lower = leftSide) (Or (lower = Fin.instOfNat.1) (Or (leftSide = Fin.instOfNat.1) ((lower = Fin.instOfNat.1 ∧ leftSide = Fin.instOfNat.1)))))) → (Or (aMeetB = a) (Or (aMeetB = Fin.instOfNat.1) (Or (a = Fin.instOfNat.1)((aMeetB = Fin.instOfNat.1 ∧ a = Fin.instOfNat.1)))) ∧ (Or (aMeetB = b) (Or (aMeetB = Fin.instOfNat.1) (Or (b = Fin.instOfNat.1)((aMeetB = Fin.instOfNat.1 ∧ b = Fin.instOfNat.1)))) ∧ ∀ (lower : Fin (instOfNatNat 5).1), Or (lower = a) (Or (lower = Fin.instOfNat.1) (Or (a = Fin.instOfNat.1)((lower = Fin.instOfNat.1 ∧ a = Fin.instOfNat.1)))) → Or (lower = b) (Or (lower = Fin.instOfNat.1) (Or (b = Fin.instOfNat.1)((lower = Fin.instOfNat.1 ∧ b = Fin.instOfNat.1)))) → Or (lower = aMeetB) (Or (lower = Fin.instOfNat.1) (Or (aMeetB = Fin.instOfNat.1) ((lower = Fin.instOfNat.1 ∧ aMeetB = Fin.instOfNat.1)))))) → (Or (aMeetC = a) (Or (aMeetC = Fin.instOfNat.1) (Or (a = Fin.instOfNat.1)((aMeetC = Fin.instOfNat.1 ∧ a = Fin.instOfNat.1)))) ∧ (Or (aMeetC = c) (Or (aMeetC = Fin.instOfNat.1) (Or (c = Fin.instOfNat.1)((aMeetC = Fin.instOfNat.1 ∧ c = Fin.instOfNat.1)))) ∧ ∀ (lower : Fin (instOfNatNat 5).1), Or (lower = a) (Or (lower = Fin.instOfNat.1) (Or (a = Fin.instOfNat.1)((lower = Fin.instOfNat.1 ∧ a = Fin.instOfNat.1)))) → Or (lower = c) (Or (lower = Fin.instOfNat.1) (Or (c = Fin.instOfNat.1)((lower = Fin.instOfNat.1 ∧ c = Fin.instOfNat.1)))) → Or (lower = aMeetC) (Or (lower = Fin.instOfNat.1) (Or (aMeetC = Fin.instOfNat.1) ((lower = Fin.instOfNat.1 ∧ aMeetC = Fin.instOfNat.1)))))) → (Or (aMeetB = rightSide) (Or (aMeetB = Fin.instOfNat.1) (Or (rightSide = Fin.instOfNat.1) ((aMeetB = Fin.instOfNat.1 ∧ rightSide = Fin.instOfNat.1)))) ∧ (Or (aMeetC = rightSide) (Or (aMeetC = Fin.instOfNat.1) (Or (rightSide = Fin.instOfNat.1) ((aMeetC = Fin.instOfNat.1 ∧ rightSide = Fin.instOfNat.1)))) ∧ ∀ (upper : Fin (instOfNatNat 5).1), Or (aMeetB = upper) (Or (aMeetB = Fin.instOfNat.1) (Or (upper = Fin.instOfNat.1) ((aMeetB = Fin.instOfNat.1 ∧ upper = Fin.instOfNat.1)))) → Or (aMeetC = upper) (Or (aMeetC = Fin.instOfNat.1) (Or (upper = Fin.instOfNat.1) ((aMeetC = Fin.instOfNat.1 ∧ upper = Fin.instOfNat.1)))) → Or (rightSide = upper) (Or (rightSide = Fin.instOfNat.1) (Or (upper = Fin.instOfNat.1) ((rightSide = Fin.instOfNat.1 ∧ upper = Fin.instOfNat.1)))))) → leftSide = rightSide)) → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((((∀ (x : Fin 5), Or (x = x)(Or (x = 0)(Or (x = 4)((x = 1 ∧ x = 2))))) ∧ ((∀ (x y : Fin 5), Or (x = y)(Or (x = 0)(Or (y = 4)((x = 1 ∧ y = 2)))) → Or (y = x)(Or (y = 0)(Or (x = 4)((y = 1 ∧ x = 2)))) → x = y) ∧ (∀ (x y z : Fin 5), Or (x = y)(Or (x = 0)(Or (y = 4)((x = 1 ∧ y = 2)))) → Or (y = z)(Or (y = 0)(Or (z = 4)((y = 1 ∧ z = 2)))) → Or (x = z)(Or (x = 0)(Or (z = 4)((x = 1 ∧ z = 2))))))) ∧ (∀ (left right : Fin 5), ((Exists fun join => ((Or (left = join)(Or (left = 0)(Or (join = 4)((left = 1 ∧ join = 2))))) ∧ ((Or (right = join)(Or (right = 0)(Or (join = 4)((right = 1 ∧ join = 2))))) ∧ (∀ (upper : Fin 5), Or (left = upper)(Or (left = 0)(Or (upper = 4)((left = 1 ∧ upper = 2)))) → Or (right = upper)(Or (right = 0)(Or (upper = 4)((right = 1 ∧ upper = 2)))) → Or (join = upper)(Or (join = 0)(Or (upper = 4)((join = 1 ∧ upper = 2)))))))) ∧ (Exists fun meet => ((Or (meet = left)(Or (meet = 0)(Or (left = 4)((meet = 1 ∧ left = 2))))) ∧ ((Or (meet = right)(Or (meet = 0)(Or (right = 4)((meet = 1 ∧ right = 2))))) ∧ (∀ (lower : Fin 5), Or (lower = left)(Or (lower = 0)(Or (left = 4)((lower = 1 ∧ left = 2)))) → Or (lower = right)(Or (lower = 0)(Or (right = 4)((lower = 1 ∧ right = 2)))) → Or (lower = meet)(Or (lower = 0)(Or (meet = 4)((lower = 1 ∧ meet = 2))))))))))) ∧ (((((∀ (x : Fin 5), LRA.Order.N5Relation x x) ∧ ((∀ (x y : Fin 5), LRA.Order.N5Relation x y → LRA.Order.N5Relation y x → x = y) ∧ (∀ (x y z : Fin 5), LRA.Order.N5Relation x y → LRA.Order.N5Relation y z → LRA.Order.N5Relation x z))) ∧ (∀ (left right : Fin 5), ((Exists fun join => ((Or (left = join)(Or (left = 0)(Or (join = 4)((left = 1 ∧ join = 2))))) ∧ ((Or (right = join)(Or (right = 0)(Or (join = 4)((right = 1 ∧ join = 2))))) ∧ (∀ (upper : Fin 5), Or (left = upper)(Or (left = 0)(Or (upper = 4)((left = 1 ∧ upper = 2)))) → Or (right = upper)(Or (right = 0)(Or (upper = 4)((right = 1 ∧ upper = 2)))) → Or (join = upper)(Or (join = 0)(Or (upper = 4)((join = 1 ∧ upper = 2)))))))) ∧ (Exists fun meet => ((Or (meet = left)(Or (meet = 0)(Or (left = 4)((meet = 1 ∧ left = 2))))) ∧ ((Or (meet = right)(Or (meet = 0)(Or (right = 4)((meet = 1 ∧ right = 2))))) ∧ (∀ (lower : Fin 5), Or (lower = left)(Or (lower = 0)(Or (left = 4)((lower = 1 ∧ left = 2)))) → Or (lower = right)(Or (lower = 0)(Or (right = 4)((lower = 1 ∧ right = 2)))) → Or (lower = meet)(Or (lower = 0)(Or (meet = 4)((lower = 1 ∧ meet = 2))))))))))) ∧ ((∀ (a b c bMeetC leftSide aJoinB aJoinC rightSide : Fin 5), ((Or (bMeetC = b)(Or (bMeetC = 0)(Or (b = 4)((bMeetC = 1 ∧ b = 2))))) ∧ ((Or (bMeetC = c)(Or (bMeetC = 0)(Or (c = 4)((bMeetC = 1 ∧ c = 2))))) ∧ (∀ (lower : Fin 5), Or (lower = b)(Or (lower = 0)(Or (b = 4)((lower = 1 ∧ b = 2)))) → Or (lower = c)(Or (lower = 0)(Or (c = 4)((lower = 1 ∧ c = 2)))) → Or (lower = bMeetC)(Or (lower = 0)(Or (bMeetC = 4)((lower = 1 ∧ bMeetC = 2))))))) → ((Or (a = leftSide)(Or (a = 0)(Or (leftSide = 4)((a = 1 ∧ leftSide = 2))))) ∧ ((Or (bMeetC = leftSide)(Or (bMeetC = 0)(Or (leftSide = 4)((bMeetC = 1 ∧ leftSide = 2))))) ∧ (∀ (upper : Fin 5), Or (a = upper)(Or (a = 0)(Or (upper = 4)((a = 1 ∧ upper = 2)))) → Or (bMeetC = upper)(Or (bMeetC = 0)(Or (upper = 4)((bMeetC = 1 ∧ upper = 2)))) → Or (leftSide = upper) (Or (leftSide = 0)(Or (upper = 4)((leftSide = 1 ∧ upper = 2))))))) → ((Or (a = aJoinB)(Or (a = 0)(Or (aJoinB = 4)((a = 1 ∧ aJoinB = 2))))) ∧ ((Or (b = aJoinB)(Or (b = 0)(Or (aJoinB = 4)((b = 1 ∧ aJoinB = 2))))) ∧ (∀ (upper : Fin 5), Or (a = upper)(Or (a = 0)(Or (upper = 4)((a = 1 ∧ upper = 2)))) → Or (b = upper)(Or (b = 0)(Or (upper = 4)((b = 1 ∧ upper = 2)))) → Or (aJoinB = upper)(Or (aJoinB = 0)(Or (upper = 4)((aJoinB = 1 ∧ upper = 2))))))) → ((Or (a = aJoinC)(Or (a = 0)(Or (aJoinC = 4)((a = 1 ∧ aJoinC = 2))))) ∧ ((Or (c = aJoinC)(Or (c = 0)(Or (aJoinC = 4)((c = 1 ∧ aJoinC = 2))))) ∧ (∀ (upper : Fin 5), Or (a = upper)(Or (a = 0)(Or (upper = 4)((a = 1 ∧ upper = 2)))) → Or (c = upper)(Or (c = 0)(Or (upper = 4)((c = 1 ∧ upper = 2)))) → Or (aJoinC = upper) (Or (aJoinC = 0)(Or (upper = 4)((aJoinC = 1 ∧ upper = 2))))))) → ((Or (rightSide = aJoinB) (Or (rightSide = 0)(Or (aJoinB = 4)((rightSide = 1 ∧ aJoinB = 2))))) ∧ ((Or (rightSide = aJoinC) (Or (rightSide = 0)(Or (aJoinC = 4)((rightSide = 1 ∧ aJoinC = 2))))) ∧ (∀ (lower : Fin 5), Or (lower = aJoinB)(Or (lower = 0)(Or (aJoinB = 4)((lower = 1 ∧ aJoinB = 2)))) → Or (lower = aJoinC)(Or (lower = 0)(Or (aJoinC = 4)((lower = 1 ∧ aJoinC = 2)))) → Or (lower = rightSide) (Or (lower = 0)(Or (rightSide = 4)((lower = 1 ∧ rightSide = 2))))))) → leftSide = rightSide) ∧ (∀ (a b c bJoinC leftSide aMeetB aMeetC rightSide : Fin 5), ((Or (b = bJoinC)(Or (b = 0)(Or (bJoinC = 4)((b = 1 ∧ bJoinC = 2))))) ∧ ((Or (c = bJoinC)(Or (c = 0)(Or (bJoinC = 4)((c = 1 ∧ bJoinC = 2))))) ∧ (∀ (upper : Fin 5), Or (b = upper)(Or (b = 0)(Or (upper = 4)((b = 1 ∧ upper = 2)))) → Or (c = upper)(Or (c = 0)(Or (upper = 4)((c = 1 ∧ upper = 2)))) → Or (bJoinC = upper)(Or (bJoinC = 0)(Or (upper = 4)((bJoinC = 1 ∧ upper = 2))))))) → ((Or (leftSide = a)(Or (leftSide = 0)(Or (a = 4)((leftSide = 1 ∧ a = 2))))) ∧ ((Or (leftSide = bJoinC)(Or (leftSide = 0)(Or (bJoinC = 4)((leftSide = 1 ∧ bJoinC = 2))))) ∧ (∀ (lower : Fin 5), Or (lower = a)(Or (lower = 0)(Or (a = 4)((lower = 1 ∧ a = 2)))) → Or (lower = bJoinC)(Or (lower = 0)(Or (bJoinC = 4)((lower = 1 ∧ bJoinC = 2)))) → Or (lower = leftSide) (Or (lower = 0)(Or (leftSide = 4)((lower = 1 ∧ leftSide = 2))))))) → ((Or (aMeetB = a)(Or (aMeetB = 0)(Or (a = 4)((aMeetB = 1 ∧ a = 2))))) ∧ ((Or (aMeetB = b)(Or (aMeetB = 0)(Or (b = 4)((aMeetB = 1 ∧ b = 2))))) ∧ (∀ (lower : Fin 5), Or (lower = a)(Or (lower = 0)(Or (a = 4)((lower = 1 ∧ a = 2)))) → Or (lower = b)(Or (lower = 0)(Or (b = 4)((lower = 1 ∧ b = 2)))) → Or (lower = aMeetB)(Or (lower = 0)(Or (aMeetB = 4)((lower = 1 ∧ aMeetB = 2))))))) → ((Or (aMeetC = a)(Or (aMeetC = 0)(Or (a = 4)((aMeetC = 1 ∧ a = 2))))) ∧ ((Or (aMeetC = c)(Or (aMeetC = 0)(Or (c = 4)((aMeetC = 1 ∧ c = 2))))) ∧ (∀ (lower : Fin 5), Or (lower = a)(Or (lower = 0)(Or (a = 4)((lower = 1 ∧ a = 2)))) → Or (lower = c)(Or (lower = 0)(Or (c = 4)((lower = 1 ∧ c = 2)))) → Or (lower = aMeetC) (Or (lower = 0)(Or (aMeetC = 4)((lower = 1 ∧ aMeetC = 2))))))) → ((Or (aMeetB = rightSide) (Or (aMeetB = 0)(Or (rightSide = 4)((aMeetB = 1 ∧ rightSide = 2))))) ∧ ((Or (aMeetC = rightSide) (Or (aMeetC = 0)(Or (rightSide = 4)((aMeetC = 1 ∧ rightSide = 2))))) ∧ (∀ (upper : Fin 5), Or (aMeetB = upper)(Or (aMeetB = 0)(Or (upper = 4)((aMeetB = 1 ∧ upper = 2)))) → Or (aMeetC = upper)(Or (aMeetC = 0)(Or (upper = 4)((aMeetC = 1 ∧ upper = 2)))) → Or (rightSide = upper) (Or (rightSide = 0)(Or (upper = 4)((rightSide = 1 ∧ upper = 2))))))) → leftSide = rightSide))) → False))
 
 Logical form (Lean):
 
@@ -2972,7 +3277,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} (relation : Element → Element → Prop) (left right candidate : Element), (relation left candidate ∧ (relation right candidate ∧ ∀ (upper : Element), relation left upper → relation right upper → relation candidate upper)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (relation left candidate ∧ (relation right candidate ∧ (∀ (upper : Element), relation left upper → relation right upper → relation candidate upper))) → False
 
 Logical form (Lean):
 
@@ -3016,11 +3326,16 @@ section NaturalNumbers
 
 Predicate logic:
 
-  FailsJoin fun left right ∈ Nat => left ≤ right 2 3 2
+  LRA.Order.FailsJoin (fun left right => instLENat.le left right) 2 3 2
 
 Predicate logic (unfolded):
 
-  ((fun left right => instLENat.1 left right) (instOfNatNat 2).1 (instOfNatNat 2).1 ∧ ((fun left right => instLENat.1 left right) (instOfNatNat 3).1 (instOfNatNat 2).1 ∧ ∀ (upper : Nat), instLENat.1 (instOfNatNat 2).1 upper → instLENat.1 (instOfNatNat 3).1 upper → (fun left right => instLENat.1 left right) (instOfNatNat 2).1 upper)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((fun left right => instLENat.le left right) 2 2 ∧ ((fun left right => instLENat.le left right) 3 2 ∧ (∀ (upper : Nat), instLENat.le 2 upper → instLENat.le 3 upper → (fun left right => instLENat.le left right) 2 upper))) → False
 
 Logical form (Lean):
 
@@ -3066,7 +3381,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} (relation : Element → Element → Prop), ((∀ (x : Element), relation x x ∧ (∀ (x y : Element), relation x y → relation y x → x = y ∧ ∀ (x y z : Element), relation x y → relation y z → relation x z)) ∧ ∀ (left right : Element), Exists fun join => (relation left join ∧ (relation right join ∧ ∀ (upper : Element), relation left upper → relation right upper → relation join upper))) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x → x = y) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) ∧ (∀ (left right : Element), Exists fun join => (relation left join ∧ (relation right join ∧ (∀ (upper : Element), relation left upper → relation right upper → relation join upper))))) → False
 
 Logical form (Lean):
 
@@ -3108,11 +3428,16 @@ section BooleanAntichain
 
 Predicate logic:
 
-  FailsJoinSemilattice fun left right ∈ Bool => left = right
+  LRA.Order.FailsJoinSemilattice fun left right => left = right
 
 Predicate logic (unfolded):
 
-  ((∀ (x : Bool), (fun left right => left = right)x x ∧ (∀ (x y : Bool), x = y → y = x → x = y ∧ ∀ (x y z : Bool), x = y → y = z → (fun left right => left = right)x z)) ∧ ∀ (left right : Bool), Exists fun join => ((fun left right => left = right)left join ∧ ((fun left right => left = right)right join ∧ ∀ (upper : Bool), left = upper → right = upper → (fun left right => left = right)join upper))) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : Bool), (fun left right => left = right)x x) ∧ ((∀ (x y : Bool), x = y → y = x → x = y) ∧ (∀ (x y z : Bool), x = y → y = z → (fun left right => left = right)x z))) ∧ (∀ (left right : Bool), Exists fun join => ((fun left right => left = right)left join ∧ ((fun left right => left = right)right join ∧ (∀ (upper : Bool), left = upper → right = upper → (fun left right => left = right)join upper))))) → False
 
 Logical form (Lean):
 
@@ -3158,7 +3483,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} (relation : Element → Element → Prop), ((∀ (x : Element), relation x x ∧ (∀ (x y : Element), relation x y → relation y x → x = y ∧ ∀ (x y z : Element), relation x y → relation y z → relation x z)) ∧ ∀ (left right : Element), (Exists fun join => (relation left join ∧ (relation right join ∧ ∀ (upper : Element), relation left upper → relation right upper → relation join upper)) ∧ Exists fun meet => (relation meet left ∧ (relation meet right ∧ ∀ (lower : Element), relation lower left → relation lower right → relation lower meet)))) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x → x = y) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) ∧ (∀ (left right : Element), ((Exists fun join => (relation left join ∧ (relation right join ∧ (∀ (upper : Element), relation left upper → relation right upper → relation join upper)))) ∧ (Exists fun meet => (relation meet left ∧ (relation meet right ∧ (∀ (lower : Element), relation lower left → relation lower right → relation lower meet))))))) → False
 
 Logical form (Lean):
 
@@ -3200,11 +3530,16 @@ section BooleanAntichain
 
 Predicate logic:
 
-  FailsLattice fun left right ∈ Bool => left = right
+  LRA.Order.FailsLattice fun left right => left = right
 
 Predicate logic (unfolded):
 
-  ((∀ (x : Bool), (fun left right => left = right)x x ∧ (∀ (x y : Bool), x = y → y = x → x = y ∧ ∀ (x y z : Bool), x = y → y = z → (fun left right => left = right)x z)) ∧ ∀ (left right : Bool), (Exists fun join => ((fun left right => left = right)left join ∧ ((fun left right => left = right)right join ∧ ∀ (upper : Bool), left = upper → right = upper → (fun left right => left = right)join upper)) ∧ Exists fun meet => ((fun left right => left = right)meet left ∧ ((fun left right => left = right)meet right ∧ ∀ (lower : Bool), lower = left → lower = right → (fun left right => left = right)lower meet)))) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : Bool), (fun left right => left = right)x x) ∧ ((∀ (x y : Bool), x = y → y = x → x = y) ∧ (∀ (x y z : Bool), x = y → y = z → (fun left right => left = right)x z))) ∧ (∀ (left right : Bool), ((Exists fun join => ((fun left right => left = right)left join ∧ ((fun left right => left = right)right join ∧ (∀ (upper : Bool), left = upper → right = upper → (fun left right => left = right)join upper)))) ∧ (Exists fun meet => ((fun left right => left = right)meet left ∧ ((fun left right => left = right)meet right ∧ (∀ (lower : Bool), lower = left → lower = right → (fun left right => left = right)lower meet))))))) → False
 
 Logical form (Lean):
 
@@ -3250,7 +3585,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} (relation : Element → Element → Prop) (left right candidate : Element), (relation candidate left ∧ (relation candidate right ∧ ∀ (lower : Element), relation lower left → relation lower right → relation lower candidate)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (relation candidate left ∧ (relation candidate right ∧ (∀ (lower : Element), relation lower left → relation lower right → relation lower candidate))) → False
 
 Logical form (Lean):
 
@@ -3294,11 +3634,16 @@ section NaturalNumbers
 
 Predicate logic:
 
-  FailsMeet fun left right ∈ Nat => left ≤ right 2 3 3
+  LRA.Order.FailsMeet (fun left right => instLENat.le left right) 2 3 3
 
 Predicate logic (unfolded):
 
-  ((fun left right => instLENat.1 left right) (instOfNatNat 3).1 (instOfNatNat 2).1 ∧ ((fun left right => instLENat.1 left right) (instOfNatNat 3).1 (instOfNatNat 3).1 ∧ ∀ (lower : Nat), instLENat.1 lower (instOfNatNat 2).1 → instLENat.1 lower (instOfNatNat 3).1 → (fun left right => instLENat.1 left right) lower (instOfNatNat 3).1)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((fun left right => instLENat.le left right) 3 2 ∧ ((fun left right => instLENat.le left right) 3 3 ∧ (∀ (lower : Nat), instLENat.le lower 2 → instLENat.le lower 3 → (fun left right => instLENat.le left right) lower 3))) → False
 
 Logical form (Lean):
 
@@ -3344,7 +3689,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} (relation : Element → Element → Prop), ((∀ (x : Element), relation x x ∧ (∀ (x y : Element), relation x y → relation y x → x = y ∧ ∀ (x y z : Element), relation x y → relation y z → relation x z)) ∧ ∀ (left right : Element), Exists fun meet => (relation meet left ∧ (relation meet right ∧ ∀ (lower : Element), relation lower left → relation lower right → relation lower meet))) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x → x = y) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) ∧ (∀ (left right : Element), Exists fun meet => (relation meet left ∧ (relation meet right ∧ (∀ (lower : Element), relation lower left → relation lower right → relation lower meet))))) → False
 
 Logical form (Lean):
 
@@ -3386,11 +3736,16 @@ section BooleanAntichain
 
 Predicate logic:
 
-  FailsMeetSemilattice fun left right ∈ Bool => left = right
+  LRA.Order.FailsMeetSemilattice fun left right => left = right
 
 Predicate logic (unfolded):
 
-  ((∀ (x : Bool), (fun left right => left = right)x x ∧ (∀ (x y : Bool), x = y → y = x → x = y ∧ ∀ (x y z : Bool), x = y → y = z → (fun left right => left = right)x z)) ∧ ∀ (left right : Bool), Exists fun meet => ((fun left right => left = right)meet left ∧ ((fun left right => left = right)meet right ∧ ∀ (lower : Bool), lower = left → lower = right → (fun left right => left = right)lower meet))) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : Bool), (fun left right => left = right)x x) ∧ ((∀ (x y : Bool), x = y → y = x → x = y) ∧ (∀ (x y z : Bool), x = y → y = z → (fun left right => left = right)x z))) ∧ (∀ (left right : Bool), Exists fun meet => ((fun left right => left = right)meet left ∧ ((fun left right => left = right)meet right ∧ (∀ (lower : Bool), lower = left → lower = right → (fun left right => left = right)lower meet))))) → False
 
 Logical form (Lean):
 
@@ -3436,7 +3791,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) (operation : Carrier → Carrier → Carrier), (∀ (fixed left right : Carrier), relation left right → relation (operation fixed left) (operation fixed right)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (fixed left right : Carrier), relation left right → relation (operation fixed left) (operation fixed right)) → False
 
 Logical form (Lean):
 
@@ -3480,7 +3840,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) (operation : Carrier → Carrier → Carrier), (∀ (left right fixed : Carrier), relation left right → relation (operation left fixed) (operation right fixed)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (left right fixed : Carrier), relation left right → relation (operation left fixed) (operation right fixed)) → False
 
 Logical form (Lean):
 
@@ -3521,14 +3886,14 @@ def FailsRightTranslationPreservesRelation {Carrier : Type u}
 Predicate logic:
 
   def NaturalSubtractionForOrderCompatibilityFailure :
-    LRA.Operation.BinaryEndoOperation Nat :=
-  fun left right => left - right
+      LRA.Operation.BinaryEndoOperation Nat :=
+    fun left right => left - right
 
 Predicate logic (unfolded):
 
   def NaturalSubtractionForOrderCompatibilityFailure :
-    LRA.Operation.BinaryEndoOperation Nat :=
-  fun left right => left - right (source fallback; no compiled unfold data available)
+      LRA.Operation.BinaryEndoOperation Nat :=
+    fun left right => left - right (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -3566,11 +3931,16 @@ def NaturalSubtractionForOrderCompatibilityFailure :
 
 Predicate logic:
 
-  FailsLeftTranslationPreservesRelation fun left right ∈ Nat => left <= right NaturalSubtractionForOrderCompatibilityFailure
+  LRA.Order.FailsLeftTranslationPreservesRelation (fun left right => instLENat.le left right) LRA.Order.NaturalSubtractionForOrderCompatibilityFailure
 
 Predicate logic (unfolded):
 
-  (∀ (fixed left right : Nat), instLENat.1 left right → (fun left right => instLENat.1 left right) (instHSub.1 fixed left) (instHSub.1 fixed right)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (fixed left right : Nat), instLENat.le left right → (fun left right => instLENat.le left right) ({ hSub := fun a b => instSubNat.sub a b }.hSub fixed left) ({ hSub := fun a b => instSubNat.sub a b }.hSub fixed right)) → False
 
 Logical form (Lean):
 
@@ -3618,7 +3988,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Source : Type u} {Target : Type v} (sourceRelation : Source → Source → Prop) (targetRelation : Target → Target → Prop) (map : Source → Target), (∀ (left right : Source), sourceRelation left right → targetRelation (map right) (map left)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (left right : Source), sourceRelation left right → targetRelation (map right) (map left)) → False
 
 Logical form (Lean):
 
@@ -3664,11 +4039,16 @@ section NaturalNumbers
 
 Predicate logic:
 
-  FailsAntitone fun left right ∈ Nat => left ≤ right fun left right ∈ Nat => left ≤ right (fun value => value)
+  LRA.Order.FailsAntitone (fun left right => instLENat.le left right) (fun left right => instLENat.le left right) fun value => value
 
 Predicate logic (unfolded):
 
-  (∀ (left right : Nat), instLENat.1 left right → instLENat.1 ((fun value => value) right) ((fun value => value) left)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (left right : Nat), instLENat.le left right → instLENat.le ((fun value => value) right) ((fun value => value) left)) → False
 
 Logical form (Lean):
 
@@ -3720,7 +4100,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Source : Type u} {Target : Type v} (sourceRelation : Source → Source → Prop) (targetRelation : Target → Target → Prop) (map : Source → Target), (∀ (left right : Source), sourceRelation left right → targetRelation (map left) (map right)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (left right : Source), sourceRelation left right → targetRelation (map left) (map right)) → False
 
 Logical form (Lean):
 
@@ -3766,11 +4151,16 @@ section Integers
 
 Predicate logic:
 
-  FailsMonotone fun left right ∈ Int => left ≤ right fun left right ∈ Int => left ≤ right (fun value => -value)
+  LRA.Order.FailsMonotone (fun left right => Int.instLEInt.le left right) (fun left right => Int.instLEInt.le left right) fun value => Int.instNegInt.neg value
 
 Predicate logic (unfolded):
 
-  (∀ (left right : Int), Int.instLEInt.1 left right → (fun left right => Int.instLEInt.1 left right) ((fun value => Int.instNegInt.1 value) left) ((fun value => Int.instNegInt.1 value) right)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (left right : Int), Int.instLEInt.le left right → (fun left right => Int.instLEInt.le left right) ((fun value => Int.instNegInt.neg value) left) ((fun value => Int.instNegInt.neg value) right)) → False
 
 Logical form (Lean):
 
@@ -3822,7 +4212,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Source : Type u} {Target : Type v} (sourceRelation : Source → Source → Prop) (targetRelation : Target → Target → Prop) (map : Source → Target), (∀ (left right : Source), sourceRelation left right → targetRelation (map left) (map right) ∧ ∀ (left right : Source), targetRelation (map left) (map right) → sourceRelation left right) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (left right : Source), sourceRelation left right → targetRelation (map left) (map right)) ∧ (∀ (left right : Source), targetRelation (map left) (map right) → sourceRelation left right)) → False
 
 Logical form (Lean):
 
@@ -3870,7 +4265,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (a a_1 : Bool), Or (a = Bool.false)(a_1 = Bool.true)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (a = Bool.false)(a_1 = Bool.true)
 
 Logical form (Lean):
 
@@ -3906,11 +4306,16 @@ def BooleanChainRelation : LRA.Relation.Endorelation Bool :=
 
 Predicate logic:
 
-  Function.Bijective fun value ∈ Bool => value ∧ Monotone fun left right ∈ Bool => left = right BooleanChainRelation (fun value => value) ∧ Not (Monotone BooleanChainRelation fun left right ∈ Bool => left = right (fun value => value)) ∧ FailsOrderEmbedding fun left right ∈ Bool => left = right BooleanChainRelation (fun value => value)
+  (LRA.Function.Bijective fun value => value ∧ (LRA.Order.Monotone (fun left right => left = right)LRA.Order.BooleanChainRelation fun value => value ∧ (¬ LRA.Order.Monotone LRA.Order.BooleanChainRelation (fun left right => left = right)fun value => value ∧ LRA.Order.FailsOrderEmbedding (fun left right => left = right)LRA.Order.BooleanChainRelation fun value => value)))
 
 Predicate logic (unfolded):
 
-  ((∀ (y x₁ x₂ : Bool), (fun value => value) x₁ = y → (fun value => value) x₂ = y → x₁ = x₂ ∧ ∀ (y : Bool), Exists fun x => (fun value => value) x = y) ∧ (∀ (left right : Bool), left = right → Or ((fun value => value) left = Bool.false)((fun value => value) right = Bool.true) ∧ ((∀ (left right : Bool), Or (left = Bool.false)(right = Bool.true) → (fun left right => left = right)((fun value => value) left) ((fun value => value) right)) → False ∧ (∀ (left right : Bool), left = right → Or ((fun value => value) left = Bool.false)((fun value => value) right = Bool.true) ∧ ∀ (left right : Bool), Or ((fun value => value) left = Bool.false)((fun value => value) right = Bool.true) → (fun left right => left = right)left right) → False)))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (y x₁ x₂ : Bool), (fun value => value) x₁ = y → (fun value => value) x₂ = y → x₁ = x₂) ∧ (∀ (y : Bool), Exists fun x => (fun value => value) x = y)) ∧ ((∀ (left right : Bool), left = right → Or ((fun value => value) left = Bool.false)((fun value => value) right = Bool.true)) ∧ (((∀ (left right : Bool), Or (left = Bool.false)(right = Bool.true) → (fun left right => left = right)((fun value => value) left) ((fun value => value) right)) → False) ∧ (((∀ (left right : Bool), left = right → Or ((fun value => value) left = Bool.false)((fun value => value) right = Bool.true)) ∧ (∀ (left right : Bool), Or ((fun value => value) left = Bool.false)((fun value => value) right = Bool.true) → (fun left right => left = right)left right)) → False))))
 
 Logical form (Lean):
 
@@ -3968,7 +4373,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Source : Type u} {Target : Type v} (sourceRelation : Source → Source → Prop) (targetRelation : Target → Target → Prop) (forward : Source → Target) (inverse : Target → Source), (∀ (source : Source), inverse (forward source) = source ∧ (∀ (target : Target), forward (inverse target) = target ∧ (∀ (left right : Source), sourceRelation left right → targetRelation (forward left) (forward right) ∧ ∀ (left right : Source), targetRelation (forward left) (forward right) → sourceRelation left right))) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (source : Source), inverse (forward source) = source) ∧ ((∀ (target : Target), forward (inverse target) = target) ∧ ((∀ (left right : Source), sourceRelation left right → targetRelation (forward left) (forward right)) ∧ (∀ (left right : Source), targetRelation (forward left) (forward right) → sourceRelation left right)))) → False
 
 Logical form (Lean):
 
@@ -4014,11 +4424,16 @@ section Booleans
 
 Predicate logic:
 
-  FailsOrderIsomorphism fun left right ∈ Bool => left = false ∨ right = true fun left right ∈ Bool => left = false ∨ right = true (fun _ => false) (fun _ => false)
+  LRA.Order.FailsOrderIsomorphism (fun left right => Or (left = Bool.false)(right = Bool.true)) (fun left right => Or (left = Bool.false)(right = Bool.true))(fun x => Bool.false) fun x => Bool.false
 
 Predicate logic (unfolded):
 
-  (∀ (source : Bool), (fun x => Bool.false) ((fun x => Bool.false) source) = source ∧ (∀ (target : Bool), (fun x => Bool.false) ((fun x => Bool.false) target) = target ∧ (∀ (left right : Bool), (fun left right => Or (left = Bool.false)(right = Bool.true))left right → (fun left right => Or (left = Bool.false)(right = Bool.true))((fun x => Bool.false) left) ((fun x => Bool.false) right) ∧ ∀ (left right : Bool), (fun left right => Or (left = Bool.false)(right = Bool.true))((fun x => Bool.false) left) ((fun x => Bool.false) right) → (fun left right => Or (left = Bool.false)(right = Bool.true))left right))) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (source : Bool), (fun x => Bool.false) ((fun x => Bool.false) source) = source) ∧ ((∀ (target : Bool), (fun x => Bool.false) ((fun x => Bool.false) target) = target) ∧ ((∀ (left right : Bool), (fun left right => Or (left = Bool.false)(right = Bool.true))left right → (fun left right => Or (left = Bool.false)(right = Bool.true))((fun x => Bool.false) left) ((fun x => Bool.false) right)) ∧ (∀ (left right : Bool), (fun left right => Or (left = Bool.false)(right = Bool.true))((fun x => Bool.false) left) ((fun x => Bool.false) right) → (fun left right => Or (left = Bool.false)(right = Bool.true))left right)))) → False
 
 Logical form (Lean):
 
@@ -4070,7 +4485,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop), (∀ (x y : Carrier), Or (relation x y) (relation y x)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (x y : Carrier), Or (relation x y) (relation y x)) → False
 
 Logical form (Lean):
 
@@ -4110,11 +4530,16 @@ def FailsTotality
 
 Predicate logic:
 
-  FailsTotality LRA.Order.OrderedSets.PartialOrder.BooleanEqualityNonStrictPartialOrder.relation
+  LRA.Order.OrderedSets.LinearOrder.FailsTotality LRA.Order.OrderedSets.PartialOrder.BooleanEqualityNonStrictPartialOrder.relation
 
 Predicate logic (unfolded):
 
-  (∀ (x y : Bool), Or (LRA.Order.OrderedSets.PartialOrder.BooleanEqualityNonStrictPartialOrder.1 x y) (LRA.Order.OrderedSets.PartialOrder.BooleanEqualityNonStrictPartialOrder.1 y x)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (x y : Bool), Or (LRA.Order.OrderedSets.PartialOrder.BooleanEqualityNonStrictPartialOrder.1 x y) (LRA.Order.OrderedSets.PartialOrder.BooleanEqualityNonStrictPartialOrder.1 y x)) → False
 
 Logical form (Lean):
 
@@ -4152,11 +4577,16 @@ theorem BooleanEqualityPartialOrderFailsTotality :
 
 Predicate logic:
 
-  FailsTotality fun left right ∈ Nat => left ∣ right
+  LRA.Order.OrderedSets.LinearOrder.FailsTotality fun left right => Nat.instDvd.dvd left right
 
 Predicate logic (unfolded):
 
-  (∀ (x y : Nat), Or ((fun left right => Nat.instDvd.1 left right) x y) ((fun left right => Nat.instDvd.1 left right) y x)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (x y : Nat), Or ((fun left right => Nat.instDvd.1 left right) x y) ((fun left right => Nat.instDvd.1 left right) y x)) → False
 
 Logical form (Lean):
 
@@ -4200,7 +4630,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop), (∀ (x : Carrier), relation x x ∧ ∀ (x y z : Carrier), relation x y → relation y z → relation x z) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Carrier), relation x x) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z)) → False
 
 Logical form (Lean):
 
@@ -4246,7 +4681,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (preorder : LRA.Order.OrderedSets.Preorder.PreorderRelation Carrier), (fun left right => (preorder.1 left right ∧ left = right → False) = funleft right => (preorder.1 left right ∧ preorder.1 right left → False)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (fun left right => (preorder.1 left right ∧ (left = right → False)) = funleft right => (preorder.1 left right ∧ (preorder.1 right left → False))) → False
 
 Logical form (Lean):
 
@@ -4292,7 +4732,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (a a_1 : Nat), Or (a = a_1)(a_1 = instHAdd.1 a (instOfNatNat 1).1)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (a = a_1)(a_1 = { hAdd := fun a b => instAddNat.add a b }.hAdd a 1)
 
 Logical form (Lean):
 
@@ -4330,11 +4775,16 @@ def ImmediateSuccessorOrEqualRelation :
 
 Predicate logic:
 
-  LRA.Relation.Reflexive ImmediateSuccessorOrEqualRelation ∧ Not (LRA.Relation.Transitive ImmediateSuccessorOrEqualRelation) ∧ FailsPreorder ImmediateSuccessorOrEqualRelation
+  (LRA.Relation.Reflexive LRA.Order.OrderedSets.Preorder.ImmediateSuccessorOrEqualRelation ∧ (¬ LRA.Relation.Transitive LRA.Order.OrderedSets.Preorder.ImmediateSuccessorOrEqualRelation ∧ LRA.Order.OrderedSets.Preorder.FailsPreorder LRA.Order.OrderedSets.Preorder.ImmediateSuccessorOrEqualRelation))
 
 Predicate logic (unfolded):
 
-  (∀ (x : Nat), Or (x = x)(x = instHAdd.1 x (instOfNatNat 1).1) ∧ ((∀ (x y z : Nat), Or (x = y)(y = instHAdd.1 x (instOfNatNat 1).1) → Or (y = z)(z = instHAdd.1 y (instOfNatNat 1).1) → Or (x = z)(z = instHAdd.1 x (instOfNatNat 1).1)) → False ∧ (∀ (x : Nat), Or (x = x)(x = instHAdd.1 x 1) ∧ ∀ (x y z : Nat), Or (x = y)(y = instHAdd.1 x 1) → Or (y = z)(z = instHAdd.1 y 1) → Or (x = z)(z = instHAdd.1 x 1)) → False))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Nat), Or (x = x)(x = { hAdd := fun a b => instAddNat.add a b }.hAdd x 1)) ∧ (((∀ (x y z : Nat), Or (x = y)(y = { hAdd := fun a b => instAddNat.add a b }.hAdd x 1) → Or (y = z)(z = { hAdd := fun a b => instAddNat.add a b }.hAdd y 1) → Or (x = z)(z = { hAdd := fun a b => instAddNat.add a b }.hAdd x 1)) → False) ∧ (((∀ (x : Nat), Or (x = x)(x = { hAdd := fun a b => instAddNat.add a b }.hAdd x 1)) ∧ (∀ (x y z : Nat), Or (x = y)(y = { hAdd := fun a b => instAddNat.add a b }.hAdd x 1) → Or (y = z)(z = { hAdd := fun a b => instAddNat.add a b }.hAdd y 1) → Or (x = z)(z = { hAdd := fun a b => instAddNat.add a b }.hAdd x 1))) → False)))
 
 Logical form (Lean):
 
@@ -4376,11 +4826,16 @@ theorem ImmediateSuccessorOrEqualFailsPreorder :
 
 Predicate logic:
 
-  LRA.Relation.Transitive fun left right ∈ Nat => left < right ∧ Not (LRA.Relation.Reflexive fun left right ∈ Nat => left < right) ∧ FailsPreorder fun left right ∈ Nat => left < right
+  (LRA.Relation.Transitive fun left right => instLTNat.lt left right ∧ (¬ LRA.Relation.Reflexive fun left right => instLTNat.lt left right ∧ LRA.Order.OrderedSets.Preorder.FailsPreorder fun left right => instLTNat.lt left right))
 
 Predicate logic (unfolded):
 
-  (∀ (x y z : Nat), instLTNat.1 x y → instLTNat.1 y z → (fun left right => instLTNat.1 left right) x z ∧ ((∀ (x : Nat), (fun left right => instLTNat.1 left right) x x) → False ∧ (∀ (x : Nat), (fun left right => instLTNat.1 left right) x x ∧ ∀ (x y z : Nat), instLTNat.1 x y → instLTNat.1 y z → (fun left right => instLTNat.1 left right) x z) → False))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x y z : Nat), instLTNat.lt x y → instLTNat.lt y z → (fun left right => instLTNat.lt left right) x z) ∧ (((∀ (x : Nat), (fun left right => instLTNat.lt left right) x x) → False) ∧ (((∀ (x : Nat), (fun left right => instLTNat.lt left right) x x) ∧ (∀ (x y z : Nat), instLTNat.lt x y → instLTNat.lt y z → (fun left right => instLTNat.lt left right) x z)) → False)))
 
 Logical form (Lean):
 
@@ -4422,11 +4877,16 @@ theorem NatStrictOrderFailsPreorder :
 
 Predicate logic:
 
-  StrictPartConstructionsFailToAgree BooleanUniversalPreorder
+  LRA.Order.OrderedSets.Preorder.StrictPartConstructionsFailToAgree LRA.Order.OrderedSets.Preorder.BooleanUniversalPreorder
 
 Predicate logic (unfolded):
 
-  (fun left right => (LRA.Order.OrderedSets.Preorder.BooleanUniversalPreorder.1 left right ∧ left = right → False) = funleft right => (LRA.Order.OrderedSets.Preorder.BooleanUniversalPreorder.1 left right ∧ LRA.Order.OrderedSets.Preorder.BooleanUniversalPreorder.1 right left → False)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (fun left right => (LRA.Order.OrderedSets.Preorder.BooleanUniversalPreorder.1 left right ∧ (left = right → False)) = funleft right => (LRA.Order.OrderedSets.Preorder.BooleanUniversalPreorder.1 left right ∧ (LRA.Order.OrderedSets.Preorder.BooleanUniversalPreorder.1 right left → False))) → False
 
 Logical form (Lean):
 
@@ -4470,7 +4930,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop), (∀ (x : Carrier), relation x x ∧ (∀ (x y : Carrier), relation x y → relation y x → x = y ∧ ∀ (x y z : Carrier), relation x y → relation y z → relation x z)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x → x = y) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z))) → False
 
 Logical form (Lean):
 
@@ -4516,7 +4981,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop), (∀ (x y z : Carrier), relation x y → relation y z → relation x z) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (x y z : Carrier), relation x y → relation y z → relation x z) → False
 
 Logical form (Lean):
 
@@ -4558,11 +5028,16 @@ def FailsTransitivity
 
 Predicate logic:
 
-  LRA.Relation.Reflexive LRA.Order.OrderedSets.Preorder.ImmediateSuccessorOrEqualRelation ∧ LRA.Relation.Antisymmetric LRA.Order.OrderedSets.Preorder.ImmediateSuccessorOrEqualRelation ∧ FailsTransitivity LRA.Order.OrderedSets.Preorder.ImmediateSuccessorOrEqualRelation ∧ FailsNonStrictPartialOrder LRA.Order.OrderedSets.Preorder.ImmediateSuccessorOrEqualRelation
+  (LRA.Relation.Reflexive LRA.Order.OrderedSets.Preorder.ImmediateSuccessorOrEqualRelation ∧ (LRA.Relation.Antisymmetric LRA.Order.OrderedSets.Preorder.ImmediateSuccessorOrEqualRelation ∧ (LRA.Order.OrderedSets.PartialOrder.FailsTransitivity LRA.Order.OrderedSets.Preorder.ImmediateSuccessorOrEqualRelation ∧ LRA.Order.OrderedSets.PartialOrder.FailsNonStrictPartialOrder LRA.Order.OrderedSets.Preorder.ImmediateSuccessorOrEqualRelation)))
 
 Predicate logic (unfolded):
 
-  (∀ (x : Nat), Or (x = x)(x = instHAdd.1 x (instOfNatNat 1).1) ∧ (∀ (x y : Nat), Or (x = y)(y = instHAdd.1 x (instOfNatNat 1).1) → Or (y = x)(x = instHAdd.1 y (instOfNatNat 1).1) → x = y ∧ ((∀ (x y z : Nat), Or (x = y)(y = instHAdd.1 x (instOfNatNat 1).1) → Or (y = z)(z = instHAdd.1 y (instOfNatNat 1).1) → Or (x = z)(z = instHAdd.1 x (instOfNatNat 1).1)) → False ∧ (∀ (x : Nat), Or (x = x)(x = instHAdd.1 x 1) ∧ (∀ (x y : Nat), Or (x = y)(y = instHAdd.1 x 1) → Or (y = x)(x = instHAdd.1 y 1) → x = y ∧ ∀ (x y z : Nat), Or (x = y)(y = instHAdd.1 x 1) → Or (y = z)(z = instHAdd.1 y 1) → Or (x = z)(z = instHAdd.1 x 1))) → False)))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Nat), Or (x = x)(x = { hAdd := fun a b => instAddNat.add a b }.hAdd x 1)) ∧ ((∀ (x y : Nat), Or (x = y)(y = { hAdd := fun a b => instAddNat.add a b }.hAdd x 1) → Or (y = x)(x = { hAdd := fun a b => instAddNat.add a b }.hAdd y 1) → x = y) ∧ (((∀ (x y z : Nat), Or (x = y)(y = { hAdd := fun a b => instAddNat.add a b }.hAdd x 1) → Or (y = z)(z = { hAdd := fun a b => instAddNat.add a b }.hAdd y 1) → Or (x = z)(z = { hAdd := fun a b => instAddNat.add a b }.hAdd x 1)) → False) ∧ (((∀ (x : Nat), Or (x = x)(x = { hAdd := fun a b => instAddNat.add a b }.hAdd x 1)) ∧ ((∀ (x y : Nat), Or (x = y)(y = { hAdd := fun a b => instAddNat.add a b }.hAdd x 1) → Or (y = x)(x = { hAdd := fun a b => instAddNat.add a b }.hAdd y 1) → x = y) ∧ (∀ (x y z : Nat), Or (x = y)(y = { hAdd := fun a b => instAddNat.add a b }.hAdd x 1) → Or (y = z)(z = { hAdd := fun a b => instAddNat.add a b }.hAdd y 1) → Or (x = z)(z = { hAdd := fun a b => instAddNat.add a b }.hAdd x 1)))) → False))))
 
 Logical form (Lean):
 
@@ -4612,11 +5087,16 @@ theorem ImmediateSuccessorOrEqualFailsTransitivity :
 
 Predicate logic:
 
-  Not (LRA.Relation.Reflexive fun left right ∈ Nat => left < right) ∧ LRA.Relation.Antisymmetric fun left right ∈ Nat => left < right ∧ LRA.Relation.Transitive fun left right ∈ Nat => left < right ∧ FailsNonStrictPartialOrder fun left right ∈ Nat => left < right
+  (¬ LRA.Relation.Reflexive fun left right => instLTNat.lt left right ∧ (LRA.Relation.Antisymmetric fun left right => instLTNat.lt left right ∧ (LRA.Relation.Transitive fun left right => instLTNat.lt left right ∧ LRA.Order.OrderedSets.PartialOrder.FailsNonStrictPartialOrder fun left right => instLTNat.lt left right)))
 
 Predicate logic (unfolded):
 
-  ((∀ (x : Nat), (fun left right => instLTNat.1 left right) x x) → False ∧ (∀ (x y : Nat), instLTNat.1 x y → instLTNat.1 y x → x = y ∧ (∀ (x y z : Nat), instLTNat.1 x y → instLTNat.1 y z → (fun left right => instLTNat.1 left right) x z ∧ (∀ (x : Nat), (fun left right => instLTNat.1 left right) x x ∧ (∀ (x y : Nat), instLTNat.1 x y → instLTNat.1 y x → x = y ∧ ∀ (x y z : Nat), instLTNat.1 x y → instLTNat.1 y z → (fun left right => instLTNat.1 left right) x z)) → False)))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : Nat), (fun left right => instLTNat.lt left right) x x) → False) ∧ ((∀ (x y : Nat), instLTNat.lt x y → instLTNat.lt y x → x = y) ∧ ((∀ (x y z : Nat), instLTNat.lt x y → instLTNat.lt y z → (fun left right => instLTNat.lt left right) x z) ∧ (((∀ (x : Nat), (fun left right => instLTNat.lt left right) x x) ∧ ((∀ (x y : Nat), instLTNat.lt x y → instLTNat.lt y x → x = y) ∧ (∀ (x y z : Nat), instLTNat.lt x y → instLTNat.lt y z → (fun left right => instLTNat.lt left right) x z))) → False))))
 
 Logical form (Lean):
 
@@ -4664,11 +5144,16 @@ theorem NatStrictOrderFailsNonStrictPartialOrder :
 
 Predicate logic:
 
-  LRA.Relation.Reflexive fun _ _ ∈ Bool => True ∧ Not (LRA.Relation.Antisymmetric fun _ _ ∈ Bool => True) ∧ LRA.Relation.Transitive fun _ _ ∈ Bool => True ∧ FailsNonStrictPartialOrder fun _ _ ∈ Bool => True
+  (LRA.Relation.Reflexive fun x x_1 => True ∧ (¬ LRA.Relation.Antisymmetric fun x x_1 => True ∧ (LRA.Relation.Transitive fun x x_1 => True ∧ LRA.Order.OrderedSets.PartialOrder.FailsNonStrictPartialOrder fun x x_1 => True)))
 
 Predicate logic (unfolded):
 
-  (∀ (x : Bool), (fun x x_1 => True) x x ∧ ((∀ (x y : Bool), True → True → x = y) → False ∧ (∀ (x y z : Bool), True → True → (fun x x_1 => True) x z ∧ (∀ (x : Bool), (fun x x_1 => True) x x ∧ (∀ (x y : Bool), True → True → x = y ∧ ∀ (x y z : Bool), True → True → (fun x x_1 => True) x z)) → False)))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Bool), (fun x x_1 => True) x x) ∧ (((∀ (x y : Bool), True → True → x = y) → False) ∧ ((∀ (x y z : Bool), True → True → (fun x x_1 => True) x z) ∧ (((∀ (x : Bool), (fun x x_1 => True) x x) ∧ ((∀ (x y : Bool), True → True → x = y) ∧ (∀ (x y z : Bool), True → True → (fun x x_1 => True) x z))) → False))))
 
 Logical form (Lean):
 
@@ -4712,11 +5197,16 @@ theorem BooleanUniversalRelationFailsNonStrictPartialOrder :
 
 Predicate logic:
 
-  LRA.Order.Preorder fun left right ∈ Int => left ∣ right ∧ FailsNonStrictPartialOrder fun left right ∈ Int => left ∣ right
+  (LRA.Order.Preorder fun left right => Int.instDvd.dvd left right ∧ LRA.Order.OrderedSets.PartialOrder.FailsNonStrictPartialOrder fun left right => Int.instDvd.dvd left right)
 
 Predicate logic (unfolded):
 
-  ((∀ (x : Int), (fun left right => Int.instDvd.1 left right) x x ∧ ∀ (x y z : Int), Int.instDvd.1 x y → Int.instDvd.1 y z → (fun left right => Int.instDvd.1 left right) x z) ∧ (∀ (x : Int), (fun left right => Int.instDvd.1 left right) x x ∧ (∀ (x y : Int), Int.instDvd.1 x y → Int.instDvd.1 y x → x = y ∧ ∀ (x y z : Int), Int.instDvd.1 x y → Int.instDvd.1 y z → (fun left right => Int.instDvd.1 left right) x z)) → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : Int), (fun left right => Int.instDvd.1 left right) x x) ∧ (∀ (x y z : Int), Int.instDvd.1 x y → Int.instDvd.1 y z → (fun left right => Int.instDvd.1 left right) x z)) ∧ (((∀ (x : Int), (fun left right => Int.instDvd.1 left right) x x) ∧ ((∀ (x y : Int), Int.instDvd.1 x y → Int.instDvd.1 y x → x = y) ∧ (∀ (x y z : Int), Int.instDvd.1 x y → Int.instDvd.1 y z → (fun left right => Int.instDvd.1 left right) x z))) → False))
 
 Logical form (Lean):
 
@@ -4764,7 +5254,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {alpha : Type u} (relation : alpha → alpha → Prop), (∀ (x : alpha), relation x x ∧ (∀ (x y : alpha), relation x y → relation y x → x = y ∧ ∀ (x y z : alpha), relation x y → relation y z → relation x z)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : alpha), relation x x) ∧ ((∀ (x y : alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : alpha), relation x y → relation y z → relation x z))) → False
 
 Logical form (Lean):
 
@@ -4802,11 +5297,16 @@ def FailsPosetLaws {alpha : Type u}
 
 Predicate logic:
 
-  FailsPosetLaws fun left right ∈ Nat => left < right
+  LRA.Order.OrderedSets.Poset.FailsPosetLaws fun left right => instLTNat.lt left right
 
 Predicate logic (unfolded):
 
-  (∀ (x : Nat), (fun left right => instLTNat.1 left right) x x ∧ (∀ (x y : Nat), instLTNat.1 x y → instLTNat.1 y x → x = y ∧ ∀ (x y z : Nat), instLTNat.1 x y → instLTNat.1 y z → (fun left right => instLTNat.1 left right) x z)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Nat), (fun left right => instLTNat.lt left right) x x) ∧ ((∀ (x y : Nat), instLTNat.lt x y → instLTNat.lt y x → x = y) ∧ (∀ (x y z : Nat), instLTNat.lt x y → instLTNat.lt y z → (fun left right => instLTNat.lt left right) x z))) → False
 
 Logical form (Lean):
 
@@ -4850,7 +5350,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} (relation : Element → Element → Prop), ((∀ (x : Element), relation x x → False ∧ ∀ (x y z : Element), relation x y → relation y z → relation x z) ∧ ∀ (x y : Element), Or ((relation x y ∧ (x = y → False ∧ relation y x → False))) (Or ((x = y ∧ (relation x y → False ∧ relation y x → False))) ((relation y x ∧ (relation x y → False ∧ x = y → False))))) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : Element), relation x x → False) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z)) ∧ (∀ (x y : Element), Or ((relation x y ∧ ((x = y → False) ∧ (relation y x → False)))) (Or ((x = y ∧ ((relation x y → False) ∧ (relation y x → False)))) ((relation y x ∧ ((relation x y → False) ∧ (x = y → False))))))) → False
 
 Logical form (Lean):
 
@@ -4892,11 +5397,16 @@ section Booleans
 
 Predicate logic:
 
-  FailsStrictLinearOrder fun left right ∈ Bool => left = right
+  LRA.Order.FailsStrictLinearOrder fun left right => left = right
 
 Predicate logic (unfolded):
 
-  ((∀ (x : Bool), (fun left right => left = right)x x → False ∧ ∀ (x y z : Bool), x = y → y = z → (fun left right => left = right)x z) ∧ ∀ (x y : Bool), Or (((fun left right => left = right)x y ∧ (x = y → False ∧ (fun left right => left = right)y x → False))) (Or ((x = y ∧ ((fun left right => left = right)x y → False ∧ (fun left right => left = right)y x → False))) (((fun left right => left = right)y x ∧ ((fun left right => left = right)x y → False ∧ x = y → False))))) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : Bool), (fun left right => left = right)x x → False) ∧ (∀ (x y z : Bool), x = y → y = z → (fun left right => left = right)x z)) ∧ (∀ (x y : Bool), Or (((fun left right => left = right)x y ∧ ((x = y → False) ∧ ((fun left right => left = right)y x → False)))) (Or ((x = y ∧ (((fun left right => left = right)x y → False) ∧ ((fun left right => left = right)y x → False)))) (((fun left right => left = right)y x ∧ (((fun left right => left = right)x y → False) ∧ (x = y → False))))))) → False
 
 Logical form (Lean):
 
@@ -4942,7 +5452,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop), (∀ (x : Carrier), relation x x → False ∧ ∀ (x y z : Carrier), relation x y → relation y z → relation x z) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Carrier), relation x x → False) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z)) → False
 
 Logical form (Lean):
 
@@ -4984,11 +5499,16 @@ def FailsStrictOrder
 
 Predicate logic:
 
-  LRA.Relation.Transitive fun left right ∈ Nat => left <= right ∧ Not (LRA.Relation.Irreflexive fun left right ∈ Nat => left <= right) ∧ FailsStrictOrder fun left right ∈ Nat => left <= right
+  (LRA.Relation.Transitive fun left right => instLENat.le left right ∧ (¬ LRA.Relation.Irreflexive fun left right => instLENat.le left right ∧ LRA.Order.OrderedSets.StrictOrder.FailsStrictOrder fun left right => instLENat.le left right))
 
 Predicate logic (unfolded):
 
-  (∀ (x y z : Nat), instLENat.1 x y → instLENat.1 y z → (fun left right => instLENat.1 left right) x z ∧ ((∀ (x : Nat), instLENat.1 x x → False) → False ∧ (∀ (x : Nat), instLENat.1 x x → False ∧ ∀ (x y z : Nat), instLENat.1 x y → instLENat.1 y z → (fun left right => instLENat.1 left right) x z) → False))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x y z : Nat), instLENat.le x y → instLENat.le y z → (fun left right => instLENat.le left right) x z) ∧ (((∀ (x : Nat), instLENat.le x x → False) → False) ∧ (((∀ (x : Nat), instLENat.le x x → False) ∧ (∀ (x y z : Nat), instLENat.le x y → instLENat.le y z → (fun left right => instLENat.le left right) x z)) → False)))
 
 Logical form (Lean):
 
@@ -5034,7 +5554,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (a a_1 : Nat), a_1 = instHAdd.1 a (instOfNatNat 1).1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    a_1 = { hAdd := fun a b => instAddNat.add a b }.hAdd a 1
 
 Logical form (Lean):
 
@@ -5070,11 +5595,16 @@ def ImmediateSuccessorRelation : LRA.Relation.Endorelation Nat :=
 
 Predicate logic:
 
-  LRA.Relation.Irreflexive ImmediateSuccessorRelation ∧ Not (LRA.Relation.Transitive ImmediateSuccessorRelation) ∧ FailsStrictOrder ImmediateSuccessorRelation
+  (LRA.Relation.Irreflexive LRA.Order.OrderedSets.StrictOrder.ImmediateSuccessorRelation ∧ (¬ LRA.Relation.Transitive LRA.Order.OrderedSets.StrictOrder.ImmediateSuccessorRelation ∧ LRA.Order.OrderedSets.StrictOrder.FailsStrictOrder LRA.Order.OrderedSets.StrictOrder.ImmediateSuccessorRelation))
 
 Predicate logic (unfolded):
 
-  (∀ (x : Nat), x = instHAdd.1 x (instOfNatNat 1).1 → False ∧ ((∀ (x y z : Nat), y = instHAdd.1 x (instOfNatNat 1).1 → z = instHAdd.1 y (instOfNatNat 1).1 → z = instHAdd.1 x (instOfNatNat 1).1) → False ∧ (∀ (x : Nat), x = instHAdd.hAdd x 1 → False ∧ ∀ (x y z : Nat), y = instHAdd.1 x 1 → z = instHAdd.1 y 1 → z = instHAdd.1 x 1) → False))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Nat), x = { hAdd := fun a b => instAddNat.add a b }.hAdd x 1 → False) ∧ (((∀ (x y z : Nat), y = { hAdd := fun a b => instAddNat.add a b }.hAdd x 1 → z = { hAdd := fun a b => instAddNat.add a b }.hAdd y 1 → z = { hAdd := fun a b => instAddNat.add a b }.hAdd x 1) → False) ∧ (((∀ (x : Nat), x = instHAdd.hAdd x 1 → False) ∧ (∀ (x y z : Nat), y = { hAdd := fun a b => instAddNat.add a b }.hAdd x 1 → z = { hAdd := fun a b => instAddNat.add a b }.hAdd y 1 → z = { hAdd := fun a b => instAddNat.add a b }.hAdd x 1)) → False)))
 
 Logical form (Lean):
 
@@ -5122,7 +5652,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} (SetObject : Type v) [inst : Membership Element SetObject] (relation : Element → Element → Prop), (((∀ (x : Element), relation x x ∧ (∀ (x y : Element), relation x y → relation y x → x = y ∧ ∀ (x y z : Element), relation x y → relation y z → relation x z)) ∧ ∀ (x y : Element), Or (relation x y) (relation y x)) ∧ ∀ (subset : SetObject), (Exists fun element => inst.1 subset element) → Exists fun least => (inst.1 subset least ∧ ∀ (element : Element), inst.1 subset element → relation least element)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x → x = y) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) ∧ (∀ (x y : Element), Or (relation x y) (relation y x))) ∧ (∀ (subset : SetObject), (Exists fun element => inst.1 subset element) → Exists fun least => (inst.1 subset least ∧ (∀ (element : Element), inst.1 subset element → relation least element)))) → False
 
 Logical form (Lean):
 
@@ -5164,11 +5699,16 @@ def FailsWellOrder
 
 Predicate logic:
 
-  FailsWellOrder (Set Int) fun left right ∈ Int => left ≤ right
+  LRA.Order.FailsWellOrder (Set Int) fun left right => Int.instLEInt.le left right
 
 Predicate logic (unfolded):
 
-  (((∀ (x : Int), (fun left right => Int.instLEInt.le left right) x x ∧ (∀ (x y : Int), (fun left right => Int.instLEInt.le left right) x y → (fun left right => Int.instLEInt.le left right) y x → x = y ∧ ∀ (x y z : Int), (fun left right => Int.instLEInt.le left right) x y → (fun left right => Int.instLEInt.le left right) y z → (fun left right => Int.instLEInt.le left right) x z)) ∧ ∀ (x y : Int), Or ((fun left right => Int.instLEInt.le left right) x y) ((fun left right => Int.instLEInt.le left right) y x)) ∧ ∀ (subset : Int → Prop), (Exists fun element => Set.instMembership.1 subset element) → Exists fun least => (Set.instMembership.1 subset least ∧ ∀ (element : Int), Set.instMembership.1 subset element → (fun left right => Int.instLEInt.1 left right) least element)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((((∀ (x : Int), (fun left right => Int.instLEInt.le left right) x x) ∧ ((∀ (x y : Int), (fun left right => Int.instLEInt.le left right) x y → (fun left right => Int.instLEInt.le left right) y x → x = y) ∧ (∀ (x y z : Int), (fun left right => Int.instLEInt.le left right) x y → (fun left right => Int.instLEInt.le left right) y z → (fun left right => Int.instLEInt.le left right) x z))) ∧ (∀ (x y : Int), Or ((fun left right => Int.instLEInt.le left right) x y) ((fun left right => Int.instLEInt.le left right) y x))) ∧ (∀ (subset : Int → Prop), (Exists fun element => element) ∈ subset → Exists fun least => (least ∈ subset ∧ (∀ (element : Int), element ∈ subset → (fun left right => Int.instLEInt.le left right) least element)))) → False
 
 Logical form (Lean):
 

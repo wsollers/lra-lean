@@ -14,32 +14,32 @@ open LRA.AlgebraicStructures.AbelianGroup.Interface.Signature
 Predicate logic:
 
   def BuildAbelianGroupModel
-    (signature : LRA.AlgebraicStructures.AbelianGroupConceptSignature) :
-    LRA.ModelTheory.FirstOrder.Model AbelianGroupFirstOrderSignature where
-  Domain := signature.carrier
-  domainNonempty := ⟨signature.zero⟩
-  interpretFunction
-    | .add, args =>
-        signature.add (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
-    | .neg, args => signature.neg (args ⟨0, by decide⟩)
-  interpretRelation := fun RelationSymbol => nomatch RelationSymbol
-  interpretConstant
-    | .zero => signature.zero
+      (signature : LRA.AlgebraicStructures.AbelianGroupConceptSignature) :
+      LRA.ModelTheory.FirstOrder.Model AbelianGroupFirstOrderSignature where
+    Domain := signature.carrier
+    domainNonempty := ⟨signature.zero⟩
+    interpretFunction
+      | .add, args =>
+          signature.add (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
+      | .neg, args => signature.neg (args ⟨0, by decide⟩)
+    interpretRelation := fun RelationSymbol => nomatch RelationSymbol
+    interpretConstant
+      | .zero => signature.zero
 
 Predicate logic (unfolded):
 
   def BuildAbelianGroupModel
-    (signature : LRA.AlgebraicStructures.AbelianGroupConceptSignature) :
-    LRA.ModelTheory.FirstOrder.Model AbelianGroupFirstOrderSignature where
-  Domain := signature.carrier
-  domainNonempty := ⟨signature.zero⟩
-  interpretFunction
-    | .add, args =>
-        signature.add (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
-    | .neg, args => signature.neg (args ⟨0, by decide⟩)
-  interpretRelation := fun RelationSymbol => nomatch RelationSymbol
-  interpretConstant
-    | .zero => signature.zero (source fallback; no compiled unfold data available)
+      (signature : LRA.AlgebraicStructures.AbelianGroupConceptSignature) :
+      LRA.ModelTheory.FirstOrder.Model AbelianGroupFirstOrderSignature where
+    Domain := signature.carrier
+    domainNonempty := ⟨signature.zero⟩
+    interpretFunction
+      | .add, args =>
+          signature.add (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
+      | .neg, args => signature.neg (args ⟨0, by decide⟩)
+    interpretRelation := fun RelationSymbol => nomatch RelationSymbol
+    interpretConstant
+      | .zero => signature.zero (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -96,16 +96,16 @@ def BuildAbelianGroupModel
 Predicate logic:
 
   def abelianGroupFirstOrderModel (R : Type u) [Add R] [Neg R] [OfNat R 0] :
-    LRA.ModelTheory.FirstOrder.Model AbelianGroupFirstOrderSignature :=
-  BuildAbelianGroupModel
-    { carrier := R, zero := 0, add := (· + ·), neg := (- ·) }
+      LRA.ModelTheory.FirstOrder.Model AbelianGroupFirstOrderSignature :=
+    BuildAbelianGroupModel
+      { carrier := R, zero := 0, add := (· + ·), neg := (- ·) }
 
 Predicate logic (unfolded):
 
   def abelianGroupFirstOrderModel (R : Type u) [Add R] [Neg R] [OfNat R 0] :
-    LRA.ModelTheory.FirstOrder.Model AbelianGroupFirstOrderSignature :=
-  BuildAbelianGroupModel
-    { carrier := R, zero := 0, add := (· + ·), neg := (- ·) } (source fallback; no compiled unfold data available)
+      LRA.ModelTheory.FirstOrder.Model AbelianGroupFirstOrderSignature :=
+    BuildAbelianGroupModel
+      { carrier := R, zero := 0, add := (· + ·), neg := (- ·) } (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

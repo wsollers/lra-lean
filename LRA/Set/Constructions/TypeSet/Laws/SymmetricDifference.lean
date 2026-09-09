@@ -12,11 +12,16 @@ variable {Alpha : Type u}
 
 Predicate logic:
 
-  ∀ A B : LRA.Set.Constructions.TypeSet Alpha, A ∆ B = (A \ B) ∪ (B \ A)
+  ∀ {Alpha : Type u} (A B : LRA.Set.Constructions.TypeSet Alpha), LRA.Set.Constructions.TypeSet.instHasSymmDiff.symmDiff A B = LRA.Set.Constructions.TypeLRA.Set.Constructions.TypeA \ B ∪ LRA.Set.Constructions.TypeB \ A
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A B : Alpha → Prop), LRA.Set.Constructions.TypeSet.instHasSymmDiff.1 A B = LRA.Set.Constructions.TypeSet.instUnion.1 (LRA.Set.Constructions.TypeSet.instSDiff.1 A B) (LRA.Set.Constructions.TypeSet.instSDiff.1 B A)
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TypeSet.instHasSymmDiff.1 A B = LRA.Set.Constructions.TypeLRA.Set.Constructions.TypeA \ B ∪ LRA.Set.Constructions.TypeB \ A
 
 Logical form (Lean):
 
@@ -53,11 +58,16 @@ theorem SymmetricDifferenceAsUnionDifferences :
 
 Predicate logic:
 
-  ∀ A B : LRA.Set.Constructions.TypeSet Alpha, A ∆ B = (A ∪ B) \ (A ∩ B)
+  ∀ {Alpha : Type u} (A B : LRA.Set.Constructions.TypeSet Alpha), LRA.Set.Constructions.TypeSet.instHasSymmDiff.symmDiff A B = LRA.Set.Constructions.TypeLRA.Set.Constructions.TypeA ∪ B \ LRA.Set.Constructions.TypeA ∩ B
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A B : Alpha → Prop), LRA.Set.Constructions.TypeSet.instHasSymmDiff.1 A B = LRA.Set.Constructions.TypeSet.instSDiff.1 (LRA.Set.Constructions.TypeSet.instUnion.1 A B) (LRA.Set.Constructions.TypeSet.instInter.1 A B)
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TypeSet.instHasSymmDiff.1 A B = LRA.Set.Constructions.TypeLRA.Set.Constructions.TypeA ∪ B \ LRA.Set.Constructions.TypeA ∩ B
 
 Logical form (Lean):
 
@@ -94,11 +104,16 @@ theorem SymmetricDifferenceAsUnionDifferenceIntersection :
 
 Predicate logic:
 
-  ∀ A B : LRA.Set.Constructions.TypeSet Alpha, A ∆ B = B ∆ A
+  ∀ {Alpha : Type u} (A B : LRA.Set.Constructions.TypeSet Alpha), LRA.Set.Constructions.TypeSet.instHasSymmDiff.symmDiff A B = LRA.Set.Constructions.TypeSet.instHasSymmDiff.symmDiff B A
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A B : Alpha → Prop), LRA.Set.Constructions.TypeSet.instHasSymmDiff.1 A B = LRA.Set.Constructions.TypeSet.instHasSymmDiff.1 B A
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TypeSet.instHasSymmDiff.1 A B = LRA.Set.Constructions.TypeSet.instHasSymmDiff.1 B A
 
 Logical form (Lean):
 
@@ -135,11 +150,16 @@ theorem SymmetricDifferenceCommutative :
 
 Predicate logic:
 
-  ∀ A B C : LRA.Set.Constructions.TypeSet Alpha, (A ∆ B) ∆ C = A ∆ (B ∆ C)
+  ∀ {Alpha : Type u} (A B C : LRA.Set.Constructions.TypeSet Alpha), LRA.Set.Constructions.TypeSet.instHasSymmDiff.symmDiff (LRA.Set.Constructions.TypeSet.instHasSymmDiff.symmDiff A B) C = LRA.Set.Constructions.TypeSet.instHasSymmDiff.symmDiff A (LRA.Set.Constructions.TypeSet.instHasSymmDiff.symmDiff B C)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A B C : Alpha → Prop), LRA.Set.Constructions.TypeSet.instHasSymmDiff.1 (LRA.Set.Constructions.TypeSet.instHasSymmDiff.1 A B) C = LRA.Set.Constructions.TypeSet.instHasSymmDiff.1 A (LRA.Set.Constructions.TypeSet.instHasSymmDiff.1 B C)
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TypeSet.instHasSymmDiff.1 (LRA.Set.Constructions.TypeSet.instHasSymmDiff.1 A B) C = LRA.Set.Constructions.TypeSet.instHasSymmDiff.1 A (LRA.Set.Constructions.TypeSet.instHasSymmDiff.1 B C)
 
 Logical form (Lean):
 
@@ -178,11 +198,16 @@ theorem SymmetricDifferenceAssociative :
 
 Predicate logic:
 
-  ∀ A : LRA.Set.Constructions.TypeSet Alpha, A ∆ ∅ ∈ LRA.Set.Constructions.TypeSet Alpha = A
+  ∀ {Alpha : Type u} (A : LRA.Set.Constructions.TypeSet Alpha), LRA.Set.Constructions.TypeSet.instHasSymmDiff.symmDiff A LRA.Set.Constructions.TypeSet.instEmptyCollection.emptyCollection = A
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A : Alpha → Prop), LRA.Set.Constructions.TypeSet.instHasSymmDiff.1 A LRA.Set.Constructions.TypeSet.instEmptyCollection.1 = A
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TypeSet.instHasSymmDiff.1 A LRA.Set.Constructions.TypeSet.instEmptyCollection.1 = A
 
 Logical form (Lean):
 
@@ -221,11 +246,16 @@ theorem SymmetricDifferenceEmpty :
 
 Predicate logic:
 
-  ∀ A : LRA.Set.Constructions.TypeSet Alpha, ∅ ∈ LRA.Set.Constructions.TypeSet Alpha ∆ A = A
+  ∀ {Alpha : Type u} (A : LRA.Set.Constructions.TypeSet Alpha), LRA.Set.Constructions.TypeSet.instHasSymmDiff.symmDiff LRA.Set.Constructions.TypeSet.instEmptyCollection.emptyCollection A = A
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A : Alpha → Prop), LRA.Set.Constructions.TypeSet.instHasSymmDiff.1 LRA.Set.Constructions.TypeSet.instEmptyCollection.1 A = A
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TypeSet.instHasSymmDiff.1 LRA.Set.Constructions.TypeSet.instEmptyCollection.1 A = A
 
 Logical form (Lean):
 
@@ -264,11 +294,16 @@ theorem EmptySymmetricDifference :
 
 Predicate logic:
 
-  ∀ A : LRA.Set.Constructions.TypeSet Alpha, A ∆ A = ∅ ∈ LRA.Set.Constructions.TypeSet Alpha
+  ∀ {Alpha : Type u} (A : LRA.Set.Constructions.TypeSet Alpha), LRA.Set.Constructions.TypeSet.instHasSymmDiff.symmDiff A A = LRA.Set.Constructions.TypeSet.instEmptyCollection.emptyCollection
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A : Alpha → Prop), LRA.Set.Constructions.TypeSet.instHasSymmDiff.1 A A = LRA.Set.Constructions.TypeSet.instEmptyCollection.1
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TypeSet.instHasSymmDiff.1 A A = LRA.Set.Constructions.TypeSet.instEmptyCollection.1
 
 Logical form (Lean):
 
@@ -307,11 +342,16 @@ theorem SymmetricDifferenceSelf :
 
 Predicate logic:
 
-  ∀ A B : LRA.Set.Constructions.TypeSet Alpha, A ∆ B = ∅ ∈ LRA.Set.Constructions.TypeSet Alpha ↔ A = B
+  ∀ {Alpha : Type u} (A B : LRA.Set.Constructions.TypeSet Alpha), LRA.Set.Constructions.TypeSet.instHasSymmDiff.symmDiff A B = LRA.Set.Constructions.TypeSet.instEmptyCollection.emptyCollection ↔ A = B
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A B : Alpha → Prop), LRA.Set.Constructions.TypeSet.instHasSymmDiff.1 A B = LRA.Set.Constructions.TypeSet.instEmptyCollection.1 ↔ A = B
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TypeSet.instHasSymmDiff.symmDiff A B = LRA.Set.Constructions.TypeSet.instEmptyCollection.emptyCollection ↔ A = B
 
 Logical form (Lean):
 
@@ -350,11 +390,16 @@ theorem SymmetricDifferenceEqEmptyIff :
 
 Predicate logic:
 
-  ∀ A B : LRA.Set.Constructions.TypeSet Alpha, A ∆ B ⊆ A ∪ B
+  ∀ {Alpha : Type u} (A B : LRA.Set.Constructions.TypeSet Alpha), LRA.Set.Constructions.TypeSet.instHasSubset.Subset (LRA.Set.Constructions.TypeSet.instHasSymmDiff.symmDiff A B) (LRA.Set.Constructions.TypeA ∪ B)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A B : Alpha → Prop), LRA.Set.Constructions.TypeSet.instHasSubset.1 (LRA.Set.Constructions.TypeSet.instHasSymmDiff.1 A B) (LRA.Set.Constructions.TypeSet.instUnion.1 A B)
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TypeSet.instHasSubset.1 (LRA.Set.Constructions.TypeSet.instHasSymmDiff.1 A B) (LRA.Set.Constructions.TypeA ∪ B)
 
 Logical form (Lean):
 

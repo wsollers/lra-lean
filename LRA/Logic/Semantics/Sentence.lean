@@ -8,11 +8,19 @@ namespace LRA.Logic.FirstOrder
 
 Predicate logic:
 
-  (IsClosedFormula formula) → Satisfies M leftAssignment formula ↔ Satisfies M rightAssignment formula
+  ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : DecidableVariable] = M : LRA.Logic.FirstOrder.Interpretation S {leftAssignment rightAssignment : Variable → M.Domain} (formula : LRA.Logic.FirstOrder.Formula S Variable), LRA.Logic.FirstOrder.IsClosedFormula formula → LRA.Logic.FirstOrder.Satisfies M leftAssignment formula ↔ LRA.Logic.FirstOrder.Satisfies M rightAssignment formula
 
 Predicate logic (unfolded):
 
-  ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : (a b : Variable) → Decidable (a = b)] (M : LRA.Logic.FirstOrder.Interpretation S) {leftAssignment rightAssignment : Variable → M.1} (formula : LRA.Logic.FirstOrder.Formula S Variable), LRA.Logic.FirstOrder.freeVariables formula = Finset.instEmptyCollection.1 → LRA.Logic.FirstOrder.Satisfies M leftAssignment formula ↔ LRA.Logic.FirstOrder.Satisfies M rightAssignment formula
+  Ambient
+    (Variable)
+  Objects
+    S : Signature
+    M : Interpretation S
+    leftAssignment rightAssignment : Variable -> M.Domain
+    formula : Formula S Variable
+  Prove
+    LRA.Logic.FirstOrder.IsClosedFormula formula → LRA.Logic.FirstOrder.Satisfies M leftAssignment formula ↔ LRA.Logic.FirstOrder.Satisfies M rightAssignment formula
 
 Logical form (Lean):
 
@@ -60,11 +68,19 @@ theorem satisfies_iff_of_isClosedFormula
 
 Predicate logic:
 
-  Satisfies M leftAssignment sentence.val ↔ Satisfies M rightAssignment sentence.val
+  ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : DecidableVariable] = M : LRA.Logic.FirstOrder.Interpretation S {leftAssignment rightAssignment : Variable → M.Domain} (sentence : LRA.Logic.FirstOrder.Sentence S Variable), LRA.Logic.FirstOrder.Satisfies M leftAssignment sentence.val ↔ LRA.Logic.FirstOrder.Satisfies M rightAssignment sentence.val
 
 Predicate logic (unfolded):
 
-  ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : (a b : Variable) → Decidable (a = b)] (M : LRA.Logic.FirstOrder.Interpretation S) {leftAssignment rightAssignment : Variable → M.1} (sentence : Subtype fun formula => LRA.Logic.FirstOrder.freeVariables formula = Finset.instEmptyCollection.1), LRA.Logic.FirstOrder.Satisfies M leftAssignment sentence.1 ↔ LRA.Logic.FirstOrder.Satisfies M rightAssignment sentence.1
+  Ambient
+    (Variable)
+  Objects
+    S : Signature
+    M : Interpretation S
+    leftAssignment rightAssignment : Variable -> M.Domain
+    sentence : Sentence S Variable
+  Prove
+    LRA.Logic.FirstOrder.Satisfies M leftAssignment sentence.val ↔ LRA.Logic.FirstOrder.Satisfies M rightAssignment sentence.val
 
 Logical form (Lean):
 

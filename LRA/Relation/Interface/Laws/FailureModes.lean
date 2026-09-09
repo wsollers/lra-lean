@@ -13,7 +13,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (relation : Domain → Codomain → Prop), (∀ (x : Domain) (y₁ y₂ : Codomain), relation x y₁ → relation x y₂ → y₁ = y₂ ∧ (∀ (x : Domain), Exists fun y => relation x y) → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Domain) (y₁ y₂ : Codomain), relation x y₁ → relation x y₂ → y₁ = y₂) ∧ ((∀ (x : Domain), Exists fun y => relation x y) → False))
 
 Logical form (Lean):
 
@@ -55,7 +60,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (relation : Domain → Codomain → Prop), (∀ (x : Domain), Exists fun y => relation x y ∧ (∀ (x : Domain) (y₁ y₂ : Codomain), relation x y₁ → relation x y₂ → y₁ = y₂) → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Domain), Exists fun y => relation x y) ∧ ((∀ (x : Domain) (y₁ y₂ : Codomain), relation x y₁ → relation x y₂ → y₁ = y₂) → False))
 
 Logical form (Lean):
 

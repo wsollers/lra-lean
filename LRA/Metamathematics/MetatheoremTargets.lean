@@ -26,70 +26,324 @@ sequent calculus can each instantiate it once they are far enough along,
 without this file needing to change when they do.
 -/
 
-/-- The abstract shape shared by every soundness/completeness pair this
-repository will eventually state: a `Provable` relation (syntactic,
-proof-system-specific -- e.g. eventually derived from
-`LRA.ProofTheory.System.Takeuti`'s `Judgement`/derivation machinery) and
-a `Satisfies` relation (semantic, model-specific -- e.g.
-`LRA.Logic.Semantics.Satisfaction` or its SOL counterpart), both relating
-a "theory" (a set of formulas serving as hypotheses) to a single formula. -/
+/--
+`ProofSemanticsPairing` The abstract shape shared by every soundness/completeness pair this repository will eventually state: a `Provable` relation (syntactic, proof-system-specific -- e.g. eventually derived from `LRA.ProofTheory.System.Takeuti`'s `Judgement`/derivation machinery) and a `Satisfies` relation (semantic, model-specific -- e.g. `LRA.Logic.Semantics.Satisfaction` or its SOL counterpart), both relating a "theory" (a set of formulas serving as hypotheses) to a single formula.
+
+Predicate logic:
+
+  structure ProofSemanticsPairing (Formula : Type u) (Theory : Type v) where
+    Provable : Theory → Formula → Prop
+    Satisfies : Theory → Formula → Prop
+
+Predicate logic (unfolded):
+
+  structure ProofSemanticsPairing (Formula : Type u) (Theory : Type v) where
+    Provable : Theory → Formula → Prop
+    Satisfies : Theory → Formula → Prop (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+structure ProofSemanticsPairing (Formula : Type u) (Theory : Type v) where
+  Provable : Theory → Formula → Prop
+  Satisfies : Theory → Formula → Prop
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro
+
+-/
 structure ProofSemanticsPairing (Formula : Type u) (Theory : Type v) where
   Provable : Theory → Formula → Prop
   Satisfies : Theory → Formula → Prop
 
-/-- Soundness, stated generically: everything provable from a theory is
-satisfied by every model of that theory. This is the "if the syntax says
-yes, the semantics agrees" direction -- the safety property a proof
-system must have before its derivations can be trusted to mean anything
-semantically. -/
+/--
+`IsSound` Soundness, stated generically: everything provable from a theory is satisfied by every model of that theory. This is the "if the syntax says yes, the semantics agrees" direction -- the safety property a proof system must have before its derivations can be trusted to mean anything semantically.
+
+Predicate logic:
+
+  ∀ {Formula : Type u} {Theory : Type v} (pairing : LRA.Metamathematics.ProofSemanticsPairing Formula Theory) (Γ : Theory) (φ : Formula), pairing.Provable Γ φ → pairing.Satisfies Γ φ
+
+Predicate logic (unfolded):
+
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    pairing.1 Γ φ → pairing.2 Γ φ
+
+Logical form (Lean):
+
+```lean
+def IsSound {Formula : Type u} {Theory : Type v}
+    (pairing : ProofSemanticsPairing Formula Theory) : Prop :=
+  ∀ (Γ : Theory) (φ : Formula), pairing.Provable Γ φ → pairing.Satisfies Γ φ
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, unfold
+
+-/
 def IsSound {Formula : Type u} {Theory : Type v}
     (pairing : ProofSemanticsPairing Formula Theory) : Prop :=
   ∀ (Γ : Theory) (φ : Formula), pairing.Provable Γ φ → pairing.Satisfies Γ φ
 
-/-- Completeness, stated generically: everything satisfied by every model
-of a theory is provable from that theory -- the converse direction,
-"if the semantics agrees, the syntax can say so." This is the strictly
-harder direction historically (Gödel's completeness theorem for first-
-order logic is the paradigm case), and is not expected to hold for every
-system in this repository (in particular, `LRA.Logic.Language
-.SecondOrderMonadic` under standard semantics should NOT be expected to
-satisfy this, per the well-known first-order/second-order completeness
-trade documented elsewhere in this project's own logic reference notes;
-Henkin semantics exists specifically to recover it, and any completeness
-claim for the second-order layer must specify which semantics it targets). -/
+/--
+`IsComplete` Completeness, stated generically: everything satisfied by every model of a theory is provable from that theory -- the converse direction, "if the semantics agrees, the syntax can say so." This is the strictly harder direction historically (Gödel's completeness theorem for first- order logic is the paradigm case), and is not expected to hold for every system in this repository (in particular, `LRA.Logic.Language .SecondOrderMonadic` under standard semantics should NOT be expected to satisfy this, per the well-known first-order/second-order completeness trade documented elsewhere in this project's own logic reference notes; Henkin semantics exists specifically to recover it, and any completeness claim for the second-order layer must specify which semantics it targets).
+
+Predicate logic:
+
+  ∀ {Formula : Type u} {Theory : Type v} (pairing : LRA.Metamathematics.ProofSemanticsPairing Formula Theory) (Γ : Theory) (φ : Formula), pairing.Satisfies Γ φ → pairing.Provable Γ φ
+
+Predicate logic (unfolded):
+
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    pairing.2 Γ φ → pairing.1 Γ φ
+
+Logical form (Lean):
+
+```lean
+def IsComplete {Formula : Type u} {Theory : Type v}
+    (pairing : ProofSemanticsPairing Formula Theory) : Prop :=
+  ∀ (Γ : Theory) (φ : Formula), pairing.Satisfies Γ φ → pairing.Provable Γ φ
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, unfold
+
+-/
 def IsComplete {Formula : Type u} {Theory : Type v}
     (pairing : ProofSemanticsPairing Formula Theory) : Prop :=
   ∀ (Γ : Theory) (φ : Formula), pairing.Satisfies Γ φ → pairing.Provable Γ φ
 
-/-- A named, non-vacuous proposition standing for the eventual Takeuti
-soundness instance. Kept abstract here because the concrete proof-system and
-semantic carriers are not yet wired into this generic owner. -/
+/--
+`TakeutiSoundnessObligation` A named, non-vacuous proposition standing for the eventual Takeuti soundness instance. Kept abstract here because the concrete proof-system and semantic carriers are not yet wired into this generic owner.
+
+Predicate logic:
+
+  Exists fun Formula => Exists fun Theory => Exists fun pairing => LRA.Metamathematics.IsSound pairing
+
+Predicate logic (unfolded):
+
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun Formula => Exists fun Theory => Exists fun pairing => ∀ (Γ : Theory) (φ : Formula), pairing.1 Γ φ → pairing.2 Γ φ
+
+Logical form (Lean):
+
+```lean
+def TakeutiSoundnessObligation : Prop :=
+  ∃ (Formula : Type u) (Theory : Type v) (pairing : ProofSemanticsPairing Formula Theory),
+    IsSound pairing
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: use, rcases, unfold
+
+-/
 def TakeutiSoundnessObligation : Prop :=
   ∃ (Formula : Type u) (Theory : Type v) (pairing : ProofSemanticsPairing Formula Theory),
     IsSound pairing
 
-/-- A named, non-vacuous proposition standing for the eventual Takeuti
-completeness instance. -/
+/--
+`TakeutiCompletenessObligation` A named, non-vacuous proposition standing for the eventual Takeuti completeness instance.
+
+Predicate logic:
+
+  Exists fun Formula => Exists fun Theory => Exists fun pairing => LRA.Metamathematics.IsComplete pairing
+
+Predicate logic (unfolded):
+
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun Formula => Exists fun Theory => Exists fun pairing => ∀ (Γ : Theory) (φ : Formula), pairing.2 Γ φ → pairing.1 Γ φ
+
+Logical form (Lean):
+
+```lean
+def TakeutiCompletenessObligation : Prop :=
+  ∃ (Formula : Type u) (Theory : Type v) (pairing : ProofSemanticsPairing Formula Theory),
+    IsComplete pairing
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: use, rcases, unfold
+
+-/
 def TakeutiCompletenessObligation : Prop :=
   ∃ (Formula : Type u) (Theory : Type v) (pairing : ProofSemanticsPairing Formula Theory),
     IsComplete pairing
 
-/-- Named forward reference, not yet dischargeable: the soundness
-obligation for `LRA.ProofTheory.System.Takeuti`'s sequent calculus (LK or
-LJ) paired against `LRA.Logic.Semantics.Satisfaction`, once Takeuti's
-own derivation/judgement machinery is far enough along to instantiate
-`ProofSemanticsPairing`. Declared here as a statement of what is owed,
-not as a claim that it currently holds or has been attempted -- Takeuti
-is explicitly work-in-progress, and this theorem should remain `sorry`
-until that system stabilizes enough to state the instantiation precisely. -/
+/--
+`takeutiSoundnessObligation` Named forward reference, not yet dischargeable: the soundness obligation for `LRA.ProofTheory.System.Takeuti`'s sequent calculus (LK or LJ) paired against `LRA.Logic.Semantics.Satisfaction`, once Takeuti's own derivation/judgement machinery is far enough along to instantiate `ProofSemanticsPairing`. Declared here as a statement of what is owed, not as a claim that it currently holds or has been attempted -- Takeuti is explicitly work-in-progress, and this theorem should remain `sorry` until that system stabilizes enough to state the instantiation precisely.
+
+Predicate logic:
+
+  LRA.Metamathematics.TakeutiSoundnessObligation
+
+Predicate logic (unfolded):
+
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Metamathematics.TakeutiSoundnessObligation
+
+Logical form (Lean):
+
+```lean
+theorem takeutiSoundnessObligation : TakeutiSoundnessObligation
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 theorem takeutiSoundnessObligation : TakeutiSoundnessObligation := by
   sorry
-/-- Named forward reference, not yet dischargeable: the corresponding
-completeness obligation. Flagged separately from soundness because,
-historically and in general, completeness is the harder and more
-system-specific of the two directions, and because (per the doc-comment
-on `IsComplete` above) it may not even be the right target for every
-semantics this repository eventually supports. -/
+/--
+`takeutiCompletenessObligation` Named forward reference, not yet dischargeable: the corresponding completeness obligation. Flagged separately from soundness because, historically and in general, completeness is the harder and more system-specific of the two directions, and because (per the doc-comment on `IsComplete` above) it may not even be the right target for every semantics this repository eventually supports.
+
+Predicate logic:
+
+  LRA.Metamathematics.TakeutiCompletenessObligation
+
+Predicate logic (unfolded):
+
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Metamathematics.TakeutiCompletenessObligation
+
+Logical form (Lean):
+
+```lean
+theorem takeutiCompletenessObligation : TakeutiCompletenessObligation
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 theorem takeutiCompletenessObligation : TakeutiCompletenessObligation := by
   sorry
 end LRA.Metamathematics

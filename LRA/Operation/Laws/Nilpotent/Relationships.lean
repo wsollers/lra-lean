@@ -11,11 +11,18 @@ universe u
 
 Predicate logic:
 
-  (first = second) → NilpotentElement operation zero second
+  ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {zero first second : Carrier}, (first = second ∧ LRA.Operation.Laws.Nilpotent.NilpotentElement operation zero first) → LRA.Operation.Laws.Nilpotent.NilpotentElement operation zero second
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {operation : Carrier → Carrier → Carrier} {zero first second : Carrier}, (first = second ∧ Exists fun positiveExponent => LRA.Operation.Laws.Nilpotent.PositivePower operation first positiveExponent = zero) → Exists fun positiveExponent => LRA.Operation.Laws.Nilpotent.PositivePower operation second positiveExponent = zero
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    zero first second : Carrier
+    law : NilpotentElement operation zero first
+  Prove
+    (first = second ∧ Exists fun positiveExponent => LRA.Operation.Laws.Nilpotent.PositivePower operation first positiveExponent = zero) → Exists fun positiveExponent => LRA.Operation.Laws.Nilpotent.PositivePower operation second positiveExponent = zero
 
 Logical form (Lean):
 

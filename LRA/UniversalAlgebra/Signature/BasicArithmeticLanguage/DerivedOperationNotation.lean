@@ -8,18 +8,18 @@ namespace LRA.UniversalAlgebra.Signature.BasicArithmeticLanguage
 Predicate logic:
 
   inductive DerivedOperationNotation where
-  | subtraction
-  | division
-  | power
-  | modulus
+    | subtraction
+    | division
+    | power
+    | modulus
 
 Predicate logic (unfolded):
 
   inductive DerivedOperationNotation where
-  | subtraction
-  | division
-  | power
-  | modulus (source fallback; no compiled unfold data available)
+    | subtraction
+    | division
+    | power
+    | modulus (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

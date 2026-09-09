@@ -13,7 +13,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (relation : Element → Element → Prop) (subset : SetObject) (first second : Element), (inst.1 subset first ∧ inst.1 subset second) → Or (relation first second) (relation second first)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (inst.1 subset first ∧ inst.1 subset second) → Or (relation first second) (relation second first)
 
 Logical form (Lean):
 

@@ -8,67 +8,202 @@ universe u
 variable {Carrier : Type u}
 
 /--
-`EqualRfl` is the in-house reflexivity theorem for equality.
+`EqualRfl` TODO
 
-Logical form:
+Predicate logic:
+
+  ∀ {Carrier : Type u} [inst : LRA.Identity.EqualityRelation Carrier] (x : Carrier), inst.Equal x x
+
+Predicate logic (unfolded):
+
+  ∀ {Carrier : Type u} [inst : LRA.Identity.EqualityRelation Carrier] (x : Carrier), inst.Equal x x
+
+Logical form (Lean):
 
 ```lean
 theorem EqualRfl [EqualityRelation Carrier] (x : Carrier) : Equal x x
 ```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
 -/
 theorem EqualRfl [EqualityRelation Carrier] (x : Carrier) : Equal x x := by
   sorry
 
 /--
-`EqualRefl` is a prose-name alias for `EqualRfl`.
+`EqualRefl` TODO
 
-Logical form:
+Predicate logic:
+
+  ∀ {Carrier : Type u} [inst : LRA.Identity.EqualityRelation Carrier] (x : Carrier), inst.Equal x x
+
+Predicate logic (unfolded):
+
+  ∀ {Carrier : Type u} [inst : LRA.Identity.EqualityRelation Carrier] (x : Carrier), inst.Equal x x
+
+Logical form (Lean):
 
 ```lean
 theorem EqualRefl [EqualityRelation Carrier] (x : Carrier) : Equal x x
 ```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
 -/
 theorem EqualRefl [EqualityRelation Carrier] (x : Carrier) : Equal x x := by
   sorry
 
 /--
-`EqualSymmetric` states symmetry of in-house equality.
+`EqualSymmetric` TODO
 
-Logical form:
+Predicate logic:
+
+  ∀ {Carrier : Type u} [inst : LRA.Identity.EqualityRelation Carrier] {x y : Carrier}, inst.Equal x y → inst.Equal y x
+
+Predicate logic (unfolded):
+
+  ∀ {Carrier : Type u} [inst : LRA.Identity.EqualityRelation Carrier] {x y : Carrier}, inst.Equal x y → inst.Equal y x
+
+Logical form (Lean):
 
 ```lean
 theorem EqualSymmetric [EqualityRelation Carrier]
     {x y : Carrier} (h : Equal x y) : Equal y x
 ```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
 -/
 theorem EqualSymmetric [EqualityRelation Carrier]
     {x y : Carrier} (h : Equal x y) : Equal y x := by
   sorry
 
 /--
-`EqualTransitive` states transitivity of in-house equality.
+`EqualTransitive` TODO
 
-Logical form:
+Predicate logic:
+
+  ∀ {Carrier : Type u} [inst : LRA.Identity.EqualityRelation Carrier] {x y z : Carrier}, (inst.Equal x y ∧ inst.Equal y z) → inst.Equal x z
+
+Predicate logic (unfolded):
+
+  ∀ {Carrier : Type u} [inst : LRA.Identity.EqualityRelation Carrier] {x y z : Carrier}, (inst.Equal x y ∧ inst.Equal y z) → inst.Equal x z
+
+Logical form (Lean):
 
 ```lean
 theorem EqualTransitive [EqualityRelation Carrier]
     {x y z : Carrier} (hxy : Equal x y) (hyz : Equal y z) : Equal x z
 ```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
 -/
 theorem EqualTransitive [EqualityRelation Carrier]
     {x y z : Carrier} (hxy : Equal x y) (hyz : Equal y z) : Equal x z := by
   sorry
 
 /--
-`EqualLeibnizIff` states the bidirectional Leibniz law for in-house equality.
+`EqualLeibnizIff` TODO
 
-Logical form:
+Predicate logic:
+
+  ∀ {Carrier : Type u} [inst : LRA.Identity.EqualityRelation Carrier] {x y : Carrier}, inst.Equal x y → ∀ (Property : Carrier → Prop), Property x ↔ Property y
+
+Predicate logic (unfolded):
+
+  ∀ {Carrier : Type u} [inst : LRA.Identity.EqualityRelation Carrier] {x y : Carrier}, inst.Equal x y → ∀ (Property : Carrier → Prop), Property x ↔ Property y
+
+Logical form (Lean):
 
 ```lean
 theorem EqualLeibnizIff [EqualityRelation Carrier]
     {x y : Carrier} (h : Equal x y)
     (Property : Carrier → Prop) : Property x ↔ Property y
 ```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, constructor, .mp, .mpr
+
 -/
 theorem EqualLeibnizIff [EqualityRelation Carrier]
     {x y : Carrier} (h : Equal x y)
@@ -76,15 +211,41 @@ theorem EqualLeibnizIff [EqualityRelation Carrier]
   sorry
 
 /--
-`IdentIsDiagonal` identifies in-house identity with in-house equality. It does
-not mention Lean's native equality.
+`IdentIsDiagonal` TODO
 
-Logical form:
+Predicate logic:
+
+  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] [inst_1 : LRA.Identity.EqualityRelation Carrier] (x y : Carrier), inst.Ident x y ↔ inst_1.Equal x y
+
+Predicate logic (unfolded):
+
+  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] [inst_1 : LRA.Identity.EqualityRelation Carrier] (x y : Carrier), inst.Ident x y ↔ inst_1.Equal x y
+
+Logical form (Lean):
 
 ```lean
 theorem IdentIsDiagonal [IdentityRelation Carrier] [EqualityRelation Carrier]
     (x y : Carrier) : Ident x y ↔ Equal x y
 ```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: constructor, .mp, .mpr
+
 -/
 theorem IdentIsDiagonal [IdentityRelation Carrier] [EqualityRelation Carrier]
     (x y : Carrier) : Ident x y ↔ Equal x y := by

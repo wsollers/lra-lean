@@ -8,14 +8,14 @@ namespace LRA.UniversalAlgebra.Signature.FormalVocabulary
 Predicate logic:
 
   structure RelationSymbols where
-  Symbol : Type
-  ArityOf : Symbol -> Arity
+    Symbol : Type
+    ArityOf : Symbol -> Arity
 
 Predicate logic (unfolded):
 
   structure RelationSymbols where
-  Symbol : Type
-  ArityOf : Symbol -> Arity (source fallback; no compiled unfold data available)
+    Symbol : Type
+    ArityOf : Symbol -> Arity (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

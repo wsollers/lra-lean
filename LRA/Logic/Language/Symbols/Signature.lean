@@ -6,14 +6,14 @@ namespace LRA.Logic
 Predicate logic:
 
   structure ArityIndexedSymbols where
-  Symbol : Type
-  arity : Symbol -> Nat
+    Symbol : Type
+    arity : Symbol -> Nat
 
 Predicate logic (unfolded):
 
   structure ArityIndexedSymbols where
-  Symbol : Type
-  arity : Symbol -> Nat (source fallback; no compiled unfold data available)
+    Symbol : Type
+    arity : Symbol -> Nat (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -55,7 +55,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (A : LRA.Logic.ArityIndexedSymbols) (symbol : A.1), A.2 symbol = instOfNatNat 0.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    A.2 symbol = 0
 
 Logical form (Lean):
 
@@ -95,7 +100,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (A : LRA.Logic.ArityIndexedSymbols) (symbol : A.1), A.2 symbol = instOfNatNat 1.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    A.2 symbol = 1
 
 Logical form (Lean):
 
@@ -135,7 +145,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (A : LRA.Logic.ArityIndexedSymbols) (symbol : A.1), A.2 symbol = instOfNatNat 2.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    A.2 symbol = 2
 
 Logical form (Lean):
 

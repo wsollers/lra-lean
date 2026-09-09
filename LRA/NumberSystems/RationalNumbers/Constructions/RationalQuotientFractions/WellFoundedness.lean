@@ -8,11 +8,17 @@ namespace LRA.NumberSystems.RationalNumbers.RationalQuotientFractions
 
 Predicate logic:
 
-  (∀ rational_data ∈ IntegerAndPositiveNaturalData), (Carrier rational_data → Prop ∧ ∀ representative : Representative rational_data, motive (Quotient.mk _ representative)) → ∀ value : Carrier rational_data, motive value
+  ∀ (rational_data : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData) (motive : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Carrier rational_data → Prop), (∀ (representative : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Representative rational_data), motive (Quotient.mk (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data) representative)) → ∀ (value : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Carrier rational_data), motive value
 
 Predicate logic (unfolded):
 
-  ∀ (rational_data : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData) (motive : Quot (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data).1 → Prop), (∀ (representative : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Representative rational_data), motive (Quot.mk (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data).1 representative)) → ∀ (value : Quot (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data).1), motive value
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_data : IntegerAndPositiveNaturalData
+    motive : Carrier rational_data → Prop
+  Prove
+    (∀ (representative : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Representative rational_data), motive (Quot.mk (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data).1 representative)) → ∀ (value : Quot (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data).1), motive value
 
 Logical form (Lean):
 

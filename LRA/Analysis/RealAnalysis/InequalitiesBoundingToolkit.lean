@@ -8,11 +8,16 @@ namespace LRA.Analysis.RealAnalysis
 
 Predicate logic:
 
-  (a ≤ b ∧ c ≤ d → a + c ≤ b + d) ∧ (a ≤ b ∧ c > 0 → a * c ≤ b * c) ∧ (a ≤ b ∧ c < 0 → a * c ≥ b * c) ∧ (y ≥ 0 → (|a| ≤ y ↔ -y ≤ a ∧ a ≤ y))
+  ∀ (a b c d y : Real), ((Real.instLE.le a b ∧ Real.instLE.le c d) → Real.instLE.le (instHAdd.hAdd a c) (instHAdd.hAdd b d) ∧ ((Real.instLE.le a b ∧ GT.gt c 0) → Real.instLE.le (instHMul.hMul a c) (instHMul.hMul b c) ∧ ((Real.instLE.le a b ∧ Real.instLT.lt c 0) → GE.ge (instHMul.hMul a c) (instHMul.hMul b c) ∧ (GE.ge y 0 → Real.instLE.le (abs a) y ↔ (Real.instLE.le (Real.instNeg.neg y) a ∧ Real.instLE.le a y)))))
 
 Predicate logic (unfolded):
 
-  ∀ (a b c d y : Real), ((Real.instLE.1 a b ∧ Real.instLE.1 c d) → Real.instLE.1 (instHAdd.1 a c) (instHAdd.1 b d) ∧ ((Real.instLE.1 a b ∧ Real.instLT.1 Zero.toOfNat0.1 c) → Real.instLE.1 (instHMul.1 a c) (instHMul.1 b c) ∧ ((Real.instLE.1 a b ∧ Real.instLT.1 c Zero.toOfNat0.1) → Real.instLE.1 (instHMul.1 b c) (instHMul.1 a c) ∧ Real.instLE.1 Zero.toOfNat0.1 y → Real.instLE.1 (SemilatticeSup.toMax.1 a (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 a)) y ↔ (Real.instLE.1 (Real.instNeg.1 y) a ∧ Real.instLE.1 a y))))
+  Ambient
+    (ℝ)
+  Objects
+    a b c d y : ℝ
+  Prove
+    ((Real.instLE.le a b ∧ Real.instLE.le c d) → Real.instLE.le (instHAdd.hAdd a c) (instHAdd.hAdd b d) ∧ ((Real.instLE.le a b ∧ GT.gt c 0) → Real.instLE.le (instHMul.hMul a c) (instHMul.hMul b c) ∧ ((Real.instLE.le a b ∧ Real.instLT.lt c 0) → GE.ge (instHMul.hMul a c) (instHMul.hMul b c) ∧ (GE.ge y 0 → Real.instLE.le (abs a) y ↔ (Real.instLE.le (Real.instNeg.neg y) a ∧ Real.instLE.le a y)))))
 
 Logical form (Lean):
 

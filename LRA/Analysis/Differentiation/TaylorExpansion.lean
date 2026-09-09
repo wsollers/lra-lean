@@ -14,12 +14,12 @@ namespace LRA.Analysis.Differentiation
 Predicate logic:
 
   noncomputable def TaylorPoly (fD : ℕ → ℝ → ℝ) (n : ℕ) (a : ℝ) : ℝ → ℝ :=
-  fun x => ∑ k ∈ Finset.range (n + 1), fD k a / (Nat.factorial k) * (x - a) ^ k
+    fun x => ∑ k ∈ Finset.range (n + 1), fD k a / (Nat.factorial k) * (x - a) ^ k
 
 Predicate logic (unfolded):
 
   noncomputable def TaylorPoly (fD : ℕ → ℝ → ℝ) (n : ℕ) (a : ℝ) : ℝ → ℝ :=
-  fun x => ∑ k ∈ Finset.range (n + 1), fD k a / (Nat.factorial k) * (x - a) ^ k (source fallback; no compiled unfold data available)
+    fun x => ∑ k ∈ Finset.range (n + 1), fD k a / (Nat.factorial k) * (x - a) ^ k (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -56,12 +56,12 @@ noncomputable def TaylorPoly (fD : ℕ → ℝ → ℝ) (n : ℕ) (a : ℝ) : �
 Predicate logic:
 
   noncomputable def TaylorRemainder (f : ℝ → ℝ) (fD : ℕ → ℝ → ℝ) (n : ℕ) (a : ℝ) : ℝ → ℝ :=
-  fun x => f x - TaylorPoly fD n a x
+    fun x => f x - TaylorPoly fD n a x
 
 Predicate logic (unfolded):
 
   noncomputable def TaylorRemainder (f : ℝ → ℝ) (fD : ℕ → ℝ → ℝ) (n : ℕ) (a : ℝ) : ℝ → ℝ :=
-  fun x => f x - TaylorPoly fD n a x (source fallback; no compiled unfold data available)
+    fun x => f x - TaylorPoly fD n a x (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -98,12 +98,12 @@ noncomputable def TaylorRemainder (f : ℝ → ℝ) (fD : ℕ → ℝ → ℝ) (
 Predicate logic:
 
   noncomputable def MaclaurinPoly (fD : ℕ → ℝ → ℝ) (n : ℕ) : ℝ → ℝ :=
-  TaylorPoly fD n 0
+    TaylorPoly fD n 0
 
 Predicate logic (unfolded):
 
   noncomputable def MaclaurinPoly (fD : ℕ → ℝ → ℝ) (n : ℕ) : ℝ → ℝ :=
-  TaylorPoly fD n 0 (source fallback; no compiled unfold data available)
+    TaylorPoly fD n 0 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -139,11 +139,19 @@ noncomputable def MaclaurinPoly (fD : ℕ → ℝ → ℝ) (n : ℕ) : ℝ → �
 
 Predicate logic:
 
-  (ℝ → ℝ ∧ ℕ → ℝ → ℝ ∧ a < b ∧ ∀ k ≤ n, LRA.Analysis.Continuity.ContinuousOn' (fD k) (Set.Icc a b) ∧ ∀ x ∈ Set.Ioo a b, HigherDerivativeAt f fD (Set.Ioo a b) (n + 1) x) → ∀ x ∈ Set.Ioo a b, ∃ c, (a < c ∧ c < x) ∧ ∃ Dnp1, Derivative Dnp1 (fD n) (Set.Ioo a b) c ∧ f x = TaylorPoly fD n a x + Dnp1 / (Nat.factorial (n + 1)) * (x - a) ^ (n + 1)
+  ∀ (f : Real → Real) (fD : Nat → Real → Real) (a b : Real), Real.instLT.lt a b → ∀ (n : Nat), ((∀ (k : Nat), instLENat.le k n → LRA.Analysis.Continuity.ContinuousOn' (fD k) (Set.Icc a b)) ∧ (∀ (x : Real), x ∈ Set.Ioo a b → LRA.Analysis.Differentiation.HigherDerivativeAt f fD (Set.Ioo a b) (instHAdd.hAdd n 1) x)) → ∀ (x : Real), x ∈ Set.Ioo a b → Exists fun c => ((Real.instLT.lt a c ∧ Real.instLT.lt c x) ∧ (Exists fun Dnp1 => (LRA.Analysis.Differentiation.Derivative Dnp1 (fD n) (Set.Ioo a b) c ∧ f x = instHAdd.hAdd (LRA.Analysis.Differentiation.TaylorPoly fD n a x) (instHMul.hMul (instHDiv.hDiv Dnp1 (instHAdd.hAdd n 1).factorial.cast) (instHPow.hPow (instHSub.hSub x a) (instHAdd.hAdd n 1))))))
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (fD : Nat → Real → Real) (a b : Real), Real.instLT.1 a b → ∀ (n : Nat), (∀ (k : Nat), instLENat.1 k n → ∀ (x : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) x → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (x_1 : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) x_1 → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 x_1 x) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub x_1 x))) δ → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (fD k x_1) (fD k x)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (fD k x_1) (fD k x)))) ε) ∧ ∀ (x : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLT.1 a x ∧ Real.instPreorder.toLT.1 x b)) x → (fD (instOfNatNat 0).1 = f ∧ ∀ (k : Nat), instLTNat.1 k (instHAdd.1 n (instOfNatNat 1).1) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (h : Real), Set.instMembership.1 (fun x => (Real.instPreorder.lt a x ∧ Real.instPreorder.lt x b)) (instHAdd.1 x h) → Real.instLT.1 Zero.toOfNat0.1 (SemilatticeSup.toMax.1 h (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg h)) → Real.instLT.1 (SemilatticeSup.toMax.1 h (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg h)) δ → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.hSub (instHDiv.hDiv (instHSub.hSub (fD k (instHAdd.hAdd x h)) (fD k x)) h) (fD (instHAdd.hAdd k 1) x)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg (instHSub.hSub (instHDiv.hDiv (instHSub.hSub (fD k (instHAdd.hAdd x h)) (fD k x)) h) (fD (instHAdd.hAdd k 1) x)))) ε))) → ∀ (x : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLT.1 a x ∧ Real.instPreorder.toLT.1 x b)) x → Exists fun c => ((Real.instLT.1 a c ∧ Real.instLT.1 c x) ∧ Exists fun Dnp1 => (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (h : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLT.1 a x ∧ Real.instPreorder.toLT.1 x b)) (instHAdd.1 c h) → Real.instLT.1 Zero.toOfNat0.1 (SemilatticeSup.toMax.1 h (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 h)) → Real.instLT.1 (SemilatticeSup.toMax.1 h (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 h)) δ → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (instHDiv.1 (instHSub.hSub (fD n (instHAdd.hAdd c h)) (fD n c)) h) Dnp1) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (instHDiv.hDiv (instHSub.hSub (fD n (instHAdd.hAdd c h)) (fD n c)) h) Dnp1))) ε) ∧ f x = instHAdd.1 (Quot.lift (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯ (Multiset.map (fun k => instHMul.hMul (instHDiv.hDiv (fD k a) k.factorial.cast) (instHPow.hPow (instHSub.hSub x a) k)) (Finset.range (instHAdd.hAdd n 1)).val)) (instHMul.1 (instHDiv.1 Dnp1 (Real.instNatCast.1 (instHAdd.1 n 1).factorial)) (instHPow.1 (instHSub.1 x a) (instHAdd.1 n (instOfNatNat 1).1)))))
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    fD : ℕ → ℝ → ℝ
+    a b : ℝ
+    n : ℕ
+  Prove
+    Real.instLT.lt a b → ∀ (n : Nat), ((∀ (k : Nat), instLENat.le k n → ∀ (x : Real), x ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun δ => (Real.instLT.lt 0 δ ∧ (∀ (x_1 : Real), x_1 ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b) → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x_1 x)) δ → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (fD k x_1) (fD k x))) ε))) ∧ (∀ (x : Real), x ∈ fun x => (Real.instPreorder.2.lt a x ∧ Real.instPreorder.2.lt x b) → (fD 0 = f ∧ (∀ (k : Nat), instLTNat.lt k ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun δ => (Real.instLT.lt 0 δ ∧ (∀ (h : Real), { hAdd := fun a b => Real.instAdd.add a b }.hAdd x h ∈ fun x => (Real.instPreorder.lt a x ∧ Real.instPreorder.lt x b) → Real.instLT.lt 0 (abs h) → Real.instLT.lt (abs h) δ → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv ({ hSub := fun a b => Real.instSub.sub a b }.hSub (fD k ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd x h)) (fD k x)) h) (fD ({ hAdd := fun a b => instAddNat.add a b }.hAdd k 1) x))) ε)))))) → ∀ (x : Real), x ∈ fun x => (Real.instPreorder.2.lt a x ∧ Real.instPreorder.2.lt x b) → Exists fun c => ((Real.instLT.lt a c ∧ Real.instLT.lt c x) ∧ (Exists fun Dnp1 => ((∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun δ => (Real.instLT.lt 0 δ ∧ (∀ (h : Real), { hAdd := fun a b => Real.instAdd.add a b }.hAdd c h ∈ fun x => (Real.instPreorder.2.lt a x ∧ Real.instPreorder.2.lt x b) → Real.instLT.lt 0 (abs h) → Real.instLT.lt (abs h) δ → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv ({ hSub := fun a b => Real.instSub.sub a b }.hSub (fD n ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd c h)) (fD n c)) h) Dnp1)) ε))) ∧ f x = { hAdd := fun a b => Real.instAdd.add a b }.hAdd (Quot.lift (fun l => List.foldr (fun x1 x2 => { hAdd := fun a b => Real.instAddCommMonoid.toAddZeroClass.add a b }.hAdd x1 x2) 0 l) ⋯ (Quot.liftOn (Finset.range (instHAdd.hAdd n 1)).val (fun l => Multiset.ofList (List.map (fun k => instHMul.hMul (instHDiv.hDiv (fD k a) k.factorial.cast) (instHPow.hPow (instHSub.hSub x a) k)) l)) ⋯)) ({ hMul := fun a b => Real.instMul.mul a b }.hMul ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv Dnp1 (Real.instNatCast.1 ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1).factorial)) (instHPow.1 ({ hSub := fun a b => Real.instSub.sub a b }.hSub x a) ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1))))))
 
 Logical form (Lean):
 
@@ -189,11 +197,22 @@ theorem TaylorTheoremLagrangeRemainder (f : ℝ → ℝ) (fD : ℕ → ℝ → �
 
 Predicate logic:
 
-  (ℝ → ℝ ∧ ℕ → ℝ → ℝ ∧ a ∈ interior I) → Filter.Tendsto (fun x => (f x - TaylorPoly fD n a x) / (x - a) ^ n) (nhdsWithin a (I \ {a})) (nhds 0)
+  ∀ (f : Real → Real) (fD : Nat → Real → Real) (I : Set Real) (a : Real) (n : Nat), (a ∈ interior I ∧ (LRA.Analysis.Differentiation.HigherDerivativeAt f fD I n a ∧ LRA.Analysis.Continuity.ContinuousAtPoint (fD n) I a)) → Filter.Tendsto (fun x => instHDiv.hDiv (instHSub.hSub (f x) (LRA.Analysis.Differentiation.TaylorPoly fD n a x)) (instHPow.hPow (instHSub.hSub x a) n)) (nhdsWithin a (I \ Set.instSingletonSet.singleton a)) (nhds 0)
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (fD : Nat → Real → Real) (I : Real → Prop) (a : Real) (n : Nat), (Set.instMembership.1 (Set.instSupSet.1 fun t => (Real.pseudoMetricSpace.toUniformSpace.IsOpen t ∧ Set.instLE.1 t I)) a ∧ ((fD (instOfNatNat 0).1 = f ∧ ∀ (k : Nat), instLTNat.1 k n → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (h : Real), Set.instMembership.1 I (instHAdd.1 a h) → Real.instLT.1 Zero.toOfNat0.1 (SemilatticeSup.toMax.1 h (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg h)) → Real.instLT.1 (SemilatticeSup.toMax.1 h (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg h)) δ → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.hSub (instHDiv.hDiv (instHSub.hSub (fD k (instHAdd.hAdd a h)) (fD k a)) h) (fD (instHAdd.hAdd k 1) a)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg (instHSub.hSub (instHDiv.hDiv (instHSub.hSub (fD k (instHAdd.hAdd a h)) (fD k a)) h) (fD (instHAdd.hAdd k 1) a)))) ε)) ∧ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (x : Real), Set.instMembership.1 I x → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 x a) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 x a))) δ → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (fD n x) (fD n a)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (fD n x) (fD n a)))) ε))) → Filter.instPartialOrder.toLE.1 { sets := fun x => Set.instMembership.1 (nhdsWithin a (Set.instSDiff.sdiff I (Set.instSingletonSet.singleton a))).sets (Set.preimage (fun x => instHDiv.hDiv (instHSub.hSub (f x) (LRA.Analysis.Differentiation.TaylorPoly fD n a x)) (instHPow.hPow (instHSub.hSub x a) n)) x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds Zero.toOfNat0.1)
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    fD : ℕ → ℝ → ℝ
+    I : Set ℝ
+    a : ℝ
+    n : ℕ
+    hD : HigherDerivativeAt f fD I n a
+    hcont : LRA.Analysis.Continuity.ContinuousAtPoint (fD n) I a
+  Prove
+    ((a ∈ Set.instSupSet.1 fun t => (Real.pseudoMetricSpace.toUniformSpace.IsOpen t ∧ { le := Set.Subset }.le t I)) ∧ ((fD 0 = f ∧ (∀ (k : Nat), instLTNat.lt k n → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun δ => (Real.instLT.lt 0 δ ∧ (∀ (h : Real), { hAdd := fun a b => Real.instAdd.add a b }.hAdd a h ∈ I → Real.instLT.lt 0 (abs h) → Real.instLT.lt (abs h) δ → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv ({ hSub := fun a b => Real.instSub.sub a b }.hSub (fD k ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd a h)) (fD k a)) h) (fD ({ hAdd := fun a b => instAddNat.add a b }.hAdd k 1) a))) ε)))) ∧ (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun δ => (Real.instLT.lt 0 δ ∧ (∀ (x : Real), x ∈ I → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x a)) δ → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (fD n x) (fD n a))) ε))))) → Filter.instPartialOrder.toPreorder.1.le { sets := fun x => .1 ∈ nhdsWithin a (I \ Set.instSingletonSet.singleton a) (setOf fun x_1 => (fun x => instHDiv.hDiv (instHSub.hSub (f x) (LRA.Analysis.Differentiation.TaylorPoly fD n a x)) (instHPow.hPow (instHSub.hSub x a) n)) x_1 ∈ x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds 0)
 
 Logical form (Lean):
 
@@ -235,11 +254,19 @@ theorem TaylorExpansionPeanoRemainder (f : ℝ → ℝ) (fD : ℕ → ℝ → �
 
 Predicate logic:
 
-  (ℝ → ℝ) → Filter.Tendsto (fun h => (f (c + h) - f c - D * h) / h) nhdsWithin 0 {h ∈ ℝ | c + h ∈ A ∧ h ≠ 0} (nhds 0)
+  ∀ (f : Real → Real) (A : Set Real) (c D : Real), LRA.Analysis.Differentiation.Derivative D f A c → Filter.Tendsto (fun h => instHDiv.hDiv (instHSub.hSub (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) (instHMul.hMul D h)) h) (nhdsWithin 0 (setOf fun h => (instHAdd.hAdd c h ∈ A ∧ Ne h 0))) (nhds 0)
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (A : Real → Prop) (c D : Real), (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (h : Real), Set.instMembership.1 A (instHAdd.1 c h) → Real.instLT.1 Zero.toOfNat0.1 (SemilatticeSup.toMax.1 h (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 h)) → Real.instLT.1 (SemilatticeSup.toMax.1 h (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 h)) δ → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (instHDiv.1 (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) h) D) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (instHDiv.hDiv (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) h) D))) ε)) → Filter.instPartialOrder.toLE.1 { sets := fun x => Set.instMembership.1 (nhdsWithin 0 (setOf fun h => (Set.instMembership.mem A (instHAdd.hAdd c h) ∧ Ne h 0))).sets (Set.preimage (fun h => instHDiv.hDiv (instHSub.hSub (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) (instHMul.hMul D h)) h) x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds Zero.toOfNat0.1)
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    A : Set ℝ
+    c D : ℝ
+    hf : Derivative D f A c
+  Prove
+    (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun δ => (Real.instLT.lt 0 δ ∧ (∀ (h : Real), { hAdd := fun a b => Real.instAdd.add a b }.hAdd c h ∈ A → Real.instLT.lt 0 (abs h) → Real.instLT.lt (abs h) δ → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd c h)) (f c)) h) D)) ε))) → Filter.instPartialOrder.toPreorder.1.le { sets := fun x => .1 ∈ nhdsWithin 0 (setOf fun h => (instHAdd.hAdd c h ∈ A ∧ Ne h 0)) (setOf fun x_1 => (fun h => instHDiv.hDiv (instHSub.hSub (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) (instHMul.hMul D h)) h) x_1 ∈ x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds 0)
 
 Logical form (Lean):
 
@@ -317,11 +344,16 @@ noncomputable def FlatFunction : ℝ → ℝ := fun x => if x = 0 then 0 else Re
 
 Predicate logic:
 
-  (ℕ → ℝ → ℝ ∧ fD 0 = FlatFunction) → IsClassCInfty FlatFunction fD Set.univ ∧ ∀ n ∈ ℕ, fD n 0 = 0 ∧ ¬ IsClassCOmega FlatFunction fD Set.univ
+  ∀ (fD : Nat → Real → Real), fD 0 = LRA.Analysis.Differentiation.FlatFunction → (LRA.Analysis.Differentiation.IsClassCInfty LRA.Analysis.Differentiation.FlatFunction fD Set.univ ∧ ((∀ (n : Nat), fD n 0 = 0) ∧ ¬ LRA.Analysis.Differentiation.IsClassCOmega LRA.Analysis.Differentiation.FlatFunction fD Set.univ))
 
 Predicate logic (unfolded):
 
-  ∀ (fD : Nat → Real → Real), fD (instOfNatNat 0).1 = LRA.Analysis.Differentiation.FlatFunction → (∀ (k : Nat), (∀ (x : Real), Set.instMembership.1 (fun _a => True) x → (fD (instOfNatNat 0).1 = LRA.Analysis.Differentiation.FlatFunction ∧ ∀ (k_1 : Nat), instLTNat.1 k_1 k → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun δ => (Real.instLT.lt 0 δ ∧ ∀ (h : Real), Set.instMembership.1 Set.univ (instHAdd.hAdd x h) → Real.instLT.1 0 (abs h) → Real.instLT.1 (abs h) δ → Real.instLT.1 (abs (instHSub.hSub (instHDiv.hDiv (instHSub.hSub (fD k_1 (instHAdd.hAdd x h)) (fD k_1 x)) h) (fD (instHAdd.hAdd k_1 1) x))) ε)) ∧ ∀ (x : Real), Set.instMembership.1 (fun _a => True) x → ∀ (ε : Real), Real.instLT.1 0 ε → Exists fun δ => (Real.instLT.1 0 δ ∧ ∀ (x_1 : Real), Set.instMembership.1 (setOf fun _a => True) x_1 → Real.instLT.1 (SemilatticeSup.toMax.max (instHSub.hSub x_1 x) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg (instHSub.hSub x_1 x))) δ → Real.instLT.1 (SemilatticeSup.toMax.max (instHSub.hSub (fD k x_1) (fD k x)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg (instHSub.hSub (fD k x_1) (fD k x)))) ε)) ∧ (∀ (n : Nat), fD n Zero.toOfNat0.1 = Zero.toOfNat0.1 ∧ (∀ (a : Real), Set.instMembership.1 (fun _a => True) a → Exists fun r => (Real.instLT.1 Zero.toOfNat0.1 r ∧ ∀ (x : Real), Set.instMembership.1 (Set.instInter.1 (fun x => (Real.instPreorder.lt (instHSub.hSub a r) x ∧ Real.instPreorder.lt x (instHAdd.hAdd a r))) fun _a => True) x → Filter.instPartialOrder.toLE.1 { sets := setOf fun x_1 => Set.instMembership.mem Filter.atTop.sets (Set.preimage (fun n => (Finset.range (instHAdd.hAdd n 1)).sum fun k => instHMul.hMul (instHDiv.hDiv (fD k a) k.factorial.cast) (instHPow.hPow (instHSub.hSub x a) k)) x_1), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds (Decidable.casesOn (x.decidable0) = fun x_1 => Real.exp (instHDiv.hDiv (-1) (instHPow.hPow x 2)) fun x => 0)))) → False))
+  Ambient
+    (ℕ, ℝ)
+  Objects
+    fD : ℕ → ℝ → ℝ
+  Prove
+    fD 0 = LRA.Analysis.Differentiation.FlatFunction → ((∀ (k : Nat), ((∀ (x : Real), x ∈ fun _a => True → (fD 0 = LRA.Analysis.Differentiation.FlatFunction ∧ (∀ (k_1 : Nat), instLTNat.lt k_1 k → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun δ => (Real.instLT.lt 0 δ ∧ (∀ (h : Real), instHAdd.hAdd x h ∈ Set.univ → Real.instLT.lt 0 (abs h) → Real.instLT.lt (abs h) δ → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ({ hDiv := fun a b => Real.instDivInvMonoid.div a b }.hDiv ({ hSub := fun a b => Real.instSub.sub a b }.hSub (fD k_1 ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd x h)) (fD k_1 x)) h) (fD ({ hAdd := fun a b => instAddNat.add a b }.hAdd k_1 1) x))) ε))))) ∧ (∀ (x : Real), x ∈ fun _a => True → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun δ => (Real.instLT.lt 0 δ ∧ (∀ (x_1 : Real), x_1 ∈ setOf fun _a => True → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x_1 x)) δ → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (fD k x_1) (fD k x))) ε))))) ∧ ((∀ (n : Nat), fD n 0 = 0) ∧ ((∀ (a : Real), a ∈ fun _a => True → Exists fun r => (Real.instLT.lt 0 r ∧ (∀ (x : Real), x ∈ fun x => (Real.instPreorder.lt (instHSub.hSub a r) x ∧ Real.instPreorder.lt x (instHAdd.hAdd a r)) ∩ fun_a => True → Filter.instPartialOrder.toPreorder.1.le { sets := fun x_1 => Set.preimage (fun n => (Finset.range (instHAdd.hAdd n 1)).sum fun k => instHMul.hMul (instHDiv.hDiv (fD k a) k.factorial.cast) (instHPow.hPow (instHSub.hSub x a) k)) x_1 ∈ Filter.atTop.sets, univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds (Decidable.rec (fun h => (fun x_1 => Real.exp (instHDiv.hDiv (-1) (instHPow.hPow x 2))) h) (fun h => (fun x => 0) h) (x.decidable0)))))) = → False)))
 
 Logical form (Lean):
 
@@ -365,7 +397,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (c : Real), Exists fun L => Filter.instPartialOrder.toLE.1 { sets := fun x => Set.instMembership.1 (nhdsWithin 0 (Set.instCompl.compl (Set.instSingletonSet.singleton 0))).sets (Set.preimage (fun h => instHDiv.hDiv (instHSub.hSub (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) (LinearMap.instFunLike.coe L h)) h) x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds Zero.toOfNat0.1)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun L => Filter.instPartialOrder.toPreorder.1.le { sets := fun x => .1 ∈ nhdsWithin 0 (Set.instCompl.compl (Set.instSingletonSet.singleton 0)) (setOf fun x_1 => (fun h => instHDiv.hDiv (instHSub.hSub (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) (LinearMap.instFunLike.coe L h)) h) x_1 ∈ x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds 0)
 
 Logical form (Lean):
 
@@ -403,11 +440,18 @@ def DifferentiableByDifferential (f : ℝ → ℝ) (c : ℝ) : Prop :=
 
 Predicate logic:
 
-  (ℝ → ℝ ∧ c ∈ interior A) → IsDifferentiable f A c ↔ DifferentiableByDifferential f c
+  ∀ (f : Real → Real) (A : Set Real) (c : Real), c ∈ interior A → LRA.Analysis.Differentiation.IsDifferentiable f A c ↔ LRA.Analysis.Differentiation.DifferentiableByDifferential f c
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (A : Real → Prop) (c : Real), Set.instMembership.1 (Set.instSupSet.1 fun t => (Real.pseudoMetricSpace.toUniformSpace.IsOpen t ∧ Set.instLE.1 t A)) c → Exists fun D => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (h : Real), Set.instMembership.1 A (instHAdd.1 c h) → Real.instLT.1 Zero.toOfNat0.1 (SemilatticeSup.toMax.1 h (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 h)) → Real.instLT.1 (SemilatticeSup.toMax.1 h (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 h)) δ → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (instHDiv.hDiv (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) h) D) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (instHDiv.hDiv (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) h) D))) ε) ↔ Exists fun L => Filter.instPartialOrder.toLE.1 { sets := fun x => Set.instMembership.mem (nhdsWithin 0 (Set.instCompl.compl (Set.instSingletonSet.singleton 0))).sets (Set.preimage (fun h => instHDiv.hDiv (instHSub.hSub (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) (LinearMap.instFunLike.coe L h)) h) x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds Zero.toOfNat0.1)
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    A : Set ℝ
+    c : ℝ
+  Prove
+    c ∈ interior A → LRA.Analysis.Differentiation.IsDifferentiable f A c ↔ LRA.Analysis.Differentiation.DifferentiableByDifferential f c
 
 Logical form (Lean):
 
@@ -445,11 +489,19 @@ theorem DifferentialAndDerivativeAgree (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ)
 
 Predicate logic:
 
-  (ℝ → ℝ) → L₁ = L₂
+  ∀ (f : Real → Real) (c : Real) (L₁ L₂ : LinearMap (RingHom.id Real) Real Real), (Filter.Tendsto (fun h => instHDiv.hDiv (instHSub.hSub (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) (LinearMap.instFunLike.coe L₁ h)) h) (nhdsWithin 0 (Set.instCompl.compl (Set.instSingletonSet.singleton 0))) (nhds 0) ∧ Filter.Tendsto (fun h => instHDiv.hDiv (instHSub.hSub (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) (LinearMap.instFunLike.coe L₂ h)) h) (nhdsWithin 0 (Set.instCompl.compl (Set.instSingletonSet.singleton 0))) (nhds 0)) → L₁ = L₂
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (c : Real) (L₁ L₂ : LinearMap { toFun := fun x => x, map_one' := ⋯, map_mul' := ⋯, map_zero' := ⋯, map_add' := ⋯ } Real Real), (Filter.instPartialOrder.toLE.1 { sets := fun x => Set.instMembership.1 (nhdsWithin 0 (Set.instCompl.compl (Set.instSingletonSet.singleton 0))).sets (Set.preimage (fun h => instHDiv.hDiv (instHSub.hSub (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) (LinearMap.instFunLike.coe L₁ h)) h) x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds Zero.toOfNat0.1) ∧ Filter.instPartialOrder.toLE.1 { sets := fun x => Set.instMembership.1 (nhdsWithin 0 (Set.instCompl.compl (Set.instSingletonSet.singleton 0))).sets (Set.preimage (fun h => instHDiv.hDiv (instHSub.hSub (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) (LinearMap.instFunLike.coe L₂ h)) h) x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds Zero.toOfNat0.1)) → L₁ = L₂
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    c : ℝ
+    h₁ : Filter.Tendsto (fun h => (f (c + h) - f c - L₁ h) / h) (nhdsWithin 0 {0}ᶜ) (nhds 0)
+    h₂ : Filter.Tendsto (fun h => (f (c + h) - f c - L₂ h) / h) (nhdsWithin 0 {0}ᶜ) (nhds 0)
+  Prove
+    (Filter.instPartialOrder.toPreorder.1.le { sets := fun x => .1 ∈ nhdsWithin 0 (Set.instCompl.compl (Set.instSingletonSet.singleton 0)) (setOf fun x_1 => (fun h => instHDiv.hDiv (instHSub.hSub (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) (LinearMap.instFunLike.coe L₁ h)) h) x_1 ∈ x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds 0) ∧ Filter.instPartialOrder.toPreorder.1.le { sets := fun x => .1 ∈ nhdsWithin 0 (Set.instCompl.compl (Set.instSingletonSet.singleton 0)) (setOf fun x_1 => (fun h => instHDiv.hDiv (instHSub.hSub (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) (LinearMap.instFunLike.coe L₂ h)) h) x_1 ∈ x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds 0)) → L₁ = L₂
 
 Logical form (Lean):
 
@@ -489,11 +541,19 @@ theorem UniquenessOfTheDifferential (f : ℝ → ℝ) (c : ℝ) (L₁ L₂ : ℝ
 
 Predicate logic:
 
-  (ℝ → ℝ) → LRA.Analysis.Continuity.ContinuousAtPoint f A c
+  ∀ (f : Real → Real) (A : Set Real) (c : Real), LRA.Analysis.Differentiation.DifferentiableByDifferential f c → LRA.Analysis.Continuity.ContinuousAtPoint f A c
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (A : Real → Prop) (c : Real), (Exists fun L => Filter.instPartialOrder.toLE.1 { sets := fun x => Set.instMembership.mem (nhdsWithin 0 (Set.instCompl.compl (Set.instSingletonSet.singleton 0))).sets (Set.preimage (fun h => instHDiv.hDiv (instHSub.hSub (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) (LinearMap.instFunLike.coe L h)) h) x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds Zero.toOfNat0.1)) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (x : Real), Set.instMembership.1 A x → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 x c) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 x c))) δ → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (f x) (f c)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (f x) (f c)))) ε)
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    A : Set ℝ
+    c : ℝ
+    h : DifferentiableByDifferential f c
+  Prove
+    (Exists fun L => Filter.instPartialOrder.toPreorder.1.le { sets := fun x => .sets ∈ nhdsWithin 0 (Set.instCompl.compl (Set.instSingletonSet.singleton 0)) (Set.preimage (fun h => instHDiv.hDiv (instHSub.hSub (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) (LinearMap.instFunLike.coe L h)) h) x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds 0)) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun δ => (Real.instLT.lt 0 δ ∧ (∀ (x : Real), x ∈ A → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x c)) δ → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f x) (f c))) ε))
 
 Logical form (Lean):
 
@@ -531,11 +591,19 @@ theorem DifferentialContinuityCriterion (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ
 
 Predicate logic:
 
-  DifferentiableByDifferential (fun x => g (f x)) c
+  ∀ (f g : Real → Real) (c : Real), (LRA.Analysis.Differentiation.DifferentiableByDifferential f c ∧ LRA.Analysis.Differentiation.DifferentiableByDifferential g (f c)) → LRA.Analysis.Differentiation.DifferentiableByDifferential (fun x => g (f x)) c
 
 Predicate logic (unfolded):
 
-  ∀ (f g : Real → Real) (c : Real), (Exists fun L => Filter.instPartialOrder.toLE.1 { sets := fun x => Set.instMembership.mem (nhdsWithin 0 (Set.instCompl.compl (Set.instSingletonSet.singleton 0))).sets (Set.preimage (fun h => instHDiv.hDiv (instHSub.hSub (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) (LinearMap.instFunLike.coe L h)) h) x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds Zero.toOfNat0.1) ∧ Exists fun L => Filter.instPartialOrder.toLE.1 { sets := fun x => Set.instMembership.mem (nhdsWithin 0 (Set.instCompl.compl (Set.instSingletonSet.singleton 0))).sets (Set.preimage (fun h => instHDiv.hDiv (instHSub.hSub (instHSub.hSub (g (instHAdd.hAdd (f c) h)) (g (f c))) (LinearMap.instFunLike.coe L h)) h) x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds Zero.toOfNat0.1)) → Exists fun L => Filter.instPartialOrder.toLE.1 { sets := fun x => Set.instMembership.mem (nhdsWithin 0 (Set.instCompl.compl (Set.instSingletonSet.singleton 0))).sets (Set.preimage (fun h => instHDiv.hDiv (instHSub.hSub (instHSub.hSub ((fun x => g (f x)) (instHAdd.hAdd c h)) ((fun x => g (f x)) c)) (LinearMap.instFunLike.coe L h)) h) x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds Zero.toOfNat0.1)
+  Ambient
+    (ℝ)
+  Objects
+    f g : ℝ → ℝ
+    c : ℝ
+    hf : DifferentiableByDifferential f c
+    hg : DifferentiableByDifferential g (f c)
+  Prove
+    (Exists fun L => Filter.instPartialOrder.toPreorder.1.le { sets := fun x => .sets ∈ nhdsWithin 0 (Set.instCompl.compl (Set.instSingletonSet.singleton 0)) (Set.preimage (fun h => instHDiv.hDiv (instHSub.hSub (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) (LinearMap.instFunLike.coe L h)) h) x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds 0) ∧ Exists fun L => Filter.instPartialOrder.toPreorder.1.le { sets := fun x => .sets ∈ nhdsWithin 0 (Set.instCompl.compl (Set.instSingletonSet.singleton 0)) (Set.preimage (fun h => instHDiv.hDiv (instHSub.hSub (instHSub.hSub (g (instHAdd.hAdd (f c) h)) (g (f c))) (LinearMap.instFunLike.coe L h)) h) x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds 0)) → Exists fun L => Filter.instPartialOrder.toPreorder.1.le { sets := fun x => .sets ∈ nhdsWithin 0 (Set.instCompl.compl (Set.instSingletonSet.singleton 0)) (Set.preimage (fun h => instHDiv.hDiv (instHSub.hSub (instHSub.hSub ((fun x => g (f x)) (instHAdd.hAdd c h)) ((fun x => g (f x)) c)) (LinearMap.instFunLike.coe L h)) h) x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds 0)
 
 Logical form (Lean):
 
@@ -573,11 +641,19 @@ theorem ChainRuleForDifferentials (f g : ℝ → ℝ) (c : ℝ)
 
 Predicate logic:
 
-  DifferentiableByDifferential (fun x => α * f x + β * g x) c
+  ∀ (f g : Real → Real) (c α β : Real), (LRA.Analysis.Differentiation.DifferentiableByDifferential f c ∧ LRA.Analysis.Differentiation.DifferentiableByDifferential g c) → LRA.Analysis.Differentiation.DifferentiableByDifferential (fun x => instHAdd.hAdd (instHMul.hMul α (f x)) (instHMul.hMul β (g x))) c
 
 Predicate logic (unfolded):
 
-  ∀ (f g : Real → Real) (c α β : Real), (Exists fun L => Filter.instPartialOrder.toLE.1 { sets := fun x => Set.instMembership.mem (nhdsWithin 0 (Set.instCompl.compl (Set.instSingletonSet.singleton 0))).sets (Set.preimage (fun h => instHDiv.hDiv (instHSub.hSub (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) (LinearMap.instFunLike.coe L h)) h) x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds Zero.toOfNat0.1) ∧ Exists fun L => Filter.instPartialOrder.toLE.1 { sets := fun x => Set.instMembership.mem (nhdsWithin 0 (Set.instCompl.compl (Set.instSingletonSet.singleton 0))).sets (Set.preimage (fun h => instHDiv.hDiv (instHSub.hSub (instHSub.hSub (g (instHAdd.hAdd c h)) (g c)) (LinearMap.instFunLike.coe L h)) h) x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds Zero.toOfNat0.1)) → Exists fun L => Filter.instPartialOrder.toLE.1 { sets := fun x => Set.instMembership.mem (nhdsWithin 0 (Set.instCompl.compl (Set.instSingletonSet.singleton 0))).sets (Set.preimage (fun h => instHDiv.hDiv (instHSub.hSub (instHSub.hSub ((fun x => instHAdd.hAdd (instHMul.hMul α (f x)) (instHMul.hMul β (g x))) (instHAdd.hAdd c h)) ((fun x => instHAdd.hAdd (instHMul.hMul α (f x)) (instHMul.hMul β (g x))) c)) (LinearMap.instFunLike.coe L h)) h) x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds Zero.toOfNat0.1)
+  Ambient
+    (ℝ)
+  Objects
+    f g : ℝ → ℝ
+    c α β : ℝ
+    hf : DifferentiableByDifferential f c
+    hg : DifferentiableByDifferential g c
+  Prove
+    (Exists fun L => Filter.instPartialOrder.toPreorder.1.le { sets := fun x => .sets ∈ nhdsWithin 0 (Set.instCompl.compl (Set.instSingletonSet.singleton 0)) (Set.preimage (fun h => instHDiv.hDiv (instHSub.hSub (instHSub.hSub (f (instHAdd.hAdd c h)) (f c)) (LinearMap.instFunLike.coe L h)) h) x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds 0) ∧ Exists fun L => Filter.instPartialOrder.toPreorder.1.le { sets := fun x => .sets ∈ nhdsWithin 0 (Set.instCompl.compl (Set.instSingletonSet.singleton 0)) (Set.preimage (fun h => instHDiv.hDiv (instHSub.hSub (instHSub.hSub (g (instHAdd.hAdd c h)) (g c)) (LinearMap.instFunLike.coe L h)) h) x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds 0)) → Exists fun L => Filter.instPartialOrder.toPreorder.1.le { sets := fun x => .sets ∈ nhdsWithin 0 (Set.instCompl.compl (Set.instSingletonSet.singleton 0)) (Set.preimage (fun h => instHDiv.hDiv (instHSub.hSub (instHSub.hSub ((fun x => instHAdd.hAdd (instHMul.hMul α (f x)) (instHMul.hMul β (g x))) (instHAdd.hAdd c h)) ((fun x => instHAdd.hAdd (instHMul.hMul α (f x)) (instHMul.hMul β (g x))) c)) (LinearMap.instFunLike.coe L h)) h) x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds 0)
 
 Logical form (Lean):
 

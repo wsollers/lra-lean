@@ -13,17 +13,17 @@ open LRA.AlgebraicStructures.CommutativeRing.Interface.Signature
 Predicate logic:
 
   abbrev CommutativeRingSignature :=
-  LRA.AlgebraicStructures.CommutativeRingConceptSignature
+    LRA.AlgebraicStructures.CommutativeRingConceptSignature
 
 Predicate logic (unfolded):
 
   abbrev CommutativeRingSignature :=
-  LRA.AlgebraicStructures.CommutativeRingConceptSignature (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.CommutativeRingConceptSignature (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
-  abbrev CommutativeRingSignature :=
+abbrev CommutativeRingSignature :=
   LRA.AlgebraicStructures.CommutativeRingConceptSignature
 ```
 
@@ -55,16 +55,16 @@ abbrev CommutativeRingSignature :=
 Predicate logic:
 
   def BuildCommutativeRingModel
-    (signature : CommutativeRingSignature) :
-    LRA.ModelTheory.FirstOrder.Model CommutativeRingFirstOrderSignature :=
-  LRA.AlgebraicStructures.Ring.Interface.ModelTheory.BuildRingModel signature
+      (signature : CommutativeRingSignature) :
+      LRA.ModelTheory.FirstOrder.Model CommutativeRingFirstOrderSignature :=
+    LRA.AlgebraicStructures.Ring.Interface.ModelTheory.BuildRingModel signature
 
 Predicate logic (unfolded):
 
   def BuildCommutativeRingModel
-    (signature : CommutativeRingSignature) :
-    LRA.ModelTheory.FirstOrder.Model CommutativeRingFirstOrderSignature :=
-  LRA.AlgebraicStructures.Ring.Interface.ModelTheory.BuildRingModel signature (source fallback; no compiled unfold data available)
+      (signature : CommutativeRingSignature) :
+      LRA.ModelTheory.FirstOrder.Model CommutativeRingFirstOrderSignature :=
+    LRA.AlgebraicStructures.Ring.Interface.ModelTheory.BuildRingModel signature (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -105,16 +105,16 @@ def BuildCommutativeRingModel
 Predicate logic:
 
   def commutativeRingFirstOrderModel (R : Type u)
-    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] :
-    LRA.ModelTheory.FirstOrder.Model CommutativeRingFirstOrderSignature :=
-  LRA.AlgebraicStructures.Ring.Interface.ModelTheory.ringFirstOrderModel R
+      [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] :
+      LRA.ModelTheory.FirstOrder.Model CommutativeRingFirstOrderSignature :=
+    LRA.AlgebraicStructures.Ring.Interface.ModelTheory.ringFirstOrderModel R
 
 Predicate logic (unfolded):
 
   def commutativeRingFirstOrderModel (R : Type u)
-    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] :
-    LRA.ModelTheory.FirstOrder.Model CommutativeRingFirstOrderSignature :=
-  LRA.AlgebraicStructures.Ring.Interface.ModelTheory.ringFirstOrderModel R (source fallback; no compiled unfold data available)
+      [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] :
+      LRA.ModelTheory.FirstOrder.Model CommutativeRingFirstOrderSignature :=
+    LRA.AlgebraicStructures.Ring.Interface.ModelTheory.ringFirstOrderModel R (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

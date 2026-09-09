@@ -11,11 +11,17 @@ universe u
 
 Predicate logic:
 
-  LRA.Operation.Laws.Idempotent.Idempotent first ∧ LRA.Operation.Laws.Idempotent.Idempotent second
+  ∀ {Carrier : Type u} {first second : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Absorption.MutualAbsorptionLaw first second → (LRA.Operation.Laws.Idempotent.Idempotent first ∧ LRA.Operation.Laws.Idempotent.Idempotent second)
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {first second : Carrier → Carrier → Carrier}, (∀ (left right : Carrier), first left (second left right) = left ∧ ∀ (left right : Carrier), second left (first left right) = left) → (∀ (element : Carrier), first element element = element ∧ ∀ (element : Carrier), second element element = element)
+  Ambient
+    (Carrier)
+  Objects
+    first second : BinaryEndoOperation Carrier
+    law : MutualAbsorptionLaw first second
+  Prove
+    ((∀ (left right : Carrier), first left (second left right) = left) ∧ (∀ (left right : Carrier), second left (first left right) = left)) → ((∀ (element : Carrier), first element element = element) ∧ (∀ (element : Carrier), second element element = element))
 
 Logical form (Lean):
 

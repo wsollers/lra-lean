@@ -13,7 +13,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} {Y : Type v} [inst : MetricSpace X] [inst_1 : MetricSpace Y] (φ : X → Y) (a b : X), inst_1.toDist.1 (φ a) (φ b) = inst.toDist.1 a b
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    inst_1.toDist.1 (φ a) (φ b) = inst.toDist.1 a b
 
 Logical form (Lean):
 
@@ -65,7 +70,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} {Y : Type v} (φ : X → Y) (a b : X), φ a = φ b → a = b
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    φ a = φ b → a = b
 
 Logical form (Lean):
 
@@ -109,11 +119,16 @@ def IsInjectiveMap
 
 Predicate logic:
 
-  (IsMetricIsometry isometricMap) → IsInjectiveMap isometricMap
+  ∀ {X : Type u} {Y : Type v} [inst : MetricSpace X] [inst_1 : MetricSpace Y] {isometricMap : X → Y}, LRA.Analysis.MetricSpace.MetricIsometry.IsMetricIsometry isometricMap → LRA.Analysis.MetricSpace.MetricIsometry.IsInjectiveMap isometricMap
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} {Y : Type v} [inst : MetricSpace X] [inst_1 : MetricSpace Y] {isometricMap : X → Y}, (∀ (a b : X), inst_1.toDist.1 (isometricMap a) (isometricMap b) = inst.toDist.1 a b) → ∀ (a b : X), isometricMap a = isometricMap b → a = b
+  Ambient
+    (X, Y)
+  Objects
+    isometricMap : X → Y
+  Prove
+    (∀ (a b : X), inst_1.toDist.1 (isometricMap a) (isometricMap b) = inst.toDist.1 a b) → ∀ (a b : X), isometricMap a = isometricMap b → a = b
 
 Logical form (Lean):
 
@@ -161,11 +176,16 @@ theorem isMetricIsometry_injective
 
 Predicate logic:
 
-  IsMetricIsometry fun positivePoint ∈ Set.Ioi 0 ∈ Real => (⟨-positivePoint ∈ Real, by exact neg_lt_zero.mpr show 0 < positivePoint ∈ Real from positivePoint.property⟩ ∈ Set.Iio 0 ∈ Real)
+  LRA.Analysis.MetricSpace.MetricIsometry.IsMetricIsometry fun positivePoint => ⟨Real.instNeg.neg positivePoint.val, ⋯⟩
 
 Predicate logic (unfolded):
 
-  ∀ (a b : Subtype fun x => Set.instMembership.1 (fun x => Real.instPreorder.toLT.1 0 x) x), Subtype.metricSpace.toDist.1 ((fun positivePoint => ⟨Real.instNeg.1 positivePoint.1, ⋯⟩) a) ((fun positivePoint => ⟨Real.instNeg.1 positivePoint.1, ⋯⟩) b) = Subtype.metricSpace.toDist.1 a b
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ∈ fun x => Real.instPreorder.2.lt 0 x Subtype.metricSpace.toDist.1 ((fun positivePoint => ⟨Real.instNeg.neg positivePoint.1, ⋯⟩) a) ((fun positivePoint => ⟨Real.instNeg.neg positivePoint.1, ⋯⟩) b) = Subtype.metricSpace.toDist.1 a b
 
 Logical form (Lean):
 
@@ -213,7 +233,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (X : Type u) {Y : Type v} [inst : MetricSpace X] [inst_1 : MetricSpace Y] (Z : Y → Prop), Exists fun φ => (∀ (a b : X), inst_1.toDist.1 (φ a) (φ b) = inst.toDist.1 a b ∧ fun x => Exists fun y => φ y = x = Z)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun φ => ((∀ (a b : X), inst_1.toDist.1 (φ a) (φ b) = inst.toDist.1 a b) ∧ fun x => Exists fun y => φ y = x = Z)
 
 Logical form (Lean):
 

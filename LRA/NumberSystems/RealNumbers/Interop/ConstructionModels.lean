@@ -24,40 +24,40 @@ open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 Predicate logic:
 
   structure Cut (RationalCarrier : Type)
-    (strict_order : RationalCarrier → RationalCarrier → Prop) where
-  lower_set : RationalCarrier → Prop
-  nonempty : ∃ rational_value, lower_set rational_value
-  proper : ∃ rational_value, ¬ lower_set rational_value
-  downward_closed :
-    ∀ upper_value lower_value,
-      lower_set upper_value →
-      strict_order lower_value upper_value →
-      lower_set lower_value
-  has_no_greatest_element :
-    ∀ rational_value,
-      lower_set rational_value →
-      ∃ greater_value,
-        lower_set greater_value ∧
-        strict_order rational_value greater_value
+      (strict_order : RationalCarrier → RationalCarrier → Prop) where
+    lower_set : RationalCarrier → Prop
+    nonempty : ∃ rational_value, lower_set rational_value
+    proper : ∃ rational_value, ¬ lower_set rational_value
+    downward_closed :
+      ∀ upper_value lower_value,
+        lower_set upper_value →
+        strict_order lower_value upper_value →
+        lower_set lower_value
+    has_no_greatest_element :
+      ∀ rational_value,
+        lower_set rational_value →
+        ∃ greater_value,
+          lower_set greater_value ∧
+          strict_order rational_value greater_value
 
 Predicate logic (unfolded):
 
   structure Cut (RationalCarrier : Type)
-    (strict_order : RationalCarrier → RationalCarrier → Prop) where
-  lower_set : RationalCarrier → Prop
-  nonempty : ∃ rational_value, lower_set rational_value
-  proper : ∃ rational_value, ¬ lower_set rational_value
-  downward_closed :
-    ∀ upper_value lower_value,
-      lower_set upper_value →
-      strict_order lower_value upper_value →
-      lower_set lower_value
-  has_no_greatest_element :
-    ∀ rational_value,
-      lower_set rational_value →
-      ∃ greater_value,
-        lower_set greater_value ∧
-        strict_order rational_value greater_value (source fallback; no compiled unfold data available)
+      (strict_order : RationalCarrier → RationalCarrier → Prop) where
+    lower_set : RationalCarrier → Prop
+    nonempty : ∃ rational_value, lower_set rational_value
+    proper : ∃ rational_value, ¬ lower_set rational_value
+    downward_closed :
+      ∀ upper_value lower_value,
+        lower_set upper_value →
+        strict_order lower_value upper_value →
+        lower_set lower_value
+    has_no_greatest_element :
+      ∀ rational_value,
+        lower_set rational_value →
+        ∃ greater_value,
+          lower_set greater_value ∧
+          strict_order rational_value greater_value (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -121,11 +121,16 @@ structure Cut (RationalCarrier : Type)
 
 Predicate logic:
 
-  (∀ rational_model ∈ RationalModel), Nonempty RealModel
+  ∀ (a : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel
 
 Predicate logic (unfolded):
 
-  ∀ (a : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_model : RationalModel
+  Prove
+    Nonempty LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel
 
 Logical form (Lean):
 
@@ -162,14 +167,14 @@ theorem real_model_exists
 Predicate logic:
 
   noncomputable def real_model
-    (rational_model : RationalModel) : RealModel :=
-  Classical.choice (real_model_exists rational_model)
+      (rational_model : RationalModel) : RealModel :=
+    Classical.choice (real_model_exists rational_model)
 
 Predicate logic (unfolded):
 
   noncomputable def real_model
-    (rational_model : RationalModel) : RealModel :=
-  Classical.choice (real_model_exists rational_model) (source fallback; no compiled unfold data available)
+      (rational_model : RationalModel) : RealModel :=
+    Classical.choice (real_model_exists rational_model) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -207,11 +212,16 @@ noncomputable def real_model
 
 Predicate logic:
 
-  (∀ rational_model ∈ RationalModel), Nonempty (CofinalRealExtension rational_model)
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty (LRA.NumberSystems.RealNumbers.CofinalRealExtension rational_model)
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty (LRA.NumberSystems.Interface.ModelTheory.CofinalRealExtension rational_model)
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_model : RationalModel
+  Prove
+    Nonempty (LRA.NumberSystems.RealNumbers.CofinalRealExtension rational_model)
 
 Logical form (Lean):
 
@@ -250,16 +260,16 @@ theorem real_extension_exists
 Predicate logic:
 
   noncomputable def real_extension
-    (rational_model : RationalModel) :
-    CofinalRealExtension rational_model :=
-  Classical.choice (real_extension_exists rational_model)
+      (rational_model : RationalModel) :
+      CofinalRealExtension rational_model :=
+    Classical.choice (real_extension_exists rational_model)
 
 Predicate logic (unfolded):
 
   noncomputable def real_extension
-    (rational_model : RationalModel) :
-    CofinalRealExtension rational_model :=
-  Classical.choice (real_extension_exists rational_model) (source fallback; no compiled unfold data available)
+      (rational_model : RationalModel) :
+      CofinalRealExtension rational_model :=
+    Classical.choice (real_extension_exists rational_model) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -299,11 +309,16 @@ noncomputable def real_extension
 
 Predicate logic:
 
-  (∀ rational_model ∈ RationalModel), ∀ subset : (real_model rational_model).signature.carrier → Prop, (∃ member, subset member) → (∃ upper_bound, ∀ member, subset member → (real_model rational_model).signature.le member upper_bound) → ∃ supremum, (∀ member, subset member → (real_model rational_model).signature.le member supremum) ∧ (∀ upper_bound, (∀ member, subset member → (real_model rational_model).signature.le member upper_bound) → (real_model rational_model).signature.le supremum upper_bound)
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (subset : (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.carrier → Prop), (Exists fun member => subset member ∧ (Exists fun upper_bound => ∀ (member : (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.carrier), subset member → (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.le member upper_bound)) → Exists fun supremum => ((∀ (member : (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.carrier), subset member → (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.le member supremum) ∧ (∀ (upper_bound : (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.carrier), (∀ (member : (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.carrier), subset member → (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.le member upper_bound) → (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.le supremum upper_bound))
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (subset : (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.toCarrierBundle.1 → Prop), (Exists fun member => subset member ∧ Exists fun upper_bound => ∀ (member : (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.toCarrierBundle.1), subset member → (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.toOrderedRingConceptSignature.2 member upper_bound) → Exists fun supremum => (∀ (member : (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.toCarrierBundle.1), subset member → (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.toOrderedRingConceptSignature.2 member supremum ∧ ∀ (upper_bound : (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.toCarrierBundle.1), (∀ (member : (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.toCarrierBundle.1), subset member → (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.toOrderedRingConceptSignature.2 member upper_bound) → (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.toOrderedRingConceptSignature.2 supremum upper_bound)
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_model : RationalModel
+  Prove
+    (Exists fun member => subset member ∧ (Exists fun upper_bound => ∀ (member : (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.toCarrierBundle.1), subset member → (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.toOrderedRingConceptSignature.2 member upper_bound)) → Exists fun supremum => ((∀ (member : (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.toCarrierBundle.1), subset member → (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.toOrderedRingConceptSignature.2 member supremum) ∧ (∀ (upper_bound : (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.toCarrierBundle.1), (∀ (member : (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.toCarrierBundle.1), subset member → (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.toOrderedRingConceptSignature.2 member upper_bound) → (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model).signature.toOrderedRingConceptSignature.2 supremum upper_bound))
 
 Logical form (Lean):
 
@@ -431,7 +446,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Index RationalCarrier : Type} (sequence : Index → RationalCarrier) (first_index second_index : Index), sequence first_index = sequence second_index
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    sequence first_index = sequence second_index
 
 Logical form (Lean):
 
@@ -477,7 +497,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Index RationalCarrier : Type} (first second : Index → RationalCarrier) (index : Index), first index = second index
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    first index = second index
 
 Logical form (Lean):
 
@@ -517,11 +542,16 @@ def equivalent
 
 Predicate logic:
 
-  Equivalence (@equivalent Index RationalCarrier)
+  ∀ {Digit : Type}, Equivalence LRA.NumberSystems.RealNumbers.DyadicExpansions.equivalent
 
 Predicate logic (unfolded):
 
-  ∀ {Digit : Type}, Equivalence fun first second => (first.1 = second.1 ∧ first.2 = second.2)
+  Ambient
+    (Index, RationalCarrier)
+  Objects
+    (none)
+  Prove
+    Equivalence fun first second => (first.1 = second.1 ∧ first.2 = second.2)
 
 Logical form (Lean):
 
@@ -559,11 +589,16 @@ theorem equivalent_is_equivalence_relation
 
 Predicate logic:
 
-  (∀ rational_model ∈ RationalModel), Nonempty RealModel
+  ∀ (a : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel
 
 Predicate logic (unfolded):
 
-  ∀ (a : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_model : RationalModel
+  Prove
+    Nonempty LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel
 
 Logical form (Lean):
 
@@ -600,14 +635,14 @@ theorem real_model_exists
 Predicate logic:
 
   noncomputable def real_model
-    (rational_model : RationalModel) : RealModel :=
-  Classical.choice (real_model_exists rational_model)
+      (rational_model : RationalModel) : RealModel :=
+    Classical.choice (real_model_exists rational_model)
 
 Predicate logic (unfolded):
 
   noncomputable def real_model
-    (rational_model : RationalModel) : RealModel :=
-  Classical.choice (real_model_exists rational_model) (source fallback; no compiled unfold data available)
+      (rational_model : RationalModel) : RealModel :=
+    Classical.choice (real_model_exists rational_model) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -645,11 +680,16 @@ noncomputable def real_model
 
 Predicate logic:
 
-  (∀ rational_model ∈ RationalModel), Nonempty (CofinalRealExtension rational_model)
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty (LRA.NumberSystems.RealNumbers.CofinalRealExtension rational_model)
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty (LRA.NumberSystems.Interface.ModelTheory.CofinalRealExtension rational_model)
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_model : RationalModel
+  Prove
+    Nonempty (LRA.NumberSystems.RealNumbers.CofinalRealExtension rational_model)
 
 Logical form (Lean):
 
@@ -688,16 +728,16 @@ theorem real_extension_exists
 Predicate logic:
 
   noncomputable def real_extension
-    (rational_model : RationalModel) :
-    CofinalRealExtension rational_model :=
-  Classical.choice (real_extension_exists rational_model)
+      (rational_model : RationalModel) :
+      CofinalRealExtension rational_model :=
+    Classical.choice (real_extension_exists rational_model)
 
 Predicate logic (unfolded):
 
   noncomputable def real_extension
-    (rational_model : RationalModel) :
-    CofinalRealExtension rational_model :=
-  Classical.choice (real_extension_exists rational_model) (source fallback; no compiled unfold data available)
+      (rational_model : RationalModel) :
+      CofinalRealExtension rational_model :=
+    Classical.choice (real_extension_exists rational_model) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -750,18 +790,18 @@ open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 Predicate logic:
 
   structure IntervalSequence (Index RationalCarrier : Type) where
-  left_endpoint : Index → RationalCarrier
-  right_endpoint : Index → RationalCarrier
-  is_nested : Prop
-  widths_converge_to_zero : Prop
+    left_endpoint : Index → RationalCarrier
+    right_endpoint : Index → RationalCarrier
+    is_nested : Prop
+    widths_converge_to_zero : Prop
 
 Predicate logic (unfolded):
 
   structure IntervalSequence (Index RationalCarrier : Type) where
-  left_endpoint : Index → RationalCarrier
-  right_endpoint : Index → RationalCarrier
-  is_nested : Prop
-  widths_converge_to_zero : Prop (source fallback; no compiled unfold data available)
+    left_endpoint : Index → RationalCarrier
+    right_endpoint : Index → RationalCarrier
+    is_nested : Prop
+    widths_converge_to_zero : Prop (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -803,11 +843,16 @@ structure IntervalSequence (Index RationalCarrier : Type) where
 
 Predicate logic:
 
-  (∀ rational_model ∈ RationalModel), Nonempty RealModel
+  ∀ (a : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel
 
 Predicate logic (unfolded):
 
-  ∀ (a : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_model : RationalModel
+  Prove
+    Nonempty LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel
 
 Logical form (Lean):
 
@@ -844,14 +889,14 @@ theorem real_model_exists
 Predicate logic:
 
   noncomputable def real_model
-    (rational_model : RationalModel) : RealModel :=
-  Classical.choice (real_model_exists rational_model)
+      (rational_model : RationalModel) : RealModel :=
+    Classical.choice (real_model_exists rational_model)
 
 Predicate logic (unfolded):
 
   noncomputable def real_model
-    (rational_model : RationalModel) : RealModel :=
-  Classical.choice (real_model_exists rational_model) (source fallback; no compiled unfold data available)
+      (rational_model : RationalModel) : RealModel :=
+    Classical.choice (real_model_exists rational_model) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -889,11 +934,17 @@ noncomputable def real_model
 
 Predicate logic:
 
-  (∀ rational_model ∈ RationalModel), CauchySequences.equivalent interval_sequence.left_endpoint interval_sequence.left_endpoint
+  ∀ (a : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) {Index RationalCarrier : Type} (interval_sequence : LRA.NumberSystems.RealNumbers.CantorNestedIntervals.IntervalSequence Index RationalCarrier), LRA.NumberSystems.RealNumbers.CauchySequences.equivalent interval_sequence.left_endpoint interval_sequence.left_endpoint
 
 Predicate logic (unfolded):
 
-  ∀ (a : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) {Index RationalCarrier : Type} (interval_sequence : LRA.NumberSystems.RealNumbers.CantorNestedIntervals.IntervalSequence Index RationalCarrier) (index : Index), interval_sequence.1 index = interval_sequence.1 index
+  Ambient
+    (Index, RationalCarrier)
+  Objects
+    rational_model : RationalModel
+    interval_sequence : IntervalSequence Index RationalCarrier
+  Prove
+    interval_sequence.1 index = interval_sequence.1 index
 
 Logical form (Lean):
 
@@ -952,20 +1003,20 @@ open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 Predicate logic:
 
   structure RationalInterval (RationalCarrier : Type)
-    (nonstrict_order : RationalCarrier → RationalCarrier → Prop) where
-  left_endpoint : RationalCarrier
-  right_endpoint : RationalCarrier
-  endpoints_are_ordered :
-    nonstrict_order left_endpoint right_endpoint
+      (nonstrict_order : RationalCarrier → RationalCarrier → Prop) where
+    left_endpoint : RationalCarrier
+    right_endpoint : RationalCarrier
+    endpoints_are_ordered :
+      nonstrict_order left_endpoint right_endpoint
 
 Predicate logic (unfolded):
 
   structure RationalInterval (RationalCarrier : Type)
-    (nonstrict_order : RationalCarrier → RationalCarrier → Prop) where
-  left_endpoint : RationalCarrier
-  right_endpoint : RationalCarrier
-  endpoints_are_ordered :
-    nonstrict_order left_endpoint right_endpoint (source fallback; no compiled unfold data available)
+      (nonstrict_order : RationalCarrier → RationalCarrier → Prop) where
+    left_endpoint : RationalCarrier
+    right_endpoint : RationalCarrier
+    endpoints_are_ordered :
+      nonstrict_order left_endpoint right_endpoint (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1013,7 +1064,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Index RationalCarrier : Type} (first second : Index → RationalCarrier) (index : Index), first index = second index
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    first index = second index
 
 Logical form (Lean):
 
@@ -1053,11 +1109,16 @@ def equivalent
 
 Predicate logic:
 
-  Equivalence (@equivalent IntervalSequenceCarrier)
+  ∀ {Digit : Type}, Equivalence LRA.NumberSystems.RealNumbers.DyadicExpansions.equivalent
 
 Predicate logic (unfolded):
 
-  ∀ {Digit : Type}, Equivalence fun first second => (first.1 = second.1 ∧ first.2 = second.2)
+  Ambient
+    (IntervalSequenceCarrier)
+  Objects
+    (none)
+  Prove
+    Equivalence fun first second => (first.1 = second.1 ∧ first.2 = second.2)
 
 Logical form (Lean):
 
@@ -1095,11 +1156,17 @@ theorem equivalent_is_equivalence_relation
 
 Predicate logic:
 
-  (IntervalSequenceCarrier → IntervalSequenceCarrier → IntervalSequenceCarrier) → LRA.UniversalAlgebra.Quotient.binary_operation_respects setoid representative_multiplication
+  ∀ {IntervalSequenceCarrier : Type} (setoid : Setoid IntervalSequenceCarrier) (representative_multiplication : IntervalSequenceCarrier → IntervalSequenceCarrier → IntervalSequenceCarrier), LRA.UniversalAlgebra.Quotient.binary_operation_respects setoid representative_multiplication
 
 Predicate logic (unfolded):
 
-  ∀ {IntervalSequenceCarrier : Type} (setoid : Setoid IntervalSequenceCarrier) (representative_multiplication : IntervalSequenceCarrier → IntervalSequenceCarrier → IntervalSequenceCarrier) (first_representative first_replacement second_representative second_replacement : IntervalSequenceCarrier), (setoid.1 first_representative first_replacement ∧ setoid.1 second_representative second_replacement) → setoid.1 (representative_multiplication first_representative second_representative) (representative_multiplication first_replacement second_replacement)
+  Ambient
+    (IntervalSequenceCarrier)
+  Objects
+    setoid : Setoid IntervalSequenceCarrier
+    representative_multiplication : IntervalSequenceCarrier → IntervalSequenceCarrier → IntervalSequenceCarrier
+  Prove
+    (setoid.1 first_representative first_replacement ∧ setoid.1 second_representative second_replacement) → setoid.1 (representative_multiplication first_representative second_representative) (representative_multiplication first_replacement second_replacement)
 
 Logical form (Lean):
 
@@ -1149,11 +1216,17 @@ theorem representative_multiplication_respects_equivalence
 
 Predicate logic:
 
-  (IntervalSequenceCarrier → IntervalSequenceCarrier → IntervalSequenceCarrier ∧ IntervalSequenceCarrier → IntervalSequenceCarrier → IntervalSequenceCarrier) → ¬ ∀ first second third, representative_multiplication first (representative_addition second third) = representative_addition (representative_multiplication first second) (representative_multiplication first third)
+  ∀ {IntervalSequenceCarrier : Type} (representative_multiplication representative_addition : IntervalSequenceCarrier → IntervalSequenceCarrier → IntervalSequenceCarrier), ¬ ∀ (first second third : IntervalSequenceCarrier), representative_multiplication first (representative_addition second third) = representative_addition (representative_multiplication first second) (representative_multiplication first third)
 
 Predicate logic (unfolded):
 
-  ∀ {IntervalSequenceCarrier : Type} (representative_multiplication representative_addition : IntervalSequenceCarrier → IntervalSequenceCarrier → IntervalSequenceCarrier), (∀ (first second third : IntervalSequenceCarrier), representative_multiplication first (representative_addition second third) = representative_addition (representative_multiplication first second) (representative_multiplication first third)) → False
+  Ambient
+    (IntervalSequenceCarrier)
+  Objects
+    representative_multiplication : IntervalSequenceCarrier → IntervalSequenceCarrier → IntervalSequenceCarrier
+    representative_addition : IntervalSequenceCarrier → IntervalSequenceCarrier → IntervalSequenceCarrier
+  Prove
+    (∀ (first second third : IntervalSequenceCarrier), representative_multiplication first (representative_addition second third) = representative_addition (representative_multiplication first second) (representative_multiplication first third)) → False
 
 Logical form (Lean):
 
@@ -1219,11 +1292,16 @@ theorem raw_interval_multiplication_is_not_distributive
 
 Predicate logic:
 
-  ∀ first second third, multiplication first (addition second third) = addition (multiplication first second) (multiplication first third)
+  ∀ {RealCarrier : Type} (multiplication addition : RealCarrier → RealCarrier → RealCarrier) (first second third : RealCarrier), multiplication first (addition second third) = addition (multiplication first second) (multiplication first third)
 
 Predicate logic (unfolded):
 
-  ∀ {RealCarrier : Type} (multiplication addition : RealCarrier → RealCarrier → RealCarrier) (first second third : RealCarrier), multiplication first (addition second third) = addition (multiplication first second) (multiplication first third)
+  Ambient
+    (RealCarrier)
+  Objects
+    multiplication addition : RealCarrier → RealCarrier → RealCarrier
+  Prove
+    multiplication first (addition second third) = addition (multiplication first second) (multiplication first third)
 
 Logical form (Lean):
 
@@ -1267,11 +1345,16 @@ theorem quotient_multiplication_is_distributive
 
 Predicate logic:
 
-  (∀ rational_model ∈ RationalModel), Nonempty RealModel
+  ∀ (a : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel
 
 Predicate logic (unfolded):
 
-  ∀ (a : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_model : RationalModel
+  Prove
+    Nonempty LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel
 
 Logical form (Lean):
 
@@ -1308,14 +1391,14 @@ theorem real_model_exists
 Predicate logic:
 
   noncomputable def real_model
-    (rational_model : RationalModel) : RealModel :=
-  Classical.choice (real_model_exists rational_model)
+      (rational_model : RationalModel) : RealModel :=
+    Classical.choice (real_model_exists rational_model)
 
 Predicate logic (unfolded):
 
   noncomputable def real_model
-    (rational_model : RationalModel) : RealModel :=
-  Classical.choice (real_model_exists rational_model) (source fallback; no compiled unfold data available)
+      (rational_model : RationalModel) : RealModel :=
+    Classical.choice (real_model_exists rational_model) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1366,14 +1449,14 @@ open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 Predicate logic:
 
   structure Expansion (Digit : Type) where
-  integer_part : Digit → Prop
-  fractional_digits : Nat → Digit
+    integer_part : Digit → Prop
+    fractional_digits : Nat → Digit
 
 Predicate logic (unfolded):
 
   structure Expansion (Digit : Type) where
-  integer_part : Digit → Prop
-  fractional_digits : Nat → Digit (source fallback; no compiled unfold data available)
+    integer_part : Digit → Prop
+    fractional_digits : Nat → Digit (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1415,7 +1498,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Index RationalCarrier : Type} (first second : Index → RationalCarrier) (index : Index), first index = second index
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    first index = second index
 
 Logical form (Lean):
 
@@ -1457,11 +1545,16 @@ def equivalent
 
 Predicate logic:
 
-  Equivalence (@equivalent Digit)
+  ∀ {Digit : Type}, Equivalence LRA.NumberSystems.RealNumbers.DyadicExpansions.equivalent
 
 Predicate logic (unfolded):
 
-  ∀ {Digit : Type}, Equivalence fun first second => (first.1 = second.1 ∧ first.2 = second.2)
+  Ambient
+    (Digit)
+  Objects
+    (none)
+  Prove
+    Equivalence fun first second => (first.1 = second.1 ∧ first.2 = second.2)
 
 Logical form (Lean):
 
@@ -1499,11 +1592,16 @@ theorem equivalent_is_equivalence_relation
 
 Predicate logic:
 
-  (∀ rational_model ∈ RationalModel), Nonempty RealModel
+  ∀ (a : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel
 
 Predicate logic (unfolded):
 
-  ∀ (a : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_model : RationalModel
+  Prove
+    Nonempty LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel
 
 Logical form (Lean):
 
@@ -1540,14 +1638,14 @@ theorem real_model_exists
 Predicate logic:
 
   noncomputable def real_model
-    (rational_model : RationalModel) : RealModel :=
-  Classical.choice (real_model_exists rational_model)
+      (rational_model : RationalModel) : RealModel :=
+    Classical.choice (real_model_exists rational_model)
 
 Predicate logic (unfolded):
 
   noncomputable def real_model
-    (rational_model : RationalModel) : RealModel :=
-  Classical.choice (real_model_exists rational_model) (source fallback; no compiled unfold data available)
+      (rational_model : RationalModel) : RealModel :=
+    Classical.choice (real_model_exists rational_model) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1592,88 +1690,88 @@ open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 Predicate logic:
 
   structure ModelIsomorphism
-    (first_model second_model : RealModel) where
-  to_function :
-    first_model.signature.carrier →
-      second_model.signature.carrier
-  inverse_function :
-    second_model.signature.carrier →
-      first_model.signature.carrier
-  left_inverse :
-    ∀ value,
-      inverse_function (to_function value) = value
-  right_inverse :
-    ∀ value,
-      to_function (inverse_function value) = value
-  preserves_zero :
-    to_function first_model.signature.zero =
-      second_model.signature.zero
-  preserves_one :
-    to_function first_model.signature.one =
-      second_model.signature.one
-  preserves_addition :
-    ∀ first second,
-      to_function
-          (first_model.signature.add first second) =
-        second_model.signature.add
-          (to_function first)
-          (to_function second)
-  preserves_multiplication :
-    ∀ first second,
-      to_function
-          (first_model.signature.multiply first second) =
-        second_model.signature.multiply
-          (to_function first)
-          (to_function second)
-  preserves_and_reflects_order :
-    ∀ first second,
-      second_model.signature.le
-          (to_function first)
-          (to_function second) ↔
-        first_model.signature.le first second
+      (first_model second_model : RealModel) where
+    to_function :
+      first_model.signature.carrier →
+        second_model.signature.carrier
+    inverse_function :
+      second_model.signature.carrier →
+        first_model.signature.carrier
+    left_inverse :
+      ∀ value,
+        inverse_function (to_function value) = value
+    right_inverse :
+      ∀ value,
+        to_function (inverse_function value) = value
+    preserves_zero :
+      to_function first_model.signature.zero =
+        second_model.signature.zero
+    preserves_one :
+      to_function first_model.signature.one =
+        second_model.signature.one
+    preserves_addition :
+      ∀ first second,
+        to_function
+            (first_model.signature.add first second) =
+          second_model.signature.add
+            (to_function first)
+            (to_function second)
+    preserves_multiplication :
+      ∀ first second,
+        to_function
+            (first_model.signature.multiply first second) =
+          second_model.signature.multiply
+            (to_function first)
+            (to_function second)
+    preserves_and_reflects_order :
+      ∀ first second,
+        second_model.signature.le
+            (to_function first)
+            (to_function second) ↔
+          first_model.signature.le first second
 
 Predicate logic (unfolded):
 
   structure ModelIsomorphism
-    (first_model second_model : RealModel) where
-  to_function :
-    first_model.signature.carrier →
-      second_model.signature.carrier
-  inverse_function :
-    second_model.signature.carrier →
-      first_model.signature.carrier
-  left_inverse :
-    ∀ value,
-      inverse_function (to_function value) = value
-  right_inverse :
-    ∀ value,
-      to_function (inverse_function value) = value
-  preserves_zero :
-    to_function first_model.signature.zero =
-      second_model.signature.zero
-  preserves_one :
-    to_function first_model.signature.one =
-      second_model.signature.one
-  preserves_addition :
-    ∀ first second,
-      to_function
-          (first_model.signature.add first second) =
-        second_model.signature.add
-          (to_function first)
-          (to_function second)
-  preserves_multiplication :
-    ∀ first second,
-      to_function
-          (first_model.signature.multiply first second) =
-        second_model.signature.multiply
-          (to_function first)
-          (to_function second)
-  preserves_and_reflects_order :
-    ∀ first second,
-      second_model.signature.le
-          (to_function first)
-          (to_function second) ↔
-        first_model.signature.le first second (source fallback; no compiled unfold data available)
+      (first_model second_model : RealModel) where
+    to_function :
+      first_model.signature.carrier →
+        second_model.signature.carrier
+    inverse_function :
+      second_model.signature.carrier →
+        first_model.signature.carrier
+    left_inverse :
+      ∀ value,
+        inverse_function (to_function value) = value
+    right_inverse :
+      ∀ value,
+        to_function (inverse_function value) = value
+    preserves_zero :
+      to_function first_model.signature.zero =
+        second_model.signature.zero
+    preserves_one :
+      to_function first_model.signature.one =
+        second_model.signature.one
+    preserves_addition :
+      ∀ first second,
+        to_function
+            (first_model.signature.add first second) =
+          second_model.signature.add
+            (to_function first)
+            (to_function second)
+    preserves_multiplication :
+      ∀ first second,
+        to_function
+            (first_model.signature.multiply first second) =
+          second_model.signature.multiply
+            (to_function first)
+            (to_function second)
+    preserves_and_reflects_order :
+      ∀ first second,
+        second_model.signature.le
+            (to_function first)
+            (to_function second) ↔
+          first_model.signature.le first second (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1785,11 +1883,16 @@ structure ModelIsomorphism
 
 Predicate logic:
 
-  (∀ first_model second_model ∈ RealModel), ∃ isomorphism ∈ ModelIsomorphism first_model second_model, ∀ other_isomorphism : ModelIsomorphism first_model second_model, ∀ value, other_isomorphism.to_function value = isomorphism.to_function value
+  ∀ (first_model : LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel) (second_model : LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel), Exists fun isomorphism => ∀ (other_isomorphism : LRA.NumberSystems.RealNumbers.ModelIsomorphism first_model second_model) (value : first_model.signature.carrier), other_isomorphism.to_function value = isomorphism.to_function value
 
 Predicate logic (unfolded):
 
-  ∀ (first_model : LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel) (second_model : LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel), Exists fun isomorphism => ∀ (other_isomorphism : LRA.NumberSystems.RealNumbers.ModelIsomorphism first_model second_model) (value : first_model.signature.toCarrierBundle.1), other_isomorphism.1 value = isomorphism.1 value
+  Ambient
+    (implicit ambient)
+  Objects
+    first_model second_model : RealModel
+  Prove
+    Exists fun isomorphism => ∀ (other_isomorphism : LRA.NumberSystems.RealNumbers.ModelIsomorphism first_model second_model) (value : first_model.signature.toCarrierBundle.1), other_isomorphism.1 value = isomorphism.1 value
 
 Logical form (Lean):
 
@@ -1835,11 +1938,16 @@ theorem complete_archimedean_ordered_fields_are_uniquely_isomorphic
 
 Predicate logic:
 
-  (∀ rational_model ∈ RationalModel), Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (CauchySequences.real_model rational_model))
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model) (LRA.NumberSystems.RealNumbers.CauchySequences.real_model rational_model))
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_model : RationalModel
+  Prove
+    Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
 
 Logical form (Lean):
 
@@ -1884,20 +1992,20 @@ theorem dedekind_equiv_cauchy_exists
 Predicate logic:
 
   noncomputable def dedekind_equiv_cauchy
-    (rational_model : RationalModel) :
-    ModelIsomorphism
-      (DedekindCuts.real_model rational_model)
-      (CauchySequences.real_model rational_model) :=
-  Classical.choice (dedekind_equiv_cauchy_exists rational_model)
+      (rational_model : RationalModel) :
+      ModelIsomorphism
+        (DedekindCuts.real_model rational_model)
+        (CauchySequences.real_model rational_model) :=
+    Classical.choice (dedekind_equiv_cauchy_exists rational_model)
 
 Predicate logic (unfolded):
 
   noncomputable def dedekind_equiv_cauchy
-    (rational_model : RationalModel) :
-    ModelIsomorphism
-      (DedekindCuts.real_model rational_model)
-      (CauchySequences.real_model rational_model) :=
-  Classical.choice (dedekind_equiv_cauchy_exists rational_model) (source fallback; no compiled unfold data available)
+      (rational_model : RationalModel) :
+      ModelIsomorphism
+        (DedekindCuts.real_model rational_model)
+        (CauchySequences.real_model rational_model) :=
+    Classical.choice (dedekind_equiv_cauchy_exists rational_model) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1941,11 +2049,16 @@ noncomputable def dedekind_equiv_cauchy
 
 Predicate logic:
 
-  (∀ rational_model ∈ RationalModel), Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (CauchySequences.real_model rational_model))
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model) (LRA.NumberSystems.RealNumbers.CauchySequences.real_model rational_model))
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_model : RationalModel
+  Prove
+    Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
 
 Logical form (Lean):
 
@@ -1989,11 +2102,16 @@ theorem dedekind_and_cauchy_are_isomorphic
 
 Predicate logic:
 
-  (∀ rational_model ∈ RationalModel), Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (CantorNestedIntervals.real_model rational_model))
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model) (LRA.NumberSystems.RealNumbers.CantorNestedIntervals.real_model rational_model))
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_model : RationalModel
+  Prove
+    Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
 
 Logical form (Lean):
 
@@ -2038,20 +2156,20 @@ theorem dedekind_equiv_cantor_exists
 Predicate logic:
 
   noncomputable def dedekind_equiv_cantor
-    (rational_model : RationalModel) :
-    ModelIsomorphism
-      (DedekindCuts.real_model rational_model)
-      (CantorNestedIntervals.real_model rational_model) :=
-  Classical.choice (dedekind_equiv_cantor_exists rational_model)
+      (rational_model : RationalModel) :
+      ModelIsomorphism
+        (DedekindCuts.real_model rational_model)
+        (CantorNestedIntervals.real_model rational_model) :=
+    Classical.choice (dedekind_equiv_cantor_exists rational_model)
 
 Predicate logic (unfolded):
 
   noncomputable def dedekind_equiv_cantor
-    (rational_model : RationalModel) :
-    ModelIsomorphism
-      (DedekindCuts.real_model rational_model)
-      (CantorNestedIntervals.real_model rational_model) :=
-  Classical.choice (dedekind_equiv_cantor_exists rational_model) (source fallback; no compiled unfold data available)
+      (rational_model : RationalModel) :
+      ModelIsomorphism
+        (DedekindCuts.real_model rational_model)
+        (CantorNestedIntervals.real_model rational_model) :=
+    Classical.choice (dedekind_equiv_cantor_exists rational_model) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -2095,11 +2213,16 @@ noncomputable def dedekind_equiv_cantor
 
 Predicate logic:
 
-  (∀ rational_model ∈ RationalModel), Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (CantorNestedIntervals.real_model rational_model))
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model) (LRA.NumberSystems.RealNumbers.CantorNestedIntervals.real_model rational_model))
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_model : RationalModel
+  Prove
+    Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
 
 Logical form (Lean):
 
@@ -2143,11 +2266,16 @@ theorem dedekind_and_cantor_are_isomorphic
 
 Predicate logic:
 
-  (∀ rational_model ∈ RationalModel), Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (PrimitiveIntervalQuotient.real_model rational_model))
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model) (LRA.NumberSystems.RealNumbers.PrimitiveIntervalQuotient.real_model rational_model))
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_model : RationalModel
+  Prove
+    Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
 
 Logical form (Lean):
 
@@ -2192,20 +2320,20 @@ theorem dedekind_equiv_interval_quotient_exists
 Predicate logic:
 
   noncomputable def dedekind_equiv_interval_quotient
-    (rational_model : RationalModel) :
-    ModelIsomorphism
-      (DedekindCuts.real_model rational_model)
-      (PrimitiveIntervalQuotient.real_model rational_model) :=
-  Classical.choice (dedekind_equiv_interval_quotient_exists rational_model)
+      (rational_model : RationalModel) :
+      ModelIsomorphism
+        (DedekindCuts.real_model rational_model)
+        (PrimitiveIntervalQuotient.real_model rational_model) :=
+    Classical.choice (dedekind_equiv_interval_quotient_exists rational_model)
 
 Predicate logic (unfolded):
 
   noncomputable def dedekind_equiv_interval_quotient
-    (rational_model : RationalModel) :
-    ModelIsomorphism
-      (DedekindCuts.real_model rational_model)
-      (PrimitiveIntervalQuotient.real_model rational_model) :=
-  Classical.choice (dedekind_equiv_interval_quotient_exists rational_model) (source fallback; no compiled unfold data available)
+      (rational_model : RationalModel) :
+      ModelIsomorphism
+        (DedekindCuts.real_model rational_model)
+        (PrimitiveIntervalQuotient.real_model rational_model) :=
+    Classical.choice (dedekind_equiv_interval_quotient_exists rational_model) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -2249,11 +2377,16 @@ noncomputable def dedekind_equiv_interval_quotient
 
 Predicate logic:
 
-  (∀ rational_model ∈ RationalModel), Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (PrimitiveIntervalQuotient.real_model rational_model))
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model) (LRA.NumberSystems.RealNumbers.PrimitiveIntervalQuotient.real_model rational_model))
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_model : RationalModel
+  Prove
+    Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
 
 Logical form (Lean):
 
@@ -2297,11 +2430,16 @@ theorem dedekind_and_interval_quotient_are_isomorphic
 
 Predicate logic:
 
-  (∀ rational_model ∈ RationalModel), Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (DyadicExpansions.real_model rational_model))
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model) (LRA.NumberSystems.RealNumbers.DyadicExpansions.real_model rational_model))
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_model : RationalModel
+  Prove
+    Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
 
 Logical form (Lean):
 
@@ -2346,20 +2484,20 @@ theorem dedekind_equiv_dyadic_exists
 Predicate logic:
 
   noncomputable def dedekind_equiv_dyadic
-    (rational_model : RationalModel) :
-    ModelIsomorphism
-      (DedekindCuts.real_model rational_model)
-      (DyadicExpansions.real_model rational_model) :=
-  Classical.choice (dedekind_equiv_dyadic_exists rational_model)
+      (rational_model : RationalModel) :
+      ModelIsomorphism
+        (DedekindCuts.real_model rational_model)
+        (DyadicExpansions.real_model rational_model) :=
+    Classical.choice (dedekind_equiv_dyadic_exists rational_model)
 
 Predicate logic (unfolded):
 
   noncomputable def dedekind_equiv_dyadic
-    (rational_model : RationalModel) :
-    ModelIsomorphism
-      (DedekindCuts.real_model rational_model)
-      (DyadicExpansions.real_model rational_model) :=
-  Classical.choice (dedekind_equiv_dyadic_exists rational_model) (source fallback; no compiled unfold data available)
+      (rational_model : RationalModel) :
+      ModelIsomorphism
+        (DedekindCuts.real_model rational_model)
+        (DyadicExpansions.real_model rational_model) :=
+    Classical.choice (dedekind_equiv_dyadic_exists rational_model) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -2403,11 +2541,16 @@ noncomputable def dedekind_equiv_dyadic
 
 Predicate logic:
 
-  (∀ rational_model ∈ RationalModel), Nonempty (ModelIsomorphism (DedekindCuts.real_model rational_model) (DyadicExpansions.real_model rational_model))
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (LRA.NumberSystems.RealNumbers.DedekindCuts.real_model rational_model) (LRA.NumberSystems.RealNumbers.DyadicExpansions.real_model rational_model))
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_model : RationalModel
+  Prove
+    Nonempty (LRA.NumberSystems.RealNumbers.ModelIsomorphism (Classical.choice ⋯) (Classical.choice ⋯))
 
 Logical form (Lean):
 

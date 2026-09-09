@@ -14,20 +14,20 @@ namespace MetricDefinition
 Predicate logic:
 
   def ToPseudoMetricSpace {X : Type u} (metric : MetricDefinition X) :
-    PseudoMetricSpace X where
-  dist := metric.distance
-  dist_self := MetricDefinition.DistanceSelf metric
-  dist_comm := metric.symmetric
-  dist_triangle := metric.triangle
+      PseudoMetricSpace X where
+    dist := metric.distance
+    dist_self := MetricDefinition.DistanceSelf metric
+    dist_comm := metric.symmetric
+    dist_triangle := metric.triangle
 
 Predicate logic (unfolded):
 
   def ToPseudoMetricSpace {X : Type u} (metric : MetricDefinition X) :
-    PseudoMetricSpace X where
-  dist := metric.distance
-  dist_self := MetricDefinition.DistanceSelf metric
-  dist_comm := metric.symmetric
-  dist_triangle := metric.triangle (source fallback; no compiled unfold data available)
+      PseudoMetricSpace X where
+    dist := metric.distance
+    dist_self := MetricDefinition.DistanceSelf metric
+    dist_comm := metric.symmetric
+    dist_triangle := metric.triangle (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -74,20 +74,20 @@ def ToPseudoMetricSpace {X : Type u} (metric : MetricDefinition X) :
 Predicate logic:
 
   def ToMathlibMetricSpace {X : Type u} (metric : MetricDefinition X) :
-    MetricSpace X where
-  toPseudoMetricSpace := metric.ToPseudoMetricSpace
-  eq_of_dist_eq_zero := by
-    intro x y distanceEqZero
-    exact (metric.positive x y).2.1 distanceEqZero
+      MetricSpace X where
+    toPseudoMetricSpace := metric.ToPseudoMetricSpace
+    eq_of_dist_eq_zero := by
+      intro x y distanceEqZero
+      exact (metric.positive x y).2.1 distanceEqZero
 
 Predicate logic (unfolded):
 
   def ToMathlibMetricSpace {X : Type u} (metric : MetricDefinition X) :
-    MetricSpace X where
-  toPseudoMetricSpace := metric.ToPseudoMetricSpace
-  eq_of_dist_eq_zero := by
-    intro x y distanceEqZero
-    exact (metric.positive x y).2.1 distanceEqZero (source fallback; no compiled unfold data available)
+      MetricSpace X where
+    toPseudoMetricSpace := metric.ToPseudoMetricSpace
+    eq_of_dist_eq_zero := by
+      intro x y distanceEqZero
+      exact (metric.positive x y).2.1 distanceEqZero (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -134,12 +134,12 @@ def ToMathlibMetricSpace {X : Type u} (metric : MetricDefinition X) :
 Predicate logic:
 
   def InducedTopologicalSpace {X : Type u} (metric : MetricDefinition X) :
-    TopologicalSpace X
+      TopologicalSpace X
 
 Predicate logic (unfolded):
 
   def InducedTopologicalSpace {X : Type u} (metric : MetricDefinition X) :
-    TopologicalSpace X (source fallback; no compiled unfold data available)
+      TopologicalSpace X (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -179,11 +179,17 @@ def InducedTopologicalSpace {X : Type u} (metric : MetricDefinition X) :
 
 Predicate logic:
 
-  (∀ x y ∈ X), letI : MetricSpace X
+  ∀ {X : Type u} (metric : LRA.Analysis.MetricSpace.MetricDefinition X) (x y : X), metric.ToMathlibMetricSpace.dist x y = metric.distance x y
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} (metric : LRA.Analysis.MetricSpace.MetricDefinition X) (x y : X), metric.ToMathlibMetricSpace.toDist.1 x y = metric.1 x y
+  Ambient
+    (X)
+  Objects
+    metric : MetricDefinition X
+    x y : X
+  Prove
+    metric.ToMathlibMetricSpace.toDist.1 x y = metric.1 x y
 
 Logical form (Lean):
 
@@ -272,7 +278,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} [inst : MetricSpace X] (metric : LRA.Analysis.MetricSpace.MetricDefinition X) (x y : X), metric.1 x y = inferInstance.1 x y
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    metric.1 x y = inferInstance.1 x y
 
 Logical form (Lean):
 
@@ -310,11 +321,16 @@ def IsCompatibleWithMathlibMetric {X : Type u} [MetricSpace X]
 
 Predicate logic:
 
-  IsCompatibleWithMathlibMetric (MetricDefinition.FromMathlibMetric X)
+  ∀ {X : Type u} [inst : MetricSpace X], LRA.Analysis.MetricSpace.IsCompatibleWithMathlibMetric (LRA.Analysis.MetricSpace.MetricDefinition.FromMathlibMetric X)
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} [inst : MetricSpace X] (x y : X), (LRA.Analysis.MetricSpace.MetricDefinition.FromMathlibMetric X).1 x y = inferInstance.1 x y
+  Ambient
+    (X)
+  Objects
+    (none)
+  Prove
+    (LRA.Analysis.MetricSpace.MetricDefinition.FromMathlibMetric X).1 x y = inferInstance.1 x y
 
 Logical form (Lean):
 
@@ -352,11 +368,17 @@ theorem FromMathlibMetricIsCompatibleWithMathlibMetric
 
 Predicate logic:
 
-  (∀ x y z ∈ X), (IsCompatibleWithMathlibMetric metric) → |metric.distance x z - metric.distance y z| ≤ metric.distance x y
+  ∀ {X : Type u} [inst : MetricSpace X] (metric : LRA.Analysis.MetricSpace.MetricDefinition X), LRA.Analysis.MetricSpace.IsCompatibleWithMathlibMetric metric → ∀ (x y z : X), Real.instLE.le (abs (instHSub.hSub (metric.distance x z) (metric.distance y z))) (metric.distance x y)
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} [inst : MetricSpace X] (metric : LRA.Analysis.MetricSpace.MetricDefinition X), (∀ (x y : X), metric.1 x y = inferInstance.1 x y) → ∀ (x y z : X), Real.instLE.1 (SemilatticeSup.toMax.1 (instHSub.1 (metric.1 x z) (metric.1 y z)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (metric.1 x z) (metric.1 y z)))) (metric.1 x y)
+  Ambient
+    (X)
+  Objects
+    metric : MetricDefinition X
+    x y z : X
+  Prove
+    (∀ (x y : X), metric.1 x y = inferInstance.1 x y) → ∀ (x y z : X), Real.instLE.le (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (metric.1 x z) (metric.1 y z))) (metric.1 x y)
 
 Logical form (Lean):
 
@@ -403,14 +425,14 @@ namespace MetricSpaceDefinition
 Predicate logic:
 
   def ToMathlibMetricSpace (space : MetricSpaceDefinition.{u}) :
-    MetricSpace space.Carrier :=
-  space.metric.ToMathlibMetricSpace
+      MetricSpace space.Carrier :=
+    space.metric.ToMathlibMetricSpace
 
 Predicate logic (unfolded):
 
   def ToMathlibMetricSpace (space : MetricSpaceDefinition.{u}) :
-    MetricSpace space.Carrier :=
-  space.metric.ToMathlibMetricSpace (source fallback; no compiled unfold data available)
+      MetricSpace space.Carrier :=
+    space.metric.ToMathlibMetricSpace (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

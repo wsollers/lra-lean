@@ -6,7 +6,48 @@ open LRA.Operation
 
 universe u
 
-/-- A realized multiplication package exposing an actual `Mul` instance. -/
+/--
+`Realization` A realized multiplication package exposing an actual `Mul` instance.
+
+Predicate logic:
+
+  structure Realization (Carrier : Type u) where
+    spec : Specification Carrier
+    instMul : Mul Carrier
+
+Predicate logic (unfolded):
+
+  structure Realization (Carrier : Type u) where
+    spec : Specification Carrier
+    instMul : Mul Carrier (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+structure Realization (Carrier : Type u) where
+  spec : Specification Carrier
+  instMul : Mul Carrier
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 structure Realization (Carrier : Type u) where
   spec : Specification Carrier
   instMul : Mul Carrier

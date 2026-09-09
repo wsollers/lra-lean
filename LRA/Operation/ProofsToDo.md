@@ -37,7 +37,7 @@ Predicate logic (unfolded):
     realization.spec.1 = realization.spec.1
 Transliterated theorem: realization.spec.add = realization.spec.add
 Logical form (Lean): {Carrier : Type u} (realization : Realization Carrier) : realization.spec.add = realization.spec.add
-Source: ./Addition/Theorems.lean#L8
+Source: [`./Addition/Theorems.lean#L49`](./Addition/Theorems.lean#L49)
 
 
 
@@ -54,7 +54,7 @@ Predicate logic (unfolded):
     laws.realization.spec.1 (laws.realization.spec.1 first second) third = laws.realization.spec.1 first (laws.realization.spec.1 second third)
 Transliterated theorem: LRA.Operation.Laws.Associative.Associative laws.realization.spec.add
 Logical form (Lean): {Carrier : Type u} (laws : BaseLawExports Carrier) : LRA.Operation.Laws.Associative.Associative laws.realization.spec.add
-Source: ./Addition/Theorems.lean#L12
+Source: [`./Addition/Theorems.lean#L95`](./Addition/Theorems.lean#L95)
 
 
 
@@ -71,7 +71,7 @@ Predicate logic (unfolded):
     laws.base.realization.spec.1 first second = laws.base.realization.spec.1 second first
 Transliterated theorem: LRA.Operation.Laws.Commutative.Commutative laws.base.realization.spec.add
 Logical form (Lean): {Carrier : Type u} (laws : CommutativeLawExports Carrier) : LRA.Operation.Laws.Commutative.Commutative laws.base.realization.spec.add
-Source: ./Addition/Theorems.lean#L17
+Source: [`./Addition/Theorems.lean#L142`](./Addition/Theorems.lean#L142)
 
 
 
@@ -88,7 +88,7 @@ Predicate logic (unfolded):
     ((∀ (element : Carrier), laws.base.realization.spec.1 laws.2 element = element) ∧ (∀ (element : Carrier), laws.base.realization.spec.1 element laws.2 = element))
 Transliterated theorem: LRA.Operation.Laws.Identity.TwoSidedIdentity laws.base.realization.spec.add laws.identity
 Logical form (Lean): {Carrier : Type u} (laws : IdentityLawExports Carrier) : LRA.Operation.Laws.Identity.TwoSidedIdentity laws.base.realization.spec.add laws.identity
-Source: ./Addition/Theorems.lean#L22
+Source: [`./Addition/Theorems.lean#L191`](./Addition/Theorems.lean#L191)
 
 
 
@@ -105,7 +105,7 @@ Predicate logic (unfolded):
     ((∀ (element : Carrier), laws.identityLaws.base.realization.spec.1 (laws.2 element) element = laws.identityLaws.2) ∧ (∀ (element : Carrier), laws.identityLaws.base.realization.spec.1 element (laws.2 element) = laws.identityLaws.2))
 Transliterated theorem: LRA.Operation.Laws.Inverse.TwoSidedInverse laws.identityLaws.base.realization.spec.add laws.identityLaws.identity laws.inverse
 Logical form (Lean): {Carrier : Type u} (laws : InverseLawExports Carrier) : LRA.Operation.Laws.Inverse.TwoSidedInverse laws.identityLaws.base.realization.spec.add laws.identityLaws.identity laws.inverse
-Source: ./Addition/Theorems.lean#L29
+Source: [`./Addition/Theorems.lean#L243`](./Addition/Theorems.lean#L243)
 
 
 
@@ -122,7 +122,7 @@ Predicate logic (unfolded):
     laws.realization.spec.1 element element = element
 Transliterated theorem: LRA.Operation.Laws.Idempotent.Idempotent laws.realization.spec.add
 Logical form (Lean): {Carrier : Type u} (laws : IdempotentLawExports Carrier) : LRA.Operation.Laws.Idempotent.Idempotent laws.realization.spec.add
-Source: ./Addition/Theorems.lean#L37
+Source: [`./Addition/Theorems.lean#L293`](./Addition/Theorems.lean#L293)
 
 
 
@@ -139,7 +139,7 @@ Predicate logic (unfolded):
     realization.spec.1 = realization.spec.1
 Transliterated theorem: realization.spec.mul = realization.spec.mul
 Logical form (Lean): {Carrier : Type u} (realization : Realization Carrier) : realization.spec.mul = realization.spec.mul
-Source: ./Multiplication/Theorems.lean#L8
+Source: [`./Multiplication/Theorems.lean#L49`](./Multiplication/Theorems.lean#L49)
 
 
 
@@ -156,7 +156,7 @@ Predicate logic (unfolded):
     laws.realization.spec.1 (laws.realization.spec.1 first second) third = laws.realization.spec.1 first (laws.realization.spec.1 second third)
 Transliterated theorem: LRA.Operation.Laws.Associative.Associative laws.realization.spec.mul
 Logical form (Lean): {Carrier : Type u} (laws : BaseLawExports Carrier) : LRA.Operation.Laws.Associative.Associative laws.realization.spec.mul
-Source: ./Multiplication/Theorems.lean#L12
+Source: [`./Multiplication/Theorems.lean#L95`](./Multiplication/Theorems.lean#L95)
 
 
 
@@ -173,7 +173,7 @@ Predicate logic (unfolded):
     laws.base.realization.spec.1 first second = laws.base.realization.spec.1 second first
 Transliterated theorem: LRA.Operation.Laws.Commutative.Commutative laws.base.realization.spec.mul
 Logical form (Lean): {Carrier : Type u} (laws : CommutativeLawExports Carrier) : LRA.Operation.Laws.Commutative.Commutative laws.base.realization.spec.mul
-Source: ./Multiplication/Theorems.lean#L17
+Source: [`./Multiplication/Theorems.lean#L142`](./Multiplication/Theorems.lean#L142)
 
 
 
@@ -190,7 +190,7 @@ Predicate logic (unfolded):
     ((∀ (element : Carrier), laws.base.realization.spec.1 laws.2 element = element) ∧ (∀ (element : Carrier), laws.base.realization.spec.1 element laws.2 = element))
 Transliterated theorem: LRA.Operation.Laws.Identity.TwoSidedIdentity laws.base.realization.spec.mul laws.identity
 Logical form (Lean): {Carrier : Type u} (laws : IdentityLawExports Carrier) : LRA.Operation.Laws.Identity.TwoSidedIdentity laws.base.realization.spec.mul laws.identity
-Source: ./Multiplication/Theorems.lean#L22
+Source: [`./Multiplication/Theorems.lean#L191`](./Multiplication/Theorems.lean#L191)
 
 
 
@@ -207,7 +207,7 @@ Predicate logic (unfolded):
     ((∀ (element : Carrier), laws.identityLaws.base.realization.spec.1 (laws.2 element) element = laws.identityLaws.2) ∧ (∀ (element : Carrier), laws.identityLaws.base.realization.spec.1 element (laws.2 element) = laws.identityLaws.2))
 Transliterated theorem: LRA.Operation.Laws.Inverse.TwoSidedInverse laws.identityLaws.base.realization.spec.mul laws.identityLaws.identity laws.inverse
 Logical form (Lean): {Carrier : Type u} (laws : InverseLawExports Carrier) : LRA.Operation.Laws.Inverse.TwoSidedInverse laws.identityLaws.base.realization.spec.mul laws.identityLaws.identity laws.inverse
-Source: ./Multiplication/Theorems.lean#L29
+Source: [`./Multiplication/Theorems.lean#L243`](./Multiplication/Theorems.lean#L243)
 
 
 
@@ -224,7 +224,7 @@ Predicate logic (unfolded):
     ((∀ (element : Carrier), laws.realization.spec.1 laws.2 element = laws.2) ∧ (∀ (element : Carrier), laws.realization.spec.1 element laws.2 = laws.2))
 Transliterated theorem: LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing laws.realization.spec.mul laws.absorber
 Logical form (Lean): {Carrier : Type u} (laws : AbsorbingLawExports Carrier) : LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing laws.realization.spec.mul laws.absorber
-Source: ./Multiplication/Theorems.lean#L37
+Source: [`./Multiplication/Theorems.lean#L295`](./Multiplication/Theorems.lean#L295)
 
 
 
@@ -241,7 +241,7 @@ Predicate logic (unfolded):
     laws.realization.spec.1 element element = element
 Transliterated theorem: LRA.Operation.Laws.Idempotent.Idempotent laws.realization.spec.mul
 Logical form (Lean): {Carrier : Type u} (laws : IdempotentLawExports Carrier) : LRA.Operation.Laws.Idempotent.Idempotent laws.realization.spec.mul
-Source: ./Multiplication/Theorems.lean#L44
+Source: [`./Multiplication/Theorems.lean#L344`](./Multiplication/Theorems.lean#L344)
 
 
 
@@ -263,7 +263,7 @@ Predicate logic (unfolded):
     (∀ (left : Left) (right : Right), leftCarrier left → rightCarrier right → resultCarrier (operation left right)) → ∀ {left : Left} {right : Right}, (leftCarrier left ∧ rightCarrier right) → resultCarrier (operation left right)
 Transliterated theorem: codomainCarrier (operation input)
 Logical form (Lean): {Domain : Type u} {Codomain : Type v} {domainCarrier : Domain → Prop} {codomainCarrier : Codomain → Prop} {operation : HeterogeneousUnaryOperation Domain Codomain} (law : UnaryClosedUnder domainCarrier codomainCarrier operation) {input : Domain} (input_mem : domainCarrier input) : codomainCarrier (operation input)
-Source: ./Laws/Closure/Theorems.lean#L52
+Source: [`./Laws/Closure/Theorems.lean#L62`](./Laws/Closure/Theorems.lean#L62)
 
 
 
@@ -288,7 +288,7 @@ Predicate logic (unfolded):
     (∀ (input : Domain), domainCarrier input → codomainCarrier (operation input)) → ∀ {input : Domain}, domainCarrier input → codomainCarrier (operation input)
 Transliterated theorem: resultCarrier (operation left right)
 Logical form (Lean): {Left : Type u} {Right : Type v} {Codomain : Type w} {leftCarrier : Left → Prop} {rightCarrier : Right → Prop} {resultCarrier : Codomain → Prop} {operation : HeterogeneousBinaryOperation Left Right Codomain} (law : BinaryClosedUnder leftCarrier rightCarrier resultCarrier operation) {left : Left} {right : Right} (left_mem : leftCarrier left) (right_mem : rightCarrier right) : resultCarrier (operation left right)
-Source: ./Laws/Closure/Theorems.lean#L107
+Source: [`./Laws/Closure/Theorems.lean#L130`](./Laws/Closure/Theorems.lean#L130)
 
 
 
@@ -310,7 +310,7 @@ Predicate logic (unfolded):
     (∀ (left right : Ambient), carrier left → carrier right → carrier (operation left right)) → ∀ {left right : Ambient}, (carrier left ∧ carrier right) → carrier (operation left right)
 Transliterated theorem: carrier (operation left right)
 Logical form (Lean): {Ambient : Type u} {carrier : Ambient → Prop} {operation : BinaryEndoOperation Ambient} (law : BinaryEndoClosedOn carrier operation) {left right : Ambient} (left_mem : carrier left) (right_mem : carrier right) : carrier (operation left right)
-Source: ./Laws/Closure/Theorems.lean#L162
+Source: [`./Laws/Closure/Theorems.lean#L195`](./Laws/Closure/Theorems.lean#L195)
 
 
 
@@ -327,7 +327,7 @@ Predicate logic (unfolded):
     (True ∧ True) → (fun x => True) (operation left right)
 Transliterated theorem: BinaryEndoClosedOn fun _ ∈ Carrier => True operation
 Logical form (Lean): {Carrier : Type u} (operation : BinaryEndoOperation Carrier) : BinaryEndoClosedOn (fun _ : Carrier => True) operation
-Source: ./Laws/Closure/Theorems.lean#L209
+Source: [`./Laws/Closure/Theorems.lean#L247`](./Laws/Closure/Theorems.lean#L247)
 
 
 
@@ -345,7 +345,7 @@ Predicate logic (unfolded):
     BinaryEndoClosedOn carrier operation ↔ BinaryClosedUnder carrier carrier carrier operation
 Transliterated theorem: BinaryEndoClosedOn carrier operation ↔ BinaryClosedUnder carrier carrier carrier operation
 Logical form (Lean): {Ambient : Type u} {carrier : Ambient → Prop} {operation : BinaryEndoOperation Ambient} : BinaryEndoClosedOn carrier operation ↔ BinaryClosedUnder carrier carrier carrier operation
-Source: ./Laws/Closure/Relationships.lean#L49
+Source: [`./Laws/Closure/Relationships.lean#L55`](./Laws/Closure/Relationships.lean#L55)
 
 
 
@@ -362,7 +362,7 @@ Predicate logic (unfolded):
     (∀ (left right : Nat), instHMod.1 left 2 = 1 → instHMod.1 right 2 = 1 → instHMod.1 (instHAdd.hAdd left right) 2 = 1) → False
 Transliterated theorem: FailsBinaryClosedUnder OddNaturalCarrier OddNaturalCarrier OddNaturalCarrier NaturalAdditionForClosureFailure
 Logical form (Lean): : FailsBinaryClosedUnder OddNaturalCarrier OddNaturalCarrier OddNaturalCarrier NaturalAdditionForClosureFailure
-Source: ./Laws/Closure/FailureModes.lean#L180
+Source: [`./Laws/Closure/FailureModes.lean#L195`](./Laws/Closure/FailureModes.lean#L195)
 
 
 
@@ -381,7 +381,7 @@ Predicate logic (unfolded):
     (∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)) → ∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)
 Transliterated theorem: (∀ first second third ∈ Carrier), operation (operation first second) third = operation first (operation second third)
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : Associative operation) (first second third : Carrier) : operation (operation first second) third = operation first (operation second third)
-Source: ./Laws/Associative/Theorems.lean#L50
+Source: [`./Laws/Associative/Theorems.lean#L57`](./Laws/Associative/Theorems.lean#L57)
 
 
 
@@ -400,7 +400,7 @@ Predicate logic (unfolded):
     (∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)) → ∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)
 Transliterated theorem: (∀ first second third ∈ Carrier), operation (operation first second) third = operation first (operation second third)
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : Associative operation) (first second third : Carrier) : operation (operation first second) third = operation first (operation second third)
-Source: ./Laws/Associative/Theorems.lean#L98
+Source: [`./Laws/Associative/Theorems.lean#L112`](./Laws/Associative/Theorems.lean#L112)
 
 
 
@@ -419,7 +419,7 @@ Predicate logic (unfolded):
     (∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)) → ∀ (first second third : Carrier), operation first (operation second third) = operation (operation first second) third
 Transliterated theorem: (∀ first second third ∈ Carrier), operation first (operation second third) = operation (operation first second) third
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : Associative operation) (first second third : Carrier) : operation first (operation second third) = operation (operation first second) third
-Source: ./Laws/Associative/Theorems.lean#L146
+Source: [`./Laws/Associative/Theorems.lean#L167`](./Laws/Associative/Theorems.lean#L167)
 
 
 
@@ -438,7 +438,7 @@ Predicate logic (unfolded):
     (∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)) → ∀ (first second third fourth : Carrier), operation (operation (operation first second) third) fourth = operation first (operation second (operation third fourth))
 Transliterated theorem: (∀ first second third fourth ∈ Carrier), operation (operation (operation first second) third) fourth = operation first (operation second (operation third fourth))
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : Associative operation) (first second third fourth : Carrier) : operation (operation (operation first second) third) fourth = operation first (operation second (operation third fourth))
-Source: ./Laws/Associative/Theorems.lean#L194
+Source: [`./Laws/Associative/Theorems.lean#L222`](./Laws/Associative/Theorems.lean#L222)
 
 
 
@@ -457,7 +457,7 @@ Predicate logic (unfolded):
     (∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)) → ∀ (first second third fourth : Carrier), operation first (operation second (operation third fourth)) = operation (operation (operation first second) third) fourth
 Transliterated theorem: (∀ first second third fourth ∈ Carrier), operation first (operation second (operation third fourth)) = operation (operation (operation first second) third) fourth
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : Associative operation) (first second third fourth : Carrier) : operation first (operation second (operation third fourth)) = operation (operation (operation first second) third) fourth
-Source: ./Laws/Associative/Theorems.lean#L242
+Source: [`./Laws/Associative/Theorems.lean#L277`](./Laws/Associative/Theorems.lean#L277)
 
 
 
@@ -476,7 +476,7 @@ Predicate logic (unfolded):
     (∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)) → ∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)
 Transliterated theorem: (∀ first second third ∈ Carrier), operation (operation first second) third = operation first (operation second third)
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : Associative operation) (first second third : Carrier) : operation (operation first second) third = operation first (operation second third)
-Source: ./Laws/Associative/Relationships.lean#L50
+Source: [`./Laws/Associative/Relationships.lean#L57`](./Laws/Associative/Relationships.lean#L57)
 
 
 
@@ -493,7 +493,7 @@ Predicate logic (unfolded):
     (∀ (first second third : Nat), { hSub := fun a b => instSubNat.sub a b }.hSub ({ hSub := fun a b => instSubNat.sub a b }.hSub first second) third = { hSub := fun a b => instSubNat.sub a b }.hSub first ({ hSub := fun a b => instSubNat.sub a b }.hSub second third)) → False
 Transliterated theorem: FailsAssociative NaturalSubtraction
 Logical form (Lean): : FailsAssociative NaturalSubtraction
-Source: ./Laws/Associative/FailureModes.lean#L130
+Source: [`./Laws/Associative/FailureModes.lean#L140`](./Laws/Associative/FailureModes.lean#L140)
 
 
 
@@ -513,7 +513,7 @@ Predicate logic (unfolded):
     (∀ (element : Carrier), operation element identity = element) → ∀ (element : Carrier), operation element identity = element
 Transliterated theorem: (∀ element ∈ Carrier), operation identity element = element
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} (law : LeftIdentity operation identity) (element : Carrier) : operation identity element = element
-Source: ./Laws/Identity/Theorems.lean#L50
+Source: [`./Laws/Identity/Theorems.lean#L58`](./Laws/Identity/Theorems.lean#L58)
 
 
 
@@ -533,7 +533,7 @@ Predicate logic (unfolded):
     (∀ (element : Carrier), operation identity element = element) → ∀ (element : Carrier), operation identity element = element
 Transliterated theorem: (∀ element ∈ Carrier), operation element identity = element
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} (law : RightIdentity operation identity) (element : Carrier) : operation element identity = element
-Source: ./Laws/Identity/Theorems.lean#L98
+Source: [`./Laws/Identity/Theorems.lean#L114`](./Laws/Identity/Theorems.lean#L114)
 
 
 
@@ -552,7 +552,7 @@ Predicate logic (unfolded):
     ((∀ (element : Carrier), operation identity element = element) ∧ (∀ (element : Carrier), operation element identity = element)) → ∀ (element : Carrier), operation identity element = element
 Transliterated theorem: LeftIdentity operation identity
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} (law : TwoSidedIdentity operation identity) : LeftIdentity operation identity
-Source: ./Laws/Identity/Theorems.lean#L145
+Source: [`./Laws/Identity/Theorems.lean#L168`](./Laws/Identity/Theorems.lean#L168)
 
 
 
@@ -571,7 +571,7 @@ Predicate logic (unfolded):
     ((∀ (element : Carrier), operation identity element = element) ∧ (∀ (element : Carrier), operation element identity = element)) → ∀ (element : Carrier), operation element identity = element
 Transliterated theorem: RightIdentity operation identity
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} (law : TwoSidedIdentity operation identity) : RightIdentity operation identity
-Source: ./Laws/Identity/Theorems.lean#L191
+Source: [`./Laws/Identity/Theorems.lean#L221`](./Laws/Identity/Theorems.lean#L221)
 
 
 
@@ -591,7 +591,7 @@ Predicate logic (unfolded):
     ((∀ (element : Carrier), operation identity element = element) ∧ (∀ (element : Carrier), operation element identity = element)) → ((∀ (element : Carrier), operation identity element = element) ∧ (∀ (element : Carrier), operation element identity = element))
 Transliterated theorem: TwoSidedIdentity operation identity
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} (leftLaw : LeftIdentity operation identity) (rightLaw : RightIdentity operation identity) : TwoSidedIdentity operation identity
-Source: ./Laws/Identity/Theorems.lean#L238
+Source: [`./Laws/Identity/Theorems.lean#L276`](./Laws/Identity/Theorems.lean#L276)
 
 
 
@@ -611,7 +611,7 @@ Predicate logic (unfolded):
     ((∀ (element : Carrier), operation leftIdentity element = element) ∧ (∀ (element : Carrier), operation element rightIdentity = element)) → leftIdentity = rightIdentity
 Transliterated theorem: leftIdentity = rightIdentity
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {leftIdentity rightIdentity : Carrier} (leftLaw : LeftIdentity operation leftIdentity) (rightLaw : RightIdentity operation rightIdentity) : leftIdentity = rightIdentity
-Source: ./Laws/Identity/Relationships.lean#L50
+Source: [`./Laws/Identity/Relationships.lean#L58`](./Laws/Identity/Relationships.lean#L58)
 
 
 
@@ -631,7 +631,7 @@ Predicate logic (unfolded):
     (((∀ (element : Carrier), operation firstIdentity element = element) ∧ (∀ (element : Carrier), operation element firstIdentity = element)) ∧ ((∀ (element : Carrier), operation secondIdentity element = element) ∧ (∀ (element : Carrier), operation element secondIdentity = element))) → firstIdentity = secondIdentity
 Transliterated theorem: firstIdentity = secondIdentity
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {firstIdentity secondIdentity : Carrier} (firstLaw : TwoSidedIdentity operation firstIdentity) (secondLaw : TwoSidedIdentity operation secondIdentity) : firstIdentity = secondIdentity
-Source: ./Laws/Identity/Relationships.lean#L98
+Source: [`./Laws/Identity/Relationships.lean#L114`](./Laws/Identity/Relationships.lean#L114)
 
 
 
@@ -648,7 +648,7 @@ Predicate logic (unfolded):
     ((∀ (element : Bool), element = element) ∧ ((∀ (element : Bool), Bool.false = element) → False))
 Transliterated theorem: LeftIdentity BooleanSecondProjection false ∧ FailsRightIdentity BooleanSecondProjection false
 Logical form (Lean): : LeftIdentity BooleanSecondProjection false ∧ FailsRightIdentity BooleanSecondProjection false
-Source: ./Laws/Identity/FailureModes.lean#L219
+Source: [`./Laws/Identity/FailureModes.lean#L234`](./Laws/Identity/FailureModes.lean#L234)
 
 
 
@@ -665,7 +665,7 @@ Predicate logic (unfolded):
     ((∀ (element : Bool), element = element) ∧ ((∀ (element : Bool), Bool.false = element) → False))
 Transliterated theorem: RightIdentity BooleanFirstProjection false ∧ FailsLeftIdentity BooleanFirstProjection false
 Logical form (Lean): : RightIdentity BooleanFirstProjection false ∧ FailsLeftIdentity BooleanFirstProjection false
-Source: ./Laws/Identity/FailureModes.lean#L261
+Source: [`./Laws/Identity/FailureModes.lean#L281`](./Laws/Identity/FailureModes.lean#L281)
 
 
 
@@ -686,7 +686,7 @@ Predicate logic (unfolded):
     (∀ (element : Carrier), operation (inverse element) element = identity) → ∀ (element : Carrier), operation (inverse element) element = identity
 Transliterated theorem: (∀ element ∈ Carrier), operation (inverse element) element = identity
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} {inverse : UnaryEndoOperation Carrier} (law : LeftInverse operation identity inverse) (element : Carrier) : operation (inverse element) element = identity
-Source: ./Laws/Inverse/Theorems.lean#L51
+Source: [`./Laws/Inverse/Theorems.lean#L60`](./Laws/Inverse/Theorems.lean#L60)
 
 
 
@@ -707,7 +707,7 @@ Predicate logic (unfolded):
     operation element inverse = identity → operation element inverse = identity
 Transliterated theorem: (∀ element ∈ Carrier), operation element (inverse element) = identity
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} {inverse : UnaryEndoOperation Carrier} (law : RightInverse operation identity inverse) (element : Carrier) : operation element (inverse element) = identity
-Source: ./Laws/Inverse/Theorems.lean#L101
+Source: [`./Laws/Inverse/Theorems.lean#L119`](./Laws/Inverse/Theorems.lean#L119)
 
 
 
@@ -726,7 +726,7 @@ Predicate logic (unfolded):
     (∀ (element : Carrier), operation element (inverse element) = identity) → ∀ (element : Carrier), operation element (inverse element) = identity
 Transliterated theorem: operation inverse element = identity
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity element inverse : Carrier} (law : LeftInverseOf operation identity element inverse) : operation inverse element = identity
-Source: ./Laws/Inverse/Theorems.lean#L149
+Source: [`./Laws/Inverse/Theorems.lean#L174`](./Laws/Inverse/Theorems.lean#L174)
 
 
 
@@ -745,7 +745,7 @@ Predicate logic (unfolded):
     operation inverse element = identity → operation inverse element = identity
 Transliterated theorem: operation element inverse = identity
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity element inverse : Carrier} (law : RightInverseOf operation identity element inverse) : operation element inverse = identity
-Source: ./Laws/Inverse/Theorems.lean#L195
+Source: [`./Laws/Inverse/Theorems.lean#L227`](./Laws/Inverse/Theorems.lean#L227)
 
 
 
@@ -764,7 +764,7 @@ Predicate logic (unfolded):
     ((∀ (element : Carrier), operation (inverse element) element = identity) ∧ (∀ (element : Carrier), operation element (inverse element) = identity)) → ∀ (element : Carrier), operation (inverse element) element = identity
 Transliterated theorem: LeftInverseOf operation identity element inverse
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity element inverse : Carrier} (law : TwoSidedInverseOf operation identity element inverse) : LeftInverseOf operation identity element inverse
-Source: ./Laws/Inverse/Theorems.lean#L241
+Source: [`./Laws/Inverse/Theorems.lean#L280`](./Laws/Inverse/Theorems.lean#L280)
 
 
 
@@ -783,7 +783,7 @@ Predicate logic (unfolded):
     (operation inverse element = identity ∧ operation element inverse = identity) → operation element inverse = identity
 Transliterated theorem: RightInverseOf operation identity element inverse
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity element inverse : Carrier} (law : TwoSidedInverseOf operation identity element inverse) : RightInverseOf operation identity element inverse
-Source: ./Laws/Inverse/Theorems.lean#L287
+Source: [`./Laws/Inverse/Theorems.lean#L333`](./Laws/Inverse/Theorems.lean#L333)
 
 
 
@@ -803,7 +803,7 @@ Predicate logic (unfolded):
     ((∀ (element : Carrier), operation (inverse element) element = identity) ∧ (∀ (element : Carrier), operation element (inverse element) = identity)) → ((∀ (element : Carrier), operation (inverse element) element = identity) ∧ (∀ (element : Carrier), operation element (inverse element) = identity))
 Transliterated theorem: TwoSidedInverseOf operation identity element inverse
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity element inverse : Carrier} (leftLaw : LeftInverseOf operation identity element inverse) (rightLaw : RightInverseOf operation identity element inverse) : TwoSidedInverseOf operation identity element inverse
-Source: ./Laws/Inverse/Theorems.lean#L334
+Source: [`./Laws/Inverse/Theorems.lean#L388`](./Laws/Inverse/Theorems.lean#L388)
 
 
 
@@ -824,7 +824,7 @@ Predicate logic (unfolded):
     ((∀ (element : Carrier), eligible element → Exists fun inverse => operation inverse element = identity) ∧ eligible element) → Exists fun inverse => operation inverse element = identity
 Transliterated theorem: ∃ inverse, LeftInverseOf operation identity element inverse
 Logical form (Lean): {Carrier : Type u} {eligible : Carrier → Prop} {operation : BinaryEndoOperation Carrier} {identity element : Carrier} (law : LeftInvertibleOn eligible operation identity) (eligible_element : eligible element) : ∃ inverse, LeftInverseOf operation identity element inverse
-Source: ./Laws/Inverse/Theorems.lean#L383
+Source: [`./Laws/Inverse/Theorems.lean#L446`](./Laws/Inverse/Theorems.lean#L446)
 
 
 
@@ -845,7 +845,7 @@ Predicate logic (unfolded):
     ((∀ (element : Carrier), eligible element → Exists fun inverse => operation element inverse = identity) ∧ eligible element) → Exists fun inverse => operation element inverse = identity
 Transliterated theorem: ∃ inverse, RightInverseOf operation identity element inverse
 Logical form (Lean): {Carrier : Type u} {eligible : Carrier → Prop} {operation : BinaryEndoOperation Carrier} {identity element : Carrier} (law : RightInvertibleOn eligible operation identity) (eligible_element : eligible element) : ∃ inverse, RightInverseOf operation identity element inverse
-Source: ./Laws/Inverse/Theorems.lean#L433
+Source: [`./Laws/Inverse/Theorems.lean#L505`](./Laws/Inverse/Theorems.lean#L505)
 
 
 
@@ -866,7 +866,7 @@ Predicate logic (unfolded):
     ((∀ (element : Carrier), eligible element → Exists fun inverse => (operation inverse element = identity ∧ operation element inverse = identity)) ∧ eligible element) → Exists fun inverse => (operation inverse element = identity ∧ operation element inverse = identity)
 Transliterated theorem: ∃ inverse, TwoSidedInverseOf operation identity element inverse
 Logical form (Lean): {Carrier : Type u} {eligible : Carrier → Prop} {operation : BinaryEndoOperation Carrier} {identity element : Carrier} (law : TwoSidedInvertibleOn eligible operation identity) (eligible_element : eligible element) : ∃ inverse, TwoSidedInverseOf operation identity element inverse
-Source: ./Laws/Inverse/Theorems.lean#L483
+Source: [`./Laws/Inverse/Theorems.lean#L564`](./Laws/Inverse/Theorems.lean#L564)
 
 
 
@@ -886,7 +886,7 @@ Predicate logic (unfolded):
     (operation inverse element = identity ∧ operation element inverse = identity) → operation inverse element = identity
 Transliterated theorem: LeftInverse operation identity inverse
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} {inverse : UnaryEndoOperation Carrier} (law : TwoSidedInverse operation identity inverse) : LeftInverse operation identity inverse
-Source: ./Laws/Inverse/Theorems.lean#L532
+Source: [`./Laws/Inverse/Theorems.lean#L621`](./Laws/Inverse/Theorems.lean#L621)
 
 
 
@@ -906,7 +906,7 @@ Predicate logic (unfolded):
     ((∀ (element : Carrier), operation (inverse element) element = identity) ∧ (∀ (element : Carrier), operation element (inverse element) = identity)) → ∀ (element : Carrier), operation element (inverse element) = identity
 Transliterated theorem: RightInverse operation identity inverse
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} {inverse : UnaryEndoOperation Carrier} (law : TwoSidedInverse operation identity inverse) : RightInverse operation identity inverse
-Source: ./Laws/Inverse/Theorems.lean#L580
+Source: [`./Laws/Inverse/Theorems.lean#L677`](./Laws/Inverse/Theorems.lean#L677)
 
 
 
@@ -927,7 +927,7 @@ Predicate logic (unfolded):
     (operation inverse element = identity ∧ operation element inverse = identity) → (operation inverse element = identity ∧ operation element inverse = identity)
 Transliterated theorem: TwoSidedInverse operation identity inverse
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} {inverse : UnaryEndoOperation Carrier} (leftLaw : LeftInverse operation identity inverse) (rightLaw : RightInverse operation identity inverse) : TwoSidedInverse operation identity inverse
-Source: ./Laws/Inverse/Theorems.lean#L629
+Source: [`./Laws/Inverse/Theorems.lean#L735`](./Laws/Inverse/Theorems.lean#L735)
 
 
 
@@ -947,7 +947,7 @@ Predicate logic (unfolded):
     ((∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)) ∧ (((∀ (element : Carrier), operation identity element = element) ∧ (∀ (element : Carrier), operation element identity = element)) ∧ (operation leftCandidate element = identity ∧ operation element rightCandidate = identity))) → leftCandidate = rightCandidate
 Transliterated theorem: (operation leftCandidate element = identity ∧ operation element rightCandidate = identity) → leftCandidate = rightCandidate
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity element leftCandidate rightCandidate : Carrier} (associative : LRA.Operation.Laws.Associative.Associative operation) (identityLaw : LRA.Operation.Laws.Identity.TwoSidedIdentity operation identity) (leftInverseLaw : operation leftCandidate element = identity) (rightInverseLaw : operation element rightCandidate = identity) : leftCandidate = rightCandidate
-Source: ./Laws/Inverse/Relationships.lean#L56
+Source: [`./Laws/Inverse/Relationships.lean#L64`](./Laws/Inverse/Relationships.lean#L64)
 
 
 
@@ -970,7 +970,7 @@ Predicate logic (unfolded):
     ((∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)) ∧ (((∀ (element : Carrier), operation identity element = element) ∧ (∀ (element : Carrier), operation element identity = element)) ∧ (((∀ (element : Carrier), operation (firstInverse element) element = identity) ∧ (∀ (element : Carrier), operation element (firstInverse element) = identity)) ∧ ((∀ (element : Carrier), operation (secondInverse element) element = identity) ∧ (∀ (element : Carrier), operation element (secondInverse element) = identity))))) → firstInverse = secondInverse
 Transliterated theorem: firstInverse = secondInverse
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} {firstInverse secondInverse : UnaryEndoOperation Carrier} (associative : LRA.Operation.Laws.Associative.Associative operation) (identityLaw : LRA.Operation.Laws.Identity.TwoSidedIdentity operation identity) (firstLaw : TwoSidedInverse operation identity firstInverse) (secondLaw : TwoSidedInverse operation identity secondInverse) : firstInverse = secondInverse
-Source: ./Laws/Inverse/Relationships.lean#L109
+Source: [`./Laws/Inverse/Relationships.lean#L128`](./Laws/Inverse/Relationships.lean#L128)
 
 
 
@@ -992,7 +992,7 @@ Predicate logic (unfolded):
     ((∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)) ∧ ((∀ (element : Carrier), operation identity element = element) ∧ (∀ (element : Carrier), operation (inverse element) element = identity))) → ∀ (fixed first second : Carrier), operation fixed first = operation fixed second → first = second
 Transliterated theorem: LRA.Operation.Laws.Cancellation.LeftCancellative operation
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} {inverse : UnaryEndoOperation Carrier} (associative : LRA.Operation.Laws.Associative.Associative operation) (leftIdentity : LRA.Operation.Laws.Identity.LeftIdentity operation identity) (leftInverse : LeftInverse operation identity inverse) : LRA.Operation.Laws.Cancellation.LeftCancellative operation
-Source: ./Laws/Inverse/Relationships.lean#L162
+Source: [`./Laws/Inverse/Relationships.lean#L191`](./Laws/Inverse/Relationships.lean#L191)
 
 
 
@@ -1014,7 +1014,7 @@ Predicate logic (unfolded):
     ((∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)) ∧ ((∀ (element : Carrier), operation element identity = element) ∧ (∀ (element : Carrier), operation element (inverse element) = identity))) → ∀ (first second fixed : Carrier), operation first fixed = operation second fixed → first = second
 Transliterated theorem: LRA.Operation.Laws.Cancellation.RightCancellative operation
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} {inverse : UnaryEndoOperation Carrier} (associative : LRA.Operation.Laws.Associative.Associative operation) (rightIdentity : LRA.Operation.Laws.Identity.RightIdentity operation identity) (rightInverse : RightInverse operation identity inverse) : LRA.Operation.Laws.Cancellation.RightCancellative operation
-Source: ./Laws/Inverse/Relationships.lean#L214
+Source: [`./Laws/Inverse/Relationships.lean#L253`](./Laws/Inverse/Relationships.lean#L253)
 
 
 
@@ -1035,7 +1035,7 @@ Predicate logic (unfolded):
     (∀ (element : Carrier), operation (inverse element) element = identity) → ∀ (element : Carrier), operation (inverse element) element = identity
 Transliterated theorem: (∀ element ∈ Carrier), LeftInverseOf operation identity element (inverse element)
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} {inverse : UnaryEndoOperation Carrier} (law : LeftInverse operation identity inverse) (element : Carrier) : LeftInverseOf operation identity element (inverse element)
-Source: ./Laws/Inverse/Relationships.lean#L265
+Source: [`./Laws/Inverse/Relationships.lean#L313`](./Laws/Inverse/Relationships.lean#L313)
 
 
 
@@ -1056,7 +1056,7 @@ Predicate logic (unfolded):
     (∀ (element : Carrier), operation element (inverse element) = identity) → ∀ (element : Carrier), operation element (inverse element) = identity
 Transliterated theorem: (∀ element ∈ Carrier), RightInverseOf operation identity element (inverse element)
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} {inverse : UnaryEndoOperation Carrier} (law : RightInverse operation identity inverse) (element : Carrier) : RightInverseOf operation identity element (inverse element)
-Source: ./Laws/Inverse/Relationships.lean#L315
+Source: [`./Laws/Inverse/Relationships.lean#L372`](./Laws/Inverse/Relationships.lean#L372)
 
 
 
@@ -1077,7 +1077,7 @@ Predicate logic (unfolded):
     ((∀ (element : Carrier), operation (inverse element) element = identity) ∧ (∀ (element : Carrier), operation element (inverse element) = identity)) → ∀ (element : Carrier), (operation (inverse element) element = identity ∧ operation element (inverse element) = identity)
 Transliterated theorem: (∀ element ∈ Carrier), TwoSidedInverseOf operation identity element (inverse element)
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} {inverse : UnaryEndoOperation Carrier} (law : TwoSidedInverse operation identity inverse) (element : Carrier) : TwoSidedInverseOf operation identity element (inverse element)
-Source: ./Laws/Inverse/Relationships.lean#L365
+Source: [`./Laws/Inverse/Relationships.lean#L431`](./Laws/Inverse/Relationships.lean#L431)
 
 
 
@@ -1097,7 +1097,7 @@ Predicate logic (unfolded):
     ((∀ (first second : Carrier), operation first second = operation second first) ∧ operation inverse element = identity) → operation element inverse = identity
 Transliterated theorem: RightInverseOf operation identity element inverse
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity element inverse : Carrier} (commutative : LRA.Operation.Laws.Commutative.Commutative operation) (leftLaw : LeftInverseOf operation identity element inverse) : RightInverseOf operation identity element inverse
-Source: ./Laws/Inverse/Relationships.lean#L414
+Source: [`./Laws/Inverse/Relationships.lean#L488`](./Laws/Inverse/Relationships.lean#L488)
 
 
 
@@ -1117,7 +1117,7 @@ Predicate logic (unfolded):
     ((∀ (first second : Carrier), operation first second = operation second first) ∧ operation element inverse = identity) → operation inverse element = identity
 Transliterated theorem: LeftInverseOf operation identity element inverse
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity element inverse : Carrier} (commutative : LRA.Operation.Laws.Commutative.Commutative operation) (rightLaw : RightInverseOf operation identity element inverse) : LeftInverseOf operation identity element inverse
-Source: ./Laws/Inverse/Relationships.lean#L462
+Source: [`./Laws/Inverse/Relationships.lean#L544`](./Laws/Inverse/Relationships.lean#L544)
 
 
 
@@ -1138,7 +1138,7 @@ Predicate logic (unfolded):
     ((∀ (first second : Carrier), operation first second = operation second first) ∧ (∀ (element : Carrier), operation (inverse element) element = identity)) → ∀ (element : Carrier), operation element (inverse element) = identity
 Transliterated theorem: RightInverse operation identity inverse
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} {inverse : UnaryEndoOperation Carrier} (commutative : LRA.Operation.Laws.Commutative.Commutative operation) (leftLaw : LeftInverse operation identity inverse) : RightInverse operation identity inverse
-Source: ./Laws/Inverse/Relationships.lean#L511
+Source: [`./Laws/Inverse/Relationships.lean#L602`](./Laws/Inverse/Relationships.lean#L602)
 
 
 
@@ -1159,7 +1159,7 @@ Predicate logic (unfolded):
     ((∀ (first second : Carrier), operation first second = operation second first) ∧ (∀ (element : Carrier), operation element (inverse element) = identity)) → ∀ (element : Carrier), operation (inverse element) element = identity
 Transliterated theorem: LeftInverse operation identity inverse
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} {inverse : UnaryEndoOperation Carrier} (commutative : LRA.Operation.Laws.Commutative.Commutative operation) (rightLaw : RightInverse operation identity inverse) : LeftInverse operation identity inverse
-Source: ./Laws/Inverse/Relationships.lean#L561
+Source: [`./Laws/Inverse/Relationships.lean#L661`](./Laws/Inverse/Relationships.lean#L661)
 
 
 
@@ -1176,7 +1176,7 @@ Predicate logic (unfolded):
     ((∀ (element : Nat), { hAdd := fun a b => instAddNat.add a b }.hAdd 0 element = 0) ∧ (∀ (element : Nat), { hAdd := fun a b => instAddNat.add a b }.hAdd element 0 = 0)) → False
 Transliterated theorem: FailsTwoSidedInverse NaturalAdditionForInverseFailure 0 ConstantZeroNaturalInverseCandidate
 Logical form (Lean): : FailsTwoSidedInverse NaturalAdditionForInverseFailure 0 ConstantZeroNaturalInverseCandidate
-Source: ./Laws/Inverse/FailureModes.lean#L179
+Source: [`./Laws/Inverse/FailureModes.lean#L189`](./Laws/Inverse/FailureModes.lean#L189)
 
 
 
@@ -1193,7 +1193,7 @@ Predicate logic (unfolded):
     (Exists fun inverse => ((∀ (element : Nat), { hAdd := fun a b => instAddNat.add a b }.hAdd (inverse element) element = 0) ∧ (∀ (element : Nat), { hAdd := fun a b => instAddNat.add a b }.hAdd element (inverse element) = 0))) → False
 Transliterated theorem: Not ∃ inverse ∈ UnaryEndoOperation Nat, TwoSidedInverse NaturalAdditionForInverseFailure 0 inverse
 Logical form (Lean): : Not (∃ inverse : UnaryEndoOperation Nat, TwoSidedInverse NaturalAdditionForInverseFailure 0 inverse)
-Source: ./Laws/Inverse/FailureModes.lean#L224
+Source: [`./Laws/Inverse/FailureModes.lean#L239`](./Laws/Inverse/FailureModes.lean#L239)
 
 
 
@@ -1212,7 +1212,7 @@ Predicate logic (unfolded):
     (∀ (first second : Carrier), operation first second = operation second first) → ∀ (first second : Carrier), operation first second = operation second first
 Transliterated theorem: (∀ first second ∈ Carrier), operation first second = operation second first
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : Commutative operation) (first second : Carrier) : operation first second = operation second first
-Source: ./Laws/Commutative/Theorems.lean#L49
+Source: [`./Laws/Commutative/Theorems.lean#L56`](./Laws/Commutative/Theorems.lean#L56)
 
 
 
@@ -1231,7 +1231,7 @@ Predicate logic (unfolded):
     (∀ (first second : Carrier), operation first second = operation second first) → ∀ (first second : Carrier), operation second first = operation first second
 Transliterated theorem: (∀ first second ∈ Carrier), operation second first = operation first second
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : Commutative operation) (first second : Carrier) : operation second first = operation first second
-Source: ./Laws/Commutative/Theorems.lean#L95
+Source: [`./Laws/Commutative/Theorems.lean#L109`](./Laws/Commutative/Theorems.lean#L109)
 
 
 
@@ -1251,7 +1251,7 @@ Predicate logic (unfolded):
     ((∀ (first second : Carrier), operation first second = operation second first) ∧ (∀ (element : Carrier), operation identity element = element)) → ∀ (element : Carrier), operation element identity = element
 Transliterated theorem: LRA.Operation.Laws.Identity.RightIdentity operation identity
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} (commutative : Commutative operation) (leftIdentity : LRA.Operation.Laws.Identity.LeftIdentity operation identity) : LRA.Operation.Laws.Identity.RightIdentity operation identity
-Source: ./Laws/Commutative/Relationships.lean#L52
+Source: [`./Laws/Commutative/Relationships.lean#L60`](./Laws/Commutative/Relationships.lean#L60)
 
 
 
@@ -1271,7 +1271,7 @@ Predicate logic (unfolded):
     ((∀ (first second : Carrier), operation first second = operation second first) ∧ (∀ (element : Carrier), operation element identity = element)) → ∀ (element : Carrier), operation identity element = element
 Transliterated theorem: LRA.Operation.Laws.Identity.LeftIdentity operation identity
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {identity : Carrier} (commutative : Commutative operation) (rightIdentity : LRA.Operation.Laws.Identity.RightIdentity operation identity) : LRA.Operation.Laws.Identity.LeftIdentity operation identity
-Source: ./Laws/Commutative/Relationships.lean#L100
+Source: [`./Laws/Commutative/Relationships.lean#L116`](./Laws/Commutative/Relationships.lean#L116)
 
 
 
@@ -1291,7 +1291,7 @@ Predicate logic (unfolded):
     ((∀ (first second : Carrier), operation first second = operation second first) ∧ (∀ (element : Carrier), operation absorber element = absorber)) → ∀ (element : Carrier), operation element absorber = absorber
 Transliterated theorem: LRA.Operation.Laws.Absorbing.RightAbsorbing operation absorber
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {absorber : Carrier} (commutative : Commutative operation) (leftAbsorbing : LRA.Operation.Laws.Absorbing.LeftAbsorbing operation absorber) : LRA.Operation.Laws.Absorbing.RightAbsorbing operation absorber
-Source: ./Laws/Commutative/Relationships.lean#L148
+Source: [`./Laws/Commutative/Relationships.lean#L172`](./Laws/Commutative/Relationships.lean#L172)
 
 
 
@@ -1311,7 +1311,7 @@ Predicate logic (unfolded):
     ((∀ (first second : Carrier), operation first second = operation second first) ∧ (∀ (element : Carrier), operation element absorber = absorber)) → ∀ (element : Carrier), operation absorber element = absorber
 Transliterated theorem: LRA.Operation.Laws.Absorbing.LeftAbsorbing operation absorber
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {absorber : Carrier} (commutative : Commutative operation) (rightAbsorbing : LRA.Operation.Laws.Absorbing.RightAbsorbing operation absorber) : LRA.Operation.Laws.Absorbing.LeftAbsorbing operation absorber
-Source: ./Laws/Commutative/Relationships.lean#L196
+Source: [`./Laws/Commutative/Relationships.lean#L228`](./Laws/Commutative/Relationships.lean#L228)
 
 
 
@@ -1328,7 +1328,7 @@ Predicate logic (unfolded):
     (∀ (first second : Nat), { hSub := fun a b => instSubNat.sub a b }.hSub first second = { hSub := fun a b => instSubNat.sub a b }.hSub second first) → False
 Transliterated theorem: FailsCommutative NaturalSubtraction
 Logical form (Lean): : FailsCommutative NaturalSubtraction
-Source: ./Laws/Commutative/FailureModes.lean#L130
+Source: [`./Laws/Commutative/FailureModes.lean#L140`](./Laws/Commutative/FailureModes.lean#L140)
 
 
 
@@ -1348,7 +1348,7 @@ Predicate logic (unfolded):
     (∀ (element : Carrier), operation element absorber = absorber) → ∀ (element : Carrier), operation element absorber = absorber
 Transliterated theorem: (∀ element ∈ Carrier), operation absorber element = absorber
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {absorber : Carrier} (law : LeftAbsorbing operation absorber) (element : Carrier) : operation absorber element = absorber
-Source: ./Laws/Absorbing/Theorems.lean#L50
+Source: [`./Laws/Absorbing/Theorems.lean#L58`](./Laws/Absorbing/Theorems.lean#L58)
 
 
 
@@ -1368,7 +1368,7 @@ Predicate logic (unfolded):
     (∀ (element : Carrier), operation absorber element = absorber) → ∀ (element : Carrier), operation absorber element = absorber
 Transliterated theorem: (∀ element ∈ Carrier), operation element absorber = absorber
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {absorber : Carrier} (law : RightAbsorbing operation absorber) (element : Carrier) : operation element absorber = absorber
-Source: ./Laws/Absorbing/Theorems.lean#L98
+Source: [`./Laws/Absorbing/Theorems.lean#L114`](./Laws/Absorbing/Theorems.lean#L114)
 
 
 
@@ -1387,7 +1387,7 @@ Predicate logic (unfolded):
     ((∀ (element : Carrier), operation absorber element = absorber) ∧ (∀ (element : Carrier), operation element absorber = absorber)) → ∀ (element : Carrier), operation absorber element = absorber
 Transliterated theorem: LeftAbsorbing operation absorber
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {absorber : Carrier} (law : TwoSidedAbsorbing operation absorber) : LeftAbsorbing operation absorber
-Source: ./Laws/Absorbing/Theorems.lean#L145
+Source: [`./Laws/Absorbing/Theorems.lean#L168`](./Laws/Absorbing/Theorems.lean#L168)
 
 
 
@@ -1406,7 +1406,7 @@ Predicate logic (unfolded):
     ((∀ (element : Carrier), operation absorber element = absorber) ∧ (∀ (element : Carrier), operation element absorber = absorber)) → ∀ (element : Carrier), operation element absorber = absorber
 Transliterated theorem: RightAbsorbing operation absorber
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {absorber : Carrier} (law : TwoSidedAbsorbing operation absorber) : RightAbsorbing operation absorber
-Source: ./Laws/Absorbing/Theorems.lean#L191
+Source: [`./Laws/Absorbing/Theorems.lean#L221`](./Laws/Absorbing/Theorems.lean#L221)
 
 
 
@@ -1426,7 +1426,7 @@ Predicate logic (unfolded):
     ((∀ (element : Carrier), operation absorber element = absorber) ∧ (∀ (element : Carrier), operation element absorber = absorber)) → ((∀ (element : Carrier), operation absorber element = absorber) ∧ (∀ (element : Carrier), operation element absorber = absorber))
 Transliterated theorem: TwoSidedAbsorbing operation absorber
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {absorber : Carrier} (leftLaw : LeftAbsorbing operation absorber) (rightLaw : RightAbsorbing operation absorber) : TwoSidedAbsorbing operation absorber
-Source: ./Laws/Absorbing/Theorems.lean#L238
+Source: [`./Laws/Absorbing/Theorems.lean#L276`](./Laws/Absorbing/Theorems.lean#L276)
 
 
 
@@ -1446,7 +1446,7 @@ Predicate logic (unfolded):
     ((∀ (element : Carrier), operation leftAbsorber element = leftAbsorber) ∧ (∀ (element : Carrier), operation element rightAbsorber = rightAbsorber)) → leftAbsorber = rightAbsorber
 Transliterated theorem: leftAbsorber = rightAbsorber
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {leftAbsorber rightAbsorber : Carrier} (leftLaw : LeftAbsorbing operation leftAbsorber) (rightLaw : RightAbsorbing operation rightAbsorber) : leftAbsorber = rightAbsorber
-Source: ./Laws/Absorbing/Relationships.lean#L50
+Source: [`./Laws/Absorbing/Relationships.lean#L58`](./Laws/Absorbing/Relationships.lean#L58)
 
 
 
@@ -1466,7 +1466,7 @@ Predicate logic (unfolded):
     (((∀ (element : Carrier), operation firstAbsorber element = firstAbsorber) ∧ (∀ (element : Carrier), operation element firstAbsorber = firstAbsorber)) ∧ ((∀ (element : Carrier), operation secondAbsorber element = secondAbsorber) ∧ (∀ (element : Carrier), operation element secondAbsorber = secondAbsorber))) → firstAbsorber = secondAbsorber
 Transliterated theorem: firstAbsorber = secondAbsorber
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {firstAbsorber secondAbsorber : Carrier} (firstLaw : TwoSidedAbsorbing operation firstAbsorber) (secondLaw : TwoSidedAbsorbing operation secondAbsorber) : firstAbsorber = secondAbsorber
-Source: ./Laws/Absorbing/Relationships.lean#L98
+Source: [`./Laws/Absorbing/Relationships.lean#L114`](./Laws/Absorbing/Relationships.lean#L114)
 
 
 
@@ -1483,7 +1483,7 @@ Predicate logic (unfolded):
     ((∀ (element : Bool), Bool.false = Bool.false) ∧ ((∀ (element : Bool), element = Bool.false) → False))
 Transliterated theorem: LeftAbsorbing BooleanFirstProjection false ∧ FailsRightAbsorbing BooleanFirstProjection false
 Logical form (Lean): : LeftAbsorbing BooleanFirstProjection false ∧ FailsRightAbsorbing BooleanFirstProjection false
-Source: ./Laws/Absorbing/FailureModes.lean#L219
+Source: [`./Laws/Absorbing/FailureModes.lean#L234`](./Laws/Absorbing/FailureModes.lean#L234)
 
 
 
@@ -1500,7 +1500,7 @@ Predicate logic (unfolded):
     ((∀ (element : Bool), Bool.false = Bool.false) ∧ ((∀ (element : Bool), element = Bool.false) → False))
 Transliterated theorem: RightAbsorbing BooleanSecondProjection false ∧ FailsLeftAbsorbing BooleanSecondProjection false
 Logical form (Lean): : RightAbsorbing BooleanSecondProjection false ∧ FailsLeftAbsorbing BooleanSecondProjection false
-Source: ./Laws/Absorbing/FailureModes.lean#L261
+Source: [`./Laws/Absorbing/FailureModes.lean#L281`](./Laws/Absorbing/FailureModes.lean#L281)
 
 
 
@@ -1519,7 +1519,7 @@ Predicate logic (unfolded):
     (∀ (first second : Carrier), operation first fixed = operation second fixed → first = second) → ∀ (first second : Carrier), operation first fixed = operation second fixed → first = second
 Transliterated theorem: (∀ fixed first second ∈ Carrier), (operation fixed first = operation fixed second) → first = second
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : LeftCancellative operation) (fixed first second : Carrier) (equal_products : operation fixed first = operation fixed second) : first = second
-Source: ./Laws/Cancellation/Theorems.lean#L50
+Source: [`./Laws/Cancellation/Theorems.lean#L57`](./Laws/Cancellation/Theorems.lean#L57)
 
 
 
@@ -1538,7 +1538,7 @@ Predicate logic (unfolded):
     (∀ (fixed : Carrier), eligible fixed → ∀ (first second : Carrier), operation first fixed = operation second fixed → first = second) → ∀ (fixed : Carrier), eligible fixed → ∀ (first second : Carrier), operation first fixed = operation second fixed → first = second
 Transliterated theorem: (∀ first second fixed ∈ Carrier), (operation first fixed = operation second fixed) → first = second
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : RightCancellative operation) (first second fixed : Carrier) (equal_products : operation first fixed = operation second fixed) : first = second
-Source: ./Laws/Cancellation/Theorems.lean#L98
+Source: [`./Laws/Cancellation/Theorems.lean#L112`](./Laws/Cancellation/Theorems.lean#L112)
 
 
 
@@ -1558,7 +1558,7 @@ Predicate logic (unfolded):
     (∀ (first second fixed : Carrier), operation first fixed = operation second fixed → first = second) → ∀ (first second fixed : Carrier), operation first fixed = operation second fixed → first = second
 Transliterated theorem: (∀ first second ∈ Carrier), (operation fixed first = operation fixed second) → first = second
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {fixed : Carrier} (law : LeftRegular operation fixed) (first second : Carrier) (equal_products : operation fixed first = operation fixed second) : first = second
-Source: ./Laws/Cancellation/Theorems.lean#L147
+Source: [`./Laws/Cancellation/Theorems.lean#L169`](./Laws/Cancellation/Theorems.lean#L169)
 
 
 
@@ -1578,7 +1578,7 @@ Predicate logic (unfolded):
     (∀ (fixed first second : Carrier), operation fixed first = operation fixed second → first = second) → ∀ (fixed first second : Carrier), operation fixed first = operation fixed second → first = second
 Transliterated theorem: (∀ first second ∈ Carrier), (operation first fixed = operation second fixed) → first = second
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {fixed : Carrier} (law : RightRegular operation fixed) (first second : Carrier) (equal_products : operation first fixed = operation second fixed) : first = second
-Source: ./Laws/Cancellation/Theorems.lean#L197
+Source: [`./Laws/Cancellation/Theorems.lean#L227`](./Laws/Cancellation/Theorems.lean#L227)
 
 
 
@@ -1599,7 +1599,7 @@ Predicate logic (unfolded):
     (∀ (first second : Carrier), operation fixed first = operation fixed second → first = second) → ∀ (first second : Carrier), operation fixed first = operation fixed second → first = second
 Transliterated theorem: (∀ fixed ∈ Carrier), LeftRegular operation fixed
 Logical form (Lean): {Carrier : Type u} {eligible : Carrier -> Prop} {operation : BinaryEndoOperation Carrier} (law : LeftCancellativeOn eligible operation) (fixed : Carrier) (eligible_fixed : eligible fixed) : LeftRegular operation fixed
-Source: ./Laws/Cancellation/Theorems.lean#L247
+Source: [`./Laws/Cancellation/Theorems.lean#L286`](./Laws/Cancellation/Theorems.lean#L286)
 
 
 
@@ -1620,7 +1620,7 @@ Predicate logic (unfolded):
     (∀ (fixed : Carrier), eligible fixed → ∀ (first second : Carrier), operation fixed first = operation fixed second → first = second) → ∀ (fixed : Carrier), eligible fixed → ∀ (first second : Carrier), operation fixed first = operation fixed second → first = second
 Transliterated theorem: (∀ fixed ∈ Carrier), RightRegular operation fixed
 Logical form (Lean): {Carrier : Type u} {eligible : Carrier -> Prop} {operation : BinaryEndoOperation Carrier} (law : RightCancellativeOn eligible operation) (fixed : Carrier) (eligible_fixed : eligible fixed) : RightRegular operation fixed
-Source: ./Laws/Cancellation/Theorems.lean#L297
+Source: [`./Laws/Cancellation/Theorems.lean#L345`](./Laws/Cancellation/Theorems.lean#L345)
 
 
 
@@ -1639,7 +1639,7 @@ Predicate logic (unfolded):
     ((∀ (fixed : Carrier), eligible fixed → ∀ (first second : Carrier), operation fixed first = operation fixed second → first = second) ∧ (∀ (fixed : Carrier), eligible fixed → ∀ (first second : Carrier), operation first fixed = operation second fixed → first = second)) → ∀ (fixed : Carrier), eligible fixed → ∀ (first second : Carrier), operation fixed first = operation fixed second → first = second
 Transliterated theorem: LeftCancellativeOn eligible operation
 Logical form (Lean): {Carrier : Type u} {eligible : Carrier -> Prop} {operation : BinaryEndoOperation Carrier} (law : TwoSidedCancellativeOn eligible operation) : LeftCancellativeOn eligible operation
-Source: ./Laws/Cancellation/Theorems.lean#L345
+Source: [`./Laws/Cancellation/Theorems.lean#L400`](./Laws/Cancellation/Theorems.lean#L400)
 
 
 
@@ -1658,7 +1658,7 @@ Predicate logic (unfolded):
     ((∀ (fixed : Carrier), eligible fixed → ∀ (first second : Carrier), operation fixed first = operation fixed second → first = second) ∧ (∀ (fixed : Carrier), eligible fixed → ∀ (first second : Carrier), operation first fixed = operation second fixed → first = second)) → ∀ (fixed : Carrier), eligible fixed → ∀ (first second : Carrier), operation first fixed = operation second fixed → first = second
 Transliterated theorem: RightCancellativeOn eligible operation
 Logical form (Lean): {Carrier : Type u} {eligible : Carrier -> Prop} {operation : BinaryEndoOperation Carrier} (law : TwoSidedCancellativeOn eligible operation) : RightCancellativeOn eligible operation
-Source: ./Laws/Cancellation/Theorems.lean#L391
+Source: [`./Laws/Cancellation/Theorems.lean#L453`](./Laws/Cancellation/Theorems.lean#L453)
 
 
 
@@ -1678,7 +1678,7 @@ Predicate logic (unfolded):
     ((∀ (fixed : Carrier), eligible fixed → ∀ (first second : Carrier), operation fixed first = operation fixed second → first = second) ∧ (∀ (fixed : Carrier), eligible fixed → ∀ (first second : Carrier), operation first fixed = operation second fixed → first = second)) → ((∀ (fixed : Carrier), eligible fixed → ∀ (first second : Carrier), operation fixed first = operation fixed second → first = second) ∧ (∀ (fixed : Carrier), eligible fixed → ∀ (first second : Carrier), operation first fixed = operation second fixed → first = second))
 Transliterated theorem: TwoSidedCancellativeOn eligible operation
 Logical form (Lean): {Carrier : Type u} {eligible : Carrier -> Prop} {operation : BinaryEndoOperation Carrier} (leftLaw : LeftCancellativeOn eligible operation) (rightLaw : RightCancellativeOn eligible operation) : TwoSidedCancellativeOn eligible operation
-Source: ./Laws/Cancellation/Theorems.lean#L438
+Source: [`./Laws/Cancellation/Theorems.lean#L508`](./Laws/Cancellation/Theorems.lean#L508)
 
 
 
@@ -1696,7 +1696,7 @@ Predicate logic (unfolded):
     ((∀ (fixed first second : Carrier), operation fixed first = operation fixed second → first = second) ∧ (∀ (first second fixed : Carrier), operation first fixed = operation second fixed → first = second)) → ∀ (fixed first second : Carrier), operation fixed first = operation fixed second → first = second
 Transliterated theorem: LeftCancellative operation
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : TwoSidedCancellative operation) : LeftCancellative operation
-Source: ./Laws/Cancellation/Theorems.lean#L484
+Source: [`./Laws/Cancellation/Theorems.lean#L560`](./Laws/Cancellation/Theorems.lean#L560)
 
 
 
@@ -1714,7 +1714,7 @@ Predicate logic (unfolded):
     ((∀ (fixed first second : Carrier), operation fixed first = operation fixed second → first = second) ∧ (∀ (first second fixed : Carrier), operation first fixed = operation second fixed → first = second)) → ∀ (first second fixed : Carrier), operation first fixed = operation second fixed → first = second
 Transliterated theorem: RightCancellative operation
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : TwoSidedCancellative operation) : RightCancellative operation
-Source: ./Laws/Cancellation/Theorems.lean#L528
+Source: [`./Laws/Cancellation/Theorems.lean#L610`](./Laws/Cancellation/Theorems.lean#L610)
 
 
 
@@ -1733,7 +1733,7 @@ Predicate logic (unfolded):
     ((∀ (fixed first second : Carrier), operation fixed first = operation fixed second → first = second) ∧ (∀ (first second fixed : Carrier), operation first fixed = operation second fixed → first = second)) → ((∀ (fixed first second : Carrier), operation fixed first = operation fixed second → first = second) ∧ (∀ (first second fixed : Carrier), operation first fixed = operation second fixed → first = second))
 Transliterated theorem: TwoSidedCancellative operation
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (leftLaw : LeftCancellative operation) (rightLaw : RightCancellative operation) : TwoSidedCancellative operation
-Source: ./Laws/Cancellation/Theorems.lean#L573
+Source: [`./Laws/Cancellation/Theorems.lean#L662`](./Laws/Cancellation/Theorems.lean#L662)
 
 
 
@@ -1752,7 +1752,7 @@ Predicate logic (unfolded):
     ((∀ (first second : Carrier), operation first second = operation second first) ∧ (∀ (fixed first second : Carrier), operation fixed first = operation fixed second → first = second)) → ∀ (first second fixed : Carrier), operation first fixed = operation second fixed → first = second
 Transliterated theorem: RightCancellative operation
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (commutative : LRA.Operation.Laws.Commutative.Commutative operation) (leftLaw : LeftCancellative operation) : RightCancellative operation
-Source: ./Laws/Cancellation/Relationships.lean#L52
+Source: [`./Laws/Cancellation/Relationships.lean#L59`](./Laws/Cancellation/Relationships.lean#L59)
 
 
 
@@ -1771,7 +1771,7 @@ Predicate logic (unfolded):
     ((∀ (first second : Carrier), operation first second = operation second first) ∧ (∀ (first second fixed : Carrier), operation first fixed = operation second fixed → first = second)) → ∀ (fixed first second : Carrier), operation fixed first = operation fixed second → first = second
 Transliterated theorem: LeftCancellative operation
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (commutative : LRA.Operation.Laws.Commutative.Commutative operation) (rightLaw : RightCancellative operation) : LeftCancellative operation
-Source: ./Laws/Cancellation/Relationships.lean#L100
+Source: [`./Laws/Cancellation/Relationships.lean#L114`](./Laws/Cancellation/Relationships.lean#L114)
 
 
 
@@ -1790,7 +1790,7 @@ Predicate logic (unfolded):
     (∀ (fixed first second : Carrier), operation fixed first = operation fixed second → first = second) → ∀ (fixed first second : Carrier), operation fixed first = operation fixed second → first = second
 Transliterated theorem: (∀ fixed ∈ Carrier), LeftRegular operation fixed
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : LeftCancellative operation) (fixed : Carrier) : LeftRegular operation fixed
-Source: ./Laws/Cancellation/Relationships.lean#L147
+Source: [`./Laws/Cancellation/Relationships.lean#L168`](./Laws/Cancellation/Relationships.lean#L168)
 
 
 
@@ -1809,7 +1809,7 @@ Predicate logic (unfolded):
     (∀ (first second fixed : Carrier), operation first fixed = operation second fixed → first = second) → ∀ (fixed first second : Carrier), operation first fixed = operation second fixed → first = second
 Transliterated theorem: (∀ fixed ∈ Carrier), RightRegular operation fixed
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : RightCancellative operation) (fixed : Carrier) : RightRegular operation fixed
-Source: ./Laws/Cancellation/Relationships.lean#L193
+Source: [`./Laws/Cancellation/Relationships.lean#L221`](./Laws/Cancellation/Relationships.lean#L221)
 
 
 
@@ -1828,7 +1828,7 @@ Predicate logic (unfolded):
     (∀ (fixed first second : Carrier), operation fixed first = operation fixed second → first = second) → ∀ (fixed : Carrier), eligible fixed → ∀ (first second : Carrier), operation fixed first = operation fixed second → first = second
 Transliterated theorem: LeftCancellativeOn eligible operation
 Logical form (Lean): {Carrier : Type u} {eligible : Carrier -> Prop} {operation : BinaryEndoOperation Carrier} (law : LeftCancellative operation) : LeftCancellativeOn eligible operation
-Source: ./Laws/Cancellation/Relationships.lean#L239
+Source: [`./Laws/Cancellation/Relationships.lean#L274`](./Laws/Cancellation/Relationships.lean#L274)
 
 
 
@@ -1847,7 +1847,7 @@ Predicate logic (unfolded):
     (∀ (first second fixed : Carrier), operation first fixed = operation second fixed → first = second) → ∀ (fixed : Carrier), eligible fixed → ∀ (first second : Carrier), operation first fixed = operation second fixed → first = second
 Transliterated theorem: RightCancellativeOn eligible operation
 Logical form (Lean): {Carrier : Type u} {eligible : Carrier -> Prop} {operation : BinaryEndoOperation Carrier} (law : RightCancellative operation) : RightCancellativeOn eligible operation
-Source: ./Laws/Cancellation/Relationships.lean#L285
+Source: [`./Laws/Cancellation/Relationships.lean#L327`](./Laws/Cancellation/Relationships.lean#L327)
 
 
 
@@ -1867,7 +1867,7 @@ Predicate logic (unfolded):
     ((∀ (element : Carrier), operation absorber element = absorber) ∧ ((first = second → False) ∧ (∀ (first second : Carrier), operation absorber first = operation absorber second → first = second))) → False
 Transliterated theorem: Not (LeftRegular operation absorber)
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {absorber first second : Carrier} (absorbing : LRA.Operation.Laws.Absorbing.LeftAbsorbing operation absorber) (distinct : first ≠ second) : Not (LeftRegular operation absorber)
-Source: ./Laws/Cancellation/Relationships.lean#L333
+Source: [`./Laws/Cancellation/Relationships.lean#L383`](./Laws/Cancellation/Relationships.lean#L383)
 
 
 
@@ -1884,7 +1884,7 @@ Predicate logic (unfolded):
     (∀ (fixed first second : Nat), { hMul := fun a b => instMulNat.mul a b }.hMul fixed first = { hMul := fun a b => instMulNat.mul a b }.hMul fixed second → first = second) → False
 Transliterated theorem: FailsLeftCancellative NaturalMultiplication
 Logical form (Lean): : FailsLeftCancellative NaturalMultiplication
-Source: ./Laws/Cancellation/FailureModes.lean#L172
+Source: [`./Laws/Cancellation/FailureModes.lean#L187`](./Laws/Cancellation/FailureModes.lean#L187)
 
 
 
@@ -1901,7 +1901,7 @@ Predicate logic (unfolded):
     (∀ (first second fixed : Nat), { hMul := fun a b => instMulNat.mul a b }.hMul first fixed = { hMul := fun a b => instMulNat.mul a b }.hMul second fixed → first = second) → False
 Transliterated theorem: FailsRightCancellative NaturalMultiplication
 Logical form (Lean): : FailsRightCancellative NaturalMultiplication
-Source: ./Laws/Cancellation/FailureModes.lean#L212
+Source: [`./Laws/Cancellation/FailureModes.lean#L232`](./Laws/Cancellation/FailureModes.lean#L232)
 
 
 
@@ -1918,7 +1918,7 @@ Predicate logic (unfolded):
     (∀ (first second : Nat), { hMul := fun a b => instMulNat.mul a b }.hMul 0 first = { hMul := fun a b => instMulNat.mul a b }.hMul 0 second → first = second) → False
 Transliterated theorem: FailsLeftRegular NaturalMultiplication 0
 Logical form (Lean): : FailsLeftRegular NaturalMultiplication 0
-Source: ./Laws/Cancellation/FailureModes.lean#L340
+Source: [`./Laws/Cancellation/FailureModes.lean#L375`](./Laws/Cancellation/FailureModes.lean#L375)
 
 
 
@@ -1935,7 +1935,7 @@ Predicate logic (unfolded):
     (∀ (first second : Nat), { hMul := fun a b => instMulNat.mul a b }.hMul first 0 = { hMul := fun a b => instMulNat.mul a b }.hMul second 0 → first = second) → False
 Transliterated theorem: FailsRightRegular NaturalMultiplication 0
 Logical form (Lean): : FailsRightRegular NaturalMultiplication 0
-Source: ./Laws/Cancellation/FailureModes.lean#L380
+Source: [`./Laws/Cancellation/FailureModes.lean#L420`](./Laws/Cancellation/FailureModes.lean#L420)
 
 
 
@@ -1954,7 +1954,7 @@ Predicate logic (unfolded):
     (∀ (element : Carrier), operation element element = element) → ∀ (element : Carrier), operation element element = element
 Transliterated theorem: (∀ element ∈ Carrier), operation element element = element
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : Idempotent operation) (element : Carrier) : operation element element = element
-Source: ./Laws/Idempotent/Theorems.lean#L49
+Source: [`./Laws/Idempotent/Theorems.lean#L56`](./Laws/Idempotent/Theorems.lean#L56)
 
 
 
@@ -1973,7 +1973,7 @@ Predicate logic (unfolded):
     (∀ (element : Carrier), operation element element = element) → ∀ (element : Carrier), operation element element = element
 Transliterated theorem: (∀ element ∈ Carrier), operation element element = element
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} (law : Idempotent operation) (element : Carrier) : operation element element = element
-Source: ./Laws/Idempotent/Relationships.lean#L49
+Source: [`./Laws/Idempotent/Relationships.lean#L56`](./Laws/Idempotent/Relationships.lean#L56)
 
 
 
@@ -1990,7 +1990,7 @@ Predicate logic (unfolded):
     (∀ (element : Nat), { hAdd := fun a b => instAddNat.add a b }.hAdd element element = element) → False
 Transliterated theorem: FailsIdempotent NaturalAddition
 Logical form (Lean): : FailsIdempotent NaturalAddition
-Source: ./Laws/Idempotent/FailureModes.lean#L130
+Source: [`./Laws/Idempotent/FailureModes.lean#L140`](./Laws/Idempotent/FailureModes.lean#L140)
 
 
 
@@ -2008,7 +2008,7 @@ Predicate logic (unfolded):
     ((∀ (left right : Carrier), first left (second left right) = left) ∧ (∀ (left right : Carrier), second left (first left right) = left)) → ∀ (element : Carrier), first element element = element
 Transliterated theorem: LRA.Operation.Laws.Idempotent.Idempotent first
 Logical form (Lean): {Carrier : Type u} {first second : BinaryEndoOperation Carrier} (law : MutualAbsorptionLaw first second) : LRA.Operation.Laws.Idempotent.Idempotent first
-Source: ./Laws/Absorption/Theorems.lean#L49
+Source: [`./Laws/Absorption/Theorems.lean#L55`](./Laws/Absorption/Theorems.lean#L55)
 
 
 
@@ -2026,7 +2026,7 @@ Predicate logic (unfolded):
     ((∀ (left right : Carrier), first left (second left right) = left) ∧ (∀ (left right : Carrier), second left (first left right) = left)) → ∀ (element : Carrier), second element element = element
 Transliterated theorem: LRA.Operation.Laws.Idempotent.Idempotent second
 Logical form (Lean): {Carrier : Type u} {first second : BinaryEndoOperation Carrier} (law : MutualAbsorptionLaw first second) : LRA.Operation.Laws.Idempotent.Idempotent second
-Source: ./Laws/Absorption/Theorems.lean#L93
+Source: [`./Laws/Absorption/Theorems.lean#L105`](./Laws/Absorption/Theorems.lean#L105)
 
 
 
@@ -2044,7 +2044,7 @@ Predicate logic (unfolded):
     ((∀ (left right : Carrier), first left (second left right) = left) ∧ (∀ (left right : Carrier), second left (first left right) = left)) → ((∀ (element : Carrier), first element element = element) ∧ (∀ (element : Carrier), second element element = element))
 Transliterated theorem: LRA.Operation.Laws.Idempotent.Idempotent first ∧ LRA.Operation.Laws.Idempotent.Idempotent second
 Logical form (Lean): {Carrier : Type u} {first second : BinaryEndoOperation Carrier} (law : MutualAbsorptionLaw first second) : LRA.Operation.Laws.Idempotent.Idempotent first ∧ LRA.Operation.Laws.Idempotent.Idempotent second
-Source: ./Laws/Absorption/Relationships.lean#L49
+Source: [`./Laws/Absorption/Relationships.lean#L55`](./Laws/Absorption/Relationships.lean#L55)
 
 
 
@@ -2061,7 +2061,7 @@ Predicate logic (unfolded):
     (((∀ (left right : Nat), { hAdd := fun a b => instAddNat.add a b }.hAdd left ({ hMul := fun a b => instMulNat.mul a b }.hMul left right) = left) → False) ∧ ((∀ (left right : Nat), { hMul := fun a b => instMulNat.mul a b }.hMul left ({ hAdd := fun a b => instAddNat.add a b }.hAdd left right) = left) → False))
 Transliterated theorem: FailsAbsorptionLaw NaturalAdditionOperation NaturalMultiplicationOperation ∧ FailsAbsorptionLaw NaturalMultiplicationOperation NaturalAdditionOperation
 Logical form (Lean): : FailsAbsorptionLaw NaturalAdditionOperation NaturalMultiplicationOperation ∧ FailsAbsorptionLaw NaturalMultiplicationOperation NaturalAdditionOperation
-Source: ./Laws/Absorption/FailureModes.lean#L300
+Source: [`./Laws/Absorption/FailureModes.lean#L315`](./Laws/Absorption/FailureModes.lean#L315)
 
 
 
@@ -2078,7 +2078,7 @@ Predicate logic (unfolded):
     (((∀ (element : Nat), { hMul := fun a b => instMulNat.mul a b }.hMul 0 element = 0) ∧ (∀ (element : Nat), { hMul := fun a b => instMulNat.mul a b }.hMul element 0 = 0)) ∧ ((∀ (left right : Nat), { hMul := fun a b => instMulNat.mul a b }.hMul left ({ hAdd := fun a b => instAddNat.add a b }.hAdd left right) = left) → False))
 Transliterated theorem: LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing NaturalMultiplicationOperation 0 ∧ FailsAbsorptionLaw NaturalMultiplicationOperation NaturalAdditionOperation
 Logical form (Lean): : LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing NaturalMultiplicationOperation 0 ∧ FailsAbsorptionLaw NaturalMultiplicationOperation NaturalAdditionOperation
-Source: ./Laws/Absorption/FailureModes.lean#L344
+Source: [`./Laws/Absorption/FailureModes.lean#L364`](./Laws/Absorption/FailureModes.lean#L364)
 
 
 
@@ -2095,7 +2095,7 @@ Predicate logic (unfolded):
     (((∀ (left right : Nat), Nat.instMax.1 left (left.min right) = left) ∧ (∀ (left right : Nat), instMinNat.1 left (left.max right) = left)) ∧ ((Exists fun absorber => ((∀ (element : Nat), Nat.instMax.1 absorber element = absorber) ∧ (∀ (element : Nat), Nat.instMax.1 element absorber = absorber))) → False))
 Transliterated theorem: MutualAbsorptionLaw NaturalMaxOperation NaturalMinOperation ∧ Not ∃ absorber ∈ Nat, LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing NaturalMaxOperation absorber
 Logical form (Lean): : MutualAbsorptionLaw NaturalMaxOperation NaturalMinOperation ∧ Not (∃ absorber : Nat, LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing NaturalMaxOperation absorber)
-Source: ./Laws/Absorption/FailureModes.lean#L391
+Source: [`./Laws/Absorption/FailureModes.lean#L416`](./Laws/Absorption/FailureModes.lean#L416)
 
 
 
@@ -2114,7 +2114,7 @@ Predicate logic (unfolded):
     (∀ (left right third : Carrier), outer left (inner right third) = inner (outer left right) (outer left third)) → ∀ (left right third : Carrier), outer left (inner right third) = inner (outer left right) (outer left third)
 Transliterated theorem: (∀ left right third ∈ Carrier), outer left (inner right third) = inner (outer left right) (outer left third)
 Logical form (Lean): {Carrier : Type u} {outer inner : BinaryEndoOperation Carrier} (law : LeftDistributive outer inner) (left right third : Carrier) : outer left (inner right third) = inner (outer left right) (outer left third)
-Source: ./Laws/Distributive/Theorems.lean#L50
+Source: [`./Laws/Distributive/Theorems.lean#L57`](./Laws/Distributive/Theorems.lean#L57)
 
 
 
@@ -2133,7 +2133,7 @@ Predicate logic (unfolded):
     (∀ (left right third : Carrier), outer (inner left right) third = inner (outer left third) (outer right third)) → ∀ (left right third : Carrier), outer (inner left right) third = inner (outer left third) (outer right third)
 Transliterated theorem: (∀ left right third ∈ Carrier), outer (inner left right) third = inner (outer left third) (outer right third)
 Logical form (Lean): {Carrier : Type u} {outer inner : BinaryEndoOperation Carrier} (law : RightDistributive outer inner) (left right third : Carrier) : outer (inner left right) third = inner (outer left third) (outer right third)
-Source: ./Laws/Distributive/Theorems.lean#L98
+Source: [`./Laws/Distributive/Theorems.lean#L112`](./Laws/Distributive/Theorems.lean#L112)
 
 
 
@@ -2151,7 +2151,7 @@ Predicate logic (unfolded):
     ((∀ (left right third : Carrier), outer left (inner right third) = inner (outer left right) (outer left third)) ∧ (∀ (left right third : Carrier), outer (inner left right) third = inner (outer left third) (outer right third))) → ∀ (left right third : Carrier), outer left (inner right third) = inner (outer left right) (outer left third)
 Transliterated theorem: LeftDistributive outer inner
 Logical form (Lean): {Carrier : Type u} {outer inner : BinaryEndoOperation Carrier} (law : TwoSidedDistributive outer inner) : LeftDistributive outer inner
-Source: ./Laws/Distributive/Theorems.lean#L144
+Source: [`./Laws/Distributive/Theorems.lean#L164`](./Laws/Distributive/Theorems.lean#L164)
 
 
 
@@ -2169,7 +2169,7 @@ Predicate logic (unfolded):
     ((∀ (left right third : Carrier), outer left (inner right third) = inner (outer left right) (outer left third)) ∧ (∀ (left right third : Carrier), outer (inner left right) third = inner (outer left third) (outer right third))) → ∀ (left right third : Carrier), outer (inner left right) third = inner (outer left third) (outer right third)
 Transliterated theorem: RightDistributive outer inner
 Logical form (Lean): {Carrier : Type u} {outer inner : BinaryEndoOperation Carrier} (law : TwoSidedDistributive outer inner) : RightDistributive outer inner
-Source: ./Laws/Distributive/Theorems.lean#L188
+Source: [`./Laws/Distributive/Theorems.lean#L214`](./Laws/Distributive/Theorems.lean#L214)
 
 
 
@@ -2188,7 +2188,7 @@ Predicate logic (unfolded):
     ((∀ (left right third : Carrier), outer left (inner right third) = inner (outer left right) (outer left third)) ∧ (∀ (left right third : Carrier), outer (inner left right) third = inner (outer left third) (outer right third))) → ((∀ (left right third : Carrier), outer left (inner right third) = inner (outer left right) (outer left third)) ∧ (∀ (left right third : Carrier), outer (inner left right) third = inner (outer left third) (outer right third)))
 Transliterated theorem: TwoSidedDistributive outer inner
 Logical form (Lean): {Carrier : Type u} {outer inner : BinaryEndoOperation Carrier} (leftLaw : LeftDistributive outer inner) (rightLaw : RightDistributive outer inner) : TwoSidedDistributive outer inner
-Source: ./Laws/Distributive/Theorems.lean#L233
+Source: [`./Laws/Distributive/Theorems.lean#L266`](./Laws/Distributive/Theorems.lean#L266)
 
 
 
@@ -2207,7 +2207,7 @@ Predicate logic (unfolded):
     ((∀ (first second : Carrier), outer first second = outer second first) ∧ (∀ (left right third : Carrier), outer left (inner right third) = inner (outer left right) (outer left third))) → ∀ (left right third : Carrier), outer (inner left right) third = inner (outer left third) (outer right third)
 Transliterated theorem: RightDistributive outer inner
 Logical form (Lean): {Carrier : Type u} {outer inner : BinaryEndoOperation Carrier} (outerCommutative : LRA.Operation.Laws.Commutative.Commutative outer) (leftLaw : LeftDistributive outer inner) : RightDistributive outer inner
-Source: ./Laws/Distributive/Relationships.lean#L51
+Source: [`./Laws/Distributive/Relationships.lean#L58`](./Laws/Distributive/Relationships.lean#L58)
 
 
 
@@ -2226,7 +2226,7 @@ Predicate logic (unfolded):
     ((∀ (first second : Carrier), outer first second = outer second first) ∧ (∀ (left right third : Carrier), outer (inner left right) third = inner (outer left third) (outer right third))) → ∀ (left right third : Carrier), outer left (inner right third) = inner (outer left right) (outer left third)
 Transliterated theorem: LeftDistributive outer inner
 Logical form (Lean): {Carrier : Type u} {outer inner : BinaryEndoOperation Carrier} (outerCommutative : LRA.Operation.Laws.Commutative.Commutative outer) (rightLaw : RightDistributive outer inner) : LeftDistributive outer inner
-Source: ./Laws/Distributive/Relationships.lean#L99
+Source: [`./Laws/Distributive/Relationships.lean#L113`](./Laws/Distributive/Relationships.lean#L113)
 
 
 
@@ -2243,7 +2243,7 @@ Predicate logic (unfolded):
     (∀ (left right third : Nat), { hAdd := fun a b => instAddNat.add a b }.hAdd left ({ hMul := fun a b => instMulNat.mul a b }.hMul right third) = { hMul := fun a b => instMulNat.mul a b }.hMul ({ hAdd := fun a b => instAddNat.add a b }.hAdd left right) ({ hAdd := fun a b => instAddNat.add a b }.hAdd left third)) → False
 Transliterated theorem: FailsLeftDistributive NaturalAdditionForDistributiveFailure NaturalMultiplicationForDistributiveFailure
 Logical form (Lean): : FailsLeftDistributive NaturalAdditionForDistributiveFailure NaturalMultiplicationForDistributiveFailure
-Source: ./Laws/Distributive/FailureModes.lean#L216
+Source: [`./Laws/Distributive/FailureModes.lean#L231`](./Laws/Distributive/FailureModes.lean#L231)
 
 
 
@@ -2260,7 +2260,7 @@ Predicate logic (unfolded):
     (∀ (left right third : Nat), { hAdd := fun a b => instAddNat.add a b }.hAdd ({ hMul := fun a b => instMulNat.mul a b }.hMul left right) third = { hMul := fun a b => instMulNat.mul a b }.hMul ({ hAdd := fun a b => instAddNat.add a b }.hAdd left third) ({ hAdd := fun a b => instAddNat.add a b }.hAdd right third)) → False
 Transliterated theorem: FailsRightDistributive NaturalAdditionForDistributiveFailure NaturalMultiplicationForDistributiveFailure
 Logical form (Lean): : FailsRightDistributive NaturalAdditionForDistributiveFailure NaturalMultiplicationForDistributiveFailure
-Source: ./Laws/Distributive/FailureModes.lean#L260
+Source: [`./Laws/Distributive/FailureModes.lean#L280`](./Laws/Distributive/FailureModes.lean#L280)
 
 
 
@@ -2279,7 +2279,7 @@ Predicate logic (unfolded):
     (Exists fun positiveExponent => LRA.Operation.Laws.Nilpotent.PositivePower operation element positiveExponent = zero) → Exists fun positiveExponent => LRA.Operation.Laws.Nilpotent.PositivePower operation element positiveExponent = zero
 Transliterated theorem: ∃ positiveExponent ∈ Nat, PositivePower operation element positiveExponent = zero
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {zero element : Carrier} (law : NilpotentElement operation zero element) : ∃ positiveExponent : Nat, PositivePower operation element positiveExponent = zero
-Source: ./Laws/Nilpotent/Theorems.lean#L50
+Source: [`./Laws/Nilpotent/Theorems.lean#L57`](./Laws/Nilpotent/Theorems.lean#L57)
 
 
 
@@ -2297,7 +2297,7 @@ Predicate logic (unfolded):
     LRA.Operation.Laws.Nilpotent.PositivePower operation element 0 = element
 Transliterated theorem: (∀ element ∈ Carrier), PositivePower operation element 0 = element
 Logical form (Lean): {Carrier : Type u} (operation : BinaryEndoOperation Carrier) (element : Carrier) : PositivePower operation element 0 = element
-Source: ./Laws/Nilpotent/Theorems.lean#L96
+Source: [`./Laws/Nilpotent/Theorems.lean#L109`](./Laws/Nilpotent/Theorems.lean#L109)
 
 
 
@@ -2316,7 +2316,7 @@ Predicate logic (unfolded):
     LRA.Operation.Laws.Nilpotent.OperationPower operation identity element exponent.succ = operation (LRA.Operation.Laws.Nilpotent.OperationPower operation identity element exponent) element
 Transliterated theorem: (∀ element ∈ Carrier ∀ exponent ∈ Nat), PositivePower operation element (Nat.succ exponent) = operation (PositivePower operation element exponent) element
 Logical form (Lean): {Carrier : Type u} (operation : BinaryEndoOperation Carrier) (element : Carrier) (exponent : Nat) : PositivePower operation element (Nat.succ exponent) = operation (PositivePower operation element exponent) element
-Source: ./Laws/Nilpotent/Theorems.lean#L142
+Source: [`./Laws/Nilpotent/Theorems.lean#L162`](./Laws/Nilpotent/Theorems.lean#L162)
 
 
 
@@ -2334,7 +2334,7 @@ Predicate logic (unfolded):
     LRA.Operation.Laws.Nilpotent.OperationPower operation identity element 1 = operation identity element
 Transliterated theorem: (∀ identity element ∈ Carrier), OperationPower operation identity element 1 = operation identity element
 Logical form (Lean): {Carrier : Type u} (operation : BinaryEndoOperation Carrier) (identity element : Carrier) : OperationPower operation identity element 1 = operation identity element
-Source: ./Laws/Nilpotent/Theorems.lean#L188
+Source: [`./Laws/Nilpotent/Theorems.lean#L214`](./Laws/Nilpotent/Theorems.lean#L214)
 
 
 
@@ -2353,7 +2353,7 @@ Predicate logic (unfolded):
     LRA.Operation.Laws.Nilpotent.PositivePower operation element exponent.succ = operation (LRA.Operation.Laws.Nilpotent.PositivePower operation element exponent) element
 Transliterated theorem: (∀ identity element ∈ Carrier ∀ exponent ∈ Nat), OperationPower operation identity element (Nat.succ exponent) = operation (OperationPower operation identity element exponent) element
 Logical form (Lean): {Carrier : Type u} (operation : BinaryEndoOperation Carrier) (identity element : Carrier) (exponent : Nat) : OperationPower operation identity element (Nat.succ exponent) = operation (OperationPower operation identity element exponent) element
-Source: ./Laws/Nilpotent/Theorems.lean#L234
+Source: [`./Laws/Nilpotent/Theorems.lean#L267`](./Laws/Nilpotent/Theorems.lean#L267)
 
 
 
@@ -2372,7 +2372,7 @@ Predicate logic (unfolded):
     (first = second ∧ Exists fun positiveExponent => LRA.Operation.Laws.Nilpotent.PositivePower operation first positiveExponent = zero) → Exists fun positiveExponent => LRA.Operation.Laws.Nilpotent.PositivePower operation second positiveExponent = zero
 Transliterated theorem: (first = second) → NilpotentElement operation zero second
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {zero first second : Carrier} (equal_elements : first = second) (law : NilpotentElement operation zero first) : NilpotentElement operation zero second
-Source: ./Laws/Nilpotent/Relationships.lean#L50
+Source: [`./Laws/Nilpotent/Relationships.lean#L57`](./Laws/Nilpotent/Relationships.lean#L57)
 
 
 
@@ -2389,7 +2389,7 @@ Predicate logic (unfolded):
     (Exists fun positiveExponent => LRA.Operation.Laws.Nilpotent.PositivePower LRA.Operation.Laws.Nilpotent.NaturalMultiplicationForNilpotenceFailure 1 positiveExponent = 0) → False
 Transliterated theorem: FailsNilpotentElement NaturalMultiplicationForNilpotenceFailure 0 1
 Logical form (Lean): : FailsNilpotentElement NaturalMultiplicationForNilpotenceFailure 0 1
-Source: ./Laws/Nilpotent/FailureModes.lean#L132
+Source: [`./Laws/Nilpotent/FailureModes.lean#L142`](./Laws/Nilpotent/FailureModes.lean#L142)
 
 
 
@@ -2411,7 +2411,7 @@ Predicate logic (unfolded):
     LRA.Operation.Laws.QuotientCompatible.BinaryOperationIsProper invariant toRaw rawOperation setoid operation → Exists fun quotient_operation => ∀ (first second : Representative), quotient_operation (Quot.mk setoid.1 first) (Quot.mk setoid.1 second) = Quot.mk setoid.1 (operation first second)
 Transliterated theorem: ∃ quotient_operation ∈ Quotient setoid → Quotient setoid → Quotient setoid, ∀ first second : Representative, quotient_operation (Quotient.mk setoid first) (Quotient.mk setoid second) = Quotient.mk setoid (operation first second)
 Logical form (Lean): {Representative : Type} {Raw : Type} {invariant : Raw → Prop} {toRaw : Representative → Raw} {rawOperation : Representative → Representative → Raw} {setoid : Setoid Representative} {operation : Representative → Representative → Representative} (proper : BinaryOperationIsProper invariant toRaw rawOperation setoid operation) : ∃ quotient_operation : Quotient setoid → Quotient setoid → Quotient setoid, ∀ first second : Representative, quotient_operation (Quotient.mk setoid first) (Quotient.mk setoid second) = Quotient.mk setoid (operation first second)
-Source: ./Laws/QuotientCompatible/Definition.lean#L144
+Source: [`./Laws/QuotientCompatible/Definition.lean#L154`](./Laws/QuotientCompatible/Definition.lean#L154)
 
 
 
@@ -2434,7 +2434,7 @@ Predicate logic (unfolded):
     LRA.Operation.Laws.QuotientCompatible.BinaryOperationIsProper invariant toRaw rawOperation setoid operation → ∀ (first_candidate second_candidate : Quot setoid.1 → Quot setoid.1 → Quot setoid.1), ((∀ (first second : Representative), first_candidate (Quot.mk setoid.1 first) (Quot.mk setoid.1 second) = Quot.mk setoid.1 (operation first second)) ∧ (∀ (first second : Representative), second_candidate (Quot.mk setoid.1 first) (Quot.mk setoid.1 second) = Quot.mk setoid.1 (operation first second))) → first_candidate = second_candidate
 Transliterated theorem: (∀ first second : Representative, first_candidate (Quotient.mk setoid first) (Quotient.mk setoid second) = Quotient.mk setoid (operation first second) ∧ ∀ first second : Representative, second_candidate (Quotient.mk setoid first) (Quotient.mk setoid second) = Quotient.mk setoid (operation first second)) → first_candidate = second_candidate
 Logical form (Lean): {Representative : Type} {Raw : Type} {invariant : Raw → Prop} {toRaw : Representative → Raw} {rawOperation : Representative → Representative → Raw} {setoid : Setoid Representative} {operation : Representative → Representative → Representative} (_proper : BinaryOperationIsProper invariant toRaw rawOperation setoid operation) (first_candidate second_candidate : Quotient setoid → Quotient setoid → Quotient setoid) (first_candidate_spec : ∀ first second : Representative, first_candidate (Quotient.mk setoid first) (Quotient.mk setoid second) = Quotient.mk setoid (operation first second)) (second_candidate_spec : ∀ first second : Representative, second_candidate (Quotient.mk setoid first) (Quotient.mk setoid second) = Quotient.mk setoid (operation first second)) : first_candidate = second_candidate
-Source: ./Laws/QuotientCompatible/Definition.lean#L215
+Source: [`./Laws/QuotientCompatible/Definition.lean#L236`](./Laws/QuotientCompatible/Definition.lean#L236)
 
 
 
@@ -2453,7 +2453,7 @@ Predicate logic (unfolded):
     ∃ quotient_relation : Quotient setoid → Quotient setoid → Prop, ∀ first second : Representative, quotient_relation (Quotient.mk setoid first) (Quotient.mk setoid second) ↔ relation first second
 Transliterated theorem: ∃ quotient_relation ∈ Quotient setoid → Quotient setoid → Prop, ∀ first second : Representative, quotient_relation (Quotient.mk setoid first) (Quotient.mk setoid second) ↔ relation first second
 Logical form (Lean): {Representative : Type} {setoid : Setoid Representative} {relation : Representative → Representative → Prop} (proper : RelationIsProper setoid relation) : ∃ quotient_relation : Quotient setoid → Quotient setoid → Prop, ∀ first second : Representative, quotient_relation (Quotient.mk setoid first) (Quotient.mk setoid second) ↔ relation first second
-Source: ./Laws/QuotientCompatible/Definition.lean#L487
+Source: [`./Laws/QuotientCompatible/Definition.lean#L515`](./Laws/QuotientCompatible/Definition.lean#L515)
 
 
 
@@ -2470,7 +2470,7 @@ Predicate logic (unfolded):
     fun input => first (second (third input)) = funinput => first (second (third input))
 Transliterated theorem: LRA.Operation.Laws.Associative.Associative (EndomapComposition Carrier)
 Logical form (Lean): (Carrier : Type u) : LRA.Operation.Laws.Associative.Associative (EndomapComposition Carrier)
-Source: ./Theorems.lean#L51
+Source: [`./Theorems.lean#L56`](./Theorems.lean#L56)
 
 
 
@@ -2487,7 +2487,7 @@ Predicate logic (unfolded):
     ((∀ (element : Carrier → Carrier), fun input => element input = element) ∧ (∀ (element : Carrier → Carrier), fun input => element input = element))
 Transliterated theorem: LRA.Operation.Laws.Identity.TwoSidedIdentity (EndomapComposition Carrier) (EndomapIdentity Carrier)
 Logical form (Lean): (Carrier : Type u) : LRA.Operation.Laws.Identity.TwoSidedIdentity (EndomapComposition Carrier) (EndomapIdentity Carrier)
-Source: ./Theorems.lean#L94
+Source: [`./Theorems.lean#L104`](./Theorems.lean#L104)
 
 
 
@@ -2505,7 +2505,7 @@ Predicate logic (unfolded):
     ((∀ (y x₁ x₂ : Carrier), map x₁ = y → map x₂ = y → x₁ = x₂) ∧ (∀ (y : Carrier), Exists fun x => map x = y)) → Exists fun inverse => (fun input => inverse (map input) = funinput => input ∧ fun input => map (inverse input) = funinput => input)
 Transliterated theorem: ∃ inverse ∈ Carrier → Carrier, EndomapComposition Carrier inverse map = EndomapIdentity Carrier ∧ EndomapComposition Carrier map inverse = EndomapIdentity Carrier
 Logical form (Lean): {Carrier : Type u} (map : Carrier → Carrier) (bijective : LRA.Function.Bijective map) : ∃ inverse : Carrier → Carrier, EndomapComposition Carrier inverse map = EndomapIdentity Carrier ∧ EndomapComposition Carrier map inverse = EndomapIdentity Carrier
-Source: ./Theorems.lean#L141
+Source: [`./Theorems.lean#L157`](./Theorems.lean#L157)
 
 
 
@@ -2523,7 +2523,7 @@ Predicate logic (unfolded):
     (∀ (first second third : Codomain), operation (operation first second) third = operation first (operation second third)) → ∀ (first second third : Domain → Codomain), fun input => operation (operation (first input) (second input)) (third input) = funinput => operation (first input) (operation (second input) (third input))
 Transliterated theorem: LRA.Operation.Laws.Associative.Associative (PointwiseBinaryOperation Domain ∈ = Domain operation)
 Logical form (Lean): (operation : BinaryEndoOperation Codomain) (associative : LRA.Operation.Laws.Associative.Associative operation) : LRA.Operation.Laws.Associative.Associative (PointwiseBinaryOperation (Domain := Domain) operation)
-Source: ./Theorems.lean#L196
+Source: [`./Theorems.lean#L218`](./Theorems.lean#L218)
 
 
 
@@ -2542,7 +2542,7 @@ Predicate logic (unfolded):
     ((∀ (element : Codomain), operation identity element = element) ∧ (∀ (element : Codomain), operation element identity = element)) → ((∀ (element : Domain → Codomain), fun input => operation ((fun _input => identity) input) (element input) = element) ∧ (∀ (element : Domain → Codomain), fun input => operation (element input) ((fun _input => identity) input) = element))
 Transliterated theorem: (∀ identity ∈ Codomain), LRA.Operation.Laws.Identity.TwoSidedIdentity (PointwiseBinaryOperation Domain ∈ = Domain operation) fun _input ∈ Domain => identity
 Logical form (Lean): (operation : BinaryEndoOperation Codomain) (identity : Codomain) (identityLaw : LRA.Operation.Laws.Identity.TwoSidedIdentity operation identity) : LRA.Operation.Laws.Identity.TwoSidedIdentity (PointwiseBinaryOperation (Domain := Domain) operation) (fun _input : Domain => identity)
-Source: ./Theorems.lean#L246
+Source: [`./Theorems.lean#L275`](./Theorems.lean#L275)
 
 
 
@@ -2562,7 +2562,7 @@ Predicate logic (unfolded):
     ((∀ (element : Codomain), operation (inverse element) element = identity) ∧ (∀ (element : Codomain), operation element (inverse element) = identity)) → ((∀ (element : Domain → Codomain), fun input => operation (inverse (element input)) (element input) = fun_input => identity) ∧ (∀ (element : Domain → Codomain), fun input => operation (element input) (inverse (element input)) = fun_input => identity))
 Transliterated theorem: (∀ identity ∈ Codomain), LRA.Operation.Laws.Inverse.TwoSidedInverse (PointwiseBinaryOperation Domain ∈ = Domain operation) fun _input ∈ Domain => identity (PointwiseUnaryOperation Domain ∈ = Domain inverse)
 Logical form (Lean): (operation : BinaryEndoOperation Codomain) (identity : Codomain) (inverse : UnaryEndoOperation Codomain) (inverseLaw : LRA.Operation.Laws.Inverse.TwoSidedInverse operation identity inverse) : LRA.Operation.Laws.Inverse.TwoSidedInverse (PointwiseBinaryOperation (Domain := Domain) operation) (fun _input : Domain => identity) (PointwiseUnaryOperation (Domain := Domain) inverse)
-Source: ./Theorems.lean#L301
+Source: [`./Theorems.lean#L338`](./Theorems.lean#L338)
 
 
 
@@ -2582,7 +2582,7 @@ Predicate logic (unfolded):
     ((∀ (first second third : Alpha), multiplication (multiplication first second) third = multiplication first (multiplication second third)) ∧ ((∀ (element : Alpha), multiplication identity element = element) ∧ (∀ (element : Alpha), multiplication element identity = element))) → ((∀ (x : Alpha), Exists fun witness => x = multiplication x witness) ∧ (∀ (x y z : Alpha), (Exists fun witness => y = multiplication x witness) → (Exists fun witness => z = multiplication y witness) → Exists fun witness => z = multiplication x witness))
 Transliterated theorem: LRA.Order.Preorder (Divides multiplication)
 Logical form (Lean): {Alpha : Type u} {multiplication : BinaryOperation Alpha} {identity : Alpha} (multiplicationIsAssociative : LRA.Operation.Laws.Associative.Associative multiplication) (identityIsTwoSided : LRA.Operation.Laws.Identity.TwoSidedIdentity multiplication identity) : LRA.Order.Preorder (Divides multiplication)
-Source: ./Divisibility.lean#L146
+Source: [`./Divisibility.lean#L164`](./Divisibility.lean#L164)
 
 
 
@@ -2599,7 +2599,7 @@ Predicate logic (unfolded):
     ((∀ (element : Bool), Bool.rec ((fun _ => Bool.false) Unit.unit) ((fun _ => element) Unit.unit) Bool.false = Bool.false) ∧ (∀ (element : Bool), Bool.rec ((fun _ => Bool.false) Unit.unit) ((fun _ => Bool.false) Unit.unit) element = Bool.false))
 Transliterated theorem: TwoSidedAbsorbing BooleanAndOperation false
 Logical form (Lean): : TwoSidedAbsorbing BooleanAndOperation false
-Source: ./Examples.lean#L88
+Source: [`./Examples.lean#L93`](./Examples.lean#L93)
 
 
 
@@ -2616,7 +2616,7 @@ Predicate logic (unfolded):
     ((∀ (element : Bool), Bool.rec ((fun _ => element) Unit.unit) ((fun _ => Bool.true) Unit.unit) Bool.true = Bool.true) ∧ (∀ (element : Bool), Bool.rec ((fun _ => Bool.true) Unit.unit) ((fun _ => Bool.true) Unit.unit) element = Bool.true))
 Transliterated theorem: TwoSidedAbsorbing BooleanOrOperation true
 Logical form (Lean): : TwoSidedAbsorbing BooleanOrOperation true
-Source: ./Examples.lean#L170
+Source: [`./Examples.lean#L180`](./Examples.lean#L180)
 
 
 
@@ -2633,7 +2633,7 @@ Predicate logic (unfolded):
     ((∀ (left right : Bool), Bool.rec ((fun _ => LRA.Operation.Laws.Absorption.BooleanAndOperation left right) Unit.unit) ((fun _ => Bool.true) Unit.unit) left = left) ∧ (∀ (left right : Bool), Bool.rec ((fun _ => Bool.false) Unit.unit) ((fun _ => LRA.Operation.Laws.Absorption.BooleanOrOperation left right) Unit.unit) left = left))
 Transliterated theorem: MutualAbsorptionLaw BooleanOrOperation BooleanAndOperation
 Logical form (Lean): : MutualAbsorptionLaw BooleanOrOperation BooleanAndOperation
-Source: ./Examples.lean#L300
+Source: [`./Examples.lean#L315`](./Examples.lean#L315)
 
 
 
@@ -2650,7 +2650,7 @@ Predicate logic (unfolded):
     ((∀ (left right : Nat), Nat.instMax.1 left (left.min right) = left) ∧ (∀ (left right : Nat), instMinNat.1 left (left.max right) = left))
 Transliterated theorem: MutualAbsorptionLaw NaturalMaxOperation NaturalMinOperation
 Logical form (Lean): : MutualAbsorptionLaw NaturalMaxOperation NaturalMinOperation
-Source: ./Examples.lean#L340
+Source: [`./Examples.lean#L360`](./Examples.lean#L360)
 
 
 
@@ -2667,7 +2667,7 @@ Predicate logic (unfolded):
     NaturalAddition (NaturalAddition first second) third = NaturalAddition first (NaturalAddition second third)
 Transliterated theorem: Associative NaturalAddition
 Logical form (Lean): : Associative NaturalAddition
-Source: ./Examples.lean#L386
+Source: [`./Examples.lean#L411`](./Examples.lean#L411)
 
 
 
@@ -2684,7 +2684,7 @@ Predicate logic (unfolded):
     ((∀ (fixed first second : Carrier), NaturalAddition fixed first = NaturalAddition fixed second → first = second) ∧ (∀ (first second fixed : Carrier), NaturalAddition first fixed = NaturalAddition second fixed → first = second))
 Transliterated theorem: TwoSidedCancellative NaturalAddition
 Logical form (Lean): : TwoSidedCancellative NaturalAddition
-Source: ./Examples.lean#L432
+Source: [`./Examples.lean#L462`](./Examples.lean#L462)
 
 
 
@@ -2701,7 +2701,7 @@ Predicate logic (unfolded):
     (fixed = 0 → False) → ∀ (first second : Nat), { hMul := fun a b => instMulNat.mul a b }.hMul fixed first = { hMul := fun a b => instMulNat.mul a b }.hMul fixed second → first = second
 Transliterated theorem: LeftCancellativeOn fun fixed ∈ Nat => fixed ≠ 0 NaturalMultiplicationForRestrictedCancellation
 Logical form (Lean): : LeftCancellativeOn (fun fixed : Nat => fixed ≠ 0) NaturalMultiplicationForRestrictedCancellation
-Source: ./Examples.lean#L516
+Source: [`./Examples.lean#L551`](./Examples.lean#L551)
 
 
 
@@ -2718,7 +2718,7 @@ Predicate logic (unfolded):
     (fixed = 0 → False) → ∀ (first second : Nat), { hMul := fun a b => instMulNat.mul a b }.hMul first fixed = { hMul := fun a b => instMulNat.mul a b }.hMul second fixed → first = second
 Transliterated theorem: RightCancellativeOn fun fixed ∈ Nat => fixed ≠ 0 NaturalMultiplicationForRestrictedCancellation
 Logical form (Lean): : RightCancellativeOn (fun fixed : Nat => fixed ≠ 0) NaturalMultiplicationForRestrictedCancellation
-Source: ./Examples.lean#L560
+Source: [`./Examples.lean#L600`](./Examples.lean#L600)
 
 
 
@@ -2735,7 +2735,7 @@ Predicate logic (unfolded):
     (True ∧ True) → (fun x => True) (NaturalAddition left right)
 Transliterated theorem: BinaryEndoClosedOn fun _ ∈ Nat => True NaturalAddition
 Logical form (Lean): : BinaryEndoClosedOn (fun _ : Nat => True) NaturalAddition
-Source: ./Examples.lean#L608
+Source: [`./Examples.lean#L653`](./Examples.lean#L653)
 
 
 
@@ -2752,7 +2752,7 @@ Predicate logic (unfolded):
     NaturalAddition first second = NaturalAddition second first
 Transliterated theorem: Commutative NaturalAddition
 Logical form (Lean): : Commutative NaturalAddition
-Source: ./Examples.lean#L654
+Source: [`./Examples.lean#L704`](./Examples.lean#L704)
 
 
 
@@ -2769,7 +2769,7 @@ Predicate logic (unfolded):
     ((∀ (left right third : Carrier), NaturalMultiplication left (NaturalAddition right third) = NaturalAddition (NaturalMultiplication left right) (NaturalMultiplication left third)) ∧ (∀ (left right third : Carrier), NaturalMultiplication (NaturalAddition left right) third = NaturalAddition (NaturalMultiplication left third) (NaturalMultiplication right third)))
 Transliterated theorem: TwoSidedDistributive NaturalMultiplication NaturalAddition
 Logical form (Lean): : TwoSidedDistributive NaturalMultiplication NaturalAddition
-Source: ./Examples.lean#L700
+Source: [`./Examples.lean#L755`](./Examples.lean#L755)
 
 
 
@@ -2786,7 +2786,7 @@ Predicate logic (unfolded):
     Bool.rec ((fun _ => element) Unit.unit) ((fun _ => Bool.true) Unit.unit) element = element
 Transliterated theorem: Idempotent BooleanOrOperation
 Logical form (Lean): : Idempotent BooleanOrOperation
-Source: ./Examples.lean#L788
+Source: [`./Examples.lean#L848`](./Examples.lean#L848)
 
 
 
@@ -2803,7 +2803,7 @@ Predicate logic (unfolded):
     Bool.rec ((fun _ => Bool.false) Unit.unit) ((fun _ => element) Unit.unit) element = element
 Transliterated theorem: Idempotent BooleanAndOperation
 Logical form (Lean): : Idempotent BooleanAndOperation
-Source: ./Examples.lean#L870
+Source: [`./Examples.lean#L935`](./Examples.lean#L935)
 
 
 
@@ -2820,7 +2820,7 @@ Predicate logic (unfolded):
     ((∀ (element : Bool), Bool.rec ((fun _ => element) Unit.unit) ((fun _ => Bool.true) Unit.unit) Bool.false = element) ∧ (∀ (element : Bool), Bool.rec ((fun _ => Bool.false) Unit.unit) ((fun _ => Bool.true) Unit.unit) element = element))
 Transliterated theorem: TwoSidedIdentity BooleanOrOperation false
 Logical form (Lean): : TwoSidedIdentity BooleanOrOperation false
-Source: ./Examples.lean#L958
+Source: [`./Examples.lean#L1028`](./Examples.lean#L1028)
 
 
 
@@ -2837,7 +2837,7 @@ Predicate logic (unfolded):
     ((∀ (element : Bool), Bool.rec ((fun _ => Bool.false) Unit.unit) ((fun _ => element) Unit.unit) Bool.true = element) ∧ (∀ (element : Bool), Bool.rec ((fun _ => Bool.false) Unit.unit) ((fun _ => Bool.true) Unit.unit) element = element))
 Transliterated theorem: TwoSidedIdentity BooleanAndOperation true
 Logical form (Lean): : TwoSidedIdentity BooleanAndOperation true
-Source: ./Examples.lean#L1040
+Source: [`./Examples.lean#L1115`](./Examples.lean#L1115)
 
 
 
@@ -2854,7 +2854,7 @@ Predicate logic (unfolded):
     ((∀ (element : Bool), cond.match_1 (fun x => Bool) (instBEqOfDecidable.beq = LRA.Operation.Laws.Inverse.BooleanXorInverse element element) (fun _ => Bool.false) fun _ => Bool.true = Bool.false) ∧ (∀ (element : Bool), cond.match_1 (fun x => Bool) (instBEqOfDecidable.beq = element(LRA.Operation.Laws.Inverse.BooleanXorInverse element)) (fun _ => Bool.false) fun _ => Bool.true = Bool.false))
 Transliterated theorem: TwoSidedInverse BooleanXorOperation false BooleanXorInverse
 Logical form (Lean): : TwoSidedInverse BooleanXorOperation false BooleanXorInverse
-Source: ./Examples.lean#L1170
+Source: [`./Examples.lean#L1250`](./Examples.lean#L1250)
 
 
 
@@ -2871,7 +2871,7 @@ Predicate logic (unfolded):
     ((∀ (element : Int), { hAdd := fun a b => Int.instAdd.add a b }.hAdd (Int.instNegInt.neg element) element = 0) ∧ (∀ (element : Int), { hAdd := fun a b => Int.instAdd.add a b }.hAdd element (Int.instNegInt.neg element) = 0))
 Transliterated theorem: TwoSidedInverse IntegerAdditionForInverseExample 0 IntegerAdditiveInverse
 Logical form (Lean): : TwoSidedInverse IntegerAdditionForInverseExample 0 IntegerAdditiveInverse
-Source: ./Examples.lean#L1294
+Source: [`./Examples.lean#L1379`](./Examples.lean#L1379)
 
 
 
@@ -2888,7 +2888,7 @@ Predicate logic (unfolded):
     Exists fun positiveExponent => LRA.Operation.Laws.Nilpotent.PositivePower LRA.Operation.Laws.Nilpotent.NaturalMultiplicationForNilpotenceExample 0 positiveExponent = 0
 Transliterated theorem: NilpotentElement NaturalMultiplicationForNilpotenceExample 0 0
 Logical form (Lean): : NilpotentElement NaturalMultiplicationForNilpotenceExample 0 0
-Source: ./Examples.lean#L1382
+Source: [`./Examples.lean#L1472`](./Examples.lean#L1472)
 
 ## Axioms / Assumptions
 
@@ -2915,7 +2915,7 @@ Predicate logic (unfolded):
     (leftCarrier left ∧ rightCarrier right) → resultCarrier (operation left right)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Closure/Definition.lean
+Source: [`./Laws/Closure/Definition.lean`](./Laws/Closure/Definition.lean)
 
 
 
@@ -2932,7 +2932,7 @@ Predicate logic (unfolded):
     (carrier left ∧ carrier right) → carrier (operation left right)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Closure/Definition.lean
+Source: [`./Laws/Closure/Definition.lean`](./Laws/Closure/Definition.lean)
 
 
 
@@ -2949,7 +2949,7 @@ Predicate logic (unfolded):
     domainCarrier input → codomainCarrier (operation input)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Closure/Definition.lean
+Source: [`./Laws/Closure/Definition.lean`](./Laws/Closure/Definition.lean)
 
 
 
@@ -2966,7 +2966,7 @@ Predicate logic (unfolded):
     Nonempty (LRA.Operation.Addition.Specification Carrier)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Addition/Existence.lean
+Source: [`./Addition/Existence.lean`](./Addition/Existence.lean)
 
 
 
@@ -2983,7 +2983,7 @@ Predicate logic (unfolded):
     first = second
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Addition/Uniqueness.lean
+Source: [`./Addition/Uniqueness.lean`](./Addition/Uniqueness.lean)
 
 
 
@@ -3000,7 +3000,7 @@ Predicate logic (unfolded):
     operation (operation first second) third = operation first (operation second third)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Associative/Definition.lean
+Source: [`./Laws/Associative/Definition.lean`](./Laws/Associative/Definition.lean)
 
 
 
@@ -3017,7 +3017,7 @@ Predicate logic (unfolded):
     operation first second = operation second first
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Commutative/Definition.lean
+Source: [`./Laws/Commutative/Definition.lean`](./Laws/Commutative/Definition.lean)
 
 
 
@@ -3034,7 +3034,7 @@ Predicate logic (unfolded):
     operation identity element = element
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Identity/Definition.lean
+Source: [`./Laws/Identity/Definition.lean`](./Laws/Identity/Definition.lean)
 
 
 
@@ -3051,7 +3051,7 @@ Predicate logic (unfolded):
     ((∀ (element : Carrier), operation identity element = element) ∧ (∀ (element : Carrier), operation element identity = element))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Identity/Definition.lean
+Source: [`./Laws/Identity/Definition.lean`](./Laws/Identity/Definition.lean)
 
 
 
@@ -3068,7 +3068,7 @@ Predicate logic (unfolded):
     operation element identity = element
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Identity/Definition.lean
+Source: [`./Laws/Identity/Definition.lean`](./Laws/Identity/Definition.lean)
 
 
 
@@ -3085,7 +3085,7 @@ Predicate logic (unfolded):
     operation element element = element
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Idempotent/Definition.lean
+Source: [`./Laws/Idempotent/Definition.lean`](./Laws/Idempotent/Definition.lean)
 
 
 
@@ -3102,7 +3102,7 @@ Predicate logic (unfolded):
     operation (inverse element) element = identity
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Inverse/Definition.lean
+Source: [`./Laws/Inverse/Definition.lean`](./Laws/Inverse/Definition.lean)
 
 
 
@@ -3119,7 +3119,7 @@ Predicate logic (unfolded):
     operation element (inverse element) = identity
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Inverse/Definition.lean
+Source: [`./Laws/Inverse/Definition.lean`](./Laws/Inverse/Definition.lean)
 
 
 
@@ -3136,7 +3136,7 @@ Predicate logic (unfolded):
     operation inverse element = identity
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Inverse/Definition.lean
+Source: [`./Laws/Inverse/Definition.lean`](./Laws/Inverse/Definition.lean)
 
 
 
@@ -3153,7 +3153,7 @@ Predicate logic (unfolded):
     (operation inverse element = identity ∧ operation element inverse = identity)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Inverse/Definition.lean
+Source: [`./Laws/Inverse/Definition.lean`](./Laws/Inverse/Definition.lean)
 
 
 
@@ -3170,7 +3170,7 @@ Predicate logic (unfolded):
     eligible element → Exists fun inverse => (operation inverse element = identity ∧ operation element inverse = identity)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Inverse/Definition.lean
+Source: [`./Laws/Inverse/Definition.lean`](./Laws/Inverse/Definition.lean)
 
 
 
@@ -3187,7 +3187,7 @@ Predicate logic (unfolded):
     eligible element → Exists fun inverse => operation element inverse = identity
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Inverse/Definition.lean
+Source: [`./Laws/Inverse/Definition.lean`](./Laws/Inverse/Definition.lean)
 
 
 
@@ -3204,7 +3204,7 @@ Predicate logic (unfolded):
     operation element inverse = identity
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Inverse/Definition.lean
+Source: [`./Laws/Inverse/Definition.lean`](./Laws/Inverse/Definition.lean)
 
 
 
@@ -3221,7 +3221,7 @@ Predicate logic (unfolded):
     ((∀ (element : Carrier), operation (inverse element) element = identity) ∧ (∀ (element : Carrier), operation element (inverse element) = identity))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Inverse/Definition.lean
+Source: [`./Laws/Inverse/Definition.lean`](./Laws/Inverse/Definition.lean)
 
 
 
@@ -3238,7 +3238,7 @@ Predicate logic (unfolded):
     eligible element → Exists fun inverse => operation inverse element = identity
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Inverse/Definition.lean
+Source: [`./Laws/Inverse/Definition.lean`](./Laws/Inverse/Definition.lean)
 
 
 
@@ -3255,7 +3255,7 @@ Predicate logic (unfolded):
     Nonempty (LRA.Operation.Multiplication.Specification Carrier)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Multiplication/Existence.lean
+Source: [`./Multiplication/Existence.lean`](./Multiplication/Existence.lean)
 
 
 
@@ -3272,7 +3272,7 @@ Predicate logic (unfolded):
     first = second
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Multiplication/Uniqueness.lean
+Source: [`./Multiplication/Uniqueness.lean`](./Multiplication/Uniqueness.lean)
 
 
 
@@ -3289,7 +3289,7 @@ Predicate logic (unfolded):
     ((∀ (element : Carrier), operation absorber element = absorber) ∧ (∀ (element : Carrier), operation element absorber = absorber))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Absorbing/Definition.lean
+Source: [`./Laws/Absorbing/Definition.lean`](./Laws/Absorbing/Definition.lean)
 
 
 
@@ -3306,7 +3306,7 @@ Predicate logic (unfolded):
     operation absorber element = absorber
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Absorbing/Definition.lean
+Source: [`./Laws/Absorbing/Definition.lean`](./Laws/Absorbing/Definition.lean)
 
 
 
@@ -3323,7 +3323,7 @@ Predicate logic (unfolded):
     operation element absorber = absorber
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Absorbing/Definition.lean
+Source: [`./Laws/Absorbing/Definition.lean`](./Laws/Absorbing/Definition.lean)
 
 
 
@@ -3340,7 +3340,7 @@ Predicate logic (unfolded):
     (∀ (left : Left) (right : Right), leftCarrier left → rightCarrier right → resultCarrier (operation left right)) → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Closure/FailureModes.lean
+Source: [`./Laws/Closure/FailureModes.lean`](./Laws/Closure/FailureModes.lean)
 
 
 
@@ -3357,7 +3357,7 @@ Predicate logic (unfolded):
     instHMod.1 number 2 = 1
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Closure/FailureModes.lean
+Source: [`./Laws/Closure/FailureModes.lean`](./Laws/Closure/FailureModes.lean)
 
 
 
@@ -3374,7 +3374,7 @@ Predicate logic (unfolded):
     (∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)) → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Associative/FailureModes.lean
+Source: [`./Laws/Associative/FailureModes.lean`](./Laws/Associative/FailureModes.lean)
 
 
 
@@ -3391,7 +3391,7 @@ Predicate logic (unfolded):
     (∀ (element : Carrier), operation candidate element = element) → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Identity/FailureModes.lean
+Source: [`./Laws/Identity/FailureModes.lean`](./Laws/Identity/FailureModes.lean)
 
 
 
@@ -3408,7 +3408,7 @@ Predicate logic (unfolded):
     (∀ (element : Carrier), operation element candidate = element) → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Identity/FailureModes.lean
+Source: [`./Laws/Identity/FailureModes.lean`](./Laws/Identity/FailureModes.lean)
 
 
 
@@ -3425,7 +3425,7 @@ Predicate logic (unfolded):
     operation first fixed = operation second fixed → first = second
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Cancellation/Definition.lean
+Source: [`./Laws/Cancellation/Definition.lean`](./Laws/Cancellation/Definition.lean)
 
 
 
@@ -3442,7 +3442,7 @@ Predicate logic (unfolded):
     ((∀ (fixed : Carrier), eligible fixed → ∀ (first second : Carrier), operation fixed first = operation fixed second → first = second) ∧ (∀ (fixed : Carrier), eligible fixed → ∀ (first second : Carrier), operation first fixed = operation second fixed → first = second))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Cancellation/Definition.lean
+Source: [`./Laws/Cancellation/Definition.lean`](./Laws/Cancellation/Definition.lean)
 
 
 
@@ -3459,7 +3459,7 @@ Predicate logic (unfolded):
     ((∀ (fixed first second : Carrier), operation fixed first = operation fixed second → first = second) ∧ (∀ (first second fixed : Carrier), operation first fixed = operation second fixed → first = second))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Cancellation/Definition.lean
+Source: [`./Laws/Cancellation/Definition.lean`](./Laws/Cancellation/Definition.lean)
 
 
 
@@ -3476,7 +3476,7 @@ Predicate logic (unfolded):
     operation fixed first = operation fixed second → first = second
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Cancellation/Definition.lean
+Source: [`./Laws/Cancellation/Definition.lean`](./Laws/Cancellation/Definition.lean)
 
 
 
@@ -3493,7 +3493,7 @@ Predicate logic (unfolded):
     operation first fixed = operation second fixed → first = second
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Cancellation/Definition.lean
+Source: [`./Laws/Cancellation/Definition.lean`](./Laws/Cancellation/Definition.lean)
 
 
 
@@ -3510,7 +3510,7 @@ Predicate logic (unfolded):
     eligible fixed → ∀ (first second : Carrier), operation fixed first = operation fixed second → first = second
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Cancellation/Definition.lean
+Source: [`./Laws/Cancellation/Definition.lean`](./Laws/Cancellation/Definition.lean)
 
 
 
@@ -3527,7 +3527,7 @@ Predicate logic (unfolded):
     eligible fixed → ∀ (first second : Carrier), operation first fixed = operation second fixed → first = second
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Cancellation/Definition.lean
+Source: [`./Laws/Cancellation/Definition.lean`](./Laws/Cancellation/Definition.lean)
 
 
 
@@ -3544,7 +3544,7 @@ Predicate logic (unfolded):
     operation fixed first = operation fixed second → first = second
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Cancellation/Definition.lean
+Source: [`./Laws/Cancellation/Definition.lean`](./Laws/Cancellation/Definition.lean)
 
 
 
@@ -3561,7 +3561,7 @@ Predicate logic (unfolded):
     ((∀ (element : Carrier), operation (inverse element) element = identity) ∧ (∀ (element : Carrier), operation element (inverse element) = identity)) → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Inverse/FailureModes.lean
+Source: [`./Laws/Inverse/FailureModes.lean`](./Laws/Inverse/FailureModes.lean)
 
 
 
@@ -3578,7 +3578,7 @@ Predicate logic (unfolded):
     (∀ (first second : Carrier), operation first second = operation second first) → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Commutative/FailureModes.lean
+Source: [`./Laws/Commutative/FailureModes.lean`](./Laws/Commutative/FailureModes.lean)
 
 
 
@@ -3595,7 +3595,7 @@ Predicate logic (unfolded):
     (∀ (element : Carrier), operation candidate element = candidate) → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Absorbing/FailureModes.lean
+Source: [`./Laws/Absorbing/FailureModes.lean`](./Laws/Absorbing/FailureModes.lean)
 
 
 
@@ -3612,7 +3612,7 @@ Predicate logic (unfolded):
     (∀ (element : Carrier), operation element candidate = candidate) → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Absorbing/FailureModes.lean
+Source: [`./Laws/Absorbing/FailureModes.lean`](./Laws/Absorbing/FailureModes.lean)
 
 
 
@@ -3629,7 +3629,7 @@ Predicate logic (unfolded):
     (∀ (first second : Carrier), operation fixed first = operation fixed second → first = second) → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Cancellation/FailureModes.lean
+Source: [`./Laws/Cancellation/FailureModes.lean`](./Laws/Cancellation/FailureModes.lean)
 
 
 
@@ -3646,7 +3646,7 @@ Predicate logic (unfolded):
     (∀ (first second : Carrier), operation first fixed = operation second fixed → first = second) → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Cancellation/FailureModes.lean
+Source: [`./Laws/Cancellation/FailureModes.lean`](./Laws/Cancellation/FailureModes.lean)
 
 
 
@@ -3663,7 +3663,7 @@ Predicate logic (unfolded):
     (∀ (fixed first second : Carrier), operation fixed first = operation fixed second → first = second) → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Cancellation/FailureModes.lean
+Source: [`./Laws/Cancellation/FailureModes.lean`](./Laws/Cancellation/FailureModes.lean)
 
 
 
@@ -3680,7 +3680,7 @@ Predicate logic (unfolded):
     (∀ (first second fixed : Carrier), operation first fixed = operation second fixed → first = second) → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Cancellation/FailureModes.lean
+Source: [`./Laws/Cancellation/FailureModes.lean`](./Laws/Cancellation/FailureModes.lean)
 
 
 
@@ -3697,7 +3697,7 @@ Predicate logic (unfolded):
     (∀ (element : Carrier), operation element element = element) → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Idempotent/FailureModes.lean
+Source: [`./Laws/Idempotent/FailureModes.lean`](./Laws/Idempotent/FailureModes.lean)
 
 
 
@@ -3714,7 +3714,7 @@ Predicate logic (unfolded):
     outer left (inner left right) = left
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Absorption/Definition.lean
+Source: [`./Laws/Absorption/Definition.lean`](./Laws/Absorption/Definition.lean)
 
 
 
@@ -3731,7 +3731,7 @@ Predicate logic (unfolded):
     ((∀ (left right : Carrier), first left (second left right) = left) ∧ (∀ (left right : Carrier), second left (first left right) = left))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Absorption/Definition.lean
+Source: [`./Laws/Absorption/Definition.lean`](./Laws/Absorption/Definition.lean)
 
 
 
@@ -3748,7 +3748,7 @@ Predicate logic (unfolded):
     ((∀ (left right : Carrier), first left (second left right) = left) ∧ (∀ (left right : Carrier), second left (first left right) = left)) → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Absorption/FailureModes.lean
+Source: [`./Laws/Absorption/FailureModes.lean`](./Laws/Absorption/FailureModes.lean)
 
 
 
@@ -3765,7 +3765,7 @@ Predicate logic (unfolded):
     (∀ (left right : Carrier), outer left (inner left right) = left) → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Absorption/FailureModes.lean
+Source: [`./Laws/Absorption/FailureModes.lean`](./Laws/Absorption/FailureModes.lean)
 
 
 
@@ -3782,7 +3782,7 @@ Predicate logic (unfolded):
     outer (inner left right) third = inner (outer left third) (outer right third)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Distributive/Definition.lean
+Source: [`./Laws/Distributive/Definition.lean`](./Laws/Distributive/Definition.lean)
 
 
 
@@ -3799,7 +3799,7 @@ Predicate logic (unfolded):
     ((∀ (left right third : Carrier), outer left (inner right third) = inner (outer left right) (outer left third)) ∧ (∀ (left right third : Carrier), outer (inner left right) third = inner (outer left third) (outer right third)))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Distributive/Definition.lean
+Source: [`./Laws/Distributive/Definition.lean`](./Laws/Distributive/Definition.lean)
 
 
 
@@ -3816,7 +3816,7 @@ Predicate logic (unfolded):
     outer left (inner right third) = inner (outer left right) (outer left third)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Distributive/Definition.lean
+Source: [`./Laws/Distributive/Definition.lean`](./Laws/Distributive/Definition.lean)
 
 
 
@@ -3833,7 +3833,7 @@ Predicate logic (unfolded):
     (∀ (left right third : Carrier), outer left (inner right third) = inner (outer left right) (outer left third)) → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Distributive/FailureModes.lean
+Source: [`./Laws/Distributive/FailureModes.lean`](./Laws/Distributive/FailureModes.lean)
 
 
 
@@ -3850,7 +3850,7 @@ Predicate logic (unfolded):
     (∀ (left right third : Carrier), outer (inner left right) third = inner (outer left third) (outer right third)) → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Distributive/FailureModes.lean
+Source: [`./Laws/Distributive/FailureModes.lean`](./Laws/Distributive/FailureModes.lean)
 
 
 
@@ -3867,7 +3867,7 @@ Predicate logic (unfolded):
     Exists fun positiveExponent => LRA.Operation.Laws.Nilpotent.PositivePower operation element positiveExponent = zero
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Nilpotent/Definition.lean
+Source: [`./Laws/Nilpotent/Definition.lean`](./Laws/Nilpotent/Definition.lean)
 
 
 
@@ -3884,7 +3884,7 @@ Predicate logic (unfolded):
     (Exists fun positiveExponent => LRA.Operation.Laws.Nilpotent.PositivePower operation element positiveExponent = zero) → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Laws/Nilpotent/FailureModes.lean
+Source: [`./Laws/Nilpotent/FailureModes.lean`](./Laws/Nilpotent/FailureModes.lean)
 
 
 
@@ -3901,7 +3901,7 @@ Predicate logic (unfolded):
     Exists fun witness => a_1 = multiplication a witness
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Divisibility.lean
+Source: [`./Divisibility.lean`](./Divisibility.lean)
 
 
 
@@ -3918,4 +3918,4 @@ Predicate logic (unfolded):
     (Exists fun witness => a_1 = multiplication a witness ∧ Exists fun witness => a = multiplication a_1 witness)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Divisibility.lean
+Source: [`./Divisibility.lean`](./Divisibility.lean)

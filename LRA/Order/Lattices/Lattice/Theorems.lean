@@ -9,11 +9,18 @@ universe u
 
 Predicate logic:
 
-  (∀ left right ∈ Alpha), exists join, Join relation left right join
+  ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha}, LRA.Order.Lattice relation → ∀ (left right : Alpha), Exists fun join => LRA.Order.Join relation left right join
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {relation : Alpha → Alpha → Prop}, ((∀ (x : Alpha), relation x x ∧ (∀ (x y : Alpha), relation x y → relation y x → x = y ∧ ∀ (x y z : Alpha), relation x y → relation y z → relation x z)) ∧ ∀ (left right : Alpha), (Exists fun join => (relation left join ∧ (relation right join ∧ ∀ (upper : Alpha), relation left upper → relation right upper → relation join upper)) ∧ Exists fun meet => (relation meet left ∧ (relation meet right ∧ ∀ (lower : Alpha), relation lower left → relation lower right → relation lower meet)))) → ∀ (left right : Alpha), Exists fun join => (relation left join ∧ (relation right join ∧ ∀ (upper : Alpha), relation left upper → relation right upper → relation join upper))
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsLattice : Lattice relation
+    left right : Alpha
+  Prove
+    (((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) ∧ (∀ (left right : Alpha), ((Exists fun join => (relation left join ∧ (relation right join ∧ (∀ (upper : Alpha), relation left upper → relation right upper → relation join upper)))) ∧ (Exists fun meet => (relation meet left ∧ (relation meet right ∧ (∀ (lower : Alpha), relation lower left → relation lower right → relation lower meet))))))) → ∀ (left right : Alpha), Exists fun join => (relation left join ∧ (relation right join ∧ (∀ (upper : Alpha), relation left upper → relation right upper → relation join upper)))
 
 Logical form (Lean):
 
@@ -57,11 +64,18 @@ theorem LatticeHasJoin
 
 Predicate logic:
 
-  (∀ left right ∈ Alpha), exists meet, Meet relation left right meet
+  ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha}, LRA.Order.Lattice relation → ∀ (left right : Alpha), Exists fun meet => LRA.Order.Meet relation left right meet
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {relation : Alpha → Alpha → Prop}, ((∀ (x : Alpha), relation x x ∧ (∀ (x y : Alpha), relation x y → relation y x → x = y ∧ ∀ (x y z : Alpha), relation x y → relation y z → relation x z)) ∧ ∀ (left right : Alpha), (Exists fun join => (relation left join ∧ (relation right join ∧ ∀ (upper : Alpha), relation left upper → relation right upper → relation join upper)) ∧ Exists fun meet => (relation meet left ∧ (relation meet right ∧ ∀ (lower : Alpha), relation lower left → relation lower right → relation lower meet)))) → ∀ (left right : Alpha), Exists fun meet => (relation meet left ∧ (relation meet right ∧ ∀ (lower : Alpha), relation lower left → relation lower right → relation lower meet))
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsLattice : Lattice relation
+    left right : Alpha
+  Prove
+    (((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) ∧ (∀ (left right : Alpha), ((Exists fun join => (relation left join ∧ (relation right join ∧ (∀ (upper : Alpha), relation left upper → relation right upper → relation join upper)))) ∧ (Exists fun meet => (relation meet left ∧ (relation meet right ∧ (∀ (lower : Alpha), relation lower left → relation lower right → relation lower meet))))))) → ∀ (left right : Alpha), Exists fun meet => (relation meet left ∧ (relation meet right ∧ (∀ (lower : Alpha), relation lower left → relation lower right → relation lower meet)))
 
 Logical form (Lean):
 
@@ -105,11 +119,18 @@ theorem LatticeHasMeet
 
 Predicate logic:
 
-  (∀ left right ∈ Alpha), Join relation left right right ↔ relation left right
+  ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha}, LRA.Order.PartialOrder relation → ∀ (left right : Alpha), LRA.Order.Join relation left right right ↔ relation left right
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {relation : Alpha → Alpha → Prop}, (∀ (x : Alpha), relation x x ∧ (∀ (x y : Alpha), relation x y → relation y x → x = y ∧ ∀ (x y z : Alpha), relation x y → relation y z → relation x z)) → ∀ (left right : Alpha), (relation left right ∧ (relation right right ∧ ∀ (upper : Alpha), relation left upper → relation right upper → relation right upper)) ↔ relation left right
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsPartialOrder : PartialOrder relation
+    left right : Alpha
+  Prove
+    LRA.Order.PartialOrder relation → ∀ (left right : Alpha), LRA.Order.Join relation left right right ↔ relation left right
 
 Logical form (Lean):
 
@@ -153,11 +174,18 @@ theorem JoinEqualsRightIffRelated
 
 Predicate logic:
 
-  (∀ left right ∈ Alpha), Meet relation left right left ↔ relation left right
+  ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha}, LRA.Order.PartialOrder relation → ∀ (left right : Alpha), LRA.Order.Meet relation left right left ↔ relation left right
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {relation : Alpha → Alpha → Prop}, (∀ (x : Alpha), relation x x ∧ (∀ (x y : Alpha), relation x y → relation y x → x = y ∧ ∀ (x y z : Alpha), relation x y → relation y z → relation x z)) → ∀ (left right : Alpha), (relation left left ∧ (relation left right ∧ ∀ (lower : Alpha), relation lower left → relation lower right → relation lower left)) ↔ relation left right
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsPartialOrder : PartialOrder relation
+    left right : Alpha
+  Prove
+    LRA.Order.PartialOrder relation → ∀ (left right : Alpha), LRA.Order.Meet relation left right left ↔ relation left right
 
 Logical form (Lean):
 
@@ -201,11 +229,20 @@ theorem MeetEqualsLeftIffRelated
 
 Predicate logic:
 
-  meet = left
+  ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha}, LRA.Order.PartialOrder relation → ∀ {left right join meet : Alpha}, (LRA.Order.Join relation left right join ∧ LRA.Order.Meet relation left join meet) → meet = left
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {relation : Alpha → Alpha → Prop}, (∀ (x : Alpha), relation x x ∧ (∀ (x y : Alpha), relation x y → relation y x → x = y ∧ ∀ (x y z : Alpha), relation x y → relation y z → relation x z)) → ∀ {left right join meet : Alpha}, ((relation left join ∧ (relation right join ∧ ∀ (upper : Alpha), relation left upper → relation right upper → relation join upper)) ∧ (relation meet left ∧ (relation meet join ∧ ∀ (lower : Alpha), relation lower left → relation lower join → relation lower meet))) → meet = left
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsPartialOrder : PartialOrder relation
+    left right join meet : Alpha
+    joinIsJoin : Join relation left right join
+    meetIsMeet : Meet relation left join meet
+  Prove
+    ((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) → ∀ {left right join meet : Alpha}, ((relation left join ∧ (relation right join ∧ (∀ (upper : Alpha), relation left upper → relation right upper → relation join upper))) ∧ (relation meet left ∧ (relation meet join ∧ (∀ (lower : Alpha), relation lower left → relation lower join → relation lower meet)))) → meet = left
 
 Logical form (Lean):
 
@@ -253,11 +290,20 @@ theorem MeetWithJoinAbsorbs
 
 Predicate logic:
 
-  join = left
+  ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha}, LRA.Order.PartialOrder relation → ∀ {left right meet join : Alpha}, (LRA.Order.Meet relation left right meet ∧ LRA.Order.Join relation left meet join) → join = left
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {relation : Alpha → Alpha → Prop}, (∀ (x : Alpha), relation x x ∧ (∀ (x y : Alpha), relation x y → relation y x → x = y ∧ ∀ (x y z : Alpha), relation x y → relation y z → relation x z)) → ∀ {left right meet join : Alpha}, ((relation meet left ∧ (relation meet right ∧ ∀ (lower : Alpha), relation lower left → relation lower right → relation lower meet)) ∧ (relation left join ∧ (relation meet join ∧ ∀ (upper : Alpha), relation left upper → relation meet upper → relation join upper))) → join = left
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsPartialOrder : PartialOrder relation
+    left right meet join : Alpha
+    meetIsMeet : Meet relation left right meet
+    joinIsJoin : Join relation left meet join
+  Prove
+    ((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) → ∀ {left right meet join : Alpha}, ((relation meet left ∧ (relation meet right ∧ (∀ (lower : Alpha), relation lower left → relation lower right → relation lower meet))) ∧ (relation left join ∧ (relation meet join ∧ (∀ (upper : Alpha), relation left upper → relation meet upper → relation join upper)))) → join = left
 
 Logical form (Lean):
 
@@ -305,11 +351,23 @@ theorem JoinWithMeetAbsorbs
 
 Predicate logic:
 
-  relation joinOfMeets aMeetBJoinC
+  ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha}, LRA.Order.PartialOrder relation → ∀ {a b c bJoinC aMeetBJoinC aMeetB aMeetC joinOfMeets : Alpha}, (LRA.Order.Join relation b c bJoinC ∧ (LRA.Order.Meet relation a bJoinC aMeetBJoinC ∧ (LRA.Order.Meet relation a b aMeetB ∧ (LRA.Order.Meet relation a c aMeetC ∧ LRA.Order.Join relation aMeetB aMeetC joinOfMeets)))) → relation joinOfMeets aMeetBJoinC
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {relation : Alpha → Alpha → Prop}, (∀ (x : Alpha), relation x x ∧ (∀ (x y : Alpha), relation x y → relation y x → x = y ∧ ∀ (x y z : Alpha), relation x y → relation y z → relation x z)) → ∀ {a b c bJoinC aMeetBJoinC aMeetB aMeetC joinOfMeets : Alpha}, ((relation b bJoinC ∧ (relation c bJoinC ∧ ∀ (upper : Alpha), relation b upper → relation c upper → relation bJoinC upper)) ∧ ((relation aMeetBJoinC a ∧ (relation aMeetBJoinC bJoinC ∧ ∀ (lower : Alpha), relation lower a → relation lower bJoinC → relation lower aMeetBJoinC)) ∧ ((relation aMeetB a ∧ (relation aMeetB b ∧ ∀ (lower : Alpha), relation lower a → relation lower b → relation lower aMeetB)) ∧ ((relation aMeetC a ∧ (relation aMeetC c ∧ ∀ (lower : Alpha), relation lower a → relation lower c → relation lower aMeetC)) ∧ (relation aMeetB joinOfMeets ∧ (relation aMeetC joinOfMeets ∧ ∀ (upper : Alpha), relation aMeetB upper → relation aMeetC upper → relation joinOfMeets upper)))))) → relation joinOfMeets aMeetBJoinC
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsPartialOrder : PartialOrder relation
+    a b c bJoinC aMeetBJoinC aMeetB aMeetC joinOfMeets : Alpha
+    bJoinCIsJoin : Join relation b c bJoinC
+    aMeetBJoinCIsMeet : Meet relation a bJoinC aMeetBJoinC
+    aMeetBIsMeet : Meet relation a b aMeetB
+    aMeetCIsMeet : Meet relation a c aMeetC
+    joinOfMeetsIsJoin : Join relation aMeetB aMeetC joinOfMeets
+  Prove
+    ((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) → ∀ {a b c bJoinC aMeetBJoinC aMeetB aMeetC joinOfMeets : Alpha}, ((relation b bJoinC ∧ (relation c bJoinC ∧ (∀ (upper : Alpha), relation b upper → relation c upper → relation bJoinC upper))) ∧ ((relation aMeetBJoinC a ∧ (relation aMeetBJoinC bJoinC ∧ (∀ (lower : Alpha), relation lower a → relation lower bJoinC → relation lower aMeetBJoinC))) ∧ ((relation aMeetB a ∧ (relation aMeetB b ∧ (∀ (lower : Alpha), relation lower a → relation lower b → relation lower aMeetB))) ∧ ((relation aMeetC a ∧ (relation aMeetC c ∧ (∀ (lower : Alpha), relation lower a → relation lower c → relation lower aMeetC))) ∧ (relation aMeetB joinOfMeets ∧ (relation aMeetC joinOfMeets ∧ (∀ (upper : Alpha), relation aMeetB upper → relation aMeetC upper → relation joinOfMeets upper))))))) → relation joinOfMeets aMeetBJoinC
 
 Logical form (Lean):
 
@@ -363,11 +421,23 @@ theorem JoinOfMeetsRelatedToMeetWithJoin
 
 Predicate logic:
 
-  relation aJoinBMeetC meetOfJoins
+  ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha}, LRA.Order.PartialOrder relation → ∀ {a b c bMeetC aJoinBMeetC aJoinB aJoinC meetOfJoins : Alpha}, (LRA.Order.Meet relation b c bMeetC ∧ (LRA.Order.Join relation a bMeetC aJoinBMeetC ∧ (LRA.Order.Join relation a b aJoinB ∧ (LRA.Order.Join relation a c aJoinC ∧ LRA.Order.Meet relation aJoinB aJoinC meetOfJoins)))) → relation aJoinBMeetC meetOfJoins
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {relation : Alpha → Alpha → Prop}, (∀ (x : Alpha), relation x x ∧ (∀ (x y : Alpha), relation x y → relation y x → x = y ∧ ∀ (x y z : Alpha), relation x y → relation y z → relation x z)) → ∀ {a b c bMeetC aJoinBMeetC aJoinB aJoinC meetOfJoins : Alpha}, ((relation bMeetC b ∧ (relation bMeetC c ∧ ∀ (lower : Alpha), relation lower b → relation lower c → relation lower bMeetC)) ∧ ((relation a aJoinBMeetC ∧ (relation bMeetC aJoinBMeetC ∧ ∀ (upper : Alpha), relation a upper → relation bMeetC upper → relation aJoinBMeetC upper)) ∧ ((relation a aJoinB ∧ (relation b aJoinB ∧ ∀ (upper : Alpha), relation a upper → relation b upper → relation aJoinB upper)) ∧ ((relation a aJoinC ∧ (relation c aJoinC ∧ ∀ (upper : Alpha), relation a upper → relation c upper → relation aJoinC upper)) ∧ (relation meetOfJoins aJoinB ∧ (relation meetOfJoins aJoinC ∧ ∀ (lower : Alpha), relation lower aJoinB → relation lower aJoinC → relation lower meetOfJoins)))))) → relation aJoinBMeetC meetOfJoins
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsPartialOrder : PartialOrder relation
+    a b c bMeetC aJoinBMeetC aJoinB aJoinC meetOfJoins : Alpha
+    bMeetCIsMeet : Meet relation b c bMeetC
+    aJoinBMeetCIsJoin : Join relation a bMeetC aJoinBMeetC
+    aJoinBIsJoin : Join relation a b aJoinB
+    aJoinCIsJoin : Join relation a c aJoinC
+    meetOfJoinsIsMeet : Meet relation aJoinB aJoinC meetOfJoins
+  Prove
+    ((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) → ∀ {a b c bMeetC aJoinBMeetC aJoinB aJoinC meetOfJoins : Alpha}, ((relation bMeetC b ∧ (relation bMeetC c ∧ (∀ (lower : Alpha), relation lower b → relation lower c → relation lower bMeetC))) ∧ ((relation a aJoinBMeetC ∧ (relation bMeetC aJoinBMeetC ∧ (∀ (upper : Alpha), relation a upper → relation bMeetC upper → relation aJoinBMeetC upper))) ∧ ((relation a aJoinB ∧ (relation b aJoinB ∧ (∀ (upper : Alpha), relation a upper → relation b upper → relation aJoinB upper))) ∧ ((relation a aJoinC ∧ (relation c aJoinC ∧ (∀ (upper : Alpha), relation a upper → relation c upper → relation aJoinC upper))) ∧ (relation meetOfJoins aJoinB ∧ (relation meetOfJoins aJoinC ∧ (∀ (lower : Alpha), relation lower aJoinB → relation lower aJoinC → relation lower meetOfJoins))))))) → relation aJoinBMeetC meetOfJoins
 
 Logical form (Lean):
 

@@ -10,11 +10,22 @@ universe u v w
 
 Predicate logic:
 
-  Monotone sourceRelation targetRelation (fun input => second (first input))
+  ∀ {Alpha : Type u} {Beta : Type v} {Gamma : Type w} {sourceRelation : LRA.Relation.Endorelation Alpha} {middleRelation : LRA.Relation.Endorelation Beta} {targetRelation : LRA.Relation.Endorelation Gamma} {first : Alpha → Beta} {second : Beta → Gamma}, (LRA.Order.Antitone sourceRelation middleRelation first ∧ LRA.Order.Antitone middleRelation targetRelation second) → LRA.Order.Monotone sourceRelation targetRelation fun input => second (first input)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {Beta : Type v} {Gamma : Type w} {sourceRelation : Alpha → Alpha → Prop} {middleRelation : Beta → Beta → Prop} {targetRelation : Gamma → Gamma → Prop} {first : Alpha → Beta} {second : Beta → Gamma}, (∀ (left right : Alpha), sourceRelation left right → middleRelation (first right) (first left) ∧ ∀ (left right : Beta), middleRelation left right → targetRelation (second right) (second left)) → ∀ (left right : Alpha), sourceRelation left right → targetRelation ((fun input => second (first input)) left) ((fun input => second (first input)) right)
+  Ambient
+    (Alpha, Beta, Gamma)
+  Objects
+    sourceRelation : LRA.Relation.Endorelation Alpha
+    middleRelation : LRA.Relation.Endorelation Beta
+    targetRelation : LRA.Relation.Endorelation Gamma
+    first : Alpha -> Beta
+    second : Beta -> Gamma
+    firstAntitone : Antitone sourceRelation middleRelation first
+    secondAntitone : Antitone middleRelation targetRelation second
+  Prove
+    ((∀ (left right : Alpha), sourceRelation left right → middleRelation (first right) (first left)) ∧ (∀ (left right : Beta), middleRelation left right → targetRelation (second right) (second left))) → ∀ (left right : Alpha), sourceRelation left right → targetRelation ((fun input => second (first input)) left) ((fun input => second (first input)) right)
 
 Logical form (Lean):
 

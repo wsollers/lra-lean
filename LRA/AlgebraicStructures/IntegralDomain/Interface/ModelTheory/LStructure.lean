@@ -13,12 +13,12 @@ open LRA.AlgebraicStructures.IntegralDomain.Interface.Signature
 Predicate logic:
 
   abbrev IntegralDomainSignature :=
-  LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory.CommutativeRingSignature
+    LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory.CommutativeRingSignature
 
 Predicate logic (unfolded):
 
   abbrev IntegralDomainSignature :=
-  LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory.CommutativeRingSignature (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory.CommutativeRingSignature (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -55,16 +55,16 @@ abbrev IntegralDomainSignature :=
 Predicate logic:
 
   def BuildIntegralDomainModel
-    (signature : IntegralDomainSignature) :
-    LRA.ModelTheory.FirstOrder.Model IntegralDomainFirstOrderSignature :=
-  LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory.BuildCommutativeRingModel signature
+      (signature : IntegralDomainSignature) :
+      LRA.ModelTheory.FirstOrder.Model IntegralDomainFirstOrderSignature :=
+    LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory.BuildCommutativeRingModel signature
 
 Predicate logic (unfolded):
 
   def BuildIntegralDomainModel
-    (signature : IntegralDomainSignature) :
-    LRA.ModelTheory.FirstOrder.Model IntegralDomainFirstOrderSignature :=
-  LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory.BuildCommutativeRingModel signature (source fallback; no compiled unfold data available)
+      (signature : IntegralDomainSignature) :
+      LRA.ModelTheory.FirstOrder.Model IntegralDomainFirstOrderSignature :=
+    LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory.BuildCommutativeRingModel signature (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -105,16 +105,16 @@ def BuildIntegralDomainModel
 Predicate logic:
 
   def integralDomainFirstOrderModel (R : Type u)
-    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] :
-    LRA.ModelTheory.FirstOrder.Model IntegralDomainFirstOrderSignature :=
-  LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory.commutativeRingFirstOrderModel R
+      [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] :
+      LRA.ModelTheory.FirstOrder.Model IntegralDomainFirstOrderSignature :=
+    LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory.commutativeRingFirstOrderModel R
 
 Predicate logic (unfolded):
 
   def integralDomainFirstOrderModel (R : Type u)
-    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] :
-    LRA.ModelTheory.FirstOrder.Model IntegralDomainFirstOrderSignature :=
-  LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory.commutativeRingFirstOrderModel R (source fallback; no compiled unfold data available)
+      [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] :
+      LRA.ModelTheory.FirstOrder.Model IntegralDomainFirstOrderSignature :=
+    LRA.AlgebraicStructures.CommutativeRing.Interface.ModelTheory.commutativeRingFirstOrderModel R (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

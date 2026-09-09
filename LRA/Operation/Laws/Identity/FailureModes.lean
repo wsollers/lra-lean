@@ -15,7 +15,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (operation : Carrier → Carrier → Carrier) (candidate : Carrier), (∀ (element : Carrier), operation element candidate = element) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (element : Carrier), operation element candidate = element) → False
 
 Logical form (Lean):
 
@@ -59,7 +64,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (operation : Carrier → Carrier → Carrier) (candidate : Carrier), (∀ (element : Carrier), operation candidate element = element) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (element : Carrier), operation candidate element = element) → False
 
 Logical form (Lean):
 
@@ -100,12 +110,12 @@ def FailsLeftIdentity {Carrier : Type u}
 Predicate logic:
 
   def BooleanSecondProjection : BinaryEndoOperation Bool :=
-  fun _ right => right
+    fun _ right => right
 
 Predicate logic (unfolded):
 
   def BooleanSecondProjection : BinaryEndoOperation Bool :=
-  fun _ right => right (source fallback; no compiled unfold data available)
+    fun _ right => right (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -142,12 +152,12 @@ def BooleanSecondProjection : BinaryEndoOperation Bool :=
 Predicate logic:
 
   def BooleanFirstProjection : BinaryEndoOperation Bool :=
-  fun left _ => left
+    fun left _ => left
 
 Predicate logic (unfolded):
 
   def BooleanFirstProjection : BinaryEndoOperation Bool :=
-  fun left _ => left (source fallback; no compiled unfold data available)
+    fun left _ => left (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -183,11 +193,16 @@ def BooleanFirstProjection : BinaryEndoOperation Bool :=
 
 Predicate logic:
 
-  LeftIdentity BooleanSecondProjection false ∧ FailsRightIdentity BooleanSecondProjection false
+  (LRA.Operation.Laws.Identity.LeftIdentity LRA.Operation.Laws.Identity.BooleanSecondProjection Bool.false ∧ LRA.Operation.Laws.Identity.FailsRightIdentity LRA.Operation.Laws.Identity.BooleanSecondProjection Bool.false)
 
 Predicate logic (unfolded):
 
-  (∀ (element : Bool), element = element ∧ (∀ (element : Bool), Bool.false = element) → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (element : Bool), element = element) ∧ ((∀ (element : Bool), Bool.false = element) → False))
 
 Logical form (Lean):
 
@@ -225,11 +240,16 @@ theorem BooleanSecondProjectionLeftIdentityButNotRightIdentity :
 
 Predicate logic:
 
-  RightIdentity BooleanFirstProjection false ∧ FailsLeftIdentity BooleanFirstProjection false
+  (LRA.Operation.Laws.Identity.RightIdentity LRA.Operation.Laws.Identity.BooleanFirstProjection Bool.false ∧ LRA.Operation.Laws.Identity.FailsLeftIdentity LRA.Operation.Laws.Identity.BooleanFirstProjection Bool.false)
 
 Predicate logic (unfolded):
 
-  (∀ (element : Bool), element = element ∧ (∀ (element : Bool), Bool.false = element) → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (element : Bool), element = element) ∧ ((∀ (element : Bool), Bool.false = element) → False))
 
 Logical form (Lean):
 

@@ -14,11 +14,16 @@ namespace LRA.ModelTheory.SecondOrderMonadic
 
 Predicate logic:
 
-  ∀ {S : LRA.Logic.Signature} {Variable SetVariable : Type} [inst : DecidableVariable] = [inst_1 : DecidableSetVariable](M : LRA.ModelTheory.SecondOrderMonadic.HenkinModel S) = assignment : LRA.ModelTheory.SecondOrderMonadic.SOAssignment M Variable SetVariable (a : LRA.ModelTheory.SecondOrderMonadic.SOFormula S Variable SetVariable), (LRA.ModelTheory.SecondOrderMonadic.SOFormula.brecOn.go (motive := fun x => LRA.ModelTheory.SecondOrderMonadic.SOAssignment M Variable SetVariable → Prop) a (LRA.ModelTheory.SecondOrderMonadic.SOSatisfies._f M)).1 assignment
+  ∀ {S : LRA.Logic.Signature} {Variable SetVariable : Type} [inst : DecidableVariable] = [inst_1 : DecidableSetVariable](M : LRA.ModelTheory.SecondOrderMonadic.HenkinModel S) = assignment : LRA.ModelTheory.SecondOrderMonadic.SOAssignment M Variable SetVariable (a : LRA.Logic.SecondOrderMonadic.SOFormula S Variable SetVariable), (LRA.Logic.SecondOrderMonadic.SOFormula.brecOn.go (motive := fun x => LRA.ModelTheory.SecondOrderMonadic.SOAssignment M Variable SetVariable → Prop) a (LRA.ModelTheory.SecondOrderMonadic.SOSatisfies._f M)).1 assignment
 
 Predicate logic (unfolded):
 
-  ∀ {S : LRA.Logic.Signature} {Variable SetVariable : Type} [inst : (a b : Variable) → Decidable (a = b)] [inst_1 : (a b : SetVariable) → Decidable (a = b)](M : LRA.ModelTheory.SecondOrderMonadic.HenkinModel S) (assignment : LRA.ModelTheory.SecondOrderMonadic.SOAssignment M Variable SetVariable) (a : LRA.ModelTheory.SecondOrderMonadic.SOFormula S Variable SetVariable), (LRA.ModelTheory.SecondOrderMonadic.SOFormula.brecOn.go (motive := fun x => LRA.ModelTheory.SecondOrderMonadic.SOAssignment M Variable SetVariable → Prop) a (LRA.ModelTheory.SecondOrderMonadic.SOSatisfies._f M)).1 assignment
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (LRA.Logic.SecondOrderMonadic.SOFormula.brecOn.go (motive := fun x => LRA.ModelTheory.SecondOrderMonadic.SOAssignment M Variable SetVariable → Prop) a (LRA.ModelTheory.SecondOrderMonadic.SOSatisfies._f M)).1 assignment
 
 Logical form (Lean):
 

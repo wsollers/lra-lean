@@ -13,11 +13,16 @@ open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 
 Predicate logic:
 
-  (∀ dyadicData ∈ RationalDyadicApproximationData), ∃ realExtension ∈ LRA.NumberSystems.RealNumbers.RationalRealExtension dyadicData.RationalSystem, realExtension.RealModel.Carrier = Expansion
+  ∀ (dyadicData : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData), Exists fun realExtension => realExtension.RealModel.Carrier = LRA.NumberSystems.RealNumbers.Dyadic.Expansion
 
 Predicate logic (unfolded):
 
-  ∀ (dyadicData : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData), Exists fun realExtension => realExtension.RealModel.toDenselyOrderedFieldModel.1 = LRA.NumberSystems.RealNumbers.Dyadic.Expansion
+  Ambient
+    (implicit ambient)
+  Objects
+    dyadicData : RationalDyadicApproximationData
+  Prove
+    Exists fun realExtension => realExtension.RealModel.1 = LRA.NumberSystems.RealNumbers.Dyadic.Expansion
 
 Logical form (Lean):
 

@@ -7,11 +7,17 @@ namespace LRA.Analysis.Bounds.Extrema
 
 Predicate logic:
 
-  IsSupremum s A ↔ IsUpperBound s A ∧ ∀ ε : ℝ, 0 < ε → ∃ a ∈ A, s - ε < a
+  ∀ {A : Set Real} {s : Real}, LRA.Analysis.Bounds.IsSupremum s A ↔ (LRA.Analysis.Bounds.IsUpperBound s A ∧ (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun a => (a ∈ A ∧ Real.instLT.lt (instHSub.hSub s ε) a)))
 
 Predicate logic (unfolded):
 
-  ∀ {A : Real → Prop} {s : Real}, (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x s ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 s u) ↔ (∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 x s ∧ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun a => (Set.instMembership.1 A a ∧ Real.instLT.1 (instHSub.1 s ε) a))
+  Ambient
+    (ℝ)
+  Objects
+    A : Set ℝ
+    s : ℝ
+  Prove
+    LRA.Analysis.Bounds.IsSupremum s A ↔ (LRA.Analysis.Bounds.IsUpperBound s A ∧ (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun a => (a ∈ A ∧ Real.instLT.lt (instHSub.hSub s ε) a)))
 
 Logical form (Lean):
 
@@ -49,11 +55,17 @@ theorem SupremumEpsilonCharacterization {A : Set ℝ} {s : ℝ} :
 
 Predicate logic:
 
-  IsInfimum i A ↔ IsLowerBound i A ∧ ∀ ε : ℝ, 0 < ε → ∃ a ∈ A, a < i + ε
+  ∀ {A : Set Real} {i : Real}, LRA.Analysis.Bounds.IsInfimum i A ↔ (LRA.Analysis.Bounds.IsLowerBound i A ∧ (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun a => (a ∈ A ∧ Real.instLT.lt a (instHAdd.hAdd i ε))))
 
 Predicate logic (unfolded):
 
-  ∀ {A : Real → Prop} {i : Real}, (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 i x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l i) ↔ (∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 i x ∧ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun a => (Set.instMembership.1 A a ∧ Real.instLT.1 a (instHAdd.1 i ε)))
+  Ambient
+    (ℝ)
+  Objects
+    A : Set ℝ
+    i : ℝ
+  Prove
+    LRA.Analysis.Bounds.IsInfimum i A ↔ (LRA.Analysis.Bounds.IsLowerBound i A ∧ (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun a => (a ∈ A ∧ Real.instLT.lt a (instHAdd.hAdd i ε))))
 
 Logical form (Lean):
 
@@ -91,11 +103,17 @@ theorem InfimumEpsilonCharacterization {A : Set ℝ} {i : ℝ} :
 
 Predicate logic:
 
-  (IsSupremum s A ∧ u < s) → ∃ a ∈ A, u < a
+  ∀ {A : Set Real} {s u : Real}, (LRA.Analysis.Bounds.IsSupremum s A ∧ Real.instLT.lt u s) → Exists fun a => (a ∈ A ∧ Real.instLT.lt u a)
 
 Predicate logic (unfolded):
 
-  ∀ {A : Real → Prop} {s u : Real}, ((∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x s ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 s u) ∧ Real.instLT.1 u s) → Exists fun a => (Set.instMembership.1 A a ∧ Real.instLT.1 u a)
+  Ambient
+    (ℝ)
+  Objects
+    A : Set ℝ
+    s u : ℝ
+  Prove
+    (((∀ (x : Real), x ∈ A → Real.instPreorder.1.le x s) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le x u) → Real.instPreorder.1.le s u)) ∧ Real.instLT.lt u s) → Exists fun a => (a ∈ A ∧ Real.instLT.lt u a)
 
 Logical form (Lean):
 
@@ -135,11 +153,17 @@ theorem SupremumStrictUpperApproximation {A : Set ℝ} {s u : ℝ}
 
 Predicate logic:
 
-  (IsInfimum i A ∧ i < l) → ∃ a ∈ A, a < l
+  ∀ {A : Set Real} {i l : Real}, (LRA.Analysis.Bounds.IsInfimum i A ∧ Real.instLT.lt i l) → Exists fun a => (a ∈ A ∧ Real.instLT.lt a l)
 
 Predicate logic (unfolded):
 
-  ∀ {A : Real → Prop} {i l : Real}, ((∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 i x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l i) ∧ Real.instLT.1 i l) → Exists fun a => (Set.instMembership.1 A a ∧ Real.instLT.1 a l)
+  Ambient
+    (ℝ)
+  Objects
+    A : Set ℝ
+    i l : ℝ
+  Prove
+    (((∀ (x : Real), x ∈ A → Real.instPreorder.1.le i x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l i)) ∧ Real.instLT.lt i l) → Exists fun a => (a ∈ A ∧ Real.instLT.lt a l)
 
 Logical form (Lean):
 

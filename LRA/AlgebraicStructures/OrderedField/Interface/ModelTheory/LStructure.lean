@@ -14,14 +14,14 @@ open LRA.AlgebraicStructures.OrderedField.Interface.Signature
 Predicate logic:
 
   structure OrderedFieldSignature extends
-    LRA.AlgebraicStructures.OrderedRing.Interface.ModelTheory.OrderedRingSignature where
-  inv : LRA.Operation.UnaryOperation carrier
+      LRA.AlgebraicStructures.OrderedRing.Interface.ModelTheory.OrderedRingSignature where
+    inv : LRA.Operation.UnaryOperation carrier
 
 Predicate logic (unfolded):
 
   structure OrderedFieldSignature extends
-    LRA.AlgebraicStructures.OrderedRing.Interface.ModelTheory.OrderedRingSignature where
-  inv : LRA.Operation.UnaryOperation carrier (source fallback; no compiled unfold data available)
+      LRA.AlgebraicStructures.OrderedRing.Interface.ModelTheory.OrderedRingSignature where
+    inv : LRA.Operation.UnaryOperation carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -65,7 +65,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (signature : LRA.AlgebraicStructures.OrderedField.Interface.ModelTheory.OrderedFieldSignature) (value : signature.toCarrierBundle.1), value = signature.toZeroOneBundle.2 → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    value = signature.toZeroOneBundle.2 → False
 
 Logical form (Lean):
 
@@ -106,18 +111,18 @@ def InverseDomain
 Predicate logic:
 
   def PartialInverse
-    (signature : OrderedFieldSignature) :
-    LRA.Operation.PartialUnaryOperation signature.carrier where
-  Domain := InverseDomain signature
-  Value := fun value _ => signature.inv value
+      (signature : OrderedFieldSignature) :
+      LRA.Operation.PartialUnaryOperation signature.carrier where
+    Domain := InverseDomain signature
+    Value := fun value _ => signature.inv value
 
 Predicate logic (unfolded):
 
   def PartialInverse
-    (signature : OrderedFieldSignature) :
-    LRA.Operation.PartialUnaryOperation signature.carrier where
-  Domain := InverseDomain signature
-  Value := fun value _ => signature.inv value (source fallback; no compiled unfold data available)
+      (signature : OrderedFieldSignature) :
+      LRA.Operation.PartialUnaryOperation signature.carrier where
+    Domain := InverseDomain signature
+    Value := fun value _ => signature.inv value (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -160,20 +165,20 @@ def PartialInverse
 Predicate logic:
 
   def PartialDivision
-    (signature : OrderedFieldSignature) :
-    LRA.Operation.PartialBinaryOperation signature.carrier where
-  Domain := fun _ divisor => divisor ≠ signature.zero
-  Value := fun dividend divisor _ =>
-    signature.multiply dividend (signature.inv divisor)
+      (signature : OrderedFieldSignature) :
+      LRA.Operation.PartialBinaryOperation signature.carrier where
+    Domain := fun _ divisor => divisor ≠ signature.zero
+    Value := fun dividend divisor _ =>
+      signature.multiply dividend (signature.inv divisor)
 
 Predicate logic (unfolded):
 
   def PartialDivision
-    (signature : OrderedFieldSignature) :
-    LRA.Operation.PartialBinaryOperation signature.carrier where
-  Domain := fun _ divisor => divisor ≠ signature.zero
-  Value := fun dividend divisor _ =>
-    signature.multiply dividend (signature.inv divisor) (source fallback; no compiled unfold data available)
+      (signature : OrderedFieldSignature) :
+      LRA.Operation.PartialBinaryOperation signature.carrier where
+    Domain := fun _ divisor => divisor ≠ signature.zero
+    Value := fun dividend divisor _ =>
+      signature.multiply dividend (signature.inv divisor) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -220,16 +225,16 @@ end OrderedFieldSignature
 Predicate logic:
 
   def BuildOrderedFieldModel
-    (signature : OrderedFieldSignature) :
-    LRA.ModelTheory.FirstOrder.Model OrderedFieldFirstOrderSignature where
-  Domain
+      (signature : OrderedFieldSignature) :
+      LRA.ModelTheory.FirstOrder.Model OrderedFieldFirstOrderSignature where
+    Domain
 
 Predicate logic (unfolded):
 
   def BuildOrderedFieldModel
-    (signature : OrderedFieldSignature) :
-    LRA.ModelTheory.FirstOrder.Model OrderedFieldFirstOrderSignature where
-  Domain (source fallback; no compiled unfold data available)
+      (signature : OrderedFieldSignature) :
+      LRA.ModelTheory.FirstOrder.Model OrderedFieldFirstOrderSignature where
+    Domain (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -284,22 +289,22 @@ def BuildOrderedFieldModel
 Predicate logic:
 
   def orderedFieldFirstOrderModel (R : Type u)
-    [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] [LT R] [LE R] :
-    LRA.ModelTheory.FirstOrder.Model OrderedFieldFirstOrderSignature :=
-  BuildOrderedFieldModel
-    { carrier := R, zero := 0, one := 1, add := (· + ·),
-      neg := (- ·), multiply := (· * ·), inv := (·⁻¹), le := (· ≤ ·),
-      StrictOrder := (· < ·) }
+      [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] [LT R] [LE R] :
+      LRA.ModelTheory.FirstOrder.Model OrderedFieldFirstOrderSignature :=
+    BuildOrderedFieldModel
+      { carrier := R, zero := 0, one := 1, add := (· + ·),
+        neg := (- ·), multiply := (· * ·), inv := (·⁻¹), le := (· ≤ ·),
+        StrictOrder := (· < ·) }
 
 Predicate logic (unfolded):
 
   def orderedFieldFirstOrderModel (R : Type u)
-    [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] [LT R] [LE R] :
-    LRA.ModelTheory.FirstOrder.Model OrderedFieldFirstOrderSignature :=
-  BuildOrderedFieldModel
-    { carrier := R, zero := 0, one := 1, add := (· + ·),
-      neg := (- ·), multiply := (· * ·), inv := (·⁻¹), le := (· ≤ ·),
-      StrictOrder := (· < ·) } (source fallback; no compiled unfold data available)
+      [Add R] [Mul R] [Neg R] [Inv R] [OfNat R 0] [OfNat R 1] [LT R] [LE R] :
+      LRA.ModelTheory.FirstOrder.Model OrderedFieldFirstOrderSignature :=
+    BuildOrderedFieldModel
+      { carrier := R, zero := 0, one := 1, add := (· + ·),
+        neg := (- ·), multiply := (· * ·), inv := (·⁻¹), le := (· ≤ ·),
+        StrictOrder := (· < ·) } (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

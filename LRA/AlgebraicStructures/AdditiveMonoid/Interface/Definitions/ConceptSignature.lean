@@ -3,8 +3,48 @@ import LRA.UniversalAlgebra.InterpretedOperationBundles
 
 namespace LRA.AlgebraicStructures
 
-/-- The UA-level signature for an additive monoid: `AdditiveSemigroup`'s
-additive operation bundle plus a distinguished `zero` element. -/
+/--
+`AdditiveMonoidConceptSignature` The UA-level signature for an additive monoid: `AdditiveSemigroup`'s additive operation bundle plus a distinguished `zero` element.
+
+Predicate logic:
+
+  structure AdditiveMonoidConceptSignature extends
+      LRA.UniversalAlgebra.InterpretedOperationBundles.AdditiveOperationBundle where
+    zero : carrier
+
+Predicate logic (unfolded):
+
+  structure AdditiveMonoidConceptSignature extends
+      LRA.UniversalAlgebra.InterpretedOperationBundles.AdditiveOperationBundle where
+    zero : carrier (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+structure AdditiveMonoidConceptSignature extends
+    LRA.UniversalAlgebra.InterpretedOperationBundles.AdditiveOperationBundle where
+  zero : carrier
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 structure AdditiveMonoidConceptSignature extends
     LRA.UniversalAlgebra.InterpretedOperationBundles.AdditiveOperationBundle where
   zero : carrier

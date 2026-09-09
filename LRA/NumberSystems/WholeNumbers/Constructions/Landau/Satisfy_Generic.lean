@@ -12,22 +12,93 @@ universe u v
 variable {Element : Type u} {SetObject : Type v}
 variable [Membership Element SetObject]
 
-/-- Landau's `<`/`≤` agree the way `StrictOrderCompatibilityLaw` requires.
-Not yet proved from `ltOn`/`leOn`'s definitions (both come from
-`strictOrder`/`nonstrictOrder` in `Behavior.lean`, so this should follow
-directly), but the statement is accepted so the rest of the generic bridge
-can be wired up. -/
+/--
+`landauStrictOrderCompatibilityLawOn` Landau's `<`/`≤` agree the way `StrictOrderCompatibilityLaw` requires. Not yet proved from `ltOn`/`leOn`'s definitions (both come from `strictOrder`/`nonstrictOrder` in `Behavior.lean`, so this should follow directly), but the statement is accepted so the rest of the generic bridge can be wired up.
+
+Predicate logic:
+
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (natural_data : LRA.NumberSystems.WholeNumbers.Constructions.Landau.NaturalArithmeticForWholeNumbers Element SetObject), LRA.Order.StrictOrderCompatibilityLaw (LRA.NumberSystems.WholeNumbers.Constructions.Landau.Carrier natural_data)
+
+Predicate logic (unfolded):
+
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    natural_data : NaturalArithmeticForWholeNumbers Element SetObject
+  Prove
+    LRA.Order.StrictOrderCompatibilityLaw (Option Element)
+
+Logical form (Lean):
+
+```lean
+theorem landauStrictOrderCompatibilityLawOn
+    (natural_data : NaturalArithmeticForWholeNumbers Element SetObject) :
+    letI : LT (Carrier natural_data) := ltOn natural_data
+    letI : LE (Carrier natural_data) := leOn natural_data
+    StrictOrderCompatibilityLaw (Carrier natural_data)
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 theorem landauStrictOrderCompatibilityLawOn
     (natural_data : NaturalArithmeticForWholeNumbers Element SetObject) :
     letI : LT (Carrier natural_data) := ltOn natural_data
     letI : LE (Carrier natural_data) := leOn natural_data
     StrictOrderCompatibilityLaw (Carrier natural_data) := by
   sorry
-/-- The Landau (successor-axiom) construction satisfies the generic 𝕎
-interface: for any Landau-style natural-number arithmetic data, its carrier
-is a `WholeNumberModel`.
+/--
+`genericModel` The Landau (successor-axiom) construction satisfies the generic 𝕎 interface: for any Landau-style natural-number arithmetic data, its carrier is a `WholeNumberModel`.
 
-Logical form:
+Predicate logic:
+
+  noncomputable def genericModel
+      (natural_data : NaturalArithmeticForWholeNumbers Element SetObject) :
+      WholeNumberModel :=
+    letI := zeroOn natural_data
+    letI := oneOn natural_data
+    letI := addOn natural_data
+    letI := mulOn natural_data
+    letI := ltOn natural_data
+    letI := leOn natural_data
+    letI := nonemptyOn natural_data
+    letI := orderedSemiringLawsOn natural_data
+    letI := landauStrictOrderCompatibilityLawOn natural_data
+    WholeNumberModel.ofCarrier (Carrier natural_data)
+
+Predicate logic (unfolded):
+
+  noncomputable def genericModel
+      (natural_data : NaturalArithmeticForWholeNumbers Element SetObject) :
+      WholeNumberModel :=
+    letI := zeroOn natural_data
+    letI := oneOn natural_data
+    letI := addOn natural_data
+    letI := mulOn natural_data
+    letI := ltOn natural_data
+    letI := leOn natural_data
+    letI := nonemptyOn natural_data
+    letI := orderedSemiringLawsOn natural_data
+    letI := landauStrictOrderCompatibilityLawOn natural_data
+    WholeNumberModel.ofCarrier (Carrier natural_data) (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
 
 ```lean
 noncomputable def genericModel
@@ -43,12 +114,26 @@ noncomputable def genericModel
   letI := orderedSemiringLawsOn natural_data
   letI := landauStrictOrderCompatibilityLawOn natural_data
   WholeNumberModel.ofCarrier (Carrier natural_data)
-
-abbrev satisfiesGeneric
-    (natural_data : NaturalArithmeticForWholeNumbers Element SetObject) :
-    WholeNumberModel :=
-  genericModel natural_data
 ```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
 -/
 noncomputable def genericModel
     (natural_data : NaturalArithmeticForWholeNumbers Element SetObject) :
@@ -64,6 +149,51 @@ noncomputable def genericModel
   letI := landauStrictOrderCompatibilityLawOn natural_data
   WholeNumberModel.ofCarrier (Carrier natural_data)
 
+/--
+`satisfiesGeneric` TODO
+
+Predicate logic:
+
+  noncomputable abbrev satisfiesGeneric
+      (natural_data : NaturalArithmeticForWholeNumbers Element SetObject) :
+      WholeNumberModel :=
+    genericModel natural_data
+
+Predicate logic (unfolded):
+
+  noncomputable abbrev satisfiesGeneric
+      (natural_data : NaturalArithmeticForWholeNumbers Element SetObject) :
+      WholeNumberModel :=
+    genericModel natural_data (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+noncomputable abbrev satisfiesGeneric
+    (natural_data : NaturalArithmeticForWholeNumbers Element SetObject) :
+    WholeNumberModel :=
+  genericModel natural_data
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 noncomputable abbrev satisfiesGeneric
     (natural_data : NaturalArithmeticForWholeNumbers Element SetObject) :
     WholeNumberModel :=

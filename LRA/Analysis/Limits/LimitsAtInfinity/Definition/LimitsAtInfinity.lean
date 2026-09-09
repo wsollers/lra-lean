@@ -8,11 +8,16 @@ namespace LRA.Analysis.Limits
 
 Predicate logic:
 
-  ∀ (A : Set Real) (M : Real), Exists fun x => (Set.instMembership.mem A x ∧ GT.gt x M)
+  ∀ (A : Set Real) (M : Real), Exists fun x => (x ∈ A ∧ GT.gt x M)
 
 Predicate logic (unfolded):
 
-  ∀ (A : Real → Prop) (M : Real), Exists fun x => (Set.instMembership.1 A x ∧ Real.instLT.1 M x)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun x => (x ∈ A ∧ Real.instLT.lt M x)
 
 Logical form (Lean):
 
@@ -46,11 +51,16 @@ def PlusInftyAdherent (A : Set ℝ) : Prop := ∀ M : ℝ, ∃ x ∈ A, x > M
 
 Predicate logic:
 
-  ∀ (A : Set Real) (M : Real), Exists fun x => (Set.instMembership.mem A x ∧ Real.instLT.lt x M)
+  ∀ (A : Set Real) (M : Real), Exists fun x => (x ∈ A ∧ Real.instLT.lt x M)
 
 Predicate logic (unfolded):
 
-  ∀ (A : Real → Prop) (M : Real), Exists fun x => (Set.instMembership.1 A x ∧ Real.instLT.1 x M)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun x => (x ∈ A ∧ Real.instLT.lt x M)
 
 Logical form (Lean):
 
@@ -84,11 +94,16 @@ def MinusInftyAdherent (A : Set ℝ) : Prop := ∀ M : ℝ, ∃ x ∈ A, x < M
 
 Predicate logic:
 
-  ∀ (f : Real → Real) (X : Set Real) (L ε : Real), GT.gt ε 0 → Exists fun M => ∀ (x : Real), Set.instMembership.mem X x → GT.gt x M → Real.instLT.lt (abs (instHSub.hSub (f x) L)) ε
+  ∀ (f : Real → Real) (X : Set Real) (L ε : Real), GT.gt ε 0 → Exists fun M => ∀ (x : Real), x ∈ X → GT.gt x M → Real.instLT.lt (abs (instHSub.hSub (f x) L)) ε
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (X : Real → Prop) (L ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun M => ∀ (x : Real), Set.instMembership.1 X x → Real.instLT.1 M x → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (f x) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (f x) L))) ε
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Real.instLT.lt 0 ε → Exists fun M => ∀ (x : Real), x ∈ X → Real.instLT.lt M x → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f x) L)) ε
 
 Logical form (Lean):
 
@@ -124,11 +139,16 @@ def TendsToInfty (f : ℝ → ℝ) (X : Set ℝ) (L : ℝ) : Prop :=
 
 Predicate logic:
 
-  ∀ (f : Real → Real) (X : Set Real) (L ε : Real), GT.gt ε 0 → Exists fun M => ∀ (x : Real), Set.instMembership.mem X x → Real.instLT.lt x M → Real.instLT.lt (abs (instHSub.hSub (f x) L)) ε
+  ∀ (f : Real → Real) (X : Set Real) (L ε : Real), GT.gt ε 0 → Exists fun M => ∀ (x : Real), x ∈ X → Real.instLT.lt x M → Real.instLT.lt (abs (instHSub.hSub (f x) L)) ε
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (X : Real → Prop) (L ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun M => ∀ (x : Real), Set.instMembership.1 X x → Real.instLT.1 x M → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (f x) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (f x) L))) ε
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Real.instLT.lt 0 ε → Exists fun M => ∀ (x : Real), x ∈ X → Real.instLT.lt x M → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f x) L)) ε
 
 Logical form (Lean):
 
@@ -168,7 +188,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (xs : Nat → Real) (M : Real), Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 M (xs n)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt M (xs n)
 
 Logical form (Lean):
 

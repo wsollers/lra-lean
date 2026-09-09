@@ -9,11 +9,17 @@ universe u v
 
 Predicate logic:
 
-  Irreflexive relation
+  ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha}, LRA.Relation.Asymmetric relation → LRA.Relation.Irreflexive relation
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {relation : Alpha → Alpha → Prop}, (∀ (x y : Alpha), relation x y → relation y x → False) → ∀ (x : Alpha), relation x x → False
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+    asymmetric : Asymmetric relation
+  Prove
+    (∀ (x y : Alpha), relation x y → relation y x → False) → ∀ (x : Alpha), relation x x → False
 
 Logical form (Lean):
 
@@ -55,11 +61,18 @@ theorem Asymmetric.implies_irreflexive
 
 Predicate logic:
 
-  Asymmetric relation
+  ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha}, (LRA.Relation.Irreflexive relation ∧ LRA.Relation.Transitive relation) → LRA.Relation.Asymmetric relation
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {relation : Alpha → Alpha → Prop}, (∀ (x : Alpha), relation x x → False ∧ ∀ (x y z : Alpha), relation x y → relation y z → relation x z) → ∀ (x y : Alpha), (relation x y ∧ relation y x) → False
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+    irreflexive : Irreflexive relation
+    transitive : Transitive relation
+  Prove
+    ((∀ (x : Alpha), relation x x → False) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z)) → ∀ (x y : Alpha), (relation x y ∧ relation y x) → False
 
 Logical form (Lean):
 
@@ -103,11 +116,17 @@ theorem Irreflexive.transitive_implies_asymmetric
 
 Predicate logic:
 
-  Antisymmetric relation
+  ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha}, LRA.Relation.Asymmetric relation → LRA.Relation.Antisymmetric relation
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {relation : Alpha → Alpha → Prop}, (∀ (x y : Alpha), relation x y → relation y x → False) → ∀ (x y : Alpha), (relation x y ∧ relation y x) → x = y
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+    asymmetric : Asymmetric relation
+  Prove
+    (∀ (x y : Alpha), relation x y → relation y x → False) → ∀ (x y : Alpha), (relation x y ∧ relation y x) → x = y
 
 Logical form (Lean):
 
@@ -149,11 +168,20 @@ theorem Asymmetric.implies_antisymmetric
 
 Predicate logic:
 
-  left = right
+  ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha}, (LRA.Relation.Symmetric relation ∧ LRA.Relation.Antisymmetric relation) → ∀ {left right : Alpha}, relation left right → left = right
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {relation : Alpha → Alpha → Prop}, (∀ (x y : Alpha), relation x y → relation y x ∧ ∀ (x y : Alpha), relation x y → relation y x → x = y) → ∀ {left right : Alpha}, relation left right → left = right
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+    symmetric : Symmetric relation
+    antisymmetric : Antisymmetric relation
+    left right : Alpha
+    related : relation left right
+  Prove
+    ((∀ (x y : Alpha), relation x y → relation y x) ∧ (∀ (x y : Alpha), relation x y → relation y x → x = y)) → ∀ {left right : Alpha}, relation left right → left = right
 
 Logical form (Lean):
 
@@ -201,7 +229,7 @@ theorem Symmetric.antisymmetric_related_implies_equal
 
 Predicate logic:
 
-  (∀ element ∈ Alpha), False
+  ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha}, LRA.Relation.Reflexive relation → LRA.Relation.Asymmetric relation → ∀ (element : Alpha), False
 
 Predicate logic (unfolded):
 

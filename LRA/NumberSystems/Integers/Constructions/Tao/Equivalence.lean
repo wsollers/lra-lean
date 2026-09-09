@@ -12,7 +12,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (whole_data : LRA.NumberSystems.Integers.Tao.WholeNumberArithmeticForTaoFormalDifferences) (first second : LRA.NumberSystems.Integers.Tao.FormalDifference whole_data), whole_data.4 first.1 second.2 = whole_data.4 second.1 first.2
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    whole_data.4 first.1 second.2 = whole_data.4 second.1 first.2
 
 Logical form (Lean):
 
@@ -54,11 +59,16 @@ def equivalent
 
 Predicate logic:
 
-  (∀ whole_data ∈ WholeNumberArithmeticForTaoFormalDifferences), Equivalence (equivalent whole_data)
+  ∀ (whole_data : LRA.NumberSystems.Integers.Tao.WholeNumberArithmeticForTaoFormalDifferences), Equivalence (LRA.NumberSystems.Integers.Tao.equivalent whole_data)
 
 Predicate logic (unfolded):
 
-  ∀ (whole_data : LRA.NumberSystems.Integers.Tao.WholeNumberArithmeticForTaoFormalDifferences), Equivalence fun first second => whole_data.4 first.1 second.2 = whole_data.4 second.1 first.2
+  Ambient
+    (implicit ambient)
+  Objects
+    whole_data : WholeNumberArithmeticForTaoFormalDifferences
+  Prove
+    Equivalence fun first second => whole_data.4 first.1 second.2 = whole_data.4 second.1 first.2
 
 Logical form (Lean):
 
@@ -97,16 +107,16 @@ theorem equivalent_is_equivalence_relation
 Predicate logic:
 
   def setoid (whole_data : WholeNumberArithmeticForTaoFormalDifferences) :
-    Setoid (FormalDifference whole_data) where
-  r := equivalent whole_data
-  iseqv := equivalent_is_equivalence_relation whole_data
+      Setoid (FormalDifference whole_data) where
+    r := equivalent whole_data
+    iseqv := equivalent_is_equivalence_relation whole_data
 
 Predicate logic (unfolded):
 
   def setoid (whole_data : WholeNumberArithmeticForTaoFormalDifferences) :
-    Setoid (FormalDifference whole_data) where
-  r := equivalent whole_data
-  iseqv := equivalent_is_equivalence_relation whole_data (source fallback; no compiled unfold data available)
+      Setoid (FormalDifference whole_data) where
+    r := equivalent whole_data
+    iseqv := equivalent_is_equivalence_relation whole_data (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -147,12 +157,12 @@ def setoid (whole_data : WholeNumberArithmeticForTaoFormalDifferences) :
 Predicate logic:
 
   abbrev Carrier (whole_data : WholeNumberArithmeticForTaoFormalDifferences) :=
-  Quotient (setoid whole_data)
+    Quotient (setoid whole_data)
 
 Predicate logic (unfolded):
 
   abbrev Carrier (whole_data : WholeNumberArithmeticForTaoFormalDifferences) :=
-  Quotient (setoid whole_data) (source fallback; no compiled unfold data available)
+    Quotient (setoid whole_data) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

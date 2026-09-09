@@ -11,19 +11,19 @@ Predicate logic:
 
   inductive TopologicalSpaceBackend where
 
-  | inducedFromTopologyDefinition
+    | inducedFromTopologyDefinition
 
-  | existingMathlibTopology
-  deriving DecidableEq, Repr
+    | existingMathlibTopology
+    deriving DecidableEq, Repr
 
 Predicate logic (unfolded):
 
   inductive TopologicalSpaceBackend where
 
-  | inducedFromTopologyDefinition
+    | inducedFromTopologyDefinition
 
-  | existingMathlibTopology
-  deriving DecidableEq, Repr (source fallback; no compiled unfold data available)
+    | existingMathlibTopology
+    deriving DecidableEq, Repr (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -68,12 +68,12 @@ inductive TopologicalSpaceBackend where
 Predicate logic:
 
   def DefaultTopologicalSpaceBackend : TopologicalSpaceBackend :=
-  .inducedFromTopologyDefinition
+    .inducedFromTopologyDefinition
 
 Predicate logic (unfolded):
 
   def DefaultTopologicalSpaceBackend : TopologicalSpaceBackend :=
-  .inducedFromTopologyDefinition (source fallback; no compiled unfold data available)
+    .inducedFromTopologyDefinition (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -110,14 +110,14 @@ def DefaultTopologicalSpaceBackend : TopologicalSpaceBackend :=
 Predicate logic:
 
   def UseTextbookTopologicalSpace {X : Type u} (topology : TopologyDefinition X) :
-    _root_.TopologicalSpace X :=
-  topology.ToMathlibTopologicalSpace
+      _root_.TopologicalSpace X :=
+    topology.ToMathlibTopologicalSpace
 
 Predicate logic (unfolded):
 
   def UseTextbookTopologicalSpace {X : Type u} (topology : TopologyDefinition X) :
-    _root_.TopologicalSpace X :=
-  topology.ToMathlibTopologicalSpace (source fallback; no compiled unfold data available)
+      _root_.TopologicalSpace X :=
+    topology.ToMathlibTopologicalSpace (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -158,16 +158,16 @@ def UseTextbookTopologicalSpace {X : Type u} (topology : TopologyDefinition X) :
 Predicate logic:
 
   def UseExistingMathlibTopologicalSpace {X : Type u} [_root_.TopologicalSpace X]
-    (_topology : TopologyDefinition X) :
-    _root_.TopologicalSpace X :=
-  inferInstance
+      (_topology : TopologyDefinition X) :
+      _root_.TopologicalSpace X :=
+    inferInstance
 
 Predicate logic (unfolded):
 
   def UseExistingMathlibTopologicalSpace {X : Type u} [_root_.TopologicalSpace X]
-    (_topology : TopologyDefinition X) :
-    _root_.TopologicalSpace X :=
-  inferInstance (source fallback; no compiled unfold data available)
+      (_topology : TopologyDefinition X) :
+      _root_.TopologicalSpace X :=
+    inferInstance (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -210,24 +210,24 @@ def UseExistingMathlibTopologicalSpace {X : Type u} [_root_.TopologicalSpace X]
 Predicate logic:
 
   def SelectMathlibTopologicalSpace {X : Type u}
-    (backend : TopologicalSpaceBackend)
-    (topology : TopologyDefinition X)
-    [existingTopologicalSpace : _root_.TopologicalSpace X] :
-    _root_.TopologicalSpace X :=
-  match backend with
-  | .inducedFromTopologyDefinition => topology.ToMathlibTopologicalSpace
-  | .existingMathlibTopology => existingTopologicalSpace
+      (backend : TopologicalSpaceBackend)
+      (topology : TopologyDefinition X)
+      [existingTopologicalSpace : _root_.TopologicalSpace X] :
+      _root_.TopologicalSpace X :=
+    match backend with
+    | .inducedFromTopologyDefinition => topology.ToMathlibTopologicalSpace
+    | .existingMathlibTopology => existingTopologicalSpace
 
 Predicate logic (unfolded):
 
   def SelectMathlibTopologicalSpace {X : Type u}
-    (backend : TopologicalSpaceBackend)
-    (topology : TopologyDefinition X)
-    [existingTopologicalSpace : _root_.TopologicalSpace X] :
-    _root_.TopologicalSpace X :=
-  match backend with
-  | .inducedFromTopologyDefinition => topology.ToMathlibTopologicalSpace
-  | .existingMathlibTopology => existingTopologicalSpace (source fallback; no compiled unfold data available)
+      (backend : TopologicalSpaceBackend)
+      (topology : TopologyDefinition X)
+      [existingTopologicalSpace : _root_.TopologicalSpace X] :
+      _root_.TopologicalSpace X :=
+    match backend with
+    | .inducedFromTopologyDefinition => topology.ToMathlibTopologicalSpace
+    | .existingMathlibTopology => existingTopologicalSpace (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -277,11 +277,17 @@ def SelectMathlibTopologicalSpace {X : Type u}
 
 Predicate logic:
 
-  letI : _root_.TopologicalSpace X
+  ∀ {X : Type u} (topology : LRA.Topology.TopologyDefinition X) [inst : TopologicalSpace X] (U : Set X), IsOpen U ↔ topology.IsOpen U
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} (topology : LRA.Topology.TopologyDefinition X) [inst : TopologicalSpace X] (U : X → Prop), (LRA.Topology.SelectMathlibTopologicalSpace LRA.Topology.TopologicalSpaceBackend.inducedFromTopologyDefinition topology).1 U ↔ topology.1 U
+  Ambient
+    (X)
+  Objects
+    topology : TopologyDefinition X
+    U : Set X
+  Prove
+    IsOpen U ↔ topology.IsOpen U
 
 Logical form (Lean):
 

@@ -9,12 +9,12 @@ namespace LRA.AlgebraicStructures
 Predicate logic:
 
   abbrev IntegralDomainConceptSignature :=
-  CommutativeRingConceptSignature
+    CommutativeRingConceptSignature
 
 Predicate logic (unfolded):
 
   abbrev IntegralDomainConceptSignature :=
-  CommutativeRingConceptSignature (source fallback; no compiled unfold data available)
+    CommutativeRingConceptSignature (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

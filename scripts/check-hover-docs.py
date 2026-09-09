@@ -3,7 +3,7 @@
 
 Lean only places `/-- ... -/` documentation comments in editor hover text.  This
 checker covers production modules under `LRA/` and also enforces the governed
-`Logical form:` fenced Lean block.  With `--fix`, existing prose is preserved;
+`Logical form:` or `Logical form (Lean):` fenced Lean block. With `--fix`, existing prose is preserved;
 only the missing logical-form section or a complete missing doc comment is
 inserted.
 """
@@ -288,7 +288,9 @@ def logical_form(declaration: Declaration) -> str:
 
 def has_logical_form(text: str, span: CommentSpan) -> bool:
     comment = text[span.start:span.end]
-    return "Logical form:" in comment and "```lean" in comment
+    return (
+        "Logical form:" in comment or "Logical form (Lean):" in comment
+    ) and "```lean" in comment
 
 
 def logical_section(declaration: Declaration) -> str:

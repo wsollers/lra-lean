@@ -42,24 +42,96 @@ distinction is conceptual, not a theorem to prove. The one formal
 artifact below exists only to give the distinction a citable name.
 -/
 
-/-- A tag-level marker distinguishing "this `Prop`/value is metatheoretic
-content" from "this represents an object-language expression, awaiting
-interpretation." Carries no data; its only role is to let later
-doc-comments and definitions say `ObjectLevel` or `MetaLevel` and mean
-something precise, rather than relying on prose alone. -/
+/--
+`DiscourseLevel` A tag-level marker distinguishing "this `Prop`/value is metatheoretic content" from "this represents an object-language expression, awaiting interpretation." Carries no data; its only role is to let later doc-comments and definitions say `ObjectLevel` or `MetaLevel` and mean something precise, rather than relying on prose alone.
+
+Predicate logic:
+
+  inductive DiscourseLevel where
+    | ObjectLevel
+    | MetaLevel
+
+Predicate logic (unfolded):
+
+  inductive DiscourseLevel where
+    | ObjectLevel
+    | MetaLevel (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+inductive DiscourseLevel where
+  | ObjectLevel
+  | MetaLevel
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 inductive DiscourseLevel where
   | ObjectLevel
   | MetaLevel
 
-/-- The defining asymmetry: an object-level formula's meaning is always
-RELATIVE TO a supplied interpretation, whereas a metatheoretic fact about
-that formula (its shape, whether it is well-formed, whether two formulas
-are structurally identical) holds independently of any interpretation.
-Stated here as a `Prop`-valued definition schema -- `HasObjectMeaning`
-below is instantiated, per formula language, once that language's model
-notion exists (`LRA.ModelTheory.FirstOrder.Model`, `LRA.ModelTheory.Propositional`,
-etc.) -- not proved generically here, since "meaning" is necessarily
-language-specific. -/
+/--
+`RequiresInterpretation` The defining asymmetry: an object-level formula's meaning is always RELATIVE TO a supplied interpretation, whereas a metatheoretic fact about that formula (its shape, whether it is well-formed, whether two formulas are structurally identical) holds independently of any interpretation. Stated here as a `Prop`-valued definition schema -- `HasObjectMeaning` below is instantiated, per formula language, once that language's model notion exists (`LRA.ModelTheory.FirstOrder.Model`, `LRA.ModelTheory.Propositional`, etc.) -- not proved generically here, since "meaning" is necessarily language-specific.
+
+Predicate logic:
+
+  ∀ (_level : LRA.Metamathematics.DiscourseLevel), LRA.Metamathematics.DiscourseLevel.rec ((fun _ => True) Unit.unit) ((fun _ => False) Unit.unit) _level
+
+Predicate logic (unfolded):
+
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Metamathematics.DiscourseLevel.rec ((fun _ => True) Unit.unit) ((fun _ => False) Unit.unit) _level
+
+Logical form (Lean):
+
+```lean
+def RequiresInterpretation (_level : DiscourseLevel) : Prop :=
+  match _level with
+  | .ObjectLevel => True
+  | .MetaLevel => False
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 def RequiresInterpretation (_level : DiscourseLevel) : Prop :=
   match _level with
   | .ObjectLevel => True

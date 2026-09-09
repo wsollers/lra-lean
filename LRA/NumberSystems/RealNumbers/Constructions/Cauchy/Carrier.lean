@@ -18,108 +18,108 @@ open LRA.NumberSystems.RationalNumbers
 Predicate logic:
 
   structure RationalMetricData (rationalSystem : RationalNumberSystem) where
-  absolute_value :
-    rationalSystem.FieldModel.signature.carrier →
-      rationalSystem.FieldModel.signature.carrier
-  absolute_value_zero :
-    absolute_value rationalSystem.FieldModel.signature.zero =
-      rationalSystem.FieldModel.signature.zero
-  absolute_value_negation :
-    ∀ value,
-      absolute_value (rationalSystem.FieldModel.signature.neg value) =
-        absolute_value value
-  triangle_inequality :
-    ∀ first second,
-      rationalSystem.FieldModel.signature.le
-        (absolute_value
-          (rationalSystem.FieldModel.signature.add first second))
-        (rationalSystem.FieldModel.signature.add
-          (absolute_value first)
-          (absolute_value second))
-  absolute_value_nonnegative :
-    ∀ value,
-      rationalSystem.FieldModel.signature.le
+    absolute_value :
+      rationalSystem.FieldModel.signature.carrier →
+        rationalSystem.FieldModel.signature.carrier
+    absolute_value_zero :
+      absolute_value rationalSystem.FieldModel.signature.zero =
         rationalSystem.FieldModel.signature.zero
-        (absolute_value value)
-  absolute_value_eq_zero_iff :
-    ∀ value,
-      absolute_value value = rationalSystem.FieldModel.signature.zero ↔
-        value = rationalSystem.FieldModel.signature.zero
-  absolute_value_multiplication :
-    ∀ first second,
-      absolute_value
-        (rationalSystem.FieldModel.signature.multiply first second) =
-          rationalSystem.FieldModel.signature.multiply
-            (absolute_value first)
-            (absolute_value second)
-  absolute_value_self_or_neg :
-    ∀ value,
-      absolute_value value = value ∨
-        absolute_value value =
-          rationalSystem.FieldModel.signature.neg value
-  epsilon_split :
-    ∀ epsilon,
-      rationalSystem.FieldModel.signature.StrictOrder
-        rationalSystem.FieldModel.signature.zero epsilon →
-      ∃ smaller,
-        rationalSystem.FieldModel.signature.StrictOrder
-          rationalSystem.FieldModel.signature.zero smaller ∧
+    absolute_value_negation :
+      ∀ value,
+        absolute_value (rationalSystem.FieldModel.signature.neg value) =
+          absolute_value value
+    triangle_inequality :
+      ∀ first second,
         rationalSystem.FieldModel.signature.le
-          (rationalSystem.FieldModel.signature.add smaller smaller)
-          epsilon
+          (absolute_value
+            (rationalSystem.FieldModel.signature.add first second))
+          (rationalSystem.FieldModel.signature.add
+            (absolute_value first)
+            (absolute_value second))
+    absolute_value_nonnegative :
+      ∀ value,
+        rationalSystem.FieldModel.signature.le
+          rationalSystem.FieldModel.signature.zero
+          (absolute_value value)
+    absolute_value_eq_zero_iff :
+      ∀ value,
+        absolute_value value = rationalSystem.FieldModel.signature.zero ↔
+          value = rationalSystem.FieldModel.signature.zero
+    absolute_value_multiplication :
+      ∀ first second,
+        absolute_value
+          (rationalSystem.FieldModel.signature.multiply first second) =
+            rationalSystem.FieldModel.signature.multiply
+              (absolute_value first)
+              (absolute_value second)
+    absolute_value_self_or_neg :
+      ∀ value,
+        absolute_value value = value ∨
+          absolute_value value =
+            rationalSystem.FieldModel.signature.neg value
+    epsilon_split :
+      ∀ epsilon,
+        rationalSystem.FieldModel.signature.StrictOrder
+          rationalSystem.FieldModel.signature.zero epsilon →
+        ∃ smaller,
+          rationalSystem.FieldModel.signature.StrictOrder
+            rationalSystem.FieldModel.signature.zero smaller ∧
+          rationalSystem.FieldModel.signature.le
+            (rationalSystem.FieldModel.signature.add smaller smaller)
+            epsilon
 
 Predicate logic (unfolded):
 
   structure RationalMetricData (rationalSystem : RationalNumberSystem) where
-  absolute_value :
-    rationalSystem.FieldModel.signature.carrier →
-      rationalSystem.FieldModel.signature.carrier
-  absolute_value_zero :
-    absolute_value rationalSystem.FieldModel.signature.zero =
-      rationalSystem.FieldModel.signature.zero
-  absolute_value_negation :
-    ∀ value,
-      absolute_value (rationalSystem.FieldModel.signature.neg value) =
-        absolute_value value
-  triangle_inequality :
-    ∀ first second,
-      rationalSystem.FieldModel.signature.le
-        (absolute_value
-          (rationalSystem.FieldModel.signature.add first second))
-        (rationalSystem.FieldModel.signature.add
-          (absolute_value first)
-          (absolute_value second))
-  absolute_value_nonnegative :
-    ∀ value,
-      rationalSystem.FieldModel.signature.le
+    absolute_value :
+      rationalSystem.FieldModel.signature.carrier →
+        rationalSystem.FieldModel.signature.carrier
+    absolute_value_zero :
+      absolute_value rationalSystem.FieldModel.signature.zero =
         rationalSystem.FieldModel.signature.zero
-        (absolute_value value)
-  absolute_value_eq_zero_iff :
-    ∀ value,
-      absolute_value value = rationalSystem.FieldModel.signature.zero ↔
-        value = rationalSystem.FieldModel.signature.zero
-  absolute_value_multiplication :
-    ∀ first second,
-      absolute_value
-        (rationalSystem.FieldModel.signature.multiply first second) =
-          rationalSystem.FieldModel.signature.multiply
-            (absolute_value first)
-            (absolute_value second)
-  absolute_value_self_or_neg :
-    ∀ value,
-      absolute_value value = value ∨
-        absolute_value value =
-          rationalSystem.FieldModel.signature.neg value
-  epsilon_split :
-    ∀ epsilon,
-      rationalSystem.FieldModel.signature.StrictOrder
-        rationalSystem.FieldModel.signature.zero epsilon →
-      ∃ smaller,
-        rationalSystem.FieldModel.signature.StrictOrder
-          rationalSystem.FieldModel.signature.zero smaller ∧
+    absolute_value_negation :
+      ∀ value,
+        absolute_value (rationalSystem.FieldModel.signature.neg value) =
+          absolute_value value
+    triangle_inequality :
+      ∀ first second,
         rationalSystem.FieldModel.signature.le
-          (rationalSystem.FieldModel.signature.add smaller smaller)
-          epsilon (source fallback; no compiled unfold data available)
+          (absolute_value
+            (rationalSystem.FieldModel.signature.add first second))
+          (rationalSystem.FieldModel.signature.add
+            (absolute_value first)
+            (absolute_value second))
+    absolute_value_nonnegative :
+      ∀ value,
+        rationalSystem.FieldModel.signature.le
+          rationalSystem.FieldModel.signature.zero
+          (absolute_value value)
+    absolute_value_eq_zero_iff :
+      ∀ value,
+        absolute_value value = rationalSystem.FieldModel.signature.zero ↔
+          value = rationalSystem.FieldModel.signature.zero
+    absolute_value_multiplication :
+      ∀ first second,
+        absolute_value
+          (rationalSystem.FieldModel.signature.multiply first second) =
+            rationalSystem.FieldModel.signature.multiply
+              (absolute_value first)
+              (absolute_value second)
+    absolute_value_self_or_neg :
+      ∀ value,
+        absolute_value value = value ∨
+          absolute_value value =
+            rationalSystem.FieldModel.signature.neg value
+    epsilon_split :
+      ∀ epsilon,
+        rationalSystem.FieldModel.signature.StrictOrder
+          rationalSystem.FieldModel.signature.zero epsilon →
+        ∃ smaller,
+          rationalSystem.FieldModel.signature.StrictOrder
+            rationalSystem.FieldModel.signature.zero smaller ∧
+          rationalSystem.FieldModel.signature.le
+            (rationalSystem.FieldModel.signature.add smaller smaller)
+            epsilon (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -252,12 +252,12 @@ structure RationalMetricData (rationalSystem : RationalNumberSystem) where
 Predicate logic:
 
   abbrev Sequence (rationalSystem : RationalNumberSystem) :=
-  Nat → rationalSystem.FieldModel.signature.carrier
+    Nat → rationalSystem.FieldModel.signature.carrier
 
 Predicate logic (unfolded):
 
   abbrev Sequence (rationalSystem : RationalNumberSystem) :=
-  Nat → rationalSystem.FieldModel.signature.carrier (source fallback; no compiled unfold data available)
+    Nat → rationalSystem.FieldModel.signature.carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -294,22 +294,22 @@ abbrev Sequence (rationalSystem : RationalNumberSystem) :=
 Predicate logic:
 
   def distance
-    (rationalSystem : RationalNumberSystem)
-    (absolute_value_data : RationalMetricData rationalSystem)
-    (first second : rationalSystem.FieldModel.signature.carrier) :
-    rationalSystem.FieldModel.signature.carrier :=
-  absolute_value_data.absolute_value
-    (rationalSystem.FieldModel.signature.Subtraction first second)
+      (rationalSystem : RationalNumberSystem)
+      (absolute_value_data : RationalMetricData rationalSystem)
+      (first second : rationalSystem.FieldModel.signature.carrier) :
+      rationalSystem.FieldModel.signature.carrier :=
+    absolute_value_data.absolute_value
+      (rationalSystem.FieldModel.signature.Subtraction first second)
 
 Predicate logic (unfolded):
 
   def distance
-    (rationalSystem : RationalNumberSystem)
-    (absolute_value_data : RationalMetricData rationalSystem)
-    (first second : rationalSystem.FieldModel.signature.carrier) :
-    rationalSystem.FieldModel.signature.carrier :=
-  absolute_value_data.absolute_value
-    (rationalSystem.FieldModel.signature.Subtraction first second) (source fallback; no compiled unfold data available)
+      (rationalSystem : RationalNumberSystem)
+      (absolute_value_data : RationalMetricData rationalSystem)
+      (first second : rationalSystem.FieldModel.signature.carrier) :
+      rationalSystem.FieldModel.signature.carrier :=
+    absolute_value_data.absolute_value
+      (rationalSystem.FieldModel.signature.Subtraction first second) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -359,7 +359,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (value : rationalSystem.FieldModel.signature.toCarrierBundle.1), rationalSystem.FieldModel.ltInst.1 rationalSystem.FieldModel.signature.toZeroOneBundle.2 value
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    rationalSystem.FieldModel.ltInst.1 rationalSystem.FieldModel.signature.toZeroOneBundle.2 value
 
 Logical form (Lean):
 
@@ -405,7 +410,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem) (sequence : Nat → rationalSystem.FieldModel.signature.toCarrierBundle.1) (epsilon : rationalSystem.FieldModel.signature.toCarrierBundle.1), rationalSystem.FieldModel.signature.toOrderedRingSignature.2 rationalSystem.FieldModel.signature.toZeroOneBundle.2 epsilon → Exists fun threshold => ∀ (first_index second_index : Nat), instLENat.1 threshold first_index → instLENat.1 threshold second_index → rationalSystem.FieldModel.signature.toOrderedRingSignature.2 (absolute_value_data.1 (rationalSystem.FieldModel.signature.toBooleanRingOperationBundle.2 (sequence first_index) (rationalSystem.FieldModel.signature.toRingConceptSignature.2 (sequence second_index)))) epsilon
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    rationalSystem.FieldModel.signature.toOrderedRingSignature.2 rationalSystem.FieldModel.signature.toZeroOneBundle.2 epsilon → Exists fun threshold => ∀ (first_index second_index : Nat), instLENat.le threshold first_index → instLENat.le threshold second_index → rationalSystem.FieldModel.signature.toOrderedRingSignature.2 (absolute_value_data.1 (rationalSystem.FieldModel.signature.toBooleanRingOperationBundle.2 (sequence first_index) (rationalSystem.FieldModel.signature.toRingConceptSignature.2 (sequence second_index)))) epsilon
 
 Logical form (Lean):
 
@@ -471,7 +481,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem) (sequence : Nat → rationalSystem.FieldModel.signature.toCarrierBundle.1) (epsilon : rationalSystem.FieldModel.signature.toCarrierBundle.1), rationalSystem.FieldModel.signature.toOrderedRingSignature.2 rationalSystem.FieldModel.signature.toZeroOneBundle.2 epsilon → Exists fun threshold => ∀ (index : Nat), instLENat.1 threshold index → rationalSystem.FieldModel.signature.toOrderedRingSignature.2 (absolute_value_data.1 (sequence index)) epsilon
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    rationalSystem.FieldModel.signature.toOrderedRingSignature.2 rationalSystem.FieldModel.signature.toZeroOneBundle.2 epsilon → Exists fun threshold => ∀ (index : Nat), instLENat.le threshold index → rationalSystem.FieldModel.signature.toOrderedRingSignature.2 (absolute_value_data.1 (sequence index)) epsilon
 
 Logical form (Lean):
 
@@ -531,7 +546,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem) (first second : Nat → rationalSystem.FieldModel.signature.toCarrierBundle.1) (epsilon : rationalSystem.FieldModel.signature.toCarrierBundle.1), rationalSystem.FieldModel.signature.toOrderedRingSignature.2 rationalSystem.FieldModel.signature.toZeroOneBundle.2 epsilon → Exists fun threshold => ∀ (index : Nat), instLENat.1 threshold index → rationalSystem.FieldModel.signature.toOrderedRingSignature.2 (absolute_value_data.1 ((fun index => rationalSystem.FieldModel.signature.toBooleanRingOperationBundle.2 (first index) (rationalSystem.FieldModel.signature.toRingConceptSignature.2 (second index))) index)) epsilon
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    rationalSystem.FieldModel.signature.toOrderedRingSignature.2 rationalSystem.FieldModel.signature.toZeroOneBundle.2 epsilon → Exists fun threshold => ∀ (index : Nat), instLENat.le threshold index → rationalSystem.FieldModel.signature.toOrderedRingSignature.2 (absolute_value_data.1 ((fun index => rationalSystem.FieldModel.signature.toBooleanRingOperationBundle.2 (first index) (rationalSystem.FieldModel.signature.toRingConceptSignature.2 (second index))) index)) epsilon
 
 Logical form (Lean):
 
@@ -582,20 +602,20 @@ def equivalent
 Predicate logic:
 
   structure Representative
-    (rationalSystem : RationalNumberSystem)
-    (absolute_value_data : RationalMetricData rationalSystem) where
-  sequence : Sequence rationalSystem
-  sequence_is_cauchy :
-    is_cauchy rationalSystem absolute_value_data sequence
+      (rationalSystem : RationalNumberSystem)
+      (absolute_value_data : RationalMetricData rationalSystem) where
+    sequence : Sequence rationalSystem
+    sequence_is_cauchy :
+      is_cauchy rationalSystem absolute_value_data sequence
 
 Predicate logic (unfolded):
 
   structure Representative
-    (rationalSystem : RationalNumberSystem)
-    (absolute_value_data : RationalMetricData rationalSystem) where
-  sequence : Sequence rationalSystem
-  sequence_is_cauchy :
-    is_cauchy rationalSystem absolute_value_data sequence (source fallback; no compiled unfold data available)
+      (rationalSystem : RationalNumberSystem)
+      (absolute_value_data : RationalMetricData rationalSystem) where
+    sequence : Sequence rationalSystem
+    sequence_is_cauchy :
+      is_cauchy rationalSystem absolute_value_data sequence (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

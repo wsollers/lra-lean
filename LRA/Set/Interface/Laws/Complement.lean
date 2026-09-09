@@ -12,34 +12,34 @@ universe u
 Predicate logic:
 
   class ComplementLaws (α : Type u)
-    [HasComplement α] [HasUniversal α] [Union α] [Inter α] [SDiff α]
-    [EmptyCollection α] : Prop where
-  DoubleComplement : ∀ A : α, Aᶜᶜ = A
-  ComplementEmpty : (∅ : α)ᶜ = (𝒰 : α)
-  ComplementUniversal : (𝒰 : α)ᶜ = (∅ : α)
-  UnionComplement : ∀ A : α, A ∪ Aᶜ = (𝒰 : α)
-  IntersectionComplement : ∀ A : α, A ∩ Aᶜ = (∅ : α)
-  DeMorganUnion : ∀ A B : α, (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ
-  DeMorganIntersection : ∀ A B : α, (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ
-  DifferenceAsIntersectionComplement : ∀ A B : α, A \ B = A ∩ Bᶜ
-  DifferenceUniversal : ∀ A : α, A \ (𝒰 : α) = (∅ : α)
-  UniversalDifference : ∀ A : α, (𝒰 : α) \ A = Aᶜ
+      [HasComplement α] [HasUniversal α] [Union α] [Inter α] [SDiff α]
+      [EmptyCollection α] : Prop where
+    DoubleComplement : ∀ A : α, Aᶜᶜ = A
+    ComplementEmpty : (∅ : α)ᶜ = (𝒰 : α)
+    ComplementUniversal : (𝒰 : α)ᶜ = (∅ : α)
+    UnionComplement : ∀ A : α, A ∪ Aᶜ = (𝒰 : α)
+    IntersectionComplement : ∀ A : α, A ∩ Aᶜ = (∅ : α)
+    DeMorganUnion : ∀ A B : α, (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ
+    DeMorganIntersection : ∀ A B : α, (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ
+    DifferenceAsIntersectionComplement : ∀ A B : α, A \ B = A ∩ Bᶜ
+    DifferenceUniversal : ∀ A : α, A \ (𝒰 : α) = (∅ : α)
+    UniversalDifference : ∀ A : α, (𝒰 : α) \ A = Aᶜ
 
 Predicate logic (unfolded):
 
   class ComplementLaws (α : Type u)
-    [HasComplement α] [HasUniversal α] [Union α] [Inter α] [SDiff α]
-    [EmptyCollection α] : Prop where
-  DoubleComplement : ∀ A : α, Aᶜᶜ = A
-  ComplementEmpty : (∅ : α)ᶜ = (𝒰 : α)
-  ComplementUniversal : (𝒰 : α)ᶜ = (∅ : α)
-  UnionComplement : ∀ A : α, A ∪ Aᶜ = (𝒰 : α)
-  IntersectionComplement : ∀ A : α, A ∩ Aᶜ = (∅ : α)
-  DeMorganUnion : ∀ A B : α, (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ
-  DeMorganIntersection : ∀ A B : α, (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ
-  DifferenceAsIntersectionComplement : ∀ A B : α, A \ B = A ∩ Bᶜ
-  DifferenceUniversal : ∀ A : α, A \ (𝒰 : α) = (∅ : α)
-  UniversalDifference : ∀ A : α, (𝒰 : α) \ A = Aᶜ (source fallback; no compiled unfold data available)
+      [HasComplement α] [HasUniversal α] [Union α] [Inter α] [SDiff α]
+      [EmptyCollection α] : Prop where
+    DoubleComplement : ∀ A : α, Aᶜᶜ = A
+    ComplementEmpty : (∅ : α)ᶜ = (𝒰 : α)
+    ComplementUniversal : (𝒰 : α)ᶜ = (∅ : α)
+    UnionComplement : ∀ A : α, A ∪ Aᶜ = (𝒰 : α)
+    IntersectionComplement : ∀ A : α, A ∩ Aᶜ = (∅ : α)
+    DeMorganUnion : ∀ A B : α, (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ
+    DeMorganIntersection : ∀ A B : α, (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ
+    DifferenceAsIntersectionComplement : ∀ A B : α, A \ B = A ∩ Bᶜ
+    DifferenceUniversal : ∀ A : α, A \ (𝒰 : α) = (∅ : α)
+    UniversalDifference : ∀ A : α, (𝒰 : α) \ A = Aᶜ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -102,11 +102,16 @@ variable [ComplementLaws α]
 
 Predicate logic:
 
-  ∀ A : α, Aᶜᶜ = A
+  ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A : α), inst.complement (inst.complement A) = A
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A : α), inst.1 (inst.1 A) = A
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.ComplementLaws α → ∀ (A : α), inst.1 (inst.1 A) = A
 
 Logical form (Lean):
 
@@ -142,11 +147,16 @@ theorem DoubleComplement : ∀ A : α, Aᶜᶜ = A :=
 
 Predicate logic:
 
-  ∅ ∈ αᶜ = 𝒰 ∈ α
+  ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → inst.complement inst_5.emptyCollection = inst_1.universal
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → inst.1 inst_5.1 = inst_1.1
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.ComplementLaws α → inst.1 inst_5.1 = inst_1.1
 
 Logical form (Lean):
 
@@ -182,11 +192,16 @@ theorem ComplementEmpty : (∅ : α)ᶜ = (𝒰 : α) :=
 
 Predicate logic:
 
-  𝒰 ∈ αᶜ = ∅ ∈ α
+  ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → inst.complement inst_1.universal = inst_5.emptyCollection
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → inst.1 inst_1.1 = inst_5.1
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.ComplementLaws α → inst.1 inst_1.1 = inst_5.1
 
 Logical form (Lean):
 
@@ -222,11 +237,16 @@ theorem ComplementUniversal : (𝒰 : α)ᶜ = (∅ : α) :=
 
 Predicate logic:
 
-  ∀ A : α, A ∪ Aᶜ = 𝒰 ∈ α
+  ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A : α), A ∪ inst.complement A = inst_1.universal
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A : α), inst_2.1 A (inst.1 A) = inst_1.1
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.ComplementLaws α → ∀ (A : α), inst_2.1 A (inst.1 A) = inst_1.1
 
 Logical form (Lean):
 
@@ -262,11 +282,16 @@ theorem UnionComplement : ∀ A : α, A ∪ Aᶜ = (𝒰 : α) :=
 
 Predicate logic:
 
-  ∀ A : α, A ∩ Aᶜ = ∅ ∈ α
+  ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A : α), A ∩ inst.complement A = inst_5.emptyCollection
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A : α), inst_3.1 A (inst.1 A) = inst_5.1
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.ComplementLaws α → ∀ (A : α), inst_3.1 A (inst.1 A) = inst_5.1
 
 Logical form (Lean):
 
@@ -302,11 +327,16 @@ theorem IntersectionComplement : ∀ A : α, A ∩ Aᶜ = (∅ : α) :=
 
 Predicate logic:
 
-  ∀ A B : α, (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ
+  ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A B : α), inst.complement (A ∪ B) = inst.complement A ∩ inst.complement B
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A B : α), inst.1 (inst_2.1 A B) = inst_3.1 (inst.1 A) (inst.1 B)
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.ComplementLaws α → ∀ (A B : α), inst.1 (inst_2.1 A B) = inst_3.1 (inst.1 A) (inst.1 B)
 
 Logical form (Lean):
 
@@ -342,11 +372,16 @@ theorem DeMorganUnion : ∀ A B : α, (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ :=
 
 Predicate logic:
 
-  ∀ A B : α, (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ
+  ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A B : α), inst.complement (A ∩ B) = inst.complement A ∪ inst.complement B
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A B : α), inst.1 (inst_3.1 A B) = inst_2.1 (inst.1 A) (inst.1 B)
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.ComplementLaws α → ∀ (A B : α), inst.1 (inst_3.1 A B) = inst_2.1 (inst.1 A) (inst.1 B)
 
 Logical form (Lean):
 
@@ -382,11 +417,16 @@ theorem DeMorganIntersection : ∀ A B : α, (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ :=
 
 Predicate logic:
 
-  ∀ A B : α, A \ B = A ∩ Bᶜ
+  ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A B : α), A \ B = A ∩ inst.complement B
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A B : α), inst_4.1 A B = inst_3.1 A (inst.1 B)
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.ComplementLaws α → ∀ (A B : α), inst_4.1 A B = inst_3.1 A (inst.1 B)
 
 Logical form (Lean):
 
@@ -424,11 +464,16 @@ theorem DifferenceAsIntersectionComplement :
 
 Predicate logic:
 
-  ∀ A : α, A \ 𝒰 ∈ α = ∅ ∈ α
+  ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A : α), A \ inst_1.universal = inst_5.emptyCollection
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A : α), inst_4.1 A inst_1.1 = inst_5.1
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.ComplementLaws α → ∀ (A : α), inst_4.1 A inst_1.1 = inst_5.1
 
 Logical form (Lean):
 
@@ -464,11 +509,16 @@ theorem DifferenceUniversal : ∀ A : α, A \ (𝒰 : α) = (∅ : α) :=
 
 Predicate logic:
 
-  ∀ A : α, 𝒰 ∈ α \ A = Aᶜ
+  ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A : α), inst_1.universal \ A = inst.complement A
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A : α), inst_4.1 inst_1.1 A = inst.1 A
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.ComplementLaws α → ∀ (A : α), inst_4.1 inst_1.1 A = inst.1 A
 
 Logical form (Lean):
 
@@ -542,11 +592,16 @@ def Dual (A : α) : α := Aᶜ
 
 Predicate logic:
 
-  ∀ A B : α, A ⊆ B ↔ Dual B ⊆ Dual A
+  ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ [inst_6 : HasSubset α], (LRA.Set.UnionLaws α ∧ LRA.Set.IntersectionLaws α) → ∀ (A B : α), inst_6.Subset A B ↔ inst_6.Subset (LRA.Set.Dual B) (LRA.Set.Dual A)
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ [inst_6 : HasSubset α], (LRA.Set.UnionLaws α ∧ LRA.Set.IntersectionLaws α) → ∀ (A B : α), inst_6.1 A B ↔ inst_6.1 (inst.1 B) (inst.1 A)
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.ComplementLaws α → ∀ [inst_6 : HasSubset α], (LRA.Set.UnionLaws α ∧ LRA.Set.IntersectionLaws α) → ∀ (A B : α), inst_6.Subset A B ↔ inst_6.Subset (LRA.Set.Dual B) (LRA.Set.Dual A)
 
 Logical form (Lean):
 
@@ -583,11 +638,16 @@ theorem DualAntitone [HasSubset α] [UnionLaws α] [IntersectionLaws α] :
 
 Predicate logic:
 
-  ∀ A B : α, Dual (A ∪ B) = Dual A ∩ Dual B
+  ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A B : α), LRA.Set.Dual (A ∪ B) = LRA.Set.Dual A ∩ LRA.Set.Dual B
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A B : α), inst.1 (inst_2.1 A B) = inst_3.1 (inst.1 A) (inst.1 B)
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.ComplementLaws α → ∀ (A B : α), inst.1 (inst_2.1 A B) = inst_3.1 (inst.1 A) (inst.1 B)
 
 Logical form (Lean):
 
@@ -623,11 +683,16 @@ theorem DualUnion : ∀ A B : α, Dual (A ∪ B) = Dual A ∩ Dual B :=
 
 Predicate logic:
 
-  ∀ A B : α, Dual (A ∩ B) = Dual A ∪ Dual B
+  ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A B : α), LRA.Set.Dual (A ∩ B) = LRA.Set.Dual A ∪ LRA.Set.Dual B
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A B : α), inst.1 (inst_3.1 A B) = inst_2.1 (inst.1 A) (inst.1 B)
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.ComplementLaws α → ∀ (A B : α), inst.1 (inst_3.1 A B) = inst_2.1 (inst.1 A) (inst.1 B)
 
 Logical form (Lean):
 
@@ -663,11 +728,16 @@ theorem DualIntersection : ∀ A B : α, Dual (A ∩ B) = Dual A ∪ Dual B :=
 
 Predicate logic:
 
-  ∀ A : α, Dual (Dual A) = A
+  ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A : α), LRA.Set.Dual (LRA.Set.Dual A) = A
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : LRA.Set.HasComplement α] [inst_1 : LRA.Set.HasUniversal α] [inst_2 : Union α] [inst_3 : Inter α] [inst_4 : SDiff α] [inst_5 : EmptyCollection α], LRA.Set.ComplementLaws α → ∀ (A : α), inst.1 (inst.1 A) = A
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.ComplementLaws α → ∀ (A : α), inst.1 (inst.1 A) = A
 
 Logical form (Lean):
 

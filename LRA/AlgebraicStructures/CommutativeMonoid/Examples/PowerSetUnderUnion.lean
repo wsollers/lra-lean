@@ -6,11 +6,45 @@ namespace LRA.AlgebraicStructures.CommutativeMonoid.Examples
 
 universe u
 
-/-- `(𝒫(S), ∪, ∅)` — the power set of `S` under union, with the empty set as
-identity. Wrapped in a one-field structure, same reason as elsewhere in this
-tree — `Set α` needs its own `Mul`/`OfNat _ 1`, distinct from any instance
-`α` itself might carry (and distinct from `CommutativeSemigroup.Examples.
-Semilattices.UnionSemilattice`, which has no identity component). -/
+/--
+`PowerSetUnderUnion` `(𝒫(S), ∪, ∅)` — the power set of `S` under union, with the empty set as identity. Wrapped in a one-field structure, same reason as elsewhere in this tree — `Set α` needs its own `Mul`/`OfNat _ 1`, distinct from any instance `α` itself might carry (and distinct from `CommutativeSemigroup.Examples. Semilattices.UnionSemilattice`, which has no identity component).
+
+Predicate logic:
+
+  structure PowerSetUnderUnion (α : Type u) where
+    val : LRA.Set.LRA_Set α
+
+Predicate logic (unfolded):
+
+  structure PowerSetUnderUnion (α : Type u) where
+    val : LRA.Set.LRA_Set α (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+structure PowerSetUnderUnion (α : Type u) where
+  val : LRA.Set.LRA_Set α
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 structure PowerSetUnderUnion (α : Type u) where
   val : LRA.Set.LRA_Set α
 

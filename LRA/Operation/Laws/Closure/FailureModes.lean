@@ -15,7 +15,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Left : Type u} {Right : Type v} {Codomain : Type w} (leftCarrier : Left → Prop) (rightCarrier : Right → Prop) (resultCarrier : Codomain → Prop) (operation : Left → Right → Codomain), (∀ (left : Left) (right : Right), leftCarrier left → rightCarrier right → resultCarrier (operation left right)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (left : Left) (right : Right), leftCarrier left → rightCarrier right → resultCarrier (operation left right)) → False
 
 Logical form (Lean):
 
@@ -63,7 +68,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (number : Nat), instHMod.1 number (instOfNatNat 2).1 = instOfNatNat 1.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    instHMod.1 number 2 = 1
 
 Logical form (Lean):
 
@@ -100,12 +110,12 @@ def OddNaturalCarrier (number : Nat) : Prop :=
 Predicate logic:
 
   def NaturalAdditionForClosureFailure : BinaryEndoOperation Nat :=
-  fun left right => left + right
+    fun left right => left + right
 
 Predicate logic (unfolded):
 
   def NaturalAdditionForClosureFailure : BinaryEndoOperation Nat :=
-  fun left right => left + right (source fallback; no compiled unfold data available)
+    fun left right => left + right (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -141,11 +151,16 @@ def NaturalAdditionForClosureFailure : BinaryEndoOperation Nat :=
 
 Predicate logic:
 
-  FailsBinaryClosedUnder OddNaturalCarrier OddNaturalCarrier OddNaturalCarrier NaturalAdditionForClosureFailure
+  LRA.Operation.Laws.Closure.FailsBinaryClosedUnder LRA.Operation.Laws.Closure.OddNaturalCarrier LRA.Operation.Laws.Closure.OddNaturalCarrier LRA.Operation.Laws.Closure.OddNaturalCarrier LRA.Operation.Laws.Closure.NaturalAdditionForClosureFailure
 
 Predicate logic (unfolded):
 
-  (∀ (left right : Nat), instHMod.1 left (instOfNatNat 2).1 = instOfNatNat 1.1 → instHMod.1 right (instOfNatNat 2).1 = instOfNatNat 1.1 → instHMod.1 (instHAdd.hAdd left right) (instOfNatNat 2).1 = instOfNatNat 1.1) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (left right : Nat), instHMod.1 left 2 = 1 → instHMod.1 right 2 = 1 → instHMod.1 (instHAdd.hAdd left right) 2 = 1) → False
 
 Logical form (Lean):
 

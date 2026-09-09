@@ -10,14 +10,14 @@ universe u
 Predicate logic:
 
   class AdditionRespectsOrderLaws (R : Type u) [Add R] [LE R] : Prop where
-  AddLeAddLeft : forall a b : R, a <= b -> forall c : R, c + a <= c + b
-  AddLeAddRight : forall a b : R, a <= b -> forall c : R, a + c <= b + c
+    AddLeAddLeft : forall a b : R, a <= b -> forall c : R, c + a <= c + b
+    AddLeAddRight : forall a b : R, a <= b -> forall c : R, a + c <= b + c
 
 Predicate logic (unfolded):
 
   class AdditionRespectsOrderLaws (R : Type u) [Add R] [LE R] : Prop where
-  AddLeAddLeft : forall a b : R, a <= b -> forall c : R, c + a <= c + b
-  AddLeAddRight : forall a b : R, a <= b -> forall c : R, a + c <= b + c (source fallback; no compiled unfold data available)
+    AddLeAddLeft : forall a b : R, a <= b -> forall c : R, c + a <= c + b
+    AddLeAddRight : forall a b : R, a <= b -> forall c : R, a + c <= b + c (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -56,14 +56,14 @@ class AdditionRespectsOrderLaws (R : Type u) [Add R] [LE R] : Prop where
 Predicate logic:
 
   class MultiplicationRespectsOrderLaws (R : Type u)
-    [Mul R] [LE R] [OfNat R 0] : Prop where
-  MulNonneg : forall a b : R, 0 <= a -> 0 <= b -> 0 <= a * b
+      [Mul R] [LE R] [OfNat R 0] : Prop where
+    MulNonneg : forall a b : R, 0 <= a -> 0 <= b -> 0 <= a * b
 
 Predicate logic (unfolded):
 
   class MultiplicationRespectsOrderLaws (R : Type u)
-    [Mul R] [LE R] [OfNat R 0] : Prop where
-  MulNonneg : forall a b : R, 0 <= a -> 0 <= b -> 0 <= a * b (source fallback; no compiled unfold data available)
+      [Mul R] [LE R] [OfNat R 0] : Prop where
+    MulNonneg : forall a b : R, 0 <= a -> 0 <= b -> 0 <= a * b (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -105,7 +105,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} (relation : R → R → Prop) (operation : R → R → R) (first second translation : R), relation first second → relation (operation first translation) (operation second translation)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    relation first second → relation (operation first translation) (operation second translation)
 
 Logical form (Lean):
 
@@ -153,7 +158,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} (strictOrderRelation : R → R → Prop) (mul : R → R → R) (zero first second positive : R), (strictOrderRelation zero positive ∧ strictOrderRelation first second) → strictOrderRelation (mul first positive) (mul second positive)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (strictOrderRelation zero positive ∧ strictOrderRelation first second) → strictOrderRelation (mul first positive) (mul second positive)
 
 Logical form (Lean):
 
@@ -205,7 +215,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) (operation : Carrier → Carrier → Carrier) (fixed left right : Carrier), relation left right → relation (operation fixed left) (operation fixed right)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    relation left right → relation (operation fixed left) (operation fixed right)
 
 Logical form (Lean):
 
@@ -251,7 +266,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) (operation : Carrier → Carrier → Carrier) (left right fixed : Carrier), relation left right → relation (operation left fixed) (operation right fixed)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    relation left right → relation (operation left fixed) (operation right fixed)
 
 Logical form (Lean):
 
@@ -297,7 +317,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) (operation : Carrier → Carrier → Carrier) (left₁ left₂ right₁ right₂ : Carrier), (relation left₁ left₂ ∧ relation right₁ right₂) → relation (operation left₁ right₁) (operation left₂ right₂)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (relation left₁ left₂ ∧ relation right₁ right₂) → relation (operation left₁ right₁) (operation left₂ right₂)
 
 Logical form (Lean):
 
@@ -345,7 +370,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) (operation : Carrier → Carrier → Carrier) (fixed left right : Carrier), relation left right → relation (operation fixed right) (operation fixed left)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    relation left right → relation (operation fixed right) (operation fixed left)
 
 Logical form (Lean):
 
@@ -391,7 +421,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) (operation : Carrier → Carrier → Carrier) (left right fixed : Carrier), relation left right → relation (operation right fixed) (operation left fixed)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    relation left right → relation (operation right fixed) (operation left fixed)
 
 Logical form (Lean):
 
@@ -437,7 +472,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) (positive : Carrier → Prop) (operation : Carrier → Carrier → Carrier) (left right fixed : Carrier), (positive fixed ∧ relation left right) → relation (operation left fixed) (operation right fixed)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (positive fixed ∧ relation left right) → relation (operation left fixed) (operation right fixed)
 
 Logical form (Lean):
 
@@ -487,7 +527,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) (positive : Carrier → Prop) (operation : Carrier → Carrier → Carrier) (fixed left right : Carrier), (positive fixed ∧ relation left right) → relation (operation fixed left) (operation fixed right)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (positive fixed ∧ relation left right) → relation (operation fixed left) (operation fixed right)
 
 Logical form (Lean):
 
@@ -537,7 +582,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) (negative : Carrier → Prop) (operation : Carrier → Carrier → Carrier) (left right fixed : Carrier), (negative fixed ∧ relation left right) → relation (operation right fixed) (operation left fixed)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (negative fixed ∧ relation left right) → relation (operation right fixed) (operation left fixed)
 
 Logical form (Lean):
 
@@ -587,7 +637,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) (negative : Carrier → Prop) (operation : Carrier → Carrier → Carrier) (fixed left right : Carrier), (negative fixed ∧ relation left right) → relation (operation fixed right) (operation fixed left)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (negative fixed ∧ relation left right) → relation (operation fixed right) (operation fixed left)
 
 Logical form (Lean):
 
@@ -637,11 +692,16 @@ variable {R : Type u}
 
 Predicate logic:
 
-  forall a b : R, a <= b -> forall c : R, c + a <= c + b
+  ∀ {R : Type u} [inst : Add R] [inst_1 : LE R], LRA.Order.AdditionRespectsOrderLaws R → ∀ (a b : R), inst_1.le a b → ∀ (c : R), inst_1.le (instHAdd.hAdd c a) (instHAdd.hAdd c b)
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : Add R] [inst_1 : LE R], LRA.Order.AdditionRespectsOrderLaws R → ∀ (a b : R), inst_1.1 a b → ∀ (c : R), inst_1.1 (instHAdd.1 c a) (instHAdd.1 c b)
+  Ambient
+    (R, ≤)
+  Objects
+    (none)
+  Prove
+    LRA.Order.AdditionRespectsOrderLaws R → ∀ (a b : R), inst_1.le a b → ∀ (c : R), inst_1.le ({ hAdd := fun a b => inst.add a b }.hAdd c a) ({ hAdd := fun a b => inst.add a b }.hAdd c b)
 
 Logical form (Lean):
 
@@ -677,11 +737,16 @@ theorem AddLeAddLeft [Add R] [LE R] [AdditionRespectsOrderLaws R] :
 
 Predicate logic:
 
-  forall a b : R, a <= b -> forall c : R, a + c <= b + c
+  ∀ {R : Type u} [inst : Add R] [inst_1 : LE R], LRA.Order.AdditionRespectsOrderLaws R → ∀ (a b : R), inst_1.le a b → ∀ (c : R), inst_1.le (instHAdd.hAdd a c) (instHAdd.hAdd b c)
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : Add R] [inst_1 : LE R], LRA.Order.AdditionRespectsOrderLaws R → ∀ (a b : R), inst_1.1 a b → ∀ (c : R), inst_1.1 (instHAdd.1 a c) (instHAdd.1 b c)
+  Ambient
+    (R, ≤)
+  Objects
+    (none)
+  Prove
+    LRA.Order.AdditionRespectsOrderLaws R → ∀ (a b : R), inst_1.le a b → ∀ (c : R), inst_1.le ({ hAdd := fun a b => inst.add a b }.hAdd a c) ({ hAdd := fun a b => inst.add a b }.hAdd b c)
 
 Logical form (Lean):
 
@@ -717,11 +782,16 @@ theorem AddLeAddRight [Add R] [LE R] [AdditionRespectsOrderLaws R] :
 
 Predicate logic:
 
-  forall a b : R, 0 <= a -> 0 <= b -> 0 <= a * b
+  ∀ {R : Type u} [inst : Mul R] [inst_1 : LE R] [inst_2 : OfNat R 0], LRA.Order.MultiplicationRespectsOrderLaws R → ∀ (a b : R), (inst_1.le 0 a ∧ inst_1.le 0 b) → inst_1.le 0 (instHMul.hMul a b)
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : Mul R] [inst_1 : LE R] [inst_2 : OfNat R (instOfNatNat 0).1], LRA.Order.MultiplicationRespectsOrderLaws R → ∀ (a b : R), (inst_1.1 inst_2.1 a ∧ inst_1.1 inst_2.1 b) → inst_1.1 inst_2.1 (instHMul.1 a b)
+  Ambient
+    (R, ≤)
+  Objects
+    (none)
+  Prove
+    LRA.Order.MultiplicationRespectsOrderLaws R → ∀ (a b : R), (inst_1.le 0 a ∧ inst_1.le 0 b) → inst_1.le 0 ({ hMul := fun a b => inst.mul a b }.hMul a b)
 
 Logical form (Lean):
 

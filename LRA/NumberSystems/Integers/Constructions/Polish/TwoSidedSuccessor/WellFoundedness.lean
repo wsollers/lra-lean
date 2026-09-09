@@ -10,11 +10,16 @@ open Z
 
 Predicate logic:
 
-  (∀ x ∈ Z), pred (succ x) = x
+  ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.pred (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.succ x) = x
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.succZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p.succ) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.succ.match_1 (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z) n (fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) fun n' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n') a) a) x) = x
+  Ambient
+    (Z)
+  Objects
+    x : Z
+  Prove
+    LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.succZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p.succ) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.succ.match_1 (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z) n (fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) fun n' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n') a) a) x) = x
 
 Logical form (Lean):
 
@@ -48,11 +53,16 @@ theorem pred_succ (x : Z) : pred (succ x) = x := by
 
 Predicate logic:
 
-  (∀ x ∈ Z), succ (pred x) = x
+  ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.succ (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.pred x) = x
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.succZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p.succ) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun n' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n') a) a) n) a) a) (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.pred.match_1 (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z) p (fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) x) = x
+  Ambient
+    (Z)
+  Objects
+    x : Z
+  Prove
+    LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.succZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p.succ) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun n' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n') a) a) n) a) a) (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.pred.match_1 (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z) p (fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) x) = x
 
 Logical form (Lean):
 
@@ -87,14 +97,14 @@ theorem succ_pred (x : Z) : succ (pred x) = x := by
 Predicate logic:
 
   def recP {α : Type} (a0 : α) (step : α → α) : P → α
-  | P.succZero => step a0
-  | P.succ p => step (recP a0 step p)
+    | P.succZero => step a0
+    | P.succ p => step (recP a0 step p)
 
 Predicate logic (unfolded):
 
   def recP {α : Type} (a0 : α) (step : α → α) : P → α
-  | P.succZero => step a0
-  | P.succ p => step (recP a0 step p) (source fallback; no compiled unfold data available)
+    | P.succZero => step a0
+    | P.succ p => step (recP a0 step p) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -133,14 +143,14 @@ def recP {α : Type} (a0 : α) (step : α → α) : P → α
 Predicate logic:
 
   def recN {α : Type} (a0 : α) (step : α → α) : N → α
-  | N.predZero => step a0
-  | N.pred n => step (recN a0 step n)
+    | N.predZero => step a0
+    | N.pred n => step (recN a0 step n)
 
 Predicate logic (unfolded):
 
   def recN {α : Type} (a0 : α) (step : α → α) : N → α
-  | N.predZero => step a0
-  | N.pred n => step (recN a0 step n) (source fallback; no compiled unfold data available)
+    | N.predZero => step a0
+    | N.pred n => step (recN a0 step n) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -179,16 +189,16 @@ def recN {α : Type} (a0 : α) (step : α → α) : N → α
 Predicate logic:
 
   def recZ {α : Type} (a0 : α) (stepSucc stepPred : α → α) : Z → α
-  | zero => a0
-  | pos p => recP a0 stepSucc p
-  | neg n => recN a0 stepPred n
+    | zero => a0
+    | pos p => recP a0 stepSucc p
+    | neg n => recN a0 stepPred n
 
 Predicate logic (unfolded):
 
   def recZ {α : Type} (a0 : α) (stepSucc stepPred : α → α) : Z → α
-  | zero => a0
-  | pos p => recP a0 stepSucc p
-  | neg n => recN a0 stepPred n (source fallback; no compiled unfold data available)
+    | zero => a0
+    | pos p => recP a0 stepSucc p
+    | neg n => recN a0 stepPred n (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -228,11 +238,17 @@ def recZ {α : Type} (a0 : α) (stepSucc stepPred : α → α) : Z → α
 
 Predicate logic:
 
-  recZ a0 stepSucc stepPred zero = a0
+  ∀ {α : Type} (a0 : α) (stepSucc stepPred : α → α), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.recZ a0 stepSucc stepPred LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero = a0
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type} (a0 : α) (stepSucc stepPred : α → α), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => a0) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.recP a0 stepSucc p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.recN a0 stepPred n) a) a) LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero = a0
+  Ambient
+    (α)
+  Objects
+    a0 : α
+    stepSucc stepPred : α → α
+  Prove
+    LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => a0) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.recP a0 stepSucc p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.recN a0 stepPred n) a) a) LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero = a0
 
 Logical form (Lean):
 
@@ -268,11 +284,17 @@ theorem recZ_zero {α : Type} (a0 : α) (stepSucc stepPred : α → α) :
 
 Predicate logic:
 
-  (∀ a, stepSucc (stepPred a) = a) → ∀ x : Z, recZ a0 stepSucc stepPred (succ x) = stepSucc (recZ a0 stepSucc stepPred x)
+  ∀ {α : Type} (a0 : α) (stepSucc stepPred : α → α), (∀ (a : α), stepSucc (stepPred a) = a) → ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.recZ a0 stepSucc stepPred (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.succ x) = stepSucc (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.recZ a0 stepSucc stepPred x)
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type} (a0 : α) (stepSucc stepPred : α → α), (∀ (a : α), stepSucc (stepPred a) = a) → ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => a0) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.recP a0 stepSucc p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.recN a0 stepPred n) a) a) (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.succZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p.succ) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.succ.match_1 (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z) n (fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) fun n' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n') a) a) x) = stepSucc (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => a0) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.recP a0 stepSucc p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.recN a0 stepPred n) a) a) x)
+  Ambient
+    (α)
+  Objects
+    a0 : α
+    stepSucc stepPred : α → α
+  Prove
+    (∀ (a : α), stepSucc (stepPred a) = a) → ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => a0) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.recP a0 stepSucc p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.recN a0 stepPred n) a) a) (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.succZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p.succ) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.succ.match_1 (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z) n (fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) fun n' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n') a) a) x) = stepSucc (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => a0) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.recP a0 stepSucc p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.recN a0 stepPred n) a) a) x)
 
 Logical form (Lean):
 
@@ -312,11 +334,17 @@ theorem recZ_succ {α : Type} (a0 : α) (stepSucc stepPred : α → α)
 
 Predicate logic:
 
-  (∀ a, stepPred (stepSucc a) = a) → ∀ x : Z, recZ a0 stepSucc stepPred (pred x) = stepPred (recZ a0 stepSucc stepPred x)
+  ∀ {α : Type} (a0 : α) (stepSucc stepPred : α → α), (∀ (a : α), stepPred (stepSucc a) = a) → ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.recZ a0 stepSucc stepPred (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.pred x) = stepPred (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.recZ a0 stepSucc stepPred x)
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type} (a0 : α) (stepSucc stepPred : α → α), (∀ (a : α), stepPred (stepSucc a) = a) → ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => a0) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.recP a0 stepSucc p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.recN a0 stepPred n) a) a) (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.pred.match_1 (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z) p (fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) x) = stepPred (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => a0) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.recP a0 stepSucc p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.recN a0 stepPred n) a) a) x)
+  Ambient
+    (α)
+  Objects
+    a0 : α
+    stepSucc stepPred : α → α
+  Prove
+    (∀ (a : α), stepPred (stepSucc a) = a) → ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => a0) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.recP a0 stepSucc p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.recN a0 stepPred n) a) a) (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.pred.match_1 (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z) p (fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) x) = stepPred (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => a0) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.recP a0 stepSucc p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.recN a0 stepPred n) a) a) x)
 
 Logical form (Lean):
 
@@ -356,11 +384,17 @@ theorem recZ_pred {α : Type} (a0 : α) (stepSucc stepPred : α → α)
 
 Predicate logic:
 
-  (∀ a, stepPred (stepSucc a) = a ∧ ∀ a, stepSucc (stepPred a) = a) → ∃ h ∈ Z → α, h zero = a0 ∧ (∀ x, h (succ x) = stepSucc (h x)) ∧ (∀ x, h (pred x) = stepPred (h x))
+  ∀ {α : Type} (a0 : α) (stepSucc stepPred : α → α), ((∀ (a : α), stepPred (stepSucc a) = a) ∧ (∀ (a : α), stepSucc (stepPred a) = a)) → Exists fun h => (h LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero = a0 ∧ ((∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), h (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.succ x) = stepSucc (h x)) ∧ (∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), h (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.pred x) = stepPred (h x))))
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type} (a0 : α) (stepSucc stepPred : α → α), (∀ (a : α), stepPred (stepSucc a) = a ∧ ∀ (a : α), stepSucc (stepPred a) = a) → Exists fun h => (h LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero = a0 ∧ (∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), h (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.succZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p.succ) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun n' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n') a) a) n) a) a) x) = stepSucc (h x) ∧ ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), h (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) x) = stepPred (h x)))
+  Ambient
+    (α)
+  Objects
+    a0 : α
+    stepSucc stepPred : α → α
+  Prove
+    ((∀ (a : α), stepPred (stepSucc a) = a) ∧ (∀ (a : α), stepSucc (stepPred a) = a)) → Exists fun h => (h LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero = a0 ∧ ((∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), h (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.succZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p.succ) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun n' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n') a) a) n) a) a) x) = stepSucc (h x)) ∧ (∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), h (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) x) = stepPred (h x))))
 
 Logical form (Lean):
 
@@ -406,11 +440,16 @@ theorem recursion_exists {α : Type} (a0 : α) (stepSucc stepPred : α → α)
 
 Predicate logic:
 
-  (succ x = succ y) → x = y
+  ∀ {x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z}, LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.succ x = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.succ y → x = y
 
 Predicate logic (unfolded):
 
-  ∀ {x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z}, LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.succZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p.succ) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun n' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n') a) a) n) a) a) x = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.succZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p.succ) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun n' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n') a) a) n) a) a) y → x = y
+  Ambient
+    (Z)
+  Objects
+    x y : Z
+  Prove
+    LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.succZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p.succ) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun n' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n') a) a) n) a) a) x = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.succZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p.succ) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun n' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n') a) a) n) a) a) y → x = y
 
 Logical form (Lean):
 
@@ -444,11 +483,16 @@ theorem succ_injective {x y : Z} (successorEquality : succ x = succ y) : x = y :
 
 Predicate logic:
 
-  (pred x = pred y) → x = y
+  ∀ {x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z}, LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.pred x = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.pred y → x = y
 
 Predicate logic (unfolded):
 
-  ∀ {x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z}, LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) x = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) y → x = y
+  Ambient
+    (Z)
+  Objects
+    x y : Z
+  Prove
+    LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) x = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) y → x = y
 
 Logical form (Lean):
 
@@ -482,11 +526,17 @@ theorem pred_injective {x y : Z} (predecessorEquality : pred x = pred y) : x = y
 
 Predicate logic:
 
-  (Z → Prop ∧ ∀ x, A x → A (succ x) ∧ ∀ x, A x → A (pred x)) → ∀ x, A x
+  ∀ (A : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z → Prop), (A LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero ∧ ((∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), A x → A (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.succ x)) ∧ (∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), A x → A (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.pred x)))) → ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), A x
 
 Predicate logic (unfolded):
 
-  ∀ (A : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z → Prop), (A LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero ∧ (∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), A x → A (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.succZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p.succ) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun n' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n') a) a) n) a) a) x) ∧ ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), A x → A (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) x))) → ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), A x
+  Ambient
+    (Z)
+  Objects
+    A : Z → Prop
+    zeroCase : A Z.zero
+  Prove
+    (A LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero ∧ ((∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), A x → A (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.succZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p.succ) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun n' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n') a) a) n) a) a) x)) ∧ (∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), A x → A (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) x)))) → ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), A x
 
 Logical form (Lean):
 
@@ -530,11 +580,18 @@ theorem twoSidedInduction
 
 Predicate logic:
 
-  (firstFunction Z.zero = a0 ∧ ∀ x, firstFunction (succ x) = stepSucc (firstFunction x) ∧ ∀ x, firstFunction (pred x) = stepPred (firstFunction x) ∧ secondFunction Z.zero = a0 ∧ ∀ x, secondFunction (succ x) = stepSucc (secondFunction x) ∧ ∀ x, secondFunction (pred x) = stepPred (secondFunction x)) → ∀ x, firstFunction x = secondFunction x
+  ∀ {α : Type} (a0 : α) (stepSucc stepPred : α → α) (firstFunction secondFunction : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z → α), (firstFunction LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero = a0 ∧ ((∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), firstFunction (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.succ x) = stepSucc (firstFunction x)) ∧ ((∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), firstFunction (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.pred x) = stepPred (firstFunction x)) ∧ (secondFunction LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero = a0 ∧ ((∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), secondFunction (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.succ x) = stepSucc (secondFunction x)) ∧ (∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), secondFunction (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.pred x) = stepPred (secondFunction x))))))) → ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), firstFunction x = secondFunction x
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type} (a0 : α) (stepSucc stepPred : α → α) (firstFunction secondFunction : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z → α), (firstFunction LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero = a0 ∧ (∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), firstFunction (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.succZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p.succ) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun n' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n') a) a) n) a) a) x) = stepSucc (firstFunction x) ∧ (∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), firstFunction (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) x) = stepPred (firstFunction x) ∧ (secondFunction LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero = a0 ∧ (∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), secondFunction (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.succZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p.succ) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun n' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n') a) a) n) a) a) x) = stepSucc (secondFunction x) ∧ ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), secondFunction (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) x) = stepPred (secondFunction x)))))) → ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), firstFunction x = secondFunction x
+  Ambient
+    (α)
+  Objects
+    a0 : α
+    stepSucc stepPred : α → α
+    firstFunction secondFunction : Z → α
+  Prove
+    (firstFunction LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero = a0 ∧ ((∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), firstFunction (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.succZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p.succ) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun n' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n') a) a) n) a) a) x) = stepSucc (firstFunction x)) ∧ ((∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), firstFunction (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) x) = stepPred (firstFunction x)) ∧ (secondFunction LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero = a0 ∧ ((∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), secondFunction (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.succZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p.succ) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun n' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n') a) a) n) a) a) x) = stepSucc (secondFunction x)) ∧ (∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), secondFunction (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) x) = stepPred (secondFunction x))))))) → ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), firstFunction x = secondFunction x
 
 Logical form (Lean):
 

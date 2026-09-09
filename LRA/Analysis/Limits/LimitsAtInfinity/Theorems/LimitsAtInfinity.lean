@@ -8,11 +8,21 @@ namespace LRA.Analysis.Limits
 
 Predicate logic:
 
-  (ℝ → ℝ) → L₁ = L₂
+  ∀ (f : Real → Real) (X : Set Real) (L₁ L₂ : Real), (LRA.Analysis.Limits.PlusInftyAdherent X ∧ (LRA.Analysis.Limits.TendsToInfty f X L₁ ∧ LRA.Analysis.Limits.TendsToInfty f X L₂)) → L₁ = L₂
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (X : Real → Prop) (L₁ L₂ : Real), (∀ (M : Real), Exists fun x => (Set.instMembership.1 X x ∧ Real.instLT.1 M x) ∧ (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun M => ∀ (x : Real), Set.instMembership.1 X x → Real.instLT.1 M x → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (f x) L₁) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (f x) L₁))) ε ∧ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun M => ∀ (x : Real), Set.instMembership.1 X x → Real.instLT.1 M x → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (f x) L₂) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (f x) L₂))) ε)) → L₁ = L₂
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    X : Set ℝ
+    L₁ L₂ : ℝ
+    hX : PlusInftyAdherent X
+    h₁ : TendsToInfty f X L₁
+    h₂ : TendsToInfty f X L₂
+  Prove
+    ((∀ (M : Real), Exists fun x => (x ∈ X ∧ Real.instLT.lt M x)) ∧ ((∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun M => ∀ (x : Real), x ∈ X → Real.instLT.lt M x → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f x) L₁)) ε) ∧ (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun M => ∀ (x : Real), x ∈ X → Real.instLT.lt M x → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f x) L₂)) ε))) → L₁ = L₂
 
 Logical form (Lean):
 
@@ -50,11 +60,21 @@ theorem TendstoInftyUnique (f : ℝ → ℝ) (X : Set ℝ) (L₁ L₂ : ℝ)
 
 Predicate logic:
 
-  (ℝ → ℝ) → L₁ = L₂
+  ∀ (f : Real → Real) (X : Set Real) (L₁ L₂ : Real), (LRA.Analysis.Limits.MinusInftyAdherent X ∧ (LRA.Analysis.Limits.TendsToNegInfty f X L₁ ∧ LRA.Analysis.Limits.TendsToNegInfty f X L₂)) → L₁ = L₂
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (X : Real → Prop) (L₁ L₂ : Real), (∀ (M : Real), Exists fun x => (Set.instMembership.1 X x ∧ Real.instLT.1 x M) ∧ (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun M => ∀ (x : Real), Set.instMembership.1 X x → Real.instLT.1 x M → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (f x) L₁) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (f x) L₁))) ε ∧ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun M => ∀ (x : Real), Set.instMembership.1 X x → Real.instLT.1 x M → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (f x) L₂) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (f x) L₂))) ε)) → L₁ = L₂
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    X : Set ℝ
+    L₁ L₂ : ℝ
+    hX : MinusInftyAdherent X
+    h₁ : TendsToNegInfty f X L₁
+    h₂ : TendsToNegInfty f X L₂
+  Prove
+    ((∀ (M : Real), Exists fun x => (x ∈ X ∧ Real.instLT.lt x M)) ∧ ((∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun M => ∀ (x : Real), x ∈ X → Real.instLT.lt x M → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f x) L₁)) ε) ∧ (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun M => ∀ (x : Real), x ∈ X → Real.instLT.lt x M → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f x) L₂)) ε))) → L₁ = L₂
 
 Logical form (Lean):
 
@@ -92,11 +112,18 @@ theorem TendstoNegInftyUnique (f : ℝ → ℝ) (X : Set ℝ) (L₁ L₂ : ℝ)
 
 Predicate logic:
 
-  (ℝ → ℝ) → TendsToNegInfty f X L ↔ TendsToInfty (fun x => f (-x)) {x : ℝ | -x ∈ X} L
+  ∀ (f : Real → Real) (X : Set Real) (L : Real), LRA.Analysis.Limits.TendsToNegInfty f X L ↔ LRA.Analysis.Limits.TendsToInfty (fun x => f (Real.instNeg.neg x)) (setOf fun x => Real.instNeg.neg x ∈ X) L
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (X : Real → Prop) (L : Real), ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun M => ∀ (x : Real), Set.instMembership.1 X x → Real.instLT.1 x M → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (f x) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (f x) L))) ε ↔ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun M => ∀ (x : Real), Set.instMembership.1 (fun x => Set.instMembership.1 X (Real.instNeg.1 x)) x → Real.instLT.1 M x → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 ((fun x => f (Real.instNeg.1 x)) x) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 ((fun x => f (Real.instNeg.neg x)) x) L))) ε
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    X : Set ℝ
+    L : ℝ
+  Prove
+    LRA.Analysis.Limits.TendsToNegInfty f X L ↔ LRA.Analysis.Limits.TendsToInfty (fun x => f (Real.instNeg.neg x)) (setOf fun x => Real.instNeg.neg x ∈ X) L
 
 Logical form (Lean):
 
@@ -136,11 +163,20 @@ variable {f g : ℝ → ℝ} {X : Set ℝ} {Lf Lg c : ℝ}
 
 Predicate logic:
 
-  TendsToInfty (fun x => f x + g x) X (Lf + Lg)
+  ∀ {f g : Real → Real} {X : Set Real} {Lf Lg : Real}, (LRA.Analysis.Limits.TendsToInfty f X Lf ∧ LRA.Analysis.Limits.TendsToInfty g X Lg) → LRA.Analysis.Limits.TendsToInfty (fun x => instHAdd.hAdd (f x) (g x)) X (instHAdd.hAdd Lf Lg)
 
 Predicate logic (unfolded):
 
-  ∀ {f g : Real → Real} {X : Real → Prop} {Lf Lg : Real}, (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun M => ∀ (x : Real), Set.instMembership.1 X x → Real.instLT.1 M x → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (f x) Lf) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (f x) Lf))) ε ∧ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun M => ∀ (x : Real), Set.instMembership.1 X x → Real.instLT.1 M x → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (g x) Lg) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (g x) Lg))) ε) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun M => ∀ (x : Real), Set.instMembership.1 X x → Real.instLT.1 M x → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 ((fun x => instHAdd.1 (f x) (g x)) x) (instHAdd.1 Lf Lg)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 ((fun x => instHAdd.hAdd (f x) (g x)) x) (instHAdd.hAdd Lf Lg)))) ε
+  Ambient
+    (ℝ)
+  Objects
+    f g : ℝ → ℝ
+    X : Set ℝ
+    Lf Lg c : ℝ
+    hf : TendsToInfty f X Lf
+    hg : TendsToInfty g X Lg
+  Prove
+    ((∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun M => ∀ (x : Real), x ∈ X → Real.instLT.lt M x → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f x) Lf)) ε) ∧ (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun M => ∀ (x : Real), x ∈ X → Real.instLT.lt M x → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (g x) Lg)) ε)) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun M => ∀ (x : Real), x ∈ X → Real.instLT.lt M x → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ((fun x => { hAdd := fun a b => Real.instAdd.add a b }.hAdd (f x) (g x)) x) ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd Lf Lg))) ε
 
 Logical form (Lean):
 
@@ -176,11 +212,20 @@ theorem TendstoInftyAdd (hf : TendsToInfty f X Lf) (hg : TendsToInfty g X Lg) :
 
 Predicate logic:
 
-  TendsToInfty (fun x => f x - g x) X (Lf - Lg)
+  ∀ {f g : Real → Real} {X : Set Real} {Lf Lg : Real}, (LRA.Analysis.Limits.TendsToInfty f X Lf ∧ LRA.Analysis.Limits.TendsToInfty g X Lg) → LRA.Analysis.Limits.TendsToInfty (fun x => instHSub.hSub (f x) (g x)) X (instHSub.hSub Lf Lg)
 
 Predicate logic (unfolded):
 
-  ∀ {f g : Real → Real} {X : Real → Prop} {Lf Lg : Real}, (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun M => ∀ (x : Real), Set.instMembership.1 X x → Real.instLT.1 M x → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (f x) Lf) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (f x) Lf))) ε ∧ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun M => ∀ (x : Real), Set.instMembership.1 X x → Real.instLT.1 M x → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (g x) Lg) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (g x) Lg))) ε) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun M => ∀ (x : Real), Set.instMembership.1 X x → Real.instLT.1 M x → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 ((fun x => instHSub.1 (f x) (g x)) x) (instHSub.1 Lf Lg)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 ((fun x => instHSub.hSub (f x) (g x)) x) (instHSub.hSub Lf Lg)))) ε
+  Ambient
+    (ℝ)
+  Objects
+    f g : ℝ → ℝ
+    X : Set ℝ
+    Lf Lg c : ℝ
+    hf : TendsToInfty f X Lf
+    hg : TendsToInfty g X Lg
+  Prove
+    ((∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun M => ∀ (x : Real), x ∈ X → Real.instLT.lt M x → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f x) Lf)) ε) ∧ (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun M => ∀ (x : Real), x ∈ X → Real.instLT.lt M x → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (g x) Lg)) ε)) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun M => ∀ (x : Real), x ∈ X → Real.instLT.lt M x → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ((fun x => { hSub := fun a b => Real.instSub.sub a b }.hSub (f x) (g x)) x) ({ hSub := fun a b => Real.instSub.sub a b }.hSub Lf Lg))) ε
 
 Logical form (Lean):
 
@@ -216,11 +261,20 @@ theorem TendstoInftySub (hf : TendsToInfty f X Lf) (hg : TendsToInfty g X Lg) :
 
 Predicate logic:
 
-  TendsToInfty (fun x => c * f x) X (c * Lf)
+  ∀ {f : Real → Real} {X : Set Real} {Lf : Real}, LRA.Analysis.Limits.TendsToInfty f X Lf → ∀ (c : Real), LRA.Analysis.Limits.TendsToInfty (fun x => instHMul.hMul c (f x)) X (instHMul.hMul c Lf)
 
 Predicate logic (unfolded):
 
-  ∀ {f : Real → Real} {X : Real → Prop} {Lf : Real}, (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun M => ∀ (x : Real), Set.instMembership.1 X x → Real.instLT.1 M x → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (f x) Lf) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (f x) Lf))) ε) → ∀ (c ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun M => ∀ (x : Real), Set.instMembership.1 X x → Real.instLT.1 M x → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 ((fun x => instHMul.1 c (f x)) x) (instHMul.1 c Lf)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 ((fun x => instHMul.hMul c (f x)) x) (instHMul.hMul c Lf)))) ε
+  Ambient
+    (ℝ)
+  Objects
+    f g : ℝ → ℝ
+    X : Set ℝ
+    Lf Lg c : ℝ
+    hf : TendsToInfty f X Lf
+    c : ℝ
+  Prove
+    (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun M => ∀ (x : Real), x ∈ X → Real.instLT.lt M x → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f x) Lf)) ε) → ∀ (c ε : Real), Real.instLT.lt 0 ε → Exists fun M => ∀ (x : Real), x ∈ X → Real.instLT.lt M x → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ((fun x => { hMul := fun a b => Real.instMul.mul a b }.hMul c (f x)) x) ({ hMul := fun a b => Real.instMul.mul a b }.hMul c Lf))) ε
 
 Logical form (Lean):
 
@@ -256,11 +310,20 @@ theorem TendstoInftyScalar (hf : TendsToInfty f X Lf) (c : ℝ) :
 
 Predicate logic:
 
-  TendsToInfty (fun x => f x * g x) X (Lf * Lg)
+  ∀ {f g : Real → Real} {X : Set Real} {Lf Lg : Real}, (LRA.Analysis.Limits.TendsToInfty f X Lf ∧ LRA.Analysis.Limits.TendsToInfty g X Lg) → LRA.Analysis.Limits.TendsToInfty (fun x => instHMul.hMul (f x) (g x)) X (instHMul.hMul Lf Lg)
 
 Predicate logic (unfolded):
 
-  ∀ {f g : Real → Real} {X : Real → Prop} {Lf Lg : Real}, (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun M => ∀ (x : Real), Set.instMembership.1 X x → Real.instLT.1 M x → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (f x) Lf) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (f x) Lf))) ε ∧ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun M => ∀ (x : Real), Set.instMembership.1 X x → Real.instLT.1 M x → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (g x) Lg) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (g x) Lg))) ε) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun M => ∀ (x : Real), Set.instMembership.1 X x → Real.instLT.1 M x → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 ((fun x => instHMul.1 (f x) (g x)) x) (instHMul.1 Lf Lg)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 ((fun x => instHMul.hMul (f x) (g x)) x) (instHMul.hMul Lf Lg)))) ε
+  Ambient
+    (ℝ)
+  Objects
+    f g : ℝ → ℝ
+    X : Set ℝ
+    Lf Lg c : ℝ
+    hf : TendsToInfty f X Lf
+    hg : TendsToInfty g X Lg
+  Prove
+    ((∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun M => ∀ (x : Real), x ∈ X → Real.instLT.lt M x → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f x) Lf)) ε) ∧ (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun M => ∀ (x : Real), x ∈ X → Real.instLT.lt M x → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (g x) Lg)) ε)) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun M => ∀ (x : Real), x ∈ X → Real.instLT.lt M x → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ((fun x => { hMul := fun a b => Real.instMul.mul a b }.hMul (f x) (g x)) x) ({ hMul := fun a b => Real.instMul.mul a b }.hMul Lf Lg))) ε
 
 Logical form (Lean):
 
@@ -296,11 +359,21 @@ theorem TendstoInftyMul (hf : TendsToInfty f X Lf) (hg : TendsToInfty g X Lg) :
 
 Predicate logic:
 
-  TendsToInfty (fun x => f x / g x) X (Lf / Lg)
+  ∀ {f g : Real → Real} {X : Set Real} {Lf Lg : Real}, (LRA.Analysis.Limits.TendsToInfty f X Lf ∧ (LRA.Analysis.Limits.TendsToInfty g X Lg ∧ Ne Lg 0)) → LRA.Analysis.Limits.TendsToInfty (fun x => instHDiv.hDiv (f x) (g x)) X (instHDiv.hDiv Lf Lg)
 
 Predicate logic (unfolded):
 
-  ∀ {f g : Real → Real} {X : Real → Prop} {Lf Lg : Real}, (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun M => ∀ (x : Real), Set.instMembership.1 X x → Real.instLT.1 M x → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (f x) Lf) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (f x) Lf))) ε ∧ (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun M => ∀ (x : Real), Set.instMembership.1 X x → Real.instLT.1 M x → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (g x) Lg) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (g x) Lg))) ε ∧ Lg = Zero.toOfNat0.1 → False)) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun M => ∀ (x : Real), Set.instMembership.1 X x → Real.instLT.1 M x → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 ((fun x => instHDiv.1 (f x) (g x)) x) (instHDiv.1 Lf Lg)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 ((fun x => instHDiv.hDiv (f x) (g x)) x) (instHDiv.hDiv Lf Lg)))) ε
+  Ambient
+    (ℝ)
+  Objects
+    f g : ℝ → ℝ
+    X : Set ℝ
+    Lf Lg c : ℝ
+    hf : TendsToInfty f X Lf
+    hg : TendsToInfty g X Lg
+    hLg : Lg ≠ 0
+  Prove
+    ((∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun M => ∀ (x : Real), x ∈ X → Real.instLT.lt M x → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f x) Lf)) ε) ∧ ((∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun M => ∀ (x : Real), x ∈ X → Real.instLT.lt M x → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (g x) Lg)) ε) ∧ (Lg = 0 → False))) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun M => ∀ (x : Real), x ∈ X → Real.instLT.lt M x → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ((fun x => { hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv (f x) (g x)) x) ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv Lf Lg))) ε
 
 Logical form (Lean):
 
@@ -340,11 +413,21 @@ end AlgebraOfLimitsAtInfinity
 
 Predicate logic:
 
-  (ℝ → ℝ ∧ ∀ M : ℝ, ∃ x ∈ X, x > M) → TendsToInfty f X L ↔ ∀ xs : ℕ → ℝ, (∀ n, xs n ∈ X) → EscapesToInfty xs → ∀ ε > 0, ∃ N ∈ ℕ, ∀ n ≥ N, |f (xs n) - L| < ε
+  ∀ (f : Real → Real) (X : Set Real) (L : Real), (∀ (M : Real), Exists fun x => (x ∈ X ∧ GT.gt x M)) → LRA.Analysis.Limits.TendsToInfty f X L ↔ ∀ (xs : Nat → Real), (∀ (n : Nat), xs n ∈ X) → LRA.Analysis.Limits.EscapesToInfty xs → ∀ (ε : Real), GT.gt ε 0 → Exists fun N => ∀ (n : Nat), GE.ge n N → Real.instLT.lt (abs (instHSub.hSub (f (xs n)) L)) ε
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (X : Real → Prop) (L : Real), (∀ (M : Real), Exists fun x => (Set.instMembership.1 X x ∧ Real.instLT.1 M x)) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun M => ∀ (x : Real), Set.instMembership.1 X x → Real.instLT.1 M x → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (f x) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (f x) L))) ε ↔ ∀ (xs : Nat → Real), (∀ (n : Nat), Set.instMembership.1 X (xs n)) → (∀ (M : Real), Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 M (xs n)) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (f (xs n)) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (f (xs n)) L))) ε
+  Ambient
+    (ℝ)
+  Objects
+    f g : ℝ → ℝ
+    X : Set ℝ
+    Lf Lg c : ℝ
+    f : ℝ → ℝ
+    X : Set ℝ
+    L : ℝ
+  Prove
+    (∀ (M : Real), Exists fun x => (x ∈ X ∧ GT.gt x M)) → LRA.Analysis.Limits.TendsToInfty f X L ↔ ∀ (xs : Nat → Real), (∀ (n : Nat), xs n ∈ X) → LRA.Analysis.Limits.EscapesToInfty xs → ∀ (ε : Real), GT.gt ε 0 → Exists fun N => ∀ (n : Nat), GE.ge n N → Real.instLT.lt (abs (instHSub.hSub (f (xs n)) L)) ε
 
 Logical form (Lean):
 

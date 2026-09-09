@@ -2,11 +2,24 @@ import LRA.NumberSystems.Integers.Constructions.QuotientOrderedPairs.Instances
 
 namespace LRA.NumberSystems.Integers.QuotientOrderedPairs
 
-/-- The quotient-of-ordered-pairs construction satisfies the generic ℤ
-interface: for any whole-number arithmetic data, its quotient carrier is an
-`IntegerModel`.
+/--
+`satisfiesGeneric` The quotient-of-ordered-pairs construction satisfies the generic ℤ interface: for any whole-number arithmetic data, its quotient carrier is an `IntegerModel`.
 
-Logical form:
+Predicate logic:
+
+  noncomputable abbrev satisfiesGeneric
+      (whole_data : WholeNumberArithmeticForQuotientPairs) :
+      LRA.NumberSystems.Integers.Interface.ModelTheory.IntegerModel :=
+    QuotientOrderedPairsRealizesIntegerModel whole_data
+
+Predicate logic (unfolded):
+
+  noncomputable abbrev satisfiesGeneric
+      (whole_data : WholeNumberArithmeticForQuotientPairs) :
+      LRA.NumberSystems.Integers.Interface.ModelTheory.IntegerModel :=
+    QuotientOrderedPairsRealizesIntegerModel whole_data (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
 
 ```lean
 noncomputable abbrev satisfiesGeneric
@@ -14,6 +27,25 @@ noncomputable abbrev satisfiesGeneric
     LRA.NumberSystems.Integers.Interface.ModelTheory.IntegerModel :=
   QuotientOrderedPairsRealizesIntegerModel whole_data
 ```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
 -/
 noncomputable abbrev satisfiesGeneric
     (whole_data : WholeNumberArithmeticForQuotientPairs) :

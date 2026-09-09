@@ -15,7 +15,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (operation : Carrier → Carrier → Carrier) (identity : Carrier) (inverse : Carrier → Carrier), (∀ (element : Carrier), operation (inverse element) element = identity ∧ ∀ (element : Carrier), operation element (inverse element) = identity) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (element : Carrier), operation (inverse element) element = identity) ∧ (∀ (element : Carrier), operation element (inverse element) = identity)) → False
 
 Logical form (Lean):
 
@@ -58,12 +63,12 @@ def FailsTwoSidedInverse {Carrier : Type u}
 Predicate logic:
 
   def NaturalAdditionForInverseFailure : BinaryEndoOperation Nat :=
-  fun left right => left + right
+    fun left right => left + right
 
 Predicate logic (unfolded):
 
   def NaturalAdditionForInverseFailure : BinaryEndoOperation Nat :=
-  fun left right => left + right (source fallback; no compiled unfold data available)
+    fun left right => left + right (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -100,12 +105,12 @@ def NaturalAdditionForInverseFailure : BinaryEndoOperation Nat :=
 Predicate logic:
 
   def ConstantZeroNaturalInverseCandidate : UnaryEndoOperation Nat :=
-  fun _ => 0
+    fun _ => 0
 
 Predicate logic (unfolded):
 
   def ConstantZeroNaturalInverseCandidate : UnaryEndoOperation Nat :=
-  fun _ => 0 (source fallback; no compiled unfold data available)
+    fun _ => 0 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -141,11 +146,16 @@ def ConstantZeroNaturalInverseCandidate : UnaryEndoOperation Nat :=
 
 Predicate logic:
 
-  FailsTwoSidedInverse NaturalAdditionForInverseFailure 0 ConstantZeroNaturalInverseCandidate
+  LRA.Operation.Laws.Inverse.FailsTwoSidedInverse LRA.Operation.Laws.Inverse.NaturalAdditionForInverseFailure 0 LRA.Operation.Laws.Inverse.ConstantZeroNaturalInverseCandidate
 
 Predicate logic (unfolded):
 
-  (∀ (element : Nat), instHAdd.1 (LRA.Operation.Laws.Inverse.ConstantZeroNaturalInverseCandidate element) element = instOfNatNat 0.1 ∧ ∀ (element : Nat), instHAdd.1 element (LRA.Operation.Laws.Inverse.ConstantZeroNaturalInverseCandidate element) = instOfNatNat 0.1) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (element : Nat), { hAdd := fun a b => instAddNat.add a b }.hAdd 0 element = 0) ∧ (∀ (element : Nat), { hAdd := fun a b => instAddNat.add a b }.hAdd element 0 = 0)) → False
 
 Logical form (Lean):
 
@@ -187,11 +197,16 @@ theorem NaturalAdditionFailsConstantZeroInverse :
 
 Predicate logic:
 
-  Not ∃ inverse ∈ UnaryEndoOperation Nat, TwoSidedInverse NaturalAdditionForInverseFailure 0 inverse
+  ¬ Exists fun inverse => LRA.Operation.Laws.Inverse.TwoSidedInverse LRA.Operation.Laws.Inverse.NaturalAdditionForInverseFailure 0 inverse
 
 Predicate logic (unfolded):
 
-  (Exists fun inverse => (∀ (element : Nat), instHAdd.1 (inverse element) element = instOfNatNat 0.1 ∧ ∀ (element : Nat), instHAdd.1 element (inverse element) = instOfNatNat 0.1)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun inverse => ((∀ (element : Nat), { hAdd := fun a b => instAddNat.add a b }.hAdd (inverse element) element = 0) ∧ (∀ (element : Nat), { hAdd := fun a b => instAddNat.add a b }.hAdd element (inverse element) = 0))) → False
 
 Logical form (Lean):
 

@@ -12,7 +12,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} (R : α → α → Prop) (x : α), R x x
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    R x x
 
 Logical form (Lean):
 
@@ -50,7 +55,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} (R : α → α → Prop) (x : α), R x x → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    R x x → False
 
 Logical form (Lean):
 
@@ -88,7 +98,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} (R : α → α → Prop) (x y : α), R x y → R y x
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    R x y → R y x
 
 Logical form (Lean):
 
@@ -126,7 +141,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} (R : α → α → Prop) (x y : α), (R x y ∧ R y x) → x = y
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (R x y ∧ R y x) → x = y
 
 Logical form (Lean):
 
@@ -164,7 +184,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} (R : α → α → Prop) (x y : α), (R x y ∧ R y x) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (R x y ∧ R y x) → False
 
 Logical form (Lean):
 
@@ -202,7 +227,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} (R : α → α → Prop) (x y z : α), (R x y ∧ R y z) → R x z
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (R x y ∧ R y z) → R x z
 
 Logical form (Lean):
 
@@ -240,7 +270,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} (R : α → α → Prop) (x y : α), Or (R x y) (R y x)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (R x y) (R y x)
 
 Logical form (Lean):
 
@@ -278,7 +313,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} (R : α → α → Prop) (x y : α), Or (R x y) (R y x)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (R x y) (R y x)
 
 Logical form (Lean):
 
@@ -316,7 +356,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} (R : α → α → Prop) (x y : α), Or (R x y) (Or (x = y)(R y x))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (R x y) (Or (x = y)(R y x))
 
 Logical form (Lean):
 
@@ -354,7 +399,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (P Q S : Prop), Or ((P ∧ (Q → False ∧ S → False))) (Or ((Q ∧ (P → False ∧ S → False))) ((S ∧ (P → False ∧ Q → False))))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or ((P ∧ ((Q → False) ∧ (S → False)))) (Or ((Q ∧ ((P → False) ∧ (S → False)))) ((S ∧ ((P → False) ∧ (Q → False)))))
 
 Logical form (Lean):
 
@@ -394,7 +444,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} (R : α → α → Prop) (x y : α), Or ((R x y ∧ (x = y → False ∧ R y x → False))) (Or ((x = y ∧ (R x y → False ∧ R y x → False))) ((R y x ∧ (R x y → False ∧ x = y → False))))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or ((R x y ∧ ((x = y → False) ∧ (R y x → False)))) (Or ((x = y ∧ ((R x y → False) ∧ (R y x → False)))) ((R y x ∧ ((R x y → False) ∧ (x = y → False)))))
 
 Logical form (Lean):
 
@@ -434,7 +489,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} (R : α → α → Prop) (z x y : α), (R x z ∧ R y z) → R x y
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (R x z ∧ R y z) → R x y
 
 Logical form (Lean):
 
@@ -474,7 +534,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} (R : α → α → Prop) (z x y : α), (R z x ∧ R z y) → R x y
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (R z x ∧ R z y) → R x y
 
 Logical form (Lean):
 
@@ -514,7 +579,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} (R : α → α → Prop) (x y : α), R x y → Exists fun z => (R x z ∧ R z y)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    R x y → Exists fun z => (R x z ∧ R z y)
 
 Logical form (Lean):
 
@@ -554,7 +624,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} {β : Type v} (R : α → β → Prop) (x : α), Exists fun y => R x y
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun y => R x y
 
 Logical form (Lean):
 
@@ -596,7 +671,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} {β : Type v} (R : α → β → Prop) (y : β), Exists fun x => R x y
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun x => R x y
 
 Logical form (Lean):
 
@@ -638,7 +718,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} {β : Type v} (R : α → β → Prop) (x : α) (y₁ y₂ : β), (R x y₁ ∧ R x y₂) → y₁ = y₂
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (R x y₁ ∧ R x y₂) → y₁ = y₂
 
 Logical form (Lean):
 
@@ -680,7 +765,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} {β : Type v} (R : α → β → Prop) (y : β) (x₁ x₂ : α), (R x₁ y ∧ R x₂ y) → x₁ = x₂
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (R x₁ y ∧ R x₂ y) → x₁ = x₂
 
 Logical form (Lean):
 
@@ -718,11 +808,16 @@ def LeftUnique {α : Type u} {β : Type v}
 
 Predicate logic:
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (minimum : Element), (minimum ∈ subset ∧ ∀ (element : Element), element ∈ subset → ¬ relation element minimum)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (minimum : Element), (minimum ∈ subset ∧ (∀ (element : Element), element ∈ subset → ¬ relation element minimum))
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (relation : Element → Element → Prop) (subset : SetObject) (minimum : Element), (inst.1 subset minimum ∧ ∀ (element : Element), inst.1 subset element → relation element minimum → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (inst.1 subset minimum ∧ (∀ (element : Element), inst.1 subset element → relation element minimum → False))
 
 Logical form (Lean):
 
@@ -768,11 +863,16 @@ def MinimalElement {Element : Type u} {SetObject : Type v}
 
 Predicate logic:
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (maximum : Element), (maximum ∈ subset ∧ ∀ (element : Element), element ∈ subset → ¬ relation maximum element)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (maximum : Element), (maximum ∈ subset ∧ (∀ (element : Element), element ∈ subset → ¬ relation maximum element))
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (relation : Element → Element → Prop) (subset : SetObject) (maximum : Element), (inst.1 subset maximum ∧ ∀ (element : Element), inst.1 subset element → relation maximum element → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (inst.1 subset maximum ∧ (∀ (element : Element), inst.1 subset element → relation maximum element → False))
 
 Logical form (Lean):
 

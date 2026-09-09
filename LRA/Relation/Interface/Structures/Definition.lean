@@ -12,7 +12,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} (R : α → α → Prop), (∀ (x : α), R x x ∧ (∀ (x y : α), R x y → R y x ∧ ∀ (x y z : α), R x y → R y z → R x z))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : α), R x x) ∧ ((∀ (x y : α), R x y → R y x) ∧ (∀ (x y z : α), R x y → R y z → R x z)))
 
 Logical form (Lean):
 
@@ -52,7 +57,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} (R : α → α → Prop), (∀ (x y : α), R x y → R y x ∧ ∀ (x y z : α), R x y → R y z → R x z)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x y : α), R x y → R y x) ∧ (∀ (x y z : α), R x y → R y z → R x z))
 
 Logical form (Lean):
 
@@ -92,7 +102,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} (R : α → α → Prop), (∀ (x : α), R x x ∧ ∀ (x y : α), R x y → R y x)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : α), R x x) ∧ (∀ (x y : α), R x y → R y x))
 
 Logical form (Lean):
 
@@ -132,7 +147,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} (R : α → α → Prop), (∀ (x : α), R x x ∧ ∀ (x y : α), R x y → R y x)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : α), R x x) ∧ (∀ (x y : α), R x y → R y x))
 
 Logical form (Lean):
 

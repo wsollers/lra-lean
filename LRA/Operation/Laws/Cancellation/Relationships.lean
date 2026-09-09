@@ -13,11 +13,18 @@ universe u
 
 Predicate logic:
 
-  RightCancellative operation
+  ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier}, (LRA.Operation.Laws.Commutative.Commutative operation ∧ LRA.Operation.Laws.Cancellation.LeftCancellative operation) → LRA.Operation.Laws.Cancellation.RightCancellative operation
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {operation : Carrier → Carrier → Carrier}, (∀ (first second : Carrier), operation first second = operation second first ∧ ∀ (fixed first second : Carrier), operation fixed first = operation fixed second → first = second) → ∀ (first second fixed : Carrier), operation first fixed = operation second fixed → first = second
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    commutative : LRA.Operation.Laws.Commutative.Commutative operation
+    leftLaw : LeftCancellative operation
+  Prove
+    ((∀ (first second : Carrier), operation first second = operation second first) ∧ (∀ (fixed first second : Carrier), operation fixed first = operation fixed second → first = second)) → ∀ (first second fixed : Carrier), operation first fixed = operation second fixed → first = second
 
 Logical form (Lean):
 
@@ -61,11 +68,18 @@ theorem Commutative.left_cancellative_to_right_cancellative {Carrier : Type u}
 
 Predicate logic:
 
-  LeftCancellative operation
+  ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier}, (LRA.Operation.Laws.Commutative.Commutative operation ∧ LRA.Operation.Laws.Cancellation.RightCancellative operation) → LRA.Operation.Laws.Cancellation.LeftCancellative operation
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {operation : Carrier → Carrier → Carrier}, (∀ (first second : Carrier), operation first second = operation second first ∧ ∀ (first second fixed : Carrier), operation first fixed = operation second fixed → first = second) → ∀ (fixed first second : Carrier), operation fixed first = operation fixed second → first = second
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    commutative : LRA.Operation.Laws.Commutative.Commutative operation
+    rightLaw : RightCancellative operation
+  Prove
+    ((∀ (first second : Carrier), operation first second = operation second first) ∧ (∀ (first second fixed : Carrier), operation first fixed = operation second fixed → first = second)) → ∀ (fixed first second : Carrier), operation fixed first = operation fixed second → first = second
 
 Logical form (Lean):
 
@@ -109,11 +123,18 @@ theorem Commutative.right_cancellative_to_left_cancellative {Carrier : Type u}
 
 Predicate logic:
 
-  (∀ fixed ∈ Carrier), LeftRegular operation fixed
+  ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Cancellation.LeftCancellative operation → ∀ (fixed : Carrier), LRA.Operation.Laws.Cancellation.LeftRegular operation fixed
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {operation : Carrier → Carrier → Carrier}, (∀ (fixed first second : Carrier), operation fixed first = operation fixed second → first = second) → ∀ (fixed first second : Carrier), operation fixed first = operation fixed second → first = second
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    law : LeftCancellative operation
+    fixed : Carrier
+  Prove
+    (∀ (fixed first second : Carrier), operation fixed first = operation fixed second → first = second) → ∀ (fixed first second : Carrier), operation fixed first = operation fixed second → first = second
 
 Logical form (Lean):
 
@@ -155,11 +176,18 @@ theorem LeftCancellative.left_regular {Carrier : Type u}
 
 Predicate logic:
 
-  (∀ fixed ∈ Carrier), RightRegular operation fixed
+  ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Cancellation.RightCancellative operation → ∀ (fixed : Carrier), LRA.Operation.Laws.Cancellation.RightRegular operation fixed
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {operation : Carrier → Carrier → Carrier}, (∀ (first second fixed : Carrier), operation first fixed = operation second fixed → first = second) → ∀ (fixed first second : Carrier), operation first fixed = operation second fixed → first = second
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    law : RightCancellative operation
+    fixed : Carrier
+  Prove
+    (∀ (first second fixed : Carrier), operation first fixed = operation second fixed → first = second) → ∀ (fixed first second : Carrier), operation first fixed = operation second fixed → first = second
 
 Logical form (Lean):
 
@@ -201,11 +229,18 @@ theorem RightCancellative.right_regular {Carrier : Type u}
 
 Predicate logic:
 
-  LeftCancellativeOn eligible operation
+  ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Cancellation.LeftCancellative operation → LRA.Operation.Laws.Cancellation.LeftCancellativeOn eligible operation
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : Carrier → Carrier → Carrier}, (∀ (fixed first second : Carrier), operation fixed first = operation fixed second → first = second) → ∀ (fixed : Carrier), eligible fixed → ∀ (first second : Carrier), operation fixed first = operation fixed second → first = second
+  Ambient
+    (Carrier)
+  Objects
+    eligible : Carrier -> Prop
+    operation : BinaryEndoOperation Carrier
+    law : LeftCancellative operation
+  Prove
+    (∀ (fixed first second : Carrier), operation fixed first = operation fixed second → first = second) → ∀ (fixed : Carrier), eligible fixed → ∀ (first second : Carrier), operation fixed first = operation fixed second → first = second
 
 Logical form (Lean):
 
@@ -247,11 +282,18 @@ theorem LeftCancellative.to_left_cancellative_on {Carrier : Type u}
 
 Predicate logic:
 
-  RightCancellativeOn eligible operation
+  ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Cancellation.RightCancellative operation → LRA.Operation.Laws.Cancellation.RightCancellativeOn eligible operation
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {eligible : Carrier → Prop} {operation : Carrier → Carrier → Carrier}, (∀ (first second fixed : Carrier), operation first fixed = operation second fixed → first = second) → ∀ (fixed : Carrier), eligible fixed → ∀ (first second : Carrier), operation first fixed = operation second fixed → first = second
+  Ambient
+    (Carrier)
+  Objects
+    eligible : Carrier -> Prop
+    operation : BinaryEndoOperation Carrier
+    law : RightCancellative operation
+  Prove
+    (∀ (first second fixed : Carrier), operation first fixed = operation second fixed → first = second) → ∀ (fixed : Carrier), eligible fixed → ∀ (first second : Carrier), operation first fixed = operation second fixed → first = second
 
 Logical form (Lean):
 
@@ -293,11 +335,19 @@ theorem RightCancellative.to_right_cancellative_on {Carrier : Type u}
 
 Predicate logic:
 
-  Not (LeftRegular operation absorber)
+  ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {absorber first second : Carrier}, (LRA.Operation.Laws.Absorbing.LeftAbsorbing operation absorber ∧ Ne first second) → ¬ LRA.Operation.Laws.Cancellation.LeftRegular operation absorber
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {operation : Carrier → Carrier → Carrier} {absorber first second : Carrier}, (∀ (element : Carrier), operation absorber element = absorber ∧ (first = second → False ∧ ∀ (first second : Carrier), operation absorber first = operation absorber second → first = second)) → False
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    absorber first second : Carrier
+    absorbing : LRA.Operation.Laws.Absorbing.LeftAbsorbing operation absorber
+    distinct : first ≠ second
+  Prove
+    ((∀ (element : Carrier), operation absorber element = absorber) ∧ ((first = second → False) ∧ (∀ (first second : Carrier), operation absorber first = operation absorber second → first = second))) → False
 
 Logical form (Lean):
 

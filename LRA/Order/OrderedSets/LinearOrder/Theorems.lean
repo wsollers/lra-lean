@@ -9,11 +9,17 @@ universe u
 
 Predicate logic:
 
-  LRA.Relation.Reflexive relation
+  ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha}, LRA.Relation.Total relation → LRA.Relation.Reflexive relation
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {relation : Alpha → Alpha → Prop}, (∀ (x y : Alpha), Or (relation x y) (relation y x)) → ∀ (x : Alpha), relation x x
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsTotal : LRA.Relation.Total relation
+  Prove
+    (∀ (x y : Alpha), Or (relation x y) (relation y x)) → ∀ (x : Alpha), relation x x
 
 Logical form (Lean):
 
@@ -55,11 +61,17 @@ theorem TotalImpliesReflexive
 
 Predicate logic:
 
-  PartialOrder relation
+  ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha}, LRA.Order.LinearOrder relation → LRA.Order.PartialOrder relation
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {relation : Alpha → Alpha → Prop}, ((∀ (x : Alpha), relation x x ∧ (∀ (x y : Alpha), relation x y → relation y x → x = y ∧ ∀ (x y z : Alpha), relation x y → relation y z → relation x z)) ∧ ∀ (x y : Alpha), Or (relation x y) (relation y x)) → (∀ (x : Alpha), relation x x ∧ (∀ (x y : Alpha), relation x y → relation y x → x = y ∧ ∀ (x y z : Alpha), relation x y → relation y z → relation x z))
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsLinearOrder : LinearOrder relation
+  Prove
+    (((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) ∧ (∀ (x y : Alpha), Or (relation x y) (relation y x))) → ((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z)))
 
 Logical form (Lean):
 
@@ -101,11 +113,17 @@ theorem LinearOrderIsPartialOrder
 
 Predicate logic:
 
-  LRA.Relation.Total relation
+  ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha}, LRA.Order.LinearOrder relation → LRA.Relation.Total relation
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {relation : Alpha → Alpha → Prop}, ((∀ (x : Alpha), relation x x ∧ (∀ (x y : Alpha), relation x y → relation y x → x = y ∧ ∀ (x y z : Alpha), relation x y → relation y z → relation x z)) ∧ ∀ (x y : Alpha), Or (relation x y) (relation y x)) → ∀ (x y : Alpha), Or (relation x y) (relation y x)
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+    relationIsLinearOrder : LinearOrder relation
+  Prove
+    (((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) ∧ (∀ (x y : Alpha), Or (relation x y) (relation y x))) → ∀ (x y : Alpha), Or (relation x y) (relation y x)
 
 Logical form (Lean):
 

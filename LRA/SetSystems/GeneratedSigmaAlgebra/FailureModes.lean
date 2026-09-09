@@ -20,11 +20,16 @@ variable [HasCountableUnion SetObject]
 
 Predicate logic:
 
-  ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject] [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject] [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop), (¬ LRA.SetSystems.GeneratorAdmissible ambient generator ∧ ∀ (A : SetObject), LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator A)
+  ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject] [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject] [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop), (¬ LRA.SetSystems.GeneratorAdmissible ambient generator ∧ (∀ (A : SetObject), LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator A))
 
 Predicate logic (unfolded):
 
-  ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject] [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject] [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop), ((Exists fun sigma => ∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → False ∧ ∀ (A : SetObject) (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 A)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((Exists fun sigma => ∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → False) ∧ (∀ (A : SetObject) (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 A))
 
 Logical form (Lean):
 
@@ -64,11 +69,18 @@ def GeneratedSigmaAlgebraCollectionVacuous
 
 Predicate logic:
 
-  (∀ A ∈ U), (SetObject → Prop) → GeneratedSigmaAlgebraCollectionVacuous A generator
+  ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject] [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject] [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop), ¬ LRA.SetSystems.GeneratorAdmissible ambient generator → LRA.SetSystems.GeneratedSigmaAlgebraCollectionVacuous ambient generator
 
 Predicate logic (unfolded):
 
-  ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject] [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject] [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop), ((Exists fun sigma => ∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → False) → ((Exists fun sigma => ∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → False ∧ ∀ (A : SetObject) (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 A)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ambient : SetObject
+    generator : SetObject → Prop
+    notAdmissible : ¬ GeneratorAdmissible ambient generator
+  Prove
+    ((Exists fun sigma => ∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → False) → (((Exists fun sigma => ∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → False) ∧ (∀ (A : SetObject) (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 A))
 
 Logical form (Lean):
 
@@ -112,7 +124,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (a : Nat), False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    False
 
 Logical form (Lean):
 
@@ -150,7 +167,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (a : Nat), a = instOfNatNat 0.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    a = 0
 
 Logical form (Lean):
 
@@ -188,7 +210,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (candidate : Nat → Prop), candidate = LRA.SetSystems.ZeroSingleton
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    candidate = LRA.SetSystems.ZeroSingleton
 
 Logical form (Lean):
 
@@ -224,11 +251,16 @@ def ZeroSingletonGenerator (candidate : TypeSet Nat) : Prop :=
 
 Predicate logic:
 
-  ¬ GeneratorAdmissible EmptyNatAmbient ZeroSingletonGenerator
+  ¬ LRA.SetSystems.GeneratorAdmissible LRA.SetSystems.EmptyNatAmbient LRA.SetSystems.ZeroSingletonGenerator
 
 Predicate logic (unfolded):
 
-  (Exists fun sigma => ∀ (G : Nat → Prop), G = LRA.SetSystems.ZeroSingleton → sigma.toRingOfSets.1 G) → False
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    (none)
+  Prove
+    (Exists fun sigma => ∀ (G : Nat → Prop), G = LRA.SetSystems.ZeroSingleton → sigma.toRingOfSets.1 G) → False
 
 Logical form (Lean):
 
@@ -264,11 +296,16 @@ theorem EmptyAmbientZeroGeneratorIsNotAdmissible :
 
 Predicate logic:
 
-  GeneratedSigmaAlgebraCollection EmptyNatAmbient ZeroSingletonGenerator ZeroSingleton ∧ ¬ ZeroSingleton ⊆ EmptyNatAmbient
+  (LRA.SetSystems.GeneratedSigmaAlgebraCollection LRA.SetSystems.EmptyNatAmbient LRA.SetSystems.ZeroSingletonGenerator LRA.SetSystems.ZeroSingleton ∧ ¬ LRA.Set.Constructions.TypeSet.instHasSubset.Subset LRA.SetSystems.ZeroSingleton LRA.SetSystems.EmptyNatAmbient)
 
 Predicate logic (unfolded):
 
-  (∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets LRA.SetSystems.EmptyNatAmbient), (∀ (G : Nat → Prop), G = LRA.SetSystems.ZeroSingleton → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 LRA.SetSystems.ZeroSingleton ∧ LRA.Set.Constructions.TypeSet.instHasSubset.1 LRA.SetSystems.ZeroSingleton LRA.SetSystems.EmptyNatAmbient → False)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    (none)
+  Prove
+    ((∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets LRA.SetSystems.EmptyNatAmbient), (∀ (G : Nat → Prop), G = LRA.SetSystems.ZeroSingleton → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 LRA.SetSystems.ZeroSingleton) ∧ (LRA.Set.Constructions.TypeSet.instHasSubset.1 LRA.SetSystems.ZeroSingleton LRA.SetSystems.EmptyNatAmbient → False))
 
 Logical form (Lean):
 

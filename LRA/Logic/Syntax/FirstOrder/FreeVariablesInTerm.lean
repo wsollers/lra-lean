@@ -10,22 +10,22 @@ namespace LRA.Logic.FirstOrder
 Predicate logic:
 
   def freeVariablesInTerm
-    {S : Signature} {Variable : Type} [DecidableEq Variable] :
-    Term S Variable -> Finset Variable
-  | .var v => {v}
-  | .const _ => ∅
-  | @Term.apply _ _ f args =>
-      (Finset.univ : Finset (Fin (S.functionArity f))).biUnion (fun i => freeVariablesInTerm (args i))
+      {S : Signature} {Variable : Type} [DecidableEq Variable] :
+      Term S Variable -> Finset Variable
+    | .var v => {v}
+    | .const _ => ∅
+    | @Term.apply _ _ f args =>
+        (Finset.univ : Finset (Fin (S.functionArity f))).biUnion (fun i => freeVariablesInTerm (args i))
 
 Predicate logic (unfolded):
 
   def freeVariablesInTerm
-    {S : Signature} {Variable : Type} [DecidableEq Variable] :
-    Term S Variable -> Finset Variable
-  | .var v => {v}
-  | .const _ => ∅
-  | @Term.apply _ _ f args =>
-      (Finset.univ : Finset (Fin (S.functionArity f))).biUnion (fun i => freeVariablesInTerm (args i)) (source fallback; no compiled unfold data available)
+      {S : Signature} {Variable : Type} [DecidableEq Variable] :
+      Term S Variable -> Finset Variable
+    | .var v => {v}
+    | .const _ => ∅
+    | @Term.apply _ _ f args =>
+        (Finset.univ : Finset (Fin (S.functionArity f))).biUnion (fun i => freeVariablesInTerm (args i)) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

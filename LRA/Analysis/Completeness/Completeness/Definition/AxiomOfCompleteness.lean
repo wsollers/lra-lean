@@ -15,7 +15,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (S : Type u_1) [inst : Preorder S] (A : S → Prop), (Exists fun x => Set.instMembership.1 A x ∧ Exists fun u => ∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 x u) → Exists fun s => (∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 x s ∧ ∀ (u : S), (∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 x u) → inst.toLE.1 s u)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun x => x ∈ A ∧ (Exists fun u => ∀ (x : S), x ∈ A → inst.1.le x u)) → Exists fun s => ((∀ (x : S), x ∈ A → inst.1.le x s) ∧ (∀ (u : S), (∀ (x : S), x ∈ A → inst.1.le x u) → inst.1.le s u))
 
 Logical form (Lean):
 
@@ -51,11 +56,16 @@ def HasLeastUpperBoundProperty (S : Type*) [Preorder S] : Prop :=
 
 Predicate logic:
 
-  HasLeastUpperBoundProperty ℝ end LRA.Analysis.Completeness
+  LRA.Analysis.Completeness.HasLeastUpperBoundProperty Real
 
 Predicate logic (unfolded):
 
-  ∀ (A : Real → Prop), (Exists fun x => Set.instMembership.1 A x ∧ Exists fun u => ∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x u) → Exists fun s => (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x s ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 s u)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun x => x ∈ A ∧ (Exists fun u => ∀ (x : Real), x ∈ A → Real.instPreorder.1.le x u)) → Exists fun s => ((∀ (x : Real), x ∈ A → Real.instPreorder.1.le x s) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le x u) → Real.instPreorder.1.le s u))
 
 Logical form (Lean):
 

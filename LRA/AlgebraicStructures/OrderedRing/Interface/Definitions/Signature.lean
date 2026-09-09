@@ -8,16 +8,16 @@ namespace LRA.AlgebraicStructures.OrderedRing.Interface.Signature
 Predicate logic:
 
   inductive OrderedRingFunctionSymbol where
-  | add
-  | mul
-  | neg
+    | add
+    | mul
+    | neg
 
 Predicate logic (unfolded):
 
   inductive OrderedRingFunctionSymbol where
-  | add
-  | mul
-  | neg (source fallback; no compiled unfold data available)
+    | add
+    | mul
+    | neg (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -58,12 +58,12 @@ inductive OrderedRingFunctionSymbol where
 Predicate logic:
 
   inductive OrderedRingRelationSymbol where
-  | lt
+    | lt
 
 Predicate logic (unfolded):
 
   inductive OrderedRingRelationSymbol where
-  | lt (source fallback; no compiled unfold data available)
+    | lt (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -100,14 +100,14 @@ inductive OrderedRingRelationSymbol where
 Predicate logic:
 
   inductive OrderedRingConstantSymbol where
-  | zero
-  | one
+    | zero
+    | one
 
 Predicate logic (unfolded):
 
   inductive OrderedRingConstantSymbol where
-  | zero
-  | one (source fallback; no compiled unfold data available)
+    | zero
+    | one (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -146,20 +146,20 @@ inductive OrderedRingConstantSymbol where
 Predicate logic:
 
   def OrderedRingFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
-  Symbol := OrderedRingFunctionSymbol
-  arity
-    | .add => 2
-    | .mul => 2
-    | .neg => 1
+    Symbol := OrderedRingFunctionSymbol
+    arity
+      | .add => 2
+      | .mul => 2
+      | .neg => 1
 
 Predicate logic (unfolded):
 
   def OrderedRingFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
-  Symbol := OrderedRingFunctionSymbol
-  arity
-    | .add => 2
-    | .mul => 2
-    | .neg => 1 (source fallback; no compiled unfold data available)
+    Symbol := OrderedRingFunctionSymbol
+    arity
+      | .add => 2
+      | .mul => 2
+      | .neg => 1 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -204,16 +204,16 @@ def OrderedRingFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
 Predicate logic:
 
   def OrderedRingFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
-  Symbol := OrderedRingRelationSymbol
-  arity
-    | .lt => 2
+    Symbol := OrderedRingRelationSymbol
+    arity
+      | .lt => 2
 
 Predicate logic (unfolded):
 
   def OrderedRingFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
-  Symbol := OrderedRingRelationSymbol
-  arity
-    | .lt => 2 (source fallback; no compiled unfold data available)
+    Symbol := OrderedRingRelationSymbol
+    arity
+      | .lt => 2 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -254,16 +254,16 @@ def OrderedRingFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
 Predicate logic:
 
   def OrderedRingFirstOrderSignature : LRA.Logic.Signature where
-  Functions := OrderedRingFirstOrderFunctions
-  Relations := OrderedRingFirstOrderRelations
-  Constants := OrderedRingConstantSymbol
+    Functions := OrderedRingFirstOrderFunctions
+    Relations := OrderedRingFirstOrderRelations
+    Constants := OrderedRingConstantSymbol
 
 Predicate logic (unfolded):
 
   def OrderedRingFirstOrderSignature : LRA.Logic.Signature where
-  Functions := OrderedRingFirstOrderFunctions
-  Relations := OrderedRingFirstOrderRelations
-  Constants := OrderedRingConstantSymbol (source fallback; no compiled unfold data available)
+    Functions := OrderedRingFirstOrderFunctions
+    Relations := OrderedRingFirstOrderRelations
+    Constants := OrderedRingConstantSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

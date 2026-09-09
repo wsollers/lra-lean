@@ -8,18 +8,18 @@ namespace LRA.UniversalAlgebra.Signature.FormalVocabulary
 Predicate logic:
 
   inductive NotationRole where
-  | prefix
-  | infix
-  | postfix
-  | superscript
+    | prefix
+    | infix
+    | postfix
+    | superscript
 
 Predicate logic (unfolded):
 
   inductive NotationRole where
-  | prefix
-  | infix
-  | postfix
-  | superscript (source fallback; no compiled unfold data available)
+    | prefix
+    | infix
+    | postfix
+    | superscript (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -62,16 +62,16 @@ inductive NotationRole where
 Predicate logic:
 
   structure NotationAssignment (Symbol : Type) where
-  SymbolValue : Symbol
-  Token : String
-  Role : NotationRole
+    SymbolValue : Symbol
+    Token : String
+    Role : NotationRole
 
 Predicate logic (unfolded):
 
   structure NotationAssignment (Symbol : Type) where
-  SymbolValue : Symbol
-  Token : String
-  Role : NotationRole (source fallback; no compiled unfold data available)
+    SymbolValue : Symbol
+    Token : String
+    Role : NotationRole (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

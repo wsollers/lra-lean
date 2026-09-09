@@ -25,7 +25,7 @@ Predicate logic (unfolded):
     interpretOperation :
       (symbol : signature.OperationSymbol) →
         (Fin (signature.arity symbol) → Carrier) → Carrier
-    interpretConstant : signature.ConstantSymbol → Carrier (source fallback; no compiled unfold data available)
+    interpretConstant : signature.ConstantSymbol → Carrier
 
 Logical form (Lean):
 
@@ -75,12 +75,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  Ambient
-    (implicit ambient)
-  Objects
-    (none)
-  Prove
-    relation x x
+  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) (x : Carrier), relation x x
 
 Logical form (Lean):
 
@@ -120,12 +115,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  Ambient
-    (implicit ambient)
-  Objects
-    (none)
-  Prove
-    relation x y → relation y x
+  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) {x y : Carrier}, relation x y → relation y x
 
 Logical form (Lean):
 
@@ -165,12 +155,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  Ambient
-    (implicit ambient)
-  Objects
-    (none)
-  Prove
-    (relation x y ∧ relation y z) → relation x z
+  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) {x y z : Carrier}, (relation x y ∧ relation y z) → relation x z
 
 Logical form (Lean):
 
@@ -210,12 +195,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  Ambient
-    (implicit ambient)
-  Objects
-    (none)
-  Prove
-    (∀ (index : Fin (signature.2 symbol)), relation (left index) (right index)) → relation (structure_.3 symbol left) (structure_.3 symbol right)
+  ∀ {signature : LRA.Identity.AlgebraicSignature} (structure_ : LRA.Identity.AlgebraicStructure signature) (relation : structure_.Carrier → structure_.Carrier → Prop) (symbol : signature.OperationSymbol) (left right : Fin (signature.arity symbol) → structure_.Carrier), (∀ (index : Fin (signature.arity symbol)), relation (left index) (right index)) → relation (structure_.interpretOperation symbol left) (structure_.interpretOperation symbol right)
 
 Logical form (Lean):
 
@@ -267,25 +247,11 @@ def OperationCompatible
 
 Predicate logic:
 
-  structure IsCongruence
-      {signature : AlgebraicSignature.{v, w}}
-      (structure_ : AlgebraicStructure signature)
-      (relation : structure_.Carrier → structure_.Carrier → Prop) : Prop where
-    reflexive : RelationReflexive relation
-    symmetric : RelationSymmetric relation
-    transitive : RelationTransitive relation
-    operationCompatible : OperationCompatible structure_ relation
+  ∀ {signature : LRA.Identity.AlgebraicSignature} {structure_ : LRA.Identity.AlgebraicStructure signature} {relation : structure_.Carrier → structure_.Carrier → Prop}, (LRA.Identity.RelationReflexive relation ∧ (LRA.Identity.RelationSymmetric relation ∧ (LRA.Identity.RelationTransitive relation ∧ LRA.Identity.OperationCompatible structure_ relation)))
 
 Predicate logic (unfolded):
 
-  structure IsCongruence
-      {signature : AlgebraicSignature.{v, w}}
-      (structure_ : AlgebraicStructure signature)
-      (relation : structure_.Carrier → structure_.Carrier → Prop) : Prop where
-    reflexive : RelationReflexive relation
-    symmetric : RelationSymmetric relation
-    transitive : RelationTransitive relation
-    operationCompatible : OperationCompatible structure_ relation (source fallback; no compiled unfold data available)
+  ∀ {signature : LRA.Identity.AlgebraicSignature} {structure_ : LRA.Identity.AlgebraicStructure signature} {relation : structure_.Carrier → structure_.Carrier → Prop}, ((∀ (x : structure_.Carrier), relation x x) ∧ ((∀ {x y : structure_.Carrier}, relation x y → relation y x) ∧ ((∀ {x y z : structure_.Carrier}, relation x y → relation y z → relation x z) ∧ (∀ (symbol : signature.OperationSymbol) (left right : Fin (signature.arity symbol) → structure_.Carrier), (∀ (index : Fin (signature.arity symbol)), relation (left index) (right index)) → relation (structure_.interpretOperation symbol left) (structure_.interpretOperation symbol right)))))
 
 Logical form (Lean):
 

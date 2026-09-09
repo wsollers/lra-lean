@@ -15,7 +15,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (outer inner : Carrier → Carrier → Carrier), (∀ (left right third : Carrier), outer left (inner right third) = inner (outer left right) (outer left third)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (left right third : Carrier), outer left (inner right third) = inner (outer left right) (outer left third)) → False
 
 Logical form (Lean):
 
@@ -57,7 +62,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (outer inner : Carrier → Carrier → Carrier), (∀ (left right third : Carrier), outer (inner left right) third = inner (outer left third) (outer right third)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (left right third : Carrier), outer (inner left right) third = inner (outer left third) (outer right third)) → False
 
 Logical form (Lean):
 
@@ -96,12 +106,12 @@ def FailsRightDistributive {Carrier : Type u}
 Predicate logic:
 
   def NaturalAdditionForDistributiveFailure : BinaryEndoOperation Nat :=
-  fun left right => left + right
+    fun left right => left + right
 
 Predicate logic (unfolded):
 
   def NaturalAdditionForDistributiveFailure : BinaryEndoOperation Nat :=
-  fun left right => left + right (source fallback; no compiled unfold data available)
+    fun left right => left + right (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -138,12 +148,12 @@ def NaturalAdditionForDistributiveFailure : BinaryEndoOperation Nat :=
 Predicate logic:
 
   def NaturalMultiplicationForDistributiveFailure : BinaryEndoOperation Nat :=
-  fun left right => left * right
+    fun left right => left * right
 
 Predicate logic (unfolded):
 
   def NaturalMultiplicationForDistributiveFailure : BinaryEndoOperation Nat :=
-  fun left right => left * right (source fallback; no compiled unfold data available)
+    fun left right => left * right (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -179,11 +189,16 @@ def NaturalMultiplicationForDistributiveFailure : BinaryEndoOperation Nat :=
 
 Predicate logic:
 
-  FailsLeftDistributive NaturalAdditionForDistributiveFailure NaturalMultiplicationForDistributiveFailure
+  LRA.Operation.Laws.Distributive.FailsLeftDistributive LRA.Operation.Laws.Distributive.NaturalAdditionForDistributiveFailure LRA.Operation.Laws.Distributive.NaturalMultiplicationForDistributiveFailure
 
 Predicate logic (unfolded):
 
-  (∀ (left right third : Nat), instHAdd.1 left (instHMul.hMul right third) = instHMul.1 (instHAdd.hAdd left right) (instHAdd.hAdd left third)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (left right third : Nat), { hAdd := fun a b => instAddNat.add a b }.hAdd left ({ hMul := fun a b => instMulNat.mul a b }.hMul right third) = { hMul := fun a b => instMulNat.mul a b }.hMul ({ hAdd := fun a b => instAddNat.add a b }.hAdd left right) ({ hAdd := fun a b => instAddNat.add a b }.hAdd left third)) → False
 
 Logical form (Lean):
 
@@ -223,11 +238,16 @@ theorem NaturalAdditionFailsLeftDistributiveOverMultiplication :
 
 Predicate logic:
 
-  FailsRightDistributive NaturalAdditionForDistributiveFailure NaturalMultiplicationForDistributiveFailure
+  LRA.Operation.Laws.Distributive.FailsRightDistributive LRA.Operation.Laws.Distributive.NaturalAdditionForDistributiveFailure LRA.Operation.Laws.Distributive.NaturalMultiplicationForDistributiveFailure
 
 Predicate logic (unfolded):
 
-  (∀ (left right third : Nat), instHAdd.1 (instHMul.hMul left right) third = instHMul.1 (instHAdd.hAdd left third) (instHAdd.hAdd right third)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (left right third : Nat), { hAdd := fun a b => instAddNat.add a b }.hAdd ({ hMul := fun a b => instMulNat.mul a b }.hMul left right) third = { hMul := fun a b => instMulNat.mul a b }.hMul ({ hAdd := fun a b => instAddNat.add a b }.hAdd left third) ({ hAdd := fun a b => instAddNat.add a b }.hAdd right third)) → False
 
 Logical form (Lean):
 

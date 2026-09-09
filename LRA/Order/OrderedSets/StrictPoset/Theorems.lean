@@ -7,11 +7,17 @@ namespace LRA.Order.OrderedSets.StrictPoset
 
 Predicate logic:
 
-  (∀ poset ∈ LRA.Order.StrictPoset ∀ element ∈ poset.Carrier), Not (poset.StrictRelation element element)
+  ∀ (poset : LRA.Order.StrictPoset) (element : poset.Carrier), ¬ poset.StrictRelation element element
 
 Predicate logic (unfolded):
 
-  ∀ (poset : LRA.Order.StrictPoset) (element : poset.1), poset.2 element element → False
+  Ambient
+    (implicit ambient)
+  Objects
+    poset : LRA.Order.StrictPoset
+    element : poset.Carrier
+  Prove
+    poset.2 element element → False
 
 Logical form (Lean):
 

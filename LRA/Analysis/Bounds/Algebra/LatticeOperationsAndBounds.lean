@@ -12,11 +12,16 @@ open LRA.Analysis.Bounds
 
 Predicate logic:
 
-  ∀ (A B : Set Real) (a : Real), Exists fun a_1 => (Set.instMembership.mem A a_1 ∧ Exists fun b => (Set.instMembership.mem B b ∧ a = Real.instMax.max a_1 b))
+  ∀ (A B : Set Real) (a : Real), Exists fun a_1 => (a_1 ∈ A ∧ (Exists fun b => (b ∈ B ∧ a = Real.instMax.max a_1 b)))
 
 Predicate logic (unfolded):
 
-  ∀ (A B : Real → Prop) (a : Real), Exists fun a_1 => (Set.instMembership.1 A a_1 ∧ Exists fun b => (Set.instMembership.1 B b ∧ a = Real.instMax.1 a_1 b))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun a_1 => (a_1 ∈ A ∧ (Exists fun b => (b ∈ B ∧ a = Real.instMax.1 a_1 b)))
 
 Logical form (Lean):
 
@@ -52,11 +57,16 @@ def PairwiseMax (A B : Set ℝ) : Set ℝ :=
 
 Predicate logic:
 
-  ∀ (A B : Set Real) (a : Real), Exists fun a_1 => (Set.instMembership.mem A a_1 ∧ Exists fun b => (Set.instMembership.mem B b ∧ a = Real.instMin.min a_1 b))
+  ∀ (A B : Set Real) (a : Real), Exists fun a_1 => (a_1 ∈ A ∧ (Exists fun b => (b ∈ B ∧ a = Real.instMin.min a_1 b)))
 
 Predicate logic (unfolded):
 
-  ∀ (A B : Real → Prop) (a : Real), Exists fun a_1 => (Set.instMembership.1 A a_1 ∧ Exists fun b => (Set.instMembership.1 B b ∧ a = Real.instMin.1 a_1 b))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun a_1 => (a_1 ∈ A ∧ (Exists fun b => (b ∈ B ∧ a = Real.instMin.1 a_1 b)))
 
 Logical form (Lean):
 
@@ -92,11 +102,19 @@ def PairwiseMin (A B : Set ℝ) : Set ℝ :=
 
 Predicate logic:
 
-  (∀ leftNonemptyHypothesis ∈ A.Nonempty ∀ rightNonemptyHypothesis ∈ B.Nonempty), (IsSupremum sA A ∧ IsSupremum sB B) → IsSupremum (max sA sB) (PairwiseMax A B)
+  ∀ {A B : Set Real}, (A.Nonempty ∧ B.Nonempty) → ∀ {sA sB : Real}, (LRA.Analysis.Bounds.IsSupremum sA A ∧ LRA.Analysis.Bounds.IsSupremum sB B) → LRA.Analysis.Bounds.IsSupremum (Real.instMax.max sA sB) (LRA.Analysis.Bounds.Algebra.PairwiseMax A B)
 
 Predicate logic (unfolded):
 
-  ∀ {A B : Real → Prop}, (Exists fun x => Set.instMembership.1 A x ∧ Exists fun x => Set.instMembership.1 B x) → ∀ {sA sB : Real}, ((∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x sA ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 sA u) ∧ (∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 x sB ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 sB u)) → (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.1 A a ∧ Exists fun b => (Set.instMembership.1 B b ∧ x = Real.instMax.1 a b))) x → Real.instPreorder.toLE.1 x (Real.instMax.1 sA sB) ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.1 A a ∧ Exists fun b => (Set.instMembership.1 B b ∧ x = Real.instMax.1 a b))) x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 (Real.instMax.1 sA sB) u)
+  Ambient
+    (ℝ)
+  Objects
+    A B : Set ℝ
+    leftNonemptyHypothesis : A.Nonempty
+    rightNonemptyHypothesis : B.Nonempty
+    sA sB : ℝ
+  Prove
+    (Exists fun x => x ∈ A ∧ Exists fun x => x ∈ B) → ∀ {sA sB : Real}, (((∀ (x : Real), x ∈ A → Real.instPreorder.1.le x sA) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le x u) → Real.instPreorder.1.le sA u)) ∧ ((∀ (x : Real), x ∈ B → Real.instPreorder.1.le x sB) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ B → Real.instPreorder.1.le x u) → Real.instPreorder.1.le sB u))) → ((∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ A ∧ (Exists fun b => (b ∈ B ∧ x = Real.instMax.1 a b))) → Real.instPreorder.1.le x (Real.instMax.1 sA sB)) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ A ∧ (Exists fun b => (b ∈ B ∧ x = Real.instMax.1 a b))) → Real.instPreorder.1.le x u) → Real.instPreorder.1.le (Real.instMax.1 sA sB) u))
 
 Logical form (Lean):
 
@@ -142,11 +160,19 @@ theorem SupremumOfPairwiseMaximumSet {A B : Set ℝ}
 
 Predicate logic:
 
-  (∀ leftNonemptyHypothesis ∈ A.Nonempty ∀ rightNonemptyHypothesis ∈ B.Nonempty), (IsInfimum iA A ∧ IsInfimum iB B) → IsInfimum (max iA iB) (PairwiseMax A B)
+  ∀ {A B : Set Real}, (A.Nonempty ∧ B.Nonempty) → ∀ {iA iB : Real}, (LRA.Analysis.Bounds.IsInfimum iA A ∧ LRA.Analysis.Bounds.IsInfimum iB B) → LRA.Analysis.Bounds.IsInfimum (Real.instMax.max iA iB) (LRA.Analysis.Bounds.Algebra.PairwiseMax A B)
 
 Predicate logic (unfolded):
 
-  ∀ {A B : Real → Prop}, (Exists fun x => Set.instMembership.1 A x ∧ Exists fun x => Set.instMembership.1 B x) → ∀ {iA iB : Real}, ((∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 iA x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l iA) ∧ (∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 iB x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l iB)) → (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.1 A a ∧ Exists fun b => (Set.instMembership.1 B b ∧ x = Real.instMax.1 a b))) x → Real.instPreorder.toLE.1 (Real.instMax.1 iA iB) x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.1 A a ∧ Exists fun b => (Set.instMembership.1 B b ∧ x = Real.instMax.1 a b))) x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l (Real.instMax.1 iA iB))
+  Ambient
+    (ℝ)
+  Objects
+    A B : Set ℝ
+    leftNonemptyHypothesis : A.Nonempty
+    rightNonemptyHypothesis : B.Nonempty
+    iA iB : ℝ
+  Prove
+    (Exists fun x => x ∈ A ∧ Exists fun x => x ∈ B) → ∀ {iA iB : Real}, (((∀ (x : Real), x ∈ A → Real.instPreorder.1.le iA x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l iA)) ∧ ((∀ (x : Real), x ∈ B → Real.instPreorder.1.le iB x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ B → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l iB))) → ((∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ A ∧ (Exists fun b => (b ∈ B ∧ x = Real.instMax.1 a b))) → Real.instPreorder.1.le (Real.instMax.1 iA iB) x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ A ∧ (Exists fun b => (b ∈ B ∧ x = Real.instMax.1 a b))) → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l (Real.instMax.1 iA iB)))
 
 Logical form (Lean):
 
@@ -192,11 +218,19 @@ theorem InfimumOfPairwiseMaximumSet {A B : Set ℝ}
 
 Predicate logic:
 
-  (∀ leftNonemptyHypothesis ∈ A.Nonempty ∀ rightNonemptyHypothesis ∈ B.Nonempty), (IsSupremum sA A ∧ IsSupremum sB B) → IsSupremum (min sA sB) (PairwiseMin A B)
+  ∀ {A B : Set Real}, (A.Nonempty ∧ B.Nonempty) → ∀ {sA sB : Real}, (LRA.Analysis.Bounds.IsSupremum sA A ∧ LRA.Analysis.Bounds.IsSupremum sB B) → LRA.Analysis.Bounds.IsSupremum (Real.instMin.min sA sB) (LRA.Analysis.Bounds.Algebra.PairwiseMin A B)
 
 Predicate logic (unfolded):
 
-  ∀ {A B : Real → Prop}, (Exists fun x => Set.instMembership.1 A x ∧ Exists fun x => Set.instMembership.1 B x) → ∀ {sA sB : Real}, ((∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x sA ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 sA u) ∧ (∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 x sB ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 sB u)) → (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.1 A a ∧ Exists fun b => (Set.instMembership.1 B b ∧ x = Real.instMin.1 a b))) x → Real.instPreorder.toLE.1 x (Real.instMin.1 sA sB) ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.1 A a ∧ Exists fun b => (Set.instMembership.1 B b ∧ x = Real.instMin.1 a b))) x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 (Real.instMin.1 sA sB) u)
+  Ambient
+    (ℝ)
+  Objects
+    A B : Set ℝ
+    leftNonemptyHypothesis : A.Nonempty
+    rightNonemptyHypothesis : B.Nonempty
+    sA sB : ℝ
+  Prove
+    (Exists fun x => x ∈ A ∧ Exists fun x => x ∈ B) → ∀ {sA sB : Real}, (((∀ (x : Real), x ∈ A → Real.instPreorder.1.le x sA) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le x u) → Real.instPreorder.1.le sA u)) ∧ ((∀ (x : Real), x ∈ B → Real.instPreorder.1.le x sB) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ B → Real.instPreorder.1.le x u) → Real.instPreorder.1.le sB u))) → ((∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ A ∧ (Exists fun b => (b ∈ B ∧ x = Real.instMin.1 a b))) → Real.instPreorder.1.le x (Real.instMin.1 sA sB)) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ A ∧ (Exists fun b => (b ∈ B ∧ x = Real.instMin.1 a b))) → Real.instPreorder.1.le x u) → Real.instPreorder.1.le (Real.instMin.1 sA sB) u))
 
 Logical form (Lean):
 
@@ -242,11 +276,19 @@ theorem SupremumOfPairwiseMinimumSet {A B : Set ℝ}
 
 Predicate logic:
 
-  (∀ leftNonemptyHypothesis ∈ A.Nonempty ∀ rightNonemptyHypothesis ∈ B.Nonempty), (IsInfimum iA A ∧ IsInfimum iB B) → IsInfimum (min iA iB) (PairwiseMin A B)
+  ∀ {A B : Set Real}, (A.Nonempty ∧ B.Nonempty) → ∀ {iA iB : Real}, (LRA.Analysis.Bounds.IsInfimum iA A ∧ LRA.Analysis.Bounds.IsInfimum iB B) → LRA.Analysis.Bounds.IsInfimum (Real.instMin.min iA iB) (LRA.Analysis.Bounds.Algebra.PairwiseMin A B)
 
 Predicate logic (unfolded):
 
-  ∀ {A B : Real → Prop}, (Exists fun x => Set.instMembership.1 A x ∧ Exists fun x => Set.instMembership.1 B x) → ∀ {iA iB : Real}, ((∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 iA x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l iA) ∧ (∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 iB x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 B x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l iB)) → (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.1 A a ∧ Exists fun b => (Set.instMembership.1 B b ∧ x = Real.instMin.1 a b))) x → Real.instPreorder.toLE.1 (Real.instMin.1 iA iB) x ∧ ∀ (l : Real), (∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.1 A a ∧ Exists fun b => (Set.instMembership.1 B b ∧ x = Real.instMin.1 a b))) x → Real.instPreorder.toLE.1 l x) → Real.instPreorder.toLE.1 l (Real.instMin.1 iA iB))
+  Ambient
+    (ℝ)
+  Objects
+    A B : Set ℝ
+    leftNonemptyHypothesis : A.Nonempty
+    rightNonemptyHypothesis : B.Nonempty
+    iA iB : ℝ
+  Prove
+    (Exists fun x => x ∈ A ∧ Exists fun x => x ∈ B) → ∀ {iA iB : Real}, (((∀ (x : Real), x ∈ A → Real.instPreorder.1.le iA x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l iA)) ∧ ((∀ (x : Real), x ∈ B → Real.instPreorder.1.le iB x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ B → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l iB))) → ((∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ A ∧ (Exists fun b => (b ∈ B ∧ x = Real.instMin.1 a b))) → Real.instPreorder.1.le (Real.instMin.1 iA iB) x) ∧ (∀ (l : Real), (∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ A ∧ (Exists fun b => (b ∈ B ∧ x = Real.instMin.1 a b))) → Real.instPreorder.1.le l x) → Real.instPreorder.1.le l (Real.instMin.1 iA iB)))
 
 Logical form (Lean):
 

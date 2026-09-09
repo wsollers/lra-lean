@@ -15,7 +15,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (operation : Carrier → Carrier → Carrier) (fixed first second : Carrier), operation fixed first = operation fixed second → first = second
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    operation fixed first = operation fixed second → first = second
 
 Logical form (Lean):
 
@@ -59,7 +64,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (operation : Carrier → Carrier → Carrier) (first second fixed : Carrier), operation first fixed = operation second fixed → first = second
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    operation first fixed = operation second fixed → first = second
 
 Logical form (Lean):
 
@@ -103,7 +113,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (operation : Carrier → Carrier → Carrier) (fixed first second : Carrier), operation fixed first = operation fixed second → first = second
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    operation fixed first = operation fixed second → first = second
 
 Logical form (Lean):
 
@@ -149,7 +164,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (operation : Carrier → Carrier → Carrier) (fixed first second : Carrier), operation first fixed = operation second fixed → first = second
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    operation first fixed = operation second fixed → first = second
 
 Logical form (Lean):
 
@@ -195,7 +215,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (eligible : Carrier → Prop) (operation : Carrier → Carrier → Carrier) (fixed : Carrier), eligible fixed → ∀ (first second : Carrier), operation fixed first = operation fixed second → first = second
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    eligible fixed → ∀ (first second : Carrier), operation fixed first = operation fixed second → first = second
 
 Logical form (Lean):
 
@@ -239,7 +264,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (eligible : Carrier → Prop) (operation : Carrier → Carrier → Carrier) (fixed : Carrier), eligible fixed → ∀ (first second : Carrier), operation first fixed = operation second fixed → first = second
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    eligible fixed → ∀ (first second : Carrier), operation first fixed = operation second fixed → first = second
 
 Logical form (Lean):
 
@@ -283,7 +313,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (eligible : Carrier → Prop) (operation : Carrier → Carrier → Carrier), (∀ (fixed : Carrier), eligible fixed → ∀ (first second : Carrier), operation fixed first = operation fixed second → first = second ∧ ∀ (fixed : Carrier), eligible fixed → ∀ (first second : Carrier), operation first fixed = operation second fixed → first = second)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (fixed : Carrier), eligible fixed → ∀ (first second : Carrier), operation fixed first = operation fixed second → first = second) ∧ (∀ (fixed : Carrier), eligible fixed → ∀ (first second : Carrier), operation first fixed = operation second fixed → first = second))
 
 Logical form (Lean):
 
@@ -329,7 +364,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (operation : Carrier → Carrier → Carrier), (∀ (fixed first second : Carrier), operation fixed first = operation fixed second → first = second ∧ ∀ (first second fixed : Carrier), operation first fixed = operation second fixed → first = second)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (fixed first second : Carrier), operation fixed first = operation fixed second → first = second) ∧ (∀ (first second fixed : Carrier), operation first fixed = operation second fixed → first = second))
 
 Logical form (Lean):
 

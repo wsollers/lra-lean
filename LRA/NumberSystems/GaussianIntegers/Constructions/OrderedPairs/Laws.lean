@@ -17,11 +17,16 @@ variable [CommutativeRingLaws R]
 
 Predicate logic:
 
-  (a + b) + c = a + (b + c)
+  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R 0] [inst_4 : OfNat R 1], LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a b c : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), instHAdd.hAdd (instHAdd.hAdd a b) c = instHAdd.hAdd a (instHAdd.hAdd b c)
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R (instOfNatNat 0).1] [inst_4 : OfNat R (instOfNatNat 1).1], LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a b c : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), instHAdd.1 (instHAdd.1 a b) c = instHAdd.1 a (instHAdd.1 b c)
+  Ambient
+    (R)
+  Objects
+    a b c : GaussianInteger R
+  Prove
+    LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a b c : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), { hAdd := fun a b => { add := fun first second => { realPart := { hAdd := fun a b => inst.add a b }.hAdd first.1 second.1, imaginaryPart := { hAdd := fun a b => inst.add a b }.hAdd first.2 second.2 } }.add a b }.hAdd ({ hAdd := fun a b => { add := fun first second => { realPart := { hAdd := fun a b => inst.add a b }.hAdd first.1 second.1, imaginaryPart := { hAdd := fun a b => inst.add a b }.hAdd first.2 second.2 } }.add a b }.hAdd a b) c = { hAdd := fun a b => { add := fun first second => { realPart := { hAdd := fun a b => inst.add a b }.hAdd first.1 second.1, imaginaryPart := { hAdd := fun a b => inst.add a b }.hAdd first.2 second.2 } }.add a b }.hAdd a ({ hAdd := fun a b => { add := fun first second => { realPart := { hAdd := fun a b => inst.add a b }.hAdd first.1 second.1, imaginaryPart := { hAdd := fun a b => inst.add a b }.hAdd first.2 second.2 } }.add a b }.hAdd b c)
 
 Logical form (Lean):
 
@@ -57,11 +62,16 @@ theorem addition_is_associative (a b c : GaussianInteger R) :
 
 Predicate logic:
 
-  a + b = b + a
+  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R 0] [inst_4 : OfNat R 1], LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a b : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), instHAdd.hAdd a b = instHAdd.hAdd b a
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R (instOfNatNat 0).1] [inst_4 : OfNat R (instOfNatNat 1).1], LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a b : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), instHAdd.1 a b = instHAdd.1 b a
+  Ambient
+    (R)
+  Objects
+    a b : GaussianInteger R
+  Prove
+    LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a b : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), { hAdd := fun a b => { add := fun first second => { realPart := { hAdd := fun a b => inst.add a b }.hAdd first.1 second.1, imaginaryPart := { hAdd := fun a b => inst.add a b }.hAdd first.2 second.2 } }.add a b }.hAdd a b = { hAdd := fun a b => { add := fun first second => { realPart := { hAdd := fun a b => inst.add a b }.hAdd first.1 second.1, imaginaryPart := { hAdd := fun a b => inst.add a b }.hAdd first.2 second.2 } }.add a b }.hAdd b a
 
 Logical form (Lean):
 
@@ -97,11 +107,16 @@ theorem addition_is_commutative (a b : GaussianInteger R) :
 
 Predicate logic:
 
-  0 + a = a
+  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R 0] [inst_4 : OfNat R 1], LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), instHAdd.hAdd 0 a = a
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R (instOfNatNat 0).1] [inst_4 : OfNat R (instOfNatNat 1).1], LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), instHAdd.1 LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.instOfNatGaussianIntegerOfNatNat.1 a = a
+  Ambient
+    (R)
+  Objects
+    a : GaussianInteger R
+  Prove
+    LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), { hAdd := fun a b => { add := fun first second => { realPart := { hAdd := fun a b => inst.add a b }.hAdd first.1 second.1, imaginaryPart := { hAdd := fun a b => inst.add a b }.hAdd first.2 second.2 } }.add a b }.hAdd 0 a = a
 
 Logical form (Lean):
 
@@ -135,11 +150,16 @@ theorem zero_add_gaussian (a : GaussianInteger R) : 0 + a = a := by
 
 Predicate logic:
 
-  a + 0 = a
+  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R 0] [inst_4 : OfNat R 1], LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), instHAdd.hAdd a 0 = a
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R (instOfNatNat 0).1] [inst_4 : OfNat R (instOfNatNat 1).1], LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), instHAdd.1 a LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.instOfNatGaussianIntegerOfNatNat.1 = a
+  Ambient
+    (R)
+  Objects
+    a : GaussianInteger R
+  Prove
+    LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), { hAdd := fun a b => { add := fun first second => { realPart := { hAdd := fun a b => inst.add a b }.hAdd first.1 second.1, imaginaryPart := { hAdd := fun a b => inst.add a b }.hAdd first.2 second.2 } }.add a b }.hAdd a 0 = a
 
 Logical form (Lean):
 
@@ -173,11 +193,16 @@ theorem add_zero_gaussian (a : GaussianInteger R) : a + 0 = a := by
 
 Predicate logic:
 
-  -a + a = 0
+  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R 0] [inst_4 : OfNat R 1], LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), instHAdd.hAdd (LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.instNegGaussianInteger.neg a) a = 0
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R (instOfNatNat 0).1] [inst_4 : OfNat R (instOfNatNat 1).1], LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), instHAdd.1 (LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.instNegGaussianInteger.1 a) a = LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.instOfNatGaussianIntegerOfNatNat.1
+  Ambient
+    (R)
+  Objects
+    a : GaussianInteger R
+  Prove
+    LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), { hAdd := fun a b => { add := fun first second => { realPart := { hAdd := fun a b => inst.add a b }.hAdd first.1 second.1, imaginaryPart := { hAdd := fun a b => inst.add a b }.hAdd first.2 second.2 } }.add a b }.hAdd ({ neg := fun value => { realPart := inst_2.neg value.1, imaginaryPart := inst_2.neg value.2 } }.neg a) a = 0
 
 Logical form (Lean):
 
@@ -211,11 +236,16 @@ theorem neg_add_cancel_gaussian (a : GaussianInteger R) : -a + a = 0 := by
 
 Predicate logic:
 
-  a + -a = 0
+  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R 0] [inst_4 : OfNat R 1], LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), instHAdd.hAdd a (LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.instNegGaussianInteger.neg a) = 0
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R (instOfNatNat 0).1] [inst_4 : OfNat R (instOfNatNat 1).1], LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), instHAdd.1 a (LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.instNegGaussianInteger.1 a) = LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.instOfNatGaussianIntegerOfNatNat.1
+  Ambient
+    (R)
+  Objects
+    a : GaussianInteger R
+  Prove
+    LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), { hAdd := fun a b => { add := fun first second => { realPart := { hAdd := fun a b => inst.add a b }.hAdd first.1 second.1, imaginaryPart := { hAdd := fun a b => inst.add a b }.hAdd first.2 second.2 } }.add a b }.hAdd a ({ neg := fun value => { realPart := inst_2.neg value.1, imaginaryPart := inst_2.neg value.2 } }.neg a) = 0
 
 Logical form (Lean):
 
@@ -249,11 +279,16 @@ theorem add_neg_cancel_gaussian (a : GaussianInteger R) : a + -a = 0 := by
 
 Predicate logic:
 
-  (a * b) * c = a * (b * c)
+  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R 0] [inst_4 : OfNat R 1], LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a b c : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), instHMul.hMul (instHMul.hMul a b) c = instHMul.hMul a (instHMul.hMul b c)
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R (instOfNatNat 0).1] [inst_4 : OfNat R (instOfNatNat 1).1], LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a b c : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), instHMul.1 (instHMul.1 a b) c = instHMul.1 a (instHMul.1 b c)
+  Ambient
+    (R)
+  Objects
+    a b c : GaussianInteger R
+  Prove
+    LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a b c : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), { hMul := fun a b => { mul := fun first second => { realPart := { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul first.1 second.1) (inst_2.neg ({ hMul := fun a b => inst_1.mul a b }.hMul first.2 second.2)), imaginaryPart := { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul first.1 second.2) ({ hMul := fun a b => inst_1.mul a b }.hMul first.2 second.1) } }.mul a b }.hMul ({ hMul := fun a b => { mul := fun first second => { realPart := { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul first.1 second.1) (inst_2.neg ({ hMul := fun a b => inst_1.mul a b }.hMul first.2 second.2)), imaginaryPart := { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul first.1 second.2) ({ hMul := fun a b => inst_1.mul a b }.hMul first.2 second.1) } }.mul a b }.hMul a b) c = { hMul := fun a b => { mul := fun first second => { realPart := { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul first.1 second.1) (inst_2.neg ({ hMul := fun a b => inst_1.mul a b }.hMul first.2 second.2)), imaginaryPart := { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul first.1 second.2) ({ hMul := fun a b => inst_1.mul a b }.hMul first.2 second.1) } }.mul a b }.hMul a ({ hMul := fun a b => { mul := fun first second => { realPart := { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul first.1 second.1) (inst_2.neg ({ hMul := fun a b => inst_1.mul a b }.hMul first.2 second.2)), imaginaryPart := { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul first.1 second.2) ({ hMul := fun a b => inst_1.mul a b }.hMul first.2 second.1) } }.mul a b }.hMul b c)
 
 Logical form (Lean):
 
@@ -289,11 +324,16 @@ theorem multiplication_is_associative (a b c : GaussianInteger R) :
 
 Predicate logic:
 
-  a * b = b * a
+  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R 0] [inst_4 : OfNat R 1], LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a b : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), instHMul.hMul a b = instHMul.hMul b a
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R (instOfNatNat 0).1] [inst_4 : OfNat R (instOfNatNat 1).1], LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a b : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), instHMul.1 a b = instHMul.1 b a
+  Ambient
+    (R)
+  Objects
+    a b : GaussianInteger R
+  Prove
+    LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a b : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), { hMul := fun a b => { mul := fun first second => { realPart := { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul first.1 second.1) (inst_2.neg ({ hMul := fun a b => inst_1.mul a b }.hMul first.2 second.2)), imaginaryPart := { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul first.1 second.2) ({ hMul := fun a b => inst_1.mul a b }.hMul first.2 second.1) } }.mul a b }.hMul a b = { hMul := fun a b => { mul := fun first second => { realPart := { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul first.1 second.1) (inst_2.neg ({ hMul := fun a b => inst_1.mul a b }.hMul first.2 second.2)), imaginaryPart := { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul first.1 second.2) ({ hMul := fun a b => inst_1.mul a b }.hMul first.2 second.1) } }.mul a b }.hMul b a
 
 Logical form (Lean):
 
@@ -329,11 +369,16 @@ theorem multiplication_is_commutative (a b : GaussianInteger R) :
 
 Predicate logic:
 
-  1 * a = a
+  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R 0] [inst_4 : OfNat R 1], LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), instHMul.hMul 1 a = a
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R (instOfNatNat 0).1] [inst_4 : OfNat R (instOfNatNat 1).1], LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), instHMul.1 LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.instOfNatGaussianIntegerOfNatNat_1.1 a = a
+  Ambient
+    (R)
+  Objects
+    a : GaussianInteger R
+  Prove
+    LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), { hMul := fun a b => { mul := fun first second => { realPart := { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul first.1 second.1) (inst_2.neg ({ hMul := fun a b => inst_1.mul a b }.hMul first.2 second.2)), imaginaryPart := { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul first.1 second.2) ({ hMul := fun a b => inst_1.mul a b }.hMul first.2 second.1) } }.mul a b }.hMul 1 a = a
 
 Logical form (Lean):
 
@@ -367,11 +412,16 @@ theorem one_mul_gaussian (a : GaussianInteger R) : 1 * a = a := by
 
 Predicate logic:
 
-  a * 1 = a
+  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R 0] [inst_4 : OfNat R 1], LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), instHMul.hMul a 1 = a
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R (instOfNatNat 0).1] [inst_4 : OfNat R (instOfNatNat 1).1], LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), instHMul.1 a LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.instOfNatGaussianIntegerOfNatNat_1.1 = a
+  Ambient
+    (R)
+  Objects
+    a : GaussianInteger R
+  Prove
+    LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), { hMul := fun a b => { mul := fun first second => { realPart := { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul first.1 second.1) (inst_2.neg ({ hMul := fun a b => inst_1.mul a b }.hMul first.2 second.2)), imaginaryPart := { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul first.1 second.2) ({ hMul := fun a b => inst_1.mul a b }.hMul first.2 second.1) } }.mul a b }.hMul a 1 = a
 
 Logical form (Lean):
 
@@ -405,11 +455,16 @@ theorem mul_one_gaussian (a : GaussianInteger R) : a * 1 = a := by
 
 Predicate logic:
 
-  0 * a = 0
+  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R 0] [inst_4 : OfNat R 1], LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), instHMul.hMul 0 a = 0
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R (instOfNatNat 0).1] [inst_4 : OfNat R (instOfNatNat 1).1], LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), instHMul.1 LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.instOfNatGaussianIntegerOfNatNat.1 a = LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.instOfNatGaussianIntegerOfNatNat.1
+  Ambient
+    (R)
+  Objects
+    a : GaussianInteger R
+  Prove
+    LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), { hMul := fun a b => { mul := fun first second => { realPart := { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul first.1 second.1) (inst_2.neg ({ hMul := fun a b => inst_1.mul a b }.hMul first.2 second.2)), imaginaryPart := { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul first.1 second.2) ({ hMul := fun a b => inst_1.mul a b }.hMul first.2 second.1) } }.mul a b }.hMul 0 a = 0
 
 Logical form (Lean):
 
@@ -443,11 +498,16 @@ theorem zero_mul_gaussian (a : GaussianInteger R) : 0 * a = 0 := by
 
 Predicate logic:
 
-  a * 0 = 0
+  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R 0] [inst_4 : OfNat R 1], LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), instHMul.hMul a 0 = 0
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R (instOfNatNat 0).1] [inst_4 : OfNat R (instOfNatNat 1).1], LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), instHMul.1 a LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.instOfNatGaussianIntegerOfNatNat.1 = LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.instOfNatGaussianIntegerOfNatNat.1
+  Ambient
+    (R)
+  Objects
+    a : GaussianInteger R
+  Prove
+    LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), { hMul := fun a b => { mul := fun first second => { realPart := { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul first.1 second.1) (inst_2.neg ({ hMul := fun a b => inst_1.mul a b }.hMul first.2 second.2)), imaginaryPart := { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul first.1 second.2) ({ hMul := fun a b => inst_1.mul a b }.hMul first.2 second.1) } }.mul a b }.hMul a 0 = 0
 
 Logical form (Lean):
 
@@ -481,11 +541,16 @@ theorem mul_zero_gaussian (a : GaussianInteger R) : a * 0 = 0 := by
 
 Predicate logic:
 
-  a * (b + c) = a * b + a * c
+  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R 0] [inst_4 : OfNat R 1], LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a b c : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), instHMul.hMul a (instHAdd.hAdd b c) = instHAdd.hAdd (instHMul.hMul a b) (instHMul.hMul a c)
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R (instOfNatNat 0).1] [inst_4 : OfNat R (instOfNatNat 1).1], LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a b c : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), instHMul.1 a (instHAdd.1 b c) = instHAdd.1 (instHMul.1 a b) (instHMul.1 a c)
+  Ambient
+    (R)
+  Objects
+    a b c : GaussianInteger R
+  Prove
+    LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a b c : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), { hMul := fun a b => { mul := fun first second => { realPart := { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul first.1 second.1) (inst_2.neg ({ hMul := fun a b => inst_1.mul a b }.hMul first.2 second.2)), imaginaryPart := { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul first.1 second.2) ({ hMul := fun a b => inst_1.mul a b }.hMul first.2 second.1) } }.mul a b }.hMul a ({ hAdd := fun a b => { add := fun first second => { realPart := { hAdd := fun a b => inst.add a b }.hAdd first.1 second.1, imaginaryPart := { hAdd := fun a b => inst.add a b }.hAdd first.2 second.2 } }.add a b }.hAdd b c) = { hAdd := fun a b => { add := fun first second => { realPart := { hAdd := fun a b => inst.add a b }.hAdd first.1 second.1, imaginaryPart := { hAdd := fun a b => inst.add a b }.hAdd first.2 second.2 } }.add a b }.hAdd ({ hMul := fun a b => { mul := fun first second => { realPart := { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul first.1 second.1) (inst_2.neg ({ hMul := fun a b => inst_1.mul a b }.hMul first.2 second.2)), imaginaryPart := { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul first.1 second.2) ({ hMul := fun a b => inst_1.mul a b }.hMul first.2 second.1) } }.mul a b }.hMul a b) ({ hMul := fun a b => { mul := fun first second => { realPart := { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul first.1 second.1) (inst_2.neg ({ hMul := fun a b => inst_1.mul a b }.hMul first.2 second.2)), imaginaryPart := { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul first.1 second.2) ({ hMul := fun a b => inst_1.mul a b }.hMul first.2 second.1) } }.mul a b }.hMul a c)
 
 Logical form (Lean):
 
@@ -521,11 +586,16 @@ theorem left_distributive_gaussian (a b c : GaussianInteger R) :
 
 Predicate logic:
 
-  (a + b) * c = a * c + b * c
+  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R 0] [inst_4 : OfNat R 1], LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a b c : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), instHMul.hMul (instHAdd.hAdd a b) c = instHAdd.hAdd (instHMul.hMul a c) (instHMul.hMul b c)
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R (instOfNatNat 0).1] [inst_4 : OfNat R (instOfNatNat 1).1], LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a b c : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), instHMul.1 (instHAdd.1 a b) c = instHAdd.1 (instHMul.1 a c) (instHMul.1 b c)
+  Ambient
+    (R)
+  Objects
+    a b c : GaussianInteger R
+  Prove
+    LRA.AlgebraicStructures.CommutativeRingLaws R → ∀ (a b c : LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.GaussianInteger R), { hMul := fun a b => { mul := fun first second => { realPart := { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul first.1 second.1) (inst_2.neg ({ hMul := fun a b => inst_1.mul a b }.hMul first.2 second.2)), imaginaryPart := { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul first.1 second.2) ({ hMul := fun a b => inst_1.mul a b }.hMul first.2 second.1) } }.mul a b }.hMul ({ hAdd := fun a b => { add := fun first second => { realPart := { hAdd := fun a b => inst.add a b }.hAdd first.1 second.1, imaginaryPart := { hAdd := fun a b => inst.add a b }.hAdd first.2 second.2 } }.add a b }.hAdd a b) c = { hAdd := fun a b => { add := fun first second => { realPart := { hAdd := fun a b => inst.add a b }.hAdd first.1 second.1, imaginaryPart := { hAdd := fun a b => inst.add a b }.hAdd first.2 second.2 } }.add a b }.hAdd ({ hMul := fun a b => { mul := fun first second => { realPart := { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul first.1 second.1) (inst_2.neg ({ hMul := fun a b => inst_1.mul a b }.hMul first.2 second.2)), imaginaryPart := { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul first.1 second.2) ({ hMul := fun a b => inst_1.mul a b }.hMul first.2 second.1) } }.mul a b }.hMul a c) ({ hMul := fun a b => { mul := fun first second => { realPart := { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul first.1 second.1) (inst_2.neg ({ hMul := fun a b => inst_1.mul a b }.hMul first.2 second.2)), imaginaryPart := { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul first.1 second.2) ({ hMul := fun a b => inst_1.mul a b }.hMul first.2 second.1) } }.mul a b }.hMul b c)
 
 Logical form (Lean):
 
@@ -561,11 +631,16 @@ theorem right_distributive_gaussian (a b c : GaussianInteger R) :
 
 Predicate logic:
 
-  imaginaryUnit * imaginaryUnit = -1 ∈ GaussianInteger R
+  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R 0] [inst_4 : OfNat R 1], LRA.AlgebraicStructures.CommutativeRingLaws R → instHMul.hMul LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.imaginaryUnit LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.imaginaryUnit = -1
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : OfNat R (instOfNatNat 0).1] [inst_4 : OfNat R (instOfNatNat 1).1], LRA.AlgebraicStructures.CommutativeRingLaws R → instHMul.1 { realPart := inst_3.1, imaginaryPart := inst_4.1 } { realPart := inst_3.1, imaginaryPart := inst_4.1 } = LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.instNegGaussianInteger.1 LRA.NumberSystems.GaussianIntegers.Constructions.OrderedPairs.instOfNatGaussianIntegerOfNatNat_1.1
+  Ambient
+    (R)
+  Objects
+    (none)
+  Prove
+    LRA.AlgebraicStructures.CommutativeRingLaws R → { hMul := fun a b => { mul := fun first second => { realPart := { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul first.1 second.1) (inst_2.neg ({ hMul := fun a b => inst_1.mul a b }.hMul first.2 second.2)), imaginaryPart := { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul first.1 second.2) ({ hMul := fun a b => inst_1.mul a b }.hMul first.2 second.1) } }.mul a b }.hMul { realPart := 0, imaginaryPart := 1 } { realPart := 0, imaginaryPart := 1 } = -1
 
 Logical form (Lean):
 

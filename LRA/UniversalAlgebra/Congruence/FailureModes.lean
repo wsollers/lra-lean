@@ -15,7 +15,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) (operation : Carrier → Carrier), (∀ {left right : Carrier}, relation left right → operation left = operation right) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ {left right : Carrier}, relation left right → operation left = operation right) → False
 
 Logical form (Lean):
 
@@ -61,7 +66,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (left right : Nat), instHMod.1 left (instOfNatNat 2).1 = instHMod.1 right (instOfNatNat 2).1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    instHMod.1 left 2 = instHMod.1 right 2
 
 Logical form (Lean):
 
@@ -98,12 +108,12 @@ def SameParity (left right : Nat) : Prop :=
 Predicate logic:
 
   def NaturalSuccessor : UnaryEndoOperation Nat :=
-  fun number => number + 1
+    fun number => number + 1
 
 Predicate logic (unfolded):
 
   def NaturalSuccessor : UnaryEndoOperation Nat :=
-  fun number => number + 1 (source fallback; no compiled unfold data available)
+    fun number => number + 1 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -139,11 +149,16 @@ def NaturalSuccessor : UnaryEndoOperation Nat :=
 
 Predicate logic:
 
-  FailsUnaryRelationSubstitution SameParity NaturalSuccessor
+  LRA.UniversalAlgebra.Congruence.FailsUnaryRelationSubstitution LRA.UniversalAlgebra.Congruence.SameParity LRA.UniversalAlgebra.Congruence.NaturalSuccessor
 
 Predicate logic (unfolded):
 
-  (∀ {left right : Nat}, instHMod.1 left (instOfNatNat 2).1 = instHMod.1 right (instOfNatNat 2).1 → instHAdd.1 left (instOfNatNat 1).1 = instHAdd.1 right (instOfNatNat 1).1) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ {left right : Nat}, instHMod.1 left 2 = instHMod.1 right 2 → { hAdd := fun a b => instAddNat.add a b }.hAdd left 1 = { hAdd := fun a b => instAddNat.add a b }.hAdd right 1) → False
 
 Logical form (Lean):
 

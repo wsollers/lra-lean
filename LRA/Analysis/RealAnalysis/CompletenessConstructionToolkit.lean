@@ -11,11 +11,19 @@ namespace LRA.Analysis.RealAnalysis
 
 Predicate logic:
 
-  (∀ hne ∈ S.Nonempty), (IsLUB S s) → ∀ ε > 0, ∃ x ∈ S, x > s - ε
+  ∀ (S : Set Real) (s : Real), (S.Nonempty ∧ (BddAbove S ∧ IsLUB S s)) → ∀ (ε : Real), GT.gt ε 0 → Exists fun x => (x ∈ S ∧ GT.gt x (instHSub.hSub s ε))
 
 Predicate logic (unfolded):
 
-  ∀ (S : Real → Prop) (s : Real), (Exists fun x => Set.instMembership.1 S x ∧ (Exists fun x => Set.instMembership.1 (fun x => ∀ ⦃a : Real⦄, Set.instMembership.1 S a → Real.instLE.1 a x) x ∧ (Set.instMembership.1 (fun x => ∀ ⦃a : Real⦄, Set.instMembership.1 S a → Real.instLE.1 a x) s ∧ Set.instMembership.1 (fun x => ∀ ⦃a : Real⦄, Set.instMembership.1 (upperBounds S) a → Real.instLE.1 x a) s))) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun x => (Set.instMembership.1 S x ∧ Real.instLT.1 (instHSub.1 s ε) x)
+  Ambient
+    (ℝ)
+  Objects
+    S : Set ℝ
+    s : ℝ
+    hne : S.Nonempty
+    hbdd : BddAbove S
+  Prove
+    (Exists fun x => x ∈ S ∧ ((Exists fun x => x ∈ fun x => ∀ ⦃a : Real⦄, a ∈ S → Real.instLE.le a x) ∧ ((s ∈ fun x => ∀ ⦃a : Real⦄, a ∈ S → Real.instLE.le a x) ∧ (s ∈ fun x => ∀ ⦃a : Real⦄, a ∈ upperBounds S → Real.instLE.le x a)))) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun x => (x ∈ S ∧ Real.instLT.lt ({ hSub := fun a b => Real.instSub.sub a b }.hSub s ε) x)
 
 Logical form (Lean):
 
@@ -53,11 +61,19 @@ theorem EpsCharSup (S : Set ℝ) (s : ℝ) (hne : S.Nonempty)
 
 Predicate logic:
 
-  (∀ hne ∈ S.Nonempty), (IsLUB S s) → ∃ x ∈ ℕ → ℝ, (∀ n, x n ∈ S) ∧ StrictMono x ∧ Filter.Tendsto x Filter.atTop (nhds s)
+  ∀ (S : Set Real) (s : Real), (S.Nonempty ∧ (BddAbove S ∧ IsLUB S s)) → Exists fun x => ((∀ (n : Nat), x n ∈ S) ∧ (StrictMono x ∧ Filter.Tendsto x Filter.atTop (nhds s)))
 
 Predicate logic (unfolded):
 
-  ∀ (S : Real → Prop) (s : Real), (Exists fun x => Set.instMembership.1 S x ∧ (Exists fun x => Set.instMembership.1 (fun x => ∀ ⦃a : Real⦄, Set.instMembership.1 S a → Real.instLE.1 a x) x ∧ (Set.instMembership.1 (fun x => ∀ ⦃a : Real⦄, Set.instMembership.1 S a → Real.instLE.1 a x) s ∧ Set.instMembership.1 (fun x => ∀ ⦃a : Real⦄, Set.instMembership.1 (upperBounds S) a → Real.instLE.1 x a) s))) → Exists fun x => (∀ (n : Nat), Set.instMembership.1 S (x n) ∧ (∀ ⦃a b : Nat⦄, Nat.instPreorder.toLT.1 a b → Real.instPreorder.toLT.1 (x a) (x b) ∧ Filter.instPartialOrder.toLE.1 { sets := fun x_1 => Set.instMembership.1 Filter.atTop.sets (Set.preimage x x_1), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds s)))
+  Ambient
+    (ℝ)
+  Objects
+    S : Set ℝ
+    s : ℝ
+    hne : S.Nonempty
+    hbdd : BddAbove S
+  Prove
+    (Exists fun x => x ∈ S ∧ ((Exists fun x => x ∈ fun x => ∀ ⦃a : Real⦄, a ∈ S → Real.instLE.le a x) ∧ ((s ∈ fun x => ∀ ⦃a : Real⦄, a ∈ S → Real.instLE.le a x) ∧ (s ∈ fun x => ∀ ⦃a : Real⦄, a ∈ upperBounds S → Real.instLE.le x a)))) → Exists fun x => ((∀ (n : Nat), x n ∈ S) ∧ ((∀ ⦃a b : Nat⦄, Nat.instPreorder.2.lt a b → Real.instPreorder.2.lt (x a) (x b)) ∧ Filter.instPartialOrder.toPreorder.1.le { sets := fun x_1 => setOf fun x_2 => x x_2 ∈ x_1 ∈ Filter.atTop.1, univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds s)))
 
 Logical form (Lean):
 
@@ -97,11 +113,19 @@ theorem InductiveSelection (S : Set ℝ) (s : ℝ) (hne : S.Nonempty)
 
 Predicate logic:
 
-  (∀ hne ∈ S.Nonempty), ∃ x ∈ ℕ → ℝ, (∀ n, x n ∈ S ∧ Monotone x ∧ Filter.Tendsto x Filter.atTop (nhds (sSup S))) ∧ ∃ y ∈ ℕ → ℝ, (∀ n, y n ∈ S ∧ Antitone y ∧ Filter.Tendsto y Filter.atTop (nhds (sInf S)))
+  ∀ (S : Set Real), (S.Nonempty ∧ (BddAbove S ∧ BddBelow S)) → ((Exists fun x => ((∀ (n : Nat), x n ∈ S) ∧ (Monotone x ∧ Filter.Tendsto x Filter.atTop (nhds (Real.instSupSet.sSup S))))) ∧ (Exists fun y => ((∀ (n : Nat), y n ∈ S) ∧ (Antitone y ∧ Filter.Tendsto y Filter.atTop (nhds (Real.instInfSet.sInf S))))))
 
 Predicate logic (unfolded):
 
-  ∀ (S : Real → Prop), (Exists fun x => Set.instMembership.1 S x ∧ (Exists fun x => Set.instMembership.1 (fun x => ∀ ⦃a : Real⦄, Set.instMembership.1 S a → Real.instLE.1 a x) x ∧ Exists fun x => Set.instMembership.1 (fun x => ∀ ⦃a : Real⦄, Set.instMembership.1 S a → Real.instLE.1 x a) x)) → (Exists fun x => (∀ (n : Nat), Set.instMembership.1 S (x n) ∧ (∀ ⦃a b : Nat⦄, Nat.instPreorder.toLE.1 a b → Real.instPreorder.toLE.1 (x a) (x b) ∧ Filter.instPartialOrder.toLE.1 { sets := fun x_1 => Set.instMembership.1 Filter.atTop.sets (Set.preimage x x_1), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds (Real.instSupSet.1 S)))) ∧ Exists fun y => (∀ (n : Nat), Set.instMembership.1 S (y n) ∧ (∀ ⦃a b : Nat⦄, Nat.instPreorder.toLE.1 a b → Real.instPreorder.toLE.1 (y b) (y a) ∧ Filter.instPartialOrder.toLE.1 { sets := fun x => Set.instMembership.1 Filter.atTop.sets (Set.preimage y x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds (Real.instInfSet.1 S)))))
+  Ambient
+    (ℝ)
+  Objects
+    S : Set ℝ
+    hne : S.Nonempty
+    hbdd_above : BddAbove S
+    hbdd_below : BddBelow S
+  Prove
+    (Exists fun x => x ∈ S ∧ ((Exists fun x => x ∈ fun x => ∀ ⦃a : Real⦄, a ∈ S → Real.instLE.le a x) ∧ (Exists fun x => x ∈ fun x => ∀ ⦃a : Real⦄, a ∈ S → Real.instLE.le x a))) → ((Exists fun x => ((∀ (n : Nat), x n ∈ S) ∧ ((∀ ⦃a b : Nat⦄, Nat.instPreorder.1.le a b → Real.instPreorder.1.le (x a) (x b)) ∧ Filter.instPartialOrder.toPreorder.1.le { sets := fun x_1 => setOf fun x_2 => x x_2 ∈ x_1 ∈ Filter.atTop.1, univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds (Real.instSupSet.1 S))))) ∧ (Exists fun y => ((∀ (n : Nat), y n ∈ S) ∧ ((∀ ⦃a b : Nat⦄, Nat.instPreorder.1.le a b → Real.instPreorder.1.le (y b) (y a)) ∧ Filter.instPartialOrder.toPreorder.1.le { sets := fun x => setOf fun x_1 => y x_1 ∈ x ∈ Filter.atTop.1, univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds (Real.instInfSet.1 S))))))
 
 Logical form (Lean):
 

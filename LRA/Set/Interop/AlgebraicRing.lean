@@ -32,11 +32,16 @@ scoped instance : Neg (TypeSet Alpha) where
 
 Predicate logic:
 
-  ∀ A : TypeSet Alpha, 1 * A = A
+  ∀ {Alpha : Type u} (A : LRA.Set.Constructions.TypeSet Alpha), instHMul.hMul 1 A = A
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A : Alpha → Prop), instHMul.1 LRA.Set.Interop.AlgebraicRing.instOfNatPredicateSetOfNatNat_1.1 A = A
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    { hMul := fun a b => { mul := fun A B x => (LRA.Set.Constructions.instMembershipTypeSet.1 A x ∧ LRA.Set.Constructions.instMembershipTypeSet.1 B x) }.mul a b }.hMul 1 A = A
 
 Logical form (Lean):
 
@@ -71,11 +76,16 @@ theorem UniversalIntersection : ∀ A : TypeSet Alpha, 1 * A = A := by
 
 Predicate logic:
 
-  ∀ A : TypeSet Alpha, A * 1 = A
+  ∀ {Alpha : Type u} (A : LRA.Set.Constructions.TypeSet Alpha), instHMul.hMul A 1 = A
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A : Alpha → Prop), instHMul.1 A LRA.Set.Interop.AlgebraicRing.instOfNatPredicateSetOfNatNat_1.1 = A
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    { hMul := fun a b => { mul := fun A B x => (LRA.Set.Constructions.instMembershipTypeSet.1 A x ∧ LRA.Set.Constructions.instMembershipTypeSet.1 B x) }.mul a b }.hMul A 1 = A
 
 Logical form (Lean):
 
@@ -110,11 +120,16 @@ theorem IntersectionUniversal : ∀ A : TypeSet Alpha, A * 1 = A := by
 
 Predicate logic:
 
-  ∀ A B C : TypeSet Alpha, A * (B + C) = A * B + A * C
+  ∀ {Alpha : Type u} (A B C : LRA.Set.Constructions.TypeSet Alpha), instHMul.hMul A (instHAdd.hAdd B C) = instHAdd.hAdd (instHMul.hMul A B) (instHMul.hMul A C)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A B C : Alpha → Prop), instHMul.1 A (instHAdd.1 B C) = instHAdd.1 (instHMul.1 A B) (instHMul.1 A C)
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    { hMul := fun a b => { mul := fun A B x => (LRA.Set.Constructions.instMembershipTypeSet.1 A x ∧ LRA.Set.Constructions.instMembershipTypeSet.1 B x) }.mul a b }.hMul A ({ hAdd := fun a b => { add := fun A B x => Or ((LRA.Set.Constructions.instMembershipTypeSet.1 A x ∧ (LRA.Set.Constructions.instMembershipTypeSet.1 B x → False))) ((LRA.Set.Constructions.instMembershipTypeSet.1 B x ∧ (LRA.Set.Constructions.instMembershipTypeSet.1 A x → False))) }.add a b }.hAdd B C) = { hAdd := fun a b => { add := fun A B x => Or ((LRA.Set.Constructions.instMembershipTypeSet.1 A x ∧ (LRA.Set.Constructions.instMembershipTypeSet.1 B x → False))) ((LRA.Set.Constructions.instMembershipTypeSet.1 B x ∧ (LRA.Set.Constructions.instMembershipTypeSet.1 A x → False))) }.add a b }.hAdd ({ hMul := fun a b => { mul := fun A B x => (LRA.Set.Constructions.instMembershipTypeSet.1 A x ∧ LRA.Set.Constructions.instMembershipTypeSet.1 B x) }.mul a b }.hMul A B) ({ hMul := fun a b => { mul := fun A B x => (LRA.Set.Constructions.instMembershipTypeSet.1 A x ∧ LRA.Set.Constructions.instMembershipTypeSet.1 B x) }.mul a b }.hMul A C)
 
 Logical form (Lean):
 
@@ -151,11 +166,16 @@ theorem IntersectionDistributesOverSymmetricDifference :
 
 Predicate logic:
 
-  ∀ A B C : TypeSet Alpha, (A + B) * C = A * C + B * C
+  ∀ {Alpha : Type u} (A B C : LRA.Set.Constructions.TypeSet Alpha), instHMul.hMul (instHAdd.hAdd A B) C = instHAdd.hAdd (instHMul.hMul A C) (instHMul.hMul B C)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A B C : Alpha → Prop), instHMul.1 (instHAdd.1 A B) C = instHAdd.1 (instHMul.1 A C) (instHMul.1 B C)
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    { hMul := fun a b => { mul := fun A B x => (LRA.Set.Constructions.instMembershipTypeSet.1 A x ∧ LRA.Set.Constructions.instMembershipTypeSet.1 B x) }.mul a b }.hMul ({ hAdd := fun a b => { add := fun A B x => Or ((LRA.Set.Constructions.instMembershipTypeSet.1 A x ∧ (LRA.Set.Constructions.instMembershipTypeSet.1 B x → False))) ((LRA.Set.Constructions.instMembershipTypeSet.1 B x ∧ (LRA.Set.Constructions.instMembershipTypeSet.1 A x → False))) }.add a b }.hAdd A B) C = { hAdd := fun a b => { add := fun A B x => Or ((LRA.Set.Constructions.instMembershipTypeSet.1 A x ∧ (LRA.Set.Constructions.instMembershipTypeSet.1 B x → False))) ((LRA.Set.Constructions.instMembershipTypeSet.1 B x ∧ (LRA.Set.Constructions.instMembershipTypeSet.1 A x → False))) }.add a b }.hAdd ({ hMul := fun a b => { mul := fun A B x => (LRA.Set.Constructions.instMembershipTypeSet.1 A x ∧ LRA.Set.Constructions.instMembershipTypeSet.1 B x) }.mul a b }.hMul A C) ({ hMul := fun a b => { mul := fun A B x => (LRA.Set.Constructions.instMembershipTypeSet.1 A x ∧ LRA.Set.Constructions.instMembershipTypeSet.1 B x) }.mul a b }.hMul B C)
 
 Logical form (Lean):
 

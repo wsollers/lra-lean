@@ -4,15 +4,45 @@ namespace LRA.AlgebraicStructures.Monoid.Examples
 
 universe u
 
-/-- The free monoid on `Alphabet`: words (finite sequences) under
-concatenation, with the empty word `ε` as identity — `(Σ*, ·, ε)`. Wrapped in
-a one-field structure to avoid colliding with `Semigroup.Examples.
-NonemptyListsUnderConcatenation`'s own `Mul (List Alphabet)` instance on the
-*same* ambient type: that example deliberately excludes the empty list to
-stay a semigroup-not-monoid case, so re-registering `Mul (List Alphabet)`
-here directly would be a genuine duplicate global instance once both files
-are loaded together. This one is the actual free monoid, over all of
-`List Alphabet` including `[]`. -/
+/--
+`Words` The free monoid on `Alphabet`: words (finite sequences) under concatenation, with the empty word `ε` as identity — `(Σ*, ·, ε)`. Wrapped in a one-field structure to avoid colliding with `Semigroup.Examples. NonemptyListsUnderConcatenation`'s own `Mul (List Alphabet)` instance on the *same* ambient type: that example deliberately excludes the empty list to stay a semigroup-not-monoid case, so re-registering `Mul (List Alphabet)` here directly would be a genuine duplicate global instance once both files are loaded together. This one is the actual free monoid, over all of `List Alphabet` including `[]`.
+
+Predicate logic:
+
+  structure Words (Alphabet : Type u) where
+    val : List Alphabet
+
+Predicate logic (unfolded):
+
+  structure Words (Alphabet : Type u) where
+    val : List Alphabet (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+structure Words (Alphabet : Type u) where
+  val : List Alphabet
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 structure Words (Alphabet : Type u) where
   val : List Alphabet
 

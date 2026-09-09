@@ -18,32 +18,32 @@ namespace LRA.ModelTheory.FirstOrder
 Predicate logic:
 
   def qOrderedRingModel : Model orderedRingSignature where
-  Domain := Rat
-  domainNonempty := ⟨0⟩
-  interpretFunction
-    | .add, args => args ⟨0, by decide⟩ + args ⟨1, by decide⟩
-    | .mul, args => args ⟨0, by decide⟩ * args ⟨1, by decide⟩
-    | .neg, args => -(args ⟨0, by decide⟩)
-  interpretRelation
-    | .lt, args => args ⟨0, by decide⟩ < args ⟨1, by decide⟩
-  interpretConstant
-    | .zero => 0
-    | .one => 1
+    Domain := Rat
+    domainNonempty := ⟨0⟩
+    interpretFunction
+      | .add, args => args ⟨0, by decide⟩ + args ⟨1, by decide⟩
+      | .mul, args => args ⟨0, by decide⟩ * args ⟨1, by decide⟩
+      | .neg, args => -(args ⟨0, by decide⟩)
+    interpretRelation
+      | .lt, args => args ⟨0, by decide⟩ < args ⟨1, by decide⟩
+    interpretConstant
+      | .zero => 0
+      | .one => 1
 
 Predicate logic (unfolded):
 
   def qOrderedRingModel : Model orderedRingSignature where
-  Domain := Rat
-  domainNonempty := ⟨0⟩
-  interpretFunction
-    | .add, args => args ⟨0, by decide⟩ + args ⟨1, by decide⟩
-    | .mul, args => args ⟨0, by decide⟩ * args ⟨1, by decide⟩
-    | .neg, args => -(args ⟨0, by decide⟩)
-  interpretRelation
-    | .lt, args => args ⟨0, by decide⟩ < args ⟨1, by decide⟩
-  interpretConstant
-    | .zero => 0
-    | .one => 1 (source fallback; no compiled unfold data available)
+    Domain := Rat
+    domainNonempty := ⟨0⟩
+    interpretFunction
+      | .add, args => args ⟨0, by decide⟩ + args ⟨1, by decide⟩
+      | .mul, args => args ⟨0, by decide⟩ * args ⟨1, by decide⟩
+      | .neg, args => -(args ⟨0, by decide⟩)
+    interpretRelation
+      | .lt, args => args ⟨0, by decide⟩ < args ⟨1, by decide⟩
+    interpretConstant
+      | .zero => 0
+      | .one => 1 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -99,11 +99,16 @@ def qOrderedRingModel : Model orderedRingSignature where
 
 Predicate logic:
 
-  (∀ a b ∈ Rat), qOrderedRingModel.interpretFunction .add (fun i => if i.val = 0 then a else b) = a + b
+  ∀ (a b : Rat), LRA.ModelTheory.FirstOrder.qOrderedRingModel.interpretFunction LRA.Logic.OrderedRingFunctionSymbol.add fun i => ite (i.val = 0)a b = instHAdd.hAdd a b
 
 Predicate logic (unfolded):
 
-  ∀ (a b : Rat), LRA.ModelTheory.FirstOrder.qOrderedRingModel.5 LRA.Logic.OrderedRingFunctionSymbol.add fun i => Decidable.rec (fun h => (fun x => b) h) (fun h => (fun x => a) h) (Bool.casesOn (motive := fun x => i.val.beq 0 = x → (fun x => Decidable (i.val = 0))x) (i.val.beq 0) (fun h => Decidable.isFalse ⋯) (fun h => Decidable.isTrue ⋯) ⋯) = instHAdd.1 a b
+  Ambient
+    (Rat)
+  Objects
+    a b : Rat
+  Prove
+    LRA.ModelTheory.FirstOrder.qOrderedRingModel.5 LRA.Logic.OrderedRingFunctionSymbol.add fun i => Decidable.rec (fun h => (fun x => b) h) (fun h => (fun x => a) h) (Bool.casesOn (motive := fun x => i.val.beq 0 = x → (fun x => Decidable (i.val = 0))x) (i.val.beq 0) (fun h => Decidable.isFalse ⋯) (fun h => Decidable.isTrue ⋯) ⋯) = { hAdd := fun a b => Rat.instAdd.add a b }.hAdd a b
 
 Logical form (Lean):
 
@@ -143,11 +148,16 @@ theorem qOrderedRingModel.addComputesAddition
 
 Predicate logic:
 
-  qOrderedRingModel.interpretConstant .zero = 0 ∈ Rat
+  LRA.ModelTheory.FirstOrder.qOrderedRingModel.interpretConstant LRA.Logic.OrderedRingConstantSymbol.zero = 0
 
 Predicate logic (unfolded):
 
-  LRA.ModelTheory.FirstOrder.qOrderedRingModel.7 LRA.Logic.OrderedRingConstantSymbol.zero = Rat.instOfNat.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.ModelTheory.FirstOrder.qOrderedRingModel.7 LRA.Logic.OrderedRingConstantSymbol.zero = 0
 
 Logical form (Lean):
 
@@ -183,11 +193,16 @@ theorem qOrderedRingModel.zeroComputesZero :
 
 Predicate logic:
 
-  qOrderedRingModel.interpretConstant .one = 1 ∈ Rat
+  LRA.ModelTheory.FirstOrder.qOrderedRingModel.interpretConstant LRA.Logic.OrderedRingConstantSymbol.one = 1
 
 Predicate logic (unfolded):
 
-  LRA.ModelTheory.FirstOrder.qOrderedRingModel.7 LRA.Logic.OrderedRingConstantSymbol.one = Rat.instOfNat.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.ModelTheory.FirstOrder.qOrderedRingModel.7 LRA.Logic.OrderedRingConstantSymbol.one = 1
 
 Logical form (Lean):
 
@@ -224,32 +239,32 @@ theorem qOrderedRingModel.oneComputesOne :
 Predicate logic:
 
   def rOrderedRingModel : Model orderedRingSignature where
-  Domain := Real
-  domainNonempty := ⟨0⟩
-  interpretFunction
-    | .add, args => args ⟨0, by decide⟩ + args ⟨1, by decide⟩
-    | .mul, args => args ⟨0, by decide⟩ * args ⟨1, by decide⟩
-    | .neg, args => -(args ⟨0, by decide⟩)
-  interpretRelation
-    | .lt, args => args ⟨0, by decide⟩ < args ⟨1, by decide⟩
-  interpretConstant
-    | .zero => 0
-    | .one => 1
+    Domain := Real
+    domainNonempty := ⟨0⟩
+    interpretFunction
+      | .add, args => args ⟨0, by decide⟩ + args ⟨1, by decide⟩
+      | .mul, args => args ⟨0, by decide⟩ * args ⟨1, by decide⟩
+      | .neg, args => -(args ⟨0, by decide⟩)
+    interpretRelation
+      | .lt, args => args ⟨0, by decide⟩ < args ⟨1, by decide⟩
+    interpretConstant
+      | .zero => 0
+      | .one => 1
 
 Predicate logic (unfolded):
 
   def rOrderedRingModel : Model orderedRingSignature where
-  Domain := Real
-  domainNonempty := ⟨0⟩
-  interpretFunction
-    | .add, args => args ⟨0, by decide⟩ + args ⟨1, by decide⟩
-    | .mul, args => args ⟨0, by decide⟩ * args ⟨1, by decide⟩
-    | .neg, args => -(args ⟨0, by decide⟩)
-  interpretRelation
-    | .lt, args => args ⟨0, by decide⟩ < args ⟨1, by decide⟩
-  interpretConstant
-    | .zero => 0
-    | .one => 1 (source fallback; no compiled unfold data available)
+    Domain := Real
+    domainNonempty := ⟨0⟩
+    interpretFunction
+      | .add, args => args ⟨0, by decide⟩ + args ⟨1, by decide⟩
+      | .mul, args => args ⟨0, by decide⟩ * args ⟨1, by decide⟩
+      | .neg, args => -(args ⟨0, by decide⟩)
+    interpretRelation
+      | .lt, args => args ⟨0, by decide⟩ < args ⟨1, by decide⟩
+    interpretConstant
+      | .zero => 0
+      | .one => 1 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -305,11 +320,16 @@ def rOrderedRingModel : Model orderedRingSignature where
 
 Predicate logic:
 
-  (∀ a b ∈ Real), rOrderedRingModel.interpretFunction .add (fun i => if i.val = 0 then a else b) = a + b
+  ∀ (a b : Real), LRA.ModelTheory.FirstOrder.rOrderedRingModel.interpretFunction LRA.Logic.OrderedRingFunctionSymbol.add fun i => ite (i.val = 0)a b = instHAdd.hAdd a b
 
 Predicate logic (unfolded):
 
-  ∀ (a b : Real), LRA.ModelTheory.FirstOrder.rOrderedRingModel.5 LRA.Logic.OrderedRingFunctionSymbol.add fun i => Decidable.rec (fun h => (fun x => b) h) (fun h => (fun x => a) h) (Bool.casesOn (motive := fun x => i.val.beq 0 = x → (fun x => Decidable (i.val = 0))x) (i.val.beq 0) (fun h => Decidable.isFalse ⋯) (fun h => Decidable.isTrue ⋯) ⋯) = instHAdd.1 a b
+  Ambient
+    (Real)
+  Objects
+    a b : Real
+  Prove
+    LRA.ModelTheory.FirstOrder.rOrderedRingModel.5 LRA.Logic.OrderedRingFunctionSymbol.add fun i => Decidable.rec (fun h => (fun x => b) h) (fun h => (fun x => a) h) (Bool.casesOn (motive := fun x => i.val.beq 0 = x → (fun x => Decidable (i.val = 0))x) (i.val.beq 0) (fun h => Decidable.isFalse ⋯) (fun h => Decidable.isTrue ⋯) ⋯) = { hAdd := fun a b => Real.instAdd.add a b }.hAdd a b
 
 Logical form (Lean):
 
@@ -349,11 +369,16 @@ theorem rOrderedRingModel.addComputesAddition
 
 Predicate logic:
 
-  rOrderedRingModel.interpretConstant .zero = 0 ∈ Real
+  LRA.ModelTheory.FirstOrder.rOrderedRingModel.interpretConstant LRA.Logic.OrderedRingConstantSymbol.zero = 0
 
 Predicate logic (unfolded):
 
-  LRA.ModelTheory.FirstOrder.rOrderedRingModel.7 LRA.Logic.OrderedRingConstantSymbol.zero = Zero.toOfNat0.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.ModelTheory.FirstOrder.rOrderedRingModel.7 LRA.Logic.OrderedRingConstantSymbol.zero = 0
 
 Logical form (Lean):
 
@@ -389,11 +414,16 @@ theorem rOrderedRingModel.zeroComputesZero :
 
 Predicate logic:
 
-  rOrderedRingModel.interpretConstant .one = 1 ∈ Real
+  LRA.ModelTheory.FirstOrder.rOrderedRingModel.interpretConstant LRA.Logic.OrderedRingConstantSymbol.one = 1
 
 Predicate logic (unfolded):
 
-  LRA.ModelTheory.FirstOrder.rOrderedRingModel.7 LRA.Logic.OrderedRingConstantSymbol.one = One.toOfNat1.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.ModelTheory.FirstOrder.rOrderedRingModel.7 LRA.Logic.OrderedRingConstantSymbol.one = 1
 
 Logical form (Lean):
 
@@ -430,32 +460,32 @@ theorem rOrderedRingModel.oneComputesOne :
 Predicate logic:
 
   def zToQEmbedding : ModelEmbedding intOrderedRingModel qOrderedRingModel where
-  toFun := (Int.cast : Int -> Rat)
-  injective := (Int.cast_injective : Function.Injective (Int.cast : Int -> Rat))
-  preservesFunction
-    | .add, args => by simp [intOrderedRingModel, qOrderedRingModel]
-    | .mul, args => by simp [intOrderedRingModel, qOrderedRingModel]
-    | .neg, args => by simp [intOrderedRingModel, qOrderedRingModel]
-  preservesConstant
-    | .zero => by simp [intOrderedRingModel, qOrderedRingModel]
-    | .one => by simp [intOrderedRingModel, qOrderedRingModel]
-  preservesRelation
-    | .lt, args => by simp [intOrderedRingModel, qOrderedRingModel, Int.cast_lt]
+    toFun := (Int.cast : Int -> Rat)
+    injective := (Int.cast_injective : Function.Injective (Int.cast : Int -> Rat))
+    preservesFunction
+      | .add, args => by simp [intOrderedRingModel, qOrderedRingModel]
+      | .mul, args => by simp [intOrderedRingModel, qOrderedRingModel]
+      | .neg, args => by simp [intOrderedRingModel, qOrderedRingModel]
+    preservesConstant
+      | .zero => by simp [intOrderedRingModel, qOrderedRingModel]
+      | .one => by simp [intOrderedRingModel, qOrderedRingModel]
+    preservesRelation
+      | .lt, args => by simp [intOrderedRingModel, qOrderedRingModel, Int.cast_lt]
 
 Predicate logic (unfolded):
 
   def zToQEmbedding : ModelEmbedding intOrderedRingModel qOrderedRingModel where
-  toFun := (Int.cast : Int -> Rat)
-  injective := (Int.cast_injective : Function.Injective (Int.cast : Int -> Rat))
-  preservesFunction
-    | .add, args => by simp [intOrderedRingModel, qOrderedRingModel]
-    | .mul, args => by simp [intOrderedRingModel, qOrderedRingModel]
-    | .neg, args => by simp [intOrderedRingModel, qOrderedRingModel]
-  preservesConstant
-    | .zero => by simp [intOrderedRingModel, qOrderedRingModel]
-    | .one => by simp [intOrderedRingModel, qOrderedRingModel]
-  preservesRelation
-    | .lt, args => by simp [intOrderedRingModel, qOrderedRingModel, Int.cast_lt] (source fallback; no compiled unfold data available)
+    toFun := (Int.cast : Int -> Rat)
+    injective := (Int.cast_injective : Function.Injective (Int.cast : Int -> Rat))
+    preservesFunction
+      | .add, args => by simp [intOrderedRingModel, qOrderedRingModel]
+      | .mul, args => by simp [intOrderedRingModel, qOrderedRingModel]
+      | .neg, args => by simp [intOrderedRingModel, qOrderedRingModel]
+    preservesConstant
+      | .zero => by simp [intOrderedRingModel, qOrderedRingModel]
+      | .one => by simp [intOrderedRingModel, qOrderedRingModel]
+    preservesRelation
+      | .lt, args => by simp [intOrderedRingModel, qOrderedRingModel, Int.cast_lt] (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -512,32 +542,32 @@ def zToQEmbedding : ModelEmbedding intOrderedRingModel qOrderedRingModel where
 Predicate logic:
 
   def qToREmbedding : ModelEmbedding qOrderedRingModel rOrderedRingModel where
-  toFun := (Rat.cast : Rat -> Real)
-  injective := (Rat.cast_injective : Function.Injective (Rat.cast : Rat -> Real))
-  preservesFunction
-    | .add, args => by simp [qOrderedRingModel, rOrderedRingModel]
-    | .mul, args => by simp [qOrderedRingModel, rOrderedRingModel]
-    | .neg, args => by simp [qOrderedRingModel, rOrderedRingModel]
-  preservesConstant
-    | .zero => by simp [qOrderedRingModel, rOrderedRingModel]
-    | .one => by simp [qOrderedRingModel, rOrderedRingModel]
-  preservesRelation
-    | .lt, args => by simp [qOrderedRingModel, rOrderedRingModel, Rat.cast_lt]
+    toFun := (Rat.cast : Rat -> Real)
+    injective := (Rat.cast_injective : Function.Injective (Rat.cast : Rat -> Real))
+    preservesFunction
+      | .add, args => by simp [qOrderedRingModel, rOrderedRingModel]
+      | .mul, args => by simp [qOrderedRingModel, rOrderedRingModel]
+      | .neg, args => by simp [qOrderedRingModel, rOrderedRingModel]
+    preservesConstant
+      | .zero => by simp [qOrderedRingModel, rOrderedRingModel]
+      | .one => by simp [qOrderedRingModel, rOrderedRingModel]
+    preservesRelation
+      | .lt, args => by simp [qOrderedRingModel, rOrderedRingModel, Rat.cast_lt]
 
 Predicate logic (unfolded):
 
   def qToREmbedding : ModelEmbedding qOrderedRingModel rOrderedRingModel where
-  toFun := (Rat.cast : Rat -> Real)
-  injective := (Rat.cast_injective : Function.Injective (Rat.cast : Rat -> Real))
-  preservesFunction
-    | .add, args => by simp [qOrderedRingModel, rOrderedRingModel]
-    | .mul, args => by simp [qOrderedRingModel, rOrderedRingModel]
-    | .neg, args => by simp [qOrderedRingModel, rOrderedRingModel]
-  preservesConstant
-    | .zero => by simp [qOrderedRingModel, rOrderedRingModel]
-    | .one => by simp [qOrderedRingModel, rOrderedRingModel]
-  preservesRelation
-    | .lt, args => by simp [qOrderedRingModel, rOrderedRingModel, Rat.cast_lt] (source fallback; no compiled unfold data available)
+    toFun := (Rat.cast : Rat -> Real)
+    injective := (Rat.cast_injective : Function.Injective (Rat.cast : Rat -> Real))
+    preservesFunction
+      | .add, args => by simp [qOrderedRingModel, rOrderedRingModel]
+      | .mul, args => by simp [qOrderedRingModel, rOrderedRingModel]
+      | .neg, args => by simp [qOrderedRingModel, rOrderedRingModel]
+    preservesConstant
+      | .zero => by simp [qOrderedRingModel, rOrderedRingModel]
+      | .one => by simp [qOrderedRingModel, rOrderedRingModel]
+    preservesRelation
+      | .lt, args => by simp [qOrderedRingModel, rOrderedRingModel, Rat.cast_lt] (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -594,12 +624,12 @@ def qToREmbedding : ModelEmbedding qOrderedRingModel rOrderedRingModel where
 Predicate logic:
 
   def qToQIsomorphism : ModelIsomorphism qOrderedRingModel qOrderedRingModel :=
-  Automorphism.identity qOrderedRingModel
+    Automorphism.identity qOrderedRingModel
 
 Predicate logic (unfolded):
 
   def qToQIsomorphism : ModelIsomorphism qOrderedRingModel qOrderedRingModel :=
-  Automorphism.identity qOrderedRingModel (source fallback; no compiled unfold data available)
+    Automorphism.identity qOrderedRingModel (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -636,12 +666,12 @@ def qToQIsomorphism : ModelIsomorphism qOrderedRingModel qOrderedRingModel :=
 Predicate logic:
 
   def qToQAutomorphism : Automorphism qOrderedRingModel :=
-  Automorphism.identity qOrderedRingModel
+    Automorphism.identity qOrderedRingModel
 
 Predicate logic (unfolded):
 
   def qToQAutomorphism : Automorphism qOrderedRingModel :=
-  Automorphism.identity qOrderedRingModel (source fallback; no compiled unfold data available)
+    Automorphism.identity qOrderedRingModel (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -677,11 +707,16 @@ def qToQAutomorphism : Automorphism qOrderedRingModel :=
 
 Predicate logic:
 
-  qToQIsomorphism.toFun = id ∈ Rat -> Rat
+  LRA.ModelTheory.FirstOrder.qToQIsomorphism.toFun = id
 
 Predicate logic (unfolded):
 
-  LRA.ModelTheory.FirstOrder.qToQIsomorphism.toModelEmbedding.1 = funa => a
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.ModelTheory.FirstOrder.qToQIsomorphism.toModelEmbedding.1 = funa => a
 
 Logical form (Lean):
 

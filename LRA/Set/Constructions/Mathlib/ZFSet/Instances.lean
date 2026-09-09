@@ -59,12 +59,12 @@ instance : HasSymmDiff ZFSet where
 Predicate logic:
 
   noncomputable def CountableUnion (family : Nat → ZFSet) : ZFSet :=
-  ZFSet.sUnion (ZFSet.range family)
+    ZFSet.sUnion (ZFSet.range family)
 
 Predicate logic (unfolded):
 
   noncomputable def CountableUnion (family : Nat → ZFSet) : ZFSet :=
-  ZFSet.sUnion (ZFSet.range family) (source fallback; no compiled unfold data available)
+    ZFSet.sUnion (ZFSet.range family) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -101,12 +101,12 @@ noncomputable def CountableUnion (family : Nat → ZFSet) : ZFSet :=
 Predicate logic:
 
   noncomputable def CountableIntersection (family : Nat → ZFSet) : ZFSet :=
-  ZFSet.sInter (ZFSet.range family)
+    ZFSet.sInter (ZFSet.range family)
 
 Predicate logic (unfolded):
 
   noncomputable def CountableIntersection (family : Nat → ZFSet) : ZFSet :=
-  ZFSet.sInter (ZFSet.range family) (source fallback; no compiled unfold data available)
+    ZFSet.sInter (ZFSet.range family) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

@@ -16,22 +16,22 @@ section MathlibIntegers
 Predicate logic:
 
   noncomputable def MathlibRationalSystem
-    (rationalData : IntegerAndPositiveNaturalData)
-    (_usesMathlibIntegers :
-      rationalData.integer_system =
-        LRA.NumberSystems.Integers.Examples.MathlibIntegerNumberSystem) :
-    RationalNumberSystem :=
-  RationalQuotientFractionsRealizesRationalNumberSystem rationalData
+      (rationalData : IntegerAndPositiveNaturalData)
+      (_usesMathlibIntegers :
+        rationalData.integer_system =
+          LRA.NumberSystems.Integers.Examples.MathlibIntegerNumberSystem) :
+      RationalNumberSystem :=
+    RationalQuotientFractionsRealizesRationalNumberSystem rationalData
 
 Predicate logic (unfolded):
 
   noncomputable def MathlibRationalSystem
-    (rationalData : IntegerAndPositiveNaturalData)
-    (_usesMathlibIntegers :
-      rationalData.integer_system =
-        LRA.NumberSystems.Integers.Examples.MathlibIntegerNumberSystem) :
-    RationalNumberSystem :=
-  RationalQuotientFractionsRealizesRationalNumberSystem rationalData (source fallback; no compiled unfold data available)
+      (rationalData : IntegerAndPositiveNaturalData)
+      (_usesMathlibIntegers :
+        rationalData.integer_system =
+          LRA.NumberSystems.Integers.Examples.MathlibIntegerNumberSystem) :
+      RationalNumberSystem :=
+    RationalQuotientFractionsRealizesRationalNumberSystem rationalData (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -77,11 +77,16 @@ noncomputable def MathlibRationalSystem
 
 Predicate logic:
 
-  (∀ rationalData ∈ IntegerAndPositiveNaturalData), (rationalData.integer_system = LRA.NumberSystems.Integers.Examples.MathlibIntegerNumberSystem) → (MathlibRationalSystem rationalData usesMathlibIntegers).IntegerSystem = LRA.NumberSystems.Integers.Examples.MathlibIntegerNumberSystem
+  ∀ (rationalData : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData) (usesMathlibIntegers : rationalData.integer_system = LRA.NumberSystems.Integers.Examples.MathlibIntegerNumberSystem), LRA.NumberSystems.RationalNumbers.Examples.MathlibRationalSystem rationalData usesMathlibIntegers = .IntegerSystem LRA.NumberSystems.Integers.Examples.MathlibIntegerNumberSystem
 
 Predicate logic (unfolded):
 
-  ∀ (rationalData : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData) (usesMathlibIntegers : rationalData.1 = LRA.NumberSystems.Integers.Examples.MathlibIntegerNumberSystem), LRA.NumberSystems.RationalNumbers.Examples.MathlibRationalSystem rationalData usesMathlibIntegers = .1 LRA.NumberSystems.Integers.Examples.MathlibIntegerNumberSystem
+  Ambient
+    (implicit ambient)
+  Objects
+    rationalData : IntegerAndPositiveNaturalData
+  Prove
+    LRA.NumberSystems.RationalNumbers.Examples.MathlibRationalSystem rationalData usesMathlibIntegers = .1 LRA.NumberSystems.Integers.Examples.MathlibIntegerNumberSystem
 
 Logical form (Lean):
 
@@ -132,16 +137,16 @@ section TaoIntegers
 Predicate logic:
 
   noncomputable def TaoIntegerNumberSystem
-    (wholeData : Tao.WholeNumberArithmeticForTaoFormalDifferences) :
-    IntegerNumberSystem :=
-  Classical.choose (Tao.TaoRealizesIntegerNumberSystem wholeData)
+      (wholeData : Tao.WholeNumberArithmeticForTaoFormalDifferences) :
+      IntegerNumberSystem :=
+    Classical.choose (Tao.TaoRealizesIntegerNumberSystem wholeData)
 
 Predicate logic (unfolded):
 
   noncomputable def TaoIntegerNumberSystem
-    (wholeData : Tao.WholeNumberArithmeticForTaoFormalDifferences) :
-    IntegerNumberSystem :=
-  Classical.choose (Tao.TaoRealizesIntegerNumberSystem wholeData) (source fallback; no compiled unfold data available)
+      (wholeData : Tao.WholeNumberArithmeticForTaoFormalDifferences) :
+      IntegerNumberSystem :=
+    Classical.choose (Tao.TaoRealizesIntegerNumberSystem wholeData) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -182,22 +187,22 @@ noncomputable def TaoIntegerNumberSystem
 Predicate logic:
 
   noncomputable def TaoRationalSystem
-    (wholeData : Tao.WholeNumberArithmeticForTaoFormalDifferences)
-    (rationalData : IntegerAndPositiveNaturalData)
-    (_usesTaoIntegers :
-      rationalData.integer_system = TaoIntegerNumberSystem wholeData) :
-    RationalNumberSystem :=
-  RationalQuotientFractionsRealizesRationalNumberSystem rationalData
+      (wholeData : Tao.WholeNumberArithmeticForTaoFormalDifferences)
+      (rationalData : IntegerAndPositiveNaturalData)
+      (_usesTaoIntegers :
+        rationalData.integer_system = TaoIntegerNumberSystem wholeData) :
+      RationalNumberSystem :=
+    RationalQuotientFractionsRealizesRationalNumberSystem rationalData
 
 Predicate logic (unfolded):
 
   noncomputable def TaoRationalSystem
-    (wholeData : Tao.WholeNumberArithmeticForTaoFormalDifferences)
-    (rationalData : IntegerAndPositiveNaturalData)
-    (_usesTaoIntegers :
-      rationalData.integer_system = TaoIntegerNumberSystem wholeData) :
-    RationalNumberSystem :=
-  RationalQuotientFractionsRealizesRationalNumberSystem rationalData (source fallback; no compiled unfold data available)
+      (wholeData : Tao.WholeNumberArithmeticForTaoFormalDifferences)
+      (rationalData : IntegerAndPositiveNaturalData)
+      (_usesTaoIntegers :
+        rationalData.integer_system = TaoIntegerNumberSystem wholeData) :
+      RationalNumberSystem :=
+    RationalQuotientFractionsRealizesRationalNumberSystem rationalData (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -243,11 +248,17 @@ noncomputable def TaoRationalSystem
 
 Predicate logic:
 
-  (∀ wholeData ∈ Tao.WholeNumberArithmeticForTaoFormalDifferences ∀ rationalData ∈ IntegerAndPositiveNaturalData), (rationalData.integer_system = TaoIntegerNumberSystem wholeData) → (TaoRationalSystem wholeData rationalData usesTaoIntegers).IntegerSystem = TaoIntegerNumberSystem wholeData
+  ∀ (wholeData : LRA.NumberSystems.Integers.Tao.WholeNumberArithmeticForTaoFormalDifferences) (rationalData : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData) (usesTaoIntegers : rationalData.integer_system = LRA.NumberSystems.RationalNumbers.Examples.TaoIntegerNumberSystem wholeData), LRA.NumberSystems.RationalNumbers.Examples.TaoRationalSystem wholeData rationalData usesTaoIntegers = .IntegerSystem (LRA.NumberSystems.RationalNumbers.Examples.TaoIntegerNumberSystem wholeData)
 
 Predicate logic (unfolded):
 
-  ∀ (wholeData : LRA.NumberSystems.Integers.Tao.WholeNumberArithmeticForTaoFormalDifferences) (rationalData : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData) (usesTaoIntegers : rationalData.1 = Classical.indefiniteDescription (fun x => x.Model.Carrier = LRA.NumberSystems.Integers.Tao.Carrier wholeData) ⋯.1), LRA.NumberSystems.RationalNumbers.Examples.TaoRationalSystem wholeData rationalData usesTaoIntegers = .1 (Classical.indefiniteDescription (fun x => x.Model.Carrier = LRA.NumberSystems.Integers.Tao.Carrier wholeData) ⋯).1
+  Ambient
+    (implicit ambient)
+  Objects
+    wholeData : Tao.WholeNumberArithmeticForTaoFormalDifferences
+    rationalData : IntegerAndPositiveNaturalData
+  Prove
+    LRA.NumberSystems.RationalNumbers.Examples.TaoRationalSystem wholeData rationalData usesTaoIntegers = .1 (Classical.indefiniteDescription (fun x => x.Model.Carrier = LRA.NumberSystems.Integers.Tao.Carrier wholeData) ⋯).1
 
 Logical form (Lean):
 
@@ -298,14 +309,14 @@ section MendelsonIntegers
 Predicate logic:
 
   noncomputable def MendelsonIntegerNumberSystem
-    (positiveData : Mendelson.PositiveNaturalPairData) : IntegerNumberSystem :=
-  Classical.choose (Mendelson.MendelsonRealizesIntegerNumberSystem positiveData)
+      (positiveData : Mendelson.PositiveNaturalPairData) : IntegerNumberSystem :=
+    Classical.choose (Mendelson.MendelsonRealizesIntegerNumberSystem positiveData)
 
 Predicate logic (unfolded):
 
   noncomputable def MendelsonIntegerNumberSystem
-    (positiveData : Mendelson.PositiveNaturalPairData) : IntegerNumberSystem :=
-  Classical.choose (Mendelson.MendelsonRealizesIntegerNumberSystem positiveData) (source fallback; no compiled unfold data available)
+      (positiveData : Mendelson.PositiveNaturalPairData) : IntegerNumberSystem :=
+    Classical.choose (Mendelson.MendelsonRealizesIntegerNumberSystem positiveData) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -344,22 +355,22 @@ noncomputable def MendelsonIntegerNumberSystem
 Predicate logic:
 
   noncomputable def MendelsonRationalSystem
-    (positiveData : Mendelson.PositiveNaturalPairData)
-    (rationalData : IntegerAndPositiveNaturalData)
-    (_usesMendelsonIntegers :
-      rationalData.integer_system = MendelsonIntegerNumberSystem positiveData) :
-    RationalNumberSystem :=
-  RationalQuotientFractionsRealizesRationalNumberSystem rationalData
+      (positiveData : Mendelson.PositiveNaturalPairData)
+      (rationalData : IntegerAndPositiveNaturalData)
+      (_usesMendelsonIntegers :
+        rationalData.integer_system = MendelsonIntegerNumberSystem positiveData) :
+      RationalNumberSystem :=
+    RationalQuotientFractionsRealizesRationalNumberSystem rationalData
 
 Predicate logic (unfolded):
 
   noncomputable def MendelsonRationalSystem
-    (positiveData : Mendelson.PositiveNaturalPairData)
-    (rationalData : IntegerAndPositiveNaturalData)
-    (_usesMendelsonIntegers :
-      rationalData.integer_system = MendelsonIntegerNumberSystem positiveData) :
-    RationalNumberSystem :=
-  RationalQuotientFractionsRealizesRationalNumberSystem rationalData (source fallback; no compiled unfold data available)
+      (positiveData : Mendelson.PositiveNaturalPairData)
+      (rationalData : IntegerAndPositiveNaturalData)
+      (_usesMendelsonIntegers :
+        rationalData.integer_system = MendelsonIntegerNumberSystem positiveData) :
+      RationalNumberSystem :=
+    RationalQuotientFractionsRealizesRationalNumberSystem rationalData (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -405,11 +416,17 @@ noncomputable def MendelsonRationalSystem
 
 Predicate logic:
 
-  (∀ positiveData ∈ Mendelson.PositiveNaturalPairData ∀ rationalData ∈ IntegerAndPositiveNaturalData), (rationalData.integer_system = MendelsonIntegerNumberSystem positiveData) → (MendelsonRationalSystem positiveData rationalData usesMendelsonIntegers).IntegerSystem = MendelsonIntegerNumberSystem positiveData
+  ∀ (positiveData : LRA.NumberSystems.Integers.Mendelson.PositiveNaturalPairData) (rationalData : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData) (usesMendelsonIntegers : rationalData.integer_system = LRA.NumberSystems.RationalNumbers.Examples.MendelsonIntegerNumberSystem positiveData), LRA.NumberSystems.RationalNumbers.Examples.MendelsonRationalSystem positiveData rationalData usesMendelsonIntegers = .IntegerSystem (LRA.NumberSystems.RationalNumbers.Examples.MendelsonIntegerNumberSystem positiveData)
 
 Predicate logic (unfolded):
 
-  ∀ (positiveData : LRA.NumberSystems.Integers.Mendelson.PositiveNaturalPairData) (rationalData : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData) (usesMendelsonIntegers : rationalData.1 = Classical.indefiniteDescription (fun x => x.Model.Carrier = LRA.NumberSystems.Integers.Mendelson.Carrier positiveData) ⋯.1), LRA.NumberSystems.RationalNumbers.Examples.MendelsonRationalSystem positiveData rationalData usesMendelsonIntegers = .1 (Classical.indefiniteDescription (fun x => x.Model.Carrier = LRA.NumberSystems.Integers.Mendelson.Carrier positiveData) ⋯).1
+  Ambient
+    (implicit ambient)
+  Objects
+    positiveData : Mendelson.PositiveNaturalPairData
+    rationalData : IntegerAndPositiveNaturalData
+  Prove
+    LRA.NumberSystems.RationalNumbers.Examples.MendelsonRationalSystem positiveData rationalData usesMendelsonIntegers = .1 (Classical.indefiniteDescription (fun x => x.Model.Carrier = LRA.NumberSystems.Integers.Mendelson.Carrier positiveData) ⋯).1
 
 Logical form (Lean):
 

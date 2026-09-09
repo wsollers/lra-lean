@@ -9,12 +9,12 @@ namespace LRA.AlgebraicStructures
 Predicate logic:
 
   structure FieldConceptSignature extends CommutativeRingConceptSignature where
-  inv : LRA.Operation.UnaryOperation carrier
+    inv : LRA.Operation.UnaryOperation carrier
 
 Predicate logic (unfolded):
 
   structure FieldConceptSignature extends CommutativeRingConceptSignature where
-  inv : LRA.Operation.UnaryOperation carrier (source fallback; no compiled unfold data available)
+    inv : LRA.Operation.UnaryOperation carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

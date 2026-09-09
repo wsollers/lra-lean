@@ -12,11 +12,16 @@ variable {Alpha : Type u}
 
 Predicate logic:
 
-  ∀ A B C : LRA.Set.Constructions.TypeSet Alpha, A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)
+  ∀ {Alpha : Type u} (A B C : LRA.Set.Constructions.TypeSet Alpha), LRA.Set.Constructions.TypeA ∩ LRA.Set.Constructions.TypeB ∪ C = LRA.Set.Constructions.TypeLRA.Set.Constructions.TypeA ∩ B ∪ LRA.Set.Constructions.TypeA ∩ C
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A B C : Alpha → Prop), LRA.Set.Constructions.TypeSet.instInter.1 A (LRA.Set.Constructions.TypeSet.instUnion.1 B C) = LRA.Set.Constructions.TypeSet.instUnion.1 (LRA.Set.Constructions.TypeSet.instInter.1 A B) (LRA.Set.Constructions.TypeSet.instInter.1 A C)
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TypeA ∩ LRA.Set.Constructions.TypeB ∪ C = LRA.Set.Constructions.TypeLRA.Set.Constructions.TypeA ∩ B ∪ LRA.Set.Constructions.TypeA ∩ C
 
 Logical form (Lean):
 
@@ -55,11 +60,16 @@ theorem IntersectionDistributesOverUnion :
 
 Predicate logic:
 
-  ∀ A B C : LRA.Set.Constructions.TypeSet Alpha, A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)
+  ∀ {Alpha : Type u} (A B C : LRA.Set.Constructions.TypeSet Alpha), LRA.Set.Constructions.TypeA ∪ LRA.Set.Constructions.TypeB ∩ C = LRA.Set.Constructions.TypeLRA.Set.Constructions.TypeA ∪ B ∩ LRA.Set.Constructions.TypeA ∪ C
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A B C : Alpha → Prop), LRA.Set.Constructions.TypeSet.instUnion.1 A (LRA.Set.Constructions.TypeSet.instInter.1 B C) = LRA.Set.Constructions.TypeSet.instInter.1 (LRA.Set.Constructions.TypeSet.instUnion.1 A B) (LRA.Set.Constructions.TypeSet.instUnion.1 A C)
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TypeA ∪ LRA.Set.Constructions.TypeB ∩ C = LRA.Set.Constructions.TypeLRA.Set.Constructions.TypeA ∪ B ∩ LRA.Set.Constructions.TypeA ∪ C
 
 Logical form (Lean):
 
@@ -98,11 +108,16 @@ theorem UnionDistributesOverIntersection :
 
 Predicate logic:
 
-  ∀ A B : LRA.Set.Constructions.TypeSet Alpha, A ∪ (A ∩ B) = A
+  ∀ {Alpha : Type u} (A B : LRA.Set.Constructions.TypeSet Alpha), LRA.Set.Constructions.TypeA ∪ LRA.Set.Constructions.TypeA ∩ B = A
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A B : Alpha → Prop), LRA.Set.Constructions.TypeSet.instUnion.1 A (LRA.Set.Constructions.TypeSet.instInter.1 A B) = A
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TypeA ∪ LRA.Set.Constructions.TypeA ∩ B = A
 
 Logical form (Lean):
 
@@ -139,11 +154,16 @@ theorem AbsorptionUnionIntersection :
 
 Predicate logic:
 
-  ∀ A B : LRA.Set.Constructions.TypeSet Alpha, A ∩ (A ∪ B) = A
+  ∀ {Alpha : Type u} (A B : LRA.Set.Constructions.TypeSet Alpha), LRA.Set.Constructions.TypeA ∩ LRA.Set.Constructions.TypeA ∪ B = A
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A B : Alpha → Prop), LRA.Set.Constructions.TypeSet.instInter.1 A (LRA.Set.Constructions.TypeSet.instUnion.1 A B) = A
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TypeA ∩ LRA.Set.Constructions.TypeA ∪ B = A
 
 Logical form (Lean):
 

@@ -8,11 +8,17 @@ namespace LRA.NumberSystems.Integers.QuotientOrderedPairs
 
 Predicate logic:
 
-  (∀ whole_data ∈ WholeNumberArithmeticForQuotientPairs), (Carrier whole_data → Prop ∧ ∀ representative : Representative whole_data, motive (Quotient.mk _ representative)) → ∀ value : Carrier whole_data, motive value
+  ∀ (whole_data : LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs) (motive : LRA.NumberSystems.Integers.QuotientOrderedPairs.Carrier whole_data → Prop), (∀ (representative : LRA.NumberSystems.Integers.QuotientOrderedPairs.Representative whole_data), motive (Quotient.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data) representative)) → ∀ (value : LRA.NumberSystems.Integers.QuotientOrderedPairs.Carrier whole_data), motive value
 
 Predicate logic (unfolded):
 
-  ∀ (whole_data : LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs) (motive : Quot (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data).1 → Prop), (∀ (representative : LRA.NumberSystems.Integers.QuotientOrderedPairs.Representative whole_data), motive (Quot.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data).1 representative)) → ∀ (value : Quot (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data).1), motive value
+  Ambient
+    (implicit ambient)
+  Objects
+    whole_data : WholeNumberArithmeticForQuotientPairs
+    motive : Carrier whole_data → Prop
+  Prove
+    (∀ (representative : LRA.NumberSystems.Integers.QuotientOrderedPairs.Representative whole_data), motive (Quot.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data).1 representative)) → ∀ (value : Quot (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data).1), motive value
 
 Logical form (Lean):
 

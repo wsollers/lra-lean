@@ -22,7 +22,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject] [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject] [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop) (a : SetObject) (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 a
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 a
 
 Logical form (Lean):
 
@@ -70,7 +75,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject] [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject] [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop), Exists fun sigma => ∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun sigma => ∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G
 
 Logical form (Lean):
 
@@ -110,11 +120,18 @@ def GeneratorAdmissible
 
 Predicate logic:
 
-  (∀ A ∈ U), (SetObject → Prop) → ∀ A, GeneratedSigmaAlgebraCollection A generator A → A ⊆ A
+  ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject] [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject] [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop), LRA.SetSystems.GeneratorAdmissible ambient generator → ∀ (A : SetObject), LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator A → inst_4.Subset A ambient
 
 Predicate logic (unfolded):
 
-  ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject] [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject] [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop), (Exists fun sigma => ∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → ∀ (A : SetObject), (∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 A) → inst_4.1 A ambient
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ambient : SetObject
+    generator : SetObject → Prop
+    admissible : GeneratorAdmissible ambient generator
+  Prove
+    (Exists fun sigma => ∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → ∀ (A : SetObject), (∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 A) → inst_4.1 A ambient
 
 Logical form (Lean):
 
@@ -156,11 +173,17 @@ theorem GeneratedSigmaAlgebraMembersAreSubsets
 
 Predicate logic:
 
-  (∀ A ∈ U), (SetObject → Prop) → GeneratedSigmaAlgebraCollection A generator ∅ ∈ SetObject
+  ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject] [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject] [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop), LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator inst_3.emptyCollection
 
 Predicate logic (unfolded):
 
-  ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject] [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject] [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop) (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 inst_3.1
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ambient : SetObject
+    generator : SetObject → Prop
+  Prove
+    (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 inst_3.1
 
 Logical form (Lean):
 
@@ -198,11 +221,17 @@ theorem GeneratedSigmaAlgebraEmptyIsMember
 
 Predicate logic:
 
-  (∀ A ∈ U), (SetObject → Prop) → ∀ A B, GeneratedSigmaAlgebraCollection A generator A → GeneratedSigmaAlgebraCollection A generator B → GeneratedSigmaAlgebraCollection A generator (A ∪ B)
+  ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject] [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject] [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop) (A B : SetObject), (LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator A ∧ LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator B) → LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator (A ∪ B)
 
 Predicate logic (unfolded):
 
-  ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject] [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject] [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop) (A B : SetObject), (∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 A ∧ ∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 B) → ∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 (inst.1 A B)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ambient : SetObject
+    generator : SetObject → Prop
+  Prove
+    ((∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 A) ∧ (∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 B)) → ∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 (inst.1 A B)
 
 Logical form (Lean):
 
@@ -246,11 +275,17 @@ theorem GeneratedSigmaAlgebraUnionIsMember
 
 Predicate logic:
 
-  (∀ A ∈ U), (SetObject → Prop) → ∀ A B, GeneratedSigmaAlgebraCollection A generator A → GeneratedSigmaAlgebraCollection A generator B → GeneratedSigmaAlgebraCollection A generator (A ∩ B)
+  ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject] [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject] [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop) (A B : SetObject), (LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator A ∧ LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator B) → LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator (A ∩ B)
 
 Predicate logic (unfolded):
 
-  ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject] [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject] [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop) (A B : SetObject), (∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 A ∧ ∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 B) → ∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 (inst_1.1 A B)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ambient : SetObject
+    generator : SetObject → Prop
+  Prove
+    ((∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 A) ∧ (∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 B)) → ∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 (inst_1.1 A B)
 
 Logical form (Lean):
 
@@ -294,11 +329,17 @@ theorem GeneratedSigmaAlgebraIntersectionIsMember
 
 Predicate logic:
 
-  (∀ A ∈ U), (SetObject → Prop) → ∀ A B, GeneratedSigmaAlgebraCollection A generator A → GeneratedSigmaAlgebraCollection A generator B → GeneratedSigmaAlgebraCollection A generator (A \ B)
+  ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject] [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject] [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop) (A B : SetObject), (LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator A ∧ LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator B) → LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator (A \ B)
 
 Predicate logic (unfolded):
 
-  ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject] [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject] [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop) (A B : SetObject), (∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 A ∧ ∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 B) → ∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 (inst_2.1 A B)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ambient : SetObject
+    generator : SetObject → Prop
+  Prove
+    ((∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 A) ∧ (∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 B)) → ∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 (inst_2.1 A B)
 
 Logical form (Lean):
 
@@ -342,11 +383,17 @@ theorem GeneratedSigmaAlgebraDifferenceIsMember
 
 Predicate logic:
 
-  (∀ A ∈ U), (SetObject → Prop) → ∀ A B, GeneratedSigmaAlgebraCollection A generator A → GeneratedSigmaAlgebraCollection A generator B → GeneratedSigmaAlgebraCollection A generator (A ∆ B)
+  ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject] [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject] [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop) (A B : SetObject), (LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator A ∧ LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator B) → LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator (inst_5.symmDiff A B)
 
 Predicate logic (unfolded):
 
-  ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject] [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject] [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop) (A B : SetObject), (∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 A ∧ ∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 B) → ∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 (inst_5.1 A B)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ambient : SetObject
+    generator : SetObject → Prop
+  Prove
+    ((∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 A) ∧ (∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 B)) → ∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 (inst_5.1 A B)
 
 Logical form (Lean):
 
@@ -390,11 +437,17 @@ theorem GeneratedSigmaAlgebraSymmetricDifferenceIsMember
 
 Predicate logic:
 
-  (∀ A ∈ U), (SetObject → Prop) → GeneratedSigmaAlgebraCollection A generator A
+  ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject] [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject] [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop), LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator ambient
 
 Predicate logic (unfolded):
 
-  ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject] [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject] [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop) (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 ambient
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ambient : SetObject
+    generator : SetObject → Prop
+  Prove
+    (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 ambient
 
 Logical form (Lean):
 
@@ -432,11 +485,17 @@ theorem GeneratedSigmaAlgebraAmbientIsMember
 
 Predicate logic:
 
-  (∀ A ∈ U), (SetObject → Prop) → ∀ family : Nat → SetObject, (∀ index, GeneratedSigmaAlgebraCollection A generator (family index)) → GeneratedSigmaAlgebraCollection A generator (HasCountableUnion.countableUnion family)
+  ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject] [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject] [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop) (family : Nat → SetObject), (∀ (index : Nat), LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator (family index)) → LRA.SetSystems.GeneratedSigmaAlgebraCollection ambient generator (inst_6.countableUnion family)
 
 Predicate logic (unfolded):
 
-  ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject] [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject] [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop) (family : Nat → SetObject), (∀ (index : Nat) (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 (family index)) → ∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 (inst_6.1 family)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ambient : SetObject
+    generator : SetObject → Prop
+  Prove
+    (∀ (index : Nat) (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 (family index)) → ∀ (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → sigma.toRingOfSets.1 (inst_6.1 family)
 
 Logical form (Lean):
 
@@ -483,18 +542,18 @@ theorem GeneratedSigmaAlgebraCountableUnionIsMember
 Predicate logic:
 
   def GeneratedSigmaAlgebra
-    (ambient : SetObject) (generator : SetObject → Prop)
-    (admissible : GeneratorAdmissible ambient generator) :
-    SigmaAlgebraOfSets ambient where
-  IsMember
+      (ambient : SetObject) (generator : SetObject → Prop)
+      (admissible : GeneratorAdmissible ambient generator) :
+      SigmaAlgebraOfSets ambient where
+    IsMember
 
 Predicate logic (unfolded):
 
   def GeneratedSigmaAlgebra
-    (ambient : SetObject) (generator : SetObject → Prop)
-    (admissible : GeneratorAdmissible ambient generator) :
-    SigmaAlgebraOfSets ambient where
-  IsMember (source fallback; no compiled unfold data available)
+      (ambient : SetObject) (generator : SetObject → Prop)
+      (admissible : GeneratorAdmissible ambient generator) :
+      SigmaAlgebraOfSets ambient where
+    IsMember (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -548,11 +607,20 @@ def GeneratedSigmaAlgebra
 
 Predicate logic:
 
-  (∀ A ∈ U ∀ B ∈ U), (SetObject → Prop) → (GeneratedSigmaAlgebra A generator admissible).IsMember B
+  ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject] [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject] [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop) (admissible : LRA.SetSystems.GeneratorAdmissible ambient generator) (G : SetObject), generator G → (LRA.SetSystems.GeneratedSigmaAlgebra ambient generator admissible).IsMember G
 
 Predicate logic (unfolded):
 
-  ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject] [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject] [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop) (admissible : Exists fun sigma => ∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) (G : SetObject), generator G → (LRA.SetSystems.GeneratedSigmaAlgebra ambient generator admissible).toRingOfSets.1 G
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ambient : SetObject
+    generator : SetObject → Prop
+    admissible : GeneratorAdmissible ambient generator
+    G : SetObject
+    GIsGenerator : generator G
+  Prove
+    generator G → (LRA.SetSystems.GeneratedSigmaAlgebra ambient generator admissible).toRingOfSets.1 G
 
 Logical form (Lean):
 
@@ -594,11 +662,19 @@ theorem GeneratedSigmaAlgebraContainsGenerator
 
 Predicate logic:
 
-  (∀ A ∈ U), (SetObject → Prop ∧ ∀ G, generator G → sigma.IsMember G) → ∀ A, (GeneratedSigmaAlgebra A generator admissible).IsMember A → sigma.IsMember A
+  ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject] [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject] [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop) (admissible : LRA.SetSystems.GeneratorAdmissible ambient generator) (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.IsMember G) → ∀ (A : SetObject), (LRA.SetSystems.GeneratedSigmaAlgebra ambient generator admissible).IsMember A → sigma.IsMember A
 
 Predicate logic (unfolded):
 
-  ∀ {SetObject : Type v} [inst : Union SetObject] [inst_1 : Inter SetObject] [inst_2 : SDiff SetObject] [inst_3 : EmptyCollection SetObject] [inst_4 : HasSubset SetObject] [inst_5 : LRA.Set.HasSymmDiff SetObject] [inst_6 : LRA.Set.HasCountableUnion SetObject] (ambient : SetObject) (generator : SetObject → Prop) (admissible : Exists fun sigma => ∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) (sigma : LRA.SetSystems.SigmaAlgebraOfSets ambient), (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → ∀ (A : SetObject), (LRA.SetSystems.GeneratedSigmaAlgebra ambient generator admissible).toRingOfSets.1 A → sigma.toRingOfSets.1 A
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ambient : SetObject
+    generator : SetObject → Prop
+    admissible : GeneratorAdmissible ambient generator
+    sigma : SigmaAlgebraOfSets ambient
+  Prove
+    (∀ (G : SetObject), generator G → sigma.toRingOfSets.1 G) → ∀ (A : SetObject), (LRA.SetSystems.GeneratedSigmaAlgebra ambient generator admissible).toRingOfSets.1 A → sigma.toRingOfSets.1 A
 
 Logical form (Lean):
 
@@ -645,18 +721,18 @@ theorem GeneratedSigmaAlgebraMinimal
 Predicate logic:
 
   def BorelSigmaAlgebra
-    (ambient : SetObject) (opens : SetObject → Prop)
-    (opensAdmissible : GeneratorAdmissible ambient opens) :
-    SigmaAlgebraOfSets ambient :=
-  GeneratedSigmaAlgebra ambient opens opensAdmissible
+      (ambient : SetObject) (opens : SetObject → Prop)
+      (opensAdmissible : GeneratorAdmissible ambient opens) :
+      SigmaAlgebraOfSets ambient :=
+    GeneratedSigmaAlgebra ambient opens opensAdmissible
 
 Predicate logic (unfolded):
 
   def BorelSigmaAlgebra
-    (ambient : SetObject) (opens : SetObject → Prop)
-    (opensAdmissible : GeneratorAdmissible ambient opens) :
-    SigmaAlgebraOfSets ambient :=
-  GeneratedSigmaAlgebra ambient opens opensAdmissible (source fallback; no compiled unfold data available)
+      (ambient : SetObject) (opens : SetObject → Prop)
+      (opensAdmissible : GeneratorAdmissible ambient opens) :
+      SigmaAlgebraOfSets ambient :=
+    GeneratedSigmaAlgebra ambient opens opensAdmissible (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

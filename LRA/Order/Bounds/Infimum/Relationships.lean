@@ -13,11 +13,18 @@ universe u v
 
 Predicate logic:
 
-  (∀ A ∈ U ∀ x ∈ Element), Infimum (LRA.Relation.Converse relation) A x ↔ Supremum relation A x
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (candidate : Element), LRA.Order.Infimum (LRA.Relation.Converse relation) subset candidate ↔ LRA.Order.Supremum relation subset candidate
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (relation : Element → Element → Prop) (subset : SetObject) (candidate : Element), (∀ (element : Element), inst.1 subset element → relation element candidate ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation element bound) → relation candidate bound) ↔ (∀ (element : Element), inst.1 subset element → relation element candidate ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation element bound) → relation candidate bound)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+    candidate : Element
+  Prove
+    LRA.Order.Infimum (LRA.Relation.Converse relation) subset candidate ↔ LRA.Order.Supremum relation subset candidate
 
 Logical form (Lean):
 
@@ -63,11 +70,17 @@ theorem InfimumOfConverseIffSupremum
 
 Predicate logic:
 
-  (∀ x ∈ Element), Infimum relation ∅ ∈ SetObject x ↔ forall element, relation element x
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ (relation : LRA.Relation.Endorelation Element) (candidate : Element), LRA.Order.Infimum relation inst_4.emptyCollection candidate ↔ ∀ (element : Element), relation element candidate
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ (relation : Element → Element → Prop) (candidate : Element), (∀ (element : Element), inst.1 inst_4.1 element → relation candidate element ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 inst_4.1 element → relation bound element) → relation bound candidate) ↔ ∀ (element : Element), relation element candidate
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    candidate : Element
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ (relation : LRA.Relation.Endorelation Element) (candidate : Element), LRA.Order.Infimum relation inst_4.emptyCollection candidate ↔ ∀ (element : Element), relation element candidate
 
 Logical form (Lean):
 
@@ -119,11 +132,18 @@ theorem InfimumOfEmptyIffTop
 
 Predicate logic:
 
-  (∀ A ∈ U ∀ x ∈ Element), Infimum relation A x ↔ Supremum relation (LowerBounds relation A) x
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasSeparation Element SetObject] [inst_2 : LRA.Set.HasUniversal SetObject] [inst_3 : LRA.Set.HasComplement SetObject], (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.UniversalMembershipLaws Element SetObject) → ∀ (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (candidate : Element), LRA.Order.Infimum relation subset candidate ↔ LRA.Order.Supremum relation (LRA.Order.LowerBounds relation subset) candidate
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasSeparation Element SetObject] [inst_2 : LRA.Set.HasUniversal SetObject] [inst_3 : LRA.Set.HasComplement SetObject], (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.UniversalMembershipLaws Element SetObject) → ∀ (relation : Element → Element → Prop) (subset : SetObject) (candidate : Element), (∀ (element : Element), inst.1 subset element → relation candidate element ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation bound element) → relation bound candidate) ↔ (∀ (element : Element), inst.1 (inst_1.1 inst_2.1 fun bound => ∀ (element : Element), element ∈ subset → relation bound element) element → relation element candidate ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 (inst_1.1 inst_2.1 fun bound => ∀ (element : Element), element ∈ subset → relation bound element) element → relation element bound) → relation candidate bound)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+    candidate : Element
+  Prove
+    (LRA.Set.SeparationLaws Element SetObject ∧ LRA.Set.UniversalMembershipLaws Element SetObject) → ∀ (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (candidate : Element), LRA.Order.Infimum relation subset candidate ↔ LRA.Order.Supremum relation (LRA.Order.LowerBounds relation subset) candidate
 
 Logical form (Lean):
 

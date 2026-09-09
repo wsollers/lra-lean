@@ -9,11 +9,16 @@ universe u
 
 Predicate logic:
 
-  ∀ {alpha : Type u} (strictRelation : LRA.Relation.Endorelation alpha) (element cover : alpha), (strictRelation element cover ∧ ∀ (middle : alpha), ¬ (strictRelation element middle ∧ strictRelation middle cover))
+  ∀ {alpha : Type u} (strictRelation : LRA.Relation.Endorelation alpha) (element cover : alpha), (strictRelation element cover ∧ (∀ (middle : alpha), ¬ (strictRelation element middle ∧ strictRelation middle cover)))
 
 Predicate logic (unfolded):
 
-  ∀ {alpha : Type u} (strictRelation : alpha → alpha → Prop) (element cover : alpha), (strictRelation element cover ∧ ∀ (middle : alpha), (strictRelation element middle ∧ strictRelation middle cover) → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (strictRelation element cover ∧ (∀ (middle : alpha), (strictRelation element middle ∧ strictRelation middle cover) → False))
 
 Logical form (Lean):
 

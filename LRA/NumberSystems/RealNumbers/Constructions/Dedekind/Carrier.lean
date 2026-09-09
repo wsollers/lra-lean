@@ -92,11 +92,16 @@ abbrev RationalSet := Rational rational_model → Prop
 
 Predicate logic:
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (lower_set : LRA.NumberSystems.RealNumbers.Dedekind.RationalSet rational_model), (Exists fun value => lower_set value ∧ (Exists fun value => ¬ lower_set value ∧ (∀ (upper : LRA.NumberSystems.RealNumbers.Dedekind.Rational rational_model) (lower : rational_model.signature.carrier), lower_set upper → rational_model.signature.StrictOrder lower upper → lower_set lower ∧ ∀ (value : LRA.NumberSystems.RealNumbers.Dedekind.Rational rational_model), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.StrictOrder value greater))))
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (lower_set : LRA.NumberSystems.RealNumbers.Dedekind.RationalSet rational_model), (Exists fun value => lower_set value ∧ (Exists fun value => ¬ lower_set value ∧ ((∀ (upper : LRA.NumberSystems.RealNumbers.Dedekind.Rational rational_model) (lower : rational_model.signature.carrier), lower_set upper → rational_model.signature.StrictOrder lower upper → lower_set lower) ∧ (∀ (value : LRA.NumberSystems.RealNumbers.Dedekind.Rational rational_model), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.StrictOrder value greater)))))
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (lower_set : rational_model.signature.toCarrierBundle.1 → Prop), (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper lower : rational_model.signature.toCarrierBundle.1), lower_set upper → rational_model.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rational_model.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.toOrderedRingSignature.2 value greater))))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun value => lower_set value ∧ ((Exists fun value => lower_set value → False) ∧ ((∀ (upper lower : rational_model.signature.toCarrierBundle.1), lower_set upper → rational_model.signature.toOrderedRingSignature.2 lower upper → lower_set lower) ∧ (∀ (value : rational_model.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.toOrderedRingSignature.2 value greater)))))
 
 Logical form (Lean):
 
@@ -194,7 +199,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (cut : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper lower : rational_model.signature.toCarrierBundle.1), lower_set upper → rational_model.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rational_model.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.toOrderedRingSignature.2 value greater))))) (value : rational_model.signature.toCarrierBundle.1), cut.1 value
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    cut.1 value
 
 Logical form (Lean):
 
@@ -230,11 +240,17 @@ def contains (cut : Cut rational_model) (value : Rational rational_model) : Prop
 
 Predicate logic:
 
-  first = second ↔ ∀ value, contains rational_model first value ↔ contains rational_model second value
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (first second : LRA.NumberSystems.RealNumbers.Dedekind.Cut rational_model), first = second ↔ ∀ (value : LRA.NumberSystems.RealNumbers.Dedekind.Rational rational_model), LRA.NumberSystems.RealNumbers.Dedekind.contains rational_model first value ↔ LRA.NumberSystems.RealNumbers.Dedekind.contains rational_model second value
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (first second : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper lower : rational_model.signature.toCarrierBundle.1), lower_set upper → rational_model.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rational_model.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.toOrderedRingSignature.2 value greater))))), first = second ↔ ∀ (value : rational_model.signature.toCarrierBundle.1), first.1 value ↔ second.1 value
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_model : RationalModel
+    first second : Cut rational_model
+  Prove
+    first = second ↔ ∀ (value : LRA.NumberSystems.RealNumbers.Dedekind.Rational rational_model), LRA.NumberSystems.RealNumbers.Dedekind.contains rational_model first value ↔ LRA.NumberSystems.RealNumbers.Dedekind.contains rational_model second value
 
 Logical form (Lean):
 

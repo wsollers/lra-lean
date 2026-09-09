@@ -10,11 +10,16 @@ open Z
 
 Predicate logic:
 
-  (∀ x ∈ Z), x + Z.zero = x
+  ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHAdd.hAdd x LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero = x
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHAdd.1 x LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero = x
+  Ambient
+    (Z)
+  Objects
+    x : Z
+  Prove
+    { hAdd := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instAddZ.add a b }.hAdd x LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero = x
 
 Logical form (Lean):
 
@@ -48,11 +53,16 @@ theorem add_zero (x : Z) : x + Z.zero = x := by
 
 Predicate logic:
 
-  (∀ w ∈ Z), succ (pred w) = pred (succ w)
+  ∀ (w : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.succ (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.pred w) = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.pred (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.succ w)
 
 Predicate logic (unfolded):
 
-  ∀ (w : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.succZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p.succ) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun n' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n') a) a) n) a) a) (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.pred.match_1 (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z) p (fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) w) = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.succZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p.succ) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.succ.match_1 (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z) n (fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) fun n' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n') a) a) w)
+  Ambient
+    (Z)
+  Objects
+    w : Z
+  Prove
+    LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.succZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p.succ) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun n' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n') a) a) n) a) a) (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.pred.match_1 (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z) p (fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) w) = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.succZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p.succ) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.succ.match_1 (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z) n (fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) fun n' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n') a) a) w)
 
 Logical form (Lean):
 
@@ -86,11 +96,16 @@ theorem succ_pred_comm (w : Z) : succ (pred w) = pred (succ w) := by
 
 Predicate logic:
 
-  (∀ x ∈ Z), Z.zero + x = x
+  ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHAdd.hAdd LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero x = x
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHAdd.1 LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero x = x
+  Ambient
+    (Z)
+  Objects
+    x : Z
+  Prove
+    { hAdd := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instAddZ.add a b }.hAdd LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero x = x
 
 Logical form (Lean):
 
@@ -124,11 +139,16 @@ theorem zero_add (x : Z) : Z.zero + x = x := by
 
 Predicate logic:
 
-  (∀ x y ∈ Z), succ x + y = succ (x + y)
+  ∀ (x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHAdd.hAdd (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.succ x) y = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.succ (instHAdd.hAdd x y)
 
 Predicate logic (unfolded):
 
-  ∀ (x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHAdd.1 (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.succZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p.succ) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun n' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n') a) a) n) a) a) x) y = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.succZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p.succ) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun n' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n') a) a) n) a) a) (instHAdd.1 x y)
+  Ambient
+    (Z)
+  Objects
+    x y : Z
+  Prove
+    { hAdd := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instAddZ.add a b }.hAdd (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.succZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p.succ) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun n' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n') a) a) n) a) a) x) y = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.succZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p.succ) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun n' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n') a) a) n) a) a) ({ hAdd := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instAddZ.add a b }.hAdd x y)
 
 Logical form (Lean):
 
@@ -162,11 +182,16 @@ theorem succ_add (x y : Z) : succ x + y = succ (x + y) := by
 
 Predicate logic:
 
-  (∀ x y ∈ Z), pred x + y = pred (x + y)
+  ∀ (x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHAdd.hAdd (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.pred x) y = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.pred (instHAdd.hAdd x y)
 
 Predicate logic (unfolded):
 
-  ∀ (x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHAdd.1 (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) x) y = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) (instHAdd.1 x y)
+  Ambient
+    (Z)
+  Objects
+    x y : Z
+  Prove
+    { hAdd := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instAddZ.add a b }.hAdd (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) x) y = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) ({ hAdd := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instAddZ.add a b }.hAdd x y)
 
 Logical form (Lean):
 
@@ -200,11 +225,16 @@ theorem pred_add (x y : Z) : pred x + y = pred (x + y) := by
 
 Predicate logic:
 
-  (∀ x y ∈ Z), x + y = y + x
+  ∀ (x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHAdd.hAdd x y = instHAdd.hAdd y x
 
 Predicate logic (unfolded):
 
-  ∀ (x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHAdd.1 x y = instHAdd.1 y x
+  Ambient
+    (Z)
+  Objects
+    x y : Z
+  Prove
+    { hAdd := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instAddZ.add a b }.hAdd x y = { hAdd := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instAddZ.add a b }.hAdd y x
 
 Logical form (Lean):
 
@@ -238,11 +268,16 @@ theorem add_comm (x y : Z) : x + y = y + x := by
 
 Predicate logic:
 
-  (∀ x y z ∈ Z), (x + y) + z = x + (y + z)
+  ∀ (x y z : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHAdd.hAdd (instHAdd.hAdd x y) z = instHAdd.hAdd x (instHAdd.hAdd y z)
 
 Predicate logic (unfolded):
 
-  ∀ (x y z : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHAdd.1 (instHAdd.1 x y) z = instHAdd.1 x (instHAdd.1 y z)
+  Ambient
+    (Z)
+  Objects
+    x y z : Z
+  Prove
+    { hAdd := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instAddZ.add a b }.hAdd ({ hAdd := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instAddZ.add a b }.hAdd x y) z = { hAdd := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instAddZ.add a b }.hAdd x ({ hAdd := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instAddZ.add a b }.hAdd y z)
 
 Logical form (Lean):
 
@@ -276,11 +311,16 @@ theorem add_assoc (x y z : Z) : (x + y) + z = x + (y + z) := by
 
 Predicate logic:
 
-  -Z.zero ∈ Z = Z.zero
+  LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero
 
 Predicate logic (unfolded):
 
-  LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.1 LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero
 
 Logical form (Lean):
 
@@ -314,11 +354,16 @@ theorem neg_zero : (-Z.zero : Z) = Z.zero := by
 
 Predicate logic:
 
-  (∀ x ∈ Z), -(succ x) = pred (-x)
+  ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.succ x) = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.pred (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg x)
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.1 (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.succZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p.succ) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun n' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n') a) a) n) a) a) x) = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.1 x)
+  Ambient
+    (Z)
+  Objects
+    x : Z
+  Prove
+    LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.succZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p.succ) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun n' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n') a) a) n) a) a) x) = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg x)
 
 Logical form (Lean):
 
@@ -352,11 +397,16 @@ theorem neg_succ (x : Z) : -(succ x) = pred (-x) := by
 
 Predicate logic:
 
-  (∀ x ∈ Z), -(pred x) = succ (-x)
+  ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.pred x) = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.succ (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg x)
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.1 (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) x) = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.succZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p.succ) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun n' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n') a) a) n) a) a) (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.1 x)
+  Ambient
+    (Z)
+  Objects
+    x : Z
+  Prove
+    LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) x) = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.succZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p.succ) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun n' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n') a) a) n) a) a) (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg x)
 
 Logical form (Lean):
 
@@ -390,11 +440,16 @@ theorem neg_pred (x : Z) : -(pred x) = succ (-x) := by
 
 Predicate logic:
 
-  (∀ x ∈ Z), -(-x) = x
+  ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg x) = x
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.1 (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.1 x) = x
+  Ambient
+    (Z)
+  Objects
+    x : Z
+  Prove
+    LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg x) = x
 
 Logical form (Lean):
 
@@ -428,11 +483,16 @@ theorem neg_neg (x : Z) : -(-x) = x := by
 
 Predicate logic:
 
-  (∀ x ∈ Z), x + (-x) = Z.zero
+  ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHAdd.hAdd x (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg x) = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHAdd.1 x (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.1 x) = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero
+  Ambient
+    (Z)
+  Objects
+    x : Z
+  Prove
+    { hAdd := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instAddZ.add a b }.hAdd x (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg x) = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero
 
 Logical form (Lean):
 
@@ -466,11 +526,16 @@ theorem add_neg_self (x : Z) : x + (-x) = Z.zero := by
 
 Predicate logic:
 
-  (∀ x ∈ Z), (-x) + x = Z.zero
+  ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHAdd.hAdd (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg x) x = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHAdd.1 (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.1 x) x = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero
+  Ambient
+    (Z)
+  Objects
+    x : Z
+  Prove
+    { hAdd := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instAddZ.add a b }.hAdd (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg x) x = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero
 
 Logical form (Lean):
 
@@ -504,11 +569,16 @@ theorem neg_add_self (x : Z) : (-x) + x = Z.zero := by
 
 Predicate logic:
 
-  (∀ x y ∈ Z), -(x + y) = (-x) + (-y)
+  ∀ (x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg (instHAdd.hAdd x y) = instHAdd.hAdd (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg x) (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg y)
 
 Predicate logic (unfolded):
 
-  ∀ (x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.1 (instHAdd.1 x y) = instHAdd.1 (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.1 x) (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.1 y)
+  Ambient
+    (Z)
+  Objects
+    x y : Z
+  Prove
+    LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg ({ hAdd := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instAddZ.add a b }.hAdd x y) = { hAdd := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instAddZ.add a b }.hAdd (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg x) (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg y)
 
 Logical form (Lean):
 
@@ -542,11 +612,16 @@ theorem neg_add (x y : Z) : -(x + y) = (-x) + (-y) := by
 
 Predicate logic:
 
-  (∀ x y ∈ Z), x * succ y = x * y + x
+  ∀ (x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHMul.hMul x (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.succ y) = instHAdd.hAdd (instHMul.hMul x y) x
 
 Predicate logic (unfolded):
 
-  ∀ (x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHMul.1 x (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.succZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p.succ) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun n' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n') a) a) n) a) a) y) = instHAdd.1 (instHMul.1 x y) x
+  Ambient
+    (Z)
+  Objects
+    x y : Z
+  Prove
+    { hMul := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instMulZ.mul a b }.hMul x (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.succZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p.succ) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun n' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n') a) a) n) a) a) y) = { hAdd := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instAddZ.add a b }.hAdd ({ hMul := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instMulZ.mul a b }.hMul x y) x
 
 Logical form (Lean):
 
@@ -580,11 +655,16 @@ theorem mul_succ (x y : Z) : x * succ y = x * y + x := by
 
 Predicate logic:
 
-  (∀ x y ∈ Z), x * pred y = x * y + (-x)
+  ∀ (x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHMul.hMul x (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.pred y) = instHAdd.hAdd (instHMul.hMul x y) (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg x)
 
 Predicate logic (unfolded):
 
-  ∀ (x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHMul.1 x (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) y) = instHAdd.1 (instHMul.1 x y) (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.1 x)
+  Ambient
+    (Z)
+  Objects
+    x y : Z
+  Prove
+    { hMul := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instMulZ.mul a b }.hMul x (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) y) = { hAdd := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instAddZ.add a b }.hAdd ({ hMul := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instMulZ.mul a b }.hMul x y) (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg x)
 
 Logical form (Lean):
 
@@ -618,11 +698,16 @@ theorem mul_pred (x y : Z) : x * pred y = x * y + (-x) := by
 
 Predicate logic:
 
-  (∀ x ∈ Z), Z.zero * x = Z.zero
+  ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHMul.hMul LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero x = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHMul.1 LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero x = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero
+  Ambient
+    (Z)
+  Objects
+    x : Z
+  Prove
+    { hMul := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instMulZ.mul a b }.hMul LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero x = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero
 
 Logical form (Lean):
 
@@ -656,11 +741,16 @@ theorem zero_mul (x : Z) : Z.zero * x = Z.zero := by
 
 Predicate logic:
 
-  (∀ x ∈ Z), x + one = succ x
+  ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHAdd.hAdd x LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.one = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.succ x
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHAdd.1 x LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.one = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.succZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p.succ) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun n' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n') a) a) n) a) a) x
+  Ambient
+    (Z)
+  Objects
+    x : Z
+  Prove
+    { hAdd := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instAddZ.add a b }.hAdd x LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.one = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.succZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p.succ) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun n' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n') a) a) n) a) a) x
 
 Logical form (Lean):
 
@@ -694,11 +784,16 @@ theorem add_one (x : Z) : x + one = succ x := by
 
 Predicate logic:
 
-  -one ∈ Z = pred Z.zero
+  LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.one = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.pred LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero
 
 Predicate logic (unfolded):
 
-  LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.1 LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.one = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.one = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero
 
 Logical form (Lean):
 
@@ -732,11 +827,16 @@ theorem neg_one_eq : (-one : Z) = pred Z.zero := by
 
 Predicate logic:
 
-  (∀ x ∈ Z), x + (-one) = pred x
+  ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHAdd.hAdd x (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.one) = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.pred x
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHAdd.1 x (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.1 LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.one) = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) x
+  Ambient
+    (Z)
+  Objects
+    x : Z
+  Prove
+    { hAdd := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instAddZ.add a b }.hAdd x (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.one) = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) x
 
 Logical form (Lean):
 
@@ -770,11 +870,16 @@ theorem add_neg_one (x : Z) : x + (-one) = pred x := by
 
 Predicate logic:
 
-  (∀ x ∈ Z), one * x = x
+  ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHMul.hMul LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.one x = x
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHMul.1 LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.one x = x
+  Ambient
+    (Z)
+  Objects
+    x : Z
+  Prove
+    { hMul := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instMulZ.mul a b }.hMul LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.one x = x
 
 Logical form (Lean):
 
@@ -808,11 +913,16 @@ theorem one_mul (x : Z) : one * x = x := by
 
 Predicate logic:
 
-  (∀ x y ∈ Z), succ x * y = x * y + y
+  ∀ (x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHMul.hMul (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.succ x) y = instHAdd.hAdd (instHMul.hMul x y) y
 
 Predicate logic (unfolded):
 
-  ∀ (x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHMul.1 (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.succZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p.succ) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun n' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n') a) a) n) a) a) x) y = instHAdd.1 (instHMul.1 x y) y
+  Ambient
+    (Z)
+  Objects
+    x y : Z
+  Prove
+    { hMul := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instMulZ.mul a b }.hMul (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.succZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p.succ) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun n' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n') a) a) n) a) a) x) y = { hAdd := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instAddZ.add a b }.hAdd ({ hMul := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instMulZ.mul a b }.hMul x y) y
 
 Logical form (Lean):
 
@@ -846,11 +956,16 @@ theorem succ_mul (x y : Z) : succ x * y = x * y + y := by
 
 Predicate logic:
 
-  (∀ x y ∈ Z), pred x * y = x * y + (-y)
+  ∀ (x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHMul.hMul (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.pred x) y = instHAdd.hAdd (instHMul.hMul x y) (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg y)
 
 Predicate logic (unfolded):
 
-  ∀ (x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHMul.1 (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) x) y = instHAdd.1 (instHMul.1 x y) (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.1 y)
+  Ambient
+    (Z)
+  Objects
+    x y : Z
+  Prove
+    { hMul := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instMulZ.mul a b }.hMul (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) x) y = { hAdd := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instAddZ.add a b }.hAdd ({ hMul := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instMulZ.mul a b }.hMul x y) (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg y)
 
 Logical form (Lean):
 
@@ -884,11 +999,16 @@ theorem pred_mul (x y : Z) : pred x * y = x * y + (-y) := by
 
 Predicate logic:
 
-  (∀ x y ∈ Z), x * y = y * x
+  ∀ (x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHMul.hMul x y = instHMul.hMul y x
 
 Predicate logic (unfolded):
 
-  ∀ (x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHMul.1 x y = instHMul.1 y x
+  Ambient
+    (Z)
+  Objects
+    x y : Z
+  Prove
+    { hMul := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instMulZ.mul a b }.hMul x y = { hMul := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instMulZ.mul a b }.hMul y x
 
 Logical form (Lean):
 
@@ -922,11 +1042,16 @@ theorem mul_comm (x y : Z) : x * y = y * x := by
 
 Predicate logic:
 
-  (∀ a b c d ∈ Z), (a + b) + (c + d) = (a + c) + (b + d)
+  ∀ (a b c d : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHAdd.hAdd (instHAdd.hAdd a b) (instHAdd.hAdd c d) = instHAdd.hAdd (instHAdd.hAdd a c) (instHAdd.hAdd b d)
 
 Predicate logic (unfolded):
 
-  ∀ (a b c d : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHAdd.1 (instHAdd.1 a b) (instHAdd.1 c d) = instHAdd.1 (instHAdd.1 a c) (instHAdd.1 b d)
+  Ambient
+    (Z)
+  Objects
+    a b c d : Z
+  Prove
+    { hAdd := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instAddZ.add a b }.hAdd ({ hAdd := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instAddZ.add a b }.hAdd a b) ({ hAdd := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instAddZ.add a b }.hAdd c d) = { hAdd := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instAddZ.add a b }.hAdd ({ hAdd := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instAddZ.add a b }.hAdd a c) ({ hAdd := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instAddZ.add a b }.hAdd b d)
 
 Logical form (Lean):
 
@@ -960,11 +1085,16 @@ theorem add_add_comm (a b c d : Z) : (a + b) + (c + d) = (a + c) + (b + d) := by
 
 Predicate logic:
 
-  (∀ a b c ∈ Z), (a + b) * c = a * c + b * c
+  ∀ (a b c : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHMul.hMul (instHAdd.hAdd a b) c = instHAdd.hAdd (instHMul.hMul a c) (instHMul.hMul b c)
 
 Predicate logic (unfolded):
 
-  ∀ (a b c : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHMul.1 (instHAdd.1 a b) c = instHAdd.1 (instHMul.1 a c) (instHMul.1 b c)
+  Ambient
+    (Z)
+  Objects
+    a b c : Z
+  Prove
+    { hMul := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instMulZ.mul a b }.hMul ({ hAdd := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instAddZ.add a b }.hAdd a b) c = { hAdd := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instAddZ.add a b }.hAdd ({ hMul := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instMulZ.mul a b }.hMul a c) ({ hMul := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instMulZ.mul a b }.hMul b c)
 
 Logical form (Lean):
 
@@ -998,11 +1128,16 @@ theorem distrib_right (a b c : Z) : (a + b) * c = a * c + b * c := by
 
 Predicate logic:
 
-  (∀ a b c ∈ Z), a * (b + c) = a * b + a * c
+  ∀ (a b c : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHMul.hMul a (instHAdd.hAdd b c) = instHAdd.hAdd (instHMul.hMul a b) (instHMul.hMul a c)
 
 Predicate logic (unfolded):
 
-  ∀ (a b c : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHMul.1 a (instHAdd.1 b c) = instHAdd.1 (instHMul.1 a b) (instHMul.1 a c)
+  Ambient
+    (Z)
+  Objects
+    a b c : Z
+  Prove
+    { hMul := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instMulZ.mul a b }.hMul a ({ hAdd := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instAddZ.add a b }.hAdd b c) = { hAdd := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instAddZ.add a b }.hAdd ({ hMul := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instMulZ.mul a b }.hMul a b) ({ hMul := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instMulZ.mul a b }.hMul a c)
 
 Logical form (Lean):
 
@@ -1036,11 +1171,16 @@ theorem distrib_left (a b c : Z) : a * (b + c) = a * b + a * c := by
 
 Predicate logic:
 
-  (∀ x y ∈ Z), x * (-y) = -(x * y)
+  ∀ (x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHMul.hMul x (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg y) = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg (instHMul.hMul x y)
 
 Predicate logic (unfolded):
 
-  ∀ (x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHMul.1 x (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.1 y) = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.1 (instHMul.1 x y)
+  Ambient
+    (Z)
+  Objects
+    x y : Z
+  Prove
+    { hMul := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instMulZ.mul a b }.hMul x (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg y) = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg ({ hMul := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instMulZ.mul a b }.hMul x y)
 
 Logical form (Lean):
 
@@ -1074,11 +1214,16 @@ theorem mul_neg (x y : Z) : x * (-y) = -(x * y) := by
 
 Predicate logic:
 
-  (∀ x y ∈ Z), (-x) * y = -(x * y)
+  ∀ (x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHMul.hMul (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg x) y = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg (instHMul.hMul x y)
 
 Predicate logic (unfolded):
 
-  ∀ (x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHMul.1 (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.1 x) y = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.1 (instHMul.1 x y)
+  Ambient
+    (Z)
+  Objects
+    x y : Z
+  Prove
+    { hMul := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instMulZ.mul a b }.hMul (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg x) y = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg ({ hMul := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instMulZ.mul a b }.hMul x y)
 
 Logical form (Lean):
 
@@ -1112,11 +1257,16 @@ theorem neg_mul (x y : Z) : (-x) * y = -(x * y) := by
 
 Predicate logic:
 
-  (∀ x y z ∈ Z), (x * y) * z = x * (y * z)
+  ∀ (x y z : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHMul.hMul (instHMul.hMul x y) z = instHMul.hMul x (instHMul.hMul y z)
 
 Predicate logic (unfolded):
 
-  ∀ (x y z : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), instHMul.1 (instHMul.1 x y) z = instHMul.1 x (instHMul.1 y z)
+  Ambient
+    (Z)
+  Objects
+    x y z : Z
+  Prove
+    { hMul := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instMulZ.mul a b }.hMul ({ hMul := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instMulZ.mul a b }.hMul x y) z = { hMul := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instMulZ.mul a b }.hMul x ({ hMul := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instMulZ.mul a b }.hMul y z)
 
 Logical form (Lean):
 
@@ -1154,7 +1304,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (z : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), Exists fun p => z = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun p => z = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p
 
 Logical form (Lean):
 
@@ -1192,7 +1347,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (z : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), Exists fun n => z = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun n => z = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n
 
 Logical form (Lean):
 
@@ -1226,11 +1386,16 @@ def IsNeg (z : Z) : Prop := ∃ n : N, z = Z.neg n
 
 Predicate logic:
 
-  ¬ Pos Z.zero
+  ¬ LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero
 
 Predicate logic (unfolded):
 
-  (Exists fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p) → False
 
 Logical form (Lean):
 
@@ -1264,11 +1429,16 @@ theorem not_pos_zero : ¬ Pos Z.zero := by
 
 Predicate logic:
 
-  ¬ IsNeg Z.zero
+  ¬ LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.IsNeg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero
 
 Predicate logic (unfolded):
 
-  (Exists fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n) → False
 
 Logical form (Lean):
 
@@ -1302,11 +1472,16 @@ theorem not_isNeg_zero : ¬ IsNeg Z.zero := by
 
 Predicate logic:
 
-  (∀ z ∈ Z), ¬ (Pos z ∧ IsNeg z)
+  ∀ (z : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), ¬ (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Pos z ∧ LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.IsNeg z)
 
 Predicate logic (unfolded):
 
-  ∀ (z : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), (Exists fun p => z = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p ∧ Exists fun n => z = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n) → False
+  Ambient
+    (Z)
+  Objects
+    z : Z
+  Prove
+    (Exists fun p => z = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p ∧ Exists fun n => z = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n) → False
 
 Logical form (Lean):
 
@@ -1340,11 +1515,16 @@ theorem not_pos_and_isNeg (z : Z) : ¬ (Pos z ∧ IsNeg z) := by
 
 Predicate logic:
 
-  (∀ z ∈ Z), z = Z.zero ∨ Pos z ∨ IsNeg z
+  ∀ (z : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), Or (z = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) (Or (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Pos z) (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.IsNeg z))
 
 Predicate logic (unfolded):
 
-  ∀ (z : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), Or (z = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) (Or (Exists fun p => z = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p) (Exists fun n => z = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n))
+  Ambient
+    (Z)
+  Objects
+    z : Z
+  Prove
+    Or (z = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) (Or (Exists fun p => z = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p) (Exists fun n => z = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n))
 
 Logical form (Lean):
 
@@ -1378,11 +1558,18 @@ theorem trichotomy (z : Z) : z = Z.zero ∨ Pos z ∨ IsNeg z := by
 
 Predicate logic:
 
-  Pos (x + y)
+  ∀ {x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z}, (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Pos x ∧ LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Pos y) → LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Pos (instHAdd.hAdd x y)
 
 Predicate logic (unfolded):
 
-  ∀ {x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z}, (Exists fun p => x = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p ∧ Exists fun p => y = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p) → Exists fun p => instHAdd.1 x y = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p
+  Ambient
+    (Z)
+  Objects
+    x y : Z
+    leftPositive : Pos x
+    rightPositive : Pos y
+  Prove
+    (Exists fun p => x = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p ∧ Exists fun p => y = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p) → Exists fun p => { hAdd := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instAddZ.add a b }.hAdd x y = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p
 
 Logical form (Lean):
 
@@ -1416,11 +1603,17 @@ theorem pos_add {x y : Z} (leftPositive : Pos x) (rightPositive : Pos y) : Pos (
 
 Predicate logic:
 
-  IsNeg (-x)
+  ∀ {x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z}, LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Pos x → LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.IsNeg (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg x)
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z}, (Exists fun p => x = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p) → Exists fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.1 x = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n
+  Ambient
+    (Z)
+  Objects
+    x : Z
+    positiveInput : Pos x
+  Prove
+    (Exists fun p => x = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p) → Exists fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg x = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n
 
 Logical form (Lean):
 
@@ -1454,11 +1647,16 @@ theorem isNeg_neg_of_pos {x : Z} (positiveInput : Pos x) : IsNeg (-x) := by
 
 Predicate logic:
 
-  (IsNeg x) → Pos (-x)
+  ∀ {x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z}, LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.IsNeg x → LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Pos (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg x)
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z}, (Exists fun n => x = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n) → Exists fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.1 x = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p
+  Ambient
+    (Z)
+  Objects
+    x : Z
+  Prove
+    (Exists fun n => x = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n) → Exists fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg x = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p
 
 Logical form (Lean):
 
@@ -1492,11 +1690,16 @@ theorem pos_neg_of_isNeg {x : Z} (negativeInput : IsNeg x) : Pos (-x) := by
 
 Predicate logic:
 
-  (∀ x ∈ Z), Pos (-x) ↔ IsNeg x
+  ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Pos (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg x) ↔ LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.IsNeg x
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), Exists fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.1 x = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p ↔ Exists fun n => x = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n
+  Ambient
+    (Z)
+  Objects
+    x : Z
+  Prove
+    LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Pos (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg x) ↔ LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.IsNeg x
 
 Logical form (Lean):
 
@@ -1534,7 +1737,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), Exists fun p => instHAdd.1 y (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.1 x) = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun p => { hAdd := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instAddZ.add a b }.hAdd y (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg x) = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p
 
 Logical form (Lean):
 
@@ -1575,7 +1783,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), Or (x = y)(LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.1 x y)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (x = y)(LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.lt x y)
 
 Logical form (Lean):
 
@@ -1612,11 +1825,16 @@ instance : LE Z where
 
 Predicate logic:
 
-  (∀ x y ∈ Z), x < y ↔ Pos (y + (-x))
+  ∀ (x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.lt x y ↔ LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Pos (instHAdd.hAdd y (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg x))
 
 Predicate logic (unfolded):
 
-  ∀ (x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.1 x y ↔ Exists fun p => instHAdd.1 y (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.1 x) = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p
+  Ambient
+    (Z)
+  Objects
+    x y : Z
+  Prove
+    LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.lt x y ↔ LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Pos (instHAdd.hAdd y (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instNegZ.neg x))
 
 Logical form (Lean):
 
@@ -1650,11 +1868,16 @@ theorem lt_def (x y : Z) : x < y ↔ Pos (y + (-x)) := by
 
 Predicate logic:
 
-  (∀ x ∈ Z), Z.zero < x → Pos x
+  ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.lt LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero x → LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Pos x
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.1 LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero x → Exists fun p => x = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p
+  Ambient
+    (Z)
+  Objects
+    x : Z
+  Prove
+    LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.lt LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero x → Exists fun p => x = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p
 
 Logical form (Lean):
 
@@ -1688,11 +1911,16 @@ theorem pos_of_zero_lt (x : Z) : Z.zero < x → Pos x := by
 
 Predicate logic:
 
-  (∀ x ∈ Z), ¬ x < x
+  ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), ¬ LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.lt x x
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.1 x x → False
+  Ambient
+    (Z)
+  Objects
+    x : Z
+  Prove
+    LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.lt x x → False
 
 Logical form (Lean):
 
@@ -1726,11 +1954,16 @@ theorem lt_irrefl (x : Z) : ¬ x < x := by
 
 Predicate logic:
 
-  (x < y ∧ y < z) → x < z
+  ∀ {x y z : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z}, (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.lt x y ∧ LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.lt y z) → LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.lt x z
 
 Predicate logic (unfolded):
 
-  ∀ {x y z : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z}, (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.1 x y ∧ LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.1 y z) → LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.1 x z
+  Ambient
+    (Z)
+  Objects
+    x y z : Z
+  Prove
+    (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.lt x y ∧ LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.lt y z) → LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.lt x z
 
 Logical form (Lean):
 
@@ -1764,11 +1997,16 @@ theorem lt_trans {x y z : Z} (firstLessSecond : x < y) (secondLessThird : y < z)
 
 Predicate logic:
 
-  (∀ x y ∈ Z), x < y ∨ x = y ∨ y < x
+  ∀ (x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), Or (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.lt x y) (Or (x = y)(LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.lt y x))
 
 Predicate logic (unfolded):
 
-  ∀ (x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), Or (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.1 x y) (Or (x = y)(LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.1 y x))
+  Ambient
+    (Z)
+  Objects
+    x y : Z
+  Prove
+    Or (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.lt x y) (Or (x = y)(LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.lt y x))
 
 Logical form (Lean):
 
@@ -1802,11 +2040,16 @@ theorem lt_trichotomy (x y : Z) : x < y ∨ x = y ∨ y < x := by
 
 Predicate logic:
 
-  (∀ x ∈ Z), x < succ x
+  ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.lt x (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.succ x)
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.1 x (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.succZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p.succ) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun n' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n') a) a) n) a) a) x)
+  Ambient
+    (Z)
+  Objects
+    x : Z
+  Prove
+    LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.lt x (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.succZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p.succ) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun n' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n') a) a) n) a) a) x)
 
 Logical form (Lean):
 
@@ -1840,11 +2083,16 @@ theorem lt_succ_self (x : Z) : x < succ x := by
 
 Predicate logic:
 
-  (∀ x ∈ Z), pred x < x
+  ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.lt (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.pred x) x
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.1 (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) x) x
+  Ambient
+    (Z)
+  Objects
+    x : Z
+  Prove
+    LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.lt (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.N.predZero) Unit.unit) (fun a => (fun a => (fun p => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.P.rec ((fun _ => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.zero) Unit.unit) (fun a a_ih => (fun a => (fun p' => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p') a) a) p) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.neg n.pred) a) a) x) x
 
 Logical form (Lean):
 
@@ -1878,11 +2126,17 @@ theorem pred_lt_self (x : Z) : pred x < x := by
 
 Predicate logic:
 
-  (∀ z ∈ Z), (x < y) → x + z < y + z
+  ∀ {x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z}, LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.lt x y → ∀ (z : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.lt (instHAdd.hAdd x z) (instHAdd.hAdd y z)
 
 Predicate logic (unfolded):
 
-  ∀ {x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z}, LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.1 x y → ∀ (z : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.1 (instHAdd.1 x z) (instHAdd.1 y z)
+  Ambient
+    (Z)
+  Objects
+    x y : Z
+    z : Z
+  Prove
+    LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.lt x y → ∀ (z : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.lt ({ hAdd := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instAddZ.add a b }.hAdd x z) ({ hAdd := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instAddZ.add a b }.hAdd y z)
 
 Logical form (Lean):
 
@@ -1916,11 +2170,16 @@ theorem add_lt_add_right {x y : Z} (firstLessSecond : x < y) (z : Z) : x + z < y
 
 Predicate logic:
 
-  (∀ x y ∈ Z), x ≤ y ↔ x = y ∨ x < y
+  ∀ (x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLEZ.le x y ↔ Or (x = y)(LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.lt x y)
 
 Predicate logic (unfolded):
 
-  ∀ (x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLEZ.1 x y ↔ Or (x = y)(LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.1 x y)
+  Ambient
+    (Z)
+  Objects
+    x y : Z
+  Prove
+    LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLEZ.le x y ↔ Or (x = y)(LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.lt x y)
 
 Logical form (Lean):
 
@@ -1954,11 +2213,16 @@ theorem le_iff (x y : Z) : x ≤ y ↔ x = y ∨ x < y := by
 
 Predicate logic:
 
-  (∀ x ∈ Z), x ≤ x
+  ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLEZ.le x x
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z), LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLEZ.1 x x
+  Ambient
+    (Z)
+  Objects
+    x : Z
+  Prove
+    LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLEZ.le x x
 
 Logical form (Lean):
 
@@ -1992,11 +2256,16 @@ theorem le_refl (x : Z) : x ≤ x := by
 
 Predicate logic:
 
-  (x ≤ y ∧ y < z) → x < z
+  ∀ {x y z : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z}, (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLEZ.le x y ∧ LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.lt y z) → LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.lt x z
 
 Predicate logic (unfolded):
 
-  ∀ {x y z : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z}, (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLEZ.1 x y ∧ LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.1 y z) → LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.1 x z
+  Ambient
+    (Z)
+  Objects
+    x y z : Z
+  Prove
+    (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLEZ.le x y ∧ LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.lt y z) → LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.lt x z
 
 Logical form (Lean):
 
@@ -2032,11 +2301,16 @@ theorem lt_of_le_of_lt {x y z : Z} (firstLeSecond : x ≤ y) (secondLessThird : 
 
 Predicate logic:
 
-  (x ≤ y ∧ y ≤ x) → x = y
+  ∀ {x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z}, (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLEZ.le x y ∧ LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLEZ.le y x) → x = y
 
 Predicate logic (unfolded):
 
-  ∀ {x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z}, (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLEZ.1 x y ∧ LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLEZ.1 y x) → x = y
+  Ambient
+    (Z)
+  Objects
+    x y : Z
+  Prove
+    (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLEZ.le x y ∧ LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLEZ.le y x) → x = y
 
 Logical form (Lean):
 
@@ -2070,11 +2344,18 @@ theorem le_antisymm {x y : Z} (firstLeSecond : x ≤ y) (secondLeFirst : y ≤ x
 
 Predicate logic:
 
-  Pos (x * y)
+  ∀ {x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z}, (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Pos x ∧ LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Pos y) → LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Pos (instHMul.hMul x y)
 
 Predicate logic (unfolded):
 
-  ∀ {x y : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z}, (Exists fun p => x = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p ∧ Exists fun p => y = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p) → Exists fun p => instHMul.1 x y = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p
+  Ambient
+    (Z)
+  Objects
+    x y : Z
+    leftPositive : Pos x
+    rightPositive : Pos y
+  Prove
+    (Exists fun p => x = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p ∧ Exists fun p => y = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p) → Exists fun p => { hMul := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instMulZ.mul a b }.hMul x y = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p
 
 Logical form (Lean):
 
@@ -2108,11 +2389,17 @@ theorem pos_mul {x y : Z} (leftPositive : Pos x) (rightPositive : Pos y) : Pos (
 
 Predicate logic:
 
-  (x < y) → x * z < y * z
+  ∀ {x y z : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z}, (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.lt x y ∧ LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Pos z) → LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.lt (instHMul.hMul x z) (instHMul.hMul y z)
 
 Predicate logic (unfolded):
 
-  ∀ {x y z : LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z}, (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.1 x y ∧ Exists fun p => z = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p) → LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.1 (instHMul.1 x z) (instHMul.1 y z)
+  Ambient
+    (Z)
+  Objects
+    x y z : Z
+    multiplierPositive : Pos z
+  Prove
+    (LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.lt x y ∧ Exists fun p => z = LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.Z.pos p) → LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instLTZ.lt ({ hMul := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instMulZ.mul a b }.hMul x z) ({ hMul := fun a b => LRA.NumberSystems.Integers.Polish.TwoSidedSuccessor.instMulZ.mul a b }.hMul y z)
 
 Logical form (Lean):
 

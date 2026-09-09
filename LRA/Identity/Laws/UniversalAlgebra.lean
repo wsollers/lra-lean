@@ -11,17 +11,11 @@ universe u v w
 
 Predicate logic:
 
-  IsCongruence structure_ Ident
+  ∀ {signature : LRA.Identity.AlgebraicSignature} (structure_ : LRA.Identity.AlgebraicStructure signature) [inst : LRA.Identity.IdentityRelation structure_.Carrier], LRA.Identity.IsCongruence structure_ inst.Ident
 
 Predicate logic (unfolded):
 
-  Ambient
-    (implicit ambient)
-  Objects
-    signature : AlgebraicSignature.{v, w}
-    structure_ : AlgebraicStructure.{u} signature
-  Prove
-    LRA.Identity.IsCongruence structure_ inst.1
+  ∀ {signature : LRA.Identity.AlgebraicSignature} (structure_ : LRA.Identity.AlgebraicStructure signature) [inst : LRA.Identity.IdentityRelation structure_.Carrier], ((∀ (x : structure_.Carrier), inst.Ident x x) ∧ ((∀ {x y : structure_.Carrier}, inst.Ident x y → inst.Ident y x) ∧ ((∀ {x y z : structure_.Carrier}, inst.Ident x y → inst.Ident y z → inst.Ident x z) ∧ (∀ (symbol : signature.OperationSymbol) (left right : Fin (signature.arity symbol) → structure_.Carrier), (∀ (index : Fin (signature.arity symbol)), inst.Ident (left index) (right index)) → inst.Ident (structure_.interpretOperation symbol left) (structure_.interpretOperation symbol right)))))
 
 Logical form (Lean):
 

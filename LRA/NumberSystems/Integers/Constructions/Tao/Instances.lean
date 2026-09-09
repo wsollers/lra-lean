@@ -9,11 +9,16 @@ namespace LRA.NumberSystems.Integers.Tao
 
 Predicate logic:
 
-  (∀ wholeData ∈ WholeNumberArithmeticForTaoFormalDifferences), ∃ model ∈ LRA.NumberSystems.Integers.Interface.ModelTheory.IntegerModel, model.Carrier = Carrier wholeData
+  ∀ (wholeData : LRA.NumberSystems.Integers.Tao.WholeNumberArithmeticForTaoFormalDifferences), Exists fun model => model.Carrier = LRA.NumberSystems.Integers.Tao.Carrier wholeData
 
 Predicate logic (unfolded):
 
-  ∀ (wholeData : LRA.NumberSystems.Integers.Tao.WholeNumberArithmeticForTaoFormalDifferences), Exists fun model => model.1 = Quot (LRA.NumberSystems.Integers.Tao.setoid wholeData).1
+  Ambient
+    (implicit ambient)
+  Objects
+    wholeData : WholeNumberArithmeticForTaoFormalDifferences
+  Prove
+    Exists fun model => model.1 = Quot (LRA.NumberSystems.Integers.Tao.setoid wholeData).1
 
 Logical form (Lean):
 
@@ -53,11 +58,16 @@ theorem TaoIntegersFormDiscretelyOrderedIntegralDomain
 
 Predicate logic:
 
-  (∀ wholeData ∈ WholeNumberArithmeticForTaoFormalDifferences), ∃ integerSystem ∈ LRA.NumberSystems.Integers.IntegerNumberSystem, integerSystem.Model.Carrier = Carrier wholeData
+  ∀ (wholeData : LRA.NumberSystems.Integers.Tao.WholeNumberArithmeticForTaoFormalDifferences), Exists fun integerSystem => integerSystem.Model.Carrier = LRA.NumberSystems.Integers.Tao.Carrier wholeData
 
 Predicate logic (unfolded):
 
-  ∀ (wholeData : LRA.NumberSystems.Integers.Tao.WholeNumberArithmeticForTaoFormalDifferences), Exists fun integerSystem => integerSystem.Model.1 = Quot (LRA.NumberSystems.Integers.Tao.setoid wholeData).1
+  Ambient
+    (implicit ambient)
+  Objects
+    wholeData : WholeNumberArithmeticForTaoFormalDifferences
+  Prove
+    Exists fun integerSystem => integerSystem.Model.1 = Quot (LRA.NumberSystems.Integers.Tao.setoid wholeData).1
 
 Logical form (Lean):
 

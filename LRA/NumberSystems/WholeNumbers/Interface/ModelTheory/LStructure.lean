@@ -19,28 +19,28 @@ variable [Membership Element SetObject]
 Predicate logic:
 
   noncomputable def wholeNumbersModel
-    (natural_data : NaturalArithmeticForWholeNumbers Element SetObject) :
-    LRA.ModelTheory.FirstOrder.Model WholeNumbersFirstOrderSignature :=
-  letI := zeroOn natural_data
-  letI := oneOn natural_data
-  letI := addOn natural_data
-  letI := mulOn natural_data
-  letI := ltOn natural_data
-  letI := leOn natural_data
-  orderedSemiringFirstOrderModel (Carrier natural_data)
+      (natural_data : NaturalArithmeticForWholeNumbers Element SetObject) :
+      LRA.ModelTheory.FirstOrder.Model WholeNumbersFirstOrderSignature :=
+    letI := zeroOn natural_data
+    letI := oneOn natural_data
+    letI := addOn natural_data
+    letI := mulOn natural_data
+    letI := ltOn natural_data
+    letI := leOn natural_data
+    orderedSemiringFirstOrderModel (Carrier natural_data)
 
 Predicate logic (unfolded):
 
   noncomputable def wholeNumbersModel
-    (natural_data : NaturalArithmeticForWholeNumbers Element SetObject) :
-    LRA.ModelTheory.FirstOrder.Model WholeNumbersFirstOrderSignature :=
-  letI := zeroOn natural_data
-  letI := oneOn natural_data
-  letI := addOn natural_data
-  letI := mulOn natural_data
-  letI := ltOn natural_data
-  letI := leOn natural_data
-  orderedSemiringFirstOrderModel (Carrier natural_data) (source fallback; no compiled unfold data available)
+      (natural_data : NaturalArithmeticForWholeNumbers Element SetObject) :
+      LRA.ModelTheory.FirstOrder.Model WholeNumbersFirstOrderSignature :=
+    letI := zeroOn natural_data
+    letI := oneOn natural_data
+    letI := addOn natural_data
+    letI := mulOn natural_data
+    letI := ltOn natural_data
+    letI := leOn natural_data
+    orderedSemiringFirstOrderModel (Carrier natural_data) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

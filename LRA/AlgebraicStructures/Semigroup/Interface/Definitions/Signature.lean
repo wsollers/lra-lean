@@ -8,12 +8,12 @@ namespace LRA.AlgebraicStructures.Semigroup.Interface.Signature
 Predicate logic:
 
   inductive SemigroupFunctionSymbol where
-  | mul
+    | mul
 
 Predicate logic (unfolded):
 
   inductive SemigroupFunctionSymbol where
-  | mul (source fallback; no compiled unfold data available)
+    | mul (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -126,16 +126,16 @@ def SemigroupConstantSymbol : Type := Empty
 Predicate logic:
 
   def SemigroupFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
-  Symbol := SemigroupFunctionSymbol
-  arity
-    | .mul => 2
+    Symbol := SemigroupFunctionSymbol
+    arity
+      | .mul => 2
 
 Predicate logic (unfolded):
 
   def SemigroupFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
-  Symbol := SemigroupFunctionSymbol
-  arity
-    | .mul => 2 (source fallback; no compiled unfold data available)
+    Symbol := SemigroupFunctionSymbol
+    arity
+      | .mul => 2 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -176,14 +176,14 @@ def SemigroupFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
 Predicate logic:
 
   def SemigroupFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
-  Symbol := SemigroupRelationSymbol
-  arity := Empty.elim
+    Symbol := SemigroupRelationSymbol
+    arity := Empty.elim
 
 Predicate logic (unfolded):
 
   def SemigroupFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
-  Symbol := SemigroupRelationSymbol
-  arity := Empty.elim (source fallback; no compiled unfold data available)
+    Symbol := SemigroupRelationSymbol
+    arity := Empty.elim (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -222,16 +222,16 @@ def SemigroupFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
 Predicate logic:
 
   def SemigroupFirstOrderSignature : LRA.Logic.Signature where
-  Functions := SemigroupFirstOrderFunctions
-  Relations := SemigroupFirstOrderRelations
-  Constants := SemigroupConstantSymbol
+    Functions := SemigroupFirstOrderFunctions
+    Relations := SemigroupFirstOrderRelations
+    Constants := SemigroupConstantSymbol
 
 Predicate logic (unfolded):
 
   def SemigroupFirstOrderSignature : LRA.Logic.Signature where
-  Functions := SemigroupFirstOrderFunctions
-  Relations := SemigroupFirstOrderRelations
-  Constants := SemigroupConstantSymbol (source fallback; no compiled unfold data available)
+    Functions := SemigroupFirstOrderFunctions
+    Relations := SemigroupFirstOrderRelations
+    Constants := SemigroupConstantSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

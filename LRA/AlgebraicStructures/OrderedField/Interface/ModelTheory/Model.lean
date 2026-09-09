@@ -12,8 +12,78 @@ open LRA.Operation.Multiplication.Interface.ModelTheory (MultiplicationModel)
 
 universe u
 
-/-- Promoted ordered-field model packaging the additive and multiplicative
-operator interfaces, order surface, and ordered-field law bundle. -/
+/--
+`OrderedFieldModel` Promoted ordered-field model packaging the additive and multiplicative operator interfaces, order surface, and ordered-field law bundle.
+
+Predicate logic:
+
+  structure OrderedFieldModel (Carrier : Type u) where
+    [addInst : Add Carrier]
+    [mulInst : Mul Carrier]
+    [negInst : Neg Carrier]
+    [invInst : Inv Carrier]
+    [ltInst : LT Carrier]
+    [leInst : LE Carrier]
+    [zeroInst : OfNat Carrier 0]
+    [oneInst : OfNat Carrier 1]
+    [carrierNonempty : Nonempty Carrier]
+    addition : AdditionModel Carrier
+    multiplication : MultiplicationModel Carrier
+    [laws : LRA.AlgebraicStructures.OrderedFieldLaws Carrier]
+
+Predicate logic (unfolded):
+
+  structure OrderedFieldModel (Carrier : Type u) where
+    [addInst : Add Carrier]
+    [mulInst : Mul Carrier]
+    [negInst : Neg Carrier]
+    [invInst : Inv Carrier]
+    [ltInst : LT Carrier]
+    [leInst : LE Carrier]
+    [zeroInst : OfNat Carrier 0]
+    [oneInst : OfNat Carrier 1]
+    [carrierNonempty : Nonempty Carrier]
+    addition : AdditionModel Carrier
+    multiplication : MultiplicationModel Carrier
+    [laws : LRA.AlgebraicStructures.OrderedFieldLaws Carrier] (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+structure OrderedFieldModel (Carrier : Type u) where
+  [addInst : Add Carrier]
+  [mulInst : Mul Carrier]
+  [negInst : Neg Carrier]
+  [invInst : Inv Carrier]
+  [ltInst : LT Carrier]
+  [leInst : LE Carrier]
+  [zeroInst : OfNat Carrier 0]
+  [oneInst : OfNat Carrier 1]
+  [carrierNonempty : Nonempty Carrier]
+  addition : AdditionModel Carrier
+  multiplication : MultiplicationModel Carrier
+  [laws : LRA.AlgebraicStructures.OrderedFieldLaws Carrier]
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 structure OrderedFieldModel (Carrier : Type u) where
   [addInst : Add Carrier]
   [mulInst : Mul Carrier]
@@ -28,7 +98,48 @@ structure OrderedFieldModel (Carrier : Type u) where
   multiplication : MultiplicationModel Carrier
   [laws : LRA.AlgebraicStructures.OrderedFieldLaws Carrier]
 
-/-- The ordered-field signature induced by a promoted ordered-field model. -/
+/--
+`OrderedFieldModel.signature` The ordered-field signature induced by a promoted ordered-field model.
+
+Predicate logic:
+
+  def OrderedFieldModel.signature {Carrier : Type u}
+      (model : OrderedFieldModel Carrier) :
+      OrderedFieldSignature
+
+Predicate logic (unfolded):
+
+  def OrderedFieldModel.signature {Carrier : Type u}
+      (model : OrderedFieldModel Carrier) :
+      OrderedFieldSignature (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+def OrderedFieldModel.signature {Carrier : Type u}
+    (model : OrderedFieldModel Carrier) :
+    OrderedFieldSignature
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 def OrderedFieldModel.signature {Carrier : Type u}
     (model : OrderedFieldModel Carrier) :
     OrderedFieldSignature :=
@@ -51,14 +162,102 @@ def OrderedFieldModel.signature {Carrier : Type u}
     le := (· ≤ ·)
     StrictOrder := (· < ·) }
 
-/-- The first-order model induced by a promoted ordered-field model. -/
+/--
+`OrderedFieldModel.firstOrderModel` The first-order model induced by a promoted ordered-field model.
+
+Predicate logic:
+
+  def OrderedFieldModel.firstOrderModel {Carrier : Type u}
+      (model : OrderedFieldModel Carrier) :
+      LRA.ModelTheory.FirstOrder.Model
+        LRA.AlgebraicStructures.OrderedField.Interface.Signature.OrderedFieldFirstOrderSignature :=
+    BuildOrderedFieldModel model.signature
+
+Predicate logic (unfolded):
+
+  def OrderedFieldModel.firstOrderModel {Carrier : Type u}
+      (model : OrderedFieldModel Carrier) :
+      LRA.ModelTheory.FirstOrder.Model
+        LRA.AlgebraicStructures.OrderedField.Interface.Signature.OrderedFieldFirstOrderSignature :=
+    BuildOrderedFieldModel model.signature (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+def OrderedFieldModel.firstOrderModel {Carrier : Type u}
+    (model : OrderedFieldModel Carrier) :
+    LRA.ModelTheory.FirstOrder.Model
+      LRA.AlgebraicStructures.OrderedField.Interface.Signature.OrderedFieldFirstOrderSignature :=
+  BuildOrderedFieldModel model.signature
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 def OrderedFieldModel.firstOrderModel {Carrier : Type u}
     (model : OrderedFieldModel Carrier) :
     LRA.ModelTheory.FirstOrder.Model
       LRA.AlgebraicStructures.OrderedField.Interface.Signature.OrderedFieldFirstOrderSignature :=
   BuildOrderedFieldModel model.signature
 
-/-- Forget an ordered-field model down to its field reduct. -/
+/--
+`OrderedFieldModel.toFieldModel` Forget an ordered-field model down to its field reduct.
+
+Predicate logic:
+
+  def OrderedFieldModel.toFieldModel {Carrier : Type u}
+      (model : OrderedFieldModel Carrier) :
+      LRA.AlgebraicStructures.Field.Interface.ModelTheory.FieldModel Carrier
+
+Predicate logic (unfolded):
+
+  def OrderedFieldModel.toFieldModel {Carrier : Type u}
+      (model : OrderedFieldModel Carrier) :
+      LRA.AlgebraicStructures.Field.Interface.ModelTheory.FieldModel Carrier (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+def OrderedFieldModel.toFieldModel {Carrier : Type u}
+    (model : OrderedFieldModel Carrier) :
+    LRA.AlgebraicStructures.Field.Interface.ModelTheory.FieldModel Carrier
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 def OrderedFieldModel.toFieldModel {Carrier : Type u}
     (model : OrderedFieldModel Carrier) :
     LRA.AlgebraicStructures.Field.Interface.ModelTheory.FieldModel Carrier :=

@@ -9,22 +9,112 @@ namespace LRA.Identity.ModelTheory.SOL
 
 open LRA.Logic
 
-/-- The admissible unary predicates induced by a Henkin model's arity-one
-relation domain.
+/--
+`UnaryPredicateDomain` TODO
 
-Logical form: `P` is admissible iff its unary lifting belongs to
-`M.RelationDomain 1`.
+Predicate logic:
+
+  def UnaryPredicateDomain {S : Signature}
+      (M : LRA.ModelTheory.SecondOrder.HenkinModel S) :
+      LRA.Identity.Logic.SOL.HenkinPredicateDomain M.Domain where
+    Admissible P := (fun arguments => P (arguments 0)) ∈ M.RelationDomain 1
+
+Predicate logic (unfolded):
+
+  def UnaryPredicateDomain {S : Signature}
+      (M : LRA.ModelTheory.SecondOrder.HenkinModel S) :
+      LRA.Identity.Logic.SOL.HenkinPredicateDomain M.Domain where
+    Admissible P := (fun arguments => P (arguments 0)) ∈ M.RelationDomain 1
+
+Logical form (Lean):
+
+```lean
+def UnaryPredicateDomain {S : Signature}
+    (M : LRA.ModelTheory.SecondOrder.HenkinModel S) :
+    LRA.Identity.Logic.SOL.HenkinPredicateDomain M.Domain where
+  Admissible P := (fun arguments => P (arguments 0)) ∈ M.RelationDomain 1
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
 -/
 def UnaryPredicateDomain {S : Signature}
     (M : LRA.ModelTheory.SecondOrder.HenkinModel S) :
     LRA.Identity.Logic.SOL.HenkinPredicateDomain M.Domain where
   Admissible P := (fun arguments => P (arguments 0)) ∈ M.RelationDomain 1
 
-/-- Build a genuinely Henkin second-order model from an equality structure and
-explicit relation and function domains. These domains need not be full.
+/--
+`ToHenkinModel` TODO
 
-Logical form: the first-order reduct interprets equality by the structure, and
-the supplied domains determine the second-order quantifier ranges.
+Predicate logic:
+
+  noncomputable def ToHenkinModel
+      (E : LRA.Identity.EqualityStructure)
+      (RelationDomain : forall arity,
+        Set ((Fin arity -> E.Carrier) -> Prop))
+      (FunctionDomain : forall arity,
+        Set ((Fin arity -> E.Carrier) -> E.Carrier)) :
+      LRA.ModelTheory.SecondOrder.HenkinModel
+        LRA.Identity.pureEqualitySignature
+
+Predicate logic (unfolded):
+
+  noncomputable def ToHenkinModel
+      (E : LRA.Identity.EqualityStructure)
+      (RelationDomain : forall arity,
+        Set ((Fin arity -> E.Carrier) -> Prop))
+      (FunctionDomain : forall arity,
+        Set ((Fin arity -> E.Carrier) -> E.Carrier)) :
+      LRA.ModelTheory.SecondOrder.HenkinModel
+        LRA.Identity.pureEqualitySignature
+
+Logical form (Lean):
+
+```lean
+noncomputable def ToHenkinModel
+    (E : LRA.Identity.EqualityStructure)
+    (RelationDomain : forall arity,
+      Set ((Fin arity -> E.Carrier) -> Prop))
+    (FunctionDomain : forall arity,
+      Set ((Fin arity -> E.Carrier) -> E.Carrier)) :
+    LRA.ModelTheory.SecondOrder.HenkinModel
+      LRA.Identity.pureEqualitySignature
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, unfold
+
 -/
 noncomputable def ToHenkinModel
     (E : LRA.Identity.EqualityStructure)
@@ -36,13 +126,52 @@ noncomputable def ToHenkinModel
       LRA.Identity.pureEqualitySignature := by
   sorry
 
-/-- `SatisfiesLeibnizIdentity` states that a Henkin model and assignment
-satisfy the explicit second-order Leibniz identity formula.
+/--
+`HenkinSatisfiesLeibnizIdentity` TODO
 
-Logical form:
+Predicate logic:
+
+  ∀ {S : LRA.Logic.Signature} {Variable : Type} {RelationVariable FunctionVariable : Nat → Type} [inst : DecidableEq Variable] [inst_1 : (arity : Nat) → DecidableEq (RelationVariable arity)] [inst_2 : (arity : Nat) → DecidableEq (FunctionVariable arity)] (M : LRA.ModelTheory.SecondOrder.HenkinModel S) (assignment : LRA.ModelTheory.SecondOrder.SOAssignment M Variable RelationVariable FunctionVariable) (left right : Variable) (property : RelationVariable 1), LRA.ModelTheory.SecondOrder.SOSatisfies M assignment (LRA.Identity.Logic.SOL.LeibnizIdentityFormula left right property)
+
+Predicate logic (unfolded):
+
+  ∀ {S : LRA.Logic.Signature} {Variable : Type} {RelationVariable FunctionVariable : Nat → Type} [inst : DecidableEq Variable] [inst_1 : (arity : Nat) → DecidableEq (RelationVariable arity)] [inst_2 : (arity : Nat) → DecidableEq (FunctionVariable arity)] (M : LRA.ModelTheory.SecondOrder.HenkinModel S) (assignment : LRA.ModelTheory.SecondOrder.SOAssignment M Variable RelationVariable FunctionVariable) (left right : Variable) (property : RelationVariable 1), LRA.ModelTheory.SecondOrder.SOSatisfies M assignment (LRA.Identity.Logic.SOL.LeibnizIdentityFormula left right property)
+
+Logical form (Lean):
+
 ```lean
-SOSatisfies M assignment (LeibnizIdentityFormula left right property)
+def HenkinSatisfiesLeibnizIdentity
+    {S : Signature} {Variable : Type}
+    {RelationVariable FunctionVariable : Nat -> Type}
+    [DecidableEq Variable]
+    [forall arity, DecidableEq (RelationVariable arity)]
+    [forall arity, DecidableEq (FunctionVariable arity)]
+    (M : LRA.ModelTheory.SecondOrder.HenkinModel S)
+    (assignment : LRA.ModelTheory.SecondOrder.SOAssignment M Variable
+      RelationVariable FunctionVariable)
+    (left right : Variable) (property : RelationVariable 1) : Prop :=
+  LRA.ModelTheory.SecondOrder.SOSatisfies M assignment
+    (LRA.Identity.Logic.SOL.LeibnizIdentityFormula left right property)
 ```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, unfold
+
 -/
 def HenkinSatisfiesLeibnizIdentity
     {S : Signature} {Variable : Type}

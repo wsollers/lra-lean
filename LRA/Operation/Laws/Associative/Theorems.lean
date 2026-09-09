@@ -11,11 +11,18 @@ universe u
 
 Predicate logic:
 
-  (∀ first second third ∈ Carrier), operation (operation first second) third = operation first (operation second third)
+  ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Associative.Associative operation → ∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {operation : Carrier → Carrier → Carrier}, (∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)) → ∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    law : Associative operation
+    first second third : Carrier
+  Prove
+    (∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)) → ∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)
 
 Logical form (Lean):
 
@@ -59,11 +66,18 @@ theorem Associative.apply {Carrier : Type u}
 
 Predicate logic:
 
-  (∀ first second third ∈ Carrier), operation (operation first second) third = operation first (operation second third)
+  ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Associative.Associative operation → ∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {operation : Carrier → Carrier → Carrier}, (∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)) → ∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    law : Associative operation
+    first second third : Carrier
+  Prove
+    (∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)) → ∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)
 
 Logical form (Lean):
 
@@ -107,11 +121,18 @@ theorem Associative.reassociate_left {Carrier : Type u}
 
 Predicate logic:
 
-  (∀ first second third ∈ Carrier), operation first (operation second third) = operation (operation first second) third
+  ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Associative.Associative operation → ∀ (first second third : Carrier), operation first (operation second third) = operation (operation first second) third
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {operation : Carrier → Carrier → Carrier}, (∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)) → ∀ (first second third : Carrier), operation first (operation second third) = operation (operation first second) third
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    law : Associative operation
+    first second third : Carrier
+  Prove
+    (∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)) → ∀ (first second third : Carrier), operation first (operation second third) = operation (operation first second) third
 
 Logical form (Lean):
 
@@ -155,11 +176,18 @@ theorem Associative.reassociate_right {Carrier : Type u}
 
 Predicate logic:
 
-  (∀ first second third fourth ∈ Carrier), operation (operation (operation first second) third) fourth = operation first (operation second (operation third fourth))
+  ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Associative.Associative operation → ∀ (first second third fourth : Carrier), operation (operation (operation first second) third) fourth = operation first (operation second (operation third fourth))
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {operation : Carrier → Carrier → Carrier}, (∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)) → ∀ (first second third fourth : Carrier), operation (operation (operation first second) third) fourth = operation first (operation second (operation third fourth))
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    law : Associative operation
+    first second third fourth : Carrier
+  Prove
+    (∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)) → ∀ (first second third fourth : Carrier), operation (operation (operation first second) third) fourth = operation first (operation second (operation third fourth))
 
 Logical form (Lean):
 
@@ -203,11 +231,18 @@ theorem Associative.four_left {Carrier : Type u}
 
 Predicate logic:
 
-  (∀ first second third fourth ∈ Carrier), operation first (operation second (operation third fourth)) = operation (operation (operation first second) third) fourth
+  ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Associative.Associative operation → ∀ (first second third fourth : Carrier), operation first (operation second (operation third fourth)) = operation (operation (operation first second) third) fourth
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {operation : Carrier → Carrier → Carrier}, (∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)) → ∀ (first second third fourth : Carrier), operation first (operation second (operation third fourth)) = operation (operation (operation first second) third) fourth
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    law : Associative operation
+    first second third fourth : Carrier
+  Prove
+    (∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)) → ∀ (first second third fourth : Carrier), operation first (operation second (operation third fourth)) = operation (operation (operation first second) third) fourth
 
 Logical form (Lean):
 

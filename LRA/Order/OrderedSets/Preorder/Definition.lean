@@ -14,7 +14,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (relation : Alpha → Alpha → Prop), (∀ (x : Alpha), relation x x ∧ ∀ (x y z : Alpha), relation x y → relation y z → relation x z)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Alpha), relation x x) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))
 
 Logical form (Lean):
 
@@ -61,14 +66,14 @@ universe u
 Predicate logic:
 
   structure PreorderRelation (Carrier : Type u) where
-  relation : LRA.Order.OrderedSets.OrderRelation Carrier
-  isPreorder : LRA.Order.Preorder relation
+    relation : LRA.Order.OrderedSets.OrderRelation Carrier
+    isPreorder : LRA.Order.Preorder relation
 
 Predicate logic (unfolded):
 
   structure PreorderRelation (Carrier : Type u) where
-  relation : LRA.Order.OrderedSets.OrderRelation Carrier
-  isPreorder : LRA.Order.Preorder relation (source fallback; no compiled unfold data available)
+    relation : LRA.Order.OrderedSets.OrderRelation Carrier
+    isPreorder : LRA.Order.Preorder relation (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

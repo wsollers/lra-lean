@@ -13,6 +13,45 @@ same as on the integers. Wrapped in a one-field structure, same reason as
 elsewhere in this tree — `Nat` already has its own native `Mul` (ordinary
 multiplication), so a distinct carrier type keeps this `*` unambiguous. -/
 
+/--
+`NaturalsUnderMultiplication` TODO
+
+Predicate logic:
+
+  structure NaturalsUnderMultiplication where
+    val : Nat
+
+Predicate logic (unfolded):
+
+  structure NaturalsUnderMultiplication where
+    val : Nat (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+structure NaturalsUnderMultiplication where
+  val : Nat
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 structure NaturalsUnderMultiplication where
   val : Nat
 
@@ -27,9 +66,94 @@ instance :
   MulCommutative := by
     intro a b
     sorry
+/--
+`PositiveEvenNaturals` TODO
+
+Predicate logic:
+
+  ∀ (a : LRA.AlgebraicStructures.CommutativeSemigroup.Examples.NaturalsUnderMultiplication), (instLTNat.lt 0 a.val ∧ Even a.val)
+
+Predicate logic (unfolded):
+
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (instLTNat.lt 0 a.1 ∧ Exists fun r => a.1 = { hAdd := fun a b => instAddNat.add a b }.hAdd r r)
+
+Logical form (Lean):
+
+```lean
+def PositiveEvenNaturals : LRA.Set.LRA_Set NaturalsUnderMultiplication :=
+  {n | 0 < n.val ∧ Even n.val}
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: constructor, cases, rcases, unfold
+
+-/
 def PositiveEvenNaturals : LRA.Set.LRA_Set NaturalsUnderMultiplication :=
   {n | 0 < n.val ∧ Even n.val}
 
+/--
+`positiveEvenNaturalsClosedUnderMultiplication` TODO
+
+Predicate logic:
+
+  ∀ (a b : LRA.AlgebraicStructures.CommutativeSemigroup.Examples.NaturalsUnderMultiplication), (a ∈ LRA.AlgebraicStructures.CommutativeSemigroup.Examples.PositiveEvenNaturals ∧ b ∈ LRA.AlgebraicStructures.CommutativeSemigroup.Examples.PositiveEvenNaturals) → instHMul.hMul a b ∈ LRA.AlgebraicStructures.CommutativeSemigroup.Examples.PositiveEvenNaturals
+
+Predicate logic (unfolded):
+
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (a ∈ LRA.AlgebraicStructures.CommutativeSemigroup.Examples.PositiveEvenNaturals ∧ b ∈ LRA.AlgebraicStructures.CommutativeSemigroup.Examples.PositiveEvenNaturals) → { hMul := fun a b => LRA.AlgebraicStructures.CommutativeSemigroup.Examples.instMulNaturalsUnderMultiplication.mul a b }.hMul a b ∈ LRA.AlgebraicStructures.CommutativeSemigroup.Examples.PositiveEvenNaturals
+
+Logical form (Lean):
+
+```lean
+theorem positiveEvenNaturalsClosedUnderMultiplication :
+    ∀ a b, a ∈ PositiveEvenNaturals → b ∈ PositiveEvenNaturals →
+      a * b ∈ PositiveEvenNaturals
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro
+
+-/
 theorem positiveEvenNaturalsClosedUnderMultiplication :
     ∀ a b, a ∈ PositiveEvenNaturals → b ∈ PositiveEvenNaturals →
       a * b ∈ PositiveEvenNaturals := by

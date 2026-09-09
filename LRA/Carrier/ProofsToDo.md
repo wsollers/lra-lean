@@ -48,7 +48,7 @@ Predicate logic (unfolded):
     (Exists fun n => Exists fun f => ((∀ (y : Fin n) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Fin n), Exists fun x => f x = y))) → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Finiteness/Definition.lean
+Source: [`./Finiteness/Definition.lean`](./Finiteness/Definition.lean)
 
 
 
@@ -65,7 +65,7 @@ Predicate logic (unfolded):
     Exists fun n => Exists fun f => ((∀ (y : Fin n) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Fin n), Exists fun x => f x = y))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Finiteness/Definition.lean
+Source: [`./Finiteness/Definition.lean`](./Finiteness/Definition.lean)
 
 
 
@@ -82,7 +82,7 @@ Predicate logic (unfolded):
     (Exists fun f => ∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Countability/Definition.lean
+Source: [`./Countability/Definition.lean`](./Countability/Definition.lean)
 
 
 
@@ -99,7 +99,7 @@ Predicate logic (unfolded):
     Exists fun f => ∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Countability/Definition.lean
+Source: [`./Countability/Definition.lean`](./Countability/Definition.lean)
 
 
 
@@ -116,4 +116,4 @@ Predicate logic (unfolded):
     Exists fun f => ((∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Nat), Exists fun x => f x = y))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Countability/Definition.lean
+Source: [`./Countability/Definition.lean`](./Countability/Definition.lean)

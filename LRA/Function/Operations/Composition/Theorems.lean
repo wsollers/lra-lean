@@ -12,11 +12,18 @@ universe u v w x
 
 Predicate logic:
 
-  (∀ input ∈ Domain), Compose outer inner input = outer (inner input)
+  ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} (outer : LRA.Function Middle Codomain) (inner : LRA.Function Domain Middle) (input : Domain), outer.Compose inner input = outer (inner input)
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} (outer : Middle → Codomain) (inner : Domain → Middle) (input : Domain), outer (inner input) = outer (inner input)
+  Ambient
+    (Domain, Middle, Codomain)
+  Objects
+    outer : LRA.Function Middle Codomain
+    inner : LRA.Function Domain Middle
+    input : Domain
+  Prove
+    outer (inner input) = outer (inner input)
 
 Logical form (Lean):
 
@@ -60,11 +67,16 @@ theorem ComposeValue
 
 Predicate logic:
 
-  Compose (IdentityFunction Codomain) function = function
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), LRA.Function.Compose (LRA.Function.IdentityFunction Codomain) function = function
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain), fun input => function input = function
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+  Prove
+    fun input => function input = function
 
 Logical form (Lean):
 
@@ -102,11 +114,16 @@ theorem ComposeLeftIdentity {Domain : Type u} {Codomain : Type v}
 
 Predicate logic:
 
-  Compose function (IdentityFunction Domain) = function
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.Compose (LRA.Function.IdentityFunction Domain) = function
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain), fun input => function input = function
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+  Prove
+    fun input => function input = function
 
 Logical form (Lean):
 
@@ -144,11 +161,18 @@ theorem ComposeRightIdentity {Domain : Type u} {Codomain : Type v}
 
 Predicate logic:
 
-  Compose outer (Compose middle inner) = Compose (Compose outer middle) inner
+  ∀ {Domain : Type u} {Middle : Type v} {Later : Type w} {Codomain : Type x} (outer : LRA.Function Later Codomain) (middle : LRA.Function Middle Later) (inner : LRA.Function Domain Middle), outer.Compose (middle.Compose inner) = (outer.Compose middle).Compose inner
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Middle : Type v} {Later : Type w} {Codomain : Type x} (outer : Later → Codomain) (middle : Middle → Later) (inner : Domain → Middle), fun input => outer (middle (inner input)) = funinput => outer (middle (inner input))
+  Ambient
+    (Domain, Middle, Later, Codomain)
+  Objects
+    outer : LRA.Function Later Codomain
+    middle : LRA.Function Middle Later
+    inner : LRA.Function Domain Middle
+  Prove
+    fun input => outer (middle (inner input)) = funinput => outer (middle (inner input))
 
 Logical form (Lean):
 
@@ -198,11 +222,19 @@ variable {inner : LRA.Function Domain Middle}
 
 Predicate logic:
 
-  Injective (Compose outer inner)
+  ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : LRA.Function Middle Codomain} {inner : LRA.Function Domain Middle}, (outer.Injective ∧ inner.Injective) → (outer.Compose inner).Injective
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : Middle → Codomain} {inner : Domain → Middle}, (∀ (y : Codomain) (x₁ x₂ : Middle), outer x₁ = y → outer x₂ = y → x₁ = x₂ ∧ ∀ (y : Middle) (x₁ x₂ : Domain), inner x₁ = y → inner x₂ = y → x₁ = x₂) → ∀ (y : Codomain) (x₁ x₂ : Domain), (outer (inner x₁) = y ∧ outer (inner x₂) = y) → x₁ = x₂
+  Ambient
+    (Domain, Middle, Codomain)
+  Objects
+    outer : LRA.Function Middle Codomain
+    inner : LRA.Function Domain Middle
+    outerInjective : Injective outer
+    innerInjective : Injective inner
+  Prove
+    ((∀ (y : Codomain) (x₁ x₂ : Middle), outer x₁ = y → outer x₂ = y → x₁ = x₂) ∧ (∀ (y : Middle) (x₁ x₂ : Domain), inner x₁ = y → inner x₂ = y → x₁ = x₂)) → ∀ (y : Codomain) (x₁ x₂ : Domain), (outer (inner x₁) = y ∧ outer (inner x₂) = y) → x₁ = x₂
 
 Logical form (Lean):
 
@@ -240,11 +272,19 @@ theorem ComposeInjective
 
 Predicate logic:
 
-  Surjective (Compose outer inner)
+  ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : LRA.Function Middle Codomain} {inner : LRA.Function Domain Middle}, (outer.Surjective ∧ inner.Surjective) → (outer.Compose inner).Surjective
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : Middle → Codomain} {inner : Domain → Middle}, (∀ (y : Codomain), Exists fun x => outer x = y ∧ ∀ (y : Middle), Exists fun x => inner x = y) → ∀ (y : Codomain), Exists fun x => outer (inner x) = y
+  Ambient
+    (Domain, Middle, Codomain)
+  Objects
+    outer : LRA.Function Middle Codomain
+    inner : LRA.Function Domain Middle
+    outerSurjective : Surjective outer
+    innerSurjective : Surjective inner
+  Prove
+    ((∀ (y : Codomain), Exists fun x => outer x = y) ∧ (∀ (y : Middle), Exists fun x => inner x = y)) → ∀ (y : Codomain), Exists fun x => outer (inner x) = y
 
 Logical form (Lean):
 
@@ -282,11 +322,19 @@ theorem ComposeSurjective
 
 Predicate logic:
 
-  Bijective (Compose outer inner)
+  ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : LRA.Function Middle Codomain} {inner : LRA.Function Domain Middle}, (outer.Bijective ∧ inner.Bijective) → (outer.Compose inner).Bijective
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : Middle → Codomain} {inner : Domain → Middle}, ((∀ (y : Codomain) (x₁ x₂ : Middle), outer x₁ = y → outer x₂ = y → x₁ = x₂ ∧ ∀ (y : Codomain), Exists fun x => outer x = y) ∧ (∀ (y : Middle) (x₁ x₂ : Domain), inner x₁ = y → inner x₂ = y → x₁ = x₂ ∧ ∀ (y : Middle), Exists fun x => inner x = y)) → (∀ (y : Codomain) (x₁ x₂ : Domain), outer (inner x₁) = y → outer (inner x₂) = y → x₁ = x₂ ∧ ∀ (y : Codomain), Exists fun x => outer (inner x) = y)
+  Ambient
+    (Domain, Middle, Codomain)
+  Objects
+    outer : LRA.Function Middle Codomain
+    inner : LRA.Function Domain Middle
+    outerBijective : Bijective outer
+    innerBijective : Bijective inner
+  Prove
+    (((∀ (y : Codomain) (x₁ x₂ : Middle), outer x₁ = y → outer x₂ = y → x₁ = x₂) ∧ (∀ (y : Codomain), Exists fun x => outer x = y)) ∧ ((∀ (y : Middle) (x₁ x₂ : Domain), inner x₁ = y → inner x₂ = y → x₁ = x₂) ∧ (∀ (y : Middle), Exists fun x => inner x = y))) → ((∀ (y : Codomain) (x₁ x₂ : Domain), outer (inner x₁) = y → outer (inner x₂) = y → x₁ = x₂) ∧ (∀ (y : Codomain), Exists fun x => outer (inner x) = y))
 
 Logical form (Lean):
 
@@ -324,11 +372,18 @@ theorem ComposeBijective
 
 Predicate logic:
 
-  Injective inner
+  ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : LRA.Function Middle Codomain} {inner : LRA.Function Domain Middle}, (outer.Compose inner).Injective → inner.Injective
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : Middle → Codomain} {inner : Domain → Middle}, (∀ (y : Codomain) (x₁ x₂ : Domain), outer (inner x₁) = y → outer (inner x₂) = y → x₁ = x₂) → ∀ (y : Middle) (x₁ x₂ : Domain), (inner x₁ = y ∧ inner x₂ = y) → x₁ = x₂
+  Ambient
+    (Domain, Middle, Codomain)
+  Objects
+    outer : LRA.Function Middle Codomain
+    inner : LRA.Function Domain Middle
+    compositeInjective : Injective (Compose outer inner)
+  Prove
+    (∀ (y : Codomain) (x₁ x₂ : Domain), outer (inner x₁) = y → outer (inner x₂) = y → x₁ = x₂) → ∀ (y : Middle) (x₁ x₂ : Domain), (inner x₁ = y ∧ inner x₂ = y) → x₁ = x₂
 
 Logical form (Lean):
 
@@ -366,11 +421,18 @@ theorem ComposeInjectiveGivesInnerInjective
 
 Predicate logic:
 
-  Surjective outer
+  ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : LRA.Function Middle Codomain} {inner : LRA.Function Domain Middle}, (outer.Compose inner).Surjective → outer.Surjective
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : Middle → Codomain} {inner : Domain → Middle}, (∀ (y : Codomain), Exists fun x => outer (inner x) = y) → ∀ (y : Codomain), Exists fun x => outer x = y
+  Ambient
+    (Domain, Middle, Codomain)
+  Objects
+    outer : LRA.Function Middle Codomain
+    inner : LRA.Function Domain Middle
+    compositeSurjective : Surjective (Compose outer inner)
+  Prove
+    (∀ (y : Codomain), Exists fun x => outer (inner x) = y) → ∀ (y : Codomain), Exists fun x => outer x = y
 
 Logical form (Lean):
 
@@ -418,11 +480,23 @@ variable {innerInverse : LRA.Function Middle Domain}
 
 Predicate logic:
 
-  LeftInverse (Compose outer inner) (Compose innerInverse outerInverse)
+  ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : LRA.Function Middle Codomain} {inner : LRA.Function Domain Middle} {outerInverse : LRA.Function Codomain Middle} {innerInverse : LRA.Function Middle Domain}, (outer.LeftInverse outerInverse ∧ inner.LeftInverse innerInverse) → (outer.Compose inner).LeftInverse (innerInverse.Compose outerInverse)
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : Middle → Codomain} {inner : Domain → Middle} {outerInverse : Codomain → Middle} {innerInverse : Middle → Domain}, (∀ (input : Middle), outerInverse (outer input) = input ∧ ∀ (input : Domain), innerInverse (inner input) = input) → ∀ (input : Domain), innerInverse (outerInverse (outer (inner input))) = input
+  Ambient
+    (Domain, Middle, Codomain)
+  Objects
+    outer : LRA.Function Middle Codomain
+    inner : LRA.Function Domain Middle
+    outer : LRA.Function Middle Codomain
+    inner : LRA.Function Domain Middle
+    outerInverse : LRA.Function Codomain Middle
+    innerInverse : LRA.Function Middle Domain
+    outerLeftInverse : LeftInverse outer outerInverse
+    innerLeftInverse : LeftInverse inner innerInverse
+  Prove
+    ((∀ (input : Middle), outerInverse (outer input) = input) ∧ (∀ (input : Domain), innerInverse (inner input) = input)) → ∀ (input : Domain), innerInverse (outerInverse (outer (inner input))) = input
 
 Logical form (Lean):
 
@@ -462,11 +536,23 @@ theorem ComposeLeftInverse
 
 Predicate logic:
 
-  RightInverse (Compose outer inner) (Compose innerInverse outerInverse)
+  ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : LRA.Function Middle Codomain} {inner : LRA.Function Domain Middle} {outerInverse : LRA.Function Codomain Middle} {innerInverse : LRA.Function Middle Domain}, (outer.RightInverse outerInverse ∧ inner.RightInverse innerInverse) → (outer.Compose inner).RightInverse (innerInverse.Compose outerInverse)
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : Middle → Codomain} {inner : Domain → Middle} {outerInverse : Codomain → Middle} {innerInverse : Middle → Domain}, (∀ (output : Codomain), outer (outerInverse output) = output ∧ ∀ (output : Middle), inner (innerInverse output) = output) → ∀ (output : Codomain), outer (inner (innerInverse (outerInverse output))) = output
+  Ambient
+    (Domain, Middle, Codomain)
+  Objects
+    outer : LRA.Function Middle Codomain
+    inner : LRA.Function Domain Middle
+    outer : LRA.Function Middle Codomain
+    inner : LRA.Function Domain Middle
+    outerInverse : LRA.Function Codomain Middle
+    innerInverse : LRA.Function Middle Domain
+    outerRightInverse : RightInverse outer outerInverse
+    innerRightInverse : RightInverse inner innerInverse
+  Prove
+    ((∀ (output : Codomain), outer (outerInverse output) = output) ∧ (∀ (output : Middle), inner (innerInverse output) = output)) → ∀ (output : Codomain), outer (inner (innerInverse (outerInverse output))) = output
 
 Logical form (Lean):
 
@@ -506,11 +592,23 @@ theorem ComposeRightInverse
 
 Predicate logic:
 
-  TwoSidedInverse (Compose outer inner) (Compose innerInverse outerInverse)
+  ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : LRA.Function Middle Codomain} {inner : LRA.Function Domain Middle} {outerInverse : LRA.Function Codomain Middle} {innerInverse : LRA.Function Middle Domain}, (outer.TwoSidedInverse outerInverse ∧ inner.TwoSidedInverse innerInverse) → (outer.Compose inner).TwoSidedInverse (innerInverse.Compose outerInverse)
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} {outer : Middle → Codomain} {inner : Domain → Middle} {outerInverse : Codomain → Middle} {innerInverse : Middle → Domain}, ((∀ (input : Middle), outerInverse (outer input) = input ∧ ∀ (output : Codomain), outer (outerInverse output) = output) ∧ (∀ (input : Domain), innerInverse (inner input) = input ∧ ∀ (output : Middle), inner (innerInverse output) = output)) → (∀ (input : Domain), innerInverse (outerInverse (outer (inner input))) = input ∧ ∀ (output : Codomain), outer (inner (innerInverse (outerInverse output))) = output)
+  Ambient
+    (Domain, Middle, Codomain)
+  Objects
+    outer : LRA.Function Middle Codomain
+    inner : LRA.Function Domain Middle
+    outer : LRA.Function Middle Codomain
+    inner : LRA.Function Domain Middle
+    outerInverse : LRA.Function Codomain Middle
+    innerInverse : LRA.Function Middle Domain
+    outerTwoSided : TwoSidedInverse outer outerInverse
+    innerTwoSided : TwoSidedInverse inner innerInverse
+  Prove
+    (((∀ (input : Middle), outerInverse (outer input) = input) ∧ (∀ (output : Codomain), outer (outerInverse output) = output)) ∧ ((∀ (input : Domain), innerInverse (inner input) = input) ∧ (∀ (output : Middle), inner (innerInverse output) = output))) → ((∀ (input : Domain), innerInverse (outerInverse (outer (inner input))) = input) ∧ (∀ (output : Codomain), outer (inner (innerInverse (outerInverse output))) = output))
 
 Logical form (Lean):
 

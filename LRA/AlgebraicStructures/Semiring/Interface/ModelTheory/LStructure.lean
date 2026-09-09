@@ -14,16 +14,16 @@ open LRA.AlgebraicStructures.Semiring.Interface.Signature
 Predicate logic:
 
   def BuildSemiringModel
-    (signature : LRA.AlgebraicStructures.SemiringConceptSignature) :
-    LRA.ModelTheory.FirstOrder.Model SemiringFirstOrderSignature where
-  Domain
+      (signature : LRA.AlgebraicStructures.SemiringConceptSignature) :
+      LRA.ModelTheory.FirstOrder.Model SemiringFirstOrderSignature where
+    Domain
 
 Predicate logic (unfolded):
 
   def BuildSemiringModel
-    (signature : LRA.AlgebraicStructures.SemiringConceptSignature) :
-    LRA.ModelTheory.FirstOrder.Model SemiringFirstOrderSignature where
-  Domain (source fallback; no compiled unfold data available)
+      (signature : LRA.AlgebraicStructures.SemiringConceptSignature) :
+      LRA.ModelTheory.FirstOrder.Model SemiringFirstOrderSignature where
+    Domain (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -74,20 +74,20 @@ def BuildSemiringModel
 Predicate logic:
 
   def semiringFirstOrderModel (R : Type u)
-    [Add R] [Mul R] [OfNat R 0] [OfNat R 1] :
-    LRA.ModelTheory.FirstOrder.Model SemiringFirstOrderSignature :=
-  BuildSemiringModel
-    { carrier := R, zero := 0, one := 1, add := (· + ·),
-      multiply := (· * ·) }
+      [Add R] [Mul R] [OfNat R 0] [OfNat R 1] :
+      LRA.ModelTheory.FirstOrder.Model SemiringFirstOrderSignature :=
+    BuildSemiringModel
+      { carrier := R, zero := 0, one := 1, add := (· + ·),
+        multiply := (· * ·) }
 
 Predicate logic (unfolded):
 
   def semiringFirstOrderModel (R : Type u)
-    [Add R] [Mul R] [OfNat R 0] [OfNat R 1] :
-    LRA.ModelTheory.FirstOrder.Model SemiringFirstOrderSignature :=
-  BuildSemiringModel
-    { carrier := R, zero := 0, one := 1, add := (· + ·),
-      multiply := (· * ·) } (source fallback; no compiled unfold data available)
+      [Add R] [Mul R] [OfNat R 0] [OfNat R 1] :
+      LRA.ModelTheory.FirstOrder.Model SemiringFirstOrderSignature :=
+    BuildSemiringModel
+      { carrier := R, zero := 0, one := 1, add := (· + ·),
+        multiply := (· * ·) } (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

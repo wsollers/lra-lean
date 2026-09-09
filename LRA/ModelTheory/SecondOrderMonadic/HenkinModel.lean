@@ -11,22 +11,18 @@ namespace LRA.ModelTheory.SecondOrderMonadic
 Predicate logic:
 
   structure HenkinModel (S : Signature) extends ModelTheory.FirstOrder.Model S where
-  SecondOrderDomain : Set (Set Domain)
+    SecondOrderDomain : Set (Set Domain)
 
 Predicate logic (unfolded):
 
   structure HenkinModel (S : Signature) extends ModelTheory.FirstOrder.Model S where
-  SecondOrderDomain : Set (Set Domain) (source fallback; no compiled unfold data available)
+    SecondOrderDomain : Set (Set Domain) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
 ```lean
 structure HenkinModel (S : Signature) extends ModelTheory.FirstOrder.Model S where
   SecondOrderDomain : Set (Set Domain)
-
-/-- Compatibility projection for first-order interpretation data. -/
-abbrev HenkinModel.toModel {S : Signature} (M : HenkinModel S) :=
-  M.toInterpretation
 ```
 
 Type-theoretic form:
@@ -51,7 +47,45 @@ Related proof moves: TODO
 structure HenkinModel (S : Signature) extends ModelTheory.FirstOrder.Model S where
   SecondOrderDomain : Set (Set Domain)
 
-/-- Compatibility projection for first-order interpretation data. -/
+/--
+`HenkinModel.toModel` Compatibility projection for first-order interpretation data.
+
+Predicate logic:
+
+  abbrev HenkinModel.toModel {S : Signature} (M : HenkinModel S) :=
+    M.toInterpretation
+
+Predicate logic (unfolded):
+
+  abbrev HenkinModel.toModel {S : Signature} (M : HenkinModel S) :=
+    M.toInterpretation (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+abbrev HenkinModel.toModel {S : Signature} (M : HenkinModel S) :=
+  M.toInterpretation
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 abbrev HenkinModel.toModel {S : Signature} (M : HenkinModel S) :=
   M.toInterpretation
 
@@ -60,11 +94,16 @@ abbrev HenkinModel.toModel {S : Signature} (M : HenkinModel S) :=
 
 Predicate logic:
 
-  ∀ {S : LRA.Logic.Signature} (M : LRA.ModelTheory.SecondOrderMonadic.HenkinModel S) (subset : Set M.Domain), Set.instMembership.mem M.SecondOrderDomain subset
+  ∀ {S : LRA.Logic.Signature} (M : LRA.ModelTheory.SecondOrderMonadic.HenkinModel S) (subset : Set M.Domain), subset ∈ M.SecondOrderDomain
 
 Predicate logic (unfolded):
 
-  ∀ {S : LRA.Logic.Signature} (M : LRA.ModelTheory.SecondOrderMonadic.HenkinModel S) (subset : M.toModel.1 → Prop), Set.instMembership.1 M.2 subset
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    subset ∈ M.2
 
 Logical form (Lean):
 

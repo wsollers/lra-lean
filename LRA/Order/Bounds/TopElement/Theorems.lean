@@ -18,11 +18,17 @@ variable [LRA.Set.UniversalMembershipLaws Element SetObject]
 
 Predicate logic:
 
-  (∀ x ∈ Element), TopElement SetObject ∈ = SetObject relation x <-> forall element : Element, relation element x
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasUniversal SetObject] [inst_2 : LRA.Set.HasComplement SetObject], LRA.Set.UniversalMembershipLaws Element SetObject → ∀ {relation : LRA.Relation.Endorelation Element} {top : Element}, LRA.Order.TopElement relation top ↔ ∀ (element : Element), relation element top
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasUniversal SetObject] [inst_2 : LRA.Set.HasComplement SetObject], LRA.Set.UniversalMembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {top : Element}, (inst.1 inst_1.1 top ∧ ∀ (element : Element), inst.1 inst_1.1 element → relation element top) ↔ ∀ (element : Element), relation element top
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    top : Element
+  Prove
+    LRA.Set.UniversalMembershipLaws Element SetObject → ∀ {relation : LRA.Relation.Endorelation Element} {top : Element}, LRA.Order.TopElement relation top ↔ ∀ (element : Element), relation element top
 
 Logical form (Lean):
 

@@ -9,12 +9,12 @@ namespace LRA.Set.Constructions.TGSet
 Predicate logic:
 
   noncomputable def TheIntersection (A B : Set) : Set :=
-  TheSeparatedSubset A (fun x => x ∈ B)
+    TheSeparatedSubset A (fun x => x ∈ B)
 
 Predicate logic (unfolded):
 
   noncomputable def TheIntersection (A B : Set) : Set :=
-  TheSeparatedSubset A (fun x => x ∈ B) (source fallback; no compiled unfold data available)
+    TheSeparatedSubset A (fun x => x ∈ B) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -50,11 +50,16 @@ noncomputable def TheIntersection (A B : Set) : Set :=
 
 Predicate logic:
 
-  (∀ A B ∈ Set), IsIntersectionOf A B (TheIntersection A B)
+  ∀ (A B : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGSet.IsIntersectionOf A B (LRA.Set.Constructions.TGSet.TheIntersection A B)
 
 Predicate logic (unfolded):
 
-  ∀ (A B x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 (Classical.indefiniteDescription (LRA.Set.Constructions.TGSet.IsSeparatedSubset A fun x => LRA.Set.instMembershipTGSet.mem B x) ⋯).1 x ↔ (LRA.Set.instMembershipTGSet.1 A x ∧ LRA.Set.instMembershipTGSet.1 B x)
+  Ambient
+    (implicit ambient)
+  Objects
+    A B : Set
+  Prove
+    LRA.Set.Constructions.instMembershipTGSet.1 (Classical.indefiniteDescription (LRA.Set.Constructions.TGSet.IsSeparatedSubset A fun x => LRA.Set.Constructions.instMembershipTGSet.mem B x) ⋯).1 x ↔ (LRA.Set.Constructions.instMembershipTGSet.1 A x ∧ LRA.Set.Constructions.instMembershipTGSet.1 B x)
 
 Logical form (Lean):
 
@@ -91,11 +96,16 @@ theorem TheIntersectionIsIntersectionOf (A B : Set) :
 
 Predicate logic:
 
-  (∀ A B x ∈ Set), x ∈ TheIntersection A B <-> x ∈ A ∧ x ∈ B
+  ∀ (A B x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem (LRA.Set.Constructions.TGSet.TheIntersection A B) x ↔ (LRA.Set.Constructions.instMembershipTGSet.mem A x ∧ LRA.Set.Constructions.instMembershipTGSet.mem B x)
 
 Predicate logic (unfolded):
 
-  ∀ (A B x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 (Classical.indefiniteDescription (LRA.Set.Constructions.TGSet.IsSeparatedSubset A fun x => LRA.Set.instMembershipTGSet.mem B x) ⋯).1 x ↔ (LRA.Set.instMembershipTGSet.1 A x ∧ LRA.Set.instMembershipTGSet.1 B x)
+  Ambient
+    (implicit ambient)
+  Objects
+    A B x : Set
+  Prove
+    LRA.Set.Constructions.instMembershipTGSet.mem (LRA.Set.Constructions.TGSet.TheIntersection A B) x ↔ (LRA.Set.Constructions.instMembershipTGSet.mem A x ∧ LRA.Set.Constructions.instMembershipTGSet.mem B x)
 
 Logical form (Lean):
 

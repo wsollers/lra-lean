@@ -8,36 +8,36 @@ universe u v w
 Predicate logic:
 
   structure FreeObject
-    (Generator Object : Type u)
-    (Arrow : Object -> Object -> Type v)
-    (Carrier : Object -> Type w)
-    (freeObject : Object)
-    (includeGenerator : Generator -> Carrier freeObject) : Prop where
-  ExistsExtension :
-    forall targetObject (_generatorMap : Generator -> Carrier targetObject),
-      Nonempty (Arrow freeObject targetObject)
-  UniqueExtension :
-    forall targetObject
-      (_generatorMap : Generator -> Carrier targetObject)
-      (firstArrow secondArrow : Arrow freeObject targetObject),
-        firstArrow = secondArrow
+      (Generator Object : Type u)
+      (Arrow : Object -> Object -> Type v)
+      (Carrier : Object -> Type w)
+      (freeObject : Object)
+      (includeGenerator : Generator -> Carrier freeObject) : Prop where
+    ExistsExtension :
+      forall targetObject (_generatorMap : Generator -> Carrier targetObject),
+        Nonempty (Arrow freeObject targetObject)
+    UniqueExtension :
+      forall targetObject
+        (_generatorMap : Generator -> Carrier targetObject)
+        (firstArrow secondArrow : Arrow freeObject targetObject),
+          firstArrow = secondArrow
 
 Predicate logic (unfolded):
 
   structure FreeObject
-    (Generator Object : Type u)
-    (Arrow : Object -> Object -> Type v)
-    (Carrier : Object -> Type w)
-    (freeObject : Object)
-    (includeGenerator : Generator -> Carrier freeObject) : Prop where
-  ExistsExtension :
-    forall targetObject (_generatorMap : Generator -> Carrier targetObject),
-      Nonempty (Arrow freeObject targetObject)
-  UniqueExtension :
-    forall targetObject
-      (_generatorMap : Generator -> Carrier targetObject)
-      (firstArrow secondArrow : Arrow freeObject targetObject),
-        firstArrow = secondArrow (source fallback; no compiled unfold data available)
+      (Generator Object : Type u)
+      (Arrow : Object -> Object -> Type v)
+      (Carrier : Object -> Type w)
+      (freeObject : Object)
+      (includeGenerator : Generator -> Carrier freeObject) : Prop where
+    ExistsExtension :
+      forall targetObject (_generatorMap : Generator -> Carrier targetObject),
+        Nonempty (Arrow freeObject targetObject)
+    UniqueExtension :
+      forall targetObject
+        (_generatorMap : Generator -> Carrier targetObject)
+        (firstArrow secondArrow : Arrow freeObject targetObject),
+          firstArrow = secondArrow (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

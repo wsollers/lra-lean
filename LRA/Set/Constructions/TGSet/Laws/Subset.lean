@@ -8,11 +8,16 @@ namespace LRA.Set.Constructions.TGSet
 
 Predicate logic:
 
-  forall A : Set, A ⊆ A
+  ∀ (A : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGSet.instHasSubset.Subset A A
 
 Predicate logic (unfolded):
 
-  ∀ (A : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGSet.instHasSubset.1 A A
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TGSet.instHasSubset.1 A A
 
 Logical form (Lean):
 
@@ -47,11 +52,16 @@ theorem SubsetReflexive : forall A : Set, A ⊆ A := by
 
 Predicate logic:
 
-  forall A B C : Set, A ⊆ B -> B ⊆ C -> A ⊆ C
+  ∀ (A B C : LRA.Set.Constructions.TGSet.Set), (LRA.Set.Constructions.TGSet.instHasSubset.Subset A B ∧ LRA.Set.Constructions.TGSet.instHasSubset.Subset B C) → LRA.Set.Constructions.TGSet.instHasSubset.Subset A C
 
 Predicate logic (unfolded):
 
-  ∀ (A B C : LRA.Set.Constructions.TGSet.Set), (LRA.Set.Constructions.TGSet.instHasSubset.1 A B ∧ LRA.Set.Constructions.TGSet.instHasSubset.1 B C) → LRA.Set.Constructions.TGSet.instHasSubset.1 A C
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (LRA.Set.Constructions.TGSet.instHasSubset.1 A B ∧ LRA.Set.Constructions.TGSet.instHasSubset.1 B C) → LRA.Set.Constructions.TGSet.instHasSubset.1 A C
 
 Logical form (Lean):
 
@@ -88,11 +98,16 @@ theorem SubsetTransitive :
 
 Predicate logic:
 
-  forall A B : Set, A = B <-> A ⊆ B ∧ B ⊆ A
+  ∀ (A B : LRA.Set.Constructions.TGSet.Set), A = B ↔ (LRA.Set.Constructions.TGSet.instHasSubset.Subset A B ∧ LRA.Set.Constructions.TGSet.instHasSubset.Subset B A)
 
 Predicate logic (unfolded):
 
-  ∀ (A B : LRA.Set.Constructions.TGSet.Set), A = B ↔ (LRA.Set.Constructions.TGSet.instHasSubset.1 A B ∧ LRA.Set.Constructions.TGSet.instHasSubset.1 B A)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    A = B ↔ (LRA.Set.Constructions.TGSet.instHasSubset.Subset A B ∧ LRA.Set.Constructions.TGSet.instHasSubset.Subset B A)
 
 Logical form (Lean):
 

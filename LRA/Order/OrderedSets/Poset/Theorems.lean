@@ -7,11 +7,17 @@ namespace LRA.Order.OrderedSets.Poset
 
 Predicate logic:
 
-  (∀ poset ∈ LRA.Order.Poset ∀ element ∈ poset.Carrier), poset.NonStrictOrder element element
+  ∀ (poset : LRA.Order.Poset) (element : poset.Carrier), poset.NonStrictOrder element element
 
 Predicate logic (unfolded):
 
-  ∀ (poset : LRA.Order.Poset) (element : poset.1), poset.2 element element
+  Ambient
+    (implicit ambient)
+  Objects
+    poset : LRA.Order.Poset
+    element : poset.Carrier
+  Prove
+    poset.2 element element
 
 Logical form (Lean):
 
@@ -51,11 +57,19 @@ theorem PosetElementRelatesToItself
 
 Predicate logic:
 
-  (∀ poset ∈ LRA.Order.Poset ∀ left right ∈ poset.Carrier), left = right
+  ∀ (poset : LRA.Order.Poset) (left right : poset.Carrier), (poset.NonStrictOrder left right ∧ poset.NonStrictOrder right left) → left = right
 
 Predicate logic (unfolded):
 
-  ∀ (poset : LRA.Order.Poset) (left right : poset.1), (poset.2 left right ∧ poset.2 right left) → left = right
+  Ambient
+    (implicit ambient)
+  Objects
+    poset : LRA.Order.Poset
+    left right : poset.Carrier
+    leftBelowRight : poset.NonStrictOrder left right
+    rightBelowLeft : poset.NonStrictOrder right left
+  Prove
+    (poset.2 left right ∧ poset.2 right left) → left = right
 
 Logical form (Lean):
 
@@ -99,11 +113,19 @@ theorem PosetMutualOrderImpliesEqual
 
 Predicate logic:
 
-  (∀ poset ∈ LRA.Order.Poset ∀ first second third ∈ poset.Carrier), poset.NonStrictOrder first third
+  ∀ (poset : LRA.Order.Poset) (first second third : poset.Carrier), (poset.NonStrictOrder first second ∧ poset.NonStrictOrder second third) → poset.NonStrictOrder first third
 
 Predicate logic (unfolded):
 
-  ∀ (poset : LRA.Order.Poset) (first second third : poset.1), (poset.2 first second ∧ poset.2 second third) → poset.2 first third
+  Ambient
+    (implicit ambient)
+  Objects
+    poset : LRA.Order.Poset
+    first second third : poset.Carrier
+    firstBelowSecond : poset.NonStrictOrder first second
+    secondBelowThird : poset.NonStrictOrder second third
+  Prove
+    (poset.2 first second ∧ poset.2 second third) → poset.2 first third
 
 Logical form (Lean):
 

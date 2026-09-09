@@ -10,11 +10,16 @@ universe u
 
 Predicate logic:
 
-  RelationIncluded relation (ReflexiveClosure relation)
+  ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha), LRA.Relation.RelationIncluded relation (LRA.Relation.ReflexiveClosure relation)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (relation : Alpha → Alpha → Prop) (x y : Alpha), relation x y → Or (relation x y) (x = y)
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+  Prove
+    relation x y → Or (relation x y) (x = y)
 
 Logical form (Lean):
 
@@ -52,11 +57,16 @@ theorem RelationIncludedInReflexiveClosure
 
 Predicate logic:
 
-  Reflexive (ReflexiveClosure relation)
+  ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha), LRA.Relation.Reflexive (LRA.Relation.ReflexiveClosure relation)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (relation : Alpha → Alpha → Prop) (x : Alpha), Or (relation x x) (x = x)
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+  Prove
+    Or (relation x x) (x = x)
 
 Logical form (Lean):
 
@@ -94,11 +104,18 @@ theorem ReflexiveClosureIsReflexive
 
 Predicate logic:
 
-  RelationIncluded (ReflexiveClosure relation) target
+  ∀ {Alpha : Type u} (relation target : LRA.Relation.Endorelation Alpha), (LRA.Relation.RelationIncluded relation target ∧ LRA.Relation.Reflexive target) → LRA.Relation.RelationIncluded (LRA.Relation.ReflexiveClosure relation) target
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (relation target : Alpha → Alpha → Prop), (∀ (x y : Alpha), relation x y → target x y ∧ ∀ (x : Alpha), target x x) → ∀ (x y : Alpha), Or (relation x y) (x = y) → target x y
+  Ambient
+    (Alpha)
+  Objects
+    relation target : Endorelation Alpha
+    relationIncluded : RelationIncluded relation target
+    targetReflexive : Reflexive target
+  Prove
+    ((∀ (x y : Alpha), relation x y → target x y) ∧ (∀ (x : Alpha), target x x)) → ∀ (x y : Alpha), Or (relation x y) (x = y) → target x y
 
 Logical form (Lean):
 

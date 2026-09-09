@@ -15,7 +15,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {A : Type u_1} {B : Type u_2} (f : A → B) (a₁ a₂ : A), f a₁ = f a₂ → a₁ = a₂
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    f a₁ = f a₂ → a₁ = a₂
 
 Logical form (Lean):
 
@@ -53,7 +58,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {A : Type u_1} {B : Type u_2} (f : A → B) (b : B), Exists fun a => f a = b
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun a => f a = b
 
 Logical form (Lean):
 
@@ -91,7 +101,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {A : Type u_1} {B : Type u_2} (f : A → B), (∀ (a₁ a₂ : A), f a₁ = f a₂ → a₁ = a₂ ∧ ∀ (b : B), Exists fun a => f a = b)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (a₁ a₂ : A), f a₁ = f a₂ → a₁ = a₂) ∧ (∀ (b : B), Exists fun a => f a = b))
 
 Logical form (Lean):
 
@@ -125,11 +140,16 @@ def IsBijectiveOn (f : A → B) : Prop := IsInjectiveOn f ∧ IsSurjectiveOn f
 
 Predicate logic:
 
-  ∀ {A : Type u_1} {B : Type u_2} (g : B → A) (f : A → B), (∀ (a : A), g (f a) = a ∧ ∀ (b : B), f (g b) = b)
+  ∀ {A : Type u_1} {B : Type u_2} (g : B → A) (f : A → B), ((∀ (a : A), g (f a) = a) ∧ (∀ (b : B), f (g b) = b))
 
 Predicate logic (unfolded):
 
-  ∀ {A : Type u_1} {B : Type u_2} (g : B → A) (f : A → B), (∀ (a : A), g (f a) = a ∧ ∀ (b : B), f (g b) = b)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (a : A), g (f a) = a) ∧ (∀ (b : B), f (g b) = b))
 
 Logical form (Lean):
 
@@ -165,11 +185,17 @@ def IsInverseFunctionOf (g : B → A) (f : A → B) : Prop :=
 
 Predicate logic:
 
-  (IsInjectiveOn f ∧ IsInjectiveOn g) → IsInjectiveOn (g ∘ f)
+  ∀ {A : Type u_1} {B : Type u_2} {C : Type u_3} {f : A → B} {g : B → C}, (LRA.Analysis.Functions.IsInjectiveOn f ∧ LRA.Analysis.Functions.IsInjectiveOn g) → LRA.Analysis.Functions.IsInjectiveOn (Function.comp g f)
 
 Predicate logic (unfolded):
 
-  ∀ {A : Type u_1} {B : Type u_2} {C : Type u_3} {f : A → B} {g : B → C}, (∀ (a₁ a₂ : A), f a₁ = f a₂ → a₁ = a₂ ∧ ∀ (a₁ a₂ : B), g a₁ = g a₂ → a₁ = a₂) → ∀ (a₁ a₂ : A), g (f a₁) = g (f a₂) → a₁ = a₂
+  Ambient
+    (A, B, C)
+  Objects
+    f : A → B
+    g : B → C
+  Prove
+    ((∀ (a₁ a₂ : A), f a₁ = f a₂ → a₁ = a₂) ∧ (∀ (a₁ a₂ : B), g a₁ = g a₂ → a₁ = a₂)) → ∀ (a₁ a₂ : A), g (f a₁) = g (f a₂) → a₁ = a₂
 
 Logical form (Lean):
 
@@ -205,11 +231,17 @@ theorem CompositionInjective {f : A → B} {g : B → C}
 
 Predicate logic:
 
-  (IsSurjectiveOn f ∧ IsSurjectiveOn g) → IsSurjectiveOn (g ∘ f)
+  ∀ {A : Type u_1} {B : Type u_2} {C : Type u_3} {f : A → B} {g : B → C}, (LRA.Analysis.Functions.IsSurjectiveOn f ∧ LRA.Analysis.Functions.IsSurjectiveOn g) → LRA.Analysis.Functions.IsSurjectiveOn (Function.comp g f)
 
 Predicate logic (unfolded):
 
-  ∀ {A : Type u_1} {B : Type u_2} {C : Type u_3} {f : A → B} {g : B → C}, (∀ (b : B), Exists fun a => f a = b ∧ ∀ (b : C), Exists fun a => g a = b) → ∀ (b : C), Exists fun a => g (f a) = b
+  Ambient
+    (A, B, C)
+  Objects
+    f : A → B
+    g : B → C
+  Prove
+    ((∀ (b : B), Exists fun a => f a = b) ∧ (∀ (b : C), Exists fun a => g a = b)) → ∀ (b : C), Exists fun a => g (f a) = b
 
 Logical form (Lean):
 
@@ -247,11 +279,17 @@ theorem CompositionSurjective {f : A → B} {g : B → C}
 
 Predicate logic:
 
-  (IsBijectiveOn f ∧ IsBijectiveOn g) → IsBijectiveOn (g ∘ f)
+  ∀ {A : Type u_1} {B : Type u_2} {C : Type u_3} {f : A → B} {g : B → C}, (LRA.Analysis.Functions.IsBijectiveOn f ∧ LRA.Analysis.Functions.IsBijectiveOn g) → LRA.Analysis.Functions.IsBijectiveOn (Function.comp g f)
 
 Predicate logic (unfolded):
 
-  ∀ {A : Type u_1} {B : Type u_2} {C : Type u_3} {f : A → B} {g : B → C}, ((∀ (a₁ a₂ : A), f a₁ = f a₂ → a₁ = a₂ ∧ ∀ (b : B), Exists fun a => f a = b) ∧ (∀ (a₁ a₂ : B), g a₁ = g a₂ → a₁ = a₂ ∧ ∀ (b : C), Exists fun a => g a = b)) → (∀ (a₁ a₂ : A), g (f a₁) = g (f a₂) → a₁ = a₂ ∧ ∀ (b : C), Exists fun a => g (f a) = b)
+  Ambient
+    (A, B, C)
+  Objects
+    f : A → B
+    g : B → C
+  Prove
+    (((∀ (a₁ a₂ : A), f a₁ = f a₂ → a₁ = a₂) ∧ (∀ (b : B), Exists fun a => f a = b)) ∧ ((∀ (a₁ a₂ : B), g a₁ = g a₂ → a₁ = a₂) ∧ (∀ (b : C), Exists fun a => g a = b))) → ((∀ (a₁ a₂ : A), g (f a₁) = g (f a₂) → a₁ = a₂) ∧ (∀ (b : C), Exists fun a => g (f a) = b))
 
 Logical form (Lean):
 
@@ -287,11 +325,16 @@ theorem CompositionBijective {f : A → B} {g : B → C}
 
 Predicate logic:
 
-  (IsBijectiveOn f) → ∃ g ∈ B → A, IsInverseFunctionOf g f ∧ IsBijectiveOn g
+  ∀ {A : Type u_1} {B : Type u_2} {f : A → B}, LRA.Analysis.Functions.IsBijectiveOn f → Exists fun g => (LRA.Analysis.Functions.IsInverseFunctionOf g f ∧ LRA.Analysis.Functions.IsBijectiveOn g)
 
 Predicate logic (unfolded):
 
-  ∀ {A : Type u_1} {B : Type u_2} {f : A → B}, (∀ (a₁ a₂ : A), f a₁ = f a₂ → a₁ = a₂ ∧ ∀ (b : B), Exists fun a => f a = b) → Exists fun g => ((∀ (a : A), g (f a) = a ∧ ∀ (b : B), f (g b) = b) ∧ (∀ (a₁ a₂ : B), g a₁ = g a₂ → a₁ = a₂ ∧ ∀ (b : A), Exists fun a => g a = b))
+  Ambient
+    (A, B, C)
+  Objects
+    f : A → B
+  Prove
+    ((∀ (a₁ a₂ : A), f a₁ = f a₂ → a₁ = a₂) ∧ (∀ (b : B), Exists fun a => f a = b)) → Exists fun g => (((∀ (a : A), g (f a) = a) ∧ (∀ (b : B), f (g b) = b)) ∧ ((∀ (a₁ a₂ : B), g a₁ = g a₂ → a₁ = a₂) ∧ (∀ (b : A), Exists fun a => g a = b)))
 
 Logical form (Lean):
 
@@ -327,11 +370,17 @@ theorem InverseBijection {f : A → B} (hf : IsBijectiveOn f) :
 
 Predicate logic:
 
-  f ⁻¹' (S ∪ T) = f ⁻¹' S ∪ f ⁻¹' T ∧ f ⁻¹' (S ∩ T) = f ⁻¹' S ∩ f ⁻¹' T ∧ f ⁻¹' Sᶜ = (f ⁻¹' S)ᶜ
+  ∀ {A : Type u_1} {B : Type u_2} {f : A → B} (S T : Set B), (Set.preimage f (S ∪ T) = Set.preimage f S ∪ Set.preimage f T ∧ (Set.preimage f (S ∩ T) = Set.preimage f S ∩ Set.preimage f T ∧ Set.preimage f (Set.instCompl.compl S) = Set.instCompl.compl (Set.preimage f S)))
 
 Predicate logic (unfolded):
 
-  ∀ {A : Type u_1} {B : Type u_2} {f : A → B} (S T : B → Prop), (fun x => Set.instMembership.1 (Set.instUnion.1 S T) (f x) = Set.instUnion.1 (fun x => Set.instMembership.1 S (f x)) fun x => Set.instMembership.1 T (f x) ∧ (fun x => Set.instMembership.1 (Set.instInter.1 S T) (f x) = Set.instInter.1 (fun x => Set.instMembership.1 S (f x)) fun x => Set.instMembership.1 T (f x) ∧ fun x => Set.instMembership.1 (Set.instCompl.1 S) (f x) = Set.instCompl.1 fun x => Set.instMembership.1 S (f x)))
+  Ambient
+    (A, B, C)
+  Objects
+    f : A → B
+    S T : Set B
+  Prove
+    (fun x => f x ∈ S ∪ T = fun x => f x ∈ S ∪ funx => f x ∈ T ∧ (fun x => f x ∈ S ∩ T = fun x => f x ∈ S ∩ funx => f x ∈ T ∧ fun x => f x ∈ Set.instCompl.1 S = Set.instCompl.1 fun x => f x ∈ S))
 
 Logical form (Lean):
 

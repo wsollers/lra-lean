@@ -40,21 +40,95 @@ this file DOES assert is the schema itself, so that:
     unresolved here pending that system's own completion.
 -/
 
-/-- A syntactic category is a type together with a witness that equality
-on it is decidable -- the minimal structure needed before any recursive
-syntactic operation (substitution, free-variable computation, structural
-comparison) can be defined on expressions built from it. -/
+/--
+`SyntacticCategory` A syntactic category is a type together with a witness that equality on it is decidable -- the minimal structure needed before any recursive syntactic operation (substitution, free-variable computation, structural comparison) can be defined on expressions built from it.
+
+Predicate logic:
+
+  class SyntacticCategory (Symbol : Type u) where
+    decidableEquality : DecidableEq Symbol
+
+Predicate logic (unfolded):
+
+  class SyntacticCategory (Symbol : Type u) where
+    decidableEquality : DecidableEq Symbol (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+class SyntacticCategory (Symbol : Type u) where
+  decidableEquality : DecidableEq Symbol
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 class SyntacticCategory (Symbol : Type u) where
   decidableEquality : DecidableEq Symbol
 
 attribute [instance] SyntacticCategory.decidableEquality
 
-/-- Two syntactic-category instances agree on a shared underlying type
-iff their decidable-equality witnesses agree pointwise -- stated as the
-uniqueness fact that licenses treating "the" `SyntacticCategory Symbol`
-instance as canonical once one is fixed, rather than worrying that a
-different instance might silently disagree about which occurrences count
-as the same symbol. -/
+/--
+`SyntacticCategory.decidableEquality_unique` Two syntactic-category instances agree on a shared underlying type iff their decidable-equality witnesses agree pointwise -- stated as the uniqueness fact that licenses treating "the" `SyntacticCategory Symbol` instance as canonical once one is fixed, rather than worrying that a different instance might silently disagree about which occurrences count as the same symbol.
+
+Predicate logic:
+
+  ∀ {Symbol : Type u} (inst1 inst2 : LRA.Metamathematics.SyntacticCategory Symbol) (x y : Symbol), Decidable.decide (x = y) = Decidable.decide (x = y)
+
+Predicate logic (unfolded):
+
+  Ambient
+    (Symbol)
+  Objects
+    inst1 inst2 : SyntacticCategory Symbol
+  Prove
+    Decidable.rec (fun h => (fun x => Bool.false) h) (fun h => (fun x => Bool.true) h) (inst1.1 x y) = Decidable.rec (fun h => (fun x => Bool.false) h) (fun h => (fun x => Bool.true) h) (inst2.1 x y)
+
+Logical form (Lean):
+
+```lean
+theorem SyntacticCategory.decidableEquality_unique
+    {Symbol : Type u} (inst1 inst2 : SyntacticCategory Symbol) :
+    ∀ x y : Symbol,
+      @Decidable.decide (x = y) (inst1.decidableEquality x y) =
+      @Decidable.decide (x = y) (inst2.decidableEquality x y)
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro
+
+-/
 theorem SyntacticCategory.decidableEquality_unique
     {Symbol : Type u} (inst1 inst2 : SyntacticCategory Symbol) :
     ∀ x y : Symbol,

@@ -10,14 +10,14 @@ namespace LRA.Analysis.Functions
 Predicate logic:
 
   def AtPointOperation {n : ℕ} (Φ : (Fin n → ℝ) → ℝ) (f : Fin n → (ℝ → ℝ))
-    (x : ℝ) : ℝ :=
-  Φ (fun i => f i x)
+      (x : ℝ) : ℝ :=
+    Φ (fun i => f i x)
 
 Predicate logic (unfolded):
 
   def AtPointOperation {n : ℕ} (Φ : (Fin n → ℝ) → ℝ) (f : Fin n → (ℝ → ℝ))
-    (x : ℝ) : ℝ :=
-  Φ (fun i => f i x) (source fallback; no compiled unfold data available)
+      (x : ℝ) : ℝ :=
+    Φ (fun i => f i x) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -56,14 +56,14 @@ def AtPointOperation {n : ℕ} (Φ : (Fin n → ℝ) → ℝ) (f : Fin n → (�
 Predicate logic:
 
   def PointwiseOperationOnSet {n : ℕ} (Φ : (Fin n → ℝ) → ℝ)
-    (f : Fin n → (ℝ → ℝ)) : ℝ → ℝ :=
-  fun x => Φ (fun i => f i x)
+      (f : Fin n → (ℝ → ℝ)) : ℝ → ℝ :=
+    fun x => Φ (fun i => f i x)
 
 Predicate logic (unfolded):
 
   def PointwiseOperationOnSet {n : ℕ} (Φ : (Fin n → ℝ) → ℝ)
-    (f : Fin n → (ℝ → ℝ)) : ℝ → ℝ :=
-  fun x => Φ (fun i => f i x) (source fallback; no compiled unfold data available)
+      (f : Fin n → (ℝ → ℝ)) : ℝ → ℝ :=
+    fun x => Φ (fun i => f i x) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -105,7 +105,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {n : Nat} (R : (Fin n → Real) → Prop) (f : Fin n → Real → Real) (x : Real), R fun i => f i x
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    R fun i => f i x
 
 Logical form (Lean):
 
@@ -143,11 +148,16 @@ def AtPointRelation {n : ℕ} (R : (Fin n → ℝ) → Prop) (f : Fin n → (ℝ
 
 Predicate logic:
 
-  ∀ {n : Nat} (R : (Fin n → Real) → Prop) (f : Fin n → Real → Real) (A : Set Real) (x : Real), Set.instMembership.mem A x → R fun i => f i x
+  ∀ {n : Nat} (R : (Fin n → Real) → Prop) (f : Fin n → Real → Real) (A : Set Real) (x : Real), x ∈ A → R fun i => f i x
 
 Predicate logic (unfolded):
 
-  ∀ {n : Nat} (R : (Fin n → Real) → Prop) (f : Fin n → Real → Real) (A : Real → Prop) (x : Real), Set.instMembership.1 A x → R fun i => f i x
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    x ∈ A → R fun i => f i x
 
 Logical form (Lean):
 
@@ -185,11 +195,16 @@ def PointwiseRelationOnSet {n : ℕ} (R : (Fin n → ℝ) → Prop)
 
 Predicate logic:
 
-  ∀ {n : Nat} (R : (Fin n → Real) → Prop) (f : Fin n → Real → Real) (c : Real) (A : Set Real), Exists fun δ => (GT.gt δ 0 ∧ ∀ (x : Real), Set.instMembership.mem A x → (Real.instLT.lt 0 (abs (instHSub.hSub x c)) ∧ Real.instLT.lt (abs (instHSub.hSub x c)) δ) → R fun i => f i x)
+  ∀ {n : Nat} (R : (Fin n → Real) → Prop) (f : Fin n → Real → Real) (c : Real) (A : Set Real), Exists fun δ => (GT.gt δ 0 ∧ (∀ (x : Real), x ∈ A → (Real.instLT.lt 0 (abs (instHSub.hSub x c)) ∧ Real.instLT.lt (abs (instHSub.hSub x c)) δ) → R fun i => f i x))
 
 Predicate logic (unfolded):
 
-  ∀ {n : Nat} (R : (Fin n → Real) → Prop) (f : Fin n → Real → Real) (c : Real) (A : Real → Prop), Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (x : Real), Set.instMembership.1 A x → (Real.instLT.1 Zero.toOfNat0.1 (SemilatticeSup.toMax.1 (instHSub.1 x c) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 x c))) ∧ Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 x c) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 x c))) δ) → R fun i => f i x)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun δ => (Real.instLT.lt 0 δ ∧ (∀ (x : Real), x ∈ A → (Real.instLT.lt 0 (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x c)) ∧ Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x c)) δ) → R fun i => f i x))
 
 Logical form (Lean):
 
@@ -227,11 +242,19 @@ def PointwiseRelationNearPoint {n : ℕ} (R : (Fin n → ℝ) → Prop)
 
 Predicate logic:
 
-  ((Fin n → ℝ) → ℝ ∧ Fin n → (ℝ → ℝ)) → ∀ x ∈ A, PointwiseOperationOnSet Φ f x = AtPointOperation Φ f x
+  ∀ {n : Nat} (Φ : (Fin n → Real) → Real) (f : Fin n → Real → Real) (A : Set Real) (x : Real), x ∈ A → LRA.Analysis.Functions.PointwiseOperationOnSet Φ f x = LRA.Analysis.Functions.AtPointOperation Φ f x
 
 Predicate logic (unfolded):
 
-  ∀ {n : Nat} (Φ : (Fin n → Real) → Real) (f : Fin n → Real → Real) (A : Real → Prop) (x : Real), Set.instMembership.1 A x → Φ fun i => f i x = Φ fun i => f i x
+  Ambient
+    (ℕ)
+  Objects
+    n : ℕ
+    Φ : (Fin n → ℝ) → ℝ
+    f : Fin n → (ℝ → ℝ)
+    A : Set ℝ
+  Prove
+    x ∈ A → Φ fun i => f i x = Φ fun i => f i x
 
 Logical form (Lean):
 
@@ -269,11 +292,19 @@ theorem PointwiseOperationEvaluation {n : ℕ} (Φ : (Fin n → ℝ) → ℝ)
 
 Predicate logic:
 
-  ((Fin n → ℝ) → Prop ∧ Fin n → (ℝ → ℝ)) → PointwiseRelationOnSet R f A ↔ ∀ x ∈ A, AtPointRelation R f x
+  ∀ {n : Nat} (R : (Fin n → Real) → Prop) (f : Fin n → Real → Real) (A : Set Real), LRA.Analysis.Functions.PointwiseRelationOnSet R f A ↔ ∀ (x : Real), x ∈ A → LRA.Analysis.Functions.AtPointRelation R f x
 
 Predicate logic (unfolded):
 
-  ∀ {n : Nat} (R : (Fin n → Real) → Prop) (f : Fin n → Real → Real) (A : Real → Prop), ∀ (x : Real), Set.instMembership.1 A x → R fun i => f i x ↔ ∀ (x : Real), Set.instMembership.1 A x → R fun i => f i x
+  Ambient
+    (ℕ)
+  Objects
+    n : ℕ
+    R : (Fin n → ℝ) → Prop
+    f : Fin n → (ℝ → ℝ)
+    A : Set ℝ
+  Prove
+    LRA.Analysis.Functions.PointwiseRelationOnSet R f A ↔ ∀ (x : Real), x ∈ A → LRA.Analysis.Functions.AtPointRelation R f x
 
 Logical form (Lean):
 
@@ -311,11 +342,20 @@ theorem PointwiseRelationEvaluation {n : ℕ} (R : (Fin n → ℝ) → Prop)
 
 Predicate logic:
 
-  ((Fin n → ℝ) → Prop ∧ Fin n → (ℝ → ℝ)) → PointwiseRelationNearPoint R f c A ↔ ∃ δ > 0, ∀ x ∈ A, (0 < |x - c| ∧ |x - c| < δ) → R (fun i => f i x)
+  ∀ {n : Nat} (R : (Fin n → Real) → Prop) (f : Fin n → Real → Real) (c : Real) (A : Set Real), LRA.Analysis.Functions.PointwiseRelationNearPoint R f c A ↔ Exists fun δ => (GT.gt δ 0 ∧ (∀ (x : Real), x ∈ A → (Real.instLT.lt 0 (abs (instHSub.hSub x c)) ∧ Real.instLT.lt (abs (instHSub.hSub x c)) δ) → R fun i => f i x))
 
 Predicate logic (unfolded):
 
-  ∀ {n : Nat} (R : (Fin n → Real) → Prop) (f : Fin n → Real → Real) (c : Real) (A : Real → Prop), Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (x : Real), Set.instMembership.1 A x → (Real.instLT.1 Zero.toOfNat0.1 (SemilatticeSup.toMax.1 (instHSub.1 x c) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 x c))) ∧ Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 x c) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 x c))) δ) → R fun i => f i x) ↔ Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (x : Real), Set.instMembership.1 A x → (Real.instLT.1 Zero.toOfNat0.1 (SemilatticeSup.toMax.1 (instHSub.1 x c) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 x c))) ∧ Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 x c) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 x c))) δ) → R fun i => f i x)
+  Ambient
+    (ℕ)
+  Objects
+    n : ℕ
+    R : (Fin n → ℝ) → Prop
+    f : Fin n → (ℝ → ℝ)
+    c : ℝ
+    A : Set ℝ
+  Prove
+    LRA.Analysis.Functions.PointwiseRelationNearPoint R f c A ↔ Exists fun δ => (GT.gt δ 0 ∧ (∀ (x : Real), x ∈ A → (Real.instLT.lt 0 (abs (instHSub.hSub x c)) ∧ Real.instLT.lt (abs (instHSub.hSub x c)) δ) → R fun i => f i x))
 
 Logical form (Lean):
 

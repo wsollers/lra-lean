@@ -12,8 +12,91 @@ this item only needs the semigroup fact. -/
 
 instance : LRA.AlgebraicStructures.AdditiveSemigroupLaws Int := by
   sorry
+/--
+`EvenIntegers` TODO
+
+Predicate logic:
+
+  ∀ (a : Int), Exists fun r => a = instHAdd.hAdd r r
+
+Predicate logic (unfolded):
+
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun r => a = { hAdd := fun a b => Int.instAdd.add a b }.hAdd r r
+
+Logical form (Lean):
+
+```lean
+def EvenIntegers : LRA.Set.LRA_Set Int := {n | Even n}
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 def EvenIntegers : LRA.Set.LRA_Set Int := {n | Even n}
 
+/--
+`evenIntegersClosedUnderAddition` TODO
+
+Predicate logic:
+
+  ∀ (a b : Int), (a ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.EvenIntegers ∧ b ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.EvenIntegers) → instHAdd.hAdd a b ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.EvenIntegers
+
+Predicate logic (unfolded):
+
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (a ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.EvenIntegers ∧ b ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.EvenIntegers) → { hAdd := fun a b => Int.instAdd.add a b }.hAdd a b ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.EvenIntegers
+
+Logical form (Lean):
+
+```lean
+theorem evenIntegersClosedUnderAddition :
+    ∀ a b, a ∈ EvenIntegers → b ∈ EvenIntegers → a + b ∈ EvenIntegers
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro
+
+-/
 theorem evenIntegersClosedUnderAddition :
     ∀ a b, a ∈ EvenIntegers → b ∈ EvenIntegers → a + b ∈ EvenIntegers := by
   sorry

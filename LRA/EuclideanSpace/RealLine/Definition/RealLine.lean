@@ -8,12 +8,12 @@ namespace LRA.EuclideanSpace
 Predicate logic:
 
   noncomputable def RealLineDistance (a b : ℝ) : ℝ :=
-  if b ≥ a then b - a else a - b
+    if b ≥ a then b - a else a - b
 
 Predicate logic (unfolded):
 
   noncomputable def RealLineDistance (a b : ℝ) : ℝ :=
-  if b ≥ a then b - a else a - b (source fallback; no compiled unfold data available)
+    if b ≥ a then b - a else a - b (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -53,7 +53,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (a b a_1 : Real), (Real.instLT.1 a a_1 ∧ Real.instLT.1 a_1 b)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Real.instLT.lt a a_1 ∧ Real.instLT.lt a_1 b)
 
 Logical form (Lean):
 
@@ -93,7 +98,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (a b a_1 : Real), (Real.instLE.1 a a_1 ∧ Real.instLE.1 a_1 b)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Real.instLE.le a a_1 ∧ Real.instLE.le a_1 b)
 
 Logical form (Lean):
 
@@ -133,7 +143,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (a b a_1 : Real), (Real.instLE.1 a a_1 ∧ Real.instLT.1 a_1 b)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Real.instLE.le a a_1 ∧ Real.instLT.lt a_1 b)
 
 Logical form (Lean):
 
@@ -173,7 +188,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (a b a_1 : Real), (Real.instLT.1 a a_1 ∧ Real.instLE.1 a_1 b)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Real.instLT.lt a a_1 ∧ Real.instLE.le a_1 b)
 
 Logical form (Lean):
 
@@ -213,7 +233,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (a a_1 : Real), Real.lt✝ a a_1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Real.lt✝ a a_1
 
 Logical form (Lean):
 
@@ -253,7 +278,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (a a_1 : Real), Real.le✝ a a_1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Real.le✝ a a_1
 
 Logical form (Lean):
 
@@ -293,7 +323,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (b a : Real), Real.lt✝ a b
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Real.lt✝ a b
 
 Logical form (Lean):
 
@@ -333,7 +368,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (b a : Real), Real.le✝ a b
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Real.le✝ a b
 
 Logical form (Lean):
 

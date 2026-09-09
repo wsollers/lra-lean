@@ -9,16 +9,11 @@ universe u
 
 Predicate logic:
 
-  ∀ {Carrier : Type u} (P : Carrier → Prop), Exists fun x => P x
+  ∀ {Carrier : Type u} (P : Carrier → Prop), ∃ x, P x
 
 Predicate logic (unfolded):
 
-  Ambient
-    (implicit ambient)
-  Objects
-    (none)
-  Prove
-    Exists fun x => P x
+  ∀ {Carrier : Type u} (P : Carrier → Prop), ∃ x, P x
 
 Logical form (Lean):
 
@@ -54,16 +49,11 @@ def HasWitness {Carrier : Type u} (P : Carrier → Prop) : Prop :=
 
 Predicate logic:
 
-  ∀ {Carrier : Type u} (P : Carrier → Prop), (Exists fun x => P x) → False
+  ∀ {Carrier : Type u} (P : Carrier → Prop), (∃ x, P x) → False
 
 Predicate logic (unfolded):
 
-  Ambient
-    (implicit ambient)
-  Objects
-    (none)
-  Prove
-    (Exists fun x => P x) → False
+  ∀ {Carrier : Type u} (P : Carrier → Prop), (∃ x, P x) → False
 
 Logical form (Lean):
 
@@ -107,12 +97,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  Ambient
-    (implicit ambient)
-  Objects
-    (none)
-  Prove
-    (P left ∧ P right) → left ≤ right
+  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] (P : Carrier → Prop) (left right : Carrier), (P left ∧ P right) → inst.Ident left right
 
 Logical form (Lean):
 
@@ -148,16 +133,11 @@ def AtMostOne (P : Carrier → Prop) : Prop :=
 
 Predicate logic:
 
-  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] (P : Carrier → Prop), Exists fun left => Exists fun right => (P left ∧ (P right ∧ LRA.Identity.Distinct left right))
+  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] (P : Carrier → Prop), ∃ left, ∃ right, (P left ∧ (P right ∧ LRA.Identity.Distinct left right))
 
 Predicate logic (unfolded):
 
-  Ambient
-    (implicit ambient)
-  Objects
-    (none)
-  Prove
-    Exists fun left => Exists fun right => (P left ∧ (P right ∧ (left ≤ right → False)))
+  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] (P : Carrier → Prop), ∃ left, ∃ right, (P left ∧ (P right ∧ (inst.Ident left right → False)))
 
 Logical form (Lean):
 
@@ -197,12 +177,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  Ambient
-    (implicit ambient)
-  Objects
-    (none)
-  Prove
-    (Exists fun x => P x ∧ (∀ (left right : Carrier), P left → P right → left ≤ right))
+  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] (P : Carrier → Prop), ((∃ x, P x) ∧ (∀ (left right : Carrier), P left → P right → inst.Ident left right))
 
 Logical form (Lean):
 
@@ -240,16 +215,11 @@ end NeedsIdentity
 
 Predicate logic:
 
-  (HasNoWitness P) → ¬ HasWitness P
+  ∀ {Carrier : Type u} {P : Carrier → Prop}, LRA.Identity.HasNoWitness P → ¬ LRA.Identity.HasWitness P
 
 Predicate logic (unfolded):
 
-  Ambient
-    (Carrier)
-  Objects
-    P : Carrier → Prop
-  Prove
-    (((Exists fun x => P x) → False) ∧ Exists fun x => P x) → False
+  ∀ {Carrier : Type u} {P : Carrier → Prop}, (((∃ x, P x) → False) ∧ (∃ x, P x)) → False
 
 Logical form (Lean):
 
@@ -286,17 +256,11 @@ theorem HasNoWitnessNotHasWitness {Carrier : Type u} {P : Carrier → Prop}
 
 Predicate logic:
 
-  ¬ NotAtMostOne P
+  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] {P : Carrier → Prop}, LRA.Identity.ExactlyOne P → ¬ LRA.Identity.NotAtMostOne P
 
 Predicate logic (unfolded):
 
-  Ambient
-    (Carrier)
-  Objects
-    P : Carrier → Prop
-    h : ExactlyOne P
-  Prove
-    ((Exists fun x => P x ∧ (∀ (left right : Carrier), P left → P right → left ≤ right)) ∧ (Exists fun left => Exists fun right => (P left ∧ (P right ∧ (left ≤ right → False))))) → False
+  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] {P : Carrier → Prop}, (((∃ x, P x) ∧ (∀ (left right : Carrier), P left → P right → inst.Ident left right)) ∧ (∃ left, ∃ right, (P left ∧ (P right ∧ (inst.Ident left right → False))))) → False
 
 Logical form (Lean):
 

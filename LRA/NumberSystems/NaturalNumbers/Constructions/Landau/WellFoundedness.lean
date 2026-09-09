@@ -11,11 +11,16 @@ open LRA.Set.Constructions
 
 Predicate logic:
 
-  ∀ element : LandauElement, LandauSuccessor element ≠ LandauOne
+  ∀ (element : LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauElement), Ne (LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauSuccessor element) LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauOne
 
 Predicate logic (unfolded):
 
-  ∀ (element : LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauElement), LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauSuccessor element = LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauOne → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauSuccessor element = LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauOne → False
 
 Logical form (Lean):
 
@@ -51,11 +56,16 @@ axiom LandauBaseNotSuccessor :
 
 Predicate logic:
 
-  ∀ first second : LandauElement, LandauSuccessor first = LandauSuccessor second → first = second
+  ∀ (first second : LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauElement), LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauSuccessor first = LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauSuccessor second → first = second
 
 Predicate logic (unfolded):
 
-  ∀ (first second : LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauElement), LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauSuccessor first = LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauSuccessor second → first = second
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauSuccessor first = LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauSuccessor second → first = second
 
 Logical form (Lean):
 
@@ -93,11 +103,16 @@ axiom LandauSuccessorInjective :
 
 Predicate logic:
 
-  ∀ subset : TypeSet LandauElement, LandauOne ∈ subset → ∀ element ∈ LandauElement, element ∈ subset → LandauSuccessor element ∈ subset → ∀ element : LandauElement, element ∈ subset noncomputable def LandauPeanoSystem : LRA.NumberSystems.PeanoSystem.PeanoSystem LandauElement (TypeSet LandauElement) where one
+  ∀ (subset : LRA.Set.Constructions.TypeSet LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauElement), (LRA.Set.Constructions.instMembershipTypeSet.mem subset LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauOne ∧ (∀ (element : LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauElement), LRA.Set.Constructions.instMembershipTypeSet.mem subset element → LRA.Set.Constructions.instMembershipTypeSet.mem subset (LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauSuccessor element))) → ∀ (element : LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauElement), LRA.Set.Constructions.instMembershipTypeSet.mem subset element
 
 Predicate logic (unfolded):
 
-  ∀ (subset : LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauElement → Prop), (LRA.Set.instMembershipPredicateSet.1 subset LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauOne ∧ ∀ (element : LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauElement), LRA.Set.instMembershipPredicateSet.1 subset element → LRA.Set.instMembershipPredicateSet.1 subset (LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauSuccessor element)) → ∀ (element : LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauElement), LRA.Set.instMembershipPredicateSet.1 subset element
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (LRA.Set.Constructions.instMembershipTypeSet.1 subset LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauOne ∧ (∀ (element : LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauElement), LRA.Set.Constructions.instMembershipTypeSet.1 subset element → LRA.Set.Constructions.instMembershipTypeSet.1 subset (LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauSuccessor element))) → ∀ (element : LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauElement), LRA.Set.Constructions.instMembershipTypeSet.1 subset element
 
 Logical form (Lean):
 
@@ -140,24 +155,24 @@ axiom LandauInduction :
 Predicate logic:
 
   noncomputable def LandauPeanoSystem :
-    LRA.NumberSystems.PeanoSystem.PeanoSystem
-      LandauElement (TypeSet LandauElement) where
-  base := LandauOne
-  successor := LandauSuccessor
-  one_not_successor := LandauBaseNotSuccessor
-  successor_injective := LandauSuccessorInjective
-  induction := LandauInduction
+      LRA.NumberSystems.PeanoSystem.PeanoSystem
+        LandauElement (TypeSet LandauElement) where
+    base := LandauOne
+    successor := LandauSuccessor
+    one_not_successor := LandauBaseNotSuccessor
+    successor_injective := LandauSuccessorInjective
+    induction := LandauInduction
 
 Predicate logic (unfolded):
 
   noncomputable def LandauPeanoSystem :
-    LRA.NumberSystems.PeanoSystem.PeanoSystem
-      LandauElement (TypeSet LandauElement) where
-  base := LandauOne
-  successor := LandauSuccessor
-  one_not_successor := LandauBaseNotSuccessor
-  successor_injective := LandauSuccessorInjective
-  induction := LandauInduction (source fallback; no compiled unfold data available)
+      LRA.NumberSystems.PeanoSystem.PeanoSystem
+        LandauElement (TypeSet LandauElement) where
+    base := LandauOne
+    successor := LandauSuccessor
+    one_not_successor := LandauBaseNotSuccessor
+    successor_injective := LandauSuccessorInjective
+    induction := LandauInduction (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

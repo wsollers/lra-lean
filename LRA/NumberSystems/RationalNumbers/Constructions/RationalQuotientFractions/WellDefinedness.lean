@@ -8,11 +8,16 @@ namespace LRA.NumberSystems.RationalNumbers.RationalQuotientFractions
 
 Predicate logic:
 
-  (∀ rational_data ∈ IntegerAndPositiveNaturalData), LRA.UniversalAlgebra.Quotient.binary_operation_respects (representative_setoid rational_data) (representative_addition rational_data) ∧ LRA.UniversalAlgebra.Quotient.binary_operation_respects (representative_setoid rational_data) (representative_multiplication rational_data) ∧ LRA.UniversalAlgebra.Quotient.unary_operation_respects (representative_setoid rational_data) (representative_negation rational_data)
+  ∀ (rational_data : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData), (LRA.UniversalAlgebra.Quotient.binary_operation_respects (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data) (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_addition rational_data) ∧ (LRA.UniversalAlgebra.Quotient.binary_operation_respects (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data) (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_multiplication rational_data) ∧ LRA.UniversalAlgebra.Quotient.unary_operation_respects (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data) (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_negation rational_data)))
 
 Predicate logic (unfolded):
 
-  ∀ (rational_data : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData), (∀ (first_representative first_replacement second_representative second_replacement : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Representative rational_data), (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data).1 first_representative first_replacement → (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data).1 second_representative second_replacement → (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data).1 { numerator := rational_data.integer_system.Model.signature.toBooleanRingOperationBundle.2 (rational_data.integer_system.Model.signature.toBooleanRingOperationBundle.3 first_representative.1 (rational_data.5 second_representative.denominator)) (rational_data.integer_system.Model.signature.toBooleanRingOperationBundle.3 second_representative.1 (rational_data.5 first_representative.denominator)), denominator := rational_data.4 first_representative.2 second_representative.2 } { numerator := rational_data.integer_system.Model.signature.toBooleanRingOperationBundle.2 (rational_data.integer_system.Model.signature.toBooleanRingOperationBundle.3 first_replacement.1 (rational_data.5 second_replacement.denominator)) (rational_data.integer_system.Model.signature.toBooleanRingOperationBundle.3 second_replacement.1 (rational_data.5 first_replacement.denominator)), denominator := rational_data.4 first_replacement.2 second_replacement.2 } ∧ (∀ (first_representative first_replacement second_representative second_replacement : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Representative rational_data), (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data).1 first_representative first_replacement → (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data).1 second_representative second_replacement → (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data).1 { numerator := rational_data.integer_system.Model.signature.toBooleanRingOperationBundle.3 first_representative.1 second_representative.1, denominator := rational_data.4 first_representative.2 second_representative.2 } { numerator := rational_data.integer_system.Model.signature.toBooleanRingOperationBundle.3 first_replacement.1 second_replacement.1, denominator := rational_data.4 first_replacement.2 second_replacement.2 } ∧ ∀ (first_representative second_representative : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Representative rational_data), (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data).1 first_representative second_representative → (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data).1 { numerator := rational_data.integer_system.Model.signature.toRingConceptSignature.2 first_representative.1, denominator := first_representative.2 } { numerator := rational_data.integer_system.Model.signature.toRingConceptSignature.2 second_representative.1, denominator := second_representative.2 }))
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_data : IntegerAndPositiveNaturalData
+  Prove
+    ((∀ (first_representative first_replacement second_representative second_replacement : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Representative rational_data), (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data).1 first_representative first_replacement → (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data).1 second_representative second_replacement → (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data).1 { numerator := rational_data.integer_system.Model.signature.toBooleanRingOperationBundle.2 (rational_data.integer_system.Model.signature.toBooleanRingOperationBundle.3 first_representative.1 (rational_data.5 second_representative.denominator)) (rational_data.integer_system.Model.signature.toBooleanRingOperationBundle.3 second_representative.1 (rational_data.5 first_representative.denominator)), denominator := rational_data.4 first_representative.2 second_representative.2 } { numerator := rational_data.integer_system.Model.signature.toBooleanRingOperationBundle.2 (rational_data.integer_system.Model.signature.toBooleanRingOperationBundle.3 first_replacement.1 (rational_data.5 second_replacement.denominator)) (rational_data.integer_system.Model.signature.toBooleanRingOperationBundle.3 second_replacement.1 (rational_data.5 first_replacement.denominator)), denominator := rational_data.4 first_replacement.2 second_replacement.2 }) ∧ ((∀ (first_representative first_replacement second_representative second_replacement : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Representative rational_data), (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data).1 first_representative first_replacement → (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data).1 second_representative second_replacement → (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data).1 { numerator := rational_data.integer_system.Model.signature.toBooleanRingOperationBundle.3 first_representative.1 second_representative.1, denominator := rational_data.4 first_representative.2 second_representative.2 } { numerator := rational_data.integer_system.Model.signature.toBooleanRingOperationBundle.3 first_replacement.1 second_replacement.1, denominator := rational_data.4 first_replacement.2 second_replacement.2 }) ∧ (∀ (first_representative second_representative : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Representative rational_data), (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data).1 first_representative second_representative → (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data).1 { numerator := rational_data.integer_system.Model.signature.toRingConceptSignature.2 first_representative.1, denominator := first_representative.2 } { numerator := rational_data.integer_system.Model.signature.toRingConceptSignature.2 second_representative.1, denominator := second_representative.2 })))
 
 Logical form (Lean):
 
@@ -59,22 +64,22 @@ theorem representative_operations_respect_equivalence (rational_data : IntegerAn
 Predicate logic:
 
   noncomputable def addition (rational_data : IntegerAndPositiveNaturalData) :
-    Carrier rational_data → Carrier rational_data → Carrier rational_data :=
-  Classical.choose
-    (LRA.UniversalAlgebra.Quotient.induced_binary_operation_exists
-      (representative_setoid rational_data)
-      (representative_addition rational_data)
-      (representative_operations_respect_equivalence rational_data).1)
+      Carrier rational_data → Carrier rational_data → Carrier rational_data :=
+    Classical.choose
+      (LRA.UniversalAlgebra.Quotient.induced_binary_operation_exists
+        (representative_setoid rational_data)
+        (representative_addition rational_data)
+        (representative_operations_respect_equivalence rational_data).1)
 
 Predicate logic (unfolded):
 
   noncomputable def addition (rational_data : IntegerAndPositiveNaturalData) :
-    Carrier rational_data → Carrier rational_data → Carrier rational_data :=
-  Classical.choose
-    (LRA.UniversalAlgebra.Quotient.induced_binary_operation_exists
-      (representative_setoid rational_data)
-      (representative_addition rational_data)
-      (representative_operations_respect_equivalence rational_data).1) (source fallback; no compiled unfold data available)
+      Carrier rational_data → Carrier rational_data → Carrier rational_data :=
+    Classical.choose
+      (LRA.UniversalAlgebra.Quotient.induced_binary_operation_exists
+        (representative_setoid rational_data)
+        (representative_addition rational_data)
+        (representative_operations_respect_equivalence rational_data).1) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -121,22 +126,22 @@ noncomputable def addition (rational_data : IntegerAndPositiveNaturalData) :
 Predicate logic:
 
   noncomputable def multiplication (rational_data : IntegerAndPositiveNaturalData) :
-    Carrier rational_data → Carrier rational_data → Carrier rational_data :=
-  Classical.choose
-    (LRA.UniversalAlgebra.Quotient.induced_binary_operation_exists
-      (representative_setoid rational_data)
-      (representative_multiplication rational_data)
-      (representative_operations_respect_equivalence rational_data).2.1)
+      Carrier rational_data → Carrier rational_data → Carrier rational_data :=
+    Classical.choose
+      (LRA.UniversalAlgebra.Quotient.induced_binary_operation_exists
+        (representative_setoid rational_data)
+        (representative_multiplication rational_data)
+        (representative_operations_respect_equivalence rational_data).2.1)
 
 Predicate logic (unfolded):
 
   noncomputable def multiplication (rational_data : IntegerAndPositiveNaturalData) :
-    Carrier rational_data → Carrier rational_data → Carrier rational_data :=
-  Classical.choose
-    (LRA.UniversalAlgebra.Quotient.induced_binary_operation_exists
-      (representative_setoid rational_data)
-      (representative_multiplication rational_data)
-      (representative_operations_respect_equivalence rational_data).2.1) (source fallback; no compiled unfold data available)
+      Carrier rational_data → Carrier rational_data → Carrier rational_data :=
+    Classical.choose
+      (LRA.UniversalAlgebra.Quotient.induced_binary_operation_exists
+        (representative_setoid rational_data)
+        (representative_multiplication rational_data)
+        (representative_operations_respect_equivalence rational_data).2.1) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -182,11 +187,16 @@ noncomputable def multiplication (rational_data : IntegerAndPositiveNaturalData)
 
 Predicate logic:
 
-  (∀ rational_data ∈ IntegerAndPositiveNaturalData), ∃ negation ∈ Carrier rational_data → Carrier rational_data, ∀ representative : Representative rational_data, negation (Quotient.mk _ representative) = Quotient.mk _ (representative_negation rational_data representative)
+  ∀ (rational_data : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData), Exists fun negation => ∀ (representative : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Representative rational_data), negation (Quotient.mk (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data) representative) = Quotient.mk (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data) (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_negation rational_data representative)
 
 Predicate logic (unfolded):
 
-  ∀ (rational_data : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData), Exists fun negation => ∀ (representative : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Representative rational_data), negation (Quot.mk (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data).1 representative) = Quot.mk (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data).1 { numerator := rational_data.integer_system.Model.signature.toRingConceptSignature.2 representative.1, denominator := representative.2 }
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_data : IntegerAndPositiveNaturalData
+  Prove
+    Exists fun negation => ∀ (representative : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Representative rational_data), negation (Quot.mk (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data).1 representative) = Quot.mk (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data).1 { numerator := rational_data.integer_system.Model.signature.toRingConceptSignature.2 representative.1, denominator := representative.2 }
 
 Logical form (Lean):
 
@@ -229,12 +239,12 @@ theorem negation_exists (rational_data : IntegerAndPositiveNaturalData) :
 Predicate logic:
 
   noncomputable def negation (rational_data : IntegerAndPositiveNaturalData) : Carrier rational_data → Carrier rational_data :=
-  Classical.choose (negation_exists rational_data)
+    Classical.choose (negation_exists rational_data)
 
 Predicate logic (unfolded):
 
   noncomputable def negation (rational_data : IntegerAndPositiveNaturalData) : Carrier rational_data → Carrier rational_data :=
-  Classical.choose (negation_exists rational_data) (source fallback; no compiled unfold data available)
+    Classical.choose (negation_exists rational_data) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -270,11 +280,16 @@ noncomputable def negation (rational_data : IntegerAndPositiveNaturalData) : Car
 
 Predicate logic:
 
-  (∀ rational_data ∈ IntegerAndPositiveNaturalData), LRA.UniversalAlgebra.Quotient.relation_respects (representative_setoid rational_data) (representative_strict_order rational_data)
+  ∀ (rational_data : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData), LRA.UniversalAlgebra.Quotient.relation_respects (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data) (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_strict_order rational_data)
 
 Predicate logic (unfolded):
 
-  ∀ (rational_data : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData) (first_representative first_replacement second_representative second_replacement : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Representative rational_data), ((LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data).1 first_representative first_replacement ∧ (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data).1 second_representative second_replacement) → rational_data.integer_system.Model.signature.2 (rational_data.integer_system.Model.signature.toBooleanRingOperationBundle.3 first_representative.1 (rational_data.5 second_representative.2)) (rational_data.integer_system.Model.signature.toBooleanRingOperationBundle.3 second_representative.1 (rational_data.5 first_representative.2)) ↔ rational_data.integer_system.Model.signature.2 (rational_data.integer_system.Model.signature.toBooleanRingOperationBundle.3 first_replacement.1 (rational_data.5 second_replacement.2)) (rational_data.integer_system.Model.signature.toBooleanRingOperationBundle.3 second_replacement.1 (rational_data.5 first_replacement.2))
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_data : IntegerAndPositiveNaturalData
+  Prove
+    ((LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data).1 first_representative first_replacement ∧ (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data).1 second_representative second_replacement) → rational_data.integer_system.Model.signature.2 (rational_data.integer_system.Model.signature.toBooleanRingOperationBundle.3 first_representative.1 (rational_data.5 second_representative.2)) (rational_data.integer_system.Model.signature.toBooleanRingOperationBundle.3 second_representative.1 (rational_data.5 first_representative.2)) ↔ rational_data.integer_system.Model.signature.2 (rational_data.integer_system.Model.signature.toBooleanRingOperationBundle.3 first_replacement.1 (rational_data.5 second_replacement.2)) (rational_data.integer_system.Model.signature.toBooleanRingOperationBundle.3 second_replacement.1 (rational_data.5 first_replacement.2))
 
 Logical form (Lean):
 
@@ -318,7 +333,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (rational_data : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData) (a a_1 : Quot (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data).1), (Classical.indefiniteDescription (fun x => ∀ (first_representative second_representative : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Representative rational_data), x (Quotient.mk (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data) first_representative) (Quotient.mk (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data) second_representative) ↔ LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_strict_order rational_data first_representative second_representative) ⋯).1 a a_1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Classical.indefiniteDescription (fun x => ∀ (first_representative second_representative : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Representative rational_data), x (Quotient.mk (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data) first_representative) (Quotient.mk (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data) second_representative) ↔ LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_strict_order rational_data first_representative second_representative) ⋯).1 a a_1
 
 Logical form (Lean):
 
@@ -368,7 +388,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (rational_data : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData) (first second : Quot (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data).1), Or ((Classical.indefiniteDescription (fun x => ∀ (first_representative second_representative : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Representative rational_data), x (Quotient.mk (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data) first_representative) (Quotient.mk (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data) second_representative) ↔ LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_strict_order rational_data first_representative second_representative) ⋯).1 first second) (first = second)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or ((Classical.indefiniteDescription (fun x => ∀ (first_representative second_representative : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Representative rational_data), x (Quotient.mk (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data) first_representative) (Quotient.mk (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_setoid rational_data) second_representative) ↔ LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.representative_strict_order rational_data first_representative second_representative) ⋯).1 first second) (first = second)
 
 Logical form (Lean):
 

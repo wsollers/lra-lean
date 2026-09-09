@@ -11,17 +11,17 @@ Predicate logic:
 
   structure MetricSpaceDefinition where
 
-  Carrier : Type u
+    Carrier : Type u
 
-  metric : MetricDefinition Carrier
+    metric : MetricDefinition Carrier
 
 Predicate logic (unfolded):
 
   structure MetricSpaceDefinition where
 
-  Carrier : Type u
+    Carrier : Type u
 
-  metric : MetricDefinition Carrier (source fallback; no compiled unfold data available)
+    metric : MetricDefinition Carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

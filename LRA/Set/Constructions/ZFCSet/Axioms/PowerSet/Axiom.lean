@@ -7,11 +7,16 @@ namespace LRA.Set.Constructions.ZFCSet.Axioms
 
 Predicate logic:
 
-  (∀ A ∈ ZFCSet), ∃ P ∈ ZFCSet, ∀ x : ZFCSet, x ∈ P ↔ ∀ y : ZFCSet, y ∈ x → y ∈ A end LRA.Set.Constructions.ZFCSet.Axioms
+  ∀ (A : LRA.Set.Constructions.ZFCSet), Exists fun P => ∀ (x : LRA.Set.Constructions.ZFCSet), LRA.Set.Constructions.instMembershipZFCSet.mem P x ↔ ∀ (y : LRA.Set.Constructions.ZFCSet), LRA.Set.Constructions.instMembershipZFCSet.mem x y → LRA.Set.Constructions.instMembershipZFCSet.mem A y
 
 Predicate logic (unfolded):
 
-  ∀ (A : LRA.Set.Constructions.ZFCSet), Exists fun P => ∀ (x : LRA.Set.Constructions.ZFCSet), LRA.Set.instMembershipZFCSet.1 P x ↔ ∀ (y : LRA.Set.Constructions.ZFCSet), LRA.Set.instMembershipZFCSet.1 x y → LRA.Set.instMembershipZFCSet.1 A y
+  Ambient
+    (implicit ambient)
+  Objects
+    A : ZFCSet
+  Prove
+    Exists fun P => ∀ (x : LRA.Set.Constructions.ZFCSet), LRA.Set.Constructions.instMembershipZFCSet.mem P x ↔ ∀ (y : LRA.Set.Constructions.ZFCSet), LRA.Set.Constructions.instMembershipZFCSet.mem x y → LRA.Set.Constructions.instMembershipZFCSet.mem A y
 
 Logical form (Lean):
 

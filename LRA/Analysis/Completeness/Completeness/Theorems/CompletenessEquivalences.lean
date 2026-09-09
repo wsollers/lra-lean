@@ -16,11 +16,16 @@ variable (F : Type*)
 
 Predicate logic:
 
-  (HasLeastUpperBoundProperty F) → IncreasingBoundedProcessesConverge F
+  ∀ (F : Type u_1) [inst : LinearOrder F] [inst_1 : TopologicalSpace F], (OrderTopology F ∧ LRA.Analysis.Completeness.HasLeastUpperBoundProperty F) → LRA.Analysis.Completeness.IncreasingBoundedProcessesConverge F
 
 Predicate logic (unfolded):
 
-  ∀ (F : Type u_1) [inst : LinearOrder F] [inst_1 : TopologicalSpace F], (OrderTopology F ∧ ∀ (A : F → Prop), (Exists fun x => Set.instMembership.1 A x) → (Exists fun u => ∀ (x : F), Set.instMembership.1 A x → instDistribLatticeOfLinearOrder.toSemilatticeInf.toLE.1 x u) → Exists fun s => (∀ (x : F), Set.instMembership.1 A x → instDistribLatticeOfLinearOrder.toSemilatticeInf.toLE.1 x s ∧ ∀ (u : F), (∀ (x : F), Set.instMembership.1 A x → instDistribLatticeOfLinearOrder.toSemilatticeInf.toLE.1 x u) → instDistribLatticeOfLinearOrder.toSemilatticeInf.toLE.1 s u)) → ∀ (a : Nat → F), (∀ ⦃a_1 b : Nat⦄, Nat.instPreorder.toLE.1 a_1 b → instDistribLatticeOfLinearOrder.toSemilatticeInf.toLE.1 (a a_1) (a b) ∧ Exists fun u => ∀ (x : F), Set.instMembership.1 (fun x => Exists fun y => a y = x)x → instDistribLatticeOfLinearOrder.toSemilatticeInf.toLE.1 x u) → Exists fun L => ((∀ (x : F), Set.instMembership.1 (fun x => Exists fun y => a y = x)x → instDistribLatticeOfLinearOrder.toSemilatticeInf.toLE.1 x L ∧ ∀ (u : F), (∀ (x : F), Set.instMembership.1 (fun x => Exists fun y => a y = x)x → instDistribLatticeOfLinearOrder.toSemilatticeInf.toLE.1 x u) → instDistribLatticeOfLinearOrder.toSemilatticeInf.toLE.1 L u) ∧ Filter.instPartialOrder.toLE.1 { sets := fun x => Set.instMembership.mem Filter.atTop.sets (Set.preimage a x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds L))
+  Ambient
+    (F, ≤)
+  Objects
+    (none)
+  Prove
+    (OrderTopology F ∧ (∀ (A : F → Prop), (Exists fun x => x) ∈ A → (Exists fun u => ∀ (x : F), x ∈ A → instDistribLatticeOfLinearOrder.toSemilatticeInf.toPreorder.1.le x u) → Exists fun s => ((∀ (x : F), x ∈ A → instDistribLatticeOfLinearOrder.toSemilatticeInf.toPreorder.1.le x s) ∧ (∀ (u : F), (∀ (x : F), x ∈ A → instDistribLatticeOfLinearOrder.toSemilatticeInf.toPreorder.1.le x u) → instDistribLatticeOfLinearOrder.toSemilatticeInf.toPreorder.1.le s u)))) → ∀ (a : Nat → F), ((∀ ⦃a_1 b : Nat⦄, Nat.instPreorder.1.le a_1 b → instDistribLatticeOfLinearOrder.toSemilatticeInf.toPreorder.1.le (a a_1) (a b)) ∧ (Exists fun u => ∀ (x : F), x ∈ fun x => Exists fun y => a y = x → instDistribLatticeOfLinearOrder.toSemilatticeInf.toPreorder.1.le x u)) → Exists fun L => (((∀ (x : F), x ∈ fun x => Exists fun y => a y = x → instDistribLatticeOfLinearOrder.toSemilatticeInf.toPreorder.1.le x L) ∧ (∀ (u : F), (∀ (x : F), x ∈ fun x => Exists fun y => a y = x → instDistribLatticeOfLinearOrder.toSemilatticeInf.toPreorder.1.le x u) → instDistribLatticeOfLinearOrder.toSemilatticeInf.toPreorder.1.le L u)) ∧ Filter.instPartialOrder.toPreorder.1.le { sets := fun x => Set.preimage a x ∈ Filter.atTop.sets, univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds L))
 
 Logical form (Lean):
 
@@ -60,11 +65,16 @@ theorem LubPropertyImpliesIncreasingProcessConvergence
 
 Predicate logic:
 
-  (HasLeastUpperBoundProperty F) → DecreasingBoundedProcessesConverge F
+  ∀ (F : Type u_1) [inst : LinearOrder F] [inst_1 : TopologicalSpace F], (OrderTopology F ∧ LRA.Analysis.Completeness.HasLeastUpperBoundProperty F) → LRA.Analysis.Completeness.DecreasingBoundedProcessesConverge F
 
 Predicate logic (unfolded):
 
-  ∀ (F : Type u_1) [inst : LinearOrder F] [inst_1 : TopologicalSpace F], (OrderTopology F ∧ ∀ (A : F → Prop), (Exists fun x => Set.instMembership.1 A x) → (Exists fun u => ∀ (x : F), Set.instMembership.1 A x → instDistribLatticeOfLinearOrder.toSemilatticeInf.toLE.1 x u) → Exists fun s => (∀ (x : F), Set.instMembership.1 A x → instDistribLatticeOfLinearOrder.toSemilatticeInf.toLE.1 x s ∧ ∀ (u : F), (∀ (x : F), Set.instMembership.1 A x → instDistribLatticeOfLinearOrder.toSemilatticeInf.toLE.1 x u) → instDistribLatticeOfLinearOrder.toSemilatticeInf.toLE.1 s u)) → ∀ (a : Nat → F), (∀ ⦃a_1 b : Nat⦄, Nat.instPreorder.toLE.1 a_1 b → instDistribLatticeOfLinearOrder.toSemilatticeInf.toLE.1 (a b) (a a_1) ∧ Exists fun l => ∀ (x : F), Set.instMembership.1 (fun x => Exists fun y => a y = x)x → instDistribLatticeOfLinearOrder.toSemilatticeInf.toLE.1 l x) → Exists fun L => ((∀ (x : F), Set.instMembership.1 (fun x => Exists fun y => a y = x)x → instDistribLatticeOfLinearOrder.toSemilatticeInf.toLE.1 L x ∧ ∀ (l : F), (∀ (x : F), Set.instMembership.1 (fun x => Exists fun y => a y = x)x → instDistribLatticeOfLinearOrder.toSemilatticeInf.toLE.1 l x) → instDistribLatticeOfLinearOrder.toSemilatticeInf.toLE.1 l L) ∧ Filter.instPartialOrder.toLE.1 { sets := fun x => Set.instMembership.mem Filter.atTop.sets (Set.preimage a x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds L))
+  Ambient
+    (F, ≤)
+  Objects
+    (none)
+  Prove
+    (OrderTopology F ∧ (∀ (A : F → Prop), (Exists fun x => x) ∈ A → (Exists fun u => ∀ (x : F), x ∈ A → instDistribLatticeOfLinearOrder.toSemilatticeInf.toPreorder.1.le x u) → Exists fun s => ((∀ (x : F), x ∈ A → instDistribLatticeOfLinearOrder.toSemilatticeInf.toPreorder.1.le x s) ∧ (∀ (u : F), (∀ (x : F), x ∈ A → instDistribLatticeOfLinearOrder.toSemilatticeInf.toPreorder.1.le x u) → instDistribLatticeOfLinearOrder.toSemilatticeInf.toPreorder.1.le s u)))) → ∀ (a : Nat → F), ((∀ ⦃a_1 b : Nat⦄, Nat.instPreorder.1.le a_1 b → instDistribLatticeOfLinearOrder.toSemilatticeInf.toPreorder.1.le (a b) (a a_1)) ∧ (Exists fun l => ∀ (x : F), x ∈ fun x => Exists fun y => a y = x → instDistribLatticeOfLinearOrder.toSemilatticeInf.toPreorder.1.le l x)) → Exists fun L => (((∀ (x : F), x ∈ fun x => Exists fun y => a y = x → instDistribLatticeOfLinearOrder.toSemilatticeInf.toPreorder.1.le L x) ∧ (∀ (l : F), (∀ (x : F), x ∈ fun x => Exists fun y => a y = x → instDistribLatticeOfLinearOrder.toSemilatticeInf.toPreorder.1.le l x) → instDistribLatticeOfLinearOrder.toSemilatticeInf.toPreorder.1.le l L)) ∧ Filter.instPartialOrder.toPreorder.1.le { sets := fun x => Set.preimage a x ∈ Filter.atTop.sets, univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds L))
 
 Logical form (Lean):
 
@@ -104,11 +114,16 @@ theorem LubPropertyImpliesDecreasingProcessConvergence
 
 Predicate logic:
 
-  HasLeastUpperBoundProperty F
+  ∀ (F : Type u_1) [inst : Field F] [inst_1 : LinearOrder F], (IsStrictOrderedRing F ∧ Archimedean F) → ∀ [inst : TopologicalSpace F], (OrderTopology F ∧ LRA.Analysis.Completeness.IncreasingBoundedProcessesConverge F) → LRA.Analysis.Completeness.HasLeastUpperBoundProperty F
 
 Predicate logic (unfolded):
 
-  ∀ (F : Type u_1) [inst : Field F] [inst_1 : LinearOrder F], (IsStrictOrderedRing F ∧ Archimedean F) → ∀ [inst : TopologicalSpace F], (OrderTopology F ∧ ∀ (a : Nat → F), (∀ ⦃a_1 b : Nat⦄, Nat.instPreorder.toLE.1 a_1 b → instDistribLatticeOfLinearOrder.toSemilatticeInf.toLE.1 (a a_1) (a b)) → (Exists fun u => ∀ (x : F), Set.instMembership.1 (fun x => Exists fun y => a y = x)x → instDistribLatticeOfLinearOrder.toSemilatticeInf.toLE.1 x u) → Exists fun L => ((∀ (x : F), Set.instMembership.1 (fun x => Exists fun y => a y = x)x → instDistribLatticeOfLinearOrder.toSemilatticeInf.toLE.1 x L ∧ ∀ (u : F), (∀ (x : F), Set.instMembership.1 (fun x => Exists fun y => a y = x)x → instDistribLatticeOfLinearOrder.toSemilatticeInf.toLE.1 x u) → instDistribLatticeOfLinearOrder.toSemilatticeInf.toLE.1 L u) ∧ Filter.instPartialOrder.toLE.1 { sets := fun x => Set.instMembership.mem Filter.atTop.sets (Set.preimage a x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds L))) → ∀ (A : F → Prop), (Exists fun x => Set.instMembership.1 A x ∧ Exists fun u => ∀ (x : F), Set.instMembership.1 A x → instDistribLatticeOfLinearOrder.toSemilatticeInf.toLE.1 x u) → Exists fun s => (∀ (x : F), Set.instMembership.1 A x → instDistribLatticeOfLinearOrder.toSemilatticeInf.toLE.1 x s ∧ ∀ (u : F), (∀ (x : F), Set.instMembership.1 A x → instDistribLatticeOfLinearOrder.toSemilatticeInf.toLE.1 x u) → instDistribLatticeOfLinearOrder.toSemilatticeInf.toLE.1 s u)
+  Ambient
+    (F, ≤)
+  Objects
+    monotoneProcessConvergenceHypothesis : IncreasingBoundedProcessesConverge F
+  Prove
+    (IsStrictOrderedRing F ∧ Archimedean F) → ∀ [inst : TopologicalSpace F], (OrderTopology F ∧ (∀ (a : Nat → F), (∀ ⦃a_1 b : Nat⦄, Nat.instPreorder.1.le a_1 b → instDistribLatticeOfLinearOrder.toSemilatticeInf.toPreorder.1.le (a a_1) (a b)) → (Exists fun u => ∀ (x : F), x ∈ fun x => Exists fun y => a y = x → instDistribLatticeOfLinearOrder.toSemilatticeInf.toPreorder.1.le x u) → Exists fun L => (((∀ (x : F), x ∈ fun x => Exists fun y => a y = x → instDistribLatticeOfLinearOrder.toSemilatticeInf.toPreorder.1.le x L) ∧ (∀ (u : F), (∀ (x : F), x ∈ fun x => Exists fun y => a y = x → instDistribLatticeOfLinearOrder.toSemilatticeInf.toPreorder.1.le x u) → instDistribLatticeOfLinearOrder.toSemilatticeInf.toPreorder.1.le L u)) ∧ Filter.instPartialOrder.toPreorder.1.le { sets := fun x => Set.preimage a x ∈ Filter.atTop.sets, univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds L)))) → ∀ (A : F → Prop), (Exists fun x => x ∈ A ∧ (Exists fun u => ∀ (x : F), x ∈ A → instDistribLatticeOfLinearOrder.toSemilatticeInf.toPreorder.1.le x u)) → Exists fun s => ((∀ (x : F), x ∈ A → instDistribLatticeOfLinearOrder.toSemilatticeInf.toPreorder.1.le x s) ∧ (∀ (u : F), (∀ (x : F), x ∈ A → instDistribLatticeOfLinearOrder.toSemilatticeInf.toPreorder.1.le x u) → instDistribLatticeOfLinearOrder.toSemilatticeInf.toPreorder.1.le s u))
 
 Logical form (Lean):
 

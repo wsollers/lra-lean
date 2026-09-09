@@ -13,14 +13,14 @@ universe u
 Predicate logic:
 
   structure GaussianInteger (R : Type u) where
-  realPart : R
-  imaginaryPart : R
+    realPart : R
+    imaginaryPart : R
 
 Predicate logic (unfolded):
 
   structure GaussianInteger (R : Type u) where
-  realPart : R
-  imaginaryPart : R (source fallback; no compiled unfold data available)
+    realPart : R
+    imaginaryPart : R (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

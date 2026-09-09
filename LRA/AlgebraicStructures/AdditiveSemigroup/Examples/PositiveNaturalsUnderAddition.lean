@@ -12,8 +12,91 @@ core lemmas rather than through the Mathlib bridge, since neither `Nat` nor
 
 instance : LRA.AlgebraicStructures.AdditiveSemigroupLaws Nat := by
   sorry
+/--
+`PositiveNaturals` TODO
+
+Predicate logic:
+
+  ∀ (a : Nat), (Nat.succ 0).le a
+
+Predicate logic (unfolded):
+
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Nat.succ 0).le a
+
+Logical form (Lean):
+
+```lean
+def PositiveNaturals : LRA.Set.LRA_Set Nat := {n | 0 < n}
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 def PositiveNaturals : LRA.Set.LRA_Set Nat := {n | 0 < n}
 
+/--
+`positiveNaturalsClosedUnderAddition` TODO
+
+Predicate logic:
+
+  ∀ (a b : Nat), (a ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveNaturals ∧ b ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveNaturals) → instHAdd.hAdd a b ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveNaturals
+
+Predicate logic (unfolded):
+
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (a ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveNaturals ∧ b ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveNaturals) → { hAdd := fun a b => instAddNat.add a b }.hAdd a b ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveNaturals
+
+Logical form (Lean):
+
+```lean
+theorem positiveNaturalsClosedUnderAddition :
+    ∀ a b, a ∈ PositiveNaturals → b ∈ PositiveNaturals → a + b ∈ PositiveNaturals
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro
+
+-/
 theorem positiveNaturalsClosedUnderAddition :
     ∀ a b, a ∈ PositiveNaturals → b ∈ PositiveNaturals → a + b ∈ PositiveNaturals := by
   sorry

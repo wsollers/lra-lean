@@ -10,11 +10,17 @@ universe u v
 
 Predicate logic:
 
-  ∃ inverse ∈ LRA.Function Codomain Domain, TwoSidedInverse function inverse
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.Bijective → Exists fun inverse => function.TwoSidedInverse inverse
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain), (∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂ ∧ ∀ (y : Codomain), Exists fun x => function x = y) → Exists fun inverse => (∀ (input : Domain), inverse (function input) = input ∧ ∀ (output : Codomain), function (inverse output) = output)
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    bijective : Bijective function
+  Prove
+    ((∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ (∀ (y : Codomain), Exists fun x => function x = y)) → Exists fun inverse => ((∀ (input : Domain), inverse (function input) = input) ∧ (∀ (output : Codomain), function (inverse output) = output))
 
 Logical form (Lean):
 
@@ -58,11 +64,18 @@ theorem BijectiveHasTwoSidedInverse
 
 Predicate logic:
 
-  Bijective function
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (inverse : LRA.Function Codomain Domain), function.TwoSidedInverse inverse → function.Bijective
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (inverse : Codomain → Domain), (∀ (input : Domain), inverse (function input) = input ∧ ∀ (output : Codomain), function (inverse output) = output) → (∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂ ∧ ∀ (y : Codomain), Exists fun x => function x = y)
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    inverse : LRA.Function Codomain Domain
+    twoSided : TwoSidedInverse function inverse
+  Prove
+    ((∀ (input : Domain), inverse (function input) = input) ∧ (∀ (output : Codomain), function (inverse output) = output)) → ((∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ (∀ (y : Codomain), Exists fun x => function x = y))
 
 Logical form (Lean):
 
@@ -106,11 +119,19 @@ theorem TwoSidedInverseGivesBijective
 
 Predicate logic:
 
-  ∀ output, first output = second output
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (first second : LRA.Function Codomain Domain), (function.TwoSidedInverse first ∧ function.TwoSidedInverse second) → ∀ (output : Codomain), first output = second output
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (first second : Codomain → Domain), ((∀ (input : Domain), first (function input) = input ∧ ∀ (output : Codomain), function (first output) = output) ∧ (∀ (input : Domain), second (function input) = input ∧ ∀ (output : Codomain), function (second output) = output)) → ∀ (output : Codomain), first output = second output
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    first second : LRA.Function Codomain Domain
+    firstIsInverse : TwoSidedInverse function first
+    secondIsInverse : TwoSidedInverse function second
+  Prove
+    (((∀ (input : Domain), first (function input) = input) ∧ (∀ (output : Codomain), function (first output) = output)) ∧ ((∀ (input : Domain), second (function input) = input) ∧ (∀ (output : Codomain), function (second output) = output))) → ∀ (output : Codomain), first output = second output
 
 Logical form (Lean):
 
@@ -163,11 +184,19 @@ variable (inverse : LRA.Function Codomain Domain)
 
 Predicate logic:
 
-  LeftInverseOn function inverse source
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (inverse : LRA.Function Codomain Domain), function.LeftInverse inverse → ∀ (source : LRA.Set.SetClass Domain), function.LeftInverseOn inverse source
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (inverse : Codomain → Domain), (∀ (input : Domain), inverse (function input) = input) → ∀ (source : Domain → Prop) (input : Domain), source input → inverse (function input) = input
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    inverse : LRA.Function Codomain Domain
+    leftInverse : LeftInverse function inverse
+    source : SetClass Domain
+  Prove
+    (∀ (input : Domain), inverse (function input) = input) → ∀ (source : Domain → Prop) (input : Domain), source input → inverse (function input) = input
 
 Logical form (Lean):
 
@@ -205,11 +234,19 @@ theorem LeftInverseGivesLeftInverseOn
 
 Predicate logic:
 
-  RightInverseOn function inverse target
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (inverse : LRA.Function Codomain Domain), function.RightInverse inverse → ∀ (target : LRA.Set.SetClass Codomain), function.RightInverseOn inverse target
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (inverse : Codomain → Domain), (∀ (output : Codomain), function (inverse output) = output) → ∀ (target : Codomain → Prop) (output : Codomain), target output → function (inverse output) = output
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    inverse : LRA.Function Codomain Domain
+    rightInverse : RightInverse function inverse
+    target : SetClass Codomain
+  Prove
+    (∀ (output : Codomain), function (inverse output) = output) → ∀ (target : Codomain → Prop) (output : Codomain), target output → function (inverse output) = output
 
 Logical form (Lean):
 
@@ -247,11 +284,20 @@ theorem RightInverseGivesRightInverseOn
 
 Predicate logic:
 
-  TwoSidedInverseOn function inverse source target
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (inverse : LRA.Function Codomain Domain), function.TwoSidedInverse inverse → ∀ (source : LRA.Set.SetClass Domain) (target : LRA.Set.SetClass Codomain), function.TwoSidedInverseOn inverse source target
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (inverse : Codomain → Domain), (∀ (input : Domain), inverse (function input) = input ∧ ∀ (output : Codomain), function (inverse output) = output) → ∀ (source : Domain → Prop) (target : Codomain → Prop), (∀ (input : Domain), source input → inverse (function input) = input ∧ ∀ (output : Codomain), target output → function (inverse output) = output)
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    inverse : LRA.Function Codomain Domain
+    twoSided : TwoSidedInverse function inverse
+    source : SetClass Domain
+    target : SetClass Codomain
+  Prove
+    ((∀ (input : Domain), inverse (function input) = input) ∧ (∀ (output : Codomain), function (inverse output) = output)) → ∀ (source : Domain → Prop) (target : Codomain → Prop), ((∀ (input : Domain), source input → inverse (function input) = input) ∧ (∀ (output : Codomain), target output → function (inverse output) = output))
 
 Logical form (Lean):
 
@@ -291,11 +337,19 @@ theorem TwoSidedInverseGivesTwoSidedInverseOn
 
 Predicate logic:
 
-  RightInverseOn function inverse (ImageClass function source)
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (inverse : LRA.Function Codomain Domain) (source : LRA.Set.SetClass Domain), function.LeftInverseOn inverse source → function.RightInverseOn inverse (function.ImageClass source)
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (inverse : Codomain → Domain) (source : Domain → Prop), (∀ (input : Domain), source input → inverse (function input) = input) → ∀ (output : Codomain), (Exists fun x => (source x ∧ function x = output)) → function (inverse output) = output
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    inverse : LRA.Function Codomain Domain
+    source : SetClass Domain
+    leftInverse : LeftInverseOn function inverse source
+  Prove
+    (∀ (input : Domain), source input → inverse (function input) = input) → ∀ (output : Codomain), (Exists fun x => (source x ∧ function x = output)) → function (inverse output) = output
 
 Logical form (Lean):
 
@@ -335,11 +389,19 @@ theorem RightInverseOnImageOfLeftInverseOn
 
 Predicate logic:
 
-  TwoSidedInverseOn function inverse source (ImageClass function source)
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (inverse : LRA.Function Codomain Domain) (source : LRA.Set.SetClass Domain), function.LeftInverseOn inverse source → function.TwoSidedInverseOn inverse source (function.ImageClass source)
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (inverse : Codomain → Domain) (source : Domain → Prop), (∀ (input : Domain), source input → inverse (function input) = input) → (∀ (input : Domain), source input → inverse (function input) = input ∧ ∀ (output : Codomain), (Exists fun x => (source x ∧ function x = output)) → function (inverse output) = output)
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    inverse : LRA.Function Codomain Domain
+    source : SetClass Domain
+    leftInverse : LeftInverseOn function inverse source
+  Prove
+    (∀ (input : Domain), source input → inverse (function input) = input) → ((∀ (input : Domain), source input → inverse (function input) = input) ∧ (∀ (output : Codomain), (Exists fun x => (source x ∧ function x = output)) → function (inverse output) = output))
 
 Logical form (Lean):
 
@@ -379,11 +441,19 @@ theorem TwoSidedInverseOnImageOfLeftInverseOn
 
 Predicate logic:
 
-  PreimageClass function target = ImageClass inverse target
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (inverse : LRA.Function Codomain Domain), function.TwoSidedInverse inverse → ∀ (target : LRA.Set.SetClass Codomain), function.PreimageClass target = inverse.ImageClass target
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (inverse : Codomain → Domain), (∀ (input : Domain), inverse (function input) = input ∧ ∀ (output : Codomain), function (inverse output) = output) → ∀ (target : Codomain → Prop), fun x => Exists fun y => (target y ∧ function x = y) = funy => Exists fun x => (target x ∧ inverse x = y)
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    inverse : LRA.Function Codomain Domain
+    twoSided : TwoSidedInverse function inverse
+    target : SetClass Codomain
+  Prove
+    ((∀ (input : Domain), inverse (function input) = input) ∧ (∀ (output : Codomain), function (inverse output) = output)) → ∀ (target : Codomain → Prop), fun x => Exists fun y => (target y ∧ function x = y) = funy => Exists fun x => (target x ∧ inverse x = y)
 
 Logical form (Lean):
 
@@ -429,11 +499,20 @@ variable {inverse : LRA.Function Codomain Domain}
 
 Predicate logic:
 
-  Injective function
+  ∀ {Domain : Type u} {Codomain : Type v} {function : LRA.Function Domain Codomain} {inverse : LRA.Function Codomain Domain}, function.LeftInverse inverse → function.Injective
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} {function : Domain → Codomain} {inverse : Codomain → Domain}, (∀ (input : Domain), inverse (function input) = input) → ∀ (y : Codomain) (x₁ x₂ : Domain), (function x₁ = y ∧ function x₂ = y) → x₁ = x₂
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    inverse : LRA.Function Codomain Domain
+    function : LRA.Function Domain Codomain
+    inverse : LRA.Function Codomain Domain
+    leftInverse : LeftInverse function inverse
+  Prove
+    (∀ (input : Domain), inverse (function input) = input) → ∀ (y : Codomain) (x₁ x₂ : Domain), (function x₁ = y ∧ function x₂ = y) → x₁ = x₂
 
 Logical form (Lean):
 
@@ -469,11 +548,20 @@ theorem InjectiveOfLeftInverse
 
 Predicate logic:
 
-  Surjective function
+  ∀ {Domain : Type u} {Codomain : Type v} {function : LRA.Function Domain Codomain} {inverse : LRA.Function Codomain Domain}, function.RightInverse inverse → function.Surjective
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} {function : Domain → Codomain} {inverse : Codomain → Domain}, (∀ (output : Codomain), function (inverse output) = output) → ∀ (y : Codomain), Exists fun x => function x = y
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    inverse : LRA.Function Codomain Domain
+    function : LRA.Function Domain Codomain
+    inverse : LRA.Function Codomain Domain
+    rightInverse : RightInverse function inverse
+  Prove
+    (∀ (output : Codomain), function (inverse output) = output) → ∀ (y : Codomain), Exists fun x => function x = y
 
 Logical form (Lean):
 
@@ -509,11 +597,20 @@ theorem SurjectiveOfRightInverse
 
 Predicate logic:
 
-  Bijective inverse
+  ∀ {Domain : Type u} {Codomain : Type v} {function : LRA.Function Domain Codomain} {inverse : LRA.Function Codomain Domain}, function.TwoSidedInverse inverse → inverse.Bijective
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} {function : Domain → Codomain} {inverse : Codomain → Domain}, (∀ (input : Domain), inverse (function input) = input ∧ ∀ (output : Codomain), function (inverse output) = output) → (∀ (y : Domain) (x₁ x₂ : Codomain), inverse x₁ = y → inverse x₂ = y → x₁ = x₂ ∧ ∀ (y : Domain), Exists fun x => inverse x = y)
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    inverse : LRA.Function Codomain Domain
+    function : LRA.Function Domain Codomain
+    inverse : LRA.Function Codomain Domain
+    twoSided : TwoSidedInverse function inverse
+  Prove
+    ((∀ (input : Domain), inverse (function input) = input) ∧ (∀ (output : Codomain), function (inverse output) = output)) → ((∀ (y : Domain) (x₁ x₂ : Codomain), inverse x₁ = y → inverse x₂ = y → x₁ = x₂) ∧ (∀ (y : Domain), Exists fun x => inverse x = y))
 
 Logical form (Lean):
 

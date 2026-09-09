@@ -11,11 +11,18 @@ universe u v w x
 
 Predicate logic:
 
-  RelationComposition thirdRelation (RelationComposition secondRelation firstRelation) = RelationComposition (RelationComposition thirdRelation secondRelation) firstRelation
+  ∀ {Alpha : Type u} {Beta : Type v} {Gamma : Type w} {Delta : Type x} (firstRelation : LRA.Relation.HeterogeneousBinaryRelation Alpha Beta) (secondRelation : LRA.Relation.HeterogeneousBinaryRelation Beta Gamma) (thirdRelation : LRA.Relation.HeterogeneousBinaryRelation Gamma Delta), LRA.Relation.RelationComposition thirdRelation (LRA.Relation.RelationComposition secondRelation firstRelation) = LRA.Relation.RelationComposition (LRA.Relation.RelationComposition thirdRelation secondRelation) firstRelation
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {Beta : Type v} {Gamma : Type w} {Delta : Type x} (firstRelation : Alpha → Beta → Prop) (secondRelation : Beta → Gamma → Prop) (thirdRelation : Gamma → Delta → Prop), fun first third => Exists fun middle => (Exists fun middle_1 => (firstRelation first middle_1 ∧ secondRelation middle_1 middle) ∧ thirdRelation middle third) = funfirst third => Exists fun middle => (firstRelation first middle ∧ Exists fun middle_1 => (secondRelation middle middle_1 ∧ thirdRelation middle_1 third))
+  Ambient
+    (Alpha, Beta, Gamma, Delta)
+  Objects
+    firstRelation : HeterogeneousBinaryRelation Alpha Beta
+    secondRelation : HeterogeneousBinaryRelation Beta Gamma
+    thirdRelation : HeterogeneousBinaryRelation Gamma Delta
+  Prove
+    fun first third => Exists fun middle => ((Exists fun middle_1 => (firstRelation first middle_1 ∧ secondRelation middle_1 middle)) ∧ thirdRelation middle third) = funfirst third => Exists fun middle => (firstRelation first middle ∧ (Exists fun middle_1 => (secondRelation middle middle_1 ∧ thirdRelation middle_1 third)))
 
 Logical form (Lean):
 
@@ -65,11 +72,16 @@ theorem RelationComposition.associative
 
 Predicate logic:
 
-  RelationComposition (IdentityRelation Beta) relation = relation
+  ∀ {Alpha : Type u} {Beta : Type v} (relation : LRA.Relation.HeterogeneousBinaryRelation Alpha Beta), LRA.Relation.RelationComposition (LRA.Relation.IdentityRelation Beta) relation = relation
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {Beta : Type v} (relation : Alpha → Beta → Prop), fun first third => Exists fun middle => (relation first middle ∧ middle = third) = relation
+  Ambient
+    (Alpha, Beta)
+  Objects
+    relation : HeterogeneousBinaryRelation Alpha Beta
+  Prove
+    fun first third => Exists fun middle => (relation first middle ∧ middle = third) = relation
 
 Logical form (Lean):
 
@@ -109,11 +121,16 @@ theorem RelationComposition.identity_left
 
 Predicate logic:
 
-  RelationComposition relation (IdentityRelation Alpha) = relation
+  ∀ {Alpha : Type u} {Beta : Type v} (relation : LRA.Relation.HeterogeneousBinaryRelation Alpha Beta), LRA.Relation.RelationComposition relation (LRA.Relation.IdentityRelation Alpha) = relation
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {Beta : Type v} (relation : Alpha → Beta → Prop), fun first third => Exists fun middle => (first = middle ∧ relation middle third) = relation
+  Ambient
+    (Alpha, Beta)
+  Objects
+    relation : HeterogeneousBinaryRelation Alpha Beta
+  Prove
+    fun first third => Exists fun middle => (first = middle ∧ relation middle third) = relation
 
 Logical form (Lean):
 
@@ -153,11 +170,16 @@ theorem RelationComposition.identity_right
 
 Predicate logic:
 
-  Converse (RelationComposition rightRelation leftRelation) = RelationComposition (Converse leftRelation) (Converse rightRelation)
+  ∀ {Alpha : Type u} (leftRelation rightRelation : LRA.Relation.Endorelation Alpha), LRA.Relation.Converse (LRA.Relation.RelationComposition rightRelation leftRelation) = LRA.Relation.RelationComposition (LRA.Relation.Converse leftRelation) (LRA.Relation.Converse rightRelation)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (leftRelation rightRelation : Alpha → Alpha → Prop), fun y x => Exists fun middle => (leftRelation x middle ∧ rightRelation middle y) = funfirst third => Exists fun middle => (rightRelation middle first ∧ leftRelation third middle)
+  Ambient
+    (Alpha)
+  Objects
+    leftRelation rightRelation : Endorelation Alpha
+  Prove
+    fun y x => Exists fun middle => (leftRelation x middle ∧ rightRelation middle y) = funfirst third => Exists fun middle => (rightRelation middle first ∧ leftRelation third middle)
 
 Logical form (Lean):
 

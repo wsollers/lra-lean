@@ -8,26 +8,26 @@ universe u v
 Predicate logic:
 
   structure InitialObject
-    (Object : Type u)
-    (Arrow : Object -> Object -> Type v)
-    (initialObject : Object) : Prop where
-  ExistsArrow : forall targetObject, Nonempty (Arrow initialObject targetObject)
-  UniqueArrow :
-    forall targetObject
-      (firstArrow secondArrow : Arrow initialObject targetObject),
-        firstArrow = secondArrow
+      (Object : Type u)
+      (Arrow : Object -> Object -> Type v)
+      (initialObject : Object) : Prop where
+    ExistsArrow : forall targetObject, Nonempty (Arrow initialObject targetObject)
+    UniqueArrow :
+      forall targetObject
+        (firstArrow secondArrow : Arrow initialObject targetObject),
+          firstArrow = secondArrow
 
 Predicate logic (unfolded):
 
   structure InitialObject
-    (Object : Type u)
-    (Arrow : Object -> Object -> Type v)
-    (initialObject : Object) : Prop where
-  ExistsArrow : forall targetObject, Nonempty (Arrow initialObject targetObject)
-  UniqueArrow :
-    forall targetObject
-      (firstArrow secondArrow : Arrow initialObject targetObject),
-        firstArrow = secondArrow (source fallback; no compiled unfold data available)
+      (Object : Type u)
+      (Arrow : Object -> Object -> Type v)
+      (initialObject : Object) : Prop where
+    ExistsArrow : forall targetObject, Nonempty (Arrow initialObject targetObject)
+    UniqueArrow :
+      forall targetObject
+        (firstArrow secondArrow : Arrow initialObject targetObject),
+          firstArrow = secondArrow (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

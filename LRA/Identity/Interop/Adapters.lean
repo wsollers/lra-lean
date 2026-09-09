@@ -8,16 +8,41 @@ universe u v w
 open LRA.Identity
 
 /--
-`IdentAgreesWithLeanEq` is the interop bridge between in-house identity and
-Lean's native equality. Pure in-house laws should use `IdentIsDiagonal`
-instead.
+`IdentAgreesWithLeanEq` TODO
 
-Logical form:
+Predicate logic:
+
+  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] (x y : Carrier), inst.Ident x y ↔ x = y
+
+Predicate logic (unfolded):
+
+  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] (x y : Carrier), inst.Ident x y ↔ x = y
+
+Logical form (Lean):
 
 ```lean
 theorem IdentAgreesWithLeanEq {Carrier : Type u} [IdentityRelation Carrier]
     (x y : Carrier) : Ident x y ↔ x = y
 ```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: constructor, .mp, .mpr
+
 -/
 theorem IdentAgreesWithLeanEq {Carrier : Type u} [IdentityRelation Carrier]
     (x y : Carrier) : Ident x y ↔ x = y := by
@@ -28,17 +53,11 @@ theorem IdentAgreesWithLeanEq {Carrier : Type u} [IdentityRelation Carrier]
 
 Predicate logic:
 
-  x = y
+  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] {x y : Carrier}, inst.Ident x y → x = y
 
 Predicate logic (unfolded):
 
-  Ambient
-    (Carrier)
-  Objects
-    x y : Carrier
-    h : Ident x y
-  Prove
-    x ≤ y → x = y
+  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] {x y : Carrier}, inst.Ident x y → x = y
 
 Logical form (Lean):
 
@@ -71,14 +90,41 @@ theorem toEq {Carrier : Type u} [IdentityRelation Carrier] {x y : Carrier}
   by sorry
 
 /--
-`IdentToEq` is the source-facing PascalCase alias for `toEq`.
+`IdentToEq` TODO
 
-Logical form:
+Predicate logic:
+
+  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] {x y : Carrier}, inst.Ident x y → x = y
+
+Predicate logic (unfolded):
+
+  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] {x y : Carrier}, inst.Ident x y → x = y
+
+Logical form (Lean):
 
 ```lean
 theorem IdentToEq {Carrier : Type u} [IdentityRelation Carrier] {x y : Carrier}
     (h : Ident x y) : x = y
 ```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
 -/
 theorem IdentToEq {Carrier : Type u} [IdentityRelation Carrier] {x y : Carrier}
     (h : Ident x y) : x = y := by
@@ -89,16 +135,11 @@ theorem IdentToEq {Carrier : Type u} [IdentityRelation Carrier] {x y : Carrier}
 
 Predicate logic:
 
-  (x = y) → Ident x y
+  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] {x y : Carrier}, x = y → inst.Ident x y
 
 Predicate logic (unfolded):
 
-  Ambient
-    (Carrier)
-  Objects
-    x y : Carrier
-  Prove
-    x = y → x ≤ y
+  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] {x y : Carrier}, x = y → inst.Ident x y
 
 Logical form (Lean):
 
@@ -131,32 +172,96 @@ theorem ofEq {Carrier : Type u} [IdentityRelation Carrier] {x y : Carrier}
   by sorry
 
 /--
-`EqToIdent` is the source-facing PascalCase alias for `ofEq`.
+`EqToIdent` TODO
 
-Logical form:
+Predicate logic:
+
+  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] {x y : Carrier}, x = y → inst.Ident x y
+
+Predicate logic (unfolded):
+
+  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] {x y : Carrier}, x = y → inst.Ident x y
+
+Logical form (Lean):
 
 ```lean
 theorem EqToIdent {Carrier : Type u} [IdentityRelation Carrier] {x y : Carrier}
     (h : x = y) : Ident x y
 ```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
 -/
 theorem EqToIdent {Carrier : Type u} [IdentityRelation Carrier] {x y : Carrier}
     (h : x = y) : Ident x y := by
   sorry
 
 /--
-`quotientByIdentToCarrier` collapses the quotient by in-house identity back to
-the carrier using the Lean equality interop bridge.
+`quotientByIdentToCarrier` TODO
 
-Logical form:
+Predicate logic:
+
+  def quotientByIdentToCarrier
+      {signature : AlgebraicSignature.{v, w}}
+      (structure_ : AlgebraicStructure.{u} signature)
+      [IdentityRelation structure_.Carrier] :
+      CongruenceQuotient structure_ Ident → structure_.Carrier :=
+    Quot.lift id fun _ _ h => toEq h
+
+Predicate logic (unfolded):
+
+  def quotientByIdentToCarrier
+      {signature : AlgebraicSignature.{v, w}}
+      (structure_ : AlgebraicStructure.{u} signature)
+      [IdentityRelation structure_.Carrier] :
+      CongruenceQuotient structure_ Ident → structure_.Carrier :=
+    Quot.lift id fun _ _ h => toEq h
+
+Logical form (Lean):
 
 ```lean
 def quotientByIdentToCarrier
     {signature : AlgebraicSignature.{v, w}}
     (structure_ : AlgebraicStructure.{u} signature)
     [IdentityRelation structure_.Carrier] :
-    CongruenceQuotient structure_ Ident → structure_.Carrier
+    CongruenceQuotient structure_ Ident → structure_.Carrier :=
+  Quot.lift id fun _ _ h => toEq h
 ```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, unfold
+
 -/
 def quotientByIdentToCarrier
     {signature : AlgebraicSignature.{v, w}}
@@ -166,10 +271,17 @@ def quotientByIdentToCarrier
   Quot.lift id fun _ _ h => toEq h
 
 /--
-`quotientByIdentToCarrier_leftInverse` is the left inverse law for the Lean
-interop quotient collapse.
+`quotientByIdentToCarrier_leftInverse` TODO
 
-Logical form:
+Predicate logic:
+
+  ∀ {signature : LRA.Identity.AlgebraicSignature} (structure_ : LRA.Identity.AlgebraicStructure signature) [inst : LRA.Identity.IdentityRelation structure_.Carrier] (element : structure_.Carrier), LRA.Identity.Interop.quotientByIdentToCarrier structure_ (Quot.mk inst.Ident element) = element
+
+Predicate logic (unfolded):
+
+  ∀ {signature : LRA.Identity.AlgebraicSignature} (structure_ : LRA.Identity.AlgebraicStructure signature) [inst : LRA.Identity.IdentityRelation structure_.Carrier] (element : structure_.Carrier), LRA.Identity.Interop.quotientByIdentToCarrier structure_ (Quot.mk inst.Ident element) = element
+
+Logical form (Lean):
 
 ```lean
 theorem quotientByIdentToCarrier_leftInverse
@@ -179,6 +291,25 @@ theorem quotientByIdentToCarrier_leftInverse
     (element : structure_.Carrier) :
     quotientByIdentToCarrier structure_ (Quot.mk _ element) = element
 ```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
 -/
 theorem quotientByIdentToCarrier_leftInverse
     {signature : AlgebraicSignature.{v, w}}
@@ -189,10 +320,17 @@ theorem quotientByIdentToCarrier_leftInverse
   sorry
 
 /--
-`quotientByIdentToCarrier_rightInverse` is the right inverse law for the Lean
-interop quotient collapse.
+`quotientByIdentToCarrier_rightInverse` TODO
 
-Logical form:
+Predicate logic:
+
+  ∀ {signature : LRA.Identity.AlgebraicSignature} (structure_ : LRA.Identity.AlgebraicStructure signature) [inst : LRA.Identity.IdentityRelation structure_.Carrier] (classOf : LRA.Identity.CongruenceQuotient structure_ inst.Ident), Quot.mk inst.Ident (LRA.Identity.Interop.quotientByIdentToCarrier structure_ classOf) = classOf
+
+Predicate logic (unfolded):
+
+  ∀ {signature : LRA.Identity.AlgebraicSignature} (structure_ : LRA.Identity.AlgebraicStructure signature) [inst : LRA.Identity.IdentityRelation structure_.Carrier] (classOf : LRA.Identity.CongruenceQuotient structure_ inst.Ident), Quot.mk inst.Ident (LRA.Identity.Interop.quotientByIdentToCarrier structure_ classOf) = classOf
+
+Logical form (Lean):
 
 ```lean
 theorem quotientByIdentToCarrier_rightInverse
@@ -202,6 +340,25 @@ theorem quotientByIdentToCarrier_rightInverse
     (classOf : CongruenceQuotient structure_ Ident) :
     Quot.mk _ (quotientByIdentToCarrier structure_ classOf) = classOf
 ```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
 -/
 theorem quotientByIdentToCarrier_rightInverse
     {signature : AlgebraicSignature.{v, w}}

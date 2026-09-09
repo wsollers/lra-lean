@@ -11,24 +11,24 @@ namespace LRA.ModelTheory.FirstOrder
 Predicate logic:
 
   def natMulMonoidModel : Model monoidSignature where
-  Domain := Nat
-  domainNonempty := ⟨0⟩
-  interpretFunction
-    | .mul, args => args ⟨0, by decide⟩ * args ⟨1, by decide⟩
-  interpretRelation := fun r => nomatch r
-  interpretConstant
-    | .one => 1
+    Domain := Nat
+    domainNonempty := ⟨0⟩
+    interpretFunction
+      | .mul, args => args ⟨0, by decide⟩ * args ⟨1, by decide⟩
+    interpretRelation := fun r => nomatch r
+    interpretConstant
+      | .one => 1
 
 Predicate logic (unfolded):
 
   def natMulMonoidModel : Model monoidSignature where
-  Domain := Nat
-  domainNonempty := ⟨0⟩
-  interpretFunction
-    | .mul, args => args ⟨0, by decide⟩ * args ⟨1, by decide⟩
-  interpretRelation := fun r => nomatch r
-  interpretConstant
-    | .one => 1 (source fallback; no compiled unfold data available)
+    Domain := Nat
+    domainNonempty := ⟨0⟩
+    interpretFunction
+      | .mul, args => args ⟨0, by decide⟩ * args ⟨1, by decide⟩
+    interpretRelation := fun r => nomatch r
+    interpretConstant
+      | .one => 1 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -76,11 +76,16 @@ def natMulMonoidModel : Model monoidSignature where
 
 Predicate logic:
 
-  (∀ a b ∈ Nat), natMulMonoidModel.interpretFunction .mul (fun i => if i.val = 0 then a else b) = a * b
+  ∀ (a b : Nat), LRA.ModelTheory.FirstOrder.natMulMonoidModel.interpretFunction LRA.Logic.MonoidFunctionSymbol.mul fun i => ite (i.val = 0)a b = instHMul.hMul a b
 
 Predicate logic (unfolded):
 
-  ∀ (a b : Nat), LRA.ModelTheory.FirstOrder.natMulMonoidModel.5 LRA.Logic.MonoidFunctionSymbol.mul fun i => Decidable.rec (fun h => (fun x => b) h) (fun h => (fun x => a) h) (Bool.casesOn (motive := fun x => i.val.beq 0 = x → (fun x => Decidable (i.val = 0))x) (i.val.beq 0) (fun h => Decidable.isFalse ⋯) (fun h => Decidable.isTrue ⋯) ⋯) = instHMul.1 a b
+  Ambient
+    (Nat)
+  Objects
+    a b : Nat
+  Prove
+    LRA.ModelTheory.FirstOrder.natMulMonoidModel.5 LRA.Logic.MonoidFunctionSymbol.mul fun i => Decidable.rec (fun h => (fun x => b) h) (fun h => (fun x => a) h) (Bool.casesOn (motive := fun x => i.val.beq 0 = x → (fun x => Decidable (i.val = 0))x) (i.val.beq 0) (fun h => Decidable.isFalse ⋯) (fun h => Decidable.isTrue ⋯) ⋯) = { hMul := fun a b => instMulNat.mul a b }.hMul a b
 
 Logical form (Lean):
 
@@ -120,11 +125,16 @@ theorem natMulMonoidModel.mulComputesMultiplication
 
 Predicate logic:
 
-  natMulMonoidModel.interpretConstant .one = 1 ∈ Nat
+  LRA.ModelTheory.FirstOrder.natMulMonoidModel.interpretConstant LRA.Logic.MonoidConstantSymbol.one = 1
 
 Predicate logic (unfolded):
 
-  LRA.ModelTheory.FirstOrder.natMulMonoidModel.7 LRA.Logic.MonoidConstantSymbol.one = instOfNatNat 1.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.ModelTheory.FirstOrder.natMulMonoidModel.7 LRA.Logic.MonoidConstantSymbol.one = 1
 
 Logical form (Lean):
 
@@ -161,24 +171,24 @@ theorem natMulMonoidModel.oneComputesOne :
 Predicate logic:
 
   def natAddMonoidModel : Model additiveMonoidSignature where
-  Domain := Nat
-  domainNonempty := ⟨0⟩
-  interpretFunction
-    | .add, args => args ⟨0, by decide⟩ + args ⟨1, by decide⟩
-  interpretRelation := fun r => nomatch r
-  interpretConstant
-    | .zero => 0
+    Domain := Nat
+    domainNonempty := ⟨0⟩
+    interpretFunction
+      | .add, args => args ⟨0, by decide⟩ + args ⟨1, by decide⟩
+    interpretRelation := fun r => nomatch r
+    interpretConstant
+      | .zero => 0
 
 Predicate logic (unfolded):
 
   def natAddMonoidModel : Model additiveMonoidSignature where
-  Domain := Nat
-  domainNonempty := ⟨0⟩
-  interpretFunction
-    | .add, args => args ⟨0, by decide⟩ + args ⟨1, by decide⟩
-  interpretRelation := fun r => nomatch r
-  interpretConstant
-    | .zero => 0 (source fallback; no compiled unfold data available)
+    Domain := Nat
+    domainNonempty := ⟨0⟩
+    interpretFunction
+      | .add, args => args ⟨0, by decide⟩ + args ⟨1, by decide⟩
+    interpretRelation := fun r => nomatch r
+    interpretConstant
+      | .zero => 0 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -226,11 +236,16 @@ def natAddMonoidModel : Model additiveMonoidSignature where
 
 Predicate logic:
 
-  (∀ a b ∈ Nat), natAddMonoidModel.interpretFunction .add (fun i => if i.val = 0 then a else b) = a + b
+  ∀ (a b : Nat), LRA.ModelTheory.FirstOrder.natAddMonoidModel.interpretFunction LRA.Logic.AdditiveMonoidFunctionSymbol.add fun i => ite (i.val = 0)a b = instHAdd.hAdd a b
 
 Predicate logic (unfolded):
 
-  ∀ (a b : Nat), LRA.ModelTheory.FirstOrder.natAddMonoidModel.5 LRA.Logic.AdditiveMonoidFunctionSymbol.add fun i => Decidable.rec (fun h => (fun x => b) h) (fun h => (fun x => a) h) (Bool.casesOn (motive := fun x => i.val.beq 0 = x → (fun x => Decidable (i.val = 0))x) (i.val.beq 0) (fun h => Decidable.isFalse ⋯) (fun h => Decidable.isTrue ⋯) ⋯) = instHAdd.1 a b
+  Ambient
+    (Nat)
+  Objects
+    a b : Nat
+  Prove
+    LRA.ModelTheory.FirstOrder.natAddMonoidModel.5 LRA.Logic.AdditiveMonoidFunctionSymbol.add fun i => Decidable.rec (fun h => (fun x => b) h) (fun h => (fun x => a) h) (Bool.casesOn (motive := fun x => i.val.beq 0 = x → (fun x => Decidable (i.val = 0))x) (i.val.beq 0) (fun h => Decidable.isFalse ⋯) (fun h => Decidable.isTrue ⋯) ⋯) = { hAdd := fun a b => instAddNat.add a b }.hAdd a b
 
 Logical form (Lean):
 
@@ -270,11 +285,16 @@ theorem natAddMonoidModel.addComputesAddition
 
 Predicate logic:
 
-  natAddMonoidModel.interpretConstant .zero = 0 ∈ Nat
+  LRA.ModelTheory.FirstOrder.natAddMonoidModel.interpretConstant LRA.Logic.AdditiveMonoidConstantSymbol.zero = 0
 
 Predicate logic (unfolded):
 
-  LRA.ModelTheory.FirstOrder.natAddMonoidModel.7 LRA.Logic.AdditiveMonoidConstantSymbol.zero = instOfNatNat 0.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.ModelTheory.FirstOrder.natAddMonoidModel.7 LRA.Logic.AdditiveMonoidConstantSymbol.zero = 0
 
 Logical form (Lean):
 
@@ -311,32 +331,32 @@ theorem natAddMonoidModel.zeroComputesZero :
 Predicate logic:
 
   def intOrderedRingModel : Model orderedRingSignature where
-  Domain := Int
-  domainNonempty := ⟨0⟩
-  interpretFunction
-    | .add, args => args ⟨0, by decide⟩ + args ⟨1, by decide⟩
-    | .mul, args => args ⟨0, by decide⟩ * args ⟨1, by decide⟩
-    | .neg, args => -(args ⟨0, by decide⟩)
-  interpretRelation
-    | .lt, args => args ⟨0, by decide⟩ < args ⟨1, by decide⟩
-  interpretConstant
-    | .zero => 0
-    | .one => 1
+    Domain := Int
+    domainNonempty := ⟨0⟩
+    interpretFunction
+      | .add, args => args ⟨0, by decide⟩ + args ⟨1, by decide⟩
+      | .mul, args => args ⟨0, by decide⟩ * args ⟨1, by decide⟩
+      | .neg, args => -(args ⟨0, by decide⟩)
+    interpretRelation
+      | .lt, args => args ⟨0, by decide⟩ < args ⟨1, by decide⟩
+    interpretConstant
+      | .zero => 0
+      | .one => 1
 
 Predicate logic (unfolded):
 
   def intOrderedRingModel : Model orderedRingSignature where
-  Domain := Int
-  domainNonempty := ⟨0⟩
-  interpretFunction
-    | .add, args => args ⟨0, by decide⟩ + args ⟨1, by decide⟩
-    | .mul, args => args ⟨0, by decide⟩ * args ⟨1, by decide⟩
-    | .neg, args => -(args ⟨0, by decide⟩)
-  interpretRelation
-    | .lt, args => args ⟨0, by decide⟩ < args ⟨1, by decide⟩
-  interpretConstant
-    | .zero => 0
-    | .one => 1 (source fallback; no compiled unfold data available)
+    Domain := Int
+    domainNonempty := ⟨0⟩
+    interpretFunction
+      | .add, args => args ⟨0, by decide⟩ + args ⟨1, by decide⟩
+      | .mul, args => args ⟨0, by decide⟩ * args ⟨1, by decide⟩
+      | .neg, args => -(args ⟨0, by decide⟩)
+    interpretRelation
+      | .lt, args => args ⟨0, by decide⟩ < args ⟨1, by decide⟩
+    interpretConstant
+      | .zero => 0
+      | .one => 1 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -392,11 +412,16 @@ def intOrderedRingModel : Model orderedRingSignature where
 
 Predicate logic:
 
-  (∀ a b ∈ Int), intOrderedRingModel.interpretFunction .add (fun i => if i.val = 0 then a else b) = a + b
+  ∀ (a b : Int), LRA.ModelTheory.FirstOrder.intOrderedRingModel.interpretFunction LRA.Logic.OrderedRingFunctionSymbol.add fun i => ite (i.val = 0)a b = instHAdd.hAdd a b
 
 Predicate logic (unfolded):
 
-  ∀ (a b : Int), LRA.ModelTheory.FirstOrder.intOrderedRingModel.5 LRA.Logic.OrderedRingFunctionSymbol.add fun i => Decidable.rec (fun h => (fun x => b) h) (fun h => (fun x => a) h) (Bool.casesOn (motive := fun x => i.val.beq 0 = x → (fun x => Decidable (i.val = 0))x) (i.val.beq 0) (fun h => Decidable.isFalse ⋯) (fun h => Decidable.isTrue ⋯) ⋯) = instHAdd.1 a b
+  Ambient
+    (Int)
+  Objects
+    a b : Int
+  Prove
+    LRA.ModelTheory.FirstOrder.intOrderedRingModel.5 LRA.Logic.OrderedRingFunctionSymbol.add fun i => Decidable.rec (fun h => (fun x => b) h) (fun h => (fun x => a) h) (Bool.casesOn (motive := fun x => i.val.beq 0 = x → (fun x => Decidable (i.val = 0))x) (i.val.beq 0) (fun h => Decidable.isFalse ⋯) (fun h => Decidable.isTrue ⋯) ⋯) = { hAdd := fun a b => Int.instAdd.add a b }.hAdd a b
 
 Logical form (Lean):
 
@@ -436,11 +461,16 @@ theorem intOrderedRingModel.addComputesAddition
 
 Predicate logic:
 
-  (∀ a b ∈ Int), intOrderedRingModel.interpretFunction .mul (fun i => if i.val = 0 then a else b) = a * b
+  ∀ (a b : Int), LRA.ModelTheory.FirstOrder.intOrderedRingModel.interpretFunction LRA.Logic.OrderedRingFunctionSymbol.mul fun i => ite (i.val = 0)a b = instHMul.hMul a b
 
 Predicate logic (unfolded):
 
-  ∀ (a b : Int), LRA.ModelTheory.FirstOrder.intOrderedRingModel.5 LRA.Logic.OrderedRingFunctionSymbol.mul fun i => Decidable.rec (fun h => (fun x => b) h) (fun h => (fun x => a) h) (Bool.casesOn (motive := fun x => i.val.beq 0 = x → (fun x => Decidable (i.val = 0))x) (i.val.beq 0) (fun h => Decidable.isFalse ⋯) (fun h => Decidable.isTrue ⋯) ⋯) = instHMul.1 a b
+  Ambient
+    (Int)
+  Objects
+    a b : Int
+  Prove
+    LRA.ModelTheory.FirstOrder.intOrderedRingModel.5 LRA.Logic.OrderedRingFunctionSymbol.mul fun i => Decidable.rec (fun h => (fun x => b) h) (fun h => (fun x => a) h) (Bool.casesOn (motive := fun x => i.val.beq 0 = x → (fun x => Decidable (i.val = 0))x) (i.val.beq 0) (fun h => Decidable.isFalse ⋯) (fun h => Decidable.isTrue ⋯) ⋯) = { hMul := fun a b => Int.instMul.mul a b }.hMul a b
 
 Logical form (Lean):
 
@@ -480,11 +510,16 @@ theorem intOrderedRingModel.mulComputesMultiplication
 
 Predicate logic:
 
-  (∀ a ∈ Int), intOrderedRingModel.interpretFunction .neg (fun _ => a) = -a
+  ∀ (a : Int), LRA.ModelTheory.FirstOrder.intOrderedRingModel.interpretFunction LRA.Logic.OrderedRingFunctionSymbol.neg fun x => a = Int.instNegInt.neg a
 
 Predicate logic (unfolded):
 
-  ∀ (a : Int), LRA.ModelTheory.FirstOrder.intOrderedRingModel.5 LRA.Logic.OrderedRingFunctionSymbol.neg fun x => a = Int.instNegInt.1 a
+  Ambient
+    (Int)
+  Objects
+    a : Int
+  Prove
+    LRA.ModelTheory.FirstOrder.intOrderedRingModel.5 LRA.Logic.OrderedRingFunctionSymbol.neg fun x => a = Int.instNegInt.neg a
 
 Logical form (Lean):
 
@@ -522,11 +557,16 @@ theorem intOrderedRingModel.negComputesNegation
 
 Predicate logic:
 
-  (∀ a b ∈ Int), intOrderedRingModel.interpretRelation .lt (fun i => if i.val = 0 then a else b) = (a < b)
+  ∀ (a b : Int), LRA.ModelTheory.FirstOrder.intOrderedRingModel.interpretRelation LRA.Logic.OrderedRingRelationSymbol.lt fun i => ite (i.val = 0)a b = Int.instLTInt.lt a b
 
 Predicate logic (unfolded):
 
-  ∀ (a b : Int), LRA.ModelTheory.FirstOrder.intOrderedRingModel.6 LRA.Logic.OrderedRingRelationSymbol.lt fun i => Decidable.rec (fun h => (fun x => b) h) (fun h => (fun x => a) h) (Bool.casesOn (motive := fun x => i.val.beq 0 = x → (fun x => Decidable (i.val = 0))x) (i.val.beq 0) (fun h => Decidable.isFalse ⋯) (fun h => Decidable.isTrue ⋯) ⋯) = Int.instLTInt.1 a b
+  Ambient
+    (Int)
+  Objects
+    a b : Int
+  Prove
+    LRA.ModelTheory.FirstOrder.intOrderedRingModel.6 LRA.Logic.OrderedRingRelationSymbol.lt fun i => Decidable.rec (fun h => (fun x => b) h) (fun h => (fun x => a) h) (Bool.casesOn (motive := fun x => i.val.beq 0 = x → (fun x => Decidable (i.val = 0))x) (i.val.beq 0) (fun h => Decidable.isFalse ⋯) (fun h => Decidable.isTrue ⋯) ⋯) = Int.instLTInt.lt a b
 
 Logical form (Lean):
 
@@ -566,11 +606,16 @@ theorem intOrderedRingModel.ltComputesLessThan
 
 Predicate logic:
 
-  intOrderedRingModel.interpretConstant .zero = 0 ∈ Int
+  LRA.ModelTheory.FirstOrder.intOrderedRingModel.interpretConstant LRA.Logic.OrderedRingConstantSymbol.zero = 0
 
 Predicate logic (unfolded):
 
-  LRA.ModelTheory.FirstOrder.intOrderedRingModel.7 LRA.Logic.OrderedRingConstantSymbol.zero = instOfNat.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.ModelTheory.FirstOrder.intOrderedRingModel.7 LRA.Logic.OrderedRingConstantSymbol.zero = 0
 
 Logical form (Lean):
 
@@ -606,11 +651,16 @@ theorem intOrderedRingModel.zeroComputesZero :
 
 Predicate logic:
 
-  intOrderedRingModel.interpretConstant .one = 1 ∈ Int
+  LRA.ModelTheory.FirstOrder.intOrderedRingModel.interpretConstant LRA.Logic.OrderedRingConstantSymbol.one = 1
 
 Predicate logic (unfolded):
 
-  LRA.ModelTheory.FirstOrder.intOrderedRingModel.7 LRA.Logic.OrderedRingConstantSymbol.one = instOfNat.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.ModelTheory.FirstOrder.intOrderedRingModel.7 LRA.Logic.OrderedRingConstantSymbol.one = 1
 
 Logical form (Lean):
 

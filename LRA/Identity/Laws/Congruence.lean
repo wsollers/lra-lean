@@ -11,18 +11,11 @@ variable {Carrier : Type u} [IdentityRelation Carrier]
 
 Predicate logic:
 
-  Ident (f x) (f y)
+  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] {Codomain : Type u} [inst_1 : LRA.Identity.IdentityRelation Codomain] {x y : Carrier}, inst.Ident x y → ∀ (f : Carrier → Codomain), inst_1.Ident (f x) (f y)
 
 Predicate logic (unfolded):
 
-  Ambient
-    (Carrier, Codomain)
-  Objects
-    x y : Carrier
-    h : Ident x y
-    f : Carrier → Codomain
-  Prove
-    x ≤ y → ∀ (f : Carrier → Codomain), f x ≤ f y
+  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] {Codomain : Type u} [inst_1 : LRA.Identity.IdentityRelation Codomain] {x y : Carrier}, inst.Ident x y → ∀ (f : Carrier → Codomain), inst_1.Ident (f x) (f y)
 
 Logical form (Lean):
 
@@ -61,19 +54,11 @@ theorem IdentPreservesFunctions {Codomain : Type u} [IdentityRelation Codomain]
 
 Predicate logic:
 
-  R x y ↔ R x' y'
+  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] {x x' y y' : Carrier}, (inst.Ident x x' ∧ inst.Ident y y') → ∀ (R : Carrier → Carrier → Prop), R x y ↔ R x' y'
 
 Predicate logic (unfolded):
 
-  Ambient
-    (Carrier)
-  Objects
-    x x' y y' : Carrier
-    hx : Ident x x'
-    hy : Ident y y'
-    R : Carrier → Carrier → Prop
-  Prove
-    (inst.Ident x x' ∧ inst.Ident y y') → ∀ (R : Carrier → Carrier → Prop), R x y ↔ R x' y'
+  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] {x x' y y' : Carrier}, (inst.Ident x x' ∧ inst.Ident y y') → ∀ (R : Carrier → Carrier → Prop), R x y ↔ R x' y'
 
 Logical form (Lean):
 
@@ -112,19 +97,11 @@ theorem IdentPreservesRelations {x x' y y' : Carrier}
 
 Predicate logic:
 
-  Ident (op x y) (op x' y')
+  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] {x x' y y' : Carrier}, (inst.Ident x x' ∧ inst.Ident y y') → ∀ (op : Carrier → Carrier → Carrier), inst.Ident (op x y) (op x' y')
 
 Predicate logic (unfolded):
 
-  Ambient
-    (Carrier)
-  Objects
-    x x' y y' : Carrier
-    hx : Ident x x'
-    hy : Ident y y'
-    op : Carrier → Carrier → Carrier
-  Prove
-    (x ≤ x' ∧ y ≤ y') → ∀ (op : Carrier → Carrier → Carrier), op x y ≤ op x' y'
+  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] {x x' y y' : Carrier}, (inst.Ident x x' ∧ inst.Ident y y') → ∀ (op : Carrier → Carrier → Carrier), inst.Ident (op x y) (op x' y')
 
 Logical form (Lean):
 

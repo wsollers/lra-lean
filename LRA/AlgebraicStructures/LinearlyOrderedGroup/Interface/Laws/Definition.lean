@@ -11,16 +11,16 @@ universe u
 Predicate logic:
 
   class abbrev LinearlyOrderedGroupLaws (R : Type u)
-    [Mul R] [Inv R] [OfNat R 1] [LE R] [Nonempty R] : Prop :=
-  GroupLaws R, LRA.Order.LinearOrderLaws R,
-  MultiplicativeOrderCompatibilityLaws R
+      [Mul R] [Inv R] [OfNat R 1] [LE R] [Nonempty R] : Prop :=
+    GroupLaws R, LRA.Order.LinearOrderLaws R,
+    MultiplicativeOrderCompatibilityLaws R
 
 Predicate logic (unfolded):
 
   class abbrev LinearlyOrderedGroupLaws (R : Type u)
-    [Mul R] [Inv R] [OfNat R 1] [LE R] [Nonempty R] : Prop :=
-  GroupLaws R, LRA.Order.LinearOrderLaws R,
-  MultiplicativeOrderCompatibilityLaws R (source fallback; no compiled unfold data available)
+      [Mul R] [Inv R] [OfNat R 1] [LE R] [Nonempty R] : Prop :=
+    GroupLaws R, LRA.Order.LinearOrderLaws R,
+    MultiplicativeOrderCompatibilityLaws R (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

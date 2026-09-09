@@ -13,16 +13,11 @@ open LRA.Identity
 
 Predicate logic:
 
-  (∀ x y ∈ Carrier), LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x y ↔ x = y
+  ∀ {Carrier : Type u} (x y : Carrier), LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x y ↔ x = y
 
 Predicate logic (unfolded):
 
-  Ambient
-    (Carrier)
-  Objects
-    x y : Carrier
-  Prove
-    LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x y ↔ x = y
+  ∀ {Carrier : Type u} (x y : Carrier), LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x y ↔ x = y
 
 Logical form (Lean):
 

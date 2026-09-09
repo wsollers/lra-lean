@@ -8,11 +8,17 @@ namespace LRA.NumberSystems.Integers.QuotientOrderedPairs
 
 Predicate logic:
 
-  (∀ whole_data ∈ WholeNumberArithmeticForQuotientPairs), (Carrier whole_data → Carrier whole_data → Carrier whole_data ∧ ∀ first second, addition (Quotient.mk _ first) (Quotient.mk _ second) = Quotient.mk _ (representative_addition whole_data first second)) → ∀ first second : whole_data.carrier, embed whole_data (whole_data.addition first second) = addition (embed whole_data first) (embed whole_data second)
+  ∀ (whole_data : LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs) (addition : LRA.NumberSystems.Integers.QuotientOrderedPairs.Carrier whole_data → LRA.NumberSystems.Integers.QuotientOrderedPairs.Carrier whole_data → LRA.NumberSystems.Integers.QuotientOrderedPairs.Carrier whole_data), (∀ (first second : LRA.NumberSystems.Integers.QuotientOrderedPairs.Representative whole_data), addition (Quotient.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data) first) (Quotient.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data) second) = Quotient.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data) (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_addition whole_data first second)) → ∀ (first second : whole_data.carrier), LRA.NumberSystems.Integers.QuotientOrderedPairs.embed whole_data (whole_data.addition first second) = addition (LRA.NumberSystems.Integers.QuotientOrderedPairs.embed whole_data first) (LRA.NumberSystems.Integers.QuotientOrderedPairs.embed whole_data second)
 
 Predicate logic (unfolded):
 
-  ∀ (whole_data : LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs) (addition : Quot (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data).1 → Quot (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data).1 → Quot (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data).1), (∀ (first second : LRA.NumberSystems.Integers.QuotientOrderedPairs.Representative whole_data), addition (Quot.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data).1 first) (Quot.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data).1 second) = Quot.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data).1 { positive_coordinate := whole_data.4 first.1 second.1, negative_coordinate := whole_data.4 first.2 second.2 }) → ∀ (first second : whole_data.1), Quot.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data).1 { positive_coordinate := whole_data.4 first second, negative_coordinate := whole_data.2 } = addition (Quot.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data).1 { positive_coordinate := first, negative_coordinate := whole_data.2 }) (Quot.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data).1 { positive_coordinate := second, negative_coordinate := whole_data.2 })
+  Ambient
+    (implicit ambient)
+  Objects
+    whole_data : WholeNumberArithmeticForQuotientPairs
+    addition : Carrier whole_data → Carrier whole_data → Carrier whole_data
+  Prove
+    (∀ (first second : LRA.NumberSystems.Integers.QuotientOrderedPairs.Representative whole_data), addition (Quot.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data).1 first) (Quot.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data).1 second) = Quot.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data).1 { positive_coordinate := whole_data.4 first.1 second.1, negative_coordinate := whole_data.4 first.2 second.2 }) → ∀ (first second : whole_data.1), Quot.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data).1 { positive_coordinate := whole_data.4 first second, negative_coordinate := whole_data.2 } = addition (Quot.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data).1 { positive_coordinate := first, negative_coordinate := whole_data.2 }) (Quot.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data).1 { positive_coordinate := second, negative_coordinate := whole_data.2 })
 
 Logical form (Lean):
 
@@ -64,11 +70,16 @@ theorem embed_preserves_addition
 
 Predicate logic:
 
-  (∀ whole_data ∈ WholeNumberArithmeticForQuotientPairs), embed whole_data whole_data.one = Quotient.mk _ (one_representative whole_data)
+  ∀ (whole_data : LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs), LRA.NumberSystems.Integers.QuotientOrderedPairs.embed whole_data whole_data.one = Quotient.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data) (LRA.NumberSystems.Integers.QuotientOrderedPairs.one_representative whole_data)
 
 Predicate logic (unfolded):
 
-  ∀ (whole_data : LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs), Quot.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data).1 { positive_coordinate := whole_data.3, negative_coordinate := whole_data.2 } = Quot.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data).1 { positive_coordinate := whole_data.3, negative_coordinate := whole_data.2 }
+  Ambient
+    (implicit ambient)
+  Objects
+    whole_data : WholeNumberArithmeticForQuotientPairs
+  Prove
+    Quot.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data).1 { positive_coordinate := whole_data.3, negative_coordinate := whole_data.2 } = Quot.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data).1 { positive_coordinate := whole_data.3, negative_coordinate := whole_data.2 }
 
 Logical form (Lean):
 
@@ -106,11 +117,16 @@ theorem embed_one_eq_one_representative_class
 
 Predicate logic:
 
-  (∀ whole_data ∈ WholeNumberArithmeticForQuotientPairs), embed whole_data whole_data.zero = Quotient.mk _ (zero_representative whole_data)
+  ∀ (whole_data : LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs), LRA.NumberSystems.Integers.QuotientOrderedPairs.embed whole_data whole_data.zero = Quotient.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data) (LRA.NumberSystems.Integers.QuotientOrderedPairs.zero_representative whole_data)
 
 Predicate logic (unfolded):
 
-  ∀ (whole_data : LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs), Quot.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data).1 { positive_coordinate := whole_data.2, negative_coordinate := whole_data.2 } = Quot.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data).1 { positive_coordinate := whole_data.2, negative_coordinate := whole_data.2 }
+  Ambient
+    (implicit ambient)
+  Objects
+    whole_data : WholeNumberArithmeticForQuotientPairs
+  Prove
+    Quot.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data).1 { positive_coordinate := whole_data.2, negative_coordinate := whole_data.2 } = Quot.mk (LRA.NumberSystems.Integers.QuotientOrderedPairs.representative_setoid whole_data).1 { positive_coordinate := whole_data.2, negative_coordinate := whole_data.2 }
 
 Logical form (Lean):
 

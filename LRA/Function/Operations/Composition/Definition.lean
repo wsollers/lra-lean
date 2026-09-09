@@ -11,20 +11,20 @@ universe u v w
 Predicate logic:
 
   def Compose
-    {Domain : Type u} {Middle : Type v} {Codomain : Type w}
-    (outer : LRA.Function Middle Codomain)
-    (inner : LRA.Function Domain Middle) :
-    LRA.Function Domain Codomain :=
-  fun input => outer (inner input)
+      {Domain : Type u} {Middle : Type v} {Codomain : Type w}
+      (outer : LRA.Function Middle Codomain)
+      (inner : LRA.Function Domain Middle) :
+      LRA.Function Domain Codomain :=
+    fun input => outer (inner input)
 
 Predicate logic (unfolded):
 
   def Compose
-    {Domain : Type u} {Middle : Type v} {Codomain : Type w}
-    (outer : LRA.Function Middle Codomain)
-    (inner : LRA.Function Domain Middle) :
-    LRA.Function Domain Codomain :=
-  fun input => outer (inner input) (source fallback; no compiled unfold data available)
+      {Domain : Type u} {Middle : Type v} {Codomain : Type w}
+      (outer : LRA.Function Middle Codomain)
+      (inner : LRA.Function Domain Middle) :
+      LRA.Function Domain Codomain :=
+    fun input => outer (inner input) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

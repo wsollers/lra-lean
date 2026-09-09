@@ -8,28 +8,28 @@ universe u
 Predicate logic:
 
   class IntersectionLaws (α : Type u)
-    [Inter α] [EmptyCollection α] [HasSubset α] : Prop where
-  IntersectionCommutative : ∀ A B : α, A ∩ B = B ∩ A
-  IntersectionAssociative : ∀ A B C : α, (A ∩ B) ∩ C = A ∩ (B ∩ C)
-  EmptyIntersection : ∀ A : α, (∅ : α) ∩ A = (∅ : α)
-  IntersectionEmpty : ∀ A : α, A ∩ (∅ : α) = (∅ : α)
-  IntersectionIdempotent : ∀ A : α, A ∩ A = A
-  IntersectionMonotone :
-    ∀ A₁ A₂ B₁ B₂ : α, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∩ B₁ ⊆ A₂ ∩ B₂
-  SubsetIffIntersectionEqLeft : ∀ A B : α, A ⊆ B ↔ A ∩ B = A
+      [Inter α] [EmptyCollection α] [HasSubset α] : Prop where
+    IntersectionCommutative : ∀ A B : α, A ∩ B = B ∩ A
+    IntersectionAssociative : ∀ A B C : α, (A ∩ B) ∩ C = A ∩ (B ∩ C)
+    EmptyIntersection : ∀ A : α, (∅ : α) ∩ A = (∅ : α)
+    IntersectionEmpty : ∀ A : α, A ∩ (∅ : α) = (∅ : α)
+    IntersectionIdempotent : ∀ A : α, A ∩ A = A
+    IntersectionMonotone :
+      ∀ A₁ A₂ B₁ B₂ : α, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∩ B₁ ⊆ A₂ ∩ B₂
+    SubsetIffIntersectionEqLeft : ∀ A B : α, A ⊆ B ↔ A ∩ B = A
 
 Predicate logic (unfolded):
 
   class IntersectionLaws (α : Type u)
-    [Inter α] [EmptyCollection α] [HasSubset α] : Prop where
-  IntersectionCommutative : ∀ A B : α, A ∩ B = B ∩ A
-  IntersectionAssociative : ∀ A B C : α, (A ∩ B) ∩ C = A ∩ (B ∩ C)
-  EmptyIntersection : ∀ A : α, (∅ : α) ∩ A = (∅ : α)
-  IntersectionEmpty : ∀ A : α, A ∩ (∅ : α) = (∅ : α)
-  IntersectionIdempotent : ∀ A : α, A ∩ A = A
-  IntersectionMonotone :
-    ∀ A₁ A₂ B₁ B₂ : α, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∩ B₁ ⊆ A₂ ∩ B₂
-  SubsetIffIntersectionEqLeft : ∀ A B : α, A ⊆ B ↔ A ∩ B = A (source fallback; no compiled unfold data available)
+      [Inter α] [EmptyCollection α] [HasSubset α] : Prop where
+    IntersectionCommutative : ∀ A B : α, A ∩ B = B ∩ A
+    IntersectionAssociative : ∀ A B C : α, (A ∩ B) ∩ C = A ∩ (B ∩ C)
+    EmptyIntersection : ∀ A : α, (∅ : α) ∩ A = (∅ : α)
+    IntersectionEmpty : ∀ A : α, A ∩ (∅ : α) = (∅ : α)
+    IntersectionIdempotent : ∀ A : α, A ∩ A = A
+    IntersectionMonotone :
+      ∀ A₁ A₂ B₁ B₂ : α, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∩ B₁ ⊆ A₂ ∩ B₂
+    SubsetIffIntersectionEqLeft : ∀ A B : α, A ⊆ B ↔ A ∩ B = A (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -84,11 +84,16 @@ variable [IntersectionLaws α]
 
 Predicate logic:
 
-  ∀ A B : α, A ∩ B = B ∩ A
+  ∀ {α : Type u} [inst : Inter α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.IntersectionLaws α → ∀ (A B : α), A ∩ B = B ∩ A
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : Inter α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.IntersectionLaws α → ∀ (A B : α), inst.1 A B = inst.1 B A
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.IntersectionLaws α → ∀ (A B : α), inst.1 A B = inst.1 B A
 
 Logical form (Lean):
 
@@ -123,11 +128,16 @@ theorem IntersectionCommutative : ∀ A B : α, A ∩ B = B ∩ A :=
 
 Predicate logic:
 
-  ∀ A B C : α, (A ∩ B) ∩ C = A ∩ (B ∩ C)
+  ∀ {α : Type u} [inst : Inter α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.IntersectionLaws α → ∀ (A B C : α), A ∩ B ∩ C = A ∩ B ∩ C
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : Inter α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.IntersectionLaws α → ∀ (A B C : α), inst.1 (inst.1 A B) C = inst.1 A (inst.1 B C)
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.IntersectionLaws α → ∀ (A B C : α), inst.1 (inst.1 A B) C = inst.1 A (inst.1 B C)
 
 Logical form (Lean):
 
@@ -164,11 +174,16 @@ theorem IntersectionAssociative :
 
 Predicate logic:
 
-  ∀ A : α, ∅ ∈ α ∩ A = ∅ ∈ α
+  ∀ {α : Type u} [inst : Inter α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.IntersectionLaws α → ∀ (A : α), inst_1.emptyCollection ∩ A = inst_1.emptyCollection
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : Inter α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.IntersectionLaws α → ∀ (A : α), inst.1 inst_1.1 A = inst_1.1
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.IntersectionLaws α → ∀ (A : α), inst.1 inst_1.1 A = inst_1.1
 
 Logical form (Lean):
 
@@ -203,11 +218,16 @@ theorem EmptyIntersection : ∀ A : α, (∅ : α) ∩ A = (∅ : α) :=
 
 Predicate logic:
 
-  ∀ A : α, A ∩ ∅ ∈ α = ∅ ∈ α
+  ∀ {α : Type u} [inst : Inter α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.IntersectionLaws α → ∀ (A : α), A ∩ inst_1.emptyCollection = inst_1.emptyCollection
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : Inter α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.IntersectionLaws α → ∀ (A : α), inst.1 A inst_1.1 = inst_1.1
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.IntersectionLaws α → ∀ (A : α), inst.1 A inst_1.1 = inst_1.1
 
 Logical form (Lean):
 
@@ -242,11 +262,16 @@ theorem IntersectionEmpty : ∀ A : α, A ∩ (∅ : α) = (∅ : α) :=
 
 Predicate logic:
 
-  ∀ A : α, A ∩ A = A
+  ∀ {α : Type u} [inst : Inter α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.IntersectionLaws α → ∀ (A : α), A ∩ A = A
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : Inter α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.IntersectionLaws α → ∀ (A : α), inst.1 A A = A
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.IntersectionLaws α → ∀ (A : α), inst.1 A A = A
 
 Logical form (Lean):
 
@@ -281,11 +306,16 @@ theorem IntersectionIdempotent : ∀ A : α, A ∩ A = A :=
 
 Predicate logic:
 
-  ∀ A₁ A₂ B₁ B₂ : α, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∩ B₁ ⊆ A₂ ∩ B₂
+  ∀ {α : Type u} [inst : Inter α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.IntersectionLaws α → ∀ (A₁ A₂ B₁ B₂ : α), (inst_2.Subset A₁ A₂ ∧ inst_2.Subset B₁ B₂) → inst_2.Subset (A₁ ∩ B₁)(A₂ ∩ B₂)
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : Inter α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.IntersectionLaws α → ∀ (A₁ A₂ B₁ B₂ : α), (inst_2.1 A₁ A₂ ∧ inst_2.1 B₁ B₂) → inst_2.1 (inst.1 A₁ B₁) (inst.1 A₂ B₂)
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.IntersectionLaws α → ∀ (A₁ A₂ B₁ B₂ : α), (inst_2.1 A₁ A₂ ∧ inst_2.1 B₁ B₂) → inst_2.1 (inst.1 A₁ B₁) (inst.1 A₂ B₂)
 
 Logical form (Lean):
 
@@ -322,11 +352,16 @@ theorem IntersectionMonotone :
 
 Predicate logic:
 
-  ∀ A B : α, A ⊆ B ↔ A ∩ B = A
+  ∀ {α : Type u} [inst : Inter α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.IntersectionLaws α → ∀ (A B : α), inst_2.Subset A B ↔ A ∩ B = A
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} [inst : Inter α] [inst_1 : EmptyCollection α] [inst_2 : HasSubset α], LRA.Set.IntersectionLaws α → ∀ (A B : α), inst_2.1 A B ↔ inst.1 A B = A
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    LRA.Set.IntersectionLaws α → ∀ (A B : α), inst_2.Subset A B ↔ A ∩ B = A
 
 Logical form (Lean):
 

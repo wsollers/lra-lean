@@ -6,7 +6,48 @@ open LRA.Operation
 
 universe u
 
-/-- A realized addition package exposing an actual `Add` instance. -/
+/--
+`Realization` A realized addition package exposing an actual `Add` instance.
+
+Predicate logic:
+
+  structure Realization (Carrier : Type u) where
+    spec : Specification Carrier
+    instAdd : Add Carrier
+
+Predicate logic (unfolded):
+
+  structure Realization (Carrier : Type u) where
+    spec : Specification Carrier
+    instAdd : Add Carrier (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+structure Realization (Carrier : Type u) where
+  spec : Specification Carrier
+  instAdd : Add Carrier
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 structure Realization (Carrier : Type u) where
   spec : Specification Carrier
   instAdd : Add Carrier

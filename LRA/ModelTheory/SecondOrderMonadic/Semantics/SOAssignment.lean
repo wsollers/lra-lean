@@ -11,20 +11,20 @@ namespace LRA.ModelTheory.SecondOrderMonadic
 Predicate logic:
 
   structure SOAssignment
-    {S : Signature} (M : HenkinModel S) (Variable SetVariable : Type) where
-  elementAssignment : Variable -> M.Domain
-  setAssignment : SetVariable -> Set M.Domain
-  setAssignment_admissible :
-    ∀ setVariable : SetVariable, setAssignment setVariable ∈ M.SecondOrderDomain
+      {S : Signature} (M : HenkinModel S) (Variable SetVariable : Type) where
+    elementAssignment : Variable -> M.Domain
+    setAssignment : SetVariable -> Set M.Domain
+    setAssignment_admissible :
+      ∀ setVariable : SetVariable, setAssignment setVariable ∈ M.SecondOrderDomain
 
 Predicate logic (unfolded):
 
   structure SOAssignment
-    {S : Signature} (M : HenkinModel S) (Variable SetVariable : Type) where
-  elementAssignment : Variable -> M.Domain
-  setAssignment : SetVariable -> Set M.Domain
-  setAssignment_admissible :
-    ∀ setVariable : SetVariable, setAssignment setVariable ∈ M.SecondOrderDomain (source fallback; no compiled unfold data available)
+      {S : Signature} (M : HenkinModel S) (Variable SetVariable : Type) where
+    elementAssignment : Variable -> M.Domain
+    setAssignment : SetVariable -> Set M.Domain
+    setAssignment_admissible :
+      ∀ setVariable : SetVariable, setAssignment setVariable ∈ M.SecondOrderDomain (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -69,24 +69,24 @@ structure SOAssignment
 Predicate logic:
 
   def SOAssignment.updateSetAssignment
-    {S : Signature} {Variable SetVariable : Type} [DecidableEq SetVariable]
-    {M : HenkinModel S}
-    (assignment : SOAssignment M Variable SetVariable)
-    (targetVariable : SetVariable) (subset : Set M.Domain)
-    (subset_admissible : subset ∈ M.SecondOrderDomain) :
-    SOAssignment M Variable SetVariable where
-  elementAssignment
+      {S : Signature} {Variable SetVariable : Type} [DecidableEq SetVariable]
+      {M : HenkinModel S}
+      (assignment : SOAssignment M Variable SetVariable)
+      (targetVariable : SetVariable) (subset : Set M.Domain)
+      (subset_admissible : subset ∈ M.SecondOrderDomain) :
+      SOAssignment M Variable SetVariable where
+    elementAssignment
 
 Predicate logic (unfolded):
 
   def SOAssignment.updateSetAssignment
-    {S : Signature} {Variable SetVariable : Type} [DecidableEq SetVariable]
-    {M : HenkinModel S}
-    (assignment : SOAssignment M Variable SetVariable)
-    (targetVariable : SetVariable) (subset : Set M.Domain)
-    (subset_admissible : subset ∈ M.SecondOrderDomain) :
-    SOAssignment M Variable SetVariable where
-  elementAssignment (source fallback; no compiled unfold data available)
+      {S : Signature} {Variable SetVariable : Type} [DecidableEq SetVariable]
+      {M : HenkinModel S}
+      (assignment : SOAssignment M Variable SetVariable)
+      (targetVariable : SetVariable) (subset : Set M.Domain)
+      (subset_admissible : subset ∈ M.SecondOrderDomain) :
+      SOAssignment M Variable SetVariable where
+    elementAssignment (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

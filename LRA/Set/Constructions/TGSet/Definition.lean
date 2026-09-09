@@ -7,16 +7,21 @@ namespace LRA.Set.Constructions.TGSet
 
 Predicate logic:
 
-  abbrev Set := LRA.Set.Constructions.TGSet
+  Type
 
 Predicate logic (unfolded):
 
-  abbrev Set := LRA.Set.Constructions.TGSet (source fallback; no compiled unfold data available)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Type
 
 Logical form (Lean):
 
 ```lean
-abbrev Set := LRA.Set.Constructions.TGSet
+axiom TGSet : Type
 ```
 
 Type-theoretic form:
@@ -35,7 +40,7 @@ Common confusions:
 
   TODO
 
-Related proof moves: unfold
+Related proof moves: TODO
 
 -/
 abbrev Set := LRA.Set.Constructions.TGSet

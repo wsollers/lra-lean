@@ -9,11 +9,18 @@ universe u v
 
 Predicate logic:
 
-  (∀ A ∈ U), (∃ element ∈ Element, element ∈ A) → ∃ minimalElement, MinimalElement strictRelation A minimalElement
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {strictRelation : LRA.Relation.Endorelation Element}, LRA.Relation.WellFounded SetObject strictRelation → ∀ (subset : SetObject), (Exists fun element => element) ∈ subset → Exists fun minimalElement => LRA.Relation.MinimalElement strictRelation subset minimalElement
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {strictRelation : Element → Element → Prop}, (∀ (subset : SetObject), (Exists fun element => inst.1 subset element) → Exists fun minimum => (inst.1 subset minimum ∧ ∀ (element : Element), inst.1 subset element → strictRelation element minimum → False)) → ∀ (subset : SetObject), (Exists fun element => inst.1 subset element) → Exists fun minimalElement => (inst.1 subset minimalElement ∧ ∀ (element : Element), inst.1 subset element → strictRelation element minimalElement → False)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    strictRelation : Endorelation Element
+    strictRelationIsWellFounded : WellFounded SetObject strictRelation
+    subset : SetObject
+  Prove
+    (∀ (subset : SetObject), (Exists fun element => inst.1 subset element) → Exists fun minimum => (inst.1 subset minimum ∧ (∀ (element : Element), inst.1 subset element → strictRelation element minimum → False))) → ∀ (subset : SetObject), (Exists fun element => inst.1 subset element) → Exists fun minimalElement => (inst.1 subset minimalElement ∧ (∀ (element : Element), inst.1 subset element → strictRelation element minimalElement → False))
 
 Logical form (Lean):
 

@@ -17,7 +17,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (first second : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper lower : rational_model.signature.toCarrierBundle.1), lower_set upper → rational_model.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rational_model.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.toOrderedRingSignature.2 value greater))))) (value : rational_model.signature.toCarrierBundle.1), first.1 value → second.1 value
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    first.1 value → second.1 value
 
 Logical form (Lean):
 
@@ -61,7 +66,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (first second : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper lower : rational_model.signature.toCarrierBundle.1), lower_set upper → rational_model.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rational_model.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.toOrderedRingSignature.2 value greater))))), (∀ (value : rational_model.signature.toCarrierBundle.1), first.1 value → second.1 value ∧ first = second → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (value : rational_model.signature.toCarrierBundle.1), first.1 value → second.1 value) ∧ (first = second → False))
 
 Logical form (Lean):
 
@@ -97,11 +107,16 @@ def strict_order (first second : Cut rational_model) : Prop :=
 
 Predicate logic:
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), (∀ (cut : LRA.NumberSystems.RealNumbers.Dedekind.Cut rational_model), ¬ LRA.NumberSystems.RealNumbers.Dedekind.strict_order rational_model cut cut ∧ (∀ (first second third : LRA.NumberSystems.RealNumbers.Dedekind.Cut rational_model), LRA.NumberSystems.RealNumbers.Dedekind.strict_order rational_model first second → LRA.NumberSystems.RealNumbers.Dedekind.strict_order rational_model second third → LRA.NumberSystems.RealNumbers.Dedekind.strict_order rational_model first third ∧ ∀ (first second : LRA.NumberSystems.RealNumbers.Dedekind.Cut rational_model), Ne first second → Or (LRA.NumberSystems.RealNumbers.Dedekind.strict_order rational_model first second) (LRA.NumberSystems.RealNumbers.Dedekind.strict_order rational_model second first)))
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), ((∀ (cut : LRA.NumberSystems.RealNumbers.Dedekind.Cut rational_model), ¬ LRA.NumberSystems.RealNumbers.Dedekind.strict_order rational_model cut cut) ∧ ((∀ (first second third : LRA.NumberSystems.RealNumbers.Dedekind.Cut rational_model), LRA.NumberSystems.RealNumbers.Dedekind.strict_order rational_model first second → LRA.NumberSystems.RealNumbers.Dedekind.strict_order rational_model second third → LRA.NumberSystems.RealNumbers.Dedekind.strict_order rational_model first third) ∧ (∀ (first second : LRA.NumberSystems.RealNumbers.Dedekind.Cut rational_model), Ne first second → Or (LRA.NumberSystems.RealNumbers.Dedekind.strict_order rational_model first second) (LRA.NumberSystems.RealNumbers.Dedekind.strict_order rational_model second first))))
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), (∀ (cut : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper lower : rational_model.signature.toCarrierBundle.1), lower_set upper → rational_model.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rational_model.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.toOrderedRingSignature.2 value greater))))), (∀ (value : rational_model.signature.toCarrierBundle.1), cut.1 value → cut.1 value ∧ cut = cut → False) → False ∧ (∀ (first second third : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper lower : rational_model.signature.toCarrierBundle.1), lower_set upper → rational_model.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rational_model.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.toOrderedRingSignature.2 value greater))))), (∀ (value : rational_model.signature.toCarrierBundle.1), first.1 value → second.1 value ∧ first = second → False) → (∀ (value : rational_model.signature.toCarrierBundle.1), second.1 value → third.1 value ∧ second = third → False) → (∀ (value : rational_model.signature.toCarrierBundle.1), first.1 value → third.1 value ∧ first = third → False) ∧ ∀ (first second : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper lower : rational_model.signature.toCarrierBundle.1), lower_set upper → rational_model.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rational_model.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.toOrderedRingSignature.2 value greater))))), (first = second → False) → Or ((∀ (value : rational_model.signature.toCarrierBundle.1), first.1 value → second.1 value ∧ first = second → False)) ((∀ (value : rational_model.signature.toCarrierBundle.1), second.1 value → first.1 value ∧ second = first → False))))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (cut : Subtype fun lower_set => (Exists fun value => lower_set value ∧ ((Exists fun value => lower_set value → False) ∧ ((∀ (upper lower : rational_model.signature.toCarrierBundle.1), lower_set upper → rational_model.signature.toOrderedRingSignature.2 lower upper → lower_set lower) ∧ (∀ (value : rational_model.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.toOrderedRingSignature.2 value greater)))))), ((∀ (value : rational_model.signature.toCarrierBundle.1), cut.1 value → cut.1 value) ∧ (cut = cut → False)) → False) ∧ ((∀ (first second third : Subtype fun lower_set => (Exists fun value => lower_set value ∧ ((Exists fun value => lower_set value → False) ∧ ((∀ (upper lower : rational_model.signature.toCarrierBundle.1), lower_set upper → rational_model.signature.toOrderedRingSignature.2 lower upper → lower_set lower) ∧ (∀ (value : rational_model.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.toOrderedRingSignature.2 value greater)))))), ((∀ (value : rational_model.signature.toCarrierBundle.1), first.1 value → second.1 value) ∧ (first = second → False)) → ((∀ (value : rational_model.signature.toCarrierBundle.1), second.1 value → third.1 value) ∧ (second = third → False)) → ((∀ (value : rational_model.signature.toCarrierBundle.1), first.1 value → third.1 value) ∧ (first = third → False))) ∧ (∀ (first second : Subtype fun lower_set => (Exists fun value => lower_set value ∧ ((Exists fun value => lower_set value → False) ∧ ((∀ (upper lower : rational_model.signature.toCarrierBundle.1), lower_set upper → rational_model.signature.toOrderedRingSignature.2 lower upper → lower_set lower) ∧ (∀ (value : rational_model.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.toOrderedRingSignature.2 value greater)))))), (first = second → False) → Or (((∀ (value : rational_model.signature.toCarrierBundle.1), first.1 value → second.1 value) ∧ (first = second → False))) (((∀ (value : rational_model.signature.toCarrierBundle.1), second.1 value → first.1 value) ∧ (second = first → False))))))
 
 Logical form (Lean):
 
@@ -153,11 +168,16 @@ def StrictTotalOrder : Prop :=
 
 Predicate logic:
 
-  StrictTotalOrder rational_model
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), LRA.NumberSystems.RealNumbers.Dedekind.StrictTotalOrder rational_model
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), (∀ (cut : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper lower : rational_model.signature.toCarrierBundle.1), lower_set upper → rational_model.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rational_model.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.toOrderedRingSignature.2 value greater))))), (∀ (value : rational_model.signature.toCarrierBundle.1), cut.1 value → cut.1 value ∧ cut = cut → False) → False ∧ (∀ (first second third : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper lower : rational_model.signature.toCarrierBundle.1), lower_set upper → rational_model.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rational_model.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.toOrderedRingSignature.2 value greater))))), (∀ (value : rational_model.signature.toCarrierBundle.1), first.1 value → second.1 value ∧ first = second → False) → (∀ (value : rational_model.signature.toCarrierBundle.1), second.1 value → third.1 value ∧ second = third → False) → (∀ (value : rational_model.signature.toCarrierBundle.1), first.1 value → third.1 value ∧ first = third → False) ∧ ∀ (first second : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper lower : rational_model.signature.toCarrierBundle.1), lower_set upper → rational_model.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rational_model.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.toOrderedRingSignature.2 value greater))))), (first = second → False) → Or ((∀ (value : rational_model.signature.toCarrierBundle.1), first.1 value → second.1 value ∧ first = second → False)) ((∀ (value : rational_model.signature.toCarrierBundle.1), second.1 value → first.1 value ∧ second = first → False))))
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_model : RationalModel
+  Prove
+    ((∀ (cut : Subtype fun lower_set => (Exists fun value => lower_set value ∧ ((Exists fun value => lower_set value → False) ∧ ((∀ (upper lower : rational_model.signature.toCarrierBundle.1), lower_set upper → rational_model.signature.toOrderedRingSignature.2 lower upper → lower_set lower) ∧ (∀ (value : rational_model.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.toOrderedRingSignature.2 value greater)))))), ((∀ (value : rational_model.signature.toCarrierBundle.1), cut.1 value → cut.1 value) ∧ (cut = cut → False)) → False) ∧ ((∀ (first second third : Subtype fun lower_set => (Exists fun value => lower_set value ∧ ((Exists fun value => lower_set value → False) ∧ ((∀ (upper lower : rational_model.signature.toCarrierBundle.1), lower_set upper → rational_model.signature.toOrderedRingSignature.2 lower upper → lower_set lower) ∧ (∀ (value : rational_model.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.toOrderedRingSignature.2 value greater)))))), ((∀ (value : rational_model.signature.toCarrierBundle.1), first.1 value → second.1 value) ∧ (first = second → False)) → ((∀ (value : rational_model.signature.toCarrierBundle.1), second.1 value → third.1 value) ∧ (second = third → False)) → ((∀ (value : rational_model.signature.toCarrierBundle.1), first.1 value → third.1 value) ∧ (first = third → False))) ∧ (∀ (first second : Subtype fun lower_set => (Exists fun value => lower_set value ∧ ((Exists fun value => lower_set value → False) ∧ ((∀ (upper lower : rational_model.signature.toCarrierBundle.1), lower_set upper → rational_model.signature.toOrderedRingSignature.2 lower upper → lower_set lower) ∧ (∀ (value : rational_model.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.toOrderedRingSignature.2 value greater)))))), (first = second → False) → Or (((∀ (value : rational_model.signature.toCarrierBundle.1), first.1 value → second.1 value) ∧ (first = second → False))) (((∀ (value : rational_model.signature.toCarrierBundle.1), second.1 value → first.1 value) ∧ (second = first → False))))))
 
 Logical form (Lean):
 

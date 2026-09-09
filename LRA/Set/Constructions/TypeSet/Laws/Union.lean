@@ -12,11 +12,16 @@ variable {Alpha : Type u}
 
 Predicate logic:
 
-  ∀ A B : LRA.Set.Constructions.TypeSet Alpha, A ∪ B = B ∪ A
+  ∀ {Alpha : Type u} (A B : LRA.Set.Constructions.TypeSet Alpha), LRA.Set.Constructions.TypeA ∪ B = LRA.Set.Constructions.TypeB ∪ A
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A B : Alpha → Prop), LRA.Set.Constructions.TypeSet.instUnion.1 A B = LRA.Set.Constructions.TypeSet.instUnion.1 B A
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TypeA ∪ B = LRA.Set.Constructions.TypeB ∪ A
 
 Logical form (Lean):
 
@@ -53,11 +58,16 @@ theorem UnionCommutative :
 
 Predicate logic:
 
-  ∀ A B C : LRA.Set.Constructions.TypeSet Alpha, (A ∪ B) ∪ C = A ∪ (B ∪ C)
+  ∀ {Alpha : Type u} (A B C : LRA.Set.Constructions.TypeSet Alpha), LRA.Set.Constructions.TypeLRA.Set.Constructions.TypeA ∪ B ∪ C = LRA.Set.Constructions.TypeA ∪ LRA.Set.Constructions.TypeB ∪ C
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A B C : Alpha → Prop), LRA.Set.Constructions.TypeSet.instUnion.1 (LRA.Set.Constructions.TypeSet.instUnion.1 A B) C = LRA.Set.Constructions.TypeSet.instUnion.1 A (LRA.Set.Constructions.TypeSet.instUnion.1 B C)
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TypeLRA.Set.Constructions.TypeA ∪ B ∪ C = LRA.Set.Constructions.TypeA ∪ LRA.Set.Constructions.TypeB ∪ C
 
 Logical form (Lean):
 
@@ -94,11 +104,16 @@ theorem UnionAssociative :
 
 Predicate logic:
 
-  ∀ A : LRA.Set.Constructions.TypeSet Alpha, ∅ ∈ LRA.Set.Constructions.TypeSet Alpha ∪ A = A
+  ∀ {Alpha : Type u} (A : LRA.Set.Constructions.TypeSet Alpha), LRA.Set.Constructions.TypeLRA.Set.Constructions.TypeSet.instEmptyCollection.emptyCollection ∪ A = A
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A : Alpha → Prop), LRA.Set.Constructions.TypeSet.instUnion.1 LRA.Set.Constructions.TypeSet.instEmptyCollection.1 A = A
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TypeLRA.Set.Constructions.TypeSet.instEmptyCollection.1 ∪ A = A
 
 Logical form (Lean):
 
@@ -137,11 +152,16 @@ theorem EmptyUnion :
 
 Predicate logic:
 
-  ∀ A : LRA.Set.Constructions.TypeSet Alpha, A ∪ ∅ ∈ LRA.Set.Constructions.TypeSet Alpha = A
+  ∀ {Alpha : Type u} (A : LRA.Set.Constructions.TypeSet Alpha), LRA.Set.Constructions.TypeA ∪ LRA.Set.Constructions.TypeSet.instEmptyCollection.emptyCollection = A
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A : Alpha → Prop), LRA.Set.Constructions.TypeSet.instUnion.1 A LRA.Set.Constructions.TypeSet.instEmptyCollection.1 = A
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TypeA ∪ LRA.Set.Constructions.TypeSet.instEmptyCollection.1 = A
 
 Logical form (Lean):
 
@@ -180,11 +200,16 @@ theorem UnionEmpty :
 
 Predicate logic:
 
-  ∀ A : LRA.Set.Constructions.TypeSet Alpha, A ∪ A = A
+  ∀ {Alpha : Type u} (A : LRA.Set.Constructions.TypeSet Alpha), LRA.Set.Constructions.TypeA ∪ A = A
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A : Alpha → Prop), LRA.Set.Constructions.TypeSet.instUnion.1 A A = A
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TypeA ∪ A = A
 
 Logical form (Lean):
 
@@ -221,11 +246,16 @@ theorem UnionIdempotent :
 
 Predicate logic:
 
-  ∀ A₁ A₂ B₁ B₂ : LRA.Set.Constructions.TypeSet Alpha, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∪ B₁ ⊆ A₂ ∪ B₂
+  ∀ {Alpha : Type u} (A₁ A₂ B₁ B₂ : LRA.Set.Constructions.TypeSet Alpha), (LRA.Set.Constructions.TypeSet.instHasSubset.Subset A₁ A₂ ∧ LRA.Set.Constructions.TypeSet.instHasSubset.Subset B₁ B₂) → LRA.Set.Constructions.TypeSet.instHasSubset.Subset (LRA.Set.Constructions.TypeA₁ ∪ B₁) (LRA.Set.Constructions.TypeA₂ ∪ B₂)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A₁ A₂ B₁ B₂ : Alpha → Prop), (LRA.Set.Constructions.TypeSet.instHasSubset.1 A₁ A₂ ∧ LRA.Set.Constructions.TypeSet.instHasSubset.1 B₁ B₂) → LRA.Set.Constructions.TypeSet.instHasSubset.1 (LRA.Set.Constructions.TypeSet.instUnion.1 A₁ B₁) (LRA.Set.Constructions.TypeSet.instUnion.1 A₂ B₂)
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    (LRA.Set.Constructions.TypeSet.instHasSubset.1 A₁ A₂ ∧ LRA.Set.Constructions.TypeSet.instHasSubset.1 B₁ B₂) → LRA.Set.Constructions.TypeSet.instHasSubset.1 (LRA.Set.Constructions.TypeA₁ ∪ B₁) (LRA.Set.Constructions.TypeA₂ ∪ B₂)
 
 Logical form (Lean):
 
@@ -264,11 +294,16 @@ theorem UnionMonotone :
 
 Predicate logic:
 
-  ∀ A B : LRA.Set.Constructions.TypeSet Alpha, A ⊆ B ↔ A ∪ B = B
+  ∀ {Alpha : Type u} (A B : LRA.Set.Constructions.TypeSet Alpha), LRA.Set.Constructions.TypeSet.instHasSubset.Subset A B ↔ LRA.Set.Constructions.TypeA ∪ B = B
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A B : Alpha → Prop), LRA.Set.Constructions.TypeSet.instHasSubset.1 A B ↔ LRA.Set.Constructions.TypeSet.instUnion.1 A B = B
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TypeSet.instHasSubset.Subset A B ↔ LRA.Set.Constructions.TypeA ∪ B = B
 
 Logical form (Lean):
 

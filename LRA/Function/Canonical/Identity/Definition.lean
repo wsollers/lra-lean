@@ -11,12 +11,12 @@ universe u
 Predicate logic:
 
   def IdentityFunction (Carrier : Type u) : Endofunction Carrier :=
-  fun input => input
+    fun input => input
 
 Predicate logic (unfolded):
 
   def IdentityFunction (Carrier : Type u) : Endofunction Carrier :=
-  fun input => input (source fallback; no compiled unfold data available)
+    fun input => input (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

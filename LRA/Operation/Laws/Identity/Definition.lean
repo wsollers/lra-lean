@@ -15,7 +15,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (operation : Carrier → Carrier → Carrier) (identity element : Carrier), operation identity element = element
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    operation identity element = element
 
 Logical form (Lean):
 
@@ -59,7 +64,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (operation : Carrier → Carrier → Carrier) (identity element : Carrier), operation element identity = element
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    operation element identity = element
 
 Logical form (Lean):
 
@@ -103,7 +113,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (operation : Carrier → Carrier → Carrier) (identity : Carrier), (∀ (element : Carrier), operation identity element = element ∧ ∀ (element : Carrier), operation element identity = element)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (element : Carrier), operation identity element = element) ∧ (∀ (element : Carrier), operation element identity = element))
 
 Logical form (Lean):
 

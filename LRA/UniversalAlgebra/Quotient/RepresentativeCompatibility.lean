@@ -10,7 +10,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type} (setoid : Setoid Carrier) (operation : Carrier → Carrier) (first_representative second_representative : Carrier), setoid.1 first_representative second_representative → setoid.1 (operation first_representative) (operation second_representative)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    setoid.1 first_representative second_representative → setoid.1 (operation first_representative) (operation second_representative)
 
 Logical form (Lean):
 
@@ -64,7 +69,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type} (setoid : Setoid Carrier) (operation : Carrier → Carrier → Carrier) (first_representative first_replacement second_representative : Carrier), setoid.1 first_representative first_replacement → setoid.1 (operation first_representative second_representative) (operation first_replacement second_representative)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    setoid.1 first_representative first_replacement → setoid.1 (operation first_representative second_representative) (operation first_replacement second_representative)
 
 Logical form (Lean):
 
@@ -118,7 +128,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type} (setoid : Setoid Carrier) (operation : Carrier → Carrier → Carrier) (first_representative second_representative second_replacement : Carrier), setoid.1 second_representative second_replacement → setoid.1 (operation first_representative second_representative) (operation first_representative second_replacement)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    setoid.1 second_representative second_replacement → setoid.1 (operation first_representative second_representative) (operation first_representative second_replacement)
 
 Logical form (Lean):
 
@@ -172,7 +187,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type} (setoid : Setoid Carrier) (operation : Carrier → Carrier → Carrier) (first_representative first_replacement second_representative second_replacement : Carrier), (setoid.1 first_representative first_replacement ∧ setoid.1 second_representative second_replacement) → setoid.1 (operation first_representative second_representative) (operation first_replacement second_replacement)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (setoid.1 first_representative first_replacement ∧ setoid.1 second_representative second_replacement) → setoid.1 (operation first_representative second_representative) (operation first_replacement second_replacement)
 
 Logical form (Lean):
 
@@ -226,11 +246,17 @@ def binary_operation_respects
 
 Predicate logic:
 
-  (Carrier → Carrier → Carrier) → binary_operation_respects setoid operation ↔ binary_operation_respects_left setoid operation ∧ binary_operation_respects_right setoid operation
+  ∀ {Carrier : Type} (setoid : Setoid Carrier) (operation : Carrier → Carrier → Carrier), LRA.UniversalAlgebra.Quotient.binary_operation_respects setoid operation ↔ (LRA.UniversalAlgebra.Quotient.binary_operation_respects_left setoid operation ∧ LRA.UniversalAlgebra.Quotient.binary_operation_respects_right setoid operation)
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type} (setoid : Setoid Carrier) (operation : Carrier → Carrier → Carrier), ∀ (first_representative first_replacement second_representative second_replacement : Carrier), setoid.1 first_representative first_replacement → setoid.1 second_representative second_replacement → setoid.1 (operation first_representative second_representative) (operation first_replacement second_replacement) ↔ (∀ (first_representative first_replacement second_representative : Carrier), setoid.1 first_representative first_replacement → setoid.1 (operation first_representative second_representative) (operation first_replacement second_representative) ∧ ∀ (first_representative second_representative second_replacement : Carrier), setoid.1 second_representative second_replacement → setoid.1 (operation first_representative second_representative) (operation first_representative second_replacement))
+  Ambient
+    (Carrier)
+  Objects
+    setoid : Setoid Carrier
+    operation : Carrier → Carrier → Carrier
+  Prove
+    LRA.UniversalAlgebra.Quotient.binary_operation_respects setoid operation ↔ (LRA.UniversalAlgebra.Quotient.binary_operation_respects_left setoid operation ∧ LRA.UniversalAlgebra.Quotient.binary_operation_respects_right setoid operation)
 
 Logical form (Lean):
 
@@ -276,11 +302,18 @@ theorem binary_operation_respects_iff_left_and_right
 
 Predicate logic:
 
-  (Carrier → Carrier → Carrier ∧ ∀ first second : Carrier, operation first second = operation second first) → binary_operation_respects setoid operation
+  ∀ {Carrier : Type} (setoid : Setoid Carrier) (operation : Carrier → Carrier → Carrier), ((∀ (first second : Carrier), operation first second = operation second first) ∧ LRA.UniversalAlgebra.Quotient.binary_operation_respects_left setoid operation) → LRA.UniversalAlgebra.Quotient.binary_operation_respects setoid operation
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type} (setoid : Setoid Carrier) (operation : Carrier → Carrier → Carrier), (∀ (first second : Carrier), operation first second = operation second first ∧ ∀ (first_representative first_replacement second_representative : Carrier), setoid.1 first_representative first_replacement → setoid.1 (operation first_representative second_representative) (operation first_replacement second_representative)) → ∀ (first_representative first_replacement second_representative second_replacement : Carrier), (setoid.1 first_representative first_replacement ∧ setoid.1 second_representative second_replacement) → setoid.1 (operation first_representative second_representative) (operation first_replacement second_replacement)
+  Ambient
+    (Carrier)
+  Objects
+    setoid : Setoid Carrier
+    operation : Carrier → Carrier → Carrier
+    operation_respects_left : binary_operation_respects_left setoid operation
+  Prove
+    ((∀ (first second : Carrier), operation first second = operation second first) ∧ (∀ (first_representative first_replacement second_representative : Carrier), setoid.1 first_representative first_replacement → setoid.1 (operation first_representative second_representative) (operation first_replacement second_representative))) → ∀ (first_representative first_replacement second_representative second_replacement : Carrier), (setoid.1 first_representative first_replacement ∧ setoid.1 second_representative second_replacement) → setoid.1 (operation first_representative second_representative) (operation first_replacement second_replacement)
 
 Logical form (Lean):
 
@@ -332,11 +365,18 @@ theorem commutative_operation_respects_of_respects_left
 
 Predicate logic:
 
-  (Carrier → Carrier → Carrier) → ∃ quotient_operation ∈ Quotient setoid → Quotient setoid → Quotient setoid, ∀ first_representative second_representative : Carrier, quotient_operation (Quotient.mk setoid first_representative) (Quotient.mk setoid second_representative) = Quotient.mk setoid (representative_operation first_representative second_representative)
+  ∀ {Carrier : Type} (setoid : Setoid Carrier) (representative_operation : Carrier → Carrier → Carrier), LRA.UniversalAlgebra.Quotient.binary_operation_respects setoid representative_operation → Exists fun quotient_operation => ∀ (first_representative second_representative : Carrier), quotient_operation (Quotient.mk setoid first_representative) (Quotient.mk setoid second_representative) = Quotient.mk setoid (representative_operation first_representative second_representative)
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type} (setoid : Setoid Carrier) (representative_operation : Carrier → Carrier → Carrier), (∀ (first_representative first_replacement second_representative second_replacement : Carrier), setoid.1 first_representative first_replacement → setoid.1 second_representative second_replacement → setoid.1 (representative_operation first_representative second_representative) (representative_operation first_replacement second_replacement)) → Exists fun quotient_operation => ∀ (first_representative second_representative : Carrier), quotient_operation (Quot.mk setoid.1 first_representative) (Quot.mk setoid.1 second_representative) = Quot.mk setoid.1 (representative_operation first_representative second_representative)
+  Ambient
+    (Carrier)
+  Objects
+    setoid : Setoid Carrier
+    representative_operation : Carrier → Carrier → Carrier
+    representative_operation_respects : binary_operation_respects setoid representative_operation
+  Prove
+    (∀ (first_representative first_replacement second_representative second_replacement : Carrier), setoid.1 first_representative first_replacement → setoid.1 second_representative second_replacement → setoid.1 (representative_operation first_representative second_representative) (representative_operation first_replacement second_replacement)) → Exists fun quotient_operation => ∀ (first_representative second_representative : Carrier), quotient_operation (Quot.mk setoid.1 first_representative) (Quot.mk setoid.1 second_representative) = Quot.mk setoid.1 (representative_operation first_representative second_representative)
 
 Logical form (Lean):
 
@@ -404,7 +444,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type} (setoid : Setoid Carrier) (predicate : Carrier → Prop) (first_representative second_representative : Carrier), setoid.1 first_representative second_representative → predicate first_representative ↔ predicate second_representative
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    setoid.r first_representative second_representative → predicate first_representative ↔ predicate second_representative
 
 Logical form (Lean):
 
@@ -454,7 +499,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type} (setoid : Setoid Carrier) (relation : Carrier → Carrier → Prop) (first_representative first_replacement second_representative second_replacement : Carrier), (setoid.1 first_representative first_replacement ∧ setoid.1 second_representative second_replacement) → relation first_representative second_representative ↔ relation first_replacement second_replacement
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (setoid.r first_representative first_replacement ∧ setoid.r second_representative second_replacement) → relation first_representative second_representative ↔ relation first_replacement second_replacement
 
 Logical form (Lean):
 
@@ -506,11 +556,20 @@ def relation_respects
 
 Predicate logic:
 
-  (∀ first_representative second_representative ∈ Carrier), (Carrier → Prop) → predicate first_representative ↔ predicate second_representative
+  ∀ {Carrier : Type} (setoid : Setoid Carrier) (predicate : Carrier → Prop), LRA.UniversalAlgebra.Quotient.predicate_respects setoid predicate → ∀ (first_representative second_representative : Carrier), setoid.r first_representative second_representative → predicate first_representative ↔ predicate second_representative
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type} (setoid : Setoid Carrier) (predicate : Carrier → Prop), (∀ (first_representative second_representative : Carrier), setoid.1 first_representative second_representative → predicate first_representative ↔ predicate second_representative) → ∀ (first_representative second_representative : Carrier), setoid.1 first_representative second_representative → predicate first_representative ↔ predicate second_representative
+  Ambient
+    (Carrier)
+  Objects
+    setoid : Setoid Carrier
+    predicate : Carrier → Prop
+    predicate_is_compatible : predicate_respects setoid predicate
+    first_representative second_representative : Carrier
+    representatives_are_equivalent : setoid.r first_representative second_representative
+  Prove
+    LRA.UniversalAlgebra.Quotient.predicate_respects setoid predicate → ∀ (first_representative second_representative : Carrier), setoid.r first_representative second_representative → predicate first_representative ↔ predicate second_representative
 
 Logical form (Lean):
 
@@ -560,11 +619,18 @@ theorem compatible_predicate_has_constant_truth_on_classes
 
 Predicate logic:
 
-  (Carrier → Carrier → Prop) → ∃ quotient_relation ∈ Quotient setoid → Quotient setoid → Prop, ∀ first_representative second_representative : Carrier, quotient_relation (Quotient.mk setoid first_representative) (Quotient.mk setoid second_representative) ↔ representative_relation first_representative second_representative
+  ∀ {Carrier : Type} (setoid : Setoid Carrier) (representative_relation : Carrier → Carrier → Prop), LRA.UniversalAlgebra.Quotient.relation_respects setoid representative_relation → Exists fun quotient_relation => ∀ (first_representative second_representative : Carrier), quotient_relation (Quotient.mk setoid first_representative) (Quotient.mk setoid second_representative) ↔ representative_relation first_representative second_representative
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type} (setoid : Setoid Carrier) (representative_relation : Carrier → Carrier → Prop), (∀ (first_representative first_replacement second_representative second_replacement : Carrier), setoid.1 first_representative first_replacement → setoid.1 second_representative second_replacement → representative_relation first_representative second_representative ↔ representative_relation first_replacement second_replacement) → Exists fun quotient_relation => ∀ (first_representative second_representative : Carrier), quotient_relation (Quot.mk setoid.1 first_representative) (Quot.mk setoid.1 second_representative) ↔ representative_relation first_representative second_representative
+  Ambient
+    (Carrier)
+  Objects
+    setoid : Setoid Carrier
+    representative_relation : Carrier → Carrier → Prop
+    representative_relation_respects : relation_respects setoid representative_relation
+  Prove
+    LRA.UniversalAlgebra.Quotient.relation_respects setoid representative_relation → Exists fun quotient_relation => ∀ (first_representative second_representative : Carrier), quotient_relation (Quotient.mk setoid first_representative) (Quotient.mk setoid second_representative) ↔ representative_relation first_representative second_representative
 
 Logical form (Lean):
 

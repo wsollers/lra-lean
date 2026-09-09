@@ -10,12 +10,12 @@ universe u
 Predicate logic:
 
   class TotalOrderLaw (R : Type u) [LE R] : Prop where
-  LeTotal : forall a b : R, a <= b \/ b <= a
+    LeTotal : forall a b : R, a <= b \/ b <= a
 
 Predicate logic (unfolded):
 
   class TotalOrderLaw (R : Type u) [LE R] : Prop where
-  LeTotal : forall a b : R, a <= b \/ b <= a (source fallback; no compiled unfold data available)
+    LeTotal : forall a b : R, a <= b \/ b <= a (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -52,12 +52,12 @@ class TotalOrderLaw (R : Type u) [LE R] : Prop where
 Predicate logic:
 
   class abbrev LinearOrderLaws (R : Type u) [LE R] : Prop :=
-  PartialOrderLaws R, TotalOrderLaw R
+    PartialOrderLaws R, TotalOrderLaw R
 
 Predicate logic (unfolded):
 
   class abbrev LinearOrderLaws (R : Type u) [LE R] : Prop :=
-  PartialOrderLaws R, TotalOrderLaw R (source fallback; no compiled unfold data available)
+    PartialOrderLaws R, TotalOrderLaw R (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -97,11 +97,16 @@ variable {R : Type u}
 
 Predicate logic:
 
-  forall a b : R, a <= b ∨ b <= a
+  ∀ {R : Type u} [inst : LE R], LRA.Order.TotalOrderLaw R → ∀ (a b : R), Or (inst.le a b) (inst.le b a)
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : LE R], LRA.Order.TotalOrderLaw R → ∀ (a b : R), Or (inst.1 a b) (inst.1 b a)
+  Ambient
+    (R, ≤)
+  Objects
+    (none)
+  Prove
+    LRA.Order.TotalOrderLaw R → ∀ (a b : R), Or (inst.le a b) (inst.le b a)
 
 Logical form (Lean):
 

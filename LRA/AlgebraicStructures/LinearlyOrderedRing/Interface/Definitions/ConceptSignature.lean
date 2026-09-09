@@ -9,12 +9,12 @@ namespace LRA.AlgebraicStructures
 Predicate logic:
 
   abbrev LinearlyOrderedRingConceptSignature :=
-  OrderedRingConceptSignature
+    OrderedRingConceptSignature
 
 Predicate logic (unfolded):
 
   abbrev LinearlyOrderedRingConceptSignature :=
-  OrderedRingConceptSignature (source fallback; no compiled unfold data available)
+    OrderedRingConceptSignature (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

@@ -12,12 +12,12 @@ universe u v
 Predicate logic:
 
   abbrev DomainType {Domain : Type u} {Codomain : Type v}
-    (_function : LRA.Function Domain Codomain) : Type u := Domain
+      (_function : LRA.Function Domain Codomain) : Type u := Domain
 
 Predicate logic (unfolded):
 
   abbrev DomainType {Domain : Type u} {Codomain : Type v}
-    (_function : LRA.Function Domain Codomain) : Type u := Domain (source fallback; no compiled unfold data available)
+      (_function : LRA.Function Domain Codomain) : Type u := Domain (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -54,12 +54,12 @@ abbrev DomainType {Domain : Type u} {Codomain : Type v}
 Predicate logic:
 
   abbrev CodomainType {Domain : Type u} {Codomain : Type v}
-    (_function : LRA.Function Domain Codomain) : Type v := Codomain
+      (_function : LRA.Function Domain Codomain) : Type v := Codomain
 
 Predicate logic (unfolded):
 
   abbrev CodomainType {Domain : Type u} {Codomain : Type v}
-    (_function : LRA.Function Domain Codomain) : Type v := Codomain (source fallback; no compiled unfold data available)
+      (_function : LRA.Function Domain Codomain) : Type v := Codomain (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -95,18 +95,23 @@ abbrev CodomainType {Domain : Type u} {Codomain : Type v}
 
 Predicate logic:
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (a : Domain), Exists fun y => function.Graph a y
+  ∀ {X : Type u} {Y : Type v} (R : LRA.Relation.HeterogeneousBinaryRelation X Y) (a : X), Exists fun y => R a y
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (a : Domain), Exists fun y => function a = y
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun y => R a y
 
 Logical form (Lean):
 
 ```lean
-abbrev DomainClass {Domain : Type u} {Codomain : Type v}
-    (function : LRA.Function Domain Codomain) : SetClass Domain :=
-  LRA.Relation.DomainClass (Graph function)
+def DomainClass {X : Type u} {Y : Type v}
+    (R : HeterogeneousBinaryRelation X Y) : SetClass X :=
+  fun x => ∃ y, R x y
 ```
 
 Type-theoretic form:
@@ -137,18 +142,23 @@ abbrev DomainClass {Domain : Type u} {Codomain : Type v}
 
 Predicate logic:
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (a : Codomain), Exists fun x => function.Graph x a
+  ∀ {X : Type u} {Y : Type v} (R : LRA.Relation.HeterogeneousBinaryRelation X Y) (a : Y), Exists fun x => R x a
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (a : Codomain), Exists fun x => function x = a
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun x => R x a
 
 Logical form (Lean):
 
 ```lean
-abbrev RangeClass {Domain : Type u} {Codomain : Type v}
-    (function : LRA.Function Domain Codomain) : SetClass Codomain :=
-  LRA.Relation.RangeClass (Graph function)
+def RangeClass {X : Type u} {Y : Type v}
+    (R : HeterogeneousBinaryRelation X Y) : SetClass Y :=
+  fun y => ∃ x, R x y
 ```
 
 Type-theoretic form:
@@ -179,18 +189,23 @@ abbrev RangeClass {Domain : Type u} {Codomain : Type v}
 
 Predicate logic:
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (input : Domain) (a : Codomain), function input = a
+  ∀ {X : Type u} {Y : Type v} (R : LRA.Relation.HeterogeneousBinaryRelation X Y) (x : X) (a : Y), R x a
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (input : Domain) (a : Codomain), function input = a
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    R x a
 
 Logical form (Lean):
 
 ```lean
-abbrev PointImageClass {Domain : Type u} {Codomain : Type v}
-    (function : LRA.Function Domain Codomain) (input : Domain) : SetClass Codomain :=
-  LRA.Relation.PointImageClass (Graph function) input
+def PointImageClass {X : Type u} {Y : Type v}
+    (R : HeterogeneousBinaryRelation X Y) (x : X) : SetClass Y :=
+  fun y => R x y
 ```
 
 Type-theoretic form:
@@ -221,18 +236,23 @@ abbrev PointImageClass {Domain : Type u} {Codomain : Type v}
 
 Predicate logic:
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (source : LRA.Set.SetClass Domain) (a : Codomain), Exists fun x => (source x ∧ function.Graph x a)
+  ∀ {X : Type u} {Y : Type v} (R : LRA.Relation.HeterogeneousBinaryRelation X Y) (A : LRA.Set.SetClass X) (a : Y), Exists fun x => (A x ∧ R x a)
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (source : Domain → Prop) (a : Codomain), Exists fun x => (source x ∧ function x = a)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun x => (A x ∧ R x a)
 
 Logical form (Lean):
 
 ```lean
-abbrev ImageClass {Domain : Type u} {Codomain : Type v}
-    (function : LRA.Function Domain Codomain) (source : SetClass Domain) : SetClass Codomain :=
-  LRA.Relation.ImageClass (Graph function) source
+def ImageClass {X : Type u} {Y : Type v}
+    (R : HeterogeneousBinaryRelation X Y) (A : SetClass X) : SetClass Y :=
+  fun y => ∃ x, A x ∧ R x y
 ```
 
 Type-theoretic form:
@@ -263,18 +283,23 @@ abbrev ImageClass {Domain : Type u} {Codomain : Type v}
 
 Predicate logic:
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (target : LRA.Set.SetClass Codomain) (a : Domain), Exists fun y => (target y ∧ function.Graph a y)
+  ∀ {X : Type u} {Y : Type v} (R : LRA.Relation.HeterogeneousBinaryRelation X Y) (B : LRA.Set.SetClass Y) (a : X), Exists fun y => (B y ∧ R a y)
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (target : Codomain → Prop) (a : Domain), Exists fun y => (target y ∧ function a = y)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun y => (B y ∧ R a y)
 
 Logical form (Lean):
 
 ```lean
-abbrev PreimageClass {Domain : Type u} {Codomain : Type v}
-    (function : LRA.Function Domain Codomain) (target : SetClass Codomain) : SetClass Domain :=
-  LRA.Relation.PreimageClass (Graph function) target
+def PreimageClass {X : Type u} {Y : Type v}
+    (R : HeterogeneousBinaryRelation X Y) (B : SetClass Y) : SetClass X :=
+  fun x => ∃ y, B y ∧ R x y
 ```
 
 Type-theoretic form:
@@ -305,18 +330,23 @@ abbrev PreimageClass {Domain : Type u} {Codomain : Type v}
 
 Predicate logic:
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (output : Codomain) (a : Domain), function a = output
+  ∀ {X : Type u} {Y : Type v} (R : LRA.Relation.HeterogeneousBinaryRelation X Y) (y : Y) (a : X), R a y
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (output : Codomain) (a : Domain), function a = output
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    R a y
 
 Logical form (Lean):
 
 ```lean
-abbrev FiberClass {Domain : Type u} {Codomain : Type v}
-    (function : LRA.Function Domain Codomain) (output : Codomain) : SetClass Domain :=
-  LRA.Relation.FiberClass (Graph function) output
+def FiberClass {X : Type u} {Y : Type v}
+    (R : HeterogeneousBinaryRelation X Y) (y : Y) : SetClass X :=
+  fun x => R x y
 ```
 
 Type-theoretic form:
@@ -351,7 +381,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (a a_1 : Domain), Exists fun output => (function a = output ∧ function a_1 = output)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun output => (function a = output ∧ function a_1 = output)
 
 Logical form (Lean):
 
@@ -397,7 +432,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (subset : Domain → Prop) (function : Domain → Codomain) (input fiberMate : Domain), (subset input ∧ Exists fun output => (function input = output ∧ function fiberMate = output)) → subset fiberMate
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (subset input ∧ (Exists fun output => (function input = output ∧ function fiberMate = output))) → subset fiberMate
 
 Logical form (Lean):
 
@@ -443,7 +483,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (source : Domain → Prop) (target : Codomain → Prop) (input : Domain) (output : Codomain), (source input ∧ function input = output) → target output
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (source input ∧ function input = output) → target output
 
 Logical form (Lean):
 
@@ -489,7 +534,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (image : Codomain → Prop) (function : Domain → Codomain) (source : Domain → Prop) (output : Codomain), image output ↔ Exists fun x => (source x ∧ function x = output)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    image output ↔ function.ImageClass source output
 
 Logical form (Lean):
 
@@ -535,7 +585,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (preimage : Domain → Prop) (function : Domain → Codomain) (target : Codomain → Prop) (input : Domain), preimage input ↔ Exists fun y => (target y ∧ function input = y)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    preimage input ↔ function.PreimageClass target input
 
 Logical form (Lean):
 
@@ -581,7 +636,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (fiber : Domain → Prop) (function : Domain → Codomain) (output : Codomain) (input : Domain), fiber input ↔ function input = output
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    fiber input ↔ function.FiberClass output input
 
 Logical form (Lean):
 
@@ -624,12 +684,12 @@ def IsFiberClassOf {Domain : Type u} {Codomain : Type v}
 Predicate logic:
 
   class HasDomain (FunctionObject : Type u) (DomainObject : outParam (Type v)) where
-  domain : FunctionObject → DomainObject
+    domain : FunctionObject → DomainObject
 
 Predicate logic (unfolded):
 
   class HasDomain (FunctionObject : Type u) (DomainObject : outParam (Type v)) where
-  domain : FunctionObject → DomainObject (source fallback; no compiled unfold data available)
+    domain : FunctionObject → DomainObject (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -666,12 +726,12 @@ class HasDomain (FunctionObject : Type u) (DomainObject : outParam (Type v)) whe
 Predicate logic:
 
   class HasCodomain (FunctionObject : Type u) (CodomainObject : outParam (Type v)) where
-  codomain : FunctionObject → CodomainObject
+    codomain : FunctionObject → CodomainObject
 
 Predicate logic (unfolded):
 
   class HasCodomain (FunctionObject : Type u) (CodomainObject : outParam (Type v)) where
-  codomain : FunctionObject → CodomainObject (source fallback; no compiled unfold data available)
+    codomain : FunctionObject → CodomainObject (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -708,16 +768,16 @@ class HasCodomain (FunctionObject : Type u) (CodomainObject : outParam (Type v))
 Predicate logic:
 
   def DomainObjectOf {FunctionObject : Type u} {DomainObject : Type v}
-    [HasDomain FunctionObject DomainObject]
-    (functionObject : FunctionObject) : DomainObject :=
-  HasDomain.domain functionObject
+      [HasDomain FunctionObject DomainObject]
+      (functionObject : FunctionObject) : DomainObject :=
+    HasDomain.domain functionObject
 
 Predicate logic (unfolded):
 
   def DomainObjectOf {FunctionObject : Type u} {DomainObject : Type v}
-    [HasDomain FunctionObject DomainObject]
-    (functionObject : FunctionObject) : DomainObject :=
-  HasDomain.domain functionObject (source fallback; no compiled unfold data available)
+      [HasDomain FunctionObject DomainObject]
+      (functionObject : FunctionObject) : DomainObject :=
+    HasDomain.domain functionObject (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -758,16 +818,16 @@ def DomainObjectOf {FunctionObject : Type u} {DomainObject : Type v}
 Predicate logic:
 
   def CodomainObjectOf {FunctionObject : Type u} {CodomainObject : Type v}
-    [HasCodomain FunctionObject CodomainObject]
-    (functionObject : FunctionObject) : CodomainObject :=
-  HasCodomain.codomain functionObject
+      [HasCodomain FunctionObject CodomainObject]
+      (functionObject : FunctionObject) : CodomainObject :=
+    HasCodomain.codomain functionObject
 
 Predicate logic (unfolded):
 
   def CodomainObjectOf {FunctionObject : Type u} {CodomainObject : Type v}
-    [HasCodomain FunctionObject CodomainObject]
-    (functionObject : FunctionObject) : CodomainObject :=
-  HasCodomain.codomain functionObject (source fallback; no compiled unfold data available)
+      [HasCodomain FunctionObject CodomainObject]
+      (functionObject : FunctionObject) : CodomainObject :=
+    HasCodomain.codomain functionObject (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

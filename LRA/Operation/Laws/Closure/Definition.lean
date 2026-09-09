@@ -15,7 +15,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (domainCarrier : Domain → Prop) (codomainCarrier : Codomain → Prop) (operation : Domain → Codomain) (input : Domain), domainCarrier input → codomainCarrier (operation input)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    domainCarrier input → codomainCarrier (operation input)
 
 Logical form (Lean):
 
@@ -61,7 +66,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Left : Type u} {Right : Type v} {Codomain : Type w} (leftCarrier : Left → Prop) (rightCarrier : Right → Prop) (resultCarrier : Codomain → Prop) (operation : Left → Right → Codomain) (left : Left) (right : Right), (leftCarrier left ∧ rightCarrier right) → resultCarrier (operation left right)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (leftCarrier left ∧ rightCarrier right) → resultCarrier (operation left right)
 
 Logical form (Lean):
 
@@ -111,7 +121,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Ambient : Type u} (carrier : Ambient → Prop) (operation : Ambient → Ambient → Ambient) (left right : Ambient), (carrier left ∧ carrier right) → carrier (operation left right)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (carrier left ∧ carrier right) → carrier (operation left right)
 
 Logical form (Lean):
 

@@ -8,12 +8,12 @@ namespace LRA.UniversalAlgebra.InterpretedOperationBundles
 Predicate logic:
 
   structure CarrierBundle where
-  carrier : Type u
+    carrier : Type u
 
 Predicate logic (unfolded):
 
   structure CarrierBundle where
-  carrier : Type u (source fallback; no compiled unfold data available)
+    carrier : Type u (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -50,12 +50,12 @@ structure CarrierBundle where
 Predicate logic:
 
   structure ZeroBundle extends CarrierBundle where
-  zero : carrier
+    zero : carrier
 
 Predicate logic (unfolded):
 
   structure ZeroBundle extends CarrierBundle where
-  zero : carrier (source fallback; no compiled unfold data available)
+    zero : carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -92,12 +92,12 @@ structure ZeroBundle extends CarrierBundle where
 Predicate logic:
 
   structure OneBundle extends CarrierBundle where
-  one : carrier
+    one : carrier
 
 Predicate logic (unfolded):
 
   structure OneBundle extends CarrierBundle where
-  one : carrier (source fallback; no compiled unfold data available)
+    one : carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -134,14 +134,14 @@ structure OneBundle extends CarrierBundle where
 Predicate logic:
 
   structure ZeroOneBundle extends CarrierBundle where
-  zero : carrier
-  one : carrier
+    zero : carrier
+    one : carrier
 
 Predicate logic (unfolded):
 
   structure ZeroOneBundle extends CarrierBundle where
-  zero : carrier
-  one : carrier (source fallback; no compiled unfold data available)
+    zero : carrier
+    one : carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -180,12 +180,12 @@ structure ZeroOneBundle extends CarrierBundle where
 Predicate logic:
 
   structure AdditiveOperationBundle extends CarrierBundle where
-  add : LRA.Operation.BinaryOperation carrier
+    add : LRA.Operation.BinaryOperation carrier
 
 Predicate logic (unfolded):
 
   structure AdditiveOperationBundle extends CarrierBundle where
-  add : LRA.Operation.BinaryOperation carrier (source fallback; no compiled unfold data available)
+    add : LRA.Operation.BinaryOperation carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -222,12 +222,12 @@ structure AdditiveOperationBundle extends CarrierBundle where
 Predicate logic:
 
   structure MultiplicativeOperationBundle extends CarrierBundle where
-  multiply : LRA.Operation.BinaryOperation carrier
+    multiply : LRA.Operation.BinaryOperation carrier
 
 Predicate logic (unfolded):
 
   structure MultiplicativeOperationBundle extends CarrierBundle where
-  multiply : LRA.Operation.BinaryOperation carrier (source fallback; no compiled unfold data available)
+    multiply : LRA.Operation.BinaryOperation carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -264,14 +264,14 @@ structure MultiplicativeOperationBundle extends CarrierBundle where
 Predicate logic:
 
   structure LatticeOperationBundle extends CarrierBundle where
-  join : LRA.Operation.BinaryOperation carrier
-  meet : LRA.Operation.BinaryOperation carrier
+    join : LRA.Operation.BinaryOperation carrier
+    meet : LRA.Operation.BinaryOperation carrier
 
 Predicate logic (unfolded):
 
   structure LatticeOperationBundle extends CarrierBundle where
-  join : LRA.Operation.BinaryOperation carrier
-  meet : LRA.Operation.BinaryOperation carrier (source fallback; no compiled unfold data available)
+    join : LRA.Operation.BinaryOperation carrier
+    meet : LRA.Operation.BinaryOperation carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -310,12 +310,12 @@ structure LatticeOperationBundle extends CarrierBundle where
 Predicate logic:
 
   structure ComplementOperationBundle extends CarrierBundle where
-  complement : LRA.Operation.UnaryOperation carrier
+    complement : LRA.Operation.UnaryOperation carrier
 
 Predicate logic (unfolded):
 
   structure ComplementOperationBundle extends CarrierBundle where
-  complement : LRA.Operation.UnaryOperation carrier (source fallback; no compiled unfold data available)
+    complement : LRA.Operation.UnaryOperation carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -352,14 +352,14 @@ structure ComplementOperationBundle extends CarrierBundle where
 Predicate logic:
 
   structure BooleanRingOperationBundle extends ZeroOneBundle where
-  add : LRA.Operation.BinaryOperation carrier
-  multiply : LRA.Operation.BinaryOperation carrier
+    add : LRA.Operation.BinaryOperation carrier
+    multiply : LRA.Operation.BinaryOperation carrier
 
 Predicate logic (unfolded):
 
   structure BooleanRingOperationBundle extends ZeroOneBundle where
-  add : LRA.Operation.BinaryOperation carrier
-  multiply : LRA.Operation.BinaryOperation carrier (source fallback; no compiled unfold data available)
+    add : LRA.Operation.BinaryOperation carrier
+    multiply : LRA.Operation.BinaryOperation carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -398,16 +398,16 @@ structure BooleanRingOperationBundle extends ZeroOneBundle where
 Predicate logic:
 
   structure BooleanAlgebraOperationBundle extends ZeroOneBundle where
-  join : LRA.Operation.BinaryOperation carrier
-  meet : LRA.Operation.BinaryOperation carrier
-  complement : LRA.Operation.UnaryOperation carrier
+    join : LRA.Operation.BinaryOperation carrier
+    meet : LRA.Operation.BinaryOperation carrier
+    complement : LRA.Operation.UnaryOperation carrier
 
 Predicate logic (unfolded):
 
   structure BooleanAlgebraOperationBundle extends ZeroOneBundle where
-  join : LRA.Operation.BinaryOperation carrier
-  meet : LRA.Operation.BinaryOperation carrier
-  complement : LRA.Operation.UnaryOperation carrier (source fallback; no compiled unfold data available)
+    join : LRA.Operation.BinaryOperation carrier
+    meet : LRA.Operation.BinaryOperation carrier
+    complement : LRA.Operation.UnaryOperation carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

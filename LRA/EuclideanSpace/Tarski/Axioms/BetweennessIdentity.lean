@@ -7,11 +7,17 @@ namespace LRA.EuclideanSpace
 
 Predicate logic:
 
-  (∀ x y ∈ TarskiPoint), x = y end LRA.EuclideanSpace
+  ∀ (x y : LRA.EuclideanSpace.TarskiPoint), LRA.EuclideanSpace.TarskiBetween x y x → x = y
 
 Predicate logic (unfolded):
 
-  ∀ (x y : LRA.EuclideanSpace.TarskiPoint), LRA.EuclideanSpace.TarskiBetween x y x → x = y
+  Ambient
+    (implicit ambient)
+  Objects
+    x y : TarskiPoint
+    bxyx : TarskiBetween x y x
+  Prove
+    LRA.EuclideanSpace.TarskiBetween x y x → x = y
 
 Logical form (Lean):
 

@@ -12,20 +12,27 @@ variable [Membership Element SetObject]
 
 Predicate logic:
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (strictRelation : LRA.Relation.Endorelation Element) (subset : SetObject) (minimal : Element), (minimal ∈ subset ∧ ∀ (element : Element), element ∈ subset → ¬ strictRelation element minimal)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (minimum : Element), (minimum ∈ subset ∧ (∀ (element : Element), element ∈ subset → ¬ relation element minimum))
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (strictRelation : Element → Element → Prop) (subset : SetObject) (minimal : Element), (inst.1 subset minimal ∧ ∀ (element : Element), inst.1 subset element → strictRelation element minimal → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (inst.1 subset minimum ∧ (∀ (element : Element), inst.1 subset element → relation element minimum → False))
 
 Logical form (Lean):
 
 ```lean
-abbrev MinimalElement
-    (strictRelation : LRA.Relation.Endorelation Element)
+def MinimalElement {Element : Type u} {SetObject : Type v}
+    [Membership Element SetObject]
+    (relation : Endorelation Element)
     (subset : SetObject)
-    (minimal : Element) : Prop :=
-  LRA.Relation.MinimalElement strictRelation subset minimal
+    (minimum : Element) : Prop :=
+  minimum ∈ subset ∧
+    ∀ element, element ∈ subset → ¬ relation element minimum
 ```
 
 Type-theoretic form:

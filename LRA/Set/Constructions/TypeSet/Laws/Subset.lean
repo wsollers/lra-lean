@@ -12,11 +12,16 @@ variable {Alpha : Type u}
 
 Predicate logic:
 
-  ∀ A : LRA.Set.Constructions.TypeSet Alpha, A ⊆ A
+  ∀ {Alpha : Type u} (A : LRA.Set.Constructions.TypeSet Alpha), LRA.Set.Constructions.TypeSet.instHasSubset.Subset A A
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A : Alpha → Prop), LRA.Set.Constructions.TypeSet.instHasSubset.1 A A
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TypeSet.instHasSubset.1 A A
 
 Logical form (Lean):
 
@@ -53,11 +58,16 @@ theorem SubsetReflexive :
 
 Predicate logic:
 
-  ∀ A B C : LRA.Set.Constructions.TypeSet Alpha, A ⊆ B → B ⊆ C → A ⊆ C
+  ∀ {Alpha : Type u} (A B C : LRA.Set.Constructions.TypeSet Alpha), (LRA.Set.Constructions.TypeSet.instHasSubset.Subset A B ∧ LRA.Set.Constructions.TypeSet.instHasSubset.Subset B C) → LRA.Set.Constructions.TypeSet.instHasSubset.Subset A C
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A B C : Alpha → Prop), (LRA.Set.Constructions.TypeSet.instHasSubset.1 A B ∧ LRA.Set.Constructions.TypeSet.instHasSubset.1 B C) → LRA.Set.Constructions.TypeSet.instHasSubset.1 A C
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    (LRA.Set.Constructions.TypeSet.instHasSubset.1 A B ∧ LRA.Set.Constructions.TypeSet.instHasSubset.1 B C) → LRA.Set.Constructions.TypeSet.instHasSubset.1 A C
 
 Logical form (Lean):
 
@@ -94,11 +104,16 @@ theorem SubsetTransitive :
 
 Predicate logic:
 
-  ∀ A B : LRA.Set.Constructions.TypeSet Alpha, A = B ↔ A ⊆ B ∧ B ⊆ A
+  ∀ {Alpha : Type u} (A B : LRA.Set.Constructions.TypeSet Alpha), A = B ↔ (LRA.Set.Constructions.TypeSet.instHasSubset.Subset A B ∧ LRA.Set.Constructions.TypeSet.instHasSubset.Subset B A)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A B : Alpha → Prop), A = B ↔ (LRA.Set.Constructions.TypeSet.instHasSubset.1 A B ∧ LRA.Set.Constructions.TypeSet.instHasSubset.1 B A)
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    A = B ↔ (LRA.Set.Constructions.TypeSet.instHasSubset.Subset A B ∧ LRA.Set.Constructions.TypeSet.instHasSubset.Subset B A)
 
 Logical form (Lean):
 

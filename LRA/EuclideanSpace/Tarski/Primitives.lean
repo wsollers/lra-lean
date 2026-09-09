@@ -11,7 +11,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  Type
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Type
 
 Logical form (Lean):
 
@@ -45,11 +50,11 @@ axiom TarskiPoint : Type
 
 Predicate logic:
 
-  TarskiPoint → TarskiPoint → TarskiPoint → Prop
+  fun (first middle last : TarskiPoint) => TarskiBetween first middle last
 
 Predicate logic (unfolded):
 
-  LRA.EuclideanSpace.TarskiPoint → LRA.EuclideanSpace.TarskiPoint → LRA.EuclideanSpace.TarskiPoint → Prop (compiled unfold unavailable; showing predicate logic)
+  fun (first middle last : TarskiPoint) => TarskiBetween first middle last (opaque predicate axiom; no body to unfold)
 
 Logical form (Lean):
 
@@ -83,11 +88,11 @@ axiom TarskiBetween : TarskiPoint → TarskiPoint → TarskiPoint → Prop
 
 Predicate logic:
 
-  TarskiPoint → TarskiPoint → TarskiPoint → TarskiPoint → Prop instance : Between TarskiPoint
+  fun (firstStart firstEnd secondStart secondEnd : TarskiPoint) => TarskiCongruent firstStart firstEnd secondStart secondEnd
 
 Predicate logic (unfolded):
 
-  LRA.EuclideanSpace.TarskiPoint → LRA.EuclideanSpace.TarskiPoint → LRA.EuclideanSpace.TarskiPoint → LRA.EuclideanSpace.TarskiPoint → Prop (compiled unfold unavailable; showing predicate logic)
+  fun (firstStart firstEnd secondStart secondEnd : TarskiPoint) => TarskiCongruent firstStart firstEnd secondStart secondEnd (opaque predicate axiom; no body to unfold)
 
 Logical form (Lean):
 

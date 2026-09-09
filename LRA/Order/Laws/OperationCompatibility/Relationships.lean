@@ -10,11 +10,19 @@ universe u
 
 Predicate logic:
 
-  RightTranslationPreservesRelation relation operation
+  ∀ {Carrier : Type u} {relation : Carrier → Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier}, (LRA.Operation.Laws.Commutative.Commutative operation ∧ LRA.Order.LeftTranslationPreservesRelation relation operation) → LRA.Order.RightTranslationPreservesRelation relation operation
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {relation : Carrier → Carrier → Prop} {operation : Carrier → Carrier → Carrier}, (∀ (first second : Carrier), operation first second = operation second first ∧ ∀ (fixed left right : Carrier), relation left right → relation (operation fixed left) (operation fixed right)) → ∀ (left right fixed : Carrier), relation left right → relation (operation left fixed) (operation right fixed)
+  Ambient
+    (Carrier)
+  Objects
+    relation : Carrier -> Carrier -> Prop
+    operation : LRA.Operation.BinaryEndoOperation Carrier
+    commutative : LRA.Operation.Laws.Commutative.Commutative operation
+    leftLaw : LeftTranslationPreservesRelation relation operation
+  Prove
+    ((∀ (first second : Carrier), operation first second = operation second first) ∧ (∀ (fixed left right : Carrier), relation left right → relation (operation fixed left) (operation fixed right))) → ∀ (left right fixed : Carrier), relation left right → relation (operation left fixed) (operation right fixed)
 
 Logical form (Lean):
 
@@ -60,11 +68,19 @@ theorem Commutative.left_preservation_to_right_preservation {Carrier : Type u}
 
 Predicate logic:
 
-  LeftTranslationPreservesRelation relation operation
+  ∀ {Carrier : Type u} {relation : Carrier → Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier}, (LRA.Operation.Laws.Commutative.Commutative operation ∧ LRA.Order.RightTranslationPreservesRelation relation operation) → LRA.Order.LeftTranslationPreservesRelation relation operation
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {relation : Carrier → Carrier → Prop} {operation : Carrier → Carrier → Carrier}, (∀ (first second : Carrier), operation first second = operation second first ∧ ∀ (left right fixed : Carrier), relation left right → relation (operation left fixed) (operation right fixed)) → ∀ (fixed left right : Carrier), relation left right → relation (operation fixed left) (operation fixed right)
+  Ambient
+    (Carrier)
+  Objects
+    relation : Carrier -> Carrier -> Prop
+    operation : LRA.Operation.BinaryEndoOperation Carrier
+    commutative : LRA.Operation.Laws.Commutative.Commutative operation
+    rightLaw : RightTranslationPreservesRelation relation operation
+  Prove
+    ((∀ (first second : Carrier), operation first second = operation second first) ∧ (∀ (left right fixed : Carrier), relation left right → relation (operation left fixed) (operation right fixed))) → ∀ (fixed left right : Carrier), relation left right → relation (operation fixed left) (operation fixed right)
 
 Logical form (Lean):
 
@@ -110,11 +126,19 @@ theorem Commutative.right_preservation_to_left_preservation {Carrier : Type u}
 
 Predicate logic:
 
-  forall fixed, positive fixed -> forall left right, relation left right -> relation (operation left fixed) (operation right fixed)
+  ∀ {Carrier : Type u} {relation : Carrier → Carrier → Prop} {positive : Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Order.PositiveRightTranslationPreservesRelation relation positive operation → ∀ (fixed : Carrier), positive fixed → ∀ (left right : Carrier), relation left right → relation (operation left fixed) (operation right fixed)
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {relation : Carrier → Carrier → Prop} {positive : Carrier → Prop} {operation : Carrier → Carrier → Carrier}, (∀ (left right fixed : Carrier), positive fixed → relation left right → relation (operation left fixed) (operation right fixed)) → ∀ (fixed : Carrier), positive fixed → ∀ (left right : Carrier), relation left right → relation (operation left fixed) (operation right fixed)
+  Ambient
+    (Carrier)
+  Objects
+    relation : Carrier -> Carrier -> Prop
+    positive : Carrier -> Prop
+    operation : LRA.Operation.BinaryEndoOperation Carrier
+    law : PositiveRightTranslationPreservesRelation relation positive operation
+  Prove
+    (∀ (left right fixed : Carrier), positive fixed → relation left right → relation (operation left fixed) (operation right fixed)) → ∀ (fixed : Carrier), positive fixed → ∀ (left right : Carrier), relation left right → relation (operation left fixed) (operation right fixed)
 
 Logical form (Lean):
 
@@ -164,11 +188,19 @@ theorem PositiveRightTranslationPreservesRelation.to_right_preservation_on_posit
 
 Predicate logic:
 
-  forall fixed, negative fixed -> forall left right, relation left right -> relation (operation right fixed) (operation left fixed)
+  ∀ {Carrier : Type u} {relation : Carrier → Carrier → Prop} {negative : Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Order.NegativeRightTranslationReversesRelation relation negative operation → ∀ (fixed : Carrier), negative fixed → ∀ (left right : Carrier), relation left right → relation (operation right fixed) (operation left fixed)
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {relation : Carrier → Carrier → Prop} {negative : Carrier → Prop} {operation : Carrier → Carrier → Carrier}, (∀ (left right fixed : Carrier), negative fixed → relation left right → relation (operation right fixed) (operation left fixed)) → ∀ (fixed : Carrier), negative fixed → ∀ (left right : Carrier), relation left right → relation (operation right fixed) (operation left fixed)
+  Ambient
+    (Carrier)
+  Objects
+    relation : Carrier -> Carrier -> Prop
+    negative : Carrier -> Prop
+    operation : LRA.Operation.BinaryEndoOperation Carrier
+    law : NegativeRightTranslationReversesRelation relation negative operation
+  Prove
+    (∀ (left right fixed : Carrier), negative fixed → relation left right → relation (operation right fixed) (operation left fixed)) → ∀ (fixed : Carrier), negative fixed → ∀ (left right : Carrier), relation left right → relation (operation right fixed) (operation left fixed)
 
 Logical form (Lean):
 
@@ -218,7 +250,7 @@ theorem NegativeRightTranslationReversesRelation.to_right_reversal_on_negative
 
 Predicate logic:
 
-  CoordinatewisePreservesRelation relation operation
+  ∀ {Carrier : Type u} {relation : Carrier → Carrier → Prop} {operation : LRA.Operation.BinaryEndoOperation Carrier} [Trans relation relation relation], LRA.Order.LeftTranslationPreservesRelation relation operation → LRA.Order.RightTranslationPreservesRelation relation operation → LRA.Order.CoordinatewisePreservesRelation relation operation
 
 Predicate logic (unfolded):
 
@@ -270,11 +302,16 @@ theorem CoordinatewisePreservesRelation.of_left_and_right_translation
 
 Predicate logic:
 
-  LeftTranslationPreservesRelation · <= · ∈ R -> R -> Prop (fun a b => a + b)
+  ∀ {R : Type u} [inst : Add R] [inst_1 : LE R], LRA.Order.AdditionRespectsOrderLaws R → LRA.Order.LeftTranslationPreservesRelation (fun x1 x2 => inst_1.le x1 x2) fun a b => instHAdd.hAdd a b
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : Add R] [inst_1 : LE R], LRA.Order.AdditionRespectsOrderLaws R → ∀ (fixed left right : R), inst_1.1 left right → (fun x1 x2 => inst_1.1 x1 x2) ((fun a b => instHAdd.1 a b) fixed left) ((fun a b => instHAdd.1 a b) fixed right)
+  Ambient
+    (R, ≤)
+  Objects
+    (none)
+  Prove
+    LRA.Order.AdditionRespectsOrderLaws R → ∀ (fixed left right : R), inst_1.le left right → (fun x1 x2 => inst_1.le x1 x2) ((fun a b => { hAdd := fun a b => inst.add a b }.hAdd a b) fixed left) ((fun a b => { hAdd := fun a b => inst.add a b }.hAdd a b) fixed right)
 
 Logical form (Lean):
 
@@ -314,11 +351,16 @@ theorem AdditionRespectsOrderLaws.to_left_translation
 
 Predicate logic:
 
-  RightTranslationPreservesRelation · <= · ∈ R -> R -> Prop (fun a b => a + b)
+  ∀ {R : Type u} [inst : Add R] [inst_1 : LE R], LRA.Order.AdditionRespectsOrderLaws R → LRA.Order.RightTranslationPreservesRelation (fun x1 x2 => inst_1.le x1 x2) fun a b => instHAdd.hAdd a b
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : Add R] [inst_1 : LE R], LRA.Order.AdditionRespectsOrderLaws R → ∀ (left right fixed : R), inst_1.1 left right → (fun x1 x2 => inst_1.1 x1 x2) ((fun a b => instHAdd.1 a b) left fixed) ((fun a b => instHAdd.1 a b) right fixed)
+  Ambient
+    (R, ≤)
+  Objects
+    (none)
+  Prove
+    LRA.Order.AdditionRespectsOrderLaws R → ∀ (left right fixed : R), inst_1.le left right → (fun x1 x2 => inst_1.le x1 x2) ((fun a b => { hAdd := fun a b => inst.add a b }.hAdd a b) left fixed) ((fun a b => { hAdd := fun a b => inst.add a b }.hAdd a b) right fixed)
 
 Logical form (Lean):
 

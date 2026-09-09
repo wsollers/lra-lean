@@ -16,7 +16,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (outer inner : Carrier → Carrier → Carrier), (∀ (left right : Carrier), outer left (inner left right) = left) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (left right : Carrier), outer left (inner left right) = left) → False
 
 Logical form (Lean):
 
@@ -58,7 +63,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (first second : Carrier → Carrier → Carrier), (∀ (left right : Carrier), first left (second left right) = left ∧ ∀ (left right : Carrier), second left (first left right) = left) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (left right : Carrier), first left (second left right) = left) ∧ (∀ (left right : Carrier), second left (first left right) = left)) → False
 
 Logical form (Lean):
 
@@ -97,12 +107,12 @@ def FailsMutualAbsorptionLaw {Carrier : Type u}
 Predicate logic:
 
   def NaturalAdditionOperation : BinaryEndoOperation Nat :=
-  fun left right => left + right
+    fun left right => left + right
 
 Predicate logic (unfolded):
 
   def NaturalAdditionOperation : BinaryEndoOperation Nat :=
-  fun left right => left + right (source fallback; no compiled unfold data available)
+    fun left right => left + right (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -139,12 +149,12 @@ def NaturalAdditionOperation : BinaryEndoOperation Nat :=
 Predicate logic:
 
   def NaturalMultiplicationOperation : BinaryEndoOperation Nat :=
-  fun left right => left * right
+    fun left right => left * right
 
 Predicate logic (unfolded):
 
   def NaturalMultiplicationOperation : BinaryEndoOperation Nat :=
-  fun left right => left * right (source fallback; no compiled unfold data available)
+    fun left right => left * right (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -181,12 +191,12 @@ def NaturalMultiplicationOperation : BinaryEndoOperation Nat :=
 Predicate logic:
 
   def NaturalMaxOperation : BinaryEndoOperation Nat :=
-  fun left right => Nat.max left right
+    fun left right => Nat.max left right
 
 Predicate logic (unfolded):
 
   def NaturalMaxOperation : BinaryEndoOperation Nat :=
-  fun left right => Nat.max left right (source fallback; no compiled unfold data available)
+    fun left right => Nat.max left right (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -223,12 +233,12 @@ def NaturalMaxOperation : BinaryEndoOperation Nat :=
 Predicate logic:
 
   def NaturalMinOperation : BinaryEndoOperation Nat :=
-  fun left right => Nat.min left right
+    fun left right => Nat.min left right
 
 Predicate logic (unfolded):
 
   def NaturalMinOperation : BinaryEndoOperation Nat :=
-  fun left right => Nat.min left right (source fallback; no compiled unfold data available)
+    fun left right => Nat.min left right (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -264,11 +274,16 @@ def NaturalMinOperation : BinaryEndoOperation Nat :=
 
 Predicate logic:
 
-  FailsAbsorptionLaw NaturalAdditionOperation NaturalMultiplicationOperation ∧ FailsAbsorptionLaw NaturalMultiplicationOperation NaturalAdditionOperation
+  (LRA.Operation.Laws.Absorption.FailsAbsorptionLaw LRA.Operation.Laws.Absorption.NaturalAdditionOperation LRA.Operation.Laws.Absorption.NaturalMultiplicationOperation ∧ LRA.Operation.Laws.Absorption.FailsAbsorptionLaw LRA.Operation.Laws.Absorption.NaturalMultiplicationOperation LRA.Operation.Laws.Absorption.NaturalAdditionOperation)
 
 Predicate logic (unfolded):
 
-  ((∀ (left right : Nat), instHAdd.1 left (instHMul.hMul left right) = left) → False ∧ (∀ (left right : Nat), instHMul.1 left (instHAdd.hAdd left right) = left) → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (left right : Nat), { hAdd := fun a b => instAddNat.add a b }.hAdd left ({ hMul := fun a b => instMulNat.mul a b }.hMul left right) = left) → False) ∧ ((∀ (left right : Nat), { hMul := fun a b => instMulNat.mul a b }.hMul left ({ hAdd := fun a b => instAddNat.add a b }.hAdd left right) = left) → False))
 
 Logical form (Lean):
 
@@ -306,11 +321,16 @@ theorem NaturalAdditionMultiplicationFailAbsorption :
 
 Predicate logic:
 
-  LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing NaturalMultiplicationOperation 0 ∧ FailsAbsorptionLaw NaturalMultiplicationOperation NaturalAdditionOperation
+  (LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing LRA.Operation.Laws.Absorption.NaturalMultiplicationOperation 0 ∧ LRA.Operation.Laws.Absorption.FailsAbsorptionLaw LRA.Operation.Laws.Absorption.NaturalMultiplicationOperation LRA.Operation.Laws.Absorption.NaturalAdditionOperation)
 
 Predicate logic (unfolded):
 
-  ((∀ (element : Nat), instHMul.1 (instOfNatNat 0).1 element = instOfNatNat 0.1 ∧ ∀ (element : Nat), instHMul.1 element (instOfNatNat 0).1 = instOfNatNat 0.1) ∧ (∀ (left right : Nat), instHMul.1 left (instHAdd.hAdd left right) = left) → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (element : Nat), { hMul := fun a b => instMulNat.mul a b }.hMul 0 element = 0) ∧ (∀ (element : Nat), { hMul := fun a b => instMulNat.mul a b }.hMul element 0 = 0)) ∧ ((∀ (left right : Nat), { hMul := fun a b => instMulNat.mul a b }.hMul left ({ hAdd := fun a b => instAddNat.add a b }.hAdd left right) = left) → False))
 
 Logical form (Lean):
 
@@ -352,11 +372,16 @@ theorem NaturalMultiplicationHasAbsorberButFailsAbsorption :
 
 Predicate logic:
 
-  MutualAbsorptionLaw NaturalMaxOperation NaturalMinOperation ∧ Not ∃ absorber ∈ Nat, LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing NaturalMaxOperation absorber
+  (LRA.Operation.Laws.Absorption.MutualAbsorptionLaw LRA.Operation.Laws.Absorption.NaturalMaxOperation LRA.Operation.Laws.Absorption.NaturalMinOperation ∧ ¬ Exists fun absorber => LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing LRA.Operation.Laws.Absorption.NaturalMaxOperation absorber)
 
 Predicate logic (unfolded):
 
-  ((∀ (left right : Nat), Nat.instMax.1 left (left.min right) = left ∧ ∀ (left right : Nat), instMinNat.1 left (left.max right) = left) ∧ (Exists fun absorber => (∀ (element : Nat), Nat.instMax.1 absorber element = absorber ∧ ∀ (element : Nat), Nat.instMax.1 element absorber = absorber)) → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (left right : Nat), Nat.instMax.1 left (left.min right) = left) ∧ (∀ (left right : Nat), instMinNat.1 left (left.max right) = left)) ∧ ((Exists fun absorber => ((∀ (element : Nat), Nat.instMax.1 absorber element = absorber) ∧ (∀ (element : Nat), Nat.instMax.1 element absorber = absorber))) → False))
 
 Logical form (Lean):
 

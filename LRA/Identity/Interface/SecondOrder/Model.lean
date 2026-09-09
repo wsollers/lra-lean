@@ -6,13 +6,95 @@ namespace LRA.Identity.Interface.SecondOrder
 
 universe u
 
-/-- A Henkin model exposes a selected domain of admissible predicates. -/
+/--
+`HenkinModel` TODO
+
+Predicate logic:
+
+  structure HenkinModel (L : LStructure) where
+    firstOrder : LRA.Identity.Interface.FirstOrder.Model L
+    predicateDomain : LRA.Identity.Logic.SOL.HenkinPredicateDomain
+      firstOrder.interpretation.Domain
+
+Predicate logic (unfolded):
+
+  structure HenkinModel (L : LStructure) where
+    firstOrder : LRA.Identity.Interface.FirstOrder.Model L
+    predicateDomain : LRA.Identity.Logic.SOL.HenkinPredicateDomain
+      firstOrder.interpretation.Domain
+
+Logical form (Lean):
+
+```lean
+structure HenkinModel (L : LStructure) where
+  firstOrder : LRA.Identity.Interface.FirstOrder.Model L
+  predicateDomain : LRA.Identity.Logic.SOL.HenkinPredicateDomain
+    firstOrder.interpretation.Domain
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 structure HenkinModel (L : LStructure) where
   firstOrder : LRA.Identity.Interface.FirstOrder.Model L
   predicateDomain : LRA.Identity.Logic.SOL.HenkinPredicateDomain
     firstOrder.interpretation.Domain
 
-/-- A full model admits every predicate on the first-order carrier. -/
+/--
+`FullModel` TODO
+
+Predicate logic:
+
+  structure FullModel (L : LStructure) where
+    firstOrder : LRA.Identity.Interface.FirstOrder.Model L
+
+Predicate logic (unfolded):
+
+  structure FullModel (L : LStructure) where
+    firstOrder : LRA.Identity.Interface.FirstOrder.Model L
+
+Logical form (Lean):
+
+```lean
+structure FullModel (L : LStructure) where
+  firstOrder : LRA.Identity.Interface.FirstOrder.Model L
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 structure FullModel (L : LStructure) where
   firstOrder : LRA.Identity.Interface.FirstOrder.Model L
 

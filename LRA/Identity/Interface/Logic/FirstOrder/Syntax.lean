@@ -7,7 +7,7 @@ open LRA.Logic
 open LRA.Logic.FirstOrder
 
 /--
-`equalityAtom` The object-language equality atom `left = right`.
+`equalityAtom` TODO
 
 Predicate logic:
 
@@ -19,7 +19,7 @@ Predicate logic (unfolded):
 
   abbrev equalityAtom {S : LRA.Logic.Signature} {Variable : Type}
       (left right : Term S Variable) : Formula S Variable :=
-    .equal left right (source fallback; no compiled unfold data available)
+    .equal left right
 
 Logical form (Lean):
 
@@ -53,7 +53,7 @@ abbrev equalityAtom {S : LRA.Logic.Signature} {Variable : Type}
   .equal left right
 
 /--
-`inequalityAtom` The object-language inequality formula `left != right`, defined as `not (left = right)`.
+`inequalityAtom` TODO
 
 Predicate logic:
 
@@ -65,7 +65,7 @@ Predicate logic (unfolded):
 
   abbrev inequalityAtom {S : LRA.Logic.Signature} {Variable : Type}
       (left right : Term S Variable) : Formula S Variable :=
-    .neg (equalityAtom left right) (source fallback; no compiled unfold data available)
+    .neg (equalityAtom left right)
 
 Logical form (Lean):
 
@@ -99,7 +99,7 @@ abbrev inequalityAtom {S : LRA.Logic.Signature} {Variable : Type}
   .neg (equalityAtom left right)
 
 /--
-`equalityOfVariables` The equality atom between the variables `left` and `right`.
+`equalityOfVariables` TODO
 
 Predicate logic:
 
@@ -111,7 +111,7 @@ Predicate logic (unfolded):
 
   abbrev equalityOfVariables {S : LRA.Logic.Signature} {Variable : Type}
       (left right : Variable) : Formula S Variable :=
-    equalityAtom (.var left) (.var right) (source fallback; no compiled unfold data available)
+    equalityAtom (.var left) (.var right)
 
 Logical form (Lean):
 
@@ -145,7 +145,7 @@ abbrev equalityOfVariables {S : LRA.Logic.Signature} {Variable : Type}
   equalityAtom (.var left) (.var right)
 
 /--
-`inequalityOfVariables` The inequality formula between the variables `left` and `right`.
+`inequalityOfVariables` TODO
 
 Predicate logic:
 
@@ -157,7 +157,7 @@ Predicate logic (unfolded):
 
   abbrev inequalityOfVariables {S : LRA.Logic.Signature} {Variable : Type}
       (left right : Variable) : Formula S Variable :=
-    inequalityAtom (.var left) (.var right) (source fallback; no compiled unfold data available)
+    inequalityAtom (.var left) (.var right)
 
 Logical form (Lean):
 
@@ -191,7 +191,7 @@ abbrev inequalityOfVariables {S : LRA.Logic.Signature} {Variable : Type}
   inequalityAtom (.var left) (.var right)
 
 /--
-`equalityReflexivityFormula` The reflexive equality formula `variable = variable`.
+`equalityReflexivityFormula` TODO
 
 Predicate logic:
 
@@ -203,7 +203,7 @@ Predicate logic (unfolded):
 
   abbrev equalityReflexivityFormula {S : LRA.Logic.Signature} {Variable : Type}
       (x : Variable) : Formula S Variable :=
-    equalityOfVariables x x (source fallback; no compiled unfold data available)
+    equalityOfVariables x x
 
 Logical form (Lean):
 

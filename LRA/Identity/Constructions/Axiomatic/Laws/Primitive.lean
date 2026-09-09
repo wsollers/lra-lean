@@ -6,46 +6,124 @@ namespace LRA.Identity.Constructions.Axiomatic
 universe u
 
 /--
-`axiomaticIdentRfl` is the axiomatic construction's reflexivity law for
-identity.
+`axiomaticIdentRfl` TODO
 
-Logical form:
+Predicate logic:
+
+  ∀ {Carrier : Type u} (x : Carrier), LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x x
+
+Predicate logic (unfolded):
+
+  ∀ {Carrier : Type u} (x : Carrier), LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x x
+
+Logical form (Lean):
 
 ```lean
 theorem axiomaticIdentRfl {Carrier : Type u} (x : Carrier) :
     Ax_IdentityRelation x x
 ```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
 -/
 theorem axiomaticIdentRfl {Carrier : Type u} (x : Carrier) :
     Ax_IdentityRelation x x := by
   sorry
 
 /--
-`axiomaticIdentSymmetric` is the axiomatic construction's symmetry law for
-identity.
+`axiomaticIdentSymmetric` TODO
 
-Logical form:
+Predicate logic:
+
+  ∀ {Carrier : Type u} {x y : Carrier}, LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x y → LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation y x
+
+Predicate logic (unfolded):
+
+  ∀ {Carrier : Type u} {x y : Carrier}, LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x y → LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation y x
+
+Logical form (Lean):
 
 ```lean
 theorem axiomaticIdentSymmetric {Carrier : Type u} {x y : Carrier}
     (h : Ax_IdentityRelation x y) : Ax_IdentityRelation y x
 ```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
 -/
 theorem axiomaticIdentSymmetric {Carrier : Type u} {x y : Carrier}
     (h : Ax_IdentityRelation x y) : Ax_IdentityRelation y x := by
   sorry
 
 /--
-`axiomaticIdentTransitive` is the axiomatic construction's transitivity law for
-identity.
+`axiomaticIdentTransitive` TODO
 
-Logical form:
+Predicate logic:
+
+  ∀ {Carrier : Type u} {x y z : Carrier}, (LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x y ∧ LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation y z) → LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x z
+
+Predicate logic (unfolded):
+
+  ∀ {Carrier : Type u} {x y z : Carrier}, (LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x y ∧ LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation y z) → LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x z
+
+Logical form (Lean):
 
 ```lean
 theorem axiomaticIdentTransitive {Carrier : Type u} {x y z : Carrier}
     (hxy : Ax_IdentityRelation x y) (hyz : Ax_IdentityRelation y z) :
     Ax_IdentityRelation x z
 ```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
 -/
 theorem axiomaticIdentTransitive {Carrier : Type u} {x y z : Carrier}
     (hxy : Ax_IdentityRelation x y) (hyz : Ax_IdentityRelation y z) :
@@ -53,16 +131,42 @@ theorem axiomaticIdentTransitive {Carrier : Type u} {x y z : Carrier}
   sorry
 
 /--
-`axiomaticIdentLeibnizIff` is the axiomatic construction's bidirectional
-Leibniz law for identity.
+`axiomaticIdentLeibnizIff` TODO
 
-Logical form:
+Predicate logic:
+
+  ∀ {Carrier : Type u} {x y : Carrier}, LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x y → ∀ (Property : Carrier → Prop), Property x ↔ Property y
+
+Predicate logic (unfolded):
+
+  ∀ {Carrier : Type u} {x y : Carrier}, LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x y → ∀ (Property : Carrier → Prop), Property x ↔ Property y
+
+Logical form (Lean):
 
 ```lean
 theorem axiomaticIdentLeibnizIff {Carrier : Type u} {x y : Carrier}
     (h : Ax_IdentityRelation x y) (Property : Carrier → Prop) :
     Property x ↔ Property y
 ```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, constructor, .mp, .mpr
+
 -/
 theorem axiomaticIdentLeibnizIff {Carrier : Type u} {x y : Carrier}
     (h : Ax_IdentityRelation x y) (Property : Carrier → Prop) :

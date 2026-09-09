@@ -9,11 +9,16 @@ universe u
 
 Predicate logic:
 
-  ∀ {alpha : Type u} (relation : LRA.Relation.Endorelation alpha) (left right join : alpha), (relation left join ∧ (relation right join ∧ ∀ (upper : alpha), relation left upper → relation right upper → relation join upper))
+  ∀ {alpha : Type u} (relation : LRA.Relation.Endorelation alpha) (left right join : alpha), (relation left join ∧ (relation right join ∧ (∀ (upper : alpha), relation left upper → relation right upper → relation join upper)))
 
 Predicate logic (unfolded):
 
-  ∀ {alpha : Type u} (relation : alpha → alpha → Prop) (left right join : alpha), (relation left join ∧ (relation right join ∧ ∀ (upper : alpha), relation left upper → relation right upper → relation join upper))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (relation left join ∧ (relation right join ∧ (∀ (upper : alpha), relation left upper → relation right upper → relation join upper)))
 
 Logical form (Lean):
 

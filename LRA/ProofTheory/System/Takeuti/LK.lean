@@ -9,18 +9,18 @@ namespace LRA.ProofTheory.System.Takeuti
 Predicate logic:
 
   def LK (L : Alphabet) [DecidableEq L.FreeVar] :
-    LRA.ProofTheory.System.ProofSystem where
-  Judgement := Judgement L
-  IsInitial := IsInitial
-  Rule := Rule
+      LRA.ProofTheory.System.ProofSystem where
+    Judgement := Judgement L
+    IsInitial := IsInitial
+    Rule := Rule
 
 Predicate logic (unfolded):
 
   def LK (L : Alphabet) [DecidableEq L.FreeVar] :
-    LRA.ProofTheory.System.ProofSystem where
-  Judgement := Judgement L
-  IsInitial := IsInitial
-  Rule := Rule (source fallback; no compiled unfold data available)
+      LRA.ProofTheory.System.ProofSystem where
+    Judgement := Judgement L
+    IsInitial := IsInitial
+    Rule := Rule (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

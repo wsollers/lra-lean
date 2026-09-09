@@ -7,7 +7,51 @@ open LRA.Operation.Addition.Interface.ModelTheory
 
 universe u
 
-/-- UA-facing entrypoint induced by a promoted generic addition model. -/
+/--
+`genericSignatureOf` UA-facing entrypoint induced by a promoted generic addition model.
+
+Predicate logic:
+
+  def genericSignatureOf {Carrier : Type u}
+      (model : AdditionModel Carrier) :
+      LRA.Operation.Addition.Interface.UniversalAlgebra.Signature.GenericAdditionSignature :=
+    model.signature
+
+Predicate logic (unfolded):
+
+  def genericSignatureOf {Carrier : Type u}
+      (model : AdditionModel Carrier) :
+      LRA.Operation.Addition.Interface.UniversalAlgebra.Signature.GenericAdditionSignature :=
+    model.signature (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+def genericSignatureOf {Carrier : Type u}
+    (model : AdditionModel Carrier) :
+    LRA.Operation.Addition.Interface.UniversalAlgebra.Signature.GenericAdditionSignature :=
+  model.signature
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 def genericSignatureOf {Carrier : Type u}
     (model : AdditionModel Carrier) :
     LRA.Operation.Addition.Interface.UniversalAlgebra.Signature.GenericAdditionSignature :=

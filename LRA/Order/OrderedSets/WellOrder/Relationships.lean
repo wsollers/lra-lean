@@ -11,11 +11,16 @@ universe u v
 
 Predicate logic:
 
-  WellOrder SetObject nonStrictRelation ↔ LinearOrder nonStrictRelation ∧ LRA.Relation.WellFounded SetObject (StrictPart nonStrictRelation)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {nonStrictRelation : LRA.Relation.Endorelation Element}, LRA.Order.WellOrder SetObject nonStrictRelation ↔ (LRA.Order.LinearOrder nonStrictRelation ∧ LRA.Relation.WellFounded SetObject (LRA.Order.StrictPart nonStrictRelation))
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {nonStrictRelation : Element → Element → Prop}, (((∀ (x : Element), nonStrictRelation x x ∧ (∀ (x y : Element), nonStrictRelation x y → nonStrictRelation y x → x = y ∧ ∀ (x y z : Element), nonStrictRelation x y → nonStrictRelation y z → nonStrictRelation x z)) ∧ ∀ (x y : Element), Or (nonStrictRelation x y) (nonStrictRelation y x)) ∧ ∀ (subset : SetObject), (Exists fun element => inst.1 subset element) → Exists fun least => (inst.1 subset least ∧ ∀ (element : Element), inst.1 subset element → nonStrictRelation least element)) ↔ (((∀ (x : Element), nonStrictRelation x x ∧ (∀ (x y : Element), nonStrictRelation x y → nonStrictRelation y x → x = y ∧ ∀ (x y z : Element), nonStrictRelation x y → nonStrictRelation y z → nonStrictRelation x z)) ∧ ∀ (x y : Element), Or (nonStrictRelation x y) (nonStrictRelation y x)) ∧ ∀ (subset : SetObject), (Exists fun element => inst.1 subset element) → Exists fun minimum => (inst.1 subset minimum ∧ ∀ (element : Element), inst.1 subset element → (nonStrictRelation element minimum ∧ element = minimum → False) → False))
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    nonStrictRelation : LRA.Relation.Endorelation Element
+  Prove
+    LRA.Order.WellOrder SetObject nonStrictRelation ↔ (LRA.Order.LinearOrder nonStrictRelation ∧ LRA.Relation.WellFounded SetObject (LRA.Order.StrictPart nonStrictRelation))
 
 Logical form (Lean):
 

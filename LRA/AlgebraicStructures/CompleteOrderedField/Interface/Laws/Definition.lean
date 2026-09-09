@@ -16,7 +16,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (R : Type u) (SetObject : Type v) [inst : Add R] [inst_1 : Mul R] [inst_2 : Neg R] [inst_3 : Inv R] [inst_4 : OfNat R (instOfNatNat 0).1] [inst_5 : OfNat R (instOfNatNat 1).1] [inst_6 : LE R] [inst_7 : Membership R SetObject] [inst_8 : Nonempty R], (LRA.AlgebraicStructures.OrderedFieldLaws R ∧ LRA.Order.OrderCompletenessLaws R SetObject)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (LRA.AlgebraicStructures.OrderedFieldLaws R ∧ LRA.Order.OrderCompletenessLaws R SetObject)
 
 Logical form (Lean):
 

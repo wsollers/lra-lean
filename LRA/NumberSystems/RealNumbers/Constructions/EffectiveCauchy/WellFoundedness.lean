@@ -11,11 +11,17 @@ universe u
 
 Predicate logic:
 
-  (EffectiveCauchyReal rationalSystem → Prop ∧ ∀ representative : EffectiveCauchyApproximation rationalSystem, motive (Quotient.mk (ApproximationSetoid rationalSystem) representative)) → ∀ value : EffectiveCauchyReal rationalSystem, motive value
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (motive : LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyReal rationalSystem → Prop), (∀ (representative : LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyApproximation rationalSystem), motive (Quotient.mk (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem) representative)) → ∀ (value : LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyReal rationalSystem), motive value
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (motive : Quot (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1 → Prop), (∀ (representative : LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyApproximation rationalSystem), motive (Quot.mk (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1 representative)) → ∀ (value : Quot (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1), motive value
+  Ambient
+    (implicit ambient)
+  Objects
+    rationalSystem : RationalNumberSystem.{u}
+    motive : EffectiveCauchyReal rationalSystem → Prop
+  Prove
+    (∀ (representative : LRA.NumberSystems.RealNumbers.EffectiveCauchy.EffectiveCauchyApproximation rationalSystem), motive (Quot.mk (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1 representative)) → ∀ (value : Quot (LRA.NumberSystems.RealNumbers.EffectiveCauchy.ApproximationSetoid rationalSystem).1), motive value
 
 Logical form (Lean):
 

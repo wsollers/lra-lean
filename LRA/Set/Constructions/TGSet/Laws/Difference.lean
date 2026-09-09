@@ -8,11 +8,16 @@ namespace LRA.Set.Constructions.TGSet
 
 Predicate logic:
 
-  forall A1 A2 B : Set, A1 ⊆ A2 -> A1 \ B ⊆ A2 \ B
+  ∀ (A1 A2 B : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGSet.instHasSubset.Subset A1 A2 → LRA.Set.Constructions.TGSet.instHasSubset.Subset (LRA.Set.Constructions.TGA1 \ B) (LRA.Set.Constructions.TGA2 \ B)
 
 Predicate logic (unfolded):
 
-  ∀ (A1 A2 B : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGSet.instHasSubset.1 A1 A2 → LRA.Set.Constructions.TGSet.instHasSubset.1 (LRA.Set.Constructions.TGSet.instSDiff.1 A1 B) (LRA.Set.Constructions.TGSet.instSDiff.1 A2 B)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TGSet.instHasSubset.1 A1 A2 → LRA.Set.Constructions.TGSet.instHasSubset.1 (LRA.Set.Constructions.TGA1 \ B) (LRA.Set.Constructions.TGA2 \ B)
 
 Logical form (Lean):
 
@@ -49,11 +54,16 @@ theorem DifferenceMonotoneLeft :
 
 Predicate logic:
 
-  forall A B1 B2 : Set, B1 ⊆ B2 -> A \ B2 ⊆ A \ B1
+  ∀ (A B1 B2 : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGSet.instHasSubset.Subset B1 B2 → LRA.Set.Constructions.TGSet.instHasSubset.Subset (LRA.Set.Constructions.TGA \ B2) (LRA.Set.Constructions.TGA \ B1)
 
 Predicate logic (unfolded):
 
-  ∀ (A B1 B2 : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGSet.instHasSubset.1 B1 B2 → LRA.Set.Constructions.TGSet.instHasSubset.1 (LRA.Set.Constructions.TGSet.instSDiff.1 A B2) (LRA.Set.Constructions.TGSet.instSDiff.1 A B1)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TGSet.instHasSubset.1 B1 B2 → LRA.Set.Constructions.TGSet.instHasSubset.1 (LRA.Set.Constructions.TGA \ B2) (LRA.Set.Constructions.TGA \ B1)
 
 Logical form (Lean):
 
@@ -90,11 +100,16 @@ theorem DifferenceAntitoneRight :
 
 Predicate logic:
 
-  forall A : Set, A \ ∅ ∈ Set = A
+  ∀ (A : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGA \ LRA.Set.Constructions.TGSet.instEmptyCollection.emptyCollection = A
 
 Predicate logic (unfolded):
 
-  ∀ (A : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGSet.instSDiff.1 A LRA.Set.Constructions.TGSet.instEmptyCollection.1 = A
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TGA \ LRA.Set.Constructions.TGSet.instEmptyCollection.1 = A
 
 Logical form (Lean):
 
@@ -129,11 +144,16 @@ theorem DifferenceEmpty : forall A : Set, A \ (∅ : Set) = A := by
 
 Predicate logic:
 
-  forall A : Set, ∅ ∈ Set \ A = ∅ ∈ Set
+  ∀ (A : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGLRA.Set.Constructions.TGSet.instEmptyCollection.emptyCollection \ A = LRA.Set.Constructions.TGSet.instEmptyCollection.emptyCollection
 
 Predicate logic (unfolded):
 
-  ∀ (A : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGSet.instSDiff.1 LRA.Set.Constructions.TGSet.instEmptyCollection.1 A = LRA.Set.Constructions.TGSet.instEmptyCollection.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TGLRA.Set.Constructions.TGSet.instEmptyCollection.1 \ A = LRA.Set.Constructions.TGSet.instEmptyCollection.1
 
 Logical form (Lean):
 
@@ -168,11 +188,16 @@ theorem EmptyDifference : forall A : Set, (∅ : Set) \ A = (∅ : Set) := by
 
 Predicate logic:
 
-  forall A : Set, A \ A = ∅ ∈ Set
+  ∀ (A : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGA \ A = LRA.Set.Constructions.TGSet.instEmptyCollection.emptyCollection
 
 Predicate logic (unfolded):
 
-  ∀ (A : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGSet.instSDiff.1 A A = LRA.Set.Constructions.TGSet.instEmptyCollection.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TGA \ A = LRA.Set.Constructions.TGSet.instEmptyCollection.1
 
 Logical form (Lean):
 
@@ -207,11 +232,16 @@ theorem DifferenceSelf : forall A : Set, A \ A = (∅ : Set) := by
 
 Predicate logic:
 
-  forall A B C : Set, A \ (B ∪ C) = (A \ B) ∩ (A \ C)
+  ∀ (A B C : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGA \ LRA.Set.Constructions.TGB ∪ C = LRA.Set.Constructions.TGLRA.Set.Constructions.TGA \ B ∩ LRA.Set.Constructions.TGA \ C
 
 Predicate logic (unfolded):
 
-  ∀ (A B C : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGSet.instSDiff.1 A (LRA.Set.Constructions.TGSet.instUnion.1 B C) = LRA.Set.Constructions.TGSet.instInter.1 (LRA.Set.Constructions.TGSet.instSDiff.1 A B) (LRA.Set.Constructions.TGSet.instSDiff.1 A C)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TGA \ LRA.Set.Constructions.TGB ∪ C = LRA.Set.Constructions.TGLRA.Set.Constructions.TGA \ B ∩ LRA.Set.Constructions.TGA \ C
 
 Logical form (Lean):
 
@@ -248,11 +278,16 @@ theorem DifferenceUnion :
 
 Predicate logic:
 
-  forall A B C : Set, A \ (B ∩ C) = (A \ B) ∪ (A \ C)
+  ∀ (A B C : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGA \ LRA.Set.Constructions.TGB ∩ C = LRA.Set.Constructions.TGLRA.Set.Constructions.TGA \ B ∪ LRA.Set.Constructions.TGA \ C
 
 Predicate logic (unfolded):
 
-  ∀ (A B C : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGSet.instSDiff.1 A (LRA.Set.Constructions.TGSet.instInter.1 B C) = LRA.Set.Constructions.TGSet.instUnion.1 (LRA.Set.Constructions.TGSet.instSDiff.1 A B) (LRA.Set.Constructions.TGSet.instSDiff.1 A C)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TGA \ LRA.Set.Constructions.TGB ∩ C = LRA.Set.Constructions.TGLRA.Set.Constructions.TGA \ B ∪ LRA.Set.Constructions.TGA \ C
 
 Logical form (Lean):
 
@@ -289,11 +324,16 @@ theorem DifferenceIntersection :
 
 Predicate logic:
 
-  forall A B C : Set, (A ∪ B) \ C = (A \ C) ∪ (B \ C)
+  ∀ (A B C : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGLRA.Set.Constructions.TGA ∪ B \ C = LRA.Set.Constructions.TGLRA.Set.Constructions.TGA \ C ∪ LRA.Set.Constructions.TGB \ C
 
 Predicate logic (unfolded):
 
-  ∀ (A B C : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGSet.instSDiff.1 (LRA.Set.Constructions.TGSet.instUnion.1 A B) C = LRA.Set.Constructions.TGSet.instUnion.1 (LRA.Set.Constructions.TGSet.instSDiff.1 A C) (LRA.Set.Constructions.TGSet.instSDiff.1 B C)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TGLRA.Set.Constructions.TGA ∪ B \ C = LRA.Set.Constructions.TGLRA.Set.Constructions.TGA \ C ∪ LRA.Set.Constructions.TGB \ C
 
 Logical form (Lean):
 
@@ -330,11 +370,16 @@ theorem UnionDifferenceDistributes :
 
 Predicate logic:
 
-  forall A B C : Set, (A ∩ B) \ C = (A \ C) ∩ (B \ C)
+  ∀ (A B C : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGLRA.Set.Constructions.TGA ∩ B \ C = LRA.Set.Constructions.TGLRA.Set.Constructions.TGA \ C ∩ LRA.Set.Constructions.TGB \ C
 
 Predicate logic (unfolded):
 
-  ∀ (A B C : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGSet.instSDiff.1 (LRA.Set.Constructions.TGSet.instInter.1 A B) C = LRA.Set.Constructions.TGSet.instInter.1 (LRA.Set.Constructions.TGSet.instSDiff.1 A C) (LRA.Set.Constructions.TGSet.instSDiff.1 B C)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TGLRA.Set.Constructions.TGA ∩ B \ C = LRA.Set.Constructions.TGLRA.Set.Constructions.TGA \ C ∩ LRA.Set.Constructions.TGB \ C
 
 Logical form (Lean):
 
@@ -371,11 +416,16 @@ theorem IntersectionDifferenceDistributes :
 
 Predicate logic:
 
-  forall A B : Set, A \ B ⊆ A
+  ∀ (A B : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGSet.instHasSubset.Subset (LRA.Set.Constructions.TGA \ B)A
 
 Predicate logic (unfolded):
 
-  ∀ (A B : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGSet.instHasSubset.1 (LRA.Set.Constructions.TGSet.instSDiff.1 A B) A
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TGSet.instHasSubset.1 (LRA.Set.Constructions.TGA \ B)A
 
 Logical form (Lean):
 
@@ -410,11 +460,16 @@ theorem DifferenceSubsetLeft : forall A B : Set, A \ B ⊆ A := by
 
 Predicate logic:
 
-  forall A B : Set, (A \ B) ∩ B = ∅ ∈ Set
+  ∀ (A B : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGLRA.Set.Constructions.TGA \ B ∩ B = LRA.Set.Constructions.TGSet.instEmptyCollection.emptyCollection
 
 Predicate logic (unfolded):
 
-  ∀ (A B : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGSet.instInter.1 (LRA.Set.Constructions.TGSet.instSDiff.1 A B) B = LRA.Set.Constructions.TGSet.instEmptyCollection.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TGLRA.Set.Constructions.TGA \ B ∩ B = LRA.Set.Constructions.TGSet.instEmptyCollection.1
 
 Logical form (Lean):
 

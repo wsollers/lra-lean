@@ -11,12 +11,12 @@ namespace LRA.Analysis.Functions
 Predicate logic:
 
   noncomputable def FunctionSupremumOnSet (f : ℝ → ℝ) (A : Set ℝ) : ℝ :=
-  0
+    0
 
 Predicate logic (unfolded):
 
   noncomputable def FunctionSupremumOnSet (f : ℝ → ℝ) (A : Set ℝ) : ℝ :=
-  0 (source fallback; no compiled unfold data available)
+    0 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -53,12 +53,12 @@ noncomputable def FunctionSupremumOnSet (f : ℝ → ℝ) (A : Set ℝ) : ℝ :=
 Predicate logic:
 
   noncomputable def FunctionInfimumOnSet (f : ℝ → ℝ) (A : Set ℝ) : ℝ :=
-  0
+    0
 
 Predicate logic (unfolded):
 
   noncomputable def FunctionInfimumOnSet (f : ℝ → ℝ) (A : Set ℝ) : ℝ :=
-  0 (source fallback; no compiled unfold data available)
+    0 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -95,12 +95,12 @@ noncomputable def FunctionInfimumOnSet (f : ℝ → ℝ) (A : Set ℝ) : ℝ :=
 Predicate logic:
 
   noncomputable def PointwiseSupremumFamily {I : Type*} (f : I → ℝ → ℝ) (x : ℝ) : ℝ :=
-  0
+    0
 
 Predicate logic (unfolded):
 
   noncomputable def PointwiseSupremumFamily {I : Type*} (f : I → ℝ → ℝ) (x : ℝ) : ℝ :=
-  0 (source fallback; no compiled unfold data available)
+    0 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -137,12 +137,12 @@ noncomputable def PointwiseSupremumFamily {I : Type*} (f : I → ℝ → ℝ) (x
 Predicate logic:
 
   noncomputable def PointwiseInfimumFamily {I : Type*} (f : I → ℝ → ℝ) (x : ℝ) : ℝ :=
-  0
+    0
 
 Predicate logic (unfolded):
 
   noncomputable def PointwiseInfimumFamily {I : Type*} (f : I → ℝ → ℝ) (x : ℝ) : ℝ :=
-  0 (source fallback; no compiled unfold data available)
+    0 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -178,11 +178,18 @@ noncomputable def PointwiseInfimumFamily {I : Type*} (f : I → ℝ → ℝ) (x 
 
 Predicate logic:
 
-  (∀ hA ∈ A.Nonempty), (ℝ → ℝ ∧ ∃ M, ∀ x ∈ A, f x ≤ M) → ∃ s ∈ ℝ, IsLUB (f '' A) s
+  ∀ (f : Real → Real) (A : Set Real), (A.Nonempty ∧ (Exists fun M => ∀ (x : Real), x ∈ A → Real.instLE.le (f x) M)) → Exists fun s => IsLUB (Set.image f A) s
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (A : Real → Prop), (Exists fun x => Set.instMembership.1 A x ∧ Exists fun M => ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 (f x) M) → Exists fun s => (Set.instMembership.1 (fun x => ∀ ⦃a : Real⦄, Set.instMembership.1 (Set.image f A) a → Real.instLE.1 a x) s ∧ Set.instMembership.1 (fun x => ∀ ⦃a : Real⦄, Set.instMembership.1 (upperBounds (Set.image f A)) a → Real.instLE.1 x a) s)
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    A : Set ℝ
+    hA : A.Nonempty
+  Prove
+    (Exists fun x => x ∈ A ∧ (Exists fun M => ∀ (x : Real), x ∈ A → Real.instLE.le (f x) M)) → Exists fun s => ((s ∈ fun x => ∀ ⦃a : Real⦄, a ∈ Set.image f A → Real.instLE.le a x) ∧ (s ∈ fun x => ∀ ⦃a : Real⦄, a ∈ upperBounds (Set.image f A) → Real.instLE.le x a))
 
 Logical form (Lean):
 
@@ -220,11 +227,18 @@ theorem FunctionSupremumExistence (f : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonemp
 
 Predicate logic:
 
-  (∀ hA ∈ A.Nonempty), (ℝ → ℝ ∧ ∃ m, ∀ x ∈ A, m ≤ f x) → ∃ s ∈ ℝ, IsGLB (f '' A) s
+  ∀ (f : Real → Real) (A : Set Real), (A.Nonempty ∧ (Exists fun m => ∀ (x : Real), x ∈ A → Real.instLE.le m (f x))) → Exists fun s => IsGLB (Set.image f A) s
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (A : Real → Prop), (Exists fun x => Set.instMembership.1 A x ∧ Exists fun m => ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 m (f x)) → Exists fun s => (Set.instMembership.1 (fun x => ∀ ⦃a : Real⦄, Set.instMembership.1 (Set.image f A) a → Real.instLE.1 x a) s ∧ Set.instMembership.1 (fun x => ∀ ⦃a : Real⦄, Set.instMembership.1 (lowerBounds (Set.image f A)) a → Real.instLE.1 a x) s)
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    A : Set ℝ
+    hA : A.Nonempty
+  Prove
+    (Exists fun x => x ∈ A ∧ (Exists fun m => ∀ (x : Real), x ∈ A → Real.instLE.le m (f x))) → Exists fun s => ((s ∈ fun x => ∀ ⦃a : Real⦄, a ∈ Set.image f A → Real.instLE.le x a) ∧ (s ∈ fun x => ∀ ⦃a : Real⦄, a ∈ lowerBounds (Set.image f A) → Real.instLE.le a x))
 
 Logical form (Lean):
 
@@ -262,11 +276,18 @@ theorem FunctionInfimumExistence (f : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempt
 
 Predicate logic:
 
-  (∀ hA ∈ A.Nonempty), (∃ M, ∀ x ∈ A, f x ≤ M ∧ ∃ M, ∀ x ∈ A, g x ≤ M ∧ ∀ x ∈ A, f x ≤ g x) → FunctionSupremumOnSet f A ≤ FunctionSupremumOnSet g A
+  ∀ (f g : Real → Real) (A : Set Real), (A.Nonempty ∧ ((Exists fun M => ∀ (x : Real), x ∈ A → Real.instLE.le (f x) M) ∧ ((Exists fun M => ∀ (x : Real), x ∈ A → Real.instLE.le (g x) M) ∧ (∀ (x : Real), x ∈ A → Real.instLE.le (f x) (g x))))) → Real.instLE.le (LRA.Analysis.Functions.FunctionSupremumOnSet f A) (LRA.Analysis.Functions.FunctionSupremumOnSet g A)
 
 Predicate logic (unfolded):
 
-  ∀ (f g : Real → Real) (A : Real → Prop), (Exists fun x => Set.instMembership.1 A x ∧ (Exists fun M => ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 (f x) M ∧ (Exists fun M => ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 (g x) M ∧ ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 (f x) (g x)))) → Real.instLE.1 Zero.toOfNat0.1 Zero.toOfNat0.1
+  Ambient
+    (ℝ)
+  Objects
+    f g : ℝ → ℝ
+    A : Set ℝ
+    hA : A.Nonempty
+  Prove
+    (Exists fun x => x ∈ A ∧ ((Exists fun M => ∀ (x : Real), x ∈ A → Real.instLE.le (f x) M) ∧ ((Exists fun M => ∀ (x : Real), x ∈ A → Real.instLE.le (g x) M) ∧ (∀ (x : Real), x ∈ A → Real.instLE.le (f x) (g x))))) → Real.instLE.le 0 0
 
 Logical form (Lean):
 
@@ -308,11 +329,18 @@ theorem SupremumMonotoneUnderPointwiseOrder (f g : ℝ → ℝ) (A : Set ℝ)
 
 Predicate logic:
 
-  (∀ hA ∈ A.Nonempty), (∃ m, ∀ x ∈ A, m ≤ f x ∧ ∃ m, ∀ x ∈ A, m ≤ g x ∧ ∀ x ∈ A, f x ≤ g x) → FunctionInfimumOnSet f A ≤ FunctionInfimumOnSet g A
+  ∀ (f g : Real → Real) (A : Set Real), (A.Nonempty ∧ ((Exists fun m => ∀ (x : Real), x ∈ A → Real.instLE.le m (f x)) ∧ ((Exists fun m => ∀ (x : Real), x ∈ A → Real.instLE.le m (g x)) ∧ (∀ (x : Real), x ∈ A → Real.instLE.le (f x) (g x))))) → Real.instLE.le (LRA.Analysis.Functions.FunctionInfimumOnSet f A) (LRA.Analysis.Functions.FunctionInfimumOnSet g A)
 
 Predicate logic (unfolded):
 
-  ∀ (f g : Real → Real) (A : Real → Prop), (Exists fun x => Set.instMembership.1 A x ∧ (Exists fun m => ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 m (f x) ∧ (Exists fun m => ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 m (g x) ∧ ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 (f x) (g x)))) → Real.instLE.1 Zero.toOfNat0.1 Zero.toOfNat0.1
+  Ambient
+    (ℝ)
+  Objects
+    f g : ℝ → ℝ
+    A : Set ℝ
+    hA : A.Nonempty
+  Prove
+    (Exists fun x => x ∈ A ∧ ((Exists fun m => ∀ (x : Real), x ∈ A → Real.instLE.le m (f x)) ∧ ((Exists fun m => ∀ (x : Real), x ∈ A → Real.instLE.le m (g x)) ∧ (∀ (x : Real), x ∈ A → Real.instLE.le (f x) (g x))))) → Real.instLE.le 0 0
 
 Logical form (Lean):
 
@@ -354,11 +382,16 @@ theorem InfimumMonotoneUnderPointwiseOrder (f g : ℝ → ℝ) (A : Set ℝ)
 
 Predicate logic:
 
-  ∃ A ∈ Set ℝ f g ∈ ℝ → ℝ, A.Nonempty ∧ (∃ M, ∀ x ∈ A, f x ≤ M) ∧ (∃ M, ∀ x ∈ A, g x ≤ M) ∧ FunctionSupremumOnSet f A ≤ FunctionSupremumOnSet g A ∧ ¬ (∀ x ∈ A, f x ≤ g x)
+  Exists fun A => Exists fun f => Exists fun g => (A.Nonempty ∧ ((Exists fun M => ∀ (x : Real), x ∈ A → Real.instLE.le (f x) M) ∧ ((Exists fun M => ∀ (x : Real), x ∈ A → Real.instLE.le (g x) M) ∧ (Real.instLE.le (LRA.Analysis.Functions.FunctionSupremumOnSet f A) (LRA.Analysis.Functions.FunctionSupremumOnSet g A) ∧ (¬ ∀ (x : Real), x ∈ A → Real.instLE.le (f x) (g x))))))
 
 Predicate logic (unfolded):
 
-  Exists fun A => Exists fun f => Exists fun g => (Exists fun x => Set.instMembership.1 A x ∧ (Exists fun M => ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 (f x) M ∧ (Exists fun M => ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 (g x) M ∧ (Real.instLE.1 Zero.toOfNat0.1 Zero.toOfNat0.1 ∧ (∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 (f x) (g x)) → False))))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun A => Exists fun f => Exists fun g => (Exists fun x => x ∈ A ∧ ((Exists fun M => ∀ (x : Real), x ∈ A → Real.instLE.le (f x) M) ∧ ((Exists fun M => ∀ (x : Real), x ∈ A → Real.instLE.le (g x) M) ∧ (Real.instLE.le 0 0 ∧ ((∀ (x : Real), x ∈ A → Real.instLE.le (f x) (g x)) → False)))))
 
 Logical form (Lean):
 
@@ -400,11 +433,11 @@ theorem SupremumMonotonicityConverseFails :
 
 Predicate logic:
 
-  (I → ℝ → ℝ) → ∃ α ∈ I, PointwiseSupremumFamily f x = f α x ∧ ∀ β : I, f β x ≤ f α x
+  ∀ {I : Type u_1} [Fintype I] [Inhabited I] (f : I → Real → Real) (x : Real), Exists fun α => (LRA.Analysis.Functions.PointwiseSupremumFamily f x = f α x ∧ (∀ (β : I), Real.instLE.le (f β x) (f α x)))
 
 Predicate logic (unfolded):
 
-  ∀ {I : Type u_1} [Fintype I] [Inhabited I] (f : I → Real → Real) (x : Real), Exists fun α => (LRA.Analysis.Functions.PointwiseSupremumFamily f x = f α x ∧ ∀ (β : I), Real.instLE.le (f β x) (f α x)) (compiled unfold unavailable; showing predicate logic)
+  ∀ {I : Type u_1} [Fintype I] [Inhabited I] (f : I → Real → Real) (x : Real), Exists fun α => (LRA.Analysis.Functions.PointwiseSupremumFamily f x = f α x ∧ (∀ (β : I), Real.instLE.le (f β x) (f α x))) (compiled unfold unavailable; showing predicate logic)
 
 Logical form (Lean):
 
@@ -442,11 +475,11 @@ theorem PointwiseSupremumEvaluation {I : Type*} [Fintype I] [Inhabited I]
 
 Predicate logic:
 
-  (I → ℝ → ℝ) → ∃ α ∈ I, PointwiseInfimumFamily f x = f α x ∧ ∀ β : I, f α x ≤ f β x
+  ∀ {I : Type u_1} [Fintype I] [Inhabited I] (f : I → Real → Real) (x : Real), Exists fun α => (LRA.Analysis.Functions.PointwiseInfimumFamily f x = f α x ∧ (∀ (β : I), Real.instLE.le (f α x) (f β x)))
 
 Predicate logic (unfolded):
 
-  ∀ {I : Type u_1} [Fintype I] [Inhabited I] (f : I → Real → Real) (x : Real), Exists fun α => (LRA.Analysis.Functions.PointwiseInfimumFamily f x = f α x ∧ ∀ (β : I), Real.instLE.le (f α x) (f β x)) (compiled unfold unavailable; showing predicate logic)
+  ∀ {I : Type u_1} [Fintype I] [Inhabited I] (f : I → Real → Real) (x : Real), Exists fun α => (LRA.Analysis.Functions.PointwiseInfimumFamily f x = f α x ∧ (∀ (β : I), Real.instLE.le (f α x) (f β x))) (compiled unfold unavailable; showing predicate logic)
 
 Logical form (Lean):
 
@@ -484,11 +517,18 @@ theorem PointwiseInfimumEvaluation {I : Type*} [Fintype I] [Inhabited I]
 
 Predicate logic:
 
-  (∀ hA ∈ A.Nonempty), (∃ M, ∀ x ∈ A, f x ≤ M ∧ ∃ M, ∀ x ∈ A, g x ≤ M) → FunctionSupremumOnSet (fun x => f x + g x) A ≤ FunctionSupremumOnSet f A + FunctionSupremumOnSet g A
+  ∀ (f g : Real → Real) (A : Set Real), (A.Nonempty ∧ ((Exists fun M => ∀ (x : Real), x ∈ A → Real.instLE.le (f x) M) ∧ (Exists fun M => ∀ (x : Real), x ∈ A → Real.instLE.le (g x) M))) → Real.instLE.le (LRA.Analysis.Functions.FunctionSupremumOnSet (fun x => instHAdd.hAdd (f x) (g x)) A) (instHAdd.hAdd (LRA.Analysis.Functions.FunctionSupremumOnSet f A) (LRA.Analysis.Functions.FunctionSupremumOnSet g A))
 
 Predicate logic (unfolded):
 
-  ∀ (f g : Real → Real) (A : Real → Prop), (Exists fun x => Set.instMembership.1 A x ∧ (Exists fun M => ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 (f x) M ∧ Exists fun M => ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 (g x) M)) → Real.instLE.1 Zero.toOfNat0.1 (instHAdd.1 Zero.toOfNat0.1 Zero.toOfNat0.1)
+  Ambient
+    (ℝ)
+  Objects
+    f g : ℝ → ℝ
+    A : Set ℝ
+    hA : A.Nonempty
+  Prove
+    (Exists fun x => x ∈ A ∧ ((Exists fun M => ∀ (x : Real), x ∈ A → Real.instLE.le (f x) M) ∧ (Exists fun M => ∀ (x : Real), x ∈ A → Real.instLE.le (g x) M))) → Real.instLE.le 0 ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd 0 0)
 
 Logical form (Lean):
 
@@ -528,11 +568,18 @@ theorem SupremumSubadditivity (f g : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty
 
 Predicate logic:
 
-  (∀ hA ∈ A.Nonempty), (∃ m, ∀ x ∈ A, m ≤ f x ∧ ∃ m, ∀ x ∈ A, m ≤ g x) → FunctionInfimumOnSet f A + FunctionInfimumOnSet g A ≤ FunctionInfimumOnSet (fun x => f x + g x) A
+  ∀ (f g : Real → Real) (A : Set Real), (A.Nonempty ∧ ((Exists fun m => ∀ (x : Real), x ∈ A → Real.instLE.le m (f x)) ∧ (Exists fun m => ∀ (x : Real), x ∈ A → Real.instLE.le m (g x)))) → Real.instLE.le (instHAdd.hAdd (LRA.Analysis.Functions.FunctionInfimumOnSet f A) (LRA.Analysis.Functions.FunctionInfimumOnSet g A)) (LRA.Analysis.Functions.FunctionInfimumOnSet (fun x => instHAdd.hAdd (f x) (g x)) A)
 
 Predicate logic (unfolded):
 
-  ∀ (f g : Real → Real) (A : Real → Prop), (Exists fun x => Set.instMembership.1 A x ∧ (Exists fun m => ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 m (f x) ∧ Exists fun m => ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 m (g x))) → Real.instLE.1 (instHAdd.1 Zero.toOfNat0.1 Zero.toOfNat0.1) Zero.toOfNat0.1
+  Ambient
+    (ℝ)
+  Objects
+    f g : ℝ → ℝ
+    A : Set ℝ
+    hA : A.Nonempty
+  Prove
+    (Exists fun x => x ∈ A ∧ ((Exists fun m => ∀ (x : Real), x ∈ A → Real.instLE.le m (f x)) ∧ (Exists fun m => ∀ (x : Real), x ∈ A → Real.instLE.le m (g x)))) → Real.instLE.le ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd 0 0) 0
 
 Logical form (Lean):
 
@@ -572,11 +619,18 @@ theorem InfimumSuperadditivity (f g : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempt
 
 Predicate logic:
 
-  (∀ hA ∈ A.Nonempty), (ℝ → ℝ ∧ ∃ M, ∀ x ∈ A, f x ≤ M) → FunctionSupremumOnSet (fun x => -f x) A = - FunctionInfimumOnSet f A
+  ∀ (f : Real → Real) (A : Set Real), (A.Nonempty ∧ (Exists fun M => ∀ (x : Real), x ∈ A → Real.instLE.le (f x) M)) → LRA.Analysis.Functions.FunctionSupremumOnSet (fun x => Real.instNeg.neg (f x)) A = Real.instNeg.neg (LRA.Analysis.Functions.FunctionInfimumOnSet f A)
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (A : Real → Prop), (Exists fun x => Set.instMembership.1 A x ∧ Exists fun M => ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 (f x) M) → Zero.toOfNat0.1 = Real.instNeg.1 Zero.toOfNat0.1
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    A : Set ℝ
+    hA : A.Nonempty
+  Prove
+    (Exists fun x => x ∈ A ∧ (Exists fun M => ∀ (x : Real), x ∈ A → Real.instLE.le (f x) M)) → 0 = -0
 
 Logical form (Lean):
 
@@ -614,11 +668,18 @@ theorem SupremumNegation (f : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty)
 
 Predicate logic:
 
-  (∀ hA ∈ A.Nonempty), (ℝ → ℝ ∧ ∃ m, ∀ x ∈ A, m ≤ f x) → FunctionInfimumOnSet (fun x => -f x) A = - FunctionSupremumOnSet f A
+  ∀ (f : Real → Real) (A : Set Real), (A.Nonempty ∧ (Exists fun m => ∀ (x : Real), x ∈ A → Real.instLE.le m (f x))) → LRA.Analysis.Functions.FunctionInfimumOnSet (fun x => Real.instNeg.neg (f x)) A = Real.instNeg.neg (LRA.Analysis.Functions.FunctionSupremumOnSet f A)
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (A : Real → Prop), (Exists fun x => Set.instMembership.1 A x ∧ Exists fun m => ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 m (f x)) → Zero.toOfNat0.1 = Real.instNeg.1 Zero.toOfNat0.1
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    A : Set ℝ
+    hA : A.Nonempty
+  Prove
+    (Exists fun x => x ∈ A ∧ (Exists fun m => ∀ (x : Real), x ∈ A → Real.instLE.le m (f x))) → 0 = -0
 
 Logical form (Lean):
 
@@ -656,11 +717,19 @@ theorem InfimumNegation (f : ℝ → ℝ) (A : Set ℝ) (hA : A.Nonempty)
 
 Predicate logic:
 
-  (∀ hA ∈ A.Nonempty), (ℝ → ℝ ∧ ∃ M, ∀ x ∈ A, f x ≤ M) → (0 ≤ lam → FunctionSupremumOnSet (fun x => lam * f x) A = lam * FunctionSupremumOnSet f A) ∧ (lam ≤ 0 → FunctionSupremumOnSet (fun x => lam * f x) A = lam * FunctionInfimumOnSet f A)
+  ∀ (f : Real → Real) (A : Set Real) (lam : Real), (A.Nonempty ∧ (Exists fun M => ∀ (x : Real), x ∈ A → Real.instLE.le (f x) M)) → ((Real.instLE.le 0 lam → LRA.Analysis.Functions.FunctionSupremumOnSet (fun x => instHMul.hMul lam (f x)) A = instHMul.hMul lam (LRA.Analysis.Functions.FunctionSupremumOnSet f A)) ∧ (Real.instLE.le lam 0 → LRA.Analysis.Functions.FunctionSupremumOnSet (fun x => instHMul.hMul lam (f x)) A = instHMul.hMul lam (LRA.Analysis.Functions.FunctionInfimumOnSet f A)))
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (A : Real → Prop) (lam : Real), (Exists fun x => Set.instMembership.1 A x ∧ Exists fun M => ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 (f x) M) → (Real.instLE.1 Zero.toOfNat0.1 lam → Zero.toOfNat0.1 = instHMul.1 lam Zero.toOfNat0.1 ∧ Real.instLE.1 lam Zero.toOfNat0.1 → Zero.toOfNat0.1 = instHMul.1 lam Zero.toOfNat0.1)
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    A : Set ℝ
+    lam : ℝ
+    hA : A.Nonempty
+  Prove
+    (Exists fun x => x ∈ A ∧ (Exists fun M => ∀ (x : Real), x ∈ A → Real.instLE.le (f x) M)) → ((Real.instLE.le 0 lam → 0 = { hMul := fun a b => Real.instMul.mul a b }.hMul lam 0) ∧ (Real.instLE.le lam 0 → 0 = { hMul := fun a b => Real.instMul.mul a b }.hMul lam 0))
 
 Logical form (Lean):
 
@@ -704,11 +773,19 @@ theorem SupremumScalarMultiple (f : ℝ → ℝ) (A : Set ℝ) (lam : ℝ) (hA :
 
 Predicate logic:
 
-  (∀ hA ∈ A.Nonempty), (ℝ → ℝ ∧ ∃ m, ∀ x ∈ A, m ≤ f x) → (0 ≤ lam → FunctionInfimumOnSet (fun x => lam * f x) A = lam * FunctionInfimumOnSet f A) ∧ (lam ≤ 0 → FunctionInfimumOnSet (fun x => lam * f x) A = lam * FunctionSupremumOnSet f A)
+  ∀ (f : Real → Real) (A : Set Real) (lam : Real), (A.Nonempty ∧ (Exists fun m => ∀ (x : Real), x ∈ A → Real.instLE.le m (f x))) → ((Real.instLE.le 0 lam → LRA.Analysis.Functions.FunctionInfimumOnSet (fun x => instHMul.hMul lam (f x)) A = instHMul.hMul lam (LRA.Analysis.Functions.FunctionInfimumOnSet f A)) ∧ (Real.instLE.le lam 0 → LRA.Analysis.Functions.FunctionInfimumOnSet (fun x => instHMul.hMul lam (f x)) A = instHMul.hMul lam (LRA.Analysis.Functions.FunctionSupremumOnSet f A)))
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (A : Real → Prop) (lam : Real), (Exists fun x => Set.instMembership.1 A x ∧ Exists fun m => ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 m (f x)) → (Real.instLE.1 Zero.toOfNat0.1 lam → Zero.toOfNat0.1 = instHMul.1 lam Zero.toOfNat0.1 ∧ Real.instLE.1 lam Zero.toOfNat0.1 → Zero.toOfNat0.1 = instHMul.1 lam Zero.toOfNat0.1)
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    A : Set ℝ
+    lam : ℝ
+    hA : A.Nonempty
+  Prove
+    (Exists fun x => x ∈ A ∧ (Exists fun m => ∀ (x : Real), x ∈ A → Real.instLE.le m (f x))) → ((Real.instLE.le 0 lam → 0 = { hMul := fun a b => Real.instMul.mul a b }.hMul lam 0) ∧ (Real.instLE.le lam 0 → 0 = { hMul := fun a b => Real.instMul.mul a b }.hMul lam 0))
 
 Logical form (Lean):
 
@@ -752,7 +829,7 @@ theorem InfimumScalarMultiple (f : ℝ → ℝ) (A : Set ℝ) (lam : ℝ) (hA : 
 
 Predicate logic:
 
-  (I → ℝ → ℝ) → ∃ α ∈ I, PointwiseSupremumFamily f x = f α x
+  ∀ {I : Type u_1} [Fintype I] [Inhabited I] (f : I → Real → Real) (x : Real), Exists fun α => LRA.Analysis.Functions.PointwiseSupremumFamily f x = f α x
 
 Predicate logic (unfolded):
 
@@ -794,7 +871,7 @@ theorem FiniteFamilyPointwiseSupremumIsMaximum {I : Type*} [Fintype I] [Inhabite
 
 Predicate logic:
 
-  (I → ℝ → ℝ) → ∃ α ∈ I, PointwiseInfimumFamily f x = f α x
+  ∀ {I : Type u_1} [Fintype I] [Inhabited I] (f : I → Real → Real) (x : Real), Exists fun α => LRA.Analysis.Functions.PointwiseInfimumFamily f x = f α x
 
 Predicate logic (unfolded):
 

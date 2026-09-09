@@ -13,11 +13,16 @@ universe u
 
 Predicate logic:
 
-  PartialOrder (GreaterThan relation) ↔ PartialOrder relation
+  ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha), LRA.Order.PartialOrder (LRA.Order.GreaterThan relation) ↔ LRA.Order.PartialOrder relation
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (relation : Alpha → Alpha → Prop), (∀ (x : Alpha), relation x x ∧ (∀ (x y : Alpha), relation y x → relation x y → x = y ∧ ∀ (x y z : Alpha), relation y x → relation z y → relation z x)) ↔ (∀ (x : Alpha), relation x x ∧ (∀ (x y : Alpha), relation x y → relation y x → x = y ∧ ∀ (x y z : Alpha), relation x y → relation y z → relation x z))
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+  Prove
+    LRA.Order.PartialOrder (LRA.Order.GreaterThan relation) ↔ LRA.Order.PartialOrder relation
 
 Logical form (Lean):
 
@@ -57,11 +62,16 @@ theorem GreaterThanIsPartialOrderIff
 
 Predicate logic:
 
-  StrictOrder (GreaterThan relation) ↔ StrictOrder relation
+  ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha), LRA.Order.StrictOrder (LRA.Order.GreaterThan relation) ↔ LRA.Order.StrictOrder relation
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (relation : Alpha → Alpha → Prop), (∀ (x : Alpha), relation x x → False ∧ ∀ (x y z : Alpha), relation y x → relation z y → relation z x) ↔ (∀ (x : Alpha), relation x x → False ∧ ∀ (x y z : Alpha), relation x y → relation y z → relation x z)
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+  Prove
+    LRA.Order.StrictOrder (LRA.Order.GreaterThan relation) ↔ LRA.Order.StrictOrder relation
 
 Logical form (Lean):
 
@@ -101,11 +111,16 @@ theorem GreaterThanIsStrictOrderIff
 
 Predicate logic:
 
-  LinearOrder (GreaterThan relation) ↔ LinearOrder relation
+  ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha), LRA.Order.LinearOrder (LRA.Order.GreaterThan relation) ↔ LRA.Order.LinearOrder relation
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (relation : Alpha → Alpha → Prop), ((∀ (x : Alpha), relation x x ∧ (∀ (x y : Alpha), relation y x → relation x y → x = y ∧ ∀ (x y z : Alpha), relation y x → relation z y → relation z x)) ∧ ∀ (x y : Alpha), Or (relation y x) (relation x y)) ↔ ((∀ (x : Alpha), relation x x ∧ (∀ (x y : Alpha), relation x y → relation y x → x = y ∧ ∀ (x y z : Alpha), relation x y → relation y z → relation x z)) ∧ ∀ (x y : Alpha), Or (relation x y) (relation y x))
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+  Prove
+    LRA.Order.LinearOrder (LRA.Order.GreaterThan relation) ↔ LRA.Order.LinearOrder relation
 
 Logical form (Lean):
 
@@ -145,11 +160,16 @@ theorem GreaterThanIsLinearOrderIff
 
 Predicate logic:
 
-  StrictLinearOrder (GreaterThan relation) ↔ StrictLinearOrder relation
+  ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha), LRA.Order.StrictLinearOrder (LRA.Order.GreaterThan relation) ↔ LRA.Order.StrictLinearOrder relation
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (relation : Alpha → Alpha → Prop), ((∀ (x : Alpha), relation x x → False ∧ ∀ (x y z : Alpha), relation y x → relation z y → relation z x) ∧ ∀ (x y : Alpha), Or ((relation y x ∧ (x = y → False ∧ relation x y → False))) (Or ((x = y ∧ (relation y x → False ∧ relation x y → False))) ((relation x y ∧ (relation y x → False ∧ x = y → False))))) ↔ ((∀ (x : Alpha), relation x x → False ∧ ∀ (x y z : Alpha), relation x y → relation y z → relation x z) ∧ ∀ (x y : Alpha), Or ((relation x y ∧ (x = y → False ∧ relation y x → False))) (Or ((x = y ∧ (relation x y → False ∧ relation y x → False))) ((relation y x ∧ (relation x y → False ∧ x = y → False)))))
+  Ambient
+    (Alpha)
+  Objects
+    relation : LRA.Relation.Endorelation Alpha
+  Prove
+    LRA.Order.StrictLinearOrder (LRA.Order.GreaterThan relation) ↔ LRA.Order.StrictLinearOrder relation
 
 Logical form (Lean):
 

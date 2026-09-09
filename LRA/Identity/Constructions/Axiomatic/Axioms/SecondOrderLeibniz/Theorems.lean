@@ -6,21 +6,59 @@ namespace LRA.Identity
 universe u
 
 /--
-`IdentityRelation.satisfiesIdentityTheory` packages any `IdentityRelation`
-instance as an `IdentityTheory` over the full Leibniz predicate family.
+`IdentityRelation.satisfiesIdentityTheory` TODO
 
-Logical form:
+Predicate logic:
+
+  ∀ (Carrier : Type u) [inst : LRA.Identity.IdentityRelation Carrier], LRA.Identity.IdentityTheory (LRA.Identity.FullLeibniz Carrier) inst.Ident
+
+Predicate logic (unfolded):
+
+  ∀ (Carrier : Type u) [inst : LRA.Identity.IdentityRelation Carrier], ((∀ (x : Carrier), inst.Ident x x) ∧ (∀ (x y : Carrier), inst.Ident x y → ∀ (P : Carrier → Prop), True → P x → P y))
+
+Logical form (Lean):
 
 ```lean
 theorem IdentityRelation.satisfiesIdentityTheory (Carrier : Type u)
     [IdentityRelation Carrier] :
     IdentityTheory (FullLeibniz Carrier) (Ident : Carrier → Carrier → Prop)
 ```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro
+
 -/
 theorem IdentityRelation.satisfiesIdentityTheory (Carrier : Type u)
     [IdentityRelation Carrier] :
     IdentityTheory (FullLeibniz Carrier) (Ident : Carrier → Carrier → Prop) := by
-  sorry
+
+    exact {
+      reflexive := by
+        intro x
+        exact IdentReflexive x
+
+      leibniz := by
+        intro x y hxIy
+        intro P
+        intro fl Px
+        exact IdentLeibniz hxIy P Px -- hypothesis (x=y) The func (P) that P of x (Px)
+    }
+
 
 end LRA.Identity
 
@@ -36,20 +74,55 @@ construction-specific law packaging lives in
 -/
 
 /--
-`axiomaticLeibnizLaw` is the immediate theorem wrapper around the primitive
-axiomatic second-order Leibniz axiom.
+`axiomaticLeibnizLaw` TODO
 
-Logical form:
+Predicate logic:
+
+  ∀ {Carrier : Type u} {x y : Carrier}, LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x y → ∀ (Property : Carrier → Prop), Property x → Property y
+
+Predicate logic (unfolded):
+
+  ∀ {Carrier : Type u} {x y : Carrier}, LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x y → ∀ (Property : Carrier → Prop), Property x → Property y
+
+Logical form (Lean):
 
 ```lean
 theorem axiomaticLeibnizLaw {Carrier : Type u} {x y : Carrier}
     (h : Ax_IdentityRelation x y) (Property : Carrier → Prop) :
-    Property x → Property y
+    Property x → Property y := by
+  intro hPx
+  have hPy := Ax_LeibnizLaw h
+  have xy := hPy Property
+  have Py
 ```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro
+
 -/
 theorem axiomaticLeibnizLaw {Carrier : Type u} {x y : Carrier}
     (h : Ax_IdentityRelation x y) (Property : Carrier → Prop) :
     Property x → Property y := by
-  sorry
+  intro hPx
+  have hPy := Ax_LeibnizLaw h
+  have xy := hPy Property
+  have Py := xy hPx
+  exact Py
+
 
 end LRA.Identity.Constructions.Axiomatic

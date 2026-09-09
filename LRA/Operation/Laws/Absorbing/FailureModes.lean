@@ -15,7 +15,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (operation : Carrier → Carrier → Carrier) (candidate : Carrier), (∀ (element : Carrier), operation element candidate = candidate) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (element : Carrier), operation element candidate = candidate) → False
 
 Logical form (Lean):
 
@@ -59,7 +64,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (operation : Carrier → Carrier → Carrier) (candidate : Carrier), (∀ (element : Carrier), operation candidate element = candidate) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (element : Carrier), operation candidate element = candidate) → False
 
 Logical form (Lean):
 
@@ -100,12 +110,12 @@ def FailsLeftAbsorbing {Carrier : Type u}
 Predicate logic:
 
   def BooleanFirstProjection : BinaryEndoOperation Bool :=
-  fun left _ => left
+    fun left _ => left
 
 Predicate logic (unfolded):
 
   def BooleanFirstProjection : BinaryEndoOperation Bool :=
-  fun left _ => left (source fallback; no compiled unfold data available)
+    fun left _ => left (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -142,12 +152,12 @@ def BooleanFirstProjection : BinaryEndoOperation Bool :=
 Predicate logic:
 
   def BooleanSecondProjection : BinaryEndoOperation Bool :=
-  fun _ right => right
+    fun _ right => right
 
 Predicate logic (unfolded):
 
   def BooleanSecondProjection : BinaryEndoOperation Bool :=
-  fun _ right => right (source fallback; no compiled unfold data available)
+    fun _ right => right (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -183,11 +193,16 @@ def BooleanSecondProjection : BinaryEndoOperation Bool :=
 
 Predicate logic:
 
-  LeftAbsorbing BooleanFirstProjection false ∧ FailsRightAbsorbing BooleanFirstProjection false
+  (LRA.Operation.Laws.Absorbing.LeftAbsorbing LRA.Operation.Laws.Absorbing.BooleanFirstProjection Bool.false ∧ LRA.Operation.Laws.Absorbing.FailsRightAbsorbing LRA.Operation.Laws.Absorbing.BooleanFirstProjection Bool.false)
 
 Predicate logic (unfolded):
 
-  (∀ (element : Bool), Bool.false = Bool.false ∧ (∀ (element : Bool), element = Bool.false) → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (element : Bool), Bool.false = Bool.false) ∧ ((∀ (element : Bool), element = Bool.false) → False))
 
 Logical form (Lean):
 
@@ -225,11 +240,16 @@ theorem BooleanFirstProjectionLeftAbsorbingButNotRightAbsorbing :
 
 Predicate logic:
 
-  RightAbsorbing BooleanSecondProjection false ∧ FailsLeftAbsorbing BooleanSecondProjection false
+  (LRA.Operation.Laws.Absorbing.RightAbsorbing LRA.Operation.Laws.Absorbing.BooleanSecondProjection Bool.false ∧ LRA.Operation.Laws.Absorbing.FailsLeftAbsorbing LRA.Operation.Laws.Absorbing.BooleanSecondProjection Bool.false)
 
 Predicate logic (unfolded):
 
-  (∀ (element : Bool), Bool.false = Bool.false ∧ (∀ (element : Bool), element = Bool.false) → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (element : Bool), Bool.false = Bool.false) ∧ ((∀ (element : Bool), element = Bool.false) → False))
 
 Logical form (Lean):
 

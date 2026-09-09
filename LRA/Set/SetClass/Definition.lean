@@ -49,7 +49,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} (element : α) (setClass : α → Prop), setClass element
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    setClass element
 
 Logical form (Lean):
 

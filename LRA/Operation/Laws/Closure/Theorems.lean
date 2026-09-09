@@ -11,11 +11,21 @@ universe u v w
 
 Predicate logic:
 
-  codomainCarrier (operation input)
+  ∀ {Domain : Type u} {Codomain : Type v} {domainCarrier : Domain → Prop} {codomainCarrier : Codomain → Prop} {operation : LRA.Operation.HeterogeneousUnaryOperation Domain Codomain}, LRA.Operation.Laws.Closure.UnaryClosedUnder domainCarrier codomainCarrier operation → ∀ {input : Domain}, domainCarrier input → codomainCarrier (operation input)
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} {domainCarrier : Domain → Prop} {codomainCarrier : Codomain → Prop} {operation : Domain → Codomain}, (∀ (input : Domain), domainCarrier input → codomainCarrier (operation input)) → ∀ {input : Domain}, domainCarrier input → codomainCarrier (operation input)
+  Ambient
+    (Domain, Codomain)
+  Objects
+    domainCarrier : Domain → Prop
+    codomainCarrier : Codomain → Prop
+    operation : HeterogeneousUnaryOperation Domain Codomain
+    law : UnaryClosedUnder domainCarrier codomainCarrier operation
+    input : Domain
+    input_mem : domainCarrier input
+  Prove
+    (∀ (input : Domain), domainCarrier input → codomainCarrier (operation input)) → ∀ {input : Domain}, domainCarrier input → codomainCarrier (operation input)
 
 Logical form (Lean):
 
@@ -63,11 +73,24 @@ theorem UnaryClosedUnder.apply {Domain : Type u} {Codomain : Type v}
 
 Predicate logic:
 
-  resultCarrier (operation left right)
+  ∀ {Left : Type u} {Right : Type v} {Codomain : Type w} {leftCarrier : Left → Prop} {rightCarrier : Right → Prop} {resultCarrier : Codomain → Prop} {operation : LRA.Operation.HeterogeneousBinaryOperation Left Right Codomain}, LRA.Operation.Laws.Closure.BinaryClosedUnder leftCarrier rightCarrier resultCarrier operation → ∀ {left : Left} {right : Right}, (leftCarrier left ∧ rightCarrier right) → resultCarrier (operation left right)
 
 Predicate logic (unfolded):
 
-  ∀ {Left : Type u} {Right : Type v} {Codomain : Type w} {leftCarrier : Left → Prop} {rightCarrier : Right → Prop} {resultCarrier : Codomain → Prop} {operation : Left → Right → Codomain}, (∀ (left : Left) (right : Right), leftCarrier left → rightCarrier right → resultCarrier (operation left right)) → ∀ {left : Left} {right : Right}, (leftCarrier left ∧ rightCarrier right) → resultCarrier (operation left right)
+  Ambient
+    (Left, Right, Codomain)
+  Objects
+    leftCarrier : Left → Prop
+    rightCarrier : Right → Prop
+    resultCarrier : Codomain → Prop
+    operation : HeterogeneousBinaryOperation Left Right Codomain
+    law : BinaryClosedUnder leftCarrier rightCarrier resultCarrier operation
+    left : Left
+    right : Right
+    left_mem : leftCarrier left
+    right_mem : rightCarrier right
+  Prove
+    (∀ (left : Left) (right : Right), leftCarrier left → rightCarrier right → resultCarrier (operation left right)) → ∀ {left : Left} {right : Right}, (leftCarrier left ∧ rightCarrier right) → resultCarrier (operation left right)
 
 Logical form (Lean):
 
@@ -121,11 +144,21 @@ theorem BinaryClosedUnder.apply {Left : Type u} {Right : Type v} {Codomain : Typ
 
 Predicate logic:
 
-  carrier (operation left right)
+  ∀ {Ambient : Type u} {carrier : Ambient → Prop} {operation : LRA.Operation.BinaryEndoOperation Ambient}, LRA.Operation.Laws.Closure.BinaryEndoClosedOn carrier operation → ∀ {left right : Ambient}, (carrier left ∧ carrier right) → carrier (operation left right)
 
 Predicate logic (unfolded):
 
-  ∀ {Ambient : Type u} {carrier : Ambient → Prop} {operation : Ambient → Ambient → Ambient}, (∀ (left right : Ambient), carrier left → carrier right → carrier (operation left right)) → ∀ {left right : Ambient}, (carrier left ∧ carrier right) → carrier (operation left right)
+  Ambient
+    (Ambient)
+  Objects
+    carrier : Ambient → Prop
+    operation : BinaryEndoOperation Ambient
+    law : BinaryEndoClosedOn carrier operation
+    left right : Ambient
+    left_mem : carrier left
+    right_mem : carrier right
+  Prove
+    (∀ (left right : Ambient), carrier left → carrier right → carrier (operation left right)) → ∀ {left right : Ambient}, (carrier left ∧ carrier right) → carrier (operation left right)
 
 Logical form (Lean):
 
@@ -173,11 +206,16 @@ theorem BinaryEndoClosedOn.apply {Ambient : Type u}
 
 Predicate logic:
 
-  BinaryEndoClosedOn fun _ ∈ Carrier => True operation
+  ∀ {Carrier : Type u} (operation : LRA.Operation.BinaryEndoOperation Carrier), LRA.Operation.Laws.Closure.BinaryEndoClosedOn (fun x => True) operation
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (operation : Carrier → Carrier → Carrier) (left right : Carrier), (True ∧ True) → (fun x => True) (operation left right)
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+  Prove
+    (True ∧ True) → (fun x => True) (operation left right)
 
 Logical form (Lean):
 

@@ -8,11 +8,16 @@ namespace LRA.Order.OrderedSets.Poset
 
 Predicate logic:
 
-  (∀ poset ∈ LRA.Order.Poset), LRA.Order.PartialOrder poset.NonStrictOrder
+  ∀ (poset : LRA.Order.Poset), LRA.Order.PartialOrder poset.NonStrictOrder
 
 Predicate logic (unfolded):
 
-  ∀ (poset : LRA.Order.Poset), (∀ (x : poset.1), poset.2 x x ∧ (∀ (x y : poset.1), poset.2 x y → poset.2 y x → x = y ∧ ∀ (x y z : poset.1), poset.2 x y → poset.2 y z → poset.2 x z))
+  Ambient
+    (implicit ambient)
+  Objects
+    poset : LRA.Order.Poset
+  Prove
+    ((∀ (x : poset.1), poset.2 x x) ∧ ((∀ (x y : poset.1), poset.2 x y → poset.2 y x → x = y) ∧ (∀ (x y z : poset.1), poset.2 x y → poset.2 y z → poset.2 x z)))
 
 Logical form (Lean):
 
@@ -50,11 +55,16 @@ theorem PosetOrderIsPartialOrder
 
 Predicate logic:
 
-  (∀ poset ∈ LRA.Order.Poset), LRA.Relation.Reflexive poset.NonStrictOrder
+  ∀ (poset : LRA.Order.Poset), LRA.Relation.Reflexive poset.NonStrictOrder
 
 Predicate logic (unfolded):
 
-  ∀ (poset : LRA.Order.Poset) (x : poset.1), poset.2 x x
+  Ambient
+    (implicit ambient)
+  Objects
+    poset : LRA.Order.Poset
+  Prove
+    poset.2 x x
 
 Logical form (Lean):
 
@@ -92,11 +102,16 @@ theorem PosetOrderIsReflexive
 
 Predicate logic:
 
-  (∀ poset ∈ LRA.Order.Poset), LRA.Relation.Antisymmetric poset.NonStrictOrder
+  ∀ (poset : LRA.Order.Poset), LRA.Relation.Antisymmetric poset.NonStrictOrder
 
 Predicate logic (unfolded):
 
-  ∀ (poset : LRA.Order.Poset) (x y : poset.1), (poset.2 x y ∧ poset.2 y x) → x = y
+  Ambient
+    (implicit ambient)
+  Objects
+    poset : LRA.Order.Poset
+  Prove
+    (poset.2 x y ∧ poset.2 y x) → x = y
 
 Logical form (Lean):
 
@@ -134,11 +149,16 @@ theorem PosetOrderIsAntisymmetric
 
 Predicate logic:
 
-  (∀ poset ∈ LRA.Order.Poset), LRA.Relation.Transitive poset.NonStrictOrder
+  ∀ (poset : LRA.Order.Poset), LRA.Relation.Transitive poset.NonStrictOrder
 
 Predicate logic (unfolded):
 
-  ∀ (poset : LRA.Order.Poset) (x y z : poset.1), (poset.2 x y ∧ poset.2 y z) → poset.2 x z
+  Ambient
+    (implicit ambient)
+  Objects
+    poset : LRA.Order.Poset
+  Prove
+    (poset.2 x y ∧ poset.2 y z) → poset.2 x z
 
 Logical form (Lean):
 

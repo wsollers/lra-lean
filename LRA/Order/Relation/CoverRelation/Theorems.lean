@@ -9,11 +9,18 @@ universe u
 
 Predicate logic:
 
-  strictRelation lower upper
+  ∀ {Alpha : Type u} {strictRelation : LRA.Relation.Endorelation Alpha} {lower upper : Alpha}, LRA.Order.CoverRelation strictRelation lower upper → strictRelation lower upper
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {strictRelation : Alpha → Alpha → Prop} {lower upper : Alpha}, (strictRelation lower upper ∧ ∀ (middle : Alpha), (strictRelation lower middle ∧ strictRelation middle upper) → False) → strictRelation lower upper
+  Ambient
+    (Alpha)
+  Objects
+    strictRelation : LRA.Relation.Endorelation Alpha
+    lower upper : Alpha
+    lowerIsCoveredByUpper : CoverRelation strictRelation lower upper
+  Prove
+    (strictRelation lower upper ∧ (∀ (middle : Alpha), (strictRelation lower middle ∧ strictRelation middle upper) → False)) → strictRelation lower upper
 
 Logical form (Lean):
 

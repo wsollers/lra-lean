@@ -8,20 +8,20 @@ namespace LRA.UniversalAlgebra.Signature.BasicArithmeticLanguage
 Predicate logic:
 
   inductive PrimitiveOperationSymbol where
-  | zero
-  | one
-  | addition
-  | negation
-  | multiplication
+    | zero
+    | one
+    | addition
+    | negation
+    | multiplication
 
 Predicate logic (unfolded):
 
   inductive PrimitiveOperationSymbol where
-  | zero
-  | one
-  | addition
-  | negation
-  | multiplication (source fallback; no compiled unfold data available)
+    | zero
+    | one
+    | addition
+    | negation
+    | multiplication (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -66,20 +66,20 @@ inductive PrimitiveOperationSymbol where
 Predicate logic:
 
   def PrimitiveOperationArity : PrimitiveOperationSymbol -> Nat
-  | .zero => 0
-  | .one => 0
-  | .addition => 2
-  | .negation => 1
-  | .multiplication => 2
+    | .zero => 0
+    | .one => 0
+    | .addition => 2
+    | .negation => 1
+    | .multiplication => 2
 
 Predicate logic (unfolded):
 
   def PrimitiveOperationArity : PrimitiveOperationSymbol -> Nat
-  | .zero => 0
-  | .one => 0
-  | .addition => 2
-  | .negation => 1
-  | .multiplication => 2 (source fallback; no compiled unfold data available)
+    | .zero => 0
+    | .one => 0
+    | .addition => 2
+    | .negation => 1
+    | .multiplication => 2 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

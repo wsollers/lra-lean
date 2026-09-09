@@ -8,12 +8,12 @@ namespace LRA.ModelTheoryTheory.BooleanAlgebras
 Predicate logic:
 
   abbrev BooleanAlgebraConceptSignature :=
-  LRA.UniversalAlgebra.InterpretedOperationBundles.BooleanAlgebraOperationBundle
+    LRA.UniversalAlgebra.InterpretedOperationBundles.BooleanAlgebraOperationBundle
 
 Predicate logic (unfolded):
 
   abbrev BooleanAlgebraConceptSignature :=
-  LRA.UniversalAlgebra.InterpretedOperationBundles.BooleanAlgebraOperationBundle (source fallback; no compiled unfold data available)
+    LRA.UniversalAlgebra.InterpretedOperationBundles.BooleanAlgebraOperationBundle (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

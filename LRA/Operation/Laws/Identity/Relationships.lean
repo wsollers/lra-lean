@@ -11,11 +11,19 @@ universe u
 
 Predicate logic:
 
-  leftIdentity = rightIdentity
+  ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {leftIdentity rightIdentity : Carrier}, (LRA.Operation.Laws.Identity.LeftIdentity operation leftIdentity ∧ LRA.Operation.Laws.Identity.RightIdentity operation rightIdentity) → leftIdentity = rightIdentity
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {operation : Carrier → Carrier → Carrier} {leftIdentity rightIdentity : Carrier}, (∀ (element : Carrier), operation leftIdentity element = element ∧ ∀ (element : Carrier), operation element rightIdentity = element) → leftIdentity = rightIdentity
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    leftIdentity rightIdentity : Carrier
+    leftLaw : LeftIdentity operation leftIdentity
+    rightLaw : RightIdentity operation rightIdentity
+  Prove
+    ((∀ (element : Carrier), operation leftIdentity element = element) ∧ (∀ (element : Carrier), operation element rightIdentity = element)) → leftIdentity = rightIdentity
 
 Logical form (Lean):
 
@@ -59,11 +67,19 @@ theorem LeftRightIdentitiesCoincide {Carrier : Type u}
 
 Predicate logic:
 
-  firstIdentity = secondIdentity
+  ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {firstIdentity secondIdentity : Carrier}, (LRA.Operation.Laws.Identity.TwoSidedIdentity operation firstIdentity ∧ LRA.Operation.Laws.Identity.TwoSidedIdentity operation secondIdentity) → firstIdentity = secondIdentity
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {operation : Carrier → Carrier → Carrier} {firstIdentity secondIdentity : Carrier}, ((∀ (element : Carrier), operation firstIdentity element = element ∧ ∀ (element : Carrier), operation element firstIdentity = element) ∧ (∀ (element : Carrier), operation secondIdentity element = element ∧ ∀ (element : Carrier), operation element secondIdentity = element)) → firstIdentity = secondIdentity
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    firstIdentity secondIdentity : Carrier
+    firstLaw : TwoSidedIdentity operation firstIdentity
+    secondLaw : TwoSidedIdentity operation secondIdentity
+  Prove
+    (((∀ (element : Carrier), operation firstIdentity element = element) ∧ (∀ (element : Carrier), operation element firstIdentity = element)) ∧ ((∀ (element : Carrier), operation secondIdentity element = element) ∧ (∀ (element : Carrier), operation element secondIdentity = element))) → firstIdentity = secondIdentity
 
 Logical form (Lean):
 

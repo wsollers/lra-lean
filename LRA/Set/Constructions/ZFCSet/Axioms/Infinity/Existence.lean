@@ -3,6 +3,48 @@ import LRA.Set.Constructions.ZFCSet.Axioms.Infinity.Definitions
 
 namespace LRA.Set.Constructions.ZFCSet.Axioms
 
+/--
+`InductiveSetExists` TODO
+
+Predicate logic:
+
+  Exists fun A => LRA.Set.Constructions.ZFCSet.Axioms.IsInductiveSet A
+
+Predicate logic (unfolded):
+
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun A => ((Exists fun empty => (LRA.Set.Constructions.instMembershipZFCSet.1 A empty ∧ (∀ (x : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.Constructions.instMembershipZFCSet.1 empty x → False))) ∧ (∀ (x : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.Constructions.instMembershipZFCSet.1 A x → Exists fun successor => (LRA.Set.Constructions.instMembershipZFCSet.1 A successor ∧ (∀ (w : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.Constructions.instMembershipZFCSet.1 successor w ↔ Or (LRA.Set.Constructions.instMembershipZFCSet.1 x w) (w = x)))))
+
+Logical form (Lean):
+
+```lean
+theorem InductiveSetExists :
+    ∃ A : Set, IsInductiveSet A
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: use, rcases
+
+-/
 theorem InductiveSetExists :
     ∃ A : Set, IsInductiveSet A := by
   sorry

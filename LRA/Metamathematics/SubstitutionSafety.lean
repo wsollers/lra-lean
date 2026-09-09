@@ -44,24 +44,102 @@ tracked as a real proof target rather than assumed handled because a
 plausibly-named predicate already exists in the codebase.
 -/
 
-/-- The abstract shape of a substitution-safety schema, parameterized
-over an expression type `Expr`, a variable/term pair the substitution
-acts on, and the specific "is this substitution safe" predicate a system
-supplies. `IsSafe` corresponds to what `IsSubstitutable` already provides
-for `LRA.Logic.Syntax.FirstOrder`; `substitute` corresponds to what
-`LRA.Logic.Syntax.FirstOrder.substitute` already provides. The class
-exists to make explicit that both must be supplied TOGETHER, with the
-theorem below as the connecting obligation.
+/--
+`SubstitutionSafety` The abstract shape of a substitution-safety schema, parameterized over an expression type `Expr`, a variable/term pair the substitution acts on, and the specific "is this substitution safe" predicate a system supplies. `IsSafe` corresponds to what `IsSubstitutable` already provides for `LRA.Logic.Syntax.FirstOrder`; `substitute` corresponds to what `LRA.Logic.Syntax.FirstOrder.substitute` already provides. The class exists to make explicit that both must be supplied TOGETHER, with the theorem below as the connecting obligation.  `freeVariablesOf` is typed `Expr → MetaCollection Variable` (see `FiniteSyntacticCollection`) rather than `Mathlib`'s `Set Variable` or `LRA.Set`'s own ZFC-backed sets, deliberately: this file sits beneath both, and `MetaCollection` costs nothing beyond `List`, Lean's own core inductive type, with no comprehension principle borrowed from either. `LRA.Logic.Syntax.FirstOrder.freeVariables` happens to return a `Finset Variable`; any future instantiation against it is expected to convert via `Finset.toList` at the instance site, not to change this schema's signature.
 
-`freeVariablesOf` is typed `Expr → MetaCollection Variable` (see
-`FiniteSyntacticCollection`) rather than `Mathlib`'s `Set Variable` or
-`LRA.Set`'s own ZFC-backed sets, deliberately: this file sits beneath
-both, and `MetaCollection` costs nothing beyond `List`, Lean's own core
-inductive type, with no comprehension principle borrowed from either.
-`LRA.Logic.Syntax.FirstOrder.freeVariables` happens to return a `Finset
-Variable`; any future instantiation against it is expected to convert
-via `Finset.toList` at the instance site, not to change this schema's
-signature. -/
+Predicate logic:
+
+  class SubstitutionSafety
+      (Expr Variable Term : Type u)
+      (IsSafe : Expr → Variable → Term → Prop)
+      (substitute : Variable → Term → Expr → Expr)
+      (variableOccursFreelyIn : Variable → Term → Prop)
+      (freeVariablesOf : Expr → MetaCollection Variable) where
+    /-- The theorem every instance of this schema is required to supply:
+    performing `substitute` under the `IsSafe` guard never introduces a
+    free variable of `t` into a position where it was not already free (or
+    more precisely, never places it under a binder it did not already sit
+    under before substitution) -- i.e., no capture occurs. This is stated
+    here as a REQUIRED FIELD, not proved generically, because "capture"
+    necessarily refers to `Expr`'s own binder structure, which differs per
+    system (single `Variable` type for `LRA.Logic.Syntax.FirstOrder`, split
+    `FreeVar`/`BoundVar` for `LRA.ProofTheory.System.Takeuti`). -/
+    noCaptureUnderSafety :
+      ∀ (e : Expr) (x : Variable) (t : Term) (y : Variable),
+        IsSafe e x t →
+        variableOccursFreelyIn y t →
+        y ∈ freeVariablesOf e →
+        y ∈ freeVariablesOf (substitute x t e)
+
+Predicate logic (unfolded):
+
+  class SubstitutionSafety
+      (Expr Variable Term : Type u)
+      (IsSafe : Expr → Variable → Term → Prop)
+      (substitute : Variable → Term → Expr → Expr)
+      (variableOccursFreelyIn : Variable → Term → Prop)
+      (freeVariablesOf : Expr → MetaCollection Variable) where
+    /-- The theorem every instance of this schema is required to supply:
+    performing `substitute` under the `IsSafe` guard never introduces a
+    free variable of `t` into a position where it was not already free (or
+    more precisely, never places it under a binder it did not already sit
+    under before substitution) -- i.e., no capture occurs. This is stated
+    here as a REQUIRED FIELD, not proved generically, because "capture"
+    necessarily refers to `Expr`'s own binder structure, which differs per
+    system (single `Variable` type for `LRA.Logic.Syntax.FirstOrder`, split
+    `FreeVar`/`BoundVar` for `LRA.ProofTheory.System.Takeuti`). -/
+    noCaptureUnderSafety :
+      ∀ (e : Expr) (x : Variable) (t : Term) (y : Variable),
+        IsSafe e x t →
+        variableOccursFreelyIn y t →
+        y ∈ freeVariablesOf e →
+        y ∈ freeVariablesOf (substitute x t e) (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+class SubstitutionSafety
+    (Expr Variable Term : Type u)
+    (IsSafe : Expr → Variable → Term → Prop)
+    (substitute : Variable → Term → Expr → Expr)
+    (variableOccursFreelyIn : Variable → Term → Prop)
+    (freeVariablesOf : Expr → MetaCollection Variable) where
+  /-- The theorem every instance of this schema is required to supply:
+  performing `substitute` under the `IsSafe` guard never introduces a
+  free variable of `t` into a position where it was not already free (or
+  more precisely, never places it under a binder it did not already sit
+  under before substitution) -- i.e., no capture occurs. This is stated
+  here as a REQUIRED FIELD, not proved generically, because "capture"
+  necessarily refers to `Expr`'s own binder structure, which differs per
+  system (single `Variable` type for `LRA.Logic.Syntax.FirstOrder`, split
+  `FreeVar`/`BoundVar` for `LRA.ProofTheory.System.Takeuti`). -/
+  noCaptureUnderSafety :
+    ∀ (e : Expr) (x : Variable) (t : Term) (y : Variable),
+      IsSafe e x t →
+      variableOccursFreelyIn y t →
+      y ∈ freeVariablesOf e →
+      y ∈ freeVariablesOf (substitute x t e)
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro
+
+-/
 class SubstitutionSafety
     (Expr Variable Term : Type u)
     (IsSafe : Expr → Variable → Term → Prop)
@@ -84,8 +162,54 @@ class SubstitutionSafety
       y ∈ freeVariablesOf e →
       y ∈ freeVariablesOf (substitute x t e)
 
-/-- A named, non-vacuous proposition standing for the missing first-order
-substitution-safety bridge. -/
+/--
+`FirstOrderSubstitutionSafetyObligation` A named, non-vacuous proposition standing for the missing first-order substitution-safety bridge.
+
+Predicate logic:
+
+  Exists fun Expr => Exists fun Variable => Exists fun Term => Exists fun IsSafe => Exists fun substitute => Exists fun variableOccursFreelyIn => Exists fun freeVariablesOf => LRA.Metamathematics.SubstitutionSafety Expr Variable Term IsSafe substitute variableOccursFreelyIn freeVariablesOf
+
+Predicate logic (unfolded):
+
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun Expr => Exists fun Variable => Exists fun Term => Exists fun IsSafe => Exists fun substitute => Exists fun variableOccursFreelyIn => Exists fun freeVariablesOf => LRA.Metamathematics.SubstitutionSafety Expr Variable Term IsSafe substitute variableOccursFreelyIn freeVariablesOf
+
+Logical form (Lean):
+
+```lean
+def FirstOrderSubstitutionSafetyObligation : Prop :=
+  ∃ (Expr Variable Term : Type u)
+    (IsSafe : Expr → Variable → Term → Prop)
+    (substitute : Variable → Term → Expr → Expr)
+    (variableOccursFreelyIn : Variable → Term → Prop)
+    (freeVariablesOf : Expr → MetaCollection Variable),
+      SubstitutionSafety
+        Expr Variable Term IsSafe substitute variableOccursFreelyIn freeVariablesOf
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, use, rcases, unfold
+
+-/
 def FirstOrderSubstitutionSafetyObligation : Prop :=
   ∃ (Expr Variable Term : Type u)
     (IsSafe : Expr → Variable → Term → Prop)
@@ -95,15 +219,48 @@ def FirstOrderSubstitutionSafetyObligation : Prop :=
       SubstitutionSafety
         Expr Variable Term IsSafe substitute variableOccursFreelyIn freeVariablesOf
 
-/-- Named forward reference, not yet dischargeable: the obligation
-`SubstitutionSafety` imposes on `LRA.Logic.Syntax.FirstOrder`
-specifically, instantiating `IsSafe := IsSubstitutable`, `substitute :=
-LRA.Logic.Syntax.FirstOrder.substitute`, `freeVariablesOf :=
-LRA.Logic.Syntax.FirstOrder.freeVariables`. This instance is declared
-here as a STATEMENT of what remains to be proved -- filling it in is
-real work belonging to `LRA.Logic.Syntax.FirstOrder`, not to this file,
-once undertaken. Left as `sorry` deliberately: no instance is asserted
-to exist yet, only that one is owed. -/
+/--
+`firstOrderSubstitutionSafetyObligation` Named forward reference, not yet dischargeable: the obligation `SubstitutionSafety` imposes on `LRA.Logic.Syntax.FirstOrder` specifically, instantiating `IsSafe := IsSubstitutable`, `substitute := LRA.Logic.Syntax.FirstOrder.substitute`, `freeVariablesOf := LRA.Logic.Syntax.FirstOrder.freeVariables`. This instance is declared here as a STATEMENT of what remains to be proved -- filling it in is real work belonging to `LRA.Logic.Syntax.FirstOrder`, not to this file, once undertaken. Left as `sorry` deliberately: no instance is asserted to exist yet, only that one is owed.
+
+Predicate logic:
+
+  LRA.Metamathematics.FirstOrderSubstitutionSafetyObligation
+
+Predicate logic (unfolded):
+
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Metamathematics.FirstOrderSubstitutionSafetyObligation
+
+Logical form (Lean):
+
+```lean
+theorem firstOrderSubstitutionSafetyObligation :
+    FirstOrderSubstitutionSafetyObligation
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 theorem firstOrderSubstitutionSafetyObligation :
     FirstOrderSubstitutionSafetyObligation := by
   sorry

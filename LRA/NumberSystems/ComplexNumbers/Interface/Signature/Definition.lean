@@ -8,12 +8,12 @@ namespace LRA.NumberSystems.ComplexNumbers.Interface.Signature
 Predicate logic:
 
   abbrev ComplexNumbersFunctionSymbol :=
-  LRA.AlgebraicStructures.Field.Interface.Signature.FieldFunctionSymbol
+    LRA.AlgebraicStructures.Field.Interface.Signature.FieldFunctionSymbol
 
 Predicate logic (unfolded):
 
   abbrev ComplexNumbersFunctionSymbol :=
-  LRA.AlgebraicStructures.Field.Interface.Signature.FieldFunctionSymbol (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.Field.Interface.Signature.FieldFunctionSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -50,12 +50,12 @@ abbrev ComplexNumbersFunctionSymbol :=
 Predicate logic:
 
   abbrev ComplexNumbersRelationSymbol :=
-  LRA.AlgebraicStructures.Field.Interface.Signature.FieldRelationSymbol
+    LRA.AlgebraicStructures.Field.Interface.Signature.FieldRelationSymbol
 
 Predicate logic (unfolded):
 
   abbrev ComplexNumbersRelationSymbol :=
-  LRA.AlgebraicStructures.Field.Interface.Signature.FieldRelationSymbol (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.Field.Interface.Signature.FieldRelationSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -92,12 +92,12 @@ abbrev ComplexNumbersRelationSymbol :=
 Predicate logic:
 
   abbrev ComplexNumbersConstantSymbol :=
-  LRA.AlgebraicStructures.Field.Interface.Signature.FieldConstantSymbol
+    LRA.AlgebraicStructures.Field.Interface.Signature.FieldConstantSymbol
 
 Predicate logic (unfolded):
 
   abbrev ComplexNumbersConstantSymbol :=
-  LRA.AlgebraicStructures.Field.Interface.Signature.FieldConstantSymbol (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.Field.Interface.Signature.FieldConstantSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -134,12 +134,12 @@ abbrev ComplexNumbersConstantSymbol :=
 Predicate logic:
 
   def ComplexNumbersFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.Field.Interface.Signature.FieldFirstOrderFunctions
+    LRA.AlgebraicStructures.Field.Interface.Signature.FieldFirstOrderFunctions
 
 Predicate logic (unfolded):
 
   def ComplexNumbersFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.Field.Interface.Signature.FieldFirstOrderFunctions (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.Field.Interface.Signature.FieldFirstOrderFunctions (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -176,12 +176,12 @@ def ComplexNumbersFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols :=
 Predicate logic:
 
   def ComplexNumbersFirstOrderRelations : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.Field.Interface.Signature.FieldFirstOrderRelations
+    LRA.AlgebraicStructures.Field.Interface.Signature.FieldFirstOrderRelations
 
 Predicate logic (unfolded):
 
   def ComplexNumbersFirstOrderRelations : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.Field.Interface.Signature.FieldFirstOrderRelations (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.Field.Interface.Signature.FieldFirstOrderRelations (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -218,12 +218,12 @@ def ComplexNumbersFirstOrderRelations : LRA.Logic.ArityIndexedSymbols :=
 Predicate logic:
 
   def ComplexNumbersFirstOrderSignature : LRA.Logic.Signature :=
-  LRA.AlgebraicStructures.Field.Interface.Signature.FieldFirstOrderSignature
+    LRA.AlgebraicStructures.Field.Interface.Signature.FieldFirstOrderSignature
 
 Predicate logic (unfolded):
 
   def ComplexNumbersFirstOrderSignature : LRA.Logic.Signature :=
-  LRA.AlgebraicStructures.Field.Interface.Signature.FieldFirstOrderSignature (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.Field.Interface.Signature.FieldFirstOrderSignature (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

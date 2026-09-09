@@ -11,24 +11,24 @@ variable (dyadicData : RationalDyadicApproximationData)
 Predicate logic:
 
   def FractionalPartialSum
-    (digits : FractionalDigits) :
-    Nat → Rational dyadicData
-  | 0 => 0
-  | bound + 1 =>
-      FractionalPartialSum digits bound +
-        DigitValue dyadicData.RationalSystem (digits bound) *
-          (PowerOfTwo dyadicData.RationalSystem (bound + 1))⁻¹
+      (digits : FractionalDigits) :
+      Nat → Rational dyadicData
+    | 0 => 0
+    | bound + 1 =>
+        FractionalPartialSum digits bound +
+          DigitValue dyadicData.RationalSystem (digits bound) *
+            (PowerOfTwo dyadicData.RationalSystem (bound + 1))⁻¹
 
 Predicate logic (unfolded):
 
   def FractionalPartialSum
-    (digits : FractionalDigits) :
-    Nat → Rational dyadicData
-  | 0 => 0
-  | bound + 1 =>
-      FractionalPartialSum digits bound +
-        DigitValue dyadicData.RationalSystem (digits bound) *
-          (PowerOfTwo dyadicData.RationalSystem (bound + 1))⁻¹ (source fallback; no compiled unfold data available)
+      (digits : FractionalDigits) :
+      Nat → Rational dyadicData
+    | 0 => 0
+    | bound + 1 =>
+        FractionalPartialSum digits bound +
+          DigitValue dyadicData.RationalSystem (digits bound) *
+            (PowerOfTwo dyadicData.RationalSystem (bound + 1))⁻¹ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

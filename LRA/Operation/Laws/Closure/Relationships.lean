@@ -11,11 +11,17 @@ universe u
 
 Predicate logic:
 
-  BinaryEndoClosedOn carrier operation ↔ BinaryClosedUnder carrier carrier carrier operation
+  ∀ {Ambient : Type u} {carrier : Ambient → Prop} {operation : LRA.Operation.BinaryEndoOperation Ambient}, LRA.Operation.Laws.Closure.BinaryEndoClosedOn carrier operation ↔ LRA.Operation.Laws.Closure.BinaryClosedUnder carrier carrier carrier operation
 
 Predicate logic (unfolded):
 
-  ∀ {Ambient : Type u} {carrier : Ambient → Prop} {operation : Ambient → Ambient → Ambient}, ∀ (left right : Ambient), carrier left → carrier right → carrier (operation left right) ↔ ∀ (left right : Ambient), carrier left → carrier right → carrier (operation left right)
+  Ambient
+    (Ambient)
+  Objects
+    carrier : Ambient → Prop
+    operation : BinaryEndoOperation Ambient
+  Prove
+    LRA.Operation.Laws.Closure.BinaryEndoClosedOn carrier operation ↔ LRA.Operation.Laws.Closure.BinaryClosedUnder carrier carrier carrier operation
 
 Logical form (Lean):
 

@@ -14,7 +14,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {K : Type u} [inst : NormedField K] {V : Type v} (space : LRA.Analysis.FunctionalAnalysis.NormedLinearSpaces.NormedLinearSpaceDefinition K V) (sequence : Nat → V) (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (m n : Nat), instLENat.1 N m → instLENat.1 N n → Real.instLT.1 (space.2 (space.vectorSpace.2 (sequence m) (space.vectorSpace.3 (sequence n)))) ε
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Real.instLT.lt 0 ε → Exists fun N => ∀ (m n : Nat), instLENat.le N m → instLENat.le N n → Real.instLT.lt (space.2 (space.vectorSpace.2 (sequence m) (space.vectorSpace.3 (sequence n)))) ε
 
 Logical form (Lean):
 
@@ -66,7 +71,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {K : Type u} [inst : NormedField K] {V : Type v} (space : LRA.Analysis.FunctionalAnalysis.NormedLinearSpaces.NormedLinearSpaceDefinition K V) (sequence : Nat → V) (limit : V) (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (space.2 (space.vectorSpace.2 (sequence n) (space.vectorSpace.3 limit))) ε
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (space.2 (space.vectorSpace.2 (sequence n) (space.vectorSpace.3 limit))) ε
 
 Logical form (Lean):
 
@@ -117,30 +127,30 @@ def ConvergesTo
 Predicate logic:
 
   structure BanachSpaceDefinition
-    (K : Type u)
-    [NormedField K]
-    (V : Type v) where
+      (K : Type u)
+      [NormedField K]
+      (V : Type v) where
 
-  normedLinearSpace : LRA.Analysis.FunctionalAnalysis.NormedLinearSpaces.NormedLinearSpaceDefinition K V
+    normedLinearSpace : LRA.Analysis.FunctionalAnalysis.NormedLinearSpaces.NormedLinearSpaceDefinition K V
 
-  complete :
-    ∀ sequence : ℕ → V,
-      IsCauchySequence normedLinearSpace sequence →
-      ∃ limit : V, ConvergesTo normedLinearSpace sequence limit
+    complete :
+      ∀ sequence : ℕ → V,
+        IsCauchySequence normedLinearSpace sequence →
+        ∃ limit : V, ConvergesTo normedLinearSpace sequence limit
 
 Predicate logic (unfolded):
 
   structure BanachSpaceDefinition
-    (K : Type u)
-    [NormedField K]
-    (V : Type v) where
+      (K : Type u)
+      [NormedField K]
+      (V : Type v) where
 
-  normedLinearSpace : LRA.Analysis.FunctionalAnalysis.NormedLinearSpaces.NormedLinearSpaceDefinition K V
+    normedLinearSpace : LRA.Analysis.FunctionalAnalysis.NormedLinearSpaces.NormedLinearSpaceDefinition K V
 
-  complete :
-    ∀ sequence : ℕ → V,
-      IsCauchySequence normedLinearSpace sequence →
-      ∃ limit : V, ConvergesTo normedLinearSpace sequence limit (source fallback; no compiled unfold data available)
+    complete :
+      ∀ sequence : ℕ → V,
+        IsCauchySequence normedLinearSpace sequence →
+        ∃ limit : V, ConvergesTo normedLinearSpace sequence limit (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

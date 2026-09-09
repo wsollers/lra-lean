@@ -8,16 +8,16 @@ universe u
 Predicate logic:
 
   class PartialOrderLaws (R : Type u) [LE R] : Prop where
-  LeRefl : forall a : R, a <= a
-  LeAntisymm : forall a b : R, a <= b -> b <= a -> a = b
-  LeTrans : forall a b c : R, a <= b -> b <= c -> a <= c
+    LeRefl : forall a : R, a <= a
+    LeAntisymm : forall a b : R, a <= b -> b <= a -> a = b
+    LeTrans : forall a b c : R, a <= b -> b <= c -> a <= c
 
 Predicate logic (unfolded):
 
   class PartialOrderLaws (R : Type u) [LE R] : Prop where
-  LeRefl : forall a : R, a <= a
-  LeAntisymm : forall a b : R, a <= b -> b <= a -> a = b
-  LeTrans : forall a b c : R, a <= b -> b <= c -> a <= c (source fallback; no compiled unfold data available)
+    LeRefl : forall a : R, a <= a
+    LeAntisymm : forall a b : R, a <= b -> b <= a -> a = b
+    LeTrans : forall a b c : R, a <= b -> b <= c -> a <= c (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -61,11 +61,16 @@ variable {R : Type u}
 
 Predicate logic:
 
-  forall a : R, a <= a
+  ∀ {R : Type u} [inst : LE R], LRA.Order.PartialOrderLaws R → ∀ (a : R), inst.le a a
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : LE R], LRA.Order.PartialOrderLaws R → ∀ (a : R), inst.1 a a
+  Ambient
+    (R, ≤)
+  Objects
+    (none)
+  Prove
+    LRA.Order.PartialOrderLaws R → ∀ (a : R), inst.le a a
 
 Logical form (Lean):
 
@@ -99,11 +104,16 @@ theorem LeRefl [LE R] [PartialOrderLaws R] : forall a : R, a <= a := by
 
 Predicate logic:
 
-  forall a b : R, a <= b -> b <= a -> a = b
+  ∀ {R : Type u} [inst : LE R], LRA.Order.PartialOrderLaws R → ∀ (a b : R), (inst.le a b ∧ inst.le b a) → a = b
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : LE R], LRA.Order.PartialOrderLaws R → ∀ (a b : R), (inst.1 a b ∧ inst.1 b a) → a = b
+  Ambient
+    (R, ≤)
+  Objects
+    (none)
+  Prove
+    LRA.Order.PartialOrderLaws R → ∀ (a b : R), (inst.le a b ∧ inst.le b a) → a = b
 
 Logical form (Lean):
 
@@ -139,11 +149,16 @@ theorem LeAntisymm [LE R] [PartialOrderLaws R] :
 
 Predicate logic:
 
-  forall a b c : R, a <= b -> b <= c -> a <= c
+  ∀ {R : Type u} [inst : LE R], LRA.Order.PartialOrderLaws R → ∀ (a b c : R), (inst.le a b ∧ inst.le b c) → inst.le a c
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : LE R], LRA.Order.PartialOrderLaws R → ∀ (a b c : R), (inst.1 a b ∧ inst.1 b c) → inst.1 a c
+  Ambient
+    (R, ≤)
+  Objects
+    (none)
+  Prove
+    LRA.Order.PartialOrderLaws R → ∀ (a b c : R), (inst.le a b ∧ inst.le b c) → inst.le a c
 
 Logical form (Lean):
 

@@ -16,7 +16,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (first second : LRA.NumberSystems.RealNumbers.Cantor.NestedIntervalSequence fieldModel) (tolerance : fieldModel.1), fieldModel.ltInst.1 fieldModel.zeroInst.1 tolerance → Exists fun index => (fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (first.interval index).1 (fieldModel.signature.toRingConceptSignature.2 (second.interval index).2)) tolerance ∧ fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (second.interval index).1 (fieldModel.signature.toRingConceptSignature.2 (first.interval index).2)) tolerance)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    fieldModel.8.lt 0 tolerance → Exists fun index => (fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (first.interval index).1 (fieldModel.signature.toRingConceptSignature.2 (second.interval index).2)) tolerance ∧ fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (second.interval index).1 (fieldModel.signature.toRingConceptSignature.2 (first.interval index).2)) tolerance)
 
 Logical form (Lean):
 
@@ -80,11 +85,16 @@ def EndpointEquivalent
 
 Predicate logic:
 
-  (∀ fieldModel ∈ RationalModel), Equivalence (EndpointEquivalent fieldModel)
+  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Equivalence (LRA.NumberSystems.RealNumbers.Cantor.EndpointEquivalent fieldModel)
 
 Predicate logic (unfolded):
 
-  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Equivalence fun first second => ∀ (tolerance : fieldModel.1), fieldModel.ltInst.1 fieldModel.zeroInst.1 tolerance → Exists fun index => (fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (first.interval index).1 (fieldModel.signature.toRingConceptSignature.2 (second.interval index).2)) tolerance ∧ fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (second.interval index).1 (fieldModel.signature.toRingConceptSignature.2 (first.interval index).2)) tolerance)
+  Ambient
+    (implicit ambient)
+  Objects
+    fieldModel : RationalModel
+  Prove
+    Equivalence fun first second => ∀ (tolerance : fieldModel.1), fieldModel.8.lt 0 tolerance → Exists fun index => (fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (first.interval index).1 (fieldModel.signature.toRingConceptSignature.2 (second.interval index).2)) tolerance ∧ fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (second.interval index).1 (fieldModel.signature.toRingConceptSignature.2 (first.interval index).2)) tolerance)
 
 Logical form (Lean):
 
@@ -123,16 +133,16 @@ theorem EndpointEquivalentIsEquivalence
 Predicate logic:
 
   def EndpointSetoid (fieldModel : RationalModel) :
-    Setoid (NestedIntervalSequence fieldModel) where
-  r := EndpointEquivalent fieldModel
-  iseqv := EndpointEquivalentIsEquivalence fieldModel
+      Setoid (NestedIntervalSequence fieldModel) where
+    r := EndpointEquivalent fieldModel
+    iseqv := EndpointEquivalentIsEquivalence fieldModel
 
 Predicate logic (unfolded):
 
   def EndpointSetoid (fieldModel : RationalModel) :
-    Setoid (NestedIntervalSequence fieldModel) where
-  r := EndpointEquivalent fieldModel
-  iseqv := EndpointEquivalentIsEquivalence fieldModel (source fallback; no compiled unfold data available)
+      Setoid (NestedIntervalSequence fieldModel) where
+    r := EndpointEquivalent fieldModel
+    iseqv := EndpointEquivalentIsEquivalence fieldModel (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -173,12 +183,12 @@ def EndpointSetoid (fieldModel : RationalModel) :
 Predicate logic:
 
   abbrev Carrier (fieldModel : RationalModel) :=
-  Quotient (EndpointSetoid fieldModel)
+    Quotient (EndpointSetoid fieldModel)
 
 Predicate logic (unfolded):
 
   abbrev Carrier (fieldModel : RationalModel) :=
-  Quotient (EndpointSetoid fieldModel) (source fallback; no compiled unfold data available)
+    Quotient (EndpointSetoid fieldModel) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

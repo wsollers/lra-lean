@@ -9,12 +9,12 @@ namespace LRA.NumberSystems.Integers.Tao
 Predicate logic:
 
   abbrev WholeNumberArithmeticForTaoFormalDifferences :=
-  QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs
+    QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs
 
 Predicate logic (unfolded):
 
   abbrev WholeNumberArithmeticForTaoFormalDifferences :=
-  QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs (source fallback; no compiled unfold data available)
+    QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -51,14 +51,14 @@ abbrev WholeNumberArithmeticForTaoFormalDifferences :=
 Predicate logic:
 
   structure FormalDifference (whole_data : WholeNumberArithmeticForTaoFormalDifferences) where
-  minuend : whole_data.carrier
-  subtrahend : whole_data.carrier
+    minuend : whole_data.carrier
+    subtrahend : whole_data.carrier
 
 Predicate logic (unfolded):
 
   structure FormalDifference (whole_data : WholeNumberArithmeticForTaoFormalDifferences) where
-  minuend : whole_data.carrier
-  subtrahend : whole_data.carrier (source fallback; no compiled unfold data available)
+    minuend : whole_data.carrier
+    subtrahend : whole_data.carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

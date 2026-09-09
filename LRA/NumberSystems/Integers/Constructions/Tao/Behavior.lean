@@ -8,11 +8,16 @@ namespace LRA.NumberSystems.Integers.Tao
 
 Predicate logic:
 
-  (∀ whole_data ∈ WholeNumberArithmeticForTaoFormalDifferences), ∀ first second : whole_data.carrier, whole_embedding whole_data (whole_data.addition first second) = Quotient.mk (setoid whole_data) (representative_addition whole_data (whole_embedding_representative whole_data first) (whole_embedding_representative whole_data second))
+  ∀ (whole_data : LRA.NumberSystems.Integers.Tao.WholeNumberArithmeticForTaoFormalDifferences) (first second : whole_data.carrier), LRA.NumberSystems.Integers.Tao.whole_embedding whole_data (whole_data.addition first second) = Quotient.mk (LRA.NumberSystems.Integers.Tao.setoid whole_data) (LRA.NumberSystems.Integers.Tao.representative_addition whole_data (LRA.NumberSystems.Integers.Tao.whole_embedding_representative whole_data first) (LRA.NumberSystems.Integers.Tao.whole_embedding_representative whole_data second))
 
 Predicate logic (unfolded):
 
-  ∀ (whole_data : LRA.NumberSystems.Integers.Tao.WholeNumberArithmeticForTaoFormalDifferences) (first second : whole_data.1), Quot.mk (LRA.NumberSystems.Integers.Tao.setoid whole_data).1 { minuend := whole_data.4 first second, subtrahend := whole_data.2 } = Quot.mk (LRA.NumberSystems.Integers.Tao.setoid whole_data).1 { minuend := whole_data.4 (LRA.NumberSystems.Integers.Tao.whole_embedding_representative whole_data first).1 (LRA.NumberSystems.Integers.Tao.whole_embedding_representative whole_data second).1, subtrahend := whole_data.4 (LRA.NumberSystems.Integers.Tao.whole_embedding_representative whole_data first).2 (LRA.NumberSystems.Integers.Tao.whole_embedding_representative whole_data second).2 }
+  Ambient
+    (implicit ambient)
+  Objects
+    whole_data : WholeNumberArithmeticForTaoFormalDifferences
+  Prove
+    Quot.mk (LRA.NumberSystems.Integers.Tao.setoid whole_data).1 { minuend := whole_data.4 first second, subtrahend := whole_data.2 } = Quot.mk (LRA.NumberSystems.Integers.Tao.setoid whole_data).1 { minuend := whole_data.4 (LRA.NumberSystems.Integers.Tao.whole_embedding_representative whole_data first).1 (LRA.NumberSystems.Integers.Tao.whole_embedding_representative whole_data second).1, subtrahend := whole_data.4 (LRA.NumberSystems.Integers.Tao.whole_embedding_representative whole_data first).2 (LRA.NumberSystems.Integers.Tao.whole_embedding_representative whole_data second).2 }
 
 Logical form (Lean):
 
@@ -60,11 +65,16 @@ theorem whole_embedding_preserves_addition
 
 Predicate logic:
 
-  (∀ whole_data ∈ WholeNumberArithmeticForTaoFormalDifferences), whole_embedding whole_data whole_data.zero = Quotient.mk (setoid whole_data) (zero_representative whole_data)
+  ∀ (whole_data : LRA.NumberSystems.Integers.Tao.WholeNumberArithmeticForTaoFormalDifferences), LRA.NumberSystems.Integers.Tao.whole_embedding whole_data whole_data.zero = Quotient.mk (LRA.NumberSystems.Integers.Tao.setoid whole_data) (LRA.NumberSystems.Integers.Tao.zero_representative whole_data)
 
 Predicate logic (unfolded):
 
-  ∀ (whole_data : LRA.NumberSystems.Integers.Tao.WholeNumberArithmeticForTaoFormalDifferences), Quot.mk (LRA.NumberSystems.Integers.Tao.setoid whole_data).1 { minuend := whole_data.2, subtrahend := whole_data.2 } = Quot.mk (LRA.NumberSystems.Integers.Tao.setoid whole_data).1 { minuend := whole_data.2, subtrahend := whole_data.2 }
+  Ambient
+    (implicit ambient)
+  Objects
+    whole_data : WholeNumberArithmeticForTaoFormalDifferences
+  Prove
+    Quot.mk (LRA.NumberSystems.Integers.Tao.setoid whole_data).1 { minuend := whole_data.2, subtrahend := whole_data.2 } = Quot.mk (LRA.NumberSystems.Integers.Tao.setoid whole_data).1 { minuend := whole_data.2, subtrahend := whole_data.2 }
 
 Logical form (Lean):
 

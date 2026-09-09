@@ -8,12 +8,12 @@ namespace LRA.NumberSystems.NaturalNumbers.Interface.Signature
 Predicate logic:
 
   abbrev NaturalNumbersFunctionSymbol :=
-  LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.Signature.CommutativeSemiringWithoutZeroFunctionSymbol
+    LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.Signature.CommutativeSemiringWithoutZeroFunctionSymbol
 
 Predicate logic (unfolded):
 
   abbrev NaturalNumbersFunctionSymbol :=
-  LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.Signature.CommutativeSemiringWithoutZeroFunctionSymbol (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.Signature.CommutativeSemiringWithoutZeroFunctionSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -50,12 +50,12 @@ abbrev NaturalNumbersFunctionSymbol :=
 Predicate logic:
 
   abbrev NaturalNumbersRelationSymbol :=
-  LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.Signature.CommutativeSemiringWithoutZeroRelationSymbol
+    LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.Signature.CommutativeSemiringWithoutZeroRelationSymbol
 
 Predicate logic (unfolded):
 
   abbrev NaturalNumbersRelationSymbol :=
-  LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.Signature.CommutativeSemiringWithoutZeroRelationSymbol (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.Signature.CommutativeSemiringWithoutZeroRelationSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -92,12 +92,12 @@ abbrev NaturalNumbersRelationSymbol :=
 Predicate logic:
 
   abbrev NaturalNumbersConstantSymbol :=
-  LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.Signature.CommutativeSemiringWithoutZeroConstantSymbol
+    LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.Signature.CommutativeSemiringWithoutZeroConstantSymbol
 
 Predicate logic (unfolded):
 
   abbrev NaturalNumbersConstantSymbol :=
-  LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.Signature.CommutativeSemiringWithoutZeroConstantSymbol (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.Signature.CommutativeSemiringWithoutZeroConstantSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -134,12 +134,12 @@ abbrev NaturalNumbersConstantSymbol :=
 Predicate logic:
 
   def NaturalNumbersFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.Signature.CommutativeSemiringWithoutZeroFirstOrderFunctions
+    LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.Signature.CommutativeSemiringWithoutZeroFirstOrderFunctions
 
 Predicate logic (unfolded):
 
   def NaturalNumbersFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.Signature.CommutativeSemiringWithoutZeroFirstOrderFunctions (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.Signature.CommutativeSemiringWithoutZeroFirstOrderFunctions (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -176,12 +176,12 @@ def NaturalNumbersFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols :=
 Predicate logic:
 
   def NaturalNumbersFirstOrderRelations : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.Signature.CommutativeSemiringWithoutZeroFirstOrderRelations
+    LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.Signature.CommutativeSemiringWithoutZeroFirstOrderRelations
 
 Predicate logic (unfolded):
 
   def NaturalNumbersFirstOrderRelations : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.Signature.CommutativeSemiringWithoutZeroFirstOrderRelations (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.Signature.CommutativeSemiringWithoutZeroFirstOrderRelations (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -218,12 +218,12 @@ def NaturalNumbersFirstOrderRelations : LRA.Logic.ArityIndexedSymbols :=
 Predicate logic:
 
   def NaturalNumbersFirstOrderSignature : LRA.Logic.Signature :=
-  LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.Signature.CommutativeSemiringWithoutZeroFirstOrderSignature
+    LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.Signature.CommutativeSemiringWithoutZeroFirstOrderSignature
 
 Predicate logic (unfolded):
 
   def NaturalNumbersFirstOrderSignature : LRA.Logic.Signature :=
-  LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.Signature.CommutativeSemiringWithoutZeroFirstOrderSignature (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.Signature.CommutativeSemiringWithoutZeroFirstOrderSignature (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

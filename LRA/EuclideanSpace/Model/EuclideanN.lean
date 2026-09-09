@@ -21,7 +21,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  abbrev RealCoordinate (real_model : RealModel) : Type u := real_model.Carrier
+  abbrev RealCoordinate (real_model : RealModel) : Type u := real_model.Carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -59,12 +59,12 @@ abbrev RealCoordinate (real_model : RealModel) : Type u := real_model.Carrier
 Predicate logic:
 
   abbrev Coordinates (real_model : RealModel) (n : ℕ) : Type u :=
-  CoordinateTuple real_model n
+    CoordinateTuple real_model n
 
 Predicate logic (unfolded):
 
   abbrev Coordinates (real_model : RealModel) (n : ℕ) : Type u :=
-  CoordinateTuple real_model n
+    CoordinateTuple real_model n (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -106,12 +106,12 @@ abbrev Coordinates (real_model : RealModel) (n : ℕ) : Type u :=
 Predicate logic:
 
   structure EuclideanPoint (real_model : RealModel) (n : ℕ) where
-  coord : Coordinates real_model n
+    coord : Coordinates real_model n
 
 Predicate logic (unfolded):
 
   structure EuclideanPoint (real_model : RealModel) (n : ℕ) where
-  coord : Coordinates real_model n
+    coord : Coordinates real_model n (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -155,7 +155,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  abbrev Rn (real_model : RealModel) (n : ℕ) := EuclideanPoint real_model n
+  abbrev Rn (real_model : RealModel) (n : ℕ) := EuclideanPoint real_model n (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -193,12 +193,12 @@ abbrev Rn (real_model : RealModel) (n : ℕ) := EuclideanPoint real_model n
 Predicate logic:
 
   def euclideanSpace (real_model : RealModel) (n : ℕ) : EuclideanSpaceDefinition where
-  Carrier := Rn real_model n
+    Carrier := Rn real_model n
 
 Predicate logic (unfolded):
 
   def euclideanSpace (real_model : RealModel) (n : ℕ) : EuclideanSpaceDefinition where
-  Carrier := Rn real_model n
+    Carrier := Rn real_model n (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -238,12 +238,12 @@ def euclideanSpace (real_model : RealModel) (n : ℕ) : EuclideanSpaceDefinition
 Predicate logic:
 
   def origin (real_model : RealModel) (n : ℕ) : Rn real_model n :=
-  { coord := OriginCoordinates real_model n }
+    { coord := OriginCoordinates real_model n }
 
 Predicate logic (unfolded):
 
   def origin (real_model : RealModel) (n : ℕ) : Rn real_model n :=
-  { coord := OriginCoordinates real_model n }
+    { coord := OriginCoordinates real_model n } (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -283,14 +283,14 @@ def origin (real_model : RealModel) (n : ℕ) : Rn real_model n :=
 Predicate logic:
 
   def pointOfCoordinates (real_model : RealModel) (n : ℕ) :
-    Coordinates real_model n → Rn real_model n :=
-  fun coordinates => { coord := coordinates }
+      Coordinates real_model n → Rn real_model n :=
+    fun coordinates => { coord := coordinates }
 
 Predicate logic (unfolded):
 
   def pointOfCoordinates (real_model : RealModel) (n : ℕ) :
-    Coordinates real_model n → Rn real_model n :=
-  fun coordinates => { coord := coordinates }
+      Coordinates real_model n → Rn real_model n :=
+    fun coordinates => { coord := coordinates } (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -332,18 +332,18 @@ def pointOfCoordinates (real_model : RealModel) (n : ℕ) :
 Predicate logic:
 
   def standardCoordinateSystem (real_model : RealModel) (n : ℕ) :
-    CoordinateSystemDefinition (euclideanSpace real_model n) real_model n where
-  origin := origin real_model n
-  coordinates := fun point => point.coord
-  pointOf := pointOfCoordinates real_model n
+      CoordinateSystemDefinition (euclideanSpace real_model n) real_model n where
+    origin := origin real_model n
+    coordinates := fun point => point.coord
+    pointOf := pointOfCoordinates real_model n
 
 Predicate logic (unfolded):
 
   def standardCoordinateSystem (real_model : RealModel) (n : ℕ) :
-    CoordinateSystemDefinition (euclideanSpace real_model n) real_model n where
-  origin := origin real_model n
-  coordinates := fun point => point.coord
-  pointOf := pointOfCoordinates real_model n
+      CoordinateSystemDefinition (euclideanSpace real_model n) real_model n where
+    origin := origin real_model n
+    coordinates := fun point => point.coord
+    pointOf := pointOfCoordinates real_model n (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -390,14 +390,14 @@ def standardCoordinateSystem (real_model : RealModel) (n : ℕ) :
 Predicate logic:
 
   def getX {real_model : RealModel} {n : ℕ} (hn : 1 ≤ n)
-    (point : Rn real_model n) : RealCoordinate real_model :=
-  point.coord ⟨0, Nat.lt_of_lt_of_le (by decide) hn⟩
+      (point : Rn real_model n) : RealCoordinate real_model :=
+    point.coord ⟨0, Nat.lt_of_lt_of_le (by decide) hn⟩
 
 Predicate logic (unfolded):
 
   def getX {real_model : RealModel} {n : ℕ} (hn : 1 ≤ n)
-    (point : Rn real_model n) : RealCoordinate real_model :=
-  point.coord ⟨0, Nat.lt_of_lt_of_le (by decide) hn⟩
+      (point : Rn real_model n) : RealCoordinate real_model :=
+    point.coord ⟨0, Nat.lt_of_lt_of_le (by decide) hn⟩ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -440,14 +440,14 @@ def getX {real_model : RealModel} {n : ℕ} (hn : 1 ≤ n)
 Predicate logic:
 
   def getY {real_model : RealModel} {n : ℕ} (hn : 2 ≤ n)
-    (point : Rn real_model n) : RealCoordinate real_model :=
-  point.coord ⟨1, Nat.lt_of_lt_of_le (by decide) hn⟩
+      (point : Rn real_model n) : RealCoordinate real_model :=
+    point.coord ⟨1, Nat.lt_of_lt_of_le (by decide) hn⟩
 
 Predicate logic (unfolded):
 
   def getY {real_model : RealModel} {n : ℕ} (hn : 2 ≤ n)
-    (point : Rn real_model n) : RealCoordinate real_model :=
-  point.coord ⟨1, Nat.lt_of_lt_of_le (by decide) hn⟩
+      (point : Rn real_model n) : RealCoordinate real_model :=
+    point.coord ⟨1, Nat.lt_of_lt_of_le (by decide) hn⟩ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -490,14 +490,14 @@ def getY {real_model : RealModel} {n : ℕ} (hn : 2 ≤ n)
 Predicate logic:
 
   def getZ {real_model : RealModel} {n : ℕ} (hn : 3 ≤ n)
-    (point : Rn real_model n) : RealCoordinate real_model :=
-  point.coord ⟨2, Nat.lt_of_lt_of_le (by decide) hn⟩
+      (point : Rn real_model n) : RealCoordinate real_model :=
+    point.coord ⟨2, Nat.lt_of_lt_of_le (by decide) hn⟩
 
 Predicate logic (unfolded):
 
   def getZ {real_model : RealModel} {n : ℕ} (hn : 3 ≤ n)
-    (point : Rn real_model n) : RealCoordinate real_model :=
-  point.coord ⟨2, Nat.lt_of_lt_of_le (by decide) hn⟩
+      (point : Rn real_model n) : RealCoordinate real_model :=
+    point.coord ⟨2, Nat.lt_of_lt_of_le (by decide) hn⟩ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -540,14 +540,14 @@ def getZ {real_model : RealModel} {n : ℕ} (hn : 3 ≤ n)
 Predicate logic:
 
   def getW {real_model : RealModel} {n : ℕ} (hn : 4 ≤ n)
-    (point : Rn real_model n) : RealCoordinate real_model :=
-  point.coord ⟨3, Nat.lt_of_lt_of_le (by decide) hn⟩
+      (point : Rn real_model n) : RealCoordinate real_model :=
+    point.coord ⟨3, Nat.lt_of_lt_of_le (by decide) hn⟩
 
 Predicate logic (unfolded):
 
   def getW {real_model : RealModel} {n : ℕ} (hn : 4 ≤ n)
-    (point : Rn real_model n) : RealCoordinate real_model :=
-  point.coord ⟨3, Nat.lt_of_lt_of_le (by decide) hn⟩
+      (point : Rn real_model n) : RealCoordinate real_model :=
+    point.coord ⟨3, Nat.lt_of_lt_of_le (by decide) hn⟩ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -591,16 +591,16 @@ def getW {real_model : RealModel} {n : ℕ} (hn : 4 ≤ n)
 Predicate logic:
 
   def sumFin {n : ℕ} {R : Type u} [Add R] [OfNat R 0] (f : Fin n → R) : R :=
-  match n with
-  | 0 => 0
-  | m + 1 => f (Fin.last m) + sumFin (fun i => f (Fin.castSucc i))
+    match n with
+    | 0 => 0
+    | m + 1 => f (Fin.last m) + sumFin (fun i => f (Fin.castSucc i))
 
 Predicate logic (unfolded):
 
   def sumFin {n : ℕ} {R : Type u} [Add R] [OfNat R 0] (f : Fin n → R) : R :=
-  match n with
-  | 0 => 0
-  | m + 1 => f (Fin.last m) + sumFin (fun i => f (Fin.castSucc i))
+    match n with
+    | 0 => 0
+    | m + 1 => f (Fin.last m) + sumFin (fun i => f (Fin.castSucc i)) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -654,18 +654,18 @@ instance (real_model : RealModel) (n : ℕ) : Between (Rn real_model n) where
 Predicate logic:
 
   def squaredDistance (real_model : RealModel) {n : ℕ}
-    (x y : Rn real_model n) : RealCoordinate real_model :=
-  sumFin (fun i =>
-    let delta := x.coord i + -(y.coord i)
-    delta * delta)
+      (x y : Rn real_model n) : RealCoordinate real_model :=
+    sumFin (fun i =>
+      let delta := x.coord i + -(y.coord i)
+      delta * delta)
 
 Predicate logic (unfolded):
 
   def squaredDistance (real_model : RealModel) {n : ℕ}
-    (x y : Rn real_model n) : RealCoordinate real_model :=
-  sumFin (fun i =>
-    let delta := x.coord i + -(y.coord i)
-    delta * delta)
+      (x y : Rn real_model n) : RealCoordinate real_model :=
+    sumFin (fun i =>
+      let delta := x.coord i + -(y.coord i)
+      delta * delta) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -717,20 +717,20 @@ instance (real_model : RealModel) (n : ℕ) : Congruent (Rn real_model n) where
 Predicate logic:
 
   def EuclideanTupleModel (real_model : RealModel) (n : ℕ) :
-    LRA.ModelTheory.FirstOrder.Model TarskiFirstOrderSignature :=
-  BuildTarskiModel
-    (Point := Rn real_model n)
-    (between := fun x y z => between x y z)
-    (congruent := fun x y z w => congruent x y z w)
+      LRA.ModelTheory.FirstOrder.Model TarskiFirstOrderSignature :=
+    BuildTarskiModel
+      (Point := Rn real_model n)
+      (between := fun x y z => between x y z)
+      (congruent := fun x y z w => congruent x y z w)
 
 Predicate logic (unfolded):
 
   def EuclideanTupleModel (real_model : RealModel) (n : ℕ) :
-    LRA.ModelTheory.FirstOrder.Model TarskiFirstOrderSignature :=
-  BuildTarskiModel
-    (Point := Rn real_model n)
-    (between := fun x y z => between x y z)
-    (congruent := fun x y z w => congruent x y z w)
+      LRA.ModelTheory.FirstOrder.Model TarskiFirstOrderSignature :=
+    BuildTarskiModel
+      (Point := Rn real_model n)
+      (between := fun x y z => between x y z)
+      (congruent := fun x y z w => congruent x y z w) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

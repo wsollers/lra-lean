@@ -12,7 +12,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} {β : Type v} (R : α → β → Prop) (a : β) (a_1 : α), R a_1 a
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    R a_1 a
 
 Logical form (Lean):
 

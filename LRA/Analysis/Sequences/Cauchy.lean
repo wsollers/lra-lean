@@ -16,7 +16,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.Analysis.Sequences.RealSequence) (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (m : Nat), instLENat.1 N m → ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x m) (x n)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x m) (x n)))) ε
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Real.instLT.lt 0 ε → Exists fun N => ∀ (m : Nat), instLENat.le N m → ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x m) (x n))) ε
 
 Logical form (Lean):
 
@@ -52,11 +57,16 @@ def IsCauchy (x : RealSequence) : Prop :=
 
 Predicate logic:
 
-  (∃ L ∈ ℝ, ConvergesTo x L) → IsCauchy x
+  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (Exists fun L => LRA.Analysis.Sequences.ConvergesTo x L) → LRA.Analysis.Sequences.IsCauchy x
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (Exists fun L => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x n) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x n) L))) ε) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (m : Nat), instLENat.1 N m → ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x m) (x n)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x m) (x n)))) ε
+  Ambient
+    (implicit ambient)
+  Objects
+    x : RealSequence
+  Prove
+    (Exists fun L => ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x n) L)) ε) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (m : Nat), instLENat.le N m → ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x m) (x n))) ε
 
 Logical form (Lean):
 
@@ -92,11 +102,16 @@ theorem ConvergentSequencesAreCauchy {x : RealSequence}
 
 Predicate logic:
 
-  (IsCauchy x) → BoundedSeq x
+  ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.IsCauchy x → LRA.Analysis.Sequences.BoundedSeq x
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (m : Nat), instLENat.1 N m → ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x m) (x n)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x m) (x n)))) ε) → Exists fun M => (Real.instLT.1 Zero.toOfNat0.1 M ∧ ∀ (n : Nat), Real.instLE.1 (SemilatticeSup.toMax.1 (x n) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (x n))) M)
+  Ambient
+    (implicit ambient)
+  Objects
+    x : RealSequence
+  Prove
+    (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (m : Nat), instLENat.le N m → ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x m) (x n))) ε) → Exists fun M => (Real.instLT.lt 0 M ∧ (∀ (n : Nat), Real.instLE.le (abs (x n)) M))
 
 Logical form (Lean):
 
@@ -132,11 +147,17 @@ theorem CauchySequencesAreBounded {x : RealSequence} (h : IsCauchy x) :
 
 Predicate logic:
 
-  (IsCauchy x ∧ IsSubsequentialLimit x L) → ConvergesTo x L
+  ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real}, (LRA.Analysis.Sequences.IsCauchy x ∧ LRA.Analysis.Sequences.IsSubsequentialLimit x L) → LRA.Analysis.Sequences.ConvergesTo x L
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real}, (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (m : Nat), instLENat.1 N m → ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x m) (x n)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x m) (x n)))) ε ∧ Exists fun σ => (∀ (k l : Nat), instLTNat.1 k l → instLTNat.1 (σ k) (σ l) ∧ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 ((fun k => x (σ k)) n) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub ((fun k => x (σ k)) n) L))) ε)) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x n) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x n) L))) ε
+  Ambient
+    (ℝ)
+  Objects
+    x : RealSequence
+    L : ℝ
+  Prove
+    ((∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (m : Nat), instLENat.le N m → ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x m) (x n))) ε) ∧ (Exists fun σ => ((∀ (k l : Nat), instLTNat.lt k l → instLTNat.lt (σ k) (σ l)) ∧ (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ((fun k => x (σ k)) n) L)) ε)))) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x n) L)) ε
 
 Logical form (Lean):
 
@@ -174,11 +195,16 @@ theorem CauchyConvergentSubsequenceConverges {x : RealSequence} {L : ℝ}
 
 Predicate logic:
 
-  ∃ L ∈ ℝ, ConvergesTo x L ↔ IsCauchy x
+  ∀ {x : LRA.Analysis.Sequences.RealSequence}, Exists fun L => LRA.Analysis.Sequences.ConvergesTo x L ↔ LRA.Analysis.Sequences.IsCauchy x
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence}, Exists fun L => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x n) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x n) L))) ε ↔ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (m : Nat), instLENat.1 N m → ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x m) (x n)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x m) (x n)))) ε
+  Ambient
+    (implicit ambient)
+  Objects
+    x : RealSequence
+  Prove
+    Exists fun L => LRA.Analysis.Sequences.ConvergesTo x L ↔ LRA.Analysis.Sequences.IsCauchy x
 
 Logical form (Lean):
 
@@ -214,11 +240,16 @@ theorem CauchyCriterionRealSequences {x : RealSequence} :
 
 Predicate logic:
 
-  IsCauchy x ↔ ∀ ε > 0, ∃ N ∈ ℕ, ∀ p q : ℕ, |x (N + p) - x (N + q)| < ε
+  ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.IsCauchy x ↔ ∀ (ε : Real), GT.gt ε 0 → Exists fun N => ∀ (p q : Nat), Real.instLT.lt (abs (instHSub.hSub (x (instHAdd.hAdd N p)) (x (instHAdd.hAdd N q)))) ε
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence}, ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (m : Nat), instLENat.1 N m → ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x m) (x n)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x m) (x n)))) ε ↔ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (p q : Nat), Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x (instHAdd.1 N p)) (x (instHAdd.1 N q))) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x (instHAdd.1 N p)) (x (instHAdd.1 N q))))) ε
+  Ambient
+    (implicit ambient)
+  Objects
+    x : RealSequence
+  Prove
+    LRA.Analysis.Sequences.IsCauchy x ↔ ∀ (ε : Real), GT.gt ε 0 → Exists fun N => ∀ (p q : Nat), Real.instLT.lt (abs (instHSub.hSub (x (instHAdd.hAdd N p)) (x (instHAdd.hAdd N q)))) ε
 
 Logical form (Lean):
 
@@ -254,11 +285,16 @@ theorem CauchyCriterionViaTails {x : RealSequence} :
 
 Predicate logic:
 
-  IsCauchy x ↔ ∀ ε > 0, ∃ N₀ ∈ ℕ, ∀ N ≥ N₀, ∀ m ≥ N, ∀ n ≥ N, |x m - x n| < ε
+  ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.IsCauchy x ↔ ∀ (ε : Real), GT.gt ε 0 → Exists fun N₀ => ∀ (N : Nat), GE.ge N N₀ → ∀ (m : Nat), GE.ge m N → ∀ (n : Nat), GE.ge n N → Real.instLT.lt (abs (instHSub.hSub (x m) (x n))) ε
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence}, ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (m : Nat), instLENat.1 N m → ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x m) (x n)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x m) (x n)))) ε ↔ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N₀ => ∀ (N : Nat), instLENat.1 N₀ N → ∀ (m : Nat), instLENat.1 N m → ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x m) (x n)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x m) (x n)))) ε
+  Ambient
+    (implicit ambient)
+  Objects
+    x : RealSequence
+  Prove
+    LRA.Analysis.Sequences.IsCauchy x ↔ ∀ (ε : Real), GT.gt ε 0 → Exists fun N₀ => ∀ (N : Nat), GE.ge N N₀ → ∀ (m : Nat), GE.ge m N → ∀ (n : Nat), GE.ge n N → Real.instLT.lt (abs (instHSub.hSub (x m) (x n))) ε
 
 Logical form (Lean):
 
@@ -296,11 +332,16 @@ theorem CauchyTailDiameterCriterion {x : RealSequence} :
 
 Predicate logic:
 
-  (IsCauchy x) → IsNull (fun n => |x (n + 1) - x n|)
+  ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.IsCauchy x → LRA.Analysis.Sequences.IsNull fun n => abs (instHSub.hSub (x (instHAdd.hAdd n 1)) (x n))
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (m : Nat), instLENat.1 N m → ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x m) (x n)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x m) (x n)))) ε) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 ((fun n => SemilatticeSup.toMax.1 (instHSub.hSub (x (instHAdd.hAdd n 1)) (x n)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg (instHSub.hSub (x (instHAdd.hAdd n 1)) (x n)))) n) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 ((fun n => SemilatticeSup.toMax.max (instHSub.hSub (x (instHAdd.hAdd n 1)) (x n)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg (instHSub.hSub (x (instHAdd.hAdd n 1)) (x n)))) n))) ε
+  Ambient
+    (implicit ambient)
+  Objects
+    x : RealSequence
+  Prove
+    (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (m : Nat), instLENat.le N m → ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x m) (x n))) ε) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ((fun n => abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1)) (x n))) n)) ε
 
 Logical form (Lean):
 
@@ -336,11 +377,17 @@ theorem CauchySuccessiveDifferencesVanish {x : RealSequence}
 
 Predicate logic:
 
-  (IsCauchy x) → IsCauchy (fun n => α * x n)
+  ∀ {x : LRA.Analysis.Sequences.RealSequence} {α : Real}, LRA.Analysis.Sequences.IsCauchy x → LRA.Analysis.Sequences.IsCauchy fun n => instHMul.hMul α (x n)
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence} {α : Real}, (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (m : Nat), instLENat.1 N m → ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x m) (x n)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x m) (x n)))) ε) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (m : Nat), instLENat.1 N m → ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 ((fun n => instHMul.1 α (x n)) m) ((fun n => instHMul.1 α (x n)) n)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 ((fun n => instHMul.hMul α (x n)) m) ((fun n => instHMul.hMul α (x n)) n)))) ε
+  Ambient
+    (ℝ)
+  Objects
+    x : RealSequence
+    α : ℝ
+  Prove
+    (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (m : Nat), instLENat.le N m → ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x m) (x n))) ε) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (m : Nat), instLENat.le N m → ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ((fun n => { hMul := fun a b => Real.instMul.mul a b }.hMul α (x n)) m) ((fun n => { hMul := fun a b => Real.instMul.mul a b }.hMul α (x n)) n))) ε
 
 Logical form (Lean):
 
@@ -376,11 +423,16 @@ theorem ScalarMultipleCauchySequence {x : RealSequence} {α : ℝ}
 
 Predicate logic:
 
-  (IsCauchy x ∧ IsCauchy y) → IsCauchy (fun n => x n + y n)
+  ∀ {x y : LRA.Analysis.Sequences.RealSequence}, (LRA.Analysis.Sequences.IsCauchy x ∧ LRA.Analysis.Sequences.IsCauchy y) → LRA.Analysis.Sequences.IsCauchy fun n => instHAdd.hAdd (x n) (y n)
 
 Predicate logic (unfolded):
 
-  ∀ {x y : LRA.Analysis.Sequences.RealSequence}, (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (m : Nat), instLENat.1 N m → ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x m) (x n)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x m) (x n)))) ε ∧ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (m : Nat), instLENat.1 N m → ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (y m) (y n)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (y m) (y n)))) ε) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (m : Nat), instLENat.1 N m → ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 ((fun n => instHAdd.1 (x n) (y n)) m) ((fun n => instHAdd.1 (x n) (y n)) n)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 ((fun n => instHAdd.hAdd (x n) (y n)) m) ((fun n => instHAdd.hAdd (x n) (y n)) n)))) ε
+  Ambient
+    (implicit ambient)
+  Objects
+    x y : RealSequence
+  Prove
+    ((∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (m : Nat), instLENat.le N m → ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x m) (x n))) ε) ∧ (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (m : Nat), instLENat.le N m → ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (y m) (y n))) ε)) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (m : Nat), instLENat.le N m → ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ((fun n => { hAdd := fun a b => Real.instAdd.add a b }.hAdd (x n) (y n)) m) ((fun n => { hAdd := fun a b => Real.instAdd.add a b }.hAdd (x n) (y n)) n))) ε
 
 Logical form (Lean):
 
@@ -416,11 +468,16 @@ theorem SumCauchySequences {x y : RealSequence}
 
 Predicate logic:
 
-  (IsCauchy x ∧ IsCauchy y) → IsCauchy (fun n => x n - y n)
+  ∀ {x y : LRA.Analysis.Sequences.RealSequence}, (LRA.Analysis.Sequences.IsCauchy x ∧ LRA.Analysis.Sequences.IsCauchy y) → LRA.Analysis.Sequences.IsCauchy fun n => instHSub.hSub (x n) (y n)
 
 Predicate logic (unfolded):
 
-  ∀ {x y : LRA.Analysis.Sequences.RealSequence}, (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (m : Nat), instLENat.1 N m → ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x m) (x n)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x m) (x n)))) ε ∧ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (m : Nat), instLENat.1 N m → ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (y m) (y n)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (y m) (y n)))) ε) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (m : Nat), instLENat.1 N m → ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 ((fun n => instHSub.1 (x n) (y n)) m) ((fun n => instHSub.1 (x n) (y n)) n)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 ((fun n => instHSub.hSub (x n) (y n)) m) ((fun n => instHSub.hSub (x n) (y n)) n)))) ε
+  Ambient
+    (implicit ambient)
+  Objects
+    x y : RealSequence
+  Prove
+    ((∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (m : Nat), instLENat.le N m → ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x m) (x n))) ε) ∧ (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (m : Nat), instLENat.le N m → ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (y m) (y n))) ε)) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (m : Nat), instLENat.le N m → ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ((fun n => { hSub := fun a b => Real.instSub.sub a b }.hSub (x n) (y n)) m) ((fun n => { hSub := fun a b => Real.instSub.sub a b }.hSub (x n) (y n)) n))) ε
 
 Logical form (Lean):
 
@@ -456,11 +513,17 @@ theorem DifferenceCauchySequences {x y : RealSequence}
 
 Predicate logic:
 
-  (IsCauchy x ∧ IsCauchy y) → IsCauchy (fun n => α * x n + β * y n)
+  ∀ {x y : LRA.Analysis.Sequences.RealSequence} {α β : Real}, (LRA.Analysis.Sequences.IsCauchy x ∧ LRA.Analysis.Sequences.IsCauchy y) → LRA.Analysis.Sequences.IsCauchy fun n => instHAdd.hAdd (instHMul.hMul α (x n)) (instHMul.hMul β (y n))
 
 Predicate logic (unfolded):
 
-  ∀ {x y : LRA.Analysis.Sequences.RealSequence} {α β : Real}, (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (m : Nat), instLENat.1 N m → ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x m) (x n)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x m) (x n)))) ε ∧ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (m : Nat), instLENat.1 N m → ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (y m) (y n)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (y m) (y n)))) ε) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (m : Nat), instLENat.1 N m → ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 ((fun n => instHAdd.1 (instHMul.hMul α (x n)) (instHMul.hMul β (y n))) m) ((fun n => instHAdd.1 (instHMul.hMul α (x n)) (instHMul.hMul β (y n))) n)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 ((fun n => instHAdd.hAdd (instHMul.hMul α (x n)) (instHMul.hMul β (y n))) m) ((fun n => instHAdd.hAdd (instHMul.hMul α (x n)) (instHMul.hMul β (y n))) n)))) ε
+  Ambient
+    (ℝ)
+  Objects
+    x y : RealSequence
+    α β : ℝ
+  Prove
+    ((∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (m : Nat), instLENat.le N m → ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x m) (x n))) ε) ∧ (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (m : Nat), instLENat.le N m → ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (y m) (y n))) ε)) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (m : Nat), instLENat.le N m → ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ((fun n => { hAdd := fun a b => Real.instAdd.add a b }.hAdd ({ hMul := fun a b => Real.instMul.mul a b }.hMul α (x n)) ({ hMul := fun a b => Real.instMul.mul a b }.hMul β (y n))) m) ((fun n => { hAdd := fun a b => Real.instAdd.add a b }.hAdd ({ hMul := fun a b => Real.instMul.mul a b }.hMul α (x n)) ({ hMul := fun a b => Real.instMul.mul a b }.hMul β (y n))) n))) ε
 
 Logical form (Lean):
 
@@ -498,11 +561,16 @@ theorem LinearCombinationCauchySequences {x y : RealSequence} {α β : ℝ}
 
 Predicate logic:
 
-  (IsCauchy x ∧ IsCauchy y) → IsCauchy (fun n => x n * y n)
+  ∀ {x y : LRA.Analysis.Sequences.RealSequence}, (LRA.Analysis.Sequences.IsCauchy x ∧ LRA.Analysis.Sequences.IsCauchy y) → LRA.Analysis.Sequences.IsCauchy fun n => instHMul.hMul (x n) (y n)
 
 Predicate logic (unfolded):
 
-  ∀ {x y : LRA.Analysis.Sequences.RealSequence}, (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (m : Nat), instLENat.1 N m → ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x m) (x n)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x m) (x n)))) ε ∧ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (m : Nat), instLENat.1 N m → ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (y m) (y n)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (y m) (y n)))) ε) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (m : Nat), instLENat.1 N m → ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 ((fun n => instHMul.1 (x n) (y n)) m) ((fun n => instHMul.1 (x n) (y n)) n)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 ((fun n => instHMul.hMul (x n) (y n)) m) ((fun n => instHMul.hMul (x n) (y n)) n)))) ε
+  Ambient
+    (implicit ambient)
+  Objects
+    x y : RealSequence
+  Prove
+    ((∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (m : Nat), instLENat.le N m → ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x m) (x n))) ε) ∧ (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (m : Nat), instLENat.le N m → ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (y m) (y n))) ε)) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (m : Nat), instLENat.le N m → ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ((fun n => { hMul := fun a b => Real.instMul.mul a b }.hMul (x n) (y n)) m) ((fun n => { hMul := fun a b => Real.instMul.mul a b }.hMul (x n) (y n)) n))) ε
 
 Logical form (Lean):
 
@@ -538,11 +606,16 @@ theorem ProductCauchySequences {x y : RealSequence}
 
 Predicate logic:
 
-  (IsCauchy x ∧ ∃ c > 0, ∃ N₀ ∈ ℕ, ∀ n ≥ N₀, c ≤ |x n|) → IsCauchy (fun n => 1 / x n)
+  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (LRA.Analysis.Sequences.IsCauchy x ∧ (Exists fun c => (GT.gt c 0 ∧ (Exists fun N₀ => ∀ (n : Nat), GE.ge n N₀ → Real.instLE.le c (abs (x n)))))) → LRA.Analysis.Sequences.IsCauchy fun n => instHDiv.hDiv 1 (x n)
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (m : Nat), instLENat.1 N m → ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x m) (x n)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x m) (x n)))) ε ∧ Exists fun c => (Real.instLT.1 Zero.toOfNat0.1 c ∧ Exists fun N₀ => ∀ (n : Nat), instLENat.1 N₀ n → Real.instLE.1 c (SemilatticeSup.toMax.1 (x n) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (x n))))) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (m : Nat), instLENat.1 N m → ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 ((fun n => instHDiv.1 1 (x n)) m) ((fun n => instHDiv.1 1 (x n)) n)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 ((fun n => instHDiv.hDiv 1 (x n)) m) ((fun n => instHDiv.hDiv 1 (x n)) n)))) ε
+  Ambient
+    (implicit ambient)
+  Objects
+    x : RealSequence
+  Prove
+    ((∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (m : Nat), instLENat.le N m → ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x m) (x n))) ε) ∧ (Exists fun c => (Real.instLT.lt 0 c ∧ (Exists fun N₀ => ∀ (n : Nat), instLENat.le N₀ n → Real.instLE.le c (abs (x n)))))) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (m : Nat), instLENat.le N m → ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ((fun n => { hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv 1 (x n)) m) ((fun n => { hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv 1 (x n)) n))) ε
 
 Logical form (Lean):
 
@@ -580,11 +653,16 @@ theorem ReciprocalCauchySequence {x : RealSequence}
 
 Predicate logic:
 
-  (IsCauchy x ∧ IsCauchy y ∧ ∃ c > 0, ∃ N₀ ∈ ℕ, ∀ n ≥ N₀, c ≤ |y n|) → IsCauchy (fun n => x n / y n)
+  ∀ {x y : LRA.Analysis.Sequences.RealSequence}, (LRA.Analysis.Sequences.IsCauchy x ∧ (LRA.Analysis.Sequences.IsCauchy y ∧ (Exists fun c => (GT.gt c 0 ∧ (Exists fun N₀ => ∀ (n : Nat), GE.ge n N₀ → Real.instLE.le c (abs (y n))))))) → LRA.Analysis.Sequences.IsCauchy fun n => instHDiv.hDiv (x n) (y n)
 
 Predicate logic (unfolded):
 
-  ∀ {x y : LRA.Analysis.Sequences.RealSequence}, (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (m : Nat), instLENat.1 N m → ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x m) (x n)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x m) (x n)))) ε ∧ (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (m : Nat), instLENat.1 N m → ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (y m) (y n)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (y m) (y n)))) ε ∧ Exists fun c => (Real.instLT.1 Zero.toOfNat0.1 c ∧ Exists fun N₀ => ∀ (n : Nat), instLENat.1 N₀ n → Real.instLE.1 c (SemilatticeSup.toMax.1 (y n) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (y n)))))) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (m : Nat), instLENat.1 N m → ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 ((fun n => instHDiv.1 (x n) (y n)) m) ((fun n => instHDiv.1 (x n) (y n)) n)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 ((fun n => instHDiv.hDiv (x n) (y n)) m) ((fun n => instHDiv.hDiv (x n) (y n)) n)))) ε
+  Ambient
+    (implicit ambient)
+  Objects
+    x y : RealSequence
+  Prove
+    ((∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (m : Nat), instLENat.le N m → ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x m) (x n))) ε) ∧ ((∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (m : Nat), instLENat.le N m → ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (y m) (y n))) ε) ∧ (Exists fun c => (Real.instLT.lt 0 c ∧ (Exists fun N₀ => ∀ (n : Nat), instLENat.le N₀ n → Real.instLE.le c (abs (y n))))))) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (m : Nat), instLENat.le N m → ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ((fun n => { hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv (x n) (y n)) m) ((fun n => { hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv (x n) (y n)) n))) ε
 
 Logical form (Lean):
 
@@ -624,11 +702,16 @@ theorem QuotientCauchySequences {x y : RealSequence}
 
 Predicate logic:
 
-  (IsCauchy x) → IsCauchy (fun n => |x n|)
+  ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.IsCauchy x → LRA.Analysis.Sequences.IsCauchy fun n => abs (x n)
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (m : Nat), instLENat.1 N m → ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x m) (x n)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x m) (x n)))) ε) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (m : Nat), instLENat.1 N m → ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 ((fun n => SemilatticeSup.toMax.max (x n) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg (x n))) m) ((fun n => SemilatticeSup.toMax.max (x n) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg (x n))) n)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 ((fun n => abs (x n)) m) ((fun n => abs (x n)) n)))) ε
+  Ambient
+    (implicit ambient)
+  Objects
+    x : RealSequence
+  Prove
+    (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (m : Nat), instLENat.le N m → ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x m) (x n))) ε) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (m : Nat), instLENat.le N m → ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ((fun n => abs (x n)) m) ((fun n => abs (x n)) n))) ε
 
 Logical form (Lean):
 

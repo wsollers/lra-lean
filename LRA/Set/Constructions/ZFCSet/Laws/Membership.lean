@@ -10,11 +10,16 @@ namespace LRA.Set.Constructions.ZFCSet
 
 Predicate logic:
 
-  ∀ A B : Set, A ⊆ B ↔ ∀ x : Set, x ∈ A → x ∈ B
+  ∀ (A B : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCSet.instHasSubset.Subset A B ↔ ∀ (x : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.instMembershipZFCSet.mem A x → LRA.Set.Constructions.instMembershipZFCSet.mem B x
 
 Predicate logic (unfolded):
 
-  ∀ (A B : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCSet.instHasSubset.1 A B ↔ ∀ (x : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.instMembershipZFCSet.1 A x → LRA.Set.instMembershipZFCSet.1 B x
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.ZFCSet.instHasSubset.Subset A B ↔ ∀ (x : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.instMembershipZFCSet.mem A x → LRA.Set.Constructions.instMembershipZFCSet.mem B x
 
 Logical form (Lean):
 

@@ -11,12 +11,12 @@ universe u
 Predicate logic:
 
   class NoZeroDivisorsLaw (R : Type u) [Mul R] [OfNat R 0] : Prop where
-  EqZeroOfMulEqZero : ∀ a b : R, a * b = 0 → a = 0 ∨ b = 0
+    EqZeroOfMulEqZero : ∀ a b : R, a * b = 0 → a = 0 ∨ b = 0
 
 Predicate logic (unfolded):
 
   class NoZeroDivisorsLaw (R : Type u) [Mul R] [OfNat R 0] : Prop where
-  EqZeroOfMulEqZero : ∀ a b : R, a * b = 0 → a = 0 ∨ b = 0 (source fallback; no compiled unfold data available)
+    EqZeroOfMulEqZero : ∀ a b : R, a * b = 0 → a = 0 ∨ b = 0 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -53,14 +53,14 @@ class NoZeroDivisorsLaw (R : Type u) [Mul R] [OfNat R 0] : Prop where
 Predicate logic:
 
   class abbrev IntegralDomainLaws (R : Type u)
-    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [Nonempty R] : Prop :=
-  CommutativeRingLaws R, NontrivialityLaw R, NoZeroDivisorsLaw R
+      [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [Nonempty R] : Prop :=
+    CommutativeRingLaws R, NontrivialityLaw R, NoZeroDivisorsLaw R
 
 Predicate logic (unfolded):
 
   class abbrev IntegralDomainLaws (R : Type u)
-    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [Nonempty R] : Prop :=
-  CommutativeRingLaws R, NontrivialityLaw R, NoZeroDivisorsLaw R (source fallback; no compiled unfold data available)
+      [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [Nonempty R] : Prop :=
+    CommutativeRingLaws R, NontrivialityLaw R, NoZeroDivisorsLaw R (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -102,11 +102,16 @@ variable {R : Type u}
 
 Predicate logic:
 
-  ∀ a b : R, a * b = 0 → a = 0 ∨ b = 0
+  ∀ {R : Type u} [inst : Mul R] [inst_1 : OfNat R 0], LRA.AlgebraicStructures.NoZeroDivisorsLaw R → ∀ (a b : R), instHMul.hMul a b = 0 → Or (a = 0)(b = 0)
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : Mul R] [inst_1 : OfNat R (instOfNatNat 0).1], LRA.AlgebraicStructures.NoZeroDivisorsLaw R → ∀ (a b : R), instHMul.1 a b = inst_1.1 → Or (a = inst_1.1)(b = inst_1.1)
+  Ambient
+    (R)
+  Objects
+    (none)
+  Prove
+    LRA.AlgebraicStructures.NoZeroDivisorsLaw R → ∀ (a b : R), { hMul := fun a b => inst.mul a b }.hMul a b = 0 → Or (a = 0)(b = 0)
 
 Logical form (Lean):
 

@@ -8,11 +8,16 @@ namespace LRA.Set.Constructions.ZFCSet
 
 Predicate logic:
 
-  ∀ A B C : Set, A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)
+  ∀ (A B C : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCA ∩ LRA.Set.Constructions.ZFCB ∪ C = LRA.Set.Constructions.ZFCLRA.Set.Constructions.ZFCA ∩ B ∪ LRA.Set.Constructions.ZFCA ∩ C
 
 Predicate logic (unfolded):
 
-  ∀ (A B C : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCSet.instInter.1 A (LRA.Set.Constructions.ZFCSet.instUnion.1 B C) = LRA.Set.Constructions.ZFCSet.instUnion.1 (LRA.Set.Constructions.ZFCSet.instInter.1 A B) (LRA.Set.Constructions.ZFCSet.instInter.1 A C)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.ZFCA ∩ LRA.Set.Constructions.ZFCB ∪ C = LRA.Set.Constructions.ZFCLRA.Set.Constructions.ZFCA ∩ B ∪ LRA.Set.Constructions.ZFCA ∩ C
 
 Logical form (Lean):
 
@@ -49,11 +54,16 @@ theorem IntersectionDistributesOverUnion :
 
 Predicate logic:
 
-  ∀ A B C : Set, A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)
+  ∀ (A B C : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCA ∪ LRA.Set.Constructions.ZFCB ∩ C = LRA.Set.Constructions.ZFCLRA.Set.Constructions.ZFCA ∪ B ∩ LRA.Set.Constructions.ZFCA ∪ C
 
 Predicate logic (unfolded):
 
-  ∀ (A B C : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCSet.instUnion.1 A (LRA.Set.Constructions.ZFCSet.instInter.1 B C) = LRA.Set.Constructions.ZFCSet.instInter.1 (LRA.Set.Constructions.ZFCSet.instUnion.1 A B) (LRA.Set.Constructions.ZFCSet.instUnion.1 A C)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.ZFCA ∪ LRA.Set.Constructions.ZFCB ∩ C = LRA.Set.Constructions.ZFCLRA.Set.Constructions.ZFCA ∪ B ∩ LRA.Set.Constructions.ZFCA ∪ C
 
 Logical form (Lean):
 
@@ -90,11 +100,16 @@ theorem UnionDistributesOverIntersection :
 
 Predicate logic:
 
-  ∀ A B : Set, A ∪ (A ∩ B) = A
+  ∀ (A B : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCA ∪ LRA.Set.Constructions.ZFCA ∩ B = A
 
 Predicate logic (unfolded):
 
-  ∀ (A B : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCSet.instUnion.1 A (LRA.Set.Constructions.ZFCSet.instInter.1 A B) = A
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.ZFCA ∪ LRA.Set.Constructions.ZFCA ∩ B = A
 
 Logical form (Lean):
 
@@ -131,11 +146,16 @@ theorem AbsorptionUnionIntersection :
 
 Predicate logic:
 
-  ∀ A B : Set, A ∩ (A ∪ B) = A
+  ∀ (A B : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCA ∩ LRA.Set.Constructions.ZFCA ∪ B = A
 
 Predicate logic (unfolded):
 
-  ∀ (A B : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCSet.instInter.1 A (LRA.Set.Constructions.ZFCSet.instUnion.1 A B) = A
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.ZFCA ∩ LRA.Set.Constructions.ZFCA ∪ B = A
 
 Logical form (Lean):
 

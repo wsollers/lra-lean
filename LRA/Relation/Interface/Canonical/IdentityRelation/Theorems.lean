@@ -11,11 +11,16 @@ universe u v
 
 Predicate logic:
 
-  Reflexive (IdentityRelation Alpha)
+  ∀ {Alpha : Type u}, LRA.Relation.Reflexive (LRA.Relation.IdentityRelation Alpha)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (x : Alpha), x = x
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    x = x
 
 Logical form (Lean):
 
@@ -53,11 +58,16 @@ theorem IdentityRelationIsReflexive
 
 Predicate logic:
 
-  Symmetric (IdentityRelation Alpha)
+  ∀ {Alpha : Type u}, LRA.Relation.Symmetric (LRA.Relation.IdentityRelation Alpha)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (x y : Alpha), x = y → y = x
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    x = y → y = x
 
 Logical form (Lean):
 
@@ -95,11 +105,16 @@ theorem IdentityRelationIsSymmetric
 
 Predicate logic:
 
-  Transitive (IdentityRelation Alpha)
+  ∀ {Alpha : Type u}, LRA.Relation.Transitive (LRA.Relation.IdentityRelation Alpha)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (x y z : Alpha), (x = y ∧ y = z) → x = z
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    (x = y ∧ y = z) → x = z
 
 Logical form (Lean):
 

@@ -15,7 +15,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (operation : Carrier → Carrier → Carrier) (first second third : Carrier), operation (operation first second) third = operation first (operation second third)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    operation (operation first second) third = operation first (operation second third)
 
 Logical form (Lean):
 

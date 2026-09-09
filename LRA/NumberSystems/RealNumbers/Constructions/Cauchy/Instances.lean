@@ -19,24 +19,24 @@ open LRA.Order
 Predicate logic:
 
   noncomputable def quotient_addition
-    (rationalSystem : RationalNumberSystem)
-    (absolute_value_data : RationalMetricData rationalSystem) :
-    Carrier rationalSystem absolute_value_data →
+      (rationalSystem : RationalNumberSystem)
+      (absolute_value_data : RationalMetricData rationalSystem) :
       Carrier rationalSystem absolute_value_data →
-      Carrier rationalSystem absolute_value_data :=
-  Classical.choose
-    (addition_is_proper rationalSystem absolute_value_data).induced_operation_exists
+        Carrier rationalSystem absolute_value_data →
+        Carrier rationalSystem absolute_value_data :=
+    Classical.choose
+      (addition_is_proper rationalSystem absolute_value_data).induced_operation_exists
 
 Predicate logic (unfolded):
 
   noncomputable def quotient_addition
-    (rationalSystem : RationalNumberSystem)
-    (absolute_value_data : RationalMetricData rationalSystem) :
-    Carrier rationalSystem absolute_value_data →
+      (rationalSystem : RationalNumberSystem)
+      (absolute_value_data : RationalMetricData rationalSystem) :
       Carrier rationalSystem absolute_value_data →
-      Carrier rationalSystem absolute_value_data :=
-  Classical.choose
-    (addition_is_proper rationalSystem absolute_value_data).induced_operation_exists (source fallback; no compiled unfold data available)
+        Carrier rationalSystem absolute_value_data →
+        Carrier rationalSystem absolute_value_data :=
+    Classical.choose
+      (addition_is_proper rationalSystem absolute_value_data).induced_operation_exists (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -84,11 +84,17 @@ noncomputable def quotient_addition
 
 Predicate logic:
 
-  (∀ rationalSystem ∈ RationalNumberSystem), ∀ first second, quotient_addition rationalSystem absolute_value_data (Quotient.mk _ first) (Quotient.mk _ second) = Quotient.mk _ (addition rationalSystem absolute_value_data first second)
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem) (first second : LRA.NumberSystems.RealNumbers.Cauchy.Representative rationalSystem absolute_value_data), LRA.NumberSystems.RealNumbers.Cauchy.quotient_addition rationalSystem absolute_value_data (Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data) first) (Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data) second) = Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data) (LRA.NumberSystems.RealNumbers.Cauchy.addition rationalSystem absolute_value_data first second)
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem) (first second : LRA.NumberSystems.RealNumbers.Cauchy.Representative rationalSystem absolute_value_data), (Classical.indefiniteDescription (fun x => ∀ (first second : LRA.NumberSystems.RealNumbers.Cauchy.Representative rationalSystem absolute_value_data), x (Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data) first) (Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data) second) = Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data) (LRA.NumberSystems.RealNumbers.Cauchy.addition rationalSystem absolute_value_data first second)) ⋯).1 (Quot.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data).1 first) (Quot.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data).1 second) = Quot.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data).1 { sequence := fun index => rationalSystem.FieldModel.signature.toBooleanRingOperationBundle.2 (first.1 index) (second.1 index), sequence_is_cauchy := ⋯ }
+  Ambient
+    (implicit ambient)
+  Objects
+    rationalSystem : RationalNumberSystem
+    absolute_value_data : RationalMetricData rationalSystem
+  Prove
+    (Classical.indefiniteDescription (fun x => ∀ (first second : LRA.NumberSystems.RealNumbers.Cauchy.Representative rationalSystem absolute_value_data), x (Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data) first) (Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data) second) = Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data) (LRA.NumberSystems.RealNumbers.Cauchy.addition rationalSystem absolute_value_data first second)) ⋯).1 (Quot.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data).1 first) (Quot.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data).1 second) = Quot.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data).1 { sequence := fun index => rationalSystem.FieldModel.signature.toBooleanRingOperationBundle.2 (first.1 index) (second.1 index), sequence_is_cauchy := ⋯ }
 
 Logical form (Lean):
 
@@ -135,24 +141,24 @@ theorem quotient_addition_spec
 Predicate logic:
 
   noncomputable def quotient_multiplication
-    (rationalSystem : RationalNumberSystem)
-    (absolute_value_data : RationalMetricData rationalSystem) :
-    Carrier rationalSystem absolute_value_data →
+      (rationalSystem : RationalNumberSystem)
+      (absolute_value_data : RationalMetricData rationalSystem) :
       Carrier rationalSystem absolute_value_data →
-      Carrier rationalSystem absolute_value_data :=
-  Classical.choose
-    (multiplication_is_proper rationalSystem absolute_value_data).induced_operation_exists
+        Carrier rationalSystem absolute_value_data →
+        Carrier rationalSystem absolute_value_data :=
+    Classical.choose
+      (multiplication_is_proper rationalSystem absolute_value_data).induced_operation_exists
 
 Predicate logic (unfolded):
 
   noncomputable def quotient_multiplication
-    (rationalSystem : RationalNumberSystem)
-    (absolute_value_data : RationalMetricData rationalSystem) :
-    Carrier rationalSystem absolute_value_data →
+      (rationalSystem : RationalNumberSystem)
+      (absolute_value_data : RationalMetricData rationalSystem) :
       Carrier rationalSystem absolute_value_data →
-      Carrier rationalSystem absolute_value_data :=
-  Classical.choose
-    (multiplication_is_proper rationalSystem absolute_value_data).induced_operation_exists (source fallback; no compiled unfold data available)
+        Carrier rationalSystem absolute_value_data →
+        Carrier rationalSystem absolute_value_data :=
+    Classical.choose
+      (multiplication_is_proper rationalSystem absolute_value_data).induced_operation_exists (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -200,11 +206,17 @@ noncomputable def quotient_multiplication
 
 Predicate logic:
 
-  (∀ rationalSystem ∈ RationalNumberSystem), ∀ first second, quotient_multiplication rationalSystem absolute_value_data (Quotient.mk _ first) (Quotient.mk _ second) = Quotient.mk _ (multiplication rationalSystem absolute_value_data first second)
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem) (first second : LRA.NumberSystems.RealNumbers.Cauchy.Representative rationalSystem absolute_value_data), LRA.NumberSystems.RealNumbers.Cauchy.quotient_multiplication rationalSystem absolute_value_data (Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data) first) (Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data) second) = Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data) (LRA.NumberSystems.RealNumbers.Cauchy.multiplication rationalSystem absolute_value_data first second)
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem) (first second : LRA.NumberSystems.RealNumbers.Cauchy.Representative rationalSystem absolute_value_data), (Classical.indefiniteDescription (fun x => ∀ (first second : LRA.NumberSystems.RealNumbers.Cauchy.Representative rationalSystem absolute_value_data), x (Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data) first) (Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data) second) = Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data) (LRA.NumberSystems.RealNumbers.Cauchy.multiplication rationalSystem absolute_value_data first second)) ⋯).1 (Quot.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data).1 first) (Quot.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data).1 second) = Quot.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data).1 { sequence := fun index => rationalSystem.FieldModel.signature.toBooleanRingOperationBundle.3 (first.1 index) (second.1 index), sequence_is_cauchy := ⋯ }
+  Ambient
+    (implicit ambient)
+  Objects
+    rationalSystem : RationalNumberSystem
+    absolute_value_data : RationalMetricData rationalSystem
+  Prove
+    (Classical.indefiniteDescription (fun x => ∀ (first second : LRA.NumberSystems.RealNumbers.Cauchy.Representative rationalSystem absolute_value_data), x (Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data) first) (Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data) second) = Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data) (LRA.NumberSystems.RealNumbers.Cauchy.multiplication rationalSystem absolute_value_data first second)) ⋯).1 (Quot.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data).1 first) (Quot.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data).1 second) = Quot.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data).1 { sequence := fun index => rationalSystem.FieldModel.signature.toBooleanRingOperationBundle.3 (first.1 index) (second.1 index), sequence_is_cauchy := ⋯ }
 
 Logical form (Lean):
 
@@ -251,20 +263,20 @@ theorem quotient_multiplication_spec
 Predicate logic:
 
   noncomputable def quotient_negation
-    (rationalSystem : RationalNumberSystem)
-    (absolute_value_data : RationalMetricData rationalSystem) :
-    Carrier rationalSystem absolute_value_data →
-      Carrier rationalSystem absolute_value_data :=
-  (negation_is_proper rationalSystem absolute_value_data).inducedOperation
+      (rationalSystem : RationalNumberSystem)
+      (absolute_value_data : RationalMetricData rationalSystem) :
+      Carrier rationalSystem absolute_value_data →
+        Carrier rationalSystem absolute_value_data :=
+    (negation_is_proper rationalSystem absolute_value_data).inducedOperation
 
 Predicate logic (unfolded):
 
   noncomputable def quotient_negation
-    (rationalSystem : RationalNumberSystem)
-    (absolute_value_data : RationalMetricData rationalSystem) :
-    Carrier rationalSystem absolute_value_data →
-      Carrier rationalSystem absolute_value_data :=
-  (negation_is_proper rationalSystem absolute_value_data).inducedOperation (source fallback; no compiled unfold data available)
+      (rationalSystem : RationalNumberSystem)
+      (absolute_value_data : RationalMetricData rationalSystem) :
+      Carrier rationalSystem absolute_value_data →
+        Carrier rationalSystem absolute_value_data :=
+    (negation_is_proper rationalSystem absolute_value_data).inducedOperation (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -309,20 +321,20 @@ noncomputable def quotient_negation
 Predicate logic:
 
   noncomputable def quotient_inverse
-    (rationalSystem : RationalNumberSystem)
-    (absolute_value_data : RationalMetricData rationalSystem) :
-    Carrier rationalSystem absolute_value_data →
-      Carrier rationalSystem absolute_value_data :=
-  (inverse_is_proper rationalSystem absolute_value_data).inducedOperation
+      (rationalSystem : RationalNumberSystem)
+      (absolute_value_data : RationalMetricData rationalSystem) :
+      Carrier rationalSystem absolute_value_data →
+        Carrier rationalSystem absolute_value_data :=
+    (inverse_is_proper rationalSystem absolute_value_data).inducedOperation
 
 Predicate logic (unfolded):
 
   noncomputable def quotient_inverse
-    (rationalSystem : RationalNumberSystem)
-    (absolute_value_data : RationalMetricData rationalSystem) :
-    Carrier rationalSystem absolute_value_data →
-      Carrier rationalSystem absolute_value_data :=
-  (inverse_is_proper rationalSystem absolute_value_data).inducedOperation (source fallback; no compiled unfold data available)
+      (rationalSystem : RationalNumberSystem)
+      (absolute_value_data : RationalMetricData rationalSystem) :
+      Carrier rationalSystem absolute_value_data →
+        Carrier rationalSystem absolute_value_data :=
+    (inverse_is_proper rationalSystem absolute_value_data).inducedOperation (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -370,7 +382,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem) (a a_1 : Quot (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data).1), (Classical.indefiniteDescription (fun x => ∀ (first second : LRA.NumberSystems.RealNumbers.Cauchy.Representative rationalSystem absolute_value_data), x (Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data) first) (Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data) second) ↔ LRA.NumberSystems.RealNumbers.Cauchy.representative_strict_order rationalSystem absolute_value_data first second) ⋯).1 a a_1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Classical.indefiniteDescription (fun x => ∀ (first second : LRA.NumberSystems.RealNumbers.Cauchy.Representative rationalSystem absolute_value_data), x (Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data) first) (Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data) second) ↔ LRA.NumberSystems.RealNumbers.Cauchy.representative_strict_order rationalSystem absolute_value_data first second) ⋯).1 a a_1
 
 Logical form (Lean):
 
@@ -416,11 +433,17 @@ noncomputable def quotient_strict_order
 
 Predicate logic:
 
-  (∀ rationalSystem ∈ RationalNumberSystem), ∀ first second, quotient_strict_order rationalSystem absolute_value_data (Quotient.mk _ first) (Quotient.mk _ second) ↔ representative_strict_order rationalSystem absolute_value_data first second
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem) (first second : LRA.NumberSystems.RealNumbers.Cauchy.Representative rationalSystem absolute_value_data), LRA.NumberSystems.RealNumbers.Cauchy.quotient_strict_order rationalSystem absolute_value_data (Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data) first) (Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data) second) ↔ LRA.NumberSystems.RealNumbers.Cauchy.representative_strict_order rationalSystem absolute_value_data first second
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem) (first second : LRA.NumberSystems.RealNumbers.Cauchy.Representative rationalSystem absolute_value_data), (Classical.indefiniteDescription (fun x => ∀ (first second : LRA.NumberSystems.RealNumbers.Cauchy.Representative rationalSystem absolute_value_data), x (Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data) first) (Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data) second) ↔ LRA.NumberSystems.RealNumbers.Cauchy.representative_strict_order rationalSystem absolute_value_data first second) ⋯).1 (Quot.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data).1 first) (Quot.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data).1 second) ↔ Exists fun epsilon => (rationalSystem.FieldModel.signature.toOrderedRingSignature.2 rationalSystem.FieldModel.signature.toZeroOneBundle.2 epsilon ∧ Exists fun threshold => ∀ (index : Nat), instLENat.1 threshold index → rationalSystem.FieldModel.signature.toOrderedRingConceptSignature.2 (rationalSystem.FieldModel.signature.toBooleanRingOperationBundle.2 (first.1 index) epsilon) (second.1 index))
+  Ambient
+    (implicit ambient)
+  Objects
+    rationalSystem : RationalNumberSystem
+    absolute_value_data : RationalMetricData rationalSystem
+  Prove
+    LRA.NumberSystems.RealNumbers.Cauchy.quotient_strict_order rationalSystem absolute_value_data (Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data) first) (Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data) second) ↔ LRA.NumberSystems.RealNumbers.Cauchy.representative_strict_order rationalSystem absolute_value_data first second
 
 Logical form (Lean):
 
@@ -470,7 +493,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem) (first second : Quot (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data).1), Or ((Classical.indefiniteDescription (fun x => ∀ (first second : LRA.NumberSystems.RealNumbers.Cauchy.Representative rationalSystem absolute_value_data), x (Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data) first) (Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data) second) ↔ LRA.NumberSystems.RealNumbers.Cauchy.representative_strict_order rationalSystem absolute_value_data first second) ⋯).1 first second) (first = second)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or ((Classical.indefiniteDescription (fun x => ∀ (first second : LRA.NumberSystems.RealNumbers.Cauchy.Representative rationalSystem absolute_value_data), x (Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data) first) (Quotient.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data) second) ↔ LRA.NumberSystems.RealNumbers.Cauchy.representative_strict_order rationalSystem absolute_value_data first second) ⋯).1 first second) (first = second)
 
 Logical form (Lean):
 
@@ -560,11 +588,17 @@ noncomputable instance quotientCarrierLE
 
 Predicate logic:
 
-  (∀ rationalSystem ∈ RationalNumberSystem), OrderedFieldLaws (Carrier rationalSystem absolute_value_data)
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem), LRA.AlgebraicStructures.OrderedFieldLaws (LRA.NumberSystems.RealNumbers.Cauchy.Carrier rationalSystem absolute_value_data)
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem), LRA.AlgebraicStructures.OrderedFieldLaws (Quot (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data).1)
+  Ambient
+    (implicit ambient)
+  Objects
+    rationalSystem : RationalNumberSystem
+    absolute_value_data : RationalMetricData rationalSystem
+  Prove
+    LRA.AlgebraicStructures.OrderedFieldLaws (Quot (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data).1)
 
 Logical form (Lean):
 
@@ -604,11 +638,17 @@ theorem quotient_field_cert
 
 Predicate logic:
 
-  (∀ rationalSystem ∈ RationalNumberSystem), StrictOrderCompatibilityLaw (Carrier rationalSystem absolute_value_data)
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem), LRA.Order.StrictOrderCompatibilityLaw (LRA.NumberSystems.RealNumbers.Cauchy.Carrier rationalSystem absolute_value_data)
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem), LRA.Order.StrictOrderCompatibilityLaw (Quot (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data).1)
+  Ambient
+    (implicit ambient)
+  Objects
+    rationalSystem : RationalNumberSystem
+    absolute_value_data : RationalMetricData rationalSystem
+  Prove
+    LRA.Order.StrictOrderCompatibilityLaw (Quot (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data).1)
 
 Logical form (Lean):
 
@@ -648,11 +688,17 @@ theorem quotient_strict_order_cert
 
 Predicate logic:
 
-  (∀ rationalSystem ∈ RationalNumberSystem), DenseOrderLaw (Carrier rationalSystem absolute_value_data)
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem), LRA.Order.DenseOrderLaw (LRA.NumberSystems.RealNumbers.Cauchy.Carrier rationalSystem absolute_value_data)
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem), LRA.Order.DenseOrderLaw (Quot (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data).1)
+  Ambient
+    (implicit ambient)
+  Objects
+    rationalSystem : RationalNumberSystem
+    absolute_value_data : RationalMetricData rationalSystem
+  Prove
+    LRA.Order.DenseOrderLaw (Quot (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data).1)
 
 Logical form (Lean):
 
@@ -692,11 +738,17 @@ theorem quotient_dense_order_cert
 
 Predicate logic:
 
-  (∀ rationalSystem ∈ RationalNumberSystem), OrderCompletenessLaws (Carrier rationalSystem absolute_value_data) (Set (Carrier rationalSystem absolute_value_data))
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem), LRA.Order.OrderCompletenessLaws (LRA.NumberSystems.RealNumbers.Cauchy.Carrier rationalSystem absolute_value_data) (Set (LRA.NumberSystems.RealNumbers.Cauchy.Carrier rationalSystem absolute_value_data))
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem), LRA.Order.OrderCompletenessLaws (Quot (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data).1) (Quot (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data).1 → Prop)
+  Ambient
+    (implicit ambient)
+  Objects
+    rationalSystem : RationalNumberSystem
+    absolute_value_data : RationalMetricData rationalSystem
+  Prove
+    LRA.Order.OrderCompletenessLaws (Quot (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data).1) (Quot (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data).1 → Prop)
 
 Logical form (Lean):
 
@@ -739,18 +791,18 @@ theorem quotient_completeness_cert
 Predicate logic:
 
   noncomputable def CauchyRealizesRationalModel
-    (rationalSystem : RationalNumberSystem)
-    (absolute_value_data : RationalMetricData rationalSystem) :
-    LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel where
-  Carrier
+      (rationalSystem : RationalNumberSystem)
+      (absolute_value_data : RationalMetricData rationalSystem) :
+      LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel where
+    Carrier
 
 Predicate logic (unfolded):
 
   noncomputable def CauchyRealizesRationalModel
-    (rationalSystem : RationalNumberSystem)
-    (absolute_value_data : RationalMetricData rationalSystem) :
-    LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel where
-  Carrier (source fallback; no compiled unfold data available)
+      (rationalSystem : RationalNumberSystem)
+      (absolute_value_data : RationalMetricData rationalSystem) :
+      LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel where
+    Carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -804,18 +856,18 @@ noncomputable def CauchyRealizesRationalModel
 Predicate logic:
 
   noncomputable def CauchyRealizesRealModel
-    (rationalSystem : RationalNumberSystem)
-    (absolute_value_data : RationalMetricData rationalSystem) :
-    LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel where
-  Carrier
+      (rationalSystem : RationalNumberSystem)
+      (absolute_value_data : RationalMetricData rationalSystem) :
+      LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel where
+    Carrier
 
 Predicate logic (unfolded):
 
   noncomputable def CauchyRealizesRealModel
-    (rationalSystem : RationalNumberSystem)
-    (absolute_value_data : RationalMetricData rationalSystem) :
-    LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel where
-  Carrier (source fallback; no compiled unfold data available)
+      (rationalSystem : RationalNumberSystem)
+      (absolute_value_data : RationalMetricData rationalSystem) :
+      LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel where
+    Carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -870,20 +922,20 @@ noncomputable def CauchyRealizesRealModel
 Predicate logic:
 
   noncomputable def quotient_rational_embedding
-    (rationalSystem : RationalNumberSystem)
-    (absolute_value_data : RationalMetricData rationalSystem)
-    (value : rationalSystem.FieldModel.signature.carrier) :
-    Carrier rationalSystem absolute_value_data :=
-  Quotient.mk _ (rational_embedding rationalSystem absolute_value_data value)
+      (rationalSystem : RationalNumberSystem)
+      (absolute_value_data : RationalMetricData rationalSystem)
+      (value : rationalSystem.FieldModel.signature.carrier) :
+      Carrier rationalSystem absolute_value_data :=
+    Quotient.mk _ (rational_embedding rationalSystem absolute_value_data value)
 
 Predicate logic (unfolded):
 
   noncomputable def quotient_rational_embedding
-    (rationalSystem : RationalNumberSystem)
-    (absolute_value_data : RationalMetricData rationalSystem)
-    (value : rationalSystem.FieldModel.signature.carrier) :
-    Carrier rationalSystem absolute_value_data :=
-  Quotient.mk _ (rational_embedding rationalSystem absolute_value_data value) (source fallback; no compiled unfold data available)
+      (rationalSystem : RationalNumberSystem)
+      (absolute_value_data : RationalMetricData rationalSystem)
+      (value : rationalSystem.FieldModel.signature.carrier) :
+      Carrier rationalSystem absolute_value_data :=
+    Quotient.mk _ (rational_embedding rationalSystem absolute_value_data value) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -927,11 +979,17 @@ noncomputable def quotient_rational_embedding
 
 Predicate logic:
 
-  (∀ rationalSystem ∈ RationalNumberSystem), ∀ first second : rationalSystem.FieldModel.Carrier, quotient_rational_embedding rationalSystem absolute_value_data first ≤ quotient_rational_embedding rationalSystem absolute_value_data second ↔ rationalSystem.FieldModel.signature.le first second
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem) (first second : rationalSystem.FieldModel.Carrier), (LRA.NumberSystems.RealNumbers.Cauchy.quotientCarrierLE rationalSystem absolute_value_data).le (LRA.NumberSystems.RealNumbers.Cauchy.quotient_rational_embedding rationalSystem absolute_value_data first) (LRA.NumberSystems.RealNumbers.Cauchy.quotient_rational_embedding rationalSystem absolute_value_data second) ↔ rationalSystem.FieldModel.signature.le first second
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem) (first second : rationalSystem.FieldModel.1), (LRA.NumberSystems.RealNumbers.Cauchy.quotientCarrierLE rationalSystem absolute_value_data).1 (Quot.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data).1 { sequence := fun x => first, sequence_is_cauchy := ⋯ }) (Quot.mk (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absolute_value_data).1 { sequence := fun x => second, sequence_is_cauchy := ⋯ }) ↔ rationalSystem.FieldModel.signature.toOrderedRingConceptSignature.2 first second
+  Ambient
+    (implicit ambient)
+  Objects
+    rationalSystem : RationalNumberSystem
+    absolute_value_data : RationalMetricData rationalSystem
+  Prove
+    (LRA.NumberSystems.RealNumbers.Cauchy.quotientCarrierLE rationalSystem absolute_value_data).le (LRA.NumberSystems.RealNumbers.Cauchy.quotient_rational_embedding rationalSystem absolute_value_data first) (LRA.NumberSystems.RealNumbers.Cauchy.quotient_rational_embedding rationalSystem absolute_value_data second) ↔ rationalSystem.FieldModel.signature.le first second
 
 Logical form (Lean):
 
@@ -977,11 +1035,17 @@ theorem cauchy_rational_embedding_preserves_and_reflects_order
 
 Predicate logic:
 
-  (∀ rationalSystem ∈ RationalNumberSystem), ∃ embedding ∈ LRA.NumberSystems.RealNumbers.DenseOrderedFieldEmbeddingIntoReal rationalSystem.FieldModel (CauchyRealizesRealModel rationalSystem absolute_value_data), True
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem), Exists fun embedding => True
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem), Exists fun embedding => True
+  Ambient
+    (implicit ambient)
+  Objects
+    rationalSystem : RationalNumberSystem
+    absolute_value_data : RationalMetricData rationalSystem
+  Prove
+    Exists fun embedding => True
 
 Logical form (Lean):
 
@@ -1030,24 +1094,24 @@ theorem cauchy_rational_embedding_exists
 Predicate logic:
 
   noncomputable def cauchy_rational_embedding_data
-    (rationalSystem : RationalNumberSystem)
-    (absolute_value_data : RationalMetricData rationalSystem) :
-    LRA.NumberSystems.RealNumbers.DenseOrderedFieldEmbeddingIntoReal
-      rationalSystem.FieldModel
-      (CauchyRealizesRealModel rationalSystem absolute_value_data) :=
-  Classical.choose
-    (cauchy_rational_embedding_exists rationalSystem absolute_value_data)
+      (rationalSystem : RationalNumberSystem)
+      (absolute_value_data : RationalMetricData rationalSystem) :
+      LRA.NumberSystems.RealNumbers.DenseOrderedFieldEmbeddingIntoReal
+        rationalSystem.FieldModel
+        (CauchyRealizesRealModel rationalSystem absolute_value_data) :=
+    Classical.choose
+      (cauchy_rational_embedding_exists rationalSystem absolute_value_data)
 
 Predicate logic (unfolded):
 
   noncomputable def cauchy_rational_embedding_data
-    (rationalSystem : RationalNumberSystem)
-    (absolute_value_data : RationalMetricData rationalSystem) :
-    LRA.NumberSystems.RealNumbers.DenseOrderedFieldEmbeddingIntoReal
-      rationalSystem.FieldModel
-      (CauchyRealizesRealModel rationalSystem absolute_value_data) :=
-  Classical.choose
-    (cauchy_rational_embedding_exists rationalSystem absolute_value_data) (source fallback; no compiled unfold data available)
+      (rationalSystem : RationalNumberSystem)
+      (absolute_value_data : RationalMetricData rationalSystem) :
+      LRA.NumberSystems.RealNumbers.DenseOrderedFieldEmbeddingIntoReal
+        rationalSystem.FieldModel
+        (CauchyRealizesRealModel rationalSystem absolute_value_data) :=
+    Classical.choose
+      (cauchy_rational_embedding_exists rationalSystem absolute_value_data) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1096,22 +1160,22 @@ noncomputable def cauchy_rational_embedding_data
 Predicate logic:
 
   noncomputable def CauchyRationalEmbedding
-    (rationalSystem : RationalNumberSystem)
-    (absolute_value_data : RationalMetricData rationalSystem) :
-    LRA.NumberSystems.RealNumbers.DenseOrderedFieldEmbeddingIntoReal
-      rationalSystem.FieldModel
-      (CauchyRealizesRealModel rationalSystem absolute_value_data) :=
-  cauchy_rational_embedding_data rationalSystem absolute_value_data
+      (rationalSystem : RationalNumberSystem)
+      (absolute_value_data : RationalMetricData rationalSystem) :
+      LRA.NumberSystems.RealNumbers.DenseOrderedFieldEmbeddingIntoReal
+        rationalSystem.FieldModel
+        (CauchyRealizesRealModel rationalSystem absolute_value_data) :=
+    cauchy_rational_embedding_data rationalSystem absolute_value_data
 
 Predicate logic (unfolded):
 
   noncomputable def CauchyRationalEmbedding
-    (rationalSystem : RationalNumberSystem)
-    (absolute_value_data : RationalMetricData rationalSystem) :
-    LRA.NumberSystems.RealNumbers.DenseOrderedFieldEmbeddingIntoReal
-      rationalSystem.FieldModel
-      (CauchyRealizesRealModel rationalSystem absolute_value_data) :=
-  cauchy_rational_embedding_data rationalSystem absolute_value_data (source fallback; no compiled unfold data available)
+      (rationalSystem : RationalNumberSystem)
+      (absolute_value_data : RationalMetricData rationalSystem) :
+      LRA.NumberSystems.RealNumbers.DenseOrderedFieldEmbeddingIntoReal
+        rationalSystem.FieldModel
+        (CauchyRealizesRealModel rationalSystem absolute_value_data) :=
+    cauchy_rational_embedding_data rationalSystem absolute_value_data (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1157,11 +1221,17 @@ noncomputable def CauchyRationalEmbedding
 
 Predicate logic:
 
-  (∀ rationalSystem ∈ RationalNumberSystem), ∀ realValue : (CauchyRealizesRealModel rationalSystem absolute_value_data).Carrier, ∃ rationalValue ∈ rationalSystem.FieldModel.Carrier, realValue < (CauchyRationalEmbedding rationalSystem absolute_value_data).ToReal rationalValue
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem) (realValue : (LRA.NumberSystems.RealNumbers.Cauchy.CauchyRealizesRealModel rationalSystem absolute_value_data).Carrier), Exists fun rationalValue => (LRA.NumberSystems.RealNumbers.Cauchy.CauchyRealizesRealModel rationalSystem absolute_value_data).ltInst.lt realValue ((LRA.NumberSystems.RealNumbers.Cauchy.CauchyRationalEmbedding rationalSystem absolute_value_data).ToReal rationalValue)
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (absolute_value_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem) (realValue : (LRA.NumberSystems.RealNumbers.Cauchy.CauchyRealizesRealModel rationalSystem absolute_value_data).toDenselyOrderedFieldModel.1), Exists fun rationalValue => (LRA.NumberSystems.RealNumbers.Cauchy.CauchyRealizesRealModel rationalSystem absolute_value_data).ltInst.1 realValue ((LRA.NumberSystems.RealNumbers.Cauchy.CauchyRationalEmbedding rationalSystem absolute_value_data).1 rationalValue)
+  Ambient
+    (implicit ambient)
+  Objects
+    rationalSystem : RationalNumberSystem
+    absolute_value_data : RationalMetricData rationalSystem
+  Prove
+    Exists fun rationalValue => (LRA.NumberSystems.RealNumbers.Cauchy.CauchyRealizesRealModel rationalSystem absolute_value_data).8.lt realValue ((LRA.NumberSystems.RealNumbers.Cauchy.CauchyRationalEmbedding rationalSystem absolute_value_data).1 rationalValue)
 
 Logical form (Lean):
 
@@ -1210,28 +1280,28 @@ theorem cauchy_dense_ordered_field_embedding_is_cofinal
 Predicate logic:
 
   noncomputable def CauchyRealizesCofinalRealExtension
-    (rationalSystem : RationalNumberSystem)
-    (absolute_value_data : RationalMetricData rationalSystem) :
-    LRA.NumberSystems.RealNumbers.CofinalRealExtension
-      rationalSystem.FieldModel where
-  RealModel := CauchyRealizesRealModel rationalSystem absolute_value_data
-  DenseOrderedFieldEmbedding := CauchyRationalEmbedding rationalSystem absolute_value_data
-  DenseOrderedFieldEmbeddingIsCofinal :=
-    cauchy_dense_ordered_field_embedding_is_cofinal
-      rationalSystem absolute_value_data
+      (rationalSystem : RationalNumberSystem)
+      (absolute_value_data : RationalMetricData rationalSystem) :
+      LRA.NumberSystems.RealNumbers.CofinalRealExtension
+        rationalSystem.FieldModel where
+    RealModel := CauchyRealizesRealModel rationalSystem absolute_value_data
+    DenseOrderedFieldEmbedding := CauchyRationalEmbedding rationalSystem absolute_value_data
+    DenseOrderedFieldEmbeddingIsCofinal :=
+      cauchy_dense_ordered_field_embedding_is_cofinal
+        rationalSystem absolute_value_data
 
 Predicate logic (unfolded):
 
   noncomputable def CauchyRealizesCofinalRealExtension
-    (rationalSystem : RationalNumberSystem)
-    (absolute_value_data : RationalMetricData rationalSystem) :
-    LRA.NumberSystems.RealNumbers.CofinalRealExtension
-      rationalSystem.FieldModel where
-  RealModel := CauchyRealizesRealModel rationalSystem absolute_value_data
-  DenseOrderedFieldEmbedding := CauchyRationalEmbedding rationalSystem absolute_value_data
-  DenseOrderedFieldEmbeddingIsCofinal :=
-    cauchy_dense_ordered_field_embedding_is_cofinal
-      rationalSystem absolute_value_data (source fallback; no compiled unfold data available)
+      (rationalSystem : RationalNumberSystem)
+      (absolute_value_data : RationalMetricData rationalSystem) :
+      LRA.NumberSystems.RealNumbers.CofinalRealExtension
+        rationalSystem.FieldModel where
+    RealModel := CauchyRealizesRealModel rationalSystem absolute_value_data
+    DenseOrderedFieldEmbedding := CauchyRationalEmbedding rationalSystem absolute_value_data
+    DenseOrderedFieldEmbeddingIsCofinal :=
+      cauchy_dense_ordered_field_embedding_is_cofinal
+        rationalSystem absolute_value_data (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1284,26 +1354,26 @@ noncomputable def CauchyRealizesCofinalRealExtension
 Predicate logic:
 
   noncomputable def CauchyRationalRealExtension
-    (rationalSystem : RationalNumberSystem)
-    (absolute_value_data : RationalMetricData rationalSystem) :
-    LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem where
-  RealModel := CauchyRealizesRealModel rationalSystem absolute_value_data
-  DenseOrderedFieldEmbedding := CauchyRationalEmbedding rationalSystem absolute_value_data
-  DenseOrderedFieldEmbeddingIsCofinal :=
-    (CauchyRealizesCofinalRealExtension
-      rationalSystem absolute_value_data).DenseOrderedFieldEmbeddingIsCofinal
+      (rationalSystem : RationalNumberSystem)
+      (absolute_value_data : RationalMetricData rationalSystem) :
+      LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem where
+    RealModel := CauchyRealizesRealModel rationalSystem absolute_value_data
+    DenseOrderedFieldEmbedding := CauchyRationalEmbedding rationalSystem absolute_value_data
+    DenseOrderedFieldEmbeddingIsCofinal :=
+      (CauchyRealizesCofinalRealExtension
+        rationalSystem absolute_value_data).DenseOrderedFieldEmbeddingIsCofinal
 
 Predicate logic (unfolded):
 
   noncomputable def CauchyRationalRealExtension
-    (rationalSystem : RationalNumberSystem)
-    (absolute_value_data : RationalMetricData rationalSystem) :
-    LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem where
-  RealModel := CauchyRealizesRealModel rationalSystem absolute_value_data
-  DenseOrderedFieldEmbedding := CauchyRationalEmbedding rationalSystem absolute_value_data
-  DenseOrderedFieldEmbeddingIsCofinal :=
-    (CauchyRealizesCofinalRealExtension
-      rationalSystem absolute_value_data).DenseOrderedFieldEmbeddingIsCofinal (source fallback; no compiled unfold data available)
+      (rationalSystem : RationalNumberSystem)
+      (absolute_value_data : RationalMetricData rationalSystem) :
+      LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem where
+    RealModel := CauchyRealizesRealModel rationalSystem absolute_value_data
+    DenseOrderedFieldEmbedding := CauchyRationalEmbedding rationalSystem absolute_value_data
+    DenseOrderedFieldEmbeddingIsCofinal :=
+      (CauchyRealizesCofinalRealExtension
+        rationalSystem absolute_value_data).DenseOrderedFieldEmbeddingIsCofinal (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1353,11 +1423,17 @@ noncomputable def CauchyRationalRealExtension
 
 Predicate logic:
 
-  (∀ rationalSystem ∈ RationalNumberSystem), ∃ realExtension ∈ LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem, realExtension.RealModel.Carrier = Carrier rationalSystem absoluteValueData
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (absoluteValueData : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem), Exists fun realExtension => realExtension.RealModel.Carrier = LRA.NumberSystems.RealNumbers.Cauchy.Carrier rationalSystem absoluteValueData
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (absoluteValueData : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem), Exists fun realExtension => realExtension.RealModel.toDenselyOrderedFieldModel.1 = Quot (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absoluteValueData).1
+  Ambient
+    (implicit ambient)
+  Objects
+    rationalSystem : RationalNumberSystem
+    absoluteValueData : RationalMetricData rationalSystem
+  Prove
+    Exists fun realExtension => realExtension.RealModel.1 = Quot (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem absoluteValueData).1
 
 Logical form (Lean):
 

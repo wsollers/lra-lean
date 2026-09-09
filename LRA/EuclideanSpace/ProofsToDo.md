@@ -31,7 +31,7 @@ Predicate logic: ∀ (Point : Type u) [LRA.EuclideanSpace.Between Point] [LRA.Eu
 Predicate logic (unfolded): ∀ (Point : Type u) [LRA.EuclideanSpace.Between Point] [LRA.EuclideanSpace.Congruent Point] (n : Nat) (p : Point)   (points : Fin (instHAdd.hAdd n 1) → Point), sorry [unfold error: unavailable]
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Interface/Laws.lean
+Source: [`./Interface/Laws.lean`](./Interface/Laws.lean)
 
 
 
@@ -42,7 +42,7 @@ Predicate logic: ∀ (Point : Type u) [LRA.EuclideanSpace.Between Point] [LRA.Eu
 Predicate logic (unfolded): ∀ (Point : Type u) [LRA.EuclideanSpace.Between Point] [LRA.EuclideanSpace.Congruent Point] (n : Nat)   (points : Fin (instHAdd.hAdd n 1) → Point), sorry [unfold error: unavailable]
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Interface/Laws.lean
+Source: [`./Interface/Laws.lean`](./Interface/Laws.lean)
 
 
 
@@ -59,7 +59,7 @@ Predicate logic (unfolded):
     Real.instLE.le 0 (Decidable.rec (fun h => (fun x => { hSub := fun a b => Real.instSub.sub a b }.hSub a b) h) (fun h => (fun x => { hSub := fun a b => Real.instSub.sub a b }.hSub b a) h) (Real.linearOrder.toDecidableLE a b))
 Transliterated theorem: RealLineDistance a b ≥ 0
 Logical form (Lean): (a b : ℝ) : RealLineDistance a b ≥ 0
-Source: ./RealLine/Theorems/RealLine.lean#L42
+Source: [`./RealLine/Theorems/RealLine.lean#L47`](./RealLine/Theorems/RealLine.lean#L47)
 
 
 
@@ -76,7 +76,7 @@ Predicate logic (unfolded):
     Decidable.rec (fun h => (fun x => { hSub := fun a b => Real.instSub.sub a b }.hSub a a) h) (fun h => (fun x => { hSub := fun a b => Real.instSub.sub a b }.hSub a a) h) (Real.linearOrder.6 a a) = 0
 Transliterated theorem: RealLineDistance a a = 0
 Logical form (Lean): (a : ℝ) : RealLineDistance a a = 0
-Source: ./RealLine/Theorems/RealLine.lean#L80
+Source: [`./RealLine/Theorems/RealLine.lean#L90`](./RealLine/Theorems/RealLine.lean#L90)
 
 
 
@@ -93,7 +93,7 @@ Predicate logic (unfolded):
     Decidable.rec (fun h => (fun x => { hSub := fun a b => Real.instSub.sub a b }.hSub a b) h) (fun h => (fun x => { hSub := fun a b => Real.instSub.sub a b }.hSub b a) h) (Real.linearOrder.6 a b) = Decidable.rec (fun h => (fun x => { hSub := fun a b => Real.instSub.sub a b }.hSub b a) h) (fun h => (fun x => { hSub := fun a b => Real.instSub.sub a b }.hSub a b) h) (Real.linearOrder.6 b a)
 Transliterated theorem: RealLineDistance a b = RealLineDistance b a
 Logical form (Lean): (a b : ℝ) : RealLineDistance a b = RealLineDistance b a
-Source: ./RealLine/Theorems/RealLine.lean#L119
+Source: [`./RealLine/Theorems/RealLine.lean#L134`](./RealLine/Theorems/RealLine.lean#L134)
 
 
 
@@ -110,7 +110,7 @@ Predicate logic (unfolded):
     RealLineDistance a b = 0 ↔ a = b
 Transliterated theorem: RealLineDistance a b = 0 ↔ a = b
 Logical form (Lean): (a b : ℝ) : RealLineDistance a b = 0 ↔ a = b
-Source: ./RealLine/Theorems/RealLine.lean#L159
+Source: [`./RealLine/Theorems/RealLine.lean#L179`](./RealLine/Theorems/RealLine.lean#L179)
 
 
 
@@ -127,7 +127,7 @@ Predicate logic (unfolded):
     Real.instLE.le (Decidable.rec (fun h => (fun x => { hSub := fun a b => Real.instSub.sub a b }.hSub a c) h) (fun h => (fun x => { hSub := fun a b => Real.instSub.sub a b }.hSub c a) h) (Real.linearOrder.6 a c)) ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd (Decidable.rec (fun h => (fun x => { hSub := fun a b => Real.instSub.sub a b }.hSub a b) h) (fun h => (fun x => { hSub := fun a b => Real.instSub.sub a b }.hSub b a) h) (Real.linearOrder.6 a b)) (Decidable.rec (fun h => (fun x => { hSub := fun a b => Real.instSub.sub a b }.hSub b c) h) (fun h => (fun x => { hSub := fun a b => Real.instSub.sub a b }.hSub c b) h) (Real.linearOrder.6 b c)))
 Transliterated theorem: RealLineDistance a c ≤ RealLineDistance a b + RealLineDistance b c
 Logical form (Lean): (a b c : ℝ) : RealLineDistance a c ≤ RealLineDistance a b + RealLineDistance b c
-Source: ./RealLine/Theorems/RealLine.lean#L199
+Source: [`./RealLine/Theorems/RealLine.lean#L224`](./RealLine/Theorems/RealLine.lean#L224)
 
 
 
@@ -144,7 +144,7 @@ Predicate logic (unfolded):
     (OpenInterval a b).Nonempty ↔ a < b
 Transliterated theorem: (OpenInterval a b).Nonempty ↔ a < b
 Logical form (Lean): (a b : ℝ) : (OpenInterval a b).Nonempty ↔ a < b
-Source: ./RealLine/Theorems/RealLine.lean#L239
+Source: [`./RealLine/Theorems/RealLine.lean#L269`](./RealLine/Theorems/RealLine.lean#L269)
 
 
 
@@ -161,7 +161,7 @@ Predicate logic (unfolded):
     { le := fun s₁ s₂ => ∀ ⦃a : Real⦄, a ∈ s₁ → a ∈ s₂}.le (fun x => (Real.instLT.lt a x ∧ Real.instLT.lt x b)) fun x => (Real.instLE.le a x ∧ Real.instLE.le x b)
 Transliterated theorem: OpenInterval a b ⊆ ClosedInterval a b
 Logical form (Lean): (a b : ℝ) : OpenInterval a b ⊆ ClosedInterval a b
-Source: ./RealLine/Theorems/RealLine.lean#L279
+Source: [`./RealLine/Theorems/RealLine.lean#L314`](./RealLine/Theorems/RealLine.lean#L314)
 
 
 
@@ -178,7 +178,7 @@ Predicate logic (unfolded):
     fun x => Exists fun a_1 => ((a_1 ∈ fun x => (Real.instLT.lt a x ∧ Real.instLT.lt x b)) ∧ { hAdd := fun a b => Real.instAdd.add a b }.hAdd a_1 c = x) = funx => (Real.instLT.lt ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd a c) x ∧ Real.instLT.lt x ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd b c))
 Transliterated theorem: (Translate1 c) '' (OpenInterval a b) = OpenInterval (a + c) (b + c)
 Logical form (Lean): (c a b : ℝ) : (Translate1 c) '' (OpenInterval a b) = OpenInterval (a + c) (b + c)
-Source: ./RealLine/Theorems/RealLine.lean#L319
+Source: [`./RealLine/Theorems/RealLine.lean#L359`](./RealLine/Theorems/RealLine.lean#L359)
 
 
 
@@ -195,7 +195,7 @@ Predicate logic (unfolded):
     fun x => Exists fun a_1 => ((a_1 ∈ fun x => (Real.instLE.le a x ∧ Real.instLE.le x b)) ∧ { hAdd := fun a b => Real.instAdd.add a b }.hAdd a_1 c = x) = funx => (Real.instLE.le ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd a c) x ∧ Real.instLE.le x ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd b c))
 Transliterated theorem: (Translate1 c) '' (ClosedInterval a b) = ClosedInterval (a + c) (b + c)
 Logical form (Lean): (c a b : ℝ) : (Translate1 c) '' (ClosedInterval a b) = ClosedInterval (a + c) (b + c)
-Source: ./RealLine/Theorems/RealLine.lean#L360
+Source: [`./RealLine/Theorems/RealLine.lean#L405`](./RealLine/Theorems/RealLine.lean#L405)
 
 
 
@@ -213,7 +213,7 @@ Predicate logic (unfolded):
     Real.instLT.lt 0 k → fun x => Exists fun a_2 => ((a_2 ∈ fun x => (Real.instLT.lt a x ∧ Real.instLT.lt x b)) ∧ { hMul := fun a b => Real.instMul.mul a b }.hMul k a_2 = x) = funx => (Real.instLT.lt ({ hMul := fun a b => Real.instMul.mul a b }.hMul k a) x ∧ Real.instLT.lt x ({ hMul := fun a b => Real.instMul.mul a b }.hMul k b))
 Transliterated theorem: (0 < k) → (Dilate1 k) '' (OpenInterval a b) = OpenInterval (k * a) (k * b)
 Logical form (Lean): {k : ℝ} (a b : ℝ) (positiveScale : 0 < k) : (Dilate1 k) '' (OpenInterval a b) = OpenInterval (k * a) (k * b)
-Source: ./RealLine/Theorems/RealLine.lean#L402
+Source: [`./RealLine/Theorems/RealLine.lean#L453`](./RealLine/Theorems/RealLine.lean#L453)
 
 
 
@@ -231,7 +231,7 @@ Predicate logic (unfolded):
     Real.instLT.lt k 0 → fun x => Exists fun a_2 => ((a_2 ∈ fun x => (Real.instLT.lt a x ∧ Real.instLT.lt x b)) ∧ { hMul := fun a b => Real.instMul.mul a b }.hMul k a_2 = x) = funx => (Real.instLT.lt ({ hMul := fun a b => Real.instMul.mul a b }.hMul k b) x ∧ Real.instLT.lt x ({ hMul := fun a b => Real.instMul.mul a b }.hMul k a))
 Transliterated theorem: (k < 0) → (Dilate1 k) '' (OpenInterval a b) = OpenInterval (k * b) (k * a)
 Logical form (Lean): {k : ℝ} (a b : ℝ) (negativeScale : k < 0) : (Dilate1 k) '' (OpenInterval a b) = OpenInterval (k * b) (k * a)
-Source: ./RealLine/Theorems/RealLine.lean#L444
+Source: [`./RealLine/Theorems/RealLine.lean#L501`](./RealLine/Theorems/RealLine.lean#L501)
 
 
 
@@ -248,7 +248,7 @@ Predicate logic (unfolded):
     Decidable.rec (fun h => (fun x => { hSub := fun a b => Real.instSub.sub a b }.hSub ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd a c) ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd b c)) h) (fun h => (fun x => { hSub := fun a b => Real.instSub.sub a b }.hSub ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd b c) ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd a c)) h) (Real.linearOrder.6 (LRA.EuclideanSpace.Translate1 c a) (LRA.EuclideanSpace.Translate1 c b)) = Decidable.rec (fun h => (fun x => { hSub := fun a b => Real.instSub.sub a b }.hSub a b) h) (fun h => (fun x => { hSub := fun a b => Real.instSub.sub a b }.hSub b a) h) (Real.linearOrder.6 a b)
 Transliterated theorem: RealLineDistance (Translate1 c a) (Translate1 c b) = RealLineDistance a b
 Logical form (Lean): (c a b : ℝ) : RealLineDistance (Translate1 c a) (Translate1 c b) = RealLineDistance a b
-Source: ./RealLine/Theorems/RealLine.lean#L486
+Source: [`./RealLine/Theorems/RealLine.lean#L548`](./RealLine/Theorems/RealLine.lean#L548)
 
 
 
@@ -265,7 +265,7 @@ Predicate logic (unfolded):
     Decidable.rec (fun h => (fun x => { hSub := fun a b => Real.instSub.sub a b }.hSub ({ hMul := fun a b => Real.instMul.mul a b }.hMul k a) ({ hMul := fun a b => Real.instMul.mul a b }.hMul k b)) h) (fun h => (fun x => { hSub := fun a b => Real.instSub.sub a b }.hSub ({ hMul := fun a b => Real.instMul.mul a b }.hMul k b) ({ hMul := fun a b => Real.instMul.mul a b }.hMul k a)) h) (Real.linearOrder.6 (LRA.EuclideanSpace.Dilate1 k a) (LRA.EuclideanSpace.Dilate1 k b)) = { hMul := fun a b => Real.instMul.mul a b }.hMul (Decidable.rec (fun h => (fun x => { hSub := fun a b => Real.instSub.sub a b }.hSub 0 k) h) (fun h => (fun x => { hSub := fun a b => Real.instSub.sub a b }.hSub k 0) h) (Real.linearOrder.6 0 k)) (Decidable.rec (fun h => (fun x => { hSub := fun a b => Real.instSub.sub a b }.hSub a b) h) (fun h => (fun x => { hSub := fun a b => Real.instSub.sub a b }.hSub b a) h) (Real.linearOrder.6 a b))
 Transliterated theorem: RealLineDistance (Dilate1 k a) (Dilate1 k b) = (RealLineDistance 0 k) * RealLineDistance a b
 Logical form (Lean): (k a b : ℝ) : RealLineDistance (Dilate1 k a) (Dilate1 k b) = (RealLineDistance 0 k) * RealLineDistance a b
-Source: ./RealLine/Theorems/RealLine.lean#L528
+Source: [`./RealLine/Theorems/RealLine.lean#L595`](./RealLine/Theorems/RealLine.lean#L595)
 
 
 
@@ -283,7 +283,7 @@ Predicate logic (unfolded):
     LRA.EuclideanSpace.instCongruentMathlibPoint.1 x y y x
 Transliterated theorem: congruent x y y x
 Logical form (Lean): (x y : MathlibPoint n) : congruent x y y x
-Source: ./MathlibPoint/Laws.lean#L45
+Source: [`./MathlibPoint/Laws.lean#L51`](./MathlibPoint/Laws.lean#L51)
 
 
 
@@ -303,7 +303,7 @@ Predicate logic (unfolded):
     (LRA.EuclideanSpace.instCongruentMathlibPoint.1 x y z w ∧ LRA.EuclideanSpace.instCongruentMathlibPoint.1 x y u v) → LRA.EuclideanSpace.instCongruentMathlibPoint.1 z w u v
 Transliterated theorem: congruent z w u v
 Logical form (Lean): (x y z w u v : MathlibPoint n) (xyCongZw : congruent x y z w) (xyCongUv : congruent x y u v) : congruent z w u v
-Source: ./MathlibPoint/Laws.lean#L86
+Source: [`./MathlibPoint/Laws.lean#L100`](./MathlibPoint/Laws.lean#L100)
 
 
 
@@ -322,7 +322,7 @@ Predicate logic (unfolded):
     LRA.EuclideanSpace.instCongruentMathlibPoint.1 x y z z → x = y
 Transliterated theorem: x = y
 Logical form (Lean): (x y z : MathlibPoint n) (xyCongZz : congruent x y z z) : x = y
-Source: ./MathlibPoint/Laws.lean#L127
+Source: [`./MathlibPoint/Laws.lean#L148`](./MathlibPoint/Laws.lean#L148)
 
 
 
@@ -340,7 +340,7 @@ Predicate logic (unfolded):
     Exists fun z => (LRA.EuclideanSpace.instBetweenMathlibPoint.1 x y z ∧ LRA.EuclideanSpace.instCongruentMathlibPoint.1 y z a b)
 Transliterated theorem: ∃ z ∈ MathlibPoint n, between x y z ∧ congruent y z a b
 Logical form (Lean): (x y a b : MathlibPoint n) : ∃ z : MathlibPoint n, between x y z ∧ congruent y z a b
-Source: ./MathlibPoint/Laws.lean#L167
+Source: [`./MathlibPoint/Laws.lean#L194`](./MathlibPoint/Laws.lean#L194)
 
 
 
@@ -365,7 +365,7 @@ Predicate logic (unfolded):
     ((x = y → False) ∧ (LRA.EuclideanSpace.instBetweenMathlibPoint.1 x y z ∧ (LRA.EuclideanSpace.instBetweenMathlibPoint.1 x' y' z' ∧ (LRA.EuclideanSpace.instCongruentMathlibPoint.1 x y x' y' ∧ (LRA.EuclideanSpace.instCongruentMathlibPoint.1 y z y' z' ∧ (LRA.EuclideanSpace.instCongruentMathlibPoint.1 x u x' u' ∧ LRA.EuclideanSpace.instCongruentMathlibPoint.1 y u y' u')))))) → LRA.EuclideanSpace.instCongruentMathlibPoint.1 z u z' u'
 Transliterated theorem: congruent z u z' u'
 Logical form (Lean): (x y z x' y' z' u u' : MathlibPoint n) (xNeY : x ≠ y) (bxyz : between x y z) (bxyz' : between x' y' z') (xyCongXy' : congruent x y x' y') (yzCongYz' : congruent y z y' z') (xuCongXu' : congruent x u x' u') (yuCongYu' : congruent y u y' u') : congruent z u z' u'
-Source: ./MathlibPoint/Laws.lean#L210
+Source: [`./MathlibPoint/Laws.lean#L250`](./MathlibPoint/Laws.lean#L250)
 
 
 
@@ -384,7 +384,7 @@ Predicate logic (unfolded):
     LRA.EuclideanSpace.instBetweenMathlibPoint.1 x y x → x = y
 Transliterated theorem: x = y
 Logical form (Lean): (x y : MathlibPoint n) (bxyx : between x y x) : x = y
-Source: ./MathlibPoint/Laws.lean#L253
+Source: [`./MathlibPoint/Laws.lean#L300`](./MathlibPoint/Laws.lean#L300)
 
 
 
@@ -404,7 +404,7 @@ Predicate logic (unfolded):
     (LRA.EuclideanSpace.instBetweenMathlibPoint.1 u p v ∧ LRA.EuclideanSpace.instBetweenMathlibPoint.1 p q z) → Exists fun x => (LRA.EuclideanSpace.instBetweenMathlibPoint.1 u x z ∧ LRA.EuclideanSpace.instBetweenMathlibPoint.1 q x v)
 Transliterated theorem: ∃ x ∈ MathlibPoint n, between u x z ∧ between q x v
 Logical form (Lean): (u v p q z : MathlibPoint n) (bupv : between u p v) (bpqz : between p q z) : ∃ x : MathlibPoint n, between u x z ∧ between q x v
-Source: ./MathlibPoint/Laws.lean#L294
+Source: [`./MathlibPoint/Laws.lean#L349`](./MathlibPoint/Laws.lean#L349)
 
 
 
@@ -425,7 +425,7 @@ Predicate logic (unfolded):
     (LRA.EuclideanSpace.instBetweenMathlibPoint.1 a d t ∧ (LRA.EuclideanSpace.instBetweenMathlibPoint.1 b d c ∧ (a = d → False))) → Exists fun x => Exists fun y => (LRA.EuclideanSpace.instBetweenMathlibPoint.1 a b x ∧ (LRA.EuclideanSpace.instBetweenMathlibPoint.1 a c y ∧ LRA.EuclideanSpace.instBetweenMathlibPoint.1 x t y))
 Transliterated theorem: ∃ x y ∈ MathlibPoint n, between a b x ∧ between a c y ∧ between x t y
 Logical form (Lean): (a b c d t : MathlibPoint n) (badt : between a d t) (bbdc : between b d c) (aNeD : a ≠ d) : ∃ x y : MathlibPoint n, between a b x ∧ between a c y ∧ between x t y
-Source: ./MathlibPoint/Laws.lean#L336
+Source: [`./MathlibPoint/Laws.lean#L400`](./MathlibPoint/Laws.lean#L400)
 
 
 
@@ -443,7 +443,7 @@ Predicate logic (unfolded):
     (Exists fun a => ∀ (x y : WithLp 2 ((i : Fin n) → (fun x => Real) i)), φ x → ψ y → LRA.EuclideanSpace.instBetweenMathlibPoint.1 a x y) → Exists fun b => ∀ (x y : WithLp 2 ((i : Fin n) → (fun x => Real) i)), φ x → ψ y → LRA.EuclideanSpace.instBetweenMathlibPoint.1 x b y
 Transliterated theorem: (∃ a ∈ MathlibPoint n, ∀ x y, φ x → ψ y → between a x y) → ∃ b ∈ MathlibPoint n, ∀ x y, φ x → ψ y → between x b y
 Logical form (Lean): (φ ψ : MathlibPoint n → Prop) (separated : ∃ a : MathlibPoint n, ∀ x y, φ x → ψ y → between a x y) : ∃ b : MathlibPoint n, ∀ x y, φ x → ψ y → between x b y
-Source: ./MathlibPoint/Laws.lean#L378
+Source: [`./MathlibPoint/Laws.lean#L448`](./MathlibPoint/Laws.lean#L448)
 
 ## Axioms / Assumptions
 
@@ -463,29 +463,29 @@ Predicate logic (unfolded):
     Type
 Transliterated theorem: Type
 Logical form (Lean): : Type
-Source: ./Tarski/Primitives.lean#L41
+Source: [`./Tarski/Primitives.lean#L46`](./Tarski/Primitives.lean#L46)
 
 
 
 Name: TarskiBetween
 Kind: Axiom
 State: Axiom
-Predicate logic: LRA.EuclideanSpace.TarskiPoint → LRA.EuclideanSpace.TarskiPoint → LRA.EuclideanSpace.TarskiPoint → Prop
-Predicate logic (unfolded): LRA.EuclideanSpace.TarskiPoint → LRA.EuclideanSpace.TarskiPoint → LRA.EuclideanSpace.TarskiPoint → Prop [unfold error: unavailable]
+Predicate logic: fun (first middle last : TarskiPoint) => TarskiBetween first middle last
+Predicate logic (unfolded): fun (first middle last : TarskiPoint) => TarskiBetween first middle last [opaque predicate axiom: no body to unfold]
 Transliterated theorem: TarskiPoint → TarskiPoint → TarskiPoint → Prop
 Logical form (Lean): : TarskiPoint → TarskiPoint → TarskiPoint → Prop
-Source: ./Tarski/Primitives.lean#L79
+Source: [`./Tarski/Primitives.lean#L84`](./Tarski/Primitives.lean#L84)
 
 
 
 Name: TarskiCongruent
 Kind: Axiom
 State: Axiom
-Predicate logic: LRA.EuclideanSpace.TarskiPoint →   LRA.EuclideanSpace.TarskiPoint → LRA.EuclideanSpace.TarskiPoint → LRA.EuclideanSpace.TarskiPoint → Prop
-Predicate logic (unfolded): LRA.EuclideanSpace.TarskiPoint →   LRA.EuclideanSpace.TarskiPoint → LRA.EuclideanSpace.TarskiPoint → LRA.EuclideanSpace.TarskiPoint → Prop [unfold error: unavailable]
-Transliterated theorem: TarskiPoint → TarskiPoint → TarskiPoint → TarskiPoint → Prop instance : Between TarskiPoint
-Logical form (Lean): : TarskiPoint → TarskiPoint → TarskiPoint → TarskiPoint → Prop instance : Between TarskiPoint
-Source: ./Tarski/Primitives.lean#L117
+Predicate logic: fun (firstStart firstEnd secondStart secondEnd : TarskiPoint) => TarskiCongruent firstStart firstEnd secondStart secondEnd
+Predicate logic (unfolded): fun (firstStart firstEnd secondStart secondEnd : TarskiPoint) => TarskiCongruent firstStart firstEnd secondStart secondEnd [opaque predicate axiom: no body to unfold]
+Transliterated theorem: TarskiPoint → TarskiPoint → TarskiPoint → TarskiPoint → Prop
+Logical form (Lean): : TarskiPoint → TarskiPoint → TarskiPoint → TarskiPoint → Prop
+Source: [`./Tarski/Primitives.lean#L122`](./Tarski/Primitives.lean#L122)
 
 
 
@@ -500,16 +500,16 @@ Predicate logic (unfolded):
     x y : TarskiPoint
   Prove
     LRA.EuclideanSpace.TarskiCongruent x y y x
-Transliterated theorem: (∀ x y ∈ TarskiPoint), TarskiCongruent x y y x end LRA.EuclideanSpace
-Logical form (Lean): (x y : TarskiPoint) : TarskiCongruent x y y x end LRA.EuclideanSpace
-Source: ./Tarski/Axioms/CongruenceReflexivity.lean#L42
+Transliterated theorem: (∀ x y ∈ TarskiPoint), TarskiCongruent x y y x
+Logical form (Lean): (x y : TarskiPoint) : TarskiCongruent x y y x
+Source: [`./Tarski/Axioms/CongruenceReflexivity.lean#L47`](./Tarski/Axioms/CongruenceReflexivity.lean#L47)
 
 
 
 Name: CongruenceTransitivity
 Kind: Axiom
 State: Axiom
-Predicate logic: ∀ (x y z w u v : TarskiPoint) (xyCongZw : TarskiCongruent x y z w) (xyCongUv : TarskiCongruent x y u v), TarskiCongruent z w u v end LRA.EuclideanSpace
+Predicate logic: ∀ (x y z w u v : TarskiPoint) (xyCongZw : TarskiCongruent x y z w) (xyCongUv : TarskiCongruent x y u v), TarskiCongruent z w u v
 Predicate logic (unfolded):
   Ambient
     (implicit ambient)
@@ -519,16 +519,16 @@ Predicate logic (unfolded):
     xyCongUv : TarskiCongruent x y u v
   Prove
     (LRA.EuclideanSpace.TarskiCongruent x y z w ∧ LRA.EuclideanSpace.TarskiCongruent x y u v) → LRA.EuclideanSpace.TarskiCongruent z w u v
-Transliterated theorem: (∀ x y z w u v ∈ TarskiPoint), TarskiCongruent z w u v end LRA.EuclideanSpace
-Logical form (Lean): (x y z w u v : TarskiPoint) (xyCongZw : TarskiCongruent x y z w) (xyCongUv : TarskiCongruent x y u v) : TarskiCongruent z w u v end LRA.EuclideanSpace
-Source: ./Tarski/Axioms/CongruenceTransitivity.lean#L43
+Transliterated theorem: (∀ x y z w u v ∈ TarskiPoint), TarskiCongruent z w u v
+Logical form (Lean): (x y z w u v : TarskiPoint) (xyCongZw : TarskiCongruent x y z w) (xyCongUv : TarskiCongruent x y u v) : TarskiCongruent z w u v
+Source: [`./Tarski/Axioms/CongruenceTransitivity.lean#L50`](./Tarski/Axioms/CongruenceTransitivity.lean#L50)
 
 
 
 Name: CongruenceIdentity
 Kind: Axiom
 State: Axiom
-Predicate logic: ∀ (x y z : TarskiPoint) (xyCongZz : TarskiCongruent x y z z), x = y end LRA.EuclideanSpace
+Predicate logic: ∀ (x y z : TarskiPoint) (xyCongZz : TarskiCongruent x y z z), x = y
 Predicate logic (unfolded):
   Ambient
     (implicit ambient)
@@ -537,16 +537,16 @@ Predicate logic (unfolded):
     xyCongZz : TarskiCongruent x y z z
   Prove
     LRA.EuclideanSpace.TarskiCongruent x y z z → x = y
-Transliterated theorem: (∀ x y z ∈ TarskiPoint), x = y end LRA.EuclideanSpace
-Logical form (Lean): (x y z : TarskiPoint) (xyCongZz : TarskiCongruent x y z z) : x = y end LRA.EuclideanSpace
-Source: ./Tarski/Axioms/CongruenceIdentity.lean#L42
+Transliterated theorem: (∀ x y z ∈ TarskiPoint), x = y
+Logical form (Lean): (x y z : TarskiPoint) (xyCongZz : TarskiCongruent x y z z) : x = y
+Source: [`./Tarski/Axioms/CongruenceIdentity.lean#L48`](./Tarski/Axioms/CongruenceIdentity.lean#L48)
 
 
 
 Name: BetweennessIdentity
 Kind: Axiom
 State: Axiom
-Predicate logic: ∀ (x y : TarskiPoint) (bxyx : TarskiBetween x y x), x = y end LRA.EuclideanSpace
+Predicate logic: ∀ (x y : TarskiPoint) (bxyx : TarskiBetween x y x), x = y
 Predicate logic (unfolded):
   Ambient
     (implicit ambient)
@@ -555,16 +555,16 @@ Predicate logic (unfolded):
     bxyx : TarskiBetween x y x
   Prove
     LRA.EuclideanSpace.TarskiBetween x y x → x = y
-Transliterated theorem: (∀ x y ∈ TarskiPoint), x = y end LRA.EuclideanSpace
-Logical form (Lean): (x y : TarskiPoint) (bxyx : TarskiBetween x y x) : x = y end LRA.EuclideanSpace
-Source: ./Tarski/Axioms/BetweennessIdentity.lean#L42
+Transliterated theorem: (∀ x y ∈ TarskiPoint), x = y
+Logical form (Lean): (x y : TarskiPoint) (bxyx : TarskiBetween x y x) : x = y
+Source: [`./Tarski/Axioms/BetweennessIdentity.lean#L48`](./Tarski/Axioms/BetweennessIdentity.lean#L48)
 
 
 
 Name: SegmentConstruction
 Kind: Axiom
 State: Axiom
-Predicate logic: ∀ (x y a b : TarskiPoint), ∃ z : TarskiPoint, TarskiBetween x y z ∧ TarskiCongruent y z a b end LRA.EuclideanSpace
+Predicate logic: ∀ (x y a b : TarskiPoint), ∃ z : TarskiPoint, TarskiBetween x y z ∧ TarskiCongruent y z a b
 Predicate logic (unfolded):
   Ambient
     (implicit ambient)
@@ -572,16 +572,16 @@ Predicate logic (unfolded):
     x y a b : TarskiPoint
   Prove
     Exists fun z => (LRA.EuclideanSpace.TarskiBetween x y z ∧ LRA.EuclideanSpace.TarskiCongruent y z a b)
-Transliterated theorem: (∀ x y a b ∈ TarskiPoint), ∃ z ∈ TarskiPoint, TarskiBetween x y z ∧ TarskiCongruent y z a b end LRA.EuclideanSpace
-Logical form (Lean): (x y a b : TarskiPoint) : ∃ z : TarskiPoint, TarskiBetween x y z ∧ TarskiCongruent y z a b end LRA.EuclideanSpace
-Source: ./Tarski/Axioms/SegmentConstruction.lean#L42
+Transliterated theorem: (∀ x y a b ∈ TarskiPoint), ∃ z ∈ TarskiPoint, TarskiBetween x y z ∧ TarskiCongruent y z a b
+Logical form (Lean): (x y a b : TarskiPoint) : ∃ z : TarskiPoint, TarskiBetween x y z ∧ TarskiCongruent y z a b
+Source: [`./Tarski/Axioms/SegmentConstruction.lean#L47`](./Tarski/Axioms/SegmentConstruction.lean#L47)
 
 
 
 Name: FiveSegment
 Kind: Axiom
 State: Axiom
-Predicate logic: ∀ (x y z x' y' z' u u' : TarskiPoint) (xNeY : x ≠ y) (bxyz : TarskiBetween x y z) (bxyz' : TarskiBetween x' y' z') (xyCongXy' : TarskiCongruent x y x' y') (yzCongYz' : TarskiCongruent y z y' z') (xuCongXu' : TarskiCongruent x u x' u') (yuCongYu' : TarskiCongruent y u y' u'), TarskiCongruent z u z' u' end LRA.EuclideanSpace
+Predicate logic: ∀ (x y z x' y' z' u u' : TarskiPoint) (xNeY : x ≠ y) (bxyz : TarskiBetween x y z) (bxyz' : TarskiBetween x' y' z') (xyCongXy' : TarskiCongruent x y x' y') (yzCongYz' : TarskiCongruent y z y' z') (xuCongXu' : TarskiCongruent x u x' u') (yuCongYu' : TarskiCongruent y u y' u'), TarskiCongruent z u z' u'
 Predicate logic (unfolded):
   Ambient
     (implicit ambient)
@@ -596,16 +596,16 @@ Predicate logic (unfolded):
     yuCongYu' : TarskiCongruent y u y' u'
   Prove
     ((x = y → False) ∧ (LRA.EuclideanSpace.TarskiBetween x y z ∧ (LRA.EuclideanSpace.TarskiBetween x' y' z' ∧ (LRA.EuclideanSpace.TarskiCongruent x y x' y' ∧ (LRA.EuclideanSpace.TarskiCongruent y z y' z' ∧ (LRA.EuclideanSpace.TarskiCongruent x u x' u' ∧ LRA.EuclideanSpace.TarskiCongruent y u y' u')))))) → LRA.EuclideanSpace.TarskiCongruent z u z' u'
-Transliterated theorem: (∀ x y z x' y' z' u u' ∈ TarskiPoint), TarskiCongruent z u z' u' end LRA.EuclideanSpace
-Logical form (Lean): (x y z x' y' z' u u' : TarskiPoint) (xNeY : x ≠ y) (bxyz : TarskiBetween x y z) (bxyz' : TarskiBetween x' y' z') (xyCongXy' : TarskiCongruent x y x' y') (yzCongYz' : TarskiCongruent y z y' z') (xuCongXu' : TarskiCongruent x u x' u') (yuCongYu' : TarskiCongruent y u y' u') : TarskiCongruent z u z' u' end LRA.EuclideanSpace
-Source: ./Tarski/Axioms/FiveSegment.lean#L48
+Transliterated theorem: (∀ x y z x' y' z' u u' ∈ TarskiPoint), TarskiCongruent z u z' u'
+Logical form (Lean): (x y z x' y' z' u u' : TarskiPoint) (xNeY : x ≠ y) (bxyz : TarskiBetween x y z) (bxyz' : TarskiBetween x' y' z') (xyCongXy' : TarskiCongruent x y x' y') (yzCongYz' : TarskiCongruent y z y' z') (xuCongXu' : TarskiCongruent x u x' u') (yuCongYu' : TarskiCongruent y u y' u') : TarskiCongruent z u z' u'
+Source: [`./Tarski/Axioms/FiveSegment.lean#L60`](./Tarski/Axioms/FiveSegment.lean#L60)
 
 
 
 Name: InnerPasch
 Kind: Axiom
 State: Axiom
-Predicate logic: ∀ (u v p q z : TarskiPoint) (bupv : TarskiBetween u p v) (bpqz : TarskiBetween p q z), ∃ x : TarskiPoint, TarskiBetween u x z ∧ TarskiBetween q x v end LRA.EuclideanSpace
+Predicate logic: ∀ (u v p q z : TarskiPoint) (bupv : TarskiBetween u p v) (bpqz : TarskiBetween p q z), ∃ x : TarskiPoint, TarskiBetween u x z ∧ TarskiBetween q x v
 Predicate logic (unfolded):
   Ambient
     (implicit ambient)
@@ -615,9 +615,9 @@ Predicate logic (unfolded):
     bpqz : TarskiBetween p q z
   Prove
     (LRA.EuclideanSpace.TarskiBetween u p v ∧ LRA.EuclideanSpace.TarskiBetween p q z) → Exists fun x => (LRA.EuclideanSpace.TarskiBetween u x z ∧ LRA.EuclideanSpace.TarskiBetween q x v)
-Transliterated theorem: (∀ u v p q z ∈ TarskiPoint), ∃ x ∈ TarskiPoint, TarskiBetween u x z ∧ TarskiBetween q x v end LRA.EuclideanSpace
-Logical form (Lean): (u v p q z : TarskiPoint) (bupv : TarskiBetween u p v) (bpqz : TarskiBetween p q z) : ∃ x : TarskiPoint, TarskiBetween u x z ∧ TarskiBetween q x v end LRA.EuclideanSpace
-Source: ./Tarski/Axioms/InnerPasch.lean#L43
+Transliterated theorem: (∀ u v p q z ∈ TarskiPoint), ∃ x ∈ TarskiPoint, TarskiBetween u x z ∧ TarskiBetween q x v
+Logical form (Lean): (u v p q z : TarskiPoint) (bupv : TarskiBetween u p v) (bpqz : TarskiBetween p q z) : ∃ x : TarskiPoint, TarskiBetween u x z ∧ TarskiBetween q x v
+Source: [`./Tarski/Axioms/InnerPasch.lean#L50`](./Tarski/Axioms/InnerPasch.lean#L50)
 
 
 
@@ -632,9 +632,9 @@ Predicate logic (unfolded):
     n : Nat
   Prove
     Exists fun points => sorry
-Transliterated theorem: (∀ n ∈ Nat), ∃ points ∈ Fin (n + 1) → TarskiPoint, AffinelyIndependent TarskiPoint n points end LRA.EuclideanSpace
-Logical form (Lean): (n : Nat) : ∃ points : Fin (n + 1) → TarskiPoint, AffinelyIndependent TarskiPoint n points end LRA.EuclideanSpace
-Source: ./Tarski/Axioms/LowerDimension.lean#L44
+Transliterated theorem: (∀ n ∈ Nat), ∃ points ∈ Fin (n + 1) → TarskiPoint, AffinelyIndependent TarskiPoint n points
+Logical form (Lean): (n : Nat) : ∃ points : Fin (n + 1) → TarskiPoint, AffinelyIndependent TarskiPoint n points
+Source: [`./Tarski/Axioms/LowerDimension.lean#L49`](./Tarski/Axioms/LowerDimension.lean#L49)
 
 
 
@@ -643,9 +643,9 @@ Kind: Axiom
 State: Axiom
 Predicate logic: ∀ (n : Nat) (p : LRA.EuclideanSpace.TarskiPoint) (points : Fin (instHAdd.hAdd n 1) → LRA.EuclideanSpace.TarskiPoint),   LRA.EuclideanSpace.AffinelyIndependent LRA.EuclideanSpace.TarskiPoint n points →     LRA.EuclideanSpace.CoincidesOrDeterminedByDistances LRA.EuclideanSpace.TarskiPoint n p points
 Predicate logic (unfolded): ∀ (n : Nat) (p : LRA.EuclideanSpace.TarskiPoint) (points : Fin (instHAdd.hAdd n 1) → LRA.EuclideanSpace.TarskiPoint),   LRA.EuclideanSpace.AffinelyIndependent LRA.EuclideanSpace.TarskiPoint n points →     LRA.EuclideanSpace.CoincidesOrDeterminedByDistances LRA.EuclideanSpace.TarskiPoint n p points [unfold error: unavailable]
-Transliterated theorem: (∀ n ∈ Nat ∀ p ∈ TarskiPoint), CoincidesOrDeterminedByDistances TarskiPoint n p points end LRA.EuclideanSpace
-Logical form (Lean): (n : Nat) (p : TarskiPoint) (points : Fin (n + 1) → TarskiPoint) (independent : AffinelyIndependent TarskiPoint n points) : CoincidesOrDeterminedByDistances TarskiPoint n p points end LRA.EuclideanSpace
-Source: ./Tarski/Axioms/UpperDimension.lean#L44
+Transliterated theorem: (∀ n ∈ Nat ∀ p ∈ TarskiPoint), CoincidesOrDeterminedByDistances TarskiPoint n p points
+Logical form (Lean): (n : Nat) (p : TarskiPoint) (points : Fin (n + 1) → TarskiPoint) (independent : AffinelyIndependent TarskiPoint n points) : CoincidesOrDeterminedByDistances TarskiPoint n p points
+Source: [`./Tarski/Axioms/UpperDimension.lean#L44`](./Tarski/Axioms/UpperDimension.lean#L44)
 
 
 
@@ -660,16 +660,16 @@ Predicate logic (unfolded):
     φ ψ : TarskiPoint → Prop
   Prove
     (Exists fun a => ∀ (x y : LRA.EuclideanSpace.TarskiPoint), φ x → ψ y → LRA.EuclideanSpace.TarskiBetween a x y) → Exists fun b => ∀ (x y : LRA.EuclideanSpace.TarskiPoint), φ x → ψ y → LRA.EuclideanSpace.TarskiBetween x b y
-Transliterated theorem: ∃ a ∈ TarskiPoint, ∀ x y : TarskiPoint, φ x → ψ y → TarskiBetween a x y → ∃ b ∈ TarskiPoint, ∀ x y : TarskiPoint, φ x → ψ y → TarskiBetween x b y end LRA.EuclideanSpace
-Logical form (Lean): (φ ψ : TarskiPoint → Prop) : (∃ a : TarskiPoint, ∀ x y : TarskiPoint, φ x → ψ y → TarskiBetween a x y) → ∃ b : TarskiPoint, ∀ x y : TarskiPoint, φ x → ψ y → TarskiBetween x b y end LRA.EuclideanSpace
-Source: ./Tarski/Axioms/Continuity.lean#L43
+Transliterated theorem: ∃ a ∈ TarskiPoint, ∀ x y : TarskiPoint, φ x → ψ y → TarskiBetween a x y → ∃ b ∈ TarskiPoint, ∀ x y : TarskiPoint, φ x → ψ y → TarskiBetween x b y
+Logical form (Lean): (φ ψ : TarskiPoint → Prop) : (∃ a : TarskiPoint, ∀ x y : TarskiPoint, φ x → ψ y → TarskiBetween a x y) → ∃ b : TarskiPoint, ∀ x y : TarskiPoint, φ x → ψ y → TarskiBetween x b y
+Source: [`./Tarski/Axioms/Continuity.lean#L48`](./Tarski/Axioms/Continuity.lean#L48)
 
 
 
 Name: Playfair
 Kind: Axiom
 State: Axiom
-Predicate logic: ∀ (a b c d t : TarskiPoint) (badt : TarskiBetween a d t) (bbdc : TarskiBetween b d c) (aNeD : a ≠ d), ∃ x y : TarskiPoint, TarskiBetween a b x ∧ TarskiBetween a c y ∧ TarskiBetween x t y end LRA.EuclideanSpace
+Predicate logic: ∀ (a b c d t : TarskiPoint) (badt : TarskiBetween a d t) (bbdc : TarskiBetween b d c) (aNeD : a ≠ d), ∃ x y : TarskiPoint, TarskiBetween a b x ∧ TarskiBetween a c y ∧ TarskiBetween x t y
 Predicate logic (unfolded):
   Ambient
     (implicit ambient)
@@ -680,9 +680,9 @@ Predicate logic (unfolded):
     aNeD : a ≠ d
   Prove
     (LRA.EuclideanSpace.TarskiBetween a d t ∧ (LRA.EuclideanSpace.TarskiBetween b d c ∧ (a = d → False))) → Exists fun x => Exists fun y => (LRA.EuclideanSpace.TarskiBetween a b x ∧ (LRA.EuclideanSpace.TarskiBetween a c y ∧ LRA.EuclideanSpace.TarskiBetween x t y))
-Transliterated theorem: (∀ a b c d t ∈ TarskiPoint), ∃ x y ∈ TarskiPoint, TarskiBetween a b x ∧ TarskiBetween a c y ∧ TarskiBetween x t y end LRA.EuclideanSpace
-Logical form (Lean): (a b c d t : TarskiPoint) (badt : TarskiBetween a d t) (bbdc : TarskiBetween b d c) (aNeD : a ≠ d) : ∃ x y : TarskiPoint, TarskiBetween a b x ∧ TarskiBetween a c y ∧ TarskiBetween x t y end LRA.EuclideanSpace
-Source: ./Tarski/Axioms/Playfair.lean#L45
+Transliterated theorem: (∀ a b c d t ∈ TarskiPoint), ∃ x y ∈ TarskiPoint, TarskiBetween a b x ∧ TarskiBetween a c y ∧ TarskiBetween x t y
+Logical form (Lean): (a b c d t : TarskiPoint) (badt : TarskiBetween a d t) (bbdc : TarskiBetween b d c) (aNeD : a ≠ d) : ∃ x y : TarskiPoint, TarskiBetween a b x ∧ TarskiBetween a c y ∧ TarskiBetween x t y
+Source: [`./Tarski/Axioms/Playfair.lean#L53`](./Tarski/Axioms/Playfair.lean#L53)
 
 ## Completed Inventory
 
@@ -702,7 +702,7 @@ Predicate logic (unfolded):
     sentence ∈ Γ → LRA.Logic.FirstOrder.Satisfies a assignment sentence.1
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Interface/ModelTheory/Theory.lean
+Source: [`./Interface/ModelTheory/Theory.lean`](./Interface/ModelTheory/Theory.lean)
 
 
 
@@ -719,7 +719,7 @@ Predicate logic (unfolded):
     sentence ∈ Γ → LRA.Logic.FirstOrder.Satisfies M assignment sentence.1
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Interface/ModelTheory/Theory.lean
+Source: [`./Interface/ModelTheory/Theory.lean`](./Interface/ModelTheory/Theory.lean)
 
 
 
@@ -736,7 +736,7 @@ Predicate logic (unfolded):
     LRA.EuclideanSpace.FiveSegmentLaw LRA.EuclideanSpace.TarskiPoint
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Tarski/Laws.lean
+Source: [`./Tarski/Laws.lean`](./Tarski/Laws.lean)
 
 
 
@@ -753,7 +753,7 @@ Predicate logic (unfolded):
     LRA.EuclideanSpace.BetweennessLaws LRA.EuclideanSpace.TarskiPoint
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Tarski/Laws.lean
+Source: [`./Tarski/Laws.lean`](./Tarski/Laws.lean)
 
 
 
@@ -770,7 +770,7 @@ Predicate logic (unfolded):
     LRA.EuclideanSpace.SegmentConstructionLaw LRA.EuclideanSpace.TarskiPoint
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Tarski/Laws.lean
+Source: [`./Tarski/Laws.lean`](./Tarski/Laws.lean)
 
 
 
@@ -787,7 +787,7 @@ Predicate logic (unfolded):
     LRA.EuclideanSpace.CongruenceLaws LRA.EuclideanSpace.TarskiPoint
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Tarski/Laws.lean
+Source: [`./Tarski/Laws.lean`](./Tarski/Laws.lean)
 
 
 
@@ -804,7 +804,7 @@ Predicate logic (unfolded):
     LRA.EuclideanSpace.ParallelLaw LRA.EuclideanSpace.TarskiPoint
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Tarski/Laws.lean
+Source: [`./Tarski/Laws.lean`](./Tarski/Laws.lean)
 
 
 
@@ -821,7 +821,7 @@ Predicate logic (unfolded):
     LRA.EuclideanSpace.ContinuityLaw LRA.EuclideanSpace.TarskiPoint
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Tarski/Laws.lean
+Source: [`./Tarski/Laws.lean`](./Tarski/Laws.lean)
 
 
 
@@ -838,7 +838,7 @@ Predicate logic (unfolded):
     LRA.EuclideanSpace.DimensionLaws LRA.EuclideanSpace.TarskiPoint n
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Tarski/Laws.lean
+Source: [`./Tarski/Laws.lean`](./Tarski/Laws.lean)
 
 
 
@@ -855,7 +855,7 @@ Predicate logic (unfolded):
     (Real.instLE.le a a_1 ∧ Real.instLT.lt a_1 b)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./RealLine/Definition/RealLine.lean
+Source: [`./RealLine/Definition/RealLine.lean`](./RealLine/Definition/RealLine.lean)
 
 
 
@@ -872,7 +872,7 @@ Predicate logic (unfolded):
     Real.lt✝ a a_1
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./RealLine/Definition/RealLine.lean
+Source: [`./RealLine/Definition/RealLine.lean`](./RealLine/Definition/RealLine.lean)
 
 
 
@@ -889,7 +889,7 @@ Predicate logic (unfolded):
     Real.le✝ a a_1
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./RealLine/Definition/RealLine.lean
+Source: [`./RealLine/Definition/RealLine.lean`](./RealLine/Definition/RealLine.lean)
 
 
 
@@ -906,7 +906,7 @@ Predicate logic (unfolded):
     Real.lt✝ a b
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./RealLine/Definition/RealLine.lean
+Source: [`./RealLine/Definition/RealLine.lean`](./RealLine/Definition/RealLine.lean)
 
 
 
@@ -923,7 +923,7 @@ Predicate logic (unfolded):
     Real.le✝ a b
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./RealLine/Definition/RealLine.lean
+Source: [`./RealLine/Definition/RealLine.lean`](./RealLine/Definition/RealLine.lean)
 
 
 
@@ -940,7 +940,7 @@ Predicate logic (unfolded):
     (Real.instLT.lt a a_1 ∧ Real.instLE.le a_1 b)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./RealLine/Definition/RealLine.lean
+Source: [`./RealLine/Definition/RealLine.lean`](./RealLine/Definition/RealLine.lean)
 
 
 
@@ -957,7 +957,7 @@ Predicate logic (unfolded):
     (Real.instLT.lt a a_1 ∧ Real.instLT.lt a_1 b)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./RealLine/Definition/RealLine.lean
+Source: [`./RealLine/Definition/RealLine.lean`](./RealLine/Definition/RealLine.lean)
 
 
 
@@ -974,7 +974,7 @@ Predicate logic (unfolded):
     (Real.instLE.le a a_1 ∧ Real.instLE.le a_1 b)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./RealLine/Definition/RealLine.lean
+Source: [`./RealLine/Definition/RealLine.lean`](./RealLine/Definition/RealLine.lean)
 
 
 
@@ -991,7 +991,7 @@ Predicate logic (unfolded):
     Nonempty (LRA.EuclideanSpace.EuclideanPoint real_model n)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Model/EuclideanN.lean
+Source: [`./Model/EuclideanN.lean`](./Model/EuclideanN.lean)
 
 
 
@@ -1008,7 +1008,7 @@ Predicate logic (unfolded):
     (real_model.9.le a (a_1.1 ⟨0, LRA.EuclideanSpace.getX1._proof_1⟩) ∧ real_model.9.le (a_1.1 ⟨0, LRA.EuclideanSpace.getX1._proof_1⟩) b)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Model/RealLine.lean
+Source: [`./Model/RealLine.lean`](./Model/RealLine.lean)
 
 
 
@@ -1025,7 +1025,7 @@ Predicate logic (unfolded):
     real_model.ltInst.1 a (a_1.1 ⟨0, LRA.EuclideanSpace.getX1._proof_1⟩)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Model/RealLine.lean
+Source: [`./Model/RealLine.lean`](./Model/RealLine.lean)
 
 
 
@@ -1042,7 +1042,7 @@ Predicate logic (unfolded):
     real_model.ltInst.1 (a.1 ⟨0, LRA.EuclideanSpace.getX1._proof_1⟩) b
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Model/RealLine.lean
+Source: [`./Model/RealLine.lean`](./Model/RealLine.lean)
 
 
 
@@ -1059,7 +1059,7 @@ Predicate logic (unfolded):
     (real_model.8.lt a (a_1.1 ⟨0, LRA.EuclideanSpace.getX1._proof_1⟩) ∧ real_model.8.lt (a_1.1 ⟨0, LRA.EuclideanSpace.getX1._proof_1⟩) b)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Model/RealLine.lean
+Source: [`./Model/RealLine.lean`](./Model/RealLine.lean)
 
 
 
@@ -1076,7 +1076,7 @@ Predicate logic (unfolded):
     LRA.EuclideanSpace.sumFin fun i => have delta := instHAdd.hAdd (a.coord i) (real_model.negInst.neg (center.coord i)); instHMul.hMul delta delta = radiusSq
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Model/CartesianPlane.lean
+Source: [`./Model/CartesianPlane.lean`](./Model/CartesianPlane.lean)
 
 
 
@@ -1093,7 +1093,7 @@ Predicate logic (unfolded):
     real_model.leInst.1 (LRA.EuclideanSpace.sumFin fun i => have delta := instHAdd.hAdd (a.coord i) (real_model.negInst.neg (center.coord i)); instHMul.hMul delta delta) radiusSq
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Model/CartesianPlane.lean
+Source: [`./Model/CartesianPlane.lean`](./Model/CartesianPlane.lean)
 
 
 
@@ -1110,7 +1110,7 @@ Predicate logic (unfolded):
     a.1 ⟨1, ⋯⟩ = f (a.1 ⟨0, ⋯⟩)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Model/CartesianPlane.lean
+Source: [`./Model/CartesianPlane.lean`](./Model/CartesianPlane.lean)
 
 
 
@@ -1127,7 +1127,7 @@ Predicate logic (unfolded):
     (real_model.8.lt left (a.1 ⟨0, ⋯⟩) ∧ (real_model.8.lt (a.1 ⟨0, ⋯⟩) right ∧ (real_model.8.lt bottom (a.1 ⟨1, ⋯⟩) ∧ real_model.8.lt (a.1 ⟨1, ⋯⟩) top)))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Model/CartesianPlane.lean
+Source: [`./Model/CartesianPlane.lean`](./Model/CartesianPlane.lean)
 
 
 
@@ -1144,7 +1144,7 @@ Predicate logic (unfolded):
     (real_model.9.le left (a.1 ⟨0, ⋯⟩) ∧ (real_model.9.le (a.1 ⟨0, ⋯⟩) right ∧ (real_model.9.le bottom (a.1 ⟨1, ⋯⟩) ∧ real_model.9.le (a.1 ⟨1, ⋯⟩) top)))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Model/CartesianPlane.lean
+Source: [`./Model/CartesianPlane.lean`](./Model/CartesianPlane.lean)
 
 
 
@@ -1161,7 +1161,7 @@ Predicate logic (unfolded):
     real_model.leInst.1 (LRA.EuclideanSpace.sumFin fun i => have delta := instHAdd.hAdd (a.coord i) (real_model.negInst.neg (center.coord i)); instHMul.hMul delta delta) radiusSq
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Model/Euclidean3Space.lean
+Source: [`./Model/Euclidean3Space.lean`](./Model/Euclidean3Space.lean)
 
 
 
@@ -1178,7 +1178,7 @@ Predicate logic (unfolded):
     LRA.EuclideanSpace.sumFin fun i => have delta := instHAdd.hAdd (a.coord i) (real_model.negInst.neg (center.coord i)); instHMul.hMul delta delta = radiusSq
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Model/Euclidean3Space.lean
+Source: [`./Model/Euclidean3Space.lean`](./Model/Euclidean3Space.lean)
 
 
 
@@ -1195,7 +1195,7 @@ Predicate logic (unfolded):
     (real_model.9.le left (a.1 ⟨0, ⋯⟩) ∧ (real_model.9.le (a.1 ⟨0, ⋯⟩) right ∧ (real_model.9.le front (a.1 ⟨1, ⋯⟩) ∧ (real_model.9.le (a.1 ⟨1, ⋯⟩) back ∧ (real_model.9.le bottom (a.1 ⟨2, ⋯⟩) ∧ real_model.9.le (a.1 ⟨2, ⋯⟩) top)))))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Model/Euclidean3Space.lean
+Source: [`./Model/Euclidean3Space.lean`](./Model/Euclidean3Space.lean)
 
 
 
@@ -1212,7 +1212,7 @@ Predicate logic (unfolded):
     { hAdd := fun a b => real_model.2.add a b }.hAdd ({ hAdd := fun a b => real_model.2.add a b }.hAdd ({ hMul := fun a b => real_model.3.mul a b }.hMul a (a_1.1 ⟨0, ⋯⟩)) ({ hMul := fun a b => real_model.3.mul a b }.hMul b (a_1.1 ⟨1, ⋯⟩))) ({ hMul := fun a b => real_model.3.mul a b }.hMul c (a_1.1 ⟨2, ⋯⟩)) = d
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Model/Euclidean3Space.lean
+Source: [`./Model/Euclidean3Space.lean`](./Model/Euclidean3Space.lean)
 
 
 
@@ -1229,7 +1229,7 @@ Predicate logic (unfolded):
     (real_model.9.le xmin (a.1 ⟨0, ⋯⟩) ∧ (real_model.9.le (a.1 ⟨0, ⋯⟩) xmax ∧ (real_model.9.le ymin (a.1 ⟨1, ⋯⟩) ∧ (real_model.9.le (a.1 ⟨1, ⋯⟩) ymax ∧ (real_model.9.le zmin (a.1 ⟨2, ⋯⟩) ∧ (real_model.9.le (a.1 ⟨2, ⋯⟩) zmax ∧ (real_model.9.le wmin (a.1 ⟨3, ⋯⟩) ∧ real_model.9.le (a.1 ⟨3, ⋯⟩) wmax)))))))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Model/Euclidean4Space.lean
+Source: [`./Model/Euclidean4Space.lean`](./Model/Euclidean4Space.lean)
 
 
 
@@ -1246,7 +1246,7 @@ Predicate logic (unfolded):
     LRA.EuclideanSpace.sumFin fun i => have delta := instHAdd.hAdd (a.coord i) (real_model.negInst.neg (center.coord i)); instHMul.hMul delta delta = radiusSq
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Model/Euclidean4Space.lean
+Source: [`./Model/Euclidean4Space.lean`](./Model/Euclidean4Space.lean)
 
 
 
@@ -1263,7 +1263,7 @@ Predicate logic (unfolded):
     LRA.EuclideanSpace.BetweennessLaws (WithLp 2 ((i : Fin n) → (fun x => Real) i))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./MathlibPoint/Laws.lean
+Source: [`./MathlibPoint/Laws.lean`](./MathlibPoint/Laws.lean)
 
 
 
@@ -1280,7 +1280,7 @@ Predicate logic (unfolded):
     LRA.EuclideanSpace.ContinuityLaw (WithLp 2 ((i : Fin n) → (fun x => Real) i))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./MathlibPoint/Laws.lean
+Source: [`./MathlibPoint/Laws.lean`](./MathlibPoint/Laws.lean)
 
 
 
@@ -1297,7 +1297,7 @@ Predicate logic (unfolded):
     LRA.EuclideanSpace.FiveSegmentLaw (WithLp 2 ((i : Fin n) → (fun x => Real) i))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./MathlibPoint/Laws.lean
+Source: [`./MathlibPoint/Laws.lean`](./MathlibPoint/Laws.lean)
 
 
 
@@ -1314,7 +1314,7 @@ Predicate logic (unfolded):
     LRA.EuclideanSpace.ParallelLaw (WithLp 2 ((i : Fin n) → (fun x => Real) i))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./MathlibPoint/Laws.lean
+Source: [`./MathlibPoint/Laws.lean`](./MathlibPoint/Laws.lean)
 
 
 
@@ -1331,7 +1331,7 @@ Predicate logic (unfolded):
     LRA.EuclideanSpace.SegmentConstructionLaw (WithLp 2 ((i : Fin n) → (fun x => Real) i))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./MathlibPoint/Laws.lean
+Source: [`./MathlibPoint/Laws.lean`](./MathlibPoint/Laws.lean)
 
 
 
@@ -1348,4 +1348,4 @@ Predicate logic (unfolded):
     LRA.EuclideanSpace.CongruenceLaws (WithLp 2 ((i : Fin n) → (fun x => Real) i))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./MathlibPoint/Laws.lean
+Source: [`./MathlibPoint/Laws.lean`](./MathlibPoint/Laws.lean)

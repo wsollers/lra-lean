@@ -15,7 +15,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (operation : Carrier → Carrier → Carrier) (zero element : Carrier), (Exists fun positiveExponent => LRA.Operation.Laws.Nilpotent.PositivePower operation element positiveExponent = zero) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun positiveExponent => LRA.Operation.Laws.Nilpotent.PositivePower operation element positiveExponent = zero) → False
 
 Logical form (Lean):
 
@@ -56,12 +61,12 @@ def FailsNilpotentElement {Carrier : Type u}
 Predicate logic:
 
   def NaturalMultiplicationForNilpotenceFailure : BinaryEndoOperation Nat :=
-  fun left right => left * right
+    fun left right => left * right
 
 Predicate logic (unfolded):
 
   def NaturalMultiplicationForNilpotenceFailure : BinaryEndoOperation Nat :=
-  fun left right => left * right (source fallback; no compiled unfold data available)
+    fun left right => left * right (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -97,11 +102,16 @@ def NaturalMultiplicationForNilpotenceFailure : BinaryEndoOperation Nat :=
 
 Predicate logic:
 
-  FailsNilpotentElement NaturalMultiplicationForNilpotenceFailure 0 1
+  LRA.Operation.Laws.Nilpotent.FailsNilpotentElement LRA.Operation.Laws.Nilpotent.NaturalMultiplicationForNilpotenceFailure 0 1
 
 Predicate logic (unfolded):
 
-  (Exists fun positiveExponent => LRA.Operation.Laws.Nilpotent.PositivePower LRA.Operation.Laws.Nilpotent.NaturalMultiplicationForNilpotenceFailure (instOfNatNat 1).1 positiveExponent = instOfNatNat 0.1) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun positiveExponent => LRA.Operation.Laws.Nilpotent.PositivePower LRA.Operation.Laws.Nilpotent.NaturalMultiplicationForNilpotenceFailure 1 positiveExponent = 0) → False
 
 Logical form (Lean):
 

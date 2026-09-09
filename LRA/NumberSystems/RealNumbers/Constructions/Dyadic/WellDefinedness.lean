@@ -10,11 +10,17 @@ variable (dyadicData : RationalDyadicApproximationData)
 
 Predicate logic:
 
-  (∀ digits ∈ FractionalDigits), Cauchy.is_cauchy dyadicData.RationalSystem dyadicData.AbsoluteValueData (FractionalPartialSum dyadicData digits)
+  ∀ (dyadicData : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData) (digits : LRA.NumberSystems.RealNumbers.Dyadic.FractionalDigits), LRA.NumberSystems.RealNumbers.Cauchy.is_cauchy dyadicData.RationalSystem dyadicData.AbsoluteValueData (LRA.NumberSystems.RealNumbers.Dyadic.FractionalPartialSum dyadicData digits)
 
 Predicate logic (unfolded):
 
-  ∀ (dyadicData : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData) (digits : LRA.NumberSystems.RealNumbers.Dyadic.FractionalDigits) (epsilon : dyadicData.RationalSystem.FieldModel.signature.toCarrierBundle.1), dyadicData.RationalSystem.FieldModel.signature.toOrderedRingSignature.2 dyadicData.RationalSystem.FieldModel.signature.toZeroOneBundle.2 epsilon → Exists fun threshold => ∀ (first_index second_index : Nat), instLENat.1 threshold first_index → instLENat.1 threshold second_index → dyadicData.RationalSystem.FieldModel.signature.toOrderedRingSignature.2 (dyadicData.AbsoluteValueData.1 (dyadicData.RationalSystem.FieldModel.signature.toBooleanRingOperationBundle.2 (LRA.NumberSystems.RealNumbers.Dyadic.FractionalPartialSum dyadicData digits first_index) (dyadicData.RationalSystem.FieldModel.signature.neg (LRA.NumberSystems.RealNumbers.Dyadic.FractionalPartialSum dyadicData digits second_index)))) epsilon
+  Ambient
+    (implicit ambient)
+  Objects
+    dyadicData : RationalDyadicApproximationData
+    digits : FractionalDigits
+  Prove
+    dyadicData.RationalSystem.FieldModel.signature.toOrderedRingSignature.2 dyadicData.RationalSystem.FieldModel.signature.toZeroOneBundle.2 epsilon → Exists fun threshold => ∀ (first_index second_index : Nat), instLENat.le threshold first_index → instLENat.le threshold second_index → dyadicData.RationalSystem.FieldModel.signature.toOrderedRingSignature.2 (dyadicData.AbsoluteValueData.1 (dyadicData.RationalSystem.FieldModel.signature.toBooleanRingOperationBundle.2 (LRA.NumberSystems.RealNumbers.Dyadic.FractionalPartialSum dyadicData digits first_index) (dyadicData.RationalSystem.FieldModel.signature.neg (LRA.NumberSystems.RealNumbers.Dyadic.FractionalPartialSum dyadicData digits second_index)))) epsilon
 
 Logical form (Lean):
 
@@ -59,18 +65,18 @@ theorem FractionalPartialSumsAreCauchy
 Predicate logic:
 
   def FractionalValue
-    (fraction : CanonicalFraction) : CauchyCarrier dyadicData :=
-  Quotient.mk _
-    ⟨FractionalPartialSum dyadicData fraction.Digits,
-      FractionalPartialSumsAreCauchy dyadicData fraction.Digits⟩
+      (fraction : CanonicalFraction) : CauchyCarrier dyadicData :=
+    Quotient.mk _
+      ⟨FractionalPartialSum dyadicData fraction.Digits,
+        FractionalPartialSumsAreCauchy dyadicData fraction.Digits⟩
 
 Predicate logic (unfolded):
 
   def FractionalValue
-    (fraction : CanonicalFraction) : CauchyCarrier dyadicData :=
-  Quotient.mk _
-    ⟨FractionalPartialSum dyadicData fraction.Digits,
-      FractionalPartialSumsAreCauchy dyadicData fraction.Digits⟩ (source fallback; no compiled unfold data available)
+      (fraction : CanonicalFraction) : CauchyCarrier dyadicData :=
+    Quotient.mk _
+      ⟨FractionalPartialSum dyadicData fraction.Digits,
+        FractionalPartialSumsAreCauchy dyadicData fraction.Digits⟩ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -113,18 +119,18 @@ def FractionalValue
 Predicate logic:
 
   def WholeNumeralValue : WholeBinaryNumeral → CauchyCarrier dyadicData
-  | WholeBinaryNumeral.zero => dyadicData.CauchyZero
-  | WholeBinaryNumeral.positive numeral =>
-      dyadicData.RationalToCauchy
-        (PositiveBinaryNumeralValue dyadicData.RationalSystem numeral)
+    | WholeBinaryNumeral.zero => dyadicData.CauchyZero
+    | WholeBinaryNumeral.positive numeral =>
+        dyadicData.RationalToCauchy
+          (PositiveBinaryNumeralValue dyadicData.RationalSystem numeral)
 
 Predicate logic (unfolded):
 
   def WholeNumeralValue : WholeBinaryNumeral → CauchyCarrier dyadicData
-  | WholeBinaryNumeral.zero => dyadicData.CauchyZero
-  | WholeBinaryNumeral.positive numeral =>
-      dyadicData.RationalToCauchy
-        (PositiveBinaryNumeralValue dyadicData.RationalSystem numeral) (source fallback; no compiled unfold data available)
+    | WholeBinaryNumeral.zero => dyadicData.CauchyZero
+    | WholeBinaryNumeral.positive numeral =>
+        dyadicData.RationalToCauchy
+          (PositiveBinaryNumeralValue dyadicData.RationalSystem numeral) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -167,18 +173,18 @@ def WholeNumeralValue : WholeBinaryNumeral → CauchyCarrier dyadicData
 Predicate logic:
 
   def UnsignedValue
-    (expansion : UnsignedExpansion) : CauchyCarrier dyadicData :=
-  dyadicData.CauchyAddition
-    (WholeNumeralValue dyadicData expansion.IntegerPart)
-    (FractionalValue dyadicData expansion.FractionalPart)
+      (expansion : UnsignedExpansion) : CauchyCarrier dyadicData :=
+    dyadicData.CauchyAddition
+      (WholeNumeralValue dyadicData expansion.IntegerPart)
+      (FractionalValue dyadicData expansion.FractionalPart)
 
 Predicate logic (unfolded):
 
   def UnsignedValue
-    (expansion : UnsignedExpansion) : CauchyCarrier dyadicData :=
-  dyadicData.CauchyAddition
-    (WholeNumeralValue dyadicData expansion.IntegerPart)
-    (FractionalValue dyadicData expansion.FractionalPart) (source fallback; no compiled unfold data available)
+      (expansion : UnsignedExpansion) : CauchyCarrier dyadicData :=
+    dyadicData.CauchyAddition
+      (WholeNumeralValue dyadicData expansion.IntegerPart)
+      (FractionalValue dyadicData expansion.FractionalPart) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -221,22 +227,22 @@ def UnsignedValue
 Predicate logic:
 
   def Value : Expansion → CauchyCarrier dyadicData
-  | Expansion.zero => dyadicData.CauchyZero
-  | Expansion.nonzero Sign.positive magnitude =>
-      UnsignedValue dyadicData magnitude.Magnitude
-  | Expansion.nonzero Sign.negative magnitude =>
-      dyadicData.CauchyNegation
-        (UnsignedValue dyadicData magnitude.Magnitude)
+    | Expansion.zero => dyadicData.CauchyZero
+    | Expansion.nonzero Sign.positive magnitude =>
+        UnsignedValue dyadicData magnitude.Magnitude
+    | Expansion.nonzero Sign.negative magnitude =>
+        dyadicData.CauchyNegation
+          (UnsignedValue dyadicData magnitude.Magnitude)
 
 Predicate logic (unfolded):
 
   def Value : Expansion → CauchyCarrier dyadicData
-  | Expansion.zero => dyadicData.CauchyZero
-  | Expansion.nonzero Sign.positive magnitude =>
-      UnsignedValue dyadicData magnitude.Magnitude
-  | Expansion.nonzero Sign.negative magnitude =>
-      dyadicData.CauchyNegation
-        (UnsignedValue dyadicData magnitude.Magnitude) (source fallback; no compiled unfold data available)
+    | Expansion.zero => dyadicData.CauchyZero
+    | Expansion.nonzero Sign.positive magnitude =>
+        UnsignedValue dyadicData magnitude.Magnitude
+    | Expansion.nonzero Sign.negative magnitude =>
+        dyadicData.CauchyNegation
+          (UnsignedValue dyadicData magnitude.Magnitude) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -282,11 +288,17 @@ def Value : Expansion → CauchyCarrier dyadicData
 
 Predicate logic:
 
-  ∃ expansion ∈ Expansion, Value dyadicData expansion = realValue
+  ∀ (dyadicData : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData) (realValue : LRA.NumberSystems.RealNumbers.Dyadic.CauchyCarrier dyadicData), Exists fun expansion => LRA.NumberSystems.RealNumbers.Dyadic.Value dyadicData expansion = realValue
 
 Predicate logic (unfolded):
 
-  ∀ (dyadicData : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData) (realValue : Quot (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid dyadicData.RationalSystem dyadicData.AbsoluteValueData).1), Exists fun expansion => LRA.NumberSystems.RealNumbers.Dyadic.Expansion.rec ((fun _ => .rec = 0⋯) Unit.unit) (fun Sign Magnitude => (fun Sign Magnitude => LRA.NumberSystems.RealNumbers.Dyadic.Sign.rec ((fun magnitude => cast ⋯ (dyadicData.CauchyRealExtension.RealModel.negInst.neg (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.UnsignedValue dyadicData magnitude.Magnitude)))) Magnitude) ((fun magnitude => dyadicData.ToCauchyCarrier (instHAdd.hAdd (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.WholeNumeralValue dyadicData magnitude.Magnitude.IntegerPart)) (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.FractionalValue dyadicData magnitude.Magnitude.FractionalPart)))) Magnitude) Sign) Sign Magnitude) expansion = realValue
+  Ambient
+    (implicit ambient)
+  Objects
+    dyadicData : RationalDyadicApproximationData
+    realValue : CauchyCarrier dyadicData
+  Prove
+    Exists fun expansion => LRA.NumberSystems.RealNumbers.Dyadic.Expansion.rec ((fun _ => .rec = 0⋯) Unit.unit) (fun Sign Magnitude => (fun Sign Magnitude => LRA.NumberSystems.RealNumbers.Dyadic.Sign.rec ((fun magnitude => cast ⋯ (dyadicData.CauchyRealExtension.RealModel.negInst.neg (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.UnsignedValue dyadicData magnitude.Magnitude)))) Magnitude) ((fun magnitude => dyadicData.ToCauchyCarrier (instHAdd.hAdd (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.WholeNumeralValue dyadicData magnitude.Magnitude.IntegerPart)) (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.FractionalValue dyadicData magnitude.Magnitude.FractionalPart)))) Magnitude) Sign) Sign Magnitude) expansion = realValue
 
 Logical form (Lean):
 
@@ -326,11 +338,16 @@ theorem RepresentationExists
 
 Predicate logic:
 
-  ∀ first second : Expansion, Value dyadicData first = Value dyadicData second → first = second
+  ∀ (dyadicData : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData) (first second : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), LRA.NumberSystems.RealNumbers.Dyadic.Value dyadicData first = LRA.NumberSystems.RealNumbers.Dyadic.Value dyadicData second → first = second
 
 Predicate logic (unfolded):
 
-  ∀ (dyadicData : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData) (first second : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), LRA.NumberSystems.RealNumbers.Dyadic.Expansion.rec ((fun _ => .rec = 0⋯) Unit.unit) (fun Sign Magnitude => (fun Sign Magnitude => LRA.NumberSystems.RealNumbers.Dyadic.Sign.rec ((fun magnitude => cast ⋯ (dyadicData.CauchyRealExtension.RealModel.negInst.neg (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.UnsignedValue dyadicData magnitude.Magnitude)))) Magnitude) ((fun magnitude => dyadicData.ToCauchyCarrier (instHAdd.hAdd (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.WholeNumeralValue dyadicData magnitude.Magnitude.IntegerPart)) (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.FractionalValue dyadicData magnitude.Magnitude.FractionalPart)))) Magnitude) Sign) Sign Magnitude) first = LRA.NumberSystems.RealNumbers.Dyadic.Expansion.rec ((fun _ => .rec = 0⋯) Unit.unit) (fun Sign Magnitude => (fun Sign Magnitude => LRA.NumberSystems.RealNumbers.Dyadic.Sign.rec ((fun magnitude => cast ⋯ (dyadicData.CauchyRealExtension.RealModel.negInst.neg (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.UnsignedValue dyadicData magnitude.Magnitude)))) Magnitude) ((fun magnitude => dyadicData.ToCauchyCarrier (instHAdd.hAdd (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.WholeNumeralValue dyadicData magnitude.Magnitude.IntegerPart)) (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.FractionalValue dyadicData magnitude.Magnitude.FractionalPart)))) Magnitude) Sign) Sign Magnitude) second → first = second
+  Ambient
+    (implicit ambient)
+  Objects
+    dyadicData : RationalDyadicApproximationData
+  Prove
+    LRA.NumberSystems.RealNumbers.Dyadic.Expansion.rec ((fun _ => .rec = 0⋯) Unit.unit) (fun Sign Magnitude => (fun Sign Magnitude => LRA.NumberSystems.RealNumbers.Dyadic.Sign.rec ((fun magnitude => cast ⋯ (dyadicData.CauchyRealExtension.RealModel.negInst.neg (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.UnsignedValue dyadicData magnitude.Magnitude)))) Magnitude) ((fun magnitude => dyadicData.ToCauchyCarrier (instHAdd.hAdd (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.WholeNumeralValue dyadicData magnitude.Magnitude.IntegerPart)) (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.FractionalValue dyadicData magnitude.Magnitude.FractionalPart)))) Magnitude) Sign) Sign Magnitude) first = LRA.NumberSystems.RealNumbers.Dyadic.Expansion.rec ((fun _ => .rec = 0⋯) Unit.unit) (fun Sign Magnitude => (fun Sign Magnitude => LRA.NumberSystems.RealNumbers.Dyadic.Sign.rec ((fun magnitude => cast ⋯ (dyadicData.CauchyRealExtension.RealModel.negInst.neg (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.UnsignedValue dyadicData magnitude.Magnitude)))) Magnitude) ((fun magnitude => dyadicData.ToCauchyCarrier (instHAdd.hAdd (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.WholeNumeralValue dyadicData magnitude.Magnitude.IntegerPart)) (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.FractionalValue dyadicData magnitude.Magnitude.FractionalPart)))) Magnitude) Sign) Sign Magnitude) second → first = second
 
 Logical form (Lean):
 
@@ -368,11 +385,16 @@ theorem ValueIsInjective :
 
 Predicate logic:
 
-  ∀ realValue ∈ CauchyCarrier dyadicData, ∃ expansion ∈ Expansion, Value dyadicData expansion = realValue ∧ ∀ first second ∈ Expansion, Value dyadicData first = Value dyadicData second → first = second
+  ∀ (dyadicData : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData), ((∀ (realValue : LRA.NumberSystems.RealNumbers.Dyadic.CauchyCarrier dyadicData), Exists fun expansion => LRA.NumberSystems.RealNumbers.Dyadic.Value dyadicData expansion = realValue) ∧ (∀ (first second : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), LRA.NumberSystems.RealNumbers.Dyadic.Value dyadicData first = LRA.NumberSystems.RealNumbers.Dyadic.Value dyadicData second → first = second))
 
 Predicate logic (unfolded):
 
-  ∀ (dyadicData : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData), (∀ (realValue : Quot (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid dyadicData.RationalSystem dyadicData.AbsoluteValueData).1), Exists fun expansion => LRA.NumberSystems.RealNumbers.Dyadic.Expansion.rec ((fun _ => .rec = 0⋯) Unit.unit) (fun Sign Magnitude => (fun Sign Magnitude => LRA.NumberSystems.RealNumbers.Dyadic.Sign.rec ((fun magnitude => cast ⋯ (dyadicData.CauchyRealExtension.RealModel.negInst.neg (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.UnsignedValue dyadicData magnitude.Magnitude)))) Magnitude) ((fun magnitude => dyadicData.ToCauchyCarrier (instHAdd.hAdd (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.WholeNumeralValue dyadicData magnitude.Magnitude.IntegerPart)) (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.FractionalValue dyadicData magnitude.Magnitude.FractionalPart)))) Magnitude) Sign) Sign Magnitude) expansion = realValue ∧ ∀ (first second : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), LRA.NumberSystems.RealNumbers.Dyadic.Expansion.rec ((fun _ => .rec = 0⋯) Unit.unit) (fun Sign Magnitude => (fun Sign Magnitude => LRA.NumberSystems.RealNumbers.Dyadic.Sign.rec ((fun magnitude => cast ⋯ (dyadicData.CauchyRealExtension.RealModel.negInst.neg (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.UnsignedValue dyadicData magnitude.Magnitude)))) Magnitude) ((fun magnitude => dyadicData.ToCauchyCarrier (instHAdd.hAdd (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.WholeNumeralValue dyadicData magnitude.Magnitude.IntegerPart)) (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.FractionalValue dyadicData magnitude.Magnitude.FractionalPart)))) Magnitude) Sign) Sign Magnitude) first = LRA.NumberSystems.RealNumbers.Dyadic.Expansion.rec ((fun _ => .rec = 0⋯) Unit.unit) (fun Sign Magnitude => (fun Sign Magnitude => LRA.NumberSystems.RealNumbers.Dyadic.Sign.rec ((fun magnitude => cast ⋯ (dyadicData.CauchyRealExtension.RealModel.negInst.neg (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.UnsignedValue dyadicData magnitude.Magnitude)))) Magnitude) ((fun magnitude => dyadicData.ToCauchyCarrier (instHAdd.hAdd (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.WholeNumeralValue dyadicData magnitude.Magnitude.IntegerPart)) (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.FractionalValue dyadicData magnitude.Magnitude.FractionalPart)))) Magnitude) Sign) Sign Magnitude) second → first = second)
+  Ambient
+    (implicit ambient)
+  Objects
+    dyadicData : RationalDyadicApproximationData
+  Prove
+    ((∀ (realValue : Quot (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid dyadicData.RationalSystem dyadicData.AbsoluteValueData).1), Exists fun expansion => LRA.NumberSystems.RealNumbers.Dyadic.Expansion.rec ((fun _ => .rec = 0⋯) Unit.unit) (fun Sign Magnitude => (fun Sign Magnitude => LRA.NumberSystems.RealNumbers.Dyadic.Sign.rec ((fun magnitude => cast ⋯ (dyadicData.CauchyRealExtension.RealModel.negInst.neg (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.UnsignedValue dyadicData magnitude.Magnitude)))) Magnitude) ((fun magnitude => dyadicData.ToCauchyCarrier (instHAdd.hAdd (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.WholeNumeralValue dyadicData magnitude.Magnitude.IntegerPart)) (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.FractionalValue dyadicData magnitude.Magnitude.FractionalPart)))) Magnitude) Sign) Sign Magnitude) expansion = realValue) ∧ (∀ (first second : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), LRA.NumberSystems.RealNumbers.Dyadic.Expansion.rec ((fun _ => .rec = 0⋯) Unit.unit) (fun Sign Magnitude => (fun Sign Magnitude => LRA.NumberSystems.RealNumbers.Dyadic.Sign.rec ((fun magnitude => cast ⋯ (dyadicData.CauchyRealExtension.RealModel.negInst.neg (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.UnsignedValue dyadicData magnitude.Magnitude)))) Magnitude) ((fun magnitude => dyadicData.ToCauchyCarrier (instHAdd.hAdd (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.WholeNumeralValue dyadicData magnitude.Magnitude.IntegerPart)) (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.FractionalValue dyadicData magnitude.Magnitude.FractionalPart)))) Magnitude) Sign) Sign Magnitude) first = LRA.NumberSystems.RealNumbers.Dyadic.Expansion.rec ((fun _ => .rec = 0⋯) Unit.unit) (fun Sign Magnitude => (fun Sign Magnitude => LRA.NumberSystems.RealNumbers.Dyadic.Sign.rec ((fun magnitude => cast ⋯ (dyadicData.CauchyRealExtension.RealModel.negInst.neg (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.UnsignedValue dyadicData magnitude.Magnitude)))) Magnitude) ((fun magnitude => dyadicData.ToCauchyCarrier (instHAdd.hAdd (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.WholeNumeralValue dyadicData magnitude.Magnitude.IntegerPart)) (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.FractionalValue dyadicData magnitude.Magnitude.FractionalPart)))) Magnitude) Sign) Sign Magnitude) second → first = second))
 
 Logical form (Lean):
 
@@ -417,18 +439,18 @@ theorem ValueIsBijective :
 Predicate logic:
 
   structure Bijection (α β : Type) where
-  Forward : α → β
-  Inverse : β → α
-  LeftInverse : ∀ value : α, Inverse (Forward value) = value
-  RightInverse : ∀ value : β, Forward (Inverse value) = value
+    Forward : α → β
+    Inverse : β → α
+    LeftInverse : ∀ value : α, Inverse (Forward value) = value
+    RightInverse : ∀ value : β, Forward (Inverse value) = value
 
 Predicate logic (unfolded):
 
   structure Bijection (α β : Type) where
-  Forward : α → β
-  Inverse : β → α
-  LeftInverse : ∀ value : α, Inverse (Forward value) = value
-  RightInverse : ∀ value : β, Forward (Inverse value) = value (source fallback; no compiled unfold data available)
+    Forward : α → β
+    Inverse : β → α
+    LeftInverse : ∀ value : α, Inverse (Forward value) = value
+    RightInverse : ∀ value : β, Forward (Inverse value) = value (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -470,11 +492,16 @@ structure Bijection (α β : Type) where
 
 Predicate logic:
 
-  ∃ bridge ∈ Bijection Expansion (CauchyCarrier dyadicData), ∀ expansion : Expansion, bridge.Forward expansion = Value dyadicData expansion
+  ∀ (dyadicData : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData), Exists fun bridge => ∀ (expansion : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), bridge.Forward expansion = LRA.NumberSystems.RealNumbers.Dyadic.Value dyadicData expansion
 
 Predicate logic (unfolded):
 
-  ∀ (dyadicData : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData), Exists fun bridge => ∀ (expansion : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), bridge.1 expansion = LRA.NumberSystems.RealNumbers.Dyadic.Expansion.rec ((fun _ => .rec = 0⋯) Unit.unit) (fun Sign Magnitude => (fun Sign Magnitude => LRA.NumberSystems.RealNumbers.Dyadic.Sign.rec ((fun magnitude => cast ⋯ (dyadicData.CauchyRealExtension.RealModel.negInst.neg (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.UnsignedValue dyadicData magnitude.Magnitude)))) Magnitude) ((fun magnitude => dyadicData.ToCauchyCarrier (instHAdd.hAdd (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.WholeNumeralValue dyadicData magnitude.Magnitude.IntegerPart)) (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.FractionalValue dyadicData magnitude.Magnitude.FractionalPart)))) Magnitude) Sign) Sign Magnitude) expansion
+  Ambient
+    (implicit ambient)
+  Objects
+    dyadicData : RationalDyadicApproximationData
+  Prove
+    Exists fun bridge => ∀ (expansion : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), bridge.1 expansion = LRA.NumberSystems.RealNumbers.Dyadic.Expansion.rec ((fun _ => .rec = 0⋯) Unit.unit) (fun Sign Magnitude => (fun Sign Magnitude => LRA.NumberSystems.RealNumbers.Dyadic.Sign.rec ((fun magnitude => cast ⋯ (dyadicData.CauchyRealExtension.RealModel.negInst.neg (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.UnsignedValue dyadicData magnitude.Magnitude)))) Magnitude) ((fun magnitude => dyadicData.ToCauchyCarrier (instHAdd.hAdd (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.WholeNumeralValue dyadicData magnitude.Magnitude.IntegerPart)) (dyadicData.FromCauchyCarrier (LRA.NumberSystems.RealNumbers.Dyadic.FractionalValue dyadicData magnitude.Magnitude.FractionalPart)))) Magnitude) Sign) Sign Magnitude) expansion
 
 Logical form (Lean):
 
@@ -515,14 +542,14 @@ theorem BinaryRealBijectionExists :
 Predicate logic:
 
   noncomputable def BinaryRealBijection :
-    Bijection Expansion (CauchyCarrier dyadicData) :=
-  Classical.choose (BinaryRealBijectionExists dyadicData)
+      Bijection Expansion (CauchyCarrier dyadicData) :=
+    Classical.choose (BinaryRealBijectionExists dyadicData)
 
 Predicate logic (unfolded):
 
   noncomputable def BinaryRealBijection :
-    Bijection Expansion (CauchyCarrier dyadicData) :=
-  Classical.choose (BinaryRealBijectionExists dyadicData) (source fallback; no compiled unfold data available)
+      Bijection Expansion (CauchyCarrier dyadicData) :=
+    Classical.choose (BinaryRealBijectionExists dyadicData) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

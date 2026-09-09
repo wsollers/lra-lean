@@ -12,11 +12,17 @@ open LRA.Analysis.Bounds
 
 Predicate logic:
 
-  (∀ nonemptyHypothesis ∈ A.Nonempty), (∃ u, IsUpperBound u A) → ∃ s, IsSupremum s A
+  ∀ {A : Set Real}, (A.Nonempty ∧ Exists fun u => LRA.Analysis.Bounds.IsUpperBound u A) → Exists fun s => LRA.Analysis.Bounds.IsSupremum s A
 
 Predicate logic (unfolded):
 
-  ∀ {A : Real → Prop}, (Exists fun x => Set.instMembership.1 A x ∧ Exists fun u => ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 x u) → Exists fun s => (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x s ∧ ∀ (u : Real), (∀ (x : Real), Set.instMembership.1 A x → Real.instPreorder.toLE.1 x u) → Real.instPreorder.toLE.1 s u)
+  Ambient
+    (ℝ)
+  Objects
+    A : Set ℝ
+    nonemptyHypothesis : A.Nonempty
+  Prove
+    (Exists fun x => x ∈ A ∧ (Exists fun u => ∀ (x : Real), x ∈ A → Real.instLE.le x u)) → Exists fun s => ((∀ (x : Real), x ∈ A → Real.instPreorder.1.le x s) ∧ (∀ (u : Real), (∀ (x : Real), x ∈ A → Real.instPreorder.1.le x u) → Real.instPreorder.1.le s u))
 
 Logical form (Lean):
 

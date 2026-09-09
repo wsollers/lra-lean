@@ -20,16 +20,16 @@ variable
 Predicate logic:
 
   abbrev RealCarrier
-    (rational_system : RationalNumberSystem)
-    (real_extension : RationalRealExtension rational_system) :=
-  real_extension.RealModel.signature.carrier
+      (rational_system : RationalNumberSystem)
+      (real_extension : RationalRealExtension rational_system) :=
+    real_extension.RealModel.signature.carrier
 
 Predicate logic (unfolded):
 
   abbrev RealCarrier
-    (rational_system : RationalNumberSystem)
-    (real_extension : RationalRealExtension rational_system) :=
-  real_extension.RealModel.signature.carrier (source fallback; no compiled unfold data available)
+      (rational_system : RationalNumberSystem)
+      (real_extension : RationalRealExtension rational_system) :=
+    real_extension.RealModel.signature.carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -70,14 +70,14 @@ abbrev RealCarrier
 Predicate logic:
 
   abbrev RationalCarrier
-    (rational_system : RationalNumberSystem) :=
-  rational_system.FieldModel.signature.carrier
+      (rational_system : RationalNumberSystem) :=
+    rational_system.FieldModel.signature.carrier
 
 Predicate logic (unfolded):
 
   abbrev RationalCarrier
-    (rational_system : RationalNumberSystem) :=
-  rational_system.FieldModel.signature.carrier (source fallback; no compiled unfold data available)
+      (rational_system : RationalNumberSystem) :=
+    rational_system.FieldModel.signature.carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -116,14 +116,14 @@ abbrev RationalCarrier
 Predicate logic:
 
   def embedRational (value : RationalCarrier rational_system) :
-    RealCarrier rational_system real_extension :=
-  real_extension.DenseOrderedFieldEmbedding.ToReal value
+      RealCarrier rational_system real_extension :=
+    real_extension.DenseOrderedFieldEmbedding.ToReal value
 
 Predicate logic (unfolded):
 
   def embedRational (value : RationalCarrier rational_system) :
-    RealCarrier rational_system real_extension :=
-  real_extension.DenseOrderedFieldEmbedding.ToReal value (source fallback; no compiled unfold data available)
+      RealCarrier rational_system real_extension :=
+    real_extension.DenseOrderedFieldEmbedding.ToReal value (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -165,7 +165,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) (value : real_extension.RealModel.signature.toCarrierBundle.1), Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = value
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = value
 
 Logical form (Lean):
 
@@ -207,7 +212,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) (value : real_extension.RealModel.signature.toCarrierBundle.1), (Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = value) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = value) → False
 
 Logical form (Lean):
 
@@ -244,18 +254,18 @@ def IsIrrational (value : RealCarrier rational_system real_extension) : Prop :=
 Predicate logic:
 
   abbrev Carrier
-    (rational_system : RationalNumberSystem)
-    (real_extension : RationalRealExtension rational_system) :=
-  { value : RealCarrier rational_system real_extension //
-      IsIrrational rational_system real_extension value }
+      (rational_system : RationalNumberSystem)
+      (real_extension : RationalRealExtension rational_system) :=
+    { value : RealCarrier rational_system real_extension //
+        IsIrrational rational_system real_extension value }
 
 Predicate logic (unfolded):
 
   abbrev Carrier
-    (rational_system : RationalNumberSystem)
-    (real_extension : RationalRealExtension rational_system) :=
-  { value : RealCarrier rational_system real_extension //
-      IsIrrational rational_system real_extension value } (source fallback; no compiled unfold data available)
+      (rational_system : RationalNumberSystem)
+      (real_extension : RationalRealExtension rational_system) :=
+    { value : RealCarrier rational_system real_extension //
+        IsIrrational rational_system real_extension value } (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -297,11 +307,17 @@ abbrev Carrier
 
 Predicate logic:
 
-  IsRational rational_system real_extension (embedRational rational_system real_extension value)
+  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) (value : LRA.NumberSystems.RealNumbers.Irrationals.RationalCarrier rational_system), LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension (LRA.NumberSystems.RealNumbers.Irrationals.embedRational rational_system real_extension value)
 
 Predicate logic (unfolded):
 
-  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) (value : rational_system.FieldModel.signature.toCarrierBundle.1), Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = real_extension.DenseOrderedFieldEmbedding.1 value
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem
+    value : RationalCarrier rational_system
+  Prove
+    Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = real_extension.DenseOrderedFieldEmbedding.1 value
 
 Logical form (Lean):
 
@@ -341,11 +357,16 @@ theorem embedded_rational_is_rational
 
 Predicate logic:
 
-  IsRational rational_system real_extension real_extension.RealModel.signature.zero
+  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system), LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension real_extension.RealModel.signature.zero
 
 Predicate logic (unfolded):
 
-  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system), Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = real_extension.RealModel.signature.toZeroOneBundle.2
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem
+  Prove
+    Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = real_extension.RealModel.signature.toZeroOneBundle.2
 
 Logical form (Lean):
 
@@ -383,11 +404,16 @@ theorem zero_is_rational :
 
 Predicate logic:
 
-  IsRational rational_system real_extension real_extension.RealModel.signature.one
+  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system), LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension real_extension.RealModel.signature.one
 
 Predicate logic (unfolded):
 
-  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system), Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = real_extension.RealModel.signature.toZeroOneBundle.3
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem
+  Prove
+    Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = real_extension.RealModel.signature.toZeroOneBundle.3
 
 Logical form (Lean):
 
@@ -426,16 +452,16 @@ theorem one_is_rational :
 Predicate logic:
 
   def rational_two : RationalCarrier rational_system :=
-  rational_system.FieldModel.signature.add
-    rational_system.FieldModel.signature.one
-    rational_system.FieldModel.signature.one
+    rational_system.FieldModel.signature.add
+      rational_system.FieldModel.signature.one
+      rational_system.FieldModel.signature.one
 
 Predicate logic (unfolded):
 
   def rational_two : RationalCarrier rational_system :=
-  rational_system.FieldModel.signature.add
-    rational_system.FieldModel.signature.one
-    rational_system.FieldModel.signature.one (source fallback; no compiled unfold data available)
+    rational_system.FieldModel.signature.add
+      rational_system.FieldModel.signature.one
+      rational_system.FieldModel.signature.one (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -476,12 +502,12 @@ def rational_two : RationalCarrier rational_system :=
 Predicate logic:
 
   def real_two : RealCarrier rational_system real_extension :=
-  embedRational rational_system real_extension (rational_two rational_system)
+    embedRational rational_system real_extension (rational_two rational_system)
 
 Predicate logic (unfolded):
 
   def real_two : RealCarrier rational_system real_extension :=
-  embedRational rational_system real_extension (rational_two rational_system) (source fallback; no compiled unfold data available)
+    embedRational rational_system real_extension (rational_two rational_system) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -517,11 +543,17 @@ def real_two : RealCarrier rational_system real_extension :=
 
 Predicate logic:
 
-  (IsRational rational_system real_extension first ∧ IsRational rational_system real_extension second) → IsRational rational_system real_extension (real_extension.RealModel.signature.add first second)
+  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {first second : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_system real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension first ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension second) → LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension (real_extension.RealModel.signature.add first second)
 
 Predicate logic (unfolded):
 
-  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {first second : real_extension.RealModel.signature.toCarrierBundle.1}, (Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = first ∧ Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = second) → Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = real_extension.RealModel.signature.toBooleanRingOperationBundle.2 first second
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem
+    first second : RealCarrier rational_system real_extension
+  Prove
+    (Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = first ∧ Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = second) → Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = real_extension.RealModel.signature.toBooleanRingOperationBundle.2 first second
 
 Logical form (Lean):
 
@@ -565,11 +597,17 @@ theorem rational_addition_is_rational
 
 Predicate logic:
 
-  (IsRational rational_system real_extension value) → IsRational rational_system real_extension (real_extension.RealModel.signature.neg value)
+  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_system real_extension}, LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension value → LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension (real_extension.RealModel.signature.neg value)
 
 Predicate logic (unfolded):
 
-  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {value : real_extension.RealModel.signature.toCarrierBundle.1}, (Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = value) → Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = real_extension.RealModel.signature.toRingConceptSignature.2 value
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem
+    value : RealCarrier rational_system real_extension
+  Prove
+    (Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = value) → Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = real_extension.RealModel.signature.toRingConceptSignature.2 value
 
 Logical form (Lean):
 
@@ -611,11 +649,17 @@ theorem rational_negation_is_rational
 
 Predicate logic:
 
-  (IsRational rational_system real_extension first ∧ IsRational rational_system real_extension second) → IsRational rational_system real_extension (real_extension.RealModel.signature.Subtraction first second)
+  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {first second : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_system real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension first ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension second) → LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension (real_extension.RealModel.signature.Subtraction first second)
 
 Predicate logic (unfolded):
 
-  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {first second : real_extension.RealModel.signature.toCarrierBundle.1}, (Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = first ∧ Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = second) → Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = real_extension.RealModel.signature.toBooleanRingOperationBundle.2 first (real_extension.RealModel.signature.toRingConceptSignature.2 second)
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem
+    first second : RealCarrier rational_system real_extension
+  Prove
+    (Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = first ∧ Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = second) → Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = real_extension.RealModel.signature.toBooleanRingOperationBundle.2 first (real_extension.RealModel.signature.toRingConceptSignature.2 second)
 
 Logical form (Lean):
 
@@ -659,11 +703,17 @@ theorem rational_subtraction_is_rational
 
 Predicate logic:
 
-  (IsRational rational_system real_extension first ∧ IsRational rational_system real_extension second) → IsRational rational_system real_extension (real_extension.RealModel.signature.multiply first second)
+  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {first second : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_system real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension first ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension second) → LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension (real_extension.RealModel.signature.multiply first second)
 
 Predicate logic (unfolded):
 
-  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {first second : real_extension.RealModel.signature.toCarrierBundle.1}, (Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = first ∧ Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = second) → Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = real_extension.RealModel.signature.toBooleanRingOperationBundle.3 first second
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem
+    first second : RealCarrier rational_system real_extension
+  Prove
+    (Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = first ∧ Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = second) → Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = real_extension.RealModel.signature.toBooleanRingOperationBundle.3 first second
 
 Logical form (Lean):
 
@@ -707,11 +757,18 @@ theorem rational_multiplication_is_rational
 
 Predicate logic:
 
-  (IsRational rational_system real_extension value) → IsRational rational_system real_extension (real_extension.RealModel.signature.inv value)
+  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_system real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension value ∧ Ne value real_extension.RealModel.signature.zero) → LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension (real_extension.RealModel.signature.inv value)
 
 Predicate logic (unfolded):
 
-  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {value : real_extension.RealModel.signature.toCarrierBundle.1}, (Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = value ∧ value = real_extension.RealModel.signature.toZeroOneBundle.2 → False) → Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = real_extension.RealModel.signature.2 value
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem
+    value : RealCarrier rational_system real_extension
+    value_is_nonzero : value ≠ real_extension.RealModel.signature.zero
+  Prove
+    (Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = value ∧ (value = real_extension.RealModel.signature.toZeroOneBundle.2 → False)) → Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = real_extension.RealModel.signature.2 value
 
 Logical form (Lean):
 
@@ -755,11 +812,18 @@ theorem rational_inverse_is_rational
 
 Predicate logic:
 
-  (IsRational rational_system real_extension numerator ∧ IsRational rational_system real_extension denominator) → IsRational rational_system real_extension (real_extension.RealModel.signature.multiply numerator (real_extension.RealModel.signature.inv denominator))
+  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {numerator denominator : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_system real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension numerator ∧ (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension denominator ∧ Ne denominator real_extension.RealModel.signature.zero)) → LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension (real_extension.RealModel.signature.multiply numerator (real_extension.RealModel.signature.inv denominator))
 
 Predicate logic (unfolded):
 
-  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {numerator denominator : real_extension.RealModel.signature.toCarrierBundle.1}, (Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = numerator ∧ (Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = denominator ∧ denominator = real_extension.RealModel.signature.toZeroOneBundle.2 → False)) → Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = real_extension.RealModel.signature.toBooleanRingOperationBundle.3 numerator (real_extension.RealModel.signature.2 denominator)
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem
+    numerator denominator : RealCarrier rational_system real_extension
+    denominator_is_nonzero : denominator ≠ real_extension.RealModel.signature.zero
+  Prove
+    (Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = numerator ∧ (Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = denominator ∧ (denominator = real_extension.RealModel.signature.toZeroOneBundle.2 → False))) → Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = real_extension.RealModel.signature.toBooleanRingOperationBundle.3 numerator (real_extension.RealModel.signature.2 denominator)
 
 Logical form (Lean):
 
@@ -809,11 +873,17 @@ theorem rational_division_is_rational
 
 Predicate logic:
 
-  (IsIrrational rational_system real_extension value) → IsIrrational rational_system real_extension (real_extension.RealModel.signature.neg value)
+  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_system real_extension}, LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension value → LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension (real_extension.RealModel.signature.neg value)
 
 Predicate logic (unfolded):
 
-  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {value : real_extension.RealModel.signature.toCarrierBundle.1}, ((Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = value) → False ∧ Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = real_extension.RealModel.signature.toRingConceptSignature.2 value) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem
+    value : RealCarrier rational_system real_extension
+  Prove
+    (((Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = value) → False) ∧ Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = real_extension.RealModel.signature.toRingConceptSignature.2 value) → False
 
 Logical form (Lean):
 
@@ -855,11 +925,17 @@ theorem negation_is_irrational
 
 Predicate logic:
 
-  (IsRational rational_system real_extension rational_value ∧ IsIrrational rational_system real_extension irrational_value) → IsIrrational rational_system real_extension (real_extension.RealModel.signature.add rational_value irrational_value)
+  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {rational_value irrational_value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_system real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension rational_value ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension irrational_value) → LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension (real_extension.RealModel.signature.add rational_value irrational_value)
 
 Predicate logic (unfolded):
 
-  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {rational_value irrational_value : real_extension.RealModel.signature.toCarrierBundle.1}, (Exists fun rational_value_1 => real_extension.DenseOrderedFieldEmbedding.1 rational_value_1 = rational_value ∧ ((Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = irrational_value) → False ∧ Exists fun rational_value_1 => real_extension.DenseOrderedFieldEmbedding.1 rational_value_1 = real_extension.RealModel.signature.toBooleanRingOperationBundle.2 rational_value irrational_value)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem
+    rational_value irrational_value : RealCarrier rational_system real_extension
+  Prove
+    (Exists fun rational_value_1 => real_extension.DenseOrderedFieldEmbedding.1 rational_value_1 = rational_value ∧ (((Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = irrational_value) → False) ∧ Exists fun rational_value_1 => real_extension.DenseOrderedFieldEmbedding.1 rational_value_1 = real_extension.RealModel.signature.toBooleanRingOperationBundle.2 rational_value irrational_value)) → False
 
 Logical form (Lean):
 
@@ -903,11 +979,17 @@ theorem rational_add_irrational_is_irrational
 
 Predicate logic:
 
-  (IsIrrational rational_system real_extension irrational_value ∧ IsRational rational_system real_extension rational_value) → IsIrrational rational_system real_extension (real_extension.RealModel.signature.add irrational_value rational_value)
+  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {irrational_value rational_value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_system real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension irrational_value ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension rational_value) → LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension (real_extension.RealModel.signature.add irrational_value rational_value)
 
 Predicate logic (unfolded):
 
-  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {irrational_value rational_value : real_extension.RealModel.signature.toCarrierBundle.1}, ((Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = irrational_value) → False ∧ (Exists fun rational_value_1 => real_extension.DenseOrderedFieldEmbedding.1 rational_value_1 = rational_value ∧ Exists fun rational_value_1 => real_extension.DenseOrderedFieldEmbedding.1 rational_value_1 = real_extension.RealModel.signature.toBooleanRingOperationBundle.2 irrational_value rational_value)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem
+    irrational_value rational_value : RealCarrier rational_system real_extension
+  Prove
+    (((Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = irrational_value) → False) ∧ (Exists fun rational_value_1 => real_extension.DenseOrderedFieldEmbedding.1 rational_value_1 = rational_value ∧ Exists fun rational_value_1 => real_extension.DenseOrderedFieldEmbedding.1 rational_value_1 = real_extension.RealModel.signature.toBooleanRingOperationBundle.2 irrational_value rational_value)) → False
 
 Logical form (Lean):
 
@@ -951,11 +1033,17 @@ theorem irrational_add_rational_is_irrational
 
 Predicate logic:
 
-  (IsRational rational_system real_extension rational_value ∧ IsIrrational rational_system real_extension irrational_value) → IsIrrational rational_system real_extension (real_extension.RealModel.signature.Subtraction rational_value irrational_value)
+  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {rational_value irrational_value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_system real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension rational_value ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension irrational_value) → LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension (real_extension.RealModel.signature.Subtraction rational_value irrational_value)
 
 Predicate logic (unfolded):
 
-  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {rational_value irrational_value : real_extension.RealModel.signature.toCarrierBundle.1}, (Exists fun rational_value_1 => real_extension.DenseOrderedFieldEmbedding.1 rational_value_1 = rational_value ∧ ((Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = irrational_value) → False ∧ Exists fun rational_value_1 => real_extension.DenseOrderedFieldEmbedding.1 rational_value_1 = real_extension.RealModel.signature.toBooleanRingOperationBundle.2 rational_value (real_extension.RealModel.signature.toRingConceptSignature.2 irrational_value))) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem
+    rational_value irrational_value : RealCarrier rational_system real_extension
+  Prove
+    (Exists fun rational_value_1 => real_extension.DenseOrderedFieldEmbedding.1 rational_value_1 = rational_value ∧ (((Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = irrational_value) → False) ∧ Exists fun rational_value_1 => real_extension.DenseOrderedFieldEmbedding.1 rational_value_1 = real_extension.RealModel.signature.toBooleanRingOperationBundle.2 rational_value (real_extension.RealModel.signature.toRingConceptSignature.2 irrational_value))) → False
 
 Logical form (Lean):
 
@@ -999,11 +1087,17 @@ theorem rational_sub_irrational_is_irrational
 
 Predicate logic:
 
-  (IsIrrational rational_system real_extension irrational_value ∧ IsRational rational_system real_extension rational_value) → IsIrrational rational_system real_extension (real_extension.RealModel.signature.Subtraction irrational_value rational_value)
+  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {irrational_value rational_value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_system real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension irrational_value ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension rational_value) → LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension (real_extension.RealModel.signature.Subtraction irrational_value rational_value)
 
 Predicate logic (unfolded):
 
-  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {irrational_value rational_value : real_extension.RealModel.signature.toCarrierBundle.1}, ((Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = irrational_value) → False ∧ (Exists fun rational_value_1 => real_extension.DenseOrderedFieldEmbedding.1 rational_value_1 = rational_value ∧ Exists fun rational_value_1 => real_extension.DenseOrderedFieldEmbedding.1 rational_value_1 = real_extension.RealModel.signature.toBooleanRingOperationBundle.2 irrational_value (real_extension.RealModel.signature.toRingConceptSignature.2 rational_value))) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem
+    irrational_value rational_value : RealCarrier rational_system real_extension
+  Prove
+    (((Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = irrational_value) → False) ∧ (Exists fun rational_value_1 => real_extension.DenseOrderedFieldEmbedding.1 rational_value_1 = rational_value ∧ Exists fun rational_value_1 => real_extension.DenseOrderedFieldEmbedding.1 rational_value_1 = real_extension.RealModel.signature.toBooleanRingOperationBundle.2 irrational_value (real_extension.RealModel.signature.toRingConceptSignature.2 rational_value))) → False
 
 Logical form (Lean):
 
@@ -1047,11 +1141,18 @@ theorem irrational_sub_rational_is_irrational
 
 Predicate logic:
 
-  (IsRational rational_system real_extension rational_value ∧ IsIrrational rational_system real_extension irrational_value) → IsIrrational rational_system real_extension (real_extension.RealModel.signature.multiply rational_value irrational_value)
+  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {rational_value irrational_value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_system real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension rational_value ∧ (Ne rational_value real_extension.RealModel.signature.zero ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension irrational_value)) → LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension (real_extension.RealModel.signature.multiply rational_value irrational_value)
 
 Predicate logic (unfolded):
 
-  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {rational_value irrational_value : real_extension.RealModel.signature.toCarrierBundle.1}, (Exists fun rational_value_1 => real_extension.DenseOrderedFieldEmbedding.1 rational_value_1 = rational_value ∧ (rational_value = real_extension.RealModel.signature.toZeroOneBundle.2 → False ∧ ((Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = irrational_value) → False ∧ Exists fun rational_value_1 => real_extension.DenseOrderedFieldEmbedding.1 rational_value_1 = real_extension.RealModel.signature.toBooleanRingOperationBundle.3 rational_value irrational_value))) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem
+    rational_value irrational_value : RealCarrier rational_system real_extension
+    rational_is_nonzero : rational_value ≠ real_extension.RealModel.signature.zero
+  Prove
+    (Exists fun rational_value_1 => real_extension.DenseOrderedFieldEmbedding.1 rational_value_1 = rational_value ∧ ((rational_value = real_extension.RealModel.signature.toZeroOneBundle.2 → False) ∧ (((Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = irrational_value) → False) ∧ Exists fun rational_value_1 => real_extension.DenseOrderedFieldEmbedding.1 rational_value_1 = real_extension.RealModel.signature.toBooleanRingOperationBundle.3 rational_value irrational_value))) → False
 
 Logical form (Lean):
 
@@ -1097,11 +1198,18 @@ theorem nonzero_rational_mul_irrational_is_irrational
 
 Predicate logic:
 
-  (IsIrrational rational_system real_extension irrational_value ∧ IsRational rational_system real_extension rational_value) → IsIrrational rational_system real_extension (real_extension.RealModel.signature.multiply irrational_value rational_value)
+  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {irrational_value rational_value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_system real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension irrational_value ∧ (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension rational_value ∧ Ne rational_value real_extension.RealModel.signature.zero)) → LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension (real_extension.RealModel.signature.multiply irrational_value rational_value)
 
 Predicate logic (unfolded):
 
-  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {irrational_value rational_value : real_extension.RealModel.signature.toCarrierBundle.1}, ((Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = irrational_value) → False ∧ (Exists fun rational_value_1 => real_extension.DenseOrderedFieldEmbedding.1 rational_value_1 = rational_value ∧ (rational_value = real_extension.RealModel.signature.toZeroOneBundle.2 → False ∧ Exists fun rational_value_1 => real_extension.DenseOrderedFieldEmbedding.1 rational_value_1 = real_extension.RealModel.signature.toBooleanRingOperationBundle.3 irrational_value rational_value))) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem
+    irrational_value rational_value : RealCarrier rational_system real_extension
+    rational_is_nonzero : rational_value ≠ real_extension.RealModel.signature.zero
+  Prove
+    (((Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = irrational_value) → False) ∧ (Exists fun rational_value_1 => real_extension.DenseOrderedFieldEmbedding.1 rational_value_1 = rational_value ∧ ((rational_value = real_extension.RealModel.signature.toZeroOneBundle.2 → False) ∧ Exists fun rational_value_1 => real_extension.DenseOrderedFieldEmbedding.1 rational_value_1 = real_extension.RealModel.signature.toBooleanRingOperationBundle.3 irrational_value rational_value))) → False
 
 Logical form (Lean):
 
@@ -1147,11 +1255,18 @@ theorem irrational_mul_nonzero_rational_is_irrational
 
 Predicate logic:
 
-  (IsIrrational rational_system real_extension irrational_value ∧ IsRational rational_system real_extension rational_value) → IsIrrational rational_system real_extension (real_extension.RealModel.signature.multiply irrational_value (real_extension.RealModel.signature.inv rational_value))
+  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {irrational_value rational_value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_system real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension irrational_value ∧ (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension rational_value ∧ Ne rational_value real_extension.RealModel.signature.zero)) → LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension (real_extension.RealModel.signature.multiply irrational_value (real_extension.RealModel.signature.inv rational_value))
 
 Predicate logic (unfolded):
 
-  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {irrational_value rational_value : real_extension.RealModel.signature.toCarrierBundle.1}, ((Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = irrational_value) → False ∧ (Exists fun rational_value_1 => real_extension.DenseOrderedFieldEmbedding.1 rational_value_1 = rational_value ∧ (rational_value = real_extension.RealModel.signature.toZeroOneBundle.2 → False ∧ Exists fun rational_value_1 => real_extension.DenseOrderedFieldEmbedding.1 rational_value_1 = real_extension.RealModel.signature.toBooleanRingOperationBundle.3 irrational_value (real_extension.RealModel.signature.2 rational_value)))) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem
+    irrational_value rational_value : RealCarrier rational_system real_extension
+    rational_is_nonzero : rational_value ≠ real_extension.RealModel.signature.zero
+  Prove
+    (((Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = irrational_value) → False) ∧ (Exists fun rational_value_1 => real_extension.DenseOrderedFieldEmbedding.1 rational_value_1 = rational_value ∧ ((rational_value = real_extension.RealModel.signature.toZeroOneBundle.2 → False) ∧ Exists fun rational_value_1 => real_extension.DenseOrderedFieldEmbedding.1 rational_value_1 = real_extension.RealModel.signature.toBooleanRingOperationBundle.3 irrational_value (real_extension.RealModel.signature.2 rational_value)))) → False
 
 Logical form (Lean):
 
@@ -1201,11 +1316,18 @@ theorem irrational_div_nonzero_rational_is_irrational
 
 Predicate logic:
 
-  (IsRational rational_system real_extension rational_value ∧ IsIrrational rational_system real_extension irrational_value) → IsIrrational rational_system real_extension (real_extension.RealModel.signature.multiply rational_value (real_extension.RealModel.signature.inv irrational_value))
+  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {rational_value irrational_value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_system real_extension}, (LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension rational_value ∧ (Ne rational_value real_extension.RealModel.signature.zero ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension irrational_value)) → LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension (real_extension.RealModel.signature.multiply rational_value (real_extension.RealModel.signature.inv irrational_value))
 
 Predicate logic (unfolded):
 
-  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {rational_value irrational_value : real_extension.RealModel.signature.toCarrierBundle.1}, (Exists fun rational_value_1 => real_extension.DenseOrderedFieldEmbedding.1 rational_value_1 = rational_value ∧ (rational_value = real_extension.RealModel.signature.toZeroOneBundle.2 → False ∧ ((Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = irrational_value) → False ∧ Exists fun rational_value_1 => real_extension.DenseOrderedFieldEmbedding.1 rational_value_1 = real_extension.RealModel.signature.toBooleanRingOperationBundle.3 rational_value (real_extension.RealModel.signature.2 irrational_value)))) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem
+    rational_value irrational_value : RealCarrier rational_system real_extension
+    rational_is_nonzero : rational_value ≠ real_extension.RealModel.signature.zero
+  Prove
+    (Exists fun rational_value_1 => real_extension.DenseOrderedFieldEmbedding.1 rational_value_1 = rational_value ∧ ((rational_value = real_extension.RealModel.signature.toZeroOneBundle.2 → False) ∧ (((Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = irrational_value) → False) ∧ Exists fun rational_value_1 => real_extension.DenseOrderedFieldEmbedding.1 rational_value_1 = real_extension.RealModel.signature.toBooleanRingOperationBundle.3 rational_value (real_extension.RealModel.signature.2 irrational_value)))) → False
 
 Logical form (Lean):
 
@@ -1255,11 +1377,17 @@ theorem nonzero_rational_div_irrational_is_irrational
 
 Predicate logic:
 
-  (IsIrrational rational_system real_extension value) → value ≠ real_extension.RealModel.signature.zero
+  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {value : LRA.NumberSystems.RealNumbers.Irrationals.RealCarrier rational_system real_extension}, LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension value → Ne value real_extension.RealModel.signature.zero
 
 Predicate logic (unfolded):
 
-  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) {value : real_extension.RealModel.signature.toCarrierBundle.1}, ((Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = value) → False ∧ value = real_extension.RealModel.signature.toZeroOneBundle.2) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem
+    value : RealCarrier rational_system real_extension
+  Prove
+    (((Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = value) → False) ∧ value = real_extension.RealModel.signature.toZeroOneBundle.2) → False
 
 Logical form (Lean):
 
@@ -1300,24 +1428,24 @@ theorem irrational_is_nonzero
 Predicate logic:
 
   structure SquareRootTwoWitness
-    (rational_system : RationalNumberSystem)
-    (real_extension : RationalRealExtension rational_system) where
-  value : RealCarrier rational_system real_extension
-  square_is_two :
-    real_extension.RealModel.signature.multiply value value =
-      real_two rational_system real_extension
-  is_irrational : IsIrrational rational_system real_extension value
+      (rational_system : RationalNumberSystem)
+      (real_extension : RationalRealExtension rational_system) where
+    value : RealCarrier rational_system real_extension
+    square_is_two :
+      real_extension.RealModel.signature.multiply value value =
+        real_two rational_system real_extension
+    is_irrational : IsIrrational rational_system real_extension value
 
 Predicate logic (unfolded):
 
   structure SquareRootTwoWitness
-    (rational_system : RationalNumberSystem)
-    (real_extension : RationalRealExtension rational_system) where
-  value : RealCarrier rational_system real_extension
-  square_is_two :
-    real_extension.RealModel.signature.multiply value value =
-      real_two rational_system real_extension
-  is_irrational : IsIrrational rational_system real_extension value (source fallback; no compiled unfold data available)
+      (rational_system : RationalNumberSystem)
+      (real_extension : RationalRealExtension rational_system) where
+    value : RealCarrier rational_system real_extension
+    square_is_two :
+      real_extension.RealModel.signature.multiply value value =
+        real_two rational_system real_extension
+    is_irrational : IsIrrational rational_system real_extension value (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1365,11 +1493,17 @@ structure SquareRootTwoWitness
 
 Predicate logic:
 
-  ∃ first second ∈ RealCarrier rational_system real_extension, IsIrrational rational_system real_extension first ∧ IsIrrational rational_system real_extension second ∧ IsRational rational_system real_extension (real_extension.RealModel.signature.add first second)
+  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) (a : LRA.NumberSystems.RealNumbers.Irrationals.SquareRootTwoWitness rational_system real_extension), Exists fun first => Exists fun second => (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension first ∧ (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension second ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension (real_extension.RealModel.signature.add first second)))
 
 Predicate logic (unfolded):
 
-  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) (a : LRA.NumberSystems.RealNumbers.Irrationals.SquareRootTwoWitness rational_system real_extension), Exists fun first => Exists fun second => ((Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = first) → False ∧ ((Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = second) → False ∧ Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = real_extension.RealModel.signature.toBooleanRingOperationBundle.2 first second))
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem
+    witness : SquareRootTwoWitness rational_system real_extension
+  Prove
+    Exists fun first => Exists fun second => (((Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = first) → False) ∧ (((Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = second) → False) ∧ Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = real_extension.RealModel.signature.toBooleanRingOperationBundle.2 first second))
 
 Logical form (Lean):
 
@@ -1415,11 +1549,17 @@ theorem irrationals_not_closed_under_addition
 
 Predicate logic:
 
-  ∃ first second ∈ RealCarrier rational_system real_extension, IsIrrational rational_system real_extension first ∧ IsIrrational rational_system real_extension second ∧ IsRational rational_system real_extension (real_extension.RealModel.signature.Subtraction first second)
+  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) (a : LRA.NumberSystems.RealNumbers.Irrationals.SquareRootTwoWitness rational_system real_extension), Exists fun first => Exists fun second => (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension first ∧ (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension second ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension (real_extension.RealModel.signature.Subtraction first second)))
 
 Predicate logic (unfolded):
 
-  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) (a : LRA.NumberSystems.RealNumbers.Irrationals.SquareRootTwoWitness rational_system real_extension), Exists fun first => Exists fun second => ((Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = first) → False ∧ ((Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = second) → False ∧ Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = real_extension.RealModel.signature.toBooleanRingOperationBundle.2 first (real_extension.RealModel.signature.toRingConceptSignature.2 second)))
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem
+    witness : SquareRootTwoWitness rational_system real_extension
+  Prove
+    Exists fun first => Exists fun second => (((Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = first) → False) ∧ (((Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = second) → False) ∧ Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = real_extension.RealModel.signature.toBooleanRingOperationBundle.2 first (real_extension.RealModel.signature.toRingConceptSignature.2 second)))
 
 Logical form (Lean):
 
@@ -1465,11 +1605,17 @@ theorem irrationals_not_closed_under_subtraction
 
 Predicate logic:
 
-  ∃ first second ∈ RealCarrier rational_system real_extension, IsIrrational rational_system real_extension first ∧ IsIrrational rational_system real_extension second ∧ IsRational rational_system real_extension (real_extension.RealModel.signature.multiply first second)
+  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) (a : LRA.NumberSystems.RealNumbers.Irrationals.SquareRootTwoWitness rational_system real_extension), Exists fun first => Exists fun second => (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension first ∧ (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension second ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension (real_extension.RealModel.signature.multiply first second)))
 
 Predicate logic (unfolded):
 
-  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) (a : LRA.NumberSystems.RealNumbers.Irrationals.SquareRootTwoWitness rational_system real_extension), Exists fun first => Exists fun second => ((Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = first) → False ∧ ((Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = second) → False ∧ Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = real_extension.RealModel.signature.toBooleanRingOperationBundle.3 first second))
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem
+    witness : SquareRootTwoWitness rational_system real_extension
+  Prove
+    Exists fun first => Exists fun second => (((Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = first) → False) ∧ (((Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = second) → False) ∧ Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = real_extension.RealModel.signature.toBooleanRingOperationBundle.3 first second))
 
 Logical form (Lean):
 
@@ -1515,11 +1661,17 @@ theorem irrationals_not_closed_under_multiplication
 
 Predicate logic:
 
-  ∃ first second ∈ RealCarrier rational_system real_extension, IsIrrational rational_system real_extension first ∧ IsIrrational rational_system real_extension second ∧ IsRational rational_system real_extension (real_extension.RealModel.signature.multiply first (real_extension.RealModel.signature.inv second))
+  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) (a : LRA.NumberSystems.RealNumbers.Irrationals.SquareRootTwoWitness rational_system real_extension), Exists fun first => Exists fun second => (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension first ∧ (LRA.NumberSystems.RealNumbers.Irrationals.IsIrrational rational_system real_extension second ∧ LRA.NumberSystems.RealNumbers.Irrationals.IsRational rational_system real_extension (real_extension.RealModel.signature.multiply first (real_extension.RealModel.signature.inv second))))
 
 Predicate logic (unfolded):
 
-  ∀ (rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (real_extension : LRA.NumberSystems.RealNumbers.RationalRealExtension rational_system) (a : LRA.NumberSystems.RealNumbers.Irrationals.SquareRootTwoWitness rational_system real_extension), Exists fun first => Exists fun second => ((Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = first) → False ∧ ((Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = second) → False ∧ Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = real_extension.RealModel.signature.toBooleanRingOperationBundle.3 first (real_extension.RealModel.signature.2 second)))
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_system : LRA.NumberSystems.RationalNumbers.RationalNumberSystem
+    witness : SquareRootTwoWitness rational_system real_extension
+  Prove
+    Exists fun first => Exists fun second => (((Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = first) → False) ∧ (((Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = second) → False) ∧ Exists fun rational_value => real_extension.DenseOrderedFieldEmbedding.1 rational_value = real_extension.RealModel.signature.toBooleanRingOperationBundle.3 first (real_extension.RealModel.signature.2 second)))
 
 Logical form (Lean):
 

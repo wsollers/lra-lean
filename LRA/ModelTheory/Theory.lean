@@ -17,12 +17,12 @@ universe u
 Predicate logic:
 
   abbrev FormulaTheory (S : Signature) (Variable : Type) :=
-  Set (Formula S Variable)
+    Set (Formula S Variable)
 
 Predicate logic (unfolded):
 
   abbrev FormulaTheory (S : Signature) (Variable : Type) :=
-  Set (Formula S Variable) (source fallback; no compiled unfold data available)
+    Set (Formula S Variable) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -59,12 +59,12 @@ abbrev FormulaTheory (S : Signature) (Variable : Type) :=
 Predicate logic:
 
   abbrev Theory (S : Signature) (Variable : Type) [DecidableEq Variable] :=
-  Set (Sentence S Variable)
+    Set (Sentence S Variable)
 
 Predicate logic (unfolded):
 
   abbrev Theory (S : Signature) (Variable : Type) [DecidableEq Variable] :=
-  Set (Sentence S Variable) (source fallback; no compiled unfold data available)
+    Set (Sentence S Variable) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -100,11 +100,16 @@ abbrev Theory (S : Signature) (Variable : Type) [DecidableEq Variable] :=
 
 Predicate logic:
 
-  ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : DecidableVariable] = Γ : LRA.ModelTheory.FirstOrder.FormulaTheory S Variable (a : LRA.ModelTheory.FirstOrder.Model S) (assignment : Variable → a.Domain) (φ : LRA.ModelTheory.FirstOrder.Formula S Variable), Set.instMembership.mem Γ φ → LRA.ModelTheory.FirstOrder.Satisfies a assignment φ
+  ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : DecidableVariable] = Γ : LRA.ModelTheory.FirstOrder.FormulaTheory S Variable (a : LRA.ModelTheory.FirstOrder.Model S) (assignment : Variable → a.Domain) (φ : LRA.Logic.FirstOrder.Formula S Variable), φ ∈ Γ → LRA.Logic.FirstOrder.Satisfies a assignment φ
 
 Predicate logic (unfolded):
 
-  ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : (a b : Variable) → Decidable (a = b)] (Γ : LRA.ModelTheory.FirstOrder.Formula S Variable → Prop) (a : LRA.ModelTheory.FirstOrder.Model S) (assignment : Variable → a.1) (φ : LRA.ModelTheory.FirstOrder.Formula S Variable), Set.instMembership.1 Γ φ → LRA.ModelTheory.FirstOrder.Satisfies a assignment φ
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    φ ∈ Γ → LRA.Logic.FirstOrder.Satisfies a assignment φ
 
 Logical form (Lean):
 
@@ -146,11 +151,16 @@ def ModelsOfFormulaTheory
 
 Predicate logic:
 
-  ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : DecidableVariable] = Γ : LRA.ModelTheory.FirstOrder.Theory S Variable (a : LRA.ModelTheory.FirstOrder.Model S) (assignment : Variable → a.Domain) (sentence : LRA.ModelTheory.FirstOrder.Sentence S Variable), Set.instMembership.mem Γ sentence → LRA.ModelTheory.FirstOrder.Satisfies a assignment sentence.val
+  ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : DecidableVariable] = Γ : LRA.ModelTheory.FirstOrder.Theory S Variable (a : LRA.ModelTheory.FirstOrder.Model S) (assignment : Variable → a.Domain) (sentence : LRA.Logic.FirstOrder.Sentence S Variable), sentence ∈ Γ → LRA.Logic.FirstOrder.Satisfies a assignment sentence.val
 
 Predicate logic (unfolded):
 
-  ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : (a b : Variable) → Decidable (a = b)] (Γ : (Subtype fun formula => LRA.ModelTheory.FirstOrder.freeVariables formula = Finset.instEmptyCollection.1) → Prop) (a : LRA.ModelTheory.FirstOrder.Model S) (assignment : Variable → a.1) (sentence : Subtype fun formula => LRA.ModelTheory.FirstOrder.freeVariables formula = Finset.instEmptyCollection.1), Set.instMembership.1 Γ sentence → LRA.ModelTheory.FirstOrder.Satisfies a assignment sentence.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    sentence ∈ Γ → LRA.Logic.FirstOrder.Satisfies a assignment sentence.1
 
 Logical form (Lean):
 
@@ -192,11 +202,16 @@ def ModelsOfTheory
 
 Predicate logic:
 
-  ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : DecidableVariable] = K : Set (LRA.ModelTheory.FirstOrder.Model S) (a : LRA.ModelTheory.FirstOrder.Sentence S Variable) (M : LRA.ModelTheory.FirstOrder.Model S), Set.instMembership.mem K M → ∀ (assignment : Variable → M.Domain), LRA.ModelTheory.FirstOrder.Satisfies M assignment a.val
+  ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : DecidableVariable] = K : Set (LRA.ModelTheory.FirstOrder.Model S) (a : LRA.Logic.FirstOrder.Sentence S Variable) (M : LRA.ModelTheory.FirstOrder.Model S), M ∈ K → ∀ (assignment : Variable → M.Domain), LRA.Logic.FirstOrder.Satisfies M assignment a.val
 
 Predicate logic (unfolded):
 
-  ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : (a b : Variable) → Decidable (a = b)] (K : LRA.ModelTheory.FirstOrder.Model S → Prop) (a : Subtype fun formula => LRA.ModelTheory.FirstOrder.freeVariables formula = Finset.instEmptyCollection.1) (M : LRA.ModelTheory.FirstOrder.Model S), Set.instMembership.1 K M → ∀ (assignment : Variable → M.1), LRA.ModelTheory.FirstOrder.Satisfies M assignment a.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    M ∈ K → ∀ (assignment : Variable → M.1), LRA.Logic.FirstOrder.Satisfies M assignment a.1
 
 Logical form (Lean):
 
@@ -238,11 +253,16 @@ def TheoryOfModels
 
 Predicate logic:
 
-  ∀ {S : LRA.Logic.Signature} {Variable SetVariable : Type} [inst : DecidableVariable] = [inst_1 : DecidableSetVariable](Γ : LRA.ModelTheory.SecondOrderMonadic.FormulaTheory S Variable SetVariable) = φ : LRA.ModelTheory.SecondOrderMonadic.SOFormula S Variable SetVariable (M : LRA.ModelTheory.SecondOrderMonadic.HenkinModel S) (assignment : LRA.ModelTheory.SecondOrderMonadic.SOAssignment M Variable SetVariable), Set.instMembership.mem (LRA.ModelTheory.SecondOrderMonadic.ModelsOfFormulaTheory Γ) M → LRA.ModelTheory.SecondOrderMonadic.SOSatisfies M assignment φ
+  ∀ {S : LRA.Logic.Signature} {Variable SetVariable : Type} [inst : DecidableVariable] = [inst_1 : DecidableSetVariable](Γ : LRA.ModelTheory.SecondOrderMonadic.FormulaTheory S Variable SetVariable) = φ : LRA.Logic.SecondOrderMonadic.SOFormula S Variable SetVariable (M : LRA.ModelTheory.SecondOrderMonadic.HenkinModel S) (assignment : LRA.ModelTheory.SecondOrderMonadic.SOAssignment M Variable SetVariable), M ∈ LRA.ModelTheory.SecondOrderMonadic.ModelsOfFormulaTheory Γ → LRA.ModelTheory.SecondOrderMonadic.SOSatisfies M assignment φ
 
 Predicate logic (unfolded):
 
-  ∀ {S : LRA.Logic.Signature} {Variable SetVariable : Type} [inst : (a b : Variable) → Decidable (a = b)] [inst_1 : (a b : SetVariable) → Decidable (a = b)] (Γ : LRA.ModelTheory.SecondOrderMonadic.SOFormula S Variable SetVariable → Prop) (φ : LRA.ModelTheory.SecondOrderMonadic.SOFormula S Variable SetVariable) (M : LRA.ModelTheory.SecondOrderMonadic.HenkinModel S) (assignment : LRA.ModelTheory.SecondOrderMonadic.SOAssignment M Variable SetVariable), Set.instMembership.1 (fun M => ∀ (assignment : LRA.ModelTheory.SecondOrderMonadic.SOAssignment M Variable SetVariable) (φ : LRA.ModelTheory.SecondOrderMonadic.SOFormula S Variable SetVariable), Set.instMembership.1 Γ φ → LRA.ModelTheory.SecondOrderMonadic.SOSatisfies M assignment φ) M → LRA.ModelTheory.SecondOrderMonadic.SOSatisfies M assignment φ
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    M ∈ fun M => ∀ (assignment : LRA.ModelTheory.SecondOrderMonadic.SOAssignment M Variable SetVariable) (φ : LRA.Logic.SecondOrderMonadic.SOFormula S Variable SetVariable), φ ∈ Γ → LRA.ModelTheory.SecondOrderMonadic.SOSatisfies M assignment φ → LRA.ModelTheory.SecondOrderMonadic.SOSatisfies M assignment φ
 
 Logical form (Lean):
 
@@ -295,12 +315,12 @@ universe u
 Predicate logic:
 
   abbrev FormulaTheory (S : Signature) (Variable SetVariable : Type) :=
-  Set (SOFormula S Variable SetVariable)
+    Set (SOFormula S Variable SetVariable)
 
 Predicate logic (unfolded):
 
   abbrev FormulaTheory (S : Signature) (Variable SetVariable : Type) :=
-  Set (SOFormula S Variable SetVariable) (source fallback; no compiled unfold data available)
+    Set (SOFormula S Variable SetVariable) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -336,11 +356,16 @@ abbrev FormulaTheory (S : Signature) (Variable SetVariable : Type) :=
 
 Predicate logic:
 
-  ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : DecidableVariable] = Γ : LRA.ModelTheory.FirstOrder.FormulaTheory S Variable (a : LRA.ModelTheory.FirstOrder.Model S) (assignment : Variable → a.Domain) (φ : LRA.ModelTheory.FirstOrder.Formula S Variable), Set.instMembership.mem Γ φ → LRA.ModelTheory.FirstOrder.Satisfies a assignment φ
+  ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : DecidableVariable] = Γ : LRA.ModelTheory.FirstOrder.FormulaTheory S Variable (a : LRA.ModelTheory.FirstOrder.Model S) (assignment : Variable → a.Domain) (φ : LRA.Logic.FirstOrder.Formula S Variable), φ ∈ Γ → LRA.Logic.FirstOrder.Satisfies a assignment φ
 
 Predicate logic (unfolded):
 
-  ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : (a b : Variable) → Decidable (a = b)] (Γ : LRA.ModelTheory.FirstOrder.Formula S Variable → Prop) (a : LRA.ModelTheory.FirstOrder.Model S) (assignment : Variable → a.1) (φ : LRA.ModelTheory.FirstOrder.Formula S Variable), Set.instMembership.1 Γ φ → LRA.ModelTheory.FirstOrder.Satisfies a assignment φ
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    φ ∈ Γ → LRA.Logic.FirstOrder.Satisfies a assignment φ
 
 Logical form (Lean):
 
@@ -384,11 +409,16 @@ def ModelsOfFormulaTheory
 
 Predicate logic:
 
-  ∀ {S : LRA.Logic.Signature} {Variable SetVariable : Type} [inst : DecidableVariable] = [inst_1 : DecidableSetVariable](Γ : LRA.ModelTheory.SecondOrderMonadic.FormulaTheory S Variable SetVariable) = φ : LRA.ModelTheory.SecondOrderMonadic.SOFormula S Variable SetVariable (M : LRA.ModelTheory.SecondOrderMonadic.HenkinModel S) (assignment : LRA.ModelTheory.SecondOrderMonadic.SOAssignment M Variable SetVariable), Set.instMembership.mem (LRA.ModelTheory.SecondOrderMonadic.ModelsOfFormulaTheory Γ) M → LRA.ModelTheory.SecondOrderMonadic.SOSatisfies M assignment φ
+  ∀ {S : LRA.Logic.Signature} {Variable SetVariable : Type} [inst : DecidableVariable] = [inst_1 : DecidableSetVariable](Γ : LRA.ModelTheory.SecondOrderMonadic.FormulaTheory S Variable SetVariable) = φ : LRA.Logic.SecondOrderMonadic.SOFormula S Variable SetVariable (M : LRA.ModelTheory.SecondOrderMonadic.HenkinModel S) (assignment : LRA.ModelTheory.SecondOrderMonadic.SOAssignment M Variable SetVariable), M ∈ LRA.ModelTheory.SecondOrderMonadic.ModelsOfFormulaTheory Γ → LRA.ModelTheory.SecondOrderMonadic.SOSatisfies M assignment φ
 
 Predicate logic (unfolded):
 
-  ∀ {S : LRA.Logic.Signature} {Variable SetVariable : Type} [inst : (a b : Variable) → Decidable (a = b)] [inst_1 : (a b : SetVariable) → Decidable (a = b)] (Γ : LRA.ModelTheory.SecondOrderMonadic.SOFormula S Variable SetVariable → Prop) (φ : LRA.ModelTheory.SecondOrderMonadic.SOFormula S Variable SetVariable) (M : LRA.ModelTheory.SecondOrderMonadic.HenkinModel S) (assignment : LRA.ModelTheory.SecondOrderMonadic.SOAssignment M Variable SetVariable), Set.instMembership.1 (fun M => ∀ (assignment : LRA.ModelTheory.SecondOrderMonadic.SOAssignment M Variable SetVariable) (φ : LRA.ModelTheory.SecondOrderMonadic.SOFormula S Variable SetVariable), Set.instMembership.1 Γ φ → LRA.ModelTheory.SecondOrderMonadic.SOSatisfies M assignment φ) M → LRA.ModelTheory.SecondOrderMonadic.SOSatisfies M assignment φ
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    M ∈ fun M => ∀ (assignment : LRA.ModelTheory.SecondOrderMonadic.SOAssignment M Variable SetVariable) (φ : LRA.Logic.SecondOrderMonadic.SOFormula S Variable SetVariable), φ ∈ Γ → LRA.ModelTheory.SecondOrderMonadic.SOSatisfies M assignment φ → LRA.ModelTheory.SecondOrderMonadic.SOSatisfies M assignment φ
 
 Logical form (Lean):
 

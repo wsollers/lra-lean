@@ -11,11 +11,16 @@ namespace LRA.Analysis.Completeness
 
 Predicate logic:
 
-  IsOrderDenseSubset (Set.range ((↑) : ℚ → ℝ)) ∧ IsOrderDenseSubset {x : ℝ | ¬ IsRational x} ∧ ¬ IsOrderDenseSubset (Set.range ((↑) : ℚ → ℝ) ∩ {x : ℝ | ¬ IsRational x})
+  (LRA.Analysis.Completeness.IsOrderDenseSubset (Set.range Rat.cast) ∧ (LRA.Analysis.Completeness.IsOrderDenseSubset (setOf fun x => ¬ LRA.Analysis.Completeness.IsRational x) ∧ ¬ LRA.Analysis.Completeness.IsOrderDenseSubset (Set.range Rat.cast ∩ setOf fun x => ¬ LRA.Analysis.Completeness.IsRational x)))
 
 Predicate logic (unfolded):
 
-  (∀ (x y : Real), Real.instPreorder.toLT.1 x y → Exists fun d => (Set.instMembership.1 (fun x => Exists fun y => Real.instRatCast.ratCast y = x)d ∧ ((fun x1 x2 => Real.instPreorder.toLT.1 x1 x2) x d ∧ (fun x1 x2 => Real.instPreorder.toLT.1 x1 x2) d y)) ∧ (∀ (x y : Real), Real.instPreorder.toLT.1 x y → Exists fun d => (Set.instMembership.1 (fun x => Set.instMembership.mem (Set.range Rat.cast) x → False) d ∧ ((fun x1 x2 => Real.instPreorder.toLT.1 x1 x2) x d ∧ (fun x1 x2 => Real.instPreorder.toLT.1 x1 x2) d y)) ∧ (∀ (x y : Real), Real.instPreorder.toLT.1 x y → Exists fun d => (Set.instMembership.1 (Set.instInter.1 (setOf fun x => Exists fun y => y.cast = x)fun x => ¬ LRA.Analysis.Completeness.IsRational x) d ∧ ((fun x1 x2 => Real.instPreorder.toLT.1 x1 x2) x d ∧ (fun x1 x2 => Real.instPreorder.toLT.1 x1 x2) d y))) → False))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x y : Real), Real.instPreorder.2.lt x y → Exists fun d => (d ∈ fun x => Exists fun y => Real.instRatCast.ratCast y = x ∧ ((fun x1 x2 => Real.instPreorder.2.lt x1 x2) x d ∧ (fun x1 x2 => Real.instPreorder.2.lt x1 x2) d y))) ∧ ((∀ (x y : Real), Real.instPreorder.2.lt x y → Exists fun d => ((d ∈ fun x => x ∈ Set.range Rat.cast → False) ∧ ((fun x1 x2 => Real.instPreorder.2.lt x1 x2) x d ∧ (fun x1 x2 => Real.instPreorder.2.lt x1 x2) d y))) ∧ ((∀ (x y : Real), Real.instPreorder.2.lt x y → Exists fun d => (d ∈ setOf fun x => Exists fun y => y.cast = x ∩ funx => ¬ LRA.Analysis.Completeness.IsRational x ∧ ((fun x1 x2 => Real.instPreorder.2.lt x1 x2) x d ∧ (fun x1 x2 => Real.instPreorder.2.lt x1 x2) d y))) → False)))
 
 Logical form (Lean):
 

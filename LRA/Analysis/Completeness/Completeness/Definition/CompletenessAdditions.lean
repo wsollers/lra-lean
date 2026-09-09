@@ -12,7 +12,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (a : Rat), Or (Rat.instLT.1 a Rat.instOfNat.1) (Rat.instLT.1 (instHPow.1 a (instOfNatNat 2).1) Rat.instOfNat.1)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (Rat.instLT.lt a 0) (Rat.instLT.lt (instHPow.1 a 2) 2)
 
 Logical form (Lean):
 
@@ -50,7 +55,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (a : Rat), (Rat.instLE.1 Rat.instOfNat.1 a ∧ Rat.instLE.1 Rat.instOfNat.1 (instHPow.1 a (instOfNatNat 2).1))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Rat.instLE.le 0 a ∧ Rat.instLE.le 2 (instHPow.1 a 2))
 
 Logical form (Lean):
 
@@ -88,7 +98,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (a : Real), Real.lt✝ a instOfNatAtLeastTwo.1.sqrt
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Real.lt✝ a (Real.sqrt 2)
 
 Logical form (Lean):
 
@@ -126,7 +141,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (a : Real), Real.le✝ instOfNatAtLeastTwo.1.sqrt a
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Real.le✝ (Real.sqrt 2) a
 
 Logical form (Lean):
 

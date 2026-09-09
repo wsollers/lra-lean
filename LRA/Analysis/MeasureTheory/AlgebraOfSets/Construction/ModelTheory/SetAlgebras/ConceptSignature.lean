@@ -8,14 +8,14 @@ namespace LRA.ModelTheoryTheory.SetAlgebras
 Predicate logic:
 
   structure SetAlgebraConceptSignature extends LRA.ModelTheoryTheory.SetRings.SetRingConceptSignature where
-  one : carrier
-  complement : LRA.Operation.UnaryOperation carrier
+    one : carrier
+    complement : LRA.Operation.UnaryOperation carrier
 
 Predicate logic (unfolded):
 
   structure SetAlgebraConceptSignature extends LRA.ModelTheoryTheory.SetRings.SetRingConceptSignature where
-  one : carrier
-  complement : LRA.Operation.UnaryOperation carrier (source fallback; no compiled unfold data available)
+    one : carrier
+    complement : LRA.Operation.UnaryOperation carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

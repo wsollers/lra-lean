@@ -9,11 +9,16 @@ namespace LRA.Analysis.Bounds.Algebra
 
 Predicate logic:
 
-  ∀ (A : Set Real) (c a : Real), Exists fun a_1 => (Set.instMembership.mem A a_1 ∧ (fun a => instHAdd.hAdd a c) a_1 = a)
+  ∀ (A : Set Real) (c a : Real), Exists fun a_1 => (a_1 ∈ A ∧ (fun a => instHAdd.hAdd a c) a_1 = a)
 
 Predicate logic (unfolded):
 
-  ∀ (A : Real → Prop) (c a : Real), Exists fun a_1 => (Set.instMembership.1 A a_1 ∧ (fun a => instHAdd.1 a c) a_1 = a)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun a_1 => (a_1 ∈ A ∧ (fun a => { hAdd := fun a b => Real.instAdd.add a b }.hAdd a c) a_1 = a)
 
 Logical form (Lean):
 
@@ -49,11 +54,16 @@ def Displace (A : Set ℝ) (c : ℝ) : Set ℝ :=
 
 Predicate logic:
 
-  ∀ (A : Set Real) (scale a : Real), Exists fun a_1 => (Set.instMembership.mem A a_1 ∧ (fun a => instHMul.hMul scale a) a_1 = a)
+  ∀ (A : Set Real) (scale a : Real), Exists fun a_1 => (a_1 ∈ A ∧ (fun a => instHMul.hMul scale a) a_1 = a)
 
 Predicate logic (unfolded):
 
-  ∀ (A : Real → Prop) (scale a : Real), Exists fun a_1 => (Set.instMembership.1 A a_1 ∧ (fun a => instHMul.1 scale a) a_1 = a)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun a_1 => (a_1 ∈ A ∧ (fun a => { hMul := fun a b => Real.instMul.mul a b }.hMul scale a) a_1 = a)
 
 Logical form (Lean):
 
@@ -89,11 +99,16 @@ def Dilate (A : Set ℝ) (scale : ℝ) : Set ℝ :=
 
 Predicate logic:
 
-  ∀ (A : Set Real) (a : Real), Exists fun a_1 => (Set.instMembership.mem A a_1 ∧ (fun a => Real.instNeg.neg a) a_1 = a)
+  ∀ (A : Set Real) (a : Real), Exists fun a_1 => (a_1 ∈ A ∧ (fun a => Real.instNeg.neg a) a_1 = a)
 
 Predicate logic (unfolded):
 
-  ∀ (A : Real → Prop) (a : Real), Exists fun a_1 => (Set.instMembership.1 A a_1 ∧ (fun a => Real.instNeg.1 a) a_1 = a)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun a_1 => (a_1 ∈ A ∧ (fun a => Real.instNeg.neg a) a_1 = a)
 
 Logical form (Lean):
 
@@ -129,11 +144,18 @@ def Reflect (A : Set ℝ) : Set ℝ :=
 
 Predicate logic:
 
-  LRA.Analysis.Bounds.IsUpperBound (u + c) (Displace A c)
+  ∀ {A : Set Real} {c u : Real}, LRA.Analysis.Bounds.IsUpperBound u A → LRA.Analysis.Bounds.IsUpperBound (instHAdd.hAdd u c) (LRA.Analysis.Bounds.Algebra.Displace A c)
 
 Predicate logic (unfolded):
 
-  ∀ {A : Real → Prop} {c u : Real}, (∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 x u) → ∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.1 A a ∧ (fun a => instHAdd.1 a c) a = x)) x → Real.instLE.1 x (instHAdd.1 u c)
+  Ambient
+    (ℝ)
+  Objects
+    A : Set ℝ
+    c u : ℝ
+    upperBoundHypothesis : LRA.Analysis.Bounds.IsUpperBound u A
+  Prove
+    (∀ (x : Real), x ∈ A → Real.instLE.le x u) → ∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ A ∧ (fun a => { hAdd := fun a b => Real.instAdd.add a b }.hAdd a c) a = x) → Real.instLE.le x ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd u c)
 
 Logical form (Lean):
 
@@ -173,11 +195,18 @@ theorem TranslationPreservesUpperBounds {A : Set ℝ} {c u : ℝ}
 
 Predicate logic:
 
-  LRA.Analysis.Bounds.IsLowerBound (l + c) (Displace A c)
+  ∀ {A : Set Real} {c l : Real}, LRA.Analysis.Bounds.IsLowerBound l A → LRA.Analysis.Bounds.IsLowerBound (instHAdd.hAdd l c) (LRA.Analysis.Bounds.Algebra.Displace A c)
 
 Predicate logic (unfolded):
 
-  ∀ {A : Real → Prop} {c l : Real}, (∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 l x) → ∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.1 A a ∧ (fun a => instHAdd.1 a c) a = x)) x → Real.instLE.1 (instHAdd.1 l c) x
+  Ambient
+    (ℝ)
+  Objects
+    A : Set ℝ
+    c l : ℝ
+    lowerBoundHypothesis : LRA.Analysis.Bounds.IsLowerBound l A
+  Prove
+    (∀ (x : Real), x ∈ A → Real.instLE.le l x) → ∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ A ∧ (fun a => { hAdd := fun a b => Real.instAdd.add a b }.hAdd a c) a = x) → Real.instLE.le ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd l c) x
 
 Logical form (Lean):
 
@@ -217,11 +246,18 @@ theorem TranslationPreservesLowerBounds {A : Set ℝ} {c l : ℝ}
 
 Predicate logic:
 
-  (0 < scale) → LRA.Analysis.Bounds.IsUpperBound (scale * u) (Dilate A scale)
+  ∀ {A : Set Real} {scale u : Real}, (Real.instLT.lt 0 scale ∧ LRA.Analysis.Bounds.IsUpperBound u A) → LRA.Analysis.Bounds.IsUpperBound (instHMul.hMul scale u) (LRA.Analysis.Bounds.Algebra.Dilate A scale)
 
 Predicate logic (unfolded):
 
-  ∀ {A : Real → Prop} {scale u : Real}, (Real.instLT.1 Zero.toOfNat0.1 scale ∧ ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 x u) → ∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.1 A a ∧ (fun a => instHMul.1 scale a) a = x)) x → Real.instLE.1 x (instHMul.1 scale u)
+  Ambient
+    (ℝ)
+  Objects
+    A : Set ℝ
+    scale u : ℝ
+    upperBoundHypothesis : LRA.Analysis.Bounds.IsUpperBound u A
+  Prove
+    (Real.instLT.lt 0 scale ∧ (∀ (x : Real), x ∈ A → Real.instLE.le x u)) → ∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ A ∧ (fun a => { hMul := fun a b => Real.instMul.mul a b }.hMul scale a) a = x) → Real.instLE.le x ({ hMul := fun a b => Real.instMul.mul a b }.hMul scale u)
 
 Logical form (Lean):
 
@@ -265,11 +301,18 @@ theorem PositiveDilationPreservesUpperBounds {A : Set ℝ} {scale u : ℝ}
 
 Predicate logic:
 
-  (0 < scale) → LRA.Analysis.Bounds.IsLowerBound (scale * l) (Dilate A scale)
+  ∀ {A : Set Real} {scale l : Real}, (Real.instLT.lt 0 scale ∧ LRA.Analysis.Bounds.IsLowerBound l A) → LRA.Analysis.Bounds.IsLowerBound (instHMul.hMul scale l) (LRA.Analysis.Bounds.Algebra.Dilate A scale)
 
 Predicate logic (unfolded):
 
-  ∀ {A : Real → Prop} {scale l : Real}, (Real.instLT.1 Zero.toOfNat0.1 scale ∧ ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 l x) → ∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.1 A a ∧ (fun a => instHMul.1 scale a) a = x)) x → Real.instLE.1 (instHMul.1 scale l) x
+  Ambient
+    (ℝ)
+  Objects
+    A : Set ℝ
+    scale l : ℝ
+    lowerBoundHypothesis : LRA.Analysis.Bounds.IsLowerBound l A
+  Prove
+    (Real.instLT.lt 0 scale ∧ (∀ (x : Real), x ∈ A → Real.instLE.le l x)) → ∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ A ∧ (fun a => { hMul := fun a b => Real.instMul.mul a b }.hMul scale a) a = x) → Real.instLE.le ({ hMul := fun a b => Real.instMul.mul a b }.hMul scale l) x
 
 Logical form (Lean):
 
@@ -313,11 +356,18 @@ theorem PositiveDilationPreservesLowerBounds {A : Set ℝ} {scale l : ℝ}
 
 Predicate logic:
 
-  (scale < 0) → LRA.Analysis.Bounds.IsUpperBound (scale * l) (Dilate A scale)
+  ∀ {A : Set Real} {scale l : Real}, (Real.instLT.lt scale 0 ∧ LRA.Analysis.Bounds.IsLowerBound l A) → LRA.Analysis.Bounds.IsUpperBound (instHMul.hMul scale l) (LRA.Analysis.Bounds.Algebra.Dilate A scale)
 
 Predicate logic (unfolded):
 
-  ∀ {A : Real → Prop} {scale l : Real}, (Real.instLT.1 scale Zero.toOfNat0.1 ∧ ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 l x) → ∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.1 A a ∧ (fun a => instHMul.1 scale a) a = x)) x → Real.instLE.1 x (instHMul.1 scale l)
+  Ambient
+    (ℝ)
+  Objects
+    A : Set ℝ
+    scale l : ℝ
+    lowerBoundHypothesis : LRA.Analysis.Bounds.IsLowerBound l A
+  Prove
+    (Real.instLT.lt scale 0 ∧ (∀ (x : Real), x ∈ A → Real.instLE.le l x)) → ∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ A ∧ (fun a => { hMul := fun a b => Real.instMul.mul a b }.hMul scale a) a = x) → Real.instLE.le x ({ hMul := fun a b => Real.instMul.mul a b }.hMul scale l)
 
 Logical form (Lean):
 
@@ -361,11 +411,18 @@ theorem NegativeDilationSendsLowerToUpperBounds {A : Set ℝ} {scale l : ℝ}
 
 Predicate logic:
 
-  (scale < 0) → LRA.Analysis.Bounds.IsLowerBound (scale * u) (Dilate A scale)
+  ∀ {A : Set Real} {scale u : Real}, (Real.instLT.lt scale 0 ∧ LRA.Analysis.Bounds.IsUpperBound u A) → LRA.Analysis.Bounds.IsLowerBound (instHMul.hMul scale u) (LRA.Analysis.Bounds.Algebra.Dilate A scale)
 
 Predicate logic (unfolded):
 
-  ∀ {A : Real → Prop} {scale u : Real}, (Real.instLT.1 scale Zero.toOfNat0.1 ∧ ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 x u) → ∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.1 A a ∧ (fun a => instHMul.1 scale a) a = x)) x → Real.instLE.1 (instHMul.1 scale u) x
+  Ambient
+    (ℝ)
+  Objects
+    A : Set ℝ
+    scale u : ℝ
+    upperBoundHypothesis : LRA.Analysis.Bounds.IsUpperBound u A
+  Prove
+    (Real.instLT.lt scale 0 ∧ (∀ (x : Real), x ∈ A → Real.instLE.le x u)) → ∀ (x : Real), x ∈ fun x => Exists fun a => (a ∈ A ∧ (fun a => { hMul := fun a b => Real.instMul.mul a b }.hMul scale a) a = x) → Real.instLE.le ({ hMul := fun a b => Real.instMul.mul a b }.hMul scale u) x
 
 Logical form (Lean):
 
@@ -409,11 +466,17 @@ theorem NegativeDilationSendsUpperToLowerBounds {A : Set ℝ} {scale u : ℝ}
 
 Predicate logic:
 
-  LRA.Analysis.Bounds.IsUpperBound b A ↔ LRA.Analysis.Bounds.IsLowerBound (-b) (Reflect A)
+  ∀ {A : Set Real} {b : Real}, LRA.Analysis.Bounds.IsUpperBound b A ↔ LRA.Analysis.Bounds.IsLowerBound (Real.instNeg.neg b) (LRA.Analysis.Bounds.Algebra.Reflect A)
 
 Predicate logic (unfolded):
 
-  ∀ {A : Real → Prop} {b : Real}, ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 x b ↔ ∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.1 A a ∧ (fun a => Real.instNeg.1 a) a = x)) x → Real.instLE.1 (Real.instNeg.1 b) x
+  Ambient
+    (ℝ)
+  Objects
+    A : Set ℝ
+    b : ℝ
+  Prove
+    LRA.Analysis.Bounds.IsUpperBound b A ↔ LRA.Analysis.Bounds.IsLowerBound (Real.instNeg.neg b) (LRA.Analysis.Bounds.Algebra.Reflect A)
 
 Logical form (Lean):
 
@@ -451,11 +514,17 @@ theorem ReflectionSwapsUpperBoundsToLowerBounds {A : Set ℝ} {b : ℝ} :
 
 Predicate logic:
 
-  LRA.Analysis.Bounds.IsLowerBound b A ↔ LRA.Analysis.Bounds.IsUpperBound (-b) (Reflect A)
+  ∀ {A : Set Real} {b : Real}, LRA.Analysis.Bounds.IsLowerBound b A ↔ LRA.Analysis.Bounds.IsUpperBound (Real.instNeg.neg b) (LRA.Analysis.Bounds.Algebra.Reflect A)
 
 Predicate logic (unfolded):
 
-  ∀ {A : Real → Prop} {b : Real}, ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 b x ↔ ∀ (x : Real), Set.instMembership.1 (fun x => Exists fun a => (Set.instMembership.1 A a ∧ (fun a => Real.instNeg.1 a) a = x)) x → Real.instLE.1 x (Real.instNeg.1 b)
+  Ambient
+    (ℝ)
+  Objects
+    A : Set ℝ
+    b : ℝ
+  Prove
+    LRA.Analysis.Bounds.IsLowerBound b A ↔ LRA.Analysis.Bounds.IsUpperBound (Real.instNeg.neg b) (LRA.Analysis.Bounds.Algebra.Reflect A)
 
 Logical form (Lean):
 

@@ -8,11 +8,16 @@ namespace LRA.Analysis.MetricSpace
 
 Predicate logic:
 
-  ∀ {X : Type u} [inst : MetricSpace X] (x : X) (S : Set X) (a : Real), Exists fun a_1 => (Set.instMembership.mem S a_1 ∧ (fun y => inst.dist x y) a_1 = a)
+  ∀ {X : Type u} [inst : MetricSpace X] (x : X) (S : Set X) (a : Real), Exists fun a_1 => (a_1 ∈ S ∧ (fun y => inst.dist x y) a_1 = a)
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} [inst : MetricSpace X] (x : X) (S : X → Prop) (a : Real), Exists fun a_1 => (Set.instMembership.1 S a_1 ∧ (fun y => inst.toDist.1 x y) a_1 = a)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun a_1 => (a_1 ∈ S ∧ (fun y => inst.toDist.1 x y) a_1 = a)
 
 Logical form (Lean):
 
@@ -57,20 +62,20 @@ def distanceSet
 Predicate logic:
 
   noncomputable def distanceToSet
-    {X : Type u}
-    [MetricSpace X]
-    (x : X)
-    (S : Set X) : Real :=
-  sInf (distanceSet x S)
+      {X : Type u}
+      [MetricSpace X]
+      (x : X)
+      (S : Set X) : Real :=
+    sInf (distanceSet x S)
 
 Predicate logic (unfolded):
 
   noncomputable def distanceToSet
-    {X : Type u}
-    [MetricSpace X]
-    (x : X)
-    (S : Set X) : Real :=
-  sInf (distanceSet x S) (source fallback; no compiled unfold data available)
+      {X : Type u}
+      [MetricSpace X]
+      (x : X)
+      (S : Set X) : Real :=
+    sInf (distanceSet x S) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -114,11 +119,18 @@ noncomputable def distanceToSet
 
 Predicate logic:
 
-  (∀ x ∈ X ∀ set_nonempty ∈ S.Nonempty), (distanceSet x S).Nonempty
+  ∀ {X : Type u} [inst : MetricSpace X] (x : X) {S : Set X}, S.Nonempty → (LRA.Analysis.MetricSpace.distanceSet x S).Nonempty
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} [inst : MetricSpace X] (x : X) {S : X → Prop}, (Exists fun x => Set.instMembership.1 S x) → Exists fun x_1 => Set.instMembership.1 (fun x_2 => Exists fun a => (Set.instMembership.1 S a ∧ (fun y => inst.toDist.1 x y) a = x_2)) x_1
+  Ambient
+    (X)
+  Objects
+    x : X
+    S : Set X
+    set_nonempty : S.Nonempty
+  Prove
+    (Exists fun x => x) ∈ S → Exists fun x_1 => x_1 ∈ fun x_2 => Exists fun a => (a ∈ S ∧ (fun y => inst.toDist.1 x y) a = x_2)
 
 Logical form (Lean):
 
@@ -164,11 +176,17 @@ theorem distanceSet_nonempty
 
 Predicate logic:
 
-  (∀ x ∈ X), BddBelow (distanceSet x S)
+  ∀ {X : Type u} [inst : MetricSpace X] (x : X) (S : Set X), BddBelow (LRA.Analysis.MetricSpace.distanceSet x S)
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} [inst : MetricSpace X] (x : X) (S : X → Prop), Exists fun x_1 => Set.instMembership.1 (fun x_2 => ∀ ⦃a : Real⦄, Set.instMembership.1 (LRA.Analysis.MetricSpace.distanceSet x S) a → Real.instLE.1 x_2 a) x_1
+  Ambient
+    (X)
+  Objects
+    x : X
+    S : Set X
+  Prove
+    Exists fun x_1 => x_1 ∈ fun x_2 => ∀ ⦃a : Real⦄, a ∈ LRA.Analysis.MetricSpace.distanceSet x S → Real.instLE.le x_2 a
 
 Logical form (Lean):
 
@@ -212,11 +230,18 @@ theorem distanceSet_bddBelow
 
 Predicate logic:
 
-  (∀ x ∈ X ∀ set_nonempty ∈ S.Nonempty), IsGLB (distanceSet x S) (distanceToSet x S)
+  ∀ {X : Type u} [inst : MetricSpace X] (x : X) {S : Set X}, S.Nonempty → IsGLB (LRA.Analysis.MetricSpace.distanceSet x S) (LRA.Analysis.MetricSpace.distanceToSet x S)
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} [inst : MetricSpace X] (x : X) {S : X → Prop}, (Exists fun x => Set.instMembership.1 S x) → (Set.instMembership.1 (fun x_1 => ∀ ⦃a : Real⦄, Set.instMembership.1 (LRA.Analysis.MetricSpace.distanceSet x S) a → Real.instLE.1 x_1 a) (Real.instInfSet.1 (Set.image (fun y => inst.dist x y) S)) ∧ Set.instMembership.1 (fun x_1 => ∀ ⦃a : Real⦄, Set.instMembership.1 (lowerBounds (LRA.Analysis.MetricSpace.distanceSet x S)) a → Real.instLE.1 a x_1) (Real.instInfSet.1 (Set.image (fun y => inst.dist x y) S)))
+  Ambient
+    (X)
+  Objects
+    x : X
+    S : Set X
+    set_nonempty : S.Nonempty
+  Prove
+    (Exists fun x => x) ∈ S → ((Real.instInfSet.1 (Set.image (fun y => inst.dist x y) S) ∈ fun x_1 => ∀ ⦃a : Real⦄, a ∈ LRA.Analysis.MetricSpace.distanceSet x S → Real.instLE.le x_1 a) ∧ (Real.instInfSet.1 (Set.image (fun y => inst.dist x y) S) ∈ fun x_1 => ∀ ⦃a : Real⦄, a ∈ lowerBounds (LRA.Analysis.MetricSpace.distanceSet x S) → Real.instLE.le a x_1))
 
 Logical form (Lean):
 
@@ -262,11 +287,18 @@ theorem distanceToSet_isGLB
 
 Predicate logic:
 
-  (∀ x ∈ X), (a ∈ A) → distanceToSet x A ≤ dist x a
+  ∀ {X : Type u} [inst : MetricSpace X] (x : X) {A : Set X} {a : X}, a ∈ A → Real.instLE.le (LRA.Analysis.MetricSpace.distanceToSet x A) (inst.dist x a)
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} [inst : MetricSpace X] (x : X) {A : X → Prop} {a : X}, Set.instMembership.1 A a → Real.instLE.1 (Real.instInfSet.1 fun x_1 => Exists fun a => (Set.instMembership.mem A a ∧ (fun y => inst.dist x y) a = x_1)) (inst.toDist.1 x a)
+  Ambient
+    (X)
+  Objects
+    x : X
+    A : Set X
+    a : X
+  Prove
+    a ∈ A → Real.instLE.le (Real.instInfSet.1 fun x_1 => Exists fun a => (a ∈ A ∧ (fun y => inst.toDist.1 x y) a = x_1)) (inst.toDist.1 x a)
 
 Logical form (Lean):
 
@@ -314,11 +346,17 @@ theorem distanceToSet_le_distance_to_point_of_mem
 
 Predicate logic:
 
-  (x ∈ A) → distanceToSet x A = 0
+  ∀ {X : Type u} [inst : MetricSpace X] {A : Set X} {x : X}, x ∈ A → LRA.Analysis.MetricSpace.distanceToSet x A = 0
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} [inst : MetricSpace X] {A : X → Prop} {x : X}, Set.instMembership.1 A x → Real.instInfSet.1 fun x_1 => Exists fun a => (Set.instMembership.1 A a ∧ (fun y => inst.toDist.1 x y) a = x_1) = Zero.toOfNat0.1
+  Ambient
+    (X)
+  Objects
+    A : Set X
+    x : X
+  Prove
+    x ∈ A → Real.instInfSet.1 fun x_1 => Exists fun a => (a ∈ A ∧ (fun y => inst.toDist.1 x y) a = x_1) = 0
 
 Logical form (Lean):
 

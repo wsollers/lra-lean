@@ -6,12 +6,12 @@ namespace LRA.Logic.Propositional
 Predicate logic:
 
   structure PropositionalLanguage where
-  Atoms : Type
+    Atoms : Type
 
 Predicate logic (unfolded):
 
   structure PropositionalLanguage where
-  Atoms : Type (source fallback; no compiled unfold data available)
+    Atoms : Type (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

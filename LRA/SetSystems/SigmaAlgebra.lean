@@ -19,20 +19,20 @@ variable [HasCountableUnion SetObject]
 Predicate logic:
 
   structure SigmaRingOfSets (ambient : SetObject) extends
-    RingOfSets ambient where
-  CountableUnionIsMember :
-    ∀ family : Nat → SetObject,
-      (∀ index, IsMember (family index)) →
-        IsMember (HasCountableUnion.countableUnion family)
+      RingOfSets ambient where
+    CountableUnionIsMember :
+      ∀ family : Nat → SetObject,
+        (∀ index, IsMember (family index)) →
+          IsMember (HasCountableUnion.countableUnion family)
 
 Predicate logic (unfolded):
 
   structure SigmaRingOfSets (ambient : SetObject) extends
-    RingOfSets ambient where
-  CountableUnionIsMember :
-    ∀ family : Nat → SetObject,
-      (∀ index, IsMember (family index)) →
-        IsMember (HasCountableUnion.countableUnion family) (source fallback; no compiled unfold data available)
+      RingOfSets ambient where
+    CountableUnionIsMember :
+      ∀ family : Nat → SetObject,
+        (∀ index, IsMember (family index)) →
+          IsMember (HasCountableUnion.countableUnion family) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -77,20 +77,20 @@ structure SigmaRingOfSets (ambient : SetObject) extends
 Predicate logic:
 
   structure SigmaAlgebraOfSets (ambient : SetObject) extends
-    AlgebraOfSets ambient where
-  CountableUnionIsMember :
-    ∀ family : Nat → SetObject,
-      (∀ index, IsMember (family index)) →
-        IsMember (HasCountableUnion.countableUnion family)
+      AlgebraOfSets ambient where
+    CountableUnionIsMember :
+      ∀ family : Nat → SetObject,
+        (∀ index, IsMember (family index)) →
+          IsMember (HasCountableUnion.countableUnion family)
 
 Predicate logic (unfolded):
 
   structure SigmaAlgebraOfSets (ambient : SetObject) extends
-    AlgebraOfSets ambient where
-  CountableUnionIsMember :
-    ∀ family : Nat → SetObject,
-      (∀ index, IsMember (family index)) →
-        IsMember (HasCountableUnion.countableUnion family) (source fallback; no compiled unfold data available)
+      AlgebraOfSets ambient where
+    CountableUnionIsMember :
+      ∀ family : Nat → SetObject,
+        (∀ index, IsMember (family index)) →
+          IsMember (HasCountableUnion.countableUnion family) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -135,16 +135,16 @@ structure SigmaAlgebraOfSets (ambient : SetObject) extends
 Predicate logic:
 
   def SigmaAlgebraOfSets.toSigmaRingOfSets {ambient : SetObject}
-    (sigma : SigmaAlgebraOfSets ambient) : SigmaRingOfSets ambient where
-  toRingOfSets := sigma.toRingOfSets
-  CountableUnionIsMember := sigma.CountableUnionIsMember
+      (sigma : SigmaAlgebraOfSets ambient) : SigmaRingOfSets ambient where
+    toRingOfSets := sigma.toRingOfSets
+    CountableUnionIsMember := sigma.CountableUnionIsMember
 
 Predicate logic (unfolded):
 
   def SigmaAlgebraOfSets.toSigmaRingOfSets {ambient : SetObject}
-    (sigma : SigmaAlgebraOfSets ambient) : SigmaRingOfSets ambient where
-  toRingOfSets := sigma.toRingOfSets
-  CountableUnionIsMember := sigma.CountableUnionIsMember (source fallback; no compiled unfold data available)
+      (sigma : SigmaAlgebraOfSets ambient) : SigmaRingOfSets ambient where
+    toRingOfSets := sigma.toRingOfSets
+    CountableUnionIsMember := sigma.CountableUnionIsMember (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

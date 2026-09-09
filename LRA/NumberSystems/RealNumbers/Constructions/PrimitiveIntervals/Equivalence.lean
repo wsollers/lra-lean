@@ -17,7 +17,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (first second : LRA.NumberSystems.RealNumbers.PrimitiveIntervals.Representative rational_model) (first_index second_index : Nat), Exists fun value => ((rational_model.signature.toOrderedRingConceptSignature.2 (first.interval first_index).1 value ∧ rational_model.signature.toOrderedRingConceptSignature.2 value (first.interval first_index).2) ∧ (rational_model.signature.toOrderedRingConceptSignature.2 (second.interval second_index).1 value ∧ rational_model.signature.toOrderedRingConceptSignature.2 value (second.interval second_index).2))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun value => ((rational_model.signature.toOrderedRingConceptSignature.2 (first.interval first_index).1 value ∧ rational_model.signature.toOrderedRingConceptSignature.2 value (first.interval first_index).2) ∧ (rational_model.signature.toOrderedRingConceptSignature.2 (second.interval second_index).1 value ∧ rational_model.signature.toOrderedRingConceptSignature.2 value (second.interval second_index).2))
 
 Logical form (Lean):
 
@@ -61,11 +66,16 @@ def equivalent
 
 Predicate logic:
 
-  Equivalence (equivalent rational_model)
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Equivalence (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.equivalent rational_model)
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), Equivalence fun first second => ∀ (first_index second_index : Nat), Exists fun value => ((rational_model.signature.toOrderedRingConceptSignature.2 (first.interval first_index).1 value ∧ rational_model.signature.toOrderedRingConceptSignature.2 value (first.interval first_index).2) ∧ (rational_model.signature.toOrderedRingConceptSignature.2 (second.interval second_index).1 value ∧ rational_model.signature.toOrderedRingConceptSignature.2 value (second.interval second_index).2))
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_model : RationalModel
+  Prove
+    Equivalence fun first second => ∀ (first_index second_index : Nat), Exists fun value => ((rational_model.signature.toOrderedRingConceptSignature.2 (first.interval first_index).1 value ∧ rational_model.signature.toOrderedRingConceptSignature.2 value (first.interval first_index).2) ∧ (rational_model.signature.toOrderedRingConceptSignature.2 (second.interval second_index).1 value ∧ rational_model.signature.toOrderedRingConceptSignature.2 value (second.interval second_index).2))
 
 Logical form (Lean):
 
@@ -102,14 +112,14 @@ theorem equivalent_is_equivalence_relation :
 Predicate logic:
 
   def representative_setoid : Setoid (Representative rational_model) where
-  r := equivalent rational_model
-  iseqv := equivalent_is_equivalence_relation rational_model
+    r := equivalent rational_model
+    iseqv := equivalent_is_equivalence_relation rational_model
 
 Predicate logic (unfolded):
 
   def representative_setoid : Setoid (Representative rational_model) where
-  r := equivalent rational_model
-  iseqv := equivalent_is_equivalence_relation rational_model (source fallback; no compiled unfold data available)
+    r := equivalent rational_model
+    iseqv := equivalent_is_equivalence_relation rational_model (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -185,11 +195,17 @@ abbrev Carrier := Quotient (representative_setoid rational_model)
 
 Predicate logic:
 
-  ∃ representative ∈ Representative rational_model, ∀ index, representative.interval index = degenerate_interval rational_model value
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (value : LRA.NumberSystems.RealNumbers.PrimitiveIntervals.Rational rational_model), Exists fun representative => ∀ (index : Nat), representative.interval index = LRA.NumberSystems.RealNumbers.PrimitiveIntervals.degenerate_interval rational_model value
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (value : rational_model.signature.toCarrierBundle.1), Exists fun representative => ∀ (index : Nat), representative.1 index = { left_endpoint := value, right_endpoint := value, endpoints_are_ordered := ⋯ }
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_model : RationalModel
+    value : Rational rational_model
+  Prove
+    Exists fun representative => ∀ (index : Nat), representative.1 index = { left_endpoint := value, right_endpoint := value, endpoints_are_ordered := ⋯ }
 
 Logical form (Lean):
 
@@ -234,16 +250,16 @@ theorem constant_degenerate_sequence_is_admissible
 Predicate logic:
 
   noncomputable def rational_representative
-    (value : Rational rational_model) : Representative rational_model :=
-  Classical.choose
-    (constant_degenerate_sequence_is_admissible rational_model value)
+      (value : Rational rational_model) : Representative rational_model :=
+    Classical.choose
+      (constant_degenerate_sequence_is_admissible rational_model value)
 
 Predicate logic (unfolded):
 
   noncomputable def rational_representative
-    (value : Rational rational_model) : Representative rational_model :=
-  Classical.choose
-    (constant_degenerate_sequence_is_admissible rational_model value) (source fallback; no compiled unfold data available)
+      (value : Rational rational_model) : Representative rational_model :=
+    Classical.choose
+      (constant_degenerate_sequence_is_admissible rational_model value) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -284,14 +300,14 @@ noncomputable def rational_representative
 Predicate logic:
 
   noncomputable def rational_embedding
-    (value : Rational rational_model) : Carrier rational_model :=
-  Quotient.mk _ (rational_representative rational_model value)
+      (value : Rational rational_model) : Carrier rational_model :=
+    Quotient.mk _ (rational_representative rational_model value)
 
 Predicate logic (unfolded):
 
   noncomputable def rational_embedding
-    (value : Rational rational_model) : Carrier rational_model :=
-  Quotient.mk _ (rational_representative rational_model value) (source fallback; no compiled unfold data available)
+      (value : Rational rational_model) : Carrier rational_model :=
+    Quotient.mk _ (rational_representative rational_model value) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -329,11 +345,16 @@ noncomputable def rational_embedding
 
 Predicate logic:
 
-  ∀ first second, rational_embedding rational_model first = rational_embedding rational_model second → first = second
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (first second : LRA.NumberSystems.RealNumbers.PrimitiveIntervals.Rational rational_model), LRA.NumberSystems.RealNumbers.PrimitiveIntervals.rational_embedding rational_model first = LRA.NumberSystems.RealNumbers.PrimitiveIntervals.rational_embedding rational_model second → first = second
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (first second : rational_model.signature.toCarrierBundle.1), Quot.mk (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.representative_setoid rational_model).1 (Classical.indefiniteDescription (fun x => ∀ (index : Nat), x.interval index = LRA.NumberSystems.RealNumbers.PrimitiveIntervals.degenerate_interval rational_model first) ⋯).1 = Quot.mk (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.representative_setoid rational_model).1 (Classical.indefiniteDescription (fun x => ∀ (index : Nat), x.interval index = LRA.NumberSystems.RealNumbers.PrimitiveIntervals.degenerate_interval rational_model second) ⋯).1 → first = second
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_model : RationalModel
+  Prove
+    Quot.mk (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.representative_setoid rational_model).1 (Classical.indefiniteDescription (fun x => ∀ (index : Nat), x.interval index = LRA.NumberSystems.RealNumbers.PrimitiveIntervals.degenerate_interval rational_model first) ⋯).1 = Quot.mk (LRA.NumberSystems.RealNumbers.PrimitiveIntervals.representative_setoid rational_model).1 (Classical.indefiniteDescription (fun x => ∀ (index : Nat), x.interval index = LRA.NumberSystems.RealNumbers.PrimitiveIntervals.degenerate_interval rational_model second) ⋯).1 → first = second
 
 Logical form (Lean):
 

@@ -12,20 +12,20 @@ variable (Point : Type u)
 Predicate logic:
 
   class CongruenceLaws [Congruent Point] : Prop where
-  CongruenceReflexivity : ∀ x y : Point, congruent x y y x
-  CongruenceTransitivity :
-    ∀ x y z w u v : Point,
-      congruent x y z w → congruent x y u v → congruent z w u v
-  CongruenceIdentity : ∀ x y z : Point, congruent x y z z → x = y
+    CongruenceReflexivity : ∀ x y : Point, congruent x y y x
+    CongruenceTransitivity :
+      ∀ x y z w u v : Point,
+        congruent x y z w → congruent x y u v → congruent z w u v
+    CongruenceIdentity : ∀ x y z : Point, congruent x y z z → x = y
 
 Predicate logic (unfolded):
 
   class CongruenceLaws [Congruent Point] : Prop where
-  CongruenceReflexivity : ∀ x y : Point, congruent x y y x
-  CongruenceTransitivity :
-    ∀ x y z w u v : Point,
-      congruent x y z w → congruent x y u v → congruent z w u v
-  CongruenceIdentity : ∀ x y z : Point, congruent x y z z → x = y (source fallback; no compiled unfold data available)
+    CongruenceReflexivity : ∀ x y : Point, congruent x y y x
+    CongruenceTransitivity :
+      ∀ x y z w u v : Point,
+        congruent x y z w → congruent x y u v → congruent z w u v
+    CongruenceIdentity : ∀ x y z : Point, congruent x y z z → x = y (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -70,14 +70,14 @@ class CongruenceLaws [Congruent Point] : Prop where
 Predicate logic:
 
   class SegmentConstructionLaw [Between Point] [Congruent Point] : Prop where
-  SegmentConstruction :
-    ∀ x y a b : Point, ∃ z : Point, between x y z ∧ congruent y z a b
+    SegmentConstruction :
+      ∀ x y a b : Point, ∃ z : Point, between x y z ∧ congruent y z a b
 
 Predicate logic (unfolded):
 
   class SegmentConstructionLaw [Between Point] [Congruent Point] : Prop where
-  SegmentConstruction :
-    ∀ x y a b : Point, ∃ z : Point, between x y z ∧ congruent y z a b (source fallback; no compiled unfold data available)
+    SegmentConstruction :
+      ∀ x y a b : Point, ∃ z : Point, between x y z ∧ congruent y z a b (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -116,22 +116,22 @@ class SegmentConstructionLaw [Between Point] [Congruent Point] : Prop where
 Predicate logic:
 
   class FiveSegmentLaw [Between Point] [Congruent Point] : Prop where
-  FiveSegment :
-    ∀ x y z x' y' z' u u' : Point, x ≠ y →
-      between x y z → between x' y' z' →
-      congruent x y x' y' → congruent y z y' z' →
-      congruent x u x' u' → congruent y u y' u' →
-      congruent z u z' u'
+    FiveSegment :
+      ∀ x y z x' y' z' u u' : Point, x ≠ y →
+        between x y z → between x' y' z' →
+        congruent x y x' y' → congruent y z y' z' →
+        congruent x u x' u' → congruent y u y' u' →
+        congruent z u z' u'
 
 Predicate logic (unfolded):
 
   class FiveSegmentLaw [Between Point] [Congruent Point] : Prop where
-  FiveSegment :
-    ∀ x y z x' y' z' u u' : Point, x ≠ y →
-      between x y z → between x' y' z' →
-      congruent x y x' y' → congruent y z y' z' →
-      congruent x u x' u' → congruent y u y' u' →
-      congruent z u z' u' (source fallback; no compiled unfold data available)
+    FiveSegment :
+      ∀ x y z x' y' z' u u' : Point, x ≠ y →
+        between x y z → between x' y' z' →
+        congruent x y x' y' → congruent y z y' z' →
+        congruent x u x' u' → congruent y u y' u' →
+        congruent z u z' u' (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -178,18 +178,18 @@ class FiveSegmentLaw [Between Point] [Congruent Point] : Prop where
 Predicate logic:
 
   class BetweennessLaws [Between Point] : Prop where
-  BetweennessIdentity : ∀ x y : Point, between x y x → x = y
-  InnerPasch :
-    ∀ u v p q z : Point, between u p v → between p q z →
-      ∃ x : Point, between u x z ∧ between q x v
+    BetweennessIdentity : ∀ x y : Point, between x y x → x = y
+    InnerPasch :
+      ∀ u v p q z : Point, between u p v → between p q z →
+        ∃ x : Point, between u x z ∧ between q x v
 
 Predicate logic (unfolded):
 
   class BetweennessLaws [Between Point] : Prop where
-  BetweennessIdentity : ∀ x y : Point, between x y x → x = y
-  InnerPasch :
-    ∀ u v p q z : Point, between u p v → between p q z →
-      ∃ x : Point, between u x z ∧ between q x v (source fallback; no compiled unfold data available)
+    BetweennessIdentity : ∀ x y : Point, between x y x → x = y
+    InnerPasch :
+      ∀ u v p q z : Point, between u p v → between p q z →
+        ∃ x : Point, between u x z ∧ between q x v (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -232,16 +232,16 @@ class BetweennessLaws [Between Point] : Prop where
 Predicate logic:
 
   class ParallelLaw [Between Point] : Prop where
-  Playfair :
-    ∀ a b c d t : Point, between a d t → between b d c → a ≠ d →
-      ∃ x y : Point, between a b x ∧ between a c y ∧ between x t y
+    Playfair :
+      ∀ a b c d t : Point, between a d t → between b d c → a ≠ d →
+        ∃ x y : Point, between a b x ∧ between a c y ∧ between x t y
 
 Predicate logic (unfolded):
 
   class ParallelLaw [Between Point] : Prop where
-  Playfair :
-    ∀ a b c d t : Point, between a d t → between b d c → a ≠ d →
-      ∃ x y : Point, between a b x ∧ between a c y ∧ between x t y (source fallback; no compiled unfold data available)
+    Playfair :
+      ∀ a b c d t : Point, between a d t → between b d c → a ≠ d →
+        ∃ x y : Point, between a b x ∧ between a c y ∧ between x t y (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -282,18 +282,18 @@ class ParallelLaw [Between Point] : Prop where
 Predicate logic:
 
   class ContinuityLaw [Between Point] : Prop where
-  Continuity :
-    ∀ φ ψ : Point → Prop,
-      (∃ a : Point, ∀ x y : Point, φ x → ψ y → between a x y) →
-      ∃ b : Point, ∀ x y : Point, φ x → ψ y → between x b y
+    Continuity :
+      ∀ φ ψ : Point → Prop,
+        (∃ a : Point, ∀ x y : Point, φ x → ψ y → between a x y) →
+        ∃ b : Point, ∀ x y : Point, φ x → ψ y → between x b y
 
 Predicate logic (unfolded):
 
   class ContinuityLaw [Between Point] : Prop where
-  Continuity :
-    ∀ φ ψ : Point → Prop,
-      (∃ a : Point, ∀ x y : Point, φ x → ψ y → between a x y) →
-      ∃ b : Point, ∀ x y : Point, φ x → ψ y → between x b y (source fallback; no compiled unfold data available)
+    Continuity :
+      ∀ φ ψ : Point → Prop,
+        (∃ a : Point, ∀ x y : Point, φ x → ψ y → between a x y) →
+        ∃ b : Point, ∀ x y : Point, φ x → ψ y → between x b y (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -420,22 +420,22 @@ def CoincidesOrDeterminedByDistances [Between Point] [Congruent Point]
 Predicate logic:
 
   class DimensionLaws [Between Point] [Congruent Point] (n : Nat) : Prop where
-  LowerDimension :
-    ∃ points : Fin (n + 1) → Point, AffinelyIndependent Point n points
-  UpperDimension :
-    ∀ (p : Point) (points : Fin (n + 1) → Point),
-      AffinelyIndependent Point n points →
-      CoincidesOrDeterminedByDistances Point n p points
+    LowerDimension :
+      ∃ points : Fin (n + 1) → Point, AffinelyIndependent Point n points
+    UpperDimension :
+      ∀ (p : Point) (points : Fin (n + 1) → Point),
+        AffinelyIndependent Point n points →
+        CoincidesOrDeterminedByDistances Point n p points
 
 Predicate logic (unfolded):
 
   class DimensionLaws [Between Point] [Congruent Point] (n : Nat) : Prop where
-  LowerDimension :
-    ∃ points : Fin (n + 1) → Point, AffinelyIndependent Point n points
-  UpperDimension :
-    ∀ (p : Point) (points : Fin (n + 1) → Point),
-      AffinelyIndependent Point n points →
-      CoincidesOrDeterminedByDistances Point n p points (source fallback; no compiled unfold data available)
+    LowerDimension :
+      ∃ points : Fin (n + 1) → Point, AffinelyIndependent Point n points
+    UpperDimension :
+      ∀ (p : Point) (points : Fin (n + 1) → Point),
+        AffinelyIndependent Point n points →
+        CoincidesOrDeterminedByDistances Point n p points (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

@@ -10,11 +10,16 @@ universe u
 
 Predicate logic:
 
-  RelationIncluded relation (SymmetricClosure relation)
+  ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha), LRA.Relation.RelationIncluded relation (LRA.Relation.SymmetricClosure relation)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (relation : Alpha → Alpha → Prop) (x y : Alpha), relation x y → Or (relation x y) (relation y x)
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+  Prove
+    relation x y → Or (relation x y) (relation y x)
 
 Logical form (Lean):
 
@@ -52,11 +57,16 @@ theorem RelationIncludedInSymmetricClosure
 
 Predicate logic:
 
-  Symmetric (SymmetricClosure relation)
+  ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha), LRA.Relation.Symmetric (LRA.Relation.SymmetricClosure relation)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (relation : Alpha → Alpha → Prop) (x y : Alpha), Or (relation x y) (relation y x) → Or (relation y x) (relation x y)
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+  Prove
+    Or (relation x y) (relation y x) → Or (relation y x) (relation x y)
 
 Logical form (Lean):
 
@@ -94,11 +104,18 @@ theorem SymmetricClosureIsSymmetric
 
 Predicate logic:
 
-  RelationIncluded (SymmetricClosure relation) target
+  ∀ {Alpha : Type u} (relation target : LRA.Relation.Endorelation Alpha), (LRA.Relation.RelationIncluded relation target ∧ LRA.Relation.Symmetric target) → LRA.Relation.RelationIncluded (LRA.Relation.SymmetricClosure relation) target
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (relation target : Alpha → Alpha → Prop), (∀ (x y : Alpha), relation x y → target x y ∧ ∀ (x y : Alpha), target x y → target y x) → ∀ (x y : Alpha), Or (relation x y) (relation y x) → target x y
+  Ambient
+    (Alpha)
+  Objects
+    relation target : Endorelation Alpha
+    relationIncluded : RelationIncluded relation target
+    targetSymmetric : Symmetric target
+  Prove
+    ((∀ (x y : Alpha), relation x y → target x y) ∧ (∀ (x y : Alpha), target x y → target y x)) → ∀ (x y : Alpha), Or (relation x y) (relation y x) → target x y
 
 Logical form (Lean):
 

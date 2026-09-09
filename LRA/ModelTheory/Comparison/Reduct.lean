@@ -11,32 +11,32 @@ namespace LRA.ModelTheory.FirstOrder
 Predicate logic:
 
   def Model.reduct
-    {S S' : Signature} (e : SignatureEmbedding S S') (M' : Model S') : Model S where
-  Domain := M'.Domain
-  domainNonempty := M'.domainNonempty
-  interpretFunction f args :=
-    M'.interpretFunction (e.embedFunction f)
-      (fun i => args (e.functionArityPreserved f ▸ i))
-  interpretRelation r args :=
-    M'.interpretRelation (e.embedRelation r)
-      (fun i => args (e.relationArityPreserved r ▸ i))
-  interpretConstant c :=
-    M'.interpretConstant (e.embedConstant c)
+      {S S' : Signature} (e : SignatureEmbedding S S') (M' : Model S') : Model S where
+    Domain := M'.Domain
+    domainNonempty := M'.domainNonempty
+    interpretFunction f args :=
+      M'.interpretFunction (e.embedFunction f)
+        (fun i => args (e.functionArityPreserved f ▸ i))
+    interpretRelation r args :=
+      M'.interpretRelation (e.embedRelation r)
+        (fun i => args (e.relationArityPreserved r ▸ i))
+    interpretConstant c :=
+      M'.interpretConstant (e.embedConstant c)
 
 Predicate logic (unfolded):
 
   def Model.reduct
-    {S S' : Signature} (e : SignatureEmbedding S S') (M' : Model S') : Model S where
-  Domain := M'.Domain
-  domainNonempty := M'.domainNonempty
-  interpretFunction f args :=
-    M'.interpretFunction (e.embedFunction f)
-      (fun i => args (e.functionArityPreserved f ▸ i))
-  interpretRelation r args :=
-    M'.interpretRelation (e.embedRelation r)
-      (fun i => args (e.relationArityPreserved r ▸ i))
-  interpretConstant c :=
-    M'.interpretConstant (e.embedConstant c) (source fallback; no compiled unfold data available)
+      {S S' : Signature} (e : SignatureEmbedding S S') (M' : Model S') : Model S where
+    Domain := M'.Domain
+    domainNonempty := M'.domainNonempty
+    interpretFunction f args :=
+      M'.interpretFunction (e.embedFunction f)
+        (fun i => args (e.functionArityPreserved f ▸ i))
+    interpretRelation r args :=
+      M'.interpretRelation (e.embedRelation r)
+        (fun i => args (e.relationArityPreserved r ▸ i))
+    interpretConstant c :=
+      M'.interpretConstant (e.embedConstant c) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

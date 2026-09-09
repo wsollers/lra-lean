@@ -16,18 +16,18 @@ universe u
 Predicate logic:
 
   def algebraicSignature
-    (Functions : ArityIndexedSymbols) (Constants : Type) : Signature where
-  Functions := Functions
-  Relations := ⟨Empty, Empty.elim⟩
-  Constants := Constants
+      (Functions : ArityIndexedSymbols) (Constants : Type) : Signature where
+    Functions := Functions
+    Relations := ⟨Empty, Empty.elim⟩
+    Constants := Constants
 
 Predicate logic (unfolded):
 
   def algebraicSignature
-    (Functions : ArityIndexedSymbols) (Constants : Type) : Signature where
-  Functions := Functions
-  Relations := ⟨Empty, Empty.elim⟩
-  Constants := Constants (source fallback; no compiled unfold data available)
+      (Functions : ArityIndexedSymbols) (Constants : Type) : Signature where
+    Functions := Functions
+    Relations := ⟨Empty, Empty.elim⟩
+    Constants := Constants (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -70,12 +70,12 @@ def algebraicSignature
 Predicate logic:
 
   def _root_.LRA.Logic.Signature.IsAlgebraic (S : Signature) : Prop :=
-  S.RelationSymbol -> False
+    S.RelationSymbol -> False
 
 Predicate logic (unfolded):
 
   def _root_.LRA.Logic.Signature.IsAlgebraic (S : Signature) : Prop :=
-  S.RelationSymbol -> False (source fallback; no compiled unfold data available)
+    S.RelationSymbol -> False (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -111,11 +111,16 @@ def _root_.LRA.Logic.Signature.IsAlgebraic (S : Signature) : Prop :=
 
 Predicate logic:
 
-  (∀ Functions ∈ ArityIndexedSymbols), (algebraicSignature Functions Constants).IsAlgebraic
+  ∀ (Functions : LRA.Logic.ArityIndexedSymbols) (Constants : Type), (LRA.UniversalAlgebra.algebraicSignature Functions Constants).IsAlgebraic
 
 Predicate logic (unfolded):
 
-  ∀ (Functions : LRA.Logic.ArityIndexedSymbols) (Constants : Type) (a : (LRA.UniversalAlgebra.algebraicSignature Functions Constants).Relations.1), False
+  Ambient
+    (Constants)
+  Objects
+    Functions : ArityIndexedSymbols
+  Prove
+    False
 
 Logical form (Lean):
 
@@ -154,26 +159,26 @@ theorem algebraicSignatureIsAlgebraic
 Predicate logic:
 
   noncomputable def termAlgebra
-    (S : Signature) (Variable : Type) [Nonempty Variable] :
-    LRA.ModelTheory.FirstOrder.LRA.ModelTheory.FirstOrder.Model.{0} S where
-  Domain := Term S Variable
-  domainNonempty := ⟨.var (Classical.choice inferInstance)⟩
-  interpretFunction := fun functionSymbol arguments =>
-    .apply functionSymbol arguments
-  interpretRelation := fun _ _ => False
-  interpretConstant := fun constantSymbol => .const constantSymbol
+      (S : Signature) (Variable : Type) [Nonempty Variable] :
+      LRA.ModelTheory.FirstOrder.Model.{0} S where
+    Domain := Term S Variable
+    domainNonempty := ⟨.var (Classical.choice inferInstance)⟩
+    interpretFunction := fun functionSymbol arguments =>
+      .apply functionSymbol arguments
+    interpretRelation := fun _ _ => False
+    interpretConstant := fun constantSymbol => .const constantSymbol
 
 Predicate logic (unfolded):
 
   noncomputable def termAlgebra
-    (S : Signature) (Variable : Type) [Nonempty Variable] :
-    LRA.ModelTheory.FirstOrder.Model.{0} S where
-  Domain := Term S Variable
-  domainNonempty := ⟨.var (Classical.choice inferInstance)⟩
-  interpretFunction := fun functionSymbol arguments =>
-    .apply functionSymbol arguments
-  interpretRelation := fun _ _ => False
-  interpretConstant := fun constantSymbol => .const constantSymbol (source fallback; no compiled unfold data available)
+      (S : Signature) (Variable : Type) [Nonempty Variable] :
+      LRA.ModelTheory.FirstOrder.Model.{0} S where
+    Domain := Term S Variable
+    domainNonempty := ⟨.var (Classical.choice inferInstance)⟩
+    interpretFunction := fun functionSymbol arguments =>
+      .apply functionSymbol arguments
+    interpretRelation := fun _ _ => False
+    interpretConstant := fun constantSymbol => .const constantSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -223,11 +228,17 @@ noncomputable def termAlgebra
 
 Predicate logic:
 
-  (∀ S ∈ Signature), evaluateTerm (termAlgebra S Variable) Term.var term = term
+  ∀ (S : LRA.Logic.Signature) (Variable : Type) [inst : Nonempty Variable] (term : LRA.Logic.FirstOrder.Term S Variable), LRA.Logic.FirstOrder.evaluateTerm (LRA.UniversalAlgebra.termAlgebra S Variable) LRA.Logic.FirstOrder.Term.var term = term
 
 Predicate logic (unfolded):
 
-  ∀ (S : LRA.Logic.Signature) (Variable : Type) [inst : Nonempty Variable] (term : LRA.Logic.FirstOrder.Term S Variable), LRA.Logic.FirstOrder.evaluateTerm { Domain := LRA.Logic.FirstOrder.Term S Variable, domainNonempty := ⋯, equalityIsDiagonal := ⋯, interpretFunction := fun functionSymbol arguments => LRA.Logic.FirstOrder.Term.apply functionSymbol arguments, interpretRelation := fun x x_1 => False, interpretConstant := fun constantSymbol => LRA.Logic.FirstOrder.Term.const constantSymbol } LRA.Logic.FirstOrder.Term.var term = term
+  Ambient
+    (Variable)
+  Objects
+    S : Signature
+    term : Term S Variable
+  Prove
+    LRA.Logic.FirstOrder.evaluateTerm { Domain := LRA.Logic.FirstOrder.Term S Variable, domainNonempty := ⋯, equalityIsDiagonal := ⋯, interpretFunction := fun functionSymbol arguments => LRA.Logic.FirstOrder.Term.apply functionSymbol arguments, interpretRelation := fun x x_1 => False, interpretConstant := fun constantSymbol => LRA.Logic.FirstOrder.Term.const constantSymbol } LRA.Logic.FirstOrder.Term.var term = term
 
 Logical form (Lean):
 

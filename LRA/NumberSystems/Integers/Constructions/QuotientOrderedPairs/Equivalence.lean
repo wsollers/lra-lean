@@ -12,7 +12,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (whole_data : LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs) (first second : LRA.NumberSystems.Integers.QuotientOrderedPairs.Representative whole_data), whole_data.4 first.1 second.2 = whole_data.4 second.1 first.2
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    whole_data.4 first.1 second.2 = whole_data.4 second.1 first.2
 
 Logical form (Lean):
 
@@ -54,11 +59,16 @@ def equivalent
 
 Predicate logic:
 
-  (∀ whole_data ∈ WholeNumberArithmeticForQuotientPairs), Equivalence (equivalent whole_data)
+  ∀ (whole_data : LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs), Equivalence (LRA.NumberSystems.Integers.QuotientOrderedPairs.equivalent whole_data)
 
 Predicate logic (unfolded):
 
-  ∀ (whole_data : LRA.NumberSystems.Integers.QuotientOrderedPairs.WholeNumberArithmeticForQuotientPairs), Equivalence fun first second => whole_data.4 first.1 second.2 = whole_data.4 second.1 first.2
+  Ambient
+    (implicit ambient)
+  Objects
+    whole_data : WholeNumberArithmeticForQuotientPairs
+  Prove
+    Equivalence fun first second => whole_data.4 first.1 second.2 = whole_data.4 second.1 first.2
 
 Logical form (Lean):
 
@@ -97,16 +107,16 @@ theorem equivalent_is_equivalence_relation
 Predicate logic:
 
   def representative_setoid (whole_data : WholeNumberArithmeticForQuotientPairs) :
-    Setoid (Representative whole_data) where
-  r := equivalent whole_data
-  iseqv := equivalent_is_equivalence_relation whole_data
+      Setoid (Representative whole_data) where
+    r := equivalent whole_data
+    iseqv := equivalent_is_equivalence_relation whole_data
 
 Predicate logic (unfolded):
 
   def representative_setoid (whole_data : WholeNumberArithmeticForQuotientPairs) :
-    Setoid (Representative whole_data) where
-  r := equivalent whole_data
-  iseqv := equivalent_is_equivalence_relation whole_data (source fallback; no compiled unfold data available)
+      Setoid (Representative whole_data) where
+    r := equivalent whole_data
+    iseqv := equivalent_is_equivalence_relation whole_data (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -147,12 +157,12 @@ def representative_setoid (whole_data : WholeNumberArithmeticForQuotientPairs) :
 Predicate logic:
 
   abbrev Carrier (whole_data : WholeNumberArithmeticForQuotientPairs) :=
-  Quotient (representative_setoid whole_data)
+    Quotient (representative_setoid whole_data)
 
 Predicate logic (unfolded):
 
   abbrev Carrier (whole_data : WholeNumberArithmeticForQuotientPairs) :=
-  Quotient (representative_setoid whole_data) (source fallback; no compiled unfold data available)
+    Quotient (representative_setoid whole_data) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

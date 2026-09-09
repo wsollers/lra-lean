@@ -15,7 +15,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} {Y : Type v} (R : X → Y → Prop) (a : X), Exists fun y => R a y
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun y => R a y
 
 Logical form (Lean):
 
@@ -57,7 +62,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} {Y : Type v} (R : X → Y → Prop) (a : Y), Exists fun x => R x a
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun x => R x a
 
 Logical form (Lean):
 
@@ -99,7 +109,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} {Y : Type v} (R : X → Y → Prop) (x : X) (a : Y), R x a
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    R x a
 
 Logical form (Lean):
 
@@ -141,7 +156,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} {Y : Type v} (R : X → Y → Prop) (A : X → Prop) (a : Y), Exists fun x => (A x ∧ R x a)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun x => (A x ∧ R x a)
 
 Logical form (Lean):
 
@@ -183,7 +203,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} {Y : Type v} (R : X → Y → Prop) (B : Y → Prop) (a : X), Exists fun y => (B y ∧ R a y)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun y => (B y ∧ R a y)
 
 Logical form (Lean):
 
@@ -225,7 +250,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} {Y : Type v} (R : X → Y → Prop) (y : Y) (a : X), R a y
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    R a y
 
 Logical form (Lean):
 
@@ -267,7 +297,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} {Y : Type v} (R : X → Y → Prop) (y : Y) (a : X), R a y
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    R a y
 
 Logical form (Lean):
 
@@ -307,7 +342,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} {Y : Type v} (R : X → Y → Prop) (x : X) (a : Y), R x a
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    R x a
 
 Logical form (Lean):
 

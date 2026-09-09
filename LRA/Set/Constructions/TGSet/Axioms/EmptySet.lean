@@ -7,11 +7,16 @@ namespace LRA.Set.Constructions.TGSet
 
 Predicate logic:
 
-  exists A : TGSet, forall x : TGSet, x ∉ A end LRA.Set.Constructions.TG
+  Exists fun A => ∀ (x : LRA.Set.Constructions.TGSet), ¬ LRA.Set.Constructions.instMembershipTGSet.mem A x
 
 Predicate logic (unfolded):
 
-  Exists fun A => ∀ (x : LRA.Set.Constructions.TGSet), LRA.Set.instMembershipTGSet.1 A x → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun A => ∀ (x : LRA.Set.Constructions.TGSet), LRA.Set.Constructions.instMembershipTGSet.1 A x → False
 
 Logical form (Lean):
 

@@ -2,8 +2,51 @@ import LRA.NumberSystems.RationalNumbers.Constructions.Mathlib
 
 namespace LRA.NumberSystems.RationalNumbers.Constructions.Mathlib
 
-/-- The Mathlib nonnegative-rational refinement canonically bridges to the
-settled generic nonnegative-rational owner. -/
+/--
+`satisfiesNonnegativeRefinement` The Mathlib nonnegative-rational refinement canonically bridges to the settled generic nonnegative-rational owner.
+
+Predicate logic:
+
+  noncomputable def satisfiesNonnegativeRefinement :
+      LRA.NumberSystems.RationalNumbers.LRA_MATHLIB_Q_Nonneg ≃
+        LRA.NumberSystems.RationalNumbers.LRA_Q_Nonneg where
+    toFun
+
+Predicate logic (unfolded):
+
+  noncomputable def satisfiesNonnegativeRefinement :
+      LRA.NumberSystems.RationalNumbers.LRA_MATHLIB_Q_Nonneg ≃
+        LRA.NumberSystems.RationalNumbers.LRA_Q_Nonneg where
+    toFun (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+noncomputable def satisfiesNonnegativeRefinement :
+    LRA.NumberSystems.RationalNumbers.LRA_MATHLIB_Q_Nonneg ≃
+      LRA.NumberSystems.RationalNumbers.LRA_Q_Nonneg where
+  toFun
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 noncomputable def satisfiesNonnegativeRefinement :
     LRA.NumberSystems.RationalNumbers.LRA_MATHLIB_Q_Nonneg ≃
       LRA.NumberSystems.RationalNumbers.LRA_Q_Nonneg where
@@ -20,8 +63,51 @@ noncomputable def satisfiesNonnegativeRefinement :
     intro value
     sorry
 
-/-- The Mathlib positive-rational refinement canonically bridges to the
-settled generic positive-rational owner. -/
+/--
+`satisfiesPositiveRefinement` The Mathlib positive-rational refinement canonically bridges to the settled generic positive-rational owner.
+
+Predicate logic:
+
+  noncomputable def satisfiesPositiveRefinement :
+      LRA.NumberSystems.RationalNumbers.LRA_MATHLIB_Q_Pos ≃
+        LRA.NumberSystems.RationalNumbers.LRA_Q_Pos where
+    toFun
+
+Predicate logic (unfolded):
+
+  noncomputable def satisfiesPositiveRefinement :
+      LRA.NumberSystems.RationalNumbers.LRA_MATHLIB_Q_Pos ≃
+        LRA.NumberSystems.RationalNumbers.LRA_Q_Pos where
+    toFun (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+noncomputable def satisfiesPositiveRefinement :
+    LRA.NumberSystems.RationalNumbers.LRA_MATHLIB_Q_Pos ≃
+      LRA.NumberSystems.RationalNumbers.LRA_Q_Pos where
+  toFun
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 noncomputable def satisfiesPositiveRefinement :
     LRA.NumberSystems.RationalNumbers.LRA_MATHLIB_Q_Pos ≃
       LRA.NumberSystems.RationalNumbers.LRA_Q_Pos where

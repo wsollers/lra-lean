@@ -12,11 +12,16 @@ variable [Membership Element SetObject]
 
 Predicate logic:
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (infimum : Element), (LRA.Order.LowerBound relation subset infimum ∧ ∀ (bound : Element), LRA.Order.LowerBound relation subset bound → relation bound infimum)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (infimum : Element), (LRA.Order.LowerBound relation subset infimum ∧ (∀ (bound : Element), LRA.Order.LowerBound relation subset bound → relation bound infimum))
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (relation : Element → Element → Prop) (subset : SetObject) (infimum : Element), (∀ (element : Element), inst.1 subset element → relation infimum element ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation bound element) → relation bound infimum)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (element : Element), inst.1 subset element → relation infimum element) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation bound element) → relation bound infimum))
 
 Logical form (Lean):
 

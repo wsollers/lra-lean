@@ -15,7 +15,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (operation : Carrier → Carrier → Carrier), (∀ (fixed first second : Carrier), operation fixed first = operation fixed second → first = second) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (fixed first second : Carrier), operation fixed first = operation fixed second → first = second) → False
 
 Logical form (Lean):
 
@@ -57,7 +62,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (operation : Carrier → Carrier → Carrier), (∀ (first second fixed : Carrier), operation first fixed = operation second fixed → first = second) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (first second fixed : Carrier), operation first fixed = operation second fixed → first = second) → False
 
 Logical form (Lean):
 
@@ -96,12 +106,12 @@ def FailsRightCancellative {Carrier : Type u}
 Predicate logic:
 
   def NaturalMultiplication : BinaryEndoOperation Nat :=
-  fun left right => left * right
+    fun left right => left * right
 
 Predicate logic (unfolded):
 
   def NaturalMultiplication : BinaryEndoOperation Nat :=
-  fun left right => left * right (source fallback; no compiled unfold data available)
+    fun left right => left * right (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -137,11 +147,16 @@ def NaturalMultiplication : BinaryEndoOperation Nat :=
 
 Predicate logic:
 
-  FailsLeftCancellative NaturalMultiplication
+  LRA.Operation.Laws.Cancellation.FailsLeftCancellative LRA.Operation.Laws.Cancellation.NaturalMultiplication
 
 Predicate logic (unfolded):
 
-  (∀ (fixed first second : Nat), instHMul.1 fixed first = instHMul.1 fixed second → first = second) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (fixed first second : Nat), { hMul := fun a b => instMulNat.mul a b }.hMul fixed first = { hMul := fun a b => instMulNat.mul a b }.hMul fixed second → first = second) → False
 
 Logical form (Lean):
 
@@ -177,11 +192,16 @@ theorem NaturalMultiplicationFailsLeftCancellative :
 
 Predicate logic:
 
-  FailsRightCancellative NaturalMultiplication
+  LRA.Operation.Laws.Cancellation.FailsRightCancellative LRA.Operation.Laws.Cancellation.NaturalMultiplication
 
 Predicate logic (unfolded):
 
-  (∀ (first second fixed : Nat), instHMul.1 first fixed = instHMul.1 second fixed → first = second) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (first second fixed : Nat), { hMul := fun a b => instMulNat.mul a b }.hMul first fixed = { hMul := fun a b => instMulNat.mul a b }.hMul second fixed → first = second) → False
 
 Logical form (Lean):
 
@@ -221,7 +241,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (operation : Carrier → Carrier → Carrier) (fixed : Carrier), (∀ (first second : Carrier), operation fixed first = operation fixed second → first = second) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (first second : Carrier), operation fixed first = operation fixed second → first = second) → False
 
 Logical form (Lean):
 
@@ -265,7 +290,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (operation : Carrier → Carrier → Carrier) (fixed : Carrier), (∀ (first second : Carrier), operation first fixed = operation second fixed → first = second) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (first second : Carrier), operation first fixed = operation second fixed → first = second) → False
 
 Logical form (Lean):
 
@@ -305,11 +335,16 @@ def FailsRightRegular {Carrier : Type u}
 
 Predicate logic:
 
-  FailsLeftRegular NaturalMultiplication 0
+  LRA.Operation.Laws.Cancellation.FailsLeftRegular LRA.Operation.Laws.Cancellation.NaturalMultiplication 0
 
 Predicate logic (unfolded):
 
-  (∀ (first second : Nat), instHMul.1 (instOfNatNat 0).1 first = instHMul.1 (instOfNatNat 0).1 second → first = second) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (first second : Nat), { hMul := fun a b => instMulNat.mul a b }.hMul 0 first = { hMul := fun a b => instMulNat.mul a b }.hMul 0 second → first = second) → False
 
 Logical form (Lean):
 
@@ -345,11 +380,16 @@ theorem NaturalZeroFailsLeftRegularUnderMultiplication :
 
 Predicate logic:
 
-  FailsRightRegular NaturalMultiplication 0
+  LRA.Operation.Laws.Cancellation.FailsRightRegular LRA.Operation.Laws.Cancellation.NaturalMultiplication 0
 
 Predicate logic (unfolded):
 
-  (∀ (first second : Nat), instHMul.1 first (instOfNatNat 0).1 = instHMul.1 second (instOfNatNat 0).1 → first = second) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (first second : Nat), { hMul := fun a b => instMulNat.mul a b }.hMul first 0 = { hMul := fun a b => instMulNat.mul a b }.hMul second 0 → first = second) → False
 
 Logical form (Lean):
 

@@ -12,11 +12,16 @@ open LRA.NumberSystems.IntegerStructure.Interface.Signature
 
 Predicate logic:
 
-  ∀ (M : LRA.NumberSystems.IntegerStructure.Interface.ModelTheory.IntegerStructureLStructure), (∀ (element : M.Domain), M.interpretFunction LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.predecessor fun x => M.interpretFunction LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => element = element ∧ ∀ (element : M.Domain), M.interpretFunction LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => M.interpretFunction LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.predecessor fun x => element = element)
+  ∀ (M : LRA.NumberSystems.IntegerStructure.Interface.ModelTheory.IntegerStructureLStructure), ((∀ (element : M.Domain), M.interpretFunction LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.predecessor fun x => M.interpretFunction LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => element = element) ∧ (∀ (element : M.Domain), M.interpretFunction LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => M.interpretFunction LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.predecessor fun x => element = element))
 
 Predicate logic (unfolded):
 
-  ∀ (M : LRA.NumberSystems.IntegerStructure.Interface.ModelTheory.IntegerStructureLStructure), (∀ (element : M.1), M.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.predecessor fun x => M.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => element = element ∧ ∀ (element : M.1), M.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => M.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.predecessor fun x => element = element)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (element : M.1), M.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.predecessor fun x => M.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => element = element) ∧ (∀ (element : M.1), M.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => M.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.predecessor fun x => element = element))
 
 Logical form (Lean):
 
@@ -68,7 +73,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (M : LRA.NumberSystems.IntegerStructure.Interface.ModelTheory.IntegerStructureLStructure), (M.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => M.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero = M.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.one ∧ M.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.predecessor fun x => M.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero = M.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.negativeOne)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (M.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => M.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero = M.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.one ∧ M.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.predecessor fun x => M.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero = M.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.negativeOne)
 
 Logical form (Lean):
 
@@ -116,7 +126,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (M : LRA.NumberSystems.IntegerStructure.Interface.ModelTheory.IntegerStructureLStructure) (iterations : Nat), (instLTNat.1 (instOfNatNat 0).1 iterations ∧ LRA.NumberSystems.IntegerStructure.iterate (fun element => M.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => element) iterations (M.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero) = M.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (instLTNat.lt 0 iterations ∧ LRA.NumberSystems.IntegerStructure.iterate (fun element => M.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => element) iterations (M.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero) = M.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero) → False
 
 Logical form (Lean):
 
@@ -162,11 +177,16 @@ def IntegerAperiodicAxiom
 
 Predicate logic:
 
-  ∀ (M : LRA.ModelTheory.SecondOrderMonadic.HenkinModel LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFirstOrderSignature) (subset : Set M.Domain), (Set.instMembership.mem M.SecondOrderDomain subset ∧ (Set.instMembership.mem subset (M.interpretConstant LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero) ∧ (∀ (element : M.Domain), Set.instMembership.mem subset element → Set.instMembership.mem subset (M.interpretFunction LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => element) ∧ ∀ (element : M.Domain), Set.instMembership.mem subset element → Set.instMembership.mem subset (M.interpretFunction LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.predecessor fun x => element)))) → ∀ (element : M.Domain), Set.instMembership.mem subset element
+  ∀ (M : LRA.ModelTheory.SecondOrderMonadic.HenkinModel LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFirstOrderSignature) (subset : Set M.Domain), (subset ∈ M.SecondOrderDomain ∧ (M.interpretConstant LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero ∈ subset ∧ ((∀ (element : M.Domain), element ∈ subset → M.interpretFunction LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => element ∈ subset) ∧ (∀ (element : M.Domain), element ∈ subset → M.interpretFunction LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.predecessor fun x => element ∈ subset)))) → ∀ (element : M.Domain), element ∈ subset
 
 Predicate logic (unfolded):
 
-  ∀ (M : LRA.ModelTheory.SecondOrderMonadic.HenkinModel LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFirstOrderSignature) (subset : M.toModel.1 → Prop), (Set.instMembership.1 M.2 subset ∧ (Set.instMembership.1 subset (M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero) ∧ (∀ (element : M.toModel.1), Set.instMembership.1 subset element → Set.instMembership.1 subset (M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => element) ∧ ∀ (element : M.toModel.1), Set.instMembership.1 subset element → Set.instMembership.1 subset (M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.predecessor fun x => element)))) → ∀ (element : M.toModel.1), Set.instMembership.1 subset element
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (subset ∈ M.2 ∧ (M.toInterpretation.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero ∈ subset ∧ ((∀ (element : M.toInterpretation.1), element ∈ subset → M.toInterpretation.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => element ∈ subset) ∧ (∀ (element : M.toInterpretation.1), element ∈ subset → M.toInterpretation.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.predecessor fun x => element ∈ subset)))) → ∀ (element : M.toInterpretation.1), element ∈ subset
 
 Logical form (Lean):
 
@@ -220,7 +240,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (M : LRA.ModelTheory.SecondOrderMonadic.HenkinModel LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFirstOrderSignature), ((∀ (element : M.toModel.1), M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.predecessor fun x => M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => element = element ∧ ∀ (element : M.toModel.1), M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.predecessor fun x => element = element) ∧ ((M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero = M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.one ∧ M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.predecessor fun x => M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero = M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.negativeOne) ∧ (∀ (iterations : Nat), instLTNat.1 (instOfNatNat 0).1 iterations → LRA.NumberSystems.IntegerStructure.iterate (fun element => M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => element) iterations (M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero) = M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero → False ∧ ∀ (subset : M.toModel.1 → Prop), Set.instMembership.1 M.2 subset → Set.instMembership.1 subset (M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero) → (∀ (element : M.toModel.1), Set.instMembership.1 subset element → Set.instMembership.1 subset (M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => element)) → (∀ (element : M.toModel.1), Set.instMembership.1 subset element → Set.instMembership.1 subset (M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.predecessor fun x => element)) → ∀ (element : M.toModel.1), Set.instMembership.1 subset element)))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (element : M.toModel.1), M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.predecessor fun x => M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => element = element) ∧ (∀ (element : M.toModel.1), M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.predecessor fun x => element = element)) ∧ ((M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero = M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.one ∧ M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.predecessor fun x => M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero = M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.negativeOne) ∧ ((∀ (iterations : Nat), instLTNat.lt 0 iterations → LRA.NumberSystems.IntegerStructure.iterate (fun element => M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => element) iterations (M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero) = M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero → False) ∧ (∀ (subset : M.toInterpretation.1 → Prop), subset ∈ M.2 → M.toInterpretation.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero ∈ subset → (∀ (element : M.toInterpretation.1), element ∈ subset → M.toInterpretation.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => element ∈ subset) → (∀ (element : M.toInterpretation.1), element ∈ subset → M.toInterpretation.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.predecessor fun x => element ∈ subset) → ∀ (element : M.toInterpretation.1), element ∈ subset))))
 
 Logical form (Lean):
 
@@ -231,18 +256,6 @@ def IntegerStructureHenkinTheory
   IntegerBaseNeighboursAxiom M.toModel /\
   IntegerAperiodicAxiom M.toModel /\
   IntegerInductionAxiom M
-
-/--
-`IntegerStructureMonadicTheory` makes explicit that the current second-order
-strength of the interface is monadic Henkin semantics over unary predicates.
--/
-abbrev IntegerStructureMonadicTheory := IntegerStructureHenkinTheory
-
-/--
-`IntegerStructureMonadicAxioms` is the monadic-SOL-facing alias for the current
-integer structure axiom package.
--/
-abbrev IntegerStructureMonadicAxioms := IntegerStructureHenkinTheory
 ```
 
 Type-theoretic form:
@@ -280,7 +293,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (M : LRA.ModelTheory.SecondOrderMonadic.HenkinModel LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFirstOrderSignature), ((∀ (element : M.toModel.1), M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.predecessor fun x => M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => element = element ∧ ∀ (element : M.toModel.1), M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.predecessor fun x => element = element) ∧ ((M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero = M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.one ∧ M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.predecessor fun x => M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero = M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.negativeOne) ∧ (∀ (iterations : Nat), instLTNat.1 (instOfNatNat 0).1 iterations → LRA.NumberSystems.IntegerStructure.iterate (fun element => M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => element) iterations (M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero) = M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero → False ∧ ∀ (subset : M.toModel.1 → Prop), Set.instMembership.1 M.2 subset → Set.instMembership.1 subset (M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero) → (∀ (element : M.toModel.1), Set.instMembership.1 subset element → Set.instMembership.1 subset (M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => element)) → (∀ (element : M.toModel.1), Set.instMembership.1 subset element → Set.instMembership.1 subset (M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.predecessor fun x => element)) → ∀ (element : M.toModel.1), Set.instMembership.1 subset element)))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (element : M.toModel.1), M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.predecessor fun x => M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => element = element) ∧ (∀ (element : M.toModel.1), M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.predecessor fun x => element = element)) ∧ ((M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero = M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.one ∧ M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.predecessor fun x => M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero = M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.negativeOne) ∧ ((∀ (iterations : Nat), instLTNat.lt 0 iterations → LRA.NumberSystems.IntegerStructure.iterate (fun element => M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => element) iterations (M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero) = M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero → False) ∧ (∀ (subset : M.toInterpretation.1 → Prop), subset ∈ M.2 → M.toInterpretation.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero ∈ subset → (∀ (element : M.toInterpretation.1), element ∈ subset → M.toInterpretation.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => element ∈ subset) → (∀ (element : M.toInterpretation.1), element ∈ subset → M.toInterpretation.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.predecessor fun x => element ∈ subset) → ∀ (element : M.toInterpretation.1), element ∈ subset))))
 
 Logical form (Lean):
 
@@ -318,7 +336,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (M : LRA.ModelTheory.SecondOrderMonadic.HenkinModel LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFirstOrderSignature), ((∀ (element : M.toModel.1), M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.predecessor fun x => M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => element = element ∧ ∀ (element : M.toModel.1), M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.predecessor fun x => element = element) ∧ ((M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero = M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.one ∧ M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.predecessor fun x => M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero = M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.negativeOne) ∧ (∀ (iterations : Nat), instLTNat.1 (instOfNatNat 0).1 iterations → LRA.NumberSystems.IntegerStructure.iterate (fun element => M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => element) iterations (M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero) = M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero → False ∧ ∀ (subset : M.toModel.1 → Prop), Set.instMembership.1 M.2 subset → Set.instMembership.1 subset (M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero) → (∀ (element : M.toModel.1), Set.instMembership.1 subset element → Set.instMembership.1 subset (M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => element)) → (∀ (element : M.toModel.1), Set.instMembership.1 subset element → Set.instMembership.1 subset (M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.predecessor fun x => element)) → ∀ (element : M.toModel.1), Set.instMembership.1 subset element)))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (element : M.toModel.1), M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.predecessor fun x => M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => element = element) ∧ (∀ (element : M.toModel.1), M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.predecessor fun x => element = element)) ∧ ((M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero = M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.one ∧ M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.predecessor fun x => M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero = M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.negativeOne) ∧ ((∀ (iterations : Nat), instLTNat.lt 0 iterations → LRA.NumberSystems.IntegerStructure.iterate (fun element => M.toModel.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => element) iterations (M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero) = M.toModel.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero → False) ∧ (∀ (subset : M.toInterpretation.1 → Prop), subset ∈ M.2 → M.toInterpretation.7 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerConstantSymbol.zero ∈ subset → (∀ (element : M.toInterpretation.1), element ∈ subset → M.toInterpretation.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.successor fun x => element ∈ subset) → (∀ (element : M.toInterpretation.1), element ∈ subset → M.toInterpretation.5 LRA.NumberSystems.IntegerStructure.Interface.Signature.IntegerFunctionSymbol.predecessor fun x => element ∈ subset) → ∀ (element : M.toInterpretation.1), element ∈ subset))))
 
 Logical form (Lean):
 

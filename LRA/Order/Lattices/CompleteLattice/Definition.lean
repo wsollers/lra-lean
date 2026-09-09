@@ -11,11 +11,16 @@ universe u v
 
 Predicate logic:
 
-  ∀ {Element : Type u} (SetObject : Type v) [inst : Membership Element SetObject] (relation : LRA.Relation.Endorelation Element), (LRA.Order.PartialOrder relation ∧ ∀ (subset : SetObject), (Exists fun supremum => LRA.Order.Supremum relation subset supremum ∧ Exists fun infimum => LRA.Order.Infimum relation subset infimum))
+  ∀ {Element : Type u} (SetObject : Type v) [inst : Membership Element SetObject] (relation : LRA.Relation.Endorelation Element), (LRA.Order.PartialOrder relation ∧ (∀ (subset : SetObject), (Exists fun supremum => LRA.Order.Supremum relation subset supremum ∧ Exists fun infimum => LRA.Order.Infimum relation subset infimum)))
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} (SetObject : Type v) [inst : Membership Element SetObject] (relation : Element → Element → Prop), ((∀ (x : Element), relation x x ∧ (∀ (x y : Element), relation x y → relation y x → x = y ∧ ∀ (x y z : Element), relation x y → relation y z → relation x z)) ∧ ∀ (subset : SetObject), (Exists fun supremum => (∀ (element : Element), inst.1 subset element → relation element supremum ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation element bound) → relation supremum bound) ∧ Exists fun infimum => (∀ (element : Element), inst.1 subset element → relation infimum element ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation bound element) → relation bound infimum)))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x → x = y) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) ∧ (∀ (subset : SetObject), ((Exists fun supremum => ((∀ (element : Element), inst.1 subset element → relation element supremum) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation element bound) → relation supremum bound))) ∧ (Exists fun infimum => ((∀ (element : Element), inst.1 subset element → relation infimum element) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation bound element) → relation bound infimum))))))
 
 Logical form (Lean):
 

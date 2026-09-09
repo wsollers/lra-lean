@@ -14,11 +14,20 @@ universe u v
 
 Predicate logic:
 
-  (∀ A ∈ U ∀ x ∈ Element), MaximalElement (StrictPart relation) A x
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {relation : LRA.Relation.Endorelation Element}, LRA.Relation.Antisymmetric relation → ∀ {subset : SetObject} {greatest : Element}, LRA.Order.GreatestElement relation subset greatest → LRA.Order.MaximalElement (LRA.Order.StrictPart relation) subset greatest
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {relation : Element → Element → Prop}, (∀ (x y : Element), relation x y → relation y x → x = y) → ∀ {subset : SetObject} {greatest : Element}, (inst.1 subset greatest ∧ ∀ (element : Element), inst.1 subset element → relation element greatest) → (inst.1 subset greatest ∧ ∀ (element : Element), inst.1 subset element → (relation greatest element ∧ greatest = element → False) → False)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsAntisymmetric : LRA.Relation.Antisymmetric relation
+    subset : SetObject
+    greatest : Element
+    greatestIsGreatest : GreatestElement relation subset greatest
+  Prove
+    (∀ (x y : Element), relation x y → relation y x → x = y) → ∀ {subset : SetObject} {greatest : Element}, (inst.1 subset greatest ∧ (∀ (element : Element), inst.1 subset element → relation element greatest)) → (inst.1 subset greatest ∧ (∀ (element : Element), inst.1 subset element → (relation greatest element ∧ (greatest = element → False)) → False))
 
 Logical form (Lean):
 
@@ -66,11 +75,21 @@ theorem GreatestElementIsMaximal
 
 Predicate logic:
 
-  (∀ A ∈ U ∀ x y ∈ Element), y = x
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {relation : LRA.Relation.Endorelation Element}, LRA.Relation.Antisymmetric relation → ∀ {subset : SetObject} {greatest maximal : Element}, (LRA.Order.GreatestElement relation subset greatest ∧ LRA.Order.MaximalElement (LRA.Order.StrictPart relation) subset maximal) → maximal = greatest
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {relation : Element → Element → Prop}, (∀ (x y : Element), relation x y → relation y x → x = y) → ∀ {subset : SetObject} {greatest maximal : Element}, ((inst.1 subset greatest ∧ ∀ (element : Element), inst.1 subset element → relation element greatest) ∧ (inst.1 subset maximal ∧ ∀ (element : Element), inst.1 subset element → (relation maximal element ∧ maximal = element → False) → False)) → maximal = greatest
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsAntisymmetric : LRA.Relation.Antisymmetric relation
+    subset : SetObject
+    greatest maximal : Element
+    greatestIsGreatest : GreatestElement relation subset greatest
+    maximalIsMaximal : MaximalElement (StrictPart relation) subset maximal
+  Prove
+    (∀ (x y : Element), relation x y → relation y x → x = y) → ∀ {subset : SetObject} {greatest maximal : Element}, ((inst.1 subset greatest ∧ (∀ (element : Element), inst.1 subset element → relation element greatest)) ∧ (inst.1 subset maximal ∧ (∀ (element : Element), inst.1 subset element → (relation maximal element ∧ (maximal = element → False)) → False))) → maximal = greatest
 
 Logical form (Lean):
 
@@ -120,11 +139,20 @@ theorem GreatestElementIsUniqueMaximalElement
 
 Predicate logic:
 
-  (∀ A ∈ U ∀ x ∈ Element), GreatestElement(x, A)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {relation : LRA.Relation.Endorelation Element}, LRA.Order.LinearOrder relation → ∀ {subset : SetObject} {maximal : Element}, LRA.Order.MaximalElement (LRA.Order.StrictPart relation) subset maximal → LRA.Order.GreatestElement relation subset maximal
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {relation : Element → Element → Prop}, ((∀ (x : Element), relation x x ∧ (∀ (x y : Element), relation x y → relation y x → x = y ∧ ∀ (x y z : Element), relation x y → relation y z → relation x z)) ∧ ∀ (x y : Element), Or (relation x y) (relation y x)) → ∀ {subset : SetObject} {maximal : Element}, (inst.1 subset maximal ∧ ∀ (element : Element), inst.1 subset element → (relation maximal element ∧ maximal = element → False) → False) → (inst.1 subset maximal ∧ ∀ (element : Element), inst.1 subset element → relation element maximal)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsLinearOrder : LinearOrder relation
+    subset : SetObject
+    maximal : Element
+    maximalIsMaximal : MaximalElement (StrictPart relation) subset maximal
+  Prove
+    (((∀ (x : Element), relation x x) ∧ ((∀ (x y : Element), relation x y → relation y x → x = y) ∧ (∀ (x y z : Element), relation x y → relation y z → relation x z))) ∧ (∀ (x y : Element), Or (relation x y) (relation y x))) → ∀ {subset : SetObject} {maximal : Element}, (inst.1 subset maximal ∧ (∀ (element : Element), inst.1 subset element → (relation maximal element ∧ (maximal = element → False)) → False)) → (inst.1 subset maximal ∧ (∀ (element : Element), inst.1 subset element → relation element maximal))
 
 Logical form (Lean):
 
@@ -172,11 +200,19 @@ theorem MaximalElementIsGreatestInLinearOrder
 
 Predicate logic:
 
-  (∀ A ∈ U ∀ x ∈ Element), Supremum relation A x
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} {subset : SetObject} {greatest : Element}, LRA.Order.GreatestElement relation subset greatest → LRA.Order.Supremum relation subset greatest
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {relation : Element → Element → Prop} {subset : SetObject} {greatest : Element}, (inst.1 subset greatest ∧ ∀ (element : Element), inst.1 subset element → relation element greatest) → (∀ (element : Element), inst.1 subset element → relation element greatest ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation element bound) → relation greatest bound)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+    greatest : Element
+    greatestIsGreatest : GreatestElement relation subset greatest
+  Prove
+    (inst.1 subset greatest ∧ (∀ (element : Element), inst.1 subset element → relation element greatest)) → ((∀ (element : Element), inst.1 subset element → relation element greatest) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation element bound) → relation greatest bound))
 
 Logical form (Lean):
 
@@ -222,11 +258,19 @@ theorem GreatestElementIsSupremum
 
 Predicate logic:
 
-  (∀ A ∈ U ∀ x ∈ Element), GreatestElement(x, A) ↔ Supremum relation A x ∧ x ∈ A
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {relation : LRA.Relation.Endorelation Element}, LRA.Relation.Reflexive relation → ∀ {subset : SetObject} {candidate : Element}, LRA.Order.GreatestElement relation subset candidate ↔ (LRA.Order.Supremum relation subset candidate ∧ candidate ∈ subset)
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {relation : Element → Element → Prop}, (∀ (x : Element), relation x x) → ∀ {subset : SetObject} {candidate : Element}, (inst.1 subset candidate ∧ ∀ (element : Element), inst.1 subset element → relation element candidate) ↔ ((∀ (element : Element), inst.1 subset element → relation element candidate ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation element bound) → relation candidate bound) ∧ inst.1 subset candidate)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsReflexive : LRA.Relation.Reflexive relation
+    subset : SetObject
+    candidate : Element
+  Prove
+    LRA.Relation.Reflexive relation → ∀ {subset : SetObject} {candidate : Element}, LRA.Order.GreatestElement relation subset candidate ↔ (LRA.Order.Supremum relation subset candidate ∧ candidate ∈ subset)
 
 Logical form (Lean):
 

@@ -10,20 +10,20 @@ universe u
 Predicate logic:
 
   def restrictedDistance
-    {Y : Type u}
-    [MetricSpace Y]
-    (X : Set Y) :
-    X → X → Real :=
-  fun x y => dist (x : Y) (y : Y)
+      {Y : Type u}
+      [MetricSpace Y]
+      (X : Set Y) :
+      X → X → Real :=
+    fun x y => dist (x : Y) (y : Y)
 
 Predicate logic (unfolded):
 
   def restrictedDistance
-    {Y : Type u}
-    [MetricSpace Y]
-    (X : Set Y) :
-    X → X → Real :=
-  fun x y => dist (x : Y) (y : Y) (source fallback; no compiled unfold data available)
+      {Y : Type u}
+      [MetricSpace Y]
+      (X : Set Y) :
+      X → X → Real :=
+    fun x y => dist (x : Y) (y : Y) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -68,28 +68,28 @@ def restrictedDistance
 Predicate logic:
 
   structure MetricSubspaceDefinition
-    (Y : Type u)
-    [MetricSpace Y]
-    (X : Set Y) where
+      (Y : Type u)
+      [MetricSpace Y]
+      (X : Set Y) where
 
-  metric : MetricSpace X
+    metric : MetricSpace X
 
-  restricts :
-    letI : MetricSpace X := metric
-    ∀ x y : X, dist x y = restrictedDistance X x y
+    restricts :
+      letI : MetricSpace X := metric
+      ∀ x y : X, dist x y = restrictedDistance X x y
 
 Predicate logic (unfolded):
 
   structure MetricSubspaceDefinition
-    (Y : Type u)
-    [MetricSpace Y]
-    (X : Set Y) where
+      (Y : Type u)
+      [MetricSpace Y]
+      (X : Set Y) where
 
-  metric : MetricSpace X
+    metric : MetricSpace X
 
-  restricts :
-    letI : MetricSpace X := metric
-    ∀ x y : X, dist x y = restrictedDistance X x y (source fallback; no compiled unfold data available)
+    restricts :
+      letI : MetricSpace X := metric
+      ∀ x y : X, dist x y = restrictedDistance X x y (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -142,22 +142,22 @@ structure MetricSubspaceDefinition
 Predicate logic:
 
   structure MetricSuperspaceDefinition
-    (Y : Type u)
-    [MetricSpace Y] where
+      (Y : Type u)
+      [MetricSpace Y] where
 
-  carrier : Set Y
+    carrier : Set Y
 
-  subspace : MetricSubspaceDefinition Y carrier
+    subspace : MetricSubspaceDefinition Y carrier
 
 Predicate logic (unfolded):
 
   structure MetricSuperspaceDefinition
-    (Y : Type u)
-    [MetricSpace Y] where
+      (Y : Type u)
+      [MetricSpace Y] where
 
-  carrier : Set Y
+    carrier : Set Y
 
-  subspace : MetricSubspaceDefinition Y carrier (source fallback; no compiled unfold data available)
+    subspace : MetricSubspaceDefinition Y carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -207,7 +207,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Y : Type u} [inst : MetricSpace Y] (X : Y → Prop) (a : MetricSpace (Subtype fun x => Set.instMembership.1 X x)) (x y : Subtype fun x => Set.instMembership.1 X x), Subtype.pseudoMetricSpace.toDist.1 x y = inst.toDist.1 x.1 y.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ∈ XSubtype.pseudoMetricSpace.toDist.1 x y = inst.toDist.1 x.1 y.1
 
 Logical form (Lean):
 
@@ -257,7 +262,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (Y : Type u) [inst : MetricSpace Y] (X : Y → Prop) (a : MetricSpace (Subtype fun x => Set.instMembership.1 X x)) (x y : Subtype fun x => Set.instMembership.1 X x), Subtype.pseudoMetricSpace.toDist.1 x y = inst.toDist.1 x.1 y.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ∈ XSubtype.pseudoMetricSpace.toDist.1 x y = inst.toDist.1 x.1 y.1
 
 Logical form (Lean):
 
@@ -303,11 +313,16 @@ def IsMetricSuperspace
 
 Predicate logic:
 
-  IsMetricSubspace (Set.Icc 0 ∈ Real 1)
+  LRA.Analysis.MetricSpace.SubSuperSpaces.IsMetricSubspace (Set.Icc 0 1)
 
 Predicate logic (unfolded):
 
-  ∀ (x y : Subtype fun x => Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 0 x ∧ Real.instPreorder.toLE.1 x 1)) x), Subtype.pseudoMetricSpace.toDist.1 x y = Real.metricSpace.toDist.1 x.1 y.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ∈ fun x => (Real.instPreorder.1.le 0 x ∧ Real.instPreorder.1.le x 1) Subtype.pseudoMetricSpace.toDist.1 x y = Real.metricSpace.toDist.1 x.1 y.1
 
 Logical form (Lean):
 
@@ -343,11 +358,16 @@ theorem closedUnitInterval_isMetricSubspace :
 
 Predicate logic:
 
-  IsMetricSuperspace Real (Set.Icc 0 ∈ Real 1)
+  LRA.Analysis.MetricSpace.SubSuperSpaces.IsMetricSuperspace Real (Set.Icc 0 1)
 
 Predicate logic (unfolded):
 
-  ∀ (x y : Subtype fun x => Set.instMembership.1 (fun x => (Real.instPreorder.le 0 x ∧ Real.instPreorder.le x 1)) x), Subtype.pseudoMetricSpace.toDist.1 x y = Real.metricSpace.toDist.1 x.1 y.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ∈ fun x => (Real.instPreorder.le 0 x ∧ Real.instPreorder.le x 1) Subtype.pseudoMetricSpace.toDist.1 x y = Real.metricSpace.toDist.1 x.1 y.1
 
 Logical form (Lean):
 

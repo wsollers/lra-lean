@@ -8,12 +8,12 @@ namespace LRA.NumberSystems.GaussianIntegers.Interface.Signature
 Predicate logic:
 
   abbrev GaussianIntegersFunctionSymbol :=
-  LRA.AlgebraicStructures.Ring.Interface.Signature.RingFunctionSymbol
+    LRA.AlgebraicStructures.Ring.Interface.Signature.RingFunctionSymbol
 
 Predicate logic (unfolded):
 
   abbrev GaussianIntegersFunctionSymbol :=
-  LRA.AlgebraicStructures.Ring.Interface.Signature.RingFunctionSymbol (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.Ring.Interface.Signature.RingFunctionSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -50,12 +50,12 @@ abbrev GaussianIntegersFunctionSymbol :=
 Predicate logic:
 
   abbrev GaussianIntegersRelationSymbol :=
-  LRA.AlgebraicStructures.Ring.Interface.Signature.RingRelationSymbol
+    LRA.AlgebraicStructures.Ring.Interface.Signature.RingRelationSymbol
 
 Predicate logic (unfolded):
 
   abbrev GaussianIntegersRelationSymbol :=
-  LRA.AlgebraicStructures.Ring.Interface.Signature.RingRelationSymbol (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.Ring.Interface.Signature.RingRelationSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -92,12 +92,12 @@ abbrev GaussianIntegersRelationSymbol :=
 Predicate logic:
 
   abbrev GaussianIntegersConstantSymbol :=
-  LRA.AlgebraicStructures.Ring.Interface.Signature.RingConstantSymbol
+    LRA.AlgebraicStructures.Ring.Interface.Signature.RingConstantSymbol
 
 Predicate logic (unfolded):
 
   abbrev GaussianIntegersConstantSymbol :=
-  LRA.AlgebraicStructures.Ring.Interface.Signature.RingConstantSymbol (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.Ring.Interface.Signature.RingConstantSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -134,12 +134,12 @@ abbrev GaussianIntegersConstantSymbol :=
 Predicate logic:
 
   def GaussianIntegersFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.Ring.Interface.Signature.RingFirstOrderFunctions
+    LRA.AlgebraicStructures.Ring.Interface.Signature.RingFirstOrderFunctions
 
 Predicate logic (unfolded):
 
   def GaussianIntegersFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.Ring.Interface.Signature.RingFirstOrderFunctions (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.Ring.Interface.Signature.RingFirstOrderFunctions (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -176,12 +176,12 @@ def GaussianIntegersFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols :=
 Predicate logic:
 
   def GaussianIntegersFirstOrderRelations : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.Ring.Interface.Signature.RingFirstOrderRelations
+    LRA.AlgebraicStructures.Ring.Interface.Signature.RingFirstOrderRelations
 
 Predicate logic (unfolded):
 
   def GaussianIntegersFirstOrderRelations : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.Ring.Interface.Signature.RingFirstOrderRelations (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.Ring.Interface.Signature.RingFirstOrderRelations (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -218,12 +218,12 @@ def GaussianIntegersFirstOrderRelations : LRA.Logic.ArityIndexedSymbols :=
 Predicate logic:
 
   def GaussianIntegersFirstOrderSignature : LRA.Logic.Signature :=
-  LRA.AlgebraicStructures.IntegralDomain.Interface.Signature.IntegralDomainFirstOrderSignature
+    LRA.AlgebraicStructures.IntegralDomain.Interface.Signature.IntegralDomainFirstOrderSignature
 
 Predicate logic (unfolded):
 
   def GaussianIntegersFirstOrderSignature : LRA.Logic.Signature :=
-  LRA.AlgebraicStructures.IntegralDomain.Interface.Signature.IntegralDomainFirstOrderSignature (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.IntegralDomain.Interface.Signature.IntegralDomainFirstOrderSignature (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

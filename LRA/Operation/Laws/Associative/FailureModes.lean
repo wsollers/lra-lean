@@ -15,7 +15,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (operation : Carrier → Carrier → Carrier), (∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (first second third : Carrier), operation (operation first second) third = operation first (operation second third)) → False
 
 Logical form (Lean):
 
@@ -54,12 +59,12 @@ def FailsAssociative {Carrier : Type u}
 Predicate logic:
 
   def NaturalSubtraction : BinaryEndoOperation Nat :=
-  fun left right => left - right
+    fun left right => left - right
 
 Predicate logic (unfolded):
 
   def NaturalSubtraction : BinaryEndoOperation Nat :=
-  fun left right => left - right (source fallback; no compiled unfold data available)
+    fun left right => left - right (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -95,11 +100,16 @@ def NaturalSubtraction : BinaryEndoOperation Nat :=
 
 Predicate logic:
 
-  FailsAssociative NaturalSubtraction
+  LRA.Operation.Laws.Associative.FailsAssociative LRA.Operation.Laws.Associative.NaturalSubtraction
 
 Predicate logic (unfolded):
 
-  (∀ (first second third : Nat), instHSub.1 (instHSub.hSub first second) third = instHSub.1 first (instHSub.hSub second third)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (first second third : Nat), { hSub := fun a b => instSubNat.sub a b }.hSub ({ hSub := fun a b => instSubNat.sub a b }.hSub first second) third = { hSub := fun a b => instSubNat.sub a b }.hSub first ({ hSub := fun a b => instSubNat.sub a b }.hSub second third)) → False
 
 Logical form (Lean):
 

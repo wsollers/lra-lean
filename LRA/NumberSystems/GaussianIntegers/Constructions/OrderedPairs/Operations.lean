@@ -29,12 +29,12 @@ instance [Add R] [Mul R] [Neg R] : Mul (GaussianInteger R) :=
 Predicate logic:
 
   def conjugation [Neg R] (value : GaussianInteger R) : GaussianInteger R :=
-  ⟨value.realPart, -value.imaginaryPart⟩
+    ⟨value.realPart, -value.imaginaryPart⟩
 
 Predicate logic (unfolded):
 
   def conjugation [Neg R] (value : GaussianInteger R) : GaussianInteger R :=
-  ⟨value.realPart, -value.imaginaryPart⟩ (source fallback; no compiled unfold data available)
+    ⟨value.realPart, -value.imaginaryPart⟩ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -71,14 +71,14 @@ def conjugation [Neg R] (value : GaussianInteger R) : GaussianInteger R :=
 Predicate logic:
 
   def normSquared [Add R] [Mul R] (value : GaussianInteger R) : R :=
-  value.realPart * value.realPart +
-    value.imaginaryPart * value.imaginaryPart
+    value.realPart * value.realPart +
+      value.imaginaryPart * value.imaginaryPart
 
 Predicate logic (unfolded):
 
   def normSquared [Add R] [Mul R] (value : GaussianInteger R) : R :=
-  value.realPart * value.realPart +
-    value.imaginaryPart * value.imaginaryPart (source fallback; no compiled unfold data available)
+    value.realPart * value.realPart +
+      value.imaginaryPart * value.imaginaryPart (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

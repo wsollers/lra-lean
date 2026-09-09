@@ -226,11 +226,75 @@ def unfoldDenyList : List String := [
   "SemilatticeInf.toMin",
   "SubtractionMonoid.toSubNegZeroMonoid",
   "SubNegZeroMonoid.toNegZeroClass",
-  "NegZeroClass.toNeg"
+  "NegZeroClass.toNeg",
+  "LRA.Logic.updateAssignment",
+  "LRA.Logic.FirstOrder.Satisfies"
 ]
 
 private def isDeniedFromUnfolding (n : Name) : Bool :=
   unfoldDenyList.contains n.toString
+
+/-- Build the conjunction represented by the fields of a `Prop`-valued
+structure. An empty proof structure is logically `True`. -/
+private def mkAndChainExpr : List Expr → MetaM Expr
+  | [] => pure (mkConst ``True)
+  | [p] => pure p
+  | p :: ps => do
+    let rest ← mkAndChainExpr ps
+    Meta.mkAppM ``And #[p, rest]
+
+/-- Read the remaining constructor binders as independent proposition fields.
+Dependent proof fields are left opaque because a plain conjunction cannot
+faithfully represent their dependency. -/
+private partial def independentPropFields? : Nat → Expr → MetaM (Option (List Expr))
+  | 0, _ => pure (some [])
+  | fields + 1, .forallE _ domain body _ => do
+      if body.hasLooseBVars then
+        pure none
+      else
+        let some rest ← independentPropFields? fields body | pure none
+        pure (some (domain :: rest))
+  | _fields, _ => pure none
+
+private partial def instantiateLeadingForalls : Expr → List Expr → Option Expr
+  | type, [] => some type
+  | .forallE _ _ body _, argument :: arguments =>
+      instantiateLeadingForalls (body.instantiate1 argument) arguments
+  | _, _ => none
+
+/-- Expand an application of an LRA-authored `Prop` structure into the
+conjunction of its constructor fields. -/
+private def expandPropStructure? (env : Environment) (e : Expr) : MetaM (Option Expr) := do
+  let .const name levels := e.getAppFn | pure none
+  if !(name.toString.startsWith "LRA.") then
+    return none
+  let some _ := getStructureInfo? env name | return none
+  let some (.inductInfo inductVal) := env.find? name | return none
+  let [ctorName] := inductVal.ctors | return none
+  let some (.ctorInfo ctor) := env.find? ctorName | return none
+  if !(← Meta.isProp e) then
+    return none
+  let args := e.getAppArgs
+  if args.size < ctor.numParams then
+    return none
+  let ctorType := ctor.type.instantiateLevelParams ctor.levelParams levels
+  let some instantiated := instantiateLeadingForalls ctorType args[:ctor.numParams].toList |
+    return none
+  let some fields ← independentPropFields? ctor.numFields instantiated | return none
+  return some (← mkAndChainExpr fields)
+
+/-- Render the declaration-level contract of a `Prop` structure from its sole
+constructor: quantify the structure parameters and conjoin its fields. -/
+private partial def propStructureContract : Nat → Nat → Expr → MetaM (Option Expr)
+  | 0, fields, ctorType => do
+      let some propositions ← independentPropFields? fields ctorType | return none
+      return some (← mkAndChainExpr propositions)
+  | params + 1, fields, .forallE name domain body binderInfo =>
+      Meta.withLocalDecl name binderInfo domain fun fvar => do
+        let some contract ← propStructureContract params fields (body.instantiate1 fvar) |
+          return none
+        return some (← Meta.mkForallFVars #[fvar] contract)
+  | _params, _fields, _ => pure none
 
 /--
 True iff `s` is `<prefix><digits>` for one of Lean's own numbered
@@ -387,11 +451,11 @@ private def selectedImports (prefixes : List String) : IO (Array Import) := do
     )
 
 /--
-Recursively delta-unfolds every application of a definition not present in
-`unfoldDenyList`, repeating up to `fuel` times per position so an unfolded
-definition that itself mentions another unfoldable definition also gets
-expanded. Denied definitions are left exactly as written, but their
-arguments are still visited, so nested unfoldable predicates still open up.
+Recursively delta-unfolds proposition-valued applications not present in
+`unfoldDenyList`, repeating up to `fuel` times per position. Data-valued
+applications and structure projections remain opaque; their arguments are
+still visited, so nested logical predicates can open up without degrading
+readable carriers and model fields into `.1` projections.
 
 This exists instead of a one-line call to `Lean.Meta.transform` because
 that combinator's exact signature in this Lean version was not recalled
@@ -423,7 +487,13 @@ private partial def unfoldAllowed (fuel : Nat) (e : Expr) : MetaM Expr := do
       let fn := e.getAppFn
       let args := e.getAppArgs
       if let .const name _ := fn then
-        if !(isDeniedFromUnfolding name) then
+        let env ← getEnv
+        if let some expanded ← expandPropStructure? env e then
+          unfoldAllowed fuel expanded
+        else if (env.getProjectionFnInfo? name).isSome || isDeniedFromUnfolding name then
+          let args' ← args.mapM (unfoldAllowed (fuel + 1))
+          pure (mkAppN fn args')
+        else if ← Meta.isProp e then
           match ← Meta.unfoldDefinition? e with
           | some unfolded => unfoldAllowed fuel unfolded.headBeta
           | none =>
@@ -511,6 +581,7 @@ unsafe def main (args : List String) : IO Unit := do
   let mut theoremCount := 0
   let mut instanceCount := 0
   let mut axiomCount := 0
+  let mut structureCount := 0
   let mut defnInfoCount := 0
   let mut propTrueCount := 0
   let mut propFalseCount := 0
@@ -582,11 +653,32 @@ unsafe def main (args : List String) : IO Unit := do
             clean unfolded,
             status
           ]
+      else if let ConstantInfo.inductInfo inductVal := info then
+        if (getStructureInfo? env name).isSome then
+          let isPropResult ← classifyDefn env inductVal.type
+          if isPropResult == some true then
+            if let [ctorName] := inductVal.ctors then
+              if let some (.ctorInfo ctor) := env.find? ctorName then
+                let (contract?, _) ←
+                  (propStructureContract ctor.numParams ctor.numFields ctor.type).toIO
+                    { fileName := "DumpProofsToDo", fileMap := default } { env := env }
+                if let some contract := contract? then
+                  let (_plain, uncurried, unfolded, status) ← computeFolRenderings env contract
+                  structureCount := structureCount + 1
+                  rows := rows.push <| String.intercalate "\t" [
+                    clean name.toString,
+                    clean renderedModule,
+                    "structure",
+                    "false",
+                    clean uncurried,
+                    clean unfolded,
+                    status
+                  ]
   let outputDir := outputPath.parent.getD "."
   IO.FS.createDirAll outputDir
   IO.FS.writeFile outputPath <|
     "fq_name\tmodule\tkind\tuses_sorry\tpretty_type_uncurried\tpretty_type_unfolded\tunfold_status\n" ++
       String.intercalate "\n" rows.toList ++ "\n"
-  IO.println s!"wrote {rows.size} declarations to {outputPath} ({theoremCount} theorem, {instanceCount} instance, {axiomCount} axiom)"
+  IO.println s!"wrote {rows.size} declarations to {outputPath} ({theoremCount} theorem, {instanceCount} instance, {axiomCount} axiom, {structureCount} structure)"
   IO.println s!"defnInfo scanned (post-noise-filter): {defnInfoCount}"
   IO.println s!"  Meta.isProp:      true={propTrueCount} (captured as instance rows) false={propFalseCount} error={propErrorCount}"

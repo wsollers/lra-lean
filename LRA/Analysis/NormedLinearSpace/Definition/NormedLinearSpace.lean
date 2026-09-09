@@ -11,40 +11,40 @@ universe u v
 Predicate logic:
 
   structure NormedLinearSpaceDefinition
-    (K : Type u)
-    [NormedField K]
-    (V : Type v) where
+      (K : Type u)
+      [NormedField K]
+      (V : Type v) where
 
-  vectorSpace : LRA.LinearAlgebra.VectorSpaceDefinition K V
+    vectorSpace : LRA.LinearAlgebra.VectorSpaceDefinition K V
 
-  norm : V → Real
+    norm : V → Real
 
-  norm_nonneg : ∀ x : V, 0 ≤ norm x
+    norm_nonneg : ∀ x : V, 0 ≤ norm x
 
-  norm_eq_zero : ∀ x : V, norm x = 0 ↔ x = vectorSpace.zero
+    norm_eq_zero : ∀ x : V, norm x = 0 ↔ x = vectorSpace.zero
 
-  triangle : ∀ x y : V, norm (vectorSpace.add x y) ≤ norm x + norm y
+    triangle : ∀ x y : V, norm (vectorSpace.add x y) ≤ norm x + norm y
 
-  norm_smul : ∀ a : K, ∀ x : V, norm (vectorSpace.smul a x) = ‖a‖ * norm x
+    norm_smul : ∀ a : K, ∀ x : V, norm (vectorSpace.smul a x) = ‖a‖ * norm x
 
 Predicate logic (unfolded):
 
   structure NormedLinearSpaceDefinition
-    (K : Type u)
-    [NormedField K]
-    (V : Type v) where
+      (K : Type u)
+      [NormedField K]
+      (V : Type v) where
 
-  vectorSpace : LRA.LinearAlgebra.VectorSpaceDefinition K V
+    vectorSpace : LRA.LinearAlgebra.VectorSpaceDefinition K V
 
-  norm : V → Real
+    norm : V → Real
 
-  norm_nonneg : ∀ x : V, 0 ≤ norm x
+    norm_nonneg : ∀ x : V, 0 ≤ norm x
 
-  norm_eq_zero : ∀ x : V, norm x = 0 ↔ x = vectorSpace.zero
+    norm_eq_zero : ∀ x : V, norm x = 0 ↔ x = vectorSpace.zero
 
-  triangle : ∀ x y : V, norm (vectorSpace.add x y) ≤ norm x + norm y
+    triangle : ∀ x y : V, norm (vectorSpace.add x y) ≤ norm x + norm y
 
-  norm_smul : ∀ a : K, ∀ x : V, norm (vectorSpace.smul a x) = ‖a‖ * norm x (source fallback; no compiled unfold data available)
+    norm_smul : ∀ a : K, ∀ x : V, norm (vectorSpace.smul a x) = ‖a‖ * norm x (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

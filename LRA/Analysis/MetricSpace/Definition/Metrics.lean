@@ -12,30 +12,30 @@ universe u
 Predicate logic:
 
   def VacuousMetric (X : Type u) [IsEmpty X] : MetricDefinition X where
-  distance := fun _ _ => 0
-  positive := by
-    intro x
-    exact isEmptyElim x
-  symmetric := by
-    intro x
-    exact isEmptyElim x
-  triangle := by
-    intro x
-    exact isEmptyElim x
+    distance := fun _ _ => 0
+    positive := by
+      intro x
+      exact isEmptyElim x
+    symmetric := by
+      intro x
+      exact isEmptyElim x
+    triangle := by
+      intro x
+      exact isEmptyElim x
 
 Predicate logic (unfolded):
 
   def VacuousMetric (X : Type u) [IsEmpty X] : MetricDefinition X where
-  distance := fun _ _ => 0
-  positive := by
-    intro x
-    exact isEmptyElim x
-  symmetric := by
-    intro x
-    exact isEmptyElim x
-  triangle := by
-    intro x
-    exact isEmptyElim x (source fallback; no compiled unfold data available)
+    distance := fun _ _ => 0
+    positive := by
+      intro x
+      exact isEmptyElim x
+    symmetric := by
+      intro x
+      exact isEmptyElim x
+    triangle := by
+      intro x
+      exact isEmptyElim x (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -90,30 +90,30 @@ def VacuousMetric (X : Type u) [IsEmpty X] : MetricDefinition X where
 Predicate logic:
 
   def EmptyMetric (X : Type u) : MetricDefinition (∅ : Set X) where
-  distance := fun _ _ => 0
-  positive := by
-    intro x
-    exact x.property.elim
-  symmetric := by
-    intro x
-    exact x.property.elim
-  triangle := by
-    intro x
-    exact x.property.elim
+    distance := fun _ _ => 0
+    positive := by
+      intro x
+      exact x.property.elim
+    symmetric := by
+      intro x
+      exact x.property.elim
+    triangle := by
+      intro x
+      exact x.property.elim
 
 Predicate logic (unfolded):
 
   def EmptyMetric (X : Type u) : MetricDefinition (∅ : Set X) where
-  distance := fun _ _ => 0
-  positive := by
-    intro x
-    exact x.property.elim
-  symmetric := by
-    intro x
-    exact x.property.elim
-  triangle := by
-    intro x
-    exact x.property.elim (source fallback; no compiled unfold data available)
+    distance := fun _ _ => 0
+    positive := by
+      intro x
+      exact x.property.elim
+    symmetric := by
+      intro x
+      exact x.property.elim
+    triangle := by
+      intro x
+      exact x.property.elim (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -167,11 +167,16 @@ def EmptyMetric (X : Type u) : MetricDefinition (∅ : Set X) where
 
 Predicate logic:
 
-  ∀ a b : ℝ, 0 ≤ |a - b| ∧ (|a - b| = 0 ↔ a = b)
+  ∀ (a b : Real), (Real.instLE.le 0 (abs (instHSub.hSub a b)) ∧ (abs (instHSub.hSub a b) = 0 ↔ a = b))
 
 Predicate logic (unfolded):
 
-  ∀ (a b : Real), (Real.instLE.1 Zero.toOfNat0.1 (SemilatticeSup.toMax.1 (instHSub.1 a b) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 a b))) ∧ SemilatticeSup.toMax.1 (instHSub.1 a b) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 a b)) = Zero.toOfNat0.1 ↔ a = b)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Real.instLE.le 0 (abs (instHSub.hSub a b)) ∧ (abs (instHSub.hSub a b) = 0 ↔ a = b))
 
 Logical form (Lean):
 
@@ -207,11 +212,16 @@ theorem EuclideanRMetricPositive :
 
 Predicate logic:
 
-  ∀ a b : ℝ, |a - b| = |b - a|
+  ∀ (a b : Real), abs (instHSub.hSub a b) = abs (instHSub.hSub b a)
 
 Predicate logic (unfolded):
 
-  ∀ (a b : Real), SemilatticeSup.toMax.1 (instHSub.1 a b) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 a b)) = SemilatticeSup.toMax.1 (instHSub.1 b a) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 b a))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub a b) = abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub b a)
 
 Logical form (Lean):
 
@@ -247,11 +257,16 @@ theorem EuclideanRMetricSymmetric :
 
 Predicate logic:
 
-  ∀ a b c : ℝ, |a - c| ≤ |a - b| + |b - c|
+  ∀ (a b c : Real), Real.instLE.le (abs (instHSub.hSub a c)) (instHAdd.hAdd (abs (instHSub.hSub a b)) (abs (instHSub.hSub b c)))
 
 Predicate logic (unfolded):
 
-  ∀ (a b c : Real), Real.instLE.1 (SemilatticeSup.toMax.1 (instHSub.1 a c) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 a c))) (instHAdd.1 (SemilatticeSup.toMax.1 (instHSub.1 a b) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 a b))) (SemilatticeSup.toMax.1 (instHSub.1 b c) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 b c))))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Real.instLE.le (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub a c)) ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub a b)) (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub b c)))
 
 Logical form (Lean):
 
@@ -288,18 +303,18 @@ theorem EuclideanRMetricTriangle :
 Predicate logic:
 
   def EuclideanRMetric : MetricDefinition ℝ where
-  distance := fun a b => |a - b|
-  positive := EuclideanRMetricPositive
-  symmetric := EuclideanRMetricSymmetric
-  triangle := EuclideanRMetricTriangle
+    distance := fun a b => |a - b|
+    positive := EuclideanRMetricPositive
+    symmetric := EuclideanRMetricSymmetric
+    triangle := EuclideanRMetricTriangle
 
 Predicate logic (unfolded):
 
   def EuclideanRMetric : MetricDefinition ℝ where
-  distance := fun a b => |a - b|
-  positive := EuclideanRMetricPositive
-  symmetric := EuclideanRMetricSymmetric
-  triangle := EuclideanRMetricTriangle (source fallback; no compiled unfold data available)
+    distance := fun a b => |a - b|
+    positive := EuclideanRMetricPositive
+    symmetric := EuclideanRMetricSymmetric
+    triangle := EuclideanRMetricTriangle (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -342,12 +357,12 @@ def EuclideanRMetric : MetricDefinition ℝ where
 Predicate logic:
 
   def SingletonMetric {X : Type u} (point : X) : MetricDefinition ({point} : Set X) where
-  distance
+    distance
 
 Predicate logic (unfolded):
 
   def SingletonMetric {X : Type u} (point : X) : MetricDefinition ({point} : Set X) where
-  distance (source fallback; no compiled unfold data available)
+    distance (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -398,11 +413,16 @@ def SingletonMetric {X : Type u} (point : X) : MetricDefinition ({point} : Set X
 
 Predicate logic:
 
-  ∀ a b : ℂ, 0 ≤ ‖a - b‖ ∧ (‖a - b‖ = 0 ↔ a = b)
+  ∀ (a b : Complex), (Real.instLE.le 0 (Complex.instNorm.norm (instHSub.hSub a b)) ∧ (Complex.instNorm.norm (instHSub.hSub a b) = 0 ↔ a = b))
 
 Predicate logic (unfolded):
 
-  ∀ (a b : Complex), (Real.instLE.1 Zero.toOfNat0.1 (Complex.instNorm.1 (instHSub.1 a b)) ∧ Complex.instNorm.1 (instHSub.1 a b) = Zero.toOfNat0.1 ↔ a = b)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Real.instLE.le 0 (Complex.instNorm.norm (instHSub.hSub a b)) ∧ (Complex.instNorm.norm (instHSub.hSub a b) = 0 ↔ a = b))
 
 Logical form (Lean):
 
@@ -438,11 +458,16 @@ theorem ComplexModulusMetricPositive :
 
 Predicate logic:
 
-  ∀ a b : ℂ, ‖a - b‖ = ‖b - a‖
+  ∀ (a b : Complex), Complex.instNorm.norm (instHSub.hSub a b) = Complex.instNorm.norm (instHSub.hSub b a)
 
 Predicate logic (unfolded):
 
-  ∀ (a b : Complex), Complex.instNorm.1 (instHSub.1 a b) = Complex.instNorm.1 (instHSub.1 b a)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Complex.instNorm.1 ({ hSub := fun a b => Complex.instSub.sub a b }.hSub a b) = Complex.instNorm.1 ({ hSub := fun a b => Complex.instSub.sub a b }.hSub b a)
 
 Logical form (Lean):
 
@@ -478,11 +503,16 @@ theorem ComplexModulusMetricSymmetric :
 
 Predicate logic:
 
-  ∀ a b c : ℂ, ‖a - c‖ ≤ ‖a - b‖ + ‖b - c‖
+  ∀ (a b c : Complex), Real.instLE.le (Complex.instNorm.norm (instHSub.hSub a c)) (instHAdd.hAdd (Complex.instNorm.norm (instHSub.hSub a b)) (Complex.instNorm.norm (instHSub.hSub b c)))
 
 Predicate logic (unfolded):
 
-  ∀ (a b c : Complex), Real.instLE.1 (Complex.instNorm.1 (instHSub.1 a c)) (instHAdd.1 (Complex.instNorm.1 (instHSub.1 a b)) (Complex.instNorm.1 (instHSub.1 b c)))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Real.instLE.le (Complex.instNorm.1 ({ hSub := fun a b => Complex.instSub.sub a b }.hSub a c)) ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd (Complex.instNorm.1 ({ hSub := fun a b => Complex.instSub.sub a b }.hSub a b)) (Complex.instNorm.1 ({ hSub := fun a b => Complex.instSub.sub a b }.hSub b c)))
 
 Logical form (Lean):
 
@@ -519,18 +549,18 @@ theorem ComplexModulusMetricTriangle :
 Predicate logic:
 
   noncomputable def ComplexModulusMetric : MetricDefinition ℂ where
-  distance := fun a b => ‖a - b‖
-  positive := ComplexModulusMetricPositive
-  symmetric := ComplexModulusMetricSymmetric
-  triangle := ComplexModulusMetricTriangle
+    distance := fun a b => ‖a - b‖
+    positive := ComplexModulusMetricPositive
+    symmetric := ComplexModulusMetricSymmetric
+    triangle := ComplexModulusMetricTriangle
 
 Predicate logic (unfolded):
 
   noncomputable def ComplexModulusMetric : MetricDefinition ℂ where
-  distance := fun a b => ‖a - b‖
-  positive := ComplexModulusMetricPositive
-  symmetric := ComplexModulusMetricSymmetric
-  triangle := ComplexModulusMetricTriangle (source fallback; no compiled unfold data available)
+    distance := fun a b => ‖a - b‖
+    positive := ComplexModulusMetricPositive
+    symmetric := ComplexModulusMetricSymmetric
+    triangle := ComplexModulusMetricTriangle (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -573,14 +603,14 @@ noncomputable def ComplexModulusMetric : MetricDefinition ℂ where
 Predicate logic:
 
   def RealCircleChordMetric (center : ℝ) (radius : ℝ) (radiusPositive : 0 < radius) :
-    MetricDefinition {x : ℝ // |x - center| = radius} where
-  distance
+      MetricDefinition {x : ℝ // |x - center| = radius} where
+    distance
 
 Predicate logic (unfolded):
 
   def RealCircleChordMetric (center : ℝ) (radius : ℝ) (radiusPositive : 0 < radius) :
-    MetricDefinition {x : ℝ // |x - center| = radius} where
-  distance (source fallback; no compiled unfold data available)
+      MetricDefinition {x : ℝ // |x - center| = radius} where
+    distance (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -641,11 +671,17 @@ def RealCircleChordMetric (center : ℝ) (radius : ℝ) (radiusPositive : 0 < ra
 
 Predicate logic:
 
-  (0 < radius) → ∀ a b : {z : ℂ // ‖z - center‖ = radius}, 0 ≤ ‖a.1 - b.1‖ ∧ (‖a.1 - b.1‖ = 0 ↔ a = b)
+  ∀ (center : Complex) (radius : Real), Real.instLT.lt 0 radius → ∀ (a b : Subtype fun z => Complex.instNorm.norm (instHSub.hSub z center) = radius), (Real.instLE.le 0 (Complex.instNorm.norm (instHSub.hSub a.val b.val)) ∧ (Complex.instNorm.norm (instHSub.hSub a.val b.val) = 0 ↔ a = b))
 
 Predicate logic (unfolded):
 
-  ∀ (center : Complex) (radius : Real), Real.instLT.1 Zero.toOfNat0.1 radius → ∀ (a b : Subtype fun z => Complex.instNorm.1 (instHSub.1 z center) = radius), (Real.instLE.1 Zero.toOfNat0.1 (Complex.instNorm.1 (instHSub.1 a.1 b.1)) ∧ Complex.instNorm.1 (instHSub.1 a.1 b.1) = Zero.toOfNat0.1 ↔ a = b)
+  Ambient
+    (ℂ)
+  Objects
+    center : ℂ
+    radius : ℝ
+  Prove
+    Real.instLT.lt 0 radius → ∀ (a b : Subtype fun z => Complex.instNorm.norm (instHSub.hSub z center) = radius), (Real.instLE.le 0 (Complex.instNorm.norm (instHSub.hSub a.val b.val)) ∧ (Complex.instNorm.norm (instHSub.hSub a.val b.val) = 0 ↔ a = b))
 
 Logical form (Lean):
 
@@ -685,11 +721,17 @@ theorem ComplexCircleChordMetricPositive
 
 Predicate logic:
 
-  (0 < radius) → ∀ a b : {z : ℂ // ‖z - center‖ = radius}, ‖a.1 - b.1‖ = ‖b.1 - a.1‖
+  ∀ (center : Complex) (radius : Real), Real.instLT.lt 0 radius → ∀ (a b : Subtype fun z => Complex.instNorm.norm (instHSub.hSub z center) = radius), Complex.instNorm.norm (instHSub.hSub a.val b.val) = Complex.instNorm.norm (instHSub.hSub b.val a.val)
 
 Predicate logic (unfolded):
 
-  ∀ (center : Complex) (radius : Real), Real.instLT.1 Zero.toOfNat0.1 radius → ∀ (a b : Subtype fun z => Complex.instNorm.1 (instHSub.1 z center) = radius), Complex.instNorm.1 (instHSub.1 a.1 b.1) = Complex.instNorm.1 (instHSub.1 b.1 a.1)
+  Ambient
+    (ℂ)
+  Objects
+    center : ℂ
+    radius : ℝ
+  Prove
+    Real.instLT.lt 0 radius → ∀ (a b : Subtype fun z => Complex.instNorm.1 ({ hSub := fun a b => Complex.instSub.sub a b }.hSub z center) = radius), Complex.instNorm.1 ({ hSub := fun a b => Complex.instSub.sub a b }.hSub a.1 b.1) = Complex.instNorm.1 ({ hSub := fun a b => Complex.instSub.sub a b }.hSub b.1 a.1)
 
 Logical form (Lean):
 
@@ -729,11 +771,17 @@ theorem ComplexCircleChordMetricSymmetric
 
 Predicate logic:
 
-  (0 < radius) → ∀ a b c : {z : ℂ // ‖z - center‖ = radius}, ‖a.1 - c.1‖ ≤ ‖a.1 - b.1‖ + ‖b.1 - c.1‖
+  ∀ (center : Complex) (radius : Real), Real.instLT.lt 0 radius → ∀ (a b c : Subtype fun z => Complex.instNorm.norm (instHSub.hSub z center) = radius), Real.instLE.le (Complex.instNorm.norm (instHSub.hSub a.val c.val)) (instHAdd.hAdd (Complex.instNorm.norm (instHSub.hSub a.val b.val)) (Complex.instNorm.norm (instHSub.hSub b.val c.val)))
 
 Predicate logic (unfolded):
 
-  ∀ (center : Complex) (radius : Real), Real.instLT.1 Zero.toOfNat0.1 radius → ∀ (a b c : Subtype fun z => Complex.instNorm.1 (instHSub.1 z center) = radius), Real.instLE.1 (Complex.instNorm.1 (instHSub.1 a.1 c.1)) (instHAdd.1 (Complex.instNorm.1 (instHSub.1 a.1 b.1)) (Complex.instNorm.1 (instHSub.1 b.1 c.1)))
+  Ambient
+    (ℂ)
+  Objects
+    center : ℂ
+    radius : ℝ
+  Prove
+    Real.instLT.lt 0 radius → ∀ (a b c : Subtype fun z => Complex.instNorm.1 ({ hSub := fun a b => Complex.instSub.sub a b }.hSub z center) = radius), Real.instLE.le (Complex.instNorm.1 ({ hSub := fun a b => Complex.instSub.sub a b }.hSub a.1 c.1)) ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd (Complex.instNorm.1 ({ hSub := fun a b => Complex.instSub.sub a b }.hSub a.1 b.1)) (Complex.instNorm.1 ({ hSub := fun a b => Complex.instSub.sub a b }.hSub b.1 c.1)))
 
 Logical form (Lean):
 
@@ -774,22 +822,22 @@ theorem ComplexCircleChordMetricTriangle
 Predicate logic:
 
   noncomputable def ComplexCircleChordMetric
-    (center : ℂ) (radius : ℝ) (radiusPositive : 0 < radius) :
-    MetricDefinition {z : ℂ // ‖z - center‖ = radius} where
-  distance := fun a b => ‖a.1 - b.1‖
-  positive := ComplexCircleChordMetricPositive center radius radiusPositive
-  symmetric := ComplexCircleChordMetricSymmetric center radius radiusPositive
-  triangle := ComplexCircleChordMetricTriangle center radius radiusPositive
+      (center : ℂ) (radius : ℝ) (radiusPositive : 0 < radius) :
+      MetricDefinition {z : ℂ // ‖z - center‖ = radius} where
+    distance := fun a b => ‖a.1 - b.1‖
+    positive := ComplexCircleChordMetricPositive center radius radiusPositive
+    symmetric := ComplexCircleChordMetricSymmetric center radius radiusPositive
+    triangle := ComplexCircleChordMetricTriangle center radius radiusPositive
 
 Predicate logic (unfolded):
 
   noncomputable def ComplexCircleChordMetric
-    (center : ℂ) (radius : ℝ) (radiusPositive : 0 < radius) :
-    MetricDefinition {z : ℂ // ‖z - center‖ = radius} where
-  distance := fun a b => ‖a.1 - b.1‖
-  positive := ComplexCircleChordMetricPositive center radius radiusPositive
-  symmetric := ComplexCircleChordMetricSymmetric center radius radiusPositive
-  triangle := ComplexCircleChordMetricTriangle center radius radiusPositive (source fallback; no compiled unfold data available)
+      (center : ℂ) (radius : ℝ) (radiusPositive : 0 < radius) :
+      MetricDefinition {z : ℂ // ‖z - center‖ = radius} where
+    distance := fun a b => ‖a.1 - b.1‖
+    positive := ComplexCircleChordMetricPositive center radius radiusPositive
+    symmetric := ComplexCircleChordMetricSymmetric center radius radiusPositive
+    triangle := ComplexCircleChordMetricTriangle center radius radiusPositive (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

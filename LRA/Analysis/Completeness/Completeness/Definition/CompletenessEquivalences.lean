@@ -20,7 +20,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (F : Type u_1) [inst : Preorder F] (A : F → Prop), (Exists fun x => Set.instMembership.1 A x ∧ Exists fun l => ∀ (x : F), Set.instMembership.1 A x → inst.toLE.1 l x) → Exists fun i => (∀ (x : F), Set.instMembership.1 A x → inst.toLE.1 i x ∧ ∀ (l : F), (∀ (x : F), Set.instMembership.1 A x → inst.toLE.1 l x) → inst.toLE.1 l i)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun x => x ∈ A ∧ (Exists fun l => ∀ (x : F), x ∈ A → inst.1.le l x)) → Exists fun i => ((∀ (x : F), x ∈ A → inst.1.le i x) ∧ (∀ (l : F), (∀ (x : F), x ∈ A → inst.1.le l x) → inst.1.le l i))
 
 Logical form (Lean):
 
@@ -60,7 +65,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (F : Type u_1) [inst : Preorder F] [inst_1 : TopologicalSpace F] (a : Nat → F), (Exists fun u => ∀ (x : F), Set.instMembership.1 (fun x => Exists fun y => a y = x)x → inst.toLE.1 x u ∧ Exists fun l => ∀ (x : F), Set.instMembership.1 (fun x => Exists fun y => a y = x)x → inst.toLE.1 l x) → Exists fun indexMap => (∀ ⦃a b : Nat⦄, Nat.instPreorder.toLT.1 a b → Nat.instPreorder.toLT.1 (indexMap a) (indexMap b) ∧ Exists fun L => Filter.instPartialOrder.toLE.1 { sets := fun x => Set.instMembership.1 Filter.atTop.sets (Set.preimage (Function.comp a indexMap) x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds L))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((Exists fun u => ∀ (x : F), x ∈ fun x => Exists fun y => a y = x → inst.1.le x u) ∧ (Exists fun l => ∀ (x : F), x ∈ fun x => Exists fun y => a y = x → inst.1.le l x)) → Exists fun indexMap => ((∀ ⦃a b : Nat⦄, Nat.instPreorder.2.lt a b → Nat.instPreorder.2.lt (indexMap a) (indexMap b)) ∧ Exists fun L => Filter.instPartialOrder.toPreorder.1.le { sets := fun x => setOf fun x_1 => Function.comp a indexMap x_1 ∈ x ∈ Filter.atTop.1, univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds L))
 
 Logical form (Lean):
 

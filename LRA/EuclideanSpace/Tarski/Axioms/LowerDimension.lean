@@ -8,11 +8,16 @@ namespace LRA.EuclideanSpace
 
 Predicate logic:
 
-  (∀ n ∈ Nat), ∃ points ∈ Fin (n + 1) → TarskiPoint, AffinelyIndependent TarskiPoint n points end LRA.EuclideanSpace
+  ∀ (n : Nat), Exists fun points => LRA.EuclideanSpace.AffinelyIndependent LRA.EuclideanSpace.TarskiPoint n points
 
 Predicate logic (unfolded):
 
-  ∀ (n : Nat), Exists fun points => sorry ((((((((((((((((`LRA.EuclideanSpace.Interface.Laws.num (instOfNatNat 448).1).num (instOfNatNat 2).1).num (instOfNatNat 448).1).num (instOfNatNat 7).1).num (instOfNatNat 2).1).num (instOfNatNat 7).1).str "_sorry").str "_@").str "LRA").str "EuclideanSpace").str "Interface").str "Laws").num (instOfNatNat 3528298125).1).str "_hygCtx").str "_hyg").num (instOfNatNat 22).1)
+  Ambient
+    (Nat)
+  Objects
+    n : Nat
+  Prove
+    Exists fun points => sorry
 
 Logical form (Lean):
 

@@ -6,18 +6,18 @@ namespace LRA.Logic
 Predicate logic:
 
   def updateAssignment
-    {Variable : Type} [DecidableEq Variable] {Domain : Type u}
-    (assignment : Variable -> Domain) (v : Variable) (a : Domain) :
-    Variable -> Domain :=
-  fun v' => if v' = v then a else assignment v'
+      {Variable : Type} [DecidableEq Variable] {Domain : Type u}
+      (assignment : Variable -> Domain) (v : Variable) (a : Domain) :
+      Variable -> Domain :=
+    fun v' => if v' = v then a else assignment v'
 
 Predicate logic (unfolded):
 
   def updateAssignment
-    {Variable : Type} [DecidableEq Variable] {Domain : Type u}
-    (assignment : Variable -> Domain) (v : Variable) (a : Domain) :
-    Variable -> Domain :=
-  fun v' => if v' = v then a else assignment v' (source fallback; no compiled unfold data available)
+      {Variable : Type} [DecidableEq Variable] {Domain : Type u}
+      (assignment : Variable -> Domain) (v : Variable) (a : Domain) :
+      Variable -> Domain :=
+    fun v' => if v' = v then a else assignment v' (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -59,11 +59,18 @@ def updateAssignment
 
 Predicate logic:
 
-  (∀ v ∈ Variable ∀ a ∈ Domain), updateAssignment assignment v a v = a
+  ∀ {Variable : Type} [inst : DecidableVariable] = {Domain : Type u}(assignment : Variable → Domain) (v : Variable) (a : Domain), LRA.Logic.updateAssignment assignment v a v = a
 
 Predicate logic (unfolded):
 
-  ∀ {Variable : Type} [inst : (a b : Variable) → Decidable (a = b)]{Domain : Type u} (assignment : Variable → Domain) (v : Variable) (a : Domain), Decidable.rec (fun h => (fun x => assignment v) h) (fun h => (fun x => a) h) (inst v v) = a
+  Ambient
+    (Variable, Domain)
+  Objects
+    assignment : Variable -> Domain
+    v : Variable
+    a : Domain
+  Prove
+    Decidable.rec (fun h => (fun x => assignment v) h) (fun h => (fun x => a) h) (inst v v) = a
 
 Logical form (Lean):
 
@@ -103,11 +110,19 @@ theorem updatedVariableTakesNewValue
 
 Predicate logic:
 
-  (∀ v v' ∈ Variable ∀ a ∈ Domain), updateAssignment assignment v a v' = assignment v'
+  ∀ {Variable : Type} [inst : DecidableVariable] = {Domain : Type u}(assignment : Variable → Domain) (v v' : Variable) (a : Domain), Ne v' v → LRA.Logic.updateAssignment assignment v a v' = assignment v'
 
 Predicate logic (unfolded):
 
-  ∀ {Variable : Type} [inst : (a b : Variable) → Decidable (a = b)]{Domain : Type u} (assignment : Variable → Domain) (v v' : Variable) (a : Domain), (v' = v → False) → Decidable.rec (fun h => (fun x => assignment v') h) (fun h => (fun x => a) h) (inst v' v) = assignment v'
+  Ambient
+    (Variable, Domain)
+  Objects
+    assignment : Variable -> Domain
+    v v' : Variable
+    a : Domain
+    hv : v' ≠ v
+  Prove
+    (v' = v → False) → Decidable.rec (fun h => (fun x => assignment v') h) (fun h => (fun x => a) h) (inst v' v) = assignment v'
 
 Logical form (Lean):
 

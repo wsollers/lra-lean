@@ -10,20 +10,20 @@ namespace LRA.Analysis.Integration
 Predicate logic:
 
   structure IntegrationPartition (a b : ℝ) where
-  n : ℕ
-  points : Fin (n + 1) → ℝ
-  first_eq : points 0 = a
-  last_eq : points (Fin.last n) = b
-  mono : ∀ i : Fin n, points i.castSucc < points i.succ
+    n : ℕ
+    points : Fin (n + 1) → ℝ
+    first_eq : points 0 = a
+    last_eq : points (Fin.last n) = b
+    mono : ∀ i : Fin n, points i.castSucc < points i.succ
 
 Predicate logic (unfolded):
 
   structure IntegrationPartition (a b : ℝ) where
-  n : ℕ
-  points : Fin (n + 1) → ℝ
-  first_eq : points 0 = a
-  last_eq : points (Fin.last n) = b
-  mono : ∀ i : Fin n, points i.castSucc < points i.succ (source fallback; no compiled unfold data available)
+    n : ℕ
+    points : Fin (n + 1) → ℝ
+    first_eq : points 0 = a
+    last_eq : points (Fin.last n) = b
+    mono : ∀ i : Fin n, points i.castSucc < points i.succ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -68,12 +68,12 @@ structure IntegrationPartition (a b : ℝ) where
 Predicate logic:
 
   def SubintervalWidth {a b : ℝ} (P : IntegrationPartition a b) (i : Fin P.n) : ℝ :=
-  P.points i.succ - P.points i.castSucc
+    P.points i.succ - P.points i.castSucc
 
 Predicate logic (unfolded):
 
   def SubintervalWidth {a b : ℝ} (P : IntegrationPartition a b) (i : Fin P.n) : ℝ :=
-  P.points i.succ - P.points i.castSucc (source fallback; no compiled unfold data available)
+    P.points i.succ - P.points i.castSucc (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -110,12 +110,12 @@ def SubintervalWidth {a b : ℝ} (P : IntegrationPartition a b) (i : Fin P.n) : 
 Predicate logic:
 
   noncomputable def PartitionMesh {a b : ℝ} (P : IntegrationPartition a b) : ℝ :=
-  sSup ({0} ∪ {w : ℝ | ∃ i : Fin P.n, w = SubintervalWidth P i})
+    sSup ({0} ∪ {w : ℝ | ∃ i : Fin P.n, w = SubintervalWidth P i})
 
 Predicate logic (unfolded):
 
   noncomputable def PartitionMesh {a b : ℝ} (P : IntegrationPartition a b) : ℝ :=
-  sSup ({0} ∪ {w : ℝ | ∃ i : Fin P.n, w = SubintervalWidth P i}) (source fallback; no compiled unfold data available)
+    sSup ({0} ∪ {w : ℝ | ∃ i : Fin P.n, w = SubintervalWidth P i}) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -152,14 +152,14 @@ noncomputable def PartitionMesh {a b : ℝ} (P : IntegrationPartition a b) : ℝ
 Predicate logic:
 
   structure TaggedPartitionIntegration (a b : ℝ) extends IntegrationPartition a b where
-  tag : Fin n → ℝ
-  tag_mem : ∀ i : Fin n, tag i ∈ Set.Icc (points i.castSucc) (points i.succ)
+    tag : Fin n → ℝ
+    tag_mem : ∀ i : Fin n, tag i ∈ Set.Icc (points i.castSucc) (points i.succ)
 
 Predicate logic (unfolded):
 
   structure TaggedPartitionIntegration (a b : ℝ) extends IntegrationPartition a b where
-  tag : Fin n → ℝ
-  tag_mem : ∀ i : Fin n, tag i ∈ Set.Icc (points i.castSucc) (points i.succ) (source fallback; no compiled unfold data available)
+    tag : Fin n → ℝ
+    tag_mem : ∀ i : Fin n, tag i ∈ Set.Icc (points i.castSucc) (points i.succ) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -201,7 +201,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {a b : Real} (P' P : LRA.Analysis.Integration.IntegrationPartition a b) (i : Fin (instHAdd.1 P.1 (instOfNatNat 1).1)), Exists fun j => P'.2 j = P.2 i
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun j => P'.2 j = P.2 i
 
 Logical form (Lean):
 
@@ -237,11 +242,17 @@ def RefinesPartition {a b : ℝ} (P' P : IntegrationPartition a b) : Prop :=
 
 Predicate logic:
 
-  ∃ R ∈ IntegrationPartition a b, RefinesPartition R P ∧ RefinesPartition R Q
+  ∀ {a b : Real} (P Q : LRA.Analysis.Integration.IntegrationPartition a b), Exists fun R => (LRA.Analysis.Integration.RefinesPartition R P ∧ LRA.Analysis.Integration.RefinesPartition R Q)
 
 Predicate logic (unfolded):
 
-  ∀ {a b : Real} (P Q : LRA.Analysis.Integration.IntegrationPartition a b), Exists fun R => (∀ (i : Fin (instHAdd.1 P.1 (instOfNatNat 1).1)), Exists fun j => R.2 j = P.2 i ∧ ∀ (i : Fin (instHAdd.1 Q.1 (instOfNatNat 1).1)), Exists fun j => R.2 j = Q.2 i)
+  Ambient
+    (ℝ)
+  Objects
+    a b : ℝ
+    P Q : IntegrationPartition a b
+  Prove
+    Exists fun R => ((∀ (i : Fin ({ hAdd := fun a b => instAddNat.add a b }.hAdd P.1 1)), Exists fun j => R.2 j = P.2 i) ∧ (∀ (i : Fin ({ hAdd := fun a b => instAddNat.add a b }.hAdd Q.1 1)), Exists fun j => R.2 j = Q.2 i))
 
 Logical form (Lean):
 

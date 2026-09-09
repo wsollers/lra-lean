@@ -15,11 +15,16 @@ section EndomapComposition
 
 Predicate logic:
 
-  LRA.Operation.Laws.Associative.Associative (EndomapComposition Carrier)
+  ∀ (Carrier : Type u), LRA.Operation.Laws.Associative.Associative (LRA.Operation.EndomapComposition Carrier)
 
 Predicate logic (unfolded):
 
-  ∀ (Carrier : Type u) (first second third : Carrier → Carrier), fun input => first (second (third input)) = funinput => first (second (third input))
+  Ambient
+    (Carrier)
+  Objects
+    (none)
+  Prove
+    fun input => first (second (third input)) = funinput => first (second (third input))
 
 Logical form (Lean):
 
@@ -57,11 +62,16 @@ theorem EndomapCompositionAssociative (Carrier : Type u) :
 
 Predicate logic:
 
-  LRA.Operation.Laws.Identity.TwoSidedIdentity (EndomapComposition Carrier) (EndomapIdentity Carrier)
+  ∀ (Carrier : Type u), LRA.Operation.Laws.Identity.TwoSidedIdentity (LRA.Operation.EndomapComposition Carrier) (LRA.Operation.EndomapIdentity Carrier)
 
 Predicate logic (unfolded):
 
-  ∀ (Carrier : Type u), (∀ (element : Carrier → Carrier), fun input => element input = element ∧ ∀ (element : Carrier → Carrier), fun input => element input = element)
+  Ambient
+    (Carrier)
+  Objects
+    (none)
+  Prove
+    ((∀ (element : Carrier → Carrier), fun input => element input = element) ∧ (∀ (element : Carrier → Carrier), fun input => element input = element))
 
 Logical form (Lean):
 
@@ -101,11 +111,17 @@ theorem EndomapCompositionIdentity (Carrier : Type u) :
 
 Predicate logic:
 
-  (Carrier → Carrier) → ∃ inverse ∈ Carrier → Carrier, EndomapComposition Carrier inverse map = EndomapIdentity Carrier ∧ EndomapComposition Carrier map inverse = EndomapIdentity Carrier
+  ∀ {Carrier : Type u} (map : Carrier → Carrier), LRA.Function.Bijective map → Exists fun inverse => (LRA.Operation.EndomapComposition Carrier inverse map = LRA.Operation.EndomapIdentity Carrier ∧ LRA.Operation.EndomapComposition Carrier map inverse = LRA.Operation.EndomapIdentity Carrier)
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (map : Carrier → Carrier), (∀ (y x₁ x₂ : Carrier), map x₁ = y → map x₂ = y → x₁ = x₂ ∧ ∀ (y : Carrier), Exists fun x => map x = y) → Exists fun inverse => (fun input => inverse (map input) = funinput => input ∧ fun input => map (inverse input) = funinput => input)
+  Ambient
+    (Carrier)
+  Objects
+    map : Carrier → Carrier
+    bijective : LRA.Function.Bijective map
+  Prove
+    ((∀ (y x₁ x₂ : Carrier), map x₁ = y → map x₂ = y → x₁ = x₂) ∧ (∀ (y : Carrier), Exists fun x => map x = y)) → Exists fun inverse => (fun input => inverse (map input) = funinput => input ∧ fun input => map (inverse input) = funinput => input)
 
 Logical form (Lean):
 
@@ -157,11 +173,17 @@ variable {Domain : Type u} {Codomain : Type v}
 
 Predicate logic:
 
-  LRA.Operation.Laws.Associative.Associative (PointwiseBinaryOperation Domain ∈ = Domain operation)
+  ∀ {Domain : Type u} {Codomain : Type v} (operation : LRA.Operation.BinaryEndoOperation Codomain), LRA.Operation.Laws.Associative.Associative operation → LRA.Operation.Laws.Associative.Associative (LRA.Operation.PointwiseBinaryOperation operation)
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (operation : Codomain → Codomain → Codomain), (∀ (first second third : Codomain), operation (operation first second) third = operation first (operation second third)) → ∀ (first second third : Domain → Codomain), fun input => operation (operation (first input) (second input)) (third input) = funinput => operation (first input) (operation (second input) (third input))
+  Ambient
+    (Domain, Codomain)
+  Objects
+    operation : BinaryEndoOperation Codomain
+    associative : LRA.Operation.Laws.Associative.Associative operation
+  Prove
+    (∀ (first second third : Codomain), operation (operation first second) third = operation first (operation second third)) → ∀ (first second third : Domain → Codomain), fun input => operation (operation (first input) (second input)) (third input) = funinput => operation (first input) (operation (second input) (third input))
 
 Logical form (Lean):
 
@@ -205,11 +227,18 @@ theorem PointwiseAssociative
 
 Predicate logic:
 
-  (∀ identity ∈ Codomain), LRA.Operation.Laws.Identity.TwoSidedIdentity (PointwiseBinaryOperation Domain ∈ = Domain operation) fun _input ∈ Domain => identity
+  ∀ {Domain : Type u} {Codomain : Type v} (operation : LRA.Operation.BinaryEndoOperation Codomain) (identity : Codomain), LRA.Operation.Laws.Identity.TwoSidedIdentity operation identity → LRA.Operation.Laws.Identity.TwoSidedIdentity (LRA.Operation.PointwiseBinaryOperation operation) fun _input => identity
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (operation : Codomain → Codomain → Codomain) (identity : Codomain), (∀ (element : Codomain), operation identity element = element ∧ ∀ (element : Codomain), operation element identity = element) → (∀ (element : Domain → Codomain), fun input => operation ((fun _input => identity) input) (element input) = element ∧ ∀ (element : Domain → Codomain), fun input => operation (element input) ((fun _input => identity) input) = element)
+  Ambient
+    (Domain, Codomain)
+  Objects
+    operation : BinaryEndoOperation Codomain
+    identity : Codomain
+    identityLaw : LRA.Operation.Laws.Identity.TwoSidedIdentity operation identity
+  Prove
+    ((∀ (element : Codomain), operation identity element = element) ∧ (∀ (element : Codomain), operation element identity = element)) → ((∀ (element : Domain → Codomain), fun input => operation ((fun _input => identity) input) (element input) = element) ∧ (∀ (element : Domain → Codomain), fun input => operation (element input) ((fun _input => identity) input) = element))
 
 Logical form (Lean):
 
@@ -257,11 +286,19 @@ theorem PointwiseTwoSidedIdentity
 
 Predicate logic:
 
-  (∀ identity ∈ Codomain), LRA.Operation.Laws.Inverse.TwoSidedInverse (PointwiseBinaryOperation Domain ∈ = Domain operation) fun _input ∈ Domain => identity (PointwiseUnaryOperation Domain ∈ = Domain inverse)
+  ∀ {Domain : Type u} {Codomain : Type v} (operation : LRA.Operation.BinaryEndoOperation Codomain) (identity : Codomain) (inverse : LRA.Operation.UnaryEndoOperation Codomain), LRA.Operation.Laws.Inverse.TwoSidedInverse operation identity inverse → LRA.Operation.Laws.Inverse.TwoSidedInverse (LRA.Operation.PointwiseBinaryOperation operation) (fun _input => identity) (LRA.Operation.PointwiseUnaryOperation inverse)
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (operation : Codomain → Codomain → Codomain) (identity : Codomain) (inverse : Codomain → Codomain), (∀ (element : Codomain), operation (inverse element) element = identity ∧ ∀ (element : Codomain), operation element (inverse element) = identity) → (∀ (element : Domain → Codomain), fun input => operation (inverse (element input)) (element input) = fun_input => identity ∧ ∀ (element : Domain → Codomain), fun input => operation (element input) (inverse (element input)) = fun_input => identity)
+  Ambient
+    (Domain, Codomain)
+  Objects
+    operation : BinaryEndoOperation Codomain
+    identity : Codomain
+    inverse : UnaryEndoOperation Codomain
+    inverseLaw : LRA.Operation.Laws.Inverse.TwoSidedInverse operation identity inverse
+  Prove
+    ((∀ (element : Codomain), operation (inverse element) element = identity) ∧ (∀ (element : Codomain), operation element (inverse element) = identity)) → ((∀ (element : Domain → Codomain), fun input => operation (inverse (element input)) (element input) = fun_input => identity) ∧ (∀ (element : Domain → Codomain), fun input => operation (element input) (inverse (element input)) = fun_input => identity))
 
 Logical form (Lean):
 

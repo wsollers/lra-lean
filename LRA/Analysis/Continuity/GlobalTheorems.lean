@@ -9,11 +9,16 @@ namespace LRA.Analysis.Continuity
 
 Predicate logic:
 
-  ∀ (f : Real → Real) (A : Set Real) (x : Real), Set.instMembership.mem A x → LRA.Analysis.Continuity.ContinuousAtPoint f A x
+  ∀ (f : Real → Real) (A : Set Real) (x : Real), x ∈ A → LRA.Analysis.Continuity.ContinuousAtPoint f A x
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (A : Real → Prop) (x : Real), Set.instMembership.1 A x → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (x_1 : Real), Set.instMembership.1 A x_1 → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 x_1 x) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 x_1 x))) δ → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (f x_1) (f x)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (f x_1) (f x)))) ε)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    x ∈ A → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun δ => (Real.instLT.lt 0 δ ∧ (∀ (x_1 : Real), x_1 ∈ A → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x_1 x)) δ → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f x_1) (f x))) ε))
 
 Logical form (Lean):
 
@@ -49,11 +54,16 @@ def ContinuousOn' (f : ℝ → ℝ) (A : Set ℝ) : Prop :=
 
 Predicate logic:
 
-  ∀ (f : Real → Real) (A : Set Real), Exists fun M => (GT.gt M 0 ∧ ∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le (abs (f x)) M)
+  ∀ (f : Real → Real) (A : Set Real), Exists fun M => (GT.gt M 0 ∧ (∀ (x : Real), x ∈ A → Real.instLE.le (abs (f x)) M))
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (A : Real → Prop), Exists fun M => (Real.instLT.1 Zero.toOfNat0.1 M ∧ ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 (SemilatticeSup.toMax.1 (f x) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (f x))) M)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun M => (Real.instLT.lt 0 M ∧ (∀ (x : Real), x ∈ A → Real.instLE.le (abs (f x)) M))
 
 Logical form (Lean):
 
@@ -89,11 +99,18 @@ def BoundedOnSet (f : ℝ → ℝ) (A : Set ℝ) : Prop :=
 
 Predicate logic:
 
-  (ℝ → ℝ ∧ a ≤ b) → BoundedOnSet f (Set.Icc a b)
+  ∀ (f : Real → Real) (a b : Real), (Real.instLE.le a b ∧ LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) → LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (a b : Real), (Real.instLE.1 a b ∧ ∀ (x : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) x → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (x_1 : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) x_1 → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 x_1 x) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub x_1 x))) δ → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (f x_1) (f x)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (f x_1) (f x)))) ε)) → Exists fun M => (Real.instLT.1 Zero.toOfNat0.1 M ∧ ∀ (x : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) x → Real.instLE.1 (SemilatticeSup.toMax.1 (f x) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (f x))) M)
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    a b : ℝ
+    hf : ContinuousOn' f (Set.Icc a b)
+  Prove
+    (Real.instLE.le a b ∧ (∀ (x : Real), x ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun δ => (Real.instLT.lt 0 δ ∧ (∀ (x_1 : Real), x_1 ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b) → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x_1 x)) δ → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f x_1) (f x))) ε)))) → Exists fun M => (Real.instLT.lt 0 M ∧ (∀ (x : Real), x ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b) → Real.instLE.le (abs (f x)) M))
 
 Logical form (Lean):
 
@@ -129,11 +146,16 @@ theorem BoundednessTheorem (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b)
 
 Predicate logic:
 
-  ∀ (f : Real → Real) (A : Set Real) (c : Real), (Set.instMembership.mem A c ∧ ∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le (f x) (f c))
+  ∀ (f : Real → Real) (A : Set Real) (c : Real), (c ∈ A ∧ (∀ (x : Real), x ∈ A → Real.instLE.le (f x) (f c)))
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (A : Real → Prop) (c : Real), (Set.instMembership.1 A c ∧ ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 (f x) (f c))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (c ∈ A ∧ (∀ (x : Real), x ∈ A → Real.instLE.le (f x) (f c)))
 
 Logical form (Lean):
 
@@ -169,11 +191,16 @@ def IsAbsoluteMaximum (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
 
 Predicate logic:
 
-  ∀ (f : Real → Real) (A : Set Real) (c : Real), (Set.instMembership.mem A c ∧ ∀ (x : Real), Set.instMembership.mem A x → Real.instLE.le (f c) (f x))
+  ∀ (f : Real → Real) (A : Set Real) (c : Real), (c ∈ A ∧ (∀ (x : Real), x ∈ A → Real.instLE.le (f c) (f x)))
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (A : Real → Prop) (c : Real), (Set.instMembership.1 A c ∧ ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 (f c) (f x))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (c ∈ A ∧ (∀ (x : Real), x ∈ A → Real.instLE.le (f c) (f x)))
 
 Logical form (Lean):
 
@@ -209,11 +236,18 @@ def IsAbsoluteMinimum (f : ℝ → ℝ) (A : Set ℝ) (c : ℝ) : Prop :=
 
 Predicate logic:
 
-  (ℝ → ℝ ∧ a ≤ b) → (∃ c, IsAbsoluteMaximum f (Set.Icc a b) c) ∧ (∃ c, IsAbsoluteMinimum f (Set.Icc a b) c)
+  ∀ (f : Real → Real) (a b : Real), (Real.instLE.le a b ∧ LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) → (Exists fun c => LRA.Analysis.Continuity.IsAbsoluteMaximum f (Set.Icc a b) c ∧ Exists fun c => LRA.Analysis.Continuity.IsAbsoluteMinimum f (Set.Icc a b) c)
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (a b : Real), (Real.instLE.1 a b ∧ ∀ (x : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) x → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (x_1 : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) x_1 → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 x_1 x) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub x_1 x))) δ → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (f x_1) (f x)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (f x_1) (f x)))) ε)) → (Exists fun c => (Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) c ∧ ∀ (x : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) x → Real.instLE.1 (f x) (f c)) ∧ Exists fun c => (Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) c ∧ ∀ (x : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) x → Real.instLE.1 (f c) (f x)))
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    a b : ℝ
+    hf : ContinuousOn' f (Set.Icc a b)
+  Prove
+    (Real.instLE.le a b ∧ (∀ (x : Real), x ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun δ => (Real.instLT.lt 0 δ ∧ (∀ (x_1 : Real), x_1 ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b) → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x_1 x)) δ → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f x_1) (f x))) ε)))) → ((Exists fun c => ((c ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b)) ∧ (∀ (x : Real), x ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b) → Real.instLE.le (f x) (f c)))) ∧ (Exists fun c => ((c ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b)) ∧ (∀ (x : Real), x ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b) → Real.instLE.le (f c) (f x)))))
 
 Logical form (Lean):
 
@@ -253,11 +287,18 @@ theorem ExtremeValueTheorem (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b)
 
 Predicate logic:
 
-  (ℝ → ℝ ∧ a < b ∧ f a * f b < 0) → ∃ c ∈ Set.Ioo a b, f c = 0
+  ∀ (f : Real → Real) (a b : Real), (Real.instLT.lt a b ∧ (LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b) ∧ Real.instLT.lt (instHMul.hMul (f a) (f b)) 0)) → Exists fun c => (c ∈ Set.Ioo a b ∧ f c = 0)
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (a b : Real), (Real.instLT.1 a b ∧ (∀ (x : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) x → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (x_1 : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) x_1 → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 x_1 x) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub x_1 x))) δ → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (f x_1) (f x)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (f x_1) (f x)))) ε) ∧ Real.instLT.1 (instHMul.1 (f a) (f b)) Zero.toOfNat0.1)) → Exists fun c => (Set.instMembership.1 (fun x => (Real.instPreorder.toLT.1 a x ∧ Real.instPreorder.toLT.1 x b)) c ∧ f c = Zero.toOfNat0.1)
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    a b : ℝ
+    hf : ContinuousOn' f (Set.Icc a b)
+  Prove
+    (Real.instLT.lt a b ∧ ((∀ (x : Real), x ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun δ => (Real.instLT.lt 0 δ ∧ (∀ (x_1 : Real), x_1 ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b) → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x_1 x)) δ → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f x_1) (f x))) ε))) ∧ Real.instLT.lt ({ hMul := fun a b => Real.instMul.mul a b }.hMul (f a) (f b)) 0)) → Exists fun c => ((c ∈ fun x => (Real.instPreorder.2.lt a x ∧ Real.instPreorder.2.lt x b)) ∧ f c = 0)
 
 Logical form (Lean):
 
@@ -295,11 +336,18 @@ theorem LocationOfRoots (f : ℝ → ℝ) (a b : ℝ) (hab : a < b)
 
 Predicate logic:
 
-  (ℝ → ℝ ∧ a < b ∧ (f a < y ∧ y < f b) ∨ (f b < y ∧ y < f a)) → ∃ c ∈ Set.Ioo a b, f c = y
+  ∀ (f : Real → Real) (a b y : Real), (Real.instLT.lt a b ∧ (LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b) ∧ (Or ((Real.instLT.lt (f a) y ∧ Real.instLT.lt y (f b))) ((Real.instLT.lt (f b) y ∧ Real.instLT.lt y (f a)))))) → Exists fun c => (c ∈ Set.Ioo a b ∧ f c = y)
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (a b y : Real), (Real.instLT.1 a b ∧ (∀ (x : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) x → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (x_1 : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) x_1 → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 x_1 x) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub x_1 x))) δ → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (f x_1) (f x)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (f x_1) (f x)))) ε) ∧ Or ((Real.instLT.1 (f a) y ∧ Real.instLT.1 y (f b))) ((Real.instLT.1 (f b) y ∧ Real.instLT.1 y (f a))))) → Exists fun c => (Set.instMembership.1 (fun x => (Real.instPreorder.toLT.1 a x ∧ Real.instPreorder.toLT.1 x b)) c ∧ f c = y)
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    a b y : ℝ
+    hf : ContinuousOn' f (Set.Icc a b)
+  Prove
+    (Real.instLT.lt a b ∧ ((∀ (x : Real), x ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun δ => (Real.instLT.lt 0 δ ∧ (∀ (x_1 : Real), x_1 ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b) → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x_1 x)) δ → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f x_1) (f x))) ε))) ∧ (Or ((Real.instLT.lt (f a) y ∧ Real.instLT.lt y (f b))) ((Real.instLT.lt (f b) y ∧ Real.instLT.lt y (f a)))))) → Exists fun c => ((c ∈ fun x => (Real.instPreorder.2.lt a x ∧ Real.instPreorder.2.lt x b)) ∧ f c = y)
 
 Logical form (Lean):
 
@@ -339,11 +387,19 @@ theorem BolzanoIntermediateValue (f : ℝ → ℝ) (a b y : ℝ) (hab : a < b)
 
 Predicate logic:
 
-  (∀ hI ∈ I.OrdConnected), (ℝ → ℝ) → (f '' I).OrdConnected
+  ∀ (f : Real → Real) (I : Set Real), (I.OrdConnected ∧ LRA.Analysis.Continuity.ContinuousOn' f I) → (Set.image f I).OrdConnected
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (I : Real → Prop), (Set.OrdConnected I ∧ ∀ (x : Real), Set.instMembership.1 I x → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (x_1 : Real), Set.instMembership.1 I x_1 → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 x_1 x) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub x_1 x))) δ → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (f x_1) (f x)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (f x_1) (f x)))) ε)) → Set.OrdConnected fun x => Exists fun a => (Set.instMembership.1 I a ∧ f a = x)
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    I : Set ℝ
+    hI : I.OrdConnected
+    hf : ContinuousOn' f I
+  Prove
+    (Set.OrdConnected I ∧ (∀ (x : Real), x ∈ I → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun δ => (Real.instLT.lt 0 δ ∧ (∀ (x_1 : Real), x_1 ∈ I → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x_1 x)) δ → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f x_1) (f x))) ε)))) → Set.OrdConnected fun x => Exists fun a => (a ∈ I ∧ f a = x)
 
 Logical form (Lean):
 
@@ -379,11 +435,16 @@ theorem PreservationOfIntervals (f : ℝ → ℝ) (I : Set ℝ) (hI : I.OrdConne
 
 Predicate logic:
 
-  ∀ (f : Real → Real) (A : Set Real) (a : Real), Set.instMembership.mem A a → ∀ (b : Real), Set.instMembership.mem A b → ∀ (y : Real), Or ((Real.instLT.lt (f a) y ∧ Real.instLT.lt y (f b))) ((Real.instLT.lt (f b) y ∧ Real.instLT.lt y (f a))) → Exists fun c => (Set.instMembership.mem A c ∧ f c = y)
+  ∀ (f : Real → Real) (A : Set Real) (a : Real), a ∈ A → ∀ (b : Real), b ∈ A → ∀ (y : Real), Or ((Real.instLT.lt (f a) y ∧ Real.instLT.lt y (f b))) ((Real.instLT.lt (f b) y ∧ Real.instLT.lt y (f a))) → Exists fun c => (c ∈ A ∧ f c = y)
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (A : Real → Prop) (a : Real), Set.instMembership.1 A a → ∀ (b : Real), Set.instMembership.1 A b → ∀ (y : Real), Or ((Real.instLT.1 (f a) y ∧ Real.instLT.1 y (f b))) ((Real.instLT.1 (f b) y ∧ Real.instLT.1 y (f a))) → Exists fun c => (Set.instMembership.1 A c ∧ f c = y)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    a ∈ A → ∀ (b : Real), b ∈ A → ∀ (y : Real), Or ((Real.instLT.lt (f a) y ∧ Real.instLT.lt y (f b))) ((Real.instLT.lt (f b) y ∧ Real.instLT.lt y (f a))) → Exists fun c => (c ∈ A ∧ f c = y)
 
 Logical form (Lean):
 
@@ -421,11 +482,19 @@ def DarbouxProperty (f : ℝ → ℝ) (A : Set ℝ) : Prop :=
 
 Predicate logic:
 
-  (∀ hI ∈ I.OrdConnected), (ℝ → ℝ) → DarbouxProperty f I
+  ∀ (f : Real → Real) (I : Set Real), (I.OrdConnected ∧ LRA.Analysis.Continuity.ContinuousOn' f I) → LRA.Analysis.Continuity.DarbouxProperty f I
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (I : Real → Prop), (Set.OrdConnected I ∧ ∀ (x : Real), Set.instMembership.1 I x → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (x_1 : Real), Set.instMembership.1 I x_1 → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 x_1 x) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub x_1 x))) δ → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (f x_1) (f x)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (f x_1) (f x)))) ε)) → ∀ (a : Real), Set.instMembership.1 I a → ∀ (b : Real), Set.instMembership.1 I b → ∀ (y : Real), Or ((Real.instLT.1 (f a) y ∧ Real.instLT.1 y (f b))) ((Real.instLT.1 (f b) y ∧ Real.instLT.1 y (f a))) → Exists fun c => (Set.instMembership.1 I c ∧ f c = y)
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    I : Set ℝ
+    hI : I.OrdConnected
+    hf : ContinuousOn' f I
+  Prove
+    (Set.OrdConnected I ∧ (∀ (x : Real), x ∈ I → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun δ => (Real.instLT.lt 0 δ ∧ (∀ (x_1 : Real), x_1 ∈ I → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x_1 x)) δ → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f x_1) (f x))) ε)))) → ∀ (a : Real), a ∈ I → ∀ (b : Real), b ∈ I → ∀ (y : Real), Or ((Real.instLT.lt (f a) y ∧ Real.instLT.lt y (f b))) ((Real.instLT.lt (f b) y ∧ Real.instLT.lt y (f a))) → Exists fun c => (c ∈ I ∧ f c = y)
 
 Logical form (Lean):
 
@@ -461,11 +530,18 @@ theorem ContinuousImpliesDarbouxProperty (f : ℝ → ℝ) (I : Set ℝ)
 
 Predicate logic:
 
-  (ℝ → ℝ ∧ a ≤ b) → ∀ ε > 0, ∃ δ > 0, ∀ x ∈ Set.Icc a b, ∀ y ∈ Set.Icc a b, |x - y| < δ → |f x - f y| < ε
+  ∀ (f : Real → Real) (a b : Real), (Real.instLE.le a b ∧ LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) → ∀ (ε : Real), GT.gt ε 0 → Exists fun δ => (GT.gt δ 0 ∧ (∀ (x : Real), x ∈ Set.Icc a b → ∀ (y : Real), y ∈ Set.Icc a b → Real.instLT.lt (abs (instHSub.hSub x y)) δ → Real.instLT.lt (abs (instHSub.hSub (f x) (f y))) ε))
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (a b : Real), (Real.instLE.1 a b ∧ ∀ (x : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) x → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (x_1 : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) x_1 → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 x_1 x) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub x_1 x))) δ → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (f x_1) (f x)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (f x_1) (f x)))) ε)) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (x : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) x → ∀ (y : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) y → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 x y) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 x y))) δ → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (f x) (f y)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (f x) (f y)))) ε)
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    a b : ℝ
+    hf : ContinuousOn' f (Set.Icc a b)
+  Prove
+    (Real.instLE.le a b ∧ (∀ (x : Real), x ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun δ => (Real.instLT.lt 0 δ ∧ (∀ (x_1 : Real), x_1 ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b) → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x_1 x)) δ → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f x_1) (f x))) ε)))) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun δ => (Real.instLT.lt 0 δ ∧ (∀ (x : Real), x ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b) → ∀ (y : Real), y ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b) → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x y)) δ → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f x) (f y))) ε))
 
 Logical form (Lean):
 
@@ -505,11 +581,18 @@ theorem HeineCantor (f : ℝ → ℝ) (a b : ℝ) (hab : a ≤ b)
 
 Predicate logic:
 
-  (ℝ → ℝ ∧ a ≤ b) → ∃ m M, m ≤ M ∧ f '' Set.Icc a b = Set.Icc m M
+  ∀ (f : Real → Real) (a b : Real), (Real.instLE.le a b ∧ LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) → Exists fun m => Exists fun M => (Real.instLE.le m M ∧ Set.image f (Set.Icc a b) = Set.Icc m M)
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (a b : Real), (Real.instLE.1 a b ∧ ∀ (x : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) x → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (x_1 : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) x_1 → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 x_1 x) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub x_1 x))) δ → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (f x_1) (f x)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (f x_1) (f x)))) ε)) → Exists fun m => Exists fun M => (Real.instLE.1 m M ∧ fun x => Exists fun a_2 => (Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) a_2 ∧ f a_2 = x) = funx => (Real.instPreorder.toLE.1 m x ∧ Real.instPreorder.toLE.1 x M))
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    a b : ℝ
+    hf : ContinuousOn' f (Set.Icc a b)
+  Prove
+    (Real.instLE.le a b ∧ (∀ (x : Real), x ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun δ => (Real.instLT.lt 0 δ ∧ (∀ (x_1 : Real), x_1 ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b) → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x_1 x)) δ → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f x_1) (f x))) ε)))) → Exists fun m => Exists fun M => (Real.instLE.le m M ∧ (fun x => Exists fun a_2 => ((a_2 ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b)) ∧ f a_2 = x) = funx => (Real.instPreorder.1.le m x ∧ Real.instPreorder.1.le x M)))
 
 Logical form (Lean):
 

@@ -14,7 +14,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (first second result : LRA.NumberSystems.RealNumbers.Cantor.EndpointInterval fieldModel), (result.1 = fieldModel.signature.toBooleanRingOperationBundle.2 first.1 second.1 ∧ result.2 = fieldModel.signature.toBooleanRingOperationBundle.2 first.2 second.2)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (result.1 = fieldModel.signature.toBooleanRingOperationBundle.2 first.1 second.1 ∧ result.2 = fieldModel.signature.toBooleanRingOperationBundle.2 first.2 second.2)
 
 Logical form (Lean):
 
@@ -60,7 +65,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (interval result : LRA.NumberSystems.RealNumbers.Cantor.EndpointInterval fieldModel), (result.1 = fieldModel.signature.toRingConceptSignature.2 interval.2 ∧ result.2 = fieldModel.signature.toRingConceptSignature.2 interval.1)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (result.1 = fieldModel.signature.toRingConceptSignature.2 interval.2 ∧ result.2 = fieldModel.signature.toRingConceptSignature.2 interval.1)
 
 Logical form (Lean):
 
@@ -106,7 +116,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (first second : LRA.NumberSystems.RealNumbers.Cantor.EndpointInterval fieldModel) (value : fieldModel.signature.toCarrierBundle.1), Or (value = fieldModel.signature.toBooleanRingOperationBundle.3 first.1 second.1) (Or (value = fieldModel.signature.toBooleanRingOperationBundle.3 first.1 second.2) (Or (value = fieldModel.signature.toBooleanRingOperationBundle.3 first.2 second.1) (value = fieldModel.signature.toBooleanRingOperationBundle.3 first.2 second.2)))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (value = fieldModel.signature.toBooleanRingOperationBundle.3 first.1 second.1) (Or (value = fieldModel.signature.toBooleanRingOperationBundle.3 first.1 second.2) (Or (value = fieldModel.signature.toBooleanRingOperationBundle.3 first.2 second.1) (value = fieldModel.signature.toBooleanRingOperationBundle.3 first.2 second.2)))
 
 Logical form (Lean):
 
@@ -154,11 +169,16 @@ def IsCornerProduct
 
 Predicate logic:
 
-  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (first second result : LRA.NumberSystems.RealNumbers.Cantor.EndpointInterval fieldModel), (∀ (corner : fieldModel.signature.carrier), LRA.NumberSystems.RealNumbers.Cantor.IsCornerProduct fieldModel first second corner → fieldModel.signature.le result.lower corner ∧ (∀ (corner : fieldModel.signature.carrier), LRA.NumberSystems.RealNumbers.Cantor.IsCornerProduct fieldModel first second corner → fieldModel.signature.le corner result.upper ∧ (LRA.NumberSystems.RealNumbers.Cantor.IsCornerProduct fieldModel first second result.lower ∧ LRA.NumberSystems.RealNumbers.Cantor.IsCornerProduct fieldModel first second result.upper)))
+  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (first second result : LRA.NumberSystems.RealNumbers.Cantor.EndpointInterval fieldModel), ((∀ (corner : fieldModel.signature.carrier), LRA.NumberSystems.RealNumbers.Cantor.IsCornerProduct fieldModel first second corner → fieldModel.signature.le result.lower corner) ∧ ((∀ (corner : fieldModel.signature.carrier), LRA.NumberSystems.RealNumbers.Cantor.IsCornerProduct fieldModel first second corner → fieldModel.signature.le corner result.upper) ∧ (LRA.NumberSystems.RealNumbers.Cantor.IsCornerProduct fieldModel first second result.lower ∧ LRA.NumberSystems.RealNumbers.Cantor.IsCornerProduct fieldModel first second result.upper)))
 
 Predicate logic (unfolded):
 
-  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (first second result : LRA.NumberSystems.RealNumbers.Cantor.EndpointInterval fieldModel), (∀ (corner : fieldModel.signature.toCarrierBundle.1), Or (corner = fieldModel.signature.toBooleanRingOperationBundle.3 first.1 second.1) (Or (corner = fieldModel.signature.toBooleanRingOperationBundle.3 first.1 second.2) (Or (corner = fieldModel.signature.toBooleanRingOperationBundle.3 first.2 second.1) (corner = fieldModel.signature.toBooleanRingOperationBundle.3 first.2 second.2))) → fieldModel.signature.toOrderedRingConceptSignature.2 result.1 corner ∧ (∀ (corner : fieldModel.signature.toCarrierBundle.1), Or (corner = fieldModel.signature.toBooleanRingOperationBundle.3 first.1 second.1) (Or (corner = fieldModel.signature.toBooleanRingOperationBundle.3 first.1 second.2) (Or (corner = fieldModel.signature.toBooleanRingOperationBundle.3 first.2 second.1) (corner = fieldModel.signature.toBooleanRingOperationBundle.3 first.2 second.2))) → fieldModel.signature.toOrderedRingConceptSignature.2 corner result.2 ∧ (Or (result.1 = fieldModel.signature.toBooleanRingOperationBundle.3 first.1 second.1) (Or (result.1 = fieldModel.signature.toBooleanRingOperationBundle.3 first.1 second.2) (Or (result.1 = fieldModel.signature.toBooleanRingOperationBundle.3 first.2 second.1) (result.1 = fieldModel.signature.toBooleanRingOperationBundle.3 first.2 second.2))) ∧ Or (result.2 = fieldModel.signature.toBooleanRingOperationBundle.3 first.1 second.1) (Or (result.2 = fieldModel.signature.toBooleanRingOperationBundle.3 first.1 second.2) (Or (result.2 = fieldModel.signature.toBooleanRingOperationBundle.3 first.2 second.1) (result.2 = fieldModel.signature.toBooleanRingOperationBundle.3 first.2 second.2))))))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (corner : fieldModel.signature.toCarrierBundle.1), Or (corner = fieldModel.signature.toBooleanRingOperationBundle.3 first.1 second.1) (Or (corner = fieldModel.signature.toBooleanRingOperationBundle.3 first.1 second.2) (Or (corner = fieldModel.signature.toBooleanRingOperationBundle.3 first.2 second.1) (corner = fieldModel.signature.toBooleanRingOperationBundle.3 first.2 second.2))) → fieldModel.signature.toOrderedRingConceptSignature.2 result.1 corner) ∧ ((∀ (corner : fieldModel.signature.toCarrierBundle.1), Or (corner = fieldModel.signature.toBooleanRingOperationBundle.3 first.1 second.1) (Or (corner = fieldModel.signature.toBooleanRingOperationBundle.3 first.1 second.2) (Or (corner = fieldModel.signature.toBooleanRingOperationBundle.3 first.2 second.1) (corner = fieldModel.signature.toBooleanRingOperationBundle.3 first.2 second.2))) → fieldModel.signature.toOrderedRingConceptSignature.2 corner result.2) ∧ (Or (result.1 = fieldModel.signature.toBooleanRingOperationBundle.3 first.1 second.1) (Or (result.1 = fieldModel.signature.toBooleanRingOperationBundle.3 first.1 second.2) (Or (result.1 = fieldModel.signature.toBooleanRingOperationBundle.3 first.2 second.1) (result.1 = fieldModel.signature.toBooleanRingOperationBundle.3 first.2 second.2))) ∧ Or (result.2 = fieldModel.signature.toBooleanRingOperationBundle.3 first.1 second.1) (Or (result.2 = fieldModel.signature.toBooleanRingOperationBundle.3 first.1 second.2) (Or (result.2 = fieldModel.signature.toBooleanRingOperationBundle.3 first.2 second.1) (result.2 = fieldModel.signature.toBooleanRingOperationBundle.3 first.2 second.2))))))
 
 Logical form (Lean):
 
@@ -208,11 +228,16 @@ def IsEndpointProduct
 
 Predicate logic:
 
-  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (sequence : Nat → LRA.NumberSystems.RealNumbers.Cantor.EndpointInterval fieldModel), (∀ (index : Nat), (fieldModel.signature.le (sequence index).lower (sequence (instHAdd.hAdd index 1)).lower ∧ fieldModel.signature.le (sequence (instHAdd.hAdd index 1)).upper (sequence index).upper) ∧ ∀ (positive_tolerance : fieldModel.signature.carrier), fieldModel.signature.StrictOrder fieldModel.signature.zero positive_tolerance → Exists fun index => fieldModel.signature.StrictOrder (fieldModel.signature.add (sequence index).upper (fieldModel.signature.neg (sequence index).lower)) positive_tolerance)
+  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (sequence : Nat → LRA.NumberSystems.RealNumbers.Cantor.EndpointInterval fieldModel), ((∀ (index : Nat), (fieldModel.signature.le (sequence index).lower (sequence (instHAdd.hAdd index 1)).lower ∧ fieldModel.signature.le (sequence (instHAdd.hAdd index 1)).upper (sequence index).upper)) ∧ (∀ (positive_tolerance : fieldModel.signature.carrier), fieldModel.signature.StrictOrder fieldModel.signature.zero positive_tolerance → Exists fun index => fieldModel.signature.StrictOrder (fieldModel.signature.add (sequence index).upper (fieldModel.signature.neg (sequence index).lower)) positive_tolerance))
 
 Predicate logic (unfolded):
 
-  ∀ (fieldModel : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (sequence : Nat → LRA.NumberSystems.RealNumbers.Cantor.EndpointInterval fieldModel), (∀ (index : Nat), (fieldModel.signature.toOrderedRingConceptSignature.2 (sequence index).1 (sequence (instHAdd.hAdd index 1)).1 ∧ fieldModel.signature.toOrderedRingConceptSignature.2 (sequence (instHAdd.hAdd index 1)).2 (sequence index).2) ∧ ∀ (positive_tolerance : fieldModel.signature.toCarrierBundle.1), fieldModel.signature.toOrderedRingSignature.2 fieldModel.signature.toZeroOneBundle.2 positive_tolerance → Exists fun index => fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (sequence index).2 (fieldModel.signature.toRingConceptSignature.2 (sequence index).1)) positive_tolerance)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (index : Nat), (fieldModel.signature.toOrderedRingConceptSignature.2 (sequence index).1 (sequence (instHAdd.hAdd index 1)).1 ∧ fieldModel.signature.toOrderedRingConceptSignature.2 (sequence (instHAdd.hAdd index 1)).2 (sequence index).2)) ∧ (∀ (positive_tolerance : fieldModel.signature.toCarrierBundle.1), fieldModel.signature.toOrderedRingSignature.2 fieldModel.signature.toZeroOneBundle.2 positive_tolerance → Exists fun index => fieldModel.signature.toOrderedRingSignature.2 (fieldModel.signature.toBooleanRingOperationBundle.2 (sequence index).2 (fieldModel.signature.toRingConceptSignature.2 (sequence index).1)) positive_tolerance))
 
 Logical form (Lean):
 

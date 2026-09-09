@@ -9,18 +9,18 @@ namespace LRA.NumberSystems.Integers.Tao
 Predicate logic:
 
   def zero_representative
-    (whole_data : WholeNumberArithmeticForTaoFormalDifferences) :
-    FormalDifference whole_data where
-  minuend := whole_data.zero
-  subtrahend := whole_data.zero
+      (whole_data : WholeNumberArithmeticForTaoFormalDifferences) :
+      FormalDifference whole_data where
+    minuend := whole_data.zero
+    subtrahend := whole_data.zero
 
 Predicate logic (unfolded):
 
   def zero_representative
-    (whole_data : WholeNumberArithmeticForTaoFormalDifferences) :
-    FormalDifference whole_data where
-  minuend := whole_data.zero
-  subtrahend := whole_data.zero (source fallback; no compiled unfold data available)
+      (whole_data : WholeNumberArithmeticForTaoFormalDifferences) :
+      FormalDifference whole_data where
+    minuend := whole_data.zero
+    subtrahend := whole_data.zero (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -63,18 +63,18 @@ def zero_representative
 Predicate logic:
 
   def whole_embedding_representative
-    (whole_data : WholeNumberArithmeticForTaoFormalDifferences)
-    (value : whole_data.carrier) : FormalDifference whole_data where
-  minuend := value
-  subtrahend := whole_data.zero
+      (whole_data : WholeNumberArithmeticForTaoFormalDifferences)
+      (value : whole_data.carrier) : FormalDifference whole_data where
+    minuend := value
+    subtrahend := whole_data.zero
 
 Predicate logic (unfolded):
 
   def whole_embedding_representative
-    (whole_data : WholeNumberArithmeticForTaoFormalDifferences)
-    (value : whole_data.carrier) : FormalDifference whole_data where
-  minuend := value
-  subtrahend := whole_data.zero (source fallback; no compiled unfold data available)
+      (whole_data : WholeNumberArithmeticForTaoFormalDifferences)
+      (value : whole_data.carrier) : FormalDifference whole_data where
+    minuend := value
+    subtrahend := whole_data.zero (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -117,18 +117,18 @@ def whole_embedding_representative
 Predicate logic:
 
   def whole_embedding
-    (whole_data : WholeNumberArithmeticForTaoFormalDifferences) :
-    whole_data.carrier → Carrier whole_data :=
-  fun value => Quotient.mk (setoid whole_data)
-    (whole_embedding_representative whole_data value)
+      (whole_data : WholeNumberArithmeticForTaoFormalDifferences) :
+      whole_data.carrier → Carrier whole_data :=
+    fun value => Quotient.mk (setoid whole_data)
+      (whole_embedding_representative whole_data value)
 
 Predicate logic (unfolded):
 
   def whole_embedding
-    (whole_data : WholeNumberArithmeticForTaoFormalDifferences) :
-    whole_data.carrier → Carrier whole_data :=
-  fun value => Quotient.mk (setoid whole_data)
-    (whole_embedding_representative whole_data value) (source fallback; no compiled unfold data available)
+      (whole_data : WholeNumberArithmeticForTaoFormalDifferences) :
+      whole_data.carrier → Carrier whole_data :=
+    fun value => Quotient.mk (setoid whole_data)
+      (whole_embedding_representative whole_data value) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -170,11 +170,16 @@ def whole_embedding
 
 Predicate logic:
 
-  (∀ whole_data ∈ WholeNumberArithmeticForTaoFormalDifferences), ∀ first second, whole_embedding whole_data first = whole_embedding whole_data second → first = second
+  ∀ (whole_data : LRA.NumberSystems.Integers.Tao.WholeNumberArithmeticForTaoFormalDifferences) (first second : whole_data.carrier), LRA.NumberSystems.Integers.Tao.whole_embedding whole_data first = LRA.NumberSystems.Integers.Tao.whole_embedding whole_data second → first = second
 
 Predicate logic (unfolded):
 
-  ∀ (whole_data : LRA.NumberSystems.Integers.Tao.WholeNumberArithmeticForTaoFormalDifferences) (first second : whole_data.1), Quot.mk (LRA.NumberSystems.Integers.Tao.setoid whole_data).1 { minuend := first, subtrahend := whole_data.2 } = Quot.mk (LRA.NumberSystems.Integers.Tao.setoid whole_data).1 { minuend := second, subtrahend := whole_data.2 } → first = second
+  Ambient
+    (implicit ambient)
+  Objects
+    whole_data : WholeNumberArithmeticForTaoFormalDifferences
+  Prove
+    Quot.mk (LRA.NumberSystems.Integers.Tao.setoid whole_data).1 { minuend := first, subtrahend := whole_data.2 } = Quot.mk (LRA.NumberSystems.Integers.Tao.setoid whole_data).1 { minuend := second, subtrahend := whole_data.2 } → first = second
 
 Logical form (Lean):
 
@@ -217,18 +222,18 @@ theorem whole_embedding_is_injective
 Predicate logic:
 
   def representative_addition
-    (whole_data : WholeNumberArithmeticForTaoFormalDifferences)
-    (first second : FormalDifference whole_data) : FormalDifference whole_data where
-  minuend := whole_data.addition first.minuend second.minuend
-  subtrahend := whole_data.addition first.subtrahend second.subtrahend
+      (whole_data : WholeNumberArithmeticForTaoFormalDifferences)
+      (first second : FormalDifference whole_data) : FormalDifference whole_data where
+    minuend := whole_data.addition first.minuend second.minuend
+    subtrahend := whole_data.addition first.subtrahend second.subtrahend
 
 Predicate logic (unfolded):
 
   def representative_addition
-    (whole_data : WholeNumberArithmeticForTaoFormalDifferences)
-    (first second : FormalDifference whole_data) : FormalDifference whole_data where
-  minuend := whole_data.addition first.minuend second.minuend
-  subtrahend := whole_data.addition first.subtrahend second.subtrahend (source fallback; no compiled unfold data available)
+      (whole_data : WholeNumberArithmeticForTaoFormalDifferences)
+      (first second : FormalDifference whole_data) : FormalDifference whole_data where
+    minuend := whole_data.addition first.minuend second.minuend
+    subtrahend := whole_data.addition first.subtrahend second.subtrahend (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -271,18 +276,18 @@ def representative_addition
 Predicate logic:
 
   def representative_negation
-    (whole_data : WholeNumberArithmeticForTaoFormalDifferences)
-    (value : FormalDifference whole_data) : FormalDifference whole_data where
-  minuend := value.subtrahend
-  subtrahend := value.minuend
+      (whole_data : WholeNumberArithmeticForTaoFormalDifferences)
+      (value : FormalDifference whole_data) : FormalDifference whole_data where
+    minuend := value.subtrahend
+    subtrahend := value.minuend
 
 Predicate logic (unfolded):
 
   def representative_negation
-    (whole_data : WholeNumberArithmeticForTaoFormalDifferences)
-    (value : FormalDifference whole_data) : FormalDifference whole_data where
-  minuend := value.subtrahend
-  subtrahend := value.minuend (source fallback; no compiled unfold data available)
+      (whole_data : WholeNumberArithmeticForTaoFormalDifferences)
+      (value : FormalDifference whole_data) : FormalDifference whole_data where
+    minuend := value.subtrahend
+    subtrahend := value.minuend (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -325,30 +330,30 @@ def representative_negation
 Predicate logic:
 
   def representative_multiplication
-    (whole_data : WholeNumberArithmeticForTaoFormalDifferences)
-    (first second : FormalDifference whole_data) : FormalDifference whole_data where
-  minuend :=
-    whole_data.addition
-      (whole_data.multiplication first.minuend second.minuend)
-      (whole_data.multiplication first.subtrahend second.subtrahend)
-  subtrahend :=
-    whole_data.addition
-      (whole_data.multiplication first.minuend second.subtrahend)
-      (whole_data.multiplication first.subtrahend second.minuend)
+      (whole_data : WholeNumberArithmeticForTaoFormalDifferences)
+      (first second : FormalDifference whole_data) : FormalDifference whole_data where
+    minuend :=
+      whole_data.addition
+        (whole_data.multiplication first.minuend second.minuend)
+        (whole_data.multiplication first.subtrahend second.subtrahend)
+    subtrahend :=
+      whole_data.addition
+        (whole_data.multiplication first.minuend second.subtrahend)
+        (whole_data.multiplication first.subtrahend second.minuend)
 
 Predicate logic (unfolded):
 
   def representative_multiplication
-    (whole_data : WholeNumberArithmeticForTaoFormalDifferences)
-    (first second : FormalDifference whole_data) : FormalDifference whole_data where
-  minuend :=
-    whole_data.addition
-      (whole_data.multiplication first.minuend second.minuend)
-      (whole_data.multiplication first.subtrahend second.subtrahend)
-  subtrahend :=
-    whole_data.addition
-      (whole_data.multiplication first.minuend second.subtrahend)
-      (whole_data.multiplication first.subtrahend second.minuend) (source fallback; no compiled unfold data available)
+      (whole_data : WholeNumberArithmeticForTaoFormalDifferences)
+      (first second : FormalDifference whole_data) : FormalDifference whole_data where
+    minuend :=
+      whole_data.addition
+        (whole_data.multiplication first.minuend second.minuend)
+        (whole_data.multiplication first.subtrahend second.subtrahend)
+    subtrahend :=
+      whole_data.addition
+        (whole_data.multiplication first.minuend second.subtrahend)
+        (whole_data.multiplication first.subtrahend second.minuend) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -406,7 +411,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (whole_data : LRA.NumberSystems.Integers.Tao.WholeNumberArithmeticForTaoFormalDifferences) (value : LRA.NumberSystems.Integers.Tao.FormalDifference whole_data), whole_data.6 value.2 value.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    whole_data.6 value.2 value.1
 
 Logical form (Lean):
 
@@ -450,7 +460,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (whole_data : LRA.NumberSystems.Integers.Tao.WholeNumberArithmeticForTaoFormalDifferences) (first second : LRA.NumberSystems.Integers.Tao.FormalDifference whole_data), (whole_data.6 (whole_data.4 first.1 second.2) (whole_data.4 second.1 first.2) ∧ whole_data.4 first.1 second.2 = whole_data.4 second.1 first.2 → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (whole_data.6 (whole_data.4 first.1 second.2) (whole_data.4 second.1 first.2) ∧ (whole_data.4 first.1 second.2 = whole_data.4 second.1 first.2 → False))
 
 Logical form (Lean):
 

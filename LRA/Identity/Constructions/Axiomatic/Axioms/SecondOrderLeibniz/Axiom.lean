@@ -9,18 +9,11 @@ universe u
 
 Predicate logic:
 
-  Property x → Property y end LRA.Identity.Constructions.Axiomatic
+  ∀ {Carrier : Type u} {x y : Carrier}, LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x y → ∀ (Property : Carrier → Prop), Property x → Property y
 
 Predicate logic (unfolded):
 
-  Ambient
-    (Carrier)
-  Objects
-    x y : Carrier
-    h : Ax_IdentityRelation x y
-    Property : Carrier → Prop
-  Prove
-    LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x y → ∀ (Property : Carrier → Prop), Property x → Property y
+  ∀ {Carrier : Type u} {x y : Carrier}, LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x y → ∀ (Property : Carrier → Prop), Property x → Property y
 
 Logical form (Lean):
 

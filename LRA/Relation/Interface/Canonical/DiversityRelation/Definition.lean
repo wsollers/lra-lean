@@ -12,7 +12,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (α : Type u) (a a_1 : α), a = a_1 → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    a = a_1 → False
 
 Logical form (Lean):
 

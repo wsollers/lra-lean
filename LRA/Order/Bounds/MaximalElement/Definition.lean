@@ -12,20 +12,27 @@ variable [Membership Element SetObject]
 
 Predicate logic:
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (strictRelation : LRA.Relation.Endorelation Element) (subset : SetObject) (maximal : Element), (maximal ∈ subset ∧ ∀ (element : Element), element ∈ subset → ¬ strictRelation maximal element)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (maximum : Element), (maximum ∈ subset ∧ (∀ (element : Element), element ∈ subset → ¬ relation maximum element))
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (strictRelation : Element → Element → Prop) (subset : SetObject) (maximal : Element), (inst.1 subset maximal ∧ ∀ (element : Element), inst.1 subset element → strictRelation maximal element → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (inst.1 subset maximum ∧ (∀ (element : Element), inst.1 subset element → relation maximum element → False))
 
 Logical form (Lean):
 
 ```lean
-abbrev MaximalElement
-    (strictRelation : LRA.Relation.Endorelation Element)
+def MaximalElement {Element : Type u} {SetObject : Type v}
+    [Membership Element SetObject]
+    (relation : Endorelation Element)
     (subset : SetObject)
-    (maximal : Element) : Prop :=
-  LRA.Relation.MaximalElement strictRelation subset maximal
+    (maximum : Element) : Prop :=
+  maximum ∈ subset ∧
+    ∀ element, element ∈ subset → ¬ relation maximum element
 ```
 
 Type-theoretic form:

@@ -7,11 +7,17 @@ namespace LRA.Order.OrderedSets.StrictOrder
 
 Predicate logic:
 
-  (∀ element ∈ Carrier), Not (order.relation element element)
+  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.StrictOrder.StrictOrderRelation Carrier) (element : Carrier), ¬ order.relation element element
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.StrictOrder.StrictOrderRelation Carrier) (element : Carrier), order.1 element element → False
+  Ambient
+    (Carrier)
+  Objects
+    order : StrictOrderRelation Carrier
+    element : Carrier
+  Prove
+    order.1 element element → False
 
 Logical form (Lean):
 
@@ -53,11 +59,18 @@ theorem StrictOrderDoesNotRelateSelf
 
 Predicate logic:
 
-  (∀ left right ∈ Carrier), Not (order.relation right left)
+  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.StrictOrder.StrictOrderRelation Carrier) (left right : Carrier), order.relation left right → ¬ order.relation right left
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.StrictOrder.StrictOrderRelation Carrier) (left right : Carrier), (order.1 left right ∧ order.1 right left) → False
+  Ambient
+    (Carrier)
+  Objects
+    order : StrictOrderRelation Carrier
+    left right : Carrier
+    leftRelatedToRight : order.relation left right
+  Prove
+    (order.1 left right ∧ order.1 right left) → False
 
 Logical form (Lean):
 

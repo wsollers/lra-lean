@@ -11,11 +11,16 @@ universe u
 
 Predicate logic:
 
-  GreaterThanOrEqual strictRelation = LRA.Relation.Converse (LessThanOrEqual strictRelation)
+  ∀ {Alpha : Type u} (strictRelation : LRA.Relation.Endorelation Alpha), LRA.Order.GreaterThanOrEqual strictRelation = LRA.Relation.Converse (LRA.Order.LessThanOrEqual strictRelation)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (strictRelation : Alpha → Alpha → Prop), fun left right => Or (strictRelation right left) (left = right) = funy x => Or (strictRelation x y) (x = y)
+  Ambient
+    (Alpha)
+  Objects
+    strictRelation : LRA.Relation.Endorelation Alpha
+  Prove
+    fun left right => Or (strictRelation right left) (left = right) = funy x => Or (strictRelation x y) (x = y)
 
 Logical form (Lean):
 

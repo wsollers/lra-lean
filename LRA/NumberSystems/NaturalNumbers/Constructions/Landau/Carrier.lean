@@ -13,7 +13,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  Type
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Type
 
 Logical form (Lean):
 
@@ -47,11 +52,16 @@ axiom LandauElement : Type
 
 Predicate logic:
 
-  LandauElement
+  LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauElement
 
 Predicate logic (unfolded):
 
-  LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauElement
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauElement
 
 Logical form (Lean):
 
@@ -85,11 +95,16 @@ axiom LandauOne : LandauElement
 
 Predicate logic:
 
-  LandauElement → LandauElement end LRA.NumberSystems.NaturalNumbers.Constructions.Landau
+  LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauElement → LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauElement
 
 Predicate logic (unfolded):
 
-  LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauElement → LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauElement
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauElement → LRA.NumberSystems.NaturalNumbers.Constructions.Landau.LandauElement
 
 Logical form (Lean):
 

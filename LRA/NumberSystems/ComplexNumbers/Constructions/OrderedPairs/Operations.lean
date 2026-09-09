@@ -29,12 +29,12 @@ instance [Add R] [Mul R] [Neg R] : Mul (ComplexNumber R) :=
 Predicate logic:
 
   def conjugation [Neg R] (value : ComplexNumber R) : ComplexNumber R :=
-  ⟨value.real_part, -value.imaginary_part⟩
+    ⟨value.real_part, -value.imaginary_part⟩
 
 Predicate logic (unfolded):
 
   def conjugation [Neg R] (value : ComplexNumber R) : ComplexNumber R :=
-  ⟨value.real_part, -value.imaginary_part⟩ (source fallback; no compiled unfold data available)
+    ⟨value.real_part, -value.imaginary_part⟩ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -71,14 +71,14 @@ def conjugation [Neg R] (value : ComplexNumber R) : ComplexNumber R :=
 Predicate logic:
 
   def normSquared [Add R] [Mul R] (value : ComplexNumber R) : R :=
-  value.real_part * value.real_part +
-    value.imaginary_part * value.imaginary_part
+    value.real_part * value.real_part +
+      value.imaginary_part * value.imaginary_part
 
 Predicate logic (unfolded):
 
   def normSquared [Add R] [Mul R] (value : ComplexNumber R) : R :=
-  value.real_part * value.real_part +
-    value.imaginary_part * value.imaginary_part (source fallback; no compiled unfold data available)
+    value.real_part * value.real_part +
+      value.imaginary_part * value.imaginary_part (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

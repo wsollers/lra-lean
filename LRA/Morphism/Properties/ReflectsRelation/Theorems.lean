@@ -9,11 +9,21 @@ universe u v
 
 Predicate logic:
 
-  sourceRelation left right
+  ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source} {targetRelation : LRA.Relation.Endorelation Target}, LRA.Morphism.ReflectsRelation function sourceRelation targetRelation → ∀ {left right : Source}, targetRelation (function left) (function right) → sourceRelation left right
 
 Predicate logic (unfolded):
 
-  ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : Source → Source → Prop} {targetRelation : Target → Target → Prop}, (∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right) → ∀ {left right : Source}, targetRelation (function left) (function right) → sourceRelation left right
+  Ambient
+    (Source, Target)
+  Objects
+    function : Source → Target
+    sourceRelation : LRA.Relation.Endorelation Source
+    targetRelation : LRA.Relation.Endorelation Target
+    law : ReflectsRelation function sourceRelation targetRelation
+    left right : Source
+    relatedValues : targetRelation (function left) (function right)
+  Prove
+    (∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right) → ∀ {left right : Source}, targetRelation (function left) (function right) → sourceRelation left right
 
 Logical form (Lean):
 

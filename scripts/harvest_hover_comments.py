@@ -241,20 +241,38 @@ def source_declaration_for_abbrev(declaration: Any) -> tuple[Path, Any] | None:
 def predicate_logic_fields(
     module_name: str,
     declaration_name: str,
+    declaration_kind: str,
     fallback: str,
     signature_lean: str,
 ) -> tuple[str, str]:
     row = compiled_row_for(COMPILED_ROWS, module_name, declaration_name)
     if row is None:
         fallback_clean = normalize_text_block(fallback)
-        return (
-            fallback_clean,
-            f"{fallback_clean} (source fallback; no compiled unfold data available)",
+        theorem_like = declaration_kind in {
+            "theorem", "lemma", "proposition", "corollary", "axiom"
+        }
+        direct_prop_contract = bool(
+            re.search(r":\s*Prop\s*(?:where|:=|$)", fallback_clean, flags=re.DOTALL)
         )
+        if theorem_like or direct_prop_contract:
+            raise RuntimeError(
+                f"missing compiled predicate row for {module_name}.{declaration_name} "
+                f"({declaration_kind})"
+            )
+        # A data-valued definition or structure is already represented by its
+        # defining equation/field contract. It has no proposition body to
+        # expand, so repeating that contract is semantic, not a fallback.
+        return fallback_clean, fallback_clean
+    opaque_predicate = PROOFS_TODO.opaque_predicate_logic(
+        declaration_name, signature_lean, row.get("kind", "").strip()
+    )
     predicate = normalize_text_block(
-        PROOFS_TODO.humanize_compiled_logic(row.get("pretty_type_uncurried", "") or fallback)
+        opaque_predicate
+        or PROOFS_TODO.humanize_compiled_logic(row.get("pretty_type_uncurried", "") or fallback)
     )
     unfolded_raw = row.get("pretty_type_unfolded", "") or predicate
+    if opaque_predicate is not None:
+        return predicate, f"{predicate} (opaque predicate axiom; no body to unfold)"
     if row.get("unfold_status") not in {"ok", "fallback"}:
         return (
             predicate,
@@ -270,7 +288,7 @@ def predicate_logic_fields(
         unfold_status=row.get("unfold_status", ""),
     )
     predicate_unfolded = normalize_text_block(
-        PROOFS_TODO.render_unfolded_statement(signature_lean, compiled_row, predicate)
+        PROOFS_TODO.resolve_unfolded(compiled_row, predicate)
     )
     return predicate, predicate_unfolded
 
@@ -374,15 +392,12 @@ def entry_for(path: Path, declaration: Any) -> HoverCommentEntry:
     predicate_logic, predicate_logic_unfolded = predicate_logic_fields(
         module_name_for_path(path),
         declaration.name,
+        declaration.kind,
         formal_statement,
         PROOFS_TODO.theorem_environment_signature(source_theorem)
         if source_theorem is not None
         else formal_statement,
     )
-    if source_theorem is not None and declaration.kind in {"theorem", "lemma", "proposition", "corollary", "axiom"}:
-        transliterated = normalize_text_block(source_theorem.transliterated_theorem)
-        if transliterated:
-            predicate_logic = transliterated
     connectives = detect_connectives(formal_statement)
     moves = suggested_moves(connectives, declaration.kind)
     meaning = first_doc_sentence(existing_doc)

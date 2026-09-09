@@ -17,7 +17,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.PartialOrderRelation Carrier) (a a_1 : Carrier), (order.1 a a_1 ∧ a = a_1 → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (order.1 a a_1 ∧ (a = a_1 → False))
 
 Logical form (Lean):
 
@@ -59,11 +64,16 @@ def StrictPart
 
 Predicate logic:
 
-  (∀ left right ∈ Carrier), (NonStrictPartialOrder Carrier) → StrictPart order left right <-> order.relation left right ∧ left ≠ right
+  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier) (left right : Carrier), LRA.Order.OrderedSets.PartialOrder.StrictPart order left right ↔ (order.relation left right ∧ Ne left right)
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.PartialOrderRelation Carrier) (left right : Carrier), (order.1 left right ∧ left = right → False) ↔ (order.1 left right ∧ left = right → False)
+  Ambient
+    (Carrier)
+  Objects
+    left right : Carrier
+  Prove
+    LRA.Order.OrderedSets.PartialOrder.StrictPart order left right ↔ (order.relation left right ∧ Ne left right)
 
 Logical form (Lean):
 
@@ -107,11 +117,16 @@ theorem StrictPartIff
 
 Predicate logic:
 
-  (∀ left right ∈ Carrier), (NonStrictPartialOrder Carrier) → StrictPart order left right <-> order.relation left right ∧ Not (order.relation right left)
+  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier) (left right : Carrier), LRA.Order.OrderedSets.PartialOrder.StrictPart order left right ↔ (order.relation left right ∧ ¬ order.relation right left)
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.PartialOrderRelation Carrier) (left right : Carrier), (order.1 left right ∧ left = right → False) ↔ (order.1 left right ∧ order.1 right left → False)
+  Ambient
+    (Carrier)
+  Objects
+    left right : Carrier
+  Prove
+    LRA.Order.OrderedSets.PartialOrder.StrictPart order left right ↔ (order.relation left right ∧ ¬ order.relation right left)
 
 Logical form (Lean):
 
@@ -155,11 +170,16 @@ theorem StrictPartIffNotConverse
 
 Predicate logic:
 
-  (NonStrictPartialOrder Carrier) → LRA.Order.StrictOrder (StrictPart order)
+  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier), LRA.Order.StrictOrder (LRA.Order.OrderedSets.PartialOrder.StrictPart order)
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.PartialOrderRelation Carrier), (∀ (x : Carrier), (order.1 x x ∧ ¬ x = x) → False ∧ ∀ (x y z : Carrier), (order.1 x y ∧ x = y → False) → (order.1 y z ∧ y = z → False) → (order.1 x z ∧ x = z → False))
+  Ambient
+    (Carrier)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Carrier), (order.1 x x ∧ ¬ x = x) → False) ∧ (∀ (x y z : Carrier), (order.1 x y ∧ (x = y → False)) → (order.1 y z ∧ (y = z → False)) → (order.1 x z ∧ (x = z → False))))
 
 Logical form (Lean):
 
@@ -200,20 +220,20 @@ theorem StrictPartRelationIsStrictOrder
 Predicate logic:
 
   def StrictPartAsStrictOrder
-    {Carrier : Type u}
-    (order : NonStrictPartialOrder Carrier) :
-    LRA.Order.OrderedSets.StrictOrder.StrictOrderRelation Carrier where
-  relation := StrictPart order
-  relationIsStrictOrder := StrictPartRelationIsStrictOrder order
+      {Carrier : Type u}
+      (order : NonStrictPartialOrder Carrier) :
+      LRA.Order.OrderedSets.StrictOrder.StrictOrderRelation Carrier where
+    relation := StrictPart order
+    relationIsStrictOrder := StrictPartRelationIsStrictOrder order
 
 Predicate logic (unfolded):
 
   def StrictPartAsStrictOrder
-    {Carrier : Type u}
-    (order : NonStrictPartialOrder Carrier) :
-    LRA.Order.OrderedSets.StrictOrder.StrictOrderRelation Carrier where
-  relation := StrictPart order
-  relationIsStrictOrder := StrictPartRelationIsStrictOrder order (source fallback; no compiled unfold data available)
+      {Carrier : Type u}
+      (order : NonStrictPartialOrder Carrier) :
+      LRA.Order.OrderedSets.StrictOrder.StrictOrderRelation Carrier where
+    relation := StrictPart order
+    relationIsStrictOrder := StrictPartRelationIsStrictOrder order (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -257,11 +277,16 @@ def StrictPartAsStrictOrder
 
 Predicate logic:
 
-  (NonStrictPartialOrder Carrier) → LRA.Order.StrictOrder (StrictPart order)
+  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier), LRA.Order.StrictOrder (LRA.Order.OrderedSets.PartialOrder.StrictPart order)
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.PartialOrderRelation Carrier), (∀ (x : Carrier), (order.1 x x ∧ ¬ x = x) → False ∧ ∀ (x y z : Carrier), (order.1 x y ∧ x = y → False) → (order.1 y z ∧ y = z → False) → (order.1 x z ∧ x = z → False))
+  Ambient
+    (Carrier)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Carrier), (order.1 x x ∧ ¬ x = x) → False) ∧ (∀ (x y z : Carrier), (order.1 x y ∧ (x = y → False)) → (order.1 y z ∧ (y = z → False)) → (order.1 x z ∧ (x = z → False))))
 
 Logical form (Lean):
 
@@ -301,11 +326,16 @@ theorem StrictPartIsStrictOrder
 
 Predicate logic:
 
-  (NonStrictPartialOrder Carrier) → LRA.Order.PartialOrder (LRA.Relation.Converse order.relation)
+  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier), LRA.Order.PartialOrder (LRA.Relation.Converse order.relation)
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.PartialOrderRelation Carrier), (∀ (x : Carrier), order.1 x x ∧ (∀ (x y : Carrier), order.1 y x → order.1 x y → x = y ∧ ∀ (x y z : Carrier), order.1 y x → order.1 z y → order.1 z x))
+  Ambient
+    (Carrier)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Carrier), order.1 x x) ∧ ((∀ (x y : Carrier), order.1 y x → order.1 x y → x = y) ∧ (∀ (x y z : Carrier), order.1 y x → order.1 z y → order.1 z x)))
 
 Logical form (Lean):
 
@@ -348,20 +378,20 @@ theorem DualRelationIsPartialOrder
 Predicate logic:
 
   def Dual
-    {Carrier : Type u}
-    (order : NonStrictPartialOrder Carrier) :
-    NonStrictPartialOrder Carrier where
-  relation := LRA.Relation.Converse order.relation
-  relationIsPartialOrder := DualRelationIsPartialOrder order
+      {Carrier : Type u}
+      (order : NonStrictPartialOrder Carrier) :
+      NonStrictPartialOrder Carrier where
+    relation := LRA.Relation.Converse order.relation
+    relationIsPartialOrder := DualRelationIsPartialOrder order
 
 Predicate logic (unfolded):
 
   def Dual
-    {Carrier : Type u}
-    (order : NonStrictPartialOrder Carrier) :
-    NonStrictPartialOrder Carrier where
-  relation := LRA.Relation.Converse order.relation
-  relationIsPartialOrder := DualRelationIsPartialOrder order (source fallback; no compiled unfold data available)
+      {Carrier : Type u}
+      (order : NonStrictPartialOrder Carrier) :
+      NonStrictPartialOrder Carrier where
+    relation := LRA.Relation.Converse order.relation
+    relationIsPartialOrder := DualRelationIsPartialOrder order (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -405,11 +435,16 @@ def Dual
 
 Predicate logic:
 
-  (NonStrictPartialOrder Carrier) → LRA.Order.PartialOrder (LRA.Relation.Converse order.relation)
+  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier), LRA.Order.PartialOrder (LRA.Relation.Converse order.relation)
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.PartialOrderRelation Carrier), (∀ (x : Carrier), order.1 x x ∧ (∀ (x y : Carrier), order.1 y x → order.1 x y → x = y ∧ ∀ (x y z : Carrier), order.1 y x → order.1 z y → order.1 z x))
+  Ambient
+    (Carrier)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Carrier), order.1 x x) ∧ ((∀ (x y : Carrier), order.1 y x → order.1 x y → x = y) ∧ (∀ (x y z : Carrier), order.1 y x → order.1 z y → order.1 z x)))
 
 Logical form (Lean):
 

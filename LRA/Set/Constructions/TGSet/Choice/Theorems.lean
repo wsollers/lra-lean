@@ -8,11 +8,16 @@ namespace LRA.Set.Constructions.TGSet
 
 Predicate logic:
 
-  (∀ A ∈ Set), (forall B : Set, B ∈ A -> exists x : Set, x ∈ B ∧ forall B C : Set, B ∈ A -> C ∈ A -> B ≠ C -> forall x : Set, x ∈ B -> x ∉ C) → exists choiceSet : Set, IsChoiceSetFor A choiceSet
+  ∀ (A : LRA.Set.Constructions.TGSet.Set), ((∀ (B : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem A B → Exists fun x => LRA.Set.Constructions.instMembershipTGSet.mem B x) ∧ (∀ (B C : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem A B → LRA.Set.Constructions.instMembershipTGSet.mem A C → Ne B C → ∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem B x → ¬ LRA.Set.Constructions.instMembershipTGSet.mem C x)) → Exists fun choiceSet => LRA.Set.Constructions.TGSet.IsChoiceSetFor A choiceSet
 
 Predicate logic (unfolded):
 
-  ∀ (A : LRA.Set.Constructions.TGSet.Set), (∀ (B : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 A B → Exists fun x => LRA.Set.instMembershipTGSet.1 B x ∧ ∀ (B C : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 A B → LRA.Set.instMembershipTGSet.1 A C → (B = C → False) → ∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 B x → LRA.Set.instMembershipTGSet.1 C x → False) → Exists fun choiceSet => ∀ (B : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 A B → Exists fun x => ((LRA.Set.instMembershipTGSet.1 B x ∧ LRA.Set.instMembershipTGSet.1 choiceSet x) ∧ ∀ (other : LRA.Set.Constructions.TGSet.Set), (LRA.Set.instMembershipTGSet.1 B other ∧ LRA.Set.instMembershipTGSet.1 choiceSet other) → other = x)
+  Ambient
+    (implicit ambient)
+  Objects
+    A : Set
+  Prove
+    ((∀ (B : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.1 A B → Exists fun x => LRA.Set.Constructions.instMembershipTGSet.1 B x) ∧ (∀ (B C : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.1 A B → LRA.Set.Constructions.instMembershipTGSet.1 A C → (B = C → False) → ∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.1 B x → LRA.Set.Constructions.instMembershipTGSet.1 C x → False)) → Exists fun choiceSet => ∀ (B : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.1 A B → Exists fun x => ((LRA.Set.Constructions.instMembershipTGSet.1 B x ∧ LRA.Set.Constructions.instMembershipTGSet.1 choiceSet x) ∧ (∀ (other : LRA.Set.Constructions.TGSet.Set), (LRA.Set.Constructions.instMembershipTGSet.1 B other ∧ LRA.Set.Constructions.instMembershipTGSet.1 choiceSet other) → other = x))
 
 Logical form (Lean):
 
@@ -58,22 +63,22 @@ theorem ChoiceSetExists
 Predicate logic:
 
   noncomputable def TheChoiceSet
-    (A : Set)
-    (membersNonempty : forall B : Set, B ∈ A -> exists x : Set, x ∈ B)
-    (membersPairwiseDisjoint :
-      forall B C : Set, B ∈ A -> C ∈ A -> B ≠ C -> forall x : Set, x ∈ B -> x ∉ C) :
-    Set :=
-  Classical.choose (ChoiceSetExists A membersNonempty membersPairwiseDisjoint)
+      (A : Set)
+      (membersNonempty : forall B : Set, B ∈ A -> exists x : Set, x ∈ B)
+      (membersPairwiseDisjoint :
+        forall B C : Set, B ∈ A -> C ∈ A -> B ≠ C -> forall x : Set, x ∈ B -> x ∉ C) :
+      Set :=
+    Classical.choose (ChoiceSetExists A membersNonempty membersPairwiseDisjoint)
 
 Predicate logic (unfolded):
 
   noncomputable def TheChoiceSet
-    (A : Set)
-    (membersNonempty : forall B : Set, B ∈ A -> exists x : Set, x ∈ B)
-    (membersPairwiseDisjoint :
-      forall B C : Set, B ∈ A -> C ∈ A -> B ≠ C -> forall x : Set, x ∈ B -> x ∉ C) :
-    Set :=
-  Classical.choose (ChoiceSetExists A membersNonempty membersPairwiseDisjoint) (source fallback; no compiled unfold data available)
+      (A : Set)
+      (membersNonempty : forall B : Set, B ∈ A -> exists x : Set, x ∈ B)
+      (membersPairwiseDisjoint :
+        forall B C : Set, B ∈ A -> C ∈ A -> B ≠ C -> forall x : Set, x ∈ B -> x ∉ C) :
+      Set :=
+    Classical.choose (ChoiceSetExists A membersNonempty membersPairwiseDisjoint) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -119,11 +124,16 @@ noncomputable def TheChoiceSet
 
 Predicate logic:
 
-  (∀ A ∈ Set), (forall B : Set, B ∈ A -> exists x : Set, x ∈ B ∧ forall B C : Set, B ∈ A -> C ∈ A -> B ≠ C -> forall x : Set, x ∈ B -> x ∉ C) → IsChoiceSetFor A (TheChoiceSet A membersNonempty membersPairwiseDisjoint)
+  ∀ (A : LRA.Set.Constructions.TGSet.Set) (membersNonempty : ∀ (B : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem A B → Exists fun x => LRA.Set.Constructions.instMembershipTGSet.mem B x) (membersPairwiseDisjoint : ∀ (B C : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem A B → LRA.Set.Constructions.instMembershipTGSet.mem A C → Ne B C → ∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem B x → ¬ LRA.Set.Constructions.instMembershipTGSet.mem C x), LRA.Set.Constructions.TGSet.IsChoiceSetFor A (LRA.Set.Constructions.TGSet.TheChoiceSet A membersNonempty membersPairwiseDisjoint)
 
 Predicate logic (unfolded):
 
-  ∀ (A : LRA.Set.Constructions.TGSet.Set) (membersNonempty : ∀ (B : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 A B → Exists fun x => LRA.Set.instMembershipTGSet.1 B x) (membersPairwiseDisjoint : ∀ (B C : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 A B → LRA.Set.instMembershipTGSet.1 A C → (B = C → False) → ∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 B x → LRA.Set.instMembershipTGSet.1 C x → False) (B : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 A B → Exists fun x => ((LRA.Set.instMembershipTGSet.1 B x ∧ LRA.Set.instMembershipTGSet.1 (Classical.indefiniteDescription (LRA.Set.Constructions.TGSet.IsChoiceSetFor A) ⋯).1 x) ∧ ∀ (other : LRA.Set.Constructions.TGSet.Set), (LRA.Set.instMembershipTGSet.1 B other ∧ LRA.Set.instMembershipTGSet.1 (Classical.indefiniteDescription (LRA.Set.Constructions.TGSet.IsChoiceSetFor A) ⋯).1 other) → other = x)
+  Ambient
+    (implicit ambient)
+  Objects
+    A : Set
+  Prove
+    LRA.Set.Constructions.instMembershipTGSet.1 A B → Exists fun x => ((LRA.Set.Constructions.instMembershipTGSet.1 B x ∧ LRA.Set.Constructions.instMembershipTGSet.1 (Classical.indefiniteDescription (LRA.Set.Constructions.TGSet.IsChoiceSetFor A) ⋯).1 x) ∧ (∀ (other : LRA.Set.Constructions.TGSet.Set), (LRA.Set.Constructions.instMembershipTGSet.1 B other ∧ LRA.Set.Constructions.instMembershipTGSet.1 (Classical.indefiniteDescription (LRA.Set.Constructions.TGSet.IsChoiceSetFor A) ⋯).1 other) → other = x))
 
 Logical form (Lean):
 

@@ -8,16 +8,16 @@ namespace LRA.ModelTheoryTheory.BooleanAlgebras
 Predicate logic:
 
   inductive BooleanAlgebraFunctionSymbol where
-  | join
-  | meet
-  | complement
+    | join
+    | meet
+    | complement
 
 Predicate logic (unfolded):
 
   inductive BooleanAlgebraFunctionSymbol where
-  | join
-  | meet
-  | complement (source fallback; no compiled unfold data available)
+    | join
+    | meet
+    | complement (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -96,14 +96,14 @@ def BooleanAlgebraRelationSymbol : Type := Empty
 Predicate logic:
 
   inductive BooleanAlgebraConstantSymbol where
-  | zero
-  | one
+    | zero
+    | one
 
 Predicate logic (unfolded):
 
   inductive BooleanAlgebraConstantSymbol where
-  | zero
-  | one (source fallback; no compiled unfold data available)
+    | zero
+    | one (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -142,20 +142,20 @@ inductive BooleanAlgebraConstantSymbol where
 Predicate logic:
 
   def BooleanAlgebraFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
-  Symbol := BooleanAlgebraFunctionSymbol
-  arity
-    | .join => 2
-    | .meet => 2
-    | .complement => 1
+    Symbol := BooleanAlgebraFunctionSymbol
+    arity
+      | .join => 2
+      | .meet => 2
+      | .complement => 1
 
 Predicate logic (unfolded):
 
   def BooleanAlgebraFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
-  Symbol := BooleanAlgebraFunctionSymbol
-  arity
-    | .join => 2
-    | .meet => 2
-    | .complement => 1 (source fallback; no compiled unfold data available)
+    Symbol := BooleanAlgebraFunctionSymbol
+    arity
+      | .join => 2
+      | .meet => 2
+      | .complement => 1 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -200,14 +200,14 @@ def BooleanAlgebraFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
 Predicate logic:
 
   def BooleanAlgebraFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
-  Symbol := BooleanAlgebraRelationSymbol
-  arity := Empty.elim
+    Symbol := BooleanAlgebraRelationSymbol
+    arity := Empty.elim
 
 Predicate logic (unfolded):
 
   def BooleanAlgebraFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
-  Symbol := BooleanAlgebraRelationSymbol
-  arity := Empty.elim (source fallback; no compiled unfold data available)
+    Symbol := BooleanAlgebraRelationSymbol
+    arity := Empty.elim (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -246,16 +246,16 @@ def BooleanAlgebraFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
 Predicate logic:
 
   def BooleanAlgebraFirstOrderSignature : LRA.Logic.Signature where
-  Functions := BooleanAlgebraFirstOrderFunctions
-  Relations := BooleanAlgebraFirstOrderRelations
-  Constants := BooleanAlgebraConstantSymbol
+    Functions := BooleanAlgebraFirstOrderFunctions
+    Relations := BooleanAlgebraFirstOrderRelations
+    Constants := BooleanAlgebraConstantSymbol
 
 Predicate logic (unfolded):
 
   def BooleanAlgebraFirstOrderSignature : LRA.Logic.Signature where
-  Functions := BooleanAlgebraFirstOrderFunctions
-  Relations := BooleanAlgebraFirstOrderRelations
-  Constants := BooleanAlgebraConstantSymbol (source fallback; no compiled unfold data available)
+    Functions := BooleanAlgebraFirstOrderFunctions
+    Relations := BooleanAlgebraFirstOrderRelations
+    Constants := BooleanAlgebraConstantSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

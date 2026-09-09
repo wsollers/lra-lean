@@ -11,11 +11,17 @@ variable {X : Type u} [MetricSpace X]
 
 Predicate logic:
 
-  (∀ x ∈ X), (0 < r) → x ∈ Metric.ball x r
+  ∀ {X : Type u} [inst : MetricSpace X] (x : X) {r : Real}, Real.instLT.lt 0 r → x ∈ Metric.ball x r
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} [inst : MetricSpace X] (x : X) {r : Real}, Real.instLT.1 Zero.toOfNat0.1 r → Set.instMembership.1 (fun y => Real.instLT.1 (inst.toDist.1 y x) r) x
+  Ambient
+    (X)
+  Objects
+    x : X
+    r : Real
+  Prove
+    Real.instLT.lt 0 r → x ∈ fun y => Real.instLT.lt (inst.toDist.1 y x) r
 
 Logical form (Lean):
 
@@ -57,11 +63,17 @@ theorem center_mem_ball
 
 Predicate logic:
 
-  (∀ x ∈ X), (r ≤ s) → Metric.ball x r ⊆ Metric.ball x s
+  ∀ {X : Type u} [inst : MetricSpace X] (x : X) {r s : Real}, Real.instLE.le r s → Set.instLE.le (Metric.ball x r) (Metric.ball x s)
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} [inst : MetricSpace X] (x : X) {r s : Real}, Real.instLE.1 r s → Set.instLE.1 (fun y => Real.instLT.1 (inst.toDist.1 y x) r) fun y => Real.instLT.1 (inst.toDist.1 y x) s
+  Ambient
+    (X)
+  Objects
+    x : X
+    r s : Real
+  Prove
+    Real.instLE.le r s → { le := fun s₁ s₂ => ∀ ⦃a : X⦄, a ∈ s₁ → a ∈ s₂}.le (fun y => Real.instLT.lt (inst.toDist.1 y x) r) fun y => Real.instLT.lt (inst.toDist.1 y x) s
 
 Logical form (Lean):
 
@@ -103,11 +115,17 @@ theorem ball_subset_ball
 
 Predicate logic:
 
-  (∀ x ∈ X ∀ r ∈ Real), Metric.ball x r ⊆ Metric.closedBall x r
+  ∀ {X : Type u} [inst : MetricSpace X] (x : X) (r : Real), Set.instLE.le (Metric.ball x r) (Metric.closedBall x r)
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} [inst : MetricSpace X] (x : X) (r : Real), Set.instLE.1 (fun y => Real.instLT.1 (inst.toDist.1 y x) r) fun y => Real.instLE.1 (inst.toDist.1 y x) r
+  Ambient
+    (X)
+  Objects
+    x : X
+    r : Real
+  Prove
+    { le := fun s₁ s₂ => ∀ ⦃a : X⦄, a ∈ s₁ → a ∈ s₂}.le (fun y => Real.instLT.lt (inst.toDist.1 y x) r) fun y => Real.instLE.le (inst.toDist.1 y x) r
 
 Logical form (Lean):
 
@@ -147,11 +165,17 @@ theorem ball_subset_closedBall
 
 Predicate logic:
 
-  (y ∈ Metric.ball x r) → ∃ ε > 0, Metric.ball y ε ⊆ Metric.ball x r
+  ∀ {X : Type u} [inst : MetricSpace X] {x y : X} {r : Real}, y ∈ Metric.ball x r → Exists fun ε => (GT.gt ε 0 ∧ Set.instLE.le (Metric.ball y ε) (Metric.ball x r))
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} [inst : MetricSpace X] {x y : X} {r : Real}, Set.instMembership.1 (fun y => Real.instLT.1 (inst.toDist.1 y x) r) y → Exists fun ε => (Real.instLT.1 Zero.toOfNat0.1 ε ∧ Set.instLE.1 (fun y_1 => Real.instLT.1 (inst.toDist.1 y_1 y) ε) fun y => Real.instLT.1 (inst.toDist.1 y x) r)
+  Ambient
+    (X)
+  Objects
+    x y : X
+    r : Real
+  Prove
+    y ∈ fun y => Real.instLT.lt (inst.toDist.1 y x) r → Exists fun ε => (Real.instLT.lt 0 ε ∧ ({ le := fun s₁ s₂ => ∀ ⦃a : X⦄, a ∈ s₁ → a ∈ s₂}.le (fun y_1 => Real.instLT.lt (inst.toDist.1 y_1 y) ε) fun y => Real.instLT.lt (inst.toDist.1 y x) r))
 
 Logical form (Lean):
 

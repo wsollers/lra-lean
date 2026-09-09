@@ -48,7 +48,7 @@ Predicate logic (unfolded):
     Exists fun start => Exists fun period => ((period = 0 → False) ∧ (∀ (index : Nat), instLENat.le start index → fraction ({ hAdd := fun a b => instAddNat.add a b }.hAdd index period) = fraction index))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./ContinuedFractions/Definition.lean
+Source: [`./ContinuedFractions/Definition.lean`](./ContinuedFractions/Definition.lean)
 
 
 
@@ -65,7 +65,7 @@ Predicate logic (unfolded):
     ((∀ (coefficient : integerModel.1), List.coefficient ∈ fraction.2 → integerModel.7.lt 0 coefficient) ∧ (Or (fraction.2 = List.nil) (Exists fun initialSegment => Exists fun last => (fraction.2 = instHAppendOfAppend.1 initialSegment (List.cons last List.nil) ∧ integerModel.7.lt 1 last))))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./ContinuedFractions/Definition.lean
+Source: [`./ContinuedFractions/Definition.lean`](./ContinuedFractions/Definition.lean)
 
 
 
@@ -82,4 +82,4 @@ Predicate logic (unfolded):
     integerModel.7.lt 0 (fraction ({ hAdd := fun a b => instAddNat.add a b }.hAdd index 1))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./ContinuedFractions/Definition.lean
+Source: [`./ContinuedFractions/Definition.lean`](./ContinuedFractions/Definition.lean)

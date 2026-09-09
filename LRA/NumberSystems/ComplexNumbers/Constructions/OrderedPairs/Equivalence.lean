@@ -10,11 +10,16 @@ variable {R : Type u}
 
 Predicate logic:
 
-  (first.real_part = second.real_part ∧ first.imaginary_part = second.imaginary_part) → first = second
+  ∀ {R : Type u} {first second : LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.ComplexNumber R}, (first.real_part = second.real_part ∧ first.imaginary_part = second.imaginary_part) → first = second
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} {first second : LRA.NumberSystems.ComplexNumbers.Constructions.OrderedPairs.ComplexNumber R}, (first.1 = second.1 ∧ first.2 = second.2) → first = second
+  Ambient
+    (R)
+  Objects
+    first second : ComplexNumber R
+  Prove
+    (first.1 = second.1 ∧ first.2 = second.2) → first = second
 
 Logical form (Lean):
 

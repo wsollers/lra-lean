@@ -9,11 +9,16 @@ namespace LRA.Analysis.Functions
 
 Predicate logic:
 
-  ∀ (f : Real → Real) (A : Set Real) (x : Real), Set.instMembership.mem A x → ∀ (y : Real), (Set.instMembership.mem A y ∧ Real.instLE.le x y) → Real.instLE.le (f x) (f y)
+  ∀ (f : Real → Real) (A : Set Real) (x : Real), x ∈ A → ∀ (y : Real), (y ∈ A ∧ Real.instLE.le x y) → Real.instLE.le (f x) (f y)
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (A : Real → Prop) (x : Real), Set.instMembership.1 A x → ∀ (y : Real), (Set.instMembership.1 A y ∧ Real.instLE.1 x y) → Real.instLE.1 (f x) (f y)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    x ∈ A → ∀ (y : Real), (y ∈ A ∧ Real.instLE.le x y) → Real.instLE.le (f x) (f y)
 
 Logical form (Lean):
 
@@ -49,11 +54,16 @@ def FunctionIncreasing (f : ℝ → ℝ) (A : Set ℝ) : Prop :=
 
 Predicate logic:
 
-  ∀ (f : Real → Real) (A : Set Real) (x : Real), Set.instMembership.mem A x → ∀ (y : Real), (Set.instMembership.mem A y ∧ Real.instLT.lt x y) → Real.instLT.lt (f x) (f y)
+  ∀ (f : Real → Real) (A : Set Real) (x : Real), x ∈ A → ∀ (y : Real), (y ∈ A ∧ Real.instLT.lt x y) → Real.instLT.lt (f x) (f y)
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (A : Real → Prop) (x : Real), Set.instMembership.1 A x → ∀ (y : Real), (Set.instMembership.1 A y ∧ Real.instLT.1 x y) → Real.instLT.1 (f x) (f y)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    x ∈ A → ∀ (y : Real), (y ∈ A ∧ Real.instLT.lt x y) → Real.instLT.lt (f x) (f y)
 
 Logical form (Lean):
 
@@ -89,11 +99,18 @@ def FunctionStrictlyIncreasing (f : ℝ → ℝ) (A : Set ℝ) : Prop :=
 
 Predicate logic:
 
-  (ℝ → ℝ) → FunctionIncreasing f A
+  ∀ (f : Real → Real) (A : Set Real), LRA.Analysis.Functions.FunctionStrictlyIncreasing f A → LRA.Analysis.Functions.FunctionIncreasing f A
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (A : Real → Prop), (∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLT.1 x y → Real.instLT.1 (f x) (f y)) → ∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), (Set.instMembership.1 A y ∧ Real.instLE.1 x y) → Real.instLE.1 (f x) (f y)
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    A : Set ℝ
+    h : FunctionStrictlyIncreasing f A
+  Prove
+    (∀ (x : Real), x ∈ A → ∀ (y : Real), y ∈ A → Real.instLT.lt x y → Real.instLT.lt (f x) (f y)) → ∀ (x : Real), x ∈ A → ∀ (y : Real), (y ∈ A ∧ Real.instLE.le x y) → Real.instLE.le (f x) (f y)
 
 Logical form (Lean):
 
@@ -129,11 +146,16 @@ theorem StrictlyIncreasingImpliesIncreasing (f : ℝ → ℝ) (A : Set ℝ)
 
 Predicate logic:
 
-  ∀ (f : Real → Real) (A : Set Real) (x : Real), Set.instMembership.mem A x → ∀ (y : Real), (Set.instMembership.mem A y ∧ Real.instLE.le x y) → Real.instLE.le (f y) (f x)
+  ∀ (f : Real → Real) (A : Set Real) (x : Real), x ∈ A → ∀ (y : Real), (y ∈ A ∧ Real.instLE.le x y) → Real.instLE.le (f y) (f x)
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (A : Real → Prop) (x : Real), Set.instMembership.1 A x → ∀ (y : Real), (Set.instMembership.1 A y ∧ Real.instLE.1 x y) → Real.instLE.1 (f y) (f x)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    x ∈ A → ∀ (y : Real), (y ∈ A ∧ Real.instLE.le x y) → Real.instLE.le (f y) (f x)
 
 Logical form (Lean):
 
@@ -169,11 +191,16 @@ def FunctionDecreasing (f : ℝ → ℝ) (A : Set ℝ) : Prop :=
 
 Predicate logic:
 
-  ∀ (f : Real → Real) (A : Set Real) (x : Real), Set.instMembership.mem A x → ∀ (y : Real), (Set.instMembership.mem A y ∧ Real.instLT.lt x y) → Real.instLT.lt (f y) (f x)
+  ∀ (f : Real → Real) (A : Set Real) (x : Real), x ∈ A → ∀ (y : Real), (y ∈ A ∧ Real.instLT.lt x y) → Real.instLT.lt (f y) (f x)
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (A : Real → Prop) (x : Real), Set.instMembership.1 A x → ∀ (y : Real), (Set.instMembership.1 A y ∧ Real.instLT.1 x y) → Real.instLT.1 (f y) (f x)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    x ∈ A → ∀ (y : Real), (y ∈ A ∧ Real.instLT.lt x y) → Real.instLT.lt (f y) (f x)
 
 Logical form (Lean):
 
@@ -209,11 +236,18 @@ def FunctionStrictlyDecreasing (f : ℝ → ℝ) (A : Set ℝ) : Prop :=
 
 Predicate logic:
 
-  (ℝ → ℝ) → FunctionDecreasing f A
+  ∀ (f : Real → Real) (A : Set Real), LRA.Analysis.Functions.FunctionStrictlyDecreasing f A → LRA.Analysis.Functions.FunctionDecreasing f A
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (A : Real → Prop), (∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLT.1 x y → Real.instLT.1 (f y) (f x)) → ∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), (Set.instMembership.1 A y ∧ Real.instLE.1 x y) → Real.instLE.1 (f y) (f x)
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    A : Set ℝ
+    h : FunctionStrictlyDecreasing f A
+  Prove
+    (∀ (x : Real), x ∈ A → ∀ (y : Real), y ∈ A → Real.instLT.lt x y → Real.instLT.lt (f y) (f x)) → ∀ (x : Real), x ∈ A → ∀ (y : Real), (y ∈ A ∧ Real.instLE.le x y) → Real.instLE.le (f y) (f x)
 
 Logical form (Lean):
 
@@ -253,7 +287,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (A : Real → Prop), Or (∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLE.1 x y → Real.instLE.1 (f x) (f y)) (∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLE.1 x y → Real.instLE.1 (f y) (f x))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (∀ (x : Real), x ∈ A → ∀ (y : Real), y ∈ A → Real.instLE.le x y → Real.instLE.le (f x) (f y)) (∀ (x : Real), x ∈ A → ∀ (y : Real), y ∈ A → Real.instLE.le x y → Real.instLE.le (f y) (f x))
 
 Logical form (Lean):
 
@@ -289,11 +328,17 @@ def FunctionMonotone (f : ℝ → ℝ) (A : Set ℝ) : Prop :=
 
 Predicate logic:
 
-  (ℝ → ℝ) → (FunctionIncreasing f A ↔ FunctionDecreasing (fun x => -f x) A) ∧ (FunctionDecreasing f A ↔ FunctionIncreasing (fun x => -f x) A)
+  ∀ (f : Real → Real) (A : Set Real), ((LRA.Analysis.Functions.FunctionIncreasing f A ↔ LRA.Analysis.Functions.FunctionDecreasing (fun x => Real.instNeg.neg (f x)) A) ∧ (LRA.Analysis.Functions.FunctionDecreasing f A ↔ LRA.Analysis.Functions.FunctionIncreasing (fun x => Real.instNeg.neg (f x)) A))
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (A : Real → Prop), (∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLE.1 x y → Real.instLE.1 (f x) (f y) ↔ ∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLE.1 x y → Real.instLE.1 ((fun x => Real.instNeg.1 (f x)) y) ((fun x => Real.instNeg.1 (f x)) x) ∧ ∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLE.1 x y → Real.instLE.1 (f y) (f x) ↔ ∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLE.1 x y → Real.instLE.1 ((fun x => Real.instNeg.1 (f x)) x) ((fun x => Real.instNeg.1 (f x)) y))
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    A : Set ℝ
+  Prove
+    ((LRA.Analysis.Functions.FunctionIncreasing f A ↔ LRA.Analysis.Functions.FunctionDecreasing (fun x => Real.instNeg.neg (f x)) A) ∧ (LRA.Analysis.Functions.FunctionDecreasing f A ↔ LRA.Analysis.Functions.FunctionIncreasing (fun x => Real.instNeg.neg (f x)) A))
 
 Logical form (Lean):
 
@@ -331,11 +376,18 @@ theorem NegationReversesMonotonicity (f : ℝ → ℝ) (A : Set ℝ) :
 
 Predicate logic:
 
-  (ℝ → ℝ ∧ 0 < lam) → (FunctionIncreasing f A ↔ FunctionIncreasing (fun x => lam * f x) A) ∧ (FunctionDecreasing f A ↔ FunctionDecreasing (fun x => lam * f x) A)
+  ∀ (f : Real → Real) (A : Set Real) (lam : Real), Real.instLT.lt 0 lam → ((LRA.Analysis.Functions.FunctionIncreasing f A ↔ LRA.Analysis.Functions.FunctionIncreasing (fun x => instHMul.hMul lam (f x)) A) ∧ (LRA.Analysis.Functions.FunctionDecreasing f A ↔ LRA.Analysis.Functions.FunctionDecreasing (fun x => instHMul.hMul lam (f x)) A))
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (A : Real → Prop) (lam : Real), Real.instLT.1 Zero.toOfNat0.1 lam → (∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLE.1 x y → Real.instLE.1 (f x) (f y) ↔ ∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLE.1 x y → Real.instLE.1 ((fun x => instHMul.1 lam (f x)) x) ((fun x => instHMul.1 lam (f x)) y) ∧ ∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLE.1 x y → Real.instLE.1 (f y) (f x) ↔ ∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLE.1 x y → Real.instLE.1 ((fun x => instHMul.1 lam (f x)) y) ((fun x => instHMul.1 lam (f x)) x))
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    A : Set ℝ
+    lam : ℝ
+  Prove
+    Real.instLT.lt 0 lam → ((LRA.Analysis.Functions.FunctionIncreasing f A ↔ LRA.Analysis.Functions.FunctionIncreasing (fun x => instHMul.hMul lam (f x)) A) ∧ (LRA.Analysis.Functions.FunctionDecreasing f A ↔ LRA.Analysis.Functions.FunctionDecreasing (fun x => instHMul.hMul lam (f x)) A))
 
 Logical form (Lean):
 
@@ -375,11 +427,16 @@ theorem PositiveScalarMultiplesPreserveMonotonicity (f : ℝ → ℝ) (A : Set �
 
 Predicate logic:
 
-  ∃ A ∈ Set ℝ f ∈ ℝ → ℝ, FunctionIncreasing f A ∧ ¬ FunctionStrictlyIncreasing f A
+  Exists fun A => Exists fun f => (LRA.Analysis.Functions.FunctionIncreasing f A ∧ ¬ LRA.Analysis.Functions.FunctionStrictlyIncreasing f A)
 
 Predicate logic (unfolded):
 
-  Exists fun A => Exists fun f => (∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLE.1 x y → Real.instLE.1 (f x) (f y) ∧ (∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLT.1 x y → Real.instLT.1 (f x) (f y)) → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun A => Exists fun f => ((∀ (x : Real), x ∈ A → ∀ (y : Real), y ∈ A → Real.instLE.le x y → Real.instLE.le (f x) (f y)) ∧ ((∀ (x : Real), x ∈ A → ∀ (y : Real), y ∈ A → Real.instLT.lt x y → Real.instLT.lt (f x) (f y)) → False))
 
 Logical form (Lean):
 
@@ -417,11 +474,16 @@ theorem MonotoneNeedNotBeStrict :
 
 Predicate logic:
 
-  ∀ (f : Real → Real) (A : Set Real), Exists fun c => ∀ (x : Real), Set.instMembership.mem A x → f x = c
+  ∀ (f : Real → Real) (A : Set Real), Exists fun c => ∀ (x : Real), x ∈ A → f x = c
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (A : Real → Prop), Exists fun c => ∀ (x : Real), Set.instMembership.1 A x → f x = c
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun c => ∀ (x : Real), x ∈ A → f x = c
 
 Logical form (Lean):
 
@@ -457,11 +519,17 @@ def FunctionConstant (f : ℝ → ℝ) (A : Set ℝ) : Prop :=
 
 Predicate logic:
 
-  (ℝ → ℝ) → FunctionConstant f A ↔ (FunctionIncreasing f A ∧ FunctionDecreasing f A)
+  ∀ (f : Real → Real) (A : Set Real), LRA.Analysis.Functions.FunctionConstant f A ↔ (LRA.Analysis.Functions.FunctionIncreasing f A ∧ LRA.Analysis.Functions.FunctionDecreasing f A)
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (A : Real → Prop), Exists fun c => ∀ (x : Real), Set.instMembership.1 A x → f x = c ↔ (∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLE.1 x y → Real.instLE.1 (f x) (f y) ∧ ∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLE.1 x y → Real.instLE.1 (f y) (f x))
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    A : Set ℝ
+  Prove
+    LRA.Analysis.Functions.FunctionConstant f A ↔ (LRA.Analysis.Functions.FunctionIncreasing f A ∧ LRA.Analysis.Functions.FunctionDecreasing f A)
 
 Logical form (Lean):
 
@@ -497,11 +565,18 @@ theorem ConstantFunctionCharacterization (f : ℝ → ℝ) (A : Set ℝ) :
 
 Predicate logic:
 
-  (ℝ → ℝ) → ∃ B > 0, ∀ x ∈ A, |f x| ≤ B
+  ∀ (f : Real → Real) (A : Set Real), LRA.Analysis.Functions.FunctionConstant f A → Exists fun B => (GT.gt B 0 ∧ (∀ (x : Real), x ∈ A → Real.instLE.le (abs (f x)) B))
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (A : Real → Prop), (Exists fun c => ∀ (x : Real), Set.instMembership.1 A x → f x = c) → Exists fun B => (Real.instLT.1 Zero.toOfNat0.1 B ∧ ∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 (SemilatticeSup.toMax.1 (f x) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (f x))) B)
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    A : Set ℝ
+    h : FunctionConstant f A
+  Prove
+    (Exists fun c => ∀ (x : Real), x ∈ A → f x = c) → Exists fun B => (Real.instLT.lt 0 B ∧ (∀ (x : Real), x ∈ A → Real.instLE.le (abs (f x)) B))
 
 Logical form (Lean):
 
@@ -537,11 +612,18 @@ theorem ConstantFunctionsAreBounded (f : ℝ → ℝ) (A : Set ℝ)
 
 Predicate logic:
 
-  (ℝ → ℝ) → FunctionMonotone f A
+  ∀ (f : Real → Real) (A : Set Real), LRA.Analysis.Functions.FunctionConstant f A → LRA.Analysis.Functions.FunctionMonotone f A
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (A : Real → Prop), (Exists fun c => ∀ (x : Real), Set.instMembership.1 A x → f x = c) → Or (∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLE.1 x y → Real.instLE.1 (f x) (f y)) (∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLE.1 x y → Real.instLE.1 (f y) (f x))
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    A : Set ℝ
+    h : FunctionConstant f A
+  Prove
+    (Exists fun c => ∀ (x : Real), x ∈ A → f x = c) → Or (∀ (x : Real), x ∈ A → ∀ (y : Real), y ∈ A → Real.instLE.le x y → Real.instLE.le (f x) (f y)) (∀ (x : Real), x ∈ A → ∀ (y : Real), y ∈ A → Real.instLE.le x y → Real.instLE.le (f y) (f x))
 
 Logical form (Lean):
 
@@ -577,11 +659,17 @@ theorem ConstantFunctionsAreMonotone (f : ℝ → ℝ) (A : Set ℝ)
 
 Predicate logic:
 
-  (FunctionIncreasing f A → FunctionIncreasing g A → FunctionIncreasing (fun x => f x + g x) A) ∧ (FunctionDecreasing f A → FunctionDecreasing g A → FunctionDecreasing (fun x => f x + g x) A) ∧ (FunctionIncreasing f A → FunctionIncreasing g A → (∀ x ∈ A, 0 ≤ f x) → (∀ x ∈ A, 0 ≤ g x) → FunctionIncreasing (fun x => f x * g x) A) ∧ (FunctionDecreasing f A → FunctionDecreasing g A → (∀ x ∈ A, 0 ≤ f x) → (∀ x ∈ A, 0 ≤ g x) → FunctionDecreasing (fun x => f x * g x) A)
+  ∀ (f g : Real → Real) (A : Set Real), ((LRA.Analysis.Functions.FunctionIncreasing f A → LRA.Analysis.Functions.FunctionIncreasing g A → LRA.Analysis.Functions.FunctionIncreasing (fun x => instHAdd.hAdd (f x) (g x)) A) ∧ ((LRA.Analysis.Functions.FunctionDecreasing f A → LRA.Analysis.Functions.FunctionDecreasing g A → LRA.Analysis.Functions.FunctionDecreasing (fun x => instHAdd.hAdd (f x) (g x)) A) ∧ ((LRA.Analysis.Functions.FunctionIncreasing f A → LRA.Analysis.Functions.FunctionIncreasing g A → (∀ (x : Real), x ∈ A → Real.instLE.le 0 (f x)) → (∀ (x : Real), x ∈ A → Real.instLE.le 0 (g x)) → LRA.Analysis.Functions.FunctionIncreasing (fun x => instHMul.hMul (f x) (g x)) A) ∧ (LRA.Analysis.Functions.FunctionDecreasing f A → LRA.Analysis.Functions.FunctionDecreasing g A → (∀ (x : Real), x ∈ A → Real.instLE.le 0 (f x)) → (∀ (x : Real), x ∈ A → Real.instLE.le 0 (g x)) → LRA.Analysis.Functions.FunctionDecreasing (fun x => instHMul.hMul (f x) (g x)) A))))
 
 Predicate logic (unfolded):
 
-  ∀ (f g : Real → Real) (A : Real → Prop), ((∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLE.1 x y → Real.instLE.1 (f x) (f y)) → (∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLE.1 x y → Real.instLE.1 (g x) (g y)) → ∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLE.1 x y → Real.instLE.1 ((fun x => instHAdd.1 (f x) (g x)) x) ((fun x => instHAdd.1 (f x) (g x)) y) ∧ ((∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLE.1 x y → Real.instLE.1 (f y) (f x)) → (∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLE.1 x y → Real.instLE.1 (g y) (g x)) → ∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLE.1 x y → Real.instLE.1 ((fun x => instHAdd.1 (f x) (g x)) y) ((fun x => instHAdd.1 (f x) (g x)) x) ∧ ((∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLE.1 x y → Real.instLE.1 (f x) (f y)) → (∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLE.1 x y → Real.instLE.1 (g x) (g y)) → (∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 Zero.toOfNat0.1 (f x)) → (∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 Zero.toOfNat0.1 (g x)) → ∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLE.1 x y → Real.instLE.1 ((fun x => instHMul.1 (f x) (g x)) x) ((fun x => instHMul.1 (f x) (g x)) y) ∧ (∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLE.1 x y → Real.instLE.1 (f y) (f x)) → (∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLE.1 x y → Real.instLE.1 (g y) (g x)) → (∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 Zero.toOfNat0.1 (f x)) → (∀ (x : Real), Set.instMembership.1 A x → Real.instLE.1 Zero.toOfNat0.1 (g x)) → ∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLE.1 x y → Real.instLE.1 ((fun x => instHMul.1 (f x) (g x)) y) ((fun x => instHMul.1 (f x) (g x)) x))))
+  Ambient
+    (ℝ)
+  Objects
+    f g : ℝ → ℝ
+    A : Set ℝ
+  Prove
+    ((∀ (x : Real), x ∈ A → ∀ (y : Real), y ∈ A → Real.instLE.le x y → Real.instLE.le (f x) (f y)) → (∀ (x : Real), x ∈ A → ∀ (y : Real), y ∈ A → Real.instLE.le x y → Real.instLE.le (g x) (g y)) → ∀ (x : Real), x ∈ A → ∀ (y : Real), y ∈ A → Real.instLE.le x y → Real.instLE.le ((fun x => { hAdd := fun a b => Real.instAdd.add a b }.hAdd (f x) (g x)) x) ((fun x => { hAdd := fun a b => Real.instAdd.add a b }.hAdd (f x) (g x)) y) ∧ ((∀ (x : Real), x ∈ A → ∀ (y : Real), y ∈ A → Real.instLE.le x y → Real.instLE.le (f y) (f x)) → (∀ (x : Real), x ∈ A → ∀ (y : Real), y ∈ A → Real.instLE.le x y → Real.instLE.le (g y) (g x)) → ∀ (x : Real), x ∈ A → ∀ (y : Real), y ∈ A → Real.instLE.le x y → Real.instLE.le ((fun x => { hAdd := fun a b => Real.instAdd.add a b }.hAdd (f x) (g x)) y) ((fun x => { hAdd := fun a b => Real.instAdd.add a b }.hAdd (f x) (g x)) x) ∧ ((∀ (x : Real), x ∈ A → ∀ (y : Real), y ∈ A → Real.instLE.le x y → Real.instLE.le (f x) (f y)) → (∀ (x : Real), x ∈ A → ∀ (y : Real), y ∈ A → Real.instLE.le x y → Real.instLE.le (g x) (g y)) → (∀ (x : Real), x ∈ A → Real.instLE.le 0 (f x)) → (∀ (x : Real), x ∈ A → Real.instLE.le 0 (g x)) → ∀ (x : Real), x ∈ A → ∀ (y : Real), y ∈ A → Real.instLE.le x y → Real.instLE.le ((fun x => { hMul := fun a b => Real.instMul.mul a b }.hMul (f x) (g x)) x) ((fun x => { hMul := fun a b => Real.instMul.mul a b }.hMul (f x) (g x)) y) ∧ (∀ (x : Real), x ∈ A → ∀ (y : Real), y ∈ A → Real.instLE.le x y → Real.instLE.le (f y) (f x)) → (∀ (x : Real), x ∈ A → ∀ (y : Real), y ∈ A → Real.instLE.le x y → Real.instLE.le (g y) (g x)) → (∀ (x : Real), x ∈ A → Real.instLE.le 0 (f x)) → (∀ (x : Real), x ∈ A → Real.instLE.le 0 (g x)) → ∀ (x : Real), x ∈ A → ∀ (y : Real), y ∈ A → Real.instLE.le x y → Real.instLE.le ((fun x => { hMul := fun a b => Real.instMul.mul a b }.hMul (f x) (g x)) y) ((fun x => { hMul := fun a b => Real.instMul.mul a b }.hMul (f x) (g x)) x))))
 
 Logical form (Lean):
 
@@ -635,11 +723,18 @@ theorem MonotoneFunctionAlgebra (f g : ℝ → ℝ) (A : Set ℝ) :
 
 Predicate logic:
 
-  (ℝ → ℝ) → ∀ x ∈ A, ∀ y ∈ A, f x = f y → x = y
+  ∀ (f : Real → Real) (A : Set Real), Or (LRA.Analysis.Functions.FunctionStrictlyIncreasing f A) (LRA.Analysis.Functions.FunctionStrictlyDecreasing f A) → ∀ (x : Real), x ∈ A → ∀ (y : Real), (y ∈ A ∧ f x = f y) → x = y
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (A : Real → Prop), Or (∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLT.1 x y → Real.instLT.1 (f x) (f y)) (∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLT.1 x y → Real.instLT.1 (f y) (f x)) → ∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), (Set.instMembership.1 A y ∧ f x = f y) → x = y
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    A : Set ℝ
+    h : FunctionStrictlyIncreasing f A ∨ FunctionStrictlyDecreasing f A
+  Prove
+    Or (∀ (x : Real), x ∈ A → ∀ (y : Real), y ∈ A → Real.instLT.lt x y → Real.instLT.lt (f x) (f y)) (∀ (x : Real), x ∈ A → ∀ (y : Real), y ∈ A → Real.instLT.lt x y → Real.instLT.lt (f y) (f x)) → ∀ (x : Real), x ∈ A → ∀ (y : Real), (y ∈ A ∧ f x = f y) → x = y
 
 Logical form (Lean):
 
@@ -677,11 +772,18 @@ theorem StrictlyMonotoneImpliesInjective (f : ℝ → ℝ) (A : Set ℝ)
 
 Predicate logic:
 
-  (ℝ → ℝ) → (FunctionIncreasing f A → FunctionIncreasing f S) ∧ (FunctionDecreasing f A → FunctionDecreasing f S) ∧ (FunctionStrictlyIncreasing f A → FunctionStrictlyIncreasing f S) ∧ (FunctionStrictlyDecreasing f A → FunctionStrictlyDecreasing f S)
+  ∀ (f : Real → Real) (S A : Set Real), Set.instLE.le S A → ((LRA.Analysis.Functions.FunctionIncreasing f A → LRA.Analysis.Functions.FunctionIncreasing f S) ∧ ((LRA.Analysis.Functions.FunctionDecreasing f A → LRA.Analysis.Functions.FunctionDecreasing f S) ∧ ((LRA.Analysis.Functions.FunctionStrictlyIncreasing f A → LRA.Analysis.Functions.FunctionStrictlyIncreasing f S) ∧ (LRA.Analysis.Functions.FunctionStrictlyDecreasing f A → LRA.Analysis.Functions.FunctionStrictlyDecreasing f S))))
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (S A : Real → Prop), Set.instLE.1 S A → ((∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLE.1 x y → Real.instLE.1 (f x) (f y)) → ∀ (x : Real), Set.instMembership.1 S x → ∀ (y : Real), Set.instMembership.1 S y → Real.instLE.1 x y → Real.instLE.1 (f x) (f y) ∧ ((∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLE.1 x y → Real.instLE.1 (f y) (f x)) → ∀ (x : Real), Set.instMembership.1 S x → ∀ (y : Real), Set.instMembership.1 S y → Real.instLE.1 x y → Real.instLE.1 (f y) (f x) ∧ ((∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLT.1 x y → Real.instLT.1 (f x) (f y)) → ∀ (x : Real), Set.instMembership.1 S x → ∀ (y : Real), Set.instMembership.1 S y → Real.instLT.1 x y → Real.instLT.1 (f x) (f y) ∧ (∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLT.1 x y → Real.instLT.1 (f y) (f x)) → ∀ (x : Real), Set.instMembership.1 S x → ∀ (y : Real), Set.instMembership.1 S y → Real.instLT.1 x y → Real.instLT.1 (f y) (f x))))
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    S A : Set ℝ
+    hS : S ⊆ A
+  Prove
+    { le := fun s₁ s₂ => ∀ ⦃a : Real⦄, a ∈ s₁ → a ∈ s₂}.le S A → ((∀ (x : Real), x ∈ A → ∀ (y : Real), y ∈ A → Real.instLE.le x y → Real.instLE.le (f x) (f y)) → ∀ (x : Real), x ∈ S → ∀ (y : Real), y ∈ S → Real.instLE.le x y → Real.instLE.le (f x) (f y) ∧ ((∀ (x : Real), x ∈ A → ∀ (y : Real), y ∈ A → Real.instLE.le x y → Real.instLE.le (f y) (f x)) → ∀ (x : Real), x ∈ S → ∀ (y : Real), y ∈ S → Real.instLE.le x y → Real.instLE.le (f y) (f x) ∧ ((∀ (x : Real), x ∈ A → ∀ (y : Real), y ∈ A → Real.instLT.lt x y → Real.instLT.lt (f x) (f y)) → ∀ (x : Real), x ∈ S → ∀ (y : Real), y ∈ S → Real.instLT.lt x y → Real.instLT.lt (f x) (f y) ∧ (∀ (x : Real), x ∈ A → ∀ (y : Real), y ∈ A → Real.instLT.lt x y → Real.instLT.lt (f y) (f x)) → ∀ (x : Real), x ∈ S → ∀ (y : Real), y ∈ S → Real.instLT.lt x y → Real.instLT.lt (f y) (f x))))
 
 Logical form (Lean):
 
@@ -723,11 +825,17 @@ theorem MonotonicityRestriction (f : ℝ → ℝ) (S A : Set ℝ) (hS : S ⊆ A)
 
 Predicate logic:
 
-  (∀ x ∈ A, f x ∈ B) → (FunctionIncreasing f A → FunctionIncreasing g B → FunctionIncreasing (g ∘ f) A) ∧ (FunctionDecreasing f A → FunctionDecreasing g B → FunctionIncreasing (g ∘ f) A) ∧ (FunctionIncreasing f A → FunctionDecreasing g B → FunctionDecreasing (g ∘ f) A) ∧ (FunctionDecreasing f A → FunctionIncreasing g B → FunctionDecreasing (g ∘ f) A)
+  ∀ (f g : Real → Real) (A B : Set Real), (∀ (x : Real), x ∈ A → f x ∈ B) → ((LRA.Analysis.Functions.FunctionIncreasing f A → LRA.Analysis.Functions.FunctionIncreasing g B → LRA.Analysis.Functions.FunctionIncreasing (Function.comp g f) A) ∧ ((LRA.Analysis.Functions.FunctionDecreasing f A → LRA.Analysis.Functions.FunctionDecreasing g B → LRA.Analysis.Functions.FunctionIncreasing (Function.comp g f) A) ∧ ((LRA.Analysis.Functions.FunctionIncreasing f A → LRA.Analysis.Functions.FunctionDecreasing g B → LRA.Analysis.Functions.FunctionDecreasing (Function.comp g f) A) ∧ (LRA.Analysis.Functions.FunctionDecreasing f A → LRA.Analysis.Functions.FunctionIncreasing g B → LRA.Analysis.Functions.FunctionDecreasing (Function.comp g f) A))))
 
 Predicate logic (unfolded):
 
-  ∀ (f g : Real → Real) (A B : Real → Prop), (∀ (x : Real), Set.instMembership.1 A x → Set.instMembership.1 B (f x)) → ((∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLE.1 x y → Real.instLE.1 (f x) (f y)) → (∀ (x : Real), Set.instMembership.1 B x → ∀ (y : Real), Set.instMembership.1 B y → Real.instLE.1 x y → Real.instLE.1 (g x) (g y)) → ∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLE.1 x y → Real.instLE.1 (g (f x)) (g (f y)) ∧ ((∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLE.1 x y → Real.instLE.1 (f y) (f x)) → (∀ (x : Real), Set.instMembership.1 B x → ∀ (y : Real), Set.instMembership.1 B y → Real.instLE.1 x y → Real.instLE.1 (g y) (g x)) → ∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLE.1 x y → Real.instLE.1 (g (f x)) (g (f y)) ∧ ((∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLE.1 x y → Real.instLE.1 (f x) (f y)) → (∀ (x : Real), Set.instMembership.1 B x → ∀ (y : Real), Set.instMembership.1 B y → Real.instLE.1 x y → Real.instLE.1 (g y) (g x)) → ∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLE.1 x y → Real.instLE.1 (g (f y)) (g (f x)) ∧ (∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLE.1 x y → Real.instLE.1 (f y) (f x)) → (∀ (x : Real), Set.instMembership.1 B x → ∀ (y : Real), Set.instMembership.1 B y → Real.instLE.1 x y → Real.instLE.1 (g x) (g y)) → ∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLE.1 x y → Real.instLE.1 (g (f y)) (g (f x)))))
+  Ambient
+    (ℝ)
+  Objects
+    f g : ℝ → ℝ
+    A B : Set ℝ
+  Prove
+    (∀ (x : Real), x ∈ A → f x ∈ B) → ((∀ (x : Real), x ∈ A → ∀ (y : Real), y ∈ A → Real.instLE.le x y → Real.instLE.le (f x) (f y)) → (∀ (x : Real), x ∈ B → ∀ (y : Real), y ∈ B → Real.instLE.le x y → Real.instLE.le (g x) (g y)) → ∀ (x : Real), x ∈ A → ∀ (y : Real), y ∈ A → Real.instLE.le x y → Real.instLE.le (g (f x)) (g (f y)) ∧ ((∀ (x : Real), x ∈ A → ∀ (y : Real), y ∈ A → Real.instLE.le x y → Real.instLE.le (f y) (f x)) → (∀ (x : Real), x ∈ B → ∀ (y : Real), y ∈ B → Real.instLE.le x y → Real.instLE.le (g y) (g x)) → ∀ (x : Real), x ∈ A → ∀ (y : Real), y ∈ A → Real.instLE.le x y → Real.instLE.le (g (f x)) (g (f y)) ∧ ((∀ (x : Real), x ∈ A → ∀ (y : Real), y ∈ A → Real.instLE.le x y → Real.instLE.le (f x) (f y)) → (∀ (x : Real), x ∈ B → ∀ (y : Real), y ∈ B → Real.instLE.le x y → Real.instLE.le (g y) (g x)) → ∀ (x : Real), x ∈ A → ∀ (y : Real), y ∈ A → Real.instLE.le x y → Real.instLE.le (g (f y)) (g (f x)) ∧ (∀ (x : Real), x ∈ A → ∀ (y : Real), y ∈ A → Real.instLE.le x y → Real.instLE.le (f y) (f x)) → (∀ (x : Real), x ∈ B → ∀ (y : Real), y ∈ B → Real.instLE.le x y → Real.instLE.le (g x) (g y)) → ∀ (x : Real), x ∈ A → ∀ (y : Real), y ∈ A → Real.instLE.le x y → Real.instLE.le (g (f y)) (g (f x)))))
 
 Logical form (Lean):
 
@@ -779,11 +887,17 @@ theorem CompositionOfMonotoneFunctions (f g : ℝ → ℝ) (A B : Set ℝ)
 
 Predicate logic:
 
-  (∀ x ∈ A, f x ∈ B ∧ ∀ y ∈ B, ∃ x ∈ A, f x = y ∧ ∀ x ∈ A, f' (f x) = x ∧ ∀ y ∈ B, f (f' y) = y) → (FunctionStrictlyIncreasing f A → FunctionStrictlyIncreasing f' B) ∧ (FunctionStrictlyDecreasing f A → FunctionStrictlyDecreasing f' B)
+  ∀ (f f' : Real → Real) (A B : Set Real), ((∀ (x : Real), x ∈ A → f x ∈ B) ∧ ((∀ (y : Real), y ∈ B → Exists fun x => (x ∈ A ∧ f x = y)) ∧ ((∀ (x : Real), x ∈ A → f' (f x) = x) ∧ (∀ (y : Real), y ∈ B → f (f' y) = y)))) → ((LRA.Analysis.Functions.FunctionStrictlyIncreasing f A → LRA.Analysis.Functions.FunctionStrictlyIncreasing f' B) ∧ (LRA.Analysis.Functions.FunctionStrictlyDecreasing f A → LRA.Analysis.Functions.FunctionStrictlyDecreasing f' B))
 
 Predicate logic (unfolded):
 
-  ∀ (f f' : Real → Real) (A B : Real → Prop), (∀ (x : Real), Set.instMembership.1 A x → Set.instMembership.1 B (f x) ∧ (∀ (y : Real), Set.instMembership.1 B y → Exists fun x => (Set.instMembership.1 A x ∧ f x = y) ∧ (∀ (x : Real), Set.instMembership.1 A x → f' (f x) = x ∧ ∀ (y : Real), Set.instMembership.1 B y → f (f' y) = y))) → ((∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLT.1 x y → Real.instLT.1 (f x) (f y)) → ∀ (x : Real), Set.instMembership.1 B x → ∀ (y : Real), Set.instMembership.1 B y → Real.instLT.1 x y → Real.instLT.1 (f' x) (f' y) ∧ (∀ (x : Real), Set.instMembership.1 A x → ∀ (y : Real), Set.instMembership.1 A y → Real.instLT.1 x y → Real.instLT.1 (f y) (f x)) → ∀ (x : Real), Set.instMembership.1 B x → ∀ (y : Real), Set.instMembership.1 B y → Real.instLT.1 x y → Real.instLT.1 (f' y) (f' x))
+  Ambient
+    (ℝ)
+  Objects
+    f f' : ℝ → ℝ
+    A B : Set ℝ
+  Prove
+    ((∀ (x : Real), x ∈ A → f x ∈ B) ∧ ((∀ (y : Real), y ∈ B → Exists fun x => (x ∈ A ∧ f x = y)) ∧ ((∀ (x : Real), x ∈ A → f' (f x) = x) ∧ (∀ (y : Real), y ∈ B → f (f' y) = y)))) → ((∀ (x : Real), x ∈ A → ∀ (y : Real), y ∈ A → Real.instLT.lt x y → Real.instLT.lt (f x) (f y)) → ∀ (x : Real), x ∈ B → ∀ (y : Real), y ∈ B → Real.instLT.lt x y → Real.instLT.lt (f' x) (f' y) ∧ (∀ (x : Real), x ∈ A → ∀ (y : Real), y ∈ A → Real.instLT.lt x y → Real.instLT.lt (f y) (f x)) → ∀ (x : Real), x ∈ B → ∀ (y : Real), y ∈ B → Real.instLT.lt x y → Real.instLT.lt (f' y) (f' x))
 
 Logical form (Lean):
 

@@ -14,16 +14,16 @@ open LRA.AlgebraicStructures.Ring.Interface.Signature
 Predicate logic:
 
   def BuildRingModel
-    (signature : LRA.AlgebraicStructures.RingConceptSignature) :
-    LRA.ModelTheory.FirstOrder.Model RingFirstOrderSignature where
-  Domain
+      (signature : LRA.AlgebraicStructures.RingConceptSignature) :
+      LRA.ModelTheory.FirstOrder.Model RingFirstOrderSignature where
+    Domain
 
 Predicate logic (unfolded):
 
   def BuildRingModel
-    (signature : LRA.AlgebraicStructures.RingConceptSignature) :
-    LRA.ModelTheory.FirstOrder.Model RingFirstOrderSignature where
-  Domain (source fallback; no compiled unfold data available)
+      (signature : LRA.AlgebraicStructures.RingConceptSignature) :
+      LRA.ModelTheory.FirstOrder.Model RingFirstOrderSignature where
+    Domain (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -75,20 +75,20 @@ def BuildRingModel
 Predicate logic:
 
   def ringFirstOrderModel (R : Type u)
-    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] :
-    LRA.ModelTheory.FirstOrder.Model RingFirstOrderSignature :=
-  BuildRingModel
-    { carrier := R, zero := 0, one := 1, add := (· + ·),
-      neg := (- ·), multiply := (· * ·) }
+      [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] :
+      LRA.ModelTheory.FirstOrder.Model RingFirstOrderSignature :=
+    BuildRingModel
+      { carrier := R, zero := 0, one := 1, add := (· + ·),
+        neg := (- ·), multiply := (· * ·) }
 
 Predicate logic (unfolded):
 
   def ringFirstOrderModel (R : Type u)
-    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] :
-    LRA.ModelTheory.FirstOrder.Model RingFirstOrderSignature :=
-  BuildRingModel
-    { carrier := R, zero := 0, one := 1, add := (· + ·),
-      neg := (- ·), multiply := (· * ·) } (source fallback; no compiled unfold data available)
+      [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] :
+      LRA.ModelTheory.FirstOrder.Model RingFirstOrderSignature :=
+    BuildRingModel
+      { carrier := R, zero := 0, one := 1, add := (· + ·),
+        neg := (- ·), multiply := (· * ·) } (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

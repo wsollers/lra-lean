@@ -11,12 +11,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  Ambient
-    (implicit ambient)
-  Objects
-    (none)
-  Prove
-    R x x
+  ∀ {Carrier : Type u} (R : Carrier → Carrier → Prop) (x : Carrier), R x x
 
 Logical form (Lean):
 

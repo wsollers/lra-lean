@@ -12,7 +12,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} (R S : α → α → Prop) (a a_1 : α), Or (R a a_1) (S a a_1)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (R a a_1) (S a a_1)
 
 Logical form (Lean):
 
@@ -50,7 +55,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} (R S : α → α → Prop) (a a_1 : α), (R a a_1 ∧ S a a_1)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (R a a_1 ∧ S a a_1)
 
 Logical form (Lean):
 
@@ -88,7 +98,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} (R : α → α → Prop) (a a_1 : α), R a a_1 → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    R a a_1 → False
 
 Logical form (Lean):
 
@@ -126,7 +141,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} (R S : α → α → Prop) (a a_1 : α), (R a a_1 ∧ S a a_1 → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (R a a_1 ∧ (S a a_1 → False))
 
 Logical form (Lean):
 
@@ -164,7 +184,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} (R S : α → α → Prop) (a a_1 : α), Or ((R a a_1 ∧ S a a_1 → False)) ((S a a_1 ∧ R a a_1 → False))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or ((R a a_1 ∧ (S a a_1 → False))) ((S a a_1 ∧ (R a a_1 → False)))
 
 Logical form (Lean):
 

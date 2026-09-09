@@ -8,12 +8,12 @@ universe u
 Predicate logic:
 
   class Between (Point : Type u) where
-  between : Point → Point → Point → Prop
+    between : Point → Point → Point → Prop
 
 Predicate logic (unfolded):
 
   class Between (Point : Type u) where
-  between : Point → Point → Point → Prop (source fallback; no compiled unfold data available)
+    between : Point → Point → Point → Prop (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -50,12 +50,12 @@ class Between (Point : Type u) where
 Predicate logic:
 
   class Congruent (Point : Type u) where
-  congruent : Point → Point → Point → Point → Prop
+    congruent : Point → Point → Point → Point → Prop
 
 Predicate logic (unfolded):
 
   class Congruent (Point : Type u) where
-  congruent : Point → Point → Point → Point → Prop (source fallback; no compiled unfold data available)
+    congruent : Point → Point → Point → Point → Prop (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

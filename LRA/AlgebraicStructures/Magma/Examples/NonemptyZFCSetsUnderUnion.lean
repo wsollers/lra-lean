@@ -16,8 +16,91 @@ open LRA.Set.Constructions (ZFCSet)
 the natural binary operation to demonstrate closure with here. -/
 noncomputable instance : Mul ZFCSet := ⟨(· ∪ ·)⟩
 
+/--
+`NonemptyZFCSets` TODO
+
+Predicate logic:
+
+  ∀ (a : LRA.Set.Constructions.ZFCSet), Exists fun x => LRA.Set.Constructions.instMembershipZFCSet.mem a x
+
+Predicate logic (unfolded):
+
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun x => LRA.Set.Constructions.instMembershipZFCSet.1 a x
+
+Logical form (Lean):
+
+```lean
+def NonemptyZFCSets : LRA.Set.LRA_Set ZFCSet := {A | ∃ x, x ∈ A}
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: use, rcases, unfold
+
+-/
 def NonemptyZFCSets : LRA.Set.LRA_Set ZFCSet := {A | ∃ x, x ∈ A}
 
+/--
+`nonemptyZFCSetsClosedUnderUnion` TODO
+
+Predicate logic:
+
+  ∀ (A B : LRA.Set.Constructions.ZFCSet), (A ∈ LRA.AlgebraicStructures.Magma.Examples.NonemptyZFCSets ∧ B ∈ LRA.AlgebraicStructures.Magma.Examples.NonemptyZFCSets) → instHMul.hMul A B ∈ LRA.AlgebraicStructures.Magma.Examples.NonemptyZFCSets
+
+Predicate logic (unfolded):
+
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (A ∈ LRA.AlgebraicStructures.Magma.Examples.NonemptyZFCSets ∧ B ∈ LRA.AlgebraicStructures.Magma.Examples.NonemptyZFCSets) → { hMul := fun a b => LRA.AlgebraicStructures.Magma.Examples.instMulZFCSet.mul a b }.hMul A B ∈ LRA.AlgebraicStructures.Magma.Examples.NonemptyZFCSets
+
+Logical form (Lean):
+
+```lean
+theorem nonemptyZFCSetsClosedUnderUnion :
+    ∀ A B, A ∈ NonemptyZFCSets → B ∈ NonemptyZFCSets → A * B ∈ NonemptyZFCSets
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro
+
+-/
 theorem nonemptyZFCSetsClosedUnderUnion :
     ∀ A B, A ∈ NonemptyZFCSets → B ∈ NonemptyZFCSets → A * B ∈ NonemptyZFCSets := by
   sorry

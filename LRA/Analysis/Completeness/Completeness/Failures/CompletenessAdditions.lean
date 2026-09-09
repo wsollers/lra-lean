@@ -11,11 +11,16 @@ section RationalLeastUpperBoundFailure
 
 Predicate logic:
 
-  RationalCutLowerAtSqrtTwo.Nonempty ∧ ∃ u ∈ ℚ, ∀ x ∈ RationalCutLowerAtSqrtTwo, x ≤ u ∧ ¬ ∃ s ∈ ℚ, IsLUB RationalCutLowerAtSqrtTwo s
+  (LRA.Analysis.Completeness.RationalCutLowerAtSqrtTwo.Nonempty ∧ ((Exists fun u => ∀ (x : Rat), x ∈ LRA.Analysis.Completeness.RationalCutLowerAtSqrtTwo → Rat.instLE.le x u) ∧ ¬ Exists fun s => IsLUB LRA.Analysis.Completeness.RationalCutLowerAtSqrtTwo s))
 
 Predicate logic (unfolded):
 
-  (Exists fun x => Set.instMembership.1 LRA.Analysis.Completeness.RationalCutLowerAtSqrtTwo x ∧ (Exists fun u => ∀ (x : Rat), Set.instMembership.1 LRA.Analysis.Completeness.RationalCutLowerAtSqrtTwo x → Rat.instLE.1 x u ∧ (Exists fun s => (Set.instMembership.1 (fun x => ∀ ⦃a : Rat⦄, Set.instMembership.mem LRA.Analysis.Completeness.RationalCutLowerAtSqrtTwo a → Rat.instLE.le a x) s ∧ Set.instMembership.1 (fun x => ∀ ⦃a : Rat⦄, Set.instMembership.mem (upperBounds LRA.Analysis.Completeness.RationalCutLowerAtSqrtTwo) a → Rat.instLE.le x a) s)) → False))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun x => x ∈ LRA.Analysis.Completeness.RationalCutLowerAtSqrtTwo ∧ ((Exists fun u => ∀ (x : Rat), x ∈ LRA.Analysis.Completeness.RationalCutLowerAtSqrtTwo → Rat.instLE.le x u) ∧ ((Exists fun s => ((s ∈ fun x => ∀ ⦃a : Rat⦄, a ∈ LRA.Analysis.Completeness.RationalCutLowerAtSqrtTwo → Rat.instLE.le a x) ∧ (s ∈ fun x => ∀ ⦃a : Rat⦄, a ∈ upperBounds LRA.Analysis.Completeness.RationalCutLowerAtSqrtTwo → Rat.instLE.le x a))) → False)))
 
 Logical form (Lean):
 
@@ -59,7 +64,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  (∀ (A : Rat → Prop), (Exists fun x => Set.instMembership.1 A x) → (Exists fun u => ∀ (x : Rat), Set.instMembership.1 A x → Rat.instPreorder.toLE.1 x u) → Exists fun s => (∀ (x : Rat), Set.instMembership.1 A x → Rat.instPreorder.toLE.1 x s ∧ ∀ (u : Rat), (∀ (x : Rat), Set.instMembership.1 A x → Rat.instPreorder.toLE.1 x u) → Rat.instPreorder.toLE.1 s u)) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (A : Rat → Prop), (Exists fun x => x) ∈ A → (Exists fun u => ∀ (x : Rat), x ∈ A → Rat.instPreorder.1.le x u) → Exists fun s => ((∀ (x : Rat), x ∈ A → Rat.instPreorder.1.le x s) ∧ (∀ (u : Rat), (∀ (x : Rat), x ∈ A → Rat.instPreorder.1.le x u) → Rat.instPreorder.1.le s u))) → False
 
 Logical form (Lean):
 
@@ -95,11 +105,16 @@ def RationalsDoNotHaveLeastUpperBoundProperty : Prop :=
 
 Predicate logic:
 
-  RationalsDoNotHaveLeastUpperBoundProperty
+  LRA.Analysis.Completeness.RationalsDoNotHaveLeastUpperBoundProperty
 
 Predicate logic (unfolded):
 
-  LRA.Analysis.Completeness.RationalsDoNotHaveLeastUpperBoundProperty
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Analysis.Completeness.RationalsDoNotHaveLeastUpperBoundProperty
 
 Logical form (Lean):
 
@@ -135,11 +150,16 @@ theorem RationalSqrtTwoCutProvesRationalsDoNotHaveLeastUpperBoundProperty :
 
 Predicate logic:
 
-  (¬ ∃ m ∈ RationalCutLowerAtSqrtTwo, ∀ x ∈ RationalCutLowerAtSqrtTwo, x ≤ m) ∧ (¬ ∃ m ∈ RationalCutUpperAtSqrtTwo, ∀ x ∈ RationalCutUpperAtSqrtTwo, m ≤ x)
+  ((¬ Exists fun m => (m ∈ LRA.Analysis.Completeness.RationalCutLowerAtSqrtTwo ∧ (∀ (x : Rat), x ∈ LRA.Analysis.Completeness.RationalCutLowerAtSqrtTwo → Rat.instLE.le x m))) ∧ (¬ Exists fun m => (m ∈ LRA.Analysis.Completeness.RationalCutUpperAtSqrtTwo ∧ (∀ (x : Rat), x ∈ LRA.Analysis.Completeness.RationalCutUpperAtSqrtTwo → Rat.instLE.le m x))))
 
 Predicate logic (unfolded):
 
-  ((Exists fun m => (Set.instMembership.1 LRA.Analysis.Completeness.RationalCutLowerAtSqrtTwo m ∧ ∀ (x : Rat), Set.instMembership.1 LRA.Analysis.Completeness.RationalCutLowerAtSqrtTwo x → Rat.instLE.1 x m)) → False ∧ (Exists fun m => (Set.instMembership.1 LRA.Analysis.Completeness.RationalCutUpperAtSqrtTwo m ∧ ∀ (x : Rat), Set.instMembership.1 LRA.Analysis.Completeness.RationalCutUpperAtSqrtTwo x → Rat.instLE.1 m x)) → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((Exists fun m => (m ∈ LRA.Analysis.Completeness.RationalCutLowerAtSqrtTwo ∧ (∀ (x : Rat), x ∈ LRA.Analysis.Completeness.RationalCutLowerAtSqrtTwo → Rat.instLE.le x m))) → False) ∧ ((Exists fun m => (m ∈ LRA.Analysis.Completeness.RationalCutUpperAtSqrtTwo ∧ (∀ (x : Rat), x ∈ LRA.Analysis.Completeness.RationalCutUpperAtSqrtTwo → Rat.instLE.le m x))) → False))
 
 Logical form (Lean):
 

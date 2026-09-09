@@ -8,12 +8,12 @@ namespace LRA.UniversalAlgebra.Signature.FormalVocabulary
 Predicate logic:
 
   structure ConstantSymbols where
-  Symbol : Type
+    Symbol : Type
 
 Predicate logic (unfolded):
 
   structure ConstantSymbols where
-  Symbol : Type (source fallback; no compiled unfold data available)
+    Symbol : Type (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

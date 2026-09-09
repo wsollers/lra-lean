@@ -6,16 +6,16 @@ namespace LRA.ProofTheory.System
 Predicate logic:
 
   structure ProofSystem where
-  Judgement : Type
-  IsInitial : Judgement -> Prop
-  Rule : List Judgement -> Judgement -> Prop
+    Judgement : Type
+    IsInitial : Judgement -> Prop
+    Rule : List Judgement -> Judgement -> Prop
 
 Predicate logic (unfolded):
 
   structure ProofSystem where
-  Judgement : Type
-  IsInitial : Judgement -> Prop
-  Rule : List Judgement -> Judgement -> Prop (source fallback; no compiled unfold data available)
+    Judgement : Type
+    IsInitial : Judgement -> Prop
+    Rule : List Judgement -> Judgement -> Prop (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

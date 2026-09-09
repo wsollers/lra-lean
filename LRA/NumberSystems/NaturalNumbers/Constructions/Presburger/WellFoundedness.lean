@@ -12,24 +12,24 @@ open LRA.Set.Constructions
 Predicate logic:
 
   def PresburgerPeanoSystem :
-    LRA.NumberSystems.PeanoSystem.PeanoSystem
-      PresburgerElement (TypeSet PresburgerElement) where
-  base := PresburgerElement.zero
-  successor := PresburgerElement.succ
-  one_not_successor := PresburgerZeroIsNotSuccessor
-  successor_injective := PresburgerSuccessorInjective
-  induction := PresburgerInductionPrinciple
+      LRA.NumberSystems.PeanoSystem.PeanoSystem
+        PresburgerElement (TypeSet PresburgerElement) where
+    base := PresburgerElement.zero
+    successor := PresburgerElement.succ
+    one_not_successor := PresburgerZeroIsNotSuccessor
+    successor_injective := PresburgerSuccessorInjective
+    induction := PresburgerInductionPrinciple
 
 Predicate logic (unfolded):
 
   def PresburgerPeanoSystem :
-    LRA.NumberSystems.PeanoSystem.PeanoSystem
-      PresburgerElement (TypeSet PresburgerElement) where
-  base := PresburgerElement.zero
-  successor := PresburgerElement.succ
-  one_not_successor := PresburgerZeroIsNotSuccessor
-  successor_injective := PresburgerSuccessorInjective
-  induction := PresburgerInductionPrinciple (source fallback; no compiled unfold data available)
+      LRA.NumberSystems.PeanoSystem.PeanoSystem
+        PresburgerElement (TypeSet PresburgerElement) where
+    base := PresburgerElement.zero
+    successor := PresburgerElement.succ
+    one_not_successor := PresburgerZeroIsNotSuccessor
+    successor_injective := PresburgerSuccessorInjective
+    induction := PresburgerInductionPrinciple (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -81,11 +81,16 @@ variable [Membership Element SetObject]
 
 Predicate logic:
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (model : LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.PresburgerModel Element SetObject), (∀ (element : Element), Ne (model.successor element) model.zero ∧ (∀ (first_element second_element : Element), model.successor first_element = model.successor second_element → first_element = second_element ∧ ∀ (subset : SetObject), model.zero ∈ subset → (∀ (element : Element), element ∈ subset → model.successor element ∈ subset) → ∀ (element : Element), element ∈ subset))
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (model : LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.PresburgerModel Element SetObject), ((∀ (element : Element), Ne (model.successor element) model.zero) ∧ ((∀ (first_element second_element : Element), model.successor first_element = model.successor second_element → first_element = second_element) ∧ (∀ (subset : SetObject), model.zero ∈ subset → (∀ (element : Element), element ∈ subset → model.successor element ∈ subset) → ∀ (element : Element), element ∈ subset)))
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (model : LRA.NumberSystems.NaturalNumbers.Constructions.Presburger.PresburgerModel Element SetObject), (∀ (element : Element), model.2 element = model.1 → False ∧ (∀ (first_element second_element : Element), model.2 first_element = model.2 second_element → first_element = second_element ∧ ∀ (subset : SetObject), inst.1 subset model.1 → (∀ (element : Element), inst.1 subset element → inst.1 subset (model.2 element)) → ∀ (element : Element), inst.1 subset element))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (element : Element), model.2 element = model.1 → False) ∧ ((∀ (first_element second_element : Element), model.2 first_element = model.2 second_element → first_element = second_element) ∧ (∀ (subset : SetObject), inst.1 subset model.1 → (∀ (element : Element), inst.1 subset element → inst.1 subset (model.2 element)) → ∀ (element : Element), inst.1 subset element)))
 
 Logical form (Lean):
 

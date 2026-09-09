@@ -11,11 +11,18 @@ namespace LRA.Analysis.RealAnalysis
 
 Predicate logic:
 
-  (ℕ → ℝ ∧ 2 ≤ k) → Filter.Tendsto a Filter.atTop (nhds L) ↔ ∀ r < k, Filter.Tendsto (fun n => a (k * n + r)) Filter.atTop (nhds L)
+  ∀ (a : Nat → Real) (k : Nat), instLENat.le 2 k → ∀ (L : Real), Filter.Tendsto a Filter.atTop (nhds L) ↔ ∀ (r : Nat), instLTNat.lt r k → Filter.Tendsto (fun n => a (instHAdd.hAdd (instHMul.hMul k n) r)) Filter.atTop (nhds L)
 
 Predicate logic (unfolded):
 
-  ∀ (a : Nat → Real) (k : Nat), instLENat.1 (instOfNatNat 2).1 k → ∀ (L : Real), Filter.instPartialOrder.toLE.1 { sets := fun x => Set.instMembership.1 Filter.atTop.sets (Set.preimage a x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds L) ↔ ∀ (r : Nat), instLTNat.1 r k → Filter.instPartialOrder.toLE.1 { sets := fun x => Set.instMembership.1 Filter.atTop.sets (Set.preimage (fun n => a (instHAdd.hAdd (instHMul.hMul k n) r)) x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds L)
+  Ambient
+    (ℕ, ℝ)
+  Objects
+    a : ℕ → ℝ
+    k : ℕ
+    L : ℝ
+  Prove
+    instLENat.le 2 k → ∀ (L : Real), Filter.Tendsto a Filter.atTop (nhds L) ↔ ∀ (r : Nat), instLTNat.lt r k → Filter.Tendsto (fun n => a (instHAdd.hAdd (instHMul.hMul k n) r)) Filter.atTop (nhds L)
 
 Logical form (Lean):
 
@@ -53,11 +60,21 @@ theorem KPeriodicity (a : ℕ → ℝ) (k : ℕ) (hk : 2 ≤ k) (L : ℝ) :
 
 Predicate logic:
 
-  (ℕ → ℝ ∧ r < k ∧ s < k) → ¬ ∃ N, Filter.Tendsto a Filter.atTop (nhds N)
+  ∀ (a : Nat → Real) (k r s : Nat), (instLTNat.lt r k ∧ instLTNat.lt s k) → ∀ (L M : Real), (Ne L M ∧ (Filter.Tendsto (fun n => a (instHAdd.hAdd (instHMul.hMul k n) r)) Filter.atTop (nhds L) ∧ Filter.Tendsto (fun n => a (instHAdd.hAdd (instHMul.hMul k n) s)) Filter.atTop (nhds M))) → ¬ Exists fun N => Filter.Tendsto a Filter.atTop (nhds N)
 
 Predicate logic (unfolded):
 
-  ∀ (a : Nat → Real) (k r s : Nat), (instLTNat.1 r k ∧ instLTNat.1 s k) → ∀ (L M : Real), (L = M → False ∧ (Filter.instPartialOrder.toLE.1 { sets := fun x => Set.instMembership.1 Filter.atTop.sets (Set.preimage (fun n => a (instHAdd.hAdd (instHMul.hMul k n) r)) x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds L) ∧ (Filter.instPartialOrder.toLE.1 { sets := fun x => Set.instMembership.1 Filter.atTop.sets (Set.preimage (fun n => a (instHAdd.hAdd (instHMul.hMul k n) s)) x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds M) ∧ Exists fun N => Filter.instPartialOrder.toLE.1 { sets := fun x => Set.instMembership.mem Filter.atTop.sets (Set.preimage a x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds N)))) → False
+  Ambient
+    (ℕ, ℝ)
+  Objects
+    a : ℕ → ℝ
+    k r s : ℕ
+    L M : ℝ
+    hLM : L ≠ M
+    hL : Filter.Tendsto (fun n => a (k * n + r)) Filter.atTop (nhds L)
+    hM : Filter.Tendsto (fun n => a (k * n + s)) Filter.atTop (nhds M)
+  Prove
+    (instLTNat.lt r k ∧ instLTNat.lt s k) → ∀ (L M : Real), ((L = M → False) ∧ (Filter.instPartialOrder.toPreorder.1.le { sets := fun x => setOf fun x_1 => (fun n => a (instHAdd.hAdd (instHMul.hMul k n) r)) x_1 ∈ x ∈ Filter.atTop.1, univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds L) ∧ (Filter.instPartialOrder.toPreorder.1.le { sets := fun x => setOf fun x_1 => (fun n => a (instHAdd.hAdd (instHMul.hMul k n) s)) x_1 ∈ x ∈ Filter.atTop.1, univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds M) ∧ Exists fun N => Filter.instPartialOrder.toPreorder.1.le { sets := fun x => Set.preimage a x ∈ Filter.atTop.sets, univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds N)))) → False
 
 Logical form (Lean):
 
@@ -99,11 +116,17 @@ theorem ResidueDivergence (a : ℕ → ℝ) (k r s : ℕ) (hr : r < k) (hs : s <
 
 Predicate logic:
 
-  (ℕ → ℝ ∧ ∀ n, 0 < a n ∧ ∀ n, a (n + 1) ≤ a n) → ∃ L ∈ ℝ, Filter.Tendsto (fun n => ∑ i ∈ Finset.range n, -1 ∈ ℝ ^ i * a (i + 1)) Filter.atTop (nhds L)
+  ∀ (a : Nat → Real), ((∀ (n : Nat), Real.instLT.lt 0 (a n)) ∧ ((∀ (n : Nat), Real.instLE.le (a (instHAdd.hAdd n 1)) (a n)) ∧ Filter.Tendsto a Filter.atTop (nhds 0))) → Exists fun L => Filter.Tendsto (fun n => (Finset.range n).sum fun i => instHMul.hMul (instHPow.hPow (-1) i) (a (instHAdd.hAdd i 1))) Filter.atTop (nhds L)
 
 Predicate logic (unfolded):
 
-  ∀ (a : Nat → Real), (∀ (n : Nat), Real.instLT.1 Zero.toOfNat0.1 (a n) ∧ (∀ (n : Nat), Real.instLE.1 (a (instHAdd.1 n (instOfNatNat 1).1)) (a n) ∧ Filter.instPartialOrder.toLE.1 { sets := fun x => Set.instMembership.1 Filter.atTop.sets (Set.preimage a x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds Zero.toOfNat0.1))) → Exists fun L => Filter.instPartialOrder.toLE.1 { sets := fun x => Set.instMembership.1 Filter.atTop.sets (Set.preimage (fun n => (Finset.range n).sum fun i => instHMul.hMul (instHPow.hPow (-1) i) (a (instHAdd.hAdd i 1))) x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds L)
+  Ambient
+    (ℕ, ℝ)
+  Objects
+    a : ℕ → ℝ
+    hnull : Filter.Tendsto a Filter.atTop (nhds 0)
+  Prove
+    ((∀ (n : Nat), Real.instLT.lt 0 (a n)) ∧ ((∀ (n : Nat), Real.instLE.le (a ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1)) (a n)) ∧ Filter.instPartialOrder.toPreorder.1.le { sets := fun x => setOf fun x_1 => a x_1 ∈ x ∈ Filter.atTop.1, univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds 0))) → Exists fun L => Filter.instPartialOrder.toPreorder.1.le { sets := fun x => setOf fun x_1 => (fun n => (Finset.range n).sum fun i => instHMul.hMul (instHPow.hPow (-1) i) (a (instHAdd.hAdd i 1))) x_1 ∈ x ∈ Filter.atTop.1, univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds L)
 
 Logical form (Lean):
 

@@ -7,11 +7,16 @@ namespace LRA.Logic.Language
 
 Predicate logic:
 
-  forall Symbol : Type, Nonempty Symbol -> Nonempty Symbol
+  ∀ (Symbol : Type), Nonempty Symbol → Nonempty Symbol
 
 Predicate logic (unfolded):
 
-  ∀ (Symbol : Type), Nonempty Symbol → Nonempty Symbol
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Nonempty Symbol → Nonempty Symbol
 
 Logical form (Lean):
 

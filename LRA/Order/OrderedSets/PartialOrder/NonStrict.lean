@@ -10,12 +10,12 @@ universe u
 Predicate logic:
 
   abbrev NonStrictPartialOrder (Carrier : Type u) :=
-  PartialOrderRelation Carrier
+    PartialOrderRelation Carrier
 
 Predicate logic (unfolded):
 
   abbrev NonStrictPartialOrder (Carrier : Type u) :=
-  PartialOrderRelation Carrier (source fallback; no compiled unfold data available)
+    PartialOrderRelation Carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

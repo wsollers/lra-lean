@@ -9,11 +9,17 @@ universe u v
 
 Predicate logic:
 
-  Reflexive relation
+  ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha}, LRA.Relation.EquivalenceRelation relation → LRA.Relation.Reflexive relation
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {relation : Alpha → Alpha → Prop}, (∀ (x : Alpha), relation x x ∧ (∀ (x y : Alpha), relation x y → relation y x ∧ ∀ (x y z : Alpha), relation x y → relation y z → relation x z)) → ∀ (x : Alpha), relation x x
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+    equivalence : EquivalenceRelation relation
+  Prove
+    ((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) → ∀ (x : Alpha), relation x x
 
 Logical form (Lean):
 
@@ -55,11 +61,17 @@ theorem EquivalenceRelation.reflexive
 
 Predicate logic:
 
-  Symmetric relation
+  ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha}, LRA.Relation.EquivalenceRelation relation → LRA.Relation.Symmetric relation
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {relation : Alpha → Alpha → Prop}, (∀ (x : Alpha), relation x x ∧ (∀ (x y : Alpha), relation x y → relation y x ∧ ∀ (x y z : Alpha), relation x y → relation y z → relation x z)) → ∀ (x y : Alpha), relation x y → relation y x
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+    equivalence : EquivalenceRelation relation
+  Prove
+    ((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) → ∀ (x y : Alpha), relation x y → relation y x
 
 Logical form (Lean):
 
@@ -101,11 +113,17 @@ theorem EquivalenceRelation.symmetric
 
 Predicate logic:
 
-  Transitive relation
+  ∀ {Alpha : Type u} {relation : LRA.Relation.Endorelation Alpha}, LRA.Relation.EquivalenceRelation relation → LRA.Relation.Transitive relation
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {relation : Alpha → Alpha → Prop}, (∀ (x : Alpha), relation x x ∧ (∀ (x y : Alpha), relation x y → relation y x ∧ ∀ (x y z : Alpha), relation x y → relation y z → relation x z)) → ∀ (x y z : Alpha), (relation x y ∧ relation y z) → relation x z
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+    equivalence : EquivalenceRelation relation
+  Prove
+    ((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z))) → ∀ (x y z : Alpha), (relation x y ∧ relation y z) → relation x z
 
 Logical form (Lean):
 

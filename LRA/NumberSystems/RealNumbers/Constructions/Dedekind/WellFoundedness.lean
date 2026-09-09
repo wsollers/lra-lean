@@ -13,11 +13,17 @@ variable (rational_model : RationalModel)
 
 Predicate logic:
 
-  (Cut rational_model → Prop ∧ ∀ lower_set ∈ RationalSet rational_model isCut ∈ IsCut rational_model lower_set, motive ⟨lower_set, isCut⟩) → ∀ cut : Cut rational_model, motive cut
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (motive : LRA.NumberSystems.RealNumbers.Dedekind.Cut rational_model → Prop), (∀ (lower_set : LRA.NumberSystems.RealNumbers.Dedekind.RationalSet rational_model) (isCut : LRA.NumberSystems.RealNumbers.Dedekind.IsCut rational_model lower_set), motive ⟨lower_set, isCut⟩) → ∀ (cut : LRA.NumberSystems.RealNumbers.Dedekind.Cut rational_model), motive cut
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (motive : (Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper lower : rational_model.signature.toCarrierBundle.1), lower_set upper → rational_model.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rational_model.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.toOrderedRingSignature.2 value greater))))) → Prop), (∀ (lower_set : rational_model.signature.toCarrierBundle.1 → Prop) (isCut : (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper lower : rational_model.signature.toCarrierBundle.1), lower_set upper → rational_model.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rational_model.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.toOrderedRingSignature.2 value greater))))), motive ⟨lower_set, isCut⟩) → ∀ (cut : Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper lower : rational_model.signature.toCarrierBundle.1), lower_set upper → rational_model.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rational_model.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.toOrderedRingSignature.2 value greater))))), motive cut
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_model : RationalModel
+    motive : Cut rational_model → Prop
+  Prove
+    (∀ (lower_set : rational_model.signature.toCarrierBundle.1 → Prop) (isCut : (Exists fun value => lower_set value ∧ ((Exists fun value => lower_set value → False) ∧ ((∀ (upper lower : rational_model.signature.toCarrierBundle.1), lower_set upper → rational_model.signature.toOrderedRingSignature.2 lower upper → lower_set lower) ∧ (∀ (value : rational_model.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.toOrderedRingSignature.2 value greater)))))), motive ⟨lower_set, isCut⟩) → ∀ (cut : Subtype fun lower_set => (Exists fun value => lower_set value ∧ ((Exists fun value => lower_set value → False) ∧ ((∀ (upper lower : rational_model.signature.toCarrierBundle.1), lower_set upper → rational_model.signature.toOrderedRingSignature.2 lower upper → lower_set lower) ∧ (∀ (value : rational_model.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.toOrderedRingSignature.2 value greater)))))), motive cut
 
 Logical form (Lean):
 

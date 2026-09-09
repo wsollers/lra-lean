@@ -15,11 +15,17 @@ open LRA.NumberSystems.RationalNumbers
 
 Predicate logic:
 
-  (∀ rationalSystem ∈ RationalNumberSystem), ∃ comparison ∈ Carrier rationalSystem.FieldModel → Cauchy.Carrier rationalSystem metric_data, LRA.Function.Bijective comparison
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (metric_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem), Exists fun comparison => LRA.Function.Bijective comparison
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (metric_data : LRA.NumberSystems.RealNumbers.Cauchy.RationalMetricData rationalSystem), Exists fun comparison => (∀ (y : Quot (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem metric_data).1) (x₁ x₂ : Quot (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid rationalSystem.FieldModel).1), comparison x₁ = y → comparison x₂ = y → x₁ = x₂ ∧ ∀ (y : Quot (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem metric_data).1), Exists fun x => comparison x = y)
+  Ambient
+    (implicit ambient)
+  Objects
+    rationalSystem : RationalNumberSystem
+    metric_data : Cauchy.RationalMetricData rationalSystem
+  Prove
+    Exists fun comparison => ((∀ (y : Quot (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem metric_data).1) (x₁ x₂ : Quot (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid rationalSystem.FieldModel).1), comparison x₁ = y → comparison x₂ = y → x₁ = x₂) ∧ (∀ (y : Quot (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid rationalSystem metric_data).1), Exists fun x => comparison x = y))
 
 Logical form (Lean):
 

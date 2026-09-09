@@ -11,11 +11,18 @@ universe u v
 
 Predicate logic:
 
-  (∀ A ∈ U ∀ x ∈ Element), LowerBound (LRA.Relation.Converse relation) A x ↔ UpperBound relation A x
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (relation : LRA.Relation.Endorelation Element) (subset : SetObject) (bound : Element), LRA.Order.LowerBound (LRA.Relation.Converse relation) subset bound ↔ LRA.Order.UpperBound relation subset bound
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (relation : Element → Element → Prop) (subset : SetObject) (bound : Element), ∀ (element : Element), inst.1 subset element → relation element bound ↔ ∀ (element : Element), inst.1 subset element → relation element bound
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+    bound : Element
+  Prove
+    LRA.Order.LowerBound (LRA.Relation.Converse relation) subset bound ↔ LRA.Order.UpperBound relation subset bound
 
 Logical form (Lean):
 

@@ -14,32 +14,32 @@ universe u v w
 Predicate logic:
 
   def productModel {S : Signature}
-    (M : Model.{u} S) (N : Model.{v} S) : Model.{max u v} S where
-  Domain := M.Domain × N.Domain
-  domainNonempty := ⟨⟨Classical.arbitrary M.Domain, Classical.arbitrary N.Domain⟩⟩
-  interpretFunction := fun functionSymbol arguments =>
-    ⟨M.interpretFunction functionSymbol (fun i => (arguments i).1),
-     N.interpretFunction functionSymbol (fun i => (arguments i).2)⟩
-  interpretRelation := fun relationSymbol arguments =>
-    M.interpretRelation relationSymbol (fun i => (arguments i).1) ∧
-      N.interpretRelation relationSymbol (fun i => (arguments i).2)
-  interpretConstant := fun constantSymbol =>
-    ⟨M.interpretConstant constantSymbol, N.interpretConstant constantSymbol⟩
+      (M : Model.{u} S) (N : Model.{v} S) : Model.{max u v} S where
+    Domain := M.Domain × N.Domain
+    domainNonempty := ⟨⟨Classical.arbitrary M.Domain, Classical.arbitrary N.Domain⟩⟩
+    interpretFunction := fun functionSymbol arguments =>
+      ⟨M.interpretFunction functionSymbol (fun i => (arguments i).1),
+       N.interpretFunction functionSymbol (fun i => (arguments i).2)⟩
+    interpretRelation := fun relationSymbol arguments =>
+      M.interpretRelation relationSymbol (fun i => (arguments i).1) ∧
+        N.interpretRelation relationSymbol (fun i => (arguments i).2)
+    interpretConstant := fun constantSymbol =>
+      ⟨M.interpretConstant constantSymbol, N.interpretConstant constantSymbol⟩
 
 Predicate logic (unfolded):
 
   def productModel {S : Signature}
-    (M : Model.{u} S) (N : Model.{v} S) : Model.{max u v} S where
-  Domain := M.Domain × N.Domain
-  domainNonempty := ⟨⟨Classical.arbitrary M.Domain, Classical.arbitrary N.Domain⟩⟩
-  interpretFunction := fun functionSymbol arguments =>
-    ⟨M.interpretFunction functionSymbol (fun i => (arguments i).1),
-     N.interpretFunction functionSymbol (fun i => (arguments i).2)⟩
-  interpretRelation := fun relationSymbol arguments =>
-    M.interpretRelation relationSymbol (fun i => (arguments i).1) ∧
-      N.interpretRelation relationSymbol (fun i => (arguments i).2)
-  interpretConstant := fun constantSymbol =>
-    ⟨M.interpretConstant constantSymbol, N.interpretConstant constantSymbol⟩ (source fallback; no compiled unfold data available)
+      (M : Model.{u} S) (N : Model.{v} S) : Model.{max u v} S where
+    Domain := M.Domain × N.Domain
+    domainNonempty := ⟨⟨Classical.arbitrary M.Domain, Classical.arbitrary N.Domain⟩⟩
+    interpretFunction := fun functionSymbol arguments =>
+      ⟨M.interpretFunction functionSymbol (fun i => (arguments i).1),
+       N.interpretFunction functionSymbol (fun i => (arguments i).2)⟩
+    interpretRelation := fun relationSymbol arguments =>
+      M.interpretRelation relationSymbol (fun i => (arguments i).1) ∧
+        N.interpretRelation relationSymbol (fun i => (arguments i).2)
+    interpretConstant := fun constantSymbol =>
+      ⟨M.interpretConstant constantSymbol, N.interpretConstant constantSymbol⟩ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -96,32 +96,32 @@ def productModel {S : Signature}
 Predicate logic:
 
   def piModel {S : Signature} {Index : Type w}
-    (family : Index → Model.{u} S) : Model.{max u w} S where
-  Domain := (index : Index) → (family index).Domain
-  domainNonempty := ⟨fun index => Classical.arbitrary (family index).Domain⟩
-  interpretFunction := fun functionSymbol arguments index =>
-    (family index).interpretFunction functionSymbol
-      (fun i => arguments i index)
-  interpretRelation := fun relationSymbol arguments =>
-    ∀ index, (family index).interpretRelation relationSymbol
-      (fun i => arguments i index)
-  interpretConstant := fun constantSymbol index =>
-    (family index).interpretConstant constantSymbol
+      (family : Index → Model.{u} S) : Model.{max u w} S where
+    Domain := (index : Index) → (family index).Domain
+    domainNonempty := ⟨fun index => Classical.arbitrary (family index).Domain⟩
+    interpretFunction := fun functionSymbol arguments index =>
+      (family index).interpretFunction functionSymbol
+        (fun i => arguments i index)
+    interpretRelation := fun relationSymbol arguments =>
+      ∀ index, (family index).interpretRelation relationSymbol
+        (fun i => arguments i index)
+    interpretConstant := fun constantSymbol index =>
+      (family index).interpretConstant constantSymbol
 
 Predicate logic (unfolded):
 
   def piModel {S : Signature} {Index : Type w}
-    (family : Index → Model.{u} S) : Model.{max u w} S where
-  Domain := (index : Index) → (family index).Domain
-  domainNonempty := ⟨fun index => Classical.arbitrary (family index).Domain⟩
-  interpretFunction := fun functionSymbol arguments index =>
-    (family index).interpretFunction functionSymbol
-      (fun i => arguments i index)
-  interpretRelation := fun relationSymbol arguments =>
-    ∀ index, (family index).interpretRelation relationSymbol
-      (fun i => arguments i index)
-  interpretConstant := fun constantSymbol index =>
-    (family index).interpretConstant constantSymbol (source fallback; no compiled unfold data available)
+      (family : Index → Model.{u} S) : Model.{max u w} S where
+    Domain := (index : Index) → (family index).Domain
+    domainNonempty := ⟨fun index => Classical.arbitrary (family index).Domain⟩
+    interpretFunction := fun functionSymbol arguments index =>
+      (family index).interpretFunction functionSymbol
+        (fun i => arguments i index)
+    interpretRelation := fun relationSymbol arguments =>
+      ∀ index, (family index).interpretRelation relationSymbol
+        (fun i => arguments i index)
+    interpretConstant := fun constantSymbol index =>
+      (family index).interpretConstant constantSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -178,22 +178,22 @@ def piModel {S : Signature} {Index : Type w}
 Predicate logic:
 
   def productFirstProjection {S : Signature}
-    (M : Model.{u} S) (N : Model.{v} S) :
-    Homomorphism (productModel M N) M where
-  map := Prod.fst
-  preservesFunction := fun _ _ => rfl
-  preservesConstant := fun _ => rfl
-  preservesRelation := fun _ _ holds => holds.1
+      (M : Model.{u} S) (N : Model.{v} S) :
+      Homomorphism (productModel M N) M where
+    map := Prod.fst
+    preservesFunction := fun _ _ => rfl
+    preservesConstant := fun _ => rfl
+    preservesRelation := fun _ _ holds => holds.1
 
 Predicate logic (unfolded):
 
   def productFirstProjection {S : Signature}
-    (M : Model.{u} S) (N : Model.{v} S) :
-    Homomorphism (productModel M N) M where
-  map := Prod.fst
-  preservesFunction := fun _ _ => rfl
-  preservesConstant := fun _ => rfl
-  preservesRelation := fun _ _ holds => holds.1 (source fallback; no compiled unfold data available)
+      (M : Model.{u} S) (N : Model.{v} S) :
+      Homomorphism (productModel M N) M where
+    map := Prod.fst
+    preservesFunction := fun _ _ => rfl
+    preservesConstant := fun _ => rfl
+    preservesRelation := fun _ _ holds => holds.1 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -240,22 +240,22 @@ def productFirstProjection {S : Signature}
 Predicate logic:
 
   def productSecondProjection {S : Signature}
-    (M : Model.{u} S) (N : Model.{v} S) :
-    Homomorphism (productModel M N) N where
-  map := Prod.snd
-  preservesFunction := fun _ _ => rfl
-  preservesConstant := fun _ => rfl
-  preservesRelation := fun _ _ holds => holds.2
+      (M : Model.{u} S) (N : Model.{v} S) :
+      Homomorphism (productModel M N) N where
+    map := Prod.snd
+    preservesFunction := fun _ _ => rfl
+    preservesConstant := fun _ => rfl
+    preservesRelation := fun _ _ holds => holds.2
 
 Predicate logic (unfolded):
 
   def productSecondProjection {S : Signature}
-    (M : Model.{u} S) (N : Model.{v} S) :
-    Homomorphism (productModel M N) N where
-  map := Prod.snd
-  preservesFunction := fun _ _ => rfl
-  preservesConstant := fun _ => rfl
-  preservesRelation := fun _ _ holds => holds.2 (source fallback; no compiled unfold data available)
+      (M : Model.{u} S) (N : Model.{v} S) :
+      Homomorphism (productModel M N) N where
+    map := Prod.snd
+    preservesFunction := fun _ _ => rfl
+    preservesConstant := fun _ => rfl
+    preservesRelation := fun _ _ holds => holds.2 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

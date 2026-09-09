@@ -11,11 +11,17 @@ universe u v w x
 
 Predicate logic:
 
-  (∀ member ∈ Pair), (member ∈ relation.triple.graph) → ∃ left ∈ LeftElement right ∈ RightElement, member = OrderedPair left right ∧ left ∈ relation.triple.leftDomain ∧ right ∈ relation.triple.rightDomain
+  ∀ {LeftElement RightElement Pair : Type u} {LeftDomainObject : Type v} {RightDomainObject : Type w} {GraphObject : Type x} [inst : LRA.Set.HasPairing LeftElement RightElement Pair] [inst_1 : Membership LeftElement LeftDomainObject] [inst_2 : Membership RightElement RightDomainObject] [inst_3 : Membership Pair GraphObject] (relation : LRA.Function.SetTheoretic.SetTheoreticRelation LeftElement RightElement Pair LeftDomainObject RightDomainObject GraphObject) (member : Pair), member ∈ relation.triple.graph → Exists fun left => Exists fun right => (member = LRA.Set.OrderedPair left right ∧ (left ∈ relation.triple.leftDomain ∧ right ∈ relation.triple.rightDomain))
 
 Predicate logic (unfolded):
 
-  ∀ {LeftElement RightElement Pair : Type u} {LeftDomainObject : Type v} {RightDomainObject : Type w} {GraphObject : Type x} [inst : LRA.Set.HasPairing LeftElement RightElement Pair] [inst_1 : Membership LeftElement LeftDomainObject] [inst_2 : Membership RightElement RightDomainObject] [inst_3 : Membership Pair GraphObject] (relation : LRA.Function.SetTheoretic.SetTheoreticRelation LeftElement RightElement Pair LeftDomainObject RightDomainObject GraphObject) (member : Pair), inst_3.1 relation.triple.3 member → Exists fun left => Exists fun right => (member = inst.1 left right ∧ (inst_1.1 relation.triple.1 left ∧ inst_2.1 relation.triple.2 right))
+  Ambient
+    (LeftElement, RightElement, Pair, LeftDomainObject, RightDomainObject, GraphObject, ∈)
+  Objects
+    relation : SetTheoreticRelation LeftElement RightElement Pair LeftDomainObject RightDomainObject GraphObject
+    member : Pair
+  Prove
+    inst_3.1 relation.triple.3 member → Exists fun left => Exists fun right => (member = inst.1 left right ∧ (inst_1.1 relation.triple.1 left ∧ inst_2.1 relation.triple.2 right))
 
 Logical form (Lean):
 
@@ -79,11 +85,17 @@ theorem RelationGraphMemberCoordinates
 
 Predicate logic:
 
-  (∀ input ∈ DomainElement), (input ∈ setFunction.triple.domain) → ∃ output ∈ CodomainElement, output ∈ setFunction.triple.codomain ∧ Relates setFunction.triple.graph input output
+  ∀ {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x} [inst : LRA.Set.HasPairing DomainElement CodomainElement Pair] [inst_1 : Membership DomainElement DomainObject] [inst_2 : Membership CodomainElement CodomainObject] [inst_3 : Membership Pair GraphObject] (setFunction : LRA.Function.SetTheoretic.SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject GraphObject) (input : DomainElement), input ∈ setFunction.triple.domain → Exists fun output => (output ∈ setFunction.triple.codomain ∧ LRA.Set.Relates setFunction.triple.graph input output)
 
 Predicate logic (unfolded):
 
-  ∀ {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x} [inst : LRA.Set.HasPairing DomainElement CodomainElement Pair] [inst_1 : Membership DomainElement DomainObject] [inst_2 : Membership CodomainElement CodomainObject] [inst_3 : Membership Pair GraphObject] (setFunction : LRA.Function.SetTheoretic.SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject GraphObject) (input : DomainElement), inst_1.1 setFunction.triple.1 input → Exists fun output => (inst_2.1 setFunction.triple.2 output ∧ inst_3.1 setFunction.triple.3 (inst.1 input output))
+  Ambient
+    (DomainElement, CodomainElement, Pair, DomainObject, CodomainObject, GraphObject, ∈)
+  Objects
+    setFunction : SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject GraphObject
+    input : DomainElement
+  Prove
+    inst_1.1 setFunction.triple.1 input → Exists fun output => (inst_2.1 setFunction.triple.2 output ∧ inst_3.1 setFunction.triple.3 (inst.1 input output))
 
 Logical form (Lean):
 
@@ -145,11 +157,20 @@ theorem EvaluationExists
 
 Predicate logic:
 
-  (∀ input ∈ DomainElement ∀ firstOutput secondOutput ∈ CodomainElement), firstOutput = secondOutput
+  ∀ {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x} [inst : LRA.Set.HasPairing DomainElement CodomainElement Pair] [inst_1 : Membership DomainElement DomainObject] [inst_2 : Membership CodomainElement CodomainObject] [inst_3 : Membership Pair GraphObject] (setFunction : LRA.Function.SetTheoretic.SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject GraphObject) (input : DomainElement) (firstOutput secondOutput : CodomainElement), (LRA.Set.Relates setFunction.triple.graph input firstOutput ∧ LRA.Set.Relates setFunction.triple.graph input secondOutput) → firstOutput = secondOutput
 
 Predicate logic (unfolded):
 
-  ∀ {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x} [inst : LRA.Set.HasPairing DomainElement CodomainElement Pair] [inst_1 : Membership DomainElement DomainObject] [inst_2 : Membership CodomainElement CodomainObject] [inst_3 : Membership Pair GraphObject] (setFunction : LRA.Function.SetTheoretic.SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject GraphObject) (input : DomainElement) (firstOutput secondOutput : CodomainElement), (inst_3.1 setFunction.triple.3 (inst.1 input firstOutput) ∧ inst_3.1 setFunction.triple.3 (inst.1 input secondOutput)) → firstOutput = secondOutput
+  Ambient
+    (DomainElement, CodomainElement, Pair, DomainObject, CodomainObject, GraphObject, ∈)
+  Objects
+    setFunction : SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject GraphObject
+    input : DomainElement
+    firstOutput secondOutput : CodomainElement
+    firstEvaluation : Relates setFunction.triple.graph input firstOutput
+    secondEvaluation : Relates setFunction.triple.graph input secondOutput
+  Prove
+    (inst_3.1 setFunction.triple.3 (inst.1 input firstOutput) ∧ inst_3.1 setFunction.triple.3 (inst.1 input secondOutput)) → firstOutput = secondOutput
 
 Logical form (Lean):
 
@@ -211,11 +232,16 @@ theorem EvaluationUnique
 
 Predicate logic:
 
-  (left.triple.domain = right.triple.domain ∧ left.triple.codomain = right.triple.codomain ∧ left.triple.graph = right.triple.graph) → left = right
+  ∀ {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x} [inst : LRA.Set.HasPairing DomainElement CodomainElement Pair] [inst_1 : Membership DomainElement DomainObject] [inst_2 : Membership CodomainElement CodomainObject] [inst_3 : Membership Pair GraphObject] {left right : LRA.Function.SetTheoretic.SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject GraphObject}, (left.triple.domain = right.triple.domain ∧ (left.triple.codomain = right.triple.codomain ∧ left.triple.graph = right.triple.graph)) → left = right
 
 Predicate logic (unfolded):
 
-  ∀ {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x} [inst : LRA.Set.HasPairing DomainElement CodomainElement Pair] [inst_1 : Membership DomainElement DomainObject] [inst_2 : Membership CodomainElement CodomainObject] [inst_3 : Membership Pair GraphObject] {left right : LRA.Function.SetTheoretic.SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject GraphObject}, (left.triple.1 = right.triple.1 ∧ (left.triple.2 = right.triple.2 ∧ left.triple.3 = right.triple.3)) → left = right
+  Ambient
+    (DomainElement, CodomainElement, Pair, DomainObject, CodomainObject, GraphObject, ∈)
+  Objects
+    left right : SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject GraphObject
+  Prove
+    (left.triple.1 = right.triple.1 ∧ (left.triple.2 = right.triple.2 ∧ left.triple.3 = right.triple.3)) → left = right
 
 Logical form (Lean):
 

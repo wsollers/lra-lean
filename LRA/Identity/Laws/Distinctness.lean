@@ -15,12 +15,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  Ambient
-    (implicit ambient)
-  Objects
-    (none)
-  Prove
-    left ≤ right → False
+  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] (left right : Carrier), inst.Ident left right → False
 
 Logical form (Lean):
 
@@ -56,16 +51,11 @@ def Distinct (left right : Carrier) : Prop :=
 
 Predicate logic:
 
-  ∀ (Carrier : Type u) [inst : LRA.Identity.IdentityRelation Carrier], Exists fun x => Exists fun y => LRA.Identity.Distinct x y
+  ∀ (Carrier : Type u) [inst : LRA.Identity.IdentityRelation Carrier], ∃ x, ∃ y, LRA.Identity.Distinct x y
 
 Predicate logic (unfolded):
 
-  Ambient
-    (implicit ambient)
-  Objects
-    (none)
-  Prove
-    Exists fun x => Exists fun y => x ≤ y → False
+  ∀ (Carrier : Type u) [inst : LRA.Identity.IdentityRelation Carrier], ∃ x, ∃ y, inst.Ident x y → False
 
 Logical form (Lean):
 
@@ -105,12 +95,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  Ambient
-    (implicit ambient)
-  Objects
-    (none)
-  Prove
-    Or (x ≤ y)(Or (y ≤ z)(x ≤ z))
+  ∀ (Carrier : Type u) [inst : LRA.Identity.IdentityRelation Carrier] (x y z : Carrier), Or (inst.Ident x y) (Or (inst.Ident y z) (inst.Ident x z))
 
 Logical form (Lean):
 
@@ -146,16 +131,11 @@ def AtMostTwo (Carrier : Type u) [IdentityRelation Carrier] : Prop :=
 
 Predicate logic:
 
-  (∀ x ∈ Carrier), ¬ Distinct x x
+  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] (x : Carrier), ¬ LRA.Identity.Distinct x x
 
 Predicate logic (unfolded):
 
-  Ambient
-    (Carrier)
-  Objects
-    x : Carrier
-  Prove
-    (x ≤ x → False) → False
+  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] (x : Carrier), (inst.Ident x x → False) → False
 
 Logical form (Lean):
 
@@ -190,17 +170,11 @@ theorem DistinctIrreflexive (x : Carrier) : ¬ Distinct x x :=
 
 Predicate logic:
 
-  Distinct y x
+  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] {x y : Carrier}, LRA.Identity.Distinct x y → LRA.Identity.Distinct y x
 
 Predicate logic (unfolded):
 
-  Ambient
-    (Carrier)
-  Objects
-    x y : Carrier
-    h : Distinct x y
-  Prove
-    ((x ≤ y → False) ∧ y ≤ x) → False
+  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] {x y : Carrier}, ((inst.Ident x y → False) ∧ inst.Ident y x) → False
 
 Logical form (Lean):
 

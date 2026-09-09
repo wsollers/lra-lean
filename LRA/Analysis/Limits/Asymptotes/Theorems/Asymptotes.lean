@@ -8,11 +8,18 @@ namespace LRA.Analysis.Limits
 
 Predicate logic:
 
-  (ℝ → ℝ ∧ HasHorizontalAsymptoteAtPosInfty f X L) → HasObliqueAsymptoteAtPosInfty f X 0 L
+  ∀ (f : Real → Real) (X : Set Real) (L : Real), LRA.Analysis.Limits.HasHorizontalAsymptoteAtPosInfty f X L → LRA.Analysis.Limits.HasObliqueAsymptoteAtPosInfty f X 0 L
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (X : Real → Prop) (L : Real), (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun M => ∀ (x : Real), Set.instMembership.1 X x → Real.instLT.1 M x → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (f x) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (f x) L))) ε) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun M => ∀ (x : Real), Set.instMembership.1 X x → Real.instLT.1 M x → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 ((fun x => instHSub.hSub (f x) (instHAdd.hAdd (instHMul.hMul 0 x) L)) x) 0) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub ((fun x => instHSub.hSub (f x) (instHAdd.hAdd (instHMul.hMul 0 x) L)) x) 0))) ε
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    X : Set ℝ
+    L : ℝ
+  Prove
+    (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun M => ∀ (x : Real), x ∈ X → Real.instLT.lt M x → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f x) L)) ε) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun M => ∀ (x : Real), x ∈ X → Real.instLT.lt M x → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ((fun x => { hSub := fun a b => Real.instSub.sub a b }.hSub (f x) ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd ({ hMul := fun a b => Real.instMul.mul a b }.hMul 0 x) L)) x) 0)) ε
 
 Logical form (Lean):
 
@@ -50,11 +57,18 @@ theorem HorizontalAsymptoteIsObliqueWithZeroSlopeAtPosInfty (f : ℝ → ℝ) (X
 
 Predicate logic:
 
-  (ℝ → ℝ ∧ HasHorizontalAsymptoteAtNegInfty f X L) → HasObliqueAsymptoteAtNegInfty f X 0 L
+  ∀ (f : Real → Real) (X : Set Real) (L : Real), LRA.Analysis.Limits.HasHorizontalAsymptoteAtNegInfty f X L → LRA.Analysis.Limits.HasObliqueAsymptoteAtNegInfty f X 0 L
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (X : Real → Prop) (L : Real), (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun M => ∀ (x : Real), Set.instMembership.1 X x → Real.instLT.1 x M → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (f x) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (f x) L))) ε) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun M => ∀ (x : Real), Set.instMembership.1 X x → Real.instLT.1 x M → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 ((fun x => instHSub.hSub (f x) (instHAdd.hAdd (instHMul.hMul 0 x) L)) x) 0) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub ((fun x => instHSub.hSub (f x) (instHAdd.hAdd (instHMul.hMul 0 x) L)) x) 0))) ε
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    X : Set ℝ
+    L : ℝ
+  Prove
+    (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun M => ∀ (x : Real), x ∈ X → Real.instLT.lt x M → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f x) L)) ε) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun M => ∀ (x : Real), x ∈ X → Real.instLT.lt x M → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ((fun x => { hSub := fun a b => Real.instSub.sub a b }.hSub (f x) ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd ({ hMul := fun a b => Real.instMul.mul a b }.hMul 0 x) L)) x) 0)) ε
 
 Logical form (Lean):
 
@@ -92,11 +106,18 @@ theorem HorizontalAsymptoteIsObliqueWithZeroSlopeAtNegInfty (f : ℝ → ℝ) (X
 
 Predicate logic:
 
-  (ℝ → ℝ) → HasObliqueAsymptoteAtPosInfty f X m b ↔ TendsToInfty (fun x => f x / x) X m ∧ TendsToInfty (fun x => f x - m * x) X b
+  ∀ (f : Real → Real) (X : Set Real) (m b : Real), LRA.Analysis.Limits.HasObliqueAsymptoteAtPosInfty f X m b ↔ (LRA.Analysis.Limits.TendsToInfty (fun x => instHDiv.hDiv (f x) x) X m ∧ LRA.Analysis.Limits.TendsToInfty (fun x => instHSub.hSub (f x) (instHMul.hMul m x)) X b)
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (X : Real → Prop) (m b : Real), ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun M => ∀ (x : Real), Set.instMembership.1 X x → Real.instLT.1 M x → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 ((fun x => instHSub.hSub (f x) (instHAdd.hAdd (instHMul.hMul m x) b)) x) 0) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub ((fun x => instHSub.hSub (f x) (instHAdd.hAdd (instHMul.hMul m x) b)) x) 0))) ε ↔ (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun M => ∀ (x : Real), Set.instMembership.1 X x → Real.instLT.1 M x → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 ((fun x => instHDiv.1 (f x) x) x) m) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 ((fun x => instHDiv.hDiv (f x) x) x) m))) ε ∧ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun M => ∀ (x : Real), Set.instMembership.1 X x → Real.instLT.1 M x → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 ((fun x => instHSub.1 (f x) (instHMul.hMul m x)) x) b) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 ((fun x => instHSub.hSub (f x) (instHMul.hMul m x)) x) b))) ε)
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    X : Set ℝ
+    m b : ℝ
+  Prove
+    LRA.Analysis.Limits.HasObliqueAsymptoteAtPosInfty f X m b ↔ (LRA.Analysis.Limits.TendsToInfty (fun x => instHDiv.hDiv (f x) x) X m ∧ LRA.Analysis.Limits.TendsToInfty (fun x => instHSub.hSub (f x) (instHMul.hMul m x)) X b)
 
 Logical form (Lean):
 
@@ -134,11 +155,16 @@ theorem ObliqueAsymptoteIffSlopeAndInterceptLimits (f : ℝ → ℝ) (X : Set �
 
 Predicate logic:
 
-  HasHorizontalAsymptoteAtPosInfty fun x ∈ ℝ => 1 / x {x : ℝ | x > 0} 0 ∧ HasHorizontalAsymptoteAtNegInfty fun x ∈ ℝ => 1 / x {x : ℝ | x < 0} 0 ∧ HasVerticalAsymptoteAt fun x ∈ ℝ => 1 / x {x : ℝ | x ≠ 0} 0
+  (LRA.Analysis.Limits.HasHorizontalAsymptoteAtPosInfty (fun x => instHDiv.hDiv 1 x) (setOf fun x => GT.gt x 0) 0 ∧ (LRA.Analysis.Limits.HasHorizontalAsymptoteAtNegInfty (fun x => instHDiv.hDiv 1 x) (setOf fun x => Real.instLT.lt x 0) 0 ∧ LRA.Analysis.Limits.HasVerticalAsymptoteAt (fun x => instHDiv.hDiv 1 x) (setOf fun x => Ne x 0) 0))
 
 Predicate logic (unfolded):
 
-  (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun M => ∀ (x : Real), Set.instMembership.1 (fun x => Real.instLT.1 0 x) x → Real.instLT.1 M x → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 ((fun x => instHDiv.hDiv 1 x) x) 0) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub ((fun x => instHDiv.hDiv 1 x) x) 0))) ε ∧ (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun M => ∀ (x : Real), Set.instMembership.1 (fun x => Real.instLT.1 x Zero.toOfNat0.1) x → Real.instLT.1 x M → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 ((fun x => instHDiv.hDiv 1 x) x) 0) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub ((fun x => instHDiv.hDiv 1 x) x) 0))) ε ∧ Or (∀ (M : Real), Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (x : Real), Set.instMembership.1 (fun x => x = 0 → False) x → Real.instLT.1 Zero.toOfNat0.1 x → Real.instLT.1 x (instHAdd.1 Zero.toOfNat0.1 δ) → Real.instLT.1 M ((fun x => instHDiv.1 One.toOfNat1.1 x) x))) (Or (∀ (M : Real), Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (x : Real), Set.instMembership.1 (fun x => x = 0 → False) x → Real.instLT.1 (instHSub.1 Zero.toOfNat0.1 δ) x → Real.instLT.1 x Zero.toOfNat0.1 → Real.instLT.1 M ((fun x => instHDiv.1 One.toOfNat1.1 x) x))) (Or (∀ (M : Real), Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (x : Real), Set.instMembership.1 (fun x => x = 0 → False) x → Real.instLT.1 Zero.toOfNat0.1 x → Real.instLT.1 x (instHAdd.1 Zero.toOfNat0.1 δ) → Real.instLT.1 ((fun x => instHDiv.1 One.toOfNat1.1 x) x) M)) (∀ (M : Real), Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (x : Real), Set.instMembership.1 (fun x => x = 0 → False) x → Real.instLT.1 (instHSub.1 Zero.toOfNat0.1 δ) x → Real.instLT.1 x Zero.toOfNat0.1 → Real.instLT.1 ((fun x => instHDiv.1 One.toOfNat1.1 x) x) M))))))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun M => ∀ (x : Real), x ∈ fun x => Real.instLT.lt 0 x → Real.instLT.lt M x → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ((fun x => { hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv 1 x) x) 0)) ε) ∧ ((∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun M => ∀ (x : Real), x ∈ fun x => Real.instLT.lt x 0 → Real.instLT.lt x M → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ((fun x => { hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv 1 x) x) 0)) ε) ∧ (Or (∀ (M : Real), Exists fun δ => (Real.instLT.lt 0 δ ∧ (∀ (x : Real), x ∈ fun x => x = 0 → False → Real.instLT.lt 0 x → Real.instLT.lt x ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd 0 δ) → Real.instLT.lt M ((fun x => { hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv 1 x) x)))) (Or (∀ (M : Real), Exists fun δ => (Real.instLT.lt 0 δ ∧ (∀ (x : Real), x ∈ fun x => x = 0 → False → Real.instLT.lt ({ hSub := fun a b => Real.instSub.sub a b }.hSub 0 δ) x → Real.instLT.lt x 0 → Real.instLT.lt M ((fun x => { hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv 1 x) x)))) (Or (∀ (M : Real), Exists fun δ => (Real.instLT.lt 0 δ ∧ (∀ (x : Real), x ∈ fun x => x = 0 → False → Real.instLT.lt 0 x → Real.instLT.lt x ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd 0 δ) → Real.instLT.lt ((fun x => { hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv 1 x) x) M))) (∀ (M : Real), Exists fun δ => (Real.instLT.lt 0 δ ∧ (∀ (x : Real), x ∈ fun x => x = 0 → False → Real.instLT.lt ({ hSub := fun a b => Real.instSub.sub a b }.hSub 0 δ) x → Real.instLT.lt x 0 → Real.instLT.lt ((fun x => { hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv 1 x) x) M))))))))
 
 Logical form (Lean):
 

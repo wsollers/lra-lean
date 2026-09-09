@@ -9,7 +9,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  Type
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Type
 
 Logical form (Lean):
 
@@ -43,11 +48,11 @@ axiom ZFCSet : Type
 
 Predicate logic:
 
-  ZFCSet → ZFCSet → Prop instance : Membership ZFCSet ZFCSet where mem containingSet element
+  fun (left right : ZFCSet) => ZFCMembership left right
 
 Predicate logic (unfolded):
 
-  LRA.Set.Constructions.ZFCSet → LRA.Set.Constructions.ZFCSet → Prop (compiled unfold unavailable; showing predicate logic)
+  fun (left right : ZFCSet) => ZFCMembership left right (opaque predicate axiom; no body to unfold)
 
 Logical form (Lean):
 

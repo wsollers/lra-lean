@@ -2,11 +2,45 @@ import LRA.AlgebraicStructures.Group.Interface.Laws.Definition
 
 namespace LRA.AlgebraicStructures.Group.Examples
 
-/-- `(ℤ, +)` — wrapped in a one-field structure since `Int` already has its
-own native `Mul` (ordinary multiplication); here `*` has to mean addition on
-a distinct type, same reason as `Monoid.Examples.NaturalNumbersUnderAddition`.
-The identity is `0`, and every element's inverse is its negation. An abelian
-group, per the user's own note (`ℤ` is the standard first example of one). -/
+/--
+`IntegersUnderAddition` `(ℤ, +)` — wrapped in a one-field structure since `Int` already has its own native `Mul` (ordinary multiplication); here `*` has to mean addition on a distinct type, same reason as `Monoid.Examples.NaturalNumbersUnderAddition`. The identity is `0`, and every element's inverse is its negation. An abelian group, per the user's own note (`ℤ` is the standard first example of one).
+
+Predicate logic:
+
+  structure IntegersUnderAddition where
+    val : Int
+
+Predicate logic (unfolded):
+
+  structure IntegersUnderAddition where
+    val : Int (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+structure IntegersUnderAddition where
+  val : Int
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 structure IntegersUnderAddition where
   val : Int
 

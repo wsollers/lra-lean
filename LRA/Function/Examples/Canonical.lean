@@ -10,12 +10,12 @@ universe u v
 Predicate logic:
 
   def collapse : LRA.Function Bool Unit :=
-  fun _ => ()
+    fun _ => ()
 
 Predicate logic (unfolded):
 
   def collapse : LRA.Function Bool Unit :=
-  fun _ => () (source fallback; no compiled unfold data available)
+    fun _ => () (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -52,12 +52,12 @@ def collapse : LRA.Function Bool Unit :=
 Predicate logic:
 
   def shift : Endofunction Nat :=
-  Nat.succ
+    Nat.succ
 
 Predicate logic (unfolded):
 
   def shift : Endofunction Nat :=
-  Nat.succ (source fallback; no compiled unfold data available)
+    Nat.succ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -94,12 +94,12 @@ def shift : Endofunction Nat :=
 Predicate logic:
 
   def vacuous : LRA.Function Empty Bool :=
-  fun input => nomatch input
+    fun input => nomatch input
 
 Predicate logic (unfolded):
 
   def vacuous : LRA.Function Empty Bool :=
-  fun input => nomatch input (source fallback; no compiled unfold data available)
+    fun input => nomatch input (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -136,12 +136,12 @@ def vacuous : LRA.Function Empty Bool :=
 Predicate logic:
 
   def swap : Endofunction Bool :=
-  fun input => !input
+    fun input => !input
 
 Predicate logic (unfolded):
 
   def swap : Endofunction Bool :=
-  fun input => !input (source fallback; no compiled unfold data available)
+    fun input => !input (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -178,14 +178,14 @@ def swap : Endofunction Bool :=
 Predicate logic:
 
   def constant {Domain : Type u} {Codomain : Type v}
-    (output : Codomain) : LRA.Function Domain Codomain :=
-  fun _ => output
+      (output : Codomain) : LRA.Function Domain Codomain :=
+    fun _ => output
 
 Predicate logic (unfolded):
 
   def constant {Domain : Type u} {Codomain : Type v}
-    (output : Codomain) : LRA.Function Domain Codomain :=
-  fun _ => output (source fallback; no compiled unfold data available)
+      (output : Codomain) : LRA.Function Domain Codomain :=
+    fun _ => output (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

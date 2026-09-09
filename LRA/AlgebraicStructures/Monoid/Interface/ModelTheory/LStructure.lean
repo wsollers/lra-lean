@@ -14,30 +14,30 @@ open LRA.AlgebraicStructures.Monoid.Interface.Signature
 Predicate logic:
 
   def BuildMonoidModel
-    (signature : LRA.AlgebraicStructures.MonoidConceptSignature) :
-    LRA.ModelTheory.FirstOrder.Model MonoidFirstOrderSignature where
-  Domain := signature.carrier
-  domainNonempty := ⟨signature.one⟩
-  interpretFunction
-    | .mul, args =>
-        signature.multiply (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
-  interpretRelation := fun RelationSymbol => nomatch RelationSymbol
-  interpretConstant
-    | .one => signature.one
+      (signature : LRA.AlgebraicStructures.MonoidConceptSignature) :
+      LRA.ModelTheory.FirstOrder.Model MonoidFirstOrderSignature where
+    Domain := signature.carrier
+    domainNonempty := ⟨signature.one⟩
+    interpretFunction
+      | .mul, args =>
+          signature.multiply (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
+    interpretRelation := fun RelationSymbol => nomatch RelationSymbol
+    interpretConstant
+      | .one => signature.one
 
 Predicate logic (unfolded):
 
   def BuildMonoidModel
-    (signature : LRA.AlgebraicStructures.MonoidConceptSignature) :
-    LRA.ModelTheory.FirstOrder.Model MonoidFirstOrderSignature where
-  Domain := signature.carrier
-  domainNonempty := ⟨signature.one⟩
-  interpretFunction
-    | .mul, args =>
-        signature.multiply (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
-  interpretRelation := fun RelationSymbol => nomatch RelationSymbol
-  interpretConstant
-    | .one => signature.one (source fallback; no compiled unfold data available)
+      (signature : LRA.AlgebraicStructures.MonoidConceptSignature) :
+      LRA.ModelTheory.FirstOrder.Model MonoidFirstOrderSignature where
+    Domain := signature.carrier
+    domainNonempty := ⟨signature.one⟩
+    interpretFunction
+      | .mul, args =>
+          signature.multiply (args ⟨0, by decide⟩) (args ⟨1, by decide⟩)
+    interpretRelation := fun RelationSymbol => nomatch RelationSymbol
+    interpretConstant
+      | .one => signature.one (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -92,16 +92,16 @@ def BuildMonoidModel
 Predicate logic:
 
   def monoidFirstOrderModel (R : Type u) [Mul R] [OfNat R 1] :
-    LRA.ModelTheory.FirstOrder.Model MonoidFirstOrderSignature :=
-  BuildMonoidModel
-    { carrier := R, one := 1, multiply := (· * ·) }
+      LRA.ModelTheory.FirstOrder.Model MonoidFirstOrderSignature :=
+    BuildMonoidModel
+      { carrier := R, one := 1, multiply := (· * ·) }
 
 Predicate logic (unfolded):
 
   def monoidFirstOrderModel (R : Type u) [Mul R] [OfNat R 1] :
-    LRA.ModelTheory.FirstOrder.Model MonoidFirstOrderSignature :=
-  BuildMonoidModel
-    { carrier := R, one := 1, multiply := (· * ·) } (source fallback; no compiled unfold data available)
+      LRA.ModelTheory.FirstOrder.Model MonoidFirstOrderSignature :=
+    BuildMonoidModel
+      { carrier := R, one := 1, multiply := (· * ·) } (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

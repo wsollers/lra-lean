@@ -8,12 +8,12 @@ universe u v w
 Predicate logic:
 
   class HasComplement (α : Type u) where
-  complement : α → α
+    complement : α → α
 
 Predicate logic (unfolded):
 
   class HasComplement (α : Type u) where
-  complement : α → α (source fallback; no compiled unfold data available)
+    complement : α → α (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -52,12 +52,12 @@ scoped postfix:1024 "ᶜ" => HasComplement.complement
 Predicate logic:
 
   class HasUniversal (α : Type u) where
-  universal : α
+    universal : α
 
 Predicate logic (unfolded):
 
   class HasUniversal (α : Type u) where
-  universal : α (source fallback; no compiled unfold data available)
+    universal : α (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -96,12 +96,12 @@ scoped notation "𝒰" => HasUniversal.universal
 Predicate logic:
 
   class HasSymmDiff (α : Type u) where
-  symmDiff : α → α → α
+    symmDiff : α → α → α
 
 Predicate logic (unfolded):
 
   class HasSymmDiff (α : Type u) where
-  symmDiff : α → α → α (source fallback; no compiled unfold data available)
+    symmDiff : α → α → α (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -140,12 +140,12 @@ scoped infixl:100 " ∆ " => HasSymmDiff.symmDiff
 Predicate logic:
 
   class HasSeparation (Element : outParam (Type u)) (SetObject : Type v) where
-  separation : SetObject → (Element → Prop) → SetObject
+    separation : SetObject → (Element → Prop) → SetObject
 
 Predicate logic (unfolded):
 
   class HasSeparation (Element : outParam (Type u)) (SetObject : Type v) where
-  separation : SetObject → (Element → Prop) → SetObject (source fallback; no compiled unfold data available)
+    separation : SetObject → (Element → Prop) → SetObject (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -182,12 +182,12 @@ class HasSeparation (Element : outParam (Type u)) (SetObject : Type v) where
 Predicate logic:
 
   class HasPowerset (SetObject : Type u) (Collection : outParam (Type v)) where
-  powerset : SetObject → Collection
+    powerset : SetObject → Collection
 
 Predicate logic (unfolded):
 
   class HasPowerset (SetObject : Type u) (Collection : outParam (Type v)) where
-  powerset : SetObject → Collection (source fallback; no compiled unfold data available)
+    powerset : SetObject → Collection (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -224,12 +224,12 @@ class HasPowerset (SetObject : Type u) (Collection : outParam (Type v)) where
 Predicate logic:
 
   class HasIndexedUnion (SetObject : Type v) where
-  indexedUnion : {Index : Type w} → (Index → SetObject) → SetObject
+    indexedUnion : {Index : Type w} → (Index → SetObject) → SetObject
 
 Predicate logic (unfolded):
 
   class HasIndexedUnion (SetObject : Type v) where
-  indexedUnion : {Index : Type w} → (Index → SetObject) → SetObject (source fallback; no compiled unfold data available)
+    indexedUnion : {Index : Type w} → (Index → SetObject) → SetObject (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -266,12 +266,12 @@ class HasIndexedUnion (SetObject : Type v) where
 Predicate logic:
 
   class HasIndexedIntersection (SetObject : Type v) where
-  indexedIntersection : {Index : Type w} → (Index → SetObject) → SetObject
+    indexedIntersection : {Index : Type w} → (Index → SetObject) → SetObject
 
 Predicate logic (unfolded):
 
   class HasIndexedIntersection (SetObject : Type v) where
-  indexedIntersection : {Index : Type w} → (Index → SetObject) → SetObject (source fallback; no compiled unfold data available)
+    indexedIntersection : {Index : Type w} → (Index → SetObject) → SetObject (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -308,12 +308,12 @@ class HasIndexedIntersection (SetObject : Type v) where
 Predicate logic:
 
   class HasCountableUnion (SetObject : Type v) where
-  countableUnion : (Nat → SetObject) → SetObject
+    countableUnion : (Nat → SetObject) → SetObject
 
 Predicate logic (unfolded):
 
   class HasCountableUnion (SetObject : Type v) where
-  countableUnion : (Nat → SetObject) → SetObject (source fallback; no compiled unfold data available)
+    countableUnion : (Nat → SetObject) → SetObject (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -350,12 +350,12 @@ class HasCountableUnion (SetObject : Type v) where
 Predicate logic:
 
   class HasCountableIntersection (SetObject : Type v) where
-  countableIntersection : (Nat → SetObject) → SetObject
+    countableIntersection : (Nat → SetObject) → SetObject
 
 Predicate logic (unfolded):
 
   class HasCountableIntersection (SetObject : Type v) where
-  countableIntersection : (Nat → SetObject) → SetObject (source fallback; no compiled unfold data available)
+    countableIntersection : (Nat → SetObject) → SetObject (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -392,12 +392,12 @@ class HasCountableIntersection (SetObject : Type v) where
 Predicate logic:
 
   class HasCollectionUnion (SetObject : outParam (Type v)) (Collection : Type w) where
-  collectionUnion : Collection → SetObject
+    collectionUnion : Collection → SetObject
 
 Predicate logic (unfolded):
 
   class HasCollectionUnion (SetObject : outParam (Type v)) (Collection : Type w) where
-  collectionUnion : Collection → SetObject (source fallback; no compiled unfold data available)
+    collectionUnion : Collection → SetObject (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -434,12 +434,12 @@ class HasCollectionUnion (SetObject : outParam (Type v)) (Collection : Type w) w
 Predicate logic:
 
   class HasCollectionIntersection (SetObject : outParam (Type v)) (Collection : Type w) where
-  collectionIntersection : Collection → SetObject
+    collectionIntersection : Collection → SetObject
 
 Predicate logic (unfolded):
 
   class HasCollectionIntersection (SetObject : outParam (Type v)) (Collection : Type w) where
-  collectionIntersection : Collection → SetObject (source fallback; no compiled unfold data available)
+    collectionIntersection : Collection → SetObject (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

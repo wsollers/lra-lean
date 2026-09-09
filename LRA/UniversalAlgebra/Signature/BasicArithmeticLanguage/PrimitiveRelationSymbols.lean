@@ -8,14 +8,14 @@ namespace LRA.UniversalAlgebra.Signature.BasicArithmeticLanguage
 Predicate logic:
 
   inductive PrimitiveRelationSymbol where
-  | lessThan
-  | lessThanOrEqual
+    | lessThan
+    | lessThanOrEqual
 
 Predicate logic (unfolded):
 
   inductive PrimitiveRelationSymbol where
-  | lessThan
-  | lessThanOrEqual (source fallback; no compiled unfold data available)
+    | lessThan
+    | lessThanOrEqual (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -54,14 +54,14 @@ inductive PrimitiveRelationSymbol where
 Predicate logic:
 
   def PrimitiveRelationArity : PrimitiveRelationSymbol -> Nat
-  | .lessThan => 2
-  | .lessThanOrEqual => 2
+    | .lessThan => 2
+    | .lessThanOrEqual => 2
 
 Predicate logic (unfolded):
 
   def PrimitiveRelationArity : PrimitiveRelationSymbol -> Nat
-  | .lessThan => 2
-  | .lessThanOrEqual => 2 (source fallback; no compiled unfold data available)
+    | .lessThan => 2
+    | .lessThanOrEqual => 2 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

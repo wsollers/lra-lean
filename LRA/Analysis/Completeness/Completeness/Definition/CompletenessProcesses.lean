@@ -20,7 +20,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (F : Type u_1) [inst : Preorder F] [inst_1 : TopologicalSpace F] (a : Nat → F), (∀ ⦃a_1 b : Nat⦄, Nat.instPreorder.toLE.1 a_1 b → inst.toLE.1 (a a_1) (a b) ∧ Exists fun u => ∀ (x : F), Set.instMembership.1 (fun x => Exists fun y => a y = x)x → inst.toLE.1 x u) → Exists fun L => ((∀ (x : F), Set.instMembership.1 (fun x => Exists fun y => a y = x)x → inst.toLE.1 x L ∧ ∀ (u : F), (∀ (x : F), Set.instMembership.1 (fun x => Exists fun y => a y = x)x → inst.toLE.1 x u) → inst.toLE.1 L u) ∧ Filter.instPartialOrder.toLE.1 { sets := fun x => Set.instMembership.1 Filter.atTop.sets (Set.preimage a x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds L))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ ⦃a_1 b : Nat⦄, Nat.instPreorder.1.le a_1 b → inst.1.le (a a_1) (a b)) ∧ (Exists fun u => ∀ (x : F), x ∈ fun x => Exists fun y => a y = x → inst.1.le x u)) → Exists fun L => (((∀ (x : F), x ∈ fun x => Exists fun y => a y = x → inst.1.le x L) ∧ (∀ (u : F), (∀ (x : F), x ∈ fun x => Exists fun y => a y = x → inst.1.le x u) → inst.1.le L u)) ∧ Filter.instPartialOrder.toPreorder.1.le { sets := fun x => setOf fun x_1 => a x_1 ∈ x ∈ Filter.atTop.1, univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds L))
 
 Logical form (Lean):
 
@@ -62,7 +67,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (F : Type u_1) [inst : Preorder F] [inst_1 : TopologicalSpace F] (a : Nat → F), (∀ ⦃a_1 b : Nat⦄, Nat.instPreorder.toLE.1 a_1 b → inst.toLE.1 (a b) (a a_1) ∧ Exists fun l => ∀ (x : F), Set.instMembership.1 (fun x => Exists fun y => a y = x)x → inst.toLE.1 l x) → Exists fun L => ((∀ (x : F), Set.instMembership.1 (fun x => Exists fun y => a y = x)x → inst.toLE.1 L x ∧ ∀ (l : F), (∀ (x : F), Set.instMembership.1 (fun x => Exists fun y => a y = x)x → inst.toLE.1 l x) → inst.toLE.1 l L) ∧ Filter.instPartialOrder.toLE.1 { sets := fun x => Set.instMembership.1 Filter.atTop.sets (Set.preimage a x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds L))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ ⦃a_1 b : Nat⦄, Nat.instPreorder.1.le a_1 b → inst.1.le (a b) (a a_1)) ∧ (Exists fun l => ∀ (x : F), x ∈ fun x => Exists fun y => a y = x → inst.1.le l x)) → Exists fun L => (((∀ (x : F), x ∈ fun x => Exists fun y => a y = x → inst.1.le L x) ∧ (∀ (l : F), (∀ (x : F), x ∈ fun x => Exists fun y => a y = x → inst.1.le l x) → inst.1.le l L)) ∧ Filter.instPartialOrder.toPreorder.1.le { sets := fun x => setOf fun x_1 => a x_1 ∈ x ∈ Filter.atTop.1, univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds L))
 
 Logical form (Lean):
 
@@ -100,11 +110,16 @@ def DecreasingBoundedProcessesConverge [Preorder F] [TopologicalSpace F] : Prop 
 
 Predicate logic:
 
-  ∀ (F : Type u_2) [inst : Field F] [inst_1 : TopologicalSpace F] ⦃U : Set F⦄, Filter.instMembership.mem (nhds 0) U → Filter.instMembership.mem (Filter.map (fun n => instHDiv.hDiv 1 n.cast) Filter.atTop) U
+  ∀ (F : Type u_2) [inst : Field F] [inst_1 : TopologicalSpace F] ⦃U : Set F⦄, Filter.U ∈ nhds 0 → Filter.U ∈ Filter.map (fun n => instHDiv.hDiv 1 n.cast) Filter.atTop
 
 Predicate logic (unfolded):
 
-  ∀ (F : Type u_2) [inst : Field F] [inst_1 : TopologicalSpace F] ⦃U : F → Prop⦄, Filter.instMembership.1 (nhds Zero.toOfNat0.1) U → Filter.instMembership.1 { sets := fun x => Set.instMembership.1 Filter.atTop.1 (setOf fun x_1 => Set.instMembership.mem x ((fun n => instHDiv.hDiv 1 n.cast) x_1)), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } U
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Filter.U ∈ nhds 0 → Filter.U ∈ { sets := fun x => setOf fun x_1 => (fun n => instHDiv.hDiv 1 n.cast) x_1 ∈ x ∈ Filter.atTop.1, univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ }
 
 Logical form (Lean):
 

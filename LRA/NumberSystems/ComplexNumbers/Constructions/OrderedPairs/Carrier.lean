@@ -14,14 +14,14 @@ universe u
 Predicate logic:
 
   structure ComplexNumber (R : Type u) where
-  real_part : R
-  imaginary_part : R
+    real_part : R
+    imaginary_part : R
 
 Predicate logic (unfolded):
 
   structure ComplexNumber (R : Type u) where
-  real_part : R
-  imaginary_part : R (source fallback; no compiled unfold data available)
+    real_part : R
+    imaginary_part : R (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

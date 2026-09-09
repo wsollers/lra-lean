@@ -7,11 +7,17 @@ namespace LRA.Order.OrderedSets.StrictOrder
 
 Predicate logic:
 
-  LRA.Relation.Irreflexive relation
+  ∀ {Carrier : Type u} (relation : LRA.Order.OrderedSets.OrderRelation Carrier), LRA.Order.StrictOrder relation → LRA.Relation.Irreflexive relation
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop), (∀ (x : Carrier), relation x x → False ∧ ∀ (x y z : Carrier), relation x y → relation y z → relation x z) → ∀ (x : Carrier), relation x x → False
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Order.OrderedSets.OrderRelation Carrier
+    relationIsStrictOrder : LRA.Order.StrictOrder relation
+  Prove
+    ((∀ (x : Carrier), relation x x → False) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z)) → ∀ (x : Carrier), relation x x → False
 
 Logical form (Lean):
 
@@ -53,11 +59,17 @@ theorem StrictOrderIsIrreflexive
 
 Predicate logic:
 
-  LRA.Relation.Transitive relation
+  ∀ {Carrier : Type u} (relation : LRA.Order.OrderedSets.OrderRelation Carrier), LRA.Order.StrictOrder relation → LRA.Relation.Transitive relation
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop), (∀ (x : Carrier), relation x x → False ∧ ∀ (x y z : Carrier), relation x y → relation y z → relation x z) → ∀ (x y z : Carrier), (relation x y ∧ relation y z) → relation x z
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Order.OrderedSets.OrderRelation Carrier
+    relationIsStrictOrder : LRA.Order.StrictOrder relation
+  Prove
+    ((∀ (x : Carrier), relation x x → False) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z)) → ∀ (x y z : Carrier), (relation x y ∧ relation y z) → relation x z
 
 Logical form (Lean):
 
@@ -99,11 +111,17 @@ theorem StrictOrderIsTransitive
 
 Predicate logic:
 
-  LRA.Relation.Asymmetric relation
+  ∀ {Carrier : Type u} (relation : LRA.Order.OrderedSets.OrderRelation Carrier), LRA.Order.StrictOrder relation → LRA.Relation.Asymmetric relation
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop), (∀ (x : Carrier), relation x x → False ∧ ∀ (x y z : Carrier), relation x y → relation y z → relation x z) → ∀ (x y : Carrier), (relation x y ∧ relation y x) → False
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Order.OrderedSets.OrderRelation Carrier
+    relationIsStrictOrder : LRA.Order.StrictOrder relation
+  Prove
+    ((∀ (x : Carrier), relation x x → False) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z)) → ∀ (x y : Carrier), (relation x y ∧ relation y x) → False
 
 Logical form (Lean):
 
@@ -145,11 +163,17 @@ theorem StrictOrderIsAsymmetric
 
 Predicate logic:
 
-  LRA.Relation.Antisymmetric relation
+  ∀ {Carrier : Type u} (relation : LRA.Order.OrderedSets.OrderRelation Carrier), LRA.Order.StrictOrder relation → LRA.Relation.Antisymmetric relation
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop), (∀ (x : Carrier), relation x x → False ∧ ∀ (x y z : Carrier), relation x y → relation y z → relation x z) → ∀ (x y : Carrier), (relation x y ∧ relation y x) → x = y
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Order.OrderedSets.OrderRelation Carrier
+    relationIsStrictOrder : LRA.Order.StrictOrder relation
+  Prove
+    ((∀ (x : Carrier), relation x x → False) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z)) → ∀ (x y : Carrier), (relation x y ∧ relation y x) → x = y
 
 Logical form (Lean):
 
@@ -191,11 +215,16 @@ theorem StrictOrderIsAntisymmetric
 
 Predicate logic:
 
-  LRA.Relation.Irreflexive order.relation
+  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.StrictOrder.StrictOrderRelation Carrier), LRA.Relation.Irreflexive order.relation
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.StrictOrder.StrictOrderRelation Carrier) (x : Carrier), order.1 x x → False
+  Ambient
+    (Carrier)
+  Objects
+    order : StrictOrderRelation Carrier
+  Prove
+    order.1 x x → False
 
 Logical form (Lean):
 

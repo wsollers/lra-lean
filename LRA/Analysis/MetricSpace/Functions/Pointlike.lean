@@ -14,12 +14,12 @@ variable {X : Type u} [MetricSpace X]
 Predicate logic:
 
   def pointFunction (z : X) : X → NNReal :=
-  fun x => NNReal.mk (dist z x) dist_nonneg
+    fun x => NNReal.mk (dist z x) dist_nonneg
 
 Predicate logic (unfolded):
 
   def pointFunction (z : X) : X → NNReal :=
-  fun x => NNReal.mk (dist z x) dist_nonneg (source fallback; no compiled unfold data available)
+    fun x => NNReal.mk (dist z x) dist_nonneg (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -55,11 +55,16 @@ def pointFunction (z : X) : X → NNReal :=
 
 Predicate logic:
 
-  (∀ z x ∈ X), pointFunction z x ∈ NNReal ∈ Real = dist z x
+  ∀ {X : Type u} [inst : MetricSpace X] (z x : X), LRA.Analysis.MetricSpace.pointFunction z x = .toReal(inst.dist z x)
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} [inst : MetricSpace X] (z x : X), LRA.Analysis.MetricSpace.pointFunction z x = .1(inst.toDist.1 z x)
+  Ambient
+    (X)
+  Objects
+    z x : X
+  Prove
+    LRA.Analysis.MetricSpace.pointFunction z x = .1(inst.toDist.1 z x)
 
 Logical form (Lean):
 
@@ -97,11 +102,16 @@ theorem coe_pointFunction (z x : X) :
 
 Predicate logic:
 
-  (∀ z ∈ X), pointFunction z z = 0
+  ∀ {X : Type u} [inst : MetricSpace X] (z : X), LRA.Analysis.MetricSpace.pointFunction z z = 0
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} [inst : MetricSpace X] (z : X), ⟨inst.toDist.1 z z, ⋯⟩ = Zero.toOfNat0.1
+  Ambient
+    (X)
+  Objects
+    z : X
+  Prove
+    ⟨inst.toDist.1 z z, ⋯⟩ = 0
 
 Logical form (Lean):
 
@@ -143,7 +153,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (X : Type u) [inst : MetricSpace X] (a : X → NNReal), Exists fun y => fun x => ⟨inst.toDist.1 y x, ⋯⟩ = a
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun y => fun x => ⟨inst.toDist.1 y x, ⋯⟩ = a
 
 Logical form (Lean):
 
@@ -183,7 +198,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} [inst : MetricSpace X] (u : X → NNReal) (a b : X), (Real.instLE.1 (instHSub.1 (u a).1 (u b).1) (inst.toDist.1 a b) ∧ Real.instLE.1 (inst.toDist.1 a b) (instHAdd.1 (u a).1 (u b).1))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Real.instLE.le ({ hSub := fun a b => Real.instSub.sub a b }.hSub (u a).1 (u b).1) (inst.toDist.1 a b) ∧ Real.instLE.le (inst.toDist.1 a b) ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd (u a).1 (u b).1))
 
 Logical form (Lean):
 
@@ -223,11 +243,16 @@ def Pointlike (u : X → NNReal) : Prop :=
 
 Predicate logic:
 
-  (∀ z ∈ X), pointFunction z ∈ pointFunctions X
+  ∀ {X : Type u} [inst : MetricSpace X] (z : X), LRA.Analysis.MetricSpace.pointFunction z ∈ LRA.Analysis.MetricSpace.pointFunctions X
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} [inst : MetricSpace X] (z : X), Set.instMembership.1 (fun x => Exists fun y => fun x => ⟨inst.dist y x, ⋯⟩ = x)fun x => ⟨inst.toDist.1 z x, ⋯⟩
+  Ambient
+    (X)
+  Objects
+    z : X
+  Prove
+    fun ∈ fun x => Exists fun y => fun x => ⟨inst.dist y x, ⋯⟩ = xx => ⟨inst.toDist.1 z x, ⋯⟩
 
 Logical form (Lean):
 
@@ -263,11 +288,16 @@ theorem pointFunction_mem_pointFunctions (z : X) :
 
 Predicate logic:
 
-  Function.Bijective fun z ∈ X => ⟨pointFunction z, pointFunction_mem_pointFunctions z⟩ ∈ {u : X → NNReal // u ∈ pointFunctions X}
+  ∀ {X : Type u} [inst : MetricSpace X], Function.Bijective fun z => ⟨LRA.Analysis.MetricSpace.pointFunction z, ⋯⟩
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} [inst : MetricSpace X], (∀ ⦃a₁ a₂ : X⦄, (fun z => ⟨fun x => ⟨inst.toDist.1 z x, ⋯⟩, ⋯⟩) a₁ = (fun z => ⟨fun x => ⟨inst.toDist.1 z x, ⋯⟩, ⋯⟩) a₂ → a₁ = a₂ ∧ ∀ (b : Subtype fun u => Set.instMembership.1 (fun x => Exists fun y => LRA.Analysis.MetricSpace.pointFunction y = x)u), Exists fun a => (fun z => ⟨fun x => ⟨inst.toDist.1 z x, ⋯⟩, ⋯⟩) a = b)
+  Ambient
+    (X)
+  Objects
+    (none)
+  Prove
+    ((∀ ⦃a₁ a₂ : X⦄, (fun z => ⟨fun x => ⟨inst.toDist.1 z x, ⋯⟩, ⋯⟩) a₁ = (fun z => ⟨fun x => ⟨inst.toDist.1 z x, ⋯⟩, ⋯⟩) a₂ → a₁ = a₂) ∧ (∀ (b : Subtype fun u => u), ∈ fun x => Exists fun y => LRA.Analysis.MetricSpace.pointFunction y = x Exists fun a => (fun z => ⟨fun x => ⟨inst.toDist.1 z x, ⋯⟩, ⋯⟩) a = b))
 
 Logical form (Lean):
 
@@ -307,11 +337,16 @@ theorem point_functions_identify_points :
 
 Predicate logic:
 
-  (∀ z ∈ X), ∀ a b ∈ X, pointFunction z b ∈ Real - pointFunction z a ∈ Real ≤ dist a b ∧ dist a b ≤ pointFunction z b ∈ Real + pointFunction z a ∈ Real ∧ pointFunction z z = 0
+  ∀ {X : Type u} [inst : MetricSpace X] (z : X), ((∀ (a b : X), (Real.instLE.le (instHSub.hSub (LRA.Analysis.MetricSpace.pointFunction z b).toReal (LRA.Analysis.MetricSpace.pointFunction z a).toReal) (inst.dist a b) ∧ Real.instLE.le (inst.dist a b) (instHAdd.hAdd (LRA.Analysis.MetricSpace.pointFunction z b).toReal (LRA.Analysis.MetricSpace.pointFunction z a).toReal))) ∧ LRA.Analysis.MetricSpace.pointFunction z z = 0)
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} [inst : MetricSpace X] (z : X), (∀ (a b : X), (Real.instLE.1 (instHSub.1 (LRA.Analysis.MetricSpace.pointFunction z b).1 (LRA.Analysis.MetricSpace.pointFunction z a).1) (inst.toDist.1 a b) ∧ Real.instLE.1 (inst.toDist.1 a b) (instHAdd.1 (LRA.Analysis.MetricSpace.pointFunction z b).1 (LRA.Analysis.MetricSpace.pointFunction z a).1)) ∧ ⟨inst.toDist.1 z z, ⋯⟩ = Zero.toOfNat0.1)
+  Ambient
+    (X)
+  Objects
+    z : X
+  Prove
+    ((∀ (a b : X), (Real.instLE.le ({ hSub := fun a b => Real.instSub.sub a b }.hSub (LRA.Analysis.MetricSpace.pointFunction z b).1 (LRA.Analysis.MetricSpace.pointFunction z a).1) (inst.toDist.1 a b) ∧ Real.instLE.le (inst.toDist.1 a b) ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd (LRA.Analysis.MetricSpace.pointFunction z b).1 (LRA.Analysis.MetricSpace.pointFunction z a).1))) ∧ ⟨inst.toDist.1 z z, ⋯⟩ = 0)
 
 Logical form (Lean):
 
@@ -355,11 +390,16 @@ theorem point_function_inequalities
 
 Predicate logic:
 
-  (∀ z ∈ X), Pointlike (pointFunction z)
+  ∀ {X : Type u} [inst : MetricSpace X] (z : X), LRA.Analysis.MetricSpace.Pointlike (LRA.Analysis.MetricSpace.pointFunction z)
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} [inst : MetricSpace X] (z a b : X), (Real.instLE.1 (instHSub.1 (LRA.Analysis.MetricSpace.pointFunction z a).1 (LRA.Analysis.MetricSpace.pointFunction z b).1) (inst.toDist.1 a b) ∧ Real.instLE.1 (inst.toDist.1 a b) (instHAdd.1 (LRA.Analysis.MetricSpace.pointFunction z a).1 (LRA.Analysis.MetricSpace.pointFunction z b).1))
+  Ambient
+    (X)
+  Objects
+    z : X
+  Prove
+    (Real.instLE.le ({ hSub := fun a b => Real.instSub.sub a b }.hSub (LRA.Analysis.MetricSpace.pointFunction z a).1 (LRA.Analysis.MetricSpace.pointFunction z b).1) (inst.toDist.1 a b) ∧ Real.instLE.le (inst.toDist.1 a b) ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd (LRA.Analysis.MetricSpace.pointFunction z a).1 (LRA.Analysis.MetricSpace.pointFunction z b).1))
 
 Logical form (Lean):
 
@@ -395,11 +435,18 @@ theorem pointFunction_pointlike (z : X) :
 
 Predicate logic:
 
-  (u w = 0) → u = pointFunction w
+  ∀ {X : Type u} [inst : MetricSpace X] {u : X → NNReal}, LRA.Analysis.MetricSpace.Pointlike u → ∀ {w : X}, u w = 0 → u = LRA.Analysis.MetricSpace.pointFunction w
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} [inst : MetricSpace X] {u : X → NNReal}, (∀ (a b : X), (Real.instLE.1 (instHSub.1 (u a).1 (u b).1) (inst.toDist.1 a b) ∧ Real.instLE.1 (inst.toDist.1 a b) (instHAdd.1 (u a).1 (u b).1))) → ∀ {w : X}, u w = Zero.toOfNat0.1 → u = funx => ⟨inst.toDist.1 w x, ⋯⟩
+  Ambient
+    (X)
+  Objects
+    u : X → NNReal
+    u_pointlike : Pointlike u
+    w : X
+  Prove
+    (∀ (a b : X), (Real.instLE.le ({ hSub := fun a b => Real.instSub.sub a b }.hSub (u a).1 (u b).1) (inst.toDist.1 a b) ∧ Real.instLE.le (inst.toDist.1 a b) ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd (u a).1 (u b).1))) → ∀ {w : X}, u w = 0 → u = funx => ⟨inst.toDist.1 w x, ⋯⟩
 
 Logical form (Lean):
 
@@ -443,11 +490,16 @@ theorem pointlike_eq_pointFunction_of_zero
 
 Predicate logic:
 
-  (X → NNReal) → u ∈ pointFunctions X ↔ Pointlike u ∧ 0 ∈ Set.range u
+  ∀ {X : Type u} [inst : MetricSpace X] (u : X → NNReal), u ∈ LRA.Analysis.MetricSpace.pointFunctions X ↔ (LRA.Analysis.MetricSpace.Pointlike u ∧ 0 ∈ Set.range u)
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} [inst : MetricSpace X] (u : X → NNReal), Set.instMembership.1 (fun x => Exists fun y => fun x => ⟨inst.dist y x, ⋯⟩ = x)u ↔ (∀ (a b : X), (Real.instLE.1 (instHSub.1 (u a).1 (u b).1) (inst.toDist.1 a b) ∧ Real.instLE.1 (inst.toDist.1 a b) (instHAdd.1 (u a).1 (u b).1)) ∧ Set.instMembership.1 (fun x => Exists fun y => u y = x)Zero.toOfNat0.1)
+  Ambient
+    (X)
+  Objects
+    u : X → NNReal
+  Prove
+    u ∈ LRA.Analysis.MetricSpace.pointFunctions X ↔ (LRA.Analysis.MetricSpace.Pointlike u ∧ 0 ∈ Set.range u)
 
 Logical form (Lean):
 
@@ -485,11 +537,18 @@ theorem pointlike_zero_point_function
 
 Predicate logic:
 
-  (u w₁ = 0 ∧ u w₂ = 0) → w₁ = w₂
+  ∀ {X : Type u} [inst : MetricSpace X] {u : X → NNReal}, LRA.Analysis.MetricSpace.Pointlike u → ∀ {w₁ w₂ : X}, (u w₁ = 0 ∧ u w₂ = 0) → w₁ = w₂
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} [inst : MetricSpace X] {u : X → NNReal}, (∀ (a b : X), (Real.instLE.1 (instHSub.1 (u a).1 (u b).1) (inst.toDist.1 a b) ∧ Real.instLE.1 (inst.toDist.1 a b) (instHAdd.1 (u a).1 (u b).1))) → ∀ {w₁ w₂ : X}, (u w₁ = Zero.toOfNat0.1 ∧ u w₂ = Zero.toOfNat0.1) → w₁ = w₂
+  Ambient
+    (X)
+  Objects
+    u : X → NNReal
+    u_pointlike : Pointlike u
+    w₁ w₂ : X
+  Prove
+    (∀ (a b : X), (Real.instLE.le ({ hSub := fun a b => Real.instSub.sub a b }.hSub (u a).1 (u b).1) (inst.toDist.1 a b) ∧ Real.instLE.le (inst.toDist.1 a b) ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd (u a).1 (u b).1))) → ∀ {w₁ w₂ : X}, (u w₁ = 0 ∧ u w₂ = 0) → w₁ = w₂
 
 Logical form (Lean):
 

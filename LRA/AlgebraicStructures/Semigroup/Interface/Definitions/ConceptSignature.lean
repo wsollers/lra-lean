@@ -8,12 +8,12 @@ namespace LRA.AlgebraicStructures
 Predicate logic:
 
   abbrev SemigroupConceptSignature :=
-  LRA.UniversalAlgebra.InterpretedOperationBundles.MultiplicativeOperationBundle
+    LRA.UniversalAlgebra.InterpretedOperationBundles.MultiplicativeOperationBundle
 
 Predicate logic (unfolded):
 
   abbrev SemigroupConceptSignature :=
-  LRA.UniversalAlgebra.InterpretedOperationBundles.MultiplicativeOperationBundle (source fallback; no compiled unfold data available)
+    LRA.UniversalAlgebra.InterpretedOperationBundles.MultiplicativeOperationBundle (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

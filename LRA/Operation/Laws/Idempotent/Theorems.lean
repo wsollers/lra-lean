@@ -11,11 +11,18 @@ universe u
 
 Predicate logic:
 
-  (∀ element ∈ Carrier), operation element element = element
+  ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Idempotent.Idempotent operation → ∀ (element : Carrier), operation element element = element
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {operation : Carrier → Carrier → Carrier}, (∀ (element : Carrier), operation element element = element) → ∀ (element : Carrier), operation element element = element
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    law : Idempotent operation
+    element : Carrier
+  Prove
+    (∀ (element : Carrier), operation element element = element) → ∀ (element : Carrier), operation element element = element
 
 Logical form (Lean):
 

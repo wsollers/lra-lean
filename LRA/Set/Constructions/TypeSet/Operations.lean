@@ -15,7 +15,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (Alpha : Type u) (a : Alpha), False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    False
 
 Logical form (Lean):
 
@@ -49,11 +54,16 @@ def Empty (Alpha : Type u) : LRA.Set.Constructions.TypeSet Alpha := fun _ => Fal
 
 Predicate logic:
 
-  (∀ x ∈ Alpha), x ∈ Empty Alpha ↔ False
+  ∀ {Alpha : Type u} (x : Alpha), LRA.Set.Constructions.instMembershipTypeSet.mem (LRA.Set.Constructions.TypeSet.Empty Alpha) x ↔ False
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (x : Alpha), LRA.Set.instMembershipTypeSet.1 (fun x => False) x ↔ False
+  Ambient
+    (Alpha)
+  Objects
+    x : Alpha
+  Prove
+    LRA.Set.Constructions.instMembershipTypeSet.mem (LRA.Set.Constructions.TypeSet.Empty Alpha) x ↔ False
 
 Logical form (Lean):
 
@@ -92,7 +102,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (a a_1 : Alpha), a_1 = a
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    a_1 = a
 
 Logical form (Lean):
 
@@ -126,11 +141,16 @@ def Singleton (a : Alpha) : LRA.Set.Constructions.TypeSet Alpha := fun x => x = 
 
 Predicate logic:
 
-  (∀ a x ∈ Alpha), x ∈ Singleton a ↔ x = a
+  ∀ {Alpha : Type u} (a x : Alpha), LRA.Set.Constructions.instMembershipTypeSet.mem (LRA.Set.Constructions.TypeSet.Singleton a) x ↔ x = a
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (a x : Alpha), LRA.Set.instMembershipTypeSet.1 (fun x => x = a)x ↔ x = a
+  Ambient
+    (Alpha)
+  Objects
+    a x : Alpha
+  Prove
+    LRA.Set.Constructions.instMembershipTypeSet.mem (LRA.Set.Constructions.TypeSet.Singleton a) x ↔ x = a
 
 Logical form (Lean):
 
@@ -165,11 +185,16 @@ theorem SingletonMembership (a x : Alpha) : x ∈ Singleton a ↔ x = a := by
 
 Predicate logic:
 
-  ∀ {Alpha : Type u} (a : Alpha) (A : LRA.Set.Constructions.TypeSet Alpha) (a_1 : Alpha), Or (a_1 = a)(LRA.Set.instMembershipTypeSet.mem A a_1)
+  ∀ {Alpha : Type u} (a : Alpha) (A : LRA.Set.Constructions.TypeSet Alpha) (a_1 : Alpha), Or (a_1 = a)(LRA.Set.Constructions.instMembershipTypeSet.mem A a_1)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (a : Alpha) (A : Alpha → Prop) (a_1 : Alpha), Or (a_1 = a)(LRA.Set.instMembershipTypeSet.1 A a_1)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (a_1 = a)(LRA.Set.Constructions.instMembershipTypeSet.1 A a_1)
 
 Logical form (Lean):
 
@@ -205,11 +230,17 @@ def Insert (a : Alpha) (A : LRA.Set.Constructions.TypeSet Alpha) : LRA.Set.Const
 
 Predicate logic:
 
-  (∀ a x ∈ Alpha), x ∈ Insert a A ↔ x = a ∨ x ∈ A
+  ∀ {Alpha : Type u} (a x : Alpha) (A : LRA.Set.Constructions.TypeSet Alpha), LRA.Set.Constructions.instMembershipTypeSet.mem (LRA.Set.Constructions.TypeSet.Insert a A) x ↔ Or (x = a)(LRA.Set.Constructions.instMembershipTypeSet.mem A x)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (a x : Alpha) (A : Alpha → Prop), LRA.Set.instMembershipTypeSet.1 (fun x => Or (x = a)(LRA.Set.instMembershipTypeSet.1 A x)) x ↔ Or (x = a)(LRA.Set.instMembershipTypeSet.1 A x)
+  Ambient
+    (Alpha)
+  Objects
+    a x : Alpha
+    A : LRA.Set.Constructions.TypeSet Alpha
+  Prove
+    LRA.Set.Constructions.instMembershipTypeSet.mem (LRA.Set.Constructions.TypeSet.Insert a A) x ↔ Or (x = a)(LRA.Set.Constructions.instMembershipTypeSet.mem A x)
 
 Logical form (Lean):
 
@@ -250,7 +281,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (a b a_1 : Alpha), Or (a_1 = a)(a_1 = b)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (a_1 = a)(a_1 = b)
 
 Logical form (Lean):
 
@@ -284,11 +320,16 @@ def Pair (a b : Alpha) : LRA.Set.Constructions.TypeSet Alpha := fun x => x = a �
 
 Predicate logic:
 
-  (∀ a b x ∈ Alpha), x ∈ Pair a b ↔ x = a ∨ x = b
+  ∀ {Alpha : Type u} (a b x : Alpha), LRA.Set.Constructions.instMembershipTypeSet.mem (LRA.Set.Constructions.TypeSet.Pair a b) x ↔ Or (x = a)(x = b)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (a b x : Alpha), LRA.Set.instMembershipTypeSet.1 (fun x => Or (x = a)(x = b))x ↔ Or (x = a)(x = b)
+  Ambient
+    (Alpha)
+  Objects
+    a b x : Alpha
+  Prove
+    LRA.Set.Constructions.instMembershipTypeSet.mem (LRA.Set.Constructions.TypeSet.Pair a b) x ↔ Or (x = a)(x = b)
 
 Logical form (Lean):
 
@@ -323,11 +364,16 @@ theorem PairMembership (a b x : Alpha) : x ∈ Pair a b ↔ x = a ∨ x = b := b
 
 Predicate logic:
 
-  (∀ a b ∈ Alpha), Pair a b = Insert a (Singleton b)
+  ∀ {Alpha : Type u} (a b : Alpha), LRA.Set.Constructions.TypeSet.Pair a b = LRA.Set.Constructions.TypeSet.Insert a (LRA.Set.Constructions.TypeSet.Singleton b)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (a b : Alpha), fun x => Or (x = a)(x = b) = funx => Or (x = a)(LRA.Set.instMembershipTypeSet.1 (fun x => x = b)x)
+  Ambient
+    (Alpha)
+  Objects
+    a b : Alpha
+  Prove
+    fun x => Or (x = a)(x = b) = funx => Or (x = a)(LRA.Set.Constructions.instMembershipTypeSet.1 (fun x => x = b)x)
 
 Logical form (Lean):
 
@@ -364,11 +410,16 @@ theorem PairEqualsInsertSingleton (a b : Alpha) :
 
 Predicate logic:
 
-  ∀ {Alpha : Type u} (A B : LRA.Set.Constructions.TypeSet Alpha) (a : Alpha), Or (LRA.Set.instMembershipTypeSet.mem A a) (LRA.Set.instMembershipTypeSet.mem B a)
+  ∀ {Alpha : Type u} (A B : LRA.Set.Constructions.TypeSet Alpha) (a : Alpha), Or (LRA.Set.Constructions.instMembershipTypeSet.mem A a) (LRA.Set.Constructions.instMembershipTypeSet.mem B a)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A B : Alpha → Prop) (a : Alpha), Or (LRA.Set.instMembershipTypeSet.1 A a) (LRA.Set.instMembershipTypeSet.1 B a)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (LRA.Set.Constructions.instMembershipTypeSet.1 A a) (LRA.Set.Constructions.instMembershipTypeSet.1 B a)
 
 Logical form (Lean):
 
@@ -404,11 +455,17 @@ def Union (A B : LRA.Set.Constructions.TypeSet Alpha) : LRA.Set.Constructions.Ty
 
 Predicate logic:
 
-  (∀ x ∈ Alpha), x ∈ Union A B ↔ x ∈ A ∨ x ∈ B
+  ∀ {Alpha : Type u} (A B : LRA.Set.Constructions.TypeSet Alpha) (x : Alpha), LRA.Set.Constructions.instMembershipTypeSet.mem (A.Union B) x ↔ Or (LRA.Set.Constructions.instMembershipTypeSet.mem A x) (LRA.Set.Constructions.instMembershipTypeSet.mem B x)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A B : Alpha → Prop) (x : Alpha), LRA.Set.instMembershipTypeSet.1 (fun x => Or (LRA.Set.instMembershipTypeSet.1 A x) (LRA.Set.instMembershipTypeSet.1 B x)) x ↔ Or (LRA.Set.instMembershipTypeSet.1 A x) (LRA.Set.instMembershipTypeSet.1 B x)
+  Ambient
+    (Alpha)
+  Objects
+    A B : LRA.Set.Constructions.TypeSet Alpha
+    x : Alpha
+  Prove
+    LRA.Set.Constructions.instMembershipTypeSet.mem (A.Union B) x ↔ Or (LRA.Set.Constructions.instMembershipTypeSet.mem A x) (LRA.Set.Constructions.instMembershipTypeSet.mem B x)
 
 Logical form (Lean):
 
@@ -445,11 +502,16 @@ theorem UnionMembership (A B : LRA.Set.Constructions.TypeSet Alpha) (x : Alpha) 
 
 Predicate logic:
 
-  ∀ {Alpha : Type u} (A B : LRA.Set.Constructions.TypeSet Alpha) (a : Alpha), (LRA.Set.instMembershipTypeSet.mem A a ∧ LRA.Set.instMembershipTypeSet.mem B a)
+  ∀ {Alpha : Type u} (A B : LRA.Set.Constructions.TypeSet Alpha) (a : Alpha), (LRA.Set.Constructions.instMembershipTypeSet.mem A a ∧ LRA.Set.Constructions.instMembershipTypeSet.mem B a)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A B : Alpha → Prop) (a : Alpha), (LRA.Set.instMembershipTypeSet.1 A a ∧ LRA.Set.instMembershipTypeSet.1 B a)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (LRA.Set.Constructions.instMembershipTypeSet.1 A a ∧ LRA.Set.Constructions.instMembershipTypeSet.1 B a)
 
 Logical form (Lean):
 
@@ -485,11 +547,17 @@ def Intersection (A B : LRA.Set.Constructions.TypeSet Alpha) : LRA.Set.Construct
 
 Predicate logic:
 
-  (∀ x ∈ Alpha), x ∈ Intersection A B ↔ x ∈ A ∧ x ∈ B
+  ∀ {Alpha : Type u} (A B : LRA.Set.Constructions.TypeSet Alpha) (x : Alpha), LRA.Set.Constructions.instMembershipTypeSet.mem (A.Intersection B) x ↔ (LRA.Set.Constructions.instMembershipTypeSet.mem A x ∧ LRA.Set.Constructions.instMembershipTypeSet.mem B x)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A B : Alpha → Prop) (x : Alpha), LRA.Set.instMembershipTypeSet.1 (fun x => (LRA.Set.instMembershipTypeSet.1 A x ∧ LRA.Set.instMembershipTypeSet.1 B x)) x ↔ (LRA.Set.instMembershipTypeSet.1 A x ∧ LRA.Set.instMembershipTypeSet.1 B x)
+  Ambient
+    (Alpha)
+  Objects
+    A B : LRA.Set.Constructions.TypeSet Alpha
+    x : Alpha
+  Prove
+    LRA.Set.Constructions.instMembershipTypeSet.mem (A.Intersection B) x ↔ (LRA.Set.Constructions.instMembershipTypeSet.mem A x ∧ LRA.Set.Constructions.instMembershipTypeSet.mem B x)
 
 Logical form (Lean):
 
@@ -526,11 +594,16 @@ theorem IntersectionMembership (A B : LRA.Set.Constructions.TypeSet Alpha) (x : 
 
 Predicate logic:
 
-  ∀ {Alpha : Type u} (A : LRA.Set.Constructions.TypeSet Alpha) (a : Alpha), LRA.Set.instMembershipTypeSet.mem A a → False
+  ∀ {Alpha : Type u} (A : LRA.Set.Constructions.TypeSet Alpha) (a : Alpha), LRA.Set.Constructions.instMembershipTypeSet.mem A a → False
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A : Alpha → Prop) (a : Alpha), LRA.Set.instMembershipTypeSet.1 A a → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.instMembershipTypeSet.1 A a → False
 
 Logical form (Lean):
 
@@ -566,11 +639,17 @@ def Complement (A : LRA.Set.Constructions.TypeSet Alpha) : LRA.Set.Constructions
 
 Predicate logic:
 
-  (∀ x ∈ Alpha), x ∈ Complement A ↔ x ∉ A
+  ∀ {Alpha : Type u} (A : LRA.Set.Constructions.TypeSet Alpha) (x : Alpha), LRA.Set.Constructions.instMembershipTypeSet.mem A.Complement x ↔ ¬ LRA.Set.Constructions.instMembershipTypeSet.mem A x
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A : Alpha → Prop) (x : Alpha), LRA.Set.instMembershipTypeSet.1 (fun x => LRA.Set.instMembershipTypeSet.1 A x → False) x ↔ LRA.Set.instMembershipTypeSet.1 A x → False
+  Ambient
+    (Alpha)
+  Objects
+    A : LRA.Set.Constructions.TypeSet Alpha
+    x : Alpha
+  Prove
+    LRA.Set.Constructions.instMembershipTypeSet.mem A.Complement x ↔ ¬ LRA.Set.Constructions.instMembershipTypeSet.mem A x
 
 Logical form (Lean):
 
@@ -611,7 +690,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (Alpha : Type u) (a : Alpha), True
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    True
 
 Logical form (Lean):
 
@@ -645,11 +729,16 @@ def Universal (Alpha : Type u) : LRA.Set.Constructions.TypeSet Alpha := fun _ =>
 
 Predicate logic:
 
-  (∀ x ∈ Alpha), x ∈ Universal Alpha
+  ∀ {Alpha : Type u} (x : Alpha), LRA.Set.Constructions.instMembershipTypeSet.mem (LRA.Set.Constructions.TypeSet.Universal Alpha) x
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (x : Alpha), LRA.Set.instMembershipTypeSet.1 (fun x => True) x
+  Ambient
+    (Alpha)
+  Objects
+    x : Alpha
+  Prove
+    LRA.Set.Constructions.instMembershipTypeSet.1 (fun x => True) x
 
 Logical form (Lean):
 
@@ -684,11 +773,16 @@ theorem UniversalMembership (x : Alpha) : x ∈ Universal Alpha := by
 
 Predicate logic:
 
-  ∀ {Alpha : Type u} (A B : LRA.Set.Constructions.TypeSet Alpha) (a : Alpha), (LRA.Set.instMembershipTypeSet.mem A a ∧ ¬ LRA.Set.instMembershipTypeSet.mem B a)
+  ∀ {Alpha : Type u} (A B : LRA.Set.Constructions.TypeSet Alpha) (a : Alpha), (LRA.Set.Constructions.instMembershipTypeSet.mem A a ∧ ¬ LRA.Set.Constructions.instMembershipTypeSet.mem B a)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A B : Alpha → Prop) (a : Alpha), (LRA.Set.instMembershipTypeSet.1 A a ∧ LRA.Set.instMembershipTypeSet.1 B a → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (LRA.Set.Constructions.instMembershipTypeSet.1 A a ∧ (LRA.Set.Constructions.instMembershipTypeSet.1 B a → False))
 
 Logical form (Lean):
 
@@ -724,11 +818,17 @@ def Difference (A B : LRA.Set.Constructions.TypeSet Alpha) : LRA.Set.Constructio
 
 Predicate logic:
 
-  (∀ x ∈ Alpha), x ∈ Difference A B ↔ x ∈ A ∧ x ∉ B
+  ∀ {Alpha : Type u} (A B : LRA.Set.Constructions.TypeSet Alpha) (x : Alpha), LRA.Set.Constructions.instMembershipTypeSet.mem (A.Difference B) x ↔ (LRA.Set.Constructions.instMembershipTypeSet.mem A x ∧ ¬ LRA.Set.Constructions.instMembershipTypeSet.mem B x)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A B : Alpha → Prop) (x : Alpha), LRA.Set.instMembershipTypeSet.1 (fun x => (LRA.Set.instMembershipTypeSet.1 A x ∧ LRA.Set.instMembershipTypeSet.1 B x → False)) x ↔ (LRA.Set.instMembershipTypeSet.1 A x ∧ LRA.Set.instMembershipTypeSet.1 B x → False)
+  Ambient
+    (Alpha)
+  Objects
+    A B : LRA.Set.Constructions.TypeSet Alpha
+    x : Alpha
+  Prove
+    LRA.Set.Constructions.instMembershipTypeSet.mem (A.Difference B) x ↔ (LRA.Set.Constructions.instMembershipTypeSet.mem A x ∧ ¬ LRA.Set.Constructions.instMembershipTypeSet.mem B x)
 
 Logical form (Lean):
 
@@ -765,11 +865,16 @@ theorem DifferenceMembership (A B : LRA.Set.Constructions.TypeSet Alpha) (x : Al
 
 Predicate logic:
 
-  ∀ {Alpha : Type u} (A B D : LRA.Set.Constructions.TypeSet Alpha) (x : Alpha), LRA.Set.instMembershipTypeSet.mem D x ↔ (LRA.Set.instMembershipTypeSet.mem A x ∧ ¬ LRA.Set.instMembershipTypeSet.mem B x)
+  ∀ {Alpha : Type u} (A B D : LRA.Set.Constructions.TypeSet Alpha) (x : Alpha), LRA.Set.Constructions.instMembershipTypeSet.mem D x ↔ (LRA.Set.Constructions.instMembershipTypeSet.mem A x ∧ ¬ LRA.Set.Constructions.instMembershipTypeSet.mem B x)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A B D : Alpha → Prop) (x : Alpha), LRA.Set.instMembershipTypeSet.1 D x ↔ (LRA.Set.instMembershipTypeSet.1 A x ∧ LRA.Set.instMembershipTypeSet.1 B x → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.instMembershipTypeSet.mem D x ↔ (LRA.Set.Constructions.instMembershipTypeSet.mem A x ∧ ¬ LRA.Set.Constructions.instMembershipTypeSet.mem B x)
 
 Logical form (Lean):
 
@@ -807,11 +912,16 @@ def IsRelativeComplementOf
 
 Predicate logic:
 
-  ∀ {Alpha : Type u} (A B : LRA.Set.Constructions.TypeSet Alpha) (a : Alpha), (LRA.Set.instMembershipTypeSet.mem A a ∧ ¬ LRA.Set.instMembershipTypeSet.mem B a)
+  ∀ {Alpha : Type u} (A B : LRA.Set.Constructions.TypeSet Alpha) (a : Alpha), (LRA.Set.Constructions.instMembershipTypeSet.mem A a ∧ ¬ LRA.Set.Constructions.instMembershipTypeSet.mem B a)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A B : Alpha → Prop) (a : Alpha), (LRA.Set.instMembershipTypeSet.1 A a ∧ LRA.Set.instMembershipTypeSet.1 B a → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (LRA.Set.Constructions.instMembershipTypeSet.1 A a ∧ (LRA.Set.Constructions.instMembershipTypeSet.1 B a → False))
 
 Logical form (Lean):
 
@@ -849,11 +959,16 @@ abbrev RelativeComplement
 
 Predicate logic:
 
-  IsRelativeComplementOf A B (RelativeComplement A B)
+  ∀ {Alpha : Type u} (A B : LRA.Set.Constructions.TypeSet Alpha), A.IsRelativeComplementOf B (A.RelativeComplement B)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A B : Alpha → Prop) (x : Alpha), LRA.Set.instMembershipTypeSet.1 (fun x => (LRA.Set.instMembershipTypeSet.1 A x ∧ LRA.Set.instMembershipTypeSet.1 B x → False)) x ↔ (LRA.Set.instMembershipTypeSet.1 A x ∧ LRA.Set.instMembershipTypeSet.1 B x → False)
+  Ambient
+    (Alpha)
+  Objects
+    A B : LRA.Set.Constructions.TypeSet Alpha
+  Prove
+    LRA.Set.Constructions.instMembershipTypeSet.1 (fun x => (LRA.Set.Constructions.instMembershipTypeSet.1 A x ∧ (LRA.Set.Constructions.instMembershipTypeSet.1 B x → False))) x ↔ (LRA.Set.Constructions.instMembershipTypeSet.1 A x ∧ (LRA.Set.Constructions.instMembershipTypeSet.1 B x → False))
 
 Logical form (Lean):
 
@@ -892,11 +1007,17 @@ theorem RelativeComplementIsRelativeComplementOf
 
 Predicate logic:
 
-  (∀ x ∈ Alpha), x ∈ RelativeComplement A B ↔ x ∈ A ∧ x ∉ B
+  ∀ {Alpha : Type u} (A B : LRA.Set.Constructions.TypeSet Alpha) (x : Alpha), LRA.Set.Constructions.instMembershipTypeSet.mem (A.RelativeComplement B) x ↔ (LRA.Set.Constructions.instMembershipTypeSet.mem A x ∧ ¬ LRA.Set.Constructions.instMembershipTypeSet.mem B x)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A B : Alpha → Prop) (x : Alpha), LRA.Set.instMembershipTypeSet.1 (fun x => (LRA.Set.instMembershipTypeSet.1 A x ∧ LRA.Set.instMembershipTypeSet.1 B x → False)) x ↔ (LRA.Set.instMembershipTypeSet.1 A x ∧ LRA.Set.instMembershipTypeSet.1 B x → False)
+  Ambient
+    (Alpha)
+  Objects
+    A B : LRA.Set.Constructions.TypeSet Alpha
+    x : Alpha
+  Prove
+    LRA.Set.Constructions.instMembershipTypeSet.mem (A.RelativeComplement B) x ↔ (LRA.Set.Constructions.instMembershipTypeSet.mem A x ∧ ¬ LRA.Set.Constructions.instMembershipTypeSet.mem B x)
 
 Logical form (Lean):
 
@@ -935,11 +1056,16 @@ theorem RelativeComplementMembership
 
 Predicate logic:
 
-  ∀ {Alpha : Type u} (A B : LRA.Set.Constructions.TypeSet Alpha) (a : Alpha), Or ((LRA.Set.instMembershipTypeSet.mem A a ∧ ¬ LRA.Set.instMembershipTypeSet.mem B a)) ((LRA.Set.instMembershipTypeSet.mem B a ∧ ¬ LRA.Set.instMembershipTypeSet.mem A a))
+  ∀ {Alpha : Type u} (A B : LRA.Set.Constructions.TypeSet Alpha) (a : Alpha), Or ((LRA.Set.Constructions.instMembershipTypeSet.mem A a ∧ ¬ LRA.Set.Constructions.instMembershipTypeSet.mem B a)) ((LRA.Set.Constructions.instMembershipTypeSet.mem B a ∧ ¬ LRA.Set.Constructions.instMembershipTypeSet.mem A a))
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A B : Alpha → Prop) (a : Alpha), Or ((LRA.Set.instMembershipTypeSet.1 A a ∧ LRA.Set.instMembershipTypeSet.1 B a → False)) ((LRA.Set.instMembershipTypeSet.1 B a ∧ LRA.Set.instMembershipTypeSet.1 A a → False))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or ((LRA.Set.Constructions.instMembershipTypeSet.1 A a ∧ (LRA.Set.Constructions.instMembershipTypeSet.1 B a → False))) ((LRA.Set.Constructions.instMembershipTypeSet.1 B a ∧ (LRA.Set.Constructions.instMembershipTypeSet.1 A a → False)))
 
 Logical form (Lean):
 
@@ -977,11 +1103,17 @@ def SymmetricDifference
 
 Predicate logic:
 
-  (∀ x ∈ Alpha), x ∈ SymmetricDifference A B ↔ (x ∈ A ∧ x ∉ B) ∨ (x ∈ B ∧ x ∉ A)
+  ∀ {Alpha : Type u} (A B : LRA.Set.Constructions.TypeSet Alpha) (x : Alpha), LRA.Set.Constructions.instMembershipTypeSet.mem (A.SymmetricDifference B) x ↔ Or ((LRA.Set.Constructions.instMembershipTypeSet.mem A x ∧ ¬ LRA.Set.Constructions.instMembershipTypeSet.mem B x)) ((LRA.Set.Constructions.instMembershipTypeSet.mem B x ∧ ¬ LRA.Set.Constructions.instMembershipTypeSet.mem A x))
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A B : Alpha → Prop) (x : Alpha), LRA.Set.instMembershipTypeSet.1 (fun x => Or ((LRA.Set.instMembershipTypeSet.1 A x ∧ LRA.Set.instMembershipTypeSet.1 B x → False)) ((LRA.Set.instMembershipTypeSet.1 B x ∧ LRA.Set.instMembershipTypeSet.1 A x → False))) x ↔ Or ((LRA.Set.instMembershipTypeSet.1 A x ∧ LRA.Set.instMembershipTypeSet.1 B x → False)) ((LRA.Set.instMembershipTypeSet.1 B x ∧ LRA.Set.instMembershipTypeSet.1 A x → False))
+  Ambient
+    (Alpha)
+  Objects
+    A B : LRA.Set.Constructions.TypeSet Alpha
+    x : Alpha
+  Prove
+    LRA.Set.Constructions.instMembershipTypeSet.mem (A.SymmetricDifference B) x ↔ Or ((LRA.Set.Constructions.instMembershipTypeSet.mem A x ∧ ¬ LRA.Set.Constructions.instMembershipTypeSet.mem B x)) ((LRA.Set.Constructions.instMembershipTypeSet.mem B x ∧ ¬ LRA.Set.Constructions.instMembershipTypeSet.mem A x))
 
 Logical form (Lean):
 
@@ -1022,11 +1154,16 @@ theorem SymmetricDifferenceMembership
 
 Predicate logic:
 
-  ∀ {Alpha : Type u} (A B : LRA.Set.Constructions.TypeSet Alpha) (x : Alpha), LRA.Set.instMembershipTypeSet.mem A x → LRA.Set.instMembershipTypeSet.mem B x
+  ∀ {Alpha : Type u} (A B : LRA.Set.Constructions.TypeSet Alpha) (x : Alpha), LRA.Set.Constructions.instMembershipTypeSet.mem A x → LRA.Set.Constructions.instMembershipTypeSet.mem B x
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A B : Alpha → Prop) (x : Alpha), LRA.Set.instMembershipTypeSet.1 A x → LRA.Set.instMembershipTypeSet.1 B x
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.instMembershipTypeSet.1 A x → LRA.Set.Constructions.instMembershipTypeSet.1 B x
 
 Logical form (Lean):
 
@@ -1062,11 +1199,16 @@ def Subset (A B : LRA.Set.Constructions.TypeSet Alpha) : Prop :=
 
 Predicate logic:
 
-  Subset A B ↔ ∀ x : Alpha, x ∈ A → x ∈ B
+  ∀ {Alpha : Type u} (A B : LRA.Set.Constructions.TypeSet Alpha), A.Subset B ↔ ∀ (x : Alpha), LRA.Set.Constructions.instMembershipTypeSet.mem A x → LRA.Set.Constructions.instMembershipTypeSet.mem B x
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A B : Alpha → Prop), ∀ (x : Alpha), LRA.Set.instMembershipTypeSet.1 A x → LRA.Set.instMembershipTypeSet.1 B x ↔ ∀ (x : Alpha), LRA.Set.instMembershipTypeSet.1 A x → LRA.Set.instMembershipTypeSet.1 B x
+  Ambient
+    (Alpha)
+  Objects
+    A B : LRA.Set.Constructions.TypeSet Alpha
+  Prove
+    A.Subset B ↔ ∀ (x : Alpha), LRA.Set.Constructions.instMembershipTypeSet.mem A x → LRA.Set.Constructions.instMembershipTypeSet.mem B x
 
 Logical form (Lean):
 
@@ -1103,11 +1245,16 @@ theorem SubsetIff (A B : LRA.Set.Constructions.TypeSet Alpha) :
 
 Predicate logic:
 
-  ∀ {Alpha : Type u} (A a : LRA.Set.Constructions.TypeSet Alpha) (x : Alpha), LRA.Set.instMembershipTypeSet.mem a x → LRA.Set.instMembershipTypeSet.mem A x
+  ∀ {Alpha : Type u} (A a : LRA.Set.Constructions.TypeSet Alpha) (x : Alpha), LRA.Set.Constructions.instMembershipTypeSet.mem a x → LRA.Set.Constructions.instMembershipTypeSet.mem A x
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A a : Alpha → Prop) (x : Alpha), LRA.Set.instMembershipTypeSet.1 a x → LRA.Set.instMembershipTypeSet.1 A x
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.instMembershipTypeSet.1 a x → LRA.Set.Constructions.instMembershipTypeSet.1 A x
 
 Logical form (Lean):
 
@@ -1145,11 +1292,16 @@ def PowerSet (A : LRA.Set.Constructions.TypeSet Alpha) :
 
 Predicate logic:
 
-  B ∈ PowerSet A ↔ Subset B A
+  ∀ {Alpha : Type u} (A B : LRA.Set.Constructions.TypeSet Alpha), LRA.Set.Constructions.instMembershipTypeSet.mem A.PowerSet B ↔ B.Subset A
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A B : Alpha → Prop), LRA.Set.instMembershipTypeSet.1 (fun B => ∀ (x : Alpha), LRA.Set.instMembershipTypeSet.1 B x → LRA.Set.instMembershipTypeSet.1 A x) B ↔ ∀ (x : Alpha), LRA.Set.instMembershipTypeSet.1 B x → LRA.Set.instMembershipTypeSet.1 A x
+  Ambient
+    (Alpha)
+  Objects
+    A B : LRA.Set.Constructions.TypeSet Alpha
+  Prove
+    LRA.Set.Constructions.instMembershipTypeSet.mem A.PowerSet B ↔ B.Subset A
 
 Logical form (Lean):
 
@@ -1188,11 +1340,16 @@ theorem PowerSetMembership
 
 Predicate logic:
 
-  ∀ {Alpha : Type u} (C : LRA.Set.Constructions.TypeSet (LRA.Set.Constructions.TypeSet Alpha)) (a : Alpha), Exists fun B => (LRA.Set.instMembershipTypeSet.mem C B ∧ LRA.Set.instMembershipTypeSet.mem B a)
+  ∀ {Alpha : Type u} (C : LRA.Set.Constructions.TypeSet (LRA.Set.Constructions.TypeSet Alpha)) (a : Alpha), Exists fun B => (LRA.Set.Constructions.instMembershipTypeSet.mem C B ∧ LRA.Set.Constructions.instMembershipTypeSet.mem B a)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (C : (Alpha → Prop) → Prop) (a : Alpha), Exists fun B => (LRA.Set.instMembershipTypeSet.1 C B ∧ LRA.Set.instMembershipTypeSet.1 B a)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun B => (LRA.Set.Constructions.instMembershipTypeSet.1 C B ∧ LRA.Set.Constructions.instMembershipTypeSet.1 B a)
 
 Logical form (Lean):
 
@@ -1232,11 +1389,17 @@ def CollectionUnion
 
 Predicate logic:
 
-  (∀ x ∈ Alpha), x ∈ CollectionUnion C ↔ ∃ B, B ∈ C ∧ x ∈ B
+  ∀ {Alpha : Type u} (C : LRA.Set.Constructions.TypeSet (LRA.Set.Constructions.TypeSet Alpha)) (x : Alpha), LRA.Set.Constructions.instMembershipTypeSet.mem C.CollectionUnion x ↔ Exists fun B => (LRA.Set.Constructions.instMembershipTypeSet.mem C B ∧ LRA.Set.Constructions.instMembershipTypeSet.mem B x)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (C : (Alpha → Prop) → Prop) (x : Alpha), LRA.Set.instMembershipTypeSet.1 (fun x => Exists fun B => (LRA.Set.instMembershipTypeSet.1 C B ∧ LRA.Set.instMembershipTypeSet.1 B x)) x ↔ Exists fun B => (LRA.Set.instMembershipTypeSet.1 C B ∧ LRA.Set.instMembershipTypeSet.1 B x)
+  Ambient
+    (Alpha)
+  Objects
+    C : LRA.Set.Constructions.TypeSet (LRA.Set.Constructions.TypeSet Alpha)
+    x : Alpha
+  Prove
+    LRA.Set.Constructions.instMembershipTypeSet.mem C.CollectionUnion x ↔ Exists fun B => (LRA.Set.Constructions.instMembershipTypeSet.mem C B ∧ LRA.Set.Constructions.instMembershipTypeSet.mem B x)
 
 Logical form (Lean):
 
@@ -1275,11 +1438,16 @@ theorem CollectionUnionMembership
 
 Predicate logic:
 
-  ∀ {Alpha : Type u} (C : LRA.Set.Constructions.TypeSet (LRA.Set.Constructions.TypeSet Alpha)) (a : Alpha) (B : LRA.Set.Constructions.TypeSet Alpha), LRA.Set.instMembershipTypeSet.mem C B → LRA.Set.instMembershipTypeSet.mem B a
+  ∀ {Alpha : Type u} (C : LRA.Set.Constructions.TypeSet (LRA.Set.Constructions.TypeSet Alpha)) (a : Alpha) (B : LRA.Set.Constructions.TypeSet Alpha), LRA.Set.Constructions.instMembershipTypeSet.mem C B → LRA.Set.Constructions.instMembershipTypeSet.mem B a
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (C : (Alpha → Prop) → Prop) (a : Alpha) (B : Alpha → Prop), LRA.Set.instMembershipTypeSet.1 C B → LRA.Set.instMembershipTypeSet.1 B a
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.instMembershipTypeSet.1 C B → LRA.Set.Constructions.instMembershipTypeSet.1 B a
 
 Logical form (Lean):
 
@@ -1319,11 +1487,17 @@ def CollectionIntersection
 
 Predicate logic:
 
-  (∀ x ∈ Alpha), x ∈ CollectionIntersection C ↔ ∀ B, B ∈ C → x ∈ B
+  ∀ {Alpha : Type u} (C : LRA.Set.Constructions.TypeSet (LRA.Set.Constructions.TypeSet Alpha)) (x : Alpha), LRA.Set.Constructions.instMembershipTypeSet.mem C.CollectionIntersection x ↔ ∀ (B : LRA.Set.Constructions.TypeSet Alpha), LRA.Set.Constructions.instMembershipTypeSet.mem C B → LRA.Set.Constructions.instMembershipTypeSet.mem B x
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (C : (Alpha → Prop) → Prop) (x : Alpha), LRA.Set.instMembershipTypeSet.1 (fun x => ∀ (B : Alpha → Prop), LRA.Set.instMembershipTypeSet.1 C B → LRA.Set.instMembershipTypeSet.1 B x) x ↔ ∀ (B : Alpha → Prop), LRA.Set.instMembershipTypeSet.1 C B → LRA.Set.instMembershipTypeSet.1 B x
+  Ambient
+    (Alpha)
+  Objects
+    C : LRA.Set.Constructions.TypeSet (LRA.Set.Constructions.TypeSet Alpha)
+    x : Alpha
+  Prove
+    LRA.Set.Constructions.instMembershipTypeSet.mem C.CollectionIntersection x ↔ ∀ (B : LRA.Set.Constructions.TypeSet Alpha), LRA.Set.Constructions.instMembershipTypeSet.mem C B → LRA.Set.Constructions.instMembershipTypeSet.mem B x
 
 Logical form (Lean):
 
@@ -1362,11 +1536,16 @@ theorem CollectionIntersectionMembership
 
 Predicate logic:
 
-  ∀ {Alpha : Type u} (A : LRA.Set.Constructions.TypeSet Alpha), Exists fun x => LRA.Set.instMembershipTypeSet.mem A x
+  ∀ {Alpha : Type u} (A : LRA.Set.Constructions.TypeSet Alpha), Exists fun x => LRA.Set.Constructions.instMembershipTypeSet.mem A x
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A : Alpha → Prop), Exists fun x => LRA.Set.instMembershipTypeSet.1 A x
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun x => LRA.Set.Constructions.instMembershipTypeSet.1 A x
 
 Logical form (Lean):
 
@@ -1402,11 +1581,16 @@ def Nonempty (A : LRA.Set.Constructions.TypeSet Alpha) : Prop :=
 
 Predicate logic:
 
-  ∀ {Alpha : Type u} (A : LRA.Set.Constructions.TypeSet Alpha) (property : Alpha → Prop) (a : Alpha), (LRA.Set.instMembershipTypeSet.mem A a ∧ property a)
+  ∀ {Alpha : Type u} (A : LRA.Set.Constructions.TypeSet Alpha) (property : Alpha → Prop) (a : Alpha), (LRA.Set.Constructions.instMembershipTypeSet.mem A a ∧ property a)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A property : Alpha → Prop) (a : Alpha), (LRA.Set.instMembershipTypeSet.1 A a ∧ property a)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (LRA.Set.Constructions.instMembershipTypeSet.1 A a ∧ property a)
 
 Logical form (Lean):
 
@@ -1446,11 +1630,18 @@ def Separation
 
 Predicate logic:
 
-  (∀ x ∈ Alpha), (Alpha → Prop) → x ∈ Separation A property ↔ x ∈ A ∧ property x
+  ∀ {Alpha : Type u} (A : LRA.Set.Constructions.TypeSet Alpha) (property : Alpha → Prop) (x : Alpha), LRA.Set.Constructions.instMembershipTypeSet.mem (A.Separation property) x ↔ (LRA.Set.Constructions.instMembershipTypeSet.mem A x ∧ property x)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (A property : Alpha → Prop) (x : Alpha), LRA.Set.instMembershipTypeSet.1 (fun x => (LRA.Set.instMembershipTypeSet.1 A x ∧ property x)) x ↔ (LRA.Set.instMembershipTypeSet.1 A x ∧ property x)
+  Ambient
+    (Alpha)
+  Objects
+    A : LRA.Set.Constructions.TypeSet Alpha
+    property : Alpha → Prop
+    x : Alpha
+  Prove
+    LRA.Set.Constructions.instMembershipTypeSet.mem (A.Separation property) x ↔ (LRA.Set.Constructions.instMembershipTypeSet.mem A x ∧ property x)
 
 Logical form (Lean):
 
@@ -1490,12 +1681,12 @@ theorem SeparationMembership
 Predicate logic:
 
   def Family (Index : Type v) (Alpha : Type u) :=
-  Index → LRA.Set.Constructions.TypeSet Alpha
+    Index → LRA.Set.Constructions.TypeSet Alpha
 
 Predicate logic (unfolded):
 
   def Family (Index : Type v) (Alpha : Type u) :=
-  Index → LRA.Set.Constructions.TypeSet Alpha (source fallback; no compiled unfold data available)
+    Index → LRA.Set.Constructions.TypeSet Alpha (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1531,11 +1722,16 @@ def Family (Index : Type v) (Alpha : Type u) :=
 
 Predicate logic:
 
-  ∀ {Alpha : Type u} {Index : Type v} (family : LRA.Set.Constructions.TypeSet.Family Index Alpha) (a : Alpha), Exists fun i => LRA.Set.instMembershipTypeSet.mem (family i) a
+  ∀ {Alpha : Type u} {Index : Type v} (family : LRA.Set.Constructions.TypeSet.Family Index Alpha) (a : Alpha), Exists fun i => LRA.Set.Constructions.instMembershipTypeSet.mem (family i) a
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {Index : Type v} (family : Index → Alpha → Prop) (a : Alpha), Exists fun i => LRA.Set.instMembershipTypeSet.1 (family i) a
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun i => LRA.Set.Constructions.instMembershipTypeSet.1 (family i) a
 
 Logical form (Lean):
 
@@ -1573,11 +1769,17 @@ def IndexedUnion {Index : Type v} (family : Family Index Alpha) :
 
 Predicate logic:
 
-  (∀ x ∈ Alpha), x ∈ IndexedUnion family ↔ ∃ i ∈ Index, x ∈ family i
+  ∀ {Alpha : Type u} {Index : Type v} (family : LRA.Set.Constructions.TypeSet.Family Index Alpha) (x : Alpha), LRA.Set.Constructions.instMembershipTypeSet.mem (LRA.Set.Constructions.TypeSet.IndexedUnion family) x ↔ Exists fun i => LRA.Set.Constructions.instMembershipTypeSet.mem (family i) x
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {Index : Type v} (family : Index → Alpha → Prop) (x : Alpha), LRA.Set.instMembershipTypeSet.1 (fun x => Exists fun i => LRA.Set.instMembershipTypeSet.1 (family i) x) x ↔ Exists fun i => LRA.Set.instMembershipTypeSet.1 (family i) x
+  Ambient
+    (Alpha, Index)
+  Objects
+    family : Family Index Alpha
+    x : Alpha
+  Prove
+    LRA.Set.Constructions.instMembershipTypeSet.mem (LRA.Set.Constructions.TypeSet.IndexedUnion family) x ↔ Exists fun i => LRA.Set.Constructions.instMembershipTypeSet.mem (family i) x
 
 Logical form (Lean):
 
@@ -1616,11 +1818,16 @@ theorem IndexedUnionMembership
 
 Predicate logic:
 
-  ∀ {Alpha : Type u} {Index : Type v} (family : LRA.Set.Constructions.TypeSet.Family Index Alpha) (a : Alpha) (i : Index), LRA.Set.instMembershipTypeSet.mem (family i) a
+  ∀ {Alpha : Type u} {Index : Type v} (family : LRA.Set.Constructions.TypeSet.Family Index Alpha) (a : Alpha) (i : Index), LRA.Set.Constructions.instMembershipTypeSet.mem (family i) a
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {Index : Type v} (family : Index → Alpha → Prop) (a : Alpha) (i : Index), LRA.Set.instMembershipTypeSet.1 (family i) a
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.instMembershipTypeSet.1 (family i) a
 
 Logical form (Lean):
 
@@ -1658,11 +1865,17 @@ def IndexedIntersection {Index : Type v} (family : Family Index Alpha) :
 
 Predicate logic:
 
-  (∀ x ∈ Alpha), x ∈ IndexedIntersection family ↔ ∀ i : Index, x ∈ family i
+  ∀ {Alpha : Type u} {Index : Type v} (family : LRA.Set.Constructions.TypeSet.Family Index Alpha) (x : Alpha), LRA.Set.Constructions.instMembershipTypeSet.mem (LRA.Set.Constructions.TypeSet.IndexedIntersection family) x ↔ ∀ (i : Index), LRA.Set.Constructions.instMembershipTypeSet.mem (family i) x
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {Index : Type v} (family : Index → Alpha → Prop) (x : Alpha), LRA.Set.instMembershipTypeSet.1 (fun x => ∀ (i : Index), LRA.Set.instMembershipTypeSet.1 (family i) x) x ↔ ∀ (i : Index), LRA.Set.instMembershipTypeSet.1 (family i) x
+  Ambient
+    (Alpha, Index)
+  Objects
+    family : Family Index Alpha
+    x : Alpha
+  Prove
+    LRA.Set.Constructions.instMembershipTypeSet.mem (LRA.Set.Constructions.TypeSet.IndexedIntersection family) x ↔ ∀ (i : Index), LRA.Set.Constructions.instMembershipTypeSet.mem (family i) x
 
 Logical form (Lean):
 

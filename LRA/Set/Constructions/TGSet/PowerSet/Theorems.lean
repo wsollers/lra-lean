@@ -9,11 +9,16 @@ namespace LRA.Set.Constructions.TGSet
 
 Predicate logic:
 
-  (∀ A ∈ Set), exists P : Set, IsPowerSetOf A P
+  ∀ (A : LRA.Set.Constructions.TGSet.Set), Exists fun P => LRA.Set.Constructions.TGSet.IsPowerSetOf A P
 
 Predicate logic (unfolded):
 
-  ∀ (A : LRA.Set.Constructions.TGSet.Set), Exists fun P => ∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 P x ↔ ∀ (y : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 x y → LRA.Set.instMembershipTGSet.1 A y
+  Ambient
+    (implicit ambient)
+  Objects
+    A : Set
+  Prove
+    Exists fun P => ∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.1 P x ↔ ∀ (y : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.1 x y → LRA.Set.Constructions.instMembershipTGSet.1 A y
 
 Logical form (Lean):
 
@@ -48,11 +53,16 @@ theorem PowerSetOfExists (A : Set) : exists P : Set, IsPowerSetOf A P := by
 
 Predicate logic:
 
-  (IsPowerSetOf A P ∧ IsPowerSetOf A Q) → Q = P
+  ∀ {A P Q : LRA.Set.Constructions.TGSet.Set}, (LRA.Set.Constructions.TGSet.IsPowerSetOf A P ∧ LRA.Set.Constructions.TGSet.IsPowerSetOf A Q) → Q = P
 
 Predicate logic (unfolded):
 
-  ∀ {A P Q : LRA.Set.Constructions.TGSet.Set}, (∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 P x ↔ ∀ (y : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 x y → LRA.Set.instMembershipTGSet.1 A y ∧ ∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 Q x ↔ ∀ (y : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 x y → LRA.Set.instMembershipTGSet.1 A y) → Q = P
+  Ambient
+    (implicit ambient)
+  Objects
+    A P Q : Set
+  Prove
+    ((∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.1 P x ↔ ∀ (y : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.1 x y → LRA.Set.Constructions.instMembershipTGSet.1 A y) ∧ (∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.1 Q x ↔ ∀ (y : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.1 x y → LRA.Set.Constructions.instMembershipTGSet.1 A y)) → Q = P
 
 Logical form (Lean):
 
@@ -92,12 +102,12 @@ theorem PowerSetOfIsUnique {A P Q : Set}
 Predicate logic:
 
   noncomputable def ThePowerSet (A : Set) : Set :=
-  Classical.choose (PowerSetOfExists A)
+    Classical.choose (PowerSetOfExists A)
 
 Predicate logic (unfolded):
 
   noncomputable def ThePowerSet (A : Set) : Set :=
-  Classical.choose (PowerSetOfExists A) (source fallback; no compiled unfold data available)
+    Classical.choose (PowerSetOfExists A) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -133,11 +143,16 @@ noncomputable def ThePowerSet (A : Set) : Set :=
 
 Predicate logic:
 
-  (∀ A ∈ Set), IsPowerSetOf A (ThePowerSet A)
+  ∀ (A : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGSet.IsPowerSetOf A (LRA.Set.Constructions.TGSet.ThePowerSet A)
 
 Predicate logic (unfolded):
 
-  ∀ (A x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 (Classical.indefiniteDescription (LRA.Set.Constructions.TGSet.IsPowerSetOf A) ⋯).1 x ↔ ∀ (y : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 x y → LRA.Set.instMembershipTGSet.1 A y
+  Ambient
+    (implicit ambient)
+  Objects
+    A : Set
+  Prove
+    LRA.Set.Constructions.instMembershipTGSet.1 (Classical.indefiniteDescription (LRA.Set.Constructions.TGSet.IsPowerSetOf A) ⋯).1 x ↔ ∀ (y : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.1 x y → LRA.Set.Constructions.instMembershipTGSet.1 A y
 
 Logical form (Lean):
 

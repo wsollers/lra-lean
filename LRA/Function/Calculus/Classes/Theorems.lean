@@ -13,11 +13,17 @@ universe u v w
 
 Predicate logic:
 
-  (∀ input ∈ Domain), DomainClass function input
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (input : Domain), function.DomainClass input
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (input : Domain), Exists fun y => function input = y
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    input : Domain
+  Prove
+    Exists fun y => function input = y
 
 Logical form (Lean):
 
@@ -55,11 +61,16 @@ theorem EveryInputInDomainClass {Domain : Type u} {Codomain : Type v}
 
 Predicate logic:
 
-  LRA.Relation.EquivalenceRelation (KernelRelation function)
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), LRA.Relation.EquivalenceRelation function.KernelRelation
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain), (∀ (x : Domain), Exists fun output => (function x = output ∧ function x = output) ∧ (∀ (x y : Domain), (Exists fun output => (function x = output ∧ function y = output)) → Exists fun output => (function y = output ∧ function x = output) ∧ ∀ (x y z : Domain), (Exists fun output => (function x = output ∧ function y = output)) → (Exists fun output => (function y = output ∧ function z = output)) → Exists fun output => (function x = output ∧ function z = output)))
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+  Prove
+    ((∀ (x : Domain), Exists fun output => (function x = output ∧ function x = output)) ∧ ((∀ (x y : Domain), (Exists fun output => (function x = output ∧ function y = output)) → Exists fun output => (function y = output ∧ function x = output)) ∧ (∀ (x y z : Domain), (Exists fun output => (function x = output ∧ function y = output)) → (Exists fun output => (function y = output ∧ function z = output)) → Exists fun output => (function x = output ∧ function z = output))))
 
 Logical form (Lean):
 
@@ -99,11 +110,16 @@ theorem KernelRelationIsEquivalenceRelation
 
 Predicate logic:
 
-  Injective function ↔ KernelRelation function = LRA.Relation.IdentityRelation Domain
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.Injective ↔ function.KernelRelation = LRA.Relation.IdentityRelation Domain
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain), ∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂ ↔ fun left right => Exists fun output => (function left = output ∧ function right = output) = funx y => x = y
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+  Prove
+    function.Injective ↔ function.KernelRelation = LRA.Relation.IdentityRelation Domain
 
 Logical form (Lean):
 
@@ -151,11 +167,17 @@ variable (function : LRA.Function Domain Codomain)
 
 Predicate logic:
 
-  PreimageClass function (SetClass.Intersection left right) = SetClass.Intersection (PreimageClass function left) (PreimageClass function right)
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (left right : LRA.Set.SetClass Codomain), function.PreimageClass (left.Intersection right) = (function.PreimageClass left).Intersection (function.PreimageClass right)
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (left right : Codomain → Prop), fun x => Exists fun y => ((left y ∧ right y) ∧ function x = y) = funelement => (Exists fun y => (left y ∧ function element = y) ∧ Exists fun y => (right y ∧ function element = y))
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    left right : SetClass Codomain
+  Prove
+    fun x => Exists fun y => ((left y ∧ right y) ∧ function x = y) = funelement => ((Exists fun y => (left y ∧ function element = y)) ∧ (Exists fun y => (right y ∧ function element = y)))
 
 Logical form (Lean):
 
@@ -195,11 +217,17 @@ theorem PreimageClassIntersection (left right : SetClass Codomain) :
 
 Predicate logic:
 
-  PreimageClass function (SetClass.Difference left right) = SetClass.Difference (PreimageClass function left) (PreimageClass function right)
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (left right : LRA.Set.SetClass Codomain), function.PreimageClass (left.Difference right) = (function.PreimageClass left).Difference (function.PreimageClass right)
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (left right : Codomain → Prop), fun x => Exists fun y => ((left y ∧ right y → False) ∧ function x = y) = funelement => (Exists fun y => (left y ∧ function element = y) ∧ (Exists fun y => (right y ∧ function element = y)) → False)
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    left right : SetClass Codomain
+  Prove
+    fun x => Exists fun y => ((left y ∧ (right y → False)) ∧ function x = y) = funelement => ((Exists fun y => (left y ∧ function element = y)) ∧ ((Exists fun y => (right y ∧ function element = y)) → False))
 
 Logical form (Lean):
 
@@ -239,11 +267,17 @@ theorem PreimageClassDifference (left right : SetClass Codomain) :
 
 Predicate logic:
 
-  PreimageClass function (SetClass.Complement target) = SetClass.Complement (PreimageClass function target)
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (target : LRA.Set.SetClass Codomain), function.PreimageClass target.Complement = function.PreimageClass target.Complement
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (target : Codomain → Prop), fun x => Exists fun y => (target y → False ∧ function x = y) = funelement => (Exists fun y => (target y ∧ function element = y)) → False
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    target : SetClass Codomain
+  Prove
+    fun x => Exists fun y => ((target y → False) ∧ function x = y) = funelement => (Exists fun y => (target y ∧ function element = y)) → False
 
 Logical form (Lean):
 
@@ -281,11 +315,17 @@ theorem PreimageClassComplement (target : SetClass Codomain) :
 
 Predicate logic:
 
-  PreimageClass function (SetClass.Union (SetClass.Difference left right) (SetClass.Difference right left)) = SetClass.Union (SetClass.Difference (PreimageClass function left) (PreimageClass function right)) (SetClass.Difference (PreimageClass function right) (PreimageClass function left))
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (left right : LRA.Set.SetClass Codomain), function.PreimageClass ((left.Difference right).Union (right.Difference left)) = ((function.PreimageClass left).Difference (function.PreimageClass right)).Union ((function.PreimageClass right).Difference (function.PreimageClass left))
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (left right : Codomain → Prop), fun x => Exists fun y => (Or ((left y ∧ right y → False)) ((right y ∧ left y → False)) ∧ function x = y) = funelement => Or ((Exists fun y => (left y ∧ function element = y) ∧ (Exists fun y => (right y ∧ function element = y)) → False)) ((Exists fun y => (right y ∧ function element = y) ∧ (Exists fun y => (left y ∧ function element = y)) → False))
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    left right : SetClass Codomain
+  Prove
+    fun x => Exists fun y => ((Or ((left y ∧ (right y → False))) ((right y ∧ (left y → False)))) ∧ function x = y) = funelement => Or (((Exists fun y => (left y ∧ function element = y)) ∧ ((Exists fun y => (right y ∧ function element = y)) → False))) (((Exists fun y => (right y ∧ function element = y)) ∧ ((Exists fun y => (left y ∧ function element = y)) → False)))
 
 Logical form (Lean):
 
@@ -335,11 +375,17 @@ theorem PreimageClassSymmetricDifference (left right : SetClass Codomain) :
 
 Predicate logic:
 
-  PreimageClass function (SetClass.Difference left (SetClass.Union middle right)) = SetClass.Difference (PreimageClass function left) (SetClass.Union (PreimageClass function middle) (PreimageClass function right))
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (left middle right : LRA.Set.SetClass Codomain), function.PreimageClass (left.Difference (middle.Union right)) = (function.PreimageClass left).Difference ((function.PreimageClass middle).Union (function.PreimageClass right))
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (left middle right : Codomain → Prop), fun x => Exists fun y => ((left y ∧ Or (middle y) (right y) → False) ∧ function x = y) = funelement => (Exists fun y => (left y ∧ function element = y) ∧ Or (Exists fun y => (middle y ∧ function element = y)) (Exists fun y => (right y ∧ function element = y)) → False)
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    left middle right : SetClass Codomain
+  Prove
+    fun x => Exists fun y => ((left y ∧ (Or (middle y) (right y) → False)) ∧ function x = y) = funelement => ((Exists fun y => (left y ∧ function element = y)) ∧ (Or (Exists fun y => (middle y ∧ function element = y)) (Exists fun y => (right y ∧ function element = y)) → False))
 
 Logical form (Lean):
 
@@ -383,11 +429,16 @@ theorem PreimageClassDifferenceUnion (left middle right : SetClass Codomain) :
 
 Predicate logic:
 
-  PreimageClass function SetClass.Universal ∈ SetClass Codomain = SetClass.Universal ∈ SetClass Domain
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.PreimageClass LRA.Set.SetClass.Universal = LRA.Set.SetClass.Universal
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain), fun x => Exists fun y => (True ∧ function x = y) = funx => True
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+  Prove
+    fun x => Exists fun y => (True ∧ function x = y) = funx => True
 
 Logical form (Lean):
 
@@ -425,11 +476,17 @@ theorem PreimageClassUniversal :
 
 Predicate logic:
 
-  (Index → SetClass Codomain) → PreimageClass function (fun output => ∀ index, family index output) = (fun input => ∀ index, PreimageClass function (family index) input)
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) {Index : Type w} (family : Index → LRA.Set.SetClass Codomain), function.PreimageClass fun output => ∀ (index : Index), family index output = funinput => ∀ (index : Index), function.PreimageClass (family index) input
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) {Index : Type w} (family : Index → Codomain → Prop), fun x => Exists fun y => ((fun output => ∀ (index : Index), family index output) y ∧ function x = y) = funinput => ∀ (index : Index), Exists fun y => (family index y ∧ function input = y)
+  Ambient
+    (Domain, Codomain, Index)
+  Objects
+    function : LRA.Function Domain Codomain
+    family : Index → SetClass Codomain
+  Prove
+    fun x => Exists fun y => (((fun output => ∀ (index : Index), family index output) y) ∧ function x = y) = funinput => ∀ (index : Index), Exists fun y => (family index y ∧ function input = y)
 
 Logical form (Lean):
 
@@ -469,11 +526,17 @@ theorem PreimageClassIndexedIntersection {Index : Type w}
 
 Predicate logic:
 
-  (Nat → SetClass Codomain) → PreimageClass function (fun output => ∀ index, family index output) = (fun input => ∀ index, PreimageClass function (family index) input)
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (family : Nat → LRA.Set.SetClass Codomain), function.PreimageClass fun output => ∀ (index : Nat), family index output = funinput => ∀ (index : Nat), function.PreimageClass (family index) input
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (family : Nat → Codomain → Prop), fun x => Exists fun y => ((fun output => ∀ (index : Nat), family index output) y ∧ function x = y) = funinput => ∀ (index : Nat), Exists fun y => (family index y ∧ function input = y)
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    family : Nat → SetClass Codomain
+  Prove
+    fun x => Exists fun y => (((fun output => ∀ (index : Nat), family index output) y) ∧ function x = y) = funinput => ∀ (index : Nat), Exists fun y => (family index y ∧ function input = y)
 
 Logical form (Lean):
 
@@ -519,11 +582,19 @@ variable (function : LRA.Function Domain Codomain)
 
 Predicate logic:
 
-  SetClass.Included source (PreimageClass function target) ↔ SetClass.Included (ImageClass function source) target
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (source : LRA.Set.SetClass Domain) (target : LRA.Set.SetClass Codomain), source.Included (function.PreimageClass target) ↔ (function.ImageClass source).Included target
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (source : Domain → Prop) (target : Codomain → Prop), ∀ (element : Domain), source element → Exists fun y => (target y ∧ function element = y) ↔ ∀ (element : Codomain), (Exists fun x => (source x ∧ function x = element)) → target element
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    source : SetClass Domain
+    target : SetClass Codomain
+  Prove
+    source.Included (function.PreimageClass target) ↔ (function.ImageClass source).Included target
 
 Logical form (Lean):
 
@@ -563,11 +634,18 @@ theorem ImagePreimageAdjunction
 
 Predicate logic:
 
-  SetClass.Included (ImageClass function (PreimageClass function target)) target
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (target : LRA.Set.SetClass Codomain), (function.ImageClass (function.PreimageClass target)).Included target
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (target : Codomain → Prop) (element : Codomain), (Exists fun x => (Exists fun y => (target y ∧ function x = y) ∧ function x = element)) → target element
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    target : SetClass Codomain
+  Prove
+    (Exists fun x => ((Exists fun y => (target y ∧ function x = y)) ∧ function x = element)) → target element
 
 Logical form (Lean):
 
@@ -605,11 +683,18 @@ theorem ImageOfPreimageClassIncluded (target : SetClass Codomain) :
 
 Predicate logic:
 
-  SetClass.Included source (PreimageClass function (ImageClass function source))
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (source : LRA.Set.SetClass Domain), source.Included (function.PreimageClass (function.ImageClass source))
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (source : Domain → Prop) (element : Domain), source element → Exists fun y => (Exists fun x => (source x ∧ function x = y) ∧ function element = y)
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    source : SetClass Domain
+  Prove
+    source element → Exists fun y => ((Exists fun x => (source x ∧ function x = y)) ∧ function element = y)
 
 Logical form (Lean):
 
@@ -647,11 +732,18 @@ theorem SourceIncludedInPreimageOfImageClass (source : SetClass Domain) :
 
 Predicate logic:
 
-  ImageClass function (PreimageClass function target) = SetClass.Intersection target (RangeClass function)
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (target : LRA.Set.SetClass Codomain), function.ImageClass (function.PreimageClass target) = target.Intersection function.RangeClass
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (target : Codomain → Prop), fun y => Exists fun x => (Exists fun y => (target y ∧ function x = y) ∧ function x = y) = funelement => (target element ∧ Exists fun x => function x = element)
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    target : SetClass Codomain
+  Prove
+    fun y => Exists fun x => ((Exists fun y => (target y ∧ function x = y)) ∧ function x = y) = funelement => (target element ∧ Exists fun x => function x = element)
 
 Logical form (Lean):
 
@@ -689,11 +781,19 @@ theorem ImageOfPreimageClassEqualsMeetWithRange (target : SetClass Codomain) :
 
 Predicate logic:
 
-  ImageClass function (PreimageClass function target) = target
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (target : LRA.Set.SetClass Codomain), target.Included function.RangeClass → function.ImageClass (function.PreimageClass target) = target
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (target : Codomain → Prop), (∀ (element : Codomain), target element → Exists fun x => function x = element) → fun y => Exists fun x => (Exists fun y => (target y ∧ function x = y) ∧ function x = y) = target
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    target : SetClass Codomain
+    insideRange : SetClass.Included target (RangeClass function)
+  Prove
+    (∀ (element : Codomain), target element → Exists fun x => function x = element) → fun y => Exists fun x => ((Exists fun y => (target y ∧ function x = y)) ∧ function x = y) = target
 
 Logical form (Lean):
 
@@ -731,11 +831,19 @@ theorem ImageOfPreimageClassOfIncludedInRange (target : SetClass Codomain)
 
 Predicate logic:
 
-  MapsIntoClass function source target ↔ SetClass.Included (ImageClass function source) target
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (source : LRA.Set.SetClass Domain) (target : LRA.Set.SetClass Codomain), function.MapsIntoClass source target ↔ (function.ImageClass source).Included target
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (source : Domain → Prop) (target : Codomain → Prop), ∀ (input : Domain) (output : Codomain), source input → function input = output → target output ↔ ∀ (element : Codomain), (Exists fun x => (source x ∧ function x = element)) → target element
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    source : SetClass Domain
+    target : SetClass Codomain
+  Prove
+    function.MapsIntoClass source target ↔ (function.ImageClass source).Included target
 
 Logical form (Lean):
 
@@ -775,11 +883,19 @@ theorem MapsIntoClassIffImageIncluded
 
 Predicate logic:
 
-  MapsIntoClass function source target ↔ SetClass.Included source (PreimageClass function target)
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (source : LRA.Set.SetClass Domain) (target : LRA.Set.SetClass Codomain), function.MapsIntoClass source target ↔ source.Included (function.PreimageClass target)
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (source : Domain → Prop) (target : Codomain → Prop), ∀ (input : Domain) (output : Codomain), source input → function input = output → target output ↔ ∀ (element : Domain), source element → Exists fun y => (target y ∧ function element = y)
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    source : SetClass Domain
+    target : SetClass Codomain
+  Prove
+    function.MapsIntoClass source target ↔ source.Included (function.PreimageClass target)
 
 Logical form (Lean):
 
@@ -827,11 +943,20 @@ variable (function : LRA.Function Domain Codomain)
 
 Predicate logic:
 
-  ImageClass function (SetClass.Intersection left right) = SetClass.Intersection (ImageClass function left) (ImageClass function right)
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.Injective → ∀ (left right : LRA.Set.SetClass Domain), function.ImageClass (left.Intersection right) = (function.ImageClass left).Intersection (function.ImageClass right)
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain), (∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂) → ∀ (left right : Domain → Prop), fun y => Exists fun x => ((left x ∧ right x) ∧ function x = y) = funelement => (Exists fun x => (left x ∧ function x = element) ∧ Exists fun x => (right x ∧ function x = element))
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    injective : Injective function
+    left right : SetClass Domain
+  Prove
+    (∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂) → ∀ (left right : Domain → Prop), fun y => Exists fun x => ((left x ∧ right x) ∧ function x = y) = funelement => ((Exists fun x => (left x ∧ function x = element)) ∧ (Exists fun x => (right x ∧ function x = element)))
 
 Logical form (Lean):
 
@@ -873,11 +998,20 @@ theorem ImageClassIntersectionOfInjective
 
 Predicate logic:
 
-  ImageClass function (SetClass.Difference left right) = SetClass.Difference (ImageClass function left) (ImageClass function right)
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.Injective → ∀ (left right : LRA.Set.SetClass Domain), function.ImageClass (left.Difference right) = (function.ImageClass left).Difference (function.ImageClass right)
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain), (∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂) → ∀ (left right : Domain → Prop), fun y => Exists fun x => ((left x ∧ right x → False) ∧ function x = y) = funelement => (Exists fun x => (left x ∧ function x = element) ∧ (Exists fun x => (right x ∧ function x = element)) → False)
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    injective : Injective function
+    left right : SetClass Domain
+  Prove
+    (∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂) → ∀ (left right : Domain → Prop), fun y => Exists fun x => ((left x ∧ (right x → False)) ∧ function x = y) = funelement => ((Exists fun x => (left x ∧ function x = element)) ∧ ((Exists fun x => (right x ∧ function x = element)) → False))
 
 Logical form (Lean):
 
@@ -919,11 +1053,20 @@ theorem ImageClassDifferenceOfInjective
 
 Predicate logic:
 
-  (Index → SetClass Domain) → ImageClass function (fun input => ∀ index, family index input) = (fun output => ∀ index, ImageClass function (family index) output)
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) {Index : Type w}, (Nonempty Index ∧ function.Injective) → ∀ (family : Index → LRA.Set.SetClass Domain), function.ImageClass fun input => ∀ (index : Index), family index input = funoutput => ∀ (index : Index), function.ImageClass (family index) output
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) {Index : Type w}, (Nonempty Index ∧ ∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂) → ∀ (family : Index → Domain → Prop), fun y => Exists fun x => ((fun input => ∀ (index : Index), family index input) x ∧ function x = y) = funoutput => ∀ (index : Index), Exists fun x => (family index x ∧ function x = output)
+  Ambient
+    (Domain, Codomain, Index)
+  Objects
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    injective : Injective function
+    family : Index → SetClass Domain
+  Prove
+    (Nonempty Index ∧ (∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂)) → ∀ (family : Index → Domain → Prop), fun y => Exists fun x => (((fun input => ∀ (index : Index), family index input) x) ∧ function x = y) = funoutput => ∀ (index : Index), Exists fun x => (family index x ∧ function x = output)
 
 Logical form (Lean):
 
@@ -963,11 +1106,20 @@ theorem ImageClassIndexedIntersectionOfInjective {Index : Type w} [Nonempty Inde
 
 Predicate logic:
 
-  (Nat → SetClass Domain) → ImageClass function (fun input => ∀ index, family index input) = (fun output => ∀ index, ImageClass function (family index) output)
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.Injective → ∀ (family : Nat → LRA.Set.SetClass Domain), function.ImageClass fun input => ∀ (index : Nat), family index input = funoutput => ∀ (index : Nat), function.ImageClass (family index) output
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain), (∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂) → ∀ (family : Nat → Domain → Prop), fun y => Exists fun x => ((fun input => ∀ (index : Nat), family index input) x ∧ function x = y) = funoutput => ∀ (index : Nat), Exists fun x => (family index x ∧ function x = output)
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    injective : Injective function
+    family : Nat → SetClass Domain
+  Prove
+    (∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂) → ∀ (family : Nat → Domain → Prop), fun y => Exists fun x => (((fun input => ∀ (index : Nat), family index input) x) ∧ function x = y) = funoutput => ∀ (index : Nat), Exists fun x => (family index x ∧ function x = output)
 
 Logical form (Lean):
 
@@ -1007,11 +1159,22 @@ theorem ImageClassCountableIntersectionOfInjective
 
 Predicate logic:
 
-  (∀ output ∈ Codomain ∀ firstInput secondInput ∈ Domain), (source firstInput ∧ function firstInput = output ∧ source secondInput ∧ function secondInput = output) → firstInput = secondInput
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.Injective → ∀ (source : LRA.Set.SetClass Domain) (output : Codomain) (firstInput secondInput : Domain), ((source firstInput ∧ function firstInput = output) ∧ (source secondInput ∧ function secondInput = output)) → firstInput = secondInput
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain), (∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂) → ∀ (source : Domain → Prop) (output : Codomain) (firstInput secondInput : Domain), ((source firstInput ∧ function firstInput = output) ∧ (source secondInput ∧ function secondInput = output)) → firstInput = secondInput
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    injective : Injective function
+    source : SetClass Domain
+    output : Codomain
+    firstInput secondInput : Domain
+  Prove
+    (∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂) → ∀ (source : Domain → Prop) (output : Codomain) (firstInput secondInput : Domain), ((source firstInput ∧ function firstInput = output) ∧ (source secondInput ∧ function secondInput = output)) → firstInput = secondInput
 
 Logical form (Lean):
 
@@ -1055,11 +1218,20 @@ theorem ImageClassWitnessUniqueOfInjective
 
 Predicate logic:
 
-  PreimageClass function (ImageClass function source) = source
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.Injective → ∀ (source : LRA.Set.SetClass Domain), function.PreimageClass (function.ImageClass source) = source
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain), (∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂) → ∀ (source : Domain → Prop), fun x => Exists fun y => (Exists fun x => (source x ∧ function x = y) ∧ function x = y) = source
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    injective : Injective function
+    source : SetClass Domain
+  Prove
+    (∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂) → ∀ (source : Domain → Prop), fun x => Exists fun y => ((Exists fun x => (source x ∧ function x = y)) ∧ function x = y) = source
 
 Logical form (Lean):
 
@@ -1097,11 +1269,20 @@ theorem PreimageOfImageClassOfInjective
 
 Predicate logic:
 
-  ImageClass function (PreimageClass function target) = target
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.Surjective → ∀ (target : LRA.Set.SetClass Codomain), function.ImageClass (function.PreimageClass target) = target
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain), (∀ (y : Codomain), Exists fun x => function x = y) → ∀ (target : Codomain → Prop), fun y => Exists fun x => (Exists fun y => (target y ∧ function x = y) ∧ function x = y) = target
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    surjective : Surjective function
+    target : SetClass Codomain
+  Prove
+    (∀ (y : Codomain), Exists fun x => function x = y) → ∀ (target : Codomain → Prop), fun y => Exists fun x => ((Exists fun y => (target y ∧ function x = y)) ∧ function x = y) = target
 
 Logical form (Lean):
 
@@ -1139,11 +1320,18 @@ theorem ImageOfPreimageClassOfSurjective
 
 Predicate logic:
 
-  (∀ output : Codomain, ImageClass function SetClass.Universal ∈ SetClass Domain output) → Surjective function
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), (∀ (output : Codomain), function.ImageClass LRA.Set.SetClass.Universal output) → function.Surjective
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain), (∀ (output : Codomain), Exists fun x => (True ∧ function x = output)) → ∀ (y : Codomain), Exists fun x => function x = y
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+  Prove
+    (∀ (output : Codomain), Exists fun x => (True ∧ function x = output)) → ∀ (y : Codomain), Exists fun x => function x = y
 
 Logical form (Lean):
 
@@ -1191,11 +1379,20 @@ variable (function : LRA.Function Domain Codomain)
 
 Predicate logic:
 
-  (∀ representative input ∈ Domain), FiberClass function (function representative) input ↔ KernelRelation function input representative
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (representative input : Domain), function.FiberClass (function representative) input ↔ function.KernelRelation input representative
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (representative input : Domain), function input = function representative ↔ Exists fun output => (function input = output ∧ function representative = output)
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    representative input : Domain
+  Prove
+    function.FiberClass (function representative) input ↔ function.KernelRelation input representative
 
 Logical form (Lean):
 
@@ -1235,11 +1432,20 @@ theorem FiberClassOverValueIffKernelRelated
 
 Predicate logic:
 
-  (∀ output ∈ Codomain), SaturatedBy (FiberClass function output) function
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (output : Codomain), LRA.Function.SaturatedBy (function.FiberClass output) function
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (output : Codomain) (input fiberMate : Domain), (function input = output ∧ Exists fun output => (function input = output ∧ function fiberMate = output)) → function fiberMate = output
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    output : Codomain
+  Prove
+    (function input = output ∧ (Exists fun output => (function input = output ∧ function fiberMate = output))) → function fiberMate = output
 
 Logical form (Lean):
 
@@ -1275,11 +1481,20 @@ theorem FiberClassSaturatedBy (output : Codomain) :
 
 Predicate logic:
 
-  (∀ representative ∈ Domain), FiberClass function (function representative) = (fun input => KernelRelation function input representative)
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (representative : Domain), function.FiberClass (function representative) = funinput => function.KernelRelation input representative
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (representative : Domain), fun x => function x = function representative = funinput => Exists fun output => (function input = output ∧ function representative = output)
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    representative : Domain
+  Prove
+    fun x => function x = function representative = funinput => Exists fun output => (function input = output ∧ function representative = output)
 
 Logical form (Lean):
 
@@ -1323,7 +1538,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (classOfInputs : Domain → Prop) (output : Codomain) (input : Domain), classOfInputs input → function input = output
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    classOfInputs input → function input = output
 
 Logical form (Lean):
 
@@ -1361,11 +1581,20 @@ def KernelClassMapsTo
 
 Predicate logic:
 
-  (∀ representative ∈ Domain), KernelClassMapsTo function (FiberClass function (function representative)) (function representative)
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (representative : Domain), function.KernelClassMapsTo (function.FiberClass (function representative)) (function representative)
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (representative input : Domain), function input = function representative → function input = function representative
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    representative : Domain
+  Prove
+    function input = function representative → function input = function representative
 
 Logical form (Lean):
 
@@ -1405,11 +1634,23 @@ theorem KernelClassMapsToRepresentativeValue
 
 Predicate logic:
 
-  (∀ firstOutput secondOutput ∈ Codomain), (∃ input, classOfInputs input) → firstOutput = secondOutput
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (classOfInputs : LRA.Set.SetClass Domain) (firstOutput secondOutput : Codomain), (Exists fun input => classOfInputs input ∧ (function.KernelClassMapsTo classOfInputs firstOutput ∧ function.KernelClassMapsTo classOfInputs secondOutput)) → firstOutput = secondOutput
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (classOfInputs : Domain → Prop) (firstOutput secondOutput : Codomain), (Exists fun input => classOfInputs input ∧ (∀ (input : Domain), classOfInputs input → function input = firstOutput ∧ ∀ (input : Domain), classOfInputs input → function input = secondOutput)) → firstOutput = secondOutput
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    classOfInputs : SetClass Domain
+    firstOutput secondOutput : Codomain
+    firstMapsTo : KernelClassMapsTo function classOfInputs firstOutput
+    secondMapsTo : KernelClassMapsTo function classOfInputs secondOutput
+  Prove
+    (Exists fun input => classOfInputs input ∧ ((∀ (input : Domain), classOfInputs input → function input = firstOutput) ∧ (∀ (input : Domain), classOfInputs input → function input = secondOutput))) → firstOutput = secondOutput
 
 Logical form (Lean):
 
@@ -1453,11 +1694,21 @@ theorem KernelClassMapsToOutputUnique
 
 Predicate logic:
 
-  (∀ output ∈ Codomain), ∃ classOfInputs ∈ SetClass Domain, (∃ input, classOfInputs input) ∧ KernelClassMapsTo function classOfInputs output
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (output : Codomain), function.RangeClass output → Exists fun classOfInputs => (Exists fun input => classOfInputs input ∧ function.KernelClassMapsTo classOfInputs output)
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (output : Codomain), (Exists fun x => function x = output) → Exists fun classOfInputs => (Exists fun input => classOfInputs input ∧ ∀ (input : Domain), classOfInputs input → function input = output)
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    output : Codomain
+    inRange : RangeClass function output
+  Prove
+    (Exists fun x => function x = output) → Exists fun classOfInputs => (Exists fun input => classOfInputs input ∧ (∀ (input : Domain), classOfInputs input → function input = output))
 
 Logical form (Lean):
 
@@ -1499,11 +1750,21 @@ theorem KernelClassMapsToExistsOfRangeMember
 
 Predicate logic:
 
-  (∀ leftInput rightInput ∈ Domain), function leftInput = function rightInput
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (leftInput rightInput : Domain), function.KernelRelation leftInput rightInput → function leftInput = function rightInput
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (leftInput rightInput : Domain), (Exists fun output => (function leftInput = output ∧ function rightInput = output)) → function leftInput = function rightInput
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    leftInput rightInput : Domain
+    kernelRelated : KernelRelation function leftInput rightInput
+  Prove
+    (Exists fun output => (function leftInput = output ∧ function rightInput = output)) → function leftInput = function rightInput
 
 Logical form (Lean):
 

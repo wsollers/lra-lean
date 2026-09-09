@@ -9,11 +9,19 @@ universe u v
 
 Predicate logic:
 
-  function sourceElement = targetElement
+  ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceElement : LRA.Operation.NullaryOperation Source} {targetElement : LRA.Operation.NullaryOperation Target}, LRA.Morphism.PreservesNullaryOperation function sourceElement targetElement → function sourceElement = targetElement
 
 Predicate logic (unfolded):
 
-  ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceElement : Source} {targetElement : Target}, function sourceElement = targetElement → function sourceElement = targetElement
+  Ambient
+    (Source, Target)
+  Objects
+    function : Source → Target
+    sourceElement : LRA.Operation.NullaryOperation Source
+    targetElement : LRA.Operation.NullaryOperation Target
+    law : PreservesNullaryOperation function sourceElement targetElement
+  Prove
+    function sourceElement = targetElement → function sourceElement = targetElement
 
 Logical form (Lean):
 

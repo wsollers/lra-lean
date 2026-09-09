@@ -8,14 +8,14 @@ namespace LRA.Logic.FirstOrder
 Predicate logic:
 
   inductive TestRelationSymbol where
-  | A
-  | B
+    | A
+    | B
 
 Predicate logic (unfolded):
 
   inductive TestRelationSymbol where
-  | A
-  | B (source fallback; no compiled unfold data available)
+    | A
+    | B (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -54,16 +54,16 @@ inductive TestRelationSymbol where
 Predicate logic:
 
   def testFOLSignature : Signature where
-  Functions := ⟨Empty, Empty.elim⟩
-  Relations := ⟨TestRelationSymbol, fun _ => 0⟩
-  Constants := Empty
+    Functions := ⟨Empty, Empty.elim⟩
+    Relations := ⟨TestRelationSymbol, fun _ => 0⟩
+    Constants := Empty
 
 Predicate logic (unfolded):
 
   def testFOLSignature : Signature where
-  Functions := ⟨Empty, Empty.elim⟩
-  Relations := ⟨TestRelationSymbol, fun _ => 0⟩
-  Constants := Empty (source fallback; no compiled unfold data available)
+    Functions := ⟨Empty, Empty.elim⟩
+    Relations := ⟨TestRelationSymbol, fun _ => 0⟩
+    Constants := Empty (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -104,20 +104,20 @@ def testFOLSignature : Signature where
 Predicate logic:
 
   def testFOLModel : Interpretation testFOLSignature where
-  Domain := Unit
-  domainNonempty := ⟨()⟩
-  interpretFunction := fun f => Empty.elim f
-  interpretRelation := fun _ _ => True
-  interpretConstant := Empty.elim
+    Domain := Unit
+    domainNonempty := ⟨()⟩
+    interpretFunction := fun f => Empty.elim f
+    interpretRelation := fun _ _ => True
+    interpretConstant := Empty.elim
 
 Predicate logic (unfolded):
 
   def testFOLModel : Interpretation testFOLSignature where
-  Domain := Unit
-  domainNonempty := ⟨()⟩
-  interpretFunction := fun f => Empty.elim f
-  interpretRelation := fun _ _ => True
-  interpretConstant := Empty.elim (source fallback; no compiled unfold data available)
+    Domain := Unit
+    domainNonempty := ⟨()⟩
+    interpretFunction := fun f => Empty.elim f
+    interpretRelation := fun _ _ => True
+    interpretConstant := Empty.elim (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -162,16 +162,16 @@ def testFOLModel : Interpretation testFOLSignature where
 Predicate logic:
 
   def testFOLFormula : Formula testFOLSignature Nat :=
-  Formula.and
-    (Formula.relation .A Fin.elim0)
-    (Formula.relation .B Fin.elim0)
+    Formula.and
+      (Formula.relation .A Fin.elim0)
+      (Formula.relation .B Fin.elim0)
 
 Predicate logic (unfolded):
 
   def testFOLFormula : Formula testFOLSignature Nat :=
-  Formula.and
-    (Formula.relation .A Fin.elim0)
-    (Formula.relation .B Fin.elim0) (source fallback; no compiled unfold data available)
+    Formula.and
+      (Formula.relation .A Fin.elim0)
+      (Formula.relation .B Fin.elim0) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -212,12 +212,12 @@ def testFOLFormula : Formula testFOLSignature Nat :=
 Predicate logic:
 
   def testFOLSentence : Sentence testFOLSignature Nat :=
-  ⟨testFOLFormula, by rfl⟩
+    ⟨testFOLFormula, by rfl⟩
 
 Predicate logic (unfolded):
 
   def testFOLSentence : Sentence testFOLSignature Nat :=
-  ⟨testFOLFormula, by rfl⟩ (source fallback; no compiled unfold data available)
+    ⟨testFOLFormula, by rfl⟩ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -253,11 +253,16 @@ def testFOLSentence : Sentence testFOLSignature Nat :=
 
 Predicate logic:
 
-  Satisfies testFOLModel assignment testFOLFormula
+  ∀ (assignment : Nat → LRA.Logic.FirstOrder.testFOLModel.Domain), LRA.Logic.FirstOrder.Satisfies LRA.Logic.FirstOrder.testFOLModel assignment LRA.Logic.FirstOrder.testFOLFormula
 
 Predicate logic (unfolded):
 
-  ∀ (assignment : Nat → LRA.Logic.FirstOrder.testFOLModel.1), LRA.Logic.FirstOrder.Satisfies LRA.Logic.FirstOrder.testFOLModel assignment LRA.Logic.FirstOrder.testFOLFormula
+  Ambient
+    (implicit ambient)
+  Objects
+    assignment : Nat -> testFOLModel.Domain
+  Prove
+    LRA.Logic.FirstOrder.Satisfies LRA.Logic.FirstOrder.testFOLModel assignment LRA.Logic.FirstOrder.testFOLFormula
 
 Logical form (Lean):
 
@@ -300,12 +305,12 @@ example
 Predicate logic:
 
   inductive QuantifierRelationSymbol where
-  | R
+    | R
 
 Predicate logic (unfolded):
 
   inductive QuantifierRelationSymbol where
-  | R (source fallback; no compiled unfold data available)
+    | R (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -342,16 +347,16 @@ inductive QuantifierRelationSymbol where
 Predicate logic:
 
   def quantifierSignature : Signature where
-  Functions := ⟨Empty, Empty.elim⟩
-  Relations := ⟨QuantifierRelationSymbol, fun _ => 1⟩
-  Constants := Empty
+    Functions := ⟨Empty, Empty.elim⟩
+    Relations := ⟨QuantifierRelationSymbol, fun _ => 1⟩
+    Constants := Empty
 
 Predicate logic (unfolded):
 
   def quantifierSignature : Signature where
-  Functions := ⟨Empty, Empty.elim⟩
-  Relations := ⟨QuantifierRelationSymbol, fun _ => 1⟩
-  Constants := Empty (source fallback; no compiled unfold data available)
+    Functions := ⟨Empty, Empty.elim⟩
+    Relations := ⟨QuantifierRelationSymbol, fun _ => 1⟩
+    Constants := Empty (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -392,20 +397,20 @@ def quantifierSignature : Signature where
 Predicate logic:
 
   def alwaysTrueModel : Interpretation quantifierSignature where
-  Domain := Bool
-  domainNonempty := ⟨true⟩
-  interpretFunction := fun f => Empty.elim f
-  interpretRelation := fun _ _ => True
-  interpretConstant := Empty.elim
+    Domain := Bool
+    domainNonempty := ⟨true⟩
+    interpretFunction := fun f => Empty.elim f
+    interpretRelation := fun _ _ => True
+    interpretConstant := Empty.elim
 
 Predicate logic (unfolded):
 
   def alwaysTrueModel : Interpretation quantifierSignature where
-  Domain := Bool
-  domainNonempty := ⟨true⟩
-  interpretFunction := fun f => Empty.elim f
-  interpretRelation := fun _ _ => True
-  interpretConstant := Empty.elim (source fallback; no compiled unfold data available)
+    Domain := Bool
+    domainNonempty := ⟨true⟩
+    interpretFunction := fun f => Empty.elim f
+    interpretRelation := fun _ _ => True
+    interpretConstant := Empty.elim (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -450,22 +455,22 @@ def alwaysTrueModel : Interpretation quantifierSignature where
 Predicate logic:
 
   def sometimesFalseModel : Interpretation quantifierSignature where
-  Domain := Bool
-  domainNonempty := ⟨true⟩
-  interpretFunction := fun f => Empty.elim f
-  interpretRelation
-    | .R, args => args ⟨0, by decide⟩ = true
-  interpretConstant := Empty.elim
+    Domain := Bool
+    domainNonempty := ⟨true⟩
+    interpretFunction := fun f => Empty.elim f
+    interpretRelation
+      | .R, args => args ⟨0, by decide⟩ = true
+    interpretConstant := Empty.elim
 
 Predicate logic (unfolded):
 
   def sometimesFalseModel : Interpretation quantifierSignature where
-  Domain := Bool
-  domainNonempty := ⟨true⟩
-  interpretFunction := fun f => Empty.elim f
-  interpretRelation
-    | .R, args => args ⟨0, by decide⟩ = true
-  interpretConstant := Empty.elim (source fallback; no compiled unfold data available)
+    Domain := Bool
+    domainNonempty := ⟨true⟩
+    interpretFunction := fun f => Empty.elim f
+    interpretRelation
+      | .R, args => args ⟨0, by decide⟩ = true
+    interpretConstant := Empty.elim (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -550,12 +555,12 @@ def x : Nat := 0
 Predicate logic:
 
   def forallRFormula : Formula quantifierSignature Nat :=
-  Formula.forallQ x (Formula.relation .R (fun _ => Term.var x))
+    Formula.forallQ x (Formula.relation .R (fun _ => Term.var x))
 
 Predicate logic (unfolded):
 
   def forallRFormula : Formula quantifierSignature Nat :=
-  Formula.forallQ x (Formula.relation .R (fun _ => Term.var x)) (source fallback; no compiled unfold data available)
+    Formula.forallQ x (Formula.relation .R (fun _ => Term.var x)) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -592,12 +597,12 @@ def forallRFormula : Formula quantifierSignature Nat :=
 Predicate logic:
 
   def existsRFormula : Formula quantifierSignature Nat :=
-  Formula.existsQ x (Formula.relation .R (fun _ => Term.var x))
+    Formula.existsQ x (Formula.relation .R (fun _ => Term.var x))
 
 Predicate logic (unfolded):
 
   def existsRFormula : Formula quantifierSignature Nat :=
-  Formula.existsQ x (Formula.relation .R (fun _ => Term.var x)) (source fallback; no compiled unfold data available)
+    Formula.existsQ x (Formula.relation .R (fun _ => Term.var x)) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -633,11 +638,16 @@ def existsRFormula : Formula quantifierSignature Nat :=
 
 Predicate logic:
 
-  Satisfies alwaysTrueModel assignment forallRFormula
+  ∀ (assignment : Nat → LRA.Logic.FirstOrder.alwaysTrueModel.Domain), LRA.Logic.FirstOrder.Satisfies LRA.Logic.FirstOrder.alwaysTrueModel assignment LRA.Logic.FirstOrder.forallRFormula
 
 Predicate logic (unfolded):
 
-  ∀ (assignment : Nat → LRA.Logic.FirstOrder.alwaysTrueModel.1), LRA.Logic.FirstOrder.Satisfies LRA.Logic.FirstOrder.alwaysTrueModel assignment LRA.Logic.FirstOrder.forallRFormula
+  Ambient
+    (implicit ambient)
+  Objects
+    assignment : Nat -> alwaysTrueModel.Domain
+  Prove
+    LRA.Logic.FirstOrder.Satisfies LRA.Logic.FirstOrder.alwaysTrueModel assignment LRA.Logic.FirstOrder.forallRFormula
 
 Logical form (Lean):
 
@@ -673,11 +683,16 @@ theorem alwaysTrueModel_satisfies_forallR (assignment : Nat -> alwaysTrueModel.D
 
 Predicate logic:
 
-  Satisfies alwaysTrueModel assignment existsRFormula
+  ∀ (assignment : Nat → LRA.Logic.FirstOrder.alwaysTrueModel.Domain), LRA.Logic.FirstOrder.Satisfies LRA.Logic.FirstOrder.alwaysTrueModel assignment LRA.Logic.FirstOrder.existsRFormula
 
 Predicate logic (unfolded):
 
-  ∀ (assignment : Nat → LRA.Logic.FirstOrder.alwaysTrueModel.1), LRA.Logic.FirstOrder.Satisfies LRA.Logic.FirstOrder.alwaysTrueModel assignment LRA.Logic.FirstOrder.existsRFormula
+  Ambient
+    (implicit ambient)
+  Objects
+    assignment : Nat -> alwaysTrueModel.Domain
+  Prove
+    LRA.Logic.FirstOrder.Satisfies LRA.Logic.FirstOrder.alwaysTrueModel assignment LRA.Logic.FirstOrder.existsRFormula
 
 Logical form (Lean):
 
@@ -713,23 +728,23 @@ theorem alwaysTrueModel_satisfies_existsR (assignment : Nat -> alwaysTrueModel.D
 
 Predicate logic:
 
-  ¬ Satisfies sometimesFalseModel assignment forallRFormula
+  ∀ (assignment : Nat → LRA.Logic.FirstOrder.sometimesFalseModel.Domain), ¬ LRA.Logic.FirstOrder.Satisfies LRA.Logic.FirstOrder.sometimesFalseModel assignment LRA.Logic.FirstOrder.forallRFormula
 
 Predicate logic (unfolded):
 
-  ∀ (assignment : Nat → LRA.Logic.FirstOrder.sometimesFalseModel.1), LRA.Logic.FirstOrder.Satisfies LRA.Logic.FirstOrder.sometimesFalseModel assignment LRA.Logic.FirstOrder.forallRFormula → False
+  Ambient
+    (implicit ambient)
+  Objects
+    assignment : Nat -> sometimesFalseModel.Domain
+  Prove
+    LRA.Logic.FirstOrder.Satisfies LRA.Logic.FirstOrder.sometimesFalseModel assignment LRA.Logic.FirstOrder.forallRFormula → False
 
 Logical form (Lean):
 
 ```lean
 theorem sometimesFalseModel_not_satisfies_forallR
     (assignment : Nat -> sometimesFalseModel.Domain) :
-    ¬ Satisfies sometimesFalseModel assignment forallRFormula := by
-  show ¬ ∀ a : Bool, Satisfies sometimesFalseModel (updateAssignment assignment x a)
-    (Formula.relation .R (fun _ => Term.var x))
-  intro h
-  have hfalse : sometimesFalseModel.interpretRelation .R
-      (fun i => evaluateTerm sometimesFalseModel (updateAssignment assignment x false) (Term.var x))
+    ¬ Satisfies sometimesFalseModel assignment forallRFormula
 ```
 
 Type-theoretic form:
@@ -760,11 +775,16 @@ theorem sometimesFalseModel_not_satisfies_forallR
 
 Predicate logic:
 
-  Satisfies sometimesFalseModel assignment existsRFormula
+  ∀ (assignment : Nat → LRA.Logic.FirstOrder.sometimesFalseModel.Domain), LRA.Logic.FirstOrder.Satisfies LRA.Logic.FirstOrder.sometimesFalseModel assignment LRA.Logic.FirstOrder.existsRFormula
 
 Predicate logic (unfolded):
 
-  ∀ (assignment : Nat → LRA.Logic.FirstOrder.sometimesFalseModel.1), LRA.Logic.FirstOrder.Satisfies LRA.Logic.FirstOrder.sometimesFalseModel assignment LRA.Logic.FirstOrder.existsRFormula
+  Ambient
+    (implicit ambient)
+  Objects
+    assignment : Nat -> sometimesFalseModel.Domain
+  Prove
+    LRA.Logic.FirstOrder.Satisfies LRA.Logic.FirstOrder.sometimesFalseModel assignment LRA.Logic.FirstOrder.existsRFormula
 
 Logical form (Lean):
 

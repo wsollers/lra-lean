@@ -8,12 +8,12 @@ universe u
 Predicate logic:
 
   class StrictOrderCompatibilityLaw (R : Type u) [LT R] [LE R] : Prop where
-  LtIffLeNotLe : forall a b : R, a < b <-> a <= b /\ Not (b <= a)
+    LtIffLeNotLe : forall a b : R, a < b <-> a <= b /\ Not (b <= a)
 
 Predicate logic (unfolded):
 
   class StrictOrderCompatibilityLaw (R : Type u) [LT R] [LE R] : Prop where
-  LtIffLeNotLe : forall a b : R, a < b <-> a <= b /\ Not (b <= a) (source fallback; no compiled unfold data available)
+    LtIffLeNotLe : forall a b : R, a < b <-> a <= b /\ Not (b <= a) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -53,11 +53,16 @@ variable {R : Type u}
 
 Predicate logic:
 
-  forall a b : R, a < b <-> a <= b ∧ Not (b <= a)
+  ∀ {R : Type u} [inst : LT R] [inst_1 : LE R], LRA.Order.StrictOrderCompatibilityLaw R → ∀ (a b : R), inst.lt a b ↔ (inst_1.le a b ∧ ¬ inst_1.le b a)
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : LT R] [inst_1 : LE R], LRA.Order.StrictOrderCompatibilityLaw R → ∀ (a b : R), inst.1 a b ↔ (inst_1.1 a b ∧ inst_1.1 b a → False)
+  Ambient
+    (R, <, ≤)
+  Objects
+    (none)
+  Prove
+    LRA.Order.StrictOrderCompatibilityLaw R → ∀ (a b : R), inst.lt a b ↔ (inst_1.le a b ∧ ¬ inst_1.le b a)
 
 Logical form (Lean):
 

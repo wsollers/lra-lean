@@ -17,11 +17,19 @@ variable {targetOperation : LRA.Operation.BinaryEndoOperation Target}
 
 Predicate logic:
 
-  LRA.Function.Injective function
+  ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceOperation : LRA.Operation.BinaryEndoOperation Source} {targetOperation : LRA.Operation.BinaryEndoOperation Target}, LRA.Morphism.BinaryOperationEmbedding function sourceOperation targetOperation → LRA.Function.Injective function
 
 Predicate logic (unfolded):
 
-  ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceOperation : Source → Source → Source} {targetOperation : Target → Target → Target}, (∀ (y : Target) (x₁ x₂ : Source), function x₁ = y → function x₂ = y → x₁ = x₂ ∧ ∀ (left right : Source), function (sourceOperation left right) = targetOperation (function left) (function right)) → ∀ (y : Target) (x₁ x₂ : Source), (function x₁ = y ∧ function x₂ = y) → x₁ = x₂
+  Ambient
+    (Source, Target)
+  Objects
+    function : Source → Target
+    sourceOperation : LRA.Operation.BinaryEndoOperation Source
+    targetOperation : LRA.Operation.BinaryEndoOperation Target
+    law : BinaryOperationEmbedding function sourceOperation targetOperation
+  Prove
+    ((∀ (y : Target) (x₁ x₂ : Source), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ (∀ (left right : Source), function (sourceOperation left right) = targetOperation (function left) (function right))) → ∀ (y : Target) (x₁ x₂ : Source), (function x₁ = y ∧ function x₂ = y) → x₁ = x₂
 
 Logical form (Lean):
 
@@ -59,11 +67,19 @@ theorem BinaryOperationEmbedding.injective
 
 Predicate logic:
 
-  PreservesBinaryOperation function sourceOperation targetOperation
+  ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceOperation : LRA.Operation.BinaryEndoOperation Source} {targetOperation : LRA.Operation.BinaryEndoOperation Target}, LRA.Morphism.BinaryOperationEmbedding function sourceOperation targetOperation → LRA.Morphism.PreservesBinaryOperation function sourceOperation targetOperation
 
 Predicate logic (unfolded):
 
-  ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceOperation : Source → Source → Source} {targetOperation : Target → Target → Target}, (∀ (y : Target) (x₁ x₂ : Source), function x₁ = y → function x₂ = y → x₁ = x₂ ∧ ∀ (left right : Source), function (sourceOperation left right) = targetOperation (function left) (function right)) → ∀ (left right : Source), function (sourceOperation left right) = targetOperation (function left) (function right)
+  Ambient
+    (Source, Target)
+  Objects
+    function : Source → Target
+    sourceOperation : LRA.Operation.BinaryEndoOperation Source
+    targetOperation : LRA.Operation.BinaryEndoOperation Target
+    law : BinaryOperationEmbedding function sourceOperation targetOperation
+  Prove
+    ((∀ (y : Target) (x₁ x₂ : Source), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ (∀ (left right : Source), function (sourceOperation left right) = targetOperation (function left) (function right))) → ∀ (left right : Source), function (sourceOperation left right) = targetOperation (function left) (function right)
 
 Logical form (Lean):
 

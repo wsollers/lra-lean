@@ -11,7 +11,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : (a b : Variable) → Decidable (a = b)] (formula : LRA.Logic.FirstOrder.Formula S Variable), LRA.Logic.FirstOrder.freeVariables formula = Finset.instEmptyCollection.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.FirstOrder.freeVariables formula = Finset.instEmptyCollection.1
 
 Logical form (Lean):
 
@@ -52,12 +57,12 @@ def IsClosedFormula
 Predicate logic:
 
   abbrev Sentence (S : Signature) (Variable : Type) [DecidableEq Variable] :=
-  { formula : Formula S Variable // IsClosedFormula formula }
+    { formula : Formula S Variable // IsClosedFormula formula }
 
 Predicate logic (unfolded):
 
   abbrev Sentence (S : Signature) (Variable : Type) [DecidableEq Variable] :=
-  { formula : Formula S Variable // IsClosedFormula formula } (source fallback; no compiled unfold data available)
+    { formula : Formula S Variable // IsClosedFormula formula } (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -93,11 +98,17 @@ abbrev Sentence (S : Signature) (Variable : Type) [DecidableEq Variable] :=
 
 Predicate logic:
 
-  freeVariables sentence.val = ∅
+  ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : DecidableVariable] = sentence : LRA.Logic.FirstOrder.Sentence S Variable, LRA.Logic.FirstOrder.freeVariables sentence.val = Finset.instEmptyCollection.emptyCollection
 
 Predicate logic (unfolded):
 
-  ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : (a b : Variable) → Decidable (a = b)] (sentence : Subtype fun formula => LRA.Logic.FirstOrder.freeVariables formula = Finset.instEmptyCollection.1), LRA.Logic.FirstOrder.freeVariables sentence.1 = Finset.instEmptyCollection.1
+  Ambient
+    (Variable)
+  Objects
+    S : Signature
+    sentence : Sentence S Variable
+  Prove
+    LRA.Logic.FirstOrder.freeVariables sentence.1 = Finset.instEmptyCollection.1
 
 Logical form (Lean):
 

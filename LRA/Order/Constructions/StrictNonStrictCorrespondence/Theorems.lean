@@ -11,11 +11,17 @@ universe u
 
 Predicate logic:
 
-  PartialOrder (NonStrictFromStrict strictRelation)
+  ∀ {Alpha : Type u} {strictRelation : LRA.Relation.Endorelation Alpha}, LRA.Order.StrictOrder strictRelation → LRA.Order.PartialOrder (LRA.Order.NonStrictFromStrict strictRelation)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {strictRelation : Alpha → Alpha → Prop}, (∀ (x : Alpha), strictRelation x x → False ∧ ∀ (x y z : Alpha), strictRelation x y → strictRelation y z → strictRelation x z) → (∀ (x : Alpha), Or (strictRelation x x) (x = x) ∧ (∀ (x y : Alpha), Or (strictRelation x y) (x = y) → Or (strictRelation y x) (y = x) → x = y ∧ ∀ (x y z : Alpha), Or (strictRelation x y) (x = y) → Or (strictRelation y z) (y = z) → Or (strictRelation x z) (x = z)))
+  Ambient
+    (Alpha)
+  Objects
+    strictRelation : LRA.Relation.Endorelation Alpha
+    strictRelationIsStrictOrder : StrictOrder strictRelation
+  Prove
+    ((∀ (x : Alpha), strictRelation x x → False) ∧ (∀ (x y z : Alpha), strictRelation x y → strictRelation y z → strictRelation x z)) → ((∀ (x : Alpha), Or (strictRelation x x) (x = x)) ∧ ((∀ (x y : Alpha), Or (strictRelation x y) (x = y) → Or (strictRelation y x) (y = x) → x = y) ∧ (∀ (x y z : Alpha), Or (strictRelation x y) (x = y) → Or (strictRelation y z) (y = z) → Or (strictRelation x z) (x = z))))
 
 Logical form (Lean):
 
@@ -57,11 +63,17 @@ theorem StrictOrderInducesPartialOrder
 
 Predicate logic:
 
-  StrictOrder (StrictFromNonStrict nonStrictRelation)
+  ∀ {Alpha : Type u} {nonStrictRelation : LRA.Relation.Endorelation Alpha}, LRA.Order.PartialOrder nonStrictRelation → LRA.Order.StrictOrder (LRA.Order.StrictFromNonStrict nonStrictRelation)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {nonStrictRelation : Alpha → Alpha → Prop}, (∀ (x : Alpha), nonStrictRelation x x ∧ (∀ (x y : Alpha), nonStrictRelation x y → nonStrictRelation y x → x = y ∧ ∀ (x y z : Alpha), nonStrictRelation x y → nonStrictRelation y z → nonStrictRelation x z)) → (∀ (x : Alpha), (nonStrictRelation x x ∧ ¬ x = x) → False ∧ ∀ (x y z : Alpha), (nonStrictRelation x y ∧ x = y → False) → (nonStrictRelation y z ∧ y = z → False) → (nonStrictRelation x z ∧ x = z → False))
+  Ambient
+    (Alpha)
+  Objects
+    nonStrictRelation : LRA.Relation.Endorelation Alpha
+    nonStrictRelationIsPartialOrder : PartialOrder nonStrictRelation
+  Prove
+    ((∀ (x : Alpha), nonStrictRelation x x) ∧ ((∀ (x y : Alpha), nonStrictRelation x y → nonStrictRelation y x → x = y) ∧ (∀ (x y z : Alpha), nonStrictRelation x y → nonStrictRelation y z → nonStrictRelation x z))) → ((∀ (x : Alpha), (nonStrictRelation x x ∧ ¬ x = x) → False) ∧ (∀ (x y z : Alpha), (nonStrictRelation x y ∧ (x = y → False)) → (nonStrictRelation y z ∧ (y = z → False)) → (nonStrictRelation x z ∧ (x = z → False))))
 
 Logical form (Lean):
 
@@ -103,11 +115,17 @@ theorem PartialOrderInducesStrictOrder
 
 Predicate logic:
 
-  LinearOrder (NonStrictFromStrict strictRelation)
+  ∀ {Alpha : Type u} {strictRelation : LRA.Relation.Endorelation Alpha}, LRA.Order.StrictLinearOrder strictRelation → LRA.Order.LinearOrder (LRA.Order.NonStrictFromStrict strictRelation)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {strictRelation : Alpha → Alpha → Prop}, ((∀ (x : Alpha), strictRelation x x → False ∧ ∀ (x y z : Alpha), strictRelation x y → strictRelation y z → strictRelation x z) ∧ ∀ (x y : Alpha), Or ((strictRelation x y ∧ (x = y → False ∧ strictRelation y x → False))) (Or ((x = y ∧ (strictRelation x y → False ∧ strictRelation y x → False))) ((strictRelation y x ∧ (strictRelation x y → False ∧ x = y → False))))) → ((∀ (x : Alpha), Or (strictRelation x x) (x = x) ∧ (∀ (x y : Alpha), Or (strictRelation x y) (x = y) → Or (strictRelation y x) (y = x) → x = y ∧ ∀ (x y z : Alpha), Or (strictRelation x y) (x = y) → Or (strictRelation y z) (y = z) → Or (strictRelation x z) (x = z))) ∧ ∀ (x y : Alpha), Or (Or (strictRelation x y) (x = y))(Or (strictRelation y x) (y = x)))
+  Ambient
+    (Alpha)
+  Objects
+    strictRelation : LRA.Relation.Endorelation Alpha
+    strictRelationIsStrictLinearOrder : StrictLinearOrder strictRelation
+  Prove
+    (((∀ (x : Alpha), strictRelation x x → False) ∧ (∀ (x y z : Alpha), strictRelation x y → strictRelation y z → strictRelation x z)) ∧ (∀ (x y : Alpha), Or ((strictRelation x y ∧ ((x = y → False) ∧ (strictRelation y x → False)))) (Or ((x = y ∧ ((strictRelation x y → False) ∧ (strictRelation y x → False)))) ((strictRelation y x ∧ ((strictRelation x y → False) ∧ (x = y → False))))))) → (((∀ (x : Alpha), Or (strictRelation x x) (x = x)) ∧ ((∀ (x y : Alpha), Or (strictRelation x y) (x = y) → Or (strictRelation y x) (y = x) → x = y) ∧ (∀ (x y z : Alpha), Or (strictRelation x y) (x = y) → Or (strictRelation y z) (y = z) → Or (strictRelation x z) (x = z)))) ∧ (∀ (x y : Alpha), Or (Or (strictRelation x y) (x = y))(Or (strictRelation y x) (y = x))))
 
 Logical form (Lean):
 
@@ -149,11 +167,17 @@ theorem StrictLinearOrderInducesLinearOrder
 
 Predicate logic:
 
-  StrictFromNonStrict (NonStrictFromStrict strictRelation) = strictRelation
+  ∀ {Alpha : Type u} {strictRelation : LRA.Relation.Endorelation Alpha}, LRA.Relation.Irreflexive strictRelation → LRA.Order.StrictFromNonStrict (LRA.Order.NonStrictFromStrict strictRelation) = strictRelation
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {strictRelation : Alpha → Alpha → Prop}, (∀ (x : Alpha), strictRelation x x → False) → fun left right => (Or (strictRelation left right) (left = right) ∧ left = right → False) = strictRelation
+  Ambient
+    (Alpha)
+  Objects
+    strictRelation : LRA.Relation.Endorelation Alpha
+    strictRelationIsIrreflexive : LRA.Relation.Irreflexive strictRelation
+  Prove
+    (∀ (x : Alpha), strictRelation x x → False) → fun left right => (Or (strictRelation left right) (left = right) ∧ (left = right → False)) = strictRelation
 
 Logical form (Lean):
 
@@ -195,11 +219,17 @@ theorem StrictNonStrictInverseCorrespondence
 
 Predicate logic:
 
-  NonStrictFromStrict (StrictFromNonStrict nonStrictRelation) = nonStrictRelation
+  ∀ {Alpha : Type u} {nonStrictRelation : LRA.Relation.Endorelation Alpha}, LRA.Relation.Reflexive nonStrictRelation → LRA.Order.NonStrictFromStrict (LRA.Order.StrictFromNonStrict nonStrictRelation) = nonStrictRelation
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {nonStrictRelation : Alpha → Alpha → Prop}, (∀ (x : Alpha), nonStrictRelation x x) → fun left right => Or ((nonStrictRelation left right ∧ left = right → False)) (left = right) = nonStrictRelation
+  Ambient
+    (Alpha)
+  Objects
+    nonStrictRelation : LRA.Relation.Endorelation Alpha
+    nonStrictRelationIsReflexive : LRA.Relation.Reflexive nonStrictRelation
+  Prove
+    (∀ (x : Alpha), nonStrictRelation x x) → fun left right => Or ((nonStrictRelation left right ∧ (left = right → False))) (left = right) = nonStrictRelation
 
 Logical form (Lean):
 
@@ -241,11 +271,16 @@ theorem NonStrictStrictInverseCorrespondence
 
 Predicate logic:
 
-  (∀ poset ∈ Poset), PosetOfStrictPoset (StrictPosetOfPoset poset) = poset
+  ∀ (poset : LRA.Order.Poset), LRA.Order.PosetOfStrictPoset (LRA.Order.StrictPosetOfPoset poset) = poset
 
 Predicate logic (unfolded):
 
-  ∀ (poset : LRA.Order.Poset), { Carrier := (LRA.Order.StrictPosetOfPoset poset).1, NonStrictOrder := fun left right => Or ((LRA.Order.StrictPosetOfPoset poset).2 left right) (left = right), NonStrictOrderIsPartialOrder := ⋯ } = poset
+  Ambient
+    (implicit ambient)
+  Objects
+    poset : Poset
+  Prove
+    { Carrier := (LRA.Order.StrictPosetOfPoset poset).1, NonStrictOrder := fun left right => Or ((LRA.Order.StrictPosetOfPoset poset).2 left right) (left = right), NonStrictOrderIsPartialOrder := ⋯ } = poset
 
 Logical form (Lean):
 
@@ -281,11 +316,16 @@ theorem PosetOfStrictPosetOfPoset (poset : Poset) :
 
 Predicate logic:
 
-  (∀ strictPoset ∈ StrictPoset), StrictPosetOfPoset (PosetOfStrictPoset strictPoset) = strictPoset
+  ∀ (strictPoset : LRA.Order.StrictPoset), LRA.Order.StrictPosetOfPoset (LRA.Order.PosetOfStrictPoset strictPoset) = strictPoset
 
 Predicate logic (unfolded):
 
-  ∀ (strictPoset : LRA.Order.StrictPoset), { Carrier := (LRA.Order.PosetOfStrictPoset strictPoset).1, StrictRelation := fun left right => ((LRA.Order.PosetOfStrictPoset strictPoset).2 left right ∧ left = right → False), StrictRelationIsStrictOrder := ⋯ } = strictPoset
+  Ambient
+    (implicit ambient)
+  Objects
+    strictPoset : StrictPoset
+  Prove
+    { Carrier := (LRA.Order.PosetOfStrictPoset strictPoset).1, StrictRelation := fun left right => ((LRA.Order.PosetOfStrictPoset strictPoset).2 left right ∧ (left = right → False)), StrictRelationIsStrictOrder := ⋯ } = strictPoset
 
 Logical form (Lean):
 

@@ -9,12 +9,12 @@ namespace LRA.AlgebraicStructures
 Predicate logic:
 
   structure SemiringConceptSignature extends
-    LRA.UniversalAlgebra.InterpretedOperationBundles.BooleanRingOperationBundle
+      LRA.UniversalAlgebra.InterpretedOperationBundles.BooleanRingOperationBundle
 
 Predicate logic (unfolded):
 
   structure SemiringConceptSignature extends
-    LRA.UniversalAlgebra.InterpretedOperationBundles.BooleanRingOperationBundle (source fallback; no compiled unfold data available)
+      LRA.UniversalAlgebra.InterpretedOperationBundles.BooleanRingOperationBundle (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

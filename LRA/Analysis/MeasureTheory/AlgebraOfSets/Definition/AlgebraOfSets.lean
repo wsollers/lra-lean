@@ -164,22 +164,22 @@ abbrev SigmaAlgebraDefinition := @LRA.SetSystems.SigmaAlgebraOfSets
 Predicate logic:
 
   structure AlgebraOfSetsSpaceDefinition
-    (Element : Type u) (SetObj : Type v)
-    [Membership Element SetObj]
-    [Union SetObj] [Inter SetObj] [SDiff SetObj]
-    [EmptyCollection SetObj] [HasSubset SetObj] [HasSymmDiff SetObj] where
-  ambient : SetObj
-  algebra : LRA.SetSystems.AlgebraOfSets ambient
+      (Element : Type u) (SetObj : Type v)
+      [Membership Element SetObj]
+      [Union SetObj] [Inter SetObj] [SDiff SetObj]
+      [EmptyCollection SetObj] [HasSubset SetObj] [HasSymmDiff SetObj] where
+    ambient : SetObj
+    algebra : LRA.SetSystems.AlgebraOfSets ambient
 
 Predicate logic (unfolded):
 
   structure AlgebraOfSetsSpaceDefinition
-    (Element : Type u) (SetObj : Type v)
-    [Membership Element SetObj]
-    [Union SetObj] [Inter SetObj] [SDiff SetObj]
-    [EmptyCollection SetObj] [HasSubset SetObj] [HasSymmDiff SetObj] where
-  ambient : SetObj
-  algebra : LRA.SetSystems.AlgebraOfSets ambient (source fallback; no compiled unfold data available)
+      (Element : Type u) (SetObj : Type v)
+      [Membership Element SetObj]
+      [Union SetObj] [Inter SetObj] [SDiff SetObj]
+      [EmptyCollection SetObj] [HasSubset SetObj] [HasSymmDiff SetObj] where
+    ambient : SetObj
+    algebra : LRA.SetSystems.AlgebraOfSets ambient (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -233,14 +233,14 @@ variable [EmptyCollection SetObj] [HasSubset SetObj] [HasSymmDiff SetObj]
 Predicate logic:
 
   abbrev SetObject
-    (_space : AlgebraOfSetsSpaceDefinition Element SetObj) : Type v :=
-  SetObj
+      (_space : AlgebraOfSetsSpaceDefinition Element SetObj) : Type v :=
+    SetObj
 
 Predicate logic (unfolded):
 
   abbrev SetObject
-    (_space : AlgebraOfSetsSpaceDefinition Element SetObj) : Type v :=
-  SetObj (source fallback; no compiled unfold data available)
+      (_space : AlgebraOfSetsSpaceDefinition Element SetObj) : Type v :=
+    SetObj (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

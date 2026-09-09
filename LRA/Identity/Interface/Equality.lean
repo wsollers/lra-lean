@@ -4,28 +4,87 @@ namespace LRA.Identity
 
 universe u
 
-/-- `EqualityTheory` presents the generic full identity contract under the
-equality vocabulary.
+/--
+`EqualityTheory` TODO
 
-Logical form:
+Predicate logic:
+
+  ∀ (Carrier : Type u) (a : Carrier → Carrier → Prop), LRA.Identity.IdentityTheory (LRA.Identity.FullLeibniz Carrier) a
+
+Predicate logic (unfolded):
+
+  ∀ (Carrier : Type u) (a : Carrier → Carrier → Prop), ((∀ (x : Carrier), a x x) ∧ (∀ (x y : Carrier), a x y → ∀ (P : Carrier → Prop), True → P x → P y))
+
+Logical form (Lean):
+
 ```lean
 abbrev EqualityTheory (Carrier : Type u) :
     (Carrier -> Carrier -> Prop) -> Prop := IsIdentityRelation
 ```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, unfold
+
 -/
 abbrev EqualityTheory (Carrier : Type u) :
     (Carrier -> Carrier -> Prop) -> Prop := IsIdentityRelation
 
-/-- `EqualityRelation` designates an equality presentation and certifies that
-its relation satisfies the generic identity contract. The identity laws are
-not duplicated as equality-specific class fields.
+/--
+`EqualityRelation` TODO
 
-Logical form:
+Predicate logic:
+
+  class EqualityRelation (Carrier : Type u) where
+    Equal : Carrier -> Carrier -> Prop
+    satisfiesEqualityTheory : EqualityTheory Carrier Equal
+
+Predicate logic (unfolded):
+
+  class EqualityRelation (Carrier : Type u) where
+    Equal : Carrier -> Carrier -> Prop
+    satisfiesEqualityTheory : EqualityTheory Carrier Equal
+
+Logical form (Lean):
+
 ```lean
 class EqualityRelation (Carrier : Type u) where
   Equal : Carrier -> Carrier -> Prop
   satisfiesEqualityTheory : EqualityTheory Carrier Equal
 ```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro
+
 -/
 class EqualityRelation (Carrier : Type u) where
   Equal : Carrier -> Carrier -> Prop
@@ -33,36 +92,173 @@ class EqualityRelation (Carrier : Type u) where
 
 export EqualityRelation (Equal)
 
-/-- Equality is reflexive because its presentation satisfies the generic
-identity theory.
+/--
+`EqualReflexive` TODO
 
-Logical form: `forall x, Equal x x`.
+Predicate logic:
+
+  ∀ {Carrier : Type u} [inst : LRA.Identity.EqualityRelation Carrier] (x : Carrier), inst.Equal x x
+
+Predicate logic (unfolded):
+
+  ∀ {Carrier : Type u} [inst : LRA.Identity.EqualityRelation Carrier] (x : Carrier), inst.Equal x x
+
+Logical form (Lean):
+
+```lean
+theorem EqualReflexive {Carrier : Type u} [EqualityRelation Carrier] :
+    forall x : Carrier, Equal x x
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro
+
 -/
 theorem EqualReflexive {Carrier : Type u} [EqualityRelation Carrier] :
     forall x : Carrier, Equal x x := by
   sorry
 
-/-- Equality transports every predicate because its presentation satisfies
-the generic full-Leibniz identity theory.
+/--
+`EqualLeibniz` TODO
 
-Logical form: `Equal x y -> P x -> P y`.
+Predicate logic:
+
+  ∀ {Carrier : Type u} [inst : LRA.Identity.EqualityRelation Carrier] {x y : Carrier}, inst.Equal x y → ∀ (Property : Carrier → Prop), Property x → Property y
+
+Predicate logic (unfolded):
+
+  ∀ {Carrier : Type u} [inst : LRA.Identity.EqualityRelation Carrier] {x y : Carrier}, inst.Equal x y → ∀ (Property : Carrier → Prop), Property x → Property y
+
+Logical form (Lean):
+
+```lean
+theorem EqualLeibniz {Carrier : Type u} [EqualityRelation Carrier]
+    {x y : Carrier} (hxy : Equal x y) (Property : Carrier -> Prop) :
+    Property x -> Property y
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro
+
 -/
 theorem EqualLeibniz {Carrier : Type u} [EqualityRelation Carrier]
     {x y : Carrier} (hxy : Equal x y) (Property : Carrier -> Prop) :
     Property x -> Property y := by
   sorry
 
-/-- `IsEqualityRelation` is the named equality presentation certificate.
+/--
+`IsEqualityRelation` TODO
 
-Logical form: `EqualityTheory Carrier Equal`.
+Predicate logic:
+
+  ∀ {Carrier : Type u} (Equal : Carrier → Carrier → Prop), LRA.Identity.IdentityTheory (LRA.Identity.FullLeibniz Carrier) Equal
+
+Predicate logic (unfolded):
+
+  ∀ {Carrier : Type u} (Equal : Carrier → Carrier → Prop), ((∀ (x : Carrier), Equal x x) ∧ (∀ (x y : Carrier), Equal x y → ∀ (P : Carrier → Prop), True → P x → P y))
+
+Logical form (Lean):
+
+```lean
+abbrev IsEqualityRelation {Carrier : Type u}
+    (Equal : Carrier -> Carrier -> Prop) : Prop :=
+  EqualityTheory Carrier Equal
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, unfold
+
 -/
 abbrev IsEqualityRelation {Carrier : Type u}
     (Equal : Carrier -> Carrier -> Prop) : Prop :=
   EqualityTheory Carrier Equal
 
-/-- Build an equality presentation from its generic identity certificate.
+/--
+`EqualityRelation.ofIsEqualityRelation` TODO
 
-Logical form: `IsEqualityRelation Equal -> EqualityRelation Carrier`.
+Predicate logic:
+
+  def EqualityRelation.ofIsEqualityRelation
+      {Carrier : Type u} {Equal : Carrier -> Carrier -> Prop}
+      (h : IsEqualityRelation Equal) : EqualityRelation Carrier
+
+Predicate logic (unfolded):
+
+  def EqualityRelation.ofIsEqualityRelation
+      {Carrier : Type u} {Equal : Carrier -> Carrier -> Prop}
+      (h : IsEqualityRelation Equal) : EqualityRelation Carrier
+
+Logical form (Lean):
+
+```lean
+def EqualityRelation.ofIsEqualityRelation
+    {Carrier : Type u} {Equal : Carrier -> Carrier -> Prop}
+    (h : IsEqualityRelation Equal) : EqualityRelation Carrier
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, unfold
+
 -/
 @[reducible] def EqualityRelation.ofIsEqualityRelation
     {Carrier : Type u} {Equal : Carrier -> Carrier -> Prop}

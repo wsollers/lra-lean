@@ -37,23 +37,93 @@ respectively, to be done once each system's own definition is settled
 (Takeuti is explicitly work-in-progress at time of writing).
 -/
 
-/-- An inductive syntax type `Expr`, built over syntactic categories
-satisfying `SyntacticCategory`, satisfies `StructuralIdentity` when
-equality of its values is decidable -- i.e. "same expression" reduces to
-a decidable structural comparison, never to an undecidable or
-externally-imposed notion of sameness. -/
+/--
+`StructuralIdentity` An inductive syntax type `Expr`, built over syntactic categories satisfying `SyntacticCategory`, satisfies `StructuralIdentity` when equality of its values is decidable -- i.e. "same expression" reduces to a decidable structural comparison, never to an undecidable or externally-imposed notion of sameness.
+
+Predicate logic:
+
+  class StructuralIdentity (Expr : Type u) where
+    decidableStructuralEquality : DecidableEq Expr
+
+Predicate logic (unfolded):
+
+  class StructuralIdentity (Expr : Type u) where
+    decidableStructuralEquality : DecidableEq Expr (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+class StructuralIdentity (Expr : Type u) where
+  decidableStructuralEquality : DecidableEq Expr
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 class StructuralIdentity (Expr : Type u) where
   decidableStructuralEquality : DecidableEq Expr
 
 attribute [instance] StructuralIdentity.decidableStructuralEquality
 
-/-- If `Expr` satisfies `StructuralIdentity`, then syntactic identity of
-expressions is exactly Lean's propositional equality on `Expr` -- stated
-so that later files can cite "structural identity IS `=`" as a named
-fact rather than an unexamined convention. This is not vacuous: it is
-the assertion that no additional identification (e.g. some quotient by
-alpha-equivalence, see `AlphaEquivalenceContract` in a future file) is
-silently in force unless a system explicitly introduces one. -/
+/--
+`StructuralIdentity.isPropositionalEquality` If `Expr` satisfies `StructuralIdentity`, then syntactic identity of expressions is exactly Lean's propositional equality on `Expr` -- stated so that later files can cite "structural identity IS `=`" as a named fact rather than an unexamined convention. This is not vacuous: it is the assertion that no additional identification (e.g. some quotient by alpha-equivalence, see `AlphaEquivalenceContract` in a future file) is silently in force unless a system explicitly introduces one.
+
+Predicate logic:
+
+  ∀ {Expr : Type u} [inst : LRA.Metamathematics.StructuralIdentity Expr] (e1 e2 : Expr), Decidable.decide (e1 = e2) = Bool.true ↔ e1 = e2
+
+Predicate logic (unfolded):
+
+  Ambient
+    (Expr)
+  Objects
+    e1 e2 : Expr
+  Prove
+    Decidable.decide (e1 = e2) = Bool.true ↔ e1 = e2
+
+Logical form (Lean):
+
+```lean
+theorem StructuralIdentity.isPropositionalEquality
+    {Expr : Type u} [StructuralIdentity Expr] (e1 e2 : Expr) :
+    (decide (e1 = e2) = true) ↔ e1 = e2
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: constructor, .mp, .mpr
+
+-/
 theorem StructuralIdentity.isPropositionalEquality
     {Expr : Type u} [StructuralIdentity Expr] (e1 e2 : Expr) :
     (decide (e1 = e2) = true) ↔ e1 = e2 := by

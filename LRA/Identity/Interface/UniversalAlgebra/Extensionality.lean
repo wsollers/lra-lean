@@ -9,17 +9,11 @@ universe u v w
 
 Predicate logic:
 
-  (∀ index, left index = right index) → operation left = operation right
+  ∀ {Index : Type u} {Carrier : Type v} {Codomain : Type w} (operation : (Index → Carrier) → Codomain) {left right : Index → Carrier}, (∀ (index : Index), left index = right index) → operation left = operation right
 
 Predicate logic (unfolded):
 
-  Ambient
-    (Index, Carrier, Codomain)
-  Objects
-    operation : (Index → Carrier) → Codomain
-    left right : Index → Carrier
-  Prove
-    (∀ (index : Index), left index = right index) → operation left = operation right
+  ∀ {Index : Type u} {Carrier : Type v} {Codomain : Type w} (operation : (Index → Carrier) → Codomain) {left right : Index → Carrier}, (∀ (index : Index), left index = right index) → operation left = operation right
 
 Logical form (Lean):
 
@@ -65,19 +59,11 @@ theorem IndexedOperationCongruence
 
 Predicate logic:
 
-  (∀ symbol ∈ signature.OperationSymbol), (∀ index, left index = right index) → structure_.interpretOperation symbol left = structure_.interpretOperation symbol right
+  ∀ {signature : LRA.Identity.AlgebraicSignature} (structure_ : LRA.Identity.AlgebraicStructure signature) (symbol : signature.OperationSymbol) {left right : Fin (signature.arity symbol) → structure_.Carrier}, (∀ (index : Fin (signature.arity symbol)), left index = right index) → structure_.interpretOperation symbol left = structure_.interpretOperation symbol right
 
 Predicate logic (unfolded):
 
-  Ambient
-    (implicit ambient)
-  Objects
-    signature : AlgebraicSignature.{v, w}
-    structure_ : AlgebraicStructure.{u} signature
-    symbol : signature.OperationSymbol
-    left right : Fin (signature.arity symbol) → structure_.Carrier
-  Prove
-    (∀ (index : Fin (signature.2 symbol)), left index = right index) → structure_.3 symbol left = structure_.3 symbol right
+  ∀ {signature : LRA.Identity.AlgebraicSignature} (structure_ : LRA.Identity.AlgebraicStructure signature) (symbol : signature.OperationSymbol) {left right : Fin (signature.arity symbol) → structure_.Carrier}, (∀ (index : Fin (signature.arity symbol)), left index = right index) → structure_.interpretOperation symbol left = structure_.interpretOperation symbol right
 
 Logical form (Lean):
 

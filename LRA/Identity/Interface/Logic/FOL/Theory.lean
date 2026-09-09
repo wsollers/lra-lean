@@ -6,38 +6,139 @@ namespace LRA.Identity.Logic.FOL
 
 universe u
 
-/-- A first-order identity theory is explicitly relative to the predicates
-expressible in the selected first-order language and context.
+/--
+`IdentityTheoryFor` TODO
 
-Logical form: `IdentityTheory Expressible R`.
+Predicate logic:
+
+  ∀ {Carrier : Type u} {Admissible : (Carrier → Prop) → Prop} {R : Carrier → Carrier → Prop}, ((∀ (x : Carrier), R x x) ∧ (∀ (x y : Carrier), R x y → ∀ (P : Carrier → Prop), Admissible P → P x → P y))
+
+Predicate logic (unfolded):
+
+  ∀ {Carrier : Type u} {Admissible : (Carrier → Prop) → Prop} {R : Carrier → Carrier → Prop}, ((∀ (x : Carrier), R x x) ∧ (∀ (x y : Carrier), R x y → ∀ (P : Carrier → Prop), Admissible P → P x → P y))
+
+Logical form (Lean):
+
+```lean
+structure IdentityTheory {Carrier : Type u}
+    (Admissible : (Carrier → Prop) → Prop)
+    (R : Carrier → Carrier → Prop) : Prop where
+  reflexive : ∀ x, R x x
+  leibniz : ∀ x y, R x y →
+    ∀ P : Carrier → Prop, Admissible P → P x → P y
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro
+
 -/
 abbrev IdentityTheoryFor {Carrier : Type u}
     (Expressible : (Carrier -> Prop) -> Prop)
     (R : Carrier -> Carrier -> Prop) : Prop :=
   LRA.Identity.IdentityTheory Expressible R
 
-/-- Predicate-relative Leibniz substitution at the FOL model level.
+/--
+`LeibnizSchema` TODO
 
-This is a semantic schema indexed by predicates expressible in the selected
-first-order language; it is not second-order quantification in the object
-language.
+Predicate logic:
 
-Logical form:
-`forall x y, R x y -> forall P, Expressible P -> P x -> P y`.
+  ∀ {Carrier : Type u} (Expressible : (Carrier → Prop) → Prop) (R : Carrier → Carrier → Prop) (x y : Carrier), R x y → ∀ (P : Carrier → Prop), (Expressible P ∧ P x) → P y
+
+Predicate logic (unfolded):
+
+  ∀ {Carrier : Type u} (Expressible : (Carrier → Prop) → Prop) (R : Carrier → Carrier → Prop) (x y : Carrier), R x y → ∀ (P : Carrier → Prop), (Expressible P ∧ P x) → P y
+
+Logical form (Lean):
+
+```lean
+def LeibnizSchema {Carrier : Type u}
+    (Expressible : (Carrier -> Prop) -> Prop)
+    (R : Carrier -> Carrier -> Prop) : Prop :=
+  forall x y, R x y -> forall P, Expressible P -> P x -> P y
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, unfold
+
 -/
 def LeibnizSchema {Carrier : Type u}
     (Expressible : (Carrier -> Prop) -> Prop)
     (R : Carrier -> Carrier -> Prop) : Prop :=
   forall x y, R x y -> forall P, Expressible P -> P x -> P y
 
-/-- `DefinesUnaryPredicate` states that a formula, distinguished variable, and
-background assignment define a unary predicate in a specified FOL model.
+/--
+`DefinesUnaryPredicate` TODO
 
-Logical form:
+Predicate logic:
+
+  ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : DecidableEq Variable] (M : LRA.Logic.FirstOrder.Interpretation S) (formula : LRA.Logic.FirstOrder.Formula S Variable) (distinguished : Variable) (assignment : Variable → M.Domain) (P : M.Domain → Prop) (value : M.Domain), P value ↔ LRA.Logic.FirstOrder.Satisfies M (LRA.Logic.updateAssignment assignment distinguished value) formula
+
+Predicate logic (unfolded):
+
+  ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : DecidableEq Variable] (M : LRA.Logic.FirstOrder.Interpretation S) (formula : LRA.Logic.FirstOrder.Formula S Variable) (distinguished : Variable) (assignment : Variable → M.Domain) (P : M.Domain → Prop) (value : M.Domain), P value ↔ LRA.Logic.FirstOrder.Satisfies M (LRA.Logic.updateAssignment assignment distinguished value) formula
+
+Logical form (Lean):
+
 ```lean
-forall value, P value <->
-  Satisfies M (updateAssignment assignment variable value) formula
+def DefinesUnaryPredicate
+    {S : LRA.Logic.Signature} {Variable : Type} [DecidableEq Variable]
+    (M : LRA.Logic.FirstOrder.Interpretation S)
+    (formula : LRA.Logic.FirstOrder.Formula S Variable)
+    (distinguished : Variable) (assignment : Variable -> M.Domain)
+    (P : M.Domain -> Prop) : Prop :=
+  forall value, P value <->
+    LRA.Logic.FirstOrder.Satisfies M
+      (LRA.Logic.updateAssignment assignment distinguished value) formula
 ```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, constructor, .mp, .mpr, unfold
+
 -/
 def DefinesUnaryPredicate
     {S : LRA.Logic.Signature} {Variable : Type} [DecidableEq Variable]
@@ -49,14 +150,47 @@ def DefinesUnaryPredicate
     LRA.Logic.FirstOrder.Satisfies M
       (LRA.Logic.updateAssignment assignment distinguished value) formula
 
-/-- `FormulaDefinable` is the predicate policy consisting exactly of unary
-predicates definable by a formula with parameters in a specified FOL model.
+/--
+`FormulaDefinable` TODO
 
-Logical form:
+Predicate logic:
+
+  ∀ {S : LRA.Logic.Signature} (Variable : Type) [inst : DecidableEq Variable] (M : LRA.Logic.FirstOrder.Interpretation S) (a : M.Domain → Prop), ∃ formula, ∃ distinguished, ∃ assignment, LRA.Identity.Logic.FOL.DefinesUnaryPredicate M formula distinguished assignment a
+
+Predicate logic (unfolded):
+
+  ∀ {S : LRA.Logic.Signature} (Variable : Type) [inst : DecidableEq Variable] (M : LRA.Logic.FirstOrder.Interpretation S) (a : M.Domain → Prop), ∃ formula, ∃ distinguished, ∃ assignment, ∀ (value : M.Domain), a value ↔ LRA.Logic.FirstOrder.Satisfies M (LRA.Logic.updateAssignment assignment distinguished value) formula
+
+Logical form (Lean):
+
 ```lean
-exists formula variable assignment,
-  DefinesUnaryPredicate M formula variable assignment P
+def FormulaDefinable
+    {S : LRA.Logic.Signature} (Variable : Type) [DecidableEq Variable]
+    (M : LRA.Logic.FirstOrder.Interpretation S) :
+    (M.Domain -> Prop) -> Prop :=
+  fun P => exists (formula : LRA.Logic.FirstOrder.Formula S Variable)
+    (distinguished : Variable) (assignment : Variable -> M.Domain),
+    DefinesUnaryPredicate M formula distinguished assignment P
 ```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, use, rcases, unfold
+
 -/
 def FormulaDefinable
     {S : LRA.Logic.Signature} (Variable : Type) [DecidableEq Variable]
@@ -66,13 +200,46 @@ def FormulaDefinable
     (distinguished : Variable) (assignment : Variable -> M.Domain),
     DefinesUnaryPredicate M formula distinguished assignment P
 
-/-- `ModelIdentityTheory` states first-order Leibniz substitution relative to
-the predicates definable in the selected model and variable language.
+/--
+`ModelIdentityTheory` TODO
 
-Logical form:
+Predicate logic:
+
+  ∀ {Carrier : Type u} {Admissible : (Carrier → Prop) → Prop} {R : Carrier → Carrier → Prop}, ((∀ (x : Carrier), R x x) ∧ (∀ (x y : Carrier), R x y → ∀ (P : Carrier → Prop), Admissible P → P x → P y))
+
+Predicate logic (unfolded):
+
+  ∀ {Carrier : Type u} {Admissible : (Carrier → Prop) → Prop} {R : Carrier → Carrier → Prop}, ((∀ (x : Carrier), R x x) ∧ (∀ (x y : Carrier), R x y → ∀ (P : Carrier → Prop), Admissible P → P x → P y))
+
+Logical form (Lean):
+
 ```lean
-IdentityTheory (FormulaDefinable Variable M) R
+structure IdentityTheory {Carrier : Type u}
+    (Admissible : (Carrier → Prop) → Prop)
+    (R : Carrier → Carrier → Prop) : Prop where
+  reflexive : ∀ x, R x x
+  leibniz : ∀ x y, R x y →
+    ∀ P : Carrier → Prop, Admissible P → P x → P y
 ```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro
+
 -/
 abbrev ModelIdentityTheory
     {S : LRA.Logic.Signature} (Variable : Type) [DecidableEq Variable]
@@ -84,13 +251,89 @@ end LRA.Identity.Logic.FOL
 
 namespace LRA.Identity
 
-/-- Compatibility name for the original FOL-relative identity contract. -/
+/--
+`EqualityFirstOrderTheory` TODO
+
+Predicate logic:
+
+  ∀ {Carrier : Type u_1} (Expressible : (Carrier → Prop) → Prop) (R : Carrier → Carrier → Prop), LRA.Identity.IdentityTheory Expressible R
+
+Predicate logic (unfolded):
+
+  ∀ {Carrier : Type u_1} (Expressible : (Carrier → Prop) → Prop) (R : Carrier → Carrier → Prop), ((∀ (x : Carrier), R x x) ∧ (∀ (x y : Carrier), R x y → ∀ (P : Carrier → Prop), Expressible P → P x → P y))
+
+Logical form (Lean):
+
+```lean
+abbrev EqualityFirstOrderTheory {Carrier : Type _}
+    (Expressible : (Carrier -> Prop) -> Prop)
+    (R : Carrier -> Carrier -> Prop) : Prop :=
+  Logic.FOL.IdentityTheoryFor Expressible R
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, unfold
+
+-/
 abbrev EqualityFirstOrderTheory {Carrier : Type _}
     (Expressible : (Carrier -> Prop) -> Prop)
     (R : Carrier -> Carrier -> Prop) : Prop :=
   Logic.FOL.IdentityTheoryFor Expressible R
 
-/-- Compatibility name for the original predicate-relative Leibniz schema. -/
+/--
+`FirstOrderLeibnizAxiom` TODO
+
+Predicate logic:
+
+  ∀ {Carrier : Type u_1} (Expressible : (Carrier → Prop) → Prop) (R : Carrier → Carrier → Prop) (x y : Carrier), R x y → ∀ (P : Carrier → Prop), (Expressible P ∧ P x) → P y
+
+Predicate logic (unfolded):
+
+  ∀ {Carrier : Type u_1} (Expressible : (Carrier → Prop) → Prop) (R : Carrier → Carrier → Prop) (x y : Carrier), R x y → ∀ (P : Carrier → Prop), (Expressible P ∧ P x) → P y
+
+Logical form (Lean):
+
+```lean
+abbrev FirstOrderLeibnizAxiom {Carrier : Type _}
+    (Expressible : (Carrier -> Prop) -> Prop)
+    (R : Carrier -> Carrier -> Prop) : Prop :=
+  Logic.FOL.LeibnizSchema Expressible R
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, unfold
+
+-/
 abbrev FirstOrderLeibnizAxiom {Carrier : Type _}
     (Expressible : (Carrier -> Prop) -> Prop)
     (R : Carrier -> Carrier -> Prop) : Prop :=

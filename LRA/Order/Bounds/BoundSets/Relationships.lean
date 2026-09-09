@@ -25,11 +25,17 @@ variable [SubsetLaws SetObject]
 
 Predicate logic:
 
-  (∀ A ∈ U), A ⊆ LowerBounds relation (UpperBounds relation A)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject] [inst_6 : LRA.Set.HasSeparation Element SetObject] [inst_7 : LRA.Set.HasUniversal SetObject] [inst_8 : LRA.Set.HasComplement SetObject], (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ (relation : LRA.Relation.Endorelation Element) (subset : SetObject), inst_5.Subset subset (LRA.Order.LowerBounds relation (LRA.Order.UpperBounds relation subset))
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject] [inst_6 : LRA.Set.HasSeparation Element SetObject] [inst_7 : LRA.Set.HasUniversal SetObject] [inst_8 : LRA.Set.HasComplement SetObject], (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ (relation : Element → Element → Prop) (subset : SetObject), inst_5.1 subset (inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (inst_6.separation inst_7.universal (LRA.Order.UpperBound relation subset)) element → relation bound element)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ (relation : Element → Element → Prop) (subset : SetObject), inst_5.1 subset (inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (inst_6.separation inst_7.universal (LRA.Order.UpperBound relation subset)) element → relation bound element)
 
 Logical form (Lean):
 
@@ -69,11 +75,17 @@ theorem SubsetOfLowerBoundsOfUpperBounds
 
 Predicate logic:
 
-  (∀ A ∈ U), A ⊆ UpperBounds relation (LowerBounds relation A)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject] [inst_6 : LRA.Set.HasSeparation Element SetObject] [inst_7 : LRA.Set.HasUniversal SetObject] [inst_8 : LRA.Set.HasComplement SetObject], (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ (relation : LRA.Relation.Endorelation Element) (subset : SetObject), inst_5.Subset subset (LRA.Order.UpperBounds relation (LRA.Order.LowerBounds relation subset))
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject] [inst_6 : LRA.Set.HasSeparation Element SetObject] [inst_7 : LRA.Set.HasUniversal SetObject] [inst_8 : LRA.Set.HasComplement SetObject], (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ (relation : Element → Element → Prop) (subset : SetObject), inst_5.1 subset (inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (inst_6.separation inst_7.universal (LRA.Order.LowerBound relation subset)) element → relation element bound)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ (relation : Element → Element → Prop) (subset : SetObject), inst_5.1 subset (inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (inst_6.separation inst_7.universal (LRA.Order.LowerBound relation subset)) element → relation element bound)
 
 Logical form (Lean):
 
@@ -113,11 +125,17 @@ theorem SubsetOfUpperBoundsOfLowerBounds
 
 Predicate logic:
 
-  (∀ A ∈ U), UpperBounds relation (LowerBounds relation (UpperBounds relation A)) = UpperBounds relation A
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject] [inst_6 : LRA.Set.HasSeparation Element SetObject] [inst_7 : LRA.Set.HasUniversal SetObject] [inst_8 : LRA.Set.HasComplement SetObject], (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ (relation : LRA.Relation.Endorelation Element) (subset : SetObject), LRA.Order.UpperBounds relation (LRA.Order.LowerBounds relation (LRA.Order.UpperBounds relation subset)) = LRA.Order.UpperBounds relation subset
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject] [inst_6 : LRA.Set.HasSeparation Element SetObject] [inst_7 : LRA.Set.HasUniversal SetObject] [inst_8 : LRA.Set.HasComplement SetObject], (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ (relation : Element → Element → Prop) (subset : SetObject), inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (inst_6.1 inst_7.universal (LRA.Order.LowerBound relation (LRA.Order.UpperBounds relation subset))) element → relation element bound = inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 subset element → relation element bound
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ (relation : Element → Element → Prop) (subset : SetObject), inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (inst_6.1 inst_7.universal (LRA.Order.LowerBound relation (LRA.Order.UpperBounds relation subset))) element → relation element bound = inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 subset element → relation element bound
 
 Logical form (Lean):
 
@@ -161,11 +179,17 @@ theorem UpperBoundsLowerBoundsUpperBounds
 
 Predicate logic:
 
-  (∀ A ∈ U), LowerBounds relation (UpperBounds relation (LowerBounds relation A)) = LowerBounds relation A
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject] [inst_6 : LRA.Set.HasSeparation Element SetObject] [inst_7 : LRA.Set.HasUniversal SetObject] [inst_8 : LRA.Set.HasComplement SetObject], (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ (relation : LRA.Relation.Endorelation Element) (subset : SetObject), LRA.Order.LowerBounds relation (LRA.Order.UpperBounds relation (LRA.Order.LowerBounds relation subset)) = LRA.Order.LowerBounds relation subset
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject] [inst_6 : LRA.Set.HasSeparation Element SetObject] [inst_7 : LRA.Set.HasUniversal SetObject] [inst_8 : LRA.Set.HasComplement SetObject], (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ (relation : Element → Element → Prop) (subset : SetObject), inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (inst_6.1 inst_7.universal (LRA.Order.UpperBound relation (LRA.Order.LowerBounds relation subset))) element → relation bound element = inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 subset element → relation bound element
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ (relation : Element → Element → Prop) (subset : SetObject), inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (inst_6.1 inst_7.universal (LRA.Order.UpperBound relation (LRA.Order.LowerBounds relation subset))) element → relation bound element = inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 subset element → relation bound element
 
 Logical form (Lean):
 
@@ -209,11 +233,17 @@ theorem LowerBoundsUpperBoundsLowerBounds
 
 Predicate logic:
 
-  (∀ A ∈ U), A ⊆ LowerUpperClosure relation A
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject] [inst_6 : LRA.Set.HasSeparation Element SetObject] [inst_7 : LRA.Set.HasUniversal SetObject] [inst_8 : LRA.Set.HasComplement SetObject], (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ (relation : LRA.Relation.Endorelation Element) (subset : SetObject), inst_5.Subset subset (LRA.Order.LowerUpperClosure relation subset)
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject] [inst_6 : LRA.Set.HasSeparation Element SetObject] [inst_7 : LRA.Set.HasUniversal SetObject] [inst_8 : LRA.Set.HasComplement SetObject], (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ (relation : Element → Element → Prop) (subset : SetObject), inst_5.1 subset (inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (LRA.Order.UpperBounds relation subset) element → relation bound element)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ (relation : Element → Element → Prop) (subset : SetObject), inst_5.1 subset (inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (LRA.Order.UpperBounds relation subset) element → relation bound element)
 
 Logical form (Lean):
 
@@ -253,11 +283,18 @@ theorem LowerUpperClosureIsExtensive
 
 Predicate logic:
 
-  (∀ A B ∈ U), LowerUpperClosure relation A ⊆ LowerUpperClosure relation B
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject] [inst_6 : LRA.Set.HasSeparation Element SetObject] [inst_7 : LRA.Set.HasUniversal SetObject] [inst_8 : LRA.Set.HasComplement SetObject], (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ {relation : LRA.Relation.Endorelation Element} {smaller larger : SetObject}, inst_5.Subset smaller larger → inst_5.Subset (LRA.Order.LowerUpperClosure relation smaller) (LRA.Order.LowerUpperClosure relation larger)
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject] [inst_6 : LRA.Set.HasSeparation Element SetObject] [inst_7 : LRA.Set.HasUniversal SetObject] [inst_8 : LRA.Set.HasComplement SetObject], (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ {relation : Element → Element → Prop} {smaller larger : SetObject}, inst_5.1 smaller larger → inst_5.1 (inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (LRA.Order.UpperBounds relation smaller) element → relation bound element) (inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (LRA.Order.UpperBounds relation larger) element → relation bound element)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    smaller larger : SetObject
+    smallerIsContained : smaller ⊆ larger
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ {relation : Element → Element → Prop} {smaller larger : SetObject}, inst_5.1 smaller larger → inst_5.1 (inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (LRA.Order.UpperBounds relation smaller) element → relation bound element) (inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (LRA.Order.UpperBounds relation larger) element → relation bound element)
 
 Logical form (Lean):
 
@@ -301,11 +338,17 @@ theorem LowerUpperClosureIsMonotone
 
 Predicate logic:
 
-  (∀ A ∈ U), LowerUpperClosure relation (LowerUpperClosure relation A) = LowerUpperClosure relation A
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject] [inst_6 : LRA.Set.HasSeparation Element SetObject] [inst_7 : LRA.Set.HasUniversal SetObject] [inst_8 : LRA.Set.HasComplement SetObject], (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ (relation : LRA.Relation.Endorelation Element) (subset : SetObject), LRA.Order.LowerUpperClosure relation (LRA.Order.LowerUpperClosure relation subset) = LRA.Order.LowerUpperClosure relation subset
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject] [inst_6 : LRA.Set.HasSeparation Element SetObject] [inst_7 : LRA.Set.HasUniversal SetObject] [inst_8 : LRA.Set.HasComplement SetObject], (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ (relation : Element → Element → Prop) (subset : SetObject), inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (inst_6.separation inst_7.universal (LRA.Order.UpperBound relation (LRA.Order.LowerUpperClosure relation subset))) element → relation bound element = inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (inst_6.separation inst_7.universal (LRA.Order.UpperBound relation subset)) element → relation bound element
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ (relation : Element → Element → Prop) (subset : SetObject), inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (inst_6.separation inst_7.universal (LRA.Order.UpperBound relation (LRA.Order.LowerUpperClosure relation subset))) element → relation bound element = inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (inst_6.separation inst_7.universal (LRA.Order.UpperBound relation subset)) element → relation bound element
 
 Logical form (Lean):
 
@@ -347,11 +390,17 @@ theorem LowerUpperClosureIsIdempotent
 
 Predicate logic:
 
-  (∀ A ∈ U), A ⊆ UpperLowerClosure relation A
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject] [inst_6 : LRA.Set.HasSeparation Element SetObject] [inst_7 : LRA.Set.HasUniversal SetObject] [inst_8 : LRA.Set.HasComplement SetObject], (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ (relation : LRA.Relation.Endorelation Element) (subset : SetObject), inst_5.Subset subset (LRA.Order.UpperLowerClosure relation subset)
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject] [inst_6 : LRA.Set.HasSeparation Element SetObject] [inst_7 : LRA.Set.HasUniversal SetObject] [inst_8 : LRA.Set.HasComplement SetObject], (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ (relation : Element → Element → Prop) (subset : SetObject), inst_5.1 subset (inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (LRA.Order.LowerBounds relation subset) element → relation element bound)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ (relation : Element → Element → Prop) (subset : SetObject), inst_5.1 subset (inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (LRA.Order.LowerBounds relation subset) element → relation element bound)
 
 Logical form (Lean):
 
@@ -391,11 +440,18 @@ theorem UpperLowerClosureIsExtensive
 
 Predicate logic:
 
-  (∀ A B ∈ U), UpperLowerClosure relation A ⊆ UpperLowerClosure relation B
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject] [inst_6 : LRA.Set.HasSeparation Element SetObject] [inst_7 : LRA.Set.HasUniversal SetObject] [inst_8 : LRA.Set.HasComplement SetObject], (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ {relation : LRA.Relation.Endorelation Element} {smaller larger : SetObject}, inst_5.Subset smaller larger → inst_5.Subset (LRA.Order.UpperLowerClosure relation smaller) (LRA.Order.UpperLowerClosure relation larger)
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject] [inst_6 : LRA.Set.HasSeparation Element SetObject] [inst_7 : LRA.Set.HasUniversal SetObject] [inst_8 : LRA.Set.HasComplement SetObject], (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ {relation : Element → Element → Prop} {smaller larger : SetObject}, inst_5.1 smaller larger → inst_5.1 (inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (LRA.Order.LowerBounds relation smaller) element → relation element bound) (inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (LRA.Order.LowerBounds relation larger) element → relation element bound)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    smaller larger : SetObject
+    smallerIsContained : smaller ⊆ larger
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ {relation : Element → Element → Prop} {smaller larger : SetObject}, inst_5.1 smaller larger → inst_5.1 (inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (LRA.Order.LowerBounds relation smaller) element → relation element bound) (inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (LRA.Order.LowerBounds relation larger) element → relation element bound)
 
 Logical form (Lean):
 
@@ -439,11 +495,17 @@ theorem UpperLowerClosureIsMonotone
 
 Predicate logic:
 
-  (∀ A ∈ U), UpperLowerClosure relation (UpperLowerClosure relation A) = UpperLowerClosure relation A
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject] [inst_6 : LRA.Set.HasSeparation Element SetObject] [inst_7 : LRA.Set.HasUniversal SetObject] [inst_8 : LRA.Set.HasComplement SetObject], (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ (relation : LRA.Relation.Endorelation Element) (subset : SetObject), LRA.Order.UpperLowerClosure relation (LRA.Order.UpperLowerClosure relation subset) = LRA.Order.UpperLowerClosure relation subset
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject] [inst_6 : LRA.Set.HasSeparation Element SetObject] [inst_7 : LRA.Set.HasUniversal SetObject] [inst_8 : LRA.Set.HasComplement SetObject], (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ (relation : Element → Element → Prop) (subset : SetObject), inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (inst_6.separation inst_7.universal (LRA.Order.LowerBound relation (LRA.Order.UpperLowerClosure relation subset))) element → relation element bound = inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (inst_6.separation inst_7.universal (LRA.Order.LowerBound relation subset)) element → relation element bound
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ (LRA.Set.SeparationLaws Element SetObject ∧ (LRA.Set.UniversalMembershipLaws Element SetObject ∧ (LRA.Set.ExtensionalityLaw Element SetObject ∧ LRA.Set.SubsetLaws SetObject)))) → ∀ (relation : Element → Element → Prop) (subset : SetObject), inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (inst_6.separation inst_7.universal (LRA.Order.LowerBound relation (LRA.Order.UpperLowerClosure relation subset))) element → relation element bound = inst_6.1 inst_7.1 fun bound => ∀ (element : Element), inst.1 (inst_6.separation inst_7.universal (LRA.Order.LowerBound relation subset)) element → relation element bound
 
 Logical form (Lean):
 

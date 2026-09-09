@@ -49,7 +49,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (arity : LRA.UniversalAlgebra.Signature.FormalVocabulary.Arity), arity = instOfNatNat 0.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    arity = 0
 
 Logical form (Lean):
 
@@ -87,7 +92,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (arity : LRA.UniversalAlgebra.Signature.FormalVocabulary.Arity), arity = instOfNatNat 1.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    arity = 1
 
 Logical form (Lean):
 
@@ -125,7 +135,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (arity : LRA.UniversalAlgebra.Signature.FormalVocabulary.Arity), arity = instOfNatNat 2.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    arity = 2
 
 Logical form (Lean):
 

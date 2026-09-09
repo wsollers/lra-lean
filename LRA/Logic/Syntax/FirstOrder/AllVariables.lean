@@ -11,24 +11,24 @@ namespace LRA.Logic.FirstOrder
 Predicate logic:
 
   def allVariables
-    {S : Signature} {Variable : Type} [DecidableEq Variable] :
-    Formula S Variable -> Finset Variable
-  | .relation _ args => Finset.univ.biUnion (fun i => freeVariablesInTerm (args i))
-  | .equal t₁ t₂ => freeVariablesInTerm t₁ ∪ freeVariablesInTerm t₂
-  | .neg φ => allVariables φ
-  | .impl φ ψ => allVariables φ ∪ allVariables ψ
-  | .forallQ v φ => {v} ∪ allVariables φ
+      {S : Signature} {Variable : Type} [DecidableEq Variable] :
+      Formula S Variable -> Finset Variable
+    | .relation _ args => Finset.univ.biUnion (fun i => freeVariablesInTerm (args i))
+    | .equal t₁ t₂ => freeVariablesInTerm t₁ ∪ freeVariablesInTerm t₂
+    | .neg φ => allVariables φ
+    | .impl φ ψ => allVariables φ ∪ allVariables ψ
+    | .forallQ v φ => {v} ∪ allVariables φ
 
 Predicate logic (unfolded):
 
   def allVariables
-    {S : Signature} {Variable : Type} [DecidableEq Variable] :
-    Formula S Variable -> Finset Variable
-  | .relation _ args => Finset.univ.biUnion (fun i => freeVariablesInTerm (args i))
-  | .equal t₁ t₂ => freeVariablesInTerm t₁ ∪ freeVariablesInTerm t₂
-  | .neg φ => allVariables φ
-  | .impl φ ψ => allVariables φ ∪ allVariables ψ
-  | .forallQ v φ => {v} ∪ allVariables φ (source fallback; no compiled unfold data available)
+      {S : Signature} {Variable : Type} [DecidableEq Variable] :
+      Formula S Variable -> Finset Variable
+    | .relation _ args => Finset.univ.biUnion (fun i => freeVariablesInTerm (args i))
+    | .equal t₁ t₂ => freeVariablesInTerm t₁ ∪ freeVariablesInTerm t₂
+    | .neg φ => allVariables φ
+    | .impl φ ψ => allVariables φ ∪ allVariables ψ
+    | .forallQ v φ => {v} ∪ allVariables φ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

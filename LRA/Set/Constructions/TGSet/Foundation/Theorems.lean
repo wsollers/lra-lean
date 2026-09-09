@@ -9,11 +9,16 @@ namespace LRA.Set.Constructions.TGSet
 
 Predicate logic:
 
-  (∀ A ∈ Set), (exists w : Set, w ∈ A) → exists x : Set, IsFoundationWitness A x
+  ∀ (A : LRA.Set.Constructions.TGSet.Set), (Exists fun w => LRA.Set.Constructions.instMembershipTGSet.mem A w) → Exists fun x => LRA.Set.Constructions.TGSet.IsFoundationWitness A x
 
 Predicate logic (unfolded):
 
-  ∀ (A : LRA.Set.Constructions.TGSet.Set), (Exists fun w => LRA.Set.instMembershipTGSet.1 A w) → Exists fun x => (LRA.Set.instMembershipTGSet.1 A x ∧ ∀ (y : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 x y → LRA.Set.instMembershipTGSet.1 A y → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    A : Set
+  Prove
+    (Exists fun w => LRA.Set.Constructions.instMembershipTGSet.1 A w) → Exists fun x => (LRA.Set.Constructions.instMembershipTGSet.1 A x ∧ (∀ (y : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.1 x y → LRA.Set.Constructions.instMembershipTGSet.1 A y → False))
 
 Logical form (Lean):
 
@@ -50,11 +55,16 @@ theorem FoundationWitnessExists (A : Set) (nonempty : exists w : Set, w ∈ A) :
 
 Predicate logic:
 
-  (∀ A ∈ Set), A ∉ A
+  ∀ (A : LRA.Set.Constructions.TGSet.Set), ¬ LRA.Set.Constructions.instMembershipTGSet.mem A A
 
 Predicate logic (unfolded):
 
-  ∀ (A : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 A A → False
+  Ambient
+    (implicit ambient)
+  Objects
+    A : Set
+  Prove
+    LRA.Set.Constructions.instMembershipTGSet.1 A A → False
 
 Logical form (Lean):
 

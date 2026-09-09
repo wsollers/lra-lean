@@ -8,11 +8,16 @@ namespace LRA.Function.Examples
 
 Predicate logic:
 
-  HasCollision collapse
+  LRA.Function.Examples.collapse.HasCollision
 
 Predicate logic (unfolded):
 
-  Exists fun first => Exists fun second => (first = second → False ∧ Unit.unit = Unit.unit)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun first => Exists fun second => ((first = second → False) ∧ Unit.unit = Unit.unit)
 
 Logical form (Lean):
 
@@ -46,11 +51,16 @@ theorem CollapseHasCollision : HasCollision collapse := by
 
 Predicate logic:
 
-  ¬ Injective collapse
+  ¬ LRA.Function.Examples.collapse.Injective
 
 Predicate logic (unfolded):
 
-  (∀ (y : Unit) (x₁ x₂ : Bool), Unit.unit = y → Unit.unit = y → x₁ = x₂) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (y : Unit) (x₁ x₂ : Bool), Unit.unit = y → Unit.unit = y → x₁ = x₂) → False
 
 Logical form (Lean):
 
@@ -84,11 +94,16 @@ theorem CollapseNotInjective : ¬ Injective collapse := by
 
 Predicate logic:
 
-  MissesValue shift
+  LRA.Function.MissesValue LRA.Function.Examples.shift
 
 Predicate logic (unfolded):
 
-  Exists fun output => ∀ (input : Nat), input.succ = output → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun output => ∀ (input : Nat), input.succ = output → False
 
 Logical form (Lean):
 
@@ -122,11 +137,16 @@ theorem ShiftMissesZero : MissesValue shift := by
 
 Predicate logic:
 
-  ¬ Surjective shift
+  ¬ LRA.Function.Surjective LRA.Function.Examples.shift
 
 Predicate logic (unfolded):
 
-  (∀ (y : Nat), Exists fun x => x.succ = y) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (y : Nat), Exists fun x => x.succ = y) → False
 
 Logical form (Lean):
 

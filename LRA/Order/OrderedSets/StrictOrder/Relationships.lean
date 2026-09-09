@@ -15,7 +15,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.StrictOrder.StrictOrderRelation Carrier) (a a_1 : Carrier), Or (order.1 a a_1) (a = a_1)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (order.1 a a_1) (a = a_1)
 
 Logical form (Lean):
 
@@ -57,11 +62,17 @@ def ReflexiveClosure
 
 Predicate logic:
 
-  (∀ left right ∈ Carrier), ReflexiveClosure order left right <-> order.relation left right ∨ left = right
+  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.StrictOrder.StrictOrderRelation Carrier) (left right : Carrier), LRA.Order.OrderedSets.StrictOrder.ReflexiveClosure order left right ↔ Or (order.relation left right) (left = right)
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.StrictOrder.StrictOrderRelation Carrier) (left right : Carrier), Or (order.1 left right) (left = right) ↔ Or (order.1 left right) (left = right)
+  Ambient
+    (Carrier)
+  Objects
+    order : StrictOrderRelation Carrier
+    left right : Carrier
+  Prove
+    LRA.Order.OrderedSets.StrictOrder.ReflexiveClosure order left right ↔ Or (order.relation left right) (left = right)
 
 Logical form (Lean):
 
@@ -105,11 +116,16 @@ theorem ReflexiveClosureIff
 
 Predicate logic:
 
-  LRA.Order.PartialOrder (ReflexiveClosure order)
+  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.StrictOrder.StrictOrderRelation Carrier), LRA.Order.PartialOrder (LRA.Order.OrderedSets.StrictOrder.ReflexiveClosure order)
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.StrictOrder.StrictOrderRelation Carrier), (∀ (x : Carrier), Or (order.1 x x) (x = x) ∧ (∀ (x y : Carrier), Or (order.1 x y) (x = y) → Or (order.1 y x) (y = x) → x = y ∧ ∀ (x y z : Carrier), Or (order.1 x y) (x = y) → Or (order.1 y z) (y = z) → Or (order.1 x z) (x = z)))
+  Ambient
+    (Carrier)
+  Objects
+    order : StrictOrderRelation Carrier
+  Prove
+    ((∀ (x : Carrier), Or (order.1 x x) (x = x)) ∧ ((∀ (x y : Carrier), Or (order.1 x y) (x = y) → Or (order.1 y x) (y = x) → x = y) ∧ (∀ (x y z : Carrier), Or (order.1 x y) (x = y) → Or (order.1 y z) (y = z) → Or (order.1 x z) (x = z))))
 
 Logical form (Lean):
 
@@ -150,20 +166,20 @@ theorem ReflexiveClosureRelationIsPartialOrder
 Predicate logic:
 
   def ReflexiveClosureAsPartialOrder
-    {Carrier : Type u}
-    (order : StrictOrderRelation Carrier) :
-    LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier where
-  relation := ReflexiveClosure order
-  relationIsPartialOrder := ReflexiveClosureRelationIsPartialOrder order
+      {Carrier : Type u}
+      (order : StrictOrderRelation Carrier) :
+      LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier where
+    relation := ReflexiveClosure order
+    relationIsPartialOrder := ReflexiveClosureRelationIsPartialOrder order
 
 Predicate logic (unfolded):
 
   def ReflexiveClosureAsPartialOrder
-    {Carrier : Type u}
-    (order : StrictOrderRelation Carrier) :
-    LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier where
-  relation := ReflexiveClosure order
-  relationIsPartialOrder := ReflexiveClosureRelationIsPartialOrder order (source fallback; no compiled unfold data available)
+      {Carrier : Type u}
+      (order : StrictOrderRelation Carrier) :
+      LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier where
+    relation := ReflexiveClosure order
+    relationIsPartialOrder := ReflexiveClosureRelationIsPartialOrder order (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -207,11 +223,16 @@ def ReflexiveClosureAsPartialOrder
 
 Predicate logic:
 
-  LRA.Order.PartialOrder (ReflexiveClosure order)
+  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.StrictOrder.StrictOrderRelation Carrier), LRA.Order.PartialOrder (LRA.Order.OrderedSets.StrictOrder.ReflexiveClosure order)
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.StrictOrder.StrictOrderRelation Carrier), (∀ (x : Carrier), Or (order.1 x x) (x = x) ∧ (∀ (x y : Carrier), Or (order.1 x y) (x = y) → Or (order.1 y x) (y = x) → x = y ∧ ∀ (x y z : Carrier), Or (order.1 x y) (x = y) → Or (order.1 y z) (y = z) → Or (order.1 x z) (x = z)))
+  Ambient
+    (Carrier)
+  Objects
+    order : StrictOrderRelation Carrier
+  Prove
+    ((∀ (x : Carrier), Or (order.1 x x) (x = x)) ∧ ((∀ (x y : Carrier), Or (order.1 x y) (x = y) → Or (order.1 y x) (y = x) → x = y) ∧ (∀ (x y z : Carrier), Or (order.1 x y) (x = y) → Or (order.1 y z) (y = z) → Or (order.1 x z) (x = z))))
 
 Logical form (Lean):
 
@@ -251,11 +272,17 @@ theorem ReflexiveClosureIsPartialOrder
 
 Predicate logic:
 
-  (∀ left right ∈ Carrier), LRA.Order.OrderedSets.PartialOrder.StrictPart (ReflexiveClosureAsPartialOrder order) left right <-> order.relation left right
+  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.StrictOrder.StrictOrderRelation Carrier) (left right : Carrier), LRA.Order.OrderedSets.PartialOrder.StrictPart (LRA.Order.OrderedSets.StrictOrder.ReflexiveClosureAsPartialOrder order) left right ↔ order.relation left right
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.StrictOrder.StrictOrderRelation Carrier) (left right : Carrier), ((LRA.Order.OrderedSets.StrictOrder.ReflexiveClosureAsPartialOrder order).1 left right ∧ left = right → False) ↔ order.1 left right
+  Ambient
+    (Carrier)
+  Objects
+    order : StrictOrderRelation Carrier
+    left right : Carrier
+  Prove
+    LRA.Order.OrderedSets.PartialOrder.StrictPart (LRA.Order.OrderedSets.StrictOrder.ReflexiveClosureAsPartialOrder order) left right ↔ order.relation left right
 
 Logical form (Lean):
 
@@ -301,11 +328,17 @@ theorem StrictPartOfReflexiveClosureIff
 
 Predicate logic:
 
-  (∀ left right ∈ Carrier), ReflexiveClosure (LRA.Order.OrderedSets.PartialOrder.StrictPartAsStrictOrder order) left right <-> order.relation left right
+  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier) (left right : Carrier), LRA.Order.OrderedSets.StrictOrder.ReflexiveClosure (LRA.Order.OrderedSets.PartialOrder.StrictPartAsStrictOrder order) left right ↔ order.relation left right
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (order : LRA.Order.OrderedSets.PartialOrder.PartialOrderRelation Carrier) (left right : Carrier), Or ((LRA.Order.OrderedSets.PartialOrder.StrictPartAsStrictOrder order).1 left right) (left = right) ↔ order.1 left right
+  Ambient
+    (Carrier)
+  Objects
+    order : LRA.Order.OrderedSets.PartialOrder.NonStrictPartialOrder Carrier
+    left right : Carrier
+  Prove
+    LRA.Order.OrderedSets.StrictOrder.ReflexiveClosure (LRA.Order.OrderedSets.PartialOrder.StrictPartAsStrictOrder order) left right ↔ order.relation left right
 
 Logical form (Lean):
 

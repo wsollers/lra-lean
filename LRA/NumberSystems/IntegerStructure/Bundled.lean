@@ -7,14 +7,14 @@ namespace LRA.NumberSystems.IntegerStructure.Bundled
 Predicate logic:
 
   def iterate {α : Type u} (f : α → α) : Nat → α → α
-  | 0, x => x
-  | n + 1, x => f (iterate f n x)
+    | 0, x => x
+    | n + 1, x => f (iterate f n x)
 
 Predicate logic (unfolded):
 
   def iterate {α : Type u} (f : α → α) : Nat → α → α
-  | 0, x => x
-  | n + 1, x => f (iterate f n x) (source fallback; no compiled unfold data available)
+    | 0, x => x
+    | n + 1, x => f (iterate f n x) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -52,11 +52,18 @@ def iterate {α : Type u} (f : α → α) : Nat → α → α
 
 Predicate logic:
 
-  (∀ n ∈ Nat), (α → α) → iterate f (n + 1) x = f (iterate f n x)
+  ∀ {α : Type u} (f : α → α) (n : Nat) (x : α), LRA.NumberSystems.IntegerStructure.Bundled.iterate f (instHAdd.hAdd n 1) x = f (LRA.NumberSystems.IntegerStructure.Bundled.iterate f n x)
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} (f : α → α) (n : Nat) (x : α), LRA.NumberSystems.IntegerStructure.Bundled.iterate f (instHAdd.1 n (instOfNatNat 1).1) x = f (LRA.NumberSystems.IntegerStructure.Bundled.iterate f n x)
+  Ambient
+    (α)
+  Objects
+    f : α → α
+    n : Nat
+    x : α
+  Prove
+    LRA.NumberSystems.IntegerStructure.Bundled.iterate f ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1) x = f (LRA.NumberSystems.IntegerStructure.Bundled.iterate f n x)
 
 Logical form (Lean):
 
@@ -92,11 +99,18 @@ theorem iterate_succ' {α : Type u} (f : α → α) (n : Nat) (x : α) :
 
 Predicate logic:
 
-  (∀ n ∈ Nat), (α → α) → f (iterate f n x) = iterate f n (f x)
+  ∀ {α : Type u} (f : α → α) (n : Nat) (x : α), f (LRA.NumberSystems.IntegerStructure.Bundled.iterate f n x) = LRA.NumberSystems.IntegerStructure.Bundled.iterate f n (f x)
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} (f : α → α) (n : Nat) (x : α), f (LRA.NumberSystems.IntegerStructure.Bundled.iterate f n x) = LRA.NumberSystems.IntegerStructure.Bundled.iterate f n (f x)
+  Ambient
+    (α)
+  Objects
+    f : α → α
+    n : Nat
+    x : α
+  Prove
+    f (LRA.NumberSystems.IntegerStructure.Bundled.iterate f n x) = LRA.NumberSystems.IntegerStructure.Bundled.iterate f n (f x)
 
 Logical form (Lean):
 
@@ -132,11 +146,18 @@ theorem iterate_comm {α : Type u} (f : α → α) (n : Nat) (x : α) :
 
 Predicate logic:
 
-  (∀ n ∈ Nat), (α → α) → iterate f (n + 1) x = iterate f n (f x)
+  ∀ {α : Type u} (f : α → α) (n : Nat) (x : α), LRA.NumberSystems.IntegerStructure.Bundled.iterate f (instHAdd.hAdd n 1) x = LRA.NumberSystems.IntegerStructure.Bundled.iterate f n (f x)
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} (f : α → α) (n : Nat) (x : α), LRA.NumberSystems.IntegerStructure.Bundled.iterate f (instHAdd.1 n (instOfNatNat 1).1) x = LRA.NumberSystems.IntegerStructure.Bundled.iterate f n (f x)
+  Ambient
+    (α)
+  Objects
+    f : α → α
+    n : Nat
+    x : α
+  Prove
+    LRA.NumberSystems.IntegerStructure.Bundled.iterate f ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1) x = LRA.NumberSystems.IntegerStructure.Bundled.iterate f n (f x)
 
 Logical form (Lean):
 
@@ -172,11 +193,18 @@ theorem iterate_succ_apply {α : Type u} (f : α → α) (n : Nat) (x : α) :
 
 Predicate logic:
 
-  (∀ m n ∈ Nat), (α → α) → iterate f (m + n) x = iterate f m (iterate f n x)
+  ∀ {α : Type u} (f : α → α) (m n : Nat) (x : α), LRA.NumberSystems.IntegerStructure.Bundled.iterate f (instHAdd.hAdd m n) x = LRA.NumberSystems.IntegerStructure.Bundled.iterate f m (LRA.NumberSystems.IntegerStructure.Bundled.iterate f n x)
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} (f : α → α) (m n : Nat) (x : α), LRA.NumberSystems.IntegerStructure.Bundled.iterate f (instHAdd.1 m n) x = LRA.NumberSystems.IntegerStructure.Bundled.iterate f m (LRA.NumberSystems.IntegerStructure.Bundled.iterate f n x)
+  Ambient
+    (α)
+  Objects
+    f : α → α
+    m n : Nat
+    x : α
+  Prove
+    LRA.NumberSystems.IntegerStructure.Bundled.iterate f ({ hAdd := fun a b => instAddNat.add a b }.hAdd m n) x = LRA.NumberSystems.IntegerStructure.Bundled.iterate f m (LRA.NumberSystems.IntegerStructure.Bundled.iterate f n x)
 
 Logical form (Lean):
 
@@ -216,7 +244,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u_1} {β : Type u_2} (f : α → β) ⦃a b : α⦄, f a = f b → a = b
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    f a = f b → a = b
 
 Logical form (Lean):
 
@@ -256,7 +289,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u_1} {β : Type u_2} (f : α → β) (b : β), Exists fun a => f a = b
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun a => f a = b
 
 Logical form (Lean):
 
@@ -296,7 +334,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u_1} {β : Type u_2} (f : α → β), (∀ ⦃a b : α⦄, f a = f b → a = b ∧ ∀ (b : β), Exists fun a => f a = b)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ ⦃a b : α⦄, f a = f b → a = b) ∧ (∀ (b : β), Exists fun a => f a = b))
 
 Logical form (Lean):
 
@@ -333,36 +376,36 @@ def Bijective {α β : Type _} (f : α → β) : Prop :=
 Predicate logic:
 
   structure IntegerStructure where
-  carrier : Type u
-  zero : carrier
-  succ : carrier → carrier
-  pred : carrier → carrier
-  pred_succ : ∀ x, pred (succ x) = x
-  succ_pred : ∀ x, succ (pred x) = x
-  aperiodic : ∀ n : Nat, 0 < n → iterate succ n zero ≠ zero
-  induction :
-    ∀ (A : carrier → Prop),
-      A zero →
-      (∀ x, A x → A (succ x)) →
-      (∀ x, A x → A (pred x)) →
-      ∀ x, A x
+    carrier : Type u
+    zero : carrier
+    succ : carrier → carrier
+    pred : carrier → carrier
+    pred_succ : ∀ x, pred (succ x) = x
+    succ_pred : ∀ x, succ (pred x) = x
+    aperiodic : ∀ n : Nat, 0 < n → iterate succ n zero ≠ zero
+    induction :
+      ∀ (A : carrier → Prop),
+        A zero →
+        (∀ x, A x → A (succ x)) →
+        (∀ x, A x → A (pred x)) →
+        ∀ x, A x
 
 Predicate logic (unfolded):
 
   structure IntegerStructure where
-  carrier : Type u
-  zero : carrier
-  succ : carrier → carrier
-  pred : carrier → carrier
-  pred_succ : ∀ x, pred (succ x) = x
-  succ_pred : ∀ x, succ (pred x) = x
-  aperiodic : ∀ n : Nat, 0 < n → iterate succ n zero ≠ zero
-  induction :
-    ∀ (A : carrier → Prop),
-      A zero →
-      (∀ x, A x → A (succ x)) →
-      (∀ x, A x → A (pred x)) →
-      ∀ x, A x (source fallback; no compiled unfold data available)
+    carrier : Type u
+    zero : carrier
+    succ : carrier → carrier
+    pred : carrier → carrier
+    pred_succ : ∀ x, pred (succ x) = x
+    succ_pred : ∀ x, succ (pred x) = x
+    aperiodic : ∀ n : Nat, 0 < n → iterate succ n zero ≠ zero
+    induction :
+      ∀ (A : carrier → Prop),
+        A zero →
+        (∀ x, A x → A (succ x)) →
+        (∀ x, A x → A (pred x)) →
+        ∀ x, A x (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -428,14 +471,14 @@ variable (S : IntegerStructure)
 Predicate logic:
 
   def rep : Int → S.carrier
-  | Int.ofNat n => iterate S.succ n S.zero
-  | Int.negSucc n => iterate S.pred (n + 1) S.zero
+    | Int.ofNat n => iterate S.succ n S.zero
+    | Int.negSucc n => iterate S.pred (n + 1) S.zero
 
 Predicate logic (unfolded):
 
   def rep : Int → S.carrier
-  | Int.ofNat n => iterate S.succ n S.zero
-  | Int.negSucc n => iterate S.pred (n + 1) S.zero (source fallback; no compiled unfold data available)
+    | Int.ofNat n => iterate S.succ n S.zero
+    | Int.negSucc n => iterate S.pred (n + 1) S.zero (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -473,11 +516,16 @@ def rep : Int → S.carrier
 
 Predicate logic:
 
-  S.rep 0 = S.zero
+  ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure), S.rep 0 = S.zero
 
 Predicate logic (unfolded):
 
-  ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure), Int.rec (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n S.2) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 (instHAdd.1 n (instOfNatNat 1).1) S.2) a) a) instOfNat.1 = S.2
+  Ambient
+    (implicit ambient)
+  Objects
+    S : IntegerStructure
+  Prove
+    Int.rec (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n S.2) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1) S.2) a) a) 0 = S.2
 
 Logical form (Lean):
 
@@ -513,11 +561,18 @@ attribute [simp] rep_zero
 
 Predicate logic:
 
-  (∀ n ∈ Nat ∀ x ∈ S.carrier), iterate S.pred n (iterate S.succ n x) = x
+  ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure) (n : Nat) (x : S.carrier), LRA.NumberSystems.IntegerStructure.Bundled.iterate S.pred n (LRA.NumberSystems.IntegerStructure.Bundled.iterate S.succ n x) = x
 
 Predicate logic (unfolded):
 
-  ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure) (n : Nat) (x : S.1), LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 n (LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n x) = x
+  Ambient
+    (Nat)
+  Objects
+    S : IntegerStructure
+    n : Nat
+    x : S.carrier
+  Prove
+    LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 n (LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n x) = x
 
 Logical form (Lean):
 
@@ -553,11 +608,18 @@ theorem pred_iterate_succ_iterate (n : Nat) (x : S.carrier) :
 
 Predicate logic:
 
-  (∀ n ∈ Nat ∀ x ∈ S.carrier), iterate S.succ n (iterate S.pred n x) = x
+  ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure) (n : Nat) (x : S.carrier), LRA.NumberSystems.IntegerStructure.Bundled.iterate S.succ n (LRA.NumberSystems.IntegerStructure.Bundled.iterate S.pred n x) = x
 
 Predicate logic (unfolded):
 
-  ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure) (n : Nat) (x : S.1), LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n (LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 n x) = x
+  Ambient
+    (Nat)
+  Objects
+    S : IntegerStructure
+    n : Nat
+    x : S.carrier
+  Prove
+    LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n (LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 n x) = x
 
 Logical form (Lean):
 
@@ -593,11 +655,17 @@ theorem succ_iterate_pred_iterate (n : Nat) (x : S.carrier) :
 
 Predicate logic:
 
-  (∀ n ∈ Nat), (0 < n) → iterate S.pred n S.zero ≠ S.zero
+  ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure) (n : Nat), instLTNat.lt 0 n → Ne (LRA.NumberSystems.IntegerStructure.Bundled.iterate S.pred n S.zero) S.zero
 
 Predicate logic (unfolded):
 
-  ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure) (n : Nat), (instLTNat.1 (instOfNatNat 0).1 n ∧ LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 n S.2 = S.2) → False
+  Ambient
+    (Nat)
+  Objects
+    S : IntegerStructure
+    n : Nat
+  Prove
+    (instLTNat.lt 0 n ∧ LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 n S.2 = S.2) → False
 
 Logical form (Lean):
 
@@ -633,11 +701,17 @@ theorem aperiodic_pred (n : Nat) (h : 0 < n) :
 
 Predicate logic:
 
-  (∀ n ∈ Nat), _root_.Function.Injective (iterate S.succ n)
+  ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure) (n : Nat), Function.Injective (LRA.NumberSystems.IntegerStructure.Bundled.iterate S.succ n)
 
 Predicate logic (unfolded):
 
-  ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure) (n : Nat) ⦃a₁ a₂ : S.1⦄, LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n a₁ = LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n a₂ → a₁ = a₂
+  Ambient
+    (Nat)
+  Objects
+    S : IntegerStructure
+    n : Nat
+  Prove
+    LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n a₁ = LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n a₂ → a₁ = a₂
 
 Logical form (Lean):
 
@@ -673,11 +747,17 @@ theorem iterate_succ_injective (n : Nat) :
 
 Predicate logic:
 
-  (∀ n ∈ Nat), _root_.Function.Injective (iterate S.pred n)
+  ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure) (n : Nat), Function.Injective (LRA.NumberSystems.IntegerStructure.Bundled.iterate S.pred n)
 
 Predicate logic (unfolded):
 
-  ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure) (n : Nat) ⦃a₁ a₂ : S.1⦄, LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 n a₁ = LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 n a₂ → a₁ = a₂
+  Ambient
+    (Nat)
+  Objects
+    S : IntegerStructure
+    n : Nat
+  Prove
+    LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 n a₁ = LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 n a₂ → a₁ = a₂
 
 Logical form (Lean):
 
@@ -713,11 +793,17 @@ theorem iterate_pred_injective (n : Nat) :
 
 Predicate logic:
 
-  (∀ m n ∈ Nat), (iterate S.succ m S.zero = iterate S.succ n S.zero) → m = n
+  ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure) (m n : Nat), LRA.NumberSystems.IntegerStructure.Bundled.iterate S.succ m S.zero = LRA.NumberSystems.IntegerStructure.Bundled.iterate S.succ n S.zero → m = n
 
 Predicate logic (unfolded):
 
-  ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure) (m n : Nat), LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 m S.2 = LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n S.2 → m = n
+  Ambient
+    (Nat)
+  Objects
+    S : IntegerStructure
+    m n : Nat
+  Prove
+    LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 m S.2 = LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n S.2 → m = n
 
 Logical form (Lean):
 
@@ -757,11 +843,17 @@ theorem no_forward_collision
 
 Predicate logic:
 
-  (∀ m n ∈ Nat), (iterate S.pred m S.zero = iterate S.pred n S.zero) → m = n
+  ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure) (m n : Nat), LRA.NumberSystems.IntegerStructure.Bundled.iterate S.pred m S.zero = LRA.NumberSystems.IntegerStructure.Bundled.iterate S.pred n S.zero → m = n
 
 Predicate logic (unfolded):
 
-  ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure) (m n : Nat), LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 m S.2 = LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 n S.2 → m = n
+  Ambient
+    (Nat)
+  Objects
+    S : IntegerStructure
+    m n : Nat
+  Prove
+    LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 m S.2 = LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 n S.2 → m = n
 
 Logical form (Lean):
 
@@ -801,11 +893,17 @@ theorem no_backward_collision
 
 Predicate logic:
 
-  (∀ m n ∈ Nat), (iterate S.succ m S.zero = iterate S.pred (n + 1) S.zero) → False
+  ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure) (m n : Nat), LRA.NumberSystems.IntegerStructure.Bundled.iterate S.succ m S.zero = LRA.NumberSystems.IntegerStructure.Bundled.iterate S.pred (instHAdd.hAdd n 1) S.zero → False
 
 Predicate logic (unfolded):
 
-  ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure) (m n : Nat), LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 m S.2 = LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 (instHAdd.1 n (instOfNatNat 1).1) S.2 → False
+  Ambient
+    (Nat)
+  Objects
+    S : IntegerStructure
+    m n : Nat
+  Prove
+    LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 m S.2 = LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1) S.2 → False
 
 Logical form (Lean):
 
@@ -845,11 +943,16 @@ theorem no_mixed_collision
 
 Predicate logic:
 
-  _root_.Function.Injective S.rep
+  ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure), Function.Injective S.rep
 
 Predicate logic (unfolded):
 
-  ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure) ⦃a₁ a₂ : Int⦄, Int.rec (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n S.2) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 (instHAdd.1 n (instOfNatNat 1).1) S.2) a) a) a₁ = Int.rec (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n S.2) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 (instHAdd.1 n (instOfNatNat 1).1) S.2) a) a) a₂ → a₁ = a₂
+  Ambient
+    (implicit ambient)
+  Objects
+    S : IntegerStructure
+  Prove
+    Int.rec (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n S.2) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1) S.2) a) a) a₁ = Int.rec (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n S.2) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1) S.2) a) a) a₂ → a₁ = a₂
 
 Logical form (Lean):
 
@@ -883,11 +986,17 @@ theorem rep_injective : _root_.Function.Injective S.rep := by
 
 Predicate logic:
 
-  (∀ n ∈ Int), S.rep (n + 1) = S.succ (S.rep n)
+  ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure) (n : Int), S.rep (instHAdd.hAdd n 1) = S.succ (S.rep n)
 
 Predicate logic (unfolded):
 
-  ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure) (n : Int), Int.rec (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n S.2) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 (instHAdd.1 n (instOfNatNat 1).1) S.2) a) a) (instHAdd.1 n instOfNat.1) = S.3 (Int.rec (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n S.2) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 (instHAdd.1 n (instOfNatNat 1).1) S.2) a) a) n)
+  Ambient
+    (Int)
+  Objects
+    S : IntegerStructure
+    n : Int
+  Prove
+    Int.rec (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n S.2) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1) S.2) a) a) ({ hAdd := fun a b => Int.instAdd.add a b }.hAdd n 1) = S.3 (Int.rec (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n S.2) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1) S.2) a) a) n)
 
 Logical form (Lean):
 
@@ -921,11 +1030,17 @@ theorem rep_succ (n : Int) : S.rep (n + 1) = S.succ (S.rep n) := by
 
 Predicate logic:
 
-  (∀ n ∈ Int), S.rep (n - 1) = S.pred (S.rep n)
+  ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure) (n : Int), S.rep (instHSub.hSub n 1) = S.pred (S.rep n)
 
 Predicate logic (unfolded):
 
-  ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure) (n : Int), Int.rec (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n S.2) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 (instHAdd.1 n (instOfNatNat 1).1) S.2) a) a) (instHSub.1 n instOfNat.1) = S.4 (Int.rec (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n S.2) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 (instHAdd.1 n (instOfNatNat 1).1) S.2) a) a) n)
+  Ambient
+    (Int)
+  Objects
+    S : IntegerStructure
+    n : Int
+  Prove
+    Int.rec (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n S.2) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1) S.2) a) a) ({ hSub := fun a b => Int.instSub.sub a b }.hSub n 1) = S.4 (Int.rec (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n S.2) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1) S.2) a) a) n)
 
 Logical form (Lean):
 
@@ -959,11 +1074,16 @@ theorem rep_pred (n : Int) : S.rep (n - 1) = S.pred (S.rep n) := by
 
 Predicate logic:
 
-  _root_.Function.Surjective S.rep
+  ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure), Function.Surjective S.rep
 
 Predicate logic (unfolded):
 
-  ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure) (b : S.1), Exists fun a => Int.rec (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n S.2) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 (instHAdd.1 n (instOfNatNat 1).1) S.2) a) a) a = b
+  Ambient
+    (implicit ambient)
+  Objects
+    S : IntegerStructure
+  Prove
+    Exists fun a => Int.rec (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n S.2) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1) S.2) a) a) a = b
 
 Logical form (Lean):
 
@@ -997,11 +1117,16 @@ theorem rep_surjective : _root_.Function.Surjective S.rep := by
 
 Predicate logic:
 
-  _root_.Function.Injective S.rep ∧ _root_.Function.Surjective S.rep
+  ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure), (Function.Injective S.rep ∧ Function.Surjective S.rep)
 
 Predicate logic (unfolded):
 
-  ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure), (∀ ⦃a₁ a₂ : Int⦄, Int.rec (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n S.2) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 (instHAdd.1 n (instOfNatNat 1).1) S.2) a) a) a₁ = Int.rec (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n S.2) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 (instHAdd.1 n (instOfNatNat 1).1) S.2) a) a) a₂ → a₁ = a₂ ∧ ∀ (b : S.1), Exists fun a => Int.rec (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n S.2) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 (instHAdd.1 n (instOfNatNat 1).1) S.2) a) a) a = b)
+  Ambient
+    (implicit ambient)
+  Objects
+    S : IntegerStructure
+  Prove
+    ((∀ ⦃a₁ a₂ : Int⦄, Int.rec (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n S.2) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1) S.2) a) a) a₁ = Int.rec (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n S.2) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1) S.2) a) a) a₂ → a₁ = a₂) ∧ (∀ (b : S.1), Exists fun a => Int.rec (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n S.2) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1) S.2) a) a) a = b))
 
 Logical form (Lean):
 
@@ -1037,11 +1162,16 @@ theorem rep_bijective :
 
 Predicate logic:
 
-  (_root_.Function.Injective S.rep ∧ _root_.Function.Surjective S.rep) ∧ S.rep 0 = S.zero ∧ ∀ n : Int, S.rep (n + 1) = S.succ (S.rep n)
+  ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure), ((Function.Injective S.rep ∧ Function.Surjective S.rep) ∧ (S.rep 0 = S.zero ∧ (∀ (n : Int), S.rep (instHAdd.hAdd n 1) = S.succ (S.rep n))))
 
 Predicate logic (unfolded):
 
-  ∀ (S : LRA.NumberSystems.IntegerStructure.Bundled.IntegerStructure), ((∀ ⦃a₁ a₂ : Int⦄, Int.rec (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n S.2) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 (instHAdd.1 n (instOfNatNat 1).1) S.2) a) a) a₁ = Int.rec (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n S.2) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 (instHAdd.1 n (instOfNatNat 1).1) S.2) a) a) a₂ → a₁ = a₂ ∧ ∀ (b : S.1), Exists fun a => Int.rec (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n S.2) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 (instHAdd.1 n (instOfNatNat 1).1) S.2) a) a) a = b) ∧ (Int.rec (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n S.2) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 (instHAdd.1 n (instOfNatNat 1).1) S.2) a) a) instOfNat.1 = S.2 ∧ ∀ (n : Int), Int.rec (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n S.2) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 (instHAdd.1 n (instOfNatNat 1).1) S.2) a) a) (instHAdd.1 n instOfNat.1) = S.3 (Int.rec (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n S.2) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 (instHAdd.1 n (instOfNatNat 1).1) S.2) a) a) n)))
+  Ambient
+    (implicit ambient)
+  Objects
+    S : IntegerStructure
+  Prove
+    (((∀ ⦃a₁ a₂ : Int⦄, Int.rec (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n S.2) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1) S.2) a) a) a₁ = Int.rec (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n S.2) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1) S.2) a) a) a₂ → a₁ = a₂) ∧ (∀ (b : S.1), Exists fun a => Int.rec (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n S.2) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1) S.2) a) a) a = b)) ∧ (Int.rec (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n S.2) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1) S.2) a) a) 0 = S.2 ∧ (∀ (n : Int), Int.rec (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n S.2) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1) S.2) a) a) ({ hAdd := fun a b => Int.instAdd.add a b }.hAdd n 1) = S.3 (Int.rec (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.3 n S.2) a) a) (fun a => (fun a => (fun n => LRA.NumberSystems.IntegerStructure.Bundled.iterate S.4 ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1) S.2) a) a) n))))
 
 Logical form (Lean):
 

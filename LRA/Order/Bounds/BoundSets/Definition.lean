@@ -20,20 +20,20 @@ variable [HasSeparation Element SetObject] [HasUniversal SetObject]
 Predicate logic:
 
   def UpperBounds
-    (relation : LRA.Relation.Endorelation Element)
-    (subset : SetObject) : SetObject :=
-  HasSeparation.separation
-    (HasUniversal.universal : SetObject)
-    (UpperBound relation subset)
+      (relation : LRA.Relation.Endorelation Element)
+      (subset : SetObject) : SetObject :=
+    HasSeparation.separation
+      (HasUniversal.universal : SetObject)
+      (UpperBound relation subset)
 
 Predicate logic (unfolded):
 
   def UpperBounds
-    (relation : LRA.Relation.Endorelation Element)
-    (subset : SetObject) : SetObject :=
-  HasSeparation.separation
-    (HasUniversal.universal : SetObject)
-    (UpperBound relation subset) (source fallback; no compiled unfold data available)
+      (relation : LRA.Relation.Endorelation Element)
+      (subset : SetObject) : SetObject :=
+    HasSeparation.separation
+      (HasUniversal.universal : SetObject)
+      (UpperBound relation subset) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -78,20 +78,20 @@ def UpperBounds
 Predicate logic:
 
   def LowerBounds
-    (relation : LRA.Relation.Endorelation Element)
-    (subset : SetObject) : SetObject :=
-  HasSeparation.separation
-    (HasUniversal.universal : SetObject)
-    (LowerBound relation subset)
+      (relation : LRA.Relation.Endorelation Element)
+      (subset : SetObject) : SetObject :=
+    HasSeparation.separation
+      (HasUniversal.universal : SetObject)
+      (LowerBound relation subset)
 
 Predicate logic (unfolded):
 
   def LowerBounds
-    (relation : LRA.Relation.Endorelation Element)
-    (subset : SetObject) : SetObject :=
-  HasSeparation.separation
-    (HasUniversal.universal : SetObject)
-    (LowerBound relation subset) (source fallback; no compiled unfold data available)
+      (relation : LRA.Relation.Endorelation Element)
+      (subset : SetObject) : SetObject :=
+    HasSeparation.separation
+      (HasUniversal.universal : SetObject)
+      (LowerBound relation subset) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -136,16 +136,16 @@ def LowerBounds
 Predicate logic:
 
   def LowerUpperClosure
-    (relation : LRA.Relation.Endorelation Element)
-    (subset : SetObject) : SetObject :=
-  LowerBounds relation (UpperBounds relation subset)
+      (relation : LRA.Relation.Endorelation Element)
+      (subset : SetObject) : SetObject :=
+    LowerBounds relation (UpperBounds relation subset)
 
 Predicate logic (unfolded):
 
   def LowerUpperClosure
-    (relation : LRA.Relation.Endorelation Element)
-    (subset : SetObject) : SetObject :=
-  LowerBounds relation (UpperBounds relation subset) (source fallback; no compiled unfold data available)
+      (relation : LRA.Relation.Endorelation Element)
+      (subset : SetObject) : SetObject :=
+    LowerBounds relation (UpperBounds relation subset) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -186,16 +186,16 @@ def LowerUpperClosure
 Predicate logic:
 
   def UpperLowerClosure
-    (relation : LRA.Relation.Endorelation Element)
-    (subset : SetObject) : SetObject :=
-  UpperBounds relation (LowerBounds relation subset)
+      (relation : LRA.Relation.Endorelation Element)
+      (subset : SetObject) : SetObject :=
+    UpperBounds relation (LowerBounds relation subset)
 
 Predicate logic (unfolded):
 
   def UpperLowerClosure
-    (relation : LRA.Relation.Endorelation Element)
-    (subset : SetObject) : SetObject :=
-  UpperBounds relation (LowerBounds relation subset) (source fallback; no compiled unfold data available)
+      (relation : LRA.Relation.Endorelation Element)
+      (subset : SetObject) : SetObject :=
+    UpperBounds relation (LowerBounds relation subset) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

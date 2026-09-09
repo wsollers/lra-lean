@@ -10,11 +10,16 @@ namespace LRA.Analysis.RealAnalysis
 
 Predicate logic:
 
-  a ^ 2 ≥ 0
+  ∀ (a : Real), GE.ge (instHPow.hPow a 2) 0
 
 Predicate logic (unfolded):
 
-  ∀ (a : Real), Real.instLE.1 Zero.toOfNat0.1 (instHPow.1 a (instOfNatNat 2).1)
+  Ambient
+    (ℝ)
+  Objects
+    a : ℝ
+  Prove
+    Real.instLE.le 0 (instHPow.1 a 2)
 
 Logical form (Lean):
 
@@ -48,11 +53,17 @@ theorem SquareNonnegative (a : ℝ) : a ^ 2 ≥ 0 := by
 
 Predicate logic:
 
-  ∃! b : ℝ, b ≥ 0 ∧ b ^ 2 = a
+  ∀ (a : Real), GE.ge a 0 → ExistsUnique fun b => (GE.ge b 0 ∧ instHPow.hPow b 2 = a)
 
 Predicate logic (unfolded):
 
-  ∀ (a : Real), Real.instLE.1 Zero.toOfNat0.1 a → Exists fun x => ((fun b => (Real.instLE.1 Zero.toOfNat0.1 b ∧ instHPow.1 b (instOfNatNat 2).1 = a)) x ∧ ∀ (y : Real), (Real.instLE.1 Zero.toOfNat0.1 y ∧ instHPow.1 y (instOfNatNat 2).1 = a) → y = x)
+  Ambient
+    (ℝ)
+  Objects
+    a : ℝ
+    ha : a ≥ 0
+  Prove
+    Real.instLE.le 0 a → Exists fun x => (((fun b => (Real.instLE.le 0 b ∧ instHPow.1 b 2 = a)) x) ∧ (∀ (y : Real), (Real.instLE.le 0 y ∧ instHPow.1 y 2 = a) → y = x))
 
 Logical form (Lean):
 
@@ -88,11 +99,17 @@ theorem RealSquareRootFunction (a : ℝ) (ha : a ≥ 0) :
 
 Predicate logic:
 
-  Real.sqrt a ≥ 0
+  ∀ (a : Real), GE.ge a 0 → GE.ge a.sqrt 0
 
 Predicate logic (unfolded):
 
-  ∀ (a : Real), Real.instLE.1 Zero.toOfNat0.1 a → Real.instLE.1 Zero.toOfNat0.1 a.sqrt
+  Ambient
+    (ℝ)
+  Objects
+    a : ℝ
+    ha : a ≥ 0
+  Prove
+    Real.instLE.le 0 a → Real.instLE.le 0 a.sqrt
 
 Logical form (Lean):
 
@@ -126,11 +143,17 @@ theorem SqrtNonnegative (a : ℝ) (ha : a ≥ 0) : Real.sqrt a ≥ 0 := by
 
 Predicate logic:
 
-  Real.sqrt a ^ 2 = a
+  ∀ (a : Real), GE.ge a 0 → instHPow.hPow a.sqrt 2 = a
 
 Predicate logic (unfolded):
 
-  ∀ (a : Real), Real.instLE.1 Zero.toOfNat0.1 a → instHPow.1 a.sqrt (instOfNatNat 2).1 = a
+  Ambient
+    (ℝ)
+  Objects
+    a : ℝ
+    ha : a ≥ 0
+  Prove
+    Real.instLE.le 0 a → instHPow.1 a.sqrt 2 = a
 
 Logical form (Lean):
 
@@ -164,11 +187,16 @@ theorem SqrtSquare (a : ℝ) (ha : a ≥ 0) : Real.sqrt a ^ 2 = a := by
 
 Predicate logic:
 
-  Real.sqrt 0 = 0 ∧ Real.sqrt 1 = 1
+  (Real.sqrt 0 = 0 ∧ Real.sqrt 1 = 1)
 
 Predicate logic (unfolded):
 
-  (Zero.toOfNat0.1.sqrt = Zero.toOfNat0.1 ∧ One.toOfNat1.1.sqrt = One.toOfNat1.1)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Real.sqrt 0 = 0 ∧ Real.sqrt 1 = 1)
 
 Logical form (Lean):
 
@@ -202,11 +230,17 @@ theorem SqrtZeroOne : Real.sqrt 0 = 0 ∧ Real.sqrt 1 = 1 := by
 
 Predicate logic:
 
-  Real.sqrt a > 0
+  ∀ (a : Real), GT.gt a 0 → GT.gt a.sqrt 0
 
 Predicate logic (unfolded):
 
-  ∀ (a : Real), Real.instLT.1 Zero.toOfNat0.1 a → Real.instLT.1 Zero.toOfNat0.1 a.sqrt
+  Ambient
+    (ℝ)
+  Objects
+    a : ℝ
+    ha : a > 0
+  Prove
+    Real.instLT.lt 0 a → Real.instLT.lt 0 a.sqrt
 
 Logical form (Lean):
 
@@ -240,11 +274,16 @@ theorem SqrtPositive (a : ℝ) (ha : a > 0) : Real.sqrt a > 0 := by
 
 Predicate logic:
 
-  Real.sqrt (a ^ 2) = |a|
+  ∀ (a : Real), instHPow.hPow a 2 = .sqrt(abs a)
 
 Predicate logic (unfolded):
 
-  ∀ (a : Real), instHPow.1 a (instOfNatNat 2).1 = .sqrt (SemilatticeSup.toMax.1 a (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 a))
+  Ambient
+    (ℝ)
+  Objects
+    a : ℝ
+  Prove
+    instHPow.1 a 2 = .sqrt(abs a)
 
 Logical form (Lean):
 
@@ -278,11 +317,18 @@ theorem SqrtOfSquareAbsoluteValue (a : ℝ) : Real.sqrt (a ^ 2) = |a| := by
 
 Predicate logic:
 
-  Real.sqrt (a * b) = Real.sqrt a * Real.sqrt b
+  ∀ (a b : Real), (GE.ge a 0 ∧ GE.ge b 0) → instHMul.hMul a b = .sqrt(instHMul.hMul a.sqrt b.sqrt)
 
 Predicate logic (unfolded):
 
-  ∀ (a b : Real), (Real.instLE.1 Zero.toOfNat0.1 a ∧ Real.instLE.1 Zero.toOfNat0.1 b) → instHMul.1 a b = .sqrt(instHMul.1 a.sqrt b.sqrt)
+  Ambient
+    (ℝ)
+  Objects
+    a b : ℝ
+    ha : a ≥ 0
+    hb : b ≥ 0
+  Prove
+    (Real.instLE.le 0 a ∧ Real.instLE.le 0 b) → { hMul := fun a b => Real.instMul.mul a b }.hMul a b = .sqrt ({ hMul := fun a b => Real.instMul.mul a b }.hMul a.sqrt b.sqrt)
 
 Logical form (Lean):
 
@@ -318,11 +364,18 @@ theorem SqrtProduct (a b : ℝ) (ha : a ≥ 0) (hb : b ≥ 0) :
 
 Predicate logic:
 
-  Real.sqrt (a / b) = Real.sqrt a / Real.sqrt b
+  ∀ (a b : Real), (GE.ge a 0 ∧ GT.gt b 0) → instHDiv.hDiv a b = .sqrt(instHDiv.hDiv a.sqrt b.sqrt)
 
 Predicate logic (unfolded):
 
-  ∀ (a b : Real), (Real.instLE.1 Zero.toOfNat0.1 a ∧ Real.instLT.1 Zero.toOfNat0.1 b) → instHDiv.1 a b = .sqrt(instHDiv.1 a.sqrt b.sqrt)
+  Ambient
+    (ℝ)
+  Objects
+    a b : ℝ
+    ha : a ≥ 0
+    hb : b > 0
+  Prove
+    (Real.instLE.le 0 a ∧ Real.instLT.lt 0 b) → { hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv a b = .sqrt ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv a.sqrt b.sqrt)
 
 Logical form (Lean):
 
@@ -358,11 +411,16 @@ theorem SqrtQuotient (a b : ℝ) (ha : a ≥ 0) (hb : b > 0) :
 
 Predicate logic:
 
-  0 ≤ a ∧ a < b → Real.sqrt a < Real.sqrt b
+  ∀ (a b : Real), (Real.instLE.le 0 a ∧ Real.instLT.lt a b) → Real.instLT.lt a.sqrt b.sqrt
 
 Predicate logic (unfolded):
 
-  ∀ (a b : Real), (Real.instLE.1 Zero.toOfNat0.1 a ∧ Real.instLT.1 a b) → Real.instLT.1 a.sqrt b.sqrt
+  Ambient
+    (ℝ)
+  Objects
+    a b : ℝ
+  Prove
+    (Real.instLE.le 0 a ∧ Real.instLT.lt a b) → Real.instLT.lt a.sqrt b.sqrt
 
 Logical form (Lean):
 
@@ -398,11 +456,18 @@ theorem IneqSquareRootStrictMonotone (a b : ℝ) :
 
 Predicate logic:
 
-  x ^ n > 0
+  ∀ (x : Real) (n : Nat), GT.gt x 0 → GT.gt (instHPow.hPow x n) 0
 
 Predicate logic (unfolded):
 
-  ∀ (x : Real) (n : Nat), Real.instLT.1 Zero.toOfNat0.1 x → Real.instLT.1 Zero.toOfNat0.1 (instHPow.1 x n)
+  Ambient
+    (ℝ)
+  Objects
+    x : ℝ
+    n : ℕ
+    hx : x > 0
+  Prove
+    Real.instLT.lt 0 x → Real.instLT.lt 0 (instHPow.1 x n)
 
 Logical form (Lean):
 
@@ -436,11 +501,17 @@ theorem PositivePowersArePositive (x : ℝ) (n : ℕ) (hx : x > 0) : x ^ n > 0 :
 
 Predicate logic:
 
-  0 < x ∧ x < y → x ^ n < y ^ n
+  ∀ (x y : Real) (n : Nat), (Real.instLT.lt 0 x ∧ Real.instLT.lt x y) → Real.instLT.lt (instHPow.hPow x n) (instHPow.hPow y n)
 
 Predicate logic (unfolded):
 
-  ∀ (x y : Real) (n : Nat), (Real.instLT.1 Zero.toOfNat0.1 x ∧ Real.instLT.1 x y) → Real.instLT.1 (instHPow.1 x n) (instHPow.1 y n)
+  Ambient
+    (ℝ)
+  Objects
+    x y : ℝ
+    n : ℕ
+  Prove
+    (Real.instLT.lt 0 x ∧ Real.instLT.lt x y) → Real.instLT.lt (instHPow.1 x n) (instHPow.1 y n)
 
 Logical form (Lean):
 
@@ -476,11 +547,16 @@ theorem PowersPreserveOrderForPositiveNumbers (x y : ℝ) (n : ℕ) :
 
 Predicate logic:
 
-  0 ≤ a ∧ a < b → a ^ 2 < b ^ 2
+  ∀ (a b : Real), (Real.instLE.le 0 a ∧ Real.instLT.lt a b) → Real.instLT.lt (instHPow.hPow a 2) (instHPow.hPow b 2)
 
 Predicate logic (unfolded):
 
-  ∀ (a b : Real), (Real.instLE.1 Zero.toOfNat0.1 a ∧ Real.instLT.1 a b) → Real.instLT.1 (instHPow.1 a (instOfNatNat 2).1) (instHPow.1 b (instOfNatNat 2).1)
+  Ambient
+    (ℝ)
+  Objects
+    a b : ℝ
+  Prove
+    (Real.instLE.le 0 a ∧ Real.instLT.lt a b) → Real.instLT.lt (instHPow.1 a 2) (instHPow.1 b 2)
 
 Logical form (Lean):
 
@@ -514,11 +590,16 @@ theorem IneqSquareMonotone (a b : ℝ) : 0 ≤ a ∧ a < b → a ^ 2 < b ^ 2 := 
 
 Predicate logic:
 
-  0 ≤ a ∧ a ≤ b → Real.sqrt a ≤ Real.sqrt b
+  ∀ (a b : Real), (Real.instLE.le 0 a ∧ Real.instLE.le a b) → Real.instLE.le a.sqrt b.sqrt
 
 Predicate logic (unfolded):
 
-  ∀ (a b : Real), (Real.instLE.1 Zero.toOfNat0.1 a ∧ Real.instLE.1 a b) → Real.instLE.1 a.sqrt b.sqrt
+  Ambient
+    (ℝ)
+  Objects
+    a b : ℝ
+  Prove
+    (Real.instLE.le 0 a ∧ Real.instLE.le a b) → Real.instLE.le a.sqrt b.sqrt
 
 Logical form (Lean):
 
@@ -554,11 +635,18 @@ theorem IneqSquareRootMonotone (a b : ℝ) :
 
 Predicate logic:
 
-  (a ^ 2 < b ^ 2) → a < b
+  ∀ (a b : Real), (GT.gt a 0 ∧ (GT.gt b 0 ∧ Real.instLT.lt (instHPow.hPow a 2) (instHPow.hPow b 2))) → Real.instLT.lt a b
 
 Predicate logic (unfolded):
 
-  ∀ (a b : Real), (Real.instLT.1 Zero.toOfNat0.1 a ∧ (Real.instLT.1 Zero.toOfNat0.1 b ∧ Real.instLT.1 (instHPow.1 a (instOfNatNat 2).1) (instHPow.1 b (instOfNatNat 2).1))) → Real.instLT.1 a b
+  Ambient
+    (ℝ)
+  Objects
+    a b : ℝ
+    ha : a > 0
+    hb : b > 0
+  Prove
+    (Real.instLT.lt 0 a ∧ (Real.instLT.lt 0 b ∧ Real.instLT.lt (instHPow.1 a 2) (instHPow.1 b 2))) → Real.instLT.lt a b
 
 Logical form (Lean):
 
@@ -594,11 +682,16 @@ theorem PositiveSquareComparison (a b : ℝ) (ha : a > 0) (hb : b > 0)
 
 Predicate logic:
 
-  (0 < a ∧ a < 1 → a ^ 2 < a) ∧ (a > 1 → a ^ 2 > a)
+  ∀ (a : Real), (((Real.instLT.lt 0 a ∧ Real.instLT.lt a 1) → Real.instLT.lt (instHPow.hPow a 2) a) ∧ (GT.gt a 1 → GT.gt (instHPow.hPow a 2) a))
 
 Predicate logic (unfolded):
 
-  ∀ (a : Real), ((Real.instLT.1 Zero.toOfNat0.1 a ∧ Real.instLT.1 a One.toOfNat1.1) → Real.instLT.1 (instHPow.1 a (instOfNatNat 2).1) a ∧ Real.instLT.1 One.toOfNat1.1 a → Real.instLT.1 a (instHPow.1 a (instOfNatNat 2).1))
+  Ambient
+    (ℝ)
+  Objects
+    a : ℝ
+  Prove
+    (((Real.instLT.lt 0 a ∧ Real.instLT.lt a 1) → Real.instLT.lt (instHPow.1 a 2) a) ∧ (Real.instLT.lt 1 a → Real.instLT.lt a (instHPow.1 a 2)))
 
 Logical form (Lean):
 

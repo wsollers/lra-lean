@@ -88,7 +88,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.Analysis.Sequences.RealSequence) (L ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x n) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x n) L))) ε
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x n) L)) ε
 
 Logical form (Lean):
 
@@ -128,7 +133,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.Analysis.Sequences.RealSequence), (Exists fun L => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x n) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x n) L))) ε) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun L => ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x n) L)) ε) → False
 
 Logical form (Lean):
 
@@ -166,7 +176,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.Analysis.Sequences.RealSequence) (M : Real), Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 M (x n)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt M (x n)
 
 Logical form (Lean):
 
@@ -206,7 +221,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.Analysis.Sequences.RealSequence) (M : Real), Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (x n) M
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (x n) M
 
 Logical form (Lean):
 
@@ -246,7 +266,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.Analysis.Sequences.RealSequence), ((Exists fun L => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.hSub (x n) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg (instHSub.hSub (x n) L))) ε) → False ∧ ((∀ (M : Real), Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 M (x n)) → False ∧ (∀ (M : Real), Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (x n) M) → False))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((Exists fun L => ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x n) L)) ε) → False) ∧ (((∀ (M : Real), Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt M (x n)) → False) ∧ ((∀ (M : Real), Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (x n) M) → False)))
 
 Logical form (Lean):
 
@@ -282,11 +307,16 @@ def IsOscillatory (x : RealSequence) : Prop :=
 
 Predicate logic:
 
-  ConvergesTo fun _ ∈ ℕ => c c
+  ∀ (c : Real), LRA.Analysis.Sequences.ConvergesTo (fun x => c) c
 
 Predicate logic (unfolded):
 
-  ∀ (c ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 ((fun x => c) n) c) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 ((fun x => c) n) c))) ε
+  Ambient
+    (ℝ)
+  Objects
+    c : ℝ
+  Prove
+    Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ((fun x => c) n) c)) ε
 
 Logical form (Lean):
 
@@ -322,11 +352,16 @@ theorem ConstantSequenceConverges (c : ℝ) :
 
 Predicate logic:
 
-  ConvergesTo fun n ∈ ℕ => 1 / n ∈ ℝ 0
+  LRA.Analysis.Sequences.ConvergesTo (fun n => instHDiv.hDiv 1 n.cast) 0
 
 Predicate logic (unfolded):
 
-  ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 ((fun n => instHDiv.1 1 n.cast) n) Zero.toOfNat0.1) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 ((fun n => instHDiv.hDiv 1 n.cast) n) 0))) ε
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ((fun n => { hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv 1 (Real.instNatCast.1 n)) n) 0)) ε
 
 Logical form (Lean):
 
@@ -362,11 +397,16 @@ theorem ReciprocalSequenceConvergesToZero :
 
 Predicate logic:
 
-  DivergesToPosInf fun n ∈ ℕ => n ∈ ℝ
+  LRA.Analysis.Sequences.DivergesToPosInf fun n => n.cast
 
 Predicate logic (unfolded):
 
-  ∀ (M : Real), Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 M ((fun n => Real.instNatCast.1 n) n)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt M ((fun n => Real.instNatCast.1 n) n)
 
 Logical form (Lean):
 

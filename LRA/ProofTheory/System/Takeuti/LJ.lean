@@ -8,11 +8,16 @@ namespace LRA.ProofTheory.System.Takeuti
 
 Predicate logic:
 
-  ∀ {L : LRA.ProofTheory.System.Takeuti.Alphabet} [inst : DecidableL.FreeVar] = uppers : List (LRA.ProofTheory.System.Takeuti.Judgement L) (lower : LRA.ProofTheory.System.Takeuti.Judgement L), (LRA.ProofTheory.System.Takeuti.Rule uppers lower ∧ (lower.IsIntuitionistic ∧ ∀ (upper : LRA.ProofTheory.System.Takeuti.Judgement L), List.instMembership.mem uppers upper → upper.IsIntuitionistic))
+  ∀ {L : LRA.ProofTheory.System.Takeuti.Alphabet} [inst : DecidableL.FreeVar] = uppers : List (LRA.ProofTheory.System.Takeuti.Judgement L) (lower : LRA.ProofTheory.System.Takeuti.Judgement L), (LRA.ProofTheory.System.Takeuti.Rule uppers lower ∧ (lower.IsIntuitionistic ∧ (∀ (upper : LRA.ProofTheory.System.Takeuti.Judgement L), List.upper ∈ uppers → upper.IsIntuitionistic)))
 
 Predicate logic (unfolded):
 
-  ∀ {L : LRA.ProofTheory.System.Takeuti.Alphabet} [inst : (a b : L.1) → Decidable (a = b)] (uppers : List (LRA.ProofTheory.System.Takeuti.Judgement L)) (lower : LRA.ProofTheory.System.Takeuti.Judgement L), (LRA.ProofTheory.System.Takeuti.Rule uppers lower ∧ (instLENat.1 lower.2.length (instOfNatNat 1).1 ∧ ∀ (upper : LRA.ProofTheory.System.Takeuti.Judgement L), List.instMembership.1 uppers upper → instLENat.1 upper.2.length (instOfNatNat 1).1))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (LRA.ProofTheory.System.Takeuti.Rule uppers lower ∧ (instLENat.le lower.2.length 1 ∧ (∀ (upper : LRA.ProofTheory.System.Takeuti.Judgement L), List.upper ∈ uppers → instLENat.le upper.2.length 1)))
 
 Logical form (Lean):
 
@@ -55,18 +60,18 @@ def LJRule {L : Alphabet} [DecidableEq L.FreeVar]
 Predicate logic:
 
   def LJ (L : Alphabet) [DecidableEq L.FreeVar] :
-    LRA.ProofTheory.System.ProofSystem where
-  Judgement := Judgement L
-  IsInitial := fun J => IsInitial J /\ J.IsIntuitionistic
-  Rule := LJRule
+      LRA.ProofTheory.System.ProofSystem where
+    Judgement := Judgement L
+    IsInitial := fun J => IsInitial J /\ J.IsIntuitionistic
+    Rule := LJRule
 
 Predicate logic (unfolded):
 
   def LJ (L : Alphabet) [DecidableEq L.FreeVar] :
-    LRA.ProofTheory.System.ProofSystem where
-  Judgement := Judgement L
-  IsInitial := fun J => IsInitial J /\ J.IsIntuitionistic
-  Rule := LJRule (source fallback; no compiled unfold data available)
+      LRA.ProofTheory.System.ProofSystem where
+    Judgement := Judgement L
+    IsInitial := fun J => IsInitial J /\ J.IsIntuitionistic
+    Rule := LJRule (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

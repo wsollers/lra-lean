@@ -9,11 +9,17 @@ universe u v
 
 Predicate logic:
 
-  (∀ input ∈ Domain), Graph function input (function input)
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (input : Domain), function.Graph input (function input)
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (input : Domain), function input = function input
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    input : Domain
+  Prove
+    function input = function input
 
 Logical form (Lean):
 
@@ -51,11 +57,19 @@ theorem GraphRelatesValue {Domain : Type u} {Codomain : Type v}
 
 Predicate logic:
 
-  (∀ input ∈ Domain ∀ output ∈ Codomain), output = function input
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (input : Domain) (output : Codomain), function.Graph input output → output = function input
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (input : Domain) (output : Codomain), function input = output → output = function input
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    input : Domain
+    output : Codomain
+    related : Graph function input output
+  Prove
+    function input = output → output = function input
 
 Logical form (Lean):
 
@@ -97,11 +111,18 @@ theorem GraphOutputEqualsValue {Domain : Type u} {Codomain : Type v}
 
 Predicate logic:
 
-  (∀ input ∈ Domain ∀ output ∈ Codomain), PointImageClass function input output ↔ output = function input
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (input : Domain) (output : Codomain), function.PointImageClass input output ↔ output = function input
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (input : Domain) (output : Codomain), function input = output ↔ output = function input
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    input : Domain
+    output : Codomain
+  Prove
+    function.PointImageClass input output ↔ output = function input
 
 Logical form (Lean):
 
@@ -143,11 +164,18 @@ theorem PointImageClassIffValue
 
 Predicate logic:
 
-  (∀ output ∈ Codomain ∀ input ∈ Domain), FiberClass function output input ↔ output = function input
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (output : Codomain) (input : Domain), function.FiberClass output input ↔ output = function input
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (output : Codomain) (input : Domain), function input = output ↔ output = function input
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    output : Codomain
+    input : Domain
+  Prove
+    function.FiberClass output input ↔ output = function input
 
 Logical form (Lean):
 
@@ -189,11 +217,17 @@ theorem FiberClassIffValue
 
 Predicate logic:
 
-  (∀ output ∈ Codomain), RangeClass function output ↔ ∃ input, output = function input
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (output : Codomain), function.RangeClass output ↔ Exists fun input => output = function input
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (output : Codomain), Exists fun x => function x = output ↔ Exists fun input => output = function input
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    output : Codomain
+  Prove
+    function.RangeClass output ↔ Exists fun input => output = function input
 
 Logical form (Lean):
 
@@ -237,11 +271,18 @@ theorem RangeClassIffValue
 
 Predicate logic:
 
-  (∀ output ∈ Codomain), ImageClass function source output ↔ ∃ input, source input ∧ output = function input
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (source : LRA.Set.SetClass Domain) (output : Codomain), function.ImageClass source output ↔ Exists fun input => (source input ∧ output = function input)
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (source : Domain → Prop) (output : Codomain), Exists fun x => (source x ∧ function x = output) ↔ Exists fun input => (source input ∧ output = function input)
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    source : LRA.Set.SetClass Domain
+    output : Codomain
+  Prove
+    function.ImageClass source output ↔ Exists fun input => (source input ∧ output = function input)
 
 Logical form (Lean):
 
@@ -287,11 +328,18 @@ theorem ImageClassIffValue
 
 Predicate logic:
 
-  (∀ input ∈ Domain), PreimageClass function target input ↔ target (function input)
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (target : LRA.Set.SetClass Codomain) (input : Domain), function.PreimageClass target input ↔ target (function input)
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (target : Codomain → Prop) (input : Domain), Exists fun y => (target y ∧ function input = y) ↔ target (function input)
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    target : LRA.Set.SetClass Codomain
+    input : Domain
+  Prove
+    function.PreimageClass target input ↔ target (function input)
 
 Logical form (Lean):
 

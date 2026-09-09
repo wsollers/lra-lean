@@ -58,17 +58,86 @@ explicitly so the deferral is a decision on record rather than a silent
 gap.
 -/
 
-/-- A finite collection of values of type `α`, named separately from
-`List α` only so that call sites in this subject read as "a collection of
-symbols" rather than "a sequence" -- the underlying representation,
-operations, and cost are identical to `List α` in every respect. -/
+/--
+`MetaCollection` A finite collection of values of type `α`, named separately from `List α` only so that call sites in this subject read as "a collection of symbols" rather than "a sequence" -- the underlying representation, operations, and cost are identical to `List α` in every respect.
+
+Predicate logic:
+
+  abbrev MetaCollection (α : Type u) := List α
+
+Predicate logic (unfolded):
+
+  abbrev MetaCollection (α : Type u) := List α (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+abbrev MetaCollection (α : Type u) := List α
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 abbrev MetaCollection (α : Type u) := List α
 
-/-- Membership in a `MetaCollection` is exactly `List.Mem`, restated here
-under this file's name only so later files can cite
-`MetaCollection.Mem` rather than reaching past this abstraction back to
-`List` directly -- a purely presentational indirection, not a semantic
-one. -/
+/--
+`MetaCollection.Mem` Membership in a `MetaCollection` is exactly `List.Mem`, restated here under this file's name only so later files can cite `MetaCollection.Mem` rather than reaching past this abstraction back to `List` directly -- a purely presentational indirection, not a semantic one.
+
+Predicate logic:
+
+  ∀ {α : Type u} (a : α) (xs : LRA.Metamathematics.MetaCollection α), List.Mem a xs
+
+Predicate logic (unfolded):
+
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    List.Mem a xs
+
+Logical form (Lean):
+
+```lean
+abbrev MetaCollection.Mem {α : Type u} (a : α) (xs : MetaCollection α) : Prop :=
+  a ∈ xs
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 abbrev MetaCollection.Mem {α : Type u} (a : α) (xs : MetaCollection α) : Prop :=
   a ∈ xs
 

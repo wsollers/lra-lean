@@ -9,11 +9,16 @@ namespace LRA.Analysis.Completeness
 
 Predicate logic:
 
-  (0 ≤ a) → ∃! b : ℝ, 0 ≤ b ∧ b ^ 2 = a
+  ∀ (a : Real), Real.instLE.le 0 a → ExistsUnique fun b => (Real.instLE.le 0 b ∧ instHPow.hPow b 2 = a)
 
 Predicate logic (unfolded):
 
-  ∀ (a : Real), Real.instLE.1 Zero.toOfNat0.1 a → Exists fun x => ((fun b => (Real.instLE.1 Zero.toOfNat0.1 b ∧ instHPow.1 b (instOfNatNat 2).1 = a)) x ∧ ∀ (y : Real), (Real.instLE.1 Zero.toOfNat0.1 y ∧ instHPow.1 y (instOfNatNat 2).1 = a) → y = x)
+  Ambient
+    (ℝ)
+  Objects
+    a : ℝ
+  Prove
+    Real.instLE.le 0 a → Exists fun x => (((fun b => (Real.instLE.le 0 b ∧ instHPow.1 b 2 = a)) x) ∧ (∀ (y : Real), (Real.instLE.le 0 y ∧ instHPow.1 y 2 = a) → y = x))
 
 Logical form (Lean):
 
@@ -49,11 +54,16 @@ theorem ExistsUniqueNonnegSqrt (a : ℝ) (ha : 0 ≤ a) :
 
 Predicate logic:
 
-  (¬ ∃ m ∈ RealCutLowerAtSqrtTwo, ∀ x ∈ RealCutLowerAtSqrtTwo, x ≤ m) ∧ (Real.sqrt 2 ∈ RealCutUpperAtSqrtTwo ∧ ∀ x ∈ RealCutUpperAtSqrtTwo, Real.sqrt 2 ≤ x)
+  ((¬ Exists fun m => (m ∈ LRA.Analysis.Completeness.RealCutLowerAtSqrtTwo ∧ (∀ (x : Real), x ∈ LRA.Analysis.Completeness.RealCutLowerAtSqrtTwo → Real.instLE.le x m))) ∧ (Real.sqrt 2 ∈ LRA.Analysis.Completeness.RealCutUpperAtSqrtTwo ∧ (∀ (x : Real), x ∈ LRA.Analysis.Completeness.RealCutUpperAtSqrtTwo → Real.instLE.le (Real.sqrt 2) x)))
 
 Predicate logic (unfolded):
 
-  ((Exists fun m => (Set.instMembership.1 LRA.Analysis.Completeness.RealCutLowerAtSqrtTwo m ∧ ∀ (x : Real), Set.instMembership.1 LRA.Analysis.Completeness.RealCutLowerAtSqrtTwo x → Real.instLE.1 x m)) → False ∧ (Set.instMembership.1 LRA.Analysis.Completeness.RealCutUpperAtSqrtTwo instOfNatAtLeastTwo.1.sqrt ∧ ∀ (x : Real), Set.instMembership.1 LRA.Analysis.Completeness.RealCutUpperAtSqrtTwo x → Real.instLE.1 instOfNatAtLeastTwo.1.sqrt x))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((Exists fun m => (m ∈ LRA.Analysis.Completeness.RealCutLowerAtSqrtTwo ∧ (∀ (x : Real), x ∈ LRA.Analysis.Completeness.RealCutLowerAtSqrtTwo → Real.instLE.le x m))) → False) ∧ (Real.sqrt 2 ∈ LRA.Analysis.Completeness.RealCutUpperAtSqrtTwo ∧ (∀ (x : Real), x ∈ LRA.Analysis.Completeness.RealCutUpperAtSqrtTwo → Real.instLE.le (Real.sqrt 2) x)))
 
 Logical form (Lean):
 
@@ -93,11 +103,16 @@ theorem RealDedekindCutAtSqrtTwoHasNoGap :
 
 Predicate logic:
 
-  1 ∈ ℝ < Real.sqrt 2 ∧ Real.sqrt 2 < 2 ∧ 1.4 ∈ ℝ < Real.sqrt 2 ∧ Real.sqrt 2 < 1.5 ∧ 1.41 ∈ ℝ < Real.sqrt 2 ∧ Real.sqrt 2 < 1.42
+  (Real.instLT.lt 1 (Real.sqrt 2) ∧ (Real.instLT.lt (Real.sqrt 2) 2 ∧ (Real.instLT.lt 1.4 (Real.sqrt 2) ∧ (Real.instLT.lt (Real.sqrt 2) 1.5 ∧ (Real.instLT.lt 1.41 (Real.sqrt 2) ∧ Real.instLT.lt (Real.sqrt 2) 1.42)))))
 
 Predicate logic (unfolded):
 
-  (Real.instLT.1 One.toOfNat1.1 instOfNatAtLeastTwo.1.sqrt ∧ (Real.instLT.1 instOfNatAtLeastTwo.1.sqrt instOfNatAtLeastTwo.1 ∧ (Real.instLT.1 (NNRatCast.toOfScientific.1 14 Bool.true 1) instOfNatAtLeastTwo.1.sqrt ∧ (Real.instLT.1 instOfNatAtLeastTwo.1.sqrt (NNRatCast.toOfScientific.1 15 Bool.true 1) ∧ (Real.instLT.1 (NNRatCast.toOfScientific.1 141 Bool.true 2) instOfNatAtLeastTwo.1.sqrt ∧ Real.instLT.1 instOfNatAtLeastTwo.1.sqrt (NNRatCast.toOfScientific.1 142 Bool.true 2))))))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Real.instLT.lt 1 (Real.sqrt 2) ∧ (Real.instLT.lt (Real.sqrt 2) 2 ∧ (Real.instLT.lt (NNRatCast.toOfScientific.1 14 Bool.true 1) (Real.sqrt 2) ∧ (Real.instLT.lt (Real.sqrt 2) (NNRatCast.toOfScientific.1 15 Bool.true 1) ∧ (Real.instLT.lt (NNRatCast.toOfScientific.1 141 Bool.true 2) (Real.sqrt 2) ∧ Real.instLT.lt (Real.sqrt 2) (NNRatCast.toOfScientific.1 142 Bool.true 2))))))
 
 Logical form (Lean):
 

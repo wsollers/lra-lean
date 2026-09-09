@@ -12,20 +12,20 @@ namespace TopologyDefinition
 Predicate logic:
 
   def ToMathlibTopologicalSpace {X : Type u} (topology : TopologyDefinition X) :
-    _root_.TopologicalSpace X where
-  IsOpen := topology.IsOpen
-  isOpen_univ := topology.isOpen_univ
-  isOpen_inter := topology.isOpen_inter
-  isOpen_sUnion := topology.isOpen_sUnion
+      _root_.TopologicalSpace X where
+    IsOpen := topology.IsOpen
+    isOpen_univ := topology.isOpen_univ
+    isOpen_inter := topology.isOpen_inter
+    isOpen_sUnion := topology.isOpen_sUnion
 
 Predicate logic (unfolded):
 
   def ToMathlibTopologicalSpace {X : Type u} (topology : TopologyDefinition X) :
-    _root_.TopologicalSpace X where
-  IsOpen := topology.IsOpen
-  isOpen_univ := topology.isOpen_univ
-  isOpen_inter := topology.isOpen_inter
-  isOpen_sUnion := topology.isOpen_sUnion (source fallback; no compiled unfold data available)
+      _root_.TopologicalSpace X where
+    IsOpen := topology.IsOpen
+    isOpen_univ := topology.isOpen_univ
+    isOpen_inter := topology.isOpen_inter
+    isOpen_sUnion := topology.isOpen_sUnion (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -71,11 +71,17 @@ def ToMathlibTopologicalSpace {X : Type u} (topology : TopologyDefinition X) :
 
 Predicate logic:
 
-  letI : _root_.TopologicalSpace X
+  ∀ {X : Type u} (topology : LRA.Topology.TopologyDefinition X) (U : Set X), IsOpen U ↔ topology.IsOpen U
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} (topology : LRA.Topology.TopologyDefinition X) (U : X → Prop), topology.ToMathlibTopologicalSpace.1 U ↔ topology.1 U
+  Ambient
+    (X)
+  Objects
+    topology : TopologyDefinition X
+    U : Set X
+  Prove
+    IsOpen U ↔ topology.IsOpen U
 
 Logical form (Lean):
 
@@ -114,30 +120,30 @@ theorem ToMathlibIsOpen {X : Type u} (topology : TopologyDefinition X) (U : Set 
 Predicate logic:
 
   def FromMathlibTopologicalSpace (X : Type u) [_root_.TopologicalSpace X] :
-    TopologyDefinition X where
-  IsOpen := _root_.IsOpen
-  isOpen_univ := _root_.isOpen_univ
-  isOpen_empty := _root_.isOpen_empty
-  isOpen_sUnion := by
-    intro S open_sets
-    exact _root_.isOpen_sUnion open_sets
-  isOpen_inter := by
-    intro U V open_U open_V
-    exact open_U.inter open_V
+      TopologyDefinition X where
+    IsOpen := _root_.IsOpen
+    isOpen_univ := _root_.isOpen_univ
+    isOpen_empty := _root_.isOpen_empty
+    isOpen_sUnion := by
+      intro S open_sets
+      exact _root_.isOpen_sUnion open_sets
+    isOpen_inter := by
+      intro U V open_U open_V
+      exact open_U.inter open_V
 
 Predicate logic (unfolded):
 
   def FromMathlibTopologicalSpace (X : Type u) [_root_.TopologicalSpace X] :
-    TopologyDefinition X where
-  IsOpen := _root_.IsOpen
-  isOpen_univ := _root_.isOpen_univ
-  isOpen_empty := _root_.isOpen_empty
-  isOpen_sUnion := by
-    intro S open_sets
-    exact _root_.isOpen_sUnion open_sets
-  isOpen_inter := by
-    intro U V open_U open_V
-    exact open_U.inter open_V (source fallback; no compiled unfold data available)
+      TopologyDefinition X where
+    IsOpen := _root_.IsOpen
+    isOpen_univ := _root_.isOpen_univ
+    isOpen_empty := _root_.isOpen_empty
+    isOpen_sUnion := by
+      intro S open_sets
+      exact _root_.isOpen_sUnion open_sets
+    isOpen_inter := by
+      intro U V open_U open_V
+      exact open_U.inter open_V (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -196,14 +202,14 @@ namespace TopologicalSpaceDefinition
 Predicate logic:
 
   def ToMathlibTopologicalSpace (space : TopologicalSpaceDefinition.{u}) :
-    _root_.TopologicalSpace space.Carrier :=
-  space.topology.ToMathlibTopologicalSpace
+      _root_.TopologicalSpace space.Carrier :=
+    space.topology.ToMathlibTopologicalSpace
 
 Predicate logic (unfolded):
 
   def ToMathlibTopologicalSpace (space : TopologicalSpaceDefinition.{u}) :
-    _root_.TopologicalSpace space.Carrier :=
-  space.topology.ToMathlibTopologicalSpace (source fallback; no compiled unfold data available)
+      _root_.TopologicalSpace space.Carrier :=
+    space.topology.ToMathlibTopologicalSpace (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -253,7 +259,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} [inst : TopologicalSpace X] (topology : LRA.Topology.TopologyDefinition X) (U : X → Prop), topology.1 U ↔ inst.1 U
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    topology.IsOpen U ↔ IsOpen U
 
 Logical form (Lean):
 
@@ -291,11 +302,16 @@ def IsCompatibleWithMathlibTopologicalSpace {X : Type u} [_root_.TopologicalSpac
 
 Predicate logic:
 
-  IsCompatibleWithMathlibTopologicalSpace (TopologyDefinition.FromMathlibTopologicalSpace X)
+  ∀ {X : Type u} [inst : TopologicalSpace X], LRA.Topology.IsCompatibleWithMathlibTopologicalSpace (LRA.Topology.TopologyDefinition.FromMathlibTopologicalSpace X)
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} [inst : TopologicalSpace X] (U : X → Prop), (LRA.Topology.TopologyDefinition.FromMathlibTopologicalSpace X).1 U ↔ inst.1 U
+  Ambient
+    (X)
+  Objects
+    (none)
+  Prove
+    (LRA.Topology.TopologyDefinition.FromMathlibTopologicalSpace X).1 U ↔ inst.1 U
 
 Logical form (Lean):
 

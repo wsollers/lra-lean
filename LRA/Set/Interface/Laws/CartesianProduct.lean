@@ -23,11 +23,20 @@ variable [PairingLaws Left Right Pair]
 
 Predicate logic:
 
-  (∀ left ∈ DomainObject ∀ right ∈ RangeObject ∀ ambientPairs ∈ RelationObject ∀ a ∈ Left ∀ b ∈ Right), Relates (CartesianProductOf left right ambientPairs) a b ↔ OrderedPair a b ∈ Pair ∈ ambientPairs ∧ a ∈ left ∧ b ∈ right
+  ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ (left : DomainObject) (right : RangeObject) (ambientPairs : RelationObject) (a : Left) (b : Right), LRA.Set.Relates (LRA.Set.CartesianProductOf left right ambientPairs) a b ↔ (LRA.Set.OrderedPair a b ∈ ambientPairs ∧ (a ∈ left ∧ b ∈ right))
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ (left : DomainObject) (right : RangeObject) (ambientPairs : RelationObject) (a : Left) (b : Right), inst_4.1 (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left a ∧ inst_3.1 right b))) (inst.1 a b) ↔ (inst_4.1 ambientPairs (inst.1 a b) ∧ (inst_2.1 left a ∧ inst_3.1 right b))
+  Ambient
+    (Left, Right, Pair, DomainObject, RangeObject, RelationObject, ∈)
+  Objects
+    left : DomainObject
+    right : RangeObject
+    ambientPairs : RelationObject
+    a : Left
+    b : Right
+  Prove
+    (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ (left : DomainObject) (right : RangeObject) (ambientPairs : RelationObject) (a : Left) (b : Right), LRA.Set.Relates (LRA.Set.CartesianProductOf left right ambientPairs) a b ↔ (LRA.Set.OrderedPair a b ∈ ambientPairs ∧ (a ∈ left ∧ b ∈ right))
 
 Logical form (Lean):
 
@@ -70,11 +79,18 @@ theorem RelatesCartesianProductOf
 
 Predicate logic:
 
-  (∀ left ∈ DomainObject ∀ right ∈ RangeObject ∀ ambientPairs ∈ RelationObject), IsPairwise Left Right (CartesianProductOf left right ambientPairs)
+  ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ (left : DomainObject) (right : RangeObject) (ambientPairs : RelationObject), LRA.Set.IsPairwise Left Right (LRA.Set.CartesianProductOf left right ambientPairs)
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ (left : DomainObject) (right : RangeObject) (ambientPairs : RelationObject) (member : Pair), inst_4.1 (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left a ∧ inst_3.1 right b))) member → Exists fun input => Exists fun output => member = inst.1 input output
+  Ambient
+    (Left, Right, Pair, DomainObject, RangeObject, RelationObject, ∈)
+  Objects
+    left : DomainObject
+    right : RangeObject
+    ambientPairs : RelationObject
+  Prove
+    (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ (left : DomainObject) (right : RangeObject) (ambientPairs : RelationObject) (member : Pair), inst_4.1 (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left a ∧ inst_3.1 right b))) member → Exists fun input => Exists fun output => member = inst.1 input output
 
 Logical form (Lean):
 
@@ -124,11 +140,18 @@ variable [MembershipLaws Pair RelationObject]
 
 Predicate logic:
 
-  (∀ left ∈ DomainObject ∀ right ∈ RangeObject ∀ ambientPairs ∈ RelationObject), CartesianProductOf left right ambientPairs ⊆ ambientPairs
+  ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (left : DomainObject) (right : RangeObject) (ambientPairs : RelationObject), inst_19.Subset (LRA.Set.CartesianProductOf left right ambientPairs) ambientPairs
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (left : DomainObject) (right : RangeObject) (ambientPairs : RelationObject), inst_19.1 (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left a ∧ inst_3.1 right b))) ambientPairs
+  Ambient
+    (Left, Right, Pair, DomainObject, RangeObject, RelationObject, ∈)
+  Objects
+    left : DomainObject
+    right : RangeObject
+    ambientPairs : RelationObject
+  Prove
+    (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (left : DomainObject) (right : RangeObject) (ambientPairs : RelationObject), inst_19.1 (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left a ∧ inst_3.1 right b))) ambientPairs
 
 Logical form (Lean):
 
@@ -169,11 +192,19 @@ theorem CartesianProductOfSubsetAmbient
 
 Predicate logic:
 
-  (∀ smaller larger ∈ DomainObject ∀ right ∈ RangeObject ∀ ambientPairs ∈ RelationObject), CartesianProductOf smaller right ambientPairs ⊆ CartesianProductOf larger right ambientPairs
+  ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (smaller larger : DomainObject) (right : RangeObject) (ambientPairs : RelationObject), inst_9.Subset smaller larger → inst_19.Subset (LRA.Set.CartesianProductOf smaller right ambientPairs) (LRA.Set.CartesianProductOf larger right ambientPairs)
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (smaller larger : DomainObject) (right : RangeObject) (ambientPairs : RelationObject), inst_9.1 smaller larger → inst_19.1 (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 smaller a ∧ inst_3.1 right b))) (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 larger a ∧ inst_3.1 right b)))
+  Ambient
+    (Left, Right, Pair, DomainObject, RangeObject, RelationObject, ∈)
+  Objects
+    smaller larger : DomainObject
+    right : RangeObject
+    ambientPairs : RelationObject
+    inclusion : smaller ⊆ larger
+  Prove
+    (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (smaller larger : DomainObject) (right : RangeObject) (ambientPairs : RelationObject), inst_9.1 smaller larger → inst_19.1 (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 smaller a ∧ inst_3.1 right b))) (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 larger a ∧ inst_3.1 right b)))
 
 Logical form (Lean):
 
@@ -216,11 +247,19 @@ theorem CartesianProductOfMonotoneLeft
 
 Predicate logic:
 
-  (∀ left ∈ DomainObject ∀ smaller larger ∈ RangeObject ∀ ambientPairs ∈ RelationObject), CartesianProductOf left smaller ambientPairs ⊆ CartesianProductOf left larger ambientPairs
+  ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (left : DomainObject) (smaller larger : RangeObject) (ambientPairs : RelationObject), inst_14.Subset smaller larger → inst_19.Subset (LRA.Set.CartesianProductOf left smaller ambientPairs) (LRA.Set.CartesianProductOf left larger ambientPairs)
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (left : DomainObject) (smaller larger : RangeObject) (ambientPairs : RelationObject), inst_14.1 smaller larger → inst_19.1 (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left a ∧ inst_3.1 smaller b))) (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left a ∧ inst_3.1 larger b)))
+  Ambient
+    (Left, Right, Pair, DomainObject, RangeObject, RelationObject, ∈)
+  Objects
+    left : DomainObject
+    smaller larger : RangeObject
+    ambientPairs : RelationObject
+    inclusion : smaller ⊆ larger
+  Prove
+    (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (left : DomainObject) (smaller larger : RangeObject) (ambientPairs : RelationObject), inst_14.1 smaller larger → inst_19.1 (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left a ∧ inst_3.1 smaller b))) (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left a ∧ inst_3.1 larger b)))
 
 Logical form (Lean):
 
@@ -263,11 +302,17 @@ theorem CartesianProductOfMonotoneRight
 
 Predicate logic:
 
-  (∀ right ∈ RangeObject ∀ ambientPairs ∈ RelationObject), CartesianProductOf ∅ ∈ DomainObject right ambientPairs = ∅ ∈ RelationObject
+  ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (right : RangeObject) (ambientPairs : RelationObject), LRA.Set.CartesianProductOf inst_8.emptyCollection right ambientPairs = inst_18.emptyCollection
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (right : RangeObject) (ambientPairs : RelationObject), inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 inst_8.1 a ∧ inst_3.1 right b)) = inst_18.1
+  Ambient
+    (Left, Right, Pair, DomainObject, RangeObject, RelationObject, ∈)
+  Objects
+    right : RangeObject
+    ambientPairs : RelationObject
+  Prove
+    (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (right : RangeObject) (ambientPairs : RelationObject), inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 inst_8.1 a ∧ inst_3.1 right b)) = inst_18.1
 
 Logical form (Lean):
 
@@ -308,11 +353,17 @@ theorem CartesianProductOfEmptyLeft
 
 Predicate logic:
 
-  (∀ left ∈ DomainObject ∀ ambientPairs ∈ RelationObject), CartesianProductOf left ∅ ∈ RangeObject ambientPairs = ∅ ∈ RelationObject
+  ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (left : DomainObject) (ambientPairs : RelationObject), LRA.Set.CartesianProductOf left inst_13.emptyCollection ambientPairs = inst_18.emptyCollection
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (left : DomainObject) (ambientPairs : RelationObject), inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left a ∧ inst_3.1 inst_13.1 b)) = inst_18.1
+  Ambient
+    (Left, Right, Pair, DomainObject, RangeObject, RelationObject, ∈)
+  Objects
+    left : DomainObject
+    ambientPairs : RelationObject
+  Prove
+    (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (left : DomainObject) (ambientPairs : RelationObject), inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left a ∧ inst_3.1 inst_13.1 b)) = inst_18.1
 
 Logical form (Lean):
 
@@ -353,11 +404,18 @@ theorem CartesianProductOfEmptyRight
 
 Predicate logic:
 
-  (∀ left left' ∈ DomainObject ∀ right ∈ RangeObject ∀ ambientPairs ∈ RelationObject), CartesianProductOf (left ∪ left') right ambientPairs = CartesianProductOf left right ambientPairs ∪ CartesianProductOf left' right ambientPairs
+  ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (left left' : DomainObject) (right : RangeObject) (ambientPairs : RelationObject), LRA.Set.CartesianProductOf (left ∪ left')right ambientPairs = LRA.Set.CartesianProductOf left right ambientPairs ∪ LRA.Set.CartesianProductOf left' right ambientPairs
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (left left' : DomainObject) (right : RangeObject) (ambientPairs : RelationObject), inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 (inst_5.1 left left') a ∧ inst_3.1 right b)) = inst_15.1 (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left a ∧ inst_3.1 right b))) (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left' a ∧ inst_3.1 right b)))
+  Ambient
+    (Left, Right, Pair, DomainObject, RangeObject, RelationObject, ∈)
+  Objects
+    left left' : DomainObject
+    right : RangeObject
+    ambientPairs : RelationObject
+  Prove
+    (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (left left' : DomainObject) (right : RangeObject) (ambientPairs : RelationObject), inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 (inst_5.1 left left') a ∧ inst_3.1 right b)) = inst_15.1 (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left a ∧ inst_3.1 right b))) (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left' a ∧ inst_3.1 right b)))
 
 Logical form (Lean):
 
@@ -402,11 +460,18 @@ theorem CartesianProductOfUnionLeft
 
 Predicate logic:
 
-  (∀ left ∈ DomainObject ∀ right right' ∈ RangeObject ∀ ambientPairs ∈ RelationObject), CartesianProductOf left (right ∪ right') ambientPairs = CartesianProductOf left right ambientPairs ∪ CartesianProductOf left right' ambientPairs
+  ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (left : DomainObject) (right right' : RangeObject) (ambientPairs : RelationObject), LRA.Set.CartesianProductOf left (right ∪ right')ambientPairs = LRA.Set.CartesianProductOf left right ambientPairs ∪ LRA.Set.CartesianProductOf left right' ambientPairs
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (left : DomainObject) (right right' : RangeObject) (ambientPairs : RelationObject), inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left a ∧ inst_3.1 (inst_10.1 right right') b)) = inst_15.1 (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left a ∧ inst_3.1 right b))) (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left a ∧ inst_3.1 right' b)))
+  Ambient
+    (Left, Right, Pair, DomainObject, RangeObject, RelationObject, ∈)
+  Objects
+    left : DomainObject
+    right right' : RangeObject
+    ambientPairs : RelationObject
+  Prove
+    (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (left : DomainObject) (right right' : RangeObject) (ambientPairs : RelationObject), inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left a ∧ inst_3.1 (inst_10.1 right right') b)) = inst_15.1 (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left a ∧ inst_3.1 right b))) (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left a ∧ inst_3.1 right' b)))
 
 Logical form (Lean):
 
@@ -451,11 +516,18 @@ theorem CartesianProductOfUnionRight
 
 Predicate logic:
 
-  (∀ left left' ∈ DomainObject ∀ right ∈ RangeObject ∀ ambientPairs ∈ RelationObject), CartesianProductOf (left ∩ left') right ambientPairs = CartesianProductOf left right ambientPairs ∩ CartesianProductOf left' right ambientPairs
+  ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (left left' : DomainObject) (right : RangeObject) (ambientPairs : RelationObject), LRA.Set.CartesianProductOf (left ∩ left')right ambientPairs = LRA.Set.CartesianProductOf left right ambientPairs ∩ LRA.Set.CartesianProductOf left' right ambientPairs
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (left left' : DomainObject) (right : RangeObject) (ambientPairs : RelationObject), inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 (inst_6.1 left left') a ∧ inst_3.1 right b)) = inst_16.1 (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left a ∧ inst_3.1 right b))) (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left' a ∧ inst_3.1 right b)))
+  Ambient
+    (Left, Right, Pair, DomainObject, RangeObject, RelationObject, ∈)
+  Objects
+    left left' : DomainObject
+    right : RangeObject
+    ambientPairs : RelationObject
+  Prove
+    (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (left left' : DomainObject) (right : RangeObject) (ambientPairs : RelationObject), inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 (inst_6.1 left left') a ∧ inst_3.1 right b)) = inst_16.1 (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left a ∧ inst_3.1 right b))) (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left' a ∧ inst_3.1 right b)))
 
 Logical form (Lean):
 
@@ -500,11 +572,18 @@ theorem CartesianProductOfIntersectionLeft
 
 Predicate logic:
 
-  (∀ left ∈ DomainObject ∀ right right' ∈ RangeObject ∀ ambientPairs ∈ RelationObject), CartesianProductOf left (right ∩ right') ambientPairs = CartesianProductOf left right ambientPairs ∩ CartesianProductOf left right' ambientPairs
+  ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (left : DomainObject) (right right' : RangeObject) (ambientPairs : RelationObject), LRA.Set.CartesianProductOf left (right ∩ right')ambientPairs = LRA.Set.CartesianProductOf left right ambientPairs ∩ LRA.Set.CartesianProductOf left right' ambientPairs
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (left : DomainObject) (right right' : RangeObject) (ambientPairs : RelationObject), inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left a ∧ inst_3.1 (inst_11.1 right right') b)) = inst_16.1 (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left a ∧ inst_3.1 right b))) (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left a ∧ inst_3.1 right' b)))
+  Ambient
+    (Left, Right, Pair, DomainObject, RangeObject, RelationObject, ∈)
+  Objects
+    left : DomainObject
+    right right' : RangeObject
+    ambientPairs : RelationObject
+  Prove
+    (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (left : DomainObject) (right right' : RangeObject) (ambientPairs : RelationObject), inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left a ∧ inst_3.1 (inst_11.1 right right') b)) = inst_16.1 (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left a ∧ inst_3.1 right b))) (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left a ∧ inst_3.1 right' b)))
 
 Logical form (Lean):
 
@@ -549,11 +628,18 @@ theorem CartesianProductOfIntersectionRight
 
 Predicate logic:
 
-  (∀ leftFirst leftSecond ∈ DomainObject ∀ rightFirst rightSecond ∈ RangeObject ∀ ambientPairs ∈ RelationObject), CartesianProductOf leftFirst rightFirst ambientPairs ∩ CartesianProductOf leftSecond rightSecond ambientPairs = CartesianProductOf (leftFirst ∩ leftSecond) (rightFirst ∩ rightSecond) ambientPairs
+  ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (leftFirst leftSecond : DomainObject) (rightFirst rightSecond : RangeObject) (ambientPairs : RelationObject), LRA.Set.CartesianProductOf leftFirst rightFirst ambientPairs ∩ LRA.Set.CartesianProductOf leftSecond rightSecond ambientPairs = LRA.Set.CartesianProductOf (leftFirst ∩ leftSecond)(rightFirst ∩ rightSecond) ambientPairs
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (leftFirst leftSecond : DomainObject) (rightFirst rightSecond : RangeObject) (ambientPairs : RelationObject), inst_16.1 (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 leftFirst a ∧ inst_3.1 rightFirst b))) (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 leftSecond a ∧ inst_3.1 rightSecond b))) = inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 (inst_6.1 leftFirst leftSecond) a ∧ inst_3.1 (inst_11.1 rightFirst rightSecond) b))
+  Ambient
+    (Left, Right, Pair, DomainObject, RangeObject, RelationObject, ∈)
+  Objects
+    leftFirst leftSecond : DomainObject
+    rightFirst rightSecond : RangeObject
+    ambientPairs : RelationObject
+  Prove
+    (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (leftFirst leftSecond : DomainObject) (rightFirst rightSecond : RangeObject) (ambientPairs : RelationObject), inst_16.1 (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 leftFirst a ∧ inst_3.1 rightFirst b))) (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 leftSecond a ∧ inst_3.1 rightSecond b))) = inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 (inst_6.1 leftFirst leftSecond) a ∧ inst_3.1 (inst_11.1 rightFirst rightSecond) b))
 
 Logical form (Lean):
 
@@ -602,11 +688,18 @@ theorem IntersectionOfCartesianProducts
 
 Predicate logic:
 
-  (∀ left left' ∈ DomainObject ∀ right ∈ RangeObject ∀ ambientPairs ∈ RelationObject), CartesianProductOf (left \ left') right ambientPairs = CartesianProductOf left right ambientPairs \ CartesianProductOf left' right ambientPairs
+  ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (left left' : DomainObject) (right : RangeObject) (ambientPairs : RelationObject), LRA.Set.CartesianProductOf (left \ left')right ambientPairs = LRA.Set.CartesianProductOf left right ambientPairs \ LRA.Set.CartesianProductOf left' right ambientPairs
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (left left' : DomainObject) (right : RangeObject) (ambientPairs : RelationObject), inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 (inst_7.1 left left') a ∧ inst_3.1 right b)) = inst_17.1 (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left a ∧ inst_3.1 right b))) (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left' a ∧ inst_3.1 right b)))
+  Ambient
+    (Left, Right, Pair, DomainObject, RangeObject, RelationObject, ∈)
+  Objects
+    left left' : DomainObject
+    right : RangeObject
+    ambientPairs : RelationObject
+  Prove
+    (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (left left' : DomainObject) (right : RangeObject) (ambientPairs : RelationObject), inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 (inst_7.1 left left') a ∧ inst_3.1 right b)) = inst_17.1 (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left a ∧ inst_3.1 right b))) (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left' a ∧ inst_3.1 right b)))
 
 Logical form (Lean):
 
@@ -651,11 +744,18 @@ theorem CartesianProductOfDifferenceLeft
 
 Predicate logic:
 
-  (∀ left ∈ DomainObject ∀ right right' ∈ RangeObject ∀ ambientPairs ∈ RelationObject), CartesianProductOf left (right \ right') ambientPairs = CartesianProductOf left right ambientPairs \ CartesianProductOf left right' ambientPairs
+  ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (left : DomainObject) (right right' : RangeObject) (ambientPairs : RelationObject), LRA.Set.CartesianProductOf left (right \ right')ambientPairs = LRA.Set.CartesianProductOf left right ambientPairs \ LRA.Set.CartesianProductOf left right' ambientPairs
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (left : DomainObject) (right right' : RangeObject) (ambientPairs : RelationObject), inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left a ∧ inst_3.1 (inst_12.1 right right') b)) = inst_17.1 (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left a ∧ inst_3.1 right b))) (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left a ∧ inst_3.1 right' b)))
+  Ambient
+    (Left, Right, Pair, DomainObject, RangeObject, RelationObject, ∈)
+  Objects
+    left : DomainObject
+    right right' : RangeObject
+    ambientPairs : RelationObject
+  Prove
+    (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (left : DomainObject) (right right' : RangeObject) (ambientPairs : RelationObject), inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left a ∧ inst_3.1 (inst_12.1 right right') b)) = inst_17.1 (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left a ∧ inst_3.1 right b))) (inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 left a ∧ inst_3.1 right' b)))
 
 Logical form (Lean):
 
@@ -700,11 +800,18 @@ theorem CartesianProductOfDifferenceRight
 
 Predicate logic:
 
-  (∀ leftFirst leftSecond ∈ DomainObject ∀ rightFirst rightSecond ∈ RangeObject ∀ ambientPairs ∈ RelationObject), (∀ a : Left, a ∈ leftFirst ↔ a ∈ leftSecond ∧ ∀ b : Right, b ∈ rightFirst ↔ b ∈ rightSecond) → CartesianProductOf leftFirst rightFirst ambientPairs = CartesianProductOf leftSecond rightSecond ambientPairs
+  ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (leftFirst leftSecond : DomainObject) (rightFirst rightSecond : RangeObject) (ambientPairs : RelationObject), ((∀ (a : Left), a ∈ leftFirst ↔ a ∈ leftSecond) ∧ (∀ (b : Right), b ∈ rightFirst ↔ b ∈ rightSecond)) → LRA.Set.CartesianProductOf leftFirst rightFirst ambientPairs = LRA.Set.CartesianProductOf leftSecond rightSecond ambientPairs
 
 Predicate logic (unfolded):
 
-  ∀ {Left Right Pair : Type u} {DomainObject RangeObject RelationObject : Type v} [inst : LRA.Set.HasPairing Left Right Pair] [inst_1 : LRA.Set.HasSeparation Pair RelationObject] [inst_2 : Membership Left DomainObject] [inst_3 : Membership Right RangeObject] [inst_4 : Membership Pair RelationObject], (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (leftFirst leftSecond : DomainObject) (rightFirst rightSecond : RangeObject) (ambientPairs : RelationObject), (∀ (a : Left), inst_2.1 leftFirst a ↔ inst_2.1 leftSecond a ∧ ∀ (b : Right), inst_3.1 rightFirst b ↔ inst_3.1 rightSecond b) → inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 leftFirst a ∧ inst_3.1 rightFirst b)) = inst_1.1 ambientPairs fun member => Exists fun a => Exists fun b => (member = inst.1 a b ∧ (inst_2.1 leftSecond a ∧ inst_3.1 rightSecond b))
+  Ambient
+    (Left, Right, Pair, DomainObject, RangeObject, RelationObject, ∈)
+  Objects
+    leftFirst leftSecond : DomainObject
+    rightFirst rightSecond : RangeObject
+    ambientPairs : RelationObject
+  Prove
+    (LRA.Set.SeparationLaws Pair RelationObject ∧ LRA.Set.PairingLaws Left Right Pair) → ∀ [inst_5 : Union DomainObject] [inst_6 : Inter DomainObject] [inst_7 : SDiff DomainObject] [inst_8 : EmptyCollection DomainObject] [inst_9 : HasSubset DomainObject] [inst_10 : Union RangeObject] [inst_11 : Inter RangeObject] [inst_12 : SDiff RangeObject] [inst_13 : EmptyCollection RangeObject] [inst_14 : HasSubset RangeObject] [inst_15 : Union RelationObject] [inst_16 : Inter RelationObject] [inst_17 : SDiff RelationObject] [inst_18 : EmptyCollection RelationObject] [inst_19 : HasSubset RelationObject], (LRA.Set.MembershipLaws Left DomainObject ∧ (LRA.Set.MembershipLaws Right RangeObject ∧ LRA.Set.MembershipLaws Pair RelationObject)) → ∀ (leftFirst leftSecond : DomainObject) (rightFirst rightSecond : RangeObject) (ambientPairs : RelationObject), ((∀ (a : Left), a ∈ leftFirst ↔ a ∈ leftSecond) ∧ (∀ (b : Right), b ∈ rightFirst ↔ b ∈ rightSecond)) → LRA.Set.CartesianProductOf leftFirst rightFirst ambientPairs = LRA.Set.CartesianProductOf leftSecond rightSecond ambientPairs
 
 Logical form (Lean):
 

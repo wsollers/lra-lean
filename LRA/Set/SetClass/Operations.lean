@@ -17,7 +17,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} (a : α), False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    False
 
 Logical form (Lean):
 
@@ -55,7 +60,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} (a : α), True
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    True
 
 Logical form (Lean):
 
@@ -93,7 +103,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} (left right : α → Prop) (a : α), Or (left a) (right a)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (left a) (right a)
 
 Logical form (Lean):
 
@@ -133,7 +148,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} (left right : α → Prop) (a : α), (left a ∧ right a)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (left a ∧ right a)
 
 Logical form (Lean):
 
@@ -173,7 +193,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} (left right : α → Prop) (a : α), (left a ∧ right a → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (left a ∧ (right a → False))
 
 Logical form (Lean):
 
@@ -213,7 +238,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} (setClass : α → Prop) (a : α), setClass a → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    setClass a → False
 
 Logical form (Lean):
 
@@ -253,7 +283,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {α : Type u} (left right : α → Prop) (element : α), left element → right element
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    left element → right element
 
 Logical form (Lean):
 

@@ -9,16 +9,16 @@ namespace LRA.ModelTheoryTheory.BooleanAlgebras
 Predicate logic:
 
   def BuildBooleanAlgebraModel
-    (signature : BooleanAlgebraConceptSignature) :
-    LRA.ModelTheory.FirstOrder.Model BooleanAlgebraFirstOrderSignature where
-  Domain
+      (signature : BooleanAlgebraConceptSignature) :
+      LRA.ModelTheory.FirstOrder.Model BooleanAlgebraFirstOrderSignature where
+    Domain
 
 Predicate logic (unfolded):
 
   def BuildBooleanAlgebraModel
-    (signature : BooleanAlgebraConceptSignature) :
-    LRA.ModelTheory.FirstOrder.Model BooleanAlgebraFirstOrderSignature where
-  Domain (source fallback; no compiled unfold data available)
+      (signature : BooleanAlgebraConceptSignature) :
+      LRA.ModelTheory.FirstOrder.Model BooleanAlgebraFirstOrderSignature where
+    Domain (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

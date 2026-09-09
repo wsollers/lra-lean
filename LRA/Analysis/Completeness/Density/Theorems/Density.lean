@@ -12,11 +12,17 @@ namespace LRA.Analysis.Completeness
 
 Predicate logic:
 
-  (IsOrderDenseSubset D) → IsOrderDenseSubset D'
+  ∀ {S : Type u_1} [inst : Preorder S] {D D' : Set S}, (Set.instLE.le D D' ∧ LRA.Analysis.Completeness.IsOrderDenseSubset D) → LRA.Analysis.Completeness.IsOrderDenseSubset D'
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : Preorder S] {D D' : S → Prop}, (Set.instLE.1 D D' ∧ ∀ (x y : S), inst.toLT.1 x y → Exists fun d => (Set.instMembership.1 D d ∧ ((fun x1 x2 => inst.toLT.1 x1 x2) x d ∧ (fun x1 x2 => inst.toLT.1 x1 x2) d y))) → ∀ (x y : S), inst.toLT.1 x y → Exists fun d => (Set.instMembership.1 D' d ∧ ((fun x1 x2 => inst.toLT.1 x1 x2) x d ∧ (fun x1 x2 => inst.toLT.1 x1 x2) d y))
+  Ambient
+    (S, ≤)
+  Objects
+    D D' : Set S
+    subsetHypothesis : D ⊆ D'
+  Prove
+    (({ le := fun s₁ s₂ => ∀ ⦃a : S⦄, a ∈ s₁ → a ∈ s₂}.le D D') ∧ (∀ (x y : S), inst.2.lt x y → Exists fun d => (d ∈ D ∧ ((fun x1 x2 => inst.2.lt x1 x2) x d ∧ (fun x1 x2 => inst.2.lt x1 x2) d y)))) → ∀ (x y : S), inst.2.lt x y → Exists fun d => (d ∈ D' ∧ ((fun x1 x2 => inst.2.lt x1 x2) x d ∧ (fun x1 x2 => inst.2.lt x1 x2) d y))
 
 Logical form (Lean):
 
@@ -56,11 +62,17 @@ theorem IsOrderDenseSubsetMonotone {S : Type*} [Preorder S] {D D' : Set S}
 
 Predicate logic:
 
-  (IsOrderDenseSubset D) → IsOrderDenseSubset (D ∪ E)
+  ∀ {S : Type u_1} [inst : Preorder S] {D : Set S} (E : Set S), LRA.Analysis.Completeness.IsOrderDenseSubset D → LRA.Analysis.Completeness.IsOrderDenseSubset (D ∪ E)
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : Preorder S] {D : S → Prop} (E : S → Prop), (∀ (x y : S), inst.toLT.1 x y → Exists fun d => (Set.instMembership.1 D d ∧ ((fun x1 x2 => inst.toLT.1 x1 x2) x d ∧ (fun x1 x2 => inst.toLT.1 x1 x2) d y))) → ∀ (x y : S), inst.toLT.1 x y → Exists fun d => (Set.instMembership.1 (Set.instUnion.1 D E) d ∧ ((fun x1 x2 => inst.toLT.1 x1 x2) x d ∧ (fun x1 x2 => inst.toLT.1 x1 x2) d y))
+  Ambient
+    (S, ≤)
+  Objects
+    D : Set S
+    E : Set S
+  Prove
+    (∀ (x y : S), inst.2.lt x y → Exists fun d => (d ∈ D ∧ ((fun x1 x2 => inst.2.lt x1 x2) x d ∧ (fun x1 x2 => inst.2.lt x1 x2) d y))) → ∀ (x y : S), inst.2.lt x y → Exists fun d => (d ∈ D ∪ E ∧ ((fun x1 x2 => inst.2.lt x1 x2) x d ∧ (fun x1 x2 => inst.2.lt x1 x2) d y))
 
 Logical form (Lean):
 
@@ -98,11 +110,16 @@ theorem IsOrderDenseSubsetUnion {S : Type*} [Preorder S] {D : Set S} (E : Set S)
 
 Predicate logic:
 
-  IsOrderDenseSubset Set.univ ∈ Set S ↔ LRA.Order.DenseOrderLaw S
+  ∀ {S : Type u_1} [inst : Preorder S], LRA.Analysis.Completeness.IsOrderDenseSubset Set.univ ↔ LRA.Order.DenseOrderLaw S
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : Preorder S], ∀ (x y : S), inst.toLT.1 x y → Exists fun d => (Set.instMembership.1 (fun _a => True) d ∧ ((fun x1 x2 => inst.toLT.1 x1 x2) x d ∧ (fun x1 x2 => inst.toLT.1 x1 x2) d y)) ↔ LRA.Order.DenseOrderLaw S
+  Ambient
+    (S, ≤)
+  Objects
+    (none)
+  Prove
+    LRA.Analysis.Completeness.IsOrderDenseSubset Set.univ ↔ LRA.Order.DenseOrderLaw S
 
 Logical form (Lean):
 
@@ -138,11 +155,16 @@ theorem IsOrderDenseSubsetUnivIffDenseOrderLaw {S : Type*} [Preorder S] :
 
 Predicate logic:
 
-  (a < b) → ∃ q ∈ ℚ, a < q ∈ ℝ ∧ q ∈ ℝ < b
+  ∀ {a b : Real}, Real.instLT.lt a b → Exists fun q => (Real.instLT.lt a q.cast ∧ Real.instLT.lt q.cast b)
 
 Predicate logic (unfolded):
 
-  ∀ {a b : Real}, Real.instLT.1 a b → Exists fun q => (Real.instLT.1 a (Real.instRatCast.1 q) ∧ Real.instLT.1 (Real.instRatCast.1 q) b)
+  Ambient
+    (ℝ)
+  Objects
+    a b : ℝ
+  Prove
+    Real.instLT.lt a b → Exists fun q => (Real.instLT.lt a (Real.instRatCast.1 q) ∧ Real.instLT.lt (Real.instRatCast.1 q) b)
 
 Logical form (Lean):
 
@@ -180,11 +202,16 @@ theorem DensityOfRationalsInReals {a b : ℝ}
 
 Predicate logic:
 
-  (a < b) → ∃ s ∈ ℝ, ¬ IsRational s ∧ a < s ∧ s < b
+  ∀ {a b : Real}, Real.instLT.lt a b → Exists fun s => (¬ LRA.Analysis.Completeness.IsRational s ∧ (Real.instLT.lt a s ∧ Real.instLT.lt s b))
 
 Predicate logic (unfolded):
 
-  ∀ {a b : Real}, Real.instLT.1 a b → Exists fun s => (Set.instMembership.1 (fun x => Exists fun y => Real.instRatCast.ratCast y = x)s → False ∧ (Real.instLT.1 a s ∧ Real.instLT.1 s b))
+  Ambient
+    (ℝ)
+  Objects
+    a b : ℝ
+  Prove
+    Real.instLT.lt a b → Exists fun s => ((s ∈ fun x => Exists fun y => Real.instRatCast.ratCast y = x → False) ∧ (Real.instLT.lt a s ∧ Real.instLT.lt s b))
 
 Logical form (Lean):
 
@@ -222,11 +249,16 @@ theorem DensityOfIrrationalsInReals {a b : ℝ}
 
 Predicate logic:
 
-  (r < s) → ∃ x ∈ ℝ, ¬ IsRational x ∧ r ∈ ℝ < x ∧ x < s ∈ ℝ
+  ∀ {r s : Rat}, Rat.instLT.lt r s → Exists fun x => (¬ LRA.Analysis.Completeness.IsRational x ∧ (Real.instLT.lt r.cast x ∧ Real.instLT.lt x s.cast))
 
 Predicate logic (unfolded):
 
-  ∀ {r s : Rat}, Rat.instLT.1 r s → Exists fun x => (Set.instMembership.1 (fun x => Exists fun y => Real.instRatCast.ratCast y = x)x → False ∧ (Real.instLT.1 (Real.instRatCast.1 r) x ∧ Real.instLT.1 x (Real.instRatCast.1 s)))
+  Ambient
+    (ℚ)
+  Objects
+    r s : ℚ
+  Prove
+    Rat.instLT.lt r s → Exists fun x => ((x ∈ fun x => Exists fun y => Real.instRatCast.ratCast y = x → False) ∧ (Real.instLT.lt (Real.instRatCast.1 r) x ∧ Real.instLT.lt x (Real.instRatCast.1 s)))
 
 Logical form (Lean):
 
@@ -264,11 +296,18 @@ theorem IrrationalBetweenAnyTwoRationals {r s : ℚ}
 
 Predicate logic:
 
-  (x < y) → ∃ q ∈ ℚ, x < q ∈ ℝ ∧ q ∈ ℝ < y
+  ∀ {x y : Real}, (¬ LRA.Analysis.Completeness.IsRational x ∧ (¬ LRA.Analysis.Completeness.IsRational y ∧ Real.instLT.lt x y)) → Exists fun q => (Real.instLT.lt x q.cast ∧ Real.instLT.lt q.cast y)
 
 Predicate logic (unfolded):
 
-  ∀ {x y : Real}, (Set.instMembership.1 (fun x => Exists fun y => Real.instRatCast.ratCast y = x)x → False ∧ (Set.instMembership.1 (fun x => Exists fun y => Real.instRatCast.ratCast y = x)y → False ∧ Real.instLT.1 x y)) → Exists fun q => (Real.instLT.1 x (Real.instRatCast.1 q) ∧ Real.instLT.1 (Real.instRatCast.1 q) y)
+  Ambient
+    (ℝ)
+  Objects
+    x y : ℝ
+    leftIrrationalHypothesis : ¬ IsRational x
+    rightIrrationalHypothesis : ¬ IsRational y
+  Prove
+    ((x ∈ fun x => Exists fun y => Real.instRatCast.ratCast y = x → False) ∧ ((y ∈ fun x => Exists fun y => Real.instRatCast.ratCast y = x → False) ∧ Real.instLT.lt x y)) → Exists fun q => (Real.instLT.lt x (Real.instRatCast.1 q) ∧ Real.instLT.lt (Real.instRatCast.1 q) y)
 
 Logical form (Lean):
 
@@ -310,11 +349,17 @@ theorem RationalBetweenAnyTwoIrrationals {x y : ℝ}
 
 Predicate logic:
 
-  ∃ η ∈ ℝ, ¬ IsRational η ∧ 0 < η ∧ η < ε
+  ∀ {ε : Real}, GT.gt ε 0 → Exists fun η => (¬ LRA.Analysis.Completeness.IsRational η ∧ (Real.instLT.lt 0 η ∧ Real.instLT.lt η ε))
 
 Predicate logic (unfolded):
 
-  ∀ {ε : Real}, Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun η => (Set.instMembership.1 (fun x => Exists fun y => Real.instRatCast.ratCast y = x)η → False ∧ (Real.instLT.1 Zero.toOfNat0.1 η ∧ Real.instLT.1 η ε))
+  Ambient
+    (ℝ)
+  Objects
+    ε : ℝ
+    positiveToleranceHypothesis : ε > 0
+  Prove
+    Real.instLT.lt 0 ε → Exists fun η => ((η ∈ fun x => Exists fun y => Real.instRatCast.ratCast y = x → False) ∧ (Real.instLT.lt 0 η ∧ Real.instLT.lt η ε))
 
 Logical form (Lean):
 
@@ -352,11 +397,16 @@ theorem SmallIrrationalPositiveNumber {ε : ℝ}
 
 Predicate logic:
 
-  (a < b) → ∃ c ∈ ℝ, a < c ∧ c < b
+  ∀ {a b : Real}, Real.instLT.lt a b → Exists fun c => (Real.instLT.lt a c ∧ Real.instLT.lt c b)
 
 Predicate logic (unfolded):
 
-  ∀ {a b : Real}, Real.instLT.1 a b → Exists fun c => (Real.instLT.1 a c ∧ Real.instLT.1 c b)
+  Ambient
+    (ℝ)
+  Objects
+    a b : ℝ
+  Prove
+    Real.instLT.lt a b → Exists fun c => (Real.instLT.lt a c ∧ Real.instLT.lt c b)
 
 Logical form (Lean):
 
@@ -394,11 +444,16 @@ theorem NoAdjacentRealNumbers {a b : ℝ}
 
 Predicate logic:
 
-  ¬ ∃ m ∈ ℝ, a < m ∧ ∀ x : ℝ, a < x → m ≤ x
+  ∀ (a : Real), ¬ Exists fun m => (Real.instLT.lt a m ∧ (∀ (x : Real), Real.instLT.lt a x → Real.instLE.le m x))
 
 Predicate logic (unfolded):
 
-  ∀ (a : Real), (Exists fun m => (Real.instLT.1 a m ∧ ∀ (x : Real), Real.instLT.1 a x → Real.instLE.1 m x)) → False
+  Ambient
+    (ℝ)
+  Objects
+    a : ℝ
+  Prove
+    (Exists fun m => (Real.instLT.lt a m ∧ (∀ (x : Real), Real.instLT.lt a x → Real.instLE.le m x))) → False
 
 Logical form (Lean):
 
@@ -434,11 +489,16 @@ theorem NoImmediateSuccessorsInReals (a : ℝ) :
 
 Predicate logic:
 
-  ¬ ∃ m ∈ ℝ, m < a ∧ ∀ x : ℝ, x < a → x ≤ m
+  ∀ (a : Real), ¬ Exists fun m => (Real.instLT.lt m a ∧ (∀ (x : Real), Real.instLT.lt x a → Real.instLE.le x m))
 
 Predicate logic (unfolded):
 
-  ∀ (a : Real), (Exists fun m => (Real.instLT.1 m a ∧ ∀ (x : Real), Real.instLT.1 x a → Real.instLE.1 x m)) → False
+  Ambient
+    (ℝ)
+  Objects
+    a : ℝ
+  Prove
+    (Exists fun m => (Real.instLT.lt m a ∧ (∀ (x : Real), Real.instLT.lt x a → Real.instLE.le x m))) → False
 
 Logical form (Lean):
 
@@ -474,11 +534,16 @@ theorem NoImmediatePredecessorsInReals (a : ℝ) :
 
 Predicate logic:
 
-  (a < b) → ∃ q ∈ ℚ, a < q ∈ ℝ ∧ q ∈ ℝ < b ∧ ∃ s ∈ ℝ, ¬ IsRational s ∧ a < s ∧ s < b
+  ∀ {a b : Real}, Real.instLT.lt a b → ((Exists fun q => (Real.instLT.lt a q.cast ∧ Real.instLT.lt q.cast b)) ∧ (Exists fun s => (¬ LRA.Analysis.Completeness.IsRational s ∧ (Real.instLT.lt a s ∧ Real.instLT.lt s b))))
 
 Predicate logic (unfolded):
 
-  ∀ {a b : Real}, Real.instLT.1 a b → (Exists fun q => (Real.instLT.1 a (Real.instRatCast.1 q) ∧ Real.instLT.1 (Real.instRatCast.1 q) b) ∧ Exists fun s => (Set.instMembership.1 (fun x => Exists fun y => Real.instRatCast.ratCast y = x)s → False ∧ (Real.instLT.1 a s ∧ Real.instLT.1 s b)))
+  Ambient
+    (ℝ)
+  Objects
+    a b : ℝ
+  Prove
+    Real.instLT.lt a b → ((Exists fun q => (Real.instLT.lt a (Real.instRatCast.1 q) ∧ Real.instLT.lt (Real.instRatCast.1 q) b)) ∧ (Exists fun s => ((s ∈ fun x => Exists fun y => Real.instRatCast.ratCast y = x → False) ∧ (Real.instLT.lt a s ∧ Real.instLT.lt s b))))
 
 Logical form (Lean):
 
@@ -518,11 +583,16 @@ theorem EveryOpenIntervalContainsRationalAndIrrational {a b : ℝ}
 
 Predicate logic:
 
-  (a < b) → {q : ℚ | a < q ∈ ℝ ∧ q ∈ ℝ < b}.Infinite ∧ {s : ℝ | ¬ IsRational s ∧ a < s ∧ s < b}.Infinite
+  ∀ {a b : Real}, Real.instLT.lt a b → ((setOf fun q => (Real.instLT.lt a q.cast ∧ Real.instLT.lt q.cast b)) ∧ .Infinite) (setOf fun s => (¬ LRA.Analysis.Completeness.IsRational s ∧ (Real.instLT.lt a s ∧ Real.instLT.lt s b))).Infinite
 
 Predicate logic (unfolded):
 
-  ∀ {a b : Real}, Real.instLT.1 a b → (Finite (Subtype fun x => Set.instMembership.1 (fun q => (Real.instLT.lt a q.cast ∧ Real.instLT.lt q.cast b)) x) → False ∧ Finite (Subtype fun x => Set.instMembership.1 (fun s => (¬ LRA.Analysis.Completeness.IsRational s ∧ (Real.instLT.lt a s ∧ Real.instLT.lt s b))) x) → False)
+  Ambient
+    (ℝ)
+  Objects
+    a b : ℝ
+  Prove
+    Real.instLT.lt a b → ((Finite (Subtype fun x => x) ∈ fun q => (Real.instLT.lt a q.cast ∧ Real.instLT.lt q.cast b) → False) ∧ (Finite (Subtype fun x => x) ∈ fun s => (¬ LRA.Analysis.Completeness.IsRational s ∧ (Real.instLT.lt a s ∧ Real.instLT.lt s b)) → False))
 
 Logical form (Lean):
 

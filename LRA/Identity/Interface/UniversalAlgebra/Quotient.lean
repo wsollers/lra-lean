@@ -21,7 +21,7 @@ Predicate logic (unfolded):
       {signature : AlgebraicSignature.{v, w}}
       (structure_ : AlgebraicStructure signature)
       (relation : structure_.Carrier → structure_.Carrier → Prop) : Type u :=
-    Quot relation (source fallback; no compiled unfold data available)
+    Quot relation
 
 Logical form (Lean):
 

@@ -15,14 +15,14 @@ open LRA.AlgebraicStructures.OrderedRing.Interface.Signature
 Predicate logic:
 
   structure OrderedRingSignature extends
-    LRA.AlgebraicStructures.OrderedRingConceptSignature where
-  StrictOrder : LRA.Relation.Endorelation carrier
+      LRA.AlgebraicStructures.OrderedRingConceptSignature where
+    StrictOrder : LRA.Relation.Endorelation carrier
 
 Predicate logic (unfolded):
 
   structure OrderedRingSignature extends
-    LRA.AlgebraicStructures.OrderedRingConceptSignature where
-  StrictOrder : LRA.Relation.Endorelation carrier (source fallback; no compiled unfold data available)
+      LRA.AlgebraicStructures.OrderedRingConceptSignature where
+    StrictOrder : LRA.Relation.Endorelation carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -63,18 +63,18 @@ namespace OrderedRingSignature
 Predicate logic:
 
   abbrev Subtraction
-    (signature : OrderedRingSignature) :
-    LRA.Operation.BinaryOperation signature.carrier :=
-  fun first second =>
-    signature.add first (signature.neg second)
+      (signature : OrderedRingSignature) :
+      LRA.Operation.BinaryOperation signature.carrier :=
+    fun first second =>
+      signature.add first (signature.neg second)
 
 Predicate logic (unfolded):
 
   abbrev Subtraction
-    (signature : OrderedRingSignature) :
-    LRA.Operation.BinaryOperation signature.carrier :=
-  fun first second =>
-    signature.add first (signature.neg second) (source fallback; no compiled unfold data available)
+      (signature : OrderedRingSignature) :
+      LRA.Operation.BinaryOperation signature.carrier :=
+    fun first second =>
+      signature.add first (signature.neg second) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -119,16 +119,16 @@ end OrderedRingSignature
 Predicate logic:
 
   def BuildOrderedRingModel
-    (signature : OrderedRingSignature) :
-    LRA.ModelTheory.FirstOrder.Model OrderedRingFirstOrderSignature where
-  Domain
+      (signature : OrderedRingSignature) :
+      LRA.ModelTheory.FirstOrder.Model OrderedRingFirstOrderSignature where
+    Domain
 
 Predicate logic (unfolded):
 
   def BuildOrderedRingModel
-    (signature : OrderedRingSignature) :
-    LRA.ModelTheory.FirstOrder.Model OrderedRingFirstOrderSignature where
-  Domain (source fallback; no compiled unfold data available)
+      (signature : OrderedRingSignature) :
+      LRA.ModelTheory.FirstOrder.Model OrderedRingFirstOrderSignature where
+    Domain (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -182,22 +182,22 @@ def BuildOrderedRingModel
 Predicate logic:
 
   def orderedRingFirstOrderModel (R : Type u)
-    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [LT R] [LE R] :
-    LRA.ModelTheory.FirstOrder.Model OrderedRingFirstOrderSignature :=
-  BuildOrderedRingModel
-    { carrier := R, zero := 0, one := 1, add := (· + ·),
-      neg := (- ·), multiply := (· * ·), le := (· ≤ ·),
-      StrictOrder := (· < ·) }
+      [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [LT R] [LE R] :
+      LRA.ModelTheory.FirstOrder.Model OrderedRingFirstOrderSignature :=
+    BuildOrderedRingModel
+      { carrier := R, zero := 0, one := 1, add := (· + ·),
+        neg := (- ·), multiply := (· * ·), le := (· ≤ ·),
+        StrictOrder := (· < ·) }
 
 Predicate logic (unfolded):
 
   def orderedRingFirstOrderModel (R : Type u)
-    [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [LT R] [LE R] :
-    LRA.ModelTheory.FirstOrder.Model OrderedRingFirstOrderSignature :=
-  BuildOrderedRingModel
-    { carrier := R, zero := 0, one := 1, add := (· + ·),
-      neg := (- ·), multiply := (· * ·), le := (· ≤ ·),
-      StrictOrder := (· < ·) } (source fallback; no compiled unfold data available)
+      [Add R] [Mul R] [Neg R] [OfNat R 0] [OfNat R 1] [LT R] [LE R] :
+      LRA.ModelTheory.FirstOrder.Model OrderedRingFirstOrderSignature :=
+    BuildOrderedRingModel
+      { carrier := R, zero := 0, one := 1, add := (· + ·),
+        neg := (- ·), multiply := (· * ·), le := (· ≤ ·),
+        StrictOrder := (· < ·) } (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

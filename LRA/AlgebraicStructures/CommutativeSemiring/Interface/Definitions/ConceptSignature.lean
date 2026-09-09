@@ -9,12 +9,12 @@ namespace LRA.AlgebraicStructures
 Predicate logic:
 
   abbrev CommutativeSemiringConceptSignature :=
-  SemiringConceptSignature
+    SemiringConceptSignature
 
 Predicate logic (unfolded):
 
   abbrev CommutativeSemiringConceptSignature :=
-  SemiringConceptSignature (source fallback; no compiled unfold data available)
+    SemiringConceptSignature (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

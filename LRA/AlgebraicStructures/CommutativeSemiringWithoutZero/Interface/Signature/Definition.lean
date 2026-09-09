@@ -8,14 +8,14 @@ namespace LRA.AlgebraicStructures.CommutativeSemiringWithoutZero.Interface.Signa
 Predicate logic:
 
   inductive CommutativeSemiringWithoutZeroFunctionSymbol where
-  | add
-  | mul
+    | add
+    | mul
 
 Predicate logic (unfolded):
 
   inductive CommutativeSemiringWithoutZeroFunctionSymbol where
-  | add
-  | mul (source fallback; no compiled unfold data available)
+    | add
+    | mul (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -92,12 +92,12 @@ def CommutativeSemiringWithoutZeroRelationSymbol : Type := Empty
 Predicate logic:
 
   inductive CommutativeSemiringWithoutZeroConstantSymbol where
-  | one
+    | one
 
 Predicate logic (unfolded):
 
   inductive CommutativeSemiringWithoutZeroConstantSymbol where
-  | one (source fallback; no compiled unfold data available)
+    | one (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -134,18 +134,18 @@ inductive CommutativeSemiringWithoutZeroConstantSymbol where
 Predicate logic:
 
   def CommutativeSemiringWithoutZeroFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
-  Symbol := CommutativeSemiringWithoutZeroFunctionSymbol
-  arity
-    | .add => 2
-    | .mul => 2
+    Symbol := CommutativeSemiringWithoutZeroFunctionSymbol
+    arity
+      | .add => 2
+      | .mul => 2
 
 Predicate logic (unfolded):
 
   def CommutativeSemiringWithoutZeroFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
-  Symbol := CommutativeSemiringWithoutZeroFunctionSymbol
-  arity
-    | .add => 2
-    | .mul => 2 (source fallback; no compiled unfold data available)
+    Symbol := CommutativeSemiringWithoutZeroFunctionSymbol
+    arity
+      | .add => 2
+      | .mul => 2 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -188,14 +188,14 @@ def CommutativeSemiringWithoutZeroFirstOrderFunctions : LRA.Logic.ArityIndexedSy
 Predicate logic:
 
   def CommutativeSemiringWithoutZeroFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
-  Symbol := CommutativeSemiringWithoutZeroRelationSymbol
-  arity := Empty.elim
+    Symbol := CommutativeSemiringWithoutZeroRelationSymbol
+    arity := Empty.elim
 
 Predicate logic (unfolded):
 
   def CommutativeSemiringWithoutZeroFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
-  Symbol := CommutativeSemiringWithoutZeroRelationSymbol
-  arity := Empty.elim (source fallback; no compiled unfold data available)
+    Symbol := CommutativeSemiringWithoutZeroRelationSymbol
+    arity := Empty.elim (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -234,16 +234,16 @@ def CommutativeSemiringWithoutZeroFirstOrderRelations : LRA.Logic.ArityIndexedSy
 Predicate logic:
 
   def CommutativeSemiringWithoutZeroFirstOrderSignature : LRA.Logic.Signature where
-  Functions := CommutativeSemiringWithoutZeroFirstOrderFunctions
-  Relations := CommutativeSemiringWithoutZeroFirstOrderRelations
-  Constants := CommutativeSemiringWithoutZeroConstantSymbol
+    Functions := CommutativeSemiringWithoutZeroFirstOrderFunctions
+    Relations := CommutativeSemiringWithoutZeroFirstOrderRelations
+    Constants := CommutativeSemiringWithoutZeroConstantSymbol
 
 Predicate logic (unfolded):
 
   def CommutativeSemiringWithoutZeroFirstOrderSignature : LRA.Logic.Signature where
-  Functions := CommutativeSemiringWithoutZeroFirstOrderFunctions
-  Relations := CommutativeSemiringWithoutZeroFirstOrderRelations
-  Constants := CommutativeSemiringWithoutZeroConstantSymbol (source fallback; no compiled unfold data available)
+    Functions := CommutativeSemiringWithoutZeroFirstOrderFunctions
+    Relations := CommutativeSemiringWithoutZeroFirstOrderRelations
+    Constants := CommutativeSemiringWithoutZeroConstantSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

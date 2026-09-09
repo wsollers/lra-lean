@@ -13,14 +13,14 @@ open LRA.Logic.FirstOrder
 Predicate logic:
 
   inductive MembershipRelationSymbol : Type where
-  | mem
-  deriving DecidableEq
+    | mem
+    deriving DecidableEq
 
 Predicate logic (unfolded):
 
   inductive MembershipRelationSymbol : Type where
-  | mem
-  deriving DecidableEq (source fallback; no compiled unfold data available)
+    | mem
+    deriving DecidableEq (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -59,14 +59,14 @@ inductive MembershipRelationSymbol : Type where
 Predicate logic:
 
   inductive MembershipConstantSymbol : Type where
-  | emptySet
-  deriving DecidableEq
+    | emptySet
+    deriving DecidableEq
 
 Predicate logic (unfolded):
 
   inductive MembershipConstantSymbol : Type where
-  | emptySet
-  deriving DecidableEq (source fallback; no compiled unfold data available)
+    | emptySet
+    deriving DecidableEq (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -105,14 +105,14 @@ inductive MembershipConstantSymbol : Type where
 Predicate logic:
 
   def MembershipFunctions : ArityIndexedSymbols where
-  Symbol := Empty
-  arity := Empty.elim
+    Symbol := Empty
+    arity := Empty.elim
 
 Predicate logic (unfolded):
 
   def MembershipFunctions : ArityIndexedSymbols where
-  Symbol := Empty
-  arity := Empty.elim (source fallback; no compiled unfold data available)
+    Symbol := Empty
+    arity := Empty.elim (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -151,14 +151,14 @@ def MembershipFunctions : ArityIndexedSymbols where
 Predicate logic:
 
   def MembershipRelations : ArityIndexedSymbols where
-  Symbol := MembershipRelationSymbol
-  arity := fun _ => 2
+    Symbol := MembershipRelationSymbol
+    arity := fun _ => 2
 
 Predicate logic (unfolded):
 
   def MembershipRelations : ArityIndexedSymbols where
-  Symbol := MembershipRelationSymbol
-  arity := fun _ => 2 (source fallback; no compiled unfold data available)
+    Symbol := MembershipRelationSymbol
+    arity := fun _ => 2 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -197,16 +197,16 @@ def MembershipRelations : ArityIndexedSymbols where
 Predicate logic:
 
   def MembershipSignature : Signature where
-  Functions := MembershipFunctions
-  Relations := MembershipRelations
-  Constants := MembershipConstantSymbol
+    Functions := MembershipFunctions
+    Relations := MembershipRelations
+    Constants := MembershipConstantSymbol
 
 Predicate logic (unfolded):
 
   def MembershipSignature : Signature where
-  Functions := MembershipFunctions
-  Relations := MembershipRelations
-  Constants := MembershipConstantSymbol (source fallback; no compiled unfold data available)
+    Functions := MembershipFunctions
+    Relations := MembershipRelations
+    Constants := MembershipConstantSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -246,11 +246,16 @@ def MembershipSignature : Signature where
 
 Predicate logic:
 
-  MembershipSignature.IsBinaryRelationSymbol .mem
+  LRA.Set.ModelTheory.MembershipSignature.IsBinaryRelationSymbol LRA.Set.ModelTheory.MembershipRelationSymbol.mem
 
 Predicate logic (unfolded):
 
-  LRA.Set.ModelTheory.MembershipSignature.Relations.2 LRA.Set.ModelTheory.MembershipRelationSymbol.mem = instOfNatNat 2.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.ModelTheory.MembershipSignature.Relations.2 LRA.Set.ModelTheory.MembershipRelationSymbol.mem = 2
 
 Logical form (Lean):
 
@@ -364,16 +369,16 @@ abbrev emptyT : Term MembershipSignature Nat := .const .emptySet
 Predicate logic:
 
   def binaryTerms
-    (left right : Term MembershipSignature Nat) :
-    Fin 2 -> Term MembershipSignature Nat :=
-  Fin.cases left (Fin.cases right Fin.elim0)
+      (left right : Term MembershipSignature Nat) :
+      Fin 2 -> Term MembershipSignature Nat :=
+    Fin.cases left (Fin.cases right Fin.elim0)
 
 Predicate logic (unfolded):
 
   def binaryTerms
-    (left right : Term MembershipSignature Nat) :
-    Fin 2 -> Term MembershipSignature Nat :=
-  Fin.cases left (Fin.cases right Fin.elim0) (source fallback; no compiled unfold data available)
+      (left right : Term MembershipSignature Nat) :
+      Fin 2 -> Term MembershipSignature Nat :=
+    Fin.cases left (Fin.cases right Fin.elim0) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -414,14 +419,14 @@ def binaryTerms
 Predicate logic:
 
   def memT (left right : Term MembershipSignature Nat) :
-    Formula MembershipSignature Nat :=
-  .relation .mem (binaryTerms left right)
+      Formula MembershipSignature Nat :=
+    .relation .mem (binaryTerms left right)
 
 Predicate logic (unfolded):
 
   def memT (left right : Term MembershipSignature Nat) :
-    Formula MembershipSignature Nat :=
-  .relation .mem (binaryTerms left right) (source fallback; no compiled unfold data available)
+      Formula MembershipSignature Nat :=
+    .relation .mem (binaryTerms left right) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -460,12 +465,12 @@ def memT (left right : Term MembershipSignature Nat) :
 Predicate logic:
 
   abbrev memF (x y : Nat) : Formula MembershipSignature Nat :=
-  memT (varT x) (varT y)
+    memT (varT x) (varT y)
 
 Predicate logic (unfolded):
 
   abbrev memF (x y : Nat) : Formula MembershipSignature Nat :=
-  memT (varT x) (varT y) (source fallback; no compiled unfold data available)
+    memT (varT x) (varT y) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -502,12 +507,12 @@ abbrev memF (x y : Nat) : Formula MembershipSignature Nat :=
 Predicate logic:
 
   abbrev eqF (x y : Nat) : Formula MembershipSignature Nat :=
-  .equal (varT x) (varT y)
+    .equal (varT x) (varT y)
 
 Predicate logic (unfolded):
 
   abbrev eqF (x y : Nat) : Formula MembershipSignature Nat :=
-  .equal (varT x) (varT y) (source fallback; no compiled unfold data available)
+    .equal (varT x) (varT y) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -544,14 +549,14 @@ abbrev eqF (x y : Nat) : Formula MembershipSignature Nat :=
 Predicate logic:
 
   def orF (φ ψ : Formula MembershipSignature Nat) :
-    Formula MembershipSignature Nat :=
-  .impl (.neg φ) ψ
+      Formula MembershipSignature Nat :=
+    .impl (.neg φ) ψ
 
 Predicate logic (unfolded):
 
   def orF (φ ψ : Formula MembershipSignature Nat) :
-    Formula MembershipSignature Nat :=
-  .impl (.neg φ) ψ (source fallback; no compiled unfold data available)
+      Formula MembershipSignature Nat :=
+    .impl (.neg φ) ψ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -590,14 +595,14 @@ def orF (φ ψ : Formula MembershipSignature Nat) :
 Predicate logic:
 
   def iffF (φ ψ : Formula MembershipSignature Nat) :
-    Formula MembershipSignature Nat :=
-  Formula.and (.impl φ ψ) (.impl ψ φ)
+      Formula MembershipSignature Nat :=
+    Formula.and (.impl φ ψ) (.impl ψ φ)
 
 Predicate logic (unfolded):
 
   def iffF (φ ψ : Formula MembershipSignature Nat) :
-    Formula MembershipSignature Nat :=
-  Formula.and (.impl φ ψ) (.impl ψ φ) (source fallback; no compiled unfold data available)
+      Formula MembershipSignature Nat :=
+    Formula.and (.impl φ ψ) (.impl ψ φ) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

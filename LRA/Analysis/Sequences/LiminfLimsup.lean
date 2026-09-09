@@ -15,12 +15,12 @@ namespace LRA.Analysis.Sequences
 Predicate logic:
 
   noncomputable def TailSupSeq (x : RealSequence) (h : BoundedAboveSeq x) : RealSequence :=
-  fun n => sSup (x '' {k : ℕ | n ≤ k})
+    fun n => sSup (x '' {k : ℕ | n ≤ k})
 
 Predicate logic (unfolded):
 
   noncomputable def TailSupSeq (x : RealSequence) (h : BoundedAboveSeq x) : RealSequence :=
-  fun n => sSup (x '' {k : ℕ | n ≤ k}) (source fallback; no compiled unfold data available)
+    fun n => sSup (x '' {k : ℕ | n ≤ k}) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -57,12 +57,12 @@ noncomputable def TailSupSeq (x : RealSequence) (h : BoundedAboveSeq x) : RealSe
 Predicate logic:
 
   noncomputable def TailInfSeq (x : RealSequence) (h : BoundedBelowSeq x) : RealSequence :=
-  fun n => sInf (x '' {k : ℕ | n ≤ k})
+    fun n => sInf (x '' {k : ℕ | n ≤ k})
 
 Predicate logic (unfolded):
 
   noncomputable def TailInfSeq (x : RealSequence) (h : BoundedBelowSeq x) : RealSequence :=
-  fun n => sInf (x '' {k : ℕ | n ≤ k}) (source fallback; no compiled unfold data available)
+    fun n => sInf (x '' {k : ℕ | n ≤ k}) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -102,7 +102,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.Analysis.Sequences.RealSequence) (L : Real), Exists fun h => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (Real.instSupSet.sSup (Set.image x (setOf fun k => instLENat.le n k))) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (LRA.Analysis.Sequences.TailSupSeq x h n) L))) ε
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun h => ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Real.instSupSet.1 fun x_1 => Exists fun a => (a ∈ setOf fun k => instLENat.le n k ∧ x a = x_1)) L)) ε
 
 Logical form (Lean):
 
@@ -142,7 +147,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.Analysis.Sequences.RealSequence) (L : Real), Exists fun h => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (Real.instInfSet.sInf (Set.image x (setOf fun k => instLENat.le n k))) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (LRA.Analysis.Sequences.TailInfSeq x h n) L))) ε
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun h => ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Real.instInfSet.1 fun x_1 => Exists fun a => (a ∈ setOf fun k => instLENat.le n k ∧ x a = x_1)) L)) ε
 
 Logical form (Lean):
 
@@ -178,11 +188,17 @@ def LiminfSeq (x : RealSequence) (L : ℝ) : Prop :=
 
 Predicate logic:
 
-  IsDecreasing (TailSupSeq x h)
+  ∀ {x : LRA.Analysis.Sequences.RealSequence} (h : LRA.Analysis.Sequences.BoundedAboveSeq x), LRA.Analysis.Sequences.IsDecreasing (LRA.Analysis.Sequences.TailSupSeq x h)
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (Exists fun M => ∀ (n : Nat), Real.instLE.1 (x n) M) → ∀ (n : Nat), Real.instLE.1 (Real.instSupSet.1 fun x_1 => Exists fun a => (Set.instMembership.mem (setOf fun k => instLENat.le (instHAdd.hAdd n 1) k) a ∧ x a = x_1)) (Real.instSupSet.1 fun x_1 => Exists fun a => (Set.instMembership.mem (setOf fun k => instLENat.le n k) a ∧ x a = x_1))
+  Ambient
+    (implicit ambient)
+  Objects
+    x : RealSequence
+    h : BoundedAboveSeq x
+  Prove
+    (Exists fun M => ∀ (n : Nat), Real.instLE.le (x n) M) → ∀ (n : Nat), Real.instLE.le (Real.instSupSet.1 fun x_1 => Exists fun a => (a ∈ setOf fun k => instLENat.le (instHAdd.hAdd n 1) k ∧ x a = x_1)) (Real.instSupSet.1 fun x_1 => Exists fun a => (a ∈ setOf fun k => instLENat.le n k ∧ x a = x_1))
 
 Logical form (Lean):
 
@@ -218,11 +234,17 @@ theorem TailSupremaAreDecreasing {x : RealSequence} (h : BoundedAboveSeq x) :
 
 Predicate logic:
 
-  IsIncreasing (TailInfSeq x h)
+  ∀ {x : LRA.Analysis.Sequences.RealSequence} (h : LRA.Analysis.Sequences.BoundedBelowSeq x), LRA.Analysis.Sequences.IsIncreasing (LRA.Analysis.Sequences.TailInfSeq x h)
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (Exists fun m => ∀ (n : Nat), Real.instLE.1 m (x n)) → ∀ (n : Nat), Real.instLE.1 (Real.instInfSet.1 fun x_1 => Exists fun a => (Set.instMembership.mem (setOf fun k => instLENat.le n k) a ∧ x a = x_1)) (Real.instInfSet.1 fun x_1 => Exists fun a => (Set.instMembership.mem (setOf fun k => instLENat.le (instHAdd.hAdd n 1) k) a ∧ x a = x_1))
+  Ambient
+    (implicit ambient)
+  Objects
+    x : RealSequence
+    h : BoundedBelowSeq x
+  Prove
+    (Exists fun m => ∀ (n : Nat), Real.instLE.le m (x n)) → ∀ (n : Nat), Real.instLE.le (Real.instInfSet.1 fun x_1 => Exists fun a => (a ∈ setOf fun k => instLENat.le n k ∧ x a = x_1)) (Real.instInfSet.1 fun x_1 => Exists fun a => (a ∈ setOf fun k => instLENat.le (instHAdd.hAdd n 1) k ∧ x a = x_1))
 
 Logical form (Lean):
 
@@ -258,11 +280,20 @@ theorem TailInfimaAreIncreasing {x : RealSequence} (h : BoundedBelowSeq x) :
 
 Predicate logic:
 
-  I ≤ S
+  ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.BoundedSeq x → ∀ {I S : Real}, (LRA.Analysis.Sequences.LiminfSeq x I ∧ LRA.Analysis.Sequences.LimsupSeq x S) → Real.instLE.le I S
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (Exists fun M => (Real.instLT.1 Zero.toOfNat0.1 M ∧ ∀ (n : Nat), Real.instLE.1 (SemilatticeSup.toMax.1 (x n) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (x n))) M)) → ∀ {I S : Real}, (Exists fun h => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (LRA.Analysis.Sequences.TailInfSeq x h n) I) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (LRA.Analysis.Sequences.TailInfSeq x h n) I))) ε ∧ Exists fun h => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (LRA.Analysis.Sequences.TailSupSeq x h n) S) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (LRA.Analysis.Sequences.TailSupSeq x h n) S))) ε) → Real.instLE.1 I S
+  Ambient
+    (ℝ)
+  Objects
+    x : RealSequence
+    hbdd : BoundedSeq x
+    I S : ℝ
+    hI : LiminfSeq x I
+    hS : LimsupSeq x S
+  Prove
+    (Exists fun M => (Real.instLT.lt 0 M ∧ (∀ (n : Nat), Real.instLE.le (abs (x n)) M))) → ∀ {I S : Real}, ((Exists fun h => ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Real.instInfSet.1 fun x_1 => Exists fun a => (a ∈ setOf fun k => instLENat.le n k ∧ x a = x_1)) I)) ε) ∧ (Exists fun h => ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Real.instSupSet.1 fun x_1 => Exists fun a => (a ∈ setOf fun k => instLENat.le n k ∧ x a = x_1)) S)) ε)) → Real.instLE.le I S
 
 Logical form (Lean):
 
@@ -298,11 +329,18 @@ theorem LiminfBelowLimsup {x : RealSequence} (hbdd : BoundedSeq x)
 
 Predicate logic:
 
-  ConvergesTo x L ↔ (LiminfSeq x L ∧ LimsupSeq x L)
+  ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.BoundedSeq x → ∀ {L : Real}, LRA.Analysis.Sequences.ConvergesTo x L ↔ (LRA.Analysis.Sequences.LiminfSeq x L ∧ LRA.Analysis.Sequences.LimsupSeq x L)
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (Exists fun M => (Real.instLT.1 Zero.toOfNat0.1 M ∧ ∀ (n : Nat), Real.instLE.1 (SemilatticeSup.toMax.1 (x n) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (x n))) M)) → ∀ {L : Real}, ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x n) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x n) L))) ε ↔ (Exists fun h => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (LRA.Analysis.Sequences.TailInfSeq x h n) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (LRA.Analysis.Sequences.TailInfSeq x h n) L))) ε ∧ Exists fun h => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (LRA.Analysis.Sequences.TailSupSeq x h n) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (LRA.Analysis.Sequences.TailSupSeq x h n) L))) ε)
+  Ambient
+    (ℝ)
+  Objects
+    x : RealSequence
+    hbdd : BoundedSeq x
+    L : ℝ
+  Prove
+    LRA.Analysis.Sequences.BoundedSeq x → ∀ {L : Real}, LRA.Analysis.Sequences.ConvergesTo x L ↔ (LRA.Analysis.Sequences.LiminfSeq x L ∧ LRA.Analysis.Sequences.LimsupSeq x L)
 
 Logical form (Lean):
 
@@ -340,11 +378,19 @@ theorem ConvergenceIffLiminfEqualsLimsup {x : RealSequence}
 
 Predicate logic:
 
-  IsSubsequentialLimit x S ∧ ∀ L, IsSubsequentialLimit x L → L ≤ S
+  ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.BoundedSeq x → ∀ {S : Real}, LRA.Analysis.Sequences.LimsupSeq x S → (LRA.Analysis.Sequences.IsSubsequentialLimit x S ∧ (∀ (L : Real), LRA.Analysis.Sequences.IsSubsequentialLimit x L → Real.instLE.le L S))
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (Exists fun M => (Real.instLT.1 Zero.toOfNat0.1 M ∧ ∀ (n : Nat), Real.instLE.1 (SemilatticeSup.toMax.1 (x n) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (x n))) M)) → ∀ {S : Real}, (Exists fun h => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (LRA.Analysis.Sequences.TailSupSeq x h n) S) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (LRA.Analysis.Sequences.TailSupSeq x h n) S))) ε) → (Exists fun σ => (∀ (k l : Nat), instLTNat.1 k l → instLTNat.1 (σ k) (σ l) ∧ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 ((fun k => x (σ k)) n) S) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub ((fun k => x (σ k)) n) S))) ε) ∧ ∀ (L : Real), (Exists fun σ => (∀ (k l : Nat), instLTNat.1 k l → instLTNat.1 (σ k) (σ l) ∧ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 ((fun k => x (σ k)) n) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub ((fun k => x (σ k)) n) L))) ε)) → Real.instLE.1 L S)
+  Ambient
+    (ℝ)
+  Objects
+    x : RealSequence
+    hbdd : BoundedSeq x
+    S : ℝ
+    hS : LimsupSeq x S
+  Prove
+    (Exists fun M => (Real.instLT.lt 0 M ∧ (∀ (n : Nat), Real.instLE.le (abs (x n)) M))) → ∀ {S : Real}, (Exists fun h => ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Real.instSupSet.1 fun x_1 => Exists fun a => (a ∈ setOf fun k => instLENat.le n k ∧ x a = x_1)) S)) ε) → ((Exists fun σ => ((∀ (k l : Nat), instLTNat.lt k l → instLTNat.lt (σ k) (σ l)) ∧ (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ((fun k => x (σ k)) n) S)) ε))) ∧ (∀ (L : Real), (Exists fun σ => ((∀ (k l : Nat), instLTNat.lt k l → instLTNat.lt (σ k) (σ l)) ∧ (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ((fun k => x (σ k)) n) L)) ε))) → Real.instLE.le L S))
 
 Logical form (Lean):
 
@@ -382,11 +428,19 @@ theorem LimsupLargestSubsequentialLimit {x : RealSequence}
 
 Predicate logic:
 
-  IsSubsequentialLimit x I ∧ ∀ L, IsSubsequentialLimit x L → I ≤ L
+  ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.BoundedSeq x → ∀ {I : Real}, LRA.Analysis.Sequences.LiminfSeq x I → (LRA.Analysis.Sequences.IsSubsequentialLimit x I ∧ (∀ (L : Real), LRA.Analysis.Sequences.IsSubsequentialLimit x L → Real.instLE.le I L))
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (Exists fun M => (Real.instLT.1 Zero.toOfNat0.1 M ∧ ∀ (n : Nat), Real.instLE.1 (SemilatticeSup.toMax.1 (x n) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (x n))) M)) → ∀ {I : Real}, (Exists fun h => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (LRA.Analysis.Sequences.TailInfSeq x h n) I) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (LRA.Analysis.Sequences.TailInfSeq x h n) I))) ε) → (Exists fun σ => (∀ (k l : Nat), instLTNat.1 k l → instLTNat.1 (σ k) (σ l) ∧ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 ((fun k => x (σ k)) n) I) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub ((fun k => x (σ k)) n) I))) ε) ∧ ∀ (L : Real), (Exists fun σ => (∀ (k l : Nat), instLTNat.1 k l → instLTNat.1 (σ k) (σ l) ∧ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 ((fun k => x (σ k)) n) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub ((fun k => x (σ k)) n) L))) ε)) → Real.instLE.1 I L)
+  Ambient
+    (ℝ)
+  Objects
+    x : RealSequence
+    hbdd : BoundedSeq x
+    I : ℝ
+    hI : LiminfSeq x I
+  Prove
+    (Exists fun M => (Real.instLT.lt 0 M ∧ (∀ (n : Nat), Real.instLE.le (abs (x n)) M))) → ∀ {I : Real}, (Exists fun h => ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Real.instInfSet.1 fun x_1 => Exists fun a => (a ∈ setOf fun k => instLENat.le n k ∧ x a = x_1)) I)) ε) → ((Exists fun σ => ((∀ (k l : Nat), instLTNat.lt k l → instLTNat.lt (σ k) (σ l)) ∧ (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ((fun k => x (σ k)) n) I)) ε))) ∧ (∀ (L : Real), (Exists fun σ => ((∀ (k l : Nat), instLTNat.lt k l → instLTNat.lt (σ k) (σ l)) ∧ (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ((fun k => x (σ k)) n) L)) ε))) → Real.instLE.le I L))
 
 Logical form (Lean):
 
@@ -424,11 +478,20 @@ theorem LiminfSmallestSubsequentialLimit {x : RealSequence}
 
 Predicate logic:
 
-  I < S ↔ ∃ L K ∈ ℝ, L ≠ K ∧ IsSubsequentialLimit x L ∧ IsSubsequentialLimit x K
+  ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.BoundedSeq x → ∀ {I S : Real}, (LRA.Analysis.Sequences.LiminfSeq x I ∧ LRA.Analysis.Sequences.LimsupSeq x S) → Real.instLT.lt I S ↔ Exists fun L => Exists fun K => (Ne L K ∧ (LRA.Analysis.Sequences.IsSubsequentialLimit x L ∧ LRA.Analysis.Sequences.IsSubsequentialLimit x K))
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (Exists fun M => (Real.instLT.1 Zero.toOfNat0.1 M ∧ ∀ (n : Nat), Real.instLE.1 (SemilatticeSup.toMax.1 (x n) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (x n))) M)) → ∀ {I S : Real}, (Exists fun h => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (LRA.Analysis.Sequences.TailInfSeq x h n) I) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (LRA.Analysis.Sequences.TailInfSeq x h n) I))) ε ∧ Exists fun h => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (LRA.Analysis.Sequences.TailSupSeq x h n) S) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (LRA.Analysis.Sequences.TailSupSeq x h n) S))) ε) → Real.instLT.1 I S ↔ Exists fun L => Exists fun K => (L = K → False ∧ (Exists fun σ => (∀ (k l : Nat), instLTNat.1 k l → instLTNat.1 (σ k) (σ l) ∧ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 ((fun k => x (σ k)) n) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub ((fun k => x (σ k)) n) L))) ε) ∧ Exists fun σ => (∀ (k l : Nat), instLTNat.1 k l → instLTNat.1 (σ k) (σ l) ∧ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 ((fun k => x (σ k)) n) K) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub ((fun k => x (σ k)) n) K))) ε)))
+  Ambient
+    (ℝ)
+  Objects
+    x : RealSequence
+    hbdd : BoundedSeq x
+    I S : ℝ
+    hI : LiminfSeq x I
+    hS : LimsupSeq x S
+  Prove
+    LRA.Analysis.Sequences.BoundedSeq x → ∀ {I S : Real}, (LRA.Analysis.Sequences.LiminfSeq x I ∧ LRA.Analysis.Sequences.LimsupSeq x S) → Real.instLT.lt I S ↔ Exists fun L => Exists fun K => (Ne L K ∧ (LRA.Analysis.Sequences.IsSubsequentialLimit x L ∧ LRA.Analysis.Sequences.IsSubsequentialLimit x K))
 
 Logical form (Lean):
 
@@ -466,11 +529,21 @@ theorem OscillationCriterionViaLiminfLimsup {x : RealSequence}
 
 Predicate logic:
 
-  (∃ N ∈ ℕ, ∀ n ≥ N, x n ≤ y n) → Sx ≤ Sy
+  ∀ {x y : LRA.Analysis.Sequences.RealSequence}, (LRA.Analysis.Sequences.BoundedSeq x ∧ (LRA.Analysis.Sequences.BoundedSeq y ∧ (Exists fun N => ∀ (n : Nat), GE.ge n N → Real.instLE.le (x n) (y n)))) → ∀ {Sx Sy : Real}, (LRA.Analysis.Sequences.LimsupSeq x Sx ∧ LRA.Analysis.Sequences.LimsupSeq y Sy) → Real.instLE.le Sx Sy
 
 Predicate logic (unfolded):
 
-  ∀ {x y : LRA.Analysis.Sequences.RealSequence}, (Exists fun M => (Real.instLT.1 Zero.toOfNat0.1 M ∧ ∀ (n : Nat), Real.instLE.1 (SemilatticeSup.toMax.1 (x n) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (x n))) M) ∧ (Exists fun M => (Real.instLT.1 Zero.toOfNat0.1 M ∧ ∀ (n : Nat), Real.instLE.1 (SemilatticeSup.toMax.1 (y n) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (y n))) M) ∧ Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLE.1 (x n) (y n))) → ∀ {Sx Sy : Real}, (Exists fun h => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (LRA.Analysis.Sequences.TailSupSeq x h n) Sx) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (LRA.Analysis.Sequences.TailSupSeq x h n) Sx))) ε ∧ Exists fun h => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (LRA.Analysis.Sequences.TailSupSeq y h n) Sy) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (LRA.Analysis.Sequences.TailSupSeq y h n) Sy))) ε) → Real.instLE.1 Sx Sy
+  Ambient
+    (ℝ)
+  Objects
+    x y : RealSequence
+    hx : BoundedSeq x
+    hy : BoundedSeq y
+    Sx Sy : ℝ
+    hSx : LimsupSeq x Sx
+    hSy : LimsupSeq y Sy
+  Prove
+    ((Exists fun M => (Real.instLT.lt 0 M ∧ (∀ (n : Nat), Real.instLE.le (abs (x n)) M))) ∧ ((Exists fun M => (Real.instLT.lt 0 M ∧ (∀ (n : Nat), Real.instLE.le (abs (y n)) M))) ∧ (Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLE.le (x n) (y n)))) → ∀ {Sx Sy : Real}, ((Exists fun h => ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Real.instSupSet.1 fun x_1 => Exists fun a => (a ∈ setOf fun k => instLENat.le n k ∧ x a = x_1)) Sx)) ε) ∧ (Exists fun h => ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Real.instSupSet.1 fun x => Exists fun a => (a ∈ setOf fun k => instLENat.le n k ∧ y a = x)) Sy)) ε)) → Real.instLE.le Sx Sy
 
 Logical form (Lean):
 
@@ -510,11 +583,21 @@ theorem LimsupComparisonUnderEventualOrder {x y : RealSequence}
 
 Predicate logic:
 
-  (∃ N ∈ ℕ, ∀ n ≥ N, x n ≤ y n) → Ix ≤ Iy
+  ∀ {x y : LRA.Analysis.Sequences.RealSequence}, (LRA.Analysis.Sequences.BoundedSeq x ∧ (LRA.Analysis.Sequences.BoundedSeq y ∧ (Exists fun N => ∀ (n : Nat), GE.ge n N → Real.instLE.le (x n) (y n)))) → ∀ {Ix Iy : Real}, (LRA.Analysis.Sequences.LiminfSeq x Ix ∧ LRA.Analysis.Sequences.LiminfSeq y Iy) → Real.instLE.le Ix Iy
 
 Predicate logic (unfolded):
 
-  ∀ {x y : LRA.Analysis.Sequences.RealSequence}, (Exists fun M => (Real.instLT.1 Zero.toOfNat0.1 M ∧ ∀ (n : Nat), Real.instLE.1 (SemilatticeSup.toMax.1 (x n) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (x n))) M) ∧ (Exists fun M => (Real.instLT.1 Zero.toOfNat0.1 M ∧ ∀ (n : Nat), Real.instLE.1 (SemilatticeSup.toMax.1 (y n) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (y n))) M) ∧ Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLE.1 (x n) (y n))) → ∀ {Ix Iy : Real}, (Exists fun h => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (LRA.Analysis.Sequences.TailInfSeq x h n) Ix) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (LRA.Analysis.Sequences.TailInfSeq x h n) Ix))) ε ∧ Exists fun h => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (LRA.Analysis.Sequences.TailInfSeq y h n) Iy) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (LRA.Analysis.Sequences.TailInfSeq y h n) Iy))) ε) → Real.instLE.1 Ix Iy
+  Ambient
+    (ℝ)
+  Objects
+    x y : RealSequence
+    hx : BoundedSeq x
+    hy : BoundedSeq y
+    Ix Iy : ℝ
+    hIx : LiminfSeq x Ix
+    hIy : LiminfSeq y Iy
+  Prove
+    ((Exists fun M => (Real.instLT.lt 0 M ∧ (∀ (n : Nat), Real.instLE.le (abs (x n)) M))) ∧ ((Exists fun M => (Real.instLT.lt 0 M ∧ (∀ (n : Nat), Real.instLE.le (abs (y n)) M))) ∧ (Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLE.le (x n) (y n)))) → ∀ {Ix Iy : Real}, ((Exists fun h => ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Real.instInfSet.1 fun x_1 => Exists fun a => (a ∈ setOf fun k => instLENat.le n k ∧ x a = x_1)) Ix)) ε) ∧ (Exists fun h => ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Real.instInfSet.1 fun x => Exists fun a => (a ∈ setOf fun k => instLENat.le n k ∧ y a = x)) Iy)) ε)) → Real.instLE.le Ix Iy
 
 Logical form (Lean):
 
@@ -554,11 +637,23 @@ theorem LiminfComparisonUnderEventualOrder {x y : RealSequence}
 
 Predicate logic:
 
-  (∃ N ∈ ℕ, ∀ n ≥ N, a n ≤ x n ∧ x n ≤ b n) → Sa ≤ Sx ∧ Sx ≤ Sb
+  ∀ {a x b : LRA.Analysis.Sequences.RealSequence}, (LRA.Analysis.Sequences.BoundedSeq a ∧ (LRA.Analysis.Sequences.BoundedSeq x ∧ (LRA.Analysis.Sequences.BoundedSeq b ∧ (Exists fun N => ∀ (n : Nat), GE.ge n N → (Real.instLE.le (a n) (x n) ∧ Real.instLE.le (x n) (b n)))))) → ∀ {Sa Sx Sb : Real}, (LRA.Analysis.Sequences.LimsupSeq a Sa ∧ (LRA.Analysis.Sequences.LimsupSeq x Sx ∧ LRA.Analysis.Sequences.LimsupSeq b Sb)) → (Real.instLE.le Sa Sx ∧ Real.instLE.le Sx Sb)
 
 Predicate logic (unfolded):
 
-  ∀ {a x b : LRA.Analysis.Sequences.RealSequence}, (Exists fun M => (Real.instLT.1 Zero.toOfNat0.1 M ∧ ∀ (n : Nat), Real.instLE.1 (SemilatticeSup.toMax.1 (a n) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (a n))) M) ∧ (Exists fun M => (Real.instLT.1 Zero.toOfNat0.1 M ∧ ∀ (n : Nat), Real.instLE.1 (SemilatticeSup.toMax.1 (x n) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (x n))) M) ∧ (Exists fun M => (Real.instLT.1 Zero.toOfNat0.1 M ∧ ∀ (n : Nat), Real.instLE.1 (SemilatticeSup.toMax.1 (b n) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (b n))) M) ∧ Exists fun N => ∀ (n : Nat), instLENat.1 N n → (Real.instLE.1 (a n) (x n) ∧ Real.instLE.1 (x n) (b n))))) → ∀ {Sa Sx Sb : Real}, (Exists fun h => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (LRA.Analysis.Sequences.TailSupSeq a h n) Sa) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (LRA.Analysis.Sequences.TailSupSeq a h n) Sa))) ε ∧ (Exists fun h => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (LRA.Analysis.Sequences.TailSupSeq x h n) Sx) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (LRA.Analysis.Sequences.TailSupSeq x h n) Sx))) ε ∧ Exists fun h => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (LRA.Analysis.Sequences.TailSupSeq b h n) Sb) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (LRA.Analysis.Sequences.TailSupSeq b h n) Sb))) ε)) → (Real.instLE.1 Sa Sx ∧ Real.instLE.1 Sx Sb)
+  Ambient
+    (ℝ)
+  Objects
+    a x b : RealSequence
+    ha : BoundedSeq a
+    hx : BoundedSeq x
+    hb : BoundedSeq b
+    Sa Sx Sb : ℝ
+    hSa : LimsupSeq a Sa
+    hSx : LimsupSeq x Sx
+    hSb : LimsupSeq b Sb
+  Prove
+    ((Exists fun M => (Real.instLT.lt 0 M ∧ (∀ (n : Nat), Real.instLE.le (abs (a n)) M))) ∧ ((Exists fun M => (Real.instLT.lt 0 M ∧ (∀ (n : Nat), Real.instLE.le (abs (x n)) M))) ∧ ((Exists fun M => (Real.instLT.lt 0 M ∧ (∀ (n : Nat), Real.instLE.le (abs (b n)) M))) ∧ (Exists fun N => ∀ (n : Nat), instLENat.le N n → (Real.instLE.le (a n) (x n) ∧ Real.instLE.le (x n) (b n)))))) → ∀ {Sa Sx Sb : Real}, ((Exists fun h => ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Real.instSupSet.1 fun x => Exists fun a_4 => (a_4 ∈ setOf fun k => instLENat.le n k ∧ a a_4 = x)) Sa)) ε) ∧ ((Exists fun h => ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Real.instSupSet.1 fun x_1 => Exists fun a => (a ∈ setOf fun k => instLENat.le n k ∧ x a = x_1)) Sx)) ε) ∧ (Exists fun h => ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Real.instSupSet.1 fun x => Exists fun a => (a ∈ setOf fun k => instLENat.le n k ∧ b a = x)) Sb)) ε))) → (Real.instLE.le Sa Sx ∧ Real.instLE.le Sx Sb)
 
 Logical form (Lean):
 
@@ -600,11 +695,23 @@ theorem LimsupSqueezeUnderEventualOrder {a x b : RealSequence}
 
 Predicate logic:
 
-  (∃ N ∈ ℕ, ∀ n ≥ N, a n ≤ x n ∧ x n ≤ b n) → Ia ≤ Ix ∧ Ix ≤ Ib
+  ∀ {a x b : LRA.Analysis.Sequences.RealSequence}, (LRA.Analysis.Sequences.BoundedSeq a ∧ (LRA.Analysis.Sequences.BoundedSeq x ∧ (LRA.Analysis.Sequences.BoundedSeq b ∧ (Exists fun N => ∀ (n : Nat), GE.ge n N → (Real.instLE.le (a n) (x n) ∧ Real.instLE.le (x n) (b n)))))) → ∀ {Ia Ix Ib : Real}, (LRA.Analysis.Sequences.LiminfSeq a Ia ∧ (LRA.Analysis.Sequences.LiminfSeq x Ix ∧ LRA.Analysis.Sequences.LiminfSeq b Ib)) → (Real.instLE.le Ia Ix ∧ Real.instLE.le Ix Ib)
 
 Predicate logic (unfolded):
 
-  ∀ {a x b : LRA.Analysis.Sequences.RealSequence}, (Exists fun M => (Real.instLT.1 Zero.toOfNat0.1 M ∧ ∀ (n : Nat), Real.instLE.1 (SemilatticeSup.toMax.1 (a n) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (a n))) M) ∧ (Exists fun M => (Real.instLT.1 Zero.toOfNat0.1 M ∧ ∀ (n : Nat), Real.instLE.1 (SemilatticeSup.toMax.1 (x n) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (x n))) M) ∧ (Exists fun M => (Real.instLT.1 Zero.toOfNat0.1 M ∧ ∀ (n : Nat), Real.instLE.1 (SemilatticeSup.toMax.1 (b n) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (b n))) M) ∧ Exists fun N => ∀ (n : Nat), instLENat.1 N n → (Real.instLE.1 (a n) (x n) ∧ Real.instLE.1 (x n) (b n))))) → ∀ {Ia Ix Ib : Real}, (Exists fun h => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (LRA.Analysis.Sequences.TailInfSeq a h n) Ia) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (LRA.Analysis.Sequences.TailInfSeq a h n) Ia))) ε ∧ (Exists fun h => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (LRA.Analysis.Sequences.TailInfSeq x h n) Ix) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (LRA.Analysis.Sequences.TailInfSeq x h n) Ix))) ε ∧ Exists fun h => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (LRA.Analysis.Sequences.TailInfSeq b h n) Ib) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (LRA.Analysis.Sequences.TailInfSeq b h n) Ib))) ε)) → (Real.instLE.1 Ia Ix ∧ Real.instLE.1 Ix Ib)
+  Ambient
+    (ℝ)
+  Objects
+    a x b : RealSequence
+    ha : BoundedSeq a
+    hx : BoundedSeq x
+    hb : BoundedSeq b
+    Ia Ix Ib : ℝ
+    hIa : LiminfSeq a Ia
+    hIx : LiminfSeq x Ix
+    hIb : LiminfSeq b Ib
+  Prove
+    ((Exists fun M => (Real.instLT.lt 0 M ∧ (∀ (n : Nat), Real.instLE.le (abs (a n)) M))) ∧ ((Exists fun M => (Real.instLT.lt 0 M ∧ (∀ (n : Nat), Real.instLE.le (abs (x n)) M))) ∧ ((Exists fun M => (Real.instLT.lt 0 M ∧ (∀ (n : Nat), Real.instLE.le (abs (b n)) M))) ∧ (Exists fun N => ∀ (n : Nat), instLENat.le N n → (Real.instLE.le (a n) (x n) ∧ Real.instLE.le (x n) (b n)))))) → ∀ {Ia Ix Ib : Real}, ((Exists fun h => ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Real.instInfSet.1 fun x => Exists fun a_4 => (a_4 ∈ setOf fun k => instLENat.le n k ∧ a a_4 = x)) Ia)) ε) ∧ ((Exists fun h => ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Real.instInfSet.1 fun x_1 => Exists fun a => (a ∈ setOf fun k => instLENat.le n k ∧ x a = x_1)) Ix)) ε) ∧ (Exists fun h => ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Real.instInfSet.1 fun x => Exists fun a => (a ∈ setOf fun k => instLENat.le n k ∧ b a = x)) Ib)) ε))) → (Real.instLE.le Ia Ix ∧ Real.instLE.le Ix Ib)
 
 Logical form (Lean):
 
@@ -646,11 +753,17 @@ theorem LiminfSqueezeUnderEventualOrder {a x b : RealSequence}
 
 Predicate logic:
 
-  LimsupSeq (fun n => -x n) L ↔ LiminfSeq x (-L)
+  ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real}, LRA.Analysis.Sequences.LimsupSeq (fun n => Real.instNeg.neg (x n)) L ↔ LRA.Analysis.Sequences.LiminfSeq x (Real.instNeg.neg L)
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real}, Exists fun h => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (LRA.Analysis.Sequences.TailSupSeq (fun n => Real.instNeg.neg (x n)) h n) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (LRA.Analysis.Sequences.TailSupSeq (fun n => Real.instNeg.neg (x n)) h n) L))) ε ↔ Exists fun h => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (LRA.Analysis.Sequences.TailInfSeq x h n) (Real.instNeg.neg L)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (LRA.Analysis.Sequences.TailInfSeq x h n) (Real.instNeg.neg L)))) ε
+  Ambient
+    (ℝ)
+  Objects
+    x : RealSequence
+    L : ℝ
+  Prove
+    LRA.Analysis.Sequences.LimsupSeq (fun n => Real.instNeg.neg (x n)) L ↔ LRA.Analysis.Sequences.LiminfSeq x (Real.instNeg.neg L)
 
 Logical form (Lean):
 
@@ -686,11 +799,17 @@ theorem LimsupNegEqNegLiminf {x : RealSequence} {L : ℝ} :
 
 Predicate logic:
 
-  LiminfSeq (fun n => -x n) L ↔ LimsupSeq x (-L)
+  ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real}, LRA.Analysis.Sequences.LiminfSeq (fun n => Real.instNeg.neg (x n)) L ↔ LRA.Analysis.Sequences.LimsupSeq x (Real.instNeg.neg L)
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real}, Exists fun h => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (LRA.Analysis.Sequences.TailInfSeq (fun n => Real.instNeg.neg (x n)) h n) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (LRA.Analysis.Sequences.TailInfSeq (fun n => Real.instNeg.neg (x n)) h n) L))) ε ↔ Exists fun h => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (LRA.Analysis.Sequences.TailSupSeq x h n) (Real.instNeg.neg L)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (LRA.Analysis.Sequences.TailSupSeq x h n) (Real.instNeg.neg L)))) ε
+  Ambient
+    (ℝ)
+  Objects
+    x : RealSequence
+    L : ℝ
+  Prove
+    LRA.Analysis.Sequences.LiminfSeq (fun n => Real.instNeg.neg (x n)) L ↔ LRA.Analysis.Sequences.LimsupSeq x (Real.instNeg.neg L)
 
 Logical form (Lean):
 

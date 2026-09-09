@@ -19,7 +19,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.Analysis.Sequences.RealSequence) (n : Nat), Real.instLE.1 (x n) (x (instHAdd.1 n (instOfNatNat 1).1))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Real.instLE.le (x n) (x ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1))
 
 Logical form (Lean):
 
@@ -57,7 +62,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.Analysis.Sequences.RealSequence) (n : Nat), Real.instLE.1 (x (instHAdd.1 n (instOfNatNat 1).1)) (x n)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Real.instLE.le (x ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1)) (x n)
 
 Logical form (Lean):
 
@@ -95,7 +105,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.Analysis.Sequences.RealSequence) (n : Nat), Real.instLT.1 (x n) (x (instHAdd.1 n (instOfNatNat 1).1))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Real.instLT.lt (x n) (x ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1))
 
 Logical form (Lean):
 
@@ -133,7 +148,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.Analysis.Sequences.RealSequence) (n : Nat), Real.instLT.1 (x (instHAdd.1 n (instOfNatNat 1).1)) (x n)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Real.instLT.lt (x ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1)) (x n)
 
 Logical form (Lean):
 
@@ -171,7 +191,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.Analysis.Sequences.RealSequence), Or (∀ (n : Nat), Real.instLE.1 (x n) (x (instHAdd.1 n (instOfNatNat 1).1))) (∀ (n : Nat), Real.instLE.1 (x (instHAdd.1 n (instOfNatNat 1).1)) (x n))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (∀ (n : Nat), Real.instLE.le (x n) (x ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1))) (∀ (n : Nat), Real.instLE.le (x ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1)) (x n))
 
 Logical form (Lean):
 
@@ -209,7 +234,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.Analysis.Sequences.RealSequence), Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLE.1 (x n) (x (instHAdd.1 n (instOfNatNat 1).1))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLE.le (x n) (x ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1))
 
 Logical form (Lean):
 
@@ -249,7 +279,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.Analysis.Sequences.RealSequence), Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLE.1 (x (instHAdd.1 n (instOfNatNat 1).1)) (x n)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLE.le (x ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1)) (x n)
 
 Logical form (Lean):
 
@@ -289,7 +324,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.Analysis.Sequences.RealSequence), Or (Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLE.1 (x n) (x (instHAdd.1 n (instOfNatNat 1).1))) (Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLE.1 (x (instHAdd.1 n (instOfNatNat 1).1)) (x n))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLE.le (x n) (x ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1))) (Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLE.le (x ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1)) (x n))
 
 Logical form (Lean):
 
@@ -325,11 +365,17 @@ def IsEventuallyMonotone (x : RealSequence) : Prop :=
 
 Predicate logic:
 
-  (IsIncreasing x) → ∃ L, ConvergesTo x L ∧ IsSupremum L (Set.range x)
+  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (LRA.Analysis.Sequences.IsIncreasing x ∧ LRA.Analysis.Sequences.BoundedAboveSeq x) → Exists fun L => (LRA.Analysis.Sequences.ConvergesTo x L ∧ LRA.Analysis.Bounds.IsSupremum L (Set.range x))
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (∀ (n : Nat), Real.instLE.1 (x n) (x (instHAdd.1 n (instOfNatNat 1).1)) ∧ Exists fun M => ∀ (n : Nat), Real.instLE.1 (x n) M) → Exists fun L => (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x n) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x n) L))) ε ∧ (∀ (x_1 : Real), Set.instMembership.1 (fun x_2 => Exists fun y => x y = x_2)x_1 → Real.instPreorder.toLE.1 x_1 L ∧ ∀ (u : Real), (∀ (x_1 : Real), Set.instMembership.1 (fun x_2 => Exists fun y => x y = x_2)x_1 → Real.instPreorder.toLE.1 x_1 u) → Real.instPreorder.toLE.1 L u))
+  Ambient
+    (implicit ambient)
+  Objects
+    x : RealSequence
+    hbdd : BoundedAboveSeq x
+  Prove
+    ((∀ (n : Nat), Real.instLE.le (x n) (x ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1))) ∧ (Exists fun M => ∀ (n : Nat), Real.instLE.le (x n) M)) → Exists fun L => ((∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x n) L)) ε) ∧ ((∀ (x_1 : Real), x_1 ∈ fun x_2 => Exists fun y => x y = x_2 → Real.instPreorder.1.le x_1 L) ∧ (∀ (u : Real), (∀ (x_1 : Real), x_1 ∈ fun x_2 => Exists fun y => x y = x_2 → Real.instPreorder.1.le x_1 u) → Real.instPreorder.1.le L u)))
 
 Logical form (Lean):
 
@@ -367,11 +413,17 @@ theorem MonotoneConvergenceTheoremIncreasing {x : RealSequence}
 
 Predicate logic:
 
-  (IsDecreasing x) → ∃ L, ConvergesTo x L ∧ IsInfimum L (Set.range x)
+  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (LRA.Analysis.Sequences.IsDecreasing x ∧ LRA.Analysis.Sequences.BoundedBelowSeq x) → Exists fun L => (LRA.Analysis.Sequences.ConvergesTo x L ∧ LRA.Analysis.Bounds.IsInfimum L (Set.range x))
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (∀ (n : Nat), Real.instLE.1 (x (instHAdd.1 n (instOfNatNat 1).1)) (x n) ∧ Exists fun m => ∀ (n : Nat), Real.instLE.1 m (x n)) → Exists fun L => (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x n) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x n) L))) ε ∧ (∀ (x_1 : Real), Set.instMembership.1 (fun x_2 => Exists fun y => x y = x_2)x_1 → Real.instPreorder.toLE.1 L x_1 ∧ ∀ (l : Real), (∀ (x_1 : Real), Set.instMembership.1 (fun x_2 => Exists fun y => x y = x_2)x_1 → Real.instPreorder.toLE.1 l x_1) → Real.instPreorder.toLE.1 l L))
+  Ambient
+    (implicit ambient)
+  Objects
+    x : RealSequence
+    hbdd : BoundedBelowSeq x
+  Prove
+    ((∀ (n : Nat), Real.instLE.le (x ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1)) (x n)) ∧ (Exists fun m => ∀ (n : Nat), Real.instLE.le m (x n))) → Exists fun L => ((∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x n) L)) ε) ∧ ((∀ (x_1 : Real), x_1 ∈ fun x_2 => Exists fun y => x y = x_2 → Real.instPreorder.1.le L x_1) ∧ (∀ (l : Real), (∀ (x_1 : Real), x_1 ∈ fun x_2 => Exists fun y => x y = x_2 → Real.instPreorder.1.le l x_1) → Real.instPreorder.1.le l L)))
 
 Logical form (Lean):
 
@@ -409,11 +461,16 @@ theorem MonotoneConvergenceTheoremDecreasing {x : RealSequence}
 
 Predicate logic:
 
-  (IsStrictlyIncreasing x) → IsIncreasing x
+  ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.IsStrictlyIncreasing x → LRA.Analysis.Sequences.IsIncreasing x
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (∀ (n : Nat), Real.instLT.1 (x n) (x (instHAdd.1 n (instOfNatNat 1).1))) → ∀ (n : Nat), Real.instLE.1 (x n) (x (instHAdd.1 n (instOfNatNat 1).1))
+  Ambient
+    (implicit ambient)
+  Objects
+    x : RealSequence
+  Prove
+    (∀ (n : Nat), Real.instLT.lt (x n) (x ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1))) → ∀ (n : Nat), Real.instLE.le (x n) (x ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1))
 
 Logical form (Lean):
 
@@ -449,11 +506,16 @@ theorem StrictIncreasingImpliesIncreasing {x : RealSequence}
 
 Predicate logic:
 
-  (IsStrictlyDecreasing x) → IsDecreasing x
+  ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.IsStrictlyDecreasing x → LRA.Analysis.Sequences.IsDecreasing x
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (∀ (n : Nat), Real.instLT.1 (x (instHAdd.1 n (instOfNatNat 1).1)) (x n)) → ∀ (n : Nat), Real.instLE.1 (x (instHAdd.1 n (instOfNatNat 1).1)) (x n)
+  Ambient
+    (implicit ambient)
+  Objects
+    x : RealSequence
+  Prove
+    (∀ (n : Nat), Real.instLT.lt (x ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1)) (x n)) → ∀ (n : Nat), Real.instLE.le (x ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1)) (x n)
 
 Logical form (Lean):
 
@@ -489,11 +551,16 @@ theorem StrictDecreasingImpliesDecreasing {x : RealSequence}
 
 Predicate logic:
 
-  (IsIncreasing x) → (∃ L, ConvergesTo x L) ↔ BoundedAboveSeq x
+  ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.IsIncreasing x → Exists fun L => LRA.Analysis.Sequences.ConvergesTo x L ↔ LRA.Analysis.Sequences.BoundedAboveSeq x
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (∀ (n : Nat), Real.instLE.1 (x n) (x (instHAdd.1 n (instOfNatNat 1).1))) → Exists fun L => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x n) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x n) L))) ε ↔ Exists fun M => ∀ (n : Nat), Real.instLE.1 (x n) M
+  Ambient
+    (implicit ambient)
+  Objects
+    x : RealSequence
+  Prove
+    LRA.Analysis.Sequences.IsIncreasing x → Exists fun L => LRA.Analysis.Sequences.ConvergesTo x L ↔ LRA.Analysis.Sequences.BoundedAboveSeq x
 
 Logical form (Lean):
 
@@ -531,11 +598,16 @@ theorem BoundedMonotoneSequenceEquivalencesIncr {x : RealSequence}
 
 Predicate logic:
 
-  (IsDecreasing x) → (∃ L, ConvergesTo x L) ↔ BoundedBelowSeq x
+  ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.IsDecreasing x → Exists fun L => LRA.Analysis.Sequences.ConvergesTo x L ↔ LRA.Analysis.Sequences.BoundedBelowSeq x
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (∀ (n : Nat), Real.instLE.1 (x (instHAdd.1 n (instOfNatNat 1).1)) (x n)) → Exists fun L => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x n) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x n) L))) ε ↔ Exists fun m => ∀ (n : Nat), Real.instLE.1 m (x n)
+  Ambient
+    (implicit ambient)
+  Objects
+    x : RealSequence
+  Prove
+    LRA.Analysis.Sequences.IsDecreasing x → Exists fun L => LRA.Analysis.Sequences.ConvergesTo x L ↔ LRA.Analysis.Sequences.BoundedBelowSeq x
 
 Logical form (Lean):
 
@@ -573,11 +645,16 @@ theorem BoundedMonotoneSequenceEquivalencesDecr {x : RealSequence}
 
 Predicate logic:
 
-  (IsIncreasing x) → ∀ n, x 0 ≤ x n
+  ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.IsIncreasing x → ∀ (n : Nat), Real.instLE.le (x 0) (x n)
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (∀ (n : Nat), Real.instLE.1 (x n) (x (instHAdd.1 n (instOfNatNat 1).1))) → ∀ (n : Nat), Real.instLE.1 (x (instOfNatNat 0).1) (x n)
+  Ambient
+    (implicit ambient)
+  Objects
+    x : RealSequence
+  Prove
+    (∀ (n : Nat), Real.instLE.le (x n) (x ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1))) → ∀ (n : Nat), Real.instLE.le (x 0) (x n)
 
 Logical form (Lean):
 
@@ -613,11 +690,16 @@ theorem IncreasingBoundedBelowByFirstTerm {x : RealSequence}
 
 Predicate logic:
 
-  (IsDecreasing x) → ∀ n, x n ≤ x 0
+  ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.IsDecreasing x → ∀ (n : Nat), Real.instLE.le (x n) (x 0)
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (∀ (n : Nat), Real.instLE.1 (x (instHAdd.1 n (instOfNatNat 1).1)) (x n)) → ∀ (n : Nat), Real.instLE.1 (x n) (x (instOfNatNat 0).1)
+  Ambient
+    (implicit ambient)
+  Objects
+    x : RealSequence
+  Prove
+    (∀ (n : Nat), Real.instLE.le (x ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1)) (x n)) → ∀ (n : Nat), Real.instLE.le (x n) (x 0)
 
 Logical form (Lean):
 
@@ -653,11 +735,16 @@ theorem DecreasingBoundedAboveByFirstTerm {x : RealSequence}
 
 Predicate logic:
 
-  (IsMonotoneSeq x) → (∃ L, ConvergesTo x L) ↔ BoundedSeq x
+  ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.IsMonotoneSeq x → Exists fun L => LRA.Analysis.Sequences.ConvergesTo x L ↔ LRA.Analysis.Sequences.BoundedSeq x
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence}, Or (∀ (n : Nat), Real.instLE.1 (x n) (x (instHAdd.1 n (instOfNatNat 1).1))) (∀ (n : Nat), Real.instLE.1 (x (instHAdd.1 n (instOfNatNat 1).1)) (x n)) → Exists fun L => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x n) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x n) L))) ε ↔ Exists fun M => (Real.instLT.1 Zero.toOfNat0.1 M ∧ ∀ (n : Nat), Real.instLE.1 (SemilatticeSup.toMax.1 (x n) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (x n))) M)
+  Ambient
+    (implicit ambient)
+  Objects
+    x : RealSequence
+  Prove
+    LRA.Analysis.Sequences.IsMonotoneSeq x → Exists fun L => LRA.Analysis.Sequences.ConvergesTo x L ↔ LRA.Analysis.Sequences.BoundedSeq x
 
 Logical form (Lean):
 
@@ -695,11 +782,17 @@ theorem BoundedMonotoneSequenceEquivalences {x : RealSequence}
 
 Predicate logic:
 
-  (IsEventuallyIncreasing x) → ∃ L, ConvergesTo x L
+  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (LRA.Analysis.Sequences.IsEventuallyIncreasing x ∧ LRA.Analysis.Sequences.BoundedAboveSeq x) → Exists fun L => LRA.Analysis.Sequences.ConvergesTo x L
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLE.1 (x n) (x (instHAdd.1 n (instOfNatNat 1).1)) ∧ Exists fun M => ∀ (n : Nat), Real.instLE.1 (x n) M) → Exists fun L => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x n) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x n) L))) ε
+  Ambient
+    (implicit ambient)
+  Objects
+    x : RealSequence
+    hbdd : BoundedAboveSeq x
+  Prove
+    ((Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLE.le (x n) (x ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1))) ∧ (Exists fun M => ∀ (n : Nat), Real.instLE.le (x n) M)) → Exists fun L => ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x n) L)) ε
 
 Logical form (Lean):
 
@@ -737,11 +830,17 @@ theorem EventuallyMonotoneConvergenceTheoremIncr {x : RealSequence}
 
 Predicate logic:
 
-  (IsEventuallyDecreasing x) → ∃ L, ConvergesTo x L
+  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (LRA.Analysis.Sequences.IsEventuallyDecreasing x ∧ LRA.Analysis.Sequences.BoundedBelowSeq x) → Exists fun L => LRA.Analysis.Sequences.ConvergesTo x L
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLE.1 (x (instHAdd.1 n (instOfNatNat 1).1)) (x n) ∧ Exists fun m => ∀ (n : Nat), Real.instLE.1 m (x n)) → Exists fun L => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x n) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x n) L))) ε
+  Ambient
+    (implicit ambient)
+  Objects
+    x : RealSequence
+    hbdd : BoundedBelowSeq x
+  Prove
+    ((Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLE.le (x ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1)) (x n)) ∧ (Exists fun m => ∀ (n : Nat), Real.instLE.le m (x n))) → Exists fun L => ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x n) L)) ε
 
 Logical form (Lean):
 
@@ -779,11 +878,17 @@ theorem EventuallyMonotoneConvergenceTheoremDecr {x : RealSequence}
 
 Predicate logic:
 
-  (IsEventuallyMonotone x) → ∃ L, ConvergesTo x L
+  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (LRA.Analysis.Sequences.IsEventuallyMonotone x ∧ LRA.Analysis.Sequences.BoundedSeq x) → Exists fun L => LRA.Analysis.Sequences.ConvergesTo x L
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (Or (Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLE.1 (x n) (x (instHAdd.1 n (instOfNatNat 1).1))) (Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLE.1 (x (instHAdd.1 n (instOfNatNat 1).1)) (x n)) ∧ Exists fun M => (Real.instLT.1 Zero.toOfNat0.1 M ∧ ∀ (n : Nat), Real.instLE.1 (SemilatticeSup.toMax.1 (x n) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (x n))) M)) → Exists fun L => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x n) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x n) L))) ε
+  Ambient
+    (implicit ambient)
+  Objects
+    x : RealSequence
+    hbdd : BoundedSeq x
+  Prove
+    ((Or (Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLE.le (x n) (x ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1))) (Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLE.le (x ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1)) (x n))) ∧ (Exists fun M => (Real.instLT.lt 0 M ∧ (∀ (n : Nat), Real.instLE.le (abs (x n)) M)))) → Exists fun L => ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x n) L)) ε
 
 Logical form (Lean):
 
@@ -821,11 +926,17 @@ theorem EventuallyMonotoneConvergenceTheorem {x : RealSequence}
 
 Predicate logic:
 
-  (IsIncreasing x) → DivergesToPosInf x
+  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (LRA.Analysis.Sequences.IsIncreasing x ∧ ¬ LRA.Analysis.Sequences.BoundedAboveSeq x) → LRA.Analysis.Sequences.DivergesToPosInf x
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (∀ (n : Nat), Real.instLE.1 (x n) (x (instHAdd.1 n (instOfNatNat 1).1)) ∧ (Exists fun M => ∀ (n : Nat), Real.instLE.1 (x n) M) → False) → ∀ (M : Real), Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 M (x n)
+  Ambient
+    (implicit ambient)
+  Objects
+    x : RealSequence
+    hunbdd : ¬ BoundedAboveSeq x
+  Prove
+    ((∀ (n : Nat), Real.instLE.le (x n) (x ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1))) ∧ ((Exists fun M => ∀ (n : Nat), Real.instLE.le (x n) M) → False)) → ∀ (M : Real), Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt M (x n)
 
 Logical form (Lean):
 
@@ -863,11 +974,17 @@ theorem UnboundedMonotoneDivergencePos {x : RealSequence}
 
 Predicate logic:
 
-  (IsDecreasing x) → DivergesToNegInf x
+  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (LRA.Analysis.Sequences.IsDecreasing x ∧ ¬ LRA.Analysis.Sequences.BoundedBelowSeq x) → LRA.Analysis.Sequences.DivergesToNegInf x
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (∀ (n : Nat), Real.instLE.1 (x (instHAdd.1 n (instOfNatNat 1).1)) (x n) ∧ (Exists fun m => ∀ (n : Nat), Real.instLE.1 m (x n)) → False) → ∀ (M : Real), Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (x n) M
+  Ambient
+    (implicit ambient)
+  Objects
+    x : RealSequence
+    hunbdd : ¬ BoundedBelowSeq x
+  Prove
+    ((∀ (n : Nat), Real.instLE.le (x ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1)) (x n)) ∧ ((Exists fun m => ∀ (n : Nat), Real.instLE.le m (x n)) → False)) → ∀ (M : Real), Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (x n) M
 
 Logical form (Lean):
 
@@ -905,11 +1022,17 @@ theorem UnboundedMonotoneDivergenceNeg {x : RealSequence}
 
 Predicate logic:
 
-  (IsIncreasing x) → IsIncreasing (fun n => x n + c)
+  ∀ {x : LRA.Analysis.Sequences.RealSequence} {c : Real}, LRA.Analysis.Sequences.IsIncreasing x → LRA.Analysis.Sequences.IsIncreasing fun n => instHAdd.hAdd (x n) c
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence} {c : Real}, (∀ (n : Nat), Real.instLE.1 (x n) (x (instHAdd.1 n (instOfNatNat 1).1))) → ∀ (n : Nat), Real.instLE.1 ((fun n => instHAdd.1 (x n) c) n) ((fun n => instHAdd.1 (x n) c) (instHAdd.1 n (instOfNatNat 1).1))
+  Ambient
+    (ℝ)
+  Objects
+    x : RealSequence
+    c : ℝ
+  Prove
+    (∀ (n : Nat), Real.instLE.le (x n) (x ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1))) → ∀ (n : Nat), Real.instLE.le ((fun n => { hAdd := fun a b => Real.instAdd.add a b }.hAdd (x n) c) n) ((fun n => { hAdd := fun a b => Real.instAdd.add a b }.hAdd (x n) c) ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1))
 
 Logical form (Lean):
 
@@ -945,11 +1068,17 @@ theorem TranslationPreservesIncreasing {x : RealSequence} {c : ℝ}
 
 Predicate logic:
 
-  (IsDecreasing x) → IsDecreasing (fun n => x n + c)
+  ∀ {x : LRA.Analysis.Sequences.RealSequence} {c : Real}, LRA.Analysis.Sequences.IsDecreasing x → LRA.Analysis.Sequences.IsDecreasing fun n => instHAdd.hAdd (x n) c
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence} {c : Real}, (∀ (n : Nat), Real.instLE.1 (x (instHAdd.1 n (instOfNatNat 1).1)) (x n)) → ∀ (n : Nat), Real.instLE.1 ((fun n => instHAdd.1 (x n) c) (instHAdd.1 n (instOfNatNat 1).1)) ((fun n => instHAdd.1 (x n) c) n)
+  Ambient
+    (ℝ)
+  Objects
+    x : RealSequence
+    c : ℝ
+  Prove
+    (∀ (n : Nat), Real.instLE.le (x ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1)) (x n)) → ∀ (n : Nat), Real.instLE.le ((fun n => { hAdd := fun a b => Real.instAdd.add a b }.hAdd (x n) c) ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1)) ((fun n => { hAdd := fun a b => Real.instAdd.add a b }.hAdd (x n) c) n)
 
 Logical form (Lean):
 
@@ -985,11 +1114,18 @@ theorem TranslationPreservesDecreasing {x : RealSequence} {c : ℝ}
 
 Predicate logic:
 
-  (IsIncreasing x) → IsIncreasing (fun n => α * x n)
+  ∀ {x : LRA.Analysis.Sequences.RealSequence} {α : Real}, (LRA.Analysis.Sequences.IsIncreasing x ∧ GT.gt α 0) → LRA.Analysis.Sequences.IsIncreasing fun n => instHMul.hMul α (x n)
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence} {α : Real}, (∀ (n : Nat), Real.instLE.1 (x n) (x (instHAdd.1 n (instOfNatNat 1).1)) ∧ Real.instLT.1 Zero.toOfNat0.1 α) → ∀ (n : Nat), Real.instLE.1 ((fun n => instHMul.1 α (x n)) n) ((fun n => instHMul.1 α (x n)) (instHAdd.1 n (instOfNatNat 1).1))
+  Ambient
+    (ℝ)
+  Objects
+    x : RealSequence
+    α : ℝ
+    hα : α > 0
+  Prove
+    ((∀ (n : Nat), Real.instLE.le (x n) (x ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1))) ∧ Real.instLT.lt 0 α) → ∀ (n : Nat), Real.instLE.le ((fun n => { hMul := fun a b => Real.instMul.mul a b }.hMul α (x n)) n) ((fun n => { hMul := fun a b => Real.instMul.mul a b }.hMul α (x n)) ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1))
 
 Logical form (Lean):
 
@@ -1025,11 +1161,17 @@ theorem PositiveScalarPreservesIncreasing {x : RealSequence} {α : ℝ}
 
 Predicate logic:
 
-  (IsIncreasing x ∧ α < 0) → IsDecreasing (fun n => α * x n)
+  ∀ {x : LRA.Analysis.Sequences.RealSequence} {α : Real}, (LRA.Analysis.Sequences.IsIncreasing x ∧ Real.instLT.lt α 0) → LRA.Analysis.Sequences.IsDecreasing fun n => instHMul.hMul α (x n)
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence} {α : Real}, (∀ (n : Nat), Real.instLE.1 (x n) (x (instHAdd.1 n (instOfNatNat 1).1)) ∧ Real.instLT.1 α Zero.toOfNat0.1) → ∀ (n : Nat), Real.instLE.1 ((fun n => instHMul.1 α (x n)) (instHAdd.1 n (instOfNatNat 1).1)) ((fun n => instHMul.1 α (x n)) n)
+  Ambient
+    (ℝ)
+  Objects
+    x : RealSequence
+    α : ℝ
+  Prove
+    ((∀ (n : Nat), Real.instLE.le (x n) (x ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1))) ∧ Real.instLT.lt α 0) → ∀ (n : Nat), Real.instLE.le ((fun n => { hMul := fun a b => Real.instMul.mul a b }.hMul α (x n)) ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1)) ((fun n => { hMul := fun a b => Real.instMul.mul a b }.hMul α (x n)) n)
 
 Logical form (Lean):
 
@@ -1065,11 +1207,16 @@ theorem NegativeScalarReversesIncreasing {x : RealSequence} {α : ℝ}
 
 Predicate logic:
 
-  (IsIncreasing x) → IsDecreasing (fun n => -x n)
+  ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.IsIncreasing x → LRA.Analysis.Sequences.IsDecreasing fun n => Real.instNeg.neg (x n)
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (∀ (n : Nat), Real.instLE.1 (x n) (x (instHAdd.1 n (instOfNatNat 1).1))) → ∀ (n : Nat), Real.instLE.1 ((fun n => Real.instNeg.1 (x n)) (instHAdd.1 n (instOfNatNat 1).1)) ((fun n => Real.instNeg.1 (x n)) n)
+  Ambient
+    (implicit ambient)
+  Objects
+    x : RealSequence
+  Prove
+    (∀ (n : Nat), Real.instLE.le (x n) (x ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1))) → ∀ (n : Nat), Real.instLE.le ((fun n => Real.instNeg.neg (x n)) ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1)) ((fun n => Real.instNeg.neg (x n)) n)
 
 Logical form (Lean):
 
@@ -1105,11 +1252,16 @@ theorem NegationReversesIncreasing {x : RealSequence}
 
 Predicate logic:
 
-  (IsDecreasing x) → IsIncreasing (fun n => -x n)
+  ∀ {x : LRA.Analysis.Sequences.RealSequence}, LRA.Analysis.Sequences.IsDecreasing x → LRA.Analysis.Sequences.IsIncreasing fun n => Real.instNeg.neg (x n)
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (∀ (n : Nat), Real.instLE.1 (x (instHAdd.1 n (instOfNatNat 1).1)) (x n)) → ∀ (n : Nat), Real.instLE.1 ((fun n => Real.instNeg.1 (x n)) n) ((fun n => Real.instNeg.1 (x n)) (instHAdd.1 n (instOfNatNat 1).1))
+  Ambient
+    (implicit ambient)
+  Objects
+    x : RealSequence
+  Prove
+    (∀ (n : Nat), Real.instLE.le (x ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1)) (x n)) → ∀ (n : Nat), Real.instLE.le ((fun n => Real.instNeg.neg (x n)) n) ((fun n => Real.instNeg.neg (x n)) ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1))
 
 Logical form (Lean):
 

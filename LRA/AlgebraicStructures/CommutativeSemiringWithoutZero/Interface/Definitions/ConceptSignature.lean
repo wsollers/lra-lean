@@ -9,16 +9,16 @@ namespace LRA.AlgebraicStructures
 Predicate logic:
 
   structure CommutativeSemiringWithoutZeroConceptSignature extends
-    LRA.UniversalAlgebra.InterpretedOperationBundles.AdditiveOperationBundle where
-  multiply : LRA.Operation.BinaryOperation carrier
-  one : carrier
+      LRA.UniversalAlgebra.InterpretedOperationBundles.AdditiveOperationBundle where
+    multiply : LRA.Operation.BinaryOperation carrier
+    one : carrier
 
 Predicate logic (unfolded):
 
   structure CommutativeSemiringWithoutZeroConceptSignature extends
-    LRA.UniversalAlgebra.InterpretedOperationBundles.AdditiveOperationBundle where
-  multiply : LRA.Operation.BinaryOperation carrier
-  one : carrier (source fallback; no compiled unfold data available)
+      LRA.UniversalAlgebra.InterpretedOperationBundles.AdditiveOperationBundle where
+    multiply : LRA.Operation.BinaryOperation carrier
+    one : carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

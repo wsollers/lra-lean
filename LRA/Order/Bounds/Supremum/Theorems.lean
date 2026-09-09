@@ -15,11 +15,21 @@ universe u v
 
 Predicate logic:
 
-  (∀ A ∈ U ∀ x y ∈ Element), x = y
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {relation : LRA.Relation.Endorelation Element}, LRA.Relation.Antisymmetric relation → ∀ {subset : SetObject} {first second : Element}, (LRA.Order.Supremum relation subset first ∧ LRA.Order.Supremum relation subset second) → first = second
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {relation : Element → Element → Prop}, (∀ (x y : Element), relation x y → relation y x → x = y) → ∀ {subset : SetObject} {first second : Element}, ((∀ (element : Element), inst.1 subset element → relation element first ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation element bound) → relation first bound) ∧ (∀ (element : Element), inst.1 subset element → relation element second ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation element bound) → relation second bound)) → first = second
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsAntisymmetric : LRA.Relation.Antisymmetric relation
+    subset : SetObject
+    first second : Element
+    firstIsSupremum : Supremum relation subset first
+    secondIsSupremum : Supremum relation subset second
+  Prove
+    (∀ (x y : Element), relation x y → relation y x → x = y) → ∀ {subset : SetObject} {first second : Element}, (((∀ (element : Element), inst.1 subset element → relation element first) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation element bound) → relation first bound)) ∧ ((∀ (element : Element), inst.1 subset element → relation element second) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation element bound) → relation second bound))) → first = second
 
 Logical form (Lean):
 
@@ -69,11 +79,18 @@ theorem SupremumUnique
 
 Predicate logic:
 
-  (∀ x ∈ Element), (forall candidate, candidate ∈ {x} ∈ SetObject ↔ candidate = x) → Supremum relation {x} ∈ SetObject x
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Singleton Element SetObject] {relation : LRA.Relation.Endorelation Element}, LRA.Relation.Reflexive relation → ∀ (element : Element), (∀ (candidate : Element), candidate ∈ inst_1.singleton element ↔ candidate = element) → LRA.Order.Supremum relation (inst_1.singleton element) element
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Singleton Element SetObject] {relation : Element → Element → Prop}, (∀ (x : Element), relation x x) → ∀ (element : Element), (∀ (candidate : Element), inst.1 (inst_1.1 element) candidate ↔ candidate = element) → (∀ (element_1 : Element), inst.1 (inst_1.1 element) element_1 → relation element_1 element ∧ ∀ (bound : Element), (∀ (element_1 : Element), inst.1 (inst_1.1 element) element_1 → relation element_1 bound) → relation element bound)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsReflexive : LRA.Relation.Reflexive relation
+    element : Element
+  Prove
+    LRA.Relation.Reflexive relation → ∀ (element : Element), (∀ (candidate : Element), candidate ∈ inst_1.singleton element ↔ candidate = element) → LRA.Order.Supremum relation (inst_1.singleton element) element
 
 Logical form (Lean):
 
@@ -125,11 +142,19 @@ theorem SupremumOfSingleton
 
 Predicate logic:
 
-  (∀ A ∈ U ∀ x ∈ Element), UpperBound relation A x
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} {subset : SetObject} {supremum : Element}, LRA.Order.Supremum relation subset supremum → LRA.Order.UpperBound relation subset supremum
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {relation : Element → Element → Prop} {subset : SetObject} {supremum : Element}, (∀ (element : Element), inst.1 subset element → relation element supremum ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation element bound) → relation supremum bound) → ∀ (element : Element), inst.1 subset element → relation element supremum
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+    supremum : Element
+    supremumIsSupremum : Supremum relation subset supremum
+  Prove
+    ((∀ (element : Element), inst.1 subset element → relation element supremum) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation element bound) → relation supremum bound)) → ∀ (element : Element), inst.1 subset element → relation element supremum
 
 Logical form (Lean):
 
@@ -175,11 +200,20 @@ theorem SupremumIsUpperBound
 
 Predicate logic:
 
-  (∀ A ∈ U ∀ x y ∈ Element), relation x y
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} {subset : SetObject} {supremum bound : Element}, (LRA.Order.Supremum relation subset supremum ∧ LRA.Order.UpperBound relation subset bound) → relation supremum bound
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {relation : Element → Element → Prop} {subset : SetObject} {supremum bound : Element}, ((∀ (element : Element), inst.1 subset element → relation element supremum ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation element bound) → relation supremum bound) ∧ ∀ (element : Element), inst.1 subset element → relation element bound) → relation supremum bound
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+    supremum bound : Element
+    supremumIsSupremum : Supremum relation subset supremum
+    boundIsUpperBound : UpperBound relation subset bound
+  Prove
+    (((∀ (element : Element), inst.1 subset element → relation element supremum) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation element bound) → relation supremum bound)) ∧ (∀ (element : Element), inst.1 subset element → relation element bound)) → relation supremum bound
 
 Logical form (Lean):
 
@@ -227,11 +261,20 @@ theorem SupremumRelatedToEveryUpperBound
 
 Predicate logic:
 
-  (∀ A ∈ U ∀ x y ∈ Element), UpperBound relation A y ↔ relation x y
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {relation : LRA.Relation.Endorelation Element}, LRA.Relation.Transitive relation → ∀ {subset : SetObject} {supremum bound : Element}, LRA.Order.Supremum relation subset supremum → LRA.Order.UpperBound relation subset bound ↔ relation supremum bound
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {relation : Element → Element → Prop}, (∀ (x y z : Element), relation x y → relation y z → relation x z) → ∀ {subset : SetObject} {supremum bound : Element}, (∀ (element : Element), inst.1 subset element → relation element supremum ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation element bound) → relation supremum bound) → ∀ (element : Element), inst.1 subset element → relation element bound ↔ relation supremum bound
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsTransitive : LRA.Relation.Transitive relation
+    subset : SetObject
+    supremum bound : Element
+    supremumIsSupremum : Supremum relation subset supremum
+  Prove
+    LRA.Relation.Transitive relation → ∀ {subset : SetObject} {supremum bound : Element}, LRA.Order.Supremum relation subset supremum → LRA.Order.UpperBound relation subset bound ↔ relation supremum bound
 
 Logical form (Lean):
 
@@ -279,11 +322,20 @@ theorem UpperBoundIffSupremumRelated
 
 Predicate logic:
 
-  (∀ A B ∈ U ∀ x y ∈ Element), (forall element, element ∈ A -> element ∈ B) → relation x y
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} {smaller larger : SetObject} {smallerSupremum largerSupremum : Element}, ((∀ (element : Element), element ∈ smaller → element ∈ larger) ∧ (LRA.Order.Supremum relation smaller smallerSupremum ∧ LRA.Order.Supremum relation larger largerSupremum)) → relation smallerSupremum largerSupremum
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {relation : Element → Element → Prop} {smaller larger : SetObject} {smallerSupremum largerSupremum : Element}, (∀ (element : Element), inst.1 smaller element → inst.1 larger element ∧ ((∀ (element : Element), inst.1 smaller element → relation element smallerSupremum ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 smaller element → relation element bound) → relation smallerSupremum bound) ∧ (∀ (element : Element), inst.1 larger element → relation element largerSupremum ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 larger element → relation element bound) → relation largerSupremum bound))) → relation smallerSupremum largerSupremum
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    smaller larger : SetObject
+    smallerSupremum largerSupremum : Element
+    smallerSupremumIsSupremum : Supremum relation smaller smallerSupremum
+    largerSupremumIsSupremum : Supremum relation larger largerSupremum
+  Prove
+    ((∀ (element : Element), inst.1 smaller element → inst.1 larger element) ∧ (((∀ (element : Element), inst.1 smaller element → relation element smallerSupremum) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 smaller element → relation element bound) → relation smallerSupremum bound)) ∧ ((∀ (element : Element), inst.1 larger element → relation element largerSupremum) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 larger element → relation element bound) → relation largerSupremum bound)))) → relation smallerSupremum largerSupremum
 
 Logical form (Lean):
 
@@ -337,11 +389,22 @@ theorem SupremumMonotoneUnderInclusion
 
 Predicate logic:
 
-  (∀ A B ∈ U ∀ x y ∈ Element), relation x y
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {relation : LRA.Relation.Endorelation Element}, LRA.Relation.Transitive relation → ∀ {leftSubset rightSubset : SetObject} {leftSupremum rightSupremum : Element}, (LRA.Order.Dominated relation leftSubset rightSubset ∧ (LRA.Order.Supremum relation leftSubset leftSupremum ∧ LRA.Order.Supremum relation rightSubset rightSupremum)) → relation leftSupremum rightSupremum
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {relation : Element → Element → Prop}, (∀ (x y z : Element), relation x y → relation y z → relation x z) → ∀ {leftSubset rightSubset : SetObject} {leftSupremum rightSupremum : Element}, (∀ (element : Element), inst.1 leftSubset element → Exists fun other => (inst.1 rightSubset other ∧ relation element other) ∧ ((∀ (element : Element), inst.1 leftSubset element → relation element leftSupremum ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 leftSubset element → relation element bound) → relation leftSupremum bound) ∧ (∀ (element : Element), inst.1 rightSubset element → relation element rightSupremum ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 rightSubset element → relation element bound) → relation rightSupremum bound))) → relation leftSupremum rightSupremum
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsTransitive : LRA.Relation.Transitive relation
+    leftSubset rightSubset : SetObject
+    leftSupremum rightSupremum : Element
+    leftDominatedByRight : Dominated relation leftSubset rightSubset
+    leftSupremumIsSupremum : Supremum relation leftSubset leftSupremum
+    rightSupremumIsSupremum : Supremum relation rightSubset rightSupremum
+  Prove
+    (∀ (x y z : Element), relation x y → relation y z → relation x z) → ∀ {leftSubset rightSubset : SetObject} {leftSupremum rightSupremum : Element}, ((∀ (element : Element), inst.1 leftSubset element → Exists fun other => (inst.1 rightSubset other ∧ relation element other)) ∧ (((∀ (element : Element), inst.1 leftSubset element → relation element leftSupremum) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 leftSubset element → relation element bound) → relation leftSupremum bound)) ∧ ((∀ (element : Element), inst.1 rightSubset element → relation element rightSupremum) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 rightSubset element → relation element bound) → relation rightSupremum bound)))) → relation leftSupremum rightSupremum
 
 Logical form (Lean):
 
@@ -399,11 +462,19 @@ theorem SupremaCompareUnderPointwiseDomination
 
 Predicate logic:
 
-  (∀ A ∈ U ∀ x ∈ Element), (x ∈ A) → GreatestElement(x, A)
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} {subset : SetObject} {supremum : Element}, (LRA.Order.Supremum relation subset supremum ∧ supremum ∈ subset) → LRA.Order.GreatestElement relation subset supremum
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {relation : Element → Element → Prop} {subset : SetObject} {supremum : Element}, ((∀ (element : Element), inst.1 subset element → relation element supremum ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation element bound) → relation supremum bound) ∧ inst.1 subset supremum) → (inst.1 subset supremum ∧ ∀ (element : Element), inst.1 subset element → relation element supremum)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset : SetObject
+    supremum : Element
+    supremumIsSupremum : Supremum relation subset supremum
+  Prove
+    (((∀ (element : Element), inst.1 subset element → relation element supremum) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation element bound) → relation supremum bound)) ∧ inst.1 subset supremum) → (inst.1 subset supremum ∧ (∀ (element : Element), inst.1 subset element → relation element supremum))
 
 Logical form (Lean):
 
@@ -453,11 +524,22 @@ open scoped LRA.Set
 
 Predicate logic:
 
-  (∀ A B ∈ U ∀ x y z ∈ Element), Supremum relation (A ∪ B) z
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ {relation : LRA.Relation.Endorelation Element}, LRA.Relation.Transitive relation → ∀ {leftSubset rightSubset : SetObject} {leftSupremum rightSupremum unionSupremum : Element}, (LRA.Order.Supremum relation leftSubset leftSupremum ∧ (LRA.Order.Supremum relation rightSubset rightSupremum ∧ LRA.Order.Join relation leftSupremum rightSupremum unionSupremum)) → LRA.Order.Supremum relation (leftSubset ∪ rightSubset)unionSupremum
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop}, (∀ (x y z : Element), relation x y → relation y z → relation x z) → ∀ {leftSubset rightSubset : SetObject} {leftSupremum rightSupremum unionSupremum : Element}, ((∀ (element : Element), inst.1 leftSubset element → relation element leftSupremum ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 leftSubset element → relation element bound) → relation leftSupremum bound) ∧ ((∀ (element : Element), inst.1 rightSubset element → relation element rightSupremum ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 rightSubset element → relation element bound) → relation rightSupremum bound) ∧ (relation leftSupremum unionSupremum ∧ (relation rightSupremum unionSupremum ∧ ∀ (upper : Element), relation leftSupremum upper → relation rightSupremum upper → relation unionSupremum upper)))) → (∀ (element : Element), inst.1 (inst_1.1 leftSubset rightSubset) element → relation element unionSupremum ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 (inst_1.1 leftSubset rightSubset) element → relation element bound) → relation unionSupremum bound)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsTransitive : LRA.Relation.Transitive relation
+    leftSubset rightSubset : SetObject
+    leftSupremum rightSupremum unionSupremum : Element
+    leftSupremumIsSupremum : Supremum relation leftSubset leftSupremum
+    rightSupremumIsSupremum : Supremum relation rightSubset rightSupremum
+    unionSupremumIsJoin : Join relation leftSupremum rightSupremum unionSupremum
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop}, (∀ (x y z : Element), relation x y → relation y z → relation x z) → ∀ {leftSubset rightSubset : SetObject} {leftSupremum rightSupremum unionSupremum : Element}, (((∀ (element : Element), inst.1 leftSubset element → relation element leftSupremum) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 leftSubset element → relation element bound) → relation leftSupremum bound)) ∧ (((∀ (element : Element), inst.1 rightSubset element → relation element rightSupremum) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 rightSubset element → relation element bound) → relation rightSupremum bound)) ∧ (relation leftSupremum unionSupremum ∧ (relation rightSupremum unionSupremum ∧ (∀ (upper : Element), relation leftSupremum upper → relation rightSupremum upper → relation unionSupremum upper))))) → ((∀ (element : Element), inst.1 (inst_1.1 leftSubset rightSubset) element → relation element unionSupremum) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 (inst_1.1 leftSubset rightSubset) element → relation element bound) → relation unionSupremum bound))
 
 Logical form (Lean):
 
@@ -517,11 +599,20 @@ theorem SupremumOfUnion
 
 Predicate logic:
 
-  (∀ A B ∈ U ∀ x y ∈ Element), relation x y
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ {relation : LRA.Relation.Endorelation Element} {containingSubset otherSubset : SetObject} {intersectionSupremum containingSupremum : Element}, (LRA.Order.Supremum relation (containingSubset ∩ otherSubset)intersectionSupremum ∧ LRA.Order.Supremum relation containingSubset containingSupremum) → relation intersectionSupremum containingSupremum
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {containingSubset otherSubset : SetObject} {intersectionSupremum containingSupremum : Element}, ((∀ (element : Element), inst.1 (inst_2.1 containingSubset otherSubset) element → relation element intersectionSupremum ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 (inst_2.1 containingSubset otherSubset) element → relation element bound) → relation intersectionSupremum bound) ∧ (∀ (element : Element), inst.1 containingSubset element → relation element containingSupremum ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 containingSubset element → relation element bound) → relation containingSupremum bound)) → relation intersectionSupremum containingSupremum
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    containingSubset otherSubset : SetObject
+    intersectionSupremum containingSupremum : Element
+    intersectionIsSupremum : Supremum relation (containingSubset ∩ otherSubset) intersectionSupremum
+    containingIsSupremum : Supremum relation containingSubset containingSupremum
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {containingSubset otherSubset : SetObject} {intersectionSupremum containingSupremum : Element}, (((∀ (element : Element), inst.1 (inst_2.1 containingSubset otherSubset) element → relation element intersectionSupremum) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 (inst_2.1 containingSubset otherSubset) element → relation element bound) → relation intersectionSupremum bound)) ∧ ((∀ (element : Element), inst.1 containingSubset element → relation element containingSupremum) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 containingSubset element → relation element bound) → relation containingSupremum bound))) → relation intersectionSupremum containingSupremum
 
 Logical form (Lean):
 
@@ -577,11 +668,20 @@ theorem SupremumOfIntersectionRelatedToContainingSupremum
 
 Predicate logic:
 
-  (∀ A B ∈ U ∀ x y ∈ Element), relation x y
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ {relation : LRA.Relation.Endorelation Element} {subset removed : SetObject} {differenceSupremum subsetSupremum : Element}, (LRA.Order.Supremum relation (subset \ removed)differenceSupremum ∧ LRA.Order.Supremum relation subset subsetSupremum) → relation differenceSupremum subsetSupremum
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {subset removed : SetObject} {differenceSupremum subsetSupremum : Element}, ((∀ (element : Element), inst.1 (inst_3.1 subset removed) element → relation element differenceSupremum ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 (inst_3.1 subset removed) element → relation element bound) → relation differenceSupremum bound) ∧ (∀ (element : Element), inst.1 subset element → relation element subsetSupremum ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation element bound) → relation subsetSupremum bound)) → relation differenceSupremum subsetSupremum
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset removed : SetObject
+    differenceSupremum subsetSupremum : Element
+    differenceIsSupremum : Supremum relation (subset \ removed) differenceSupremum
+    subsetIsSupremum : Supremum relation subset subsetSupremum
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {subset removed : SetObject} {differenceSupremum subsetSupremum : Element}, (((∀ (element : Element), inst.1 (inst_3.1 subset removed) element → relation element differenceSupremum) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 (inst_3.1 subset removed) element → relation element bound) → relation differenceSupremum bound)) ∧ ((∀ (element : Element), inst.1 subset element → relation element subsetSupremum) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation element bound) → relation subsetSupremum bound))) → relation differenceSupremum subsetSupremum
 
 Logical form (Lean):
 
@@ -635,11 +735,20 @@ theorem SupremumOfDifferenceRelatedToContainingSupremum
 
 Predicate logic:
 
-  (∀ A B ∈ U ∀ x y ∈ Element), relation x y
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasSymmDiff SetObject] [inst_2 : Union SetObject] [inst_3 : Inter SetObject] [inst_4 : SDiff SetObject] [inst_5 : EmptyCollection SetObject] [inst_6 : HasSubset SetObject], (LRA.Set.MembershipLaws Element SetObject ∧ LRA.Set.SymmDiffMembershipLaws Element SetObject) → ∀ {relation : LRA.Relation.Endorelation Element} {leftSubset rightSubset : SetObject} {differenceSupremum unionSupremum : Element}, (LRA.Order.Supremum relation (inst_1.symmDiff leftSubset rightSubset) differenceSupremum ∧ LRA.Order.Supremum relation (leftSubset ∪ rightSubset)unionSupremum) → relation differenceSupremum unionSupremum
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasSymmDiff SetObject] [inst_2 : Union SetObject] [inst_3 : Inter SetObject] [inst_4 : SDiff SetObject] [inst_5 : EmptyCollection SetObject] [inst_6 : HasSubset SetObject], (LRA.Set.MembershipLaws Element SetObject ∧ LRA.Set.SymmDiffMembershipLaws Element SetObject) → ∀ {relation : Element → Element → Prop} {leftSubset rightSubset : SetObject} {differenceSupremum unionSupremum : Element}, ((∀ (element : Element), inst.1 (inst_1.1 leftSubset rightSubset) element → relation element differenceSupremum ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 (inst_1.1 leftSubset rightSubset) element → relation element bound) → relation differenceSupremum bound) ∧ (∀ (element : Element), inst.1 (inst_2.1 leftSubset rightSubset) element → relation element unionSupremum ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 (inst_2.1 leftSubset rightSubset) element → relation element bound) → relation unionSupremum bound)) → relation differenceSupremum unionSupremum
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    leftSubset rightSubset : SetObject
+    differenceSupremum unionSupremum : Element
+    differenceIsSupremum : Supremum relation (leftSubset ∆ rightSubset) differenceSupremum
+    unionIsSupremum : Supremum relation (leftSubset ∪ rightSubset) unionSupremum
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ LRA.Set.SymmDiffMembershipLaws Element SetObject) → ∀ {relation : Element → Element → Prop} {leftSubset rightSubset : SetObject} {differenceSupremum unionSupremum : Element}, (((∀ (element : Element), inst.1 (inst_1.1 leftSubset rightSubset) element → relation element differenceSupremum) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 (inst_1.1 leftSubset rightSubset) element → relation element bound) → relation differenceSupremum bound)) ∧ ((∀ (element : Element), inst.1 (inst_2.1 leftSubset rightSubset) element → relation element unionSupremum) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 (inst_2.1 leftSubset rightSubset) element → relation element bound) → relation unionSupremum bound))) → relation differenceSupremum unionSupremum
 
 Logical form (Lean):
 
@@ -697,11 +806,23 @@ theorem SupremumOfSymmetricDifferenceRelatedToUnionSupremum
 
 Predicate logic:
 
-  (∀ x ∈ Element), Supremum relation (LRA.Set.HasIndexedUnion.indexedUnion family) x
+  ∀ {Element : Type u} {SetObject : Type v} {Index : Type w} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasIndexedUnion SetObject] [inst_2 : LRA.Set.HasIndexedIntersection SetObject], LRA.Set.IndexedMembershipLaws Element SetObject → ∀ {relation : LRA.Relation.Endorelation Element}, LRA.Relation.Transitive relation → ∀ (family : Index → SetObject) (memberSupremum : Index → Element) (familySupremum : Element), ((∀ (index : Index), LRA.Order.Supremum relation (family index) (memberSupremum index)) ∧ ((∀ (index : Index), relation (memberSupremum index) familySupremum) ∧ (∀ (bound : Element), (∀ (index : Index), relation (memberSupremum index) bound) → relation familySupremum bound))) → LRA.Order.Supremum relation (inst_1.indexedUnion family) familySupremum
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} {Index : Type w} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasIndexedUnion SetObject] [inst_2 : LRA.Set.HasIndexedIntersection SetObject], LRA.Set.IndexedMembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop}, (∀ (x y z : Element), relation x y → relation y z → relation x z) → ∀ (family : Index → SetObject) (memberSupremum : Index → Element) (familySupremum : Element), (∀ (index : Index), (∀ (element : Element), inst.1 (family index) element → relation element (memberSupremum index) ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 (family index) element → relation element bound) → relation (memberSupremum index) bound) ∧ (∀ (index : Index), relation (memberSupremum index) familySupremum ∧ ∀ (bound : Element), (∀ (index : Index), relation (memberSupremum index) bound) → relation familySupremum bound)) → (∀ (element : Element), inst.1 (inst_1.1 family) element → relation element familySupremum ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 (inst_1.1 family) element → relation element bound) → relation familySupremum bound)
+  Ambient
+    (Element, SetObject, Index, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsTransitive : LRA.Relation.Transitive relation
+    family : Index -> SetObject
+    memberSupremum : Index -> Element
+    familySupremum : Element
+    eachIsSupremum : forall index, Supremum relation (family index) (memberSupremum index)
+    familySupremumBoundsMembers : forall index, relation (memberSupremum index) familySupremum
+    familySupremumIsLeast : forall bound, (forall index, relation (memberSupremum index) bound) -> relation familySupremum bound
+  Prove
+    LRA.Set.IndexedMembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop}, (∀ (x y z : Element), relation x y → relation y z → relation x z) → ∀ (family : Index → SetObject) (memberSupremum : Index → Element) (familySupremum : Element), ((∀ (index : Index), ((∀ (element : Element), inst.1 (family index) element → relation element (memberSupremum index)) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 (family index) element → relation element bound) → relation (memberSupremum index) bound))) ∧ ((∀ (index : Index), relation (memberSupremum index) familySupremum) ∧ (∀ (bound : Element), (∀ (index : Index), relation (memberSupremum index) bound) → relation familySupremum bound))) → ((∀ (element : Element), inst.1 (inst_1.1 family) element → relation element familySupremum) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 (inst_1.1 family) element → relation element bound) → relation familySupremum bound))
 
 Logical form (Lean):
 

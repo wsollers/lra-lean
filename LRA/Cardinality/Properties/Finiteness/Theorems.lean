@@ -11,11 +11,16 @@ universe u v
 
 Predicate logic:
 
-  IsFinite A ↔ IsFinite B
+  ∀ (A : Type u) (B : Type v), LRA.Cardinality.Equinumerous A B → LRA.Cardinality.IsFinite A ↔ LRA.Cardinality.IsFinite B
 
 Predicate logic (unfolded):
 
-  ∀ (A : Type u) (B : Type v), (Exists fun f => (∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂ ∧ ∀ (y : B), Exists fun x => f x = y)) → Exists fun n => Exists fun f => (∀ (y : Fin n) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂ ∧ ∀ (y : Fin n), Exists fun x => f x = y) ↔ Exists fun n => Exists fun f => (∀ (y : Fin n) (x₁ x₂ : B), f x₁ = y → f x₂ = y → x₁ = x₂ ∧ ∀ (y : Fin n), Exists fun x => f x = y)
+  Ambient
+    (A, B)
+  Objects
+    equinumerous : Equinumerous A B
+  Prove
+    LRA.Cardinality.Equinumerous A B → LRA.Cardinality.IsFinite A ↔ LRA.Cardinality.IsFinite B
 
 Logical form (Lean):
 
@@ -51,11 +56,16 @@ theorem IsFiniteCongr (A : Type u) (B : Type v)
 
 Predicate logic:
 
-  ¬ (IsFinite A ∧ IsInfinite A)
+  ∀ (A : Type u), ¬ (LRA.Cardinality.IsFinite A ∧ LRA.Cardinality.IsInfinite A)
 
 Predicate logic (unfolded):
 
-  ∀ (A : Type u), (Exists fun n => Exists fun f => (∀ (y : Fin n) (x₁ x₂ : A), LRA.Function.Graph f x₁ y → LRA.Function.Graph f x₂ y → x₁ = x₂ ∧ ∀ (y : Fin n), Exists fun x => LRA.Function.Graph f x y) ∧ (Exists fun n => Exists fun f => (LRA.Function.Injective f ∧ LRA.Function.Surjective f)) → False) → False
+  Ambient
+    (A)
+  Objects
+    (none)
+  Prove
+    ((Exists fun n => Exists fun f => ((∀ (y : Fin n) (x₁ x₂ : A), LRA.Function.Graph f x₁ y → LRA.Function.Graph f x₂ y → x₁ = x₂) ∧ (∀ (y : Fin n), Exists fun x => LRA.Function.Graph f x y))) ∧ ((Exists fun n => Exists fun f => (LRA.Function.Injective f ∧ LRA.Function.Surjective f)) → False)) → False
 
 Logical form (Lean):
 
@@ -91,11 +101,16 @@ theorem NotBothFiniteAndInfinite (A : Type u) :
 
 Predicate logic:
 
-  (IsFinite A) → IsDedekindFinite A
+  ∀ (A : Type u), LRA.Cardinality.IsFinite A → LRA.Cardinality.IsDedekindFinite A
 
 Predicate logic (unfolded):
 
-  ∀ (A : Type u), (Exists fun n => Exists fun f => (∀ (y : Fin n) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂ ∧ ∀ (y : Fin n), Exists fun x => f x = y) ∧ Exists fun f => (∀ (y x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂ ∧ (∀ (y : A), Exists fun x => LRA.Function.Graph f x y) → False)) → False
+  Ambient
+    (A)
+  Objects
+    (none)
+  Prove
+    ((Exists fun n => Exists fun f => ((∀ (y : Fin n) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Fin n), Exists fun x => f x = y))) ∧ (Exists fun f => ((∀ (y x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ ((∀ (y : A), Exists fun x => LRA.Function.Graph f x y) → False)))) → False
 
 Logical form (Lean):
 
@@ -131,11 +146,16 @@ theorem FiniteImpliesDedekindFinite (A : Type u)
 
 Predicate logic:
 
-  (IsDedekindInfinite A) → IsInfinite A
+  ∀ (A : Type u), LRA.Cardinality.IsDedekindInfinite A → LRA.Cardinality.IsInfinite A
 
 Predicate logic (unfolded):
 
-  ∀ (A : Type u), (Exists fun f => (∀ (y x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂ ∧ (∀ (y : A), Exists fun x => f x = y) → False) ∧ Exists fun n => Exists fun f => (LRA.Relation.LeftUnique (LRA.Function.Graph f) ∧ LRA.Relation.RightTotal (LRA.Function.Graph f))) → False
+  Ambient
+    (A)
+  Objects
+    (none)
+  Prove
+    ((Exists fun f => ((∀ (y x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ ((∀ (y : A), Exists fun x => f x = y) → False))) ∧ (Exists fun n => Exists fun f => (LRA.Relation.LeftUnique (LRA.Function.Graph f) ∧ LRA.Relation.RightTotal (LRA.Function.Graph f)))) → False
 
 Logical form (Lean):
 
@@ -171,11 +191,16 @@ theorem DedekindInfiniteImpliesInfinite (A : Type u)
 
 Predicate logic:
 
-  (IsFinite A ∧ IsInfinite B) → Dominates A B
+  ∀ (A : Type u) (B : Type v), (LRA.Cardinality.IsFinite A ∧ LRA.Cardinality.IsInfinite B) → LRA.Cardinality.Dominates A B
 
 Predicate logic (unfolded):
 
-  ∀ (A : Type u) (B : Type v), (Exists fun n => Exists fun f => (∀ (y : Fin n) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂ ∧ ∀ (y : Fin n), Exists fun x => f x = y) ∧ (Exists fun n => Exists fun f => (LRA.Relation.LeftUnique (LRA.Function.Graph f) ∧ LRA.Relation.RightTotal (LRA.Function.Graph f))) → False) → Exists fun f => ∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
+  Ambient
+    (A, B)
+  Objects
+    (none)
+  Prove
+    ((Exists fun n => Exists fun f => ((∀ (y : Fin n) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Fin n), Exists fun x => f x = y))) ∧ ((Exists fun n => Exists fun f => (LRA.Relation.LeftUnique (LRA.Function.Graph f) ∧ LRA.Relation.RightTotal (LRA.Function.Graph f))) → False)) → Exists fun f => ∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
 
 Logical form (Lean):
 

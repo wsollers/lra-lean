@@ -15,16 +15,16 @@ variable {f g : ℝ → ℝ} {a b : ℝ}
 Predicate logic:
 
   noncomputable def LowerDarbouxSum (f : ℝ → ℝ) {a b : ℝ} (P : IntegrationPartition a b) : ℝ :=
-  ∑ i : Fin P.n,
-    SubintervalWidth P i *
-      sInf (f '' Set.Icc (P.points i.castSucc) (P.points i.succ))
+    ∑ i : Fin P.n,
+      SubintervalWidth P i *
+        sInf (f '' Set.Icc (P.points i.castSucc) (P.points i.succ))
 
 Predicate logic (unfolded):
 
   noncomputable def LowerDarbouxSum (f : ℝ → ℝ) {a b : ℝ} (P : IntegrationPartition a b) : ℝ :=
-  ∑ i : Fin P.n,
-    SubintervalWidth P i *
-      sInf (f '' Set.Icc (P.points i.castSucc) (P.points i.succ)) (source fallback; no compiled unfold data available)
+    ∑ i : Fin P.n,
+      SubintervalWidth P i *
+        sInf (f '' Set.Icc (P.points i.castSucc) (P.points i.succ)) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -65,16 +65,16 @@ noncomputable def LowerDarbouxSum (f : ℝ → ℝ) {a b : ℝ} (P : Integration
 Predicate logic:
 
   noncomputable def UpperDarbouxSum (f : ℝ → ℝ) {a b : ℝ} (P : IntegrationPartition a b) : ℝ :=
-  ∑ i : Fin P.n,
-    SubintervalWidth P i *
-      sSup (f '' Set.Icc (P.points i.castSucc) (P.points i.succ))
+    ∑ i : Fin P.n,
+      SubintervalWidth P i *
+        sSup (f '' Set.Icc (P.points i.castSucc) (P.points i.succ))
 
 Predicate logic (unfolded):
 
   noncomputable def UpperDarbouxSum (f : ℝ → ℝ) {a b : ℝ} (P : IntegrationPartition a b) : ℝ :=
-  ∑ i : Fin P.n,
-    SubintervalWidth P i *
-      sSup (f '' Set.Icc (P.points i.castSucc) (P.points i.succ)) (source fallback; no compiled unfold data available)
+    ∑ i : Fin P.n,
+      SubintervalWidth P i *
+        sSup (f '' Set.Icc (P.points i.castSucc) (P.points i.succ)) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -114,11 +114,19 @@ noncomputable def UpperDarbouxSum (f : ℝ → ℝ) {a b : ℝ} (P : Integration
 
 Predicate logic:
 
-  LowerDarbouxSum f P ≤ LowerDarbouxSum f P' ∧ LowerDarbouxSum f P' ≤ UpperDarbouxSum f P' ∧ UpperDarbouxSum f P' ≤ UpperDarbouxSum f P
+  ∀ {f : Real → Real} {a b : Real} (P P' : LRA.Analysis.Integration.IntegrationPartition a b), LRA.Analysis.Integration.RefinesPartition P' P → (Real.instLE.le (LRA.Analysis.Integration.LowerDarbouxSum f P) (LRA.Analysis.Integration.LowerDarbouxSum f P') ∧ (Real.instLE.le (LRA.Analysis.Integration.LowerDarbouxSum f P') (LRA.Analysis.Integration.UpperDarbouxSum f P') ∧ Real.instLE.le (LRA.Analysis.Integration.UpperDarbouxSum f P') (LRA.Analysis.Integration.UpperDarbouxSum f P)))
 
 Predicate logic (unfolded):
 
-  ∀ {f : Real → Real} {a b : Real} (P P' : LRA.Analysis.Integration.IntegrationPartition a b), (∀ (i : Fin (instHAdd.1 P.1 (instOfNatNat 1).1)), Exists fun j => P'.2 j = P.2 i) → (Real.instLE.1 (Quot.lift (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯ (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instInfSet.sInf (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val)) (Quot.lift (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯ (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P' i) (Real.instInfSet.sInf (Set.image f (Set.Icc (P'.points i.castSucc) (P'.points i.succ))))) Finset.univ.val)) ∧ (Real.instLE.1 (Quot.lift (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯ (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P' i) (Real.instInfSet.sInf (Set.image f (Set.Icc (P'.points i.castSucc) (P'.points i.succ))))) Finset.univ.val)) (Quot.lift (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯ (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P' i) (Real.instSupSet.sSup (Set.image f (Set.Icc (P'.points i.castSucc) (P'.points i.succ))))) Finset.univ.val)) ∧ Real.instLE.1 (Quot.lift (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯ (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P' i) (Real.instSupSet.sSup (Set.image f (Set.Icc (P'.points i.castSucc) (P'.points i.succ))))) Finset.univ.val)) (Quot.lift (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯ (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instSupSet.sSup (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val))))
+  Ambient
+    (ℝ)
+  Objects
+    f g : ℝ → ℝ
+    a b : ℝ
+    P P' : IntegrationPartition a b
+    h : RefinesPartition P' P
+  Prove
+    (∀ (i : Fin ({ hAdd := fun a b => instAddNat.add a b }.hAdd P.1 1)), Exists fun j => P'.2 j = P.2 i) → (Real.instLE.le (Quot.lift (fun l => List.foldr (fun x1 x2 => { hAdd := fun a b => Real.instAddCommMonoid.toAddZeroClass.add a b }.hAdd x1 x2) 0 l) ⋯ (Quot.liftOn Finset.univ.val (fun l => Multiset.ofList (List.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instInfSet.sInf (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) l)) ⋯)) (Quot.lift (fun l => List.foldr (fun x1 x2 => { hAdd := fun a b => Real.instAddCommMonoid.toAddZeroClass.add a b }.hAdd x1 x2) 0 l) ⋯ (Quot.liftOn Finset.univ.val (fun l => Multiset.ofList (List.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P' i) (Real.instInfSet.sInf (Set.image f (Set.Icc (P'.points i.castSucc) (P'.points i.succ))))) l)) ⋯)) ∧ (Real.instLE.le (Quot.lift (fun l => List.foldr (fun x1 x2 => { hAdd := fun a b => Real.instAddCommMonoid.toAddZeroClass.add a b }.hAdd x1 x2) 0 l) ⋯ (Quot.liftOn Finset.univ.val (fun l => Multiset.ofList (List.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P' i) (Real.instInfSet.sInf (Set.image f (Set.Icc (P'.points i.castSucc) (P'.points i.succ))))) l)) ⋯)) (Quot.lift (fun l => List.foldr (fun x1 x2 => { hAdd := fun a b => Real.instAddCommMonoid.toAddZeroClass.add a b }.hAdd x1 x2) 0 l) ⋯ (Quot.liftOn Finset.univ.val (fun l => Multiset.ofList (List.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P' i) (Real.instSupSet.sSup (Set.image f (Set.Icc (P'.points i.castSucc) (P'.points i.succ))))) l)) ⋯)) ∧ Real.instLE.le (Quot.lift (fun l => List.foldr (fun x1 x2 => { hAdd := fun a b => Real.instAddCommMonoid.toAddZeroClass.add a b }.hAdd x1 x2) 0 l) ⋯ (Quot.liftOn Finset.univ.val (fun l => Multiset.ofList (List.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P' i) (Real.instSupSet.sSup (Set.image f (Set.Icc (P'.points i.castSucc) (P'.points i.succ))))) l)) ⋯)) (Quot.lift (fun l => List.foldr (fun x1 x2 => { hAdd := fun a b => Real.instAddCommMonoid.toAddZeroClass.add a b }.hAdd x1 x2) 0 l) ⋯ (Quot.liftOn Finset.univ.val (fun l => Multiset.ofList (List.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instSupSet.sSup (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) l)) ⋯))))
 
 Logical form (Lean):
 
@@ -162,7 +170,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (a b ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun P => Real.instLT.1 (instHSub.1 (Quot.liftOn (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instSupSet.sSup (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val) (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯) (Quot.liftOn (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instInfSet.sInf (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val) (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯)) ε
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Real.instLT.lt 0 ε → Exists fun P => Real.instLT.lt ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Quot.lift (fun l => List.foldr (fun x1 x2 => { hAdd := fun a b => Real.instAddCommMonoid.toAddZeroClass.add a b }.hAdd x1 x2) 0 l) ⋯ (Quot.liftOn Finset.univ.val (fun l => Multiset.ofList (List.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instSupSet.sSup (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) l)) ⋯)) (Quot.lift (fun l => List.foldr (fun x1 x2 => { hAdd := fun a b => Real.instAddCommMonoid.toAddZeroClass.add a b }.hAdd x1 x2) 0 l) ⋯ (Quot.liftOn Finset.univ.val (fun l => Multiset.ofList (List.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instInfSet.sInf (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) l)) ⋯))) ε
 
 Logical form (Lean):
 
@@ -198,11 +211,18 @@ def IsDarbouxIntegrable (f : ℝ → ℝ) (a b : ℝ) : Prop :=
 
 Predicate logic:
 
-  IsDarbouxIntegrable f a b ↔ ∀ ε > 0, ∃ P ∈ IntegrationPartition a b, UpperDarbouxSum f P - LowerDarbouxSum f P < ε
+  ∀ {f : Real → Real} {a b : Real}, LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b) → LRA.Analysis.Integration.IsDarbouxIntegrable f a b ↔ ∀ (ε : Real), GT.gt ε 0 → Exists fun P => Real.instLT.lt (instHSub.hSub (LRA.Analysis.Integration.UpperDarbouxSum f P) (LRA.Analysis.Integration.LowerDarbouxSum f P)) ε
 
 Predicate logic (unfolded):
 
-  ∀ {f : Real → Real} {a b : Real}, (Exists fun M => (Real.instLT.1 Zero.toOfNat0.1 M ∧ ∀ (x : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) x → Real.instLE.1 (SemilatticeSup.toMax.1 (f x) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (f x))) M)) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun P => Real.instLT.1 (instHSub.1 (Multiset.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instSupSet.sSup (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val)) (Multiset.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instInfSet.sInf (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val))) ε ↔ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun P => Real.instLT.1 (instHSub.1 (Quot.liftOn (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instSupSet.sSup (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val) (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯) (Quot.liftOn (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instInfSet.sInf (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val) (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯)) ε
+  Ambient
+    (ℝ)
+  Objects
+    f g : ℝ → ℝ
+    a b : ℝ
+    hbdd : LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)
+  Prove
+    LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b) → LRA.Analysis.Integration.IsDarbouxIntegrable f a b ↔ ∀ (ε : Real), GT.gt ε 0 → Exists fun P => Real.instLT.lt (instHSub.hSub (LRA.Analysis.Integration.UpperDarbouxSum f P) (LRA.Analysis.Integration.LowerDarbouxSum f P)) ε
 
 Logical form (Lean):
 
@@ -240,11 +260,18 @@ theorem darboux_criterion (hbdd : LRA.Analysis.Continuity.BoundedOnSet f (Set.Ic
 
 Predicate logic:
 
-  (a ≤ b) → IsRiemannIntegrable f a b ↔ IsDarbouxIntegrable f a b
+  ∀ {f : Real → Real} {a b : Real}, (Real.instLE.le a b ∧ LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) → LRA.Analysis.Integration.IsRiemannIntegrable f a b ↔ LRA.Analysis.Integration.IsDarbouxIntegrable f a b
 
 Predicate logic (unfolded):
 
-  ∀ {f : Real → Real} {a b : Real}, (Real.instLE.1 a b ∧ Exists fun M => (Real.instLT.1 Zero.toOfNat0.1 M ∧ ∀ (x : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) x → Real.instLE.1 (SemilatticeSup.toMax.1 (f x) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (f x))) M)) → Exists fun L => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (P : LRA.Analysis.Integration.TaggedPartitionIntegration a b), Real.instLT.1 (Real.instSupSet.1 (Set.instUnion.1 (Set.instSingletonSet.singleton 0) (setOf fun w => Exists fun i => w = LRA.Analysis.Integration.SubintervalWidth P.toIntegrationPartition i))) δ → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (LRA.Analysis.Integration.RiemannSum f P) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (LRA.Analysis.Integration.RiemannSum f P) L))) ε) ↔ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun P => Real.instLT.1 (instHSub.1 (Multiset.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instSupSet.sSup (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val)) (Multiset.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instInfSet.sInf (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val))) ε
+  Ambient
+    (ℝ)
+  Objects
+    f g : ℝ → ℝ
+    a b : ℝ
+    hbdd : LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)
+  Prove
+    (Real.instLE.le a b ∧ LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) → LRA.Analysis.Integration.IsRiemannIntegrable f a b ↔ LRA.Analysis.Integration.IsDarbouxIntegrable f a b
 
 Logical form (Lean):
 
@@ -282,11 +309,18 @@ theorem riemann_darboux_equivalence (hab : a ≤ b)
 
 Predicate logic:
 
-  (a ≤ b) → IsDarbouxIntegrable f a b
+  ∀ {f : Real → Real} {a b : Real}, (Real.instLE.le a b ∧ LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)) → LRA.Analysis.Integration.IsDarbouxIntegrable f a b
 
 Predicate logic (unfolded):
 
-  ∀ {f : Real → Real} {a b : Real}, (Real.instLE.1 a b ∧ ∀ (x : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) x → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (x_1 : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) x_1 → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 x_1 x) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub x_1 x))) δ → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (f x_1) (f x)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (f x_1) (f x)))) ε)) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun P => Real.instLT.1 (instHSub.1 (Multiset.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instSupSet.sSup (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val)) (Multiset.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instInfSet.sInf (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val))) ε
+  Ambient
+    (ℝ)
+  Objects
+    f g : ℝ → ℝ
+    a b : ℝ
+    hcont : LRA.Analysis.Continuity.ContinuousOn' f (Set.Icc a b)
+  Prove
+    (Real.instLE.le a b ∧ (∀ (x : Real), x ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun δ => (Real.instLT.lt 0 δ ∧ (∀ (x_1 : Real), x_1 ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b) → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x_1 x)) δ → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f x_1) (f x))) ε)))) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun P => Real.instLT.lt ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Quot.lift (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯ (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instSupSet.sSup (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val)) (Quot.lift (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯ (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instInfSet.sInf (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val))) ε
 
 Logical form (Lean):
 
@@ -324,11 +358,18 @@ theorem continuous_darboux_integrable (hab : a ≤ b)
 
 Predicate logic:
 
-  (a ≤ b) → IsDarbouxIntegrable f a b
+  ∀ {f : Real → Real} {a b : Real}, (Real.instLE.le a b ∧ MonotoneOn f (Set.Icc a b)) → LRA.Analysis.Integration.IsDarbouxIntegrable f a b
 
 Predicate logic (unfolded):
 
-  ∀ {f : Real → Real} {a b : Real}, (Real.instLE.1 a b ∧ ∀ ⦃a_1 : Real⦄, Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) a_1 → ∀ ⦃b_1 : Real⦄, Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) b_1 → Real.instPreorder.toLE.1 a_1 b_1 → Real.instPreorder.toLE.1 (f a_1) (f b_1)) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun P => Real.instLT.1 (instHSub.1 (Multiset.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instSupSet.sSup (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val)) (Multiset.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instInfSet.sInf (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val))) ε
+  Ambient
+    (ℝ)
+  Objects
+    f g : ℝ → ℝ
+    a b : ℝ
+    hmono : MonotoneOn f (Set.Icc a b)
+  Prove
+    (Real.instLE.le a b ∧ (∀ ⦃a_1 : Real⦄, a_1 ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b) → ∀ ⦃b_1 : Real⦄, b_1 ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b) → Real.instPreorder.1.le a_1 b_1 → Real.instPreorder.1.le (f a_1) (f b_1))) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun P => Real.instLT.lt ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Quot.lift (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯ (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instSupSet.sSup (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val)) (Quot.lift (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯ (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instInfSet.sInf (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val))) ε
 
 Logical form (Lean):
 
@@ -364,11 +405,18 @@ theorem monotone_darboux_integrable (hab : a ≤ b) (hmono : MonotoneOn f (Set.I
 
 Predicate logic:
 
-  (a ≤ b ∧ {x ∈ Set.Icc a b | LRA.Analysis.Continuity.PointOfDiscontinuity f (Set.Icc a b) x}.Finite) → IsDarbouxIntegrable f a b
+  ∀ {f : Real → Real} {a b : Real}, (Real.instLE.le a b ∧ ((LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b) ∧ (setOf fun x => (x ∈ Set.Icc a b ∧ LRA.Analysis.Continuity.PointOfDiscontinuity f (Set.Icc a b) x))).Finite)) → LRA.Analysis.Integration.IsDarbouxIntegrable f a b
 
 Predicate logic (unfolded):
 
-  ∀ {f : Real → Real} {a b : Real}, (Real.instLE.1 a b ∧ (Exists fun M => (Real.instLT.1 Zero.toOfNat0.1 M ∧ ∀ (x : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) x → Real.instLE.1 (SemilatticeSup.toMax.1 (f x) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (f x))) M) ∧ Finite (Subtype fun x => Set.instMembership.1 (fun x => (Set.instMembership.1 (setOf fun x => (Real.instPreorder.le a x ∧ Real.instPreorder.le x b)) x ∧ (Set.instMembership.1 (Set.Icc a b) x ∧ LRA.Analysis.Continuity.ContinuousAtPoint f (Set.Icc a b) x → False))) x))) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun P => Real.instLT.1 (instHSub.1 (Multiset.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instSupSet.sSup (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val)) (Multiset.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instInfSet.sInf (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val))) ε
+  Ambient
+    (ℝ)
+  Objects
+    f g : ℝ → ℝ
+    a b : ℝ
+    hbdd : LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)
+  Prove
+    (Real.instLE.le a b ∧ ((Exists fun M => (Real.instLT.lt 0 M ∧ (∀ (x : Real), x ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b) → Real.instLE.le (abs (f x)) M))) ∧ (Finite (Subtype fun x => x) ∈ fun x => ((x ∈ setOf fun x => (Real.instPreorder.le a x ∧ Real.instPreorder.le x b)) ∧ (x ∈ Set.Icc a b ∧ (LRA.Analysis.Continuity.ContinuousAtPoint f (Set.Icc a b) x → False)))))) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun P => Real.instLT.lt ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Quot.lift (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯ (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instSupSet.sSup (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val)) (Quot.lift (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯ (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instInfSet.sInf (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val))) ε
 
 Logical form (Lean):
 
@@ -408,11 +456,18 @@ theorem finite_discontinuities_darboux_integrable (hab : a ≤ b)
 
 Predicate logic:
 
-  (IsDarbouxIntegrable f a b ∧ IsDarbouxIntegrable g a b) → IsDarbouxIntegrable (fun x => α * f x + β * g x) a b
+  ∀ {f g : Real → Real} {a b : Real}, (LRA.Analysis.Integration.IsDarbouxIntegrable f a b ∧ LRA.Analysis.Integration.IsDarbouxIntegrable g a b) → ∀ (α β : Real), LRA.Analysis.Integration.IsDarbouxIntegrable (fun x => instHAdd.hAdd (instHMul.hMul α (f x)) (instHMul.hMul β (g x))) a b
 
 Predicate logic (unfolded):
 
-  ∀ {f g : Real → Real} {a b : Real}, (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun P => Real.instLT.1 (instHSub.1 (Multiset.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instSupSet.sSup (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val)) (Multiset.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instInfSet.sInf (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val))) ε ∧ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun P => Real.instLT.1 (instHSub.1 (Multiset.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instSupSet.sSup (Set.image g (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val)) (Multiset.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instInfSet.sInf (Set.image g (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val))) ε) → ∀ (α β ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun P => Real.instLT.1 (instHSub.1 (Multiset.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instSupSet.sSup (Set.image (fun x => instHAdd.hAdd (instHMul.hMul α (f x)) (instHMul.hMul β (g x))) (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val)) (Multiset.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instInfSet.sInf (Set.image (fun x => instHAdd.hAdd (instHMul.hMul α (f x)) (instHMul.hMul β (g x))) (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val))) ε
+  Ambient
+    (ℝ)
+  Objects
+    f g : ℝ → ℝ
+    a b : ℝ
+    α β : ℝ
+  Prove
+    ((∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun P => Real.instLT.lt ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Quot.lift (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯ (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instSupSet.sSup (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val)) (Quot.lift (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯ (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instInfSet.sInf (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val))) ε) ∧ (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun P => Real.instLT.lt ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Quot.lift (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯ (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instSupSet.sSup (Set.image g (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val)) (Quot.lift (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯ (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instInfSet.sInf (Set.image g (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val))) ε)) → ∀ (α β ε : Real), Real.instLT.lt 0 ε → Exists fun P => Real.instLT.lt ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Quot.lift (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯ (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instSupSet.sSup (Set.image (fun x => instHAdd.hAdd (instHMul.hMul α (f x)) (instHMul.hMul β (g x))) (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val)) (Quot.lift (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯ (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instInfSet.sInf (Set.image (fun x => instHAdd.hAdd (instHMul.hMul α (f x)) (instHMul.hMul β (g x))) (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val))) ε
 
 Logical form (Lean):
 
@@ -450,11 +505,17 @@ theorem darboux_integrable_linear_combinations (hf : IsDarbouxIntegrable f a b)
 
 Predicate logic:
 
-  (IsDarbouxIntegrable f a b ∧ IsDarbouxIntegrable g a b) → IsDarbouxIntegrable (fun x => f x * g x) a b
+  ∀ {f g : Real → Real} {a b : Real}, (LRA.Analysis.Integration.IsDarbouxIntegrable f a b ∧ LRA.Analysis.Integration.IsDarbouxIntegrable g a b) → LRA.Analysis.Integration.IsDarbouxIntegrable (fun x => instHMul.hMul (f x) (g x)) a b
 
 Predicate logic (unfolded):
 
-  ∀ {f g : Real → Real} {a b : Real}, (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun P => Real.instLT.1 (instHSub.1 (Multiset.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instSupSet.sSup (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val)) (Multiset.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instInfSet.sInf (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val))) ε ∧ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun P => Real.instLT.1 (instHSub.1 (Multiset.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instSupSet.sSup (Set.image g (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val)) (Multiset.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instInfSet.sInf (Set.image g (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val))) ε) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun P => Real.instLT.1 (instHSub.1 (Multiset.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instSupSet.sSup (Set.image (fun x => instHMul.hMul (f x) (g x)) (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val)) (Multiset.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instInfSet.sInf (Set.image (fun x => instHMul.hMul (f x) (g x)) (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val))) ε
+  Ambient
+    (ℝ)
+  Objects
+    f g : ℝ → ℝ
+    a b : ℝ
+  Prove
+    ((∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun P => Real.instLT.lt ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Quot.lift (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯ (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instSupSet.sSup (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val)) (Quot.lift (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯ (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instInfSet.sInf (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val))) ε) ∧ (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun P => Real.instLT.lt ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Quot.lift (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯ (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instSupSet.sSup (Set.image g (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val)) (Quot.lift (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯ (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instInfSet.sInf (Set.image g (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val))) ε)) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun P => Real.instLT.lt ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Quot.lift (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯ (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instSupSet.sSup (Set.image (fun x => instHMul.hMul (f x) (g x)) (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val)) (Quot.lift (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯ (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instInfSet.sInf (Set.image (fun x => instHMul.hMul (f x) (g x)) (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val))) ε
 
 Logical form (Lean):
 
@@ -490,11 +551,17 @@ theorem darboux_integrable_products (hf : IsDarbouxIntegrable f a b) (hg : IsDar
 
 Predicate logic:
 
-  (IsDarbouxIntegrable f a b) → IsDarbouxIntegrable (fun x => |f x|) a b
+  ∀ {f : Real → Real} {a b : Real}, LRA.Analysis.Integration.IsDarbouxIntegrable f a b → LRA.Analysis.Integration.IsDarbouxIntegrable (fun x => abs (f x)) a b
 
 Predicate logic (unfolded):
 
-  ∀ {f : Real → Real} {a b : Real}, (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun P => Real.instLT.1 (instHSub.1 (Multiset.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instSupSet.sSup (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val)) (Multiset.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instInfSet.sInf (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val))) ε) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun P => Real.instLT.1 (instHSub.1 (Multiset.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instSupSet.sSup (Set.image (fun x => abs (f x)) (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val)) (Multiset.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instInfSet.sInf (Set.image (fun x => abs (f x)) (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val))) ε
+  Ambient
+    (ℝ)
+  Objects
+    f g : ℝ → ℝ
+    a b : ℝ
+  Prove
+    (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun P => Real.instLT.lt ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Quot.lift (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯ (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instSupSet.sSup (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val)) (Quot.lift (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯ (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instInfSet.sInf (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val))) ε) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun P => Real.instLT.lt ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Quot.lift (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯ (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instSupSet.sSup (Set.image (fun x => abs (f x)) (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val)) (Quot.lift (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯ (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instInfSet.sInf (Set.image (fun x => abs (f x)) (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val))) ε
 
 Logical form (Lean):
 
@@ -530,11 +597,22 @@ theorem darboux_integrable_absolute_value (hf : IsDarbouxIntegrable f a b) :
 
 Predicate logic:
 
-  (IsDarbouxIntegrable f a b ∧ ℝ → ℝ) → IsDarbouxIntegrable (fun x => φ (f x)) a b
+  ∀ {f : Real → Real} {a b : Real}, (LRA.Analysis.Integration.IsDarbouxIntegrable f a b ∧ LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) → ∀ (J : Set Real), Set.instLE.le (Set.image f (Set.Icc a b)) J → ∀ (φ : Real → Real), LRA.Analysis.Continuity.ContinuousOn' φ J → LRA.Analysis.Integration.IsDarbouxIntegrable (fun x => φ (f x)) a b
 
 Predicate logic (unfolded):
 
-  ∀ {f : Real → Real} {a b : Real}, (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun P => Real.instLT.1 (instHSub.1 (Multiset.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instSupSet.sSup (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val)) (Multiset.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instInfSet.sInf (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val))) ε ∧ Exists fun M => (Real.instLT.1 Zero.toOfNat0.1 M ∧ ∀ (x : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) x → Real.instLE.1 (SemilatticeSup.toMax.1 (f x) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (f x))) M)) → ∀ (J : Real → Prop), Set.instLE.1 (fun x => Exists fun a_2 => (Set.instMembership.1 (fun x => (Real.instPreorder.le a x ∧ Real.instPreorder.le x b)) a_2 ∧ f a_2 = x)) J → ∀ (φ : Real → Real), (∀ (x : Real), Set.instMembership.1 J x → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (x_1 : Real), Set.instMembership.1 J x_1 → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 x_1 x) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub x_1 x))) δ → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (φ x_1) (φ x)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (φ x_1) (φ x)))) ε)) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun P => Real.instLT.1 (instHSub.1 (Multiset.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instSupSet.sSup (Set.image (fun x => φ (f x)) (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val)) (Multiset.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instInfSet.sInf (Set.image (fun x => φ (f x)) (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val))) ε
+  Ambient
+    (ℝ)
+  Objects
+    f g : ℝ → ℝ
+    a b : ℝ
+    hfbdd : LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)
+    J : Set ℝ
+    hJ : f '' Set.Icc a b ⊆ J
+    φ : ℝ → ℝ
+    hφ : LRA.Analysis.Continuity.ContinuousOn' φ J
+  Prove
+    ((∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun P => Real.instLT.lt ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Quot.lift (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯ (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instSupSet.sSup (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val)) (Quot.lift (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯ (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instInfSet.sInf (Set.image f (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val))) ε) ∧ (Exists fun M => (Real.instLT.lt 0 M ∧ (∀ (x : Real), x ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b) → Real.instLE.le (abs (f x)) M)))) → ∀ (J : Real → Prop), { le := fun s₁ s₂ => ∀ ⦃a : Real⦄, a ∈ s₁ → a ∈ s₂}.le (fun x => Exists fun a_2 => ((a_2 ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b)) ∧ f a_2 = x)) J → ∀ (φ : Real → Real), (∀ (x : Real), x ∈ J → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun δ => (Real.instLT.lt 0 δ ∧ (∀ (x_1 : Real), x_1 ∈ J → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x_1 x)) δ → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (φ x_1) (φ x))) ε))) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun P => Real.instLT.lt ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Quot.lift (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯ (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instSupSet.sSup (Set.image (fun x => φ (f x)) (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val)) (Quot.lift (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯ (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instInfSet.sInf (Set.image (fun x => φ (f x)) (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val))) ε
 
 Logical form (Lean):
 
@@ -576,11 +654,17 @@ theorem darboux_integrable_continuous_composition (hf : IsDarbouxIntegrable f a 
 
 Predicate logic:
 
-  ¬ IsDarbouxIntegrable (fun x => by classical exact if LRA.Analysis.Completeness.IsIrrational x then 0 ∈ ℝ else 1) 0 1
+  ¬ LRA.Analysis.Integration.IsDarbouxIntegrable (fun x => ite (LRA.Analysis.Completeness.IsIrrational x) 0 1) 0 1
 
 Predicate logic (unfolded):
 
-  (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun P => Real.instLT.1 (instHSub.1 (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instSupSet.sSup (Set.image (fun x => ite (LRA.Analysis.Completeness.IsIrrational x) 0 1) (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val).sum (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instInfSet.sInf (Set.image (fun x => ite (LRA.Analysis.Completeness.IsIrrational x) 0 1) (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val).sum) ε) → False
+  Ambient
+    (ℝ)
+  Objects
+    f g : ℝ → ℝ
+    a b : ℝ
+  Prove
+    (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun P => Real.instLT.lt ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Quot.liftOn (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instSupSet.sSup (Set.image (fun x => ite (LRA.Analysis.Completeness.IsIrrational x) 0 1) (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val) (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯) (Quot.liftOn (Multiset.map (fun i => instHMul.hMul (LRA.Analysis.Integration.SubintervalWidth P i) (Real.instInfSet.sInf (Set.image (fun x => ite (LRA.Analysis.Completeness.IsIrrational x) 0 1) (Set.Icc (P.points i.castSucc) (P.points i.succ))))) Finset.univ.val) (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯)) ε) → False
 
 Logical form (Lean):
 

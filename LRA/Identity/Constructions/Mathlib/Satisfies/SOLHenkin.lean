@@ -5,10 +5,44 @@ namespace LRA.Identity.Constructions.Mathlib
 
 universe u
 
-/-- Native equality satisfies identity for every selected Henkin predicate
-domain.
+/--
+`SatisfiesSOLHenkinIdentity` TODO
 
-Logical form: `HenkinIdentityTheory domain NativeIdentity`.
+Predicate logic:
+
+  ∀ (Carrier : Type u) (domain : LRA.Identity.Logic.SOL.HenkinPredicateDomain Carrier), LRA.Identity.Logic.SOL.HenkinIdentityTheory domain LRA.Identity.Constructions.Mathlib.NativeIdentity
+
+Predicate logic (unfolded):
+
+  ∀ (Carrier : Type u) (domain : LRA.Identity.Logic.SOL.HenkinPredicateDomain Carrier), ((∀ (x : Carrier), x = x) ∧ (∀ (x y : Carrier), x = y → ∀ (P : Carrier → Prop), domain.Admissible P → P x → P y))
+
+Logical form (Lean):
+
+```lean
+theorem SatisfiesSOLHenkinIdentity (Carrier : Type u)
+    (domain : LRA.Identity.Logic.SOL.HenkinPredicateDomain Carrier) :
+    LRA.Identity.Logic.SOL.HenkinIdentityTheory domain
+      (NativeIdentity : Carrier -> Carrier -> Prop)
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro
+
 -/
 theorem SatisfiesSOLHenkinIdentity (Carrier : Type u)
     (domain : LRA.Identity.Logic.SOL.HenkinPredicateDomain Carrier) :
@@ -16,13 +50,46 @@ theorem SatisfiesSOLHenkinIdentity (Carrier : Type u)
       (NativeIdentity : Carrier -> Carrier -> Prop) := by
   sorry
 
-/-- Native equality satisfies identity relative to the unary predicate domain
-of the specified Henkin model.
+/--
+`SatisfiesSOLHenkinModelIdentity` TODO
 
-Logical form:
+Predicate logic:
+
+  ∀ {S : LRA.Logic.Signature} (M : LRA.ModelTheory.SecondOrder.HenkinModel S), LRA.Identity.Logic.SOL.HenkinIdentityTheory (LRA.Identity.ModelTheory.SOL.UnaryPredicateDomain M) LRA.Identity.Constructions.Mathlib.NativeIdentity
+
+Predicate logic (unfolded):
+
+  ∀ {S : LRA.Logic.Signature} (M : LRA.ModelTheory.SecondOrder.HenkinModel S), ((∀ (x : M.Domain), x = x) ∧ (∀ (x y : M.Domain), x = y → ∀ (P : M.Domain → Prop), (LRA.Identity.ModelTheory.SOL.UnaryPredicateDomain M).Admissible P → P x → P y))
+
+Logical form (Lean):
+
 ```lean
-HenkinIdentityTheory (UnaryPredicateDomain M) NativeIdentity
+theorem SatisfiesSOLHenkinModelIdentity
+    {S : LRA.Logic.Signature}
+    (M : LRA.ModelTheory.SecondOrder.HenkinModel S) :
+    LRA.Identity.Logic.SOL.HenkinIdentityTheory
+      (LRA.Identity.ModelTheory.SOL.UnaryPredicateDomain M)
+      (NativeIdentity : M.Domain -> M.Domain -> Prop)
 ```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro
+
 -/
 theorem SatisfiesSOLHenkinModelIdentity
     {S : LRA.Logic.Signature}

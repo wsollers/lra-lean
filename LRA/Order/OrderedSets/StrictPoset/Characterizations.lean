@@ -8,11 +8,16 @@ namespace LRA.Order.OrderedSets.StrictPoset
 
 Predicate logic:
 
-  (∀ poset ∈ LRA.Order.StrictPoset), LRA.Order.StrictOrder poset.StrictRelation
+  ∀ (poset : LRA.Order.StrictPoset), LRA.Order.StrictOrder poset.StrictRelation
 
 Predicate logic (unfolded):
 
-  ∀ (poset : LRA.Order.StrictPoset), (∀ (x : poset.1), poset.2 x x → False ∧ ∀ (x y z : poset.1), poset.2 x y → poset.2 y z → poset.2 x z)
+  Ambient
+    (implicit ambient)
+  Objects
+    poset : LRA.Order.StrictPoset
+  Prove
+    ((∀ (x : poset.1), poset.2 x x → False) ∧ (∀ (x y z : poset.1), poset.2 x y → poset.2 y z → poset.2 x z))
 
 Logical form (Lean):
 
@@ -50,11 +55,16 @@ theorem StrictPosetRelationIsStrictOrder
 
 Predicate logic:
 
-  (∀ poset ∈ LRA.Order.StrictPoset), LRA.Relation.Irreflexive poset.StrictRelation
+  ∀ (poset : LRA.Order.StrictPoset), LRA.Relation.Irreflexive poset.StrictRelation
 
 Predicate logic (unfolded):
 
-  ∀ (poset : LRA.Order.StrictPoset) (x : poset.1), poset.2 x x → False
+  Ambient
+    (implicit ambient)
+  Objects
+    poset : LRA.Order.StrictPoset
+  Prove
+    poset.2 x x → False
 
 Logical form (Lean):
 
@@ -92,11 +102,16 @@ theorem StrictPosetRelationIsIrreflexive
 
 Predicate logic:
 
-  (∀ poset ∈ LRA.Order.StrictPoset), LRA.Relation.Transitive poset.StrictRelation
+  ∀ (poset : LRA.Order.StrictPoset), LRA.Relation.Transitive poset.StrictRelation
 
 Predicate logic (unfolded):
 
-  ∀ (poset : LRA.Order.StrictPoset) (x y z : poset.1), (poset.2 x y ∧ poset.2 y z) → poset.2 x z
+  Ambient
+    (implicit ambient)
+  Objects
+    poset : LRA.Order.StrictPoset
+  Prove
+    (poset.2 x y ∧ poset.2 y z) → poset.2 x z
 
 Logical form (Lean):
 

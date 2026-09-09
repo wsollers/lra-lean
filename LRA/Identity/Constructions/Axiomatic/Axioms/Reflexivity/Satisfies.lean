@@ -9,22 +9,19 @@ universe u
 
 Predicate logic:
 
-  ∀ x : Carrier, Ax_IdentityRelation x x
+  ∀ (Carrier : Type u) (x : Carrier), LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x x
 
 Predicate logic (unfolded):
 
-  Ambient
-    (Carrier)
-  Objects
-    (none)
-  Prove
-    LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x x
+  ∀ (Carrier : Type u) (x : Carrier), LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x x
 
 Logical form (Lean):
 
 ```lean
 theorem axiomaticIdentityRelation_satisfiesReflexivity (Carrier : Type u) :
-    ∀ x : Carrier, Ax_IdentityRelation x x
+    ∀ x : Carrier, Ax_IdentityRelation x x := by
+  intro x
+  have xRx
 ```
 
 Type-theoretic form:
@@ -48,7 +45,9 @@ Related proof moves: intro
 -/
 theorem axiomaticIdentityRelation_satisfiesReflexivity (Carrier : Type u) :
     ∀ x : Carrier, Ax_IdentityRelation x x := by
-  sorry
+  intro x
+  have xRx := Ax_IdentityReflexivity x
+  exact xRx
 
 
 end LRA.Identity.Constructions.Axiomatic

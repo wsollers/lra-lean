@@ -12,11 +12,16 @@ namespace LRA.Analysis.Integration
 
 Predicate logic:
 
-  ∀ (E : Set Real) (ε : Real), GT.gt ε 0 → Exists fun p => Exists fun q => (∀ (k : Nat), Real.instLT.lt (p k) (q k) ∧ (Set.instLE.le E (Set.iUnion fun k => Set.Ioo (p k) (q k)) ∧ Exists fun L => (Real.instLE.le L ε ∧ HasSum (fun k => instHSub.hSub (q k) (p k)) L)))
+  ∀ (E : Set Real) (ε : Real), GT.gt ε 0 → Exists fun p => Exists fun q => ((∀ (k : Nat), Real.instLT.lt (p k) (q k)) ∧ (Set.instLE.le E (Set.iUnion fun k => Set.Ioo (p k) (q k)) ∧ (Exists fun L => (Real.instLE.le L ε ∧ HasSum (fun k => instHSub.hSub (q k) (p k)) L))))
 
 Predicate logic (unfolded):
 
-  ∀ (E : Real → Prop) (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun p => Exists fun q => (∀ (k : Nat), Real.instLT.1 (p k) (q k) ∧ (Set.instLE.1 E (Set.instSupSet.1 fun x => Exists fun y => (fun k => Set.Ioo (p k) (q k)) y = x) ∧ Exists fun L => (Real.instLE.1 L ε ∧ Filter.instPartialOrder.toLE.1 { sets := fun x => Set.instMembership.mem (SummationFilter.unconditional Nat).filter.sets (Set.preimage (fun s => s.sum fun b => (fun k => instHSub.hSub (q k) (p k)) b) x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds L))))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Real.instLT.lt 0 ε → Exists fun p => Exists fun q => ((∀ (k : Nat), Real.instLT.lt (p k) (q k)) ∧ (({ le := fun s₁ s₂ => ∀ ⦃a : Real⦄, a ∈ s₁ → a ∈ s₂}.le E (Set.instSupSet.1 fun x => Exists fun y => (fun k => setOf fun x => (Real.instPreorder.lt (p k) x ∧ Real.instPreorder.lt x (q k))) y = x)) ∧ (Exists fun L => (Real.instLE.le L ε ∧ Filter.instPartialOrder.toPreorder.1.le { sets := fun x => .filter.sets ∈ SummationFilter.unconditional Nat (Set.preimage (fun s => s.sum fun b => (fun k => instHSub.hSub (q k) (p k)) b) x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds L)))))
 
 Logical form (Lean):
 
@@ -54,11 +59,16 @@ def IsMeasureZero (E : Set ℝ) : Prop :=
 
 Predicate logic:
 
-  ∀ (f : Real → Real) (a b x ω : Real), (Set.instMembership.mem (Set.Icc a b) x ∧ LRA.Analysis.Continuity.OscillationAtPoint f (Set.Icc a b) x ω)
+  ∀ (f : Real → Real) (a b x ω : Real), (x ∈ Set.Icc a b ∧ LRA.Analysis.Continuity.OscillationAtPoint f (Set.Icc a b) x ω)
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (a b x ω : Real), (Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) x ∧ (Real.instLE.1 Zero.toOfNat0.1 ω ∧ (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ Exists fun Ω => ((Real.instLE.1 Zero.toOfNat0.1 Ω ∧ (∀ (x_1 : Real), Set.instMembership.1 (fun x_2 => (Set.instMembership.1 (Set.Icc a b) x_2 ∧ Real.instLT.1 (abs (instHSub.hSub x_2 x)) δ)) x_1 → ∀ (y : Real), Set.instMembership.1 (fun x_2 => (Set.instMembership.1 (Set.Icc a b) x_2 ∧ Real.instLT.1 (abs (instHSub.hSub x_2 x)) δ)) y → Real.instLE.1 (SemilatticeSup.toMax.1 (instHSub.1 (f x_1) (f y)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (f x_1) (f y)))) Ω ∧ ∀ (b_1 : Real), Real.instLE.1 Zero.toOfNat0.1 b_1 → Real.instLT.1 b_1 Ω → Exists fun x_1 => (Set.instMembership.1 (fun x_2 => (Set.instMembership.1 (Set.Icc a b) x_2 ∧ Real.instLT.1 (abs (instHSub.hSub x_2 x)) δ)) x_1 ∧ Exists fun y => (Set.instMembership.1 (fun x_2 => (Set.instMembership.1 (Set.Icc a b) x_2 ∧ Real.instLT.1 (abs (instHSub.hSub x_2 x)) δ)) y ∧ Real.instLT.1 b_1 (SemilatticeSup.toMax.1 (instHSub.1 (f x_1) (f y)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (f x_1) (f y)))))))) ∧ Real.instLT.1 Ω (instHAdd.1 ω ε))) ∧ ∀ (b_1 : Real), Real.instLE.1 Zero.toOfNat0.1 b_1 → Real.instLT.1 b_1 ω → ∀ (δ : Real), Real.instLT.1 Zero.toOfNat0.1 δ → Exists fun Ω => ((Real.instLE.1 Zero.toOfNat0.1 Ω ∧ (∀ (x_1 : Real), Set.instMembership.1 (fun x_2 => (Set.instMembership.1 (Set.Icc a b) x_2 ∧ Real.instLT.1 (abs (instHSub.hSub x_2 x)) δ)) x_1 → ∀ (y : Real), Set.instMembership.1 (fun x_2 => (Set.instMembership.1 (Set.Icc a b) x_2 ∧ Real.instLT.1 (abs (instHSub.hSub x_2 x)) δ)) y → Real.instLE.1 (SemilatticeSup.toMax.1 (instHSub.1 (f x_1) (f y)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (f x_1) (f y)))) Ω ∧ ∀ (b_2 : Real), Real.instLE.1 Zero.toOfNat0.1 b_2 → Real.instLT.1 b_2 Ω → Exists fun x_1 => (Set.instMembership.1 (fun x_2 => (Set.instMembership.1 (Set.Icc a b) x_2 ∧ Real.instLT.1 (abs (instHSub.hSub x_2 x)) δ)) x_1 ∧ Exists fun y => (Set.instMembership.1 (fun x_2 => (Set.instMembership.1 (Set.Icc a b) x_2 ∧ Real.instLT.1 (abs (instHSub.hSub x_2 x)) δ)) y ∧ Real.instLT.1 b_2 (SemilatticeSup.toMax.1 (instHSub.1 (f x_1) (f y)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (f x_1) (f y)))))))) ∧ Real.instLT.1 b_1 Ω))))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((x ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b)) ∧ (Real.instLE.le 0 ω ∧ ((∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun δ => (Real.instLT.lt 0 δ ∧ (Exists fun Ω => ((Real.instLE.le 0 Ω ∧ ((∀ (x_1 : Real), x_1 ∈ fun x_2 => (x_2 ∈ Set.Icc a b ∧ Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x_2 x)) δ) → ∀ (y : Real), y ∈ fun x_2 => (x_2 ∈ Set.Icc a b ∧ Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x_2 x)) δ) → Real.instLE.le (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f x_1) (f y))) Ω) ∧ (∀ (b_1 : Real), Real.instLE.le 0 b_1 → Real.instLT.lt b_1 Ω → Exists fun x_1 => ((x_1 ∈ fun x_2 => (x_2 ∈ Set.Icc a b ∧ Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x_2 x)) δ)) ∧ (Exists fun y => ((y ∈ fun x_2 => (x_2 ∈ Set.Icc a b ∧ Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x_2 x)) δ)) ∧ Real.instLT.lt b_1 (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f x_1) (f y))))))))) ∧ Real.instLT.lt Ω ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd ω ε))))) ∧ (∀ (b_1 : Real), Real.instLE.le 0 b_1 → Real.instLT.lt b_1 ω → ∀ (δ : Real), Real.instLT.lt 0 δ → Exists fun Ω => ((Real.instLE.le 0 Ω ∧ ((∀ (x_1 : Real), x_1 ∈ fun x_2 => (x_2 ∈ Set.Icc a b ∧ Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x_2 x)) δ) → ∀ (y : Real), y ∈ fun x_2 => (x_2 ∈ Set.Icc a b ∧ Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x_2 x)) δ) → Real.instLE.le (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f x_1) (f y))) Ω) ∧ (∀ (b_2 : Real), Real.instLE.le 0 b_2 → Real.instLT.lt b_2 Ω → Exists fun x_1 => ((x_1 ∈ fun x_2 => (x_2 ∈ Set.Icc a b ∧ Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x_2 x)) δ)) ∧ (Exists fun y => ((y ∈ fun x_2 => (x_2 ∈ Set.Icc a b ∧ Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub x_2 x)) δ)) ∧ Real.instLT.lt b_2 (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (f x_1) (f y))))))))) ∧ Real.instLT.lt b_1 Ω)))))
 
 Logical form (Lean):
 
@@ -94,11 +104,18 @@ def PointOscillation (f : ℝ → ℝ) (a b x ω : ℝ) : Prop :=
 
 Predicate logic:
 
-  (ℝ → ℝ ∧ a ≤ b) → IsRiemannIntegrable f a b ↔ IsMeasureZero {x ∈ Set.Icc a b | ∃ ω ∈ ℝ, 0 < ω ∧ PointOscillation f a b x ω}
+  ∀ (f : Real → Real) (a b : Real), (Real.instLE.le a b ∧ LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) → LRA.Analysis.Integration.IsRiemannIntegrable f a b ↔ LRA.Analysis.Integration.IsMeasureZero (setOf fun x => (x ∈ Set.Icc a b ∧ (Exists fun ω => (Real.instLT.lt 0 ω ∧ LRA.Analysis.Integration.PointOscillation f a b x ω))))
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (a b : Real), (Real.instLE.1 a b ∧ Exists fun M => (Real.instLT.1 Zero.toOfNat0.1 M ∧ ∀ (x : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) x → Real.instLE.1 (SemilatticeSup.toMax.1 (f x) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (f x))) M)) → Exists fun L => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (P : LRA.Analysis.Integration.TaggedPartitionIntegration a b), Real.instLT.1 (Real.instSupSet.1 (Set.instUnion.1 (Set.instSingletonSet.singleton 0) (setOf fun w => Exists fun i => w = LRA.Analysis.Integration.SubintervalWidth P.toIntegrationPartition i))) δ → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (LRA.Analysis.Integration.RiemannSum f P) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.hSub (LRA.Analysis.Integration.RiemannSum f P) L))) ε) ↔ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun p => Exists fun q => (∀ (k : Nat), Real.instLT.1 (p k) (q k) ∧ (Set.instLE.1 (fun x => (Set.instMembership.1 (fun x => (Real.instPreorder.le a x ∧ Real.instPreorder.le x b)) x ∧ Exists fun ω => (Real.instLT.1 Zero.toOfNat0.1 ω ∧ (Set.instMembership.1 (setOf fun x => (Real.instPreorder.le a x ∧ Real.instPreorder.le x b)) x ∧ (Real.instLE.1 0 ω ∧ (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun δ => (Real.instLT.lt 0 δ ∧ Exists fun Ω => ((Real.instLE.le 0 Ω ∧ (∀ (x_1 : Real), Set.instMembership.mem (LRA.Analysis.Continuity.RelativeNeighborhood (Set.Icc a b) x δ) x_1 → ∀ (y : Real), Set.instMembership.mem (LRA.Analysis.Continuity.RelativeNeighborhood (Set.Icc a b) x δ) y → Real.instLE.le (abs (instHSub.hSub (f x_1) (f y))) Ω ∧ ∀ (b_1 : Real), Real.instLE.le 0 b_1 → Real.instLT.lt b_1 Ω → Exists fun x_1 => (Set.instMembership.mem (LRA.Analysis.Continuity.RelativeNeighborhood (Set.Icc a b) x δ) x_1 ∧ Exists fun y => (Set.instMembership.mem (LRA.Analysis.Continuity.RelativeNeighborhood (Set.Icc a b) x δ) y ∧ Real.instLT.lt b_1 (abs (instHSub.hSub (f x_1) (f y))))))) ∧ Real.instLT.1 Ω (instHAdd.hAdd ω ε))) ∧ ∀ (b_1 : Real), Real.instLE.1 0 b_1 → Real.instLT.1 b_1 ω → ∀ (δ : Real), Real.instLT.lt 0 δ → Exists fun Ω => ((Real.instLE.le 0 Ω ∧ (∀ (x_1 : Real), Set.instMembership.mem (LRA.Analysis.Continuity.RelativeNeighborhood (Set.Icc a b) x δ) x_1 → ∀ (y : Real), Set.instMembership.mem (LRA.Analysis.Continuity.RelativeNeighborhood (Set.Icc a b) x δ) y → Real.instLE.le (abs (instHSub.hSub (f x_1) (f y))) Ω ∧ ∀ (b_2 : Real), Real.instLE.le 0 b_2 → Real.instLT.lt b_2 Ω → Exists fun x_1 => (Set.instMembership.mem (LRA.Analysis.Continuity.RelativeNeighborhood (Set.Icc a b) x δ) x_1 ∧ Exists fun y => (Set.instMembership.mem (LRA.Analysis.Continuity.RelativeNeighborhood (Set.Icc a b) x δ) y ∧ Real.instLT.lt b_2 (abs (instHSub.hSub (f x_1) (f y))))))) ∧ Real.instLT.1 b_1 Ω))))))) (Set.instSupSet.1 (setOf fun x => Exists fun y => (fun k => Set.Ioo (p k) (q k)) y = x)) ∧ Exists fun L => (Real.instLE.1 L ε ∧ Filter.instPartialOrder.toLE.1 { sets := setOf fun x => Set.instMembership.mem (SummationFilter.unconditional Nat).filter.sets (Set.preimage (fun s => s.sum fun b => (fun k => instHSub.hSub (q k) (p k)) b) x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds L))))
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    a b : ℝ
+    hbdd : LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)
+  Prove
+    (Real.instLE.le a b ∧ LRA.Analysis.Continuity.BoundedOnSet f (Set.Icc a b)) → LRA.Analysis.Integration.IsRiemannIntegrable f a b ↔ LRA.Analysis.Integration.IsMeasureZero (setOf fun x => (x ∈ Set.Icc a b ∧ (Exists fun ω => (Real.instLT.lt 0 ω ∧ LRA.Analysis.Integration.PointOscillation f a b x ω))))
 
 Logical form (Lean):
 

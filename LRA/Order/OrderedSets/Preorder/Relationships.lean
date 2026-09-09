@@ -15,7 +15,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (preorder : LRA.Order.OrderedSets.Preorder.PreorderRelation Carrier) (a a_1 : Carrier), (preorder.1 a a_1 ∧ preorder.1 a_1 a → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (preorder.1 a a_1 ∧ (preorder.1 a_1 a → False))
 
 Logical form (Lean):
 
@@ -63,7 +68,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (preorder : LRA.Order.OrderedSets.Preorder.PreorderRelation Carrier) (a a_1 : Carrier), (preorder.1 a a_1 ∧ preorder.1 a_1 a)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (preorder.1 a a_1 ∧ preorder.1 a_1 a)
 
 Logical form (Lean):
 
@@ -107,11 +117,16 @@ def PreorderEquivalence
 
 Predicate logic:
 
-  LRA.Relation.EquivalenceRelation (PreorderEquivalence preorder)
+  ∀ {Carrier : Type u} (preorder : LRA.Order.OrderedSets.Preorder.PreorderRelation Carrier), LRA.Relation.EquivalenceRelation (LRA.Order.OrderedSets.Preorder.PreorderEquivalence preorder)
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (preorder : LRA.Order.OrderedSets.Preorder.PreorderRelation Carrier), (∀ (x : Carrier), (preorder.1 x x ∧ preorder.1 x x) ∧ (∀ (x y : Carrier), (preorder.1 x y ∧ preorder.1 y x) → (preorder.1 y x ∧ preorder.1 x y) ∧ ∀ (x y z : Carrier), (preorder.1 x y ∧ preorder.1 y x) → (preorder.1 y z ∧ preorder.1 z y) → (preorder.1 x z ∧ preorder.1 z x)))
+  Ambient
+    (Carrier)
+  Objects
+    preorder : PreorderRelation Carrier
+  Prove
+    ((∀ (x : Carrier), (preorder.1 x x ∧ preorder.1 x x)) ∧ ((∀ (x y : Carrier), (preorder.1 x y ∧ preorder.1 y x) → (preorder.1 y x ∧ preorder.1 x y)) ∧ (∀ (x y z : Carrier), (preorder.1 x y ∧ preorder.1 y x) → (preorder.1 y z ∧ preorder.1 z y) → (preorder.1 x z ∧ preorder.1 z x))))
 
 Logical form (Lean):
 
@@ -152,14 +167,14 @@ theorem PreorderEquivalenceIsEquivalence
 Predicate logic:
 
   def PreorderSetoid
-    {Carrier : Type u}
-    (preorder : PreorderRelation Carrier) : Setoid Carrier
+      {Carrier : Type u}
+      (preorder : PreorderRelation Carrier) : Setoid Carrier
 
 Predicate logic (unfolded):
 
   def PreorderSetoid
-    {Carrier : Type u}
-    (preorder : PreorderRelation Carrier) : Setoid Carrier (source fallback; no compiled unfold data available)
+      {Carrier : Type u}
+      (preorder : PreorderRelation Carrier) : Setoid Carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -200,16 +215,16 @@ def PreorderSetoid
 Predicate logic:
 
   abbrev PreorderQuotient
-    {Carrier : Type u}
-    (preorder : PreorderRelation Carrier) : Type u :=
-  Quotient (PreorderSetoid preorder)
+      {Carrier : Type u}
+      (preorder : PreorderRelation Carrier) : Type u :=
+    Quotient (PreorderSetoid preorder)
 
 Predicate logic (unfolded):
 
   abbrev PreorderQuotient
-    {Carrier : Type u}
-    (preorder : PreorderRelation Carrier) : Type u :=
-  Quotient (PreorderSetoid preorder) (source fallback; no compiled unfold data available)
+      {Carrier : Type u}
+      (preorder : PreorderRelation Carrier) : Type u :=
+    Quotient (PreorderSetoid preorder) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -253,7 +268,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (preorder : LRA.Order.OrderedSets.Preorder.PreorderRelation Carrier) (a a_1 : Quot (LRA.Order.OrderedSets.Preorder.PreorderSetoid preorder).1), Quot.lift (fun a₁ => Quot.lift (preorder.1 a₁) ⋯ a_1) ⋯ a
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Quot.lift (fun a₁ => Quot.lift (preorder.1 a₁) ⋯ a_1) ⋯ a
 
 Logical form (Lean):
 
@@ -307,11 +327,16 @@ def PreorderQuotientRelation
 
 Predicate logic:
 
-  LRA.Order.PartialOrder (PreorderQuotientRelation preorder)
+  ∀ {Carrier : Type u} (preorder : LRA.Order.OrderedSets.Preorder.PreorderRelation Carrier), LRA.Order.PartialOrder (LRA.Order.OrderedSets.Preorder.PreorderQuotientRelation preorder)
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (preorder : LRA.Order.OrderedSets.Preorder.PreorderRelation Carrier), (∀ (x : Quot (LRA.Order.OrderedSets.Preorder.PreorderSetoid preorder).1), Quot.lift (fun a₁ => Quotient.lift (preorder.relation a₁) ⋯ x) ⋯ x ∧ (∀ (x y : Quot (LRA.Order.OrderedSets.Preorder.PreorderSetoid preorder).1), Quot.lift (fun a₁ => Quotient.lift (preorder.relation a₁) ⋯ y) ⋯ x → Quot.lift (fun a₁ => Quotient.lift (preorder.relation a₁) ⋯ x) ⋯ y → x = y ∧ ∀ (x y z : Quot (LRA.Order.OrderedSets.Preorder.PreorderSetoid preorder).1), Quot.lift (fun a₁ => Quotient.lift (preorder.relation a₁) ⋯ y) ⋯ x → Quot.lift (fun a₁ => Quotient.lift (preorder.relation a₁) ⋯ z) ⋯ y → Quot.lift (fun a₁ => Quotient.lift (preorder.relation a₁) ⋯ z) ⋯ x))
+  Ambient
+    (Carrier)
+  Objects
+    preorder : PreorderRelation Carrier
+  Prove
+    ((∀ (x : Quot (LRA.Order.OrderedSets.Preorder.PreorderSetoid preorder).1), Quot.lift (fun a₁ => Quotient.lift (preorder.relation a₁) ⋯ x) ⋯ x) ∧ ((∀ (x y : Quot (LRA.Order.OrderedSets.Preorder.PreorderSetoid preorder).1), Quot.lift (fun a₁ => Quotient.lift (preorder.relation a₁) ⋯ y) ⋯ x → Quot.lift (fun a₁ => Quotient.lift (preorder.relation a₁) ⋯ x) ⋯ y → x = y) ∧ (∀ (x y z : Quot (LRA.Order.OrderedSets.Preorder.PreorderSetoid preorder).1), Quot.lift (fun a₁ => Quotient.lift (preorder.relation a₁) ⋯ y) ⋯ x → Quot.lift (fun a₁ => Quotient.lift (preorder.relation a₁) ⋯ z) ⋯ y → Quot.lift (fun a₁ => Quotient.lift (preorder.relation a₁) ⋯ z) ⋯ x)))
 
 Logical form (Lean):
 

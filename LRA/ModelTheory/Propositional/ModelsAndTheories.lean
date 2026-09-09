@@ -12,11 +12,16 @@ namespace LRA.ModelTheory.Propositional
 
 Predicate logic:
 
-  ∀ {L : LRA.ModelTheory.Propositional.PropositionalLanguage} (φ : LRA.ModelTheory.Propositional.Formula L) (a : LRA.ModelTheory.Propositional.PropositionalModel L), LRA.ModelTheory.Propositional.evaluate a.valuation φ = Bool.true
+  ∀ {L : LRA.Logic.Propositional.PropositionalLanguage} (φ : LRA.Logic.Propositional.Formula L) (a : LRA.ModelTheory.Propositional.PropositionalModel L), LRA.Logic.Propositional.evaluate a.valuation φ = Bool.true
 
 Predicate logic (unfolded):
 
-  ∀ {L : LRA.ModelTheory.Propositional.PropositionalLanguage} (φ : LRA.ModelTheory.Propositional.Formula L) (a : LRA.ModelTheory.Propositional.PropositionalModel L), LRA.ModelTheory.Propositional.evaluate a.1 φ = Bool.true
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.Propositional.evaluate a.1 φ = Bool.true
 
 Logical form (Lean):
 
@@ -52,11 +57,16 @@ def modelClass {L : PropositionalLanguage} (φ : Formula L) : Set (Propositional
 
 Predicate logic:
 
-  ∀ {L : LRA.ModelTheory.Propositional.PropositionalLanguage} (Γ : Set (LRA.ModelTheory.Propositional.Formula L)) (a : LRA.ModelTheory.Propositional.PropositionalModel L) (φ : LRA.ModelTheory.Propositional.Formula L), Set.instMembership.mem Γ φ → a.satisfies φ
+  ∀ {L : LRA.Logic.Propositional.PropositionalLanguage} (Γ : Set (LRA.Logic.Propositional.Formula L)) (a : LRA.ModelTheory.Propositional.PropositionalModel L) (φ : LRA.Logic.Propositional.Formula L), φ ∈ Γ → a.satisfies φ
 
 Predicate logic (unfolded):
 
-  ∀ {L : LRA.ModelTheory.Propositional.PropositionalLanguage} (Γ : LRA.ModelTheory.Propositional.Formula L → Prop) (a : LRA.ModelTheory.Propositional.PropositionalModel L) (φ : LRA.ModelTheory.Propositional.Formula L), Set.instMembership.1 Γ φ → LRA.ModelTheory.Propositional.evaluate a.1 φ = Bool.true
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    φ ∈ Γ → LRA.Logic.Propositional.evaluate a.1 φ = Bool.true
 
 Logical form (Lean):
 
@@ -92,11 +102,16 @@ def ModelsOfTheory {L : PropositionalLanguage} (Γ : Set (Formula L)) : Set (Pro
 
 Predicate logic:
 
-  ∀ {L : LRA.ModelTheory.Propositional.PropositionalLanguage} (K : Set (LRA.ModelTheory.Propositional.PropositionalModel L)) (a : LRA.ModelTheory.Propositional.Formula L) (M : LRA.ModelTheory.Propositional.PropositionalModel L), Set.instMembership.mem K M → M.satisfies a
+  ∀ {L : LRA.Logic.Propositional.PropositionalLanguage} (K : Set (LRA.ModelTheory.Propositional.PropositionalModel L)) (a : LRA.Logic.Propositional.Formula L) (M : LRA.ModelTheory.Propositional.PropositionalModel L), M ∈ K → M.satisfies a
 
 Predicate logic (unfolded):
 
-  ∀ {L : LRA.ModelTheory.Propositional.PropositionalLanguage} (K : LRA.ModelTheory.Propositional.PropositionalModel L → Prop) (a : LRA.ModelTheory.Propositional.Formula L) (M : LRA.ModelTheory.Propositional.PropositionalModel L), Set.instMembership.1 K M → LRA.ModelTheory.Propositional.evaluate M.1 a = Bool.true
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    M ∈ K → LRA.Logic.Propositional.evaluate M.1 a = Bool.true
 
 Logical form (Lean):
 
@@ -132,11 +147,16 @@ def TheoryOfModels {L : PropositionalLanguage} (K : Set (PropositionalModel L)) 
 
 Predicate logic:
 
-  ∀ {L : LRA.ModelTheory.Propositional.PropositionalLanguage} (φ : LRA.ModelTheory.Propositional.Formula L) (M : LRA.ModelTheory.Propositional.PropositionalModel L), M.satisfies φ
+  ∀ {L : LRA.Logic.Propositional.PropositionalLanguage} (φ : LRA.Logic.Propositional.Formula L) (M : LRA.ModelTheory.Propositional.PropositionalModel L), M.satisfies φ
 
 Predicate logic (unfolded):
 
-  ∀ {L : LRA.ModelTheory.Propositional.PropositionalLanguage} (φ : LRA.ModelTheory.Propositional.Formula L) (M : LRA.ModelTheory.Propositional.PropositionalModel L), LRA.ModelTheory.Propositional.evaluate M.1 φ = Bool.true
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.Propositional.evaluate M.1 φ = Bool.true
 
 Logical form (Lean):
 
@@ -172,11 +192,16 @@ def IsValid {L : PropositionalLanguage} (φ : Formula L) : Prop :=
 
 Predicate logic:
 
-  ∀ {L : LRA.ModelTheory.Propositional.PropositionalLanguage} (Γ : Set (LRA.ModelTheory.Propositional.Formula L)), Exists fun x => Set.instMembership.mem (LRA.ModelTheory.Propositional.ModelsOfTheory Γ) x
+  ∀ {L : LRA.Logic.Propositional.PropositionalLanguage} (Γ : Set (LRA.Logic.Propositional.Formula L)), Exists fun x => x ∈ LRA.ModelTheory.Propositional.ModelsOfTheory Γ
 
 Predicate logic (unfolded):
 
-  ∀ {L : LRA.ModelTheory.Propositional.PropositionalLanguage} (Γ : LRA.ModelTheory.Propositional.Formula L → Prop), Exists fun x => Set.instMembership.1 (fun M => ∀ (φ : LRA.ModelTheory.Propositional.Formula L), Set.instMembership.1 Γ φ → LRA.ModelTheory.Propositional.evaluate M.1 φ = Bool.true) x
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun x => x ∈ fun M => ∀ (φ : LRA.Logic.Propositional.Formula L), φ ∈ Γ → LRA.Logic.Propositional.evaluate M.1 φ = Bool.true
 
 Logical form (Lean):
 
@@ -212,11 +237,16 @@ def IsSatisfiable {L : PropositionalLanguage} (Γ : Set (Formula L)) : Prop :=
 
 Predicate logic:
 
-  ∀ {L : LRA.ModelTheory.Propositional.PropositionalLanguage} (Γ : Set (LRA.ModelTheory.Propositional.Formula L)) (φ : LRA.ModelTheory.Propositional.Formula L) ⦃a : LRA.ModelTheory.Propositional.PropositionalModel L⦄, Set.instMembership.mem (LRA.ModelTheory.Propositional.ModelsOfTheory Γ) a → Set.instMembership.mem (LRA.ModelTheory.Propositional.modelClass φ) a
+  ∀ {L : LRA.Logic.Propositional.PropositionalLanguage} (Γ : Set (LRA.Logic.Propositional.Formula L)) (φ : LRA.Logic.Propositional.Formula L) ⦃a : LRA.ModelTheory.Propositional.PropositionalModel L⦄, a ∈ LRA.ModelTheory.Propositional.ModelsOfTheory Γ → a ∈ LRA.ModelTheory.Propositional.modelClass φ
 
 Predicate logic (unfolded):
 
-  ∀ {L : LRA.ModelTheory.Propositional.PropositionalLanguage} (Γ : LRA.ModelTheory.Propositional.Formula L → Prop) (φ : LRA.ModelTheory.Propositional.Formula L) ⦃a : LRA.ModelTheory.Propositional.PropositionalModel L⦄, Set.instMembership.1 (fun M => ∀ (φ : LRA.ModelTheory.Propositional.Formula L), Set.instMembership.1 Γ φ → LRA.ModelTheory.Propositional.evaluate M.1 φ = Bool.true) a → Set.instMembership.1 (fun M => LRA.ModelTheory.Propositional.evaluate M.1 φ = Bool.true)a
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    a ∈ fun M => ∀ (φ : LRA.Logic.Propositional.Formula L), φ ∈ Γ → LRA.Logic.Propositional.evaluate M.1 φ = Bool.true → a ∈ fun M => LRA.Logic.Propositional.evaluate M.1 φ = Bool.true
 
 Logical form (Lean):
 

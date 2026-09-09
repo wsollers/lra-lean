@@ -16,7 +16,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (relation : Element → Element → Prop) (subset : SetObject), Exists fun bound => ∀ (element : Element), inst.1 subset element → relation bound element
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun bound => ∀ (element : Element), inst.1 subset element → relation bound element
 
 Logical form (Lean):
 

@@ -19,20 +19,20 @@ variable [HasCountableIntersection SetObject]
 Predicate logic:
 
   structure DeltaRingOfSets (ambient : SetObject) extends
-    RingOfSets ambient where
-  CountableIntersectionIsMember :
-    ∀ family : Nat → SetObject,
-      (∀ index, IsMember (family index)) →
-        IsMember (HasCountableIntersection.countableIntersection family)
+      RingOfSets ambient where
+    CountableIntersectionIsMember :
+      ∀ family : Nat → SetObject,
+        (∀ index, IsMember (family index)) →
+          IsMember (HasCountableIntersection.countableIntersection family)
 
 Predicate logic (unfolded):
 
   structure DeltaRingOfSets (ambient : SetObject) extends
-    RingOfSets ambient where
-  CountableIntersectionIsMember :
-    ∀ family : Nat → SetObject,
-      (∀ index, IsMember (family index)) →
-        IsMember (HasCountableIntersection.countableIntersection family) (source fallback; no compiled unfold data available)
+      RingOfSets ambient where
+    CountableIntersectionIsMember :
+      ∀ family : Nat → SetObject,
+        (∀ index, IsMember (family index)) →
+          IsMember (HasCountableIntersection.countableIntersection family) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

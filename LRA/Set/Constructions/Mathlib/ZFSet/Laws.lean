@@ -9,11 +9,16 @@ namespace LRA.Set.MathlibZFSet
 
 Predicate logic:
 
-  z ∈ SymmetricDifference A B ↔ (z ∈ A ∧ z ∉ B) ∨ (z ∈ B ∧ z ∉ A)
+  ∀ {A B z : ZFSet}, SetLike.z ∈ LRA.Set.MathlibZFSet.SymmetricDifference A B ↔ Or ((SetLike.z ∈ A ∧ ¬ SetLike.z ∈ B)) ((SetLike.z ∈ B ∧ ¬ SetLike.z ∈ A))
 
 Predicate logic (unfolded):
 
-  ∀ {A B z : ZFSet}, SetLike.instMembership.1 (ZFSet.instUnion.1 (ZFSet.instSDiff.1 A B) (ZFSet.instSDiff.1 B A)) z ↔ Or ((SetLike.instMembership.1 A z ∧ SetLike.instMembership.1 B z → False)) ((SetLike.instMembership.1 B z ∧ SetLike.instMembership.1 A z → False))
+  Ambient
+    (implicit ambient)
+  Objects
+    A B z : ZFSet
+  Prove
+    SetLike.z ∈ LRA.Set.MathlibZFSet.SymmetricDifference A B ↔ Or ((SetLike.z ∈ A ∧ ¬ SetLike.z ∈ B)) ((SetLike.z ∈ B ∧ ¬ SetLike.z ∈ A))
 
 Logical form (Lean):
 
@@ -50,11 +55,16 @@ theorem mem_symmetricDifference {A B z : ZFSet} :
 
 Predicate logic:
 
-  ∀ A B : ZFSet, SymmetricDifference A B = (A ∪ B) \ (A ∩ B)
+  ∀ (A B : ZFSet), LRA.Set.MathlibZFSet.SymmetricDifference A B = ZFZFA ∪ B \ ZFA ∩ B
 
 Predicate logic (unfolded):
 
-  ∀ (A B : ZFSet), ZFSet.instUnion.1 (ZFSet.instSDiff.1 A B) (ZFSet.instSDiff.1 B A) = ZFSet.instSDiff.1 (ZFSet.instUnion.1 A B) (ZFSet.instInter.1 A B)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ZFZFA \ B ∪ ZFB \ A = ZFZFA ∪ B \ ZFA ∩ B
 
 Logical form (Lean):
 
@@ -93,11 +103,16 @@ theorem symmetricDifference_eq_union_sdiff_inter :
 
 Predicate logic:
 
-  ∀ A B : ZFSet, SymmetricDifference A B = SymmetricDifference B A
+  ∀ (A B : ZFSet), LRA.Set.MathlibZFSet.SymmetricDifference A B = LRA.Set.MathlibZFSet.SymmetricDifference B A
 
 Predicate logic (unfolded):
 
-  ∀ (A B : ZFSet), ZFSet.instUnion.1 (ZFSet.instSDiff.1 A B) (ZFSet.instSDiff.1 B A) = ZFSet.instUnion.1 (ZFSet.instSDiff.1 B A) (ZFSet.instSDiff.1 A B)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ZFZFA \ B ∪ ZFB \ A = ZFZFB \ A ∪ ZFA \ B
 
 Logical form (Lean):
 
@@ -136,11 +151,16 @@ theorem symmetricDifference_comm :
 
 Predicate logic:
 
-  ∀ A B C : ZFSet, SymmetricDifference (SymmetricDifference A B) C = SymmetricDifference A (SymmetricDifference B C)
+  ∀ (A B C : ZFSet), LRA.Set.MathlibZFSet.SymmetricDifference (LRA.Set.MathlibZFSet.SymmetricDifference A B) C = LRA.Set.MathlibZFSet.SymmetricDifference A (LRA.Set.MathlibZFSet.SymmetricDifference B C)
 
 Predicate logic (unfolded):
 
-  ∀ (A B C : ZFSet), ZFSet.instUnion.1 (ZFSet.instSDiff.1 (ZFSet.instUnion.1 (ZFSet.instSDiff.1 A B) (ZFSet.instSDiff.1 B A)) C) (ZFSet.instSDiff.1 C (ZFSet.instUnion.1 (ZFSet.instSDiff.1 A B) (ZFSet.instSDiff.1 B A))) = ZFSet.instUnion.1 (ZFSet.instSDiff.1 A (ZFSet.instUnion.1 (ZFSet.instSDiff.1 B C) (ZFSet.instSDiff.1 C B))) (ZFSet.instSDiff.1 (ZFSet.instUnion.1 (ZFSet.instSDiff.1 B C) (ZFSet.instSDiff.1 C B)) A)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ZFZFZFZFA \ B ∪ ZFB \ A \ C ∪ ZFC \ ZFZFA \ B ∪ ZFB \ A = ZFZFA \ ZFZFB \ C ∪ ZFC \ B ∪ ZFZFZFB \ C ∪ ZFC \ B \ A
 
 Logical form (Lean):
 
@@ -181,11 +201,16 @@ theorem symmetricDifference_assoc :
 
 Predicate logic:
 
-  ∀ A : ZFSet, SymmetricDifference A ∅ ∈ ZFSet = A
+  ∀ (A : ZFSet), LRA.Set.MathlibZFSet.SymmetricDifference A ZFSet.instEmptyCollection.emptyCollection = A
 
 Predicate logic (unfolded):
 
-  ∀ (A : ZFSet), ZFSet.instUnion.1 (ZFSet.instSDiff.1 A ZFSet.instEmptyCollection.1) (ZFSet.instSDiff.1 ZFSet.instEmptyCollection.1 A) = A
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ZFZFA \ ZFSet.instEmptyCollection.1 ∪ ZFZFSet.instEmptyCollection.1 \ A = A
 
 Logical form (Lean):
 
@@ -222,11 +247,16 @@ theorem symmetricDifference_empty :
 
 Predicate logic:
 
-  ∀ A : ZFSet, SymmetricDifference ∅ ∈ ZFSet A = A
+  ∀ (A : ZFSet), LRA.Set.MathlibZFSet.SymmetricDifference ZFSet.instEmptyCollection.emptyCollection A = A
 
 Predicate logic (unfolded):
 
-  ∀ (A : ZFSet), ZFSet.instUnion.1 (ZFSet.instSDiff.1 ZFSet.instEmptyCollection.1 A) (ZFSet.instSDiff.1 A ZFSet.instEmptyCollection.1) = A
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ZFZFZFSet.instEmptyCollection.1 \ A ∪ ZFA \ ZFSet.instEmptyCollection.1 = A
 
 Logical form (Lean):
 
@@ -263,11 +293,16 @@ theorem empty_symmetricDifference :
 
 Predicate logic:
 
-  ∀ A : ZFSet, SymmetricDifference A A = ∅ ∈ ZFSet
+  ∀ (A : ZFSet), LRA.Set.MathlibZFSet.SymmetricDifference A A = ZFSet.instEmptyCollection.emptyCollection
 
 Predicate logic (unfolded):
 
-  ∀ (A : ZFSet), ZFSet.instUnion.1 (ZFSet.instSDiff.1 A A) (ZFSet.instSDiff.1 A A) = ZFSet.instEmptyCollection.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ZFZFA \ A ∪ ZFA \ A = ZFSet.instEmptyCollection.1
 
 Logical form (Lean):
 
@@ -304,11 +339,16 @@ theorem symmetricDifference_self :
 
 Predicate logic:
 
-  ∀ A B : ZFSet, SymmetricDifference A B = ∅ ∈ ZFSet ↔ A = B
+  ∀ (A B : ZFSet), LRA.Set.MathlibZFSet.SymmetricDifference A B = ZFSet.instEmptyCollection.emptyCollection ↔ A = B
 
 Predicate logic (unfolded):
 
-  ∀ (A B : ZFSet), ZFSet.instUnion.1 (ZFSet.instSDiff.1 A B) (ZFSet.instSDiff.1 B A) = ZFSet.instEmptyCollection.1 ↔ A = B
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.MathlibZFSet.SymmetricDifference A B = ZFSet.instEmptyCollection.emptyCollection ↔ A = B
 
 Logical form (Lean):
 
@@ -345,11 +385,16 @@ theorem symmetricDifference_eq_empty_iff :
 
 Predicate logic:
 
-  ∀ A B : ZFSet, SymmetricDifference A B ⊆ A ∪ B
+  ∀ (A B : ZFSet), ZFSet.instPartialOrder.le (LRA.Set.MathlibZFSet.SymmetricDifference A B) (ZFA ∪ B)
 
 Predicate logic (unfolded):
 
-  ∀ (A B : ZFSet), ZFSet.instPartialOrder.toLE.1 (ZFSet.instUnion.1 (ZFSet.instSDiff.1 A B) (ZFSet.instSDiff.1 B A)) (ZFSet.instUnion.1 A B)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ZFSet.instPartialOrder.toPreorder.1.le (ZFZFA \ B ∪ ZFB \ A) (ZFA ∪ B)
 
 Logical form (Lean):
 
@@ -386,11 +431,17 @@ theorem symmetricDifference_subset_union :
 
 Predicate logic:
 
-  x ∈ CountableUnion family ↔ ∃ index, x ∈ family index
+  ∀ {family : Nat → ZFSet} {x : ZFSet}, SetLike.x ∈ LRA.Set.MathlibZFSet.CountableUnion family ↔ Exists fun index => SetLike.x ∈ family index
 
 Predicate logic (unfolded):
 
-  ∀ {family : Nat → ZFSet} {x : ZFSet}, SetLike.instMembership.1 (Quot.lift (fun x => Quot.mk PSet.setoid.1 (PSet.mk ((x_1 : x.Type) × (x.Func x_1).Type) fun x_1 => PSet.sUnion.match_1 x (fun x => PSet) x_1 fun x_2 y => (x.Func x_2).Func y)) ⋯ (Quotient.mk PSet.setoid (PSet.mk (Shrink Nat) (Function.comp Quotient.out (Function.comp family (EquivLike.toFunLike.coe (equivShrink Nat).symm)))))) x ↔ Exists fun index => SetLike.instMembership.1 (family index) x
+  Ambient
+    (Nat)
+  Objects
+    family : Nat → ZFSet
+    x : ZFSet
+  Prove
+    SetLike.x ∈ LRA.Set.MathlibZFSet.CountableUnion family ↔ Exists fun index => SetLike.x ∈ family index
 
 Logical form (Lean):
 
@@ -427,11 +478,17 @@ theorem mem_countableUnion {family : Nat → ZFSet} {x : ZFSet} :
 
 Predicate logic:
 
-  x ∈ CountableIntersection family ↔ ∀ index, x ∈ family index
+  ∀ {family : Nat → ZFSet} {x : ZFSet}, SetLike.x ∈ LRA.Set.MathlibZFSet.CountableIntersection family ↔ ∀ (index : Nat), SetLike.x ∈ family index
 
 Predicate logic (unfolded):
 
-  ∀ {family : Nat → ZFSet} {x : ZFSet}, SetLike.instMembership.1 (Quot.lift (fun x => Quot.mk PSet.setoid.r (PSet.sep (fun y => (fun y => ∀ (z : ZFSet), SetLike.instMembership.mem (ZFSet.range family) z → SetLike.instMembership.mem z y) (ZFSet.mk y)) x)) ⋯ (ZFSet.range family).sUnion) x ↔ ∀ (index : Nat), SetLike.instMembership.1 (family index) x
+  Ambient
+    (Nat)
+  Objects
+    family : Nat → ZFSet
+    x : ZFSet
+  Prove
+    SetLike.x ∈ LRA.Set.MathlibZFSet.CountableIntersection family ↔ ∀ (index : Nat), SetLike.x ∈ family index
 
 Logical form (Lean):
 

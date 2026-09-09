@@ -11,11 +11,18 @@ universe u v
 
 Predicate logic:
 
-  (∀ A ∈ U ∀ x ∈ Element), MinimalElement (LRA.Relation.Converse strictRelation) A x ↔ MaximalElement strictRelation A x
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (strictRelation : LRA.Relation.Endorelation Element) (subset : SetObject) (candidate : Element), LRA.Order.MinimalElement (LRA.Relation.Converse strictRelation) subset candidate ↔ LRA.Order.MaximalElement strictRelation subset candidate
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (strictRelation : Element → Element → Prop) (subset : SetObject) (candidate : Element), (inst.1 subset candidate ∧ ∀ (element : Element), inst.1 subset element → strictRelation candidate element → False) ↔ (inst.1 subset candidate ∧ ∀ (element : Element), inst.1 subset element → strictRelation candidate element → False)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    strictRelation : LRA.Relation.Endorelation Element
+    subset : SetObject
+    candidate : Element
+  Prove
+    LRA.Order.MinimalElement (LRA.Relation.Converse strictRelation) subset candidate ↔ LRA.Order.MaximalElement strictRelation subset candidate
 
 Logical form (Lean):
 

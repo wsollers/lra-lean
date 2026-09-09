@@ -53,11 +53,16 @@ instance : Membership Alpha (TypeSet Alpha) where
 
 Predicate logic:
 
-  (∀ x : Alpha, x ∈ A ↔ x ∈ B) → A = B
+  ∀ {Alpha : Type u} {A B : LRA.Set.Constructions.TypeSet Alpha}, (∀ (x : Alpha), LRA.Set.Constructions.instMembershipTypeSet.mem A x ↔ LRA.Set.Constructions.instMembershipTypeSet.mem B x) → A = B
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {A B : Alpha → Prop}, (∀ (x : Alpha), LRA.Set.instMembershipTypeSet.1 A x ↔ LRA.Set.instMembershipTypeSet.1 B x) → A = B
+  Ambient
+    (Alpha, A, B)
+  Objects
+    (none)
+  Prove
+    (∀ (x : Alpha), LRA.Set.Constructions.instMembershipTypeSet.mem A x ↔ LRA.Set.Constructions.instMembershipTypeSet.mem B x) → A = B
 
 Logical form (Lean):
 

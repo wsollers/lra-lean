@@ -5,8 +5,49 @@ namespace LRA.AlgebraicStructures
 
 universe u
 
-/-- `IteratedSelfSum` is one-indexed (`IteratedSelfSum 0 x = x = 1 • x`), Mathlib's
-`nsmul` is zero-indexed (`0 • x = 0`) — this is the reindexing between them. -/
+/--
+`iteratedSelfSum_eq_nsmul` `IteratedSelfSum` is one-indexed (`IteratedSelfSum 0 x = x = 1 • x`), Mathlib's `nsmul` is zero-indexed (`0 • x = 0`) — this is the reindexing between them.
+
+Predicate logic:
+
+  ∀ {R : Type u} [inst : AddMonoid R] (n : Nat) (x : R), LRA.AlgebraicStructures.IteratedSelfSum n x = instHSMul.hSMul (instHAdd.hAdd n 1) x
+
+Predicate logic (unfolded):
+
+  Ambient
+    (R)
+  Objects
+    n : Nat
+    x : R
+  Prove
+    LRA.AlgebraicStructures.IteratedSelfSum n x = instHSMul.1 ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1) x
+
+Logical form (Lean):
+
+```lean
+theorem iteratedSelfSum_eq_nsmul {R : Type u} [AddMonoid R] (n : Nat) (x : R) :
+    IteratedSelfSum n x = (n + 1) • x
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 theorem iteratedSelfSum_eq_nsmul {R : Type u} [AddMonoid R] (n : Nat) (x : R) :
     IteratedSelfSum n x = (n + 1) • x := by
   sorry

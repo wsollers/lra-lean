@@ -55,11 +55,16 @@ abbrev ActiveSet (Point : Type) := Set Point
 
 Predicate logic:
 
-  ∀ A : ActiveSet Point, True → A ⊆ Set.univ
+  ∀ (Point : Type) (A : LRA.SetSystems.Instantiations.ActiveSet Point), True → Set.instLE.le A Set.univ
 
 Predicate logic (unfolded):
 
-  ∀ (Point : Type) (A : Point → Prop), True → Set.instLE.1 A fun _a => True
+  Ambient
+    (Point)
+  Objects
+    (none)
+  Prove
+    True → { le := fun s₁ s₂ => ∀ ⦃a : Point⦄, a ∈ s₁ → a ∈ s₂}.le A fun _a => True
 
 Logical form (Lean):
 
@@ -95,7 +100,7 @@ theorem activeSetAlgebraMembersAreSubsets (Point : Type) :
 
 Predicate logic:
 
-  ∀ A B : ActiveSet Point, True → True → True
+  ∀ (Point : Type) (A B : LRA.SetSystems.Instantiations.ActiveSet Point), True → True → True
 
 Predicate logic (unfolded):
 
@@ -135,7 +140,7 @@ theorem activeSetAlgebraUnionIsMember (Point : Type) :
 
 Predicate logic:
 
-  ∀ A B : ActiveSet Point, True → True → True
+  ∀ (Point : Type) (A B : LRA.SetSystems.Instantiations.ActiveSet Point), True → True → True
 
 Predicate logic (unfolded):
 
@@ -175,7 +180,7 @@ theorem activeSetAlgebraIntersectionIsMember (Point : Type) :
 
 Predicate logic:
 
-  ∀ A B : ActiveSet Point, True → True → True
+  ∀ (Point : Type) (A B : LRA.SetSystems.Instantiations.ActiveSet Point), True → True → True
 
 Predicate logic (unfolded):
 
@@ -215,7 +220,7 @@ theorem activeSetAlgebraDifferenceIsMember (Point : Type) :
 
 Predicate logic:
 
-  ∀ A B : ActiveSet Point, True → True → True
+  ∀ (Point : Type) (A B : LRA.SetSystems.Instantiations.ActiveSet Point), True → True → True
 
 Predicate logic (unfolded):
 
@@ -256,28 +261,28 @@ theorem activeSetAlgebraSymmetricDifferenceIsMember (Point : Type) :
 Predicate logic:
 
   def activeSetAlgebra (Point : Type) :
-    AlgebraOfSets (Set.univ : ActiveSet Point) where
-  IsMember := fun _ => True
-  MembersAreSubsets := activeSetAlgebraMembersAreSubsets Point
-  EmptyIsMember := trivial
-  UnionIsMember := activeSetAlgebraUnionIsMember Point
-  IntersectionIsMember := activeSetAlgebraIntersectionIsMember Point
-  DifferenceIsMember := activeSetAlgebraDifferenceIsMember Point
-  SymmetricDifferenceIsMember := activeSetAlgebraSymmetricDifferenceIsMember Point
-  AmbientIsMember := trivial
+      AlgebraOfSets (Set.univ : ActiveSet Point) where
+    IsMember := fun _ => True
+    MembersAreSubsets := activeSetAlgebraMembersAreSubsets Point
+    EmptyIsMember := trivial
+    UnionIsMember := activeSetAlgebraUnionIsMember Point
+    IntersectionIsMember := activeSetAlgebraIntersectionIsMember Point
+    DifferenceIsMember := activeSetAlgebraDifferenceIsMember Point
+    SymmetricDifferenceIsMember := activeSetAlgebraSymmetricDifferenceIsMember Point
+    AmbientIsMember := trivial
 
 Predicate logic (unfolded):
 
   def activeSetAlgebra (Point : Type) :
-    AlgebraOfSets (Set.univ : ActiveSet Point) where
-  IsMember := fun _ => True
-  MembersAreSubsets := activeSetAlgebraMembersAreSubsets Point
-  EmptyIsMember := trivial
-  UnionIsMember := activeSetAlgebraUnionIsMember Point
-  IntersectionIsMember := activeSetAlgebraIntersectionIsMember Point
-  DifferenceIsMember := activeSetAlgebraDifferenceIsMember Point
-  SymmetricDifferenceIsMember := activeSetAlgebraSymmetricDifferenceIsMember Point
-  AmbientIsMember := trivial (source fallback; no compiled unfold data available)
+      AlgebraOfSets (Set.univ : ActiveSet Point) where
+    IsMember := fun _ => True
+    MembersAreSubsets := activeSetAlgebraMembersAreSubsets Point
+    EmptyIsMember := trivial
+    UnionIsMember := activeSetAlgebraUnionIsMember Point
+    IntersectionIsMember := activeSetAlgebraIntersectionIsMember Point
+    DifferenceIsMember := activeSetAlgebraDifferenceIsMember Point
+    SymmetricDifferenceIsMember := activeSetAlgebraSymmetricDifferenceIsMember Point
+    AmbientIsMember := trivial (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -329,11 +334,16 @@ def activeSetAlgebra (Point : Type) :
 
 Predicate logic:
 
-  ∀ A : ActiveSet Point, (A = ∅ ∨ A = Set.univ) → A ⊆ Set.univ
+  ∀ (Point : Type) (A : LRA.SetSystems.Instantiations.ActiveSet Point), Or (A = Set.instEmptyCollection.emptyCollection)(A = Set.univ) → Set.instLE.le A Set.univ
 
 Predicate logic (unfolded):
 
-  ∀ (Point : Type) (A : Point → Prop), Or (A = Set.instEmptyCollection.1)(A = fun_a => True) → Set.instLE.1 A fun _a => True
+  Ambient
+    (Point)
+  Objects
+    (none)
+  Prove
+    Or (A = Set.instEmptyCollection.1)(A = fun_a => True) → { le := fun s₁ s₂ => ∀ ⦃a : Point⦄, a ∈ s₁ → a ∈ s₂}.le A fun _a => True
 
 Logical form (Lean):
 
@@ -369,11 +379,16 @@ theorem emptyUniversalSetAlgebraMembersAreSubsets (Point : Type) :
 
 Predicate logic:
 
-  (∅ ∈ ActiveSet Point = ∅ ∨ ∅ ∈ ActiveSet Point = Set.univ)
+  ∀ (Point : Type), Or (Set.instEmptyCollection.emptyCollection = Set.instEmptyCollection.emptyCollection) (Set.instEmptyCollection.emptyCollection = Set.univ)
 
 Predicate logic (unfolded):
 
-  ∀ (Point : Type), Or (Set.instEmptyCollection.1 = Set.instEmptyCollection.1)(Set.instEmptyCollection.1 = fun_a => True)
+  Ambient
+    (Point)
+  Objects
+    (none)
+  Prove
+    Or (Set.instEmptyCollection.1 = Set.instEmptyCollection.1)(Set.instEmptyCollection.1 = fun_a => True)
 
 Logical form (Lean):
 
@@ -409,11 +424,16 @@ theorem emptyUniversalSetAlgebraEmptyIsMember (Point : Type) :
 
 Predicate logic:
 
-  ∀ A B : ActiveSet Point, (A = ∅ ∨ A = Set.univ) → (B = ∅ ∨ B = Set.univ) → (A ∪ B = ∅ ∨ A ∪ B = Set.univ)
+  ∀ (Point : Type) (A B : LRA.SetSystems.Instantiations.ActiveSet Point), (Or (A = Set.instEmptyCollection.emptyCollection)(A = Set.univ) ∧ Or (B = Set.instEmptyCollection.emptyCollection)(B = Set.univ)) → Or (A ∪ B = Set.instEmptyCollection.emptyCollection)(A ∪ B = Set.univ)
 
 Predicate logic (unfolded):
 
-  ∀ (Point : Type) (A B : Point → Prop), (Or (A = Set.instEmptyCollection.1)(A = fun_a => True) ∧ Or (B = Set.instEmptyCollection.1)(B = fun_a => True)) → Or (Set.instUnion.1 A B = Set.instEmptyCollection.1)(Set.instUnion.1 A B = fun_a => True)
+  Ambient
+    (Point)
+  Objects
+    (none)
+  Prove
+    (Or (A = Set.instEmptyCollection.1)(A = fun_a => True) ∧ Or (B = Set.instEmptyCollection.1)(B = fun_a => True)) → Or (A ∪ B = Set.instEmptyCollection.1)(A ∪ B = fun_a => True)
 
 Logical form (Lean):
 
@@ -455,11 +475,16 @@ theorem emptyUniversalSetAlgebraUnionIsMember (Point : Type) :
 
 Predicate logic:
 
-  ∀ A B : ActiveSet Point, (A = ∅ ∨ A = Set.univ) → (B = ∅ ∨ B = Set.univ) → (A ∩ B = ∅ ∨ A ∩ B = Set.univ)
+  ∀ (Point : Type) (A B : LRA.SetSystems.Instantiations.ActiveSet Point), (Or (A = Set.instEmptyCollection.emptyCollection)(A = Set.univ) ∧ Or (B = Set.instEmptyCollection.emptyCollection)(B = Set.univ)) → Or (A ∩ B = Set.instEmptyCollection.emptyCollection)(A ∩ B = Set.univ)
 
 Predicate logic (unfolded):
 
-  ∀ (Point : Type) (A B : Point → Prop), (Or (A = Set.instEmptyCollection.1)(A = fun_a => True) ∧ Or (B = Set.instEmptyCollection.1)(B = fun_a => True)) → Or (Set.instInter.1 A B = Set.instEmptyCollection.1)(Set.instInter.1 A B = fun_a => True)
+  Ambient
+    (Point)
+  Objects
+    (none)
+  Prove
+    (Or (A = Set.instEmptyCollection.1)(A = fun_a => True) ∧ Or (B = Set.instEmptyCollection.1)(B = fun_a => True)) → Or (A ∩ B = Set.instEmptyCollection.1)(A ∩ B = fun_a => True)
 
 Logical form (Lean):
 
@@ -501,11 +526,16 @@ theorem emptyUniversalSetAlgebraIntersectionIsMember (Point : Type) :
 
 Predicate logic:
 
-  ∀ A B : ActiveSet Point, (A = ∅ ∨ A = Set.univ) → (B = ∅ ∨ B = Set.univ) → (A \ B = ∅ ∨ A \ B = Set.univ)
+  ∀ (Point : Type) (A B : LRA.SetSystems.Instantiations.ActiveSet Point), (Or (A = Set.instEmptyCollection.emptyCollection)(A = Set.univ) ∧ Or (B = Set.instEmptyCollection.emptyCollection)(B = Set.univ)) → Or (A \ B = Set.instEmptyCollection.emptyCollection)(A \ B = Set.univ)
 
 Predicate logic (unfolded):
 
-  ∀ (Point : Type) (A B : Point → Prop), (Or (A = Set.instEmptyCollection.1)(A = fun_a => True) ∧ Or (B = Set.instEmptyCollection.1)(B = fun_a => True)) → Or (Set.instSDiff.1 A B = Set.instEmptyCollection.1)(Set.instSDiff.1 A B = fun_a => True)
+  Ambient
+    (Point)
+  Objects
+    (none)
+  Prove
+    (Or (A = Set.instEmptyCollection.1)(A = fun_a => True) ∧ Or (B = Set.instEmptyCollection.1)(B = fun_a => True)) → Or (A \ B = Set.instEmptyCollection.1)(A \ B = fun_a => True)
 
 Logical form (Lean):
 
@@ -547,11 +577,16 @@ theorem emptyUniversalSetAlgebraDifferenceIsMember (Point : Type) :
 
 Predicate logic:
 
-  ∀ A B : ActiveSet Point, (A = ∅ ∨ A = Set.univ) → (B = ∅ ∨ B = Set.univ) → (A ∆ B = ∅ ∨ A ∆ B = Set.univ)
+  ∀ (Point : Type) (A B : LRA.SetSystems.Instantiations.ActiveSet Point), (Or (A = Set.instEmptyCollection.emptyCollection)(A = Set.univ) ∧ Or (B = Set.instEmptyCollection.emptyCollection)(B = Set.univ)) → Or (LRA.Set.MathlibPredicateSet.instHasSymmDiffSet.symmDiff A B = Set.instEmptyCollection.emptyCollection) (LRA.Set.MathlibPredicateSet.instHasSymmDiffSet.symmDiff A B = Set.univ)
 
 Predicate logic (unfolded):
 
-  ∀ (Point : Type) (A B : Point → Prop), (Or (A = Set.instEmptyCollection.1)(A = fun_a => True) ∧ Or (B = Set.instEmptyCollection.1)(B = fun_a => True)) → Or (LRA.Set.MathlibPredicateSet.instHasSymmDiffSet.1 A B = Set.instEmptyCollection.1) (LRA.Set.MathlibPredicateSet.instHasSymmDiffSet.1 A B = fun_a => True)
+  Ambient
+    (Point)
+  Objects
+    (none)
+  Prove
+    (Or (A = Set.instEmptyCollection.1)(A = fun_a => True) ∧ Or (B = Set.instEmptyCollection.1)(B = fun_a => True)) → Or (LRA.Set.MathlibPredicateSet.instHasSymmDiffSet.1 A B = Set.instEmptyCollection.1) (LRA.Set.MathlibPredicateSet.instHasSymmDiffSet.1 A B = fun_a => True)
 
 Logical form (Lean):
 
@@ -593,11 +628,16 @@ theorem emptyUniversalSetAlgebraSymmetricDifferenceIsMember (Point : Type) :
 
 Predicate logic:
 
-  (Set.univ ∈ ActiveSet Point = ∅ ∨ Set.univ ∈ ActiveSet Point = Set.univ)
+  ∀ (Point : Type), Or (Set.univ = Set.instEmptyCollection.emptyCollection)(Set.univ = Set.univ)
 
 Predicate logic (unfolded):
 
-  ∀ (Point : Type), Or (fun _a => True = Set.instEmptyCollection.1)(fun _a => True = fun_a => True)
+  Ambient
+    (Point)
+  Objects
+    (none)
+  Prove
+    Or (fun _a => True = Set.instEmptyCollection.1)(fun _a => True = fun_a => True)
 
 Logical form (Lean):
 
@@ -636,30 +676,30 @@ theorem emptyUniversalSetAlgebraAmbientIsMember (Point : Type) :
 Predicate logic:
 
   def emptyUniversalSetAlgebra (Point : Type) :
-    AlgebraOfSets (Set.univ : ActiveSet Point) where
-  IsMember := fun setObject => setObject = ∅ ∨ setObject = Set.univ
-  MembersAreSubsets := emptyUniversalSetAlgebraMembersAreSubsets Point
-  EmptyIsMember := emptyUniversalSetAlgebraEmptyIsMember Point
-  UnionIsMember := emptyUniversalSetAlgebraUnionIsMember Point
-  IntersectionIsMember := emptyUniversalSetAlgebraIntersectionIsMember Point
-  DifferenceIsMember := emptyUniversalSetAlgebraDifferenceIsMember Point
-  SymmetricDifferenceIsMember :=
-    emptyUniversalSetAlgebraSymmetricDifferenceIsMember Point
-  AmbientIsMember := emptyUniversalSetAlgebraAmbientIsMember Point
+      AlgebraOfSets (Set.univ : ActiveSet Point) where
+    IsMember := fun setObject => setObject = ∅ ∨ setObject = Set.univ
+    MembersAreSubsets := emptyUniversalSetAlgebraMembersAreSubsets Point
+    EmptyIsMember := emptyUniversalSetAlgebraEmptyIsMember Point
+    UnionIsMember := emptyUniversalSetAlgebraUnionIsMember Point
+    IntersectionIsMember := emptyUniversalSetAlgebraIntersectionIsMember Point
+    DifferenceIsMember := emptyUniversalSetAlgebraDifferenceIsMember Point
+    SymmetricDifferenceIsMember :=
+      emptyUniversalSetAlgebraSymmetricDifferenceIsMember Point
+    AmbientIsMember := emptyUniversalSetAlgebraAmbientIsMember Point
 
 Predicate logic (unfolded):
 
   def emptyUniversalSetAlgebra (Point : Type) :
-    AlgebraOfSets (Set.univ : ActiveSet Point) where
-  IsMember := fun setObject => setObject = ∅ ∨ setObject = Set.univ
-  MembersAreSubsets := emptyUniversalSetAlgebraMembersAreSubsets Point
-  EmptyIsMember := emptyUniversalSetAlgebraEmptyIsMember Point
-  UnionIsMember := emptyUniversalSetAlgebraUnionIsMember Point
-  IntersectionIsMember := emptyUniversalSetAlgebraIntersectionIsMember Point
-  DifferenceIsMember := emptyUniversalSetAlgebraDifferenceIsMember Point
-  SymmetricDifferenceIsMember :=
-    emptyUniversalSetAlgebraSymmetricDifferenceIsMember Point
-  AmbientIsMember := emptyUniversalSetAlgebraAmbientIsMember Point (source fallback; no compiled unfold data available)
+      AlgebraOfSets (Set.univ : ActiveSet Point) where
+    IsMember := fun setObject => setObject = ∅ ∨ setObject = Set.univ
+    MembersAreSubsets := emptyUniversalSetAlgebraMembersAreSubsets Point
+    EmptyIsMember := emptyUniversalSetAlgebraEmptyIsMember Point
+    UnionIsMember := emptyUniversalSetAlgebraUnionIsMember Point
+    IntersectionIsMember := emptyUniversalSetAlgebraIntersectionIsMember Point
+    DifferenceIsMember := emptyUniversalSetAlgebraDifferenceIsMember Point
+    SymmetricDifferenceIsMember :=
+      emptyUniversalSetAlgebraSymmetricDifferenceIsMember Point
+    AmbientIsMember := emptyUniversalSetAlgebraAmbientIsMember Point (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -713,11 +753,16 @@ def emptyUniversalSetAlgebra (Point : Type) :
 
 Predicate logic:
 
-  ∀ family : Nat → ActiveSet Point, (∀ index, (activeSetAlgebra Point).IsMember (family index)) → (activeSetAlgebra Point).IsMember (HasCountableUnion.countableUnion family)
+  ∀ (Point : Type) (family : Nat → LRA.SetSystems.Instantiations.ActiveSet Point), (∀ (index : Nat), (LRA.SetSystems.Instantiations.activeSetAlgebra Point).IsMember (family index)) → (LRA.SetSystems.Instantiations.activeSetAlgebra Point).IsMember (LRA.Set.MathlibPredicateSet.instHasCountableUnionSet.countableUnion family)
 
 Predicate logic (unfolded):
 
-  ∀ (Point : Type) (family : Nat → Point → Prop), (∀ (index : Nat), (LRA.SetSystems.Instantiations.activeSetAlgebra Point).toRingOfSets.1 (family index)) → (LRA.SetSystems.Instantiations.activeSetAlgebra Point).toRingOfSets.1 (LRA.Set.MathlibPredicateSet.instHasCountableUnionSet.1 family)
+  Ambient
+    (Point)
+  Objects
+    (none)
+  Prove
+    (∀ (index : Nat), (LRA.SetSystems.Instantiations.activeSetAlgebra Point).toRingOfSets.1 (family index)) → (LRA.SetSystems.Instantiations.activeSetAlgebra Point).toRingOfSets.1 (LRA.Set.MathlibPredicateSet.instHasCountableUnionSet.1 family)
 
 Logical form (Lean):
 
@@ -760,16 +805,16 @@ theorem activeSigmaAlgebraCountableUnionIsMember (Point : Type) :
 Predicate logic:
 
   def activeSigmaAlgebra (Point : Type) :
-    SigmaAlgebraOfSets (Set.univ : ActiveSet Point) where
-  toAlgebraOfSets := activeSetAlgebra Point
-  CountableUnionIsMember := activeSigmaAlgebraCountableUnionIsMember Point
+      SigmaAlgebraOfSets (Set.univ : ActiveSet Point) where
+    toAlgebraOfSets := activeSetAlgebra Point
+    CountableUnionIsMember := activeSigmaAlgebraCountableUnionIsMember Point
 
 Predicate logic (unfolded):
 
   def activeSigmaAlgebra (Point : Type) :
-    SigmaAlgebraOfSets (Set.univ : ActiveSet Point) where
-  toAlgebraOfSets := activeSetAlgebra Point
-  CountableUnionIsMember := activeSigmaAlgebraCountableUnionIsMember Point (source fallback; no compiled unfold data available)
+      SigmaAlgebraOfSets (Set.univ : ActiveSet Point) where
+    toAlgebraOfSets := activeSetAlgebra Point
+    CountableUnionIsMember := activeSigmaAlgebraCountableUnionIsMember Point (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -809,11 +854,16 @@ def activeSigmaAlgebra (Point : Type) :
 
 Predicate logic:
 
-  ∀ A : LRA.Set.Constructions.TypeSet Point, True → A ⊆ LRA.Set.Constructions.TypeSet.Universal Point
+  ∀ (Point : Type) (A : LRA.Set.Constructions.TypeSet Point), True → LRA.Set.Constructions.TypeSet.instHasSubset.Subset A (LRA.Set.Constructions.TypeSet.Universal Point)
 
 Predicate logic (unfolded):
 
-  ∀ (Point : Type) (A : Point → Prop), True → LRA.Set.Constructions.TypeSet.instHasSubset.1 A fun x => True
+  Ambient
+    (Point)
+  Objects
+    (none)
+  Prove
+    True → LRA.Set.Constructions.TypeSet.instHasSubset.1 A fun x => True
 
 Logical form (Lean):
 
@@ -851,7 +901,7 @@ theorem lraSetAlgebraMembersAreSubsets (Point : Type) :
 
 Predicate logic:
 
-  ∀ A B : LRA.Set.Constructions.TypeSet Point, True → True → True
+  ∀ (Point : Type) (A B : LRA.Set.Constructions.TypeSet Point), True → True → True
 
 Predicate logic (unfolded):
 
@@ -891,7 +941,7 @@ theorem lraSetAlgebraUnionIsMember (Point : Type) :
 
 Predicate logic:
 
-  ∀ A B : LRA.Set.Constructions.TypeSet Point, True → True → True
+  ∀ (Point : Type) (A B : LRA.Set.Constructions.TypeSet Point), True → True → True
 
 Predicate logic (unfolded):
 
@@ -931,7 +981,7 @@ theorem lraSetAlgebraIntersectionIsMember (Point : Type) :
 
 Predicate logic:
 
-  ∀ A B : LRA.Set.Constructions.TypeSet Point, True → True → True
+  ∀ (Point : Type) (A B : LRA.Set.Constructions.TypeSet Point), True → True → True
 
 Predicate logic (unfolded):
 
@@ -971,7 +1021,7 @@ theorem lraSetAlgebraDifferenceIsMember (Point : Type) :
 
 Predicate logic:
 
-  ∀ A B : LRA.Set.Constructions.TypeSet Point, True → True → True
+  ∀ (Point : Type) (A B : LRA.Set.Constructions.TypeSet Point), True → True → True
 
 Predicate logic (unfolded):
 
@@ -1012,28 +1062,28 @@ theorem lraSetAlgebraSymmetricDifferenceIsMember (Point : Type) :
 Predicate logic:
 
   def lraSetAlgebra (Point : Type) :
-    AlgebraOfSets (LRA.Set.Constructions.TypeSet.Universal Point) where
-  IsMember := fun _ => True
-  MembersAreSubsets := lraSetAlgebraMembersAreSubsets Point
-  EmptyIsMember := trivial
-  UnionIsMember := lraSetAlgebraUnionIsMember Point
-  IntersectionIsMember := lraSetAlgebraIntersectionIsMember Point
-  DifferenceIsMember := lraSetAlgebraDifferenceIsMember Point
-  SymmetricDifferenceIsMember := lraSetAlgebraSymmetricDifferenceIsMember Point
-  AmbientIsMember := trivial
+      AlgebraOfSets (LRA.Set.Constructions.TypeSet.Universal Point) where
+    IsMember := fun _ => True
+    MembersAreSubsets := lraSetAlgebraMembersAreSubsets Point
+    EmptyIsMember := trivial
+    UnionIsMember := lraSetAlgebraUnionIsMember Point
+    IntersectionIsMember := lraSetAlgebraIntersectionIsMember Point
+    DifferenceIsMember := lraSetAlgebraDifferenceIsMember Point
+    SymmetricDifferenceIsMember := lraSetAlgebraSymmetricDifferenceIsMember Point
+    AmbientIsMember := trivial
 
 Predicate logic (unfolded):
 
   def lraSetAlgebra (Point : Type) :
-    AlgebraOfSets (LRA.Set.Constructions.TypeSet.Universal Point) where
-  IsMember := fun _ => True
-  MembersAreSubsets := lraSetAlgebraMembersAreSubsets Point
-  EmptyIsMember := trivial
-  UnionIsMember := lraSetAlgebraUnionIsMember Point
-  IntersectionIsMember := lraSetAlgebraIntersectionIsMember Point
-  DifferenceIsMember := lraSetAlgebraDifferenceIsMember Point
-  SymmetricDifferenceIsMember := lraSetAlgebraSymmetricDifferenceIsMember Point
-  AmbientIsMember := trivial (source fallback; no compiled unfold data available)
+      AlgebraOfSets (LRA.Set.Constructions.TypeSet.Universal Point) where
+    IsMember := fun _ => True
+    MembersAreSubsets := lraSetAlgebraMembersAreSubsets Point
+    EmptyIsMember := trivial
+    UnionIsMember := lraSetAlgebraUnionIsMember Point
+    IntersectionIsMember := lraSetAlgebraIntersectionIsMember Point
+    DifferenceIsMember := lraSetAlgebraDifferenceIsMember Point
+    SymmetricDifferenceIsMember := lraSetAlgebraSymmetricDifferenceIsMember Point
+    AmbientIsMember := trivial (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

@@ -9,12 +9,12 @@ namespace LRA.AlgebraicStructures
 Predicate logic:
 
   structure OrderedFieldConceptSignature extends FieldConceptSignature where
-  le : carrier → carrier → Prop
+    le : carrier → carrier → Prop
 
 Predicate logic (unfolded):
 
   structure OrderedFieldConceptSignature extends FieldConceptSignature where
-  le : carrier → carrier → Prop (source fallback; no compiled unfold data available)
+    le : carrier → carrier → Prop (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

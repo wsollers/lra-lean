@@ -9,12 +9,12 @@ namespace LRA.Set.Constructions.TGSet
 Predicate logic:
 
   noncomputable def TheIntersectionOver (A : Set) : Set :=
-  TheSeparatedSubset (TheUnionOver A) (fun x => forall B : Set, B ∈ A -> x ∈ B)
+    TheSeparatedSubset (TheUnionOver A) (fun x => forall B : Set, B ∈ A -> x ∈ B)
 
 Predicate logic (unfolded):
 
   noncomputable def TheIntersectionOver (A : Set) : Set :=
-  TheSeparatedSubset (TheUnionOver A) (fun x => forall B : Set, B ∈ A -> x ∈ B) (source fallback; no compiled unfold data available)
+    TheSeparatedSubset (TheUnionOver A) (fun x => forall B : Set, B ∈ A -> x ∈ B) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -50,11 +50,16 @@ noncomputable def TheIntersectionOver (A : Set) : Set :=
 
 Predicate logic:
 
-  (∀ A x ∈ Set), (exists B : Set, B ∈ A) → x ∈ TheIntersectionOver A <-> forall B : Set, B ∈ A -> x ∈ B
+  ∀ (A x : LRA.Set.Constructions.TGSet.Set), (Exists fun B => LRA.Set.Constructions.instMembershipTGSet.mem A B) → LRA.Set.Constructions.instMembershipTGSet.mem (LRA.Set.Constructions.TGSet.TheIntersectionOver A) x ↔ ∀ (B : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem A B → LRA.Set.Constructions.instMembershipTGSet.mem B x
 
 Predicate logic (unfolded):
 
-  ∀ (A x : LRA.Set.Constructions.TGSet.Set), (Exists fun B => LRA.Set.instMembershipTGSet.1 A B) → LRA.Set.instMembershipTGSet.1 (Classical.indefiniteDescription (LRA.Set.Constructions.TGSet.IsSeparatedSubset (LRA.Set.Constructions.TGSet.TheUnionOver A) fun x => ∀ (B : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.mem A B → LRA.Set.instMembershipTGSet.mem B x) ⋯).1 x ↔ ∀ (B : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 A B → LRA.Set.instMembershipTGSet.1 B x
+  Ambient
+    (implicit ambient)
+  Objects
+    A x : Set
+  Prove
+    (Exists fun B => LRA.Set.Constructions.instMembershipTGSet.mem A B) → LRA.Set.Constructions.instMembershipTGSet.mem (LRA.Set.Constructions.TGSet.TheIntersectionOver A) x ↔ ∀ (B : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem A B → LRA.Set.Constructions.instMembershipTGSet.mem B x
 
 Logical form (Lean):
 

@@ -14,7 +14,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {alpha : Type u} (relation : alpha → alpha → Prop), (((∀ (x : alpha), relation x x → False ∧ ∀ (x y z : alpha), relation x y → relation y z → relation x z) ∧ ∀ (x y : alpha), Or ((relation x y ∧ (x = y → False ∧ relation y x → False))) (Or ((x = y ∧ (relation x y → False ∧ relation y x → False))) ((relation y x ∧ (relation x y → False ∧ x = y → False))))) ∧ ∀ (x y : alpha), relation x y → Exists fun z => (relation x z ∧ relation z y))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((((∀ (x : alpha), relation x x → False) ∧ (∀ (x y z : alpha), relation x y → relation y z → relation x z)) ∧ (∀ (x y : alpha), Or ((relation x y ∧ ((x = y → False) ∧ (relation y x → False)))) (Or ((x = y ∧ ((relation x y → False) ∧ (relation y x → False)))) ((relation y x ∧ ((relation x y → False) ∧ (x = y → False))))))) ∧ (∀ (x y : alpha), relation x y → Exists fun z => (relation x z ∧ relation z y)))
 
 Logical form (Lean):
 

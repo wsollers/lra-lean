@@ -10,11 +10,20 @@ universe u v
 
 Predicate logic:
 
-  (∀ A ∈ U), (exists element, element ∈ A) → exists supremum, Supremum relation A supremum ∧ forall other, Supremum relation A other -> other = supremum
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {relation : LRA.Relation.Endorelation Element}, (LRA.Relation.Antisymmetric relation ∧ LRA.Order.LeastUpperBoundProperty SetObject relation) → ∀ (subset : SetObject), (Exists fun element => element ∈ subset ∧ LRA.Order.BoundedAbove relation subset) → Exists fun supremum => (LRA.Order.Supremum relation subset supremum ∧ (∀ (other : Element), LRA.Order.Supremum relation subset other → other = supremum))
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {relation : Element → Element → Prop}, (∀ (x y : Element), relation x y → relation y x → x = y ∧ ∀ (subset : SetObject), (Exists fun element => inst.1 subset element) → (Exists fun bound => ∀ (element : Element), inst.1 subset element → relation element bound) → Exists fun supremum => (∀ (element : Element), inst.1 subset element → relation element supremum ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation element bound) → relation supremum bound)) → ∀ (subset : SetObject), (Exists fun element => inst.1 subset element ∧ Exists fun bound => ∀ (element : Element), inst.1 subset element → relation element bound) → Exists fun supremum => ((∀ (element : Element), inst.1 subset element → relation element supremum ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation element bound) → relation supremum bound) ∧ ∀ (other : Element), (∀ (element : Element), inst.1 subset element → relation element other ∧ ∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation element bound) → relation other bound) → other = supremum)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    relationIsAntisymmetric : LRA.Relation.Antisymmetric relation
+    relationHasLeastUpperBounds : LeastUpperBoundProperty SetObject relation
+    subset : SetObject
+    subsetIsBoundedAbove : BoundedAbove relation subset
+  Prove
+    ((∀ (x y : Element), relation x y → relation y x → x = y) ∧ (∀ (subset : SetObject), (Exists fun element => inst.1 subset element) → (Exists fun bound => ∀ (element : Element), inst.1 subset element → relation element bound) → Exists fun supremum => ((∀ (element : Element), inst.1 subset element → relation element supremum) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation element bound) → relation supremum bound)))) → ∀ (subset : SetObject), (Exists fun element => inst.1 subset element ∧ (Exists fun bound => ∀ (element : Element), inst.1 subset element → relation element bound)) → Exists fun supremum => (((∀ (element : Element), inst.1 subset element → relation element supremum) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation element bound) → relation supremum bound)) ∧ (∀ (other : Element), ((∀ (element : Element), inst.1 subset element → relation element other) ∧ (∀ (bound : Element), (∀ (element : Element), inst.1 subset element → relation element bound) → relation other bound)) → other = supremum))
 
 Logical form (Lean):
 

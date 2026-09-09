@@ -10,16 +10,16 @@ universe u
 Predicate logic:
 
   structure Interpretation (S : Signature) where
-  Domain : Type u
-  domainNonempty : Nonempty Domain
-  interpretEquality : Domain -> Domain -> Prop
+    Domain : Type u
+    domainNonempty : Nonempty Domain
+    interpretEquality : Domain -> Domain -> Prop
 
 Predicate logic (unfolded):
 
   structure Interpretation (S : Signature) where
-  Domain : Type u
-  domainNonempty : Nonempty Domain
-  interpretEquality : Domain -> Domain -> Prop (source fallback; no compiled unfold data available)
+    Domain : Type u
+    domainNonempty : Nonempty Domain
+    interpretEquality : Domain -> Domain -> Prop (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

@@ -9,12 +9,12 @@ namespace LRA.AlgebraicStructures
 Predicate logic:
 
   structure RingConceptSignature extends SemiringConceptSignature where
-  neg : LRA.Operation.UnaryOperation carrier
+    neg : LRA.Operation.UnaryOperation carrier
 
 Predicate logic (unfolded):
 
   structure RingConceptSignature extends SemiringConceptSignature where
-  neg : LRA.Operation.UnaryOperation carrier (source fallback; no compiled unfold data available)
+    neg : LRA.Operation.UnaryOperation carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

@@ -11,12 +11,12 @@ variable (dyadicData : RationalDyadicApproximationData)
 Predicate logic:
 
   noncomputable def Zero : Expansion :=
-  (BinaryRealBijection dyadicData).Inverse dyadicData.CauchyZero
+    (BinaryRealBijection dyadicData).Inverse dyadicData.CauchyZero
 
 Predicate logic (unfolded):
 
   noncomputable def Zero : Expansion :=
-  (BinaryRealBijection dyadicData).Inverse dyadicData.CauchyZero (source fallback; no compiled unfold data available)
+    (BinaryRealBijection dyadicData).Inverse dyadicData.CauchyZero (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -53,12 +53,12 @@ noncomputable def Zero : Expansion :=
 Predicate logic:
 
   noncomputable def One : Expansion :=
-  (BinaryRealBijection dyadicData).Inverse dyadicData.CauchyOne
+    (BinaryRealBijection dyadicData).Inverse dyadicData.CauchyOne
 
 Predicate logic (unfolded):
 
   noncomputable def One : Expansion :=
-  (BinaryRealBijection dyadicData).Inverse dyadicData.CauchyOne (source fallback; no compiled unfold data available)
+    (BinaryRealBijection dyadicData).Inverse dyadicData.CauchyOne (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -95,18 +95,18 @@ noncomputable def One : Expansion :=
 Predicate logic:
 
   noncomputable def Addition (first second : Expansion) : Expansion :=
-  (BinaryRealBijection dyadicData).Inverse
-    (dyadicData.CauchyAddition
-      ((BinaryRealBijection dyadicData).Forward first)
-      ((BinaryRealBijection dyadicData).Forward second))
+    (BinaryRealBijection dyadicData).Inverse
+      (dyadicData.CauchyAddition
+        ((BinaryRealBijection dyadicData).Forward first)
+        ((BinaryRealBijection dyadicData).Forward second))
 
 Predicate logic (unfolded):
 
   noncomputable def Addition (first second : Expansion) : Expansion :=
-  (BinaryRealBijection dyadicData).Inverse
-    (dyadicData.CauchyAddition
-      ((BinaryRealBijection dyadicData).Forward first)
-      ((BinaryRealBijection dyadicData).Forward second)) (source fallback; no compiled unfold data available)
+    (BinaryRealBijection dyadicData).Inverse
+      (dyadicData.CauchyAddition
+        ((BinaryRealBijection dyadicData).Forward first)
+        ((BinaryRealBijection dyadicData).Forward second)) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -149,16 +149,16 @@ noncomputable def Addition (first second : Expansion) : Expansion :=
 Predicate logic:
 
   noncomputable def Negation (expansion : Expansion) : Expansion :=
-  (BinaryRealBijection dyadicData).Inverse
-    (dyadicData.CauchyNegation
-      ((BinaryRealBijection dyadicData).Forward expansion))
+    (BinaryRealBijection dyadicData).Inverse
+      (dyadicData.CauchyNegation
+        ((BinaryRealBijection dyadicData).Forward expansion))
 
 Predicate logic (unfolded):
 
   noncomputable def Negation (expansion : Expansion) : Expansion :=
-  (BinaryRealBijection dyadicData).Inverse
-    (dyadicData.CauchyNegation
-      ((BinaryRealBijection dyadicData).Forward expansion)) (source fallback; no compiled unfold data available)
+    (BinaryRealBijection dyadicData).Inverse
+      (dyadicData.CauchyNegation
+        ((BinaryRealBijection dyadicData).Forward expansion)) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -199,18 +199,18 @@ noncomputable def Negation (expansion : Expansion) : Expansion :=
 Predicate logic:
 
   noncomputable def Multiplication (first second : Expansion) : Expansion :=
-  (BinaryRealBijection dyadicData).Inverse
-    (dyadicData.CauchyMultiplication
-      ((BinaryRealBijection dyadicData).Forward first)
-      ((BinaryRealBijection dyadicData).Forward second))
+    (BinaryRealBijection dyadicData).Inverse
+      (dyadicData.CauchyMultiplication
+        ((BinaryRealBijection dyadicData).Forward first)
+        ((BinaryRealBijection dyadicData).Forward second))
 
 Predicate logic (unfolded):
 
   noncomputable def Multiplication (first second : Expansion) : Expansion :=
-  (BinaryRealBijection dyadicData).Inverse
-    (dyadicData.CauchyMultiplication
-      ((BinaryRealBijection dyadicData).Forward first)
-      ((BinaryRealBijection dyadicData).Forward second)) (source fallback; no compiled unfold data available)
+    (BinaryRealBijection dyadicData).Inverse
+      (dyadicData.CauchyMultiplication
+        ((BinaryRealBijection dyadicData).Forward first)
+        ((BinaryRealBijection dyadicData).Forward second)) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -253,16 +253,16 @@ noncomputable def Multiplication (first second : Expansion) : Expansion :=
 Predicate logic:
 
   noncomputable def Inverse (expansion : Expansion) : Expansion :=
-  (BinaryRealBijection dyadicData).Inverse
-    (dyadicData.CauchyInverse
-      ((BinaryRealBijection dyadicData).Forward expansion))
+    (BinaryRealBijection dyadicData).Inverse
+      (dyadicData.CauchyInverse
+        ((BinaryRealBijection dyadicData).Forward expansion))
 
 Predicate logic (unfolded):
 
   noncomputable def Inverse (expansion : Expansion) : Expansion :=
-  (BinaryRealBijection dyadicData).Inverse
-    (dyadicData.CauchyInverse
-      ((BinaryRealBijection dyadicData).Forward expansion)) (source fallback; no compiled unfold data available)
+    (BinaryRealBijection dyadicData).Inverse
+      (dyadicData.CauchyInverse
+        ((BinaryRealBijection dyadicData).Forward expansion)) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -306,7 +306,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (dyadicData : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData) (first second : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), dyadicData.CauchyRealExtension.RealModel.ltInst.1 (.rec = (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).1 first ⋯) (.rec = (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).1 second ⋯)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    dyadicData.CauchyRealExtension.RealModel.ltInst.1 (.rec = (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).1 first ⋯) (.rec = (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).1 second ⋯)
 
 Logical form (Lean):
 
@@ -346,11 +351,16 @@ def StrictOrder (first second : Expansion) : Prop :=
 
 Predicate logic:
 
-  ∀ (dyadicData : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData), ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward (LRA.NumberSystems.RealNumbers.Dyadic.Zero dyadicData) = dyadicData.CauchyZero ∧ ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward (LRA.NumberSystems.RealNumbers.Dyadic.One dyadicData) = dyadicData.CauchyOne ∧ (∀ (first second : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward (LRA.NumberSystems.RealNumbers.Dyadic.Addition dyadicData first second) = dyadicData.CauchyAddition ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward first) ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward second) ∧ (∀ (expansion : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward (LRA.NumberSystems.RealNumbers.Dyadic.Negation dyadicData expansion) = dyadicData.CauchyNegation ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward expansion) ∧ (∀ (first second : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward (LRA.NumberSystems.RealNumbers.Dyadic.Multiplication dyadicData first second) = dyadicData.CauchyMultiplication ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward first) ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward second) ∧ (∀ (expansion : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward (LRA.NumberSystems.RealNumbers.Dyadic.Inverse dyadicData expansion) = dyadicData.CauchyInverse ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward expansion) ∧ ∀ (first second : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), LRA.NumberSystems.RealNumbers.Dyadic.StrictOrder dyadicData first second ↔ dyadicData.CauchyStrictOrder ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward first) ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward second)))))))
+  ∀ (dyadicData : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData), ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward (LRA.NumberSystems.RealNumbers.Dyadic.Zero dyadicData) = dyadicData.CauchyZero ∧ ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward (LRA.NumberSystems.RealNumbers.Dyadic.One dyadicData) = dyadicData.CauchyOne ∧ ((∀ (first second : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward (LRA.NumberSystems.RealNumbers.Dyadic.Addition dyadicData first second) = dyadicData.CauchyAddition ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward first) ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward second)) ∧ ((∀ (expansion : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward (LRA.NumberSystems.RealNumbers.Dyadic.Negation dyadicData expansion) = dyadicData.CauchyNegation ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward expansion)) ∧ ((∀ (first second : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward (LRA.NumberSystems.RealNumbers.Dyadic.Multiplication dyadicData first second) = dyadicData.CauchyMultiplication ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward first) ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward second)) ∧ ((∀ (expansion : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward (LRA.NumberSystems.RealNumbers.Dyadic.Inverse dyadicData expansion) = dyadicData.CauchyInverse ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward expansion)) ∧ (∀ (first second : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), LRA.NumberSystems.RealNumbers.Dyadic.StrictOrder dyadicData first second ↔ dyadicData.CauchyStrictOrder ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward first) ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward second))))))))
 
 Predicate logic (unfolded):
 
-  ∀ (dyadicData : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData), ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).1 ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).2 (.rec = 0⋯)) = .rec = dyadicData.CauchyRealExtension.RealModel.zeroInst.1⋯ ∧ ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).1 ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).2 (.rec = 1⋯)) = .rec = dyadicData.CauchyRealExtension.RealModel.oneInst.1⋯ ∧ (∀ (first second : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).1 ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).2 (.rec = instHAdd.hAdd (dyadicData.FromCauchyCarrier ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward first)) (dyadicData.FromCauchyCarrier ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward second)) ⋯)) = .rec = instHAdd.1 (.rec = (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward first ⋯) (.rec = (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward second ⋯) ⋯ ∧ (∀ (expansion : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).1 ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).2 (.rec = dyadicData.CauchyRealExtension.RealModel.negInst.neg (dyadicData.FromCauchyCarrier ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward expansion)) ⋯)) = .rec = dyadicData.CauchyRealExtension.RealModel.negInst.1 (.rec = (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward expansion ⋯) ⋯ ∧ (∀ (first second : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).1 ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).2 (.rec = instHMul.hMul (dyadicData.FromCauchyCarrier ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward first)) (dyadicData.FromCauchyCarrier ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward second)) ⋯)) = .rec = instHMul.1 (.rec = (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward first ⋯) (.rec = (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward second ⋯) ⋯ ∧ (∀ (expansion : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).1 ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).2 (.rec = dyadicData.CauchyRealExtension.RealModel.invInst.inv (dyadicData.FromCauchyCarrier ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward expansion)) ⋯)) = .rec = dyadicData.CauchyRealExtension.RealModel.invInst.1 (.rec = (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward expansion ⋯) ⋯ ∧ ∀ (first second : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), dyadicData.CauchyRealExtension.RealModel.ltInst.1 (.rec = (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).1 first ⋯) (.rec = (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).1 second ⋯) ↔ dyadicData.CauchyRealExtension.RealModel.ltInst.1 (.rec = (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).1 first ⋯) (.rec = (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).1 second ⋯)))))))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward (LRA.NumberSystems.RealNumbers.Dyadic.Zero dyadicData) = dyadicData.CauchyZero ∧ ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward (LRA.NumberSystems.RealNumbers.Dyadic.One dyadicData) = dyadicData.CauchyOne ∧ ((∀ (first second : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward (LRA.NumberSystems.RealNumbers.Dyadic.Addition dyadicData first second) = dyadicData.CauchyAddition ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward first) ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward second)) ∧ ((∀ (expansion : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward (LRA.NumberSystems.RealNumbers.Dyadic.Negation dyadicData expansion) = dyadicData.CauchyNegation ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward expansion)) ∧ ((∀ (first second : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward (LRA.NumberSystems.RealNumbers.Dyadic.Multiplication dyadicData first second) = dyadicData.CauchyMultiplication ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward first) ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward second)) ∧ ((∀ (expansion : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward (LRA.NumberSystems.RealNumbers.Dyadic.Inverse dyadicData expansion) = dyadicData.CauchyInverse ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward expansion)) ∧ (∀ (first second : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), LRA.NumberSystems.RealNumbers.Dyadic.StrictOrder dyadicData first second ↔ dyadicData.CauchyStrictOrder ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward first) ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward second))))))))
 
 Logical form (Lean):
 
@@ -446,11 +456,16 @@ def OrderedFieldIsomorphism : Prop :=
 
 Predicate logic:
 
-  OrderedFieldIsomorphism dyadicData
+  ∀ (dyadicData : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData), LRA.NumberSystems.RealNumbers.Dyadic.OrderedFieldIsomorphism dyadicData
 
 Predicate logic (unfolded):
 
-  ∀ (dyadicData : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData), ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).1 ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).2 (cast ⋯ 0)) = .rec = dyadicData.CauchyRealExtension.RealModel.zeroInst.1⋯ ∧ ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).1 ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).2 (cast ⋯ 1)) = .rec = dyadicData.CauchyRealExtension.RealModel.oneInst.1⋯ ∧ (∀ (first second : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).1 ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).2 (cast ⋯ (instHAdd.hAdd (dyadicData.FromCauchyCarrier ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward first)) (dyadicData.FromCauchyCarrier ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward second))))) = .rec = instHAdd.1 (cast ⋯ ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward first)) (cast ⋯ ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward second)) ⋯ ∧ (∀ (expansion : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).1 ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).2 (cast ⋯ (dyadicData.CauchyRealExtension.RealModel.negInst.neg (dyadicData.FromCauchyCarrier ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward expansion))))) = .rec = dyadicData.CauchyRealExtension.RealModel.negInst.1 (cast ⋯ ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward expansion)) ⋯ ∧ (∀ (first second : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).1 ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).2 (cast ⋯ (instHMul.hMul (dyadicData.FromCauchyCarrier ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward first)) (dyadicData.FromCauchyCarrier ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward second))))) = .rec = instHMul.1 (cast ⋯ ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward first)) (cast ⋯ ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward second)) ⋯ ∧ (∀ (expansion : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).1 ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).2 (cast ⋯ (dyadicData.CauchyRealExtension.RealModel.invInst.inv (dyadicData.FromCauchyCarrier ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward expansion))))) = .rec = dyadicData.CauchyRealExtension.RealModel.invInst.1 (cast ⋯ ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward expansion)) ⋯ ∧ ∀ (first second : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), dyadicData.CauchyRealExtension.RealModel.ltInst.1 (.rec = (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward first ⋯) (.rec = (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward second ⋯) ↔ dyadicData.CauchyRealExtension.RealModel.ltInst.1 (.rec = (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).1 first ⋯) (.rec = (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).1 second ⋯)))))))
+  Ambient
+    (implicit ambient)
+  Objects
+    dyadicData : RationalDyadicApproximationData
+  Prove
+    ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).1 ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).2 (cast ⋯ 0)) = .rec = 0⋯ ∧ ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).1 ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).2 (cast ⋯ 1)) = .rec = 1⋯ ∧ ((∀ (first second : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).1 ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).2 (cast ⋯ (instHAdd.hAdd (dyadicData.FromCauchyCarrier ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward first)) (dyadicData.FromCauchyCarrier ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward second))))) = .rec = { hAdd := fun a b => dyadicData.CauchyRealExtension.RealModel.2.add a b }.hAdd (.rec = (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward first ⋯) (.rec = (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward second ⋯) ⋯) ∧ ((∀ (expansion : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).1 ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).2 (cast ⋯ (dyadicData.CauchyRealExtension.RealModel.negInst.neg (dyadicData.FromCauchyCarrier ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward expansion))))) = .rec = dyadicData.CauchyRealExtension.RealModel.4.neg (.rec = (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward expansion ⋯) ⋯) ∧ ((∀ (first second : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).1 ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).2 (cast ⋯ (instHMul.hMul (dyadicData.FromCauchyCarrier ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward first)) (dyadicData.FromCauchyCarrier ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward second))))) = .rec = { hMul := fun a b => dyadicData.CauchyRealExtension.RealModel.3.mul a b }.hMul (.rec = (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward first ⋯) (.rec = (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward second ⋯) ⋯) ∧ ((∀ (expansion : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).1 ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).2 (cast ⋯ (dyadicData.CauchyRealExtension.RealModel.invInst.inv (dyadicData.FromCauchyCarrier ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward expansion))))) = .rec = dyadicData.CauchyRealExtension.RealModel.invInst.1 (cast ⋯ ((LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).Forward expansion)) ⋯) ∧ (∀ (first second : LRA.NumberSystems.RealNumbers.Dyadic.Expansion), dyadicData.CauchyRealExtension.RealModel.8.lt (.rec = (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).1 first ⋯) (.rec = (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).1 second ⋯) ↔ dyadicData.CauchyRealExtension.RealModel.8.lt (.rec = (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).1 first ⋯) (.rec = (LRA.NumberSystems.RealNumbers.Dyadic.BinaryRealBijection dyadicData).1 second ⋯))))))))
 
 Logical form (Lean):
 

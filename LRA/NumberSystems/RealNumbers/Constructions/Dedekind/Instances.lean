@@ -33,20 +33,20 @@ open Classical in
 Predicate logic:
 
   noncomputable def totalInverse
-    (rational_model : RationalModel)
-    (cut : Cut rational_model) : Cut rational_model :=
-  if cut_nonzero : cut ≠ zero rational_model
-  then inverse rational_model cut cut_nonzero
-  else zero rational_model
+      (rational_model : RationalModel)
+      (cut : Cut rational_model) : Cut rational_model :=
+    if cut_nonzero : cut ≠ zero rational_model
+    then inverse rational_model cut cut_nonzero
+    else zero rational_model
 
 Predicate logic (unfolded):
 
   noncomputable def totalInverse
-    (rational_model : RationalModel)
-    (cut : Cut rational_model) : Cut rational_model :=
-  if cut_nonzero : cut ≠ zero rational_model
-  then inverse rational_model cut cut_nonzero
-  else zero rational_model (source fallback; no compiled unfold data available)
+      (rational_model : RationalModel)
+      (cut : Cut rational_model) : Cut rational_model :=
+    if cut_nonzero : cut ≠ zero rational_model
+    then inverse rational_model cut cut_nonzero
+    else zero rational_model (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -114,11 +114,16 @@ noncomputable instance CutLE (rational_model : RationalModel) :
 
 Predicate logic:
 
-  (∀ rational_model ∈ RationalModel), OrderedFieldLaws (Cut rational_model)
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), LRA.AlgebraicStructures.OrderedFieldLaws (LRA.NumberSystems.RealNumbers.Dedekind.Cut rational_model)
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), LRA.AlgebraicStructures.OrderedFieldLaws (Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper lower : rational_model.signature.toCarrierBundle.1), lower_set upper → rational_model.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rational_model.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.toOrderedRingSignature.2 value greater)))))
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_model : RationalModel
+  Prove
+    LRA.AlgebraicStructures.OrderedFieldLaws (Subtype fun lower_set => (Exists fun value => lower_set value ∧ ((Exists fun value => lower_set value → False) ∧ ((∀ (upper lower : rational_model.signature.toCarrierBundle.1), lower_set upper → rational_model.signature.toOrderedRingSignature.2 lower upper → lower_set lower) ∧ (∀ (value : rational_model.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.toOrderedRingSignature.2 value greater))))))
 
 Logical form (Lean):
 
@@ -156,11 +161,16 @@ theorem cut_field_cert
 
 Predicate logic:
 
-  (∀ rational_model ∈ RationalModel), StrictOrderCompatibilityLaw (Cut rational_model)
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), LRA.Order.StrictOrderCompatibilityLaw (LRA.NumberSystems.RealNumbers.Dedekind.Cut rational_model)
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), LRA.Order.StrictOrderCompatibilityLaw (Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper lower : rational_model.signature.toCarrierBundle.1), lower_set upper → rational_model.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rational_model.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.toOrderedRingSignature.2 value greater)))))
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_model : RationalModel
+  Prove
+    LRA.Order.StrictOrderCompatibilityLaw (Subtype fun lower_set => (Exists fun value => lower_set value ∧ ((Exists fun value => lower_set value → False) ∧ ((∀ (upper lower : rational_model.signature.toCarrierBundle.1), lower_set upper → rational_model.signature.toOrderedRingSignature.2 lower upper → lower_set lower) ∧ (∀ (value : rational_model.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.toOrderedRingSignature.2 value greater))))))
 
 Logical form (Lean):
 
@@ -198,11 +208,16 @@ theorem cut_strict_order_cert
 
 Predicate logic:
 
-  (∀ rational_model ∈ RationalModel), DenseOrderLaw (Cut rational_model)
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), LRA.Order.DenseOrderLaw (LRA.NumberSystems.RealNumbers.Dedekind.Cut rational_model)
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), LRA.Order.DenseOrderLaw (Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper lower : rational_model.signature.toCarrierBundle.1), lower_set upper → rational_model.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rational_model.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.toOrderedRingSignature.2 value greater)))))
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_model : RationalModel
+  Prove
+    LRA.Order.DenseOrderLaw (Subtype fun lower_set => (Exists fun value => lower_set value ∧ ((Exists fun value => lower_set value → False) ∧ ((∀ (upper lower : rational_model.signature.toCarrierBundle.1), lower_set upper → rational_model.signature.toOrderedRingSignature.2 lower upper → lower_set lower) ∧ (∀ (value : rational_model.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.toOrderedRingSignature.2 value greater))))))
 
 Logical form (Lean):
 
@@ -240,11 +255,16 @@ theorem cut_dense_order_cert
 
 Predicate logic:
 
-  (∀ rational_model ∈ RationalModel), OrderCompletenessLaws (Cut rational_model) (Set (Cut rational_model))
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), LRA.Order.OrderCompletenessLaws (LRA.NumberSystems.RealNumbers.Dedekind.Cut rational_model) (Set (LRA.NumberSystems.RealNumbers.Dedekind.Cut rational_model))
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel), LRA.Order.OrderCompletenessLaws (Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper lower : rational_model.signature.toCarrierBundle.1), lower_set upper → rational_model.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rational_model.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.toOrderedRingSignature.2 value greater))))) ((Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper lower : rational_model.signature.toCarrierBundle.1), lower_set upper → rational_model.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rational_model.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.toOrderedRingSignature.2 value greater))))) → Prop)
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_model : RationalModel
+  Prove
+    LRA.Order.OrderCompletenessLaws (Subtype fun lower_set => (Exists fun value => lower_set value ∧ ((Exists fun value => lower_set value → False) ∧ ((∀ (upper lower : rational_model.signature.toCarrierBundle.1), lower_set upper → rational_model.signature.toOrderedRingSignature.2 lower upper → lower_set lower) ∧ (∀ (value : rational_model.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.toOrderedRingSignature.2 value greater)))))) ((Subtype fun lower_set => (Exists fun value => lower_set value ∧ ((Exists fun value => lower_set value → False) ∧ ((∀ (upper lower : rational_model.signature.toCarrierBundle.1), lower_set upper → rational_model.signature.toOrderedRingSignature.2 lower upper → lower_set lower) ∧ (∀ (value : rational_model.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rational_model.signature.toOrderedRingSignature.2 value greater)))))) → Prop)
 
 Logical form (Lean):
 
@@ -283,16 +303,16 @@ theorem cut_completeness_cert
 Predicate logic:
 
   noncomputable def DedekindRealizesRationalModel
-    (rational_model : RationalModel) :
-    LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel where
-  Carrier
+      (rational_model : RationalModel) :
+      LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel where
+    Carrier
 
 Predicate logic (unfolded):
 
   noncomputable def DedekindRealizesRationalModel
-    (rational_model : RationalModel) :
-    LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel where
-  Carrier (source fallback; no compiled unfold data available)
+      (rational_model : RationalModel) :
+      LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel where
+    Carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -344,16 +364,16 @@ noncomputable def DedekindRealizesRationalModel
 Predicate logic:
 
   noncomputable def DedekindRealizesRealModel
-    (rational_model : RationalModel) :
-    LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel where
-  Carrier
+      (rational_model : RationalModel) :
+      LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel where
+    Carrier
 
 Predicate logic (unfolded):
 
   noncomputable def DedekindRealizesRealModel
-    (rational_model : RationalModel) :
-    LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel where
-  Carrier (source fallback; no compiled unfold data available)
+      (rational_model : RationalModel) :
+      LRA.NumberSystems.RealNumbers.Interface.ModelTheory.RealModel where
+    Carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -405,11 +425,16 @@ noncomputable def DedekindRealizesRealModel
 
 Predicate logic:
 
-  (∀ rationalSystem ∈ RationalNumberSystem), ∃ realExtension ∈ LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem, realExtension.RealModel.Carrier = Cut rationalSystem.FieldModel
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), Exists fun realExtension => realExtension.RealModel.Carrier = LRA.NumberSystems.RealNumbers.Dedekind.Cut rationalSystem.FieldModel
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem), Exists fun realExtension => realExtension.RealModel.toDenselyOrderedFieldModel.1 = Subtype fun lower_set => (Exists fun value => lower_set value ∧ (Exists fun value => lower_set value → False ∧ (∀ (upper lower : rationalSystem.FieldModel.signature.toCarrierBundle.1), lower_set upper → rationalSystem.FieldModel.signature.toOrderedRingSignature.2 lower upper → lower_set lower ∧ ∀ (value : rationalSystem.FieldModel.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rationalSystem.FieldModel.signature.toOrderedRingSignature.2 value greater))))
+  Ambient
+    (implicit ambient)
+  Objects
+    rationalSystem : RationalNumberSystem
+  Prove
+    Exists fun realExtension => realExtension.RealModel.1 = Subtype fun lower_set => (Exists fun value => lower_set value ∧ ((Exists fun value => lower_set value → False) ∧ ((∀ (upper lower : rationalSystem.FieldModel.signature.toCarrierBundle.1), lower_set upper → rationalSystem.FieldModel.signature.toOrderedRingSignature.2 lower upper → lower_set lower) ∧ (∀ (value : rationalSystem.FieldModel.signature.toCarrierBundle.1), lower_set value → Exists fun greater => (lower_set greater ∧ rationalSystem.FieldModel.signature.toOrderedRingSignature.2 value greater)))))
 
 Logical form (Lean):
 

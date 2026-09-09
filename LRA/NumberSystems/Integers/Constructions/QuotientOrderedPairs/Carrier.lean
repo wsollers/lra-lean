@@ -23,112 +23,112 @@ universe u
 Predicate logic:
 
   structure WholeNumberArithmeticForQuotientPairs where
-  carrier : Type u
-  zero : carrier
-  one : carrier
-  addition : carrier → carrier → carrier
-  multiplication : carrier → carrier → carrier
-  nonstrict_order : carrier → carrier → Prop
-  addition_associative :
-    ∀ first second third,
-      addition (addition first second) third =
-        addition first (addition second third)
-  addition_commutative :
-    ∀ first second,
-      addition first second = addition second first
-  zero_additive_identity :
-    ∀ value,
-      addition zero value = value ∧ addition value zero = value
-  addition_cancellative :
-    ∀ first second common,
-      addition first common = addition second common → first = second
-  multiplication_associative :
-    ∀ first second third,
-      multiplication (multiplication first second) third =
-        multiplication first (multiplication second third)
-  multiplication_commutative :
-    ∀ first second,
-      multiplication first second = multiplication second first
-  one_multiplicative_identity :
-    ∀ value,
-      multiplication one value = value ∧ multiplication value one = value
-  multiplication_distributes_over_addition :
-    ∀ first second third,
-      multiplication first (addition second third) =
-        addition (multiplication first second) (multiplication first third)
-  nonstrict_order_reflexive :
-    ∀ value, nonstrict_order value value
-  nonstrict_order_transitive :
-    ∀ first second third,
-      nonstrict_order first second →
-      nonstrict_order second third →
-      nonstrict_order first third
-  nonstrict_order_antisymmetric :
-    ∀ first second,
-      nonstrict_order first second →
-      nonstrict_order second first →
-      first = second
-  addition_preserves_and_reflects_order :
-    ∀ first second translation,
-      nonstrict_order
-        (addition first translation)
-        (addition second translation) ↔
-      nonstrict_order first second
+    carrier : Type u
+    zero : carrier
+    one : carrier
+    addition : carrier → carrier → carrier
+    multiplication : carrier → carrier → carrier
+    nonstrict_order : carrier → carrier → Prop
+    addition_associative :
+      ∀ first second third,
+        addition (addition first second) third =
+          addition first (addition second third)
+    addition_commutative :
+      ∀ first second,
+        addition first second = addition second first
+    zero_additive_identity :
+      ∀ value,
+        addition zero value = value ∧ addition value zero = value
+    addition_cancellative :
+      ∀ first second common,
+        addition first common = addition second common → first = second
+    multiplication_associative :
+      ∀ first second third,
+        multiplication (multiplication first second) third =
+          multiplication first (multiplication second third)
+    multiplication_commutative :
+      ∀ first second,
+        multiplication first second = multiplication second first
+    one_multiplicative_identity :
+      ∀ value,
+        multiplication one value = value ∧ multiplication value one = value
+    multiplication_distributes_over_addition :
+      ∀ first second third,
+        multiplication first (addition second third) =
+          addition (multiplication first second) (multiplication first third)
+    nonstrict_order_reflexive :
+      ∀ value, nonstrict_order value value
+    nonstrict_order_transitive :
+      ∀ first second third,
+        nonstrict_order first second →
+        nonstrict_order second third →
+        nonstrict_order first third
+    nonstrict_order_antisymmetric :
+      ∀ first second,
+        nonstrict_order first second →
+        nonstrict_order second first →
+        first = second
+    addition_preserves_and_reflects_order :
+      ∀ first second translation,
+        nonstrict_order
+          (addition first translation)
+          (addition second translation) ↔
+        nonstrict_order first second
 
 Predicate logic (unfolded):
 
   structure WholeNumberArithmeticForQuotientPairs where
-  carrier : Type u
-  zero : carrier
-  one : carrier
-  addition : carrier → carrier → carrier
-  multiplication : carrier → carrier → carrier
-  nonstrict_order : carrier → carrier → Prop
-  addition_associative :
-    ∀ first second third,
-      addition (addition first second) third =
-        addition first (addition second third)
-  addition_commutative :
-    ∀ first second,
-      addition first second = addition second first
-  zero_additive_identity :
-    ∀ value,
-      addition zero value = value ∧ addition value zero = value
-  addition_cancellative :
-    ∀ first second common,
-      addition first common = addition second common → first = second
-  multiplication_associative :
-    ∀ first second third,
-      multiplication (multiplication first second) third =
-        multiplication first (multiplication second third)
-  multiplication_commutative :
-    ∀ first second,
-      multiplication first second = multiplication second first
-  one_multiplicative_identity :
-    ∀ value,
-      multiplication one value = value ∧ multiplication value one = value
-  multiplication_distributes_over_addition :
-    ∀ first second third,
-      multiplication first (addition second third) =
-        addition (multiplication first second) (multiplication first third)
-  nonstrict_order_reflexive :
-    ∀ value, nonstrict_order value value
-  nonstrict_order_transitive :
-    ∀ first second third,
-      nonstrict_order first second →
-      nonstrict_order second third →
-      nonstrict_order first third
-  nonstrict_order_antisymmetric :
-    ∀ first second,
-      nonstrict_order first second →
-      nonstrict_order second first →
-      first = second
-  addition_preserves_and_reflects_order :
-    ∀ first second translation,
-      nonstrict_order
-        (addition first translation)
-        (addition second translation) ↔
-      nonstrict_order first second (source fallback; no compiled unfold data available)
+    carrier : Type u
+    zero : carrier
+    one : carrier
+    addition : carrier → carrier → carrier
+    multiplication : carrier → carrier → carrier
+    nonstrict_order : carrier → carrier → Prop
+    addition_associative :
+      ∀ first second third,
+        addition (addition first second) third =
+          addition first (addition second third)
+    addition_commutative :
+      ∀ first second,
+        addition first second = addition second first
+    zero_additive_identity :
+      ∀ value,
+        addition zero value = value ∧ addition value zero = value
+    addition_cancellative :
+      ∀ first second common,
+        addition first common = addition second common → first = second
+    multiplication_associative :
+      ∀ first second third,
+        multiplication (multiplication first second) third =
+          multiplication first (multiplication second third)
+    multiplication_commutative :
+      ∀ first second,
+        multiplication first second = multiplication second first
+    one_multiplicative_identity :
+      ∀ value,
+        multiplication one value = value ∧ multiplication value one = value
+    multiplication_distributes_over_addition :
+      ∀ first second third,
+        multiplication first (addition second third) =
+          addition (multiplication first second) (multiplication first third)
+    nonstrict_order_reflexive :
+      ∀ value, nonstrict_order value value
+    nonstrict_order_transitive :
+      ∀ first second third,
+        nonstrict_order first second →
+        nonstrict_order second third →
+        nonstrict_order first third
+    nonstrict_order_antisymmetric :
+      ∀ first second,
+        nonstrict_order first second →
+        nonstrict_order second first →
+        first = second
+    addition_preserves_and_reflects_order :
+      ∀ first second translation,
+        nonstrict_order
+          (addition first translation)
+          (addition second translation) ↔
+        nonstrict_order first second (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -265,34 +265,34 @@ structure WholeNumberArithmeticForQuotientPairs where
 Predicate logic:
 
   def WholeNumberArithmeticForQuotientPairs.ofCarrier
-    (R : Type u)
-    [Add R] [Mul R] [OfNat R 0] [OfNat R 1] [LE R]
-    [CommutativeSemiringLaws R] [PartialOrderLaws R]
-    (addition_cancellative :
-      ∀ first second common : R,
-        first + common = second + common → first = second)
-    (addition_preserves_and_reflects_order :
-      ∀ first second translation : R,
-        first + translation ≤ second + translation ↔
-          first ≤ second) :
-    WholeNumberArithmeticForQuotientPairs where
-  carrier
+      (R : Type u)
+      [Add R] [Mul R] [OfNat R 0] [OfNat R 1] [LE R]
+      [CommutativeSemiringLaws R] [PartialOrderLaws R]
+      (addition_cancellative :
+        ∀ first second common : R,
+          first + common = second + common → first = second)
+      (addition_preserves_and_reflects_order :
+        ∀ first second translation : R,
+          first + translation ≤ second + translation ↔
+            first ≤ second) :
+      WholeNumberArithmeticForQuotientPairs where
+    carrier
 
 Predicate logic (unfolded):
 
   def WholeNumberArithmeticForQuotientPairs.ofCarrier
-    (R : Type u)
-    [Add R] [Mul R] [OfNat R 0] [OfNat R 1] [LE R]
-    [CommutativeSemiringLaws R] [PartialOrderLaws R]
-    (addition_cancellative :
-      ∀ first second common : R,
-        first + common = second + common → first = second)
-    (addition_preserves_and_reflects_order :
-      ∀ first second translation : R,
-        first + translation ≤ second + translation ↔
-          first ≤ second) :
-    WholeNumberArithmeticForQuotientPairs where
-  carrier (source fallback; no compiled unfold data available)
+      (R : Type u)
+      [Add R] [Mul R] [OfNat R 0] [OfNat R 1] [LE R]
+      [CommutativeSemiringLaws R] [PartialOrderLaws R]
+      (addition_cancellative :
+        ∀ first second common : R,
+          first + common = second + common → first = second)
+      (addition_preserves_and_reflects_order :
+        ∀ first second translation : R,
+          first + translation ≤ second + translation ↔
+            first ≤ second) :
+      WholeNumberArithmeticForQuotientPairs where
+    carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -368,14 +368,14 @@ def WholeNumberArithmeticForQuotientPairs.ofCarrier
 Predicate logic:
 
   structure Representative (whole_data : WholeNumberArithmeticForQuotientPairs) where
-  positive_coordinate : whole_data.carrier
-  negative_coordinate : whole_data.carrier
+    positive_coordinate : whole_data.carrier
+    negative_coordinate : whole_data.carrier
 
 Predicate logic (unfolded):
 
   structure Representative (whole_data : WholeNumberArithmeticForQuotientPairs) where
-  positive_coordinate : whole_data.carrier
-  negative_coordinate : whole_data.carrier (source fallback; no compiled unfold data available)
+    positive_coordinate : whole_data.carrier
+    negative_coordinate : whole_data.carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

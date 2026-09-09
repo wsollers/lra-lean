@@ -13,11 +13,19 @@ universe u
 
 Predicate logic:
 
-  LRA.Operation.Laws.Identity.RightIdentity operation identity
+  ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}, (LRA.Operation.Laws.Commutative.Commutative operation ∧ LRA.Operation.Laws.Identity.LeftIdentity operation identity) → LRA.Operation.Laws.Identity.RightIdentity operation identity
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {operation : Carrier → Carrier → Carrier} {identity : Carrier}, (∀ (first second : Carrier), operation first second = operation second first ∧ ∀ (element : Carrier), operation identity element = element) → ∀ (element : Carrier), operation element identity = element
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    identity : Carrier
+    commutative : Commutative operation
+    leftIdentity : LRA.Operation.Laws.Identity.LeftIdentity operation identity
+  Prove
+    ((∀ (first second : Carrier), operation first second = operation second first) ∧ (∀ (element : Carrier), operation identity element = element)) → ∀ (element : Carrier), operation element identity = element
 
 Logical form (Lean):
 
@@ -61,11 +69,19 @@ theorem Commutative.left_identity_to_right_identity {Carrier : Type u}
 
 Predicate logic:
 
-  LRA.Operation.Laws.Identity.LeftIdentity operation identity
+  ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {identity : Carrier}, (LRA.Operation.Laws.Commutative.Commutative operation ∧ LRA.Operation.Laws.Identity.RightIdentity operation identity) → LRA.Operation.Laws.Identity.LeftIdentity operation identity
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {operation : Carrier → Carrier → Carrier} {identity : Carrier}, (∀ (first second : Carrier), operation first second = operation second first ∧ ∀ (element : Carrier), operation element identity = element) → ∀ (element : Carrier), operation identity element = element
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    identity : Carrier
+    commutative : Commutative operation
+    rightIdentity : LRA.Operation.Laws.Identity.RightIdentity operation identity
+  Prove
+    ((∀ (first second : Carrier), operation first second = operation second first) ∧ (∀ (element : Carrier), operation element identity = element)) → ∀ (element : Carrier), operation identity element = element
 
 Logical form (Lean):
 
@@ -109,11 +125,19 @@ theorem Commutative.right_identity_to_left_identity {Carrier : Type u}
 
 Predicate logic:
 
-  LRA.Operation.Laws.Absorbing.RightAbsorbing operation absorber
+  ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {absorber : Carrier}, (LRA.Operation.Laws.Commutative.Commutative operation ∧ LRA.Operation.Laws.Absorbing.LeftAbsorbing operation absorber) → LRA.Operation.Laws.Absorbing.RightAbsorbing operation absorber
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {operation : Carrier → Carrier → Carrier} {absorber : Carrier}, (∀ (first second : Carrier), operation first second = operation second first ∧ ∀ (element : Carrier), operation absorber element = absorber) → ∀ (element : Carrier), operation element absorber = absorber
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    absorber : Carrier
+    commutative : Commutative operation
+    leftAbsorbing : LRA.Operation.Laws.Absorbing.LeftAbsorbing operation absorber
+  Prove
+    ((∀ (first second : Carrier), operation first second = operation second first) ∧ (∀ (element : Carrier), operation absorber element = absorber)) → ∀ (element : Carrier), operation element absorber = absorber
 
 Logical form (Lean):
 
@@ -157,11 +181,19 @@ theorem Commutative.left_absorbing_to_right_absorbing {Carrier : Type u}
 
 Predicate logic:
 
-  LRA.Operation.Laws.Absorbing.LeftAbsorbing operation absorber
+  ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier} {absorber : Carrier}, (LRA.Operation.Laws.Commutative.Commutative operation ∧ LRA.Operation.Laws.Absorbing.RightAbsorbing operation absorber) → LRA.Operation.Laws.Absorbing.LeftAbsorbing operation absorber
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {operation : Carrier → Carrier → Carrier} {absorber : Carrier}, (∀ (first second : Carrier), operation first second = operation second first ∧ ∀ (element : Carrier), operation element absorber = absorber) → ∀ (element : Carrier), operation absorber element = absorber
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    absorber : Carrier
+    commutative : Commutative operation
+    rightAbsorbing : LRA.Operation.Laws.Absorbing.RightAbsorbing operation absorber
+  Prove
+    ((∀ (first second : Carrier), operation first second = operation second first) ∧ (∀ (element : Carrier), operation element absorber = absorber)) → ∀ (element : Carrier), operation absorber element = absorber
 
 Logical form (Lean):
 

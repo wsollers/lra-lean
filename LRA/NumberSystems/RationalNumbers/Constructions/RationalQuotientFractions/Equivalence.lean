@@ -12,7 +12,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (rational_data : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData) (first second : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.Representative rational_data), rational_data.integer_system.Model.signature.toBooleanRingOperationBundle.3 first.1 (rational_data.5 second.2) = rational_data.integer_system.Model.signature.toBooleanRingOperationBundle.3 second.1 (rational_data.5 first.2)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    rational_data.integer_system.Model.signature.toBooleanRingOperationBundle.3 first.1 (rational_data.5 second.2) = rational_data.integer_system.Model.signature.toBooleanRingOperationBundle.3 second.1 (rational_data.5 first.2)
 
 Logical form (Lean):
 
@@ -56,11 +61,16 @@ def equivalent (rational_data : IntegerAndPositiveNaturalData)
 
 Predicate logic:
 
-  (∀ rational_data ∈ IntegerAndPositiveNaturalData), Equivalence (equivalent rational_data)
+  ∀ (rational_data : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData), Equivalence (LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.equivalent rational_data)
 
 Predicate logic (unfolded):
 
-  ∀ (rational_data : LRA.NumberSystems.RationalNumbers.RationalQuotientFractions.IntegerAndPositiveNaturalData), Equivalence fun first second => rational_data.integer_system.Model.signature.toBooleanRingOperationBundle.3 first.1 (rational_data.5 second.2) = rational_data.integer_system.Model.signature.toBooleanRingOperationBundle.3 second.1 (rational_data.5 first.2)
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_data : IntegerAndPositiveNaturalData
+  Prove
+    Equivalence fun first second => rational_data.integer_system.Model.signature.toBooleanRingOperationBundle.3 first.1 (rational_data.5 second.2) = rational_data.integer_system.Model.signature.toBooleanRingOperationBundle.3 second.1 (rational_data.5 first.2)
 
 Logical form (Lean):
 
@@ -97,14 +107,14 @@ theorem equivalent_is_equivalence_relation (rational_data : IntegerAndPositiveNa
 Predicate logic:
 
   def representative_setoid (rational_data : IntegerAndPositiveNaturalData) : Setoid (Representative rational_data) where
-  r := equivalent rational_data
-  iseqv := equivalent_is_equivalence_relation rational_data
+    r := equivalent rational_data
+    iseqv := equivalent_is_equivalence_relation rational_data
 
 Predicate logic (unfolded):
 
   def representative_setoid (rational_data : IntegerAndPositiveNaturalData) : Setoid (Representative rational_data) where
-  r := equivalent rational_data
-  iseqv := equivalent_is_equivalence_relation rational_data (source fallback; no compiled unfold data available)
+    r := equivalent rational_data
+    iseqv := equivalent_is_equivalence_relation rational_data (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

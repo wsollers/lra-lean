@@ -8,12 +8,12 @@ namespace LRA.NumberSystems.RationalNumbers.Interface.Signature
 Predicate logic:
 
   abbrev RationalNumbersFunctionSymbol :=
-  LRA.AlgebraicStructures.OrderedField.Interface.Signature.OrderedFieldFunctionSymbol
+    LRA.AlgebraicStructures.OrderedField.Interface.Signature.OrderedFieldFunctionSymbol
 
 Predicate logic (unfolded):
 
   abbrev RationalNumbersFunctionSymbol :=
-  LRA.AlgebraicStructures.OrderedField.Interface.Signature.OrderedFieldFunctionSymbol (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.OrderedField.Interface.Signature.OrderedFieldFunctionSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -50,12 +50,12 @@ abbrev RationalNumbersFunctionSymbol :=
 Predicate logic:
 
   abbrev RationalNumbersRelationSymbol :=
-  LRA.AlgebraicStructures.OrderedField.Interface.Signature.OrderedFieldRelationSymbol
+    LRA.AlgebraicStructures.OrderedField.Interface.Signature.OrderedFieldRelationSymbol
 
 Predicate logic (unfolded):
 
   abbrev RationalNumbersRelationSymbol :=
-  LRA.AlgebraicStructures.OrderedField.Interface.Signature.OrderedFieldRelationSymbol (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.OrderedField.Interface.Signature.OrderedFieldRelationSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -92,12 +92,12 @@ abbrev RationalNumbersRelationSymbol :=
 Predicate logic:
 
   abbrev RationalNumbersConstantSymbol :=
-  LRA.AlgebraicStructures.OrderedField.Interface.Signature.OrderedFieldConstantSymbol
+    LRA.AlgebraicStructures.OrderedField.Interface.Signature.OrderedFieldConstantSymbol
 
 Predicate logic (unfolded):
 
   abbrev RationalNumbersConstantSymbol :=
-  LRA.AlgebraicStructures.OrderedField.Interface.Signature.OrderedFieldConstantSymbol (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.OrderedField.Interface.Signature.OrderedFieldConstantSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -134,12 +134,12 @@ abbrev RationalNumbersConstantSymbol :=
 Predicate logic:
 
   def RationalNumbersFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.OrderedField.Interface.Signature.OrderedFieldFirstOrderFunctions
+    LRA.AlgebraicStructures.OrderedField.Interface.Signature.OrderedFieldFirstOrderFunctions
 
 Predicate logic (unfolded):
 
   def RationalNumbersFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.OrderedField.Interface.Signature.OrderedFieldFirstOrderFunctions (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.OrderedField.Interface.Signature.OrderedFieldFirstOrderFunctions (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -176,12 +176,12 @@ def RationalNumbersFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols :=
 Predicate logic:
 
   def RationalNumbersFirstOrderRelations : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.OrderedField.Interface.Signature.OrderedFieldFirstOrderRelations
+    LRA.AlgebraicStructures.OrderedField.Interface.Signature.OrderedFieldFirstOrderRelations
 
 Predicate logic (unfolded):
 
   def RationalNumbersFirstOrderRelations : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.OrderedField.Interface.Signature.OrderedFieldFirstOrderRelations (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.OrderedField.Interface.Signature.OrderedFieldFirstOrderRelations (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -218,12 +218,12 @@ def RationalNumbersFirstOrderRelations : LRA.Logic.ArityIndexedSymbols :=
 Predicate logic:
 
   def RationalNumbersFirstOrderSignature : LRA.Logic.Signature :=
-  LRA.AlgebraicStructures.OrderedField.Interface.Signature.OrderedFieldFirstOrderSignature
+    LRA.AlgebraicStructures.OrderedField.Interface.Signature.OrderedFieldFirstOrderSignature
 
 Predicate logic (unfolded):
 
   def RationalNumbersFirstOrderSignature : LRA.Logic.Signature :=
-  LRA.AlgebraicStructures.OrderedField.Interface.Signature.OrderedFieldFirstOrderSignature (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.OrderedField.Interface.Signature.OrderedFieldFirstOrderSignature (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

@@ -15,7 +15,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (operation : Carrier → Carrier → Carrier) (identity : Carrier) (inverse : Carrier → Carrier) (element : Carrier), operation (inverse element) element = identity
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    operation (inverse element) element = identity
 
 Logical form (Lean):
 
@@ -61,7 +66,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (operation : Carrier → Carrier → Carrier) (identity : Carrier) (inverse : Carrier → Carrier) (element : Carrier), operation element (inverse element) = identity
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    operation element (inverse element) = identity
 
 Logical form (Lean):
 
@@ -107,7 +117,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (operation : Carrier → Carrier → Carrier) (identity element inverse : Carrier), operation inverse element = identity
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    operation inverse element = identity
 
 Logical form (Lean):
 
@@ -151,7 +166,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (operation : Carrier → Carrier → Carrier) (identity element inverse : Carrier), operation element inverse = identity
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    operation element inverse = identity
 
 Logical form (Lean):
 
@@ -195,7 +215,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (operation : Carrier → Carrier → Carrier) (identity element inverse : Carrier), (operation inverse element = identity ∧ operation element inverse = identity)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (operation inverse element = identity ∧ operation element inverse = identity)
 
 Logical form (Lean):
 
@@ -241,7 +266,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (eligible : Carrier → Prop) (operation : Carrier → Carrier → Carrier) (identity element : Carrier), eligible element → Exists fun inverse => operation inverse element = identity
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    eligible element → Exists fun inverse => operation inverse element = identity
 
 Logical form (Lean):
 
@@ -289,7 +319,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (eligible : Carrier → Prop) (operation : Carrier → Carrier → Carrier) (identity element : Carrier), eligible element → Exists fun inverse => operation element inverse = identity
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    eligible element → Exists fun inverse => operation element inverse = identity
 
 Logical form (Lean):
 
@@ -337,7 +372,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (eligible : Carrier → Prop) (operation : Carrier → Carrier → Carrier) (identity element : Carrier), eligible element → Exists fun inverse => (operation inverse element = identity ∧ operation element inverse = identity)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    eligible element → Exists fun inverse => (operation inverse element = identity ∧ operation element inverse = identity)
 
 Logical form (Lean):
 
@@ -385,7 +425,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (operation : Carrier → Carrier → Carrier) (identity : Carrier) (inverse : Carrier → Carrier), (∀ (element : Carrier), operation (inverse element) element = identity ∧ ∀ (element : Carrier), operation element (inverse element) = identity)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (element : Carrier), operation (inverse element) element = identity) ∧ (∀ (element : Carrier), operation element (inverse element) = identity))
 
 Logical form (Lean):
 

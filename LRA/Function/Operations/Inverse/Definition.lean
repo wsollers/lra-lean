@@ -16,7 +16,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (inverse : Codomain → Domain) (input : Domain), inverse (function input) = input
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    inverse (function input) = input
 
 Logical form (Lean):
 
@@ -62,7 +67,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (inverse : Codomain → Domain) (output : Codomain), function (inverse output) = output
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    function (inverse output) = output
 
 Logical form (Lean):
 
@@ -108,7 +118,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (inverse : Codomain → Domain), (∀ (input : Domain), inverse (function input) = input ∧ ∀ (output : Codomain), function (inverse output) = output)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (input : Domain), inverse (function input) = input) ∧ (∀ (output : Codomain), function (inverse output) = output))
 
 Logical form (Lean):
 
@@ -154,7 +169,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (inverse : Codomain → Domain) (function : Domain → Codomain), (∀ (input : Domain), inverse (function input) = input ∧ ∀ (output : Codomain), function (inverse output) = output)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (input : Domain), inverse (function input) = input) ∧ (∀ (output : Codomain), function (inverse output) = output))
 
 Logical form (Lean):
 
@@ -200,7 +220,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (sectionFunction : Codomain → Domain) (function : Domain → Codomain) (output : Codomain), function (sectionFunction output) = output
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    function (sectionFunction output) = output
 
 Logical form (Lean):
 
@@ -246,7 +271,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Small : Type u} {Large : Type v} (retraction : Large → Small) (inclusion : Small → Large) (input : Small), retraction (inclusion input) = input
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    retraction (inclusion input) = input
 
 Logical form (Lean):
 
@@ -292,7 +322,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (inverse : Codomain → Domain) (source : Domain → Prop) (input : Domain), source input → inverse (function input) = input
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    source input → inverse (function input) = input
 
 Logical form (Lean):
 
@@ -340,7 +375,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (inverse : Codomain → Domain) (target : Codomain → Prop) (output : Codomain), target output → function (inverse output) = output
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    target output → function (inverse output) = output
 
 Logical form (Lean):
 
@@ -388,7 +428,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (inverse : Codomain → Domain) (source : Domain → Prop) (target : Codomain → Prop), (∀ (input : Domain), source input → inverse (function input) = input ∧ ∀ (output : Codomain), target output → function (inverse output) = output)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (input : Domain), source input → inverse (function input) = input) ∧ (∀ (output : Codomain), target output → function (inverse output) = output))
 
 Logical form (Lean):
 

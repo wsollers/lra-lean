@@ -13,7 +13,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {Beta : Type v} (leftRelation : Alpha → Alpha → Prop) (rightRelation : Beta → Beta → Prop) (a a_1 : Prod Alpha Beta), Or (leftRelation a.1 a_1.1) ((a.1 = a_1.1 ∧ rightRelation a.2 a_1.2))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (leftRelation a.1 a_1.1) ((a.1 = a_1.1 ∧ rightRelation a.2 a_1.2))
 
 Logical form (Lean):
 

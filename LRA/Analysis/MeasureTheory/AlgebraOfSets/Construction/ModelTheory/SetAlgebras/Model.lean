@@ -9,16 +9,16 @@ namespace LRA.ModelTheoryTheory.SetAlgebras
 Predicate logic:
 
   def BuildSetAlgebraModel
-    (signature : SetAlgebraConceptSignature) :
-    LRA.ModelTheory.FirstOrder.Model SetAlgebraFirstOrderSignature where
-  Domain
+      (signature : SetAlgebraConceptSignature) :
+      LRA.ModelTheory.FirstOrder.Model SetAlgebraFirstOrderSignature where
+    Domain
 
 Predicate logic (unfolded):
 
   def BuildSetAlgebraModel
-    (signature : SetAlgebraConceptSignature) :
-    LRA.ModelTheory.FirstOrder.Model SetAlgebraFirstOrderSignature where
-  Domain (source fallback; no compiled unfold data available)
+      (signature : SetAlgebraConceptSignature) :
+      LRA.ModelTheory.FirstOrder.Model SetAlgebraFirstOrderSignature where
+    Domain (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

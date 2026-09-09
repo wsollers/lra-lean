@@ -13,18 +13,18 @@ universe u
 Predicate logic:
 
   def PrecisionRadius
-    (rationalSystem : RationalNumberSystem.{u}) :
-    Nat → rationalSystem.FieldModel.Carrier
-  | 0 => 1
-  | n + 1 => PrecisionRadius rationalSystem n * (1 + 1)⁻¹
+      (rationalSystem : RationalNumberSystem.{u}) :
+      Nat → rationalSystem.FieldModel.Carrier
+    | 0 => 1
+    | n + 1 => PrecisionRadius rationalSystem n * (1 + 1)⁻¹
 
 Predicate logic (unfolded):
 
   def PrecisionRadius
-    (rationalSystem : RationalNumberSystem.{u}) :
-    Nat → rationalSystem.FieldModel.Carrier
-  | 0 => 1
-  | n + 1 => PrecisionRadius rationalSystem n * (1 + 1)⁻¹ (source fallback; no compiled unfold data available)
+      (rationalSystem : RationalNumberSystem.{u}) :
+      Nat → rationalSystem.FieldModel.Carrier
+    | 0 => 1
+    | n + 1 => PrecisionRadius rationalSystem n * (1 + 1)⁻¹ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -67,30 +67,30 @@ def PrecisionRadius
 Predicate logic:
 
   structure EffectiveCauchyApproximation
-    (rationalSystem : RationalNumberSystem.{u}) where
-  Approximate : Nat → rationalSystem.FieldModel.Carrier
-  Modulus : Nat → Nat
-  CauchyAtPrecision :
-    ∀ precision firstIndex secondIndex : Nat,
-      Modulus precision ≤ firstIndex →
-      Modulus precision ≤ secondIndex →
-        let difference := Approximate firstIndex + -Approximate secondIndex;
-        -PrecisionRadius rationalSystem precision < difference ∧
-          difference < PrecisionRadius rationalSystem precision
+      (rationalSystem : RationalNumberSystem.{u}) where
+    Approximate : Nat → rationalSystem.FieldModel.Carrier
+    Modulus : Nat → Nat
+    CauchyAtPrecision :
+      ∀ precision firstIndex secondIndex : Nat,
+        Modulus precision ≤ firstIndex →
+        Modulus precision ≤ secondIndex →
+          let difference := Approximate firstIndex + -Approximate secondIndex;
+          -PrecisionRadius rationalSystem precision < difference ∧
+            difference < PrecisionRadius rationalSystem precision
 
 Predicate logic (unfolded):
 
   structure EffectiveCauchyApproximation
-    (rationalSystem : RationalNumberSystem.{u}) where
-  Approximate : Nat → rationalSystem.FieldModel.Carrier
-  Modulus : Nat → Nat
-  CauchyAtPrecision :
-    ∀ precision firstIndex secondIndex : Nat,
-      Modulus precision ≤ firstIndex →
-      Modulus precision ≤ secondIndex →
-        let difference := Approximate firstIndex + -Approximate secondIndex;
-        -PrecisionRadius rationalSystem precision < difference ∧
-          difference < PrecisionRadius rationalSystem precision (source fallback; no compiled unfold data available)
+      (rationalSystem : RationalNumberSystem.{u}) where
+    Approximate : Nat → rationalSystem.FieldModel.Carrier
+    Modulus : Nat → Nat
+    CauchyAtPrecision :
+      ∀ precision firstIndex secondIndex : Nat,
+        Modulus precision ≤ firstIndex →
+        Modulus precision ≤ secondIndex →
+          let difference := Approximate firstIndex + -Approximate secondIndex;
+          -PrecisionRadius rationalSystem precision < difference ∧
+            difference < PrecisionRadius rationalSystem precision (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

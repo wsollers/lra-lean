@@ -8,11 +8,16 @@ namespace LRA.Set.Constructions.ZFCSet
 
 Predicate logic:
 
-  ∀ A : Set, A ⊆ A
+  ∀ (A : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCSet.instHasSubset.Subset A A
 
 Predicate logic (unfolded):
 
-  ∀ (A : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCSet.instHasSubset.1 A A
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.ZFCSet.instHasSubset.1 A A
 
 Logical form (Lean):
 
@@ -47,11 +52,16 @@ theorem SubsetReflexive : ∀ A : Set, A ⊆ A := by
 
 Predicate logic:
 
-  ∀ A B C : Set, A ⊆ B → B ⊆ C → A ⊆ C
+  ∀ (A B C : LRA.Set.Constructions.ZFCSet.Set), (LRA.Set.Constructions.ZFCSet.instHasSubset.Subset A B ∧ LRA.Set.Constructions.ZFCSet.instHasSubset.Subset B C) → LRA.Set.Constructions.ZFCSet.instHasSubset.Subset A C
 
 Predicate logic (unfolded):
 
-  ∀ (A B C : LRA.Set.Constructions.ZFCSet.Set), (LRA.Set.Constructions.ZFCSet.instHasSubset.1 A B ∧ LRA.Set.Constructions.ZFCSet.instHasSubset.1 B C) → LRA.Set.Constructions.ZFCSet.instHasSubset.1 A C
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (LRA.Set.Constructions.ZFCSet.instHasSubset.1 A B ∧ LRA.Set.Constructions.ZFCSet.instHasSubset.1 B C) → LRA.Set.Constructions.ZFCSet.instHasSubset.1 A C
 
 Logical form (Lean):
 
@@ -88,11 +98,16 @@ theorem SubsetTransitive :
 
 Predicate logic:
 
-  ∀ A B : Set, A = B ↔ A ⊆ B ∧ B ⊆ A
+  ∀ (A B : LRA.Set.Constructions.ZFCSet.Set), A = B ↔ (LRA.Set.Constructions.ZFCSet.instHasSubset.Subset A B ∧ LRA.Set.Constructions.ZFCSet.instHasSubset.Subset B A)
 
 Predicate logic (unfolded):
 
-  ∀ (A B : LRA.Set.Constructions.ZFCSet.Set), A = B ↔ (LRA.Set.Constructions.ZFCSet.instHasSubset.1 A B ∧ LRA.Set.Constructions.ZFCSet.instHasSubset.1 B A)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    A = B ↔ (LRA.Set.Constructions.ZFCSet.instHasSubset.Subset A B ∧ LRA.Set.Constructions.ZFCSet.instHasSubset.Subset B A)
 
 Logical form (Lean):
 

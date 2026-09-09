@@ -13,20 +13,20 @@ universe u v w x
 Predicate logic:
 
   structure SetTheoreticFunctionTriple
-    (DomainObject : Type v) (CodomainObject : Type w)
-    (GraphObject : Type x) where
-  domain : DomainObject
-  codomain : CodomainObject
-  graph : GraphObject
+      (DomainObject : Type v) (CodomainObject : Type w)
+      (GraphObject : Type x) where
+    domain : DomainObject
+    codomain : CodomainObject
+    graph : GraphObject
 
 Predicate logic (unfolded):
 
   structure SetTheoreticFunctionTriple
-    (DomainObject : Type v) (CodomainObject : Type w)
-    (GraphObject : Type x) where
-  domain : DomainObject
-  codomain : CodomainObject
-  graph : GraphObject (source fallback; no compiled unfold data available)
+      (DomainObject : Type v) (CodomainObject : Type w)
+      (GraphObject : Type x) where
+    domain : DomainObject
+    codomain : CodomainObject
+    graph : GraphObject (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -71,20 +71,20 @@ structure SetTheoreticFunctionTriple
 Predicate logic:
 
   structure SetTheoreticRelationTriple
-    (LeftDomainObject : Type v) (RightDomainObject : Type w)
-    (GraphObject : Type x) where
-  leftDomain : LeftDomainObject
-  rightDomain : RightDomainObject
-  graph : GraphObject
+      (LeftDomainObject : Type v) (RightDomainObject : Type w)
+      (GraphObject : Type x) where
+    leftDomain : LeftDomainObject
+    rightDomain : RightDomainObject
+    graph : GraphObject
 
 Predicate logic (unfolded):
 
   structure SetTheoreticRelationTriple
-    (LeftDomainObject : Type v) (RightDomainObject : Type w)
-    (GraphObject : Type x) where
-  leftDomain : LeftDomainObject
-  rightDomain : RightDomainObject
-  graph : GraphObject (source fallback; no compiled unfold data available)
+      (LeftDomainObject : Type v) (RightDomainObject : Type w)
+      (GraphObject : Type x) where
+    leftDomain : LeftDomainObject
+    rightDomain : RightDomainObject
+    graph : GraphObject (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -132,7 +132,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {LeftElement RightElement Pair : Type u} {LeftDomainObject : Type v} {RightDomainObject : Type w} {GraphObject : Type x} [inst : LRA.Set.HasPairing LeftElement RightElement Pair] [inst_1 : Membership LeftElement LeftDomainObject] [inst_2 : Membership RightElement RightDomainObject] [inst_3 : Membership Pair GraphObject] (triple : LRA.Function.SetTheoretic.SetTheoreticRelationTriple LeftDomainObject RightDomainObject GraphObject) (member : Pair), inst_3.1 triple.3 member → Exists fun left => Exists fun right => (member = inst.1 left right ∧ (inst_1.1 triple.1 left ∧ inst_2.1 triple.2 right))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    inst_3.1 triple.3 member → Exists fun left => Exists fun right => (member = inst.1 left right ∧ (inst_1.1 triple.1 left ∧ inst_2.1 triple.2 right))
 
 Logical form (Lean):
 
@@ -193,30 +198,30 @@ def IsSetTheoreticRelation
 Predicate logic:
 
   structure SetTheoreticRelation
-    (LeftElement RightElement Pair : Type u)
-    (LeftDomainObject : Type v) (RightDomainObject : Type w)
-    (GraphObject : Type x)
-    [HasPairing LeftElement RightElement Pair]
-    [Membership LeftElement LeftDomainObject]
-    [Membership RightElement RightDomainObject]
-    [Membership Pair GraphObject] where
-  triple : SetTheoreticRelationTriple
-    LeftDomainObject RightDomainObject GraphObject
-  isRelation : IsSetTheoreticRelation triple
+      (LeftElement RightElement Pair : Type u)
+      (LeftDomainObject : Type v) (RightDomainObject : Type w)
+      (GraphObject : Type x)
+      [HasPairing LeftElement RightElement Pair]
+      [Membership LeftElement LeftDomainObject]
+      [Membership RightElement RightDomainObject]
+      [Membership Pair GraphObject] where
+    triple : SetTheoreticRelationTriple
+      LeftDomainObject RightDomainObject GraphObject
+    isRelation : IsSetTheoreticRelation triple
 
 Predicate logic (unfolded):
 
   structure SetTheoreticRelation
-    (LeftElement RightElement Pair : Type u)
-    (LeftDomainObject : Type v) (RightDomainObject : Type w)
-    (GraphObject : Type x)
-    [HasPairing LeftElement RightElement Pair]
-    [Membership LeftElement LeftDomainObject]
-    [Membership RightElement RightDomainObject]
-    [Membership Pair GraphObject] where
-  triple : SetTheoreticRelationTriple
-    LeftDomainObject RightDomainObject GraphObject
-  isRelation : IsSetTheoreticRelation triple (source fallback; no compiled unfold data available)
+      (LeftElement RightElement Pair : Type u)
+      (LeftDomainObject : Type v) (RightDomainObject : Type w)
+      (GraphObject : Type x)
+      [HasPairing LeftElement RightElement Pair]
+      [Membership LeftElement LeftDomainObject]
+      [Membership RightElement RightDomainObject]
+      [Membership Pair GraphObject] where
+    triple : SetTheoreticRelationTriple
+      LeftDomainObject RightDomainObject GraphObject
+    isRelation : IsSetTheoreticRelation triple (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -270,11 +275,16 @@ structure SetTheoreticRelation
 
 Predicate logic:
 
-  ∀ {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x} [inst : LRA.Set.HasPairing DomainElement CodomainElement Pair] [inst_1 : Membership DomainElement DomainObject] [inst_2 : Membership CodomainElement CodomainObject] [inst_3 : Membership Pair GraphObject] (triple : LRA.Function.SetTheoretic.SetTheoreticFunctionTriple DomainObject CodomainObject GraphObject), (∀ (member : Pair), member ∈ triple.graph → Exists fun input => Exists fun output => (member = LRA.Set.OrderedPair input output ∧ (input ∈ triple.domain ∧ output ∈ triple.codomain)) ∧ (∀ (input : DomainElement), input ∈ triple.domain → Exists fun output => (output ∈ triple.codomain ∧ LRA.Set.Relates triple.graph input output) ∧ ∀ (input : DomainElement) (firstOutput secondOutput : CodomainElement), LRA.Set.Relates triple.graph input firstOutput → LRA.Set.Relates triple.graph input secondOutput → firstOutput = secondOutput))
+  ∀ {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x} [inst : LRA.Set.HasPairing DomainElement CodomainElement Pair] [inst_1 : Membership DomainElement DomainObject] [inst_2 : Membership CodomainElement CodomainObject] [inst_3 : Membership Pair GraphObject] (triple : LRA.Function.SetTheoretic.SetTheoreticFunctionTriple DomainObject CodomainObject GraphObject), ((∀ (member : Pair), member ∈ triple.graph → Exists fun input => Exists fun output => (member = LRA.Set.OrderedPair input output ∧ (input ∈ triple.domain ∧ output ∈ triple.codomain))) ∧ ((∀ (input : DomainElement), input ∈ triple.domain → Exists fun output => (output ∈ triple.codomain ∧ LRA.Set.Relates triple.graph input output)) ∧ (∀ (input : DomainElement) (firstOutput secondOutput : CodomainElement), LRA.Set.Relates triple.graph input firstOutput → LRA.Set.Relates triple.graph input secondOutput → firstOutput = secondOutput)))
 
 Predicate logic (unfolded):
 
-  ∀ {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x} [inst : LRA.Set.HasPairing DomainElement CodomainElement Pair] [inst_1 : Membership DomainElement DomainObject] [inst_2 : Membership CodomainElement CodomainObject] [inst_3 : Membership Pair GraphObject] (triple : LRA.Function.SetTheoretic.SetTheoreticFunctionTriple DomainObject CodomainObject GraphObject), (∀ (member : Pair), inst_3.1 triple.3 member → Exists fun input => Exists fun output => (member = inst.1 input output ∧ (inst_1.1 triple.1 input ∧ inst_2.1 triple.2 output)) ∧ (∀ (input : DomainElement), inst_1.1 triple.1 input → Exists fun output => (inst_2.1 triple.2 output ∧ inst_3.1 triple.3 (inst.1 input output)) ∧ ∀ (input : DomainElement) (firstOutput secondOutput : CodomainElement), inst_3.1 triple.3 (inst.1 input firstOutput) → inst_3.1 triple.3 (inst.1 input secondOutput) → firstOutput = secondOutput))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (member : Pair), inst_3.1 triple.3 member → Exists fun input => Exists fun output => (member = inst.1 input output ∧ (inst_1.1 triple.1 input ∧ inst_2.1 triple.2 output))) ∧ ((∀ (input : DomainElement), inst_1.1 triple.1 input → Exists fun output => (inst_2.1 triple.2 output ∧ inst_3.1 triple.3 (inst.1 input output))) ∧ (∀ (input : DomainElement) (firstOutput secondOutput : CodomainElement), inst_3.1 triple.3 (inst.1 input firstOutput) → inst_3.1 triple.3 (inst.1 input secondOutput) → firstOutput = secondOutput)))
 
 Logical form (Lean):
 
@@ -349,30 +359,30 @@ def IsSetTheoreticFunction
 Predicate logic:
 
   structure SetTheoreticFunction
-    (DomainElement CodomainElement Pair : Type u)
-    (DomainObject : Type v) (CodomainObject : Type w)
-    (GraphObject : Type x)
-    [HasPairing DomainElement CodomainElement Pair]
-    [Membership DomainElement DomainObject]
-    [Membership CodomainElement CodomainObject]
-    [Membership Pair GraphObject] where
-  triple : SetTheoreticFunctionTriple
-    DomainObject CodomainObject GraphObject
-  isFunction : IsSetTheoreticFunction triple
+      (DomainElement CodomainElement Pair : Type u)
+      (DomainObject : Type v) (CodomainObject : Type w)
+      (GraphObject : Type x)
+      [HasPairing DomainElement CodomainElement Pair]
+      [Membership DomainElement DomainObject]
+      [Membership CodomainElement CodomainObject]
+      [Membership Pair GraphObject] where
+    triple : SetTheoreticFunctionTriple
+      DomainObject CodomainObject GraphObject
+    isFunction : IsSetTheoreticFunction triple
 
 Predicate logic (unfolded):
 
   structure SetTheoreticFunction
-    (DomainElement CodomainElement Pair : Type u)
-    (DomainObject : Type v) (CodomainObject : Type w)
-    (GraphObject : Type x)
-    [HasPairing DomainElement CodomainElement Pair]
-    [Membership DomainElement DomainObject]
-    [Membership CodomainElement CodomainObject]
-    [Membership Pair GraphObject] where
-  triple : SetTheoreticFunctionTriple
-    DomainObject CodomainObject GraphObject
-  isFunction : IsSetTheoreticFunction triple (source fallback; no compiled unfold data available)
+      (DomainElement CodomainElement Pair : Type u)
+      (DomainObject : Type v) (CodomainObject : Type w)
+      (GraphObject : Type x)
+      [HasPairing DomainElement CodomainElement Pair]
+      [Membership DomainElement DomainObject]
+      [Membership CodomainElement CodomainObject]
+      [Membership Pair GraphObject] where
+    triple : SetTheoreticFunctionTriple
+      DomainObject CodomainObject GraphObject
+    isFunction : IsSetTheoreticFunction triple (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

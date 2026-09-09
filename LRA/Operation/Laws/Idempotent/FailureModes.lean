@@ -15,7 +15,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (operation : Carrier → Carrier → Carrier), (∀ (element : Carrier), operation element element = element) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (element : Carrier), operation element element = element) → False
 
 Logical form (Lean):
 
@@ -54,12 +59,12 @@ def FailsIdempotent {Carrier : Type u}
 Predicate logic:
 
   def NaturalAddition : BinaryEndoOperation Nat :=
-  fun left right => left + right
+    fun left right => left + right
 
 Predicate logic (unfolded):
 
   def NaturalAddition : BinaryEndoOperation Nat :=
-  fun left right => left + right (source fallback; no compiled unfold data available)
+    fun left right => left + right (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -95,11 +100,16 @@ def NaturalAddition : BinaryEndoOperation Nat :=
 
 Predicate logic:
 
-  FailsIdempotent NaturalAddition
+  LRA.Operation.Laws.Idempotent.FailsIdempotent LRA.Operation.Laws.Idempotent.NaturalAddition
 
 Predicate logic (unfolded):
 
-  (∀ (element : Nat), instHAdd.1 element element = element) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (∀ (element : Nat), { hAdd := fun a b => instAddNat.add a b }.hAdd element element = element) → False
 
 Logical form (Lean):
 

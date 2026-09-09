@@ -10,11 +10,16 @@ universe u v
 
 Predicate logic:
 
-  ∀ {Element : Type u} (values : List Element) (selected : LRA.Set.SetClass Element) (value : Element), List.instMembership.mem values value ↔ selected value
+  ∀ {Element : Type u} (values : List Element) (selected : LRA.Set.SetClass Element) (value : Element), List.value ∈ values ↔ selected value
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} (values : List Element) (selected : Element → Prop) (value : Element), List.instMembership.1 values value ↔ selected value
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    List.value ∈ values ↔ selected value
 
 Logical form (Lean):
 
@@ -56,7 +61,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} (selected : Element → Prop), Exists fun values => ∀ (value : Element), List.instMembership.1 values value ↔ selected value
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun values => ∀ (value : Element), List.value ∈ values ↔ selected value
 
 Logical form (Lean):
 
@@ -98,7 +108,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (source : Domain → Prop), Exists fun values => ∀ (value : Codomain), List.instMembership.1 values value ↔ Exists fun x => (source x ∧ function x = value)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun values => ∀ (value : Codomain), List.value ∈ values ↔ Exists fun x => (source x ∧ function x = value)
 
 Logical form (Lean):
 
@@ -142,7 +157,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain), Exists fun values => ∀ (value : Codomain), List.instMembership.1 values value ↔ Exists fun x => function x = value
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun values => ∀ (value : Codomain), List.value ∈ values ↔ Exists fun x => function x = value
 
 Logical form (Lean):
 

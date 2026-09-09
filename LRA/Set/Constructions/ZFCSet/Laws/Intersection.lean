@@ -8,11 +8,16 @@ namespace LRA.Set.Constructions.ZFCSet
 
 Predicate logic:
 
-  ∀ A B : Set, A ∩ B = B ∩ A
+  ∀ (A B : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCA ∩ B = LRA.Set.Constructions.ZFCB ∩ A
 
 Predicate logic (unfolded):
 
-  ∀ (A B : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCSet.instInter.1 A B = LRA.Set.Constructions.ZFCSet.instInter.1 B A
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.ZFCA ∩ B = LRA.Set.Constructions.ZFCB ∩ A
 
 Logical form (Lean):
 
@@ -47,11 +52,16 @@ theorem IntersectionCommutative : ∀ A B : Set, A ∩ B = B ∩ A := by
 
 Predicate logic:
 
-  ∀ A B C : Set, (A ∩ B) ∩ C = A ∩ (B ∩ C)
+  ∀ (A B C : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCLRA.Set.Constructions.ZFCA ∩ B ∩ C = LRA.Set.Constructions.ZFCA ∩ LRA.Set.Constructions.ZFCB ∩ C
 
 Predicate logic (unfolded):
 
-  ∀ (A B C : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCSet.instInter.1 (LRA.Set.Constructions.ZFCSet.instInter.1 A B) C = LRA.Set.Constructions.ZFCSet.instInter.1 A (LRA.Set.Constructions.ZFCSet.instInter.1 B C)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.ZFCLRA.Set.Constructions.ZFCA ∩ B ∩ C = LRA.Set.Constructions.ZFCA ∩ LRA.Set.Constructions.ZFCB ∩ C
 
 Logical form (Lean):
 
@@ -88,11 +98,16 @@ theorem IntersectionAssociative :
 
 Predicate logic:
 
-  ∀ A : Set, ∅ ∈ Set ∩ A = ∅ ∈ Set
+  ∀ (A : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCLRA.Set.Constructions.ZFCSet.instEmptyCollection.emptyCollection ∩ A = LRA.Set.Constructions.ZFCSet.instEmptyCollection.emptyCollection
 
 Predicate logic (unfolded):
 
-  ∀ (A : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCSet.instInter.1 LRA.Set.Constructions.ZFCSet.instEmptyCollection.1 A = LRA.Set.Constructions.ZFCSet.instEmptyCollection.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.ZFCLRA.Set.Constructions.ZFCSet.instEmptyCollection.1 ∩ A = LRA.Set.Constructions.ZFCSet.instEmptyCollection.1
 
 Logical form (Lean):
 
@@ -127,11 +142,16 @@ theorem EmptyIntersection : ∀ A : Set, (∅ : Set) ∩ A = (∅ : Set) := by
 
 Predicate logic:
 
-  ∀ A : Set, A ∩ ∅ ∈ Set = ∅ ∈ Set
+  ∀ (A : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCA ∩ LRA.Set.Constructions.ZFCSet.instEmptyCollection.emptyCollection = LRA.Set.Constructions.ZFCSet.instEmptyCollection.emptyCollection
 
 Predicate logic (unfolded):
 
-  ∀ (A : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCSet.instInter.1 A LRA.Set.Constructions.ZFCSet.instEmptyCollection.1 = LRA.Set.Constructions.ZFCSet.instEmptyCollection.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.ZFCA ∩ LRA.Set.Constructions.ZFCSet.instEmptyCollection.1 = LRA.Set.Constructions.ZFCSet.instEmptyCollection.1
 
 Logical form (Lean):
 
@@ -166,11 +186,16 @@ theorem IntersectionEmpty : ∀ A : Set, A ∩ (∅ : Set) = (∅ : Set) := by
 
 Predicate logic:
 
-  ∀ A : Set, A ∩ A = A
+  ∀ (A : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCA ∩ A = A
 
 Predicate logic (unfolded):
 
-  ∀ (A : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCSet.instInter.1 A A = A
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.ZFCA ∩ A = A
 
 Logical form (Lean):
 
@@ -205,11 +230,16 @@ theorem IntersectionIdempotent : ∀ A : Set, A ∩ A = A := by
 
 Predicate logic:
 
-  ∀ A₁ A₂ B₁ B₂ : Set, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∩ B₁ ⊆ A₂ ∩ B₂
+  ∀ (A₁ A₂ B₁ B₂ : LRA.Set.Constructions.ZFCSet.Set), (LRA.Set.Constructions.ZFCSet.instHasSubset.Subset A₁ A₂ ∧ LRA.Set.Constructions.ZFCSet.instHasSubset.Subset B₁ B₂) → LRA.Set.Constructions.ZFCSet.instHasSubset.Subset (LRA.Set.Constructions.ZFCA₁ ∩ B₁) (LRA.Set.Constructions.ZFCA₂ ∩ B₂)
 
 Predicate logic (unfolded):
 
-  ∀ (A₁ A₂ B₁ B₂ : LRA.Set.Constructions.ZFCSet.Set), (LRA.Set.Constructions.ZFCSet.instHasSubset.1 A₁ A₂ ∧ LRA.Set.Constructions.ZFCSet.instHasSubset.1 B₁ B₂) → LRA.Set.Constructions.ZFCSet.instHasSubset.1 (LRA.Set.Constructions.ZFCSet.instInter.1 A₁ B₁) (LRA.Set.Constructions.ZFCSet.instInter.1 A₂ B₂)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (LRA.Set.Constructions.ZFCSet.instHasSubset.1 A₁ A₂ ∧ LRA.Set.Constructions.ZFCSet.instHasSubset.1 B₁ B₂) → LRA.Set.Constructions.ZFCSet.instHasSubset.1 (LRA.Set.Constructions.ZFCA₁ ∩ B₁) (LRA.Set.Constructions.ZFCA₂ ∩ B₂)
 
 Logical form (Lean):
 
@@ -246,11 +276,16 @@ theorem IntersectionMonotone :
 
 Predicate logic:
 
-  ∀ A B : Set, A ⊆ B ↔ A ∩ B = A
+  ∀ (A B : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCSet.instHasSubset.Subset A B ↔ LRA.Set.Constructions.ZFCA ∩ B = A
 
 Predicate logic (unfolded):
 
-  ∀ (A B : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCSet.instHasSubset.1 A B ↔ LRA.Set.Constructions.ZFCSet.instInter.1 A B = A
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.ZFCSet.instHasSubset.Subset A B ↔ LRA.Set.Constructions.ZFCA ∩ B = A
 
 Logical form (Lean):
 

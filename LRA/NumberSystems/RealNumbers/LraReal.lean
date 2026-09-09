@@ -10,20 +10,20 @@ namespace LRA.NumberSystems.RealNumbers
 Predicate logic:
 
   structure LraReal where
-  lower : Set Rat
-  nonempty : lower.Nonempty
-  not_all : exists q : Rat, q ∉ lower
-  downward : forall {p : Rat}, p ∈ lower -> forall {q : Rat}, q < p -> q ∈ lower
-  open_above : forall {p : Rat}, p ∈ lower -> exists r, r ∈ lower /\ p < r
+    lower : Set Rat
+    nonempty : lower.Nonempty
+    not_all : exists q : Rat, q ∉ lower
+    downward : forall {p : Rat}, p ∈ lower -> forall {q : Rat}, q < p -> q ∈ lower
+    open_above : forall {p : Rat}, p ∈ lower -> exists r, r ∈ lower /\ p < r
 
 Predicate logic (unfolded):
 
   structure LraReal where
-  lower : Set Rat
-  nonempty : lower.Nonempty
-  not_all : exists q : Rat, q ∉ lower
-  downward : forall {p : Rat}, p ∈ lower -> forall {q : Rat}, q < p -> q ∈ lower
-  open_above : forall {p : Rat}, p ∈ lower -> exists r, r ∈ lower /\ p < r (source fallback; no compiled unfold data available)
+    lower : Set Rat
+    nonempty : lower.Nonempty
+    not_all : exists q : Rat, q ∉ lower
+    downward : forall {p : Rat}, p ∈ lower -> forall {q : Rat}, q < p -> q ∈ lower
+    open_above : forall {p : Rat}, p ∈ lower -> exists r, r ∈ lower /\ p < r (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

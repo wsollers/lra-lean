@@ -8,14 +8,14 @@ namespace LRA.AlgebraicStructures.AbelianGroup.Interface.Signature
 Predicate logic:
 
   inductive AbelianGroupFunctionSymbol where
-  | add
-  | neg
+    | add
+    | neg
 
 Predicate logic (unfolded):
 
   inductive AbelianGroupFunctionSymbol where
-  | add
-  | neg (source fallback; no compiled unfold data available)
+    | add
+    | neg (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -92,12 +92,12 @@ def AbelianGroupRelationSymbol : Type := Empty
 Predicate logic:
 
   inductive AbelianGroupConstantSymbol where
-  | zero
+    | zero
 
 Predicate logic (unfolded):
 
   inductive AbelianGroupConstantSymbol where
-  | zero (source fallback; no compiled unfold data available)
+    | zero (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -134,18 +134,18 @@ inductive AbelianGroupConstantSymbol where
 Predicate logic:
 
   def AbelianGroupFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
-  Symbol := AbelianGroupFunctionSymbol
-  arity
-    | .add => 2
-    | .neg => 1
+    Symbol := AbelianGroupFunctionSymbol
+    arity
+      | .add => 2
+      | .neg => 1
 
 Predicate logic (unfolded):
 
   def AbelianGroupFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
-  Symbol := AbelianGroupFunctionSymbol
-  arity
-    | .add => 2
-    | .neg => 1 (source fallback; no compiled unfold data available)
+    Symbol := AbelianGroupFunctionSymbol
+    arity
+      | .add => 2
+      | .neg => 1 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -188,14 +188,14 @@ def AbelianGroupFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
 Predicate logic:
 
   def AbelianGroupFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
-  Symbol := AbelianGroupRelationSymbol
-  arity := Empty.elim
+    Symbol := AbelianGroupRelationSymbol
+    arity := Empty.elim
 
 Predicate logic (unfolded):
 
   def AbelianGroupFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
-  Symbol := AbelianGroupRelationSymbol
-  arity := Empty.elim (source fallback; no compiled unfold data available)
+    Symbol := AbelianGroupRelationSymbol
+    arity := Empty.elim (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -234,16 +234,16 @@ def AbelianGroupFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
 Predicate logic:
 
   def AbelianGroupFirstOrderSignature : LRA.Logic.Signature where
-  Functions := AbelianGroupFirstOrderFunctions
-  Relations := AbelianGroupFirstOrderRelations
-  Constants := AbelianGroupConstantSymbol
+    Functions := AbelianGroupFirstOrderFunctions
+    Relations := AbelianGroupFirstOrderRelations
+    Constants := AbelianGroupConstantSymbol
 
 Predicate logic (unfolded):
 
   def AbelianGroupFirstOrderSignature : LRA.Logic.Signature where
-  Functions := AbelianGroupFirstOrderFunctions
-  Relations := AbelianGroupFirstOrderRelations
-  Constants := AbelianGroupConstantSymbol (source fallback; no compiled unfold data available)
+    Functions := AbelianGroupFirstOrderFunctions
+    Relations := AbelianGroupFirstOrderRelations
+    Constants := AbelianGroupConstantSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

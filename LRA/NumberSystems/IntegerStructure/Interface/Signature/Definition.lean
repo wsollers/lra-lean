@@ -9,14 +9,14 @@ namespace LRA.NumberSystems.IntegerStructure.Interface.Signature
 Predicate logic:
 
   inductive IntegerFunctionSymbol where
-  | successor
-  | predecessor
+    | successor
+    | predecessor
 
 Predicate logic (unfolded):
 
   inductive IntegerFunctionSymbol where
-  | successor
-  | predecessor (source fallback; no compiled unfold data available)
+    | successor
+    | predecessor (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -93,16 +93,16 @@ def IntegerRelationSymbol : Type := Empty
 Predicate logic:
 
   inductive IntegerConstantSymbol where
-  | zero
-  | one
-  | negativeOne
+    | zero
+    | one
+    | negativeOne
 
 Predicate logic (unfolded):
 
   inductive IntegerConstantSymbol where
-  | zero
-  | one
-  | negativeOne (source fallback; no compiled unfold data available)
+    | zero
+    | one
+    | negativeOne (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -143,18 +143,18 @@ inductive IntegerConstantSymbol where
 Predicate logic:
 
   def IntegerFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
-  Symbol := IntegerFunctionSymbol
-  arity
-    | .successor => 1
-    | .predecessor => 1
+    Symbol := IntegerFunctionSymbol
+    arity
+      | .successor => 1
+      | .predecessor => 1
 
 Predicate logic (unfolded):
 
   def IntegerFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
-  Symbol := IntegerFunctionSymbol
-  arity
-    | .successor => 1
-    | .predecessor => 1 (source fallback; no compiled unfold data available)
+    Symbol := IntegerFunctionSymbol
+    arity
+      | .successor => 1
+      | .predecessor => 1 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -197,14 +197,14 @@ def IntegerFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
 Predicate logic:
 
   def IntegerFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
-  Symbol := IntegerRelationSymbol
-  arity := Empty.elim
+    Symbol := IntegerRelationSymbol
+    arity := Empty.elim
 
 Predicate logic (unfolded):
 
   def IntegerFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
-  Symbol := IntegerRelationSymbol
-  arity := Empty.elim (source fallback; no compiled unfold data available)
+    Symbol := IntegerRelationSymbol
+    arity := Empty.elim (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -243,16 +243,16 @@ def IntegerFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
 Predicate logic:
 
   def IntegerFirstOrderSignature : LRA.Logic.Signature where
-  Functions := IntegerFirstOrderFunctions
-  Relations := IntegerFirstOrderRelations
-  Constants := IntegerConstantSymbol
+    Functions := IntegerFirstOrderFunctions
+    Relations := IntegerFirstOrderRelations
+    Constants := IntegerConstantSymbol
 
 Predicate logic (unfolded):
 
   def IntegerFirstOrderSignature : LRA.Logic.Signature where
-  Functions := IntegerFirstOrderFunctions
-  Relations := IntegerFirstOrderRelations
-  Constants := IntegerConstantSymbol (source fallback; no compiled unfold data available)
+    Functions := IntegerFirstOrderFunctions
+    Relations := IntegerFirstOrderRelations
+    Constants := IntegerConstantSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

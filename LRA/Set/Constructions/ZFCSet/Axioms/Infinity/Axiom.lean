@@ -7,11 +7,16 @@ namespace LRA.Set.Constructions.ZFCSet.Axioms
 
 Predicate logic:
 
-  ∃ A ∈ ZFCSet, ∃ empty ∈ ZFCSet, empty ∈ A ∧ ∀ w : ZFCSet, w ∉ empty ∧ ∀ x : ZFCSet, x ∈ A → ∃ successor ∈ ZFCSet, successor ∈ A ∧ ∀ w : ZFCSet, w ∈ successor ↔ w ∈ x ∨ w = x end LRA.Set.Constructions.ZFCSet.Axioms
+  Exists fun A => ((Exists fun empty => (LRA.Set.Constructions.instMembershipZFCSet.mem A empty ∧ (∀ (w : LRA.Set.Constructions.ZFCSet), ¬ LRA.Set.Constructions.instMembershipZFCSet.mem empty w))) ∧ (∀ (x : LRA.Set.Constructions.ZFCSet), LRA.Set.Constructions.instMembershipZFCSet.mem A x → Exists fun successor => (LRA.Set.Constructions.instMembershipZFCSet.mem A successor ∧ (∀ (w : LRA.Set.Constructions.ZFCSet), LRA.Set.Constructions.instMembershipZFCSet.mem successor w ↔ Or (LRA.Set.Constructions.instMembershipZFCSet.mem x w) (w = x)))))
 
 Predicate logic (unfolded):
 
-  Exists fun A => (Exists fun empty => (LRA.Set.instMembershipZFCSet.1 A empty ∧ ∀ (w : LRA.Set.Constructions.ZFCSet), LRA.Set.instMembershipZFCSet.1 empty w → False) ∧ ∀ (x : LRA.Set.Constructions.ZFCSet), LRA.Set.instMembershipZFCSet.1 A x → Exists fun successor => (LRA.Set.instMembershipZFCSet.1 A successor ∧ ∀ (w : LRA.Set.Constructions.ZFCSet), LRA.Set.instMembershipZFCSet.1 successor w ↔ Or (LRA.Set.instMembershipZFCSet.1 x w) (w = x)))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun A => ((Exists fun empty => (LRA.Set.Constructions.instMembershipZFCSet.mem A empty ∧ (∀ (w : LRA.Set.Constructions.ZFCSet), ¬ LRA.Set.Constructions.instMembershipZFCSet.mem empty w))) ∧ (∀ (x : LRA.Set.Constructions.ZFCSet), LRA.Set.Constructions.instMembershipZFCSet.mem A x → Exists fun successor => (LRA.Set.Constructions.instMembershipZFCSet.mem A successor ∧ (∀ (w : LRA.Set.Constructions.ZFCSet), LRA.Set.Constructions.instMembershipZFCSet.mem successor w ↔ Or (LRA.Set.Constructions.instMembershipZFCSet.mem x w) (w = x)))))
 
 Logical form (Lean):
 

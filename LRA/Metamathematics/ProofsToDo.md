@@ -34,7 +34,7 @@ Predicate logic (unfolded):
     LRA.Metamathematics.Notation.LogicalConnectives.2 LRA.Metamathematics.Notation.LogicalConnective.neg = 1
 Transliterated theorem: LogicalConnectives.IsUnary .neg
 Logical form (Lean): : LogicalConnectives.IsUnary .neg
-Source: ./Notation/LogicalSymbols.lean#L142
+Source: [`./Notation/LogicalSymbols.lean#L147`](./Notation/LogicalSymbols.lean#L147)
 
 
 
@@ -51,7 +51,7 @@ Predicate logic (unfolded):
     LRA.Metamathematics.Notation.LogicalConnectives.2 LRA.Metamathematics.Notation.LogicalConnective.impl = 2
 Transliterated theorem: LogicalConnectives.IsBinary .impl
 Logical form (Lean): : LogicalConnectives.IsBinary .impl
-Source: ./Notation/LogicalSymbols.lean#L182
+Source: [`./Notation/LogicalSymbols.lean#L192`](./Notation/LogicalSymbols.lean#L192)
 
 
 
@@ -68,7 +68,7 @@ Predicate logic (unfolded):
     LRA.Metamathematics.Notation.LogicalEqualitySymbols.2 LRA.Metamathematics.Notation.LogicalEquality.eq = 2
 Transliterated theorem: LogicalEqualitySymbols.IsBinary .eq
 Logical form (Lean): : LogicalEqualitySymbols.IsBinary .eq
-Source: ./Notation/LogicalSymbols.lean#L314
+Source: [`./Notation/LogicalSymbols.lean#L329`](./Notation/LogicalSymbols.lean#L329)
 
 
 
@@ -85,7 +85,7 @@ Predicate logic (unfolded):
     proposition → proposition
 Transliterated theorem: forall proposition : Prop, proposition -> proposition
 Logical form (Lean): : forall proposition : Prop, proposition -> proposition
-Source: ./Notation.lean#L42
+Source: [`./Notation.lean#L47`](./Notation.lean#L47)
 
 
 
@@ -102,7 +102,7 @@ Predicate logic (unfolded):
     { hAdd := fun a b => instAddNat.add a b }.hAdd a 0 = a
 Transliterated theorem: (∀ a ∈ Nat), a + 0 = a
 Logical form (Lean): (a : Nat) : a + 0 = a
-Source: ./DeclarationKeywords.lean#L158
+Source: [`./DeclarationKeywords.lean#L163`](./DeclarationKeywords.lean#L163)
 
 
 
@@ -119,7 +119,7 @@ Predicate logic (unfolded):
     { hAdd := fun a b => instAddNat.add a b }.hAdd a b = { hAdd := fun a b => instAddNat.add a b }.hAdd b a
 Transliterated theorem: (∀ a b ∈ Nat), a + b = b + a
 Logical form (Lean): (a b : Nat) : a + b = b + a
-Source: ./DeclarationKeywords.lean#L160
+Source: [`./DeclarationKeywords.lean#L165`](./DeclarationKeywords.lean#L165)
 
 
 
@@ -136,7 +136,7 @@ Predicate logic (unfolded):
     Decidable.rec (fun h => (fun x => Bool.false) h) (fun h => (fun x => Bool.true) h) (inst1.1 x y) = Decidable.rec (fun h => (fun x => Bool.false) h) (fun h => (fun x => Bool.true) h) (inst2.1 x y)
 Transliterated theorem: ∀ x y : Symbol, @Decidable.decide (x = y) (inst1.decidableEquality x y) = @Decidable.decide (x = y) (inst2.decidableEquality x y)
 Logical form (Lean): {Symbol : Type u} (inst1 inst2 : SyntacticCategory Symbol) : ∀ x y : Symbol, @Decidable.decide (x = y) (inst1.decidableEquality x y) = @Decidable.decide (x = y) (inst2.decidableEquality x y)
-Source: ./SyntacticCategory.lean#L58
+Source: [`./SyntacticCategory.lean#L132`](./SyntacticCategory.lean#L132)
 
 
 
@@ -153,7 +153,7 @@ Predicate logic (unfolded):
     (decide (e1 = e2) = true) ↔ e1 = e2
 Transliterated theorem: (∀ e1 e2 ∈ Expr), (decide (e1 = e2) = true) ↔ e1 = e2
 Logical form (Lean): {Expr : Type u} [StructuralIdentity Expr] (e1 e2 : Expr) : (decide (e1 = e2) = true) ↔ e1 = e2
-Source: ./StructuralIdentity.lean#L57
+Source: [`./StructuralIdentity.lean#L127`](./StructuralIdentity.lean#L127)
 
 
 
@@ -170,7 +170,7 @@ Predicate logic (unfolded):
     LRA.Metamathematics.FirstOrderSubstitutionSafetyObligation
 Transliterated theorem: FirstOrderSubstitutionSafetyObligation
 Logical form (Lean): : FirstOrderSubstitutionSafetyObligation
-Source: ./SubstitutionSafety.lean#L107
+Source: [`./SubstitutionSafety.lean#L264`](./SubstitutionSafety.lean#L264)
 
 
 
@@ -187,7 +187,7 @@ Predicate logic (unfolded):
     LRA.Metamathematics.TakeutiSoundnessObligation
 Transliterated theorem: TakeutiSoundnessObligation
 Logical form (Lean): : TakeutiSoundnessObligation
-Source: ./MetatheoremTargets.lean#L85
+Source: [`./MetatheoremTargets.lean#L304`](./MetatheoremTargets.lean#L304)
 
 
 
@@ -204,7 +204,7 @@ Predicate logic (unfolded):
     LRA.Metamathematics.TakeutiCompletenessObligation
 Transliterated theorem: TakeutiCompletenessObligation
 Logical form (Lean): : TakeutiCompletenessObligation
-Source: ./MetatheoremTargets.lean#L93
+Source: [`./MetatheoremTargets.lean#L347`](./MetatheoremTargets.lean#L347)
 
 ## Axioms / Assumptions
 
@@ -231,7 +231,7 @@ Predicate logic (unfolded):
     LRA.Metamathematics.DiscourseLevel.rec ((fun _ => True) Unit.unit) ((fun _ => False) Unit.unit) _level
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./ObjectMetaDistinction.lean
+Source: [`./ObjectMetaDistinction.lean`](./ObjectMetaDistinction.lean)
 
 
 
@@ -248,7 +248,7 @@ Predicate logic (unfolded):
     List.Mem a xs
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./FiniteSyntacticCollection.lean
+Source: [`./FiniteSyntacticCollection.lean`](./FiniteSyntacticCollection.lean)
 
 
 
@@ -265,7 +265,7 @@ Predicate logic (unfolded):
     Exists fun Expr => Exists fun Variable => Exists fun Term => Exists fun IsSafe => Exists fun substitute => Exists fun variableOccursFreelyIn => Exists fun freeVariablesOf => LRA.Metamathematics.SubstitutionSafety Expr Variable Term IsSafe substitute variableOccursFreelyIn freeVariablesOf
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./SubstitutionSafety.lean
+Source: [`./SubstitutionSafety.lean`](./SubstitutionSafety.lean)
 
 
 
@@ -282,7 +282,7 @@ Predicate logic (unfolded):
     pairing.2 Γ φ → pairing.1 Γ φ
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./MetatheoremTargets.lean
+Source: [`./MetatheoremTargets.lean`](./MetatheoremTargets.lean)
 
 
 
@@ -299,7 +299,7 @@ Predicate logic (unfolded):
     Exists fun Formula => Exists fun Theory => Exists fun pairing => ∀ (Γ : Theory) (φ : Formula), pairing.2 Γ φ → pairing.1 Γ φ
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./MetatheoremTargets.lean
+Source: [`./MetatheoremTargets.lean`](./MetatheoremTargets.lean)
 
 
 
@@ -316,7 +316,7 @@ Predicate logic (unfolded):
     pairing.1 Γ φ → pairing.2 Γ φ
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./MetatheoremTargets.lean
+Source: [`./MetatheoremTargets.lean`](./MetatheoremTargets.lean)
 
 
 
@@ -333,4 +333,4 @@ Predicate logic (unfolded):
     Exists fun Formula => Exists fun Theory => Exists fun pairing => ∀ (Γ : Theory) (φ : Formula), pairing.1 Γ φ → pairing.2 Γ φ
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./MetatheoremTargets.lean
+Source: [`./MetatheoremTargets.lean`](./MetatheoremTargets.lean)

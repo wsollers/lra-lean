@@ -8,16 +8,16 @@ universe u
 Predicate logic:
 
   class OrderDiscretenessLaw (R : Type u)
-    [LT R] [Add R] [OfNat R 1] : Prop where
-  NoStrictBetweenAddOne :
-    forall a : R, Not (exists middle : R, a < middle /\ middle < a + 1)
+      [LT R] [Add R] [OfNat R 1] : Prop where
+    NoStrictBetweenAddOne :
+      forall a : R, Not (exists middle : R, a < middle /\ middle < a + 1)
 
 Predicate logic (unfolded):
 
   class OrderDiscretenessLaw (R : Type u)
-    [LT R] [Add R] [OfNat R 1] : Prop where
-  NoStrictBetweenAddOne :
-    forall a : R, Not (exists middle : R, a < middle /\ middle < a + 1) (source fallback; no compiled unfold data available)
+      [LT R] [Add R] [OfNat R 1] : Prop where
+    NoStrictBetweenAddOne :
+      forall a : R, Not (exists middle : R, a < middle /\ middle < a + 1) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -61,11 +61,16 @@ variable {R : Type u}
 
 Predicate logic:
 
-  forall a : R, Not exists middle ∈ R, a < middle ∧ middle < a + 1
+  ∀ {R : Type u} [inst : LT R] [inst_1 : Add R] [inst_2 : OfNat R 1], LRA.Order.OrderDiscretenessLaw R → ∀ (a : R), ¬ Exists fun middle => (inst.lt a middle ∧ inst.lt middle (instHAdd.hAdd a 1))
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : LT R] [inst_1 : Add R] [inst_2 : OfNat R (instOfNatNat 1).1], LRA.Order.OrderDiscretenessLaw R → ∀ (a : R), (Exists fun middle => (inst.1 a middle ∧ inst.1 middle (instHAdd.1 a inst_2.1))) → False
+  Ambient
+    (R, <)
+  Objects
+    (none)
+  Prove
+    LRA.Order.OrderDiscretenessLaw R → ∀ (a : R), (Exists fun middle => (inst.lt a middle ∧ inst.lt middle ({ hAdd := fun a b => inst_1.add a b }.hAdd a 1))) → False
 
 Logical form (Lean):
 

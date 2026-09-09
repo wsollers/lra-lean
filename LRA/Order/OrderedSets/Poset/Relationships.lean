@@ -7,11 +7,16 @@ namespace LRA.Order.OrderedSets.Poset
 
 Predicate logic:
 
-  (∀ poset ∈ LRA.Order.Poset), LRA.Order.Preorder poset.NonStrictOrder
+  ∀ (poset : LRA.Order.Poset), LRA.Order.Preorder poset.NonStrictOrder
 
 Predicate logic (unfolded):
 
-  ∀ (poset : LRA.Order.Poset), (∀ (x : poset.1), poset.2 x x ∧ ∀ (x y z : poset.1), poset.2 x y → poset.2 y z → poset.2 x z)
+  Ambient
+    (implicit ambient)
+  Objects
+    poset : LRA.Order.Poset
+  Prove
+    ((∀ (x : poset.1), poset.2 x x) ∧ (∀ (x y z : poset.1), poset.2 x y → poset.2 y z → poset.2 x z))
 
 Logical form (Lean):
 

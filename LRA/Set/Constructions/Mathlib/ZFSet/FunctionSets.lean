@@ -12,11 +12,16 @@ open LRA.Set
 
 Predicate logic:
 
-  (∀ relation input output ∈ ZFSet), Relates relation input output ↔ ZFSet.pair input output ∈ relation
+  ∀ (relation input output : ZFSet), LRA.Set.Relates relation input output ↔ SetLike.input.pair output ∈ relation
 
 Predicate logic (unfolded):
 
-  ∀ (relation input output : ZFSet), SetLike.instMembership.1 relation (LRA.Set.MathlibZFSet.instHasPairingZFSet.1 input output) ↔ SetLike.instMembership.1 relation (ZFSet.instInsert.1 (ZFSet.instSingleton.1 input) (ZFSet.instSingleton.1 (ZFSet.instInsert.1 input (ZFSet.instSingleton.1 output))))
+  Ambient
+    (implicit ambient)
+  Objects
+    relation input output : ZFSet
+  Prove
+    LRA.Set.Relates relation input output ↔ SetLike.input.pair output ∈ relation
 
 Logical form (Lean):
 
@@ -55,11 +60,17 @@ theorem RelatesIffPairMember (relation input output : ZFSet) :
 
 Predicate logic:
 
-  IsPairwise ZFSet ZFSet relation
+  ∀ {domain codomain relation : ZFSet}, ZFSet.instPartialOrder.le relation (domain.prod codomain) → LRA.Set.IsPairwise ZFSet ZFSet relation
 
 Predicate logic (unfolded):
 
-  ∀ {domain codomain relation : ZFSet}, ZFSet.instPartialOrder.toLE.1 relation (Quot.lift (fun x => Quot.mk PSet.setoid.r (PSet.sep (fun y => (fun z => Exists fun a => (SetLike.instMembership.mem domain a ∧ Exists fun b => (SetLike.instMembership.mem codomain b ∧ (z = a.pair b ∧ (fun x x_1 => True) a b)))) (ZFSet.mk y)) x)) ⋯ (ZFSet.instUnion.union domain codomain).powerset.powerset) → ∀ (member : ZFSet), SetLike.instMembership.1 relation member → Exists fun input => Exists fun output => member = LRA.Set.MathlibZFSet.instHasPairingZFSet.1 input output
+  Ambient
+    (implicit ambient)
+  Objects
+    domain codomain relation : ZFSet
+    inside : relation ⊆ ZFSet.prod domain codomain
+  Prove
+    ZFSet.instPartialOrder.toPreorder.1.le relation (Quot.lift (fun x => Quot.mk PSet.setoid.1 (PSet.mk (Subtype fun a => (fun y => (fun z => Exists fun a => (SetLike.a ∈ domain ∧ (Exists fun b => (SetLike.b ∈ codomain ∧ (z = a.pair b ∧ (fun x x_1 => True) a b))))) (ZFSet.mk y)) (x.Func a)) fun y => x.Func y.val)) ⋯ (Quotient.map PSet.powerset ZFSet.powerset._proof_1 (ZFdomain ∪ codomain).powerset)) → ∀ (member : ZFSet), SetLike.member ∈ relation → Exists fun input => Exists fun output => member = LRA.Set.MathlibZFSet.instHasPairingZFSet.1 input output
 
 Logical form (Lean):
 
@@ -98,11 +109,17 @@ theorem IsPairwiseOfSubsetProd {domain codomain relation : ZFSet}
 
 Predicate logic:
 
-  IsSingleValued ZFSet ZFSet relation
+  ∀ {domain codomain relation : ZFSet}, domain.IsFunc codomain relation → LRA.Set.IsSingleValued ZFSet ZFSet relation
 
 Predicate logic (unfolded):
 
-  ∀ {domain codomain relation : ZFSet}, (ZFSet.instPartialOrder.toLE.1 relation (Quot.map (PSet.sep fun y => (fun z => Exists fun a => (SetLike.instMembership.mem domain a ∧ Exists fun b => (SetLike.instMembership.mem codomain b ∧ (z = a.pair b ∧ (fun x x_1 => True) a b)))) (ZFSet.mk y)) ⋯ (ZFSet.instUnion.union domain codomain).powerset.powerset) ∧ ∀ (z : ZFSet), SetLike.instMembership.1 domain z → Exists fun x => ((fun w => SetLike.instMembership.1 relation (ZFSet.instInsert.1 (ZFSet.instSingleton.1 z) (ZFSet.instSingleton.1 (ZFSet.instInsert.insert z (ZFSet.instSingleton.singleton w))))) x ∧ ∀ (y : ZFSet), SetLike.instMembership.1 relation (ZFSet.instInsert.1 (ZFSet.instSingleton.1 z) (ZFSet.instSingleton.1 (ZFSet.instInsert.insert z (ZFSet.instSingleton.singleton y)))) → y = x)) → ∀ (input firstOutput secondOutput : ZFSet), (SetLike.instMembership.1 relation (LRA.Set.MathlibZFSet.instHasPairingZFSet.1 input firstOutput) ∧ SetLike.instMembership.1 relation (LRA.Set.MathlibZFSet.instHasPairingZFSet.1 input secondOutput)) → firstOutput = secondOutput
+  Ambient
+    (implicit ambient)
+  Objects
+    domain codomain relation : ZFSet
+    isFunc : ZFSet.IsFunc domain codomain relation
+  Prove
+    ((ZFSet.instPartialOrder.toPreorder.1.le relation (Quot.lift (fun x => Quot.mk PSet.setoid.r (PSet.sep (fun y => (fun z => Exists fun a => (SetLike.a ∈ domain ∧ (Exists fun b => (SetLike.b ∈ codomain ∧ (z = a.pair b ∧ (fun x x_1 => True) a b))))) (ZFSet.mk y)) x)) ⋯ (ZFdomain ∪ codomain).powerset.powerset)) ∧ (∀ (z : ZFSet), SetLike.z ∈ domain → Exists fun x => ((fun w => SetLike.ZFSet.instInsert.1 (ZFSet.instSingleton.1 z) (ZFSet.instSingleton.1 (ZFSet.instInsert.insert z (ZFSet.instSingleton.singleton w))) ∈ relation) x ∧ (∀ (y : ZFSet), SetLike.ZFSet.instInsert.1 (ZFSet.instSingleton.1 z) (ZFSet.instSingleton.1 (ZFSet.instInsert.insert z (ZFSet.instSingleton.singleton y))) ∈ relation → y = x)))) → ∀ (input firstOutput secondOutput : ZFSet), (SetLike.LRA.Set.MathlibZFSet.instHasPairingZFSet.1 input firstOutput ∈ relation ∧ SetLike.LRA.Set.MathlibZFSet.instHasPairingZFSet.1 input secondOutput ∈ relation) → firstOutput = secondOutput
 
 Logical form (Lean):
 
@@ -141,11 +158,16 @@ theorem IsSingleValuedOfIsFunc {domain codomain relation : ZFSet}
 
 Predicate logic:
 
-  (∀ domain codomain relation ∈ ZFSet), ZFSet.IsFunc domain codomain relation ↔ relation ⊆ ZFSet.prod domain codomain ∧ IsTotalOn ZFSet relation domain ∧ IsSingleValued ZFSet ZFSet relation
+  ∀ (domain codomain relation : ZFSet), domain.IsFunc codomain relation ↔ (ZFSet.instPartialOrder.le relation (domain.prod codomain) ∧ (LRA.Set.IsTotalOn ZFSet relation domain ∧ LRA.Set.IsSingleValued ZFSet ZFSet relation))
 
 Predicate logic (unfolded):
 
-  ∀ (domain codomain relation : ZFSet), (ZFSet.instPartialOrder.toLE.1 relation (Quot.map (PSet.sep fun y => (fun z => Exists fun a => (SetLike.instMembership.mem domain a ∧ Exists fun b => (SetLike.instMembership.mem codomain b ∧ (z = a.pair b ∧ (fun x x_1 => True) a b)))) (ZFSet.mk y)) ⋯ (ZFSet.instUnion.union domain codomain).powerset.powerset) ∧ ∀ (z : ZFSet), SetLike.instMembership.1 domain z → Exists fun x => ((fun w => SetLike.instMembership.1 relation (ZFSet.instInsert.1 (ZFSet.instSingleton.1 z) (ZFSet.instSingleton.1 (ZFSet.instInsert.insert z (ZFSet.instSingleton.singleton w))))) x ∧ ∀ (y : ZFSet), SetLike.instMembership.1 relation (ZFSet.instInsert.1 (ZFSet.instSingleton.1 z) (ZFSet.instSingleton.1 (ZFSet.instInsert.insert z (ZFSet.instSingleton.singleton y)))) → y = x)) ↔ (ZFSet.instPartialOrder.toLE.1 relation (Quot.lift (fun x => Quot.mk PSet.setoid.r (PSet.sep (fun y => (fun z => Exists fun a => (SetLike.instMembership.mem domain a ∧ Exists fun b => (SetLike.instMembership.mem codomain b ∧ (z = a.pair b ∧ (fun x x_1 => True) a b)))) (ZFSet.mk y)) x)) ⋯ (ZFSet.instUnion.union domain codomain).powerset.powerset) ∧ (∀ (input : ZFSet), SetLike.instMembership.1 domain input → Exists fun output => SetLike.instMembership.1 relation (LRA.Set.MathlibZFSet.instHasPairingZFSet.1 input output) ∧ ∀ (input firstOutput secondOutput : ZFSet), SetLike.instMembership.1 relation (LRA.Set.MathlibZFSet.instHasPairingZFSet.1 input firstOutput) → SetLike.instMembership.1 relation (LRA.Set.MathlibZFSet.instHasPairingZFSet.1 input secondOutput) → firstOutput = secondOutput))
+  Ambient
+    (implicit ambient)
+  Objects
+    domain codomain relation : ZFSet
+  Prove
+    domain.IsFunc codomain relation ↔ (ZFSet.instPartialOrder.le relation (domain.prod codomain) ∧ (LRA.Set.IsTotalOn ZFSet relation domain ∧ LRA.Set.IsSingleValued ZFSet ZFSet relation))
 
 Logical form (Lean):
 
@@ -188,11 +210,16 @@ theorem IsFuncIffFunctional (domain codomain relation : ZFSet) :
 
 Predicate logic:
 
-  (∀ domain codomain relation ∈ ZFSet), relation ∈ ZFSet.funs domain codomain ↔ relation ⊆ ZFSet.prod domain codomain ∧ IsTotalOn ZFSet relation domain ∧ IsSingleValued ZFSet ZFSet relation
+  ∀ (domain codomain relation : ZFSet), SetLike.relation ∈ domain.funs codomain ↔ (ZFSet.instPartialOrder.le relation (domain.prod codomain) ∧ (LRA.Set.IsTotalOn ZFSet relation domain ∧ LRA.Set.IsSingleValued ZFSet ZFSet relation))
 
 Predicate logic (unfolded):
 
-  ∀ (domain codomain relation : ZFSet), SetLike.instMembership.1 (Quot.lift (fun x => Quot.mk PSet.setoid.1 (PSet.mk (Subtype fun a => (fun y => domain.IsFunc codomain (ZFSet.mk y)) (x.Func a)) fun y => x.Func y.val)) ⋯ (Quotient.map PSet.powerset ZFSet.powerset._proof_1 (domain.prod codomain))) relation ↔ (ZFSet.instPartialOrder.toLE.1 relation (Quot.lift (fun x => Quot.mk PSet.setoid.r (PSet.sep (fun y => (fun z => Exists fun a => (SetLike.instMembership.mem domain a ∧ Exists fun b => (SetLike.instMembership.mem codomain b ∧ (z = a.pair b ∧ (fun x x_1 => True) a b)))) (ZFSet.mk y)) x)) ⋯ (ZFSet.instUnion.union domain codomain).powerset.powerset) ∧ (∀ (input : ZFSet), SetLike.instMembership.1 domain input → Exists fun output => SetLike.instMembership.1 relation (LRA.Set.MathlibZFSet.instHasPairingZFSet.1 input output) ∧ ∀ (input firstOutput secondOutput : ZFSet), SetLike.instMembership.1 relation (LRA.Set.MathlibZFSet.instHasPairingZFSet.1 input firstOutput) → SetLike.instMembership.1 relation (LRA.Set.MathlibZFSet.instHasPairingZFSet.1 input secondOutput) → firstOutput = secondOutput))
+  Ambient
+    (implicit ambient)
+  Objects
+    domain codomain relation : ZFSet
+  Prove
+    SetLike.relation ∈ domain.funs codomain ↔ (ZFSet.instPartialOrder.le relation (domain.prod codomain) ∧ (LRA.Set.IsTotalOn ZFSet relation domain ∧ LRA.Set.IsSingleValued ZFSet ZFSet relation))
 
 Logical form (Lean):
 
@@ -235,11 +262,17 @@ theorem MemberOfFunsIffFunctional (domain codomain relation : ZFSet) :
 
 Predicate logic:
 
-  IsFunctionalSet ZFSet ZFSet relation
+  ∀ {domain codomain relation : ZFSet}, domain.IsFunc codomain relation → LRA.Set.IsFunctionalSet ZFSet ZFSet relation
 
 Predicate logic (unfolded):
 
-  ∀ {domain codomain relation : ZFSet}, (ZFSet.instPartialOrder.toLE.1 relation (Quot.map (PSet.sep fun y => (fun z => Exists fun a => (SetLike.instMembership.mem domain a ∧ Exists fun b => (SetLike.instMembership.mem codomain b ∧ (z = a.pair b ∧ (fun x x_1 => True) a b)))) (ZFSet.mk y)) ⋯ (ZFSet.instUnion.union domain codomain).powerset.powerset) ∧ ∀ (z : ZFSet), SetLike.instMembership.1 domain z → Exists fun x => ((fun w => SetLike.instMembership.1 relation (ZFSet.instInsert.1 (ZFSet.instSingleton.1 z) (ZFSet.instSingleton.1 (ZFSet.instInsert.insert z (ZFSet.instSingleton.singleton w))))) x ∧ ∀ (y : ZFSet), SetLike.instMembership.1 relation (ZFSet.instInsert.1 (ZFSet.instSingleton.1 z) (ZFSet.instSingleton.1 (ZFSet.instInsert.insert z (ZFSet.instSingleton.singleton y)))) → y = x)) → (∀ (member : ZFSet), SetLike.instMembership.1 relation member → Exists fun input => Exists fun output => member = LRA.Set.MathlibZFSet.instHasPairingZFSet.1 input output ∧ ∀ (input firstOutput secondOutput : ZFSet), SetLike.instMembership.1 relation (LRA.Set.MathlibZFSet.instHasPairingZFSet.1 input firstOutput) → SetLike.instMembership.1 relation (LRA.Set.MathlibZFSet.instHasPairingZFSet.1 input secondOutput) → firstOutput = secondOutput)
+  Ambient
+    (implicit ambient)
+  Objects
+    domain codomain relation : ZFSet
+    isFunc : ZFSet.IsFunc domain codomain relation
+  Prove
+    ((ZFSet.instPartialOrder.toPreorder.1.le relation (Quot.lift (fun x => Quot.mk PSet.setoid.r (PSet.sep (fun y => (fun z => Exists fun a => (SetLike.a ∈ domain ∧ (Exists fun b => (SetLike.b ∈ codomain ∧ (z = a.pair b ∧ (fun x x_1 => True) a b))))) (ZFSet.mk y)) x)) ⋯ (ZFdomain ∪ codomain).powerset.powerset)) ∧ (∀ (z : ZFSet), SetLike.z ∈ domain → Exists fun x => ((fun w => SetLike.ZFSet.instInsert.1 (ZFSet.instSingleton.1 z) (ZFSet.instSingleton.1 (ZFSet.instInsert.insert z (ZFSet.instSingleton.singleton w))) ∈ relation) x ∧ (∀ (y : ZFSet), SetLike.ZFSet.instInsert.1 (ZFSet.instSingleton.1 z) (ZFSet.instSingleton.1 (ZFSet.instInsert.insert z (ZFSet.instSingleton.singleton y))) ∈ relation → y = x)))) → ((∀ (member : ZFSet), SetLike.member ∈ relation → Exists fun input => Exists fun output => member = LRA.Set.MathlibZFSet.instHasPairingZFSet.1 input output) ∧ (∀ (input firstOutput secondOutput : ZFSet), SetLike.LRA.Set.MathlibZFSet.instHasPairingZFSet.1 input firstOutput ∈ relation → SetLike.LRA.Set.MathlibZFSet.instHasPairingZFSet.1 input secondOutput ∈ relation → firstOutput = secondOutput))
 
 Logical form (Lean):
 
@@ -278,11 +311,17 @@ theorem IsFunctionalSetOfIsFunc {domain codomain relation : ZFSet}
 
 Predicate logic:
 
-  (∀ over input output ∈ ZFSet), (ZFSet → ZFSet) → Relates (ZFSet.map f over) input output ↔ input ∈ over ∧ f input = output
+  ∀ (f : ZFSet → ZFSet) [inst : ZFSet.Definable₁ f] (over input output : ZFSet), LRA.Set.Relates (ZFSet.map f over) input output ↔ (SetLike.input ∈ over ∧ f input = output)
 
 Predicate logic (unfolded):
 
-  ∀ (f : ZFSet → ZFSet) [inst : ZFSet.Definable (instOfNatNat 1).1 fun s => f (s Fin.instOfNat.1)] (over input output : ZFSet), SetLike.instMembership.1 ((let r := ZFSet.Definable₁.out fun y => y.pair (f y); Quotient.map (PSet.image r) ⋯) over) (LRA.Set.MathlibZFSet.instHasPairingZFSet.1 input output) ↔ (SetLike.instMembership.1 over input ∧ f input = output)
+  Ambient
+    (implicit ambient)
+  Objects
+    f : ZFSet → ZFSet
+    over input output : ZFSet
+  Prove
+    LRA.Set.Relates (ZFSet.map f over) input output ↔ (SetLike.input ∈ over ∧ f input = output)
 
 Logical form (Lean):
 
@@ -323,11 +362,17 @@ theorem RelatesMapIff (f : ZFSet → ZFSet) [ZFSet.Definable₁ f]
 
 Predicate logic:
 
-  (∀ over ∈ ZFSet), (ZFSet → ZFSet) → IsFunctionalSet ZFSet ZFSet (ZFSet.map f over)
+  ∀ (f : ZFSet → ZFSet) [inst : ZFSet.Definable₁ f] (over : ZFSet), LRA.Set.IsFunctionalSet ZFSet ZFSet (ZFSet.map f over)
 
 Predicate logic (unfolded):
 
-  ∀ (f : ZFSet → ZFSet) [inst : ZFSet.Definable (instOfNatNat 1).1 fun s => f (s Fin.instOfNat.1)] (over : ZFSet), (∀ (member : ZFSet), SetLike.instMembership.1 ((let r := ZFSet.Definable₁.out fun y => y.pair (f y); Quotient.map (PSet.image r) ⋯) over) member → Exists fun input => Exists fun output => member = LRA.Set.MathlibZFSet.instHasPairingZFSet.1 input output ∧ ∀ (input firstOutput secondOutput : ZFSet), SetLike.instMembership.1 ((let r := ZFSet.Definable₁.out fun y => y.pair (f y); Quotient.map (PSet.image r) ⋯) over) (LRA.Set.MathlibZFSet.instHasPairingZFSet.1 input firstOutput) → SetLike.instMembership.1 ((let r := ZFSet.Definable₁.out fun y => y.pair (f y); Quotient.map (PSet.image r) ⋯) over) (LRA.Set.MathlibZFSet.instHasPairingZFSet.1 input secondOutput) → firstOutput = secondOutput)
+  Ambient
+    (implicit ambient)
+  Objects
+    f : ZFSet → ZFSet
+    over : ZFSet
+  Prove
+    ((∀ (member : ZFSet), SetLike.member ∈ (let r := ZFSet.Definable₁.out fun y => y.pair (f y); Quotient.map (PSet.image r) ⋯) over → Exists fun input => Exists fun output => member = LRA.Set.MathlibZFSet.instHasPairingZFSet.1 input output) ∧ (∀ (input firstOutput secondOutput : ZFSet), SetLike.LRA.Set.MathlibZFSet.instHasPairingZFSet.1 input firstOutput ∈ (let r := ZFSet.Definable₁.out fun y => y.pair (f y); Quotient.map (PSet.image r) ⋯) over → SetLike.LRA.Set.MathlibZFSet.instHasPairingZFSet.1 input secondOutput ∈ (let r := ZFSet.Definable₁.out fun y => y.pair (f y); Quotient.map (PSet.image r) ⋯) over → firstOutput = secondOutput))
 
 Logical form (Lean):
 

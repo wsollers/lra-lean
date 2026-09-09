@@ -55,11 +55,17 @@ abbrev Rational := rational_model.signature.carrier
 
 Predicate logic:
 
-  rational_model.signature.le value value
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (value : LRA.NumberSystems.RealNumbers.PrimitiveIntervals.Rational rational_model), rational_model.signature.le value value
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (value : rational_model.signature.toCarrierBundle.1), rational_model.signature.toOrderedRingConceptSignature.2 value value
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_model : RationalModel
+    value : Rational rational_model
+  Prove
+    rational_model.signature.toOrderedRingConceptSignature.2 value value
 
 Logical form (Lean):
 
@@ -98,18 +104,18 @@ theorem nonstrict_order_reflexive
 Predicate logic:
 
   structure RationalInterval where
-  left_endpoint : Rational rational_model
-  right_endpoint : Rational rational_model
-  endpoints_are_ordered :
-    rational_model.signature.le left_endpoint right_endpoint
+    left_endpoint : Rational rational_model
+    right_endpoint : Rational rational_model
+    endpoints_are_ordered :
+      rational_model.signature.le left_endpoint right_endpoint
 
 Predicate logic (unfolded):
 
   structure RationalInterval where
-  left_endpoint : Rational rational_model
-  right_endpoint : Rational rational_model
-  endpoints_are_ordered :
-    rational_model.signature.le left_endpoint right_endpoint (source fallback; no compiled unfold data available)
+    left_endpoint : Rational rational_model
+    right_endpoint : Rational rational_model
+    endpoints_are_ordered :
+      rational_model.signature.le left_endpoint right_endpoint (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -155,7 +161,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (interval : LRA.NumberSystems.RealNumbers.PrimitiveIntervals.RationalInterval rational_model) (value : rational_model.signature.toCarrierBundle.1), (rational_model.signature.toOrderedRingConceptSignature.2 interval.1 value ∧ rational_model.signature.toOrderedRingConceptSignature.2 value interval.2)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (rational_model.signature.toOrderedRingConceptSignature.2 interval.1 value ∧ rational_model.signature.toOrderedRingConceptSignature.2 value interval.2)
 
 Logical form (Lean):
 
@@ -201,7 +212,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (inner outer : LRA.NumberSystems.RealNumbers.PrimitiveIntervals.RationalInterval rational_model), (rational_model.signature.toOrderedRingConceptSignature.2 outer.1 inner.1 ∧ rational_model.signature.toOrderedRingConceptSignature.2 inner.2 outer.2)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (rational_model.signature.toOrderedRingConceptSignature.2 outer.1 inner.1 ∧ rational_model.signature.toOrderedRingConceptSignature.2 inner.2 outer.2)
 
 Logical form (Lean):
 
@@ -249,7 +265,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (first second : LRA.NumberSystems.RealNumbers.PrimitiveIntervals.RationalInterval rational_model), Exists fun value => ((rational_model.signature.toOrderedRingConceptSignature.2 first.1 value ∧ rational_model.signature.toOrderedRingConceptSignature.2 value first.2) ∧ (rational_model.signature.toOrderedRingConceptSignature.2 second.1 value ∧ rational_model.signature.toOrderedRingConceptSignature.2 value second.2))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun value => ((rational_model.signature.toOrderedRingConceptSignature.2 first.1 value ∧ rational_model.signature.toOrderedRingConceptSignature.2 value first.2) ∧ (rational_model.signature.toOrderedRingConceptSignature.2 second.1 value ∧ rational_model.signature.toOrderedRingConceptSignature.2 value second.2))
 
 Logical form (Lean):
 
@@ -292,16 +313,16 @@ def overlaps
 Predicate logic:
 
   def width
-    (interval : RationalInterval rational_model) : Rational rational_model :=
-  rational_model.signature.Subtraction
-    interval.right_endpoint interval.left_endpoint
+      (interval : RationalInterval rational_model) : Rational rational_model :=
+    rational_model.signature.Subtraction
+      interval.right_endpoint interval.left_endpoint
 
 Predicate logic (unfolded):
 
   def width
-    (interval : RationalInterval rational_model) : Rational rational_model :=
-  rational_model.signature.Subtraction
-    interval.right_endpoint interval.left_endpoint (source fallback; no compiled unfold data available)
+      (interval : RationalInterval rational_model) : Rational rational_model :=
+    rational_model.signature.Subtraction
+      interval.right_endpoint interval.left_endpoint (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -380,36 +401,36 @@ abbrev IntervalSequence := Nat → RationalInterval rational_model
 Predicate logic:
 
   structure Representative where
-  interval : IntervalSequence rational_model
-  nested :
-    ∀ index,
-      subset rational_model (interval (index + 1)) (interval index)
-  widths_converge_to_zero :
-    ∀ epsilon,
-      rational_model.signature.StrictOrder
-        rational_model.signature.zero epsilon →
-      ∃ threshold : Nat,
-        ∀ index,
-          threshold ≤ index →
-          rational_model.signature.StrictOrder
-            (width rational_model (interval index)) epsilon
+    interval : IntervalSequence rational_model
+    nested :
+      ∀ index,
+        subset rational_model (interval (index + 1)) (interval index)
+    widths_converge_to_zero :
+      ∀ epsilon,
+        rational_model.signature.StrictOrder
+          rational_model.signature.zero epsilon →
+        ∃ threshold : Nat,
+          ∀ index,
+            threshold ≤ index →
+            rational_model.signature.StrictOrder
+              (width rational_model (interval index)) epsilon
 
 Predicate logic (unfolded):
 
   structure Representative where
-  interval : IntervalSequence rational_model
-  nested :
-    ∀ index,
-      subset rational_model (interval (index + 1)) (interval index)
-  widths_converge_to_zero :
-    ∀ epsilon,
-      rational_model.signature.StrictOrder
-        rational_model.signature.zero epsilon →
-      ∃ threshold : Nat,
-        ∀ index,
-          threshold ≤ index →
-          rational_model.signature.StrictOrder
-            (width rational_model (interval index)) epsilon (source fallback; no compiled unfold data available)
+    interval : IntervalSequence rational_model
+    nested :
+      ∀ index,
+        subset rational_model (interval (index + 1)) (interval index)
+    widths_converge_to_zero :
+      ∀ epsilon,
+        rational_model.signature.StrictOrder
+          rational_model.signature.zero epsilon →
+        ∃ threshold : Nat,
+          ∀ index,
+            threshold ≤ index →
+            rational_model.signature.StrictOrder
+              (width rational_model (interval index)) epsilon (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -470,18 +491,18 @@ structure Representative where
 Predicate logic:
 
   def degenerate_interval
-    (value : Rational rational_model) : RationalInterval rational_model where
-  left_endpoint := value
-  right_endpoint := value
-  endpoints_are_ordered := nonstrict_order_reflexive rational_model value
+      (value : Rational rational_model) : RationalInterval rational_model where
+    left_endpoint := value
+    right_endpoint := value
+    endpoints_are_ordered := nonstrict_order_reflexive rational_model value
 
 Predicate logic (unfolded):
 
   def degenerate_interval
-    (value : Rational rational_model) : RationalInterval rational_model where
-  left_endpoint := value
-  right_endpoint := value
-  endpoints_are_ordered := nonstrict_order_reflexive rational_model value (source fallback; no compiled unfold data available)
+      (value : Rational rational_model) : RationalInterval rational_model where
+    left_endpoint := value
+    right_endpoint := value
+    endpoints_are_ordered := nonstrict_order_reflexive rational_model value (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

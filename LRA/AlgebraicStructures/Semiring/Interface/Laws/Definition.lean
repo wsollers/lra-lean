@@ -12,18 +12,18 @@ namespace LRA.AlgebraicStructures
 Predicate logic:
 
   class ZeroAbsorbingLaws (R : Type u) [Mul R] [OfNat R 0] : Prop where
-  ZeroMul :
-    LRA.Operation.Laws.Absorbing.LeftAbsorbing (fun a b : R => a * b) 0
-  MulZero :
-    LRA.Operation.Laws.Absorbing.RightAbsorbing (fun a b : R => a * b) 0
+    ZeroMul :
+      LRA.Operation.Laws.Absorbing.LeftAbsorbing (fun a b : R => a * b) 0
+    MulZero :
+      LRA.Operation.Laws.Absorbing.RightAbsorbing (fun a b : R => a * b) 0
 
 Predicate logic (unfolded):
 
   class ZeroAbsorbingLaws (R : Type u) [Mul R] [OfNat R 0] : Prop where
-  ZeroMul :
-    LRA.Operation.Laws.Absorbing.LeftAbsorbing (fun a b : R => a * b) 0
-  MulZero :
-    LRA.Operation.Laws.Absorbing.RightAbsorbing (fun a b : R => a * b) 0 (source fallback; no compiled unfold data available)
+    ZeroMul :
+      LRA.Operation.Laws.Absorbing.LeftAbsorbing (fun a b : R => a * b) 0
+    MulZero :
+      LRA.Operation.Laws.Absorbing.RightAbsorbing (fun a b : R => a * b) 0 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -66,20 +66,20 @@ class ZeroAbsorbingLaws (R : Type u) [Mul R] [OfNat R 0] : Prop where
 Predicate logic:
 
   class abbrev SemiringLaws (R : Type u)
-    [Add R] [Mul R] [OfNat R 0] [OfNat R 1] [Nonempty R] : Prop :=
-  AdditiveSemigroupLaws R, AdditiveIdentityLaws R,
-  AdditiveCommutativeLaws R,
-  MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R,
-  ZeroAbsorbingLaws R, DistributiveLaws R
+      [Add R] [Mul R] [OfNat R 0] [OfNat R 1] [Nonempty R] : Prop :=
+    AdditiveSemigroupLaws R, AdditiveIdentityLaws R,
+    AdditiveCommutativeLaws R,
+    MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R,
+    ZeroAbsorbingLaws R, DistributiveLaws R
 
 Predicate logic (unfolded):
 
   class abbrev SemiringLaws (R : Type u)
-    [Add R] [Mul R] [OfNat R 0] [OfNat R 1] [Nonempty R] : Prop :=
-  AdditiveSemigroupLaws R, AdditiveIdentityLaws R,
-  AdditiveCommutativeLaws R,
-  MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R,
-  ZeroAbsorbingLaws R, DistributiveLaws R (source fallback; no compiled unfold data available)
+      [Add R] [Mul R] [OfNat R 0] [OfNat R 1] [Nonempty R] : Prop :=
+    AdditiveSemigroupLaws R, AdditiveIdentityLaws R,
+    AdditiveCommutativeLaws R,
+    MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R,
+    ZeroAbsorbingLaws R, DistributiveLaws R (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -127,11 +127,16 @@ variable {R : Type u}
 
 Predicate logic:
 
-  ∀ a : R, 0 * a = 0
+  ∀ {R : Type u} [inst : Mul R] [inst_1 : OfNat R 0], LRA.AlgebraicStructures.ZeroAbsorbingLaws R → ∀ (a : R), instHMul.hMul 0 a = 0
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : Mul R] [inst_1 : OfNat R (instOfNatNat 0).1], LRA.AlgebraicStructures.ZeroAbsorbingLaws R → ∀ (a : R), instHMul.1 inst_1.1 a = inst_1.1
+  Ambient
+    (R)
+  Objects
+    (none)
+  Prove
+    LRA.AlgebraicStructures.ZeroAbsorbingLaws R → ∀ (a : R), { hMul := fun a b => inst.mul a b }.hMul 0 a = 0
 
 Logical form (Lean):
 
@@ -167,11 +172,16 @@ theorem ZeroMul [Mul R] [OfNat R 0] [ZeroAbsorbingLaws R] :
 
 Predicate logic:
 
-  ∀ a : R, a * 0 = 0
+  ∀ {R : Type u} [inst : Mul R] [inst_1 : OfNat R 0], LRA.AlgebraicStructures.ZeroAbsorbingLaws R → ∀ (a : R), instHMul.hMul a 0 = 0
 
 Predicate logic (unfolded):
 
-  ∀ {R : Type u} [inst : Mul R] [inst_1 : OfNat R (instOfNatNat 0).1], LRA.AlgebraicStructures.ZeroAbsorbingLaws R → ∀ (a : R), instHMul.1 a inst_1.1 = inst_1.1
+  Ambient
+    (R)
+  Objects
+    (none)
+  Prove
+    LRA.AlgebraicStructures.ZeroAbsorbingLaws R → ∀ (a : R), { hMul := fun a b => inst.mul a b }.hMul a 0 = 0
 
 Logical form (Lean):
 

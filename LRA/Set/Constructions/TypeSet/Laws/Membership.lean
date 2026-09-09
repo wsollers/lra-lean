@@ -14,11 +14,16 @@ variable {Alpha : Type u}
 
 Predicate logic:
 
-  ∀ x : Alpha, x ∉ ∅ ∈ LRA.Set.Constructions.TypeSet Alpha
+  ∀ {Alpha : Type u} (x : Alpha), ¬ LRA.Set.Constructions.instMembershipTypeSet.mem LRA.Set.Constructions.TypeSet.instEmptyCollection.emptyCollection x
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (x : Alpha), LRA.Set.instMembershipTypeSet.1 LRA.Set.Constructions.TypeSet.instEmptyCollection.1 x → False
+  Ambient
+    (Alpha)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.instMembershipTypeSet.1 LRA.Set.Constructions.TypeSet.instEmptyCollection.1 x → False
 
 Logical form (Lean):
 

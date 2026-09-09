@@ -8,12 +8,12 @@ namespace LRA.NumberSystems.Integers.Interface.Signature
 Predicate logic:
 
   abbrev IntegersFunctionSymbol :=
-  LRA.AlgebraicStructures.OrderedRing.Interface.Signature.OrderedRingFunctionSymbol
+    LRA.AlgebraicStructures.OrderedRing.Interface.Signature.OrderedRingFunctionSymbol
 
 Predicate logic (unfolded):
 
   abbrev IntegersFunctionSymbol :=
-  LRA.AlgebraicStructures.OrderedRing.Interface.Signature.OrderedRingFunctionSymbol (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.OrderedRing.Interface.Signature.OrderedRingFunctionSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -50,12 +50,12 @@ abbrev IntegersFunctionSymbol :=
 Predicate logic:
 
   abbrev IntegersRelationSymbol :=
-  LRA.AlgebraicStructures.OrderedRing.Interface.Signature.OrderedRingRelationSymbol
+    LRA.AlgebraicStructures.OrderedRing.Interface.Signature.OrderedRingRelationSymbol
 
 Predicate logic (unfolded):
 
   abbrev IntegersRelationSymbol :=
-  LRA.AlgebraicStructures.OrderedRing.Interface.Signature.OrderedRingRelationSymbol (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.OrderedRing.Interface.Signature.OrderedRingRelationSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -92,12 +92,12 @@ abbrev IntegersRelationSymbol :=
 Predicate logic:
 
   abbrev IntegersConstantSymbol :=
-  LRA.AlgebraicStructures.OrderedRing.Interface.Signature.OrderedRingConstantSymbol
+    LRA.AlgebraicStructures.OrderedRing.Interface.Signature.OrderedRingConstantSymbol
 
 Predicate logic (unfolded):
 
   abbrev IntegersConstantSymbol :=
-  LRA.AlgebraicStructures.OrderedRing.Interface.Signature.OrderedRingConstantSymbol (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.OrderedRing.Interface.Signature.OrderedRingConstantSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -134,12 +134,12 @@ abbrev IntegersConstantSymbol :=
 Predicate logic:
 
   def IntegersFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.OrderedRing.Interface.Signature.OrderedRingFirstOrderFunctions
+    LRA.AlgebraicStructures.OrderedRing.Interface.Signature.OrderedRingFirstOrderFunctions
 
 Predicate logic (unfolded):
 
   def IntegersFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.OrderedRing.Interface.Signature.OrderedRingFirstOrderFunctions (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.OrderedRing.Interface.Signature.OrderedRingFirstOrderFunctions (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -176,12 +176,12 @@ def IntegersFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols :=
 Predicate logic:
 
   def IntegersFirstOrderRelations : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.OrderedRing.Interface.Signature.OrderedRingFirstOrderRelations
+    LRA.AlgebraicStructures.OrderedRing.Interface.Signature.OrderedRingFirstOrderRelations
 
 Predicate logic (unfolded):
 
   def IntegersFirstOrderRelations : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.OrderedRing.Interface.Signature.OrderedRingFirstOrderRelations (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.OrderedRing.Interface.Signature.OrderedRingFirstOrderRelations (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -218,12 +218,12 @@ def IntegersFirstOrderRelations : LRA.Logic.ArityIndexedSymbols :=
 Predicate logic:
 
   def IntegersFirstOrderSignature : LRA.Logic.Signature :=
-  LRA.AlgebraicStructures.OrderedRing.Interface.Signature.OrderedRingFirstOrderSignature
+    LRA.AlgebraicStructures.OrderedRing.Interface.Signature.OrderedRingFirstOrderSignature
 
 Predicate logic (unfolded):
 
   def IntegersFirstOrderSignature : LRA.Logic.Signature :=
-  LRA.AlgebraicStructures.OrderedRing.Interface.Signature.OrderedRingFirstOrderSignature (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.OrderedRing.Interface.Signature.OrderedRingFirstOrderSignature (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

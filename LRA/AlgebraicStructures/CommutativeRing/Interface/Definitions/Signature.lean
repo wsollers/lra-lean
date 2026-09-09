@@ -8,12 +8,12 @@ namespace LRA.AlgebraicStructures.CommutativeRing.Interface.Signature
 Predicate logic:
 
   abbrev CommutativeRingFunctionSymbol :=
-  LRA.AlgebraicStructures.Ring.Interface.Signature.RingFunctionSymbol
+    LRA.AlgebraicStructures.Ring.Interface.Signature.RingFunctionSymbol
 
 Predicate logic (unfolded):
 
   abbrev CommutativeRingFunctionSymbol :=
-  LRA.AlgebraicStructures.Ring.Interface.Signature.RingFunctionSymbol (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.Ring.Interface.Signature.RingFunctionSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -50,12 +50,12 @@ abbrev CommutativeRingFunctionSymbol :=
 Predicate logic:
 
   abbrev CommutativeRingRelationSymbol :=
-  LRA.AlgebraicStructures.Ring.Interface.Signature.RingRelationSymbol
+    LRA.AlgebraicStructures.Ring.Interface.Signature.RingRelationSymbol
 
 Predicate logic (unfolded):
 
   abbrev CommutativeRingRelationSymbol :=
-  LRA.AlgebraicStructures.Ring.Interface.Signature.RingRelationSymbol (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.Ring.Interface.Signature.RingRelationSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -92,12 +92,12 @@ abbrev CommutativeRingRelationSymbol :=
 Predicate logic:
 
   abbrev CommutativeRingConstantSymbol :=
-  LRA.AlgebraicStructures.Ring.Interface.Signature.RingConstantSymbol
+    LRA.AlgebraicStructures.Ring.Interface.Signature.RingConstantSymbol
 
 Predicate logic (unfolded):
 
   abbrev CommutativeRingConstantSymbol :=
-  LRA.AlgebraicStructures.Ring.Interface.Signature.RingConstantSymbol (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.Ring.Interface.Signature.RingConstantSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -134,12 +134,12 @@ abbrev CommutativeRingConstantSymbol :=
 Predicate logic:
 
   def CommutativeRingFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.Ring.Interface.Signature.RingFirstOrderFunctions
+    LRA.AlgebraicStructures.Ring.Interface.Signature.RingFirstOrderFunctions
 
 Predicate logic (unfolded):
 
   def CommutativeRingFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.Ring.Interface.Signature.RingFirstOrderFunctions (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.Ring.Interface.Signature.RingFirstOrderFunctions (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -176,12 +176,12 @@ def CommutativeRingFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols :=
 Predicate logic:
 
   def CommutativeRingFirstOrderRelations : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.Ring.Interface.Signature.RingFirstOrderRelations
+    LRA.AlgebraicStructures.Ring.Interface.Signature.RingFirstOrderRelations
 
 Predicate logic (unfolded):
 
   def CommutativeRingFirstOrderRelations : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.Ring.Interface.Signature.RingFirstOrderRelations (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.Ring.Interface.Signature.RingFirstOrderRelations (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -218,12 +218,12 @@ def CommutativeRingFirstOrderRelations : LRA.Logic.ArityIndexedSymbols :=
 Predicate logic:
 
   def CommutativeRingFirstOrderSignature : LRA.Logic.Signature :=
-  LRA.AlgebraicStructures.Ring.Interface.Signature.RingFirstOrderSignature
+    LRA.AlgebraicStructures.Ring.Interface.Signature.RingFirstOrderSignature
 
 Predicate logic (unfolded):
 
   def CommutativeRingFirstOrderSignature : LRA.Logic.Signature :=
-  LRA.AlgebraicStructures.Ring.Interface.Signature.RingFirstOrderSignature (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.Ring.Interface.Signature.RingFirstOrderSignature (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

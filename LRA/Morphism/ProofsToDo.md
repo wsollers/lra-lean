@@ -42,7 +42,7 @@ Predicate logic (unfolded):
     (∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)) → ∀ {left right : Source}, sourceRelation left right → targetRelation (function left) (function right)
 Transliterated theorem: targetRelation (function left) (function right)
 Logical form (Lean): {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source} {targetRelation : LRA.Relation.Endorelation Target} (law : PreservesRelation function sourceRelation targetRelation) {left right : Source} (related : sourceRelation left right) : targetRelation (function left) (function right)
-Source: ./Properties/PreservesRelation/Theorems.lean#L50
+Source: [`./Properties/PreservesRelation/Theorems.lean#L60`](./Properties/PreservesRelation/Theorems.lean#L60)
 
 
 
@@ -64,7 +64,7 @@ Predicate logic (unfolded):
     (∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right) → ∀ {left right : Source}, targetRelation (function left) (function right) → sourceRelation left right
 Transliterated theorem: sourceRelation left right
 Logical form (Lean): {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source} {targetRelation : LRA.Relation.Endorelation Target} (law : ReflectsRelation function sourceRelation targetRelation) {left right : Source} (relatedValues : targetRelation (function left) (function right)) : sourceRelation left right
-Source: ./Properties/ReflectsRelation/Theorems.lean#L50
+Source: [`./Properties/ReflectsRelation/Theorems.lean#L60`](./Properties/ReflectsRelation/Theorems.lean#L60)
 
 
 
@@ -84,7 +84,7 @@ Predicate logic (unfolded):
     ((∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)) ∧ (∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right)) → ∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)
 Transliterated theorem: PreservesRelation function sourceRelation targetRelation
 Logical form (Lean): (law : PreservesAndReflectsRelation function sourceRelation targetRelation) : PreservesRelation function sourceRelation targetRelation
-Source: ./Properties/RelationEmbedding/Theorems.lean#L54
+Source: [`./Properties/RelationEmbedding/Theorems.lean#L62`](./Properties/RelationEmbedding/Theorems.lean#L62)
 
 
 
@@ -104,7 +104,7 @@ Predicate logic (unfolded):
     ((∀ (y : Target) (x₁ x₂ : Source), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ ((∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)) ∧ (∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right))) → ∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right
 Transliterated theorem: ReflectsRelation function sourceRelation targetRelation
 Logical form (Lean): (law : PreservesAndReflectsRelation function sourceRelation targetRelation) : ReflectsRelation function sourceRelation targetRelation
-Source: ./Properties/RelationEmbedding/Theorems.lean#L96
+Source: [`./Properties/RelationEmbedding/Theorems.lean#L112`](./Properties/RelationEmbedding/Theorems.lean#L112)
 
 
 
@@ -124,7 +124,7 @@ Predicate logic (unfolded):
     ((∀ (y : Target) (x₁ x₂ : Source), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ ((∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)) ∧ (∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right))) → ∀ (y : Target) (x₁ x₂ : Source), (function x₁ = y ∧ function x₂ = y) → x₁ = x₂
 Transliterated theorem: LRA.Function.Injective function
 Logical form (Lean): (embedding : RelationEmbedding function sourceRelation targetRelation) : LRA.Function.Injective function
-Source: ./Properties/RelationEmbedding/Theorems.lean#L138
+Source: [`./Properties/RelationEmbedding/Theorems.lean#L162`](./Properties/RelationEmbedding/Theorems.lean#L162)
 
 
 
@@ -144,7 +144,7 @@ Predicate logic (unfolded):
     ((∀ (y : Target) (x₁ x₂ : Source), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ ((∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)) ∧ (∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right))) → ((∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)) ∧ (∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right))
 Transliterated theorem: PreservesAndReflectsRelation function sourceRelation targetRelation
 Logical form (Lean): (embedding : RelationEmbedding function sourceRelation targetRelation) : PreservesAndReflectsRelation function sourceRelation targetRelation
-Source: ./Properties/RelationEmbedding/Theorems.lean#L180
+Source: [`./Properties/RelationEmbedding/Theorems.lean#L212`](./Properties/RelationEmbedding/Theorems.lean#L212)
 
 
 
@@ -164,7 +164,7 @@ Predicate logic (unfolded):
     ((∀ (y : Target) (x₁ x₂ : Source), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ ((∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)) ∧ (∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right))) → ∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)
 Transliterated theorem: PreservesRelation function sourceRelation targetRelation
 Logical form (Lean): (embedding : RelationEmbedding function sourceRelation targetRelation) : PreservesRelation function sourceRelation targetRelation
-Source: ./Properties/RelationEmbedding/Theorems.lean#L222
+Source: [`./Properties/RelationEmbedding/Theorems.lean#L262`](./Properties/RelationEmbedding/Theorems.lean#L262)
 
 
 
@@ -184,7 +184,7 @@ Predicate logic (unfolded):
     ((∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)) ∧ (∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right)) → ∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right
 Transliterated theorem: ReflectsRelation function sourceRelation targetRelation
 Logical form (Lean): (embedding : RelationEmbedding function sourceRelation targetRelation) : ReflectsRelation function sourceRelation targetRelation
-Source: ./Properties/RelationEmbedding/Theorems.lean#L264
+Source: [`./Properties/RelationEmbedding/Theorems.lean#L312`](./Properties/RelationEmbedding/Theorems.lean#L312)
 
 
 
@@ -204,7 +204,7 @@ Predicate logic (unfolded):
     function sourceElement = targetElement → function sourceElement = targetElement
 Transliterated theorem: function sourceElement = targetElement
 Logical form (Lean): {Source : Type u} {Target : Type v} {function : Source → Target} {sourceElement : LRA.Operation.NullaryOperation Source} {targetElement : LRA.Operation.NullaryOperation Target} (law : PreservesNullaryOperation function sourceElement targetElement) : function sourceElement = targetElement
-Source: ./Properties/PreservesNullaryOperation/Theorems.lean#L48
+Source: [`./Properties/PreservesNullaryOperation/Theorems.lean#L56`](./Properties/PreservesNullaryOperation/Theorems.lean#L56)
 
 
 
@@ -225,7 +225,7 @@ Predicate logic (unfolded):
     (∀ (element : Source), function (sourceOperation element) = targetOperation (function element)) → ∀ (element : Source), function (sourceOperation element) = targetOperation (function element)
 Transliterated theorem: (∀ element ∈ Source), function (sourceOperation element) = targetOperation (function element)
 Logical form (Lean): {Source : Type u} {Target : Type v} {function : Source → Target} {sourceOperation : LRA.Operation.UnaryEndoOperation Source} {targetOperation : LRA.Operation.UnaryEndoOperation Target} (law : PreservesUnaryOperation function sourceOperation targetOperation) (element : Source) : function (sourceOperation element) = targetOperation (function element)
-Source: ./Properties/PreservesUnaryOperation/Theorems.lean#L49
+Source: [`./Properties/PreservesUnaryOperation/Theorems.lean#L58`](./Properties/PreservesUnaryOperation/Theorems.lean#L58)
 
 
 
@@ -246,7 +246,7 @@ Predicate logic (unfolded):
     (∀ (left right : Source), function (sourceOperation left right) = targetOperation (function left) (function right)) → ∀ (left right : Source), function (sourceOperation left right) = targetOperation (function left) (function right)
 Transliterated theorem: (∀ left right ∈ Source), function (sourceOperation left right) = targetOperation (function left) (function right)
 Logical form (Lean): {Source : Type u} {Target : Type v} {function : Source → Target} {sourceOperation : LRA.Operation.BinaryEndoOperation Source} {targetOperation : LRA.Operation.BinaryEndoOperation Target} (law : PreservesBinaryOperation function sourceOperation targetOperation) (left right : Source) : function (sourceOperation left right) = targetOperation (function left) (function right)
-Source: ./Properties/PreservesBinaryOperation/Theorems.lean#L50
+Source: [`./Properties/PreservesBinaryOperation/Theorems.lean#L59`](./Properties/PreservesBinaryOperation/Theorems.lean#L59)
 
 
 
@@ -266,7 +266,7 @@ Predicate logic (unfolded):
     ((∀ (y : Target) (x₁ x₂ : Source), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ (∀ (left right : Source), function (sourceOperation left right) = targetOperation (function left) (function right))) → ∀ (y : Target) (x₁ x₂ : Source), (function x₁ = y ∧ function x₂ = y) → x₁ = x₂
 Transliterated theorem: LRA.Function.Injective function
 Logical form (Lean): (law : BinaryOperationEmbedding function sourceOperation targetOperation) : LRA.Function.Injective function
-Source: ./Properties/OperationEmbedding/Theorems.lean#L53
+Source: [`./Properties/OperationEmbedding/Theorems.lean#L61`](./Properties/OperationEmbedding/Theorems.lean#L61)
 
 
 
@@ -286,7 +286,7 @@ Predicate logic (unfolded):
     ((∀ (y : Target) (x₁ x₂ : Source), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ (∀ (left right : Source), function (sourceOperation left right) = targetOperation (function left) (function right))) → ∀ (left right : Source), function (sourceOperation left right) = targetOperation (function left) (function right)
 Transliterated theorem: PreservesBinaryOperation function sourceOperation targetOperation
 Logical form (Lean): (law : BinaryOperationEmbedding function sourceOperation targetOperation) : PreservesBinaryOperation function sourceOperation targetOperation
-Source: ./Properties/OperationEmbedding/Theorems.lean#L95
+Source: [`./Properties/OperationEmbedding/Theorems.lean#L111`](./Properties/OperationEmbedding/Theorems.lean#L111)
 
 ## Axioms / Assumptions
 
@@ -313,7 +313,7 @@ Predicate logic (unfolded):
     sourceRelation left right → targetRelation (function left) (function right)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Properties/PreservesRelation/Definition.lean
+Source: [`./Properties/PreservesRelation/Definition.lean`](./Properties/PreservesRelation/Definition.lean)
 
 
 
@@ -330,7 +330,7 @@ Predicate logic (unfolded):
     targetRelation (function left) (function right) → sourceRelation left right
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Properties/ReflectsRelation/Definition.lean
+Source: [`./Properties/ReflectsRelation/Definition.lean`](./Properties/ReflectsRelation/Definition.lean)
 
 
 
@@ -347,7 +347,7 @@ Predicate logic (unfolded):
     ((∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)) ∧ (∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Properties/RelationEmbedding/Definition.lean
+Source: [`./Properties/RelationEmbedding/Definition.lean`](./Properties/RelationEmbedding/Definition.lean)
 
 
 
@@ -364,7 +364,7 @@ Predicate logic (unfolded):
     ((∀ (y : Target) (x₁ x₂ : Source), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ ((∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)) ∧ (∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right)))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Properties/RelationEmbedding/Definition.lean
+Source: [`./Properties/RelationEmbedding/Definition.lean`](./Properties/RelationEmbedding/Definition.lean)
 
 
 
@@ -381,7 +381,7 @@ Predicate logic (unfolded):
     function sourceElement = targetElement
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Properties/PreservesNullaryOperation/Definition.lean
+Source: [`./Properties/PreservesNullaryOperation/Definition.lean`](./Properties/PreservesNullaryOperation/Definition.lean)
 
 
 
@@ -398,7 +398,7 @@ Predicate logic (unfolded):
     function (sourceOperation element) = targetOperation (function element)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Properties/PreservesUnaryOperation/Definition.lean
+Source: [`./Properties/PreservesUnaryOperation/Definition.lean`](./Properties/PreservesUnaryOperation/Definition.lean)
 
 
 
@@ -415,7 +415,7 @@ Predicate logic (unfolded):
     function (sourceOperation left right) = targetOperation (function left) (function right)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Properties/PreservesBinaryOperation/Definition.lean
+Source: [`./Properties/PreservesBinaryOperation/Definition.lean`](./Properties/PreservesBinaryOperation/Definition.lean)
 
 
 
@@ -432,7 +432,7 @@ Predicate logic (unfolded):
     ((∀ (y : Target) (x₁ x₂ : Source), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ (∀ (left right : Source), function (sourceOperation left right) = targetOperation (function left) (function right)))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Properties/OperationEmbedding/Definition.lean
+Source: [`./Properties/OperationEmbedding/Definition.lean`](./Properties/OperationEmbedding/Definition.lean)
 
 
 
@@ -449,7 +449,7 @@ Predicate logic (unfolded):
     ((∀ (y : Target) (x₁ x₂ : Source), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ (∀ (left right : Source), function (sourceOperation left right) = targetOperation (function left) (function right))) → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Properties/OperationEmbedding/FailureModes.lean
+Source: [`./Properties/OperationEmbedding/FailureModes.lean`](./Properties/OperationEmbedding/FailureModes.lean)
 
 
 
@@ -466,7 +466,7 @@ Predicate logic (unfolded):
     (∀ (left right : Source), function (sourceOperation left right) = targetOperation (function left) (function right)) → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Properties/PreservesBinaryOperation/FailureModes.lean
+Source: [`./Properties/PreservesBinaryOperation/FailureModes.lean`](./Properties/PreservesBinaryOperation/FailureModes.lean)
 
 
 
@@ -483,7 +483,7 @@ Predicate logic (unfolded):
     function sourceElement = targetElement → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Properties/PreservesNullaryOperation/FailureModes.lean
+Source: [`./Properties/PreservesNullaryOperation/FailureModes.lean`](./Properties/PreservesNullaryOperation/FailureModes.lean)
 
 
 
@@ -500,7 +500,7 @@ Predicate logic (unfolded):
     (∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)) → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Properties/PreservesRelation/FailureModes.lean
+Source: [`./Properties/PreservesRelation/FailureModes.lean`](./Properties/PreservesRelation/FailureModes.lean)
 
 
 
@@ -517,7 +517,7 @@ Predicate logic (unfolded):
     (∀ (element : Source), function (sourceOperation element) = targetOperation (function element)) → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Properties/PreservesUnaryOperation/FailureModes.lean
+Source: [`./Properties/PreservesUnaryOperation/FailureModes.lean`](./Properties/PreservesUnaryOperation/FailureModes.lean)
 
 
 
@@ -534,7 +534,7 @@ Predicate logic (unfolded):
     (∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right) → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Properties/ReflectsRelation/FailureModes.lean
+Source: [`./Properties/ReflectsRelation/FailureModes.lean`](./Properties/ReflectsRelation/FailureModes.lean)
 
 
 
@@ -551,4 +551,4 @@ Predicate logic (unfolded):
     ((∀ (y : Target) (x₁ x₂ : Source), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ ((∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)) ∧ (∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right))) → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
-Source: ./Properties/RelationEmbedding/FailureModes.lean
+Source: [`./Properties/RelationEmbedding/FailureModes.lean`](./Properties/RelationEmbedding/FailureModes.lean)

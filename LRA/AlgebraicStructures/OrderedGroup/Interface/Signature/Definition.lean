@@ -8,12 +8,12 @@ namespace LRA.AlgebraicStructures.OrderedGroup.Interface.Signature
 Predicate logic:
 
   abbrev OrderedGroupFunctionSymbol :=
-  LRA.AlgebraicStructures.Group.Interface.Signature.GroupFunctionSymbol
+    LRA.AlgebraicStructures.Group.Interface.Signature.GroupFunctionSymbol
 
 Predicate logic (unfolded):
 
   abbrev OrderedGroupFunctionSymbol :=
-  LRA.AlgebraicStructures.Group.Interface.Signature.GroupFunctionSymbol (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.Group.Interface.Signature.GroupFunctionSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -50,12 +50,12 @@ abbrev OrderedGroupFunctionSymbol :=
 Predicate logic:
 
   inductive OrderedGroupRelationSymbol where
-  | lt
+    | lt
 
 Predicate logic (unfolded):
 
   inductive OrderedGroupRelationSymbol where
-  | lt (source fallback; no compiled unfold data available)
+    | lt (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -92,12 +92,12 @@ inductive OrderedGroupRelationSymbol where
 Predicate logic:
 
   abbrev OrderedGroupConstantSymbol :=
-  LRA.AlgebraicStructures.Group.Interface.Signature.GroupConstantSymbol
+    LRA.AlgebraicStructures.Group.Interface.Signature.GroupConstantSymbol
 
 Predicate logic (unfolded):
 
   abbrev OrderedGroupConstantSymbol :=
-  LRA.AlgebraicStructures.Group.Interface.Signature.GroupConstantSymbol (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.Group.Interface.Signature.GroupConstantSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -134,12 +134,12 @@ abbrev OrderedGroupConstantSymbol :=
 Predicate logic:
 
   def OrderedGroupFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.Group.Interface.Signature.GroupFirstOrderFunctions
+    LRA.AlgebraicStructures.Group.Interface.Signature.GroupFirstOrderFunctions
 
 Predicate logic (unfolded):
 
   def OrderedGroupFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.Group.Interface.Signature.GroupFirstOrderFunctions (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.Group.Interface.Signature.GroupFirstOrderFunctions (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -176,16 +176,16 @@ def OrderedGroupFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols :=
 Predicate logic:
 
   def OrderedGroupFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
-  Symbol := OrderedGroupRelationSymbol
-  arity
-    | .lt => 2
+    Symbol := OrderedGroupRelationSymbol
+    arity
+      | .lt => 2
 
 Predicate logic (unfolded):
 
   def OrderedGroupFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
-  Symbol := OrderedGroupRelationSymbol
-  arity
-    | .lt => 2 (source fallback; no compiled unfold data available)
+    Symbol := OrderedGroupRelationSymbol
+    arity
+      | .lt => 2 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -226,16 +226,16 @@ def OrderedGroupFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
 Predicate logic:
 
   def OrderedGroupFirstOrderSignature : LRA.Logic.Signature where
-  Functions := OrderedGroupFirstOrderFunctions
-  Relations := OrderedGroupFirstOrderRelations
-  Constants := OrderedGroupConstantSymbol
+    Functions := OrderedGroupFirstOrderFunctions
+    Relations := OrderedGroupFirstOrderRelations
+    Constants := OrderedGroupConstantSymbol
 
 Predicate logic (unfolded):
 
   def OrderedGroupFirstOrderSignature : LRA.Logic.Signature where
-  Functions := OrderedGroupFirstOrderFunctions
-  Relations := OrderedGroupFirstOrderRelations
-  Constants := OrderedGroupConstantSymbol (source fallback; no compiled unfold data available)
+    Functions := OrderedGroupFirstOrderFunctions
+    Relations := OrderedGroupFirstOrderRelations
+    Constants := OrderedGroupConstantSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

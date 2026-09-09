@@ -9,12 +9,12 @@ namespace LRA.AlgebraicStructures
 Predicate logic:
 
   abbrev NontrivialRingConceptSignature :=
-  RingConceptSignature
+    RingConceptSignature
 
 Predicate logic (unfolded):
 
   abbrev NontrivialRingConceptSignature :=
-  RingConceptSignature (source fallback; no compiled unfold data available)
+    RingConceptSignature (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

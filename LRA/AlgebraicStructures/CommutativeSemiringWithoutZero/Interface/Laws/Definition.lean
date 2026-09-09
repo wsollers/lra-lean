@@ -16,14 +16,14 @@ universe u
 Predicate logic:
 
   class AdditiveCancellativeLaws (R : Type u) [Add R] : Prop where
-  AddCancellative :
-    LRA.Operation.Laws.Cancellation.TwoSidedCancellative (fun a b : R => a + b)
+    AddCancellative :
+      LRA.Operation.Laws.Cancellation.TwoSidedCancellative (fun a b : R => a + b)
 
 Predicate logic (unfolded):
 
   class AdditiveCancellativeLaws (R : Type u) [Add R] : Prop where
-  AddCancellative :
-    LRA.Operation.Laws.Cancellation.TwoSidedCancellative (fun a b : R => a + b) (source fallback; no compiled unfold data available)
+    AddCancellative :
+      LRA.Operation.Laws.Cancellation.TwoSidedCancellative (fun a b : R => a + b) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -62,14 +62,14 @@ class AdditiveCancellativeLaws (R : Type u) [Add R] : Prop where
 Predicate logic:
 
   class MultiplicativeCancellativeLaws (R : Type u) [Mul R] : Prop where
-  MulCancellative :
-    LRA.Operation.Laws.Cancellation.TwoSidedCancellative (fun a b : R => a * b)
+    MulCancellative :
+      LRA.Operation.Laws.Cancellation.TwoSidedCancellative (fun a b : R => a * b)
 
 Predicate logic (unfolded):
 
   class MultiplicativeCancellativeLaws (R : Type u) [Mul R] : Prop where
-  MulCancellative :
-    LRA.Operation.Laws.Cancellation.TwoSidedCancellative (fun a b : R => a * b) (source fallback; no compiled unfold data available)
+    MulCancellative :
+      LRA.Operation.Laws.Cancellation.TwoSidedCancellative (fun a b : R => a * b) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -108,20 +108,20 @@ class MultiplicativeCancellativeLaws (R : Type u) [Mul R] : Prop where
 Predicate logic:
 
   class abbrev CommutativeSemiringWithoutZeroLaws (R : Type u)
-    [Add R] [Mul R] [OfNat R 1] [Nonempty R] : Prop :=
-  AdditiveSemigroupLaws R, AdditiveCommutativeLaws R, AdditiveCancellativeLaws R,
-  MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R,
-  MultiplicativeCommutativeLaws R, MultiplicativeCancellativeLaws R,
-  DistributiveLaws R
+      [Add R] [Mul R] [OfNat R 1] [Nonempty R] : Prop :=
+    AdditiveSemigroupLaws R, AdditiveCommutativeLaws R, AdditiveCancellativeLaws R,
+    MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R,
+    MultiplicativeCommutativeLaws R, MultiplicativeCancellativeLaws R,
+    DistributiveLaws R
 
 Predicate logic (unfolded):
 
   class abbrev CommutativeSemiringWithoutZeroLaws (R : Type u)
-    [Add R] [Mul R] [OfNat R 1] [Nonempty R] : Prop :=
-  AdditiveSemigroupLaws R, AdditiveCommutativeLaws R, AdditiveCancellativeLaws R,
-  MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R,
-  MultiplicativeCommutativeLaws R, MultiplicativeCancellativeLaws R,
-  DistributiveLaws R (source fallback; no compiled unfold data available)
+      [Add R] [Mul R] [OfNat R 1] [Nonempty R] : Prop :=
+    AdditiveSemigroupLaws R, AdditiveCommutativeLaws R, AdditiveCancellativeLaws R,
+    MultiplicativeSemigroupLaws R, MultiplicativeIdentityLaws R,
+    MultiplicativeCommutativeLaws R, MultiplicativeCancellativeLaws R,
+    DistributiveLaws R (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -164,9 +164,93 @@ section Wrappers
 
 variable {R : Type u}
 
+/--
+`AddCancellative` TODO
+
+Predicate logic:
+
+  ∀ {R : Type u} [inst : Add R], LRA.AlgebraicStructures.AdditiveCancellativeLaws R → LRA.Operation.Laws.Cancellation.TwoSidedCancellative fun a b => instHAdd.hAdd a b
+
+Predicate logic (unfolded):
+
+  Ambient
+    (R)
+  Objects
+    (none)
+  Prove
+    LRA.AlgebraicStructures.AdditiveCancellativeLaws R → ((∀ (fixed first second : R), (fun a b => { hAdd := fun a b => inst.add a b }.hAdd a b) fixed first = (fun a b => { hAdd := fun a b => inst.add a b }.hAdd a b) fixed second → first = second) ∧ (∀ (first second fixed : R), (fun a b => { hAdd := fun a b => inst.add a b }.hAdd a b) first fixed = (fun a b => { hAdd := fun a b => inst.add a b }.hAdd a b) second fixed → first = second))
+
+Logical form (Lean):
+
+```lean
+theorem AddCancellative [Add R] [AdditiveCancellativeLaws R] :
+    LRA.Operation.Laws.Cancellation.TwoSidedCancellative (fun a b : R => a + b)
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 theorem AddCancellative [Add R] [AdditiveCancellativeLaws R] :
     LRA.Operation.Laws.Cancellation.TwoSidedCancellative (fun a b : R => a + b) := by
   sorry
+/--
+`MulCancellative` TODO
+
+Predicate logic:
+
+  ∀ {R : Type u} [inst : Mul R], LRA.AlgebraicStructures.MultiplicativeCancellativeLaws R → LRA.Operation.Laws.Cancellation.TwoSidedCancellative fun a b => instHMul.hMul a b
+
+Predicate logic (unfolded):
+
+  Ambient
+    (R)
+  Objects
+    (none)
+  Prove
+    LRA.AlgebraicStructures.MultiplicativeCancellativeLaws R → ((∀ (fixed first second : R), (fun a b => { hMul := fun a b => inst.mul a b }.hMul a b) fixed first = (fun a b => { hMul := fun a b => inst.mul a b }.hMul a b) fixed second → first = second) ∧ (∀ (first second fixed : R), (fun a b => { hMul := fun a b => inst.mul a b }.hMul a b) first fixed = (fun a b => { hMul := fun a b => inst.mul a b }.hMul a b) second fixed → first = second))
+
+Logical form (Lean):
+
+```lean
+theorem MulCancellative [Mul R] [MultiplicativeCancellativeLaws R] :
+    LRA.Operation.Laws.Cancellation.TwoSidedCancellative (fun a b : R => a * b)
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 theorem MulCancellative [Mul R] [MultiplicativeCancellativeLaws R] :
     LRA.Operation.Laws.Cancellation.TwoSidedCancellative (fun a b : R => a * b) := by
   sorry

@@ -8,28 +8,148 @@ open LRA.Logic
 
 universe u
 
-/-- `ToFOLModel` converts a generic equality structure into a first-order
-model whose built-in logical equality is the diagonal. The theorem
-`EqualityStructure.IsDiagonal` relates it to `S.equalityInterpretation`; the
-empty signature itself carries no binary identity symbol. -/
+/--
+`EqualityStructure.ToFOLModel` TODO
+
+Predicate logic:
+
+  noncomputable def EqualityStructure.ToFOLModel
+      (S : EqualityStructure.{u}) :
+      LRA.ModelTheory.FirstOrder.Model pureEqualitySignature
+
+Predicate logic (unfolded):
+
+  noncomputable def EqualityStructure.ToFOLModel
+      (S : EqualityStructure.{u}) :
+      LRA.ModelTheory.FirstOrder.Model pureEqualitySignature
+
+Logical form (Lean):
+
+```lean
+noncomputable def EqualityStructure.ToFOLModel
+    (S : EqualityStructure.{u}) :
+    LRA.ModelTheory.FirstOrder.Model pureEqualitySignature
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 noncomputable def EqualityStructure.ToFOLModel
     (S : EqualityStructure.{u}) :
     LRA.ModelTheory.FirstOrder.Model pureEqualitySignature := by
   sorry
 
-/-- `ToSOLFullModel` converts a generic equality structure into its
-pure-equality full second-order model.
+/--
+`EqualityStructure.ToSOLFullModel` TODO
 
-Logical form: the first-order reduct is `S.ToFOLModel` and second-order
-quantifiers range over all relations and functions.
+Predicate logic:
+
+  noncomputable def EqualityStructure.ToSOLFullModel
+      (S : EqualityStructure.{u}) :
+      LRA.ModelTheory.SecondOrder.FullModel pureEqualitySignature
+
+Predicate logic (unfolded):
+
+  noncomputable def EqualityStructure.ToSOLFullModel
+      (S : EqualityStructure.{u}) :
+      LRA.ModelTheory.SecondOrder.FullModel pureEqualitySignature
+
+Logical form (Lean):
+
+```lean
+noncomputable def EqualityStructure.ToSOLFullModel
+    (S : EqualityStructure.{u}) :
+    LRA.ModelTheory.SecondOrder.FullModel pureEqualitySignature
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
 -/
 noncomputable def EqualityStructure.ToSOLFullModel
     (S : EqualityStructure.{u}) :
     LRA.ModelTheory.SecondOrder.FullModel pureEqualitySignature := by
   sorry
 
-/-- Package a reflexive, unrestricted Leibniz relation as an equality
-structure. This is interface/model construction, not a generic law. -/
+/--
+`EqualityStructure.OfReflexiveLeibnizRelation` TODO
+
+Predicate logic:
+
+  noncomputable def EqualityStructure.OfReflexiveLeibnizRelation
+      (Carrier : Type u) [Nonempty Carrier] {R : Carrier -> Carrier -> Prop}
+      (reflexive : forall x, R x x)
+      (leibniz : forall x y, R x y -> forall P : Carrier -> Prop, P x -> P y) :
+      EqualityStructure.{u}
+
+Predicate logic (unfolded):
+
+  noncomputable def EqualityStructure.OfReflexiveLeibnizRelation
+      (Carrier : Type u) [Nonempty Carrier] {R : Carrier -> Carrier -> Prop}
+      (reflexive : forall x, R x x)
+      (leibniz : forall x y, R x y -> forall P : Carrier -> Prop, P x -> P y) :
+      EqualityStructure.{u}
+
+Logical form (Lean):
+
+```lean
+noncomputable def EqualityStructure.OfReflexiveLeibnizRelation
+    (Carrier : Type u) [Nonempty Carrier] {R : Carrier -> Carrier -> Prop}
+    (reflexive : forall x, R x x)
+    (leibniz : forall x y, R x y -> forall P : Carrier -> Prop, P x -> P y) :
+    EqualityStructure.{u}
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, unfold
+
+-/
 noncomputable def EqualityStructure.OfReflexiveLeibnizRelation
     (Carrier : Type u) [Nonempty Carrier] {R : Carrier -> Carrier -> Prop}
     (reflexive : forall x, R x x)
@@ -37,7 +157,48 @@ noncomputable def EqualityStructure.OfReflexiveLeibnizRelation
     EqualityStructure.{u} := by
   sorry
 
-/-- Package an unrestricted identity certificate as an equality structure. -/
+/--
+`EqualityStructure.OfIsIdentityRelation` TODO
+
+Predicate logic:
+
+  noncomputable def EqualityStructure.OfIsIdentityRelation
+      (Carrier : Type u) [Nonempty Carrier] {R : Carrier -> Carrier -> Prop}
+      (h : IsIdentityRelation R) : EqualityStructure.{u}
+
+Predicate logic (unfolded):
+
+  noncomputable def EqualityStructure.OfIsIdentityRelation
+      (Carrier : Type u) [Nonempty Carrier] {R : Carrier -> Carrier -> Prop}
+      (h : IsIdentityRelation R) : EqualityStructure.{u}
+
+Logical form (Lean):
+
+```lean
+noncomputable def EqualityStructure.OfIsIdentityRelation
+    (Carrier : Type u) [Nonempty Carrier] {R : Carrier -> Carrier -> Prop}
+    (h : IsIdentityRelation R) : EqualityStructure.{u}
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, unfold
+
+-/
 noncomputable def EqualityStructure.OfIsIdentityRelation
     (Carrier : Type u) [Nonempty Carrier] {R : Carrier -> Carrier -> Prop}
     (h : IsIdentityRelation R) : EqualityStructure.{u} := by

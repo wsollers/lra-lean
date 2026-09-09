@@ -9,12 +9,12 @@ namespace LRA.Set.Constructions.TGSet
 Predicate logic:
 
   noncomputable def TheSymmetricDifference (A B : Set) : Set :=
-  TheUnion (TheRelativeComplement A B) (TheRelativeComplement B A)
+    TheUnion (TheRelativeComplement A B) (TheRelativeComplement B A)
 
 Predicate logic (unfolded):
 
   noncomputable def TheSymmetricDifference (A B : Set) : Set :=
-  TheUnion (TheRelativeComplement A B) (TheRelativeComplement B A) (source fallback; no compiled unfold data available)
+    TheUnion (TheRelativeComplement A B) (TheRelativeComplement B A) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -50,11 +50,16 @@ noncomputable def TheSymmetricDifference (A B : Set) : Set :=
 
 Predicate logic:
 
-  (∀ A B ∈ Set), IsSymmetricDifferenceOf A B (TheSymmetricDifference A B)
+  ∀ (A B : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGSet.IsSymmetricDifferenceOf A B (LRA.Set.Constructions.TGSet.TheSymmetricDifference A B)
 
 Predicate logic (unfolded):
 
-  ∀ (A B x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 (Classical.indefiniteDescription (LRA.Set.Constructions.TGSet.IsUnionOf (LRA.Set.Constructions.TGSet.PairSet (LRA.Set.Constructions.TGSet.TheRelativeComplement A B) (LRA.Set.Constructions.TGSet.TheRelativeComplement B A))) ⋯).val x ↔ Or ((LRA.Set.instMembershipTGSet.1 A x ∧ LRA.Set.instMembershipTGSet.1 B x → False)) ((LRA.Set.instMembershipTGSet.1 B x ∧ LRA.Set.instMembershipTGSet.1 A x → False))
+  Ambient
+    (implicit ambient)
+  Objects
+    A B : Set
+  Prove
+    LRA.Set.Constructions.instMembershipTGSet.1 (Classical.indefiniteDescription (LRA.Set.Constructions.TGSet.IsUnionOf (LRA.Set.Constructions.TGSet.PairSet (LRA.Set.Constructions.TGSet.TheRelativeComplement A B) (LRA.Set.Constructions.TGSet.TheRelativeComplement B A))) ⋯).val x ↔ Or ((LRA.Set.Constructions.instMembershipTGSet.1 A x ∧ (LRA.Set.Constructions.instMembershipTGSet.1 B x → False))) ((LRA.Set.Constructions.instMembershipTGSet.1 B x ∧ (LRA.Set.Constructions.instMembershipTGSet.1 A x → False)))
 
 Logical form (Lean):
 
@@ -91,11 +96,16 @@ theorem TheSymmetricDifferenceIsSymmetricDifferenceOf (A B : Set) :
 
 Predicate logic:
 
-  (∀ A B x ∈ Set), x ∈ TheSymmetricDifference A B <-> (x ∈ A ∧ x ∉ B) ∨ (x ∈ B ∧ x ∉ A)
+  ∀ (A B x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem (LRA.Set.Constructions.TGSet.TheSymmetricDifference A B) x ↔ Or ((LRA.Set.Constructions.instMembershipTGSet.mem A x ∧ ¬ LRA.Set.Constructions.instMembershipTGSet.mem B x)) ((LRA.Set.Constructions.instMembershipTGSet.mem B x ∧ ¬ LRA.Set.Constructions.instMembershipTGSet.mem A x))
 
 Predicate logic (unfolded):
 
-  ∀ (A B x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 (Classical.indefiniteDescription (LRA.Set.Constructions.TGSet.IsUnionOf (LRA.Set.Constructions.TGSet.PairSet (LRA.Set.Constructions.TGSet.TheRelativeComplement A B) (LRA.Set.Constructions.TGSet.TheRelativeComplement B A))) ⋯).1 x ↔ Or ((LRA.Set.instMembershipTGSet.1 A x ∧ LRA.Set.instMembershipTGSet.1 B x → False)) ((LRA.Set.instMembershipTGSet.1 B x ∧ LRA.Set.instMembershipTGSet.1 A x → False))
+  Ambient
+    (implicit ambient)
+  Objects
+    A B x : Set
+  Prove
+    LRA.Set.Constructions.instMembershipTGSet.mem (LRA.Set.Constructions.TGSet.TheSymmetricDifference A B) x ↔ Or ((LRA.Set.Constructions.instMembershipTGSet.mem A x ∧ ¬ LRA.Set.Constructions.instMembershipTGSet.mem B x)) ((LRA.Set.Constructions.instMembershipTGSet.mem B x ∧ ¬ LRA.Set.Constructions.instMembershipTGSet.mem A x))
 
 Logical form (Lean):
 

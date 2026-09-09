@@ -14,32 +14,32 @@ universe u
 Predicate logic:
 
   def PosetFromPartialOrder
-    (carrier : Type u) [partialOrder : _root_.PartialOrder carrier] : Poset where
-  Carrier := carrier
-  NonStrictOrder := fun left right => left ≤ right
-  NonStrictOrderIsPartialOrder := by
-    refine ⟨?_, ?_, ?_⟩
-    · intro element
-      exact le_refl element
-    · intro left right leftLeRight rightLeLeft
-      exact le_antisymm leftLeRight rightLeLeft
-    · intro first second third firstLeSecond secondLeThird
-      exact le_trans firstLeSecond secondLeThird
+      (carrier : Type u) [partialOrder : _root_.PartialOrder carrier] : Poset where
+    Carrier := carrier
+    NonStrictOrder := fun left right => left ≤ right
+    NonStrictOrderIsPartialOrder := by
+      refine ⟨?_, ?_, ?_⟩
+      · intro element
+        exact le_refl element
+      · intro left right leftLeRight rightLeLeft
+        exact le_antisymm leftLeRight rightLeLeft
+      · intro first second third firstLeSecond secondLeThird
+        exact le_trans firstLeSecond secondLeThird
 
 Predicate logic (unfolded):
 
   def PosetFromPartialOrder
-    (carrier : Type u) [partialOrder : _root_.PartialOrder carrier] : Poset where
-  Carrier := carrier
-  NonStrictOrder := fun left right => left ≤ right
-  NonStrictOrderIsPartialOrder := by
-    refine ⟨?_, ?_, ?_⟩
-    · intro element
-      exact le_refl element
-    · intro left right leftLeRight rightLeLeft
-      exact le_antisymm leftLeRight rightLeLeft
-    · intro first second third firstLeSecond secondLeThird
-      exact le_trans firstLeSecond secondLeThird (source fallback; no compiled unfold data available)
+      (carrier : Type u) [partialOrder : _root_.PartialOrder carrier] : Poset where
+    Carrier := carrier
+    NonStrictOrder := fun left right => left ≤ right
+    NonStrictOrderIsPartialOrder := by
+      refine ⟨?_, ?_, ?_⟩
+      · intro element
+        exact le_refl element
+      · intro left right leftLeRight rightLeLeft
+        exact le_antisymm leftLeRight rightLeLeft
+      · intro first second third firstLeSecond secondLeThird
+        exact le_trans firstLeSecond secondLeThird (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -96,20 +96,20 @@ Related proof moves: unfold
 Predicate logic:
 
   def PartialOrderFromPoset (poset : Poset) :
-    _root_.PartialOrder poset.Carrier where
-  le := poset.NonStrictOrder
-  le_refl := poset.NonStrictOrderIsPartialOrder.1
-  le_trans := poset.NonStrictOrderIsPartialOrder.2.2
-  le_antisymm := poset.NonStrictOrderIsPartialOrder.2.1
+      _root_.PartialOrder poset.Carrier where
+    le := poset.NonStrictOrder
+    le_refl := poset.NonStrictOrderIsPartialOrder.1
+    le_trans := poset.NonStrictOrderIsPartialOrder.2.2
+    le_antisymm := poset.NonStrictOrderIsPartialOrder.2.1
 
 Predicate logic (unfolded):
 
   def PartialOrderFromPoset (poset : Poset) :
-    _root_.PartialOrder poset.Carrier where
-  le := poset.NonStrictOrder
-  le_refl := poset.NonStrictOrderIsPartialOrder.1
-  le_trans := poset.NonStrictOrderIsPartialOrder.2.2
-  le_antisymm := poset.NonStrictOrderIsPartialOrder.2.1 (source fallback; no compiled unfold data available)
+      _root_.PartialOrder poset.Carrier where
+    le := poset.NonStrictOrder
+    le_refl := poset.NonStrictOrderIsPartialOrder.1
+    le_trans := poset.NonStrictOrderIsPartialOrder.2.2
+    le_antisymm := poset.NonStrictOrderIsPartialOrder.2.1 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -153,11 +153,17 @@ Related proof moves: unfold
 
 Predicate logic:
 
-  (∀ candidate ∈ Alpha), UpperBound fun left right ∈ Alpha => left ≤ right subset candidate ↔ candidate ∈ upperBounds subset
+  ∀ {Alpha : Type u} [inst : LE Alpha] (subset : Set Alpha) (candidate : Alpha), LRA.Order.UpperBound (fun left right => inst.le left right) subset candidate ↔ candidate ∈ upperBounds subset
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} [inst : LE Alpha] (subset : Alpha → Prop) (candidate : Alpha), ∀ (element : Alpha), Set.instMembership.1 subset element → (fun left right => inst.1 left right) element candidate ↔ Set.instMembership.1 (fun x => ∀ ⦃a : Alpha⦄, Set.instMembership.1 subset a → inst.1 a x) candidate
+  Ambient
+    (Alpha, ≤)
+  Objects
+    subset : Set Alpha
+    candidate : Alpha
+  Prove
+    LRA.Order.UpperBound (fun left right => inst.le left right) subset candidate ↔ candidate ∈ upperBounds subset
 
 Logical form (Lean):
 
@@ -197,11 +203,17 @@ theorem upperBound_iff_mem_upperBounds
 
 Predicate logic:
 
-  (∀ candidate ∈ Alpha), LowerBound fun left right ∈ Alpha => left ≤ right subset candidate ↔ candidate ∈ lowerBounds subset
+  ∀ {Alpha : Type u} [inst : LE Alpha] (subset : Set Alpha) (candidate : Alpha), LRA.Order.LowerBound (fun left right => inst.le left right) subset candidate ↔ candidate ∈ lowerBounds subset
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} [inst : LE Alpha] (subset : Alpha → Prop) (candidate : Alpha), ∀ (element : Alpha), Set.instMembership.1 subset element → (fun left right => inst.1 left right) candidate element ↔ Set.instMembership.1 (fun x => ∀ ⦃a : Alpha⦄, Set.instMembership.1 subset a → inst.1 x a) candidate
+  Ambient
+    (Alpha, ≤)
+  Objects
+    subset : Set Alpha
+    candidate : Alpha
+  Prove
+    LRA.Order.LowerBound (fun left right => inst.le left right) subset candidate ↔ candidate ∈ lowerBounds subset
 
 Logical form (Lean):
 
@@ -241,11 +253,17 @@ theorem lowerBound_iff_mem_lowerBounds
 
 Predicate logic:
 
-  (∀ candidate ∈ Alpha), LeastElement fun left right ∈ Alpha => left ≤ right subset candidate ↔ IsLeast subset candidate
+  ∀ {Alpha : Type u} [inst : LE Alpha] (subset : Set Alpha) (candidate : Alpha), LRA.Order.LeastElement (fun left right => inst.le left right) subset candidate ↔ IsLeast subset candidate
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} [inst : LE Alpha] (subset : Alpha → Prop) (candidate : Alpha), (Set.instMembership.1 subset candidate ∧ ∀ (element : Alpha), Set.instMembership.1 subset element → (fun left right => inst.1 left right) candidate element) ↔ (Set.instMembership.1 subset candidate ∧ Set.instMembership.1 (fun x => ∀ ⦃a : Alpha⦄, Set.instMembership.1 subset a → inst.1 x a) candidate)
+  Ambient
+    (Alpha, ≤)
+  Objects
+    subset : Set Alpha
+    candidate : Alpha
+  Prove
+    LRA.Order.LeastElement (fun left right => inst.le left right) subset candidate ↔ IsLeast subset candidate
 
 Logical form (Lean):
 
@@ -285,11 +303,17 @@ theorem leastElement_iff_isLeast
 
 Predicate logic:
 
-  (∀ candidate ∈ Alpha), GreatestElement fun left right ∈ Alpha => left ≤ right subset candidate ↔ IsGreatest subset candidate
+  ∀ {Alpha : Type u} [inst : LE Alpha] (subset : Set Alpha) (candidate : Alpha), LRA.Order.GreatestElement (fun left right => inst.le left right) subset candidate ↔ IsGreatest subset candidate
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} [inst : LE Alpha] (subset : Alpha → Prop) (candidate : Alpha), (Set.instMembership.1 subset candidate ∧ ∀ (element : Alpha), Set.instMembership.1 subset element → (fun left right => inst.1 left right) element candidate) ↔ (Set.instMembership.1 subset candidate ∧ Set.instMembership.1 (fun x => ∀ ⦃a : Alpha⦄, Set.instMembership.1 subset a → inst.1 a x) candidate)
+  Ambient
+    (Alpha, ≤)
+  Objects
+    subset : Set Alpha
+    candidate : Alpha
+  Prove
+    LRA.Order.GreatestElement (fun left right => inst.le left right) subset candidate ↔ IsGreatest subset candidate
 
 Logical form (Lean):
 
@@ -329,11 +353,17 @@ theorem greatestElement_iff_isGreatest
 
 Predicate logic:
 
-  (∀ candidate ∈ Alpha), Supremum fun left right ∈ Alpha => left ≤ right subset candidate ↔ IsLUB subset candidate
+  ∀ {Alpha : Type u} [inst : LE Alpha] (subset : Set Alpha) (candidate : Alpha), LRA.Order.Supremum (fun left right => inst.le left right) subset candidate ↔ IsLUB subset candidate
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} [inst : LE Alpha] (subset : Alpha → Prop) (candidate : Alpha), (∀ (element : Alpha), Set.instMembership.1 subset element → (fun left right => inst.1 left right) element candidate ∧ ∀ (bound : Alpha), (∀ (element : Alpha), Set.instMembership.1 subset element → (fun left right => inst.1 left right) element bound) → (fun left right => inst.1 left right) candidate bound) ↔ (Set.instMembership.1 (fun x => ∀ ⦃a : Alpha⦄, Set.instMembership.1 subset a → inst.1 a x) candidate ∧ Set.instMembership.1 (fun x => ∀ ⦃a : Alpha⦄, Set.instMembership.1 (upperBounds subset) a → inst.1 x a) candidate)
+  Ambient
+    (Alpha, ≤)
+  Objects
+    subset : Set Alpha
+    candidate : Alpha
+  Prove
+    LRA.Order.Supremum (fun left right => inst.le left right) subset candidate ↔ IsLUB subset candidate
 
 Logical form (Lean):
 
@@ -373,11 +403,17 @@ theorem supremum_iff_isLUB
 
 Predicate logic:
 
-  (∀ candidate ∈ Alpha), Infimum fun left right ∈ Alpha => left ≤ right subset candidate ↔ IsGLB subset candidate
+  ∀ {Alpha : Type u} [inst : LE Alpha] (subset : Set Alpha) (candidate : Alpha), LRA.Order.Infimum (fun left right => inst.le left right) subset candidate ↔ IsGLB subset candidate
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} [inst : LE Alpha] (subset : Alpha → Prop) (candidate : Alpha), (∀ (element : Alpha), Set.instMembership.1 subset element → (fun left right => inst.1 left right) candidate element ∧ ∀ (bound : Alpha), (∀ (element : Alpha), Set.instMembership.1 subset element → (fun left right => inst.1 left right) bound element) → (fun left right => inst.1 left right) bound candidate) ↔ (Set.instMembership.1 (fun x => ∀ ⦃a : Alpha⦄, Set.instMembership.1 subset a → inst.1 x a) candidate ∧ Set.instMembership.1 (fun x => ∀ ⦃a : Alpha⦄, Set.instMembership.1 (lowerBounds subset) a → inst.1 a x) candidate)
+  Ambient
+    (Alpha, ≤)
+  Objects
+    subset : Set Alpha
+    candidate : Alpha
+  Prove
+    LRA.Order.Infimum (fun left right => inst.le left right) subset candidate ↔ IsGLB subset candidate
 
 Logical form (Lean):
 
@@ -417,11 +453,16 @@ theorem infimum_iff_isGLB
 
 Predicate logic:
 
-  BoundedAbove fun left right ∈ Alpha => left ≤ right subset ↔ BddAbove subset
+  ∀ {Alpha : Type u} [inst : LE Alpha] (subset : Set Alpha), LRA.Order.BoundedAbove (fun left right => inst.le left right) subset ↔ BddAbove subset
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} [inst : LE Alpha] (subset : Alpha → Prop), Exists fun bound => ∀ (element : Alpha), Set.instMembership.1 subset element → (fun left right => inst.1 left right) element bound ↔ Exists fun x => Set.instMembership.1 (fun x => ∀ ⦃a : Alpha⦄, Set.instMembership.1 subset a → inst.1 a x) x
+  Ambient
+    (Alpha, ≤)
+  Objects
+    subset : Set Alpha
+  Prove
+    LRA.Order.BoundedAbove (fun left right => inst.le left right) subset ↔ BddAbove subset
 
 Logical form (Lean):
 
@@ -461,11 +502,16 @@ theorem boundedAbove_iff_bddAbove
 
 Predicate logic:
 
-  BoundedBelow fun left right ∈ Alpha => left ≤ right subset ↔ BddBelow subset
+  ∀ {Alpha : Type u} [inst : LE Alpha] (subset : Set Alpha), LRA.Order.BoundedBelow (fun left right => inst.le left right) subset ↔ BddBelow subset
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} [inst : LE Alpha] (subset : Alpha → Prop), Exists fun bound => ∀ (element : Alpha), Set.instMembership.1 subset element → (fun left right => inst.1 left right) bound element ↔ Exists fun x => Set.instMembership.1 (fun x => ∀ ⦃a : Alpha⦄, Set.instMembership.1 subset a → inst.1 x a) x
+  Ambient
+    (Alpha, ≤)
+  Objects
+    subset : Set Alpha
+  Prove
+    LRA.Order.BoundedBelow (fun left right => inst.le left right) subset ↔ BddBelow subset
 
 Logical form (Lean):
 

@@ -13,14 +13,14 @@ namespace LRA.Analysis.Integration
 Predicate logic:
 
   structure McShaneTaggedPartition (a b : ℝ) extends IntegrationPartition a b where
-  tag : Fin n → ℝ
-  tag_mem : ∀ i : Fin n, tag i ∈ Set.Icc a b
+    tag : Fin n → ℝ
+    tag_mem : ∀ i : Fin n, tag i ∈ Set.Icc a b
 
 Predicate logic (unfolded):
 
   structure McShaneTaggedPartition (a b : ℝ) extends IntegrationPartition a b where
-  tag : Fin n → ℝ
-  tag_mem : ∀ i : Fin n, tag i ∈ Set.Icc a b (source fallback; no compiled unfold data available)
+    tag : Fin n → ℝ
+    tag_mem : ∀ i : Fin n, tag i ∈ Set.Icc a b (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -62,7 +62,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {a b : Real} (P : LRA.Analysis.Integration.McShaneTaggedPartition a b) (δ : Real → Real) (i : Fin P.toIntegrationPartition.1), (Real.instLE.1 (instHSub.1 (P.2 i) (δ (P.2 i))) (P.toIntegrationPartition.2 ⟨i.val, ⋯⟩) ∧ Real.instLE.1 (P.toIntegrationPartition.2 (Fin.rec (fun val isLt => (fun val isLt => (fun i h => ⟨instHAdd.1 i 1, ⋯⟩) val isLt) val isLt) i)) (instHAdd.1 (P.2 i) (δ (P.2 i))))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Real.instLE.le ({ hSub := fun a b => Real.instSub.sub a b }.hSub (P.2 i) (δ (P.2 i))) (P.toIntegrationPartition.2 ⟨i.1, ⋯⟩) ∧ Real.instLE.le (P.toIntegrationPartition.2 (Fin.rec (fun val isLt => (fun val isLt => (fun i h => ⟨{ hAdd := fun a b => instAddNat.add a b }.hAdd i 1, ⋯⟩) val isLt) val isLt) i)) ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd (P.2 i) (δ (P.2 i))))
 
 Logical form (Lean):
 
@@ -102,11 +107,16 @@ def IsMcShaneDeltaFine {a b : ℝ} (P : McShaneTaggedPartition a b) (δ : ℝ �
 
 Predicate logic:
 
-  ∀ (f : Real → Real) (a b L ε : Real), GT.gt ε 0 → Exists fun δ => (LRA.Analysis.Integration.IsGaugeOn a b δ ∧ ∀ (P : LRA.Analysis.Integration.McShaneTaggedPartition a b), LRA.Analysis.Integration.IsMcShaneDeltaFine P δ → Real.instLT.lt (abs (instHSub.hSub (Finset.univ.sum fun i => instHMul.hMul (f (P.tag i)) (LRA.Analysis.Integration.SubintervalWidth P.toIntegrationPartition i)) L)) ε)
+  ∀ (f : Real → Real) (a b L ε : Real), GT.gt ε 0 → Exists fun δ => (LRA.Analysis.Integration.IsGaugeOn a b δ ∧ (∀ (P : LRA.Analysis.Integration.McShaneTaggedPartition a b), LRA.Analysis.Integration.IsMcShaneDeltaFine P δ → Real.instLT.lt (abs (instHSub.hSub (Finset.univ.sum fun i => instHMul.hMul (f (P.tag i)) (LRA.Analysis.Integration.SubintervalWidth P.toIntegrationPartition i)) L)) ε))
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (a b L ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (∀ (x : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) x → Real.instLT.1 Zero.toOfNat0.1 (δ x) ∧ ∀ (P : LRA.Analysis.Integration.McShaneTaggedPartition a b), (∀ (i : Fin P.toIntegrationPartition.1), (Real.instLE.1 (instHSub.1 (P.2 i) (δ (P.2 i))) (P.toIntegrationPartition.2 (Fin.castLE ⋯ i)) ∧ Real.instLE.1 (P.toIntegrationPartition.2 (Fin.rec (fun val isLt => (fun val isLt => (fun i h => ⟨instHAdd.hAdd i 1, ⋯⟩) val isLt) val isLt) i)) (instHAdd.1 (P.2 i) (δ (P.2 i))))) → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (Multiset.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 (Multiset.map (fun i => instHMul.hMul (f (P.tag i)) (LRA.Analysis.Integration.SubintervalWidth P.toIntegrationPartition i)) Finset.univ.val)) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (Multiset.map (fun i => instHMul.hMul (f (P.tag i)) (LRA.Analysis.Integration.SubintervalWidth P.toIntegrationPartition i)) Finset.univ.val).sum L))) ε)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Real.instLT.lt 0 ε → Exists fun δ => ((∀ (x : Real), x ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b) → Real.instLT.lt 0 (δ x)) ∧ (∀ (P : LRA.Analysis.Integration.McShaneTaggedPartition a b), (∀ (i : Fin P.toIntegrationPartition.1), (Real.instLE.le ({ hSub := fun a b => Real.instSub.sub a b }.hSub (P.2 i) (δ (P.2 i))) (P.toIntegrationPartition.2 ⟨i.val, ⋯⟩) ∧ Real.instLE.le (P.toIntegrationPartition.2 (Fin.rec (fun val isLt => (fun val isLt => (fun i h => ⟨{ hAdd := fun a b => instAddNat.add a b }.hAdd i 1, ⋯⟩) val isLt) val isLt) i)) ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd (P.2 i) (δ (P.2 i))))) → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Quot.lift (fun l => List.foldr (fun x1 x2 => { hAdd := fun a b => Real.instAddCommMonoid.toAddZeroClass.toAddZero.2.add a b }.hAdd x1 x2) 0 l) ⋯ (Quot.lift (fun l => Multiset.ofList (List.map (fun i => instHMul.hMul (f (P.tag i)) (LRA.Analysis.Integration.SubintervalWidth P.toIntegrationPartition i)) l)) ⋯ Finset.univ.val)) L)) ε))
 
 Logical form (Lean):
 
@@ -150,7 +160,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (f : Real → Real) (a b : Real), Exists fun L => ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (∀ (x : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) x → Real.instLT.1 Zero.toOfNat0.1 (δ x) ∧ ∀ (P : LRA.Analysis.Integration.McShaneTaggedPartition a b), (∀ (i : Fin P.toIntegrationPartition.1), (Real.instLE.1 (instHSub.1 (P.2 i) (δ (P.2 i))) (P.toIntegrationPartition.2 (Fin.castAdd 1 i)) ∧ Real.instLE.1 (P.toIntegrationPartition.2 (Fin.casesOn i fun val isLt => (fun i h => ⟨instHAdd.hAdd i 1, ⋯⟩) val isLt)) (instHAdd.1 (P.2 i) (δ (P.2 i))))) → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (Multiset.map (fun i => instHMul.hMul (f (P.tag i)) (LRA.Analysis.Integration.SubintervalWidth P.toIntegrationPartition i)) Finset.univ.val).sum L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (Finset.univ.sum fun i => instHMul.hMul (f (P.tag i)) (LRA.Analysis.Integration.SubintervalWidth P.toIntegrationPartition i)) L))) ε)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun L => ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun δ => ((∀ (x : Real), x ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b) → Real.instLT.lt 0 (δ x)) ∧ (∀ (P : LRA.Analysis.Integration.McShaneTaggedPartition a b), (∀ (i : Fin P.toIntegrationPartition.1), (Real.instLE.le ({ hSub := fun a b => Real.instSub.sub a b }.hSub (P.2 i) (δ (P.2 i))) (P.toIntegrationPartition.2 (Fin.castLE ⋯ i)) ∧ Real.instLE.le (P.toIntegrationPartition.2 (Fin.rec (fun val isLt => (fun val isLt => (fun i h => ⟨instHAdd.hAdd i 1, ⋯⟩) val isLt) val isLt) i)) ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd (P.2 i) (δ (P.2 i))))) → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Quot.lift (fun l => List.foldr (fun x1 x2 => { hAdd := fun a b => Real.instAddCommMonoid.toAddZeroClass.add a b }.hAdd x1 x2) 0 l) ⋯ (Quot.liftOn Finset.univ.val (fun l => Multiset.ofList (List.map (fun i => instHMul.hMul (f (P.tag i)) (LRA.Analysis.Integration.SubintervalWidth P.toIntegrationPartition i)) l)) ⋯)) L)) ε))
 
 Logical form (Lean):
 
@@ -186,11 +201,18 @@ variable {f : ℝ → ℝ} {a b : ℝ}
 
 Predicate logic:
 
-  (a ≤ b) → (HasRiemannIntegral f a b L → HasMcShaneIntegral f a b L) ∧ (HasMcShaneIntegral f a b L → HasHKIntegral f a b L)
+  ∀ {f : Real → Real} {a b : Real}, Real.instLE.le a b → ∀ (L : Real), ((LRA.Analysis.Integration.HasRiemannIntegral f a b L → LRA.Analysis.Integration.HasMcShaneIntegral f a b L) ∧ (LRA.Analysis.Integration.HasMcShaneIntegral f a b L → LRA.Analysis.Integration.HasHKIntegral f a b L))
 
 Predicate logic (unfolded):
 
-  ∀ {f : Real → Real} {a b : Real}, Real.instLE.1 a b → ∀ (L : Real), ((∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (Real.instLT.1 Zero.toOfNat0.1 δ ∧ ∀ (P : LRA.Analysis.Integration.TaggedPartitionIntegration a b), Real.instLT.1 (Real.instSupSet.1 (Set.instUnion.1 (Set.instSingletonSet.1 0) fun w => Exists fun i => w = LRA.Analysis.Integration.SubintervalWidth P.toIntegrationPartition i)) δ → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (Finset.univ.sum fun i => instHMul.hMul (f (P.tag i)) (LRA.Analysis.Integration.SubintervalWidth P.toIntegrationPartition i)) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (LRA.Analysis.Integration.RiemannSum f P) L))) ε)) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (∀ (x : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) x → Real.instLT.1 Zero.toOfNat0.1 (δ x) ∧ ∀ (P : LRA.Analysis.Integration.McShaneTaggedPartition a b), (∀ (i : Fin P.toIntegrationPartition.1), (Real.instLE.1 (instHSub.1 (P.2 i) (δ (P.2 i))) (P.toIntegrationPartition.2 (Fin.castAdd 1 i)) ∧ Real.instLE.1 (P.toIntegrationPartition.2 (Fin.casesOn i fun val isLt => (fun i h => ⟨instHAdd.hAdd i 1, ⋯⟩) val isLt)) (instHAdd.1 (P.2 i) (δ (P.2 i))))) → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (Multiset.map (fun i => instHMul.hMul (f (P.tag i)) (LRA.Analysis.Integration.SubintervalWidth P.toIntegrationPartition i)) Finset.univ.val).sum L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (Finset.univ.sum fun i => instHMul.hMul (f (P.tag i)) (LRA.Analysis.Integration.SubintervalWidth P.toIntegrationPartition i)) L))) ε) ∧ (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (∀ (x : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) x → Real.instLT.1 Zero.toOfNat0.1 (δ x) ∧ ∀ (P : LRA.Analysis.Integration.McShaneTaggedPartition a b), (∀ (i : Fin P.toIntegrationPartition.1), (Real.instLE.1 (instHSub.1 (P.2 i) (δ (P.2 i))) (P.toIntegrationPartition.2 (Fin.castAdd 1 i)) ∧ Real.instLE.1 (P.toIntegrationPartition.2 (Fin.casesOn i fun val isLt => (fun i h => ⟨instHAdd.hAdd i 1, ⋯⟩) val isLt)) (instHAdd.1 (P.2 i) (δ (P.2 i))))) → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (Multiset.map (fun i => instHMul.hMul (f (P.tag i)) (LRA.Analysis.Integration.SubintervalWidth P.toIntegrationPartition i)) Finset.univ.val).sum L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (Finset.univ.sum fun i => instHMul.hMul (f (P.tag i)) (LRA.Analysis.Integration.SubintervalWidth P.toIntegrationPartition i)) L))) ε)) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun δ => (∀ (x : Real), Set.instMembership.1 (fun x => (Real.instPreorder.toLE.1 a x ∧ Real.instPreorder.toLE.1 x b)) x → Real.instLT.1 Zero.toOfNat0.1 (δ x) ∧ ∀ (P : LRA.Analysis.Integration.TaggedPartitionIntegration a b), (∀ (i : Fin P.toIntegrationPartition.1), (Real.instLE.1 (instHSub.1 (P.2 i) (δ (P.2 i))) (P.toIntegrationPartition.2 (Fin.castAdd 1 i)) ∧ Real.instLE.1 (P.toIntegrationPartition.2 (Fin.casesOn i fun val isLt => (fun i h => ⟨instHAdd.hAdd i 1, ⋯⟩) val isLt)) (instHAdd.1 (P.2 i) (δ (P.2 i))))) → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (Finset.univ.sum fun i => instHMul.hMul (f (P.tag i)) (LRA.Analysis.Integration.SubintervalWidth P.toIntegrationPartition i)) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (LRA.Analysis.Integration.RiemannSum f P) L))) ε))
+  Ambient
+    (ℝ)
+  Objects
+    f : ℝ → ℝ
+    a b : ℝ
+    L : ℝ
+  Prove
+    Real.instLE.le a b → ∀ (L : Real), ((∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun δ => (Real.instLT.lt 0 δ ∧ (∀ (P : LRA.Analysis.Integration.TaggedPartitionIntegration a b), Real.instLT.lt (Real.instSupSet.1 (Set.instSingletonSet.1 0 ∪ funw => Exists fun i => w = instHSub.hSub (P.points i.succ) (P.points i.castSucc))) δ → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Quot.lift (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯ (Multiset.map (fun i => instHMul.hMul (f (P.tag i)) (LRA.Analysis.Integration.SubintervalWidth P.toIntegrationPartition i)) Finset.univ.val)) L)) ε))) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun δ => ((∀ (x : Real), x ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b) → Real.instLT.lt 0 (δ x)) ∧ (∀ (P : LRA.Analysis.Integration.McShaneTaggedPartition a b), (∀ (i : Fin P.toIntegrationPartition.1), (Real.instLE.le ({ hSub := fun a b => Real.instSub.sub a b }.hSub (P.2 i) (δ (P.2 i))) (P.toIntegrationPartition.2 (Fin.castLE ⋯ i)) ∧ Real.instLE.le (P.toIntegrationPartition.2 (Fin.rec (fun val isLt => (fun val isLt => (fun i h => ⟨instHAdd.hAdd i 1, ⋯⟩) val isLt) val isLt) i)) ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd (P.2 i) (δ (P.2 i))))) → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Quot.lift (fun l => List.foldr (fun x1 x2 => { hAdd := fun a b => Real.instAddCommMonoid.toAddZeroClass.add a b }.hAdd x1 x2) 0 l) ⋯ (Quot.liftOn Finset.univ.val (fun l => Multiset.ofList (List.map (fun i => instHMul.hMul (f (P.tag i)) (LRA.Analysis.Integration.SubintervalWidth P.toIntegrationPartition i)) l)) ⋯)) L)) ε)) ∧ (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun δ => ((∀ (x : Real), x ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b) → Real.instLT.lt 0 (δ x)) ∧ (∀ (P : LRA.Analysis.Integration.McShaneTaggedPartition a b), (∀ (i : Fin P.toIntegrationPartition.1), (Real.instLE.le ({ hSub := fun a b => Real.instSub.sub a b }.hSub (P.2 i) (δ (P.2 i))) (P.toIntegrationPartition.2 (Fin.castLE ⋯ i)) ∧ Real.instLE.le (P.toIntegrationPartition.2 (Fin.rec (fun val isLt => (fun val isLt => (fun i h => ⟨instHAdd.hAdd i 1, ⋯⟩) val isLt) val isLt) i)) ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd (P.2 i) (δ (P.2 i))))) → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Quot.lift (fun l => List.foldr (fun x1 x2 => { hAdd := fun a b => Real.instAddCommMonoid.toAddZeroClass.add a b }.hAdd x1 x2) 0 l) ⋯ (Quot.liftOn Finset.univ.val (fun l => Multiset.ofList (List.map (fun i => instHMul.hMul (f (P.tag i)) (LRA.Analysis.Integration.SubintervalWidth P.toIntegrationPartition i)) l)) ⋯)) L)) ε))) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun δ => ((∀ (x : Real), x ∈ fun x => (Real.instPreorder.1.le a x ∧ Real.instPreorder.1.le x b) → Real.instLT.lt 0 (δ x)) ∧ (∀ (P : LRA.Analysis.Integration.TaggedPartitionIntegration a b), (∀ (i : Fin P.toIntegrationPartition.1), (Real.instLE.le ({ hSub := fun a b => Real.instSub.sub a b }.hSub (P.2 i) (δ (P.2 i))) (P.toIntegrationPartition.2 (Fin.castLE ⋯ i)) ∧ Real.instLE.le (P.toIntegrationPartition.2 (Fin.rec (fun val isLt => (fun val isLt => (fun i h => ⟨instHAdd.hAdd i 1, ⋯⟩) val isLt) val isLt) i)) ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd (P.2 i) (δ (P.2 i))))) → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Quot.lift (fun l => List.foldr (fun x1 x2 => instHAdd.hAdd x1 x2) 0 l) ⋯ (Multiset.map (fun i => instHMul.hMul (f (P.tag i)) (LRA.Analysis.Integration.SubintervalWidth P.toIntegrationPartition i)) Finset.univ.val)) L)) ε)))
 
 Logical form (Lean):
 

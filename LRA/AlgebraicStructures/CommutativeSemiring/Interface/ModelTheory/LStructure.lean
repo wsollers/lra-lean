@@ -14,16 +14,16 @@ open LRA.AlgebraicStructures.CommutativeSemiring.Interface.Signature
 Predicate logic:
 
   def BuildCommutativeSemiringModel
-    (signature : LRA.AlgebraicStructures.CommutativeSemiringConceptSignature) :
-    LRA.ModelTheory.FirstOrder.Model CommutativeSemiringFirstOrderSignature where
-  Domain
+      (signature : LRA.AlgebraicStructures.CommutativeSemiringConceptSignature) :
+      LRA.ModelTheory.FirstOrder.Model CommutativeSemiringFirstOrderSignature where
+    Domain
 
 Predicate logic (unfolded):
 
   def BuildCommutativeSemiringModel
-    (signature : LRA.AlgebraicStructures.CommutativeSemiringConceptSignature) :
-    LRA.ModelTheory.FirstOrder.Model CommutativeSemiringFirstOrderSignature where
-  Domain (source fallback; no compiled unfold data available)
+      (signature : LRA.AlgebraicStructures.CommutativeSemiringConceptSignature) :
+      LRA.ModelTheory.FirstOrder.Model CommutativeSemiringFirstOrderSignature where
+    Domain (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -74,20 +74,20 @@ def BuildCommutativeSemiringModel
 Predicate logic:
 
   def commutativeSemiringFirstOrderModel (R : Type u)
-    [Add R] [Mul R] [OfNat R 0] [OfNat R 1] :
-    LRA.ModelTheory.FirstOrder.Model CommutativeSemiringFirstOrderSignature :=
-  BuildCommutativeSemiringModel
-    { carrier := R, zero := 0, one := 1, add := (· + ·),
-      multiply := (· * ·) }
+      [Add R] [Mul R] [OfNat R 0] [OfNat R 1] :
+      LRA.ModelTheory.FirstOrder.Model CommutativeSemiringFirstOrderSignature :=
+    BuildCommutativeSemiringModel
+      { carrier := R, zero := 0, one := 1, add := (· + ·),
+        multiply := (· * ·) }
 
 Predicate logic (unfolded):
 
   def commutativeSemiringFirstOrderModel (R : Type u)
-    [Add R] [Mul R] [OfNat R 0] [OfNat R 1] :
-    LRA.ModelTheory.FirstOrder.Model CommutativeSemiringFirstOrderSignature :=
-  BuildCommutativeSemiringModel
-    { carrier := R, zero := 0, one := 1, add := (· + ·),
-      multiply := (· * ·) } (source fallback; no compiled unfold data available)
+      [Add R] [Mul R] [OfNat R 0] [OfNat R 1] :
+      LRA.ModelTheory.FirstOrder.Model CommutativeSemiringFirstOrderSignature :=
+    BuildCommutativeSemiringModel
+      { carrier := R, zero := 0, one := 1, add := (· + ·),
+        multiply := (· * ·) } (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

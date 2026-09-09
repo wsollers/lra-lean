@@ -8,11 +8,16 @@ namespace LRA.Set.Constructions.ZFCSet
 
 Predicate logic:
 
-  ∀ A B : Set, A ∆ B = (A \ B) ∪ (B \ A)
+  ∀ (A B : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCSet.instHasSymmDiff.symmDiff A B = LRA.Set.Constructions.ZFCLRA.Set.Constructions.ZFCA \ B ∪ LRA.Set.Constructions.ZFCB \ A
 
 Predicate logic (unfolded):
 
-  ∀ (A B : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCSet.instHasSymmDiff.1 A B = LRA.Set.Constructions.ZFCSet.instUnion.1 (LRA.Set.Constructions.ZFCSet.instSDiff.1 A B) (LRA.Set.Constructions.ZFCSet.instSDiff.1 B A)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.ZFCSet.instHasSymmDiff.1 A B = LRA.Set.Constructions.ZFCLRA.Set.Constructions.ZFCA \ B ∪ LRA.Set.Constructions.ZFCB \ A
 
 Logical form (Lean):
 
@@ -49,11 +54,16 @@ theorem SymmetricDifferenceAsUnionDifferences :
 
 Predicate logic:
 
-  ∀ A B : Set, A ∆ B = (A ∪ B) \ (A ∩ B)
+  ∀ (A B : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCSet.instHasSymmDiff.symmDiff A B = LRA.Set.Constructions.ZFCLRA.Set.Constructions.ZFCA ∪ B \ LRA.Set.Constructions.ZFCA ∩ B
 
 Predicate logic (unfolded):
 
-  ∀ (A B : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCSet.instHasSymmDiff.1 A B = LRA.Set.Constructions.ZFCSet.instSDiff.1 (LRA.Set.Constructions.ZFCSet.instUnion.1 A B) (LRA.Set.Constructions.ZFCSet.instInter.1 A B)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.ZFCSet.instHasSymmDiff.1 A B = LRA.Set.Constructions.ZFCLRA.Set.Constructions.ZFCA ∪ B \ LRA.Set.Constructions.ZFCA ∩ B
 
 Logical form (Lean):
 
@@ -90,11 +100,16 @@ theorem SymmetricDifferenceAsUnionDifferenceIntersection :
 
 Predicate logic:
 
-  ∀ A B : Set, A ∆ B = B ∆ A
+  ∀ (A B : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCSet.instHasSymmDiff.symmDiff A B = LRA.Set.Constructions.ZFCSet.instHasSymmDiff.symmDiff B A
 
 Predicate logic (unfolded):
 
-  ∀ (A B : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCSet.instHasSymmDiff.1 A B = LRA.Set.Constructions.ZFCSet.instHasSymmDiff.1 B A
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.ZFCSet.instHasSymmDiff.1 A B = LRA.Set.Constructions.ZFCSet.instHasSymmDiff.1 B A
 
 Logical form (Lean):
 
@@ -131,11 +146,16 @@ theorem SymmetricDifferenceCommutative :
 
 Predicate logic:
 
-  ∀ A B C : Set, (A ∆ B) ∆ C = A ∆ (B ∆ C)
+  ∀ (A B C : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCSet.instHasSymmDiff.symmDiff (LRA.Set.Constructions.ZFCSet.instHasSymmDiff.symmDiff A B) C = LRA.Set.Constructions.ZFCSet.instHasSymmDiff.symmDiff A (LRA.Set.Constructions.ZFCSet.instHasSymmDiff.symmDiff B C)
 
 Predicate logic (unfolded):
 
-  ∀ (A B C : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCSet.instHasSymmDiff.1 (LRA.Set.Constructions.ZFCSet.instHasSymmDiff.1 A B) C = LRA.Set.Constructions.ZFCSet.instHasSymmDiff.1 A (LRA.Set.Constructions.ZFCSet.instHasSymmDiff.1 B C)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.ZFCSet.instHasSymmDiff.1 (LRA.Set.Constructions.ZFCSet.instHasSymmDiff.1 A B) C = LRA.Set.Constructions.ZFCSet.instHasSymmDiff.1 A (LRA.Set.Constructions.ZFCSet.instHasSymmDiff.1 B C)
 
 Logical form (Lean):
 
@@ -172,11 +192,16 @@ theorem SymmetricDifferenceAssociative :
 
 Predicate logic:
 
-  ∀ A : Set, A ∆ ∅ ∈ Set = A
+  ∀ (A : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCSet.instHasSymmDiff.symmDiff A LRA.Set.Constructions.ZFCSet.instEmptyCollection.emptyCollection = A
 
 Predicate logic (unfolded):
 
-  ∀ (A : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCSet.instHasSymmDiff.1 A LRA.Set.Constructions.ZFCSet.instEmptyCollection.1 = A
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.ZFCSet.instHasSymmDiff.1 A LRA.Set.Constructions.ZFCSet.instEmptyCollection.1 = A
 
 Logical form (Lean):
 
@@ -211,11 +236,16 @@ theorem SymmetricDifferenceEmpty : ∀ A : Set, A ∆ (∅ : Set) = A := by
 
 Predicate logic:
 
-  ∀ A : Set, ∅ ∈ Set ∆ A = A
+  ∀ (A : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCSet.instHasSymmDiff.symmDiff LRA.Set.Constructions.ZFCSet.instEmptyCollection.emptyCollection A = A
 
 Predicate logic (unfolded):
 
-  ∀ (A : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCSet.instHasSymmDiff.1 LRA.Set.Constructions.ZFCSet.instEmptyCollection.1 A = A
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.ZFCSet.instHasSymmDiff.1 LRA.Set.Constructions.ZFCSet.instEmptyCollection.1 A = A
 
 Logical form (Lean):
 
@@ -250,11 +280,16 @@ theorem EmptySymmetricDifference : ∀ A : Set, (∅ : Set) ∆ A = A := by
 
 Predicate logic:
 
-  ∀ A : Set, A ∆ A = ∅ ∈ Set
+  ∀ (A : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCSet.instHasSymmDiff.symmDiff A A = LRA.Set.Constructions.ZFCSet.instEmptyCollection.emptyCollection
 
 Predicate logic (unfolded):
 
-  ∀ (A : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCSet.instHasSymmDiff.1 A A = LRA.Set.Constructions.ZFCSet.instEmptyCollection.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.ZFCSet.instHasSymmDiff.1 A A = LRA.Set.Constructions.ZFCSet.instEmptyCollection.1
 
 Logical form (Lean):
 
@@ -289,11 +324,16 @@ theorem SymmetricDifferenceSelf : ∀ A : Set, A ∆ A = (∅ : Set) := by
 
 Predicate logic:
 
-  ∀ A B : Set, A ∆ B = ∅ ∈ Set ↔ A = B
+  ∀ (A B : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCSet.instHasSymmDiff.symmDiff A B = LRA.Set.Constructions.ZFCSet.instEmptyCollection.emptyCollection ↔ A = B
 
 Predicate logic (unfolded):
 
-  ∀ (A B : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCSet.instHasSymmDiff.1 A B = LRA.Set.Constructions.ZFCSet.instEmptyCollection.1 ↔ A = B
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.ZFCSet.instHasSymmDiff.symmDiff A B = LRA.Set.Constructions.ZFCSet.instEmptyCollection.emptyCollection ↔ A = B
 
 Logical form (Lean):
 
@@ -330,11 +370,16 @@ theorem SymmetricDifferenceEqEmptyIff :
 
 Predicate logic:
 
-  ∀ A B : Set, A ∆ B ⊆ A ∪ B
+  ∀ (A B : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCSet.instHasSubset.Subset (LRA.Set.Constructions.ZFCSet.instHasSymmDiff.symmDiff A B) (LRA.Set.Constructions.ZFCA ∪ B)
 
 Predicate logic (unfolded):
 
-  ∀ (A B : LRA.Set.Constructions.ZFCSet.Set), LRA.Set.Constructions.ZFCSet.instHasSubset.1 (LRA.Set.Constructions.ZFCSet.instHasSymmDiff.1 A B) (LRA.Set.Constructions.ZFCSet.instUnion.1 A B)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.ZFCSet.instHasSubset.1 (LRA.Set.Constructions.ZFCSet.instHasSymmDiff.1 A B) (LRA.Set.Constructions.ZFCA ∪ B)
 
 Logical form (Lean):
 

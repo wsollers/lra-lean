@@ -11,11 +11,17 @@ namespace LRA.Analysis.Completeness
 
 Predicate logic:
 
-  ∃ n ∈ ℕ, 0 < 1 / n ∈ ℝ ∧ 1 / n ∈ ℝ < ε
+  ∀ {ε : Real}, GT.gt ε 0 → Exists fun n => (Real.instLT.lt 0 (instHDiv.hDiv 1 n.cast) ∧ Real.instLT.lt (instHDiv.hDiv 1 n.cast) ε)
 
 Predicate logic (unfolded):
 
-  ∀ {ε : Real}, Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun n => (Real.instLT.1 Zero.toOfNat0.1 (instHDiv.1 One.toOfNat1.1 (Real.instNatCast.1 n)) ∧ Real.instLT.1 (instHDiv.1 One.toOfNat1.1 (Real.instNatCast.1 n)) ε)
+  Ambient
+    (ℝ)
+  Objects
+    ε : ℝ
+    positiveToleranceHypothesis : ε > 0
+  Prove
+    Real.instLT.lt 0 ε → Exists fun n => (Real.instLT.lt 0 ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv 1 (Real.instNatCast.1 n)) ∧ Real.instLT.lt ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv 1 (Real.instNatCast.1 n)) ε)
 
 Logical form (Lean):
 
@@ -53,11 +59,16 @@ theorem ArchimedeanReciprocalForm {ε : ℝ}
 
 Predicate logic:
 
-  Filter.Tendsto fun n ∈ ℕ => 1 / n ∈ ℝ Filter.atTop (nhds 0)
+  Filter.Tendsto (fun n => instHDiv.hDiv 1 n.cast) Filter.atTop (nhds 0)
 
 Predicate logic (unfolded):
 
-  Filter.instPartialOrder.toLE.1 { sets := fun x => Set.instMembership.1 Filter.atTop.sets (Set.preimage (fun n => instHDiv.hDiv 1 n.cast) x), univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds Zero.toOfNat0.1)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Filter.instPartialOrder.toPreorder.1.le { sets := fun x => setOf fun x_1 => (fun n => instHDiv.hDiv 1 n.cast) x_1 ∈ x ∈ Filter.atTop.1, univ_sets := ⋯, sets_of_superset := ⋯, inter_sets := ⋯ } (nhds 0)
 
 Logical form (Lean):
 
@@ -93,11 +104,17 @@ theorem ArchimedeanReciprocal :
 
 Predicate logic:
 
-  ∃! n : ℕ, n ∈ ℝ ≤ x ∧ x < n ∈ ℝ + 1
+  ∀ {x : Real}, GE.ge x 0 → ExistsUnique fun n => (Real.instLE.le n.cast x ∧ Real.instLT.lt x (instHAdd.hAdd n.cast 1))
 
 Predicate logic (unfolded):
 
-  ∀ {x : Real}, Real.instLE.1 Zero.toOfNat0.1 x → Exists fun x_1 => ((fun n => (Real.instLE.1 (Real.instNatCast.1 n) x ∧ Real.instLT.1 x (instHAdd.1 (Real.instNatCast.1 n) One.toOfNat1.1))) x_1 ∧ ∀ (y : Nat), (Real.instLE.1 (Real.instNatCast.1 y) x ∧ Real.instLT.1 x (instHAdd.1 (Real.instNatCast.1 y) One.toOfNat1.1)) → y = x_1)
+  Ambient
+    (ℝ)
+  Objects
+    x : ℝ
+    nonnegativeHypothesis : x ≥ 0
+  Prove
+    Real.instLE.le 0 x → Exists fun x_1 => (((fun n => (Real.instLE.le (Real.instNatCast.1 n) x ∧ Real.instLT.lt x ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd (Real.instNatCast.1 n) 1))) x_1) ∧ (∀ (y : Nat), (Real.instLE.le (Real.instNatCast.1 y) x ∧ Real.instLT.lt x ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd (Real.instNatCast.1 y) 1)) → y = x_1))
 
 Logical form (Lean):
 
@@ -135,11 +152,16 @@ theorem IntegerPartLemma {x : ℝ}
 
 Predicate logic:
 
-  ∃! m : ℤ, m ∈ ℝ ≤ x ∧ x < m ∈ ℝ + 1
+  ∀ (x : Real), ExistsUnique fun m => (Real.instLE.le m.cast x ∧ Real.instLT.lt x (instHAdd.hAdd m.cast 1))
 
 Predicate logic (unfolded):
 
-  ∀ (x : Real), Exists fun x_1 => ((fun m => (Real.instLE.1 (Real.instIntCast.1 m) x ∧ Real.instLT.1 x (instHAdd.1 (Real.instIntCast.1 m) One.toOfNat1.1))) x_1 ∧ ∀ (y : Int), (Real.instLE.1 (Real.instIntCast.1 y) x ∧ Real.instLT.1 x (instHAdd.1 (Real.instIntCast.1 y) One.toOfNat1.1)) → y = x_1)
+  Ambient
+    (ℝ)
+  Objects
+    x : ℝ
+  Prove
+    Exists fun x_1 => (((fun m => (Real.instLE.le (Real.instIntCast.1 m) x ∧ Real.instLT.lt x ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd (Real.instIntCast.1 m) 1))) x_1) ∧ (∀ (y : Int), (Real.instLE.le (Real.instIntCast.1 y) x ∧ Real.instLT.lt x ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd (Real.instIntCast.1 y) 1)) → y = x_1))
 
 Logical form (Lean):
 
@@ -175,11 +197,16 @@ theorem ArchimedeanIntegerPartLemma (x : ℝ) :
 
 Predicate logic:
 
-  ∃! m : ℤ, m ∈ ℝ - 1 < x ∧ x ≤ m ∈ ℝ
+  ∀ (x : Real), ExistsUnique fun m => (Real.instLT.lt (instHSub.hSub m.cast 1) x ∧ Real.instLE.le x m.cast)
 
 Predicate logic (unfolded):
 
-  ∀ (x : Real), Exists fun x_1 => ((fun m => (Real.instLT.1 (instHSub.1 (Real.instIntCast.1 m) One.toOfNat1.1) x ∧ Real.instLE.1 x (Real.instIntCast.1 m))) x_1 ∧ ∀ (y : Int), (Real.instLT.1 (instHSub.1 (Real.instIntCast.1 y) One.toOfNat1.1) x ∧ Real.instLE.1 x (Real.instIntCast.1 y)) → y = x_1)
+  Ambient
+    (ℝ)
+  Objects
+    x : ℝ
+  Prove
+    Exists fun x_1 => (((fun m => (Real.instLT.lt ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Real.instIntCast.1 m) 1) x ∧ Real.instLE.le x (Real.instIntCast.1 m))) x_1) ∧ (∀ (y : Int), (Real.instLT.lt ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Real.instIntCast.1 y) 1) x ∧ Real.instLE.le x (Real.instIntCast.1 y)) → y = x_1))
 
 Logical form (Lean):
 
@@ -215,11 +242,16 @@ theorem IntegerCeilingLemma (x : ℝ) :
 
 Predicate logic:
 
-  ∃ n ∈ ℕ, x < n ∈ ℝ
+  ∀ (x : Real), Exists fun n => Real.instLT.lt x n.cast
 
 Predicate logic (unfolded):
 
-  ∀ (x : Real), Exists fun n => Real.instLT.1 x (Real.instNatCast.1 n)
+  Ambient
+    (ℝ)
+  Objects
+    x : ℝ
+  Prove
+    Exists fun n => Real.instLT.lt x (Real.instNatCast.1 n)
 
 Logical form (Lean):
 
@@ -255,11 +287,16 @@ theorem IntegerAboveLemma (x : ℝ) :
 
 Predicate logic:
 
-  ∃ m ∈ ℤ, x ≤ m ∈ ℝ ∧ m ∈ ℝ ≤ x + 1
+  ∀ (x : Real), Exists fun m => (Real.instLE.le x m.cast ∧ Real.instLE.le m.cast (instHAdd.hAdd x 1))
 
 Predicate logic (unfolded):
 
-  ∀ (x : Real), Exists fun m => (Real.instLE.1 x (Real.instIntCast.1 m) ∧ Real.instLE.1 (Real.instIntCast.1 m) (instHAdd.1 x One.toOfNat1.1))
+  Ambient
+    (ℝ)
+  Objects
+    x : ℝ
+  Prove
+    Exists fun m => (Real.instLE.le x (Real.instIntCast.1 m) ∧ Real.instLE.le (Real.instIntCast.1 m) ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd x 1))
 
 Logical form (Lean):
 
@@ -295,11 +332,16 @@ theorem UnitLengthIntervalContainsInteger (x : ℝ) :
 
 Predicate logic:
 
-  ¬ BddAbove (Set.range ((↑) : ℕ → ℝ))
+  ¬ BddAbove (Set.range Nat.cast)
 
 Predicate logic (unfolded):
 
-  (Exists fun x => Set.instMembership.1 (fun x => ∀ ⦃a : Real⦄, Set.instMembership.mem (Set.range Nat.cast) a → Real.instLE.le a x) x) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun x => x) ∈ fun x => ∀ ⦃a : Real⦄, a ∈ Set.range Nat.cast → Real.instLE.le a x → False
 
 Logical form (Lean):
 

@@ -11,16 +11,16 @@ universe u
 Predicate logic:
 
   class abbrev AbelianGroupLaws (R : Type u)
-    [Add R] [Neg R] [OfNat R 0] [Nonempty R] : Prop :=
-  AdditiveSemigroupLaws R, AdditiveIdentityLaws R, AdditiveInverseLaws R,
-  AdditiveCommutativeLaws R
+      [Add R] [Neg R] [OfNat R 0] [Nonempty R] : Prop :=
+    AdditiveSemigroupLaws R, AdditiveIdentityLaws R, AdditiveInverseLaws R,
+    AdditiveCommutativeLaws R
 
 Predicate logic (unfolded):
 
   class abbrev AbelianGroupLaws (R : Type u)
-    [Add R] [Neg R] [OfNat R 0] [Nonempty R] : Prop :=
-  AdditiveSemigroupLaws R, AdditiveIdentityLaws R, AdditiveInverseLaws R,
-  AdditiveCommutativeLaws R (source fallback; no compiled unfold data available)
+      [Add R] [Neg R] [OfNat R 0] [Nonempty R] : Prop :=
+    AdditiveSemigroupLaws R, AdditiveIdentityLaws R, AdditiveInverseLaws R,
+    AdditiveCommutativeLaws R (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

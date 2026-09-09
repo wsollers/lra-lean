@@ -21,7 +21,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) (joinOperation : Carrier → Carrier → Carrier) (left right : Carrier), (relation left (joinOperation left right) ∧ (relation right (joinOperation left right) ∧ ∀ (upper : Carrier), relation left upper → relation right upper → relation (joinOperation left right) upper))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (relation left (joinOperation left right) ∧ (relation right (joinOperation left right) ∧ (∀ (upper : Carrier), relation left upper → relation right upper → relation (joinOperation left right) upper)))
 
 Logical form (Lean):
 
@@ -67,7 +72,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (relation : Carrier → Carrier → Prop) (meetOperation : Carrier → Carrier → Carrier) (left right : Carrier), (relation (meetOperation left right) left ∧ (relation (meetOperation left right) right ∧ ∀ (lower : Carrier), relation lower left → relation lower right → relation lower (meetOperation left right)))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (relation (meetOperation left right) left ∧ (relation (meetOperation left right) right ∧ (∀ (lower : Carrier), relation lower left → relation lower right → relation lower (meetOperation left right))))
 
 Logical form (Lean):
 
@@ -109,11 +119,18 @@ def IsMeetOperation {Carrier : Type u}
 
 Predicate logic:
 
-  (IsJoinOperation relation joinOperation) → LRA.Operation.Laws.Commutative.Commutative joinOperation
+  ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}, LRA.Order.PartialOrder relation → ∀ {joinOperation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Order.IsJoinOperation relation joinOperation → LRA.Operation.Laws.Commutative.Commutative joinOperation
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {relation : Carrier → Carrier → Prop}, (∀ (x : Carrier), relation x x ∧ (∀ (x y : Carrier), relation x y → relation y x → x = y ∧ ∀ (x y z : Carrier), relation x y → relation y z → relation x z)) → ∀ {joinOperation : Carrier → Carrier → Carrier}, (∀ (left right : Carrier), (relation left (joinOperation left right) ∧ (relation right (joinOperation left right) ∧ ∀ (upper : Carrier), relation left upper → relation right upper → relation (joinOperation left right) upper))) → ∀ (first second : Carrier), joinOperation first second = joinOperation second first
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Relation.Endorelation Carrier
+    relationIsPartialOrder : PartialOrder relation
+    joinOperation : BinaryEndoOperation Carrier
+  Prove
+    ((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x → x = y) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z))) → ∀ {joinOperation : Carrier → Carrier → Carrier}, (∀ (left right : Carrier), (relation left (joinOperation left right) ∧ (relation right (joinOperation left right) ∧ (∀ (upper : Carrier), relation left upper → relation right upper → relation (joinOperation left right) upper)))) → ∀ (first second : Carrier), joinOperation first second = joinOperation second first
 
 Logical form (Lean):
 
@@ -159,11 +176,18 @@ theorem JoinOperationCommutative
 
 Predicate logic:
 
-  (IsMeetOperation relation meetOperation) → LRA.Operation.Laws.Commutative.Commutative meetOperation
+  ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}, LRA.Order.PartialOrder relation → ∀ {meetOperation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Order.IsMeetOperation relation meetOperation → LRA.Operation.Laws.Commutative.Commutative meetOperation
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {relation : Carrier → Carrier → Prop}, (∀ (x : Carrier), relation x x ∧ (∀ (x y : Carrier), relation x y → relation y x → x = y ∧ ∀ (x y z : Carrier), relation x y → relation y z → relation x z)) → ∀ {meetOperation : Carrier → Carrier → Carrier}, (∀ (left right : Carrier), (relation (meetOperation left right) left ∧ (relation (meetOperation left right) right ∧ ∀ (lower : Carrier), relation lower left → relation lower right → relation lower (meetOperation left right)))) → ∀ (first second : Carrier), meetOperation first second = meetOperation second first
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Relation.Endorelation Carrier
+    relationIsPartialOrder : PartialOrder relation
+    meetOperation : BinaryEndoOperation Carrier
+  Prove
+    ((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x → x = y) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z))) → ∀ {meetOperation : Carrier → Carrier → Carrier}, (∀ (left right : Carrier), (relation (meetOperation left right) left ∧ (relation (meetOperation left right) right ∧ (∀ (lower : Carrier), relation lower left → relation lower right → relation lower (meetOperation left right))))) → ∀ (first second : Carrier), meetOperation first second = meetOperation second first
 
 Logical form (Lean):
 
@@ -209,11 +233,18 @@ theorem MeetOperationCommutative
 
 Predicate logic:
 
-  (IsJoinOperation relation joinOperation) → LRA.Operation.Laws.Idempotent.Idempotent joinOperation
+  ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}, LRA.Order.PartialOrder relation → ∀ {joinOperation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Order.IsJoinOperation relation joinOperation → LRA.Operation.Laws.Idempotent.Idempotent joinOperation
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {relation : Carrier → Carrier → Prop}, (∀ (x : Carrier), relation x x ∧ (∀ (x y : Carrier), relation x y → relation y x → x = y ∧ ∀ (x y z : Carrier), relation x y → relation y z → relation x z)) → ∀ {joinOperation : Carrier → Carrier → Carrier}, (∀ (left right : Carrier), (relation left (joinOperation left right) ∧ (relation right (joinOperation left right) ∧ ∀ (upper : Carrier), relation left upper → relation right upper → relation (joinOperation left right) upper))) → ∀ (element : Carrier), joinOperation element element = element
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Relation.Endorelation Carrier
+    relationIsPartialOrder : PartialOrder relation
+    joinOperation : BinaryEndoOperation Carrier
+  Prove
+    ((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x → x = y) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z))) → ∀ {joinOperation : Carrier → Carrier → Carrier}, (∀ (left right : Carrier), (relation left (joinOperation left right) ∧ (relation right (joinOperation left right) ∧ (∀ (upper : Carrier), relation left upper → relation right upper → relation (joinOperation left right) upper)))) → ∀ (element : Carrier), joinOperation element element = element
 
 Logical form (Lean):
 
@@ -259,11 +290,18 @@ theorem JoinOperationIdempotent
 
 Predicate logic:
 
-  (IsMeetOperation relation meetOperation) → LRA.Operation.Laws.Idempotent.Idempotent meetOperation
+  ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}, LRA.Order.PartialOrder relation → ∀ {meetOperation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Order.IsMeetOperation relation meetOperation → LRA.Operation.Laws.Idempotent.Idempotent meetOperation
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {relation : Carrier → Carrier → Prop}, (∀ (x : Carrier), relation x x ∧ (∀ (x y : Carrier), relation x y → relation y x → x = y ∧ ∀ (x y z : Carrier), relation x y → relation y z → relation x z)) → ∀ {meetOperation : Carrier → Carrier → Carrier}, (∀ (left right : Carrier), (relation (meetOperation left right) left ∧ (relation (meetOperation left right) right ∧ ∀ (lower : Carrier), relation lower left → relation lower right → relation lower (meetOperation left right)))) → ∀ (element : Carrier), meetOperation element element = element
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Relation.Endorelation Carrier
+    relationIsPartialOrder : PartialOrder relation
+    meetOperation : BinaryEndoOperation Carrier
+  Prove
+    ((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x → x = y) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z))) → ∀ {meetOperation : Carrier → Carrier → Carrier}, (∀ (left right : Carrier), (relation (meetOperation left right) left ∧ (relation (meetOperation left right) right ∧ (∀ (lower : Carrier), relation lower left → relation lower right → relation lower (meetOperation left right))))) → ∀ (element : Carrier), meetOperation element element = element
 
 Logical form (Lean):
 
@@ -309,11 +347,18 @@ theorem MeetOperationIdempotent
 
 Predicate logic:
 
-  (IsJoinOperation relation joinOperation) → LRA.Operation.Laws.Associative.Associative joinOperation
+  ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}, LRA.Order.PartialOrder relation → ∀ {joinOperation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Order.IsJoinOperation relation joinOperation → LRA.Operation.Laws.Associative.Associative joinOperation
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {relation : Carrier → Carrier → Prop}, (∀ (x : Carrier), relation x x ∧ (∀ (x y : Carrier), relation x y → relation y x → x = y ∧ ∀ (x y z : Carrier), relation x y → relation y z → relation x z)) → ∀ {joinOperation : Carrier → Carrier → Carrier}, (∀ (left right : Carrier), (relation left (joinOperation left right) ∧ (relation right (joinOperation left right) ∧ ∀ (upper : Carrier), relation left upper → relation right upper → relation (joinOperation left right) upper))) → ∀ (first second third : Carrier), joinOperation (joinOperation first second) third = joinOperation first (joinOperation second third)
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Relation.Endorelation Carrier
+    relationIsPartialOrder : PartialOrder relation
+    joinOperation : BinaryEndoOperation Carrier
+  Prove
+    ((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x → x = y) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z))) → ∀ {joinOperation : Carrier → Carrier → Carrier}, (∀ (left right : Carrier), (relation left (joinOperation left right) ∧ (relation right (joinOperation left right) ∧ (∀ (upper : Carrier), relation left upper → relation right upper → relation (joinOperation left right) upper)))) → ∀ (first second third : Carrier), joinOperation (joinOperation first second) third = joinOperation first (joinOperation second third)
 
 Logical form (Lean):
 
@@ -359,11 +404,18 @@ theorem JoinOperationAssociative
 
 Predicate logic:
 
-  (IsMeetOperation relation meetOperation) → LRA.Operation.Laws.Associative.Associative meetOperation
+  ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}, LRA.Order.PartialOrder relation → ∀ {meetOperation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Order.IsMeetOperation relation meetOperation → LRA.Operation.Laws.Associative.Associative meetOperation
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {relation : Carrier → Carrier → Prop}, (∀ (x : Carrier), relation x x ∧ (∀ (x y : Carrier), relation x y → relation y x → x = y ∧ ∀ (x y z : Carrier), relation x y → relation y z → relation x z)) → ∀ {meetOperation : Carrier → Carrier → Carrier}, (∀ (left right : Carrier), (relation (meetOperation left right) left ∧ (relation (meetOperation left right) right ∧ ∀ (lower : Carrier), relation lower left → relation lower right → relation lower (meetOperation left right)))) → ∀ (first second third : Carrier), meetOperation (meetOperation first second) third = meetOperation first (meetOperation second third)
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Relation.Endorelation Carrier
+    relationIsPartialOrder : PartialOrder relation
+    meetOperation : BinaryEndoOperation Carrier
+  Prove
+    ((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x → x = y) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z))) → ∀ {meetOperation : Carrier → Carrier → Carrier}, (∀ (left right : Carrier), (relation (meetOperation left right) left ∧ (relation (meetOperation left right) right ∧ (∀ (lower : Carrier), relation lower left → relation lower right → relation lower (meetOperation left right))))) → ∀ (first second third : Carrier), meetOperation (meetOperation first second) third = meetOperation first (meetOperation second third)
 
 Logical form (Lean):
 
@@ -409,11 +461,18 @@ theorem MeetOperationAssociative
 
 Predicate logic:
 
-  (IsJoinOperation relation joinOperation ∧ IsMeetOperation relation meetOperation) → LRA.Operation.Laws.Absorption.AbsorptionLaw joinOperation meetOperation
+  ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}, LRA.Order.PartialOrder relation → ∀ {joinOperation meetOperation : LRA.Operation.BinaryEndoOperation Carrier}, (LRA.Order.IsJoinOperation relation joinOperation ∧ LRA.Order.IsMeetOperation relation meetOperation) → LRA.Operation.Laws.Absorption.AbsorptionLaw joinOperation meetOperation
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {relation : Carrier → Carrier → Prop}, (∀ (x : Carrier), relation x x ∧ (∀ (x y : Carrier), relation x y → relation y x → x = y ∧ ∀ (x y z : Carrier), relation x y → relation y z → relation x z)) → ∀ {joinOperation meetOperation : Carrier → Carrier → Carrier}, (∀ (left right : Carrier), (relation left (joinOperation left right) ∧ (relation right (joinOperation left right) ∧ ∀ (upper : Carrier), relation left upper → relation right upper → relation (joinOperation left right) upper)) ∧ ∀ (left right : Carrier), (relation (meetOperation left right) left ∧ (relation (meetOperation left right) right ∧ ∀ (lower : Carrier), relation lower left → relation lower right → relation lower (meetOperation left right)))) → ∀ (left right : Carrier), joinOperation left (meetOperation left right) = left
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Relation.Endorelation Carrier
+    relationIsPartialOrder : PartialOrder relation
+    joinOperation meetOperation : BinaryEndoOperation Carrier
+  Prove
+    ((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x → x = y) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z))) → ∀ {joinOperation meetOperation : Carrier → Carrier → Carrier}, ((∀ (left right : Carrier), (relation left (joinOperation left right) ∧ (relation right (joinOperation left right) ∧ (∀ (upper : Carrier), relation left upper → relation right upper → relation (joinOperation left right) upper)))) ∧ (∀ (left right : Carrier), (relation (meetOperation left right) left ∧ (relation (meetOperation left right) right ∧ (∀ (lower : Carrier), relation lower left → relation lower right → relation lower (meetOperation left right)))))) → ∀ (left right : Carrier), joinOperation left (meetOperation left right) = left
 
 Logical form (Lean):
 
@@ -463,11 +522,18 @@ theorem JoinMeetOperationAbsorption
 
 Predicate logic:
 
-  (IsJoinOperation relation joinOperation ∧ IsMeetOperation relation meetOperation) → LRA.Operation.Laws.Absorption.AbsorptionLaw meetOperation joinOperation
+  ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}, LRA.Order.PartialOrder relation → ∀ {joinOperation meetOperation : LRA.Operation.BinaryEndoOperation Carrier}, (LRA.Order.IsJoinOperation relation joinOperation ∧ LRA.Order.IsMeetOperation relation meetOperation) → LRA.Operation.Laws.Absorption.AbsorptionLaw meetOperation joinOperation
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {relation : Carrier → Carrier → Prop}, (∀ (x : Carrier), relation x x ∧ (∀ (x y : Carrier), relation x y → relation y x → x = y ∧ ∀ (x y z : Carrier), relation x y → relation y z → relation x z)) → ∀ {joinOperation meetOperation : Carrier → Carrier → Carrier}, (∀ (left right : Carrier), (relation left (joinOperation left right) ∧ (relation right (joinOperation left right) ∧ ∀ (upper : Carrier), relation left upper → relation right upper → relation (joinOperation left right) upper)) ∧ ∀ (left right : Carrier), (relation (meetOperation left right) left ∧ (relation (meetOperation left right) right ∧ ∀ (lower : Carrier), relation lower left → relation lower right → relation lower (meetOperation left right)))) → ∀ (left right : Carrier), meetOperation left (joinOperation left right) = left
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Relation.Endorelation Carrier
+    relationIsPartialOrder : PartialOrder relation
+    joinOperation meetOperation : BinaryEndoOperation Carrier
+  Prove
+    ((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x → x = y) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z))) → ∀ {joinOperation meetOperation : Carrier → Carrier → Carrier}, ((∀ (left right : Carrier), (relation left (joinOperation left right) ∧ (relation right (joinOperation left right) ∧ (∀ (upper : Carrier), relation left upper → relation right upper → relation (joinOperation left right) upper)))) ∧ (∀ (left right : Carrier), (relation (meetOperation left right) left ∧ (relation (meetOperation left right) right ∧ (∀ (lower : Carrier), relation lower left → relation lower right → relation lower (meetOperation left right)))))) → ∀ (left right : Carrier), meetOperation left (joinOperation left right) = left
 
 Logical form (Lean):
 
@@ -517,11 +583,18 @@ theorem MeetJoinOperationAbsorption
 
 Predicate logic:
 
-  (IsJoinOperation relation joinOperation ∧ IsMeetOperation relation meetOperation) → LRA.Operation.Laws.Absorption.MutualAbsorptionLaw joinOperation meetOperation
+  ∀ {Carrier : Type u} {relation : LRA.Relation.Endorelation Carrier}, LRA.Order.PartialOrder relation → ∀ {joinOperation meetOperation : LRA.Operation.BinaryEndoOperation Carrier}, (LRA.Order.IsJoinOperation relation joinOperation ∧ LRA.Order.IsMeetOperation relation meetOperation) → LRA.Operation.Laws.Absorption.MutualAbsorptionLaw joinOperation meetOperation
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {relation : Carrier → Carrier → Prop}, (∀ (x : Carrier), relation x x ∧ (∀ (x y : Carrier), relation x y → relation y x → x = y ∧ ∀ (x y z : Carrier), relation x y → relation y z → relation x z)) → ∀ {joinOperation meetOperation : Carrier → Carrier → Carrier}, (∀ (left right : Carrier), (relation left (joinOperation left right) ∧ (relation right (joinOperation left right) ∧ ∀ (upper : Carrier), relation left upper → relation right upper → relation (joinOperation left right) upper)) ∧ ∀ (left right : Carrier), (relation (meetOperation left right) left ∧ (relation (meetOperation left right) right ∧ ∀ (lower : Carrier), relation lower left → relation lower right → relation lower (meetOperation left right)))) → (∀ (left right : Carrier), joinOperation left (meetOperation left right) = left ∧ ∀ (left right : Carrier), meetOperation left (joinOperation left right) = left)
+  Ambient
+    (Carrier)
+  Objects
+    relation : LRA.Relation.Endorelation Carrier
+    relationIsPartialOrder : PartialOrder relation
+    joinOperation meetOperation : BinaryEndoOperation Carrier
+  Prove
+    ((∀ (x : Carrier), relation x x) ∧ ((∀ (x y : Carrier), relation x y → relation y x → x = y) ∧ (∀ (x y z : Carrier), relation x y → relation y z → relation x z))) → ∀ {joinOperation meetOperation : Carrier → Carrier → Carrier}, ((∀ (left right : Carrier), (relation left (joinOperation left right) ∧ (relation right (joinOperation left right) ∧ (∀ (upper : Carrier), relation left upper → relation right upper → relation (joinOperation left right) upper)))) ∧ (∀ (left right : Carrier), (relation (meetOperation left right) left ∧ (relation (meetOperation left right) right ∧ (∀ (lower : Carrier), relation lower left → relation lower right → relation lower (meetOperation left right)))))) → ((∀ (left right : Carrier), joinOperation left (meetOperation left right) = left) ∧ (∀ (left right : Carrier), meetOperation left (joinOperation left right) = left))
 
 Logical form (Lean):
 

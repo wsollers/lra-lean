@@ -14,11 +14,18 @@ universe u
 
 Predicate logic:
 
-  (IsProperInfiniteSimpleContinuedFraction fraction) → ∃ limit ∈ realExtension.RealModel.Carrier, ConvergentsConvergeTo rationalSystem realExtension fraction limit
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (realExtension : LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem) (fraction : LRA.Arithmetic.ContinuedFractions.InfiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model), LRA.Arithmetic.ContinuedFractions.IsProperInfiniteSimpleContinuedFraction fraction → Exists fun limit => LRA.NumberSystems.RealNumbers.ContinuedFractions.ConvergentsConvergeTo rationalSystem realExtension fraction limit
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (realExtension : LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem) (fraction : Nat → rationalSystem.IntegerSystem.Model.1), (∀ (index : Nat), rationalSystem.IntegerSystem.Model.ltInst.1 rationalSystem.IntegerSystem.Model.zeroInst.1 (fraction (instHAdd.1 index (instOfNatNat 1).1))) → Exists fun limit => ∀ (epsilon : realExtension.RealModel.toDenselyOrderedFieldModel.1), realExtension.RealModel.ltInst.1 realExtension.RealModel.zeroInst.1 epsilon → Exists fun N => ∀ (depth : Nat), instLENat.1 N depth → Exists fun convergent => (LRA.NumberSystems.RationalNumbers.ContinuedFractions.CoefficientsEvaluateTo rationalSystem (List.cons (LRA.NumberSystems.RealNumbers.ContinuedFractions.FinitePrefix fraction depth).1 (LRA.NumberSystems.RealNumbers.ContinuedFractions.FinitePrefix fraction depth).2) convergent ∧ (realExtension.RealModel.leInst.1 (realExtension.RealModel.negInst.1 epsilon) (instHAdd.1 (realExtension.DenseOrderedFieldEmbedding.1 convergent) (realExtension.RealModel.negInst.1 limit)) ∧ realExtension.RealModel.leInst.1 (instHAdd.1 (realExtension.DenseOrderedFieldEmbedding.1 convergent) (realExtension.RealModel.negInst.1 limit)) epsilon))
+  Ambient
+    (implicit ambient)
+  Objects
+    rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem.{u}
+    realExtension : RationalRealExtension rationalSystem
+    fraction : InfiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model
+  Prove
+    (∀ (index : Nat), rationalSystem.IntegerSystem.Model.7.lt 0 (fraction ({ hAdd := fun a b => instAddNat.add a b }.hAdd index 1))) → Exists fun limit => ∀ (epsilon : realExtension.RealModel.1), realExtension.RealModel.8.lt 0 epsilon → Exists fun N => ∀ (depth : Nat), instLENat.le N depth → Exists fun convergent => (LRA.NumberSystems.RationalNumbers.ContinuedFractions.CoefficientsEvaluateTo rationalSystem (List.cons (LRA.NumberSystems.RealNumbers.ContinuedFractions.FinitePrefix fraction depth).1 (LRA.NumberSystems.RealNumbers.ContinuedFractions.FinitePrefix fraction depth).2) convergent ∧ (realExtension.RealModel.9.le (realExtension.RealModel.4.neg epsilon) ({ hAdd := fun a b => realExtension.RealModel.2.add a b }.hAdd (realExtension.DenseOrderedFieldEmbedding.1 convergent) (realExtension.RealModel.4.neg limit)) ∧ realExtension.RealModel.9.le ({ hAdd := fun a b => realExtension.RealModel.2.add a b }.hAdd (realExtension.DenseOrderedFieldEmbedding.1 convergent) (realExtension.RealModel.4.neg limit)) epsilon))
 
 Logical form (Lean):
 
@@ -64,11 +71,18 @@ theorem ProperInfiniteSimpleContinuedFractionConverges
 
 Predicate logic:
 
-  (∀ value ∈ realExtension.RealModel.Carrier), IsQuadraticIrrational rationalSystem realExtension value ↔ ∃ fraction ∈ InfiniteSimpleContinuedFraction rationalSystem.IntegerSystem.Model, IsInfiniteSimpleContinuedFractionExpansionOf rationalSystem realExtension fraction value ∧ IsEventuallyPeriodic fraction
+  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (realExtension : LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem) (value : realExtension.RealModel.Carrier), LRA.NumberSystems.RealNumbers.ContinuedFractions.IsQuadraticIrrational rationalSystem realExtension value ↔ Exists fun fraction => (LRA.NumberSystems.RealNumbers.ContinuedFractions.IsInfiniteSimpleContinuedFractionExpansionOf rationalSystem realExtension fraction value ∧ LRA.Arithmetic.ContinuedFractions.IsEventuallyPeriodic fraction)
 
 Predicate logic (unfolded):
 
-  ∀ (rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem) (realExtension : LRA.NumberSystems.RealNumbers.RationalRealExtension rationalSystem) (value : realExtension.RealModel.toDenselyOrderedFieldModel.1), ((Exists fun rational_value => realExtension.DenseOrderedFieldEmbedding.1 rational_value = value) → False ∧ Exists fun a => Exists fun b => Exists fun c => (a = rationalSystem.IntegerSystem.Model.zeroInst.1 → False ∧ have embedInteger := fun z => realExtension.DenseOrderedFieldEmbedding.ToReal (rationalSystem.IntegerEmbedding.ToField z); instHAdd.hAdd (instHAdd.hAdd (instHMul.hMul (embedInteger a) (instHMul.hMul value value)) (instHMul.hMul (embedInteger b) value)) (embedInteger c) = 0)) ↔ Exists fun fraction => ((∀ (index : Nat), rationalSystem.IntegerSystem.Model.ltInst.1 rationalSystem.IntegerSystem.Model.zeroInst.1 (fraction (instHAdd.1 index (instOfNatNat 1).1)) ∧ ∀ (epsilon : realExtension.RealModel.toDenselyOrderedFieldModel.1), realExtension.RealModel.ltInst.1 realExtension.RealModel.zeroInst.1 epsilon → Exists fun N => ∀ (depth : Nat), instLENat.1 N depth → Exists fun convergent => (LRA.NumberSystems.RationalNumbers.ContinuedFractions.CoefficientsEvaluateTo rationalSystem (List.cons (LRA.NumberSystems.RealNumbers.ContinuedFractions.FinitePrefix fraction depth).1 (LRA.NumberSystems.RealNumbers.ContinuedFractions.FinitePrefix fraction depth).2) convergent ∧ (realExtension.RealModel.leInst.1 (realExtension.RealModel.negInst.1 epsilon) (instHAdd.1 (realExtension.DenseOrderedFieldEmbedding.1 convergent) (realExtension.RealModel.negInst.1 value)) ∧ realExtension.RealModel.leInst.1 (instHAdd.1 (realExtension.DenseOrderedFieldEmbedding.1 convergent) (realExtension.RealModel.negInst.1 value)) epsilon))) ∧ Exists fun start => Exists fun period => (period = instOfNatNat 0.1 → False ∧ ∀ (index : Nat), instLENat.1 start index → fraction (instHAdd.1 index period) = fraction index))
+  Ambient
+    (implicit ambient)
+  Objects
+    rationalSystem : LRA.NumberSystems.RationalNumbers.RationalNumberSystem.{u}
+    realExtension : RationalRealExtension rationalSystem
+    value : realExtension.RealModel.Carrier
+  Prove
+    LRA.NumberSystems.RealNumbers.ContinuedFractions.IsQuadraticIrrational rationalSystem realExtension value ↔ Exists fun fraction => (LRA.NumberSystems.RealNumbers.ContinuedFractions.IsInfiniteSimpleContinuedFractionExpansionOf rationalSystem realExtension fraction value ∧ LRA.Arithmetic.ContinuedFractions.IsEventuallyPeriodic fraction)
 
 Logical form (Lean):
 

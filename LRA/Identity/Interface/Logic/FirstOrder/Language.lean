@@ -20,7 +20,7 @@ Predicate logic (unfolded):
   def pureEqualitySignature : Signature where
     Functions := ⟨Empty, Empty.elim⟩
     Relations := ⟨Empty, Empty.elim⟩
-    Constants := Empty (source fallback; no compiled unfold data available)
+    Constants := Empty
 
 Logical form (Lean):
 
@@ -64,7 +64,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  abbrev PureEqualityLanguage := FirstOrderLanguage (source fallback; no compiled unfold data available)
+  abbrev PureEqualityLanguage := FirstOrderLanguage
 
 Logical form (Lean):
 
@@ -104,7 +104,7 @@ Predicate logic:
 Predicate logic (unfolded):
 
   def pureEqualityLanguage : PureEqualityLanguage :=
-    pureEqualitySignature (source fallback; no compiled unfold data available)
+    pureEqualitySignature
 
 Logical form (Lean):
 
@@ -144,7 +144,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  abbrev EqualityFirstOrderSignature := Signature (source fallback; no compiled unfold data available)
+  abbrev EqualityFirstOrderSignature := Signature
 
 Logical form (Lean):
 
@@ -184,7 +184,7 @@ Predicate logic:
 Predicate logic (unfolded):
 
   abbrev equalityFirstOrderSignature : EqualityFirstOrderSignature :=
-    pureEqualitySignature (source fallback; no compiled unfold data available)
+    pureEqualitySignature
 
 Logical form (Lean):
 
@@ -224,7 +224,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  abbrev EqualityFirstOrderLanguage := PureEqualityLanguage (source fallback; no compiled unfold data available)
+  abbrev EqualityFirstOrderLanguage := PureEqualityLanguage
 
 Logical form (Lean):
 
@@ -264,7 +264,7 @@ Predicate logic:
 Predicate logic (unfolded):
 
   abbrev equalityFirstOrderLanguage : EqualityFirstOrderLanguage :=
-    pureEqualityLanguage (source fallback; no compiled unfold data available)
+    pureEqualityLanguage
 
 Logical form (Lean):
 
@@ -304,7 +304,7 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  abbrev EqualityLogicalSymbol := LRA.Metamathematics.Notation.LogicalEquality (source fallback; no compiled unfold data available)
+  abbrev EqualityLogicalSymbol := LRA.Metamathematics.Notation.LogicalEquality
 
 Logical form (Lean):
 

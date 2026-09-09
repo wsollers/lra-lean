@@ -129,12 +129,12 @@ def ScalarMultiple (α : ℝ) (x : RealSequence) : RealSequence := fun n => α *
 Predicate logic:
 
   def LinearCombination (α β : ℝ) (x y : RealSequence) : RealSequence :=
-  fun n => α * x n + β * y n
+    fun n => α * x n + β * y n
 
 Predicate logic (unfolded):
 
   def LinearCombination (α β : ℝ) (x y : RealSequence) : RealSequence :=
-  fun n => α * x n + β * y n (source fallback; no compiled unfold data available)
+    fun n => α * x n + β * y n (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -436,11 +436,18 @@ noncomputable def SqrtSeq (x : RealSequence) : RealSequence := fun n => Real.sqr
 
 Predicate logic:
 
-  ConvergesTo (ScalarMultiple α x) (α * L)
+  ∀ {x : LRA.Analysis.Sequences.RealSequence} {L α : Real}, LRA.Analysis.Sequences.ConvergesTo x L → LRA.Analysis.Sequences.ConvergesTo (LRA.Analysis.Sequences.ScalarMultiple α x) (instHMul.hMul α L)
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence} {L α : Real}, (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x n) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x n) L))) ε) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (instHMul.hMul α (x n)) (instHMul.1 α L)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (LRA.Analysis.Sequences.ScalarMultiple α x n) (instHMul.hMul α L)))) ε
+  Ambient
+    (ℝ)
+  Objects
+    x : RealSequence
+    L α : ℝ
+    h : ConvergesTo x L
+  Prove
+    (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x n) L)) ε) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ({ hMul := fun a b => Real.instMul.mul a b }.hMul α (x n)) ({ hMul := fun a b => Real.instMul.mul a b }.hMul α L))) ε
 
 Logical form (Lean):
 
@@ -476,11 +483,19 @@ theorem LimitOfScalarMultiple {x : RealSequence} {L α : ℝ}
 
 Predicate logic:
 
-  ConvergesTo (PointwiseSum x y) (L + M)
+  ∀ {x y : LRA.Analysis.Sequences.RealSequence} {L M : Real}, (LRA.Analysis.Sequences.ConvergesTo x L ∧ LRA.Analysis.Sequences.ConvergesTo y M) → LRA.Analysis.Sequences.ConvergesTo (LRA.Analysis.Sequences.PointwiseSum x y) (instHAdd.hAdd L M)
 
 Predicate logic (unfolded):
 
-  ∀ {x y : LRA.Analysis.Sequences.RealSequence} {L M : Real}, (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x n) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x n) L))) ε ∧ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (y n) M) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (y n) M))) ε) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (instHAdd.hAdd (x n) (y n)) (instHAdd.1 L M)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (LRA.Analysis.Sequences.PointwiseSum x y n) (instHAdd.hAdd L M)))) ε
+  Ambient
+    (ℝ)
+  Objects
+    x y : RealSequence
+    L M : ℝ
+    hx : ConvergesTo x L
+    hy : ConvergesTo y M
+  Prove
+    ((∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x n) L)) ε) ∧ (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (y n) M)) ε)) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd (x n) (y n)) ({ hAdd := fun a b => Real.instAdd.add a b }.hAdd L M))) ε
 
 Logical form (Lean):
 
@@ -518,11 +533,18 @@ theorem LimitOfASum {x y : RealSequence} {L M : ℝ}
 
 Predicate logic:
 
-  ConvergesTo (PointwiseNegation x) (-L)
+  ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real}, LRA.Analysis.Sequences.ConvergesTo x L → LRA.Analysis.Sequences.ConvergesTo (LRA.Analysis.Sequences.PointwiseNegation x) (Real.instNeg.neg L)
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real}, (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x n) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x n) L))) ε) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (Real.instNeg.neg (x n)) (Real.instNeg.1 L)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (LRA.Analysis.Sequences.PointwiseNegation x n) (Real.instNeg.neg L)))) ε
+  Ambient
+    (ℝ)
+  Objects
+    x : RealSequence
+    L : ℝ
+    h : ConvergesTo x L
+  Prove
+    (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x n) L)) ε) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (Real.instNeg.neg (x n)) (Real.instNeg.neg L))) ε
 
 Logical form (Lean):
 
@@ -558,11 +580,19 @@ theorem LimitOfANegation {x : RealSequence} {L : ℝ}
 
 Predicate logic:
 
-  ConvergesTo (PointwiseDifference x y) (L - M)
+  ∀ {x y : LRA.Analysis.Sequences.RealSequence} {L M : Real}, (LRA.Analysis.Sequences.ConvergesTo x L ∧ LRA.Analysis.Sequences.ConvergesTo y M) → LRA.Analysis.Sequences.ConvergesTo (LRA.Analysis.Sequences.PointwiseDifference x y) (instHSub.hSub L M)
 
 Predicate logic (unfolded):
 
-  ∀ {x y : LRA.Analysis.Sequences.RealSequence} {L M : Real}, (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x n) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x n) L))) ε ∧ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (y n) M) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (y n) M))) ε) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (instHSub.hSub (x n) (y n)) (instHSub.1 L M)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (LRA.Analysis.Sequences.PointwiseDifference x y n) (instHSub.hSub L M)))) ε
+  Ambient
+    (ℝ)
+  Objects
+    x y : RealSequence
+    L M : ℝ
+    hx : ConvergesTo x L
+    hy : ConvergesTo y M
+  Prove
+    ((∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x n) L)) ε) ∧ (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (y n) M)) ε)) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x n) (y n)) ({ hSub := fun a b => Real.instSub.sub a b }.hSub L M))) ε
 
 Logical form (Lean):
 
@@ -600,11 +630,19 @@ theorem LimitOfADifference {x y : RealSequence} {L M : ℝ}
 
 Predicate logic:
 
-  ConvergesTo (PointwiseProduct x y) (L * M)
+  ∀ {x y : LRA.Analysis.Sequences.RealSequence} {L M : Real}, (LRA.Analysis.Sequences.ConvergesTo x L ∧ LRA.Analysis.Sequences.ConvergesTo y M) → LRA.Analysis.Sequences.ConvergesTo (LRA.Analysis.Sequences.PointwiseProduct x y) (instHMul.hMul L M)
 
 Predicate logic (unfolded):
 
-  ∀ {x y : LRA.Analysis.Sequences.RealSequence} {L M : Real}, (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x n) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x n) L))) ε ∧ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (y n) M) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (y n) M))) ε) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (instHMul.hMul (x n) (y n)) (instHMul.1 L M)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (LRA.Analysis.Sequences.PointwiseProduct x y n) (instHMul.hMul L M)))) ε
+  Ambient
+    (ℝ)
+  Objects
+    x y : RealSequence
+    L M : ℝ
+    hx : ConvergesTo x L
+    hy : ConvergesTo y M
+  Prove
+    ((∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x n) L)) ε) ∧ (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (y n) M)) ε)) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ({ hMul := fun a b => Real.instMul.mul a b }.hMul (x n) (y n)) ({ hMul := fun a b => Real.instMul.mul a b }.hMul L M))) ε
 
 Logical form (Lean):
 
@@ -642,11 +680,19 @@ theorem LimitOfAProduct {x y : RealSequence} {L M : ℝ}
 
 Predicate logic:
 
-  ∃ N ∈ ℕ, ∀ n ≥ N, x n ≠ 0
+  ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real}, (Ne L 0 ∧ LRA.Analysis.Sequences.ConvergesTo x L) → Exists fun N => ∀ (n : Nat), GE.ge n N → Ne (x n) 0
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real}, (L = Zero.toOfNat0.1 → False ∧ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x n) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x n) L))) ε) → Exists fun N => ∀ (n : Nat), instLENat.1 N n → x n = Zero.toOfNat0.1 → False
+  Ambient
+    (ℝ)
+  Objects
+    x : RealSequence
+    L : ℝ
+    hL : L ≠ 0
+    h : ConvergesTo x L
+  Prove
+    ((L = 0 → False) ∧ (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x n) L)) ε)) → Exists fun N => ∀ (n : Nat), instLENat.le N n → x n = 0 → False
 
 Logical form (Lean):
 
@@ -682,11 +728,19 @@ theorem NonzeroLimitEventuallyNonzero {x : RealSequence} {L : ℝ}
 
 Predicate logic:
 
-  (∀ n, x n ≠ 0) → ConvergesTo (ReciprocalSeq x) (1 / L)
+  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (∀ (n : Nat), Ne (x n) 0) → ∀ {L : Real}, (Ne L 0 ∧ LRA.Analysis.Sequences.ConvergesTo x L) → LRA.Analysis.Sequences.ConvergesTo (LRA.Analysis.Sequences.ReciprocalSeq x) (instHDiv.hDiv 1 L)
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (∀ (n : Nat), x n = Zero.toOfNat0.1 → False) → ∀ {L : Real}, (L = Zero.toOfNat0.1 → False ∧ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x n) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x n) L))) ε) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (instHDiv.hDiv 1 (x n)) (instHDiv.1 1 L)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (LRA.Analysis.Sequences.ReciprocalSeq x n) (instHDiv.hDiv 1 L)))) ε
+  Ambient
+    (ℝ)
+  Objects
+    x : RealSequence
+    L : ℝ
+    hL : L ≠ 0
+    h : ConvergesTo x L
+  Prove
+    (∀ (n : Nat), x n = 0 → False) → ∀ {L : Real}, ((L = 0 → False) ∧ (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x n) L)) ε)) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv 1 (x n)) ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv 1 L))) ε
 
 Logical form (Lean):
 
@@ -724,11 +778,20 @@ theorem LimitOfAReciprocal {x : RealSequence} (hx : ∀ n, x n ≠ 0)
 
 Predicate logic:
 
-  (∀ n, y n ≠ 0) → ConvergesTo (PointwiseQuotient x y) (L / M)
+  ∀ {x y : LRA.Analysis.Sequences.RealSequence}, (∀ (n : Nat), Ne (y n) 0) → ∀ {L M : Real}, (Ne M 0 ∧ (LRA.Analysis.Sequences.ConvergesTo x L ∧ LRA.Analysis.Sequences.ConvergesTo y M)) → LRA.Analysis.Sequences.ConvergesTo (LRA.Analysis.Sequences.PointwiseQuotient x y) (instHDiv.hDiv L M)
 
 Predicate logic (unfolded):
 
-  ∀ {x y : LRA.Analysis.Sequences.RealSequence}, (∀ (n : Nat), y n = Zero.toOfNat0.1 → False) → ∀ {L M : Real}, (M = Zero.toOfNat0.1 → False ∧ (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x n) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x n) L))) ε ∧ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (y n) M) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (y n) M))) ε)) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (instHDiv.hDiv (x n) (y n)) (instHDiv.1 L M)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (LRA.Analysis.Sequences.PointwiseQuotient x y n) (instHDiv.hDiv L M)))) ε
+  Ambient
+    (ℝ)
+  Objects
+    x y : RealSequence
+    L M : ℝ
+    hM : M ≠ 0
+    hx : ConvergesTo x L
+    hy' : ConvergesTo y M
+  Prove
+    (∀ (n : Nat), y n = 0 → False) → ∀ {L M : Real}, ((M = 0 → False) ∧ ((∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x n) L)) ε) ∧ (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (y n) M)) ε))) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv (x n) (y n)) ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv L M))) ε
 
 Logical form (Lean):
 
@@ -766,11 +829,18 @@ theorem LimitOfAQuotient {x y : RealSequence} (hy : ∀ n, y n ≠ 0)
 
 Predicate logic:
 
-  ConvergesTo (SquareSeq x) (L ^ 2)
+  ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real}, LRA.Analysis.Sequences.ConvergesTo x L → LRA.Analysis.Sequences.ConvergesTo (LRA.Analysis.Sequences.SquareSeq x) (instHPow.hPow L 2)
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real}, (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x n) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x n) L))) ε) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (instHPow.hPow (x n) 2) (instHPow.1 L 2)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (LRA.Analysis.Sequences.SquareSeq x n) (instHPow.hPow L 2)))) ε
+  Ambient
+    (ℝ)
+  Objects
+    x : RealSequence
+    L : ℝ
+    h : ConvergesTo x L
+  Prove
+    (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x n) L)) ε) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (instHPow.1 (x n) 2) (instHPow.1 L 2))) ε
 
 Logical form (Lean):
 
@@ -806,11 +876,18 @@ theorem LimitOfASquare {x : RealSequence} {L : ℝ}
 
 Predicate logic:
 
-  ConvergesTo (AbsSeq x) |L|
+  ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real}, LRA.Analysis.Sequences.ConvergesTo x L → LRA.Analysis.Sequences.ConvergesTo (LRA.Analysis.Sequences.AbsSeq x) (abs L)
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real}, (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x n) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x n) L))) ε) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (abs (x n)) (SemilatticeSup.toMax.max L (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg L))) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (LRA.Analysis.Sequences.AbsSeq x n) (abs L)))) ε
+  Ambient
+    (ℝ)
+  Objects
+    x : RealSequence
+    L : ℝ
+    h : ConvergesTo x L
+  Prove
+    (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x n) L)) ε) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (abs (x n)) (abs L))) ε
 
 Logical form (Lean):
 
@@ -846,11 +923,19 @@ theorem LimitOfAnAbsoluteValue {x : RealSequence} {L : ℝ}
 
 Predicate logic:
 
-  ∃ N ∈ ℕ, ∀ n ≥ N, 0 < x n
+  ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real}, (GT.gt L 0 ∧ LRA.Analysis.Sequences.ConvergesTo x L) → Exists fun N => ∀ (n : Nat), GE.ge n N → Real.instLT.lt 0 (x n)
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real}, (Real.instLT.1 Zero.toOfNat0.1 L ∧ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x n) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x n) L))) ε) → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 Zero.toOfNat0.1 (x n)
+  Ambient
+    (ℝ)
+  Objects
+    x : RealSequence
+    L : ℝ
+    hL : L > 0
+    h : ConvergesTo x L
+  Prove
+    (Real.instLT.lt 0 L ∧ (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x n) L)) ε)) → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt 0 (x n)
 
 Logical form (Lean):
 
@@ -886,11 +971,18 @@ theorem PositiveLimitEventuallyPositive {x : RealSequence} {L : ℝ}
 
 Predicate logic:
 
-  (∀ n, 0 ≤ x n) → 0 ≤ L ∧ ConvergesTo (SqrtSeq x) (Real.sqrt L)
+  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (∀ (n : Nat), Real.instLE.le 0 (x n)) → ∀ {L : Real}, LRA.Analysis.Sequences.ConvergesTo x L → (Real.instLE.le 0 L ∧ LRA.Analysis.Sequences.ConvergesTo (LRA.Analysis.Sequences.SqrtSeq x) L.sqrt)
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence}, (∀ (n : Nat), Real.instLE.1 Zero.toOfNat0.1 (x n)) → ∀ {L : Real}, (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x n) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x n) L))) ε) → (Real.instLE.1 Zero.toOfNat0.1 L ∧ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x n).sqrt L.sqrt) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (LRA.Analysis.Sequences.SqrtSeq x n) L.sqrt))) ε)
+  Ambient
+    (ℝ)
+  Objects
+    x : RealSequence
+    L : ℝ
+    h : ConvergesTo x L
+  Prove
+    (∀ (n : Nat), Real.instLE.le 0 (x n)) → ∀ {L : Real}, (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x n) L)) ε) → (Real.instLE.le 0 L ∧ (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x n).sqrt L.sqrt)) ε))
 
 Logical form (Lean):
 
@@ -928,11 +1020,19 @@ theorem LimitOfASquareRoot {x : RealSequence} (hx : ∀ n, 0 ≤ x n)
 
 Predicate logic:
 
-  ConvergesTo (fun n => p.eval (x n)) (p.eval L)
+  ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real} (p : Polynomial Real), LRA.Analysis.Sequences.ConvergesTo x L → LRA.Analysis.Sequences.ConvergesTo (fun n => Polynomial.eval (x n) p) (Polynomial.eval L p)
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real} (p : Polynomial Real), (∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x n) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x n) L))) ε) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 ((fun n => Polynomial.eval₂ (RingHom.id Real) (x n) p) n) (Polynomial.eval₂ (RingHom.id Real) L p)) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 ((fun n => Polynomial.eval (x n) p) n) (Polynomial.eval L p)))) ε
+  Ambient
+    (ℝ)
+  Objects
+    x : RealSequence
+    L : ℝ
+    p : Polynomial ℝ
+    h : ConvergesTo x L
+  Prove
+    (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x n) L)) ε) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ((fun n => Polynomial.eval₂ { toFun := fun x => x, map_one' := ⋯, map_mul' := ⋯, map_zero' := ⋯, map_add' := ⋯ } (x n) p) n) (Polynomial.eval₂ { toFun := fun x => x, map_one' := ⋯, map_mul' := ⋯, map_zero' := ⋯, map_add' := ⋯ } L p))) ε
 
 Logical form (Lean):
 
@@ -970,11 +1070,20 @@ theorem PolynomialSequenceLimit {x : RealSequence} {L : ℝ}
 
 Predicate logic:
 
-  (∀ n, q.eval (x n) ≠ 0) → ConvergesTo (fun n => p.eval (x n) / q.eval (x n)) (p.eval L / q.eval L)
+  ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real} (p q : Polynomial Real), (Ne (Polynomial.eval L q) 0 ∧ ((∀ (n : Nat), Ne (Polynomial.eval (x n) q) 0) ∧ LRA.Analysis.Sequences.ConvergesTo x L)) → LRA.Analysis.Sequences.ConvergesTo (fun n => instHDiv.hDiv (Polynomial.eval (x n) p) (Polynomial.eval (x n) q)) (instHDiv.hDiv (Polynomial.eval L p) (Polynomial.eval L q))
 
 Predicate logic (unfolded):
 
-  ∀ {x : LRA.Analysis.Sequences.RealSequence} {L : Real} (p q : Polynomial Real), (Polynomial.eval₂ { toFun := fun x => x, map_one' := ⋯, map_mul' := ⋯, map_zero' := ⋯, map_add' := ⋯ } L q = Zero.toOfNat0.1 → False ∧ (∀ (n : Nat), Polynomial.eval₂ { toFun := fun x => x, map_one' := ⋯, map_mul' := ⋯, map_zero' := ⋯, map_add' := ⋯ } (x n) q = Zero.toOfNat0.1 → False ∧ ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 (x n) L) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 (x n) L))) ε)) → ∀ (ε : Real), Real.instLT.1 Zero.toOfNat0.1 ε → Exists fun N => ∀ (n : Nat), instLENat.1 N n → Real.instLT.1 (SemilatticeSup.toMax.1 (instHSub.1 ((fun n => instHDiv.1 (Polynomial.eval (x n) p) (Polynomial.eval (x n) q)) n) (instHDiv.1 (Polynomial.eval L p) (Polynomial.eval L q))) (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.toNeg.1 (instHSub.1 ((fun n => instHDiv.hDiv (Polynomial.eval (x n) p) (Polynomial.eval (x n) q)) n) (instHDiv.hDiv (Polynomial.eval L p) (Polynomial.eval L q))))) ε
+  Ambient
+    (ℝ)
+  Objects
+    x : RealSequence
+    L : ℝ
+    p q : Polynomial ℝ
+    hqL : q.eval L ≠ 0
+    h : ConvergesTo x L
+  Prove
+    ((Polynomial.eval₂ { toFun := fun x => x, map_one' := ⋯, map_mul' := ⋯, map_zero' := ⋯, map_add' := ⋯ } L q = 0 → False) ∧ ((∀ (n : Nat), Polynomial.eval₂ { toFun := fun x => x, map_one' := ⋯, map_mul' := ⋯, map_zero' := ⋯, map_add' := ⋯ } (x n) q = 0 → False) ∧ (∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub (x n) L)) ε))) → ∀ (ε : Real), Real.instLT.lt 0 ε → Exists fun N => ∀ (n : Nat), instLENat.le N n → Real.instLT.lt (abs ({ hSub := fun a b => Real.instSub.sub a b }.hSub ((fun n => { hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv (Polynomial.eval₂ { toFun := fun x => x, map_one' := ⋯, map_mul' := ⋯, map_zero' := ⋯, map_add' := ⋯ } (x n) p) (Polynomial.eval₂ { toFun := fun x => x, map_one' := ⋯, map_mul' := ⋯, map_zero' := ⋯, map_add' := ⋯ } (x n) q)) n) ({ hDiv := fun a b => Real.instDivInvMonoid.3.div a b }.hDiv (Polynomial.eval₂ { toFun := fun x => x, map_one' := ⋯, map_mul' := ⋯, map_zero' := ⋯, map_add' := ⋯ } L p) (Polynomial.eval₂ { toFun := fun x => x, map_one' := ⋯, map_mul' := ⋯, map_zero' := ⋯, map_add' := ⋯ } L q)))) ε
 
 Logical form (Lean):
 

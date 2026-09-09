@@ -12,11 +12,18 @@ universe u
 
 Predicate logic:
 
-  RightDistributive outer inner
+  ∀ {Carrier : Type u} {outer inner : LRA.Operation.BinaryEndoOperation Carrier}, (LRA.Operation.Laws.Commutative.Commutative outer ∧ LRA.Operation.Laws.Distributive.LeftDistributive outer inner) → LRA.Operation.Laws.Distributive.RightDistributive outer inner
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {outer inner : Carrier → Carrier → Carrier}, (∀ (first second : Carrier), outer first second = outer second first ∧ ∀ (left right third : Carrier), outer left (inner right third) = inner (outer left right) (outer left third)) → ∀ (left right third : Carrier), outer (inner left right) third = inner (outer left third) (outer right third)
+  Ambient
+    (Carrier)
+  Objects
+    outer inner : BinaryEndoOperation Carrier
+    outerCommutative : LRA.Operation.Laws.Commutative.Commutative outer
+    leftLaw : LeftDistributive outer inner
+  Prove
+    ((∀ (first second : Carrier), outer first second = outer second first) ∧ (∀ (left right third : Carrier), outer left (inner right third) = inner (outer left right) (outer left third))) → ∀ (left right third : Carrier), outer (inner left right) third = inner (outer left third) (outer right third)
 
 Logical form (Lean):
 
@@ -60,11 +67,18 @@ theorem Commutative.left_distributive_to_right_distributive {Carrier : Type u}
 
 Predicate logic:
 
-  LeftDistributive outer inner
+  ∀ {Carrier : Type u} {outer inner : LRA.Operation.BinaryEndoOperation Carrier}, (LRA.Operation.Laws.Commutative.Commutative outer ∧ LRA.Operation.Laws.Distributive.RightDistributive outer inner) → LRA.Operation.Laws.Distributive.LeftDistributive outer inner
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {outer inner : Carrier → Carrier → Carrier}, (∀ (first second : Carrier), outer first second = outer second first ∧ ∀ (left right third : Carrier), outer (inner left right) third = inner (outer left third) (outer right third)) → ∀ (left right third : Carrier), outer left (inner right third) = inner (outer left right) (outer left third)
+  Ambient
+    (Carrier)
+  Objects
+    outer inner : BinaryEndoOperation Carrier
+    outerCommutative : LRA.Operation.Laws.Commutative.Commutative outer
+    rightLaw : RightDistributive outer inner
+  Prove
+    ((∀ (first second : Carrier), outer first second = outer second first) ∧ (∀ (left right third : Carrier), outer (inner left right) third = inner (outer left third) (outer right third))) → ∀ (left right third : Carrier), outer left (inner right third) = inner (outer left right) (outer left third)
 
 Logical form (Lean):
 

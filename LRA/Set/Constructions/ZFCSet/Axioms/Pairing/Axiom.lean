@@ -7,11 +7,16 @@ namespace LRA.Set.Constructions.ZFCSet.Axioms
 
 Predicate logic:
 
-  (∀ A B ∈ ZFCSet), ∃ C ∈ ZFCSet, ∀ x : ZFCSet, x ∈ C ↔ x = A ∨ x = B end LRA.Set.Constructions.ZFCSet.Axioms
+  ∀ (A B : LRA.Set.Constructions.ZFCSet), Exists fun C => ∀ (x : LRA.Set.Constructions.ZFCSet), LRA.Set.Constructions.instMembershipZFCSet.mem C x ↔ Or (x = A)(x = B)
 
 Predicate logic (unfolded):
 
-  ∀ (A B : LRA.Set.Constructions.ZFCSet), Exists fun C => ∀ (x : LRA.Set.Constructions.ZFCSet), LRA.Set.instMembershipZFCSet.1 C x ↔ Or (x = A)(x = B)
+  Ambient
+    (implicit ambient)
+  Objects
+    A B : ZFCSet
+  Prove
+    Exists fun C => ∀ (x : LRA.Set.Constructions.ZFCSet), LRA.Set.Constructions.instMembershipZFCSet.mem C x ↔ Or (x = A)(x = B)
 
 Logical form (Lean):
 

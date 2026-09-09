@@ -11,16 +11,16 @@ namespace LRA.ModelTheory.FirstOrder
 Predicate logic:
 
   noncomputable def ModelIsomorphism.toEquiv
-    {S : Signature} {M₁ M₂ : Model S} (iso : ModelIsomorphism M₁ M₂) :
-    M₁.Domain ≃ M₂.Domain :=
-  Equiv.ofBijective iso.toFun iso.bijective
+      {S : Signature} {M₁ M₂ : Model S} (iso : ModelIsomorphism M₁ M₂) :
+      M₁.Domain ≃ M₂.Domain :=
+    Equiv.ofBijective iso.toFun iso.bijective
 
 Predicate logic (unfolded):
 
   noncomputable def ModelIsomorphism.toEquiv
-    {S : Signature} {M₁ M₂ : Model S} (iso : ModelIsomorphism M₁ M₂) :
-    M₁.Domain ≃ M₂.Domain :=
-  Equiv.ofBijective iso.toFun iso.bijective (source fallback; no compiled unfold data available)
+      {S : Signature} {M₁ M₂ : Model S} (iso : ModelIsomorphism M₁ M₂) :
+      M₁.Domain ≃ M₂.Domain :=
+    Equiv.ofBijective iso.toFun iso.bijective (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -60,11 +60,19 @@ noncomputable def ModelIsomorphism.toEquiv
 
 Predicate logic:
 
-  (∀ x ∈ M₁.Domain), iso.toEquiv x = iso.toFun x
+  ∀ {S : LRA.Logic.Signature} {M₁ : LRA.ModelTheory.FirstOrder.Model S} {M₂ : LRA.ModelTheory.FirstOrder.Model S} (iso : LRA.ModelTheory.FirstOrder.ModelIsomorphism M₁ M₂) (x : M₁.Domain), EquivLike.toFunLike.coe iso.toEquiv x = iso.toFun x
 
 Predicate logic (unfolded):
 
-  ∀ {S : LRA.Logic.Signature} {M₁ : LRA.ModelTheory.FirstOrder.Model S} {M₂ : LRA.ModelTheory.FirstOrder.Model S} (iso : LRA.ModelTheory.FirstOrder.ModelIsomorphism M₁ M₂) (x : M₁.1), EquivLike.toFunLike.1 { toFun := iso.toModelEmbedding.1, invFun := fun b => (Classical.indefiniteDescription (fun x => iso.toFun x = b)⋯).1, left_inv := ⋯, right_inv := ⋯ } x = iso.toModelEmbedding.1 x
+  Ambient
+    (implicit ambient)
+  Objects
+    S : Signature
+    M₁ M₂ : Model S
+    iso : ModelIsomorphism M₁ M₂
+    x : M₁.Domain
+  Prove
+    EquivLike.toFunLike.1 { toFun := iso.toModelEmbedding.1, invFun := fun b => (Classical.indefiniteDescription (fun x => iso.toFun x = b)⋯).1, left_inv := ⋯, right_inv := ⋯ } x = iso.toModelEmbedding.1 x
 
 Logical form (Lean):
 
@@ -103,16 +111,16 @@ theorem ModelIsomorphism.toEquiv_apply
 Predicate logic:
 
   noncomputable def ModelIsomorphism.inverseEmbedding
-    {S : Signature} {M₁ M₂ : Model S} (iso : ModelIsomorphism M₁ M₂) :
-    ModelEmbedding M₂ M₁ where
-  toFun
+      {S : Signature} {M₁ M₂ : Model S} (iso : ModelIsomorphism M₁ M₂) :
+      ModelEmbedding M₂ M₁ where
+    toFun
 
 Predicate logic (unfolded):
 
   noncomputable def ModelIsomorphism.inverseEmbedding
-    {S : Signature} {M₁ M₂ : Model S} (iso : ModelIsomorphism M₁ M₂) :
-    ModelEmbedding M₂ M₁ where
-  toFun (source fallback; no compiled unfold data available)
+      {S : Signature} {M₁ M₂ : Model S} (iso : ModelIsomorphism M₁ M₂) :
+      ModelEmbedding M₂ M₁ where
+    toFun (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

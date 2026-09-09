@@ -12,7 +12,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (positive_data : LRA.NumberSystems.Integers.Mendelson.PositiveNaturalPairData) (first second : LRA.NumberSystems.Integers.Mendelson.PositivePair positive_data), positive_data.4 first.1 second.2 = positive_data.4 second.1 first.2
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    positive_data.4 first.1 second.2 = positive_data.4 second.1 first.2
 
 Logical form (Lean):
 
@@ -54,11 +59,16 @@ def equivalent
 
 Predicate logic:
 
-  (∀ positive_data ∈ PositiveNaturalPairData), Equivalence (equivalent positive_data)
+  ∀ (positive_data : LRA.NumberSystems.Integers.Mendelson.PositiveNaturalPairData), Equivalence (LRA.NumberSystems.Integers.Mendelson.equivalent positive_data)
 
 Predicate logic (unfolded):
 
-  ∀ (positive_data : LRA.NumberSystems.Integers.Mendelson.PositiveNaturalPairData), Equivalence fun first second => positive_data.4 first.1 second.2 = positive_data.4 second.1 first.2
+  Ambient
+    (implicit ambient)
+  Objects
+    positive_data : PositiveNaturalPairData
+  Prove
+    Equivalence fun first second => positive_data.4 first.1 second.2 = positive_data.4 second.1 first.2
 
 Logical form (Lean):
 
@@ -97,16 +107,16 @@ theorem equivalent_is_equivalence_relation
 Predicate logic:
 
   def setoid (positive_data : PositiveNaturalPairData) :
-    Setoid (PositivePair positive_data) where
-  r := equivalent positive_data
-  iseqv := equivalent_is_equivalence_relation positive_data
+      Setoid (PositivePair positive_data) where
+    r := equivalent positive_data
+    iseqv := equivalent_is_equivalence_relation positive_data
 
 Predicate logic (unfolded):
 
   def setoid (positive_data : PositiveNaturalPairData) :
-    Setoid (PositivePair positive_data) where
-  r := equivalent positive_data
-  iseqv := equivalent_is_equivalence_relation positive_data (source fallback; no compiled unfold data available)
+      Setoid (PositivePair positive_data) where
+    r := equivalent positive_data
+    iseqv := equivalent_is_equivalence_relation positive_data (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -147,12 +157,12 @@ def setoid (positive_data : PositiveNaturalPairData) :
 Predicate logic:
 
   abbrev Carrier (positive_data : PositiveNaturalPairData) :=
-  Quotient (setoid positive_data)
+    Quotient (setoid positive_data)
 
 Predicate logic (unfolded):
 
   abbrev Carrier (positive_data : PositiveNaturalPairData) :=
-  Quotient (setoid positive_data) (source fallback; no compiled unfold data available)
+    Quotient (setoid positive_data) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

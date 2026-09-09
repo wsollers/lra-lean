@@ -9,11 +9,17 @@ variable {S : Type*}
 
 Predicate logic:
 
-  (IsMaximum m₁ A ∧ IsMaximum m₂ A) → m₁ = m₂
+  ∀ {S : Type u_1} [inst : PartialOrder S] {A : Set S} {m₁ m₂ : S}, (LRA.Analysis.Bounds.IsMaximum m₁ A ∧ LRA.Analysis.Bounds.IsMaximum m₂ A) → m₁ = m₂
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : PartialOrder S] {A : S → Prop} {m₁ m₂ : S}, ((Set.instMembership.1 A m₁ ∧ ∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 x m₁) ∧ (Set.instMembership.1 A m₂ ∧ ∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 x m₂)) → m₁ = m₂
+  Ambient
+    (S, ≤)
+  Objects
+    A : Set S
+    m₁ m₂ : S
+  Prove
+    ((m₁ ∈ A ∧ (∀ (x : S), x ∈ A → inst.toPreorder.1.le x m₁)) ∧ (m₂ ∈ A ∧ (∀ (x : S), x ∈ A → inst.toPreorder.1.le x m₂))) → m₁ = m₂
 
 Logical form (Lean):
 
@@ -49,11 +55,17 @@ theorem MaximumUnique [PartialOrder S] {A : Set S} {m₁ m₂ : S}
 
 Predicate logic:
 
-  (IsMinimum m₁ A ∧ IsMinimum m₂ A) → m₁ = m₂
+  ∀ {S : Type u_1} [inst : PartialOrder S] {A : Set S} {m₁ m₂ : S}, (LRA.Analysis.Bounds.IsMinimum m₁ A ∧ LRA.Analysis.Bounds.IsMinimum m₂ A) → m₁ = m₂
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : PartialOrder S] {A : S → Prop} {m₁ m₂ : S}, ((Set.instMembership.1 A m₁ ∧ ∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 m₁ x) ∧ (Set.instMembership.1 A m₂ ∧ ∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 m₂ x)) → m₁ = m₂
+  Ambient
+    (S, ≤)
+  Objects
+    A : Set S
+    m₁ m₂ : S
+  Prove
+    ((m₁ ∈ A ∧ (∀ (x : S), x ∈ A → inst.toPreorder.1.le m₁ x)) ∧ (m₂ ∈ A ∧ (∀ (x : S), x ∈ A → inst.toPreorder.1.le m₂ x))) → m₁ = m₂
 
 Logical form (Lean):
 
@@ -89,11 +101,17 @@ theorem MinimumUnique [PartialOrder S] {A : Set S} {m₁ m₂ : S}
 
 Predicate logic:
 
-  (IsMaximum m A) → IsSupremum m A
+  ∀ {S : Type u_1} [inst : PartialOrder S] {A : Set S} {m : S}, LRA.Analysis.Bounds.IsMaximum m A → LRA.Analysis.Bounds.IsSupremum m A
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : PartialOrder S] {A : S → Prop} {m : S}, (Set.instMembership.1 A m ∧ ∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 x m) → (∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 x m ∧ ∀ (u : S), (∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 x u) → inst.toLE.1 m u)
+  Ambient
+    (S, ≤)
+  Objects
+    A : Set S
+    m : S
+  Prove
+    (m ∈ A ∧ (∀ (x : S), x ∈ A → inst.toPreorder.1.le x m)) → ((∀ (x : S), x ∈ A → inst.toPreorder.1.le x m) ∧ (∀ (u : S), (∀ (x : S), x ∈ A → inst.toPreorder.1.le x u) → inst.toPreorder.1.le m u))
 
 Logical form (Lean):
 
@@ -129,11 +147,17 @@ theorem MaximumIsSupremum [PartialOrder S] {A : Set S} {m : S}
 
 Predicate logic:
 
-  (IsMinimum m A) → IsInfimum m A
+  ∀ {S : Type u_1} [inst : PartialOrder S] {A : Set S} {m : S}, LRA.Analysis.Bounds.IsMinimum m A → LRA.Analysis.Bounds.IsInfimum m A
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : PartialOrder S] {A : S → Prop} {m : S}, (Set.instMembership.1 A m ∧ ∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 m x) → (∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 m x ∧ ∀ (l : S), (∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 l x) → inst.toLE.1 l m)
+  Ambient
+    (S, ≤)
+  Objects
+    A : Set S
+    m : S
+  Prove
+    (m ∈ A ∧ (∀ (x : S), x ∈ A → inst.toPreorder.1.le m x)) → ((∀ (x : S), x ∈ A → inst.toPreorder.1.le m x) ∧ (∀ (l : S), (∀ (x : S), x ∈ A → inst.toPreorder.1.le l x) → inst.toPreorder.1.le l m))
 
 Logical form (Lean):
 
@@ -169,11 +193,17 @@ theorem MinimumIsInfimum [PartialOrder S] {A : Set S} {m : S}
 
 Predicate logic:
 
-  (IsSupremum s A ∧ s ∈ A) → IsMaximum s A
+  ∀ {S : Type u_1} [inst : Preorder S] {A : Set S} {s : S}, (LRA.Analysis.Bounds.IsSupremum s A ∧ s ∈ A) → LRA.Analysis.Bounds.IsMaximum s A
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : Preorder S] {A : S → Prop} {s : S}, ((∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 x s ∧ ∀ (u : S), (∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 x u) → inst.toLE.1 s u) ∧ Set.instMembership.1 A s) → (Set.instMembership.1 A s ∧ ∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 x s)
+  Ambient
+    (S, ≤)
+  Objects
+    A : Set S
+    s : S
+  Prove
+    (((∀ (x : S), x ∈ A → inst.1.le x s) ∧ (∀ (u : S), (∀ (x : S), x ∈ A → inst.1.le x u) → inst.1.le s u)) ∧ s ∈ A) → (s ∈ A ∧ (∀ (x : S), x ∈ A → inst.1.le x s))
 
 Logical form (Lean):
 
@@ -211,11 +241,17 @@ theorem SupremumInSetIsMaximum [Preorder S] {A : Set S} {s : S}
 
 Predicate logic:
 
-  (IsInfimum i A ∧ i ∈ A) → IsMinimum i A
+  ∀ {S : Type u_1} [inst : Preorder S] {A : Set S} {i : S}, (LRA.Analysis.Bounds.IsInfimum i A ∧ i ∈ A) → LRA.Analysis.Bounds.IsMinimum i A
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : Preorder S] {A : S → Prop} {i : S}, ((∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 i x ∧ ∀ (l : S), (∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 l x) → inst.toLE.1 l i) ∧ Set.instMembership.1 A i) → (Set.instMembership.1 A i ∧ ∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 i x)
+  Ambient
+    (S, ≤)
+  Objects
+    A : Set S
+    i : S
+  Prove
+    (((∀ (x : S), x ∈ A → inst.1.le i x) ∧ (∀ (l : S), (∀ (x : S), x ∈ A → inst.1.le l x) → inst.1.le l i)) ∧ i ∈ A) → (i ∈ A ∧ (∀ (x : S), x ∈ A → inst.1.le i x))
 
 Logical form (Lean):
 
@@ -253,11 +289,17 @@ theorem InfimumInSetIsMinimum [Preorder S] {A : Set S} {i : S}
 
 Predicate logic:
 
-  IsMaximum s A ↔ IsSupremum s A ∧ s ∈ A
+  ∀ {S : Type u_1} [inst : PartialOrder S] {A : Set S} {s : S}, LRA.Analysis.Bounds.IsMaximum s A ↔ (LRA.Analysis.Bounds.IsSupremum s A ∧ s ∈ A)
 
 Predicate logic (unfolded):
 
-  ∀ {S : Type u_1} [inst : PartialOrder S] {A : S → Prop} {s : S}, (Set.instMembership.1 A s ∧ ∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 x s) ↔ ((∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 x s ∧ ∀ (u : S), (∀ (x : S), Set.instMembership.1 A x → inst.toLE.1 x u) → inst.toLE.1 s u) ∧ Set.instMembership.1 A s)
+  Ambient
+    (S, ≤)
+  Objects
+    A : Set S
+    s : S
+  Prove
+    LRA.Analysis.Bounds.IsMaximum s A ↔ (LRA.Analysis.Bounds.IsSupremum s A ∧ s ∈ A)
 
 Logical form (Lean):
 

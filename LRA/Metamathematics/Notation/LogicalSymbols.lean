@@ -8,14 +8,14 @@ namespace LRA.Metamathematics.Notation
 Predicate logic:
 
   inductive LogicalConnective where
-  | neg
-  | impl
+    | neg
+    | impl
 
 Predicate logic (unfolded):
 
   inductive LogicalConnective where
-  | neg
-  | impl (source fallback; no compiled unfold data available)
+    | neg
+    | impl (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -54,18 +54,18 @@ inductive LogicalConnective where
 Predicate logic:
 
   def LogicalConnectives : LRA.Logic.ArityIndexedSymbols where
-  Symbol := LogicalConnective
-  arity
-    | .neg => 1
-    | .impl => 2
+    Symbol := LogicalConnective
+    arity
+      | .neg => 1
+      | .impl => 2
 
 Predicate logic (unfolded):
 
   def LogicalConnectives : LRA.Logic.ArityIndexedSymbols where
-  Symbol := LogicalConnective
-  arity
-    | .neg => 1
-    | .impl => 2 (source fallback; no compiled unfold data available)
+    Symbol := LogicalConnective
+    arity
+      | .neg => 1
+      | .impl => 2 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -107,11 +107,16 @@ def LogicalConnectives : LRA.Logic.ArityIndexedSymbols where
 
 Predicate logic:
 
-  LogicalConnectives.IsUnary .neg
+  LRA.Metamathematics.Notation.LogicalConnectives.IsUnary LRA.Metamathematics.Notation.LogicalConnective.neg
 
 Predicate logic (unfolded):
 
-  LRA.Metamathematics.Notation.LogicalConnectives.2 LRA.Metamathematics.Notation.LogicalConnective.neg = instOfNatNat 1.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Metamathematics.Notation.LogicalConnectives.2 LRA.Metamathematics.Notation.LogicalConnective.neg = 1
 
 Logical form (Lean):
 
@@ -147,11 +152,16 @@ theorem LogicalConnectives.negIsUnary :
 
 Predicate logic:
 
-  LogicalConnectives.IsBinary .impl
+  LRA.Metamathematics.Notation.LogicalConnectives.IsBinary LRA.Metamathematics.Notation.LogicalConnective.impl
 
 Predicate logic (unfolded):
 
-  LRA.Metamathematics.Notation.LogicalConnectives.2 LRA.Metamathematics.Notation.LogicalConnective.impl = instOfNatNat 2.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Metamathematics.Notation.LogicalConnectives.2 LRA.Metamathematics.Notation.LogicalConnective.impl = 2
 
 Logical form (Lean):
 
@@ -188,12 +198,12 @@ theorem LogicalConnectives.implIsBinary :
 Predicate logic:
 
   inductive LogicalEquality where
-  | eq
+    | eq
 
 Predicate logic (unfolded):
 
   inductive LogicalEquality where
-  | eq (source fallback; no compiled unfold data available)
+    | eq (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -230,16 +240,16 @@ inductive LogicalEquality where
 Predicate logic:
 
   def LogicalEqualitySymbols : LRA.Logic.ArityIndexedSymbols where
-  Symbol := LogicalEquality
-  arity
-    | .eq => 2
+    Symbol := LogicalEquality
+    arity
+      | .eq => 2
 
 Predicate logic (unfolded):
 
   def LogicalEqualitySymbols : LRA.Logic.ArityIndexedSymbols where
-  Symbol := LogicalEquality
-  arity
-    | .eq => 2 (source fallback; no compiled unfold data available)
+    Symbol := LogicalEquality
+    arity
+      | .eq => 2 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -279,11 +289,16 @@ def LogicalEqualitySymbols : LRA.Logic.ArityIndexedSymbols where
 
 Predicate logic:
 
-  LogicalEqualitySymbols.IsBinary .eq
+  LRA.Metamathematics.Notation.LogicalEqualitySymbols.IsBinary LRA.Metamathematics.Notation.LogicalEquality.eq
 
 Predicate logic (unfolded):
 
-  LRA.Metamathematics.Notation.LogicalEqualitySymbols.2 LRA.Metamathematics.Notation.LogicalEquality.eq = instOfNatNat 2.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Metamathematics.Notation.LogicalEqualitySymbols.2 LRA.Metamathematics.Notation.LogicalEquality.eq = 2
 
 Logical form (Lean):
 
@@ -320,12 +335,12 @@ theorem LogicalEqualitySymbols.eqIsBinary :
 Predicate logic:
 
   inductive LogicalQuantifier where
-  | forallQ
+    | forallQ
 
 Predicate logic (unfolded):
 
   inductive LogicalQuantifier where
-  | forallQ (source fallback; no compiled unfold data available)
+    | forallQ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

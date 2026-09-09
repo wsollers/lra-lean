@@ -13,11 +13,17 @@ universe u v w
 
 Predicate logic:
 
-  (∀ x ∈ Element), UpperBound relation ∅ ∈ SetObject x
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ (relation : LRA.Relation.Endorelation Element) (bound : Element), LRA.Order.UpperBound relation inst_4.emptyCollection bound
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ (relation : Element → Element → Prop) (bound element : Element), inst.1 inst_4.1 element → relation element bound
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    bound : Element
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ (relation : Element → Element → Prop) (bound element : Element), inst.1 inst_4.1 element → relation element bound
 
 Logical form (Lean):
 
@@ -67,11 +73,19 @@ theorem UpperBoundOfEmpty
 
 Predicate logic:
 
-  (∀ A B ∈ U ∀ x ∈ Element), (forall element, element ∈ A -> element ∈ B) → UpperBound relation A x
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {relation : LRA.Relation.Endorelation Element} {smaller larger : SetObject} {bound : Element}, ((∀ (element : Element), element ∈ smaller → element ∈ larger) ∧ LRA.Order.UpperBound relation larger bound) → LRA.Order.UpperBound relation smaller bound
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] {relation : Element → Element → Prop} {smaller larger : SetObject} {bound : Element}, (∀ (element : Element), inst.1 smaller element → inst.1 larger element ∧ ∀ (element : Element), inst.1 larger element → relation element bound) → ∀ (element : Element), inst.1 smaller element → relation element bound
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    smaller larger : SetObject
+    bound : Element
+    boundIsUpperForLarger : UpperBound relation larger bound
+  Prove
+    ((∀ (element : Element), inst.1 smaller element → inst.1 larger element) ∧ (∀ (element : Element), inst.1 larger element → relation element bound)) → ∀ (element : Element), inst.1 smaller element → relation element bound
 
 Logical form (Lean):
 
@@ -119,11 +133,20 @@ theorem UpperBoundOfSubcollection
 
 Predicate logic:
 
-  (∀ A B ∈ U ∀ x ∈ Element), UpperBound relation (A ∪ B) x
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ {relation : LRA.Relation.Endorelation Element} {leftSubset rightSubset : SetObject} {bound : Element}, (LRA.Order.UpperBound relation leftSubset bound ∧ LRA.Order.UpperBound relation rightSubset bound) → LRA.Order.UpperBound relation (leftSubset ∪ rightSubset)bound
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {leftSubset rightSubset : SetObject} {bound : Element}, (∀ (element : Element), inst.1 leftSubset element → relation element bound ∧ ∀ (element : Element), inst.1 rightSubset element → relation element bound) → ∀ (element : Element), inst.1 (inst_1.1 leftSubset rightSubset) element → relation element bound
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    leftSubset rightSubset : SetObject
+    bound : Element
+    boundIsUpperForLeft : UpperBound relation leftSubset bound
+    boundIsUpperForRight : UpperBound relation rightSubset bound
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {leftSubset rightSubset : SetObject} {bound : Element}, ((∀ (element : Element), inst.1 leftSubset element → relation element bound) ∧ (∀ (element : Element), inst.1 rightSubset element → relation element bound)) → ∀ (element : Element), inst.1 (inst_1.1 leftSubset rightSubset) element → relation element bound
 
 Logical form (Lean):
 
@@ -177,11 +200,18 @@ theorem UpperBoundOfUnion
 
 Predicate logic:
 
-  (∀ A B ∈ U ∀ x ∈ Element), UpperBound relation (A ∪ B) x ↔ UpperBound relation A x ∧ UpperBound relation B x
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ {relation : LRA.Relation.Endorelation Element} {leftSubset rightSubset : SetObject} {bound : Element}, LRA.Order.UpperBound relation (leftSubset ∪ rightSubset)bound ↔ (LRA.Order.UpperBound relation leftSubset bound ∧ LRA.Order.UpperBound relation rightSubset bound)
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {leftSubset rightSubset : SetObject} {bound : Element}, ∀ (element : Element), inst.1 (inst_1.1 leftSubset rightSubset) element → relation element bound ↔ (∀ (element : Element), inst.1 leftSubset element → relation element bound ∧ ∀ (element : Element), inst.1 rightSubset element → relation element bound)
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    leftSubset rightSubset : SetObject
+    bound : Element
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ {relation : LRA.Relation.Endorelation Element} {leftSubset rightSubset : SetObject} {bound : Element}, LRA.Order.UpperBound relation (leftSubset ∪ rightSubset)bound ↔ (LRA.Order.UpperBound relation leftSubset bound ∧ LRA.Order.UpperBound relation rightSubset bound)
 
 Logical form (Lean):
 
@@ -235,11 +265,18 @@ theorem UpperBoundOfUnionIff
 
 Predicate logic:
 
-  (∀ A B ∈ U ∀ x ∈ Element), (UpperBound relation A x ∨ UpperBound relation B x) → UpperBound relation (A ∩ B) x
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ {relation : LRA.Relation.Endorelation Element} {leftSubset rightSubset : SetObject} {bound : Element}, Or (LRA.Order.UpperBound relation leftSubset bound) (LRA.Order.UpperBound relation rightSubset bound) → LRA.Order.UpperBound relation (leftSubset ∩ rightSubset)bound
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {leftSubset rightSubset : SetObject} {bound : Element}, Or (∀ (element : Element), inst.1 leftSubset element → relation element bound) (∀ (element : Element), inst.1 rightSubset element → relation element bound) → ∀ (element : Element), inst.1 (inst_2.1 leftSubset rightSubset) element → relation element bound
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    leftSubset rightSubset : SetObject
+    bound : Element
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {leftSubset rightSubset : SetObject} {bound : Element}, Or (∀ (element : Element), inst.1 leftSubset element → relation element bound) (∀ (element : Element), inst.1 rightSubset element → relation element bound) → ∀ (element : Element), inst.1 (inst_2.1 leftSubset rightSubset) element → relation element bound
 
 Logical form (Lean):
 
@@ -295,11 +332,19 @@ theorem UpperBoundOfIntersection
 
 Predicate logic:
 
-  (∀ A B ∈ U ∀ x ∈ Element), UpperBound relation (A \ B) x
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ {relation : LRA.Relation.Endorelation Element} {subset removed : SetObject} {bound : Element}, LRA.Order.UpperBound relation subset bound → LRA.Order.UpperBound relation (subset \ removed)bound
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : Union SetObject] [inst_2 : Inter SetObject] [inst_3 : SDiff SetObject] [inst_4 : EmptyCollection SetObject] [inst_5 : HasSubset SetObject], LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {subset removed : SetObject} {bound : Element}, (∀ (element : Element), inst.1 subset element → relation element bound) → ∀ (element : Element), inst.1 (inst_3.1 subset removed) element → relation element bound
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    subset removed : SetObject
+    bound : Element
+    boundIsUpperForSubset : UpperBound relation subset bound
+  Prove
+    LRA.Set.MembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {subset removed : SetObject} {bound : Element}, (∀ (element : Element), inst.1 subset element → relation element bound) → ∀ (element : Element), inst.1 (inst_3.1 subset removed) element → relation element bound
 
 Logical form (Lean):
 
@@ -351,11 +396,20 @@ theorem UpperBoundOfDifference
 
 Predicate logic:
 
-  (∀ A B ∈ U ∀ x ∈ Element), UpperBound relation (A ∆ B) x
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasSymmDiff SetObject] [inst_2 : Union SetObject] [inst_3 : Inter SetObject] [inst_4 : SDiff SetObject] [inst_5 : EmptyCollection SetObject] [inst_6 : HasSubset SetObject], (LRA.Set.MembershipLaws Element SetObject ∧ LRA.Set.SymmDiffMembershipLaws Element SetObject) → ∀ {relation : LRA.Relation.Endorelation Element} {leftSubset rightSubset : SetObject} {bound : Element}, (LRA.Order.UpperBound relation leftSubset bound ∧ LRA.Order.UpperBound relation rightSubset bound) → LRA.Order.UpperBound relation (inst_1.symmDiff leftSubset rightSubset) bound
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasSymmDiff SetObject] [inst_2 : Union SetObject] [inst_3 : Inter SetObject] [inst_4 : SDiff SetObject] [inst_5 : EmptyCollection SetObject] [inst_6 : HasSubset SetObject], (LRA.Set.MembershipLaws Element SetObject ∧ LRA.Set.SymmDiffMembershipLaws Element SetObject) → ∀ {relation : Element → Element → Prop} {leftSubset rightSubset : SetObject} {bound : Element}, (∀ (element : Element), inst.1 leftSubset element → relation element bound ∧ ∀ (element : Element), inst.1 rightSubset element → relation element bound) → ∀ (element : Element), inst.1 (inst_1.1 leftSubset rightSubset) element → relation element bound
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    leftSubset rightSubset : SetObject
+    bound : Element
+    boundIsUpperForLeft : UpperBound relation leftSubset bound
+    boundIsUpperForRight : UpperBound relation rightSubset bound
+  Prove
+    (LRA.Set.MembershipLaws Element SetObject ∧ LRA.Set.SymmDiffMembershipLaws Element SetObject) → ∀ {relation : Element → Element → Prop} {leftSubset rightSubset : SetObject} {bound : Element}, ((∀ (element : Element), inst.1 leftSubset element → relation element bound) ∧ (∀ (element : Element), inst.1 rightSubset element → relation element bound)) → ∀ (element : Element), inst.1 (inst_1.1 leftSubset rightSubset) element → relation element bound
 
 Logical form (Lean):
 
@@ -413,11 +467,18 @@ theorem UpperBoundOfSymmetricDifference
 
 Predicate logic:
 
-  (∀ x ∈ Element), UpperBound relation (LRA.Set.HasIndexedUnion.indexedUnion family) x ↔ forall index, UpperBound relation (family index) x
+  ∀ {Element : Type u} {SetObject : Type v} {Index : Type w} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasIndexedUnion SetObject] [inst_2 : LRA.Set.HasIndexedIntersection SetObject], LRA.Set.IndexedMembershipLaws Element SetObject → ∀ {relation : LRA.Relation.Endorelation Element} {family : Index → SetObject} {bound : Element}, LRA.Order.UpperBound relation (inst_1.indexedUnion family) bound ↔ ∀ (index : Index), LRA.Order.UpperBound relation (family index) bound
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} {Index : Type w} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasIndexedUnion SetObject] [inst_2 : LRA.Set.HasIndexedIntersection SetObject], LRA.Set.IndexedMembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {family : Index → SetObject} {bound : Element}, ∀ (element : Element), inst.1 (inst_1.1 family) element → relation element bound ↔ ∀ (index : Index) (element : Element), inst.1 (family index) element → relation element bound
+  Ambient
+    (Element, SetObject, Index, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    family : Index -> SetObject
+    bound : Element
+  Prove
+    LRA.Set.IndexedMembershipLaws Element SetObject → ∀ {relation : LRA.Relation.Endorelation Element} {family : Index → SetObject} {bound : Element}, LRA.Order.UpperBound relation (inst_1.indexedUnion family) bound ↔ ∀ (index : Index), LRA.Order.UpperBound relation (family index) bound
 
 Logical form (Lean):
 
@@ -469,11 +530,20 @@ theorem UpperBoundOfIndexedUnionIff
 
 Predicate logic:
 
-  (∀ index ∈ Index ∀ x ∈ Element), UpperBound relation (LRA.Set.HasIndexedIntersection.indexedIntersection family) x
+  ∀ {Element : Type u} {SetObject : Type v} {Index : Type w} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasIndexedUnion SetObject] [inst_2 : LRA.Set.HasIndexedIntersection SetObject], LRA.Set.IndexedMembershipLaws Element SetObject → ∀ {relation : LRA.Relation.Endorelation Element} {family : Index → SetObject} (index : Index) {bound : Element}, LRA.Order.UpperBound relation (family index) bound → LRA.Order.UpperBound relation (inst_2.indexedIntersection family) bound
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} {Index : Type w} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasIndexedUnion SetObject] [inst_2 : LRA.Set.HasIndexedIntersection SetObject], LRA.Set.IndexedMembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {family : Index → SetObject} (index : Index) {bound : Element}, (∀ (element : Element), inst.1 (family index) element → relation element bound) → ∀ (element : Element), inst.1 (inst_2.1 family) element → relation element bound
+  Ambient
+    (Element, SetObject, Index, ∈)
+  Objects
+    relation : LRA.Relation.Endorelation Element
+    family : Index -> SetObject
+    index : Index
+    bound : Element
+    boundIsUpperForMember : UpperBound relation (family index) bound
+  Prove
+    LRA.Set.IndexedMembershipLaws Element SetObject → ∀ {relation : Element → Element → Prop} {family : Index → SetObject} (index : Index) {bound : Element}, (∀ (element : Element), inst.1 (family index) element → relation element bound) → ∀ (element : Element), inst.1 (inst_2.1 family) element → relation element bound
 
 Logical form (Lean):
 

@@ -7,11 +7,16 @@ namespace LRA.Set.Constructions.TGSet
 
 Predicate logic:
 
-  (∀ A ∈ TGSet), exists U : TGSet, forall x : TGSet, x ∈ U <-> exists B : TGSet, B ∈ A ∧ x ∈ B end LRA.Set.Constructions.TG
+  ∀ (A : LRA.Set.Constructions.TGSet), Exists fun U => ∀ (x : LRA.Set.Constructions.TGSet), LRA.Set.Constructions.instMembershipTGSet.mem U x ↔ Exists fun B => (LRA.Set.Constructions.instMembershipTGSet.mem A B ∧ LRA.Set.Constructions.instMembershipTGSet.mem B x)
 
 Predicate logic (unfolded):
 
-  ∀ (A : LRA.Set.Constructions.TGSet), Exists fun U => ∀ (x : LRA.Set.Constructions.TGSet), LRA.Set.instMembershipTGSet.1 U x ↔ Exists fun B => (LRA.Set.instMembershipTGSet.1 A B ∧ LRA.Set.instMembershipTGSet.1 B x)
+  Ambient
+    (implicit ambient)
+  Objects
+    A : TGSet
+  Prove
+    Exists fun U => ∀ (x : LRA.Set.Constructions.TGSet), LRA.Set.Constructions.instMembershipTGSet.mem U x ↔ Exists fun B => (LRA.Set.Constructions.instMembershipTGSet.mem A B ∧ LRA.Set.Constructions.instMembershipTGSet.mem B x)
 
 Logical form (Lean):
 

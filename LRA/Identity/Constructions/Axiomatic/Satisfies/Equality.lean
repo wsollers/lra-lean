@@ -20,6 +20,11 @@ noncomputable scoped instance instEqualityRelation (Carrier : Type u) :
     LRA.Identity.EqualityRelation Carrier where
   Equal := Ax_IdentityRelation
   satisfiesEqualityTheory := by
-    sorry
+    constructor
+    · intro x
+      exact axiomaticIdentityRelation_satisfiesReflexivity Carrier x
+    · intro x y hxy P _ hx
+      exact Ax_LeibnizLaw hxy P hx
+
 
 end LRA.Identity.Constructions.Axiomatic

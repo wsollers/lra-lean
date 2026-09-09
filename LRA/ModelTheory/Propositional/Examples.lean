@@ -12,14 +12,14 @@ namespace LRA.ModelTheory.Propositional
 Predicate logic:
 
   inductive TestAtom where
-  | A
-  | B
+    | A
+    | B
 
 Predicate logic (unfolded):
 
   inductive TestAtom where
-  | A
-  | B (source fallback; no compiled unfold data available)
+    | A
+    | B (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -58,12 +58,12 @@ inductive TestAtom where
 Predicate logic:
 
   def testLanguage : PropositionalLanguage where
-  Atoms := TestAtom
+    Atoms := TestAtom
 
 Predicate logic (unfolded):
 
   def testLanguage : PropositionalLanguage where
-  Atoms := TestAtom (source fallback; no compiled unfold data available)
+    Atoms := TestAtom (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -100,12 +100,12 @@ def testLanguage : PropositionalLanguage where
 Predicate logic:
 
   def testFormula : Formula testLanguage :=
-  Formula.and (Formula.atom .A) (Formula.atom .B)
+    Formula.and (Formula.atom .A) (Formula.atom .B)
 
 Predicate logic (unfolded):
 
   def testFormula : Formula testLanguage :=
-  Formula.and (Formula.atom .A) (Formula.atom .B) (source fallback; no compiled unfold data available)
+    Formula.and (Formula.atom .A) (Formula.atom .B) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -142,16 +142,16 @@ def testFormula : Formula testLanguage :=
 Predicate logic:
 
   def testModel : PropositionalModel testLanguage where
-  valuation
-    | .A => true
-    | .B => true
+    valuation
+      | .A => true
+      | .B => true
 
 Predicate logic (unfolded):
 
   def testModel : PropositionalModel testLanguage where
-  valuation
-    | .A => true
-    | .B => true (source fallback; no compiled unfold data available)
+    valuation
+      | .A => true
+      | .B => true (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -191,11 +191,16 @@ def testModel : PropositionalModel testLanguage where
 
 Predicate logic:
 
-  testModel.satisfies testFormula
+  LRA.ModelTheory.Propositional.testModel.satisfies LRA.ModelTheory.Propositional.testFormula
 
 Predicate logic (unfolded):
 
-  LRA.ModelTheory.Propositional.evaluate LRA.ModelTheory.Propositional.testModel.1 LRA.ModelTheory.Propositional.testFormula = Bool.true
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.Propositional.evaluate LRA.ModelTheory.Propositional.testModel.1 LRA.ModelTheory.Propositional.testFormula = Bool.true
 
 Logical form (Lean):
 

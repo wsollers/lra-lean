@@ -18,16 +18,16 @@ universe u
 Predicate logic:
 
   inductive Digit where
-  | zero
-  | one
-  deriving DecidableEq
+    | zero
+    | one
+    deriving DecidableEq
 
 Predicate logic (unfolded):
 
   inductive Digit where
-  | zero
-  | one
-  deriving DecidableEq (source fallback; no compiled unfold data available)
+    | zero
+    | one
+    deriving DecidableEq (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -109,7 +109,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (digits : LRA.NumberSystems.RealNumbers.Dyadic.FractionalDigits) (index : Nat), Or (digits index = LRA.NumberSystems.RealNumbers.Dyadic.Digit.zero) (digits index = LRA.NumberSystems.RealNumbers.Dyadic.Digit.one)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (digits index = LRA.NumberSystems.RealNumbers.Dyadic.Digit.zero) (digits index = LRA.NumberSystems.RealNumbers.Dyadic.Digit.one)
 
 Logical form (Lean):
 
@@ -145,11 +150,16 @@ def IsBinaryDigitSequence (digits : FractionalDigits) : Prop :=
 
 Predicate logic:
 
-  ∀ (digits : LRA.NumberSystems.RealNumbers.Dyadic.FractionalDigits), (LRA.NumberSystems.RealNumbers.Dyadic.IsBinaryDigitSequence digits ∧ ¬ Exists fun threshold => ∀ (index : Nat), instLENat.le threshold index → digits index = LRA.NumberSystems.RealNumbers.Dyadic.Digit.one)
+  ∀ (digits : LRA.NumberSystems.RealNumbers.Dyadic.FractionalDigits), (LRA.NumberSystems.RealNumbers.Dyadic.IsBinaryDigitSequence digits ∧ (¬ Exists fun threshold => ∀ (index : Nat), instLENat.le threshold index → digits index = LRA.NumberSystems.RealNumbers.Dyadic.Digit.one))
 
 Predicate logic (unfolded):
 
-  ∀ (digits : LRA.NumberSystems.RealNumbers.Dyadic.FractionalDigits), (∀ (index : Nat), Or (digits index = LRA.NumberSystems.RealNumbers.Dyadic.Digit.zero) (digits index = LRA.NumberSystems.RealNumbers.Dyadic.Digit.one) ∧ (Exists fun threshold => ∀ (index : Nat), instLENat.1 threshold index → digits index = LRA.NumberSystems.RealNumbers.Dyadic.Digit.one) → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (index : Nat), Or (digits index = LRA.NumberSystems.RealNumbers.Dyadic.Digit.zero) (digits index = LRA.NumberSystems.RealNumbers.Dyadic.Digit.one)) ∧ ((Exists fun threshold => ∀ (index : Nat), instLENat.le threshold index → digits index = LRA.NumberSystems.RealNumbers.Dyadic.Digit.one) → False))
 
 Logical form (Lean):
 
@@ -192,14 +202,14 @@ def IsCanonicalFractionalDigits (digits : FractionalDigits) : Prop :=
 Predicate logic:
 
   structure CanonicalFraction where
-  Digits : FractionalDigits
-  IsCanonical : IsCanonicalFractionalDigits Digits
+    Digits : FractionalDigits
+    IsCanonical : IsCanonicalFractionalDigits Digits
 
 Predicate logic (unfolded):
 
   structure CanonicalFraction where
-  Digits : FractionalDigits
-  IsCanonical : IsCanonicalFractionalDigits Digits (source fallback; no compiled unfold data available)
+    Digits : FractionalDigits
+    IsCanonical : IsCanonicalFractionalDigits Digits (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -238,18 +248,18 @@ structure CanonicalFraction where
 Predicate logic:
 
   structure PositiveBinaryNumeral where
-  HighestExponent : Nat
-  DigitAt : Fin (HighestExponent + 1) → Digit
-  LeadingDigitIsOne :
-    DigitAt ⟨HighestExponent, Nat.lt_succ_self HighestExponent⟩ = Digit.one
+    HighestExponent : Nat
+    DigitAt : Fin (HighestExponent + 1) → Digit
+    LeadingDigitIsOne :
+      DigitAt ⟨HighestExponent, Nat.lt_succ_self HighestExponent⟩ = Digit.one
 
 Predicate logic (unfolded):
 
   structure PositiveBinaryNumeral where
-  HighestExponent : Nat
-  DigitAt : Fin (HighestExponent + 1) → Digit
-  LeadingDigitIsOne :
-    DigitAt ⟨HighestExponent, Nat.lt_succ_self HighestExponent⟩ = Digit.one (source fallback; no compiled unfold data available)
+    HighestExponent : Nat
+    DigitAt : Fin (HighestExponent + 1) → Digit
+    LeadingDigitIsOne :
+      DigitAt ⟨HighestExponent, Nat.lt_succ_self HighestExponent⟩ = Digit.one (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -292,14 +302,14 @@ structure PositiveBinaryNumeral where
 Predicate logic:
 
   inductive WholeBinaryNumeral where
-  | zero
-  | positive (Numeral : PositiveBinaryNumeral)
+    | zero
+    | positive (Numeral : PositiveBinaryNumeral)
 
 Predicate logic (unfolded):
 
   inductive WholeBinaryNumeral where
-  | zero
-  | positive (Numeral : PositiveBinaryNumeral) (source fallback; no compiled unfold data available)
+    | zero
+    | positive (Numeral : PositiveBinaryNumeral) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -341,7 +351,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (fraction : LRA.NumberSystems.RealNumbers.Dyadic.CanonicalFraction) (index : Nat), fraction.1 index = LRA.NumberSystems.RealNumbers.Dyadic.Digit.zero
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    fraction.1 index = LRA.NumberSystems.RealNumbers.Dyadic.Digit.zero
 
 Logical form (Lean):
 
@@ -378,14 +393,14 @@ def IsZeroCanonicalFraction (fraction : CanonicalFraction) : Prop :=
 Predicate logic:
 
   structure UnsignedExpansion where
-  IntegerPart : WholeBinaryNumeral
-  FractionalPart : CanonicalFraction
+    IntegerPart : WholeBinaryNumeral
+    FractionalPart : CanonicalFraction
 
 Predicate logic (unfolded):
 
   structure UnsignedExpansion where
-  IntegerPart : WholeBinaryNumeral
-  FractionalPart : CanonicalFraction (source fallback; no compiled unfold data available)
+    IntegerPart : WholeBinaryNumeral
+    FractionalPart : CanonicalFraction (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -427,7 +442,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (expansion : LRA.NumberSystems.RealNumbers.Dyadic.UnsignedExpansion), (expansion.1 = LRA.NumberSystems.RealNumbers.Dyadic.WholeBinaryNumeral.zero ∧ ∀ (index : Nat), expansion.FractionalPart.1 index = LRA.NumberSystems.RealNumbers.Dyadic.Digit.zero)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (expansion.1 = LRA.NumberSystems.RealNumbers.Dyadic.WholeBinaryNumeral.zero ∧ (∀ (index : Nat), expansion.FractionalPart.1 index = LRA.NumberSystems.RealNumbers.Dyadic.Digit.zero))
 
 Logical form (Lean):
 
@@ -466,14 +486,14 @@ def IsZeroUnsignedExpansion (expansion : UnsignedExpansion) : Prop :=
 Predicate logic:
 
   structure NonzeroUnsignedExpansion where
-  Magnitude : UnsignedExpansion
-  IsNonzero : ¬ IsZeroUnsignedExpansion Magnitude
+    Magnitude : UnsignedExpansion
+    IsNonzero : ¬ IsZeroUnsignedExpansion Magnitude
 
 Predicate logic (unfolded):
 
   structure NonzeroUnsignedExpansion where
-  Magnitude : UnsignedExpansion
-  IsNonzero : ¬ IsZeroUnsignedExpansion Magnitude (source fallback; no compiled unfold data available)
+    Magnitude : UnsignedExpansion
+    IsNonzero : ¬ IsZeroUnsignedExpansion Magnitude (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -512,16 +532,16 @@ structure NonzeroUnsignedExpansion where
 Predicate logic:
 
   inductive Sign where
-  | negative
-  | positive
-  deriving DecidableEq
+    | negative
+    | positive
+    deriving DecidableEq
 
 Predicate logic (unfolded):
 
   inductive Sign where
-  | negative
-  | positive
-  deriving DecidableEq (source fallback; no compiled unfold data available)
+    | negative
+    | positive
+    deriving DecidableEq (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -562,14 +582,14 @@ inductive Sign where
 Predicate logic:
 
   inductive Expansion where
-  | zero
-  | nonzero (Sign : Sign) (Magnitude : NonzeroUnsignedExpansion)
+    | zero
+    | nonzero (Sign : Sign) (Magnitude : NonzeroUnsignedExpansion)
 
 Predicate logic (unfolded):
 
   inductive Expansion where
-  | zero
-  | nonzero (Sign : Sign) (Magnitude : NonzeroUnsignedExpansion) (source fallback; no compiled unfold data available)
+    | zero
+    | nonzero (Sign : Sign) (Magnitude : NonzeroUnsignedExpansion) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -608,18 +628,18 @@ inductive Expansion where
 Predicate logic:
 
   def DigitValue
-    (rationalSystem : RationalNumberSystem.{u}) :
-    Digit → rationalSystem.FieldModel.Carrier
-  | Digit.zero => 0
-  | Digit.one => 1
+      (rationalSystem : RationalNumberSystem.{u}) :
+      Digit → rationalSystem.FieldModel.Carrier
+    | Digit.zero => 0
+    | Digit.one => 1
 
 Predicate logic (unfolded):
 
   def DigitValue
-    (rationalSystem : RationalNumberSystem.{u}) :
-    Digit → rationalSystem.FieldModel.Carrier
-  | Digit.zero => 0
-  | Digit.one => 1 (source fallback; no compiled unfold data available)
+      (rationalSystem : RationalNumberSystem.{u}) :
+      Digit → rationalSystem.FieldModel.Carrier
+    | Digit.zero => 0
+    | Digit.one => 1 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -662,20 +682,20 @@ def DigitValue
 Predicate logic:
 
   def PowerOfTwo
-    (rationalSystem : RationalNumberSystem.{u}) :
-    Nat → rationalSystem.FieldModel.Carrier
-  | 0 => 1
-  | exponent + 1 =>
-      PowerOfTwo rationalSystem exponent * (1 + 1)
+      (rationalSystem : RationalNumberSystem.{u}) :
+      Nat → rationalSystem.FieldModel.Carrier
+    | 0 => 1
+    | exponent + 1 =>
+        PowerOfTwo rationalSystem exponent * (1 + 1)
 
 Predicate logic (unfolded):
 
   def PowerOfTwo
-    (rationalSystem : RationalNumberSystem.{u}) :
-    Nat → rationalSystem.FieldModel.Carrier
-  | 0 => 1
-  | exponent + 1 =>
-      PowerOfTwo rationalSystem exponent * (1 + 1) (source fallback; no compiled unfold data available)
+      (rationalSystem : RationalNumberSystem.{u}) :
+      Nat → rationalSystem.FieldModel.Carrier
+    | 0 => 1
+    | exponent + 1 =>
+        PowerOfTwo rationalSystem exponent * (1 + 1) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -720,32 +740,32 @@ def PowerOfTwo
 Predicate logic:
 
   def PositiveBinaryNumeralPartialValue
-    (rationalSystem : RationalNumberSystem.{u})
-    (numeral : PositiveBinaryNumeral) :
-    Nat → rationalSystem.FieldModel.Carrier
-  | 0 => 0
-  | count + 1 =>
-      if indexBound : count < numeral.HighestExponent + 1 then
-        PositiveBinaryNumeralPartialValue rationalSystem numeral count +
-          DigitValue rationalSystem (numeral.DigitAt ⟨count, indexBound⟩) *
-            PowerOfTwo rationalSystem count
-      else
-        PositiveBinaryNumeralPartialValue rationalSystem numeral count
+      (rationalSystem : RationalNumberSystem.{u})
+      (numeral : PositiveBinaryNumeral) :
+      Nat → rationalSystem.FieldModel.Carrier
+    | 0 => 0
+    | count + 1 =>
+        if indexBound : count < numeral.HighestExponent + 1 then
+          PositiveBinaryNumeralPartialValue rationalSystem numeral count +
+            DigitValue rationalSystem (numeral.DigitAt ⟨count, indexBound⟩) *
+              PowerOfTwo rationalSystem count
+        else
+          PositiveBinaryNumeralPartialValue rationalSystem numeral count
 
 Predicate logic (unfolded):
 
   def PositiveBinaryNumeralPartialValue
-    (rationalSystem : RationalNumberSystem.{u})
-    (numeral : PositiveBinaryNumeral) :
-    Nat → rationalSystem.FieldModel.Carrier
-  | 0 => 0
-  | count + 1 =>
-      if indexBound : count < numeral.HighestExponent + 1 then
-        PositiveBinaryNumeralPartialValue rationalSystem numeral count +
-          DigitValue rationalSystem (numeral.DigitAt ⟨count, indexBound⟩) *
-            PowerOfTwo rationalSystem count
-      else
-        PositiveBinaryNumeralPartialValue rationalSystem numeral count (source fallback; no compiled unfold data available)
+      (rationalSystem : RationalNumberSystem.{u})
+      (numeral : PositiveBinaryNumeral) :
+      Nat → rationalSystem.FieldModel.Carrier
+    | 0 => 0
+    | count + 1 =>
+        if indexBound : count < numeral.HighestExponent + 1 then
+          PositiveBinaryNumeralPartialValue rationalSystem numeral count +
+            DigitValue rationalSystem (numeral.DigitAt ⟨count, indexBound⟩) *
+              PowerOfTwo rationalSystem count
+        else
+          PositiveBinaryNumeralPartialValue rationalSystem numeral count (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -802,20 +822,20 @@ def PositiveBinaryNumeralPartialValue
 Predicate logic:
 
   def PositiveBinaryNumeralValue
-    (rationalSystem : RationalNumberSystem.{u})
-    (numeral : PositiveBinaryNumeral) :
-    rationalSystem.FieldModel.Carrier :=
-  PositiveBinaryNumeralPartialValue rationalSystem numeral
-    (numeral.HighestExponent + 1)
+      (rationalSystem : RationalNumberSystem.{u})
+      (numeral : PositiveBinaryNumeral) :
+      rationalSystem.FieldModel.Carrier :=
+    PositiveBinaryNumeralPartialValue rationalSystem numeral
+      (numeral.HighestExponent + 1)
 
 Predicate logic (unfolded):
 
   def PositiveBinaryNumeralValue
-    (rationalSystem : RationalNumberSystem.{u})
-    (numeral : PositiveBinaryNumeral) :
-    rationalSystem.FieldModel.Carrier :=
-  PositiveBinaryNumeralPartialValue rationalSystem numeral
-    (numeral.HighestExponent + 1) (source fallback; no compiled unfold data available)
+      (rationalSystem : RationalNumberSystem.{u})
+      (numeral : PositiveBinaryNumeral) :
+      rationalSystem.FieldModel.Carrier :=
+    PositiveBinaryNumeralPartialValue rationalSystem numeral
+      (numeral.HighestExponent + 1) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -860,24 +880,24 @@ def PositiveBinaryNumeralValue
 Predicate logic:
 
   structure RationalDyadicApproximationData where
-  RationalSystem : RationalNumberSystem.{u}
-  AbsoluteValueData : Cauchy.RationalMetricData RationalSystem
-  CauchyRealExtension :
-    LRA.NumberSystems.RealNumbers.RationalRealExtension RationalSystem
-  CauchyCarrierEq :
-    CauchyRealExtension.RealModel.Carrier =
-      Cauchy.Carrier RationalSystem AbsoluteValueData
+    RationalSystem : RationalNumberSystem.{u}
+    AbsoluteValueData : Cauchy.RationalMetricData RationalSystem
+    CauchyRealExtension :
+      LRA.NumberSystems.RealNumbers.RationalRealExtension RationalSystem
+    CauchyCarrierEq :
+      CauchyRealExtension.RealModel.Carrier =
+        Cauchy.Carrier RationalSystem AbsoluteValueData
 
 Predicate logic (unfolded):
 
   structure RationalDyadicApproximationData where
-  RationalSystem : RationalNumberSystem.{u}
-  AbsoluteValueData : Cauchy.RationalMetricData RationalSystem
-  CauchyRealExtension :
-    LRA.NumberSystems.RealNumbers.RationalRealExtension RationalSystem
-  CauchyCarrierEq :
-    CauchyRealExtension.RealModel.Carrier =
-      Cauchy.Carrier RationalSystem AbsoluteValueData (source fallback; no compiled unfold data available)
+    RationalSystem : RationalNumberSystem.{u}
+    AbsoluteValueData : Cauchy.RationalMetricData RationalSystem
+    CauchyRealExtension :
+      LRA.NumberSystems.RealNumbers.RationalRealExtension RationalSystem
+    CauchyCarrierEq :
+      CauchyRealExtension.RealModel.Carrier =
+        Cauchy.Carrier RationalSystem AbsoluteValueData (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1004,12 +1024,12 @@ abbrev Integer := dyadicData.RationalSystem.IntegerSystem.Model.Carrier
 Predicate logic:
 
   abbrev CauchyCarrier :=
-  Cauchy.Carrier dyadicData.RationalSystem dyadicData.AbsoluteValueData
+    Cauchy.Carrier dyadicData.RationalSystem dyadicData.AbsoluteValueData
 
 Predicate logic (unfolded):
 
   abbrev CauchyCarrier :=
-  Cauchy.Carrier dyadicData.RationalSystem dyadicData.AbsoluteValueData (source fallback; no compiled unfold data available)
+    Cauchy.Carrier dyadicData.RationalSystem dyadicData.AbsoluteValueData (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1046,14 +1066,14 @@ abbrev CauchyCarrier :=
 Predicate logic:
 
   abbrev RationalDyadicApproximationData.SelectedRealCarrier
-    (dyadicData : RationalDyadicApproximationData.{u}) :=
-  dyadicData.CauchyRealExtension.RealModel.Carrier
+      (dyadicData : RationalDyadicApproximationData.{u}) :=
+    dyadicData.CauchyRealExtension.RealModel.Carrier
 
 Predicate logic (unfolded):
 
   abbrev RationalDyadicApproximationData.SelectedRealCarrier
-    (dyadicData : RationalDyadicApproximationData.{u}) :=
-  dyadicData.CauchyRealExtension.RealModel.Carrier (source fallback; no compiled unfold data available)
+      (dyadicData : RationalDyadicApproximationData.{u}) :=
+    dyadicData.CauchyRealExtension.RealModel.Carrier (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1092,16 +1112,16 @@ abbrev RationalDyadicApproximationData.SelectedRealCarrier
 Predicate logic:
 
   def RationalDyadicApproximationData.ToCauchyCarrier
-    (dyadicData : RationalDyadicApproximationData.{u}) :
-    dyadicData.SelectedRealCarrier → CauchyCarrier dyadicData :=
-  cast dyadicData.CauchyCarrierEq
+      (dyadicData : RationalDyadicApproximationData.{u}) :
+      dyadicData.SelectedRealCarrier → CauchyCarrier dyadicData :=
+    cast dyadicData.CauchyCarrierEq
 
 Predicate logic (unfolded):
 
   def RationalDyadicApproximationData.ToCauchyCarrier
-    (dyadicData : RationalDyadicApproximationData.{u}) :
-    dyadicData.SelectedRealCarrier → CauchyCarrier dyadicData :=
-  cast dyadicData.CauchyCarrierEq (source fallback; no compiled unfold data available)
+      (dyadicData : RationalDyadicApproximationData.{u}) :
+      dyadicData.SelectedRealCarrier → CauchyCarrier dyadicData :=
+    cast dyadicData.CauchyCarrierEq (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1142,16 +1162,16 @@ def RationalDyadicApproximationData.ToCauchyCarrier
 Predicate logic:
 
   def RationalDyadicApproximationData.FromCauchyCarrier
-    (dyadicData : RationalDyadicApproximationData.{u}) :
-    CauchyCarrier dyadicData → dyadicData.SelectedRealCarrier :=
-  cast dyadicData.CauchyCarrierEq.symm
+      (dyadicData : RationalDyadicApproximationData.{u}) :
+      CauchyCarrier dyadicData → dyadicData.SelectedRealCarrier :=
+    cast dyadicData.CauchyCarrierEq.symm
 
 Predicate logic (unfolded):
 
   def RationalDyadicApproximationData.FromCauchyCarrier
-    (dyadicData : RationalDyadicApproximationData.{u}) :
-    CauchyCarrier dyadicData → dyadicData.SelectedRealCarrier :=
-  cast dyadicData.CauchyCarrierEq.symm (source fallback; no compiled unfold data available)
+      (dyadicData : RationalDyadicApproximationData.{u}) :
+      CauchyCarrier dyadicData → dyadicData.SelectedRealCarrier :=
+    cast dyadicData.CauchyCarrierEq.symm (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1192,22 +1212,22 @@ def RationalDyadicApproximationData.FromCauchyCarrier
 Predicate logic:
 
   def RationalDyadicApproximationData.RationalToCauchy
-    (dyadicData : RationalDyadicApproximationData.{u}) :
-    Rational dyadicData → CauchyCarrier dyadicData :=
-  fun value =>
-    dyadicData.ToCauchyCarrier
-      (LRA.NumberSystems.RealNumbers.RationalRealExtension.EmbedRational
-        dyadicData.CauchyRealExtension value)
+      (dyadicData : RationalDyadicApproximationData.{u}) :
+      Rational dyadicData → CauchyCarrier dyadicData :=
+    fun value =>
+      dyadicData.ToCauchyCarrier
+        (LRA.NumberSystems.RealNumbers.RationalRealExtension.EmbedRational
+          dyadicData.CauchyRealExtension value)
 
 Predicate logic (unfolded):
 
   def RationalDyadicApproximationData.RationalToCauchy
-    (dyadicData : RationalDyadicApproximationData.{u}) :
-    Rational dyadicData → CauchyCarrier dyadicData :=
-  fun value =>
-    dyadicData.ToCauchyCarrier
-      (LRA.NumberSystems.RealNumbers.RationalRealExtension.EmbedRational
-        dyadicData.CauchyRealExtension value) (source fallback; no compiled unfold data available)
+      (dyadicData : RationalDyadicApproximationData.{u}) :
+      Rational dyadicData → CauchyCarrier dyadicData :=
+    fun value =>
+      dyadicData.ToCauchyCarrier
+        (LRA.NumberSystems.RealNumbers.RationalRealExtension.EmbedRational
+          dyadicData.CauchyRealExtension value) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1254,16 +1274,16 @@ def RationalDyadicApproximationData.RationalToCauchy
 Predicate logic:
 
   def RationalDyadicApproximationData.CauchyZero
-    (dyadicData : RationalDyadicApproximationData.{u}) :
-    CauchyCarrier dyadicData :=
-  dyadicData.ToCauchyCarrier (0 : dyadicData.SelectedRealCarrier)
+      (dyadicData : RationalDyadicApproximationData.{u}) :
+      CauchyCarrier dyadicData :=
+    dyadicData.ToCauchyCarrier (0 : dyadicData.SelectedRealCarrier)
 
 Predicate logic (unfolded):
 
   def RationalDyadicApproximationData.CauchyZero
-    (dyadicData : RationalDyadicApproximationData.{u}) :
-    CauchyCarrier dyadicData :=
-  dyadicData.ToCauchyCarrier (0 : dyadicData.SelectedRealCarrier) (source fallback; no compiled unfold data available)
+      (dyadicData : RationalDyadicApproximationData.{u}) :
+      CauchyCarrier dyadicData :=
+    dyadicData.ToCauchyCarrier (0 : dyadicData.SelectedRealCarrier) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1304,16 +1324,16 @@ def RationalDyadicApproximationData.CauchyZero
 Predicate logic:
 
   def RationalDyadicApproximationData.CauchyOne
-    (dyadicData : RationalDyadicApproximationData.{u}) :
-    CauchyCarrier dyadicData :=
-  dyadicData.ToCauchyCarrier (1 : dyadicData.SelectedRealCarrier)
+      (dyadicData : RationalDyadicApproximationData.{u}) :
+      CauchyCarrier dyadicData :=
+    dyadicData.ToCauchyCarrier (1 : dyadicData.SelectedRealCarrier)
 
 Predicate logic (unfolded):
 
   def RationalDyadicApproximationData.CauchyOne
-    (dyadicData : RationalDyadicApproximationData.{u}) :
-    CauchyCarrier dyadicData :=
-  dyadicData.ToCauchyCarrier (1 : dyadicData.SelectedRealCarrier) (source fallback; no compiled unfold data available)
+      (dyadicData : RationalDyadicApproximationData.{u}) :
+      CauchyCarrier dyadicData :=
+    dyadicData.ToCauchyCarrier (1 : dyadicData.SelectedRealCarrier) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1354,26 +1374,26 @@ def RationalDyadicApproximationData.CauchyOne
 Predicate logic:
 
   def RationalDyadicApproximationData.CauchyAddition
-    (dyadicData : RationalDyadicApproximationData.{u}) :
-    CauchyCarrier dyadicData →
+      (dyadicData : RationalDyadicApproximationData.{u}) :
       CauchyCarrier dyadicData →
-      CauchyCarrier dyadicData :=
-  fun first second =>
-    dyadicData.ToCauchyCarrier
-      (dyadicData.FromCauchyCarrier first +
-        dyadicData.FromCauchyCarrier second)
+        CauchyCarrier dyadicData →
+        CauchyCarrier dyadicData :=
+    fun first second =>
+      dyadicData.ToCauchyCarrier
+        (dyadicData.FromCauchyCarrier first +
+          dyadicData.FromCauchyCarrier second)
 
 Predicate logic (unfolded):
 
   def RationalDyadicApproximationData.CauchyAddition
-    (dyadicData : RationalDyadicApproximationData.{u}) :
-    CauchyCarrier dyadicData →
+      (dyadicData : RationalDyadicApproximationData.{u}) :
       CauchyCarrier dyadicData →
-      CauchyCarrier dyadicData :=
-  fun first second =>
-    dyadicData.ToCauchyCarrier
-      (dyadicData.FromCauchyCarrier first +
-        dyadicData.FromCauchyCarrier second) (source fallback; no compiled unfold data available)
+        CauchyCarrier dyadicData →
+        CauchyCarrier dyadicData :=
+    fun first second =>
+      dyadicData.ToCauchyCarrier
+        (dyadicData.FromCauchyCarrier first +
+          dyadicData.FromCauchyCarrier second) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1424,20 +1444,20 @@ def RationalDyadicApproximationData.CauchyAddition
 Predicate logic:
 
   def RationalDyadicApproximationData.CauchyNegation
-    (dyadicData : RationalDyadicApproximationData.{u}) :
-    CauchyCarrier dyadicData →
-      CauchyCarrier dyadicData :=
-  fun value =>
-    dyadicData.ToCauchyCarrier (-dyadicData.FromCauchyCarrier value)
+      (dyadicData : RationalDyadicApproximationData.{u}) :
+      CauchyCarrier dyadicData →
+        CauchyCarrier dyadicData :=
+    fun value =>
+      dyadicData.ToCauchyCarrier (-dyadicData.FromCauchyCarrier value)
 
 Predicate logic (unfolded):
 
   def RationalDyadicApproximationData.CauchyNegation
-    (dyadicData : RationalDyadicApproximationData.{u}) :
-    CauchyCarrier dyadicData →
-      CauchyCarrier dyadicData :=
-  fun value =>
-    dyadicData.ToCauchyCarrier (-dyadicData.FromCauchyCarrier value) (source fallback; no compiled unfold data available)
+      (dyadicData : RationalDyadicApproximationData.{u}) :
+      CauchyCarrier dyadicData →
+        CauchyCarrier dyadicData :=
+    fun value =>
+      dyadicData.ToCauchyCarrier (-dyadicData.FromCauchyCarrier value) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1482,26 +1502,26 @@ def RationalDyadicApproximationData.CauchyNegation
 Predicate logic:
 
   def RationalDyadicApproximationData.CauchyMultiplication
-    (dyadicData : RationalDyadicApproximationData.{u}) :
-    CauchyCarrier dyadicData →
+      (dyadicData : RationalDyadicApproximationData.{u}) :
       CauchyCarrier dyadicData →
-      CauchyCarrier dyadicData :=
-  fun first second =>
-    dyadicData.ToCauchyCarrier
-      (dyadicData.FromCauchyCarrier first *
-        dyadicData.FromCauchyCarrier second)
+        CauchyCarrier dyadicData →
+        CauchyCarrier dyadicData :=
+    fun first second =>
+      dyadicData.ToCauchyCarrier
+        (dyadicData.FromCauchyCarrier first *
+          dyadicData.FromCauchyCarrier second)
 
 Predicate logic (unfolded):
 
   def RationalDyadicApproximationData.CauchyMultiplication
-    (dyadicData : RationalDyadicApproximationData.{u}) :
-    CauchyCarrier dyadicData →
+      (dyadicData : RationalDyadicApproximationData.{u}) :
       CauchyCarrier dyadicData →
-      CauchyCarrier dyadicData :=
-  fun first second =>
-    dyadicData.ToCauchyCarrier
-      (dyadicData.FromCauchyCarrier first *
-        dyadicData.FromCauchyCarrier second) (source fallback; no compiled unfold data available)
+        CauchyCarrier dyadicData →
+        CauchyCarrier dyadicData :=
+    fun first second =>
+      dyadicData.ToCauchyCarrier
+        (dyadicData.FromCauchyCarrier first *
+          dyadicData.FromCauchyCarrier second) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1552,20 +1572,20 @@ def RationalDyadicApproximationData.CauchyMultiplication
 Predicate logic:
 
   def RationalDyadicApproximationData.CauchyInverse
-    (dyadicData : RationalDyadicApproximationData.{u}) :
-    CauchyCarrier dyadicData →
-      CauchyCarrier dyadicData :=
-  fun value =>
-    dyadicData.ToCauchyCarrier (dyadicData.FromCauchyCarrier value)⁻¹
+      (dyadicData : RationalDyadicApproximationData.{u}) :
+      CauchyCarrier dyadicData →
+        CauchyCarrier dyadicData :=
+    fun value =>
+      dyadicData.ToCauchyCarrier (dyadicData.FromCauchyCarrier value)⁻¹
 
 Predicate logic (unfolded):
 
   def RationalDyadicApproximationData.CauchyInverse
-    (dyadicData : RationalDyadicApproximationData.{u}) :
-    CauchyCarrier dyadicData →
-      CauchyCarrier dyadicData :=
-  fun value =>
-    dyadicData.ToCauchyCarrier (dyadicData.FromCauchyCarrier value)⁻¹ (source fallback; no compiled unfold data available)
+      (dyadicData : RationalDyadicApproximationData.{u}) :
+      CauchyCarrier dyadicData →
+        CauchyCarrier dyadicData :=
+    fun value =>
+      dyadicData.ToCauchyCarrier (dyadicData.FromCauchyCarrier value)⁻¹ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1613,7 +1633,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (dyadicData : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData) (a a_1 : Quot (LRA.NumberSystems.RealNumbers.Cauchy.representative_setoid dyadicData.RationalSystem dyadicData.AbsoluteValueData).1), dyadicData.CauchyRealExtension.RealModel.ltInst.1 (.rec = a⋯) (.rec = a_1⋯)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    dyadicData.CauchyRealExtension.RealModel.ltInst.1 (.rec = a⋯) (.rec = a_1⋯)
 
 Logical form (Lean):
 
@@ -1663,7 +1688,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ (dyadicData : LRA.NumberSystems.RealNumbers.Dyadic.RationalDyadicApproximationData) (value : dyadicData.RationalSystem.FieldModel.1), Exists fun numerator => Exists fun exponent => value = instHMul.1 (dyadicData.RationalSystem.IntegerEmbedding.1 numerator) (dyadicData.RationalSystem.FieldModel.invInst.1 (LRA.NumberSystems.RealNumbers.Dyadic.PowerOfTwo dyadicData.1 exponent))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun numerator => Exists fun exponent => value = { hMul := fun a b => dyadicData.RationalSystem.FieldModel.3.mul a b }.hMul (dyadicData.RationalSystem.IntegerEmbedding.1 numerator) (dyadicData.RationalSystem.FieldModel.invInst.1 (LRA.NumberSystems.RealNumbers.Dyadic.PowerOfTwo dyadicData.1 exponent))
 
 Logical form (Lean):
 

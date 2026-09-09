@@ -8,12 +8,12 @@ namespace LRA.AlgebraicStructures.CommutativeSemiring.Interface.Signature
 Predicate logic:
 
   abbrev CommutativeSemiringFunctionSymbol :=
-  LRA.AlgebraicStructures.Semiring.Interface.Signature.SemiringFunctionSymbol
+    LRA.AlgebraicStructures.Semiring.Interface.Signature.SemiringFunctionSymbol
 
 Predicate logic (unfolded):
 
   abbrev CommutativeSemiringFunctionSymbol :=
-  LRA.AlgebraicStructures.Semiring.Interface.Signature.SemiringFunctionSymbol (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.Semiring.Interface.Signature.SemiringFunctionSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -50,12 +50,12 @@ abbrev CommutativeSemiringFunctionSymbol :=
 Predicate logic:
 
   abbrev CommutativeSemiringRelationSymbol :=
-  LRA.AlgebraicStructures.Semiring.Interface.Signature.SemiringRelationSymbol
+    LRA.AlgebraicStructures.Semiring.Interface.Signature.SemiringRelationSymbol
 
 Predicate logic (unfolded):
 
   abbrev CommutativeSemiringRelationSymbol :=
-  LRA.AlgebraicStructures.Semiring.Interface.Signature.SemiringRelationSymbol (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.Semiring.Interface.Signature.SemiringRelationSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -92,12 +92,12 @@ abbrev CommutativeSemiringRelationSymbol :=
 Predicate logic:
 
   abbrev CommutativeSemiringConstantSymbol :=
-  LRA.AlgebraicStructures.Semiring.Interface.Signature.SemiringConstantSymbol
+    LRA.AlgebraicStructures.Semiring.Interface.Signature.SemiringConstantSymbol
 
 Predicate logic (unfolded):
 
   abbrev CommutativeSemiringConstantSymbol :=
-  LRA.AlgebraicStructures.Semiring.Interface.Signature.SemiringConstantSymbol (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.Semiring.Interface.Signature.SemiringConstantSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -134,12 +134,12 @@ abbrev CommutativeSemiringConstantSymbol :=
 Predicate logic:
 
   def CommutativeSemiringFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.Semiring.Interface.Signature.SemiringFirstOrderFunctions
+    LRA.AlgebraicStructures.Semiring.Interface.Signature.SemiringFirstOrderFunctions
 
 Predicate logic (unfolded):
 
   def CommutativeSemiringFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.Semiring.Interface.Signature.SemiringFirstOrderFunctions (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.Semiring.Interface.Signature.SemiringFirstOrderFunctions (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -176,12 +176,12 @@ def CommutativeSemiringFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols :=
 Predicate logic:
 
   def CommutativeSemiringFirstOrderRelations : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.Semiring.Interface.Signature.SemiringFirstOrderRelations
+    LRA.AlgebraicStructures.Semiring.Interface.Signature.SemiringFirstOrderRelations
 
 Predicate logic (unfolded):
 
   def CommutativeSemiringFirstOrderRelations : LRA.Logic.ArityIndexedSymbols :=
-  LRA.AlgebraicStructures.Semiring.Interface.Signature.SemiringFirstOrderRelations (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.Semiring.Interface.Signature.SemiringFirstOrderRelations (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -218,12 +218,12 @@ def CommutativeSemiringFirstOrderRelations : LRA.Logic.ArityIndexedSymbols :=
 Predicate logic:
 
   def CommutativeSemiringFirstOrderSignature : LRA.Logic.Signature :=
-  LRA.AlgebraicStructures.Semiring.Interface.Signature.SemiringFirstOrderSignature
+    LRA.AlgebraicStructures.Semiring.Interface.Signature.SemiringFirstOrderSignature
 
 Predicate logic (unfolded):
 
   def CommutativeSemiringFirstOrderSignature : LRA.Logic.Signature :=
-  LRA.AlgebraicStructures.Semiring.Interface.Signature.SemiringFirstOrderSignature (source fallback; no compiled unfold data available)
+    LRA.AlgebraicStructures.Semiring.Interface.Signature.SemiringFirstOrderSignature (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

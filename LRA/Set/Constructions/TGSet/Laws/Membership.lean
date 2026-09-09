@@ -10,11 +10,16 @@ namespace LRA.Set.Constructions.TGSet
 
 Predicate logic:
 
-  forall A B : Set, A ⊆ B <-> forall x : Set, x ∈ A -> x ∈ B
+  ∀ (A B : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGSet.instHasSubset.Subset A B ↔ ∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem A x → LRA.Set.Constructions.instMembershipTGSet.mem B x
 
 Predicate logic (unfolded):
 
-  ∀ (A B : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.TGSet.instHasSubset.1 A B ↔ ∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 A x → LRA.Set.instMembershipTGSet.1 B x
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.TGSet.instHasSubset.Subset A B ↔ ∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem A x → LRA.Set.Constructions.instMembershipTGSet.mem B x
 
 Logical form (Lean):
 

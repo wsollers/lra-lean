@@ -11,32 +11,31 @@ open scoped LRA.Identity.Constructions.Mathlib
 
 Predicate logic:
 
-  ∀ (property : LRA.Set.Constructions.TGSet.Set → Prop),
-    LRA.Identity.ExactlyOne property
+  ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] (P : Carrier → Prop), (LRA.Identity.HasWitness P ∧ LRA.Identity.AtMostOne P)
 
 Predicate logic (unfolded):
 
-  ∀ (property : LRA.Set.Constructions.TGSet.Set → Prop),
-    (∃ witness, property witness) ∧
-      ∀ (left right : LRA.Set.Constructions.TGSet.Set),
-        property left → property right → left = right
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun x => P x ∧ (∀ (left right : Carrier), P left → P right → inst.Ident left right))
 
 Logical form (Lean):
 
 ```lean
-abbrev ExistsAndUnique (property : Set -> Prop) : Prop :=
-  LRA.Identity.ExactlyOne property
+def ExactlyOne (P : Carrier → Prop) : Prop :=
+  HasWitness P ∧ AtMostOne P
 ```
 
 Type-theoretic form:
 
-  Compatibility alias for older TG set-theory files. The primary Identity
-  vocabulary is `LRA.Identity.ExactlyOne`.
+  TODO
 
 Proof use:
 
-  The local alias keeps the old set-theory surface name, but the underlying
-  Identity concept is `ExactlyOne := HasWitness ∧ AtMostOne`.
+  TODO
 
 After unfold / common proof state:
 
@@ -46,7 +45,7 @@ Common confusions:
 
   TODO
 
-Related proof moves: intro, unfold
+Related proof moves: intro, constructor, cases, rcases, unfold
 
 -/
 abbrev ExistsAndUnique (property : Set -> Prop) : Prop :=
@@ -57,11 +56,16 @@ abbrev ExistsAndUnique (property : Set -> Prop) : Prop :=
 
 Predicate logic:
 
-  ∀ (A x : LRA.Set.Constructions.TGSet.Set), ¬ LRA.Set.instMembershipTGSet.mem A x
+  ∀ (A x : LRA.Set.Constructions.TGSet.Set), ¬ LRA.Set.Constructions.instMembershipTGSet.mem A x
 
 Predicate logic (unfolded):
 
-  ∀ (A x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 A x → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.instMembershipTGSet.1 A x → False
 
 Logical form (Lean):
 
@@ -95,11 +99,16 @@ def IsEmptySet (A : Set) : Prop := forall x : Set, x ∉ A
 
 Predicate logic:
 
-  ∀ (x1 x2 P w : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.mem P w ↔ Or (w = x1)(w = x2)
+  ∀ (x1 x2 P w : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem P w ↔ Or (w = x1)(w = x2)
 
 Predicate logic (unfolded):
 
-  ∀ (x1 x2 P w : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 P w ↔ Or (w = x1)(w = x2)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.instMembershipTGSet.mem P w ↔ Or (w = x1)(w = x2)
 
 Logical form (Lean):
 
@@ -135,11 +144,16 @@ def IsPairSet (x1 x2 P : Set) : Prop :=
 
 Predicate logic:
 
-  ∀ (x S w : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.mem S w ↔ w = x
+  ∀ (x S w : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem S w ↔ w = x
 
 Predicate logic (unfolded):
 
-  ∀ (x S w : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 S w ↔ w = x
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.instMembershipTGSet.mem S w ↔ w = x
 
 Logical form (Lean):
 
@@ -175,11 +189,16 @@ def IsSingletonSet (x S : Set) : Prop :=
 
 Predicate logic:
 
-  ∀ (A U x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.mem U x ↔ Exists fun B => (LRA.Set.instMembershipTGSet.mem A B ∧ LRA.Set.instMembershipTGSet.mem B x)
+  ∀ (A U x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem U x ↔ Exists fun B => (LRA.Set.Constructions.instMembershipTGSet.mem A B ∧ LRA.Set.Constructions.instMembershipTGSet.mem B x)
 
 Predicate logic (unfolded):
 
-  ∀ (A U x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 U x ↔ Exists fun B => (LRA.Set.instMembershipTGSet.1 A B ∧ LRA.Set.instMembershipTGSet.1 B x)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.instMembershipTGSet.mem U x ↔ Exists fun B => (LRA.Set.Constructions.instMembershipTGSet.mem A B ∧ LRA.Set.Constructions.instMembershipTGSet.mem B x)
 
 Logical form (Lean):
 
@@ -215,11 +234,16 @@ def IsUnionOf (A U : Set) : Prop :=
 
 Predicate logic:
 
-  ∀ (A P x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.mem P x ↔ ∀ (y : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.mem x y → LRA.Set.instMembershipTGSet.mem A y
+  ∀ (A P x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem P x ↔ ∀ (y : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem x y → LRA.Set.Constructions.instMembershipTGSet.mem A y
 
 Predicate logic (unfolded):
 
-  ∀ (A P x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 P x ↔ ∀ (y : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 x y → LRA.Set.instMembershipTGSet.1 A y
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.instMembershipTGSet.mem P x ↔ ∀ (y : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem x y → LRA.Set.Constructions.instMembershipTGSet.mem A y
 
 Logical form (Lean):
 
@@ -255,11 +279,16 @@ def IsPowerSetOf (A P : Set) : Prop :=
 
 Predicate logic:
 
-  ∀ (A : LRA.Set.Constructions.TGSet.Set) (property : LRA.Set.Constructions.TGSet.Set → Prop) (B x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.mem B x ↔ (LRA.Set.instMembershipTGSet.mem A x ∧ property x)
+  ∀ (A : LRA.Set.Constructions.TGSet.Set) (property : LRA.Set.Constructions.TGSet.Set → Prop) (B x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem B x ↔ (LRA.Set.Constructions.instMembershipTGSet.mem A x ∧ property x)
 
 Predicate logic (unfolded):
 
-  ∀ (A : LRA.Set.Constructions.TGSet.Set) (property : LRA.Set.Constructions.TGSet.Set → Prop) (B x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 B x ↔ (LRA.Set.instMembershipTGSet.1 A x ∧ property x)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.instMembershipTGSet.mem B x ↔ (LRA.Set.Constructions.instMembershipTGSet.mem A x ∧ property x)
 
 Logical form (Lean):
 
@@ -295,11 +324,16 @@ def IsSeparatedSubset (A : Set) (property : Set -> Prop) (B : Set) : Prop :=
 
 Predicate logic:
 
-  ∀ (A B D x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.mem D x ↔ (LRA.Set.instMembershipTGSet.mem A x ∧ ¬ LRA.Set.instMembershipTGSet.mem B x)
+  ∀ (A B D x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem D x ↔ (LRA.Set.Constructions.instMembershipTGSet.mem A x ∧ ¬ LRA.Set.Constructions.instMembershipTGSet.mem B x)
 
 Predicate logic (unfolded):
 
-  ∀ (A B D x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 D x ↔ (LRA.Set.instMembershipTGSet.1 A x ∧ LRA.Set.instMembershipTGSet.1 B x → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.instMembershipTGSet.mem D x ↔ (LRA.Set.Constructions.instMembershipTGSet.mem A x ∧ ¬ LRA.Set.Constructions.instMembershipTGSet.mem B x)
 
 Logical form (Lean):
 
@@ -335,11 +369,16 @@ def IsRelativeComplementOf (A B D : Set) : Prop :=
 
 Predicate logic:
 
-  ∀ (A B D x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.mem D x ↔ (LRA.Set.instMembershipTGSet.mem A x ∧ LRA.Set.instMembershipTGSet.mem B x)
+  ∀ (A B D x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem D x ↔ (LRA.Set.Constructions.instMembershipTGSet.mem A x ∧ LRA.Set.Constructions.instMembershipTGSet.mem B x)
 
 Predicate logic (unfolded):
 
-  ∀ (A B D x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 D x ↔ (LRA.Set.instMembershipTGSet.1 A x ∧ LRA.Set.instMembershipTGSet.1 B x)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.instMembershipTGSet.mem D x ↔ (LRA.Set.Constructions.instMembershipTGSet.mem A x ∧ LRA.Set.Constructions.instMembershipTGSet.mem B x)
 
 Logical form (Lean):
 
@@ -375,11 +414,16 @@ def IsIntersectionOf (A B D : Set) : Prop :=
 
 Predicate logic:
 
-  ∀ (A B D x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.mem D x ↔ Or ((LRA.Set.instMembershipTGSet.mem A x ∧ ¬ LRA.Set.instMembershipTGSet.mem B x)) ((LRA.Set.instMembershipTGSet.mem B x ∧ ¬ LRA.Set.instMembershipTGSet.mem A x))
+  ∀ (A B D x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem D x ↔ Or ((LRA.Set.Constructions.instMembershipTGSet.mem A x ∧ ¬ LRA.Set.Constructions.instMembershipTGSet.mem B x)) ((LRA.Set.Constructions.instMembershipTGSet.mem B x ∧ ¬ LRA.Set.Constructions.instMembershipTGSet.mem A x))
 
 Predicate logic (unfolded):
 
-  ∀ (A B D x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 D x ↔ Or ((LRA.Set.instMembershipTGSet.1 A x ∧ LRA.Set.instMembershipTGSet.1 B x → False)) ((LRA.Set.instMembershipTGSet.1 B x ∧ LRA.Set.instMembershipTGSet.1 A x → False))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.instMembershipTGSet.mem D x ↔ Or ((LRA.Set.Constructions.instMembershipTGSet.mem A x ∧ ¬ LRA.Set.Constructions.instMembershipTGSet.mem B x)) ((LRA.Set.Constructions.instMembershipTGSet.mem B x ∧ ¬ LRA.Set.Constructions.instMembershipTGSet.mem A x))
 
 Logical form (Lean):
 
@@ -415,11 +459,16 @@ def IsSymmetricDifferenceOf (A B D : Set) : Prop :=
 
 Predicate logic:
 
-  ∀ (A B x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.mem A x → LRA.Set.instMembershipTGSet.mem B x
+  ∀ (A B x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem A x → LRA.Set.Constructions.instMembershipTGSet.mem B x
 
 Predicate logic (unfolded):
 
-  ∀ (A B x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 A x → LRA.Set.instMembershipTGSet.1 B x
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.instMembershipTGSet.1 A x → LRA.Set.Constructions.instMembershipTGSet.1 B x
 
 Logical form (Lean):
 
@@ -453,11 +502,16 @@ def Subset (A B : Set) : Prop := forall x : Set, x ∈ A -> x ∈ B
 
 Predicate logic:
 
-  ∀ (A : LRA.Set.Constructions.TGSet.Set) (relation : LRA.Set.Constructions.TGSet.Set → LRA.Set.Constructions.TGSet.Set → Prop) (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.mem A x → Exists fun y => (relation x y ∧ ∀ (other : LRA.Set.Constructions.TGSet.Set), relation x other → other = y)
+  ∀ (A : LRA.Set.Constructions.TGSet.Set) (relation : LRA.Set.Constructions.TGSet.Set → LRA.Set.Constructions.TGSet.Set → Prop) (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem A x → Exists fun y => (relation x y ∧ (∀ (other : LRA.Set.Constructions.TGSet.Set), relation x other → other = y))
 
 Predicate logic (unfolded):
 
-  ∀ (A : LRA.Set.Constructions.TGSet.Set) (relation : LRA.Set.Constructions.TGSet.Set → LRA.Set.Constructions.TGSet.Set → Prop) (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 A x → Exists fun y => (relation x y ∧ ∀ (other : LRA.Set.Constructions.TGSet.Set), relation x other → other = y)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.instMembershipTGSet.1 A x → Exists fun y => (relation x y ∧ (∀ (other : LRA.Set.Constructions.TGSet.Set), relation x other → other = y))
 
 Logical form (Lean):
 
@@ -499,11 +553,16 @@ def IsFunctionalOn (A : Set) (relation : Set -> Set -> Prop) : Prop :=
 
 Predicate logic:
 
-  ∀ (A : LRA.Set.Constructions.TGSet.Set) (relation : LRA.Set.Constructions.TGSet.Set → LRA.Set.Constructions.TGSet.Set → Prop) (B y : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.mem B y ↔ Exists fun x => (LRA.Set.instMembershipTGSet.mem A x ∧ relation x y)
+  ∀ (A : LRA.Set.Constructions.TGSet.Set) (relation : LRA.Set.Constructions.TGSet.Set → LRA.Set.Constructions.TGSet.Set → Prop) (B y : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem B y ↔ Exists fun x => (LRA.Set.Constructions.instMembershipTGSet.mem A x ∧ relation x y)
 
 Predicate logic (unfolded):
 
-  ∀ (A : LRA.Set.Constructions.TGSet.Set) (relation : LRA.Set.Constructions.TGSet.Set → LRA.Set.Constructions.TGSet.Set → Prop) (B y : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 B y ↔ Exists fun x => (LRA.Set.instMembershipTGSet.1 A x ∧ relation x y)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.instMembershipTGSet.mem B y ↔ Exists fun x => (LRA.Set.Constructions.instMembershipTGSet.mem A x ∧ relation x y)
 
 Logical form (Lean):
 
@@ -541,11 +600,16 @@ def IsReplacementImageOf
 
 Predicate logic:
 
-  ∀ (x successor w : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.mem successor w ↔ Or (LRA.Set.instMembershipTGSet.mem x w) (w = x)
+  ∀ (x successor w : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem successor w ↔ Or (LRA.Set.Constructions.instMembershipTGSet.mem x w) (w = x)
 
 Predicate logic (unfolded):
 
-  ∀ (x successor w : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 successor w ↔ Or (LRA.Set.instMembershipTGSet.1 x w) (w = x)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.instMembershipTGSet.mem successor w ↔ Or (LRA.Set.Constructions.instMembershipTGSet.mem x w) (w = x)
 
 Logical form (Lean):
 
@@ -581,11 +645,16 @@ def IsSuccessorOf (x successor : Set) : Prop :=
 
 Predicate logic:
 
-  ∀ (A : LRA.Set.Constructions.TGSet.Set), (Exists fun empty => (LRA.Set.instMembershipTGSet.mem A empty ∧ LRA.Set.Constructions.TGSet.IsEmptySet empty) ∧ ∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.mem A x → Exists fun successor => (LRA.Set.instMembershipTGSet.mem A successor ∧ LRA.Set.Constructions.TGSet.IsSuccessorOf x successor))
+  ∀ (A : LRA.Set.Constructions.TGSet.Set), ((Exists fun empty => (LRA.Set.Constructions.instMembershipTGSet.mem A empty ∧ LRA.Set.Constructions.TGSet.IsEmptySet empty)) ∧ (∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem A x → Exists fun successor => (LRA.Set.Constructions.instMembershipTGSet.mem A successor ∧ LRA.Set.Constructions.TGSet.IsSuccessorOf x successor)))
 
 Predicate logic (unfolded):
 
-  ∀ (A : LRA.Set.Constructions.TGSet.Set), (Exists fun empty => (LRA.Set.instMembershipTGSet.1 A empty ∧ ∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 empty x → False) ∧ ∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 A x → Exists fun successor => (LRA.Set.instMembershipTGSet.1 A successor ∧ ∀ (w : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 successor w ↔ Or (LRA.Set.instMembershipTGSet.1 x w) (w = x)))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((Exists fun empty => (LRA.Set.Constructions.instMembershipTGSet.1 A empty ∧ (∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.1 empty x → False))) ∧ (∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.1 A x → Exists fun successor => (LRA.Set.Constructions.instMembershipTGSet.1 A successor ∧ (∀ (w : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.1 successor w ↔ Or (LRA.Set.Constructions.instMembershipTGSet.1 x w) (w = x)))))
 
 Logical form (Lean):
 
@@ -623,11 +692,16 @@ def IsInductiveSet (A : Set) : Prop :=
 
 Predicate logic:
 
-  ∀ (A x : LRA.Set.Constructions.TGSet.Set), (LRA.Set.instMembershipTGSet.mem A x ∧ ∀ (y : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.mem x y → ¬ LRA.Set.instMembershipTGSet.mem A y)
+  ∀ (A x : LRA.Set.Constructions.TGSet.Set), (LRA.Set.Constructions.instMembershipTGSet.mem A x ∧ (∀ (y : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem x y → ¬ LRA.Set.Constructions.instMembershipTGSet.mem A y))
 
 Predicate logic (unfolded):
 
-  ∀ (A x : LRA.Set.Constructions.TGSet.Set), (LRA.Set.instMembershipTGSet.1 A x ∧ ∀ (y : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 x y → LRA.Set.instMembershipTGSet.1 A y → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (LRA.Set.Constructions.instMembershipTGSet.1 A x ∧ (∀ (y : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.1 x y → LRA.Set.Constructions.instMembershipTGSet.1 A y → False))
 
 Logical form (Lean):
 
@@ -663,11 +737,16 @@ def IsFoundationWitness (A x : Set) : Prop :=
 
 Predicate logic:
 
-  ∀ (A choiceSet B : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.mem A B → Exists fun x => ((LRA.Set.instMembershipTGSet.mem B x ∧ LRA.Set.instMembershipTGSet.mem choiceSet x) ∧ ∀ (other : LRA.Set.Constructions.TGSet.Set), (LRA.Set.instMembershipTGSet.mem B other ∧ LRA.Set.instMembershipTGSet.mem choiceSet other) → other = x)
+  ∀ (A choiceSet B : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem A B → Exists fun x => ((LRA.Set.Constructions.instMembershipTGSet.mem B x ∧ LRA.Set.Constructions.instMembershipTGSet.mem choiceSet x) ∧ (∀ (other : LRA.Set.Constructions.TGSet.Set), (LRA.Set.Constructions.instMembershipTGSet.mem B other ∧ LRA.Set.Constructions.instMembershipTGSet.mem choiceSet other) → other = x))
 
 Predicate logic (unfolded):
 
-  ∀ (A choiceSet B : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 A B → Exists fun x => ((LRA.Set.instMembershipTGSet.1 B x ∧ LRA.Set.instMembershipTGSet.1 choiceSet x) ∧ ∀ (other : LRA.Set.Constructions.TGSet.Set), (LRA.Set.instMembershipTGSet.1 B other ∧ LRA.Set.instMembershipTGSet.1 choiceSet other) → other = x)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.instMembershipTGSet.1 A B → Exists fun x => ((LRA.Set.Constructions.instMembershipTGSet.1 B x ∧ LRA.Set.Constructions.instMembershipTGSet.1 choiceSet x) ∧ (∀ (other : LRA.Set.Constructions.TGSet.Set), (LRA.Set.Constructions.instMembershipTGSet.1 B other ∧ LRA.Set.Constructions.instMembershipTGSet.1 choiceSet other) → other = x))
 
 Logical form (Lean):
 
@@ -709,11 +788,16 @@ def IsChoiceSetFor (A choiceSet : Set) : Prop :=
 
 Predicate logic:
 
-  ∀ (A U : LRA.Set.Constructions.TGSet.Set), (LRA.Set.instMembershipTGSet.mem U A ∧ (∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.mem U x → ∀ (y : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.mem x y → LRA.Set.instMembershipTGSet.mem U y ∧ (∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.mem U x → Exists fun P => (LRA.Set.instMembershipTGSet.mem U P ∧ LRA.Set.Constructions.TGSet.IsPowerSetOf x P) ∧ (∀ (I : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.mem U I → ∀ (family : LRA.Set.Constructions.TGSet.Set → LRA.Set.Constructions.TGSet.Set), (∀ (i : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.mem I i → LRA.Set.instMembershipTGSet.mem U (family i)) → Exists fun image => (LRA.Set.instMembershipTGSet.mem U image ∧ ∀ (y : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.mem image y ↔ Exists fun i => (LRA.Set.instMembershipTGSet.mem I i ∧ y = family i)) ∧ ∀ (I : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.mem U I → ∀ (family : LRA.Set.Constructions.TGSet.Set → LRA.Set.Constructions.TGSet.Set), (∀ (i : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.mem I i → LRA.Set.instMembershipTGSet.mem U (family i)) → Exists fun union => (LRA.Set.instMembershipTGSet.mem U union ∧ ∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.mem union x ↔ Exists fun i => (LRA.Set.instMembershipTGSet.mem I i ∧ LRA.Set.instMembershipTGSet.mem (family i) x))))))
+  ∀ (A U : LRA.Set.Constructions.TGSet.Set), (LRA.Set.Constructions.instMembershipTGSet.mem U A ∧ ((∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem U x → ∀ (y : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem x y → LRA.Set.Constructions.instMembershipTGSet.mem U y) ∧ ((∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem U x → Exists fun P => (LRA.Set.Constructions.instMembershipTGSet.mem U P ∧ LRA.Set.Constructions.TGSet.IsPowerSetOf x P)) ∧ ((∀ (I : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem U I → ∀ (family : LRA.Set.Constructions.TGSet.Set → LRA.Set.Constructions.TGSet.Set), (∀ (i : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem I i → LRA.Set.Constructions.instMembershipTGSet.mem U (family i)) → Exists fun image => (LRA.Set.Constructions.instMembershipTGSet.mem U image ∧ (∀ (y : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem image y ↔ Exists fun i => (LRA.Set.Constructions.instMembershipTGSet.mem I i ∧ y = family i)))) ∧ (∀ (I : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem U I → ∀ (family : LRA.Set.Constructions.TGSet.Set → LRA.Set.Constructions.TGSet.Set), (∀ (i : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem I i → LRA.Set.Constructions.instMembershipTGSet.mem U (family i)) → Exists fun union => (LRA.Set.Constructions.instMembershipTGSet.mem U union ∧ (∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem union x ↔ Exists fun i => (LRA.Set.Constructions.instMembershipTGSet.mem I i ∧ LRA.Set.Constructions.instMembershipTGSet.mem (family i) x))))))))
 
 Predicate logic (unfolded):
 
-  ∀ (A U : LRA.Set.Constructions.TGSet.Set), (LRA.Set.instMembershipTGSet.1 U A ∧ (∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 U x → ∀ (y : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 x y → LRA.Set.instMembershipTGSet.1 U y ∧ (∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 U x → Exists fun P => (LRA.Set.instMembershipTGSet.1 U P ∧ ∀ (x_1 : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 P x_1 ↔ ∀ (y : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 x_1 y → LRA.Set.instMembershipTGSet.1 x y) ∧ (∀ (I : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 U I → ∀ (family : LRA.Set.Constructions.TGSet.Set → LRA.Set.Constructions.TGSet.Set), (∀ (i : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 I i → LRA.Set.instMembershipTGSet.1 U (family i)) → Exists fun image => (LRA.Set.instMembershipTGSet.1 U image ∧ ∀ (y : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 image y ↔ Exists fun i => (LRA.Set.instMembershipTGSet.1 I i ∧ y = family i)) ∧ ∀ (I : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 U I → ∀ (family : LRA.Set.Constructions.TGSet.Set → LRA.Set.Constructions.TGSet.Set), (∀ (i : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 I i → LRA.Set.instMembershipTGSet.1 U (family i)) → Exists fun union => (LRA.Set.instMembershipTGSet.1 U union ∧ ∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.instMembershipTGSet.1 union x ↔ Exists fun i => (LRA.Set.instMembershipTGSet.1 I i ∧ LRA.Set.instMembershipTGSet.1 (family i) x))))))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (LRA.Set.Constructions.instMembershipTGSet.mem U A ∧ ((∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem U x → ∀ (y : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem x y → LRA.Set.Constructions.instMembershipTGSet.mem U y) ∧ ((∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem U x → Exists fun P => (LRA.Set.Constructions.instMembershipTGSet.mem U P ∧ LRA.Set.Constructions.TGSet.IsPowerSetOf x P)) ∧ ((∀ (I : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem U I → ∀ (family : LRA.Set.Constructions.TGSet.Set → LRA.Set.Constructions.TGSet.Set), (∀ (i : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem I i → LRA.Set.Constructions.instMembershipTGSet.mem U (family i)) → Exists fun image => (LRA.Set.Constructions.instMembershipTGSet.mem U image ∧ (∀ (y : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem image y ↔ Exists fun i => (LRA.Set.Constructions.instMembershipTGSet.mem I i ∧ y = family i)))) ∧ (∀ (I : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem U I → ∀ (family : LRA.Set.Constructions.TGSet.Set → LRA.Set.Constructions.TGSet.Set), (∀ (i : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem I i → LRA.Set.Constructions.instMembershipTGSet.mem U (family i)) → Exists fun union => (LRA.Set.Constructions.instMembershipTGSet.mem U union ∧ (∀ (x : LRA.Set.Constructions.TGSet.Set), LRA.Set.Constructions.instMembershipTGSet.mem union x ↔ Exists fun i => (LRA.Set.Constructions.instMembershipTGSet.mem I i ∧ LRA.Set.Constructions.instMembershipTGSet.mem (family i) x))))))))
 
 Logical form (Lean):
 

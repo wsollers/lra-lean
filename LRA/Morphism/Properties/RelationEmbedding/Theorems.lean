@@ -18,11 +18,19 @@ variable {targetRelation : LRA.Relation.Endorelation Target}
 
 Predicate logic:
 
-  PreservesRelation function sourceRelation targetRelation
+  ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source} {targetRelation : LRA.Relation.Endorelation Target}, LRA.Morphism.PreservesAndReflectsRelation function sourceRelation targetRelation → LRA.Morphism.PreservesRelation function sourceRelation targetRelation
 
 Predicate logic (unfolded):
 
-  ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : Source → Source → Prop} {targetRelation : Target → Target → Prop}, (∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right) ∧ ∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right) → ∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)
+  Ambient
+    (Source, Target)
+  Objects
+    function : Source → Target
+    sourceRelation : LRA.Relation.Endorelation Source
+    targetRelation : LRA.Relation.Endorelation Target
+    law : PreservesAndReflectsRelation function sourceRelation targetRelation
+  Prove
+    ((∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)) ∧ (∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right)) → ∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)
 
 Logical form (Lean):
 
@@ -60,11 +68,19 @@ theorem PreservesAndReflectsRelation.preserves
 
 Predicate logic:
 
-  ReflectsRelation function sourceRelation targetRelation
+  ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source} {targetRelation : LRA.Relation.Endorelation Target}, LRA.Morphism.PreservesAndReflectsRelation function sourceRelation targetRelation → LRA.Morphism.ReflectsRelation function sourceRelation targetRelation
 
 Predicate logic (unfolded):
 
-  ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : Source → Source → Prop} {targetRelation : Target → Target → Prop}, (∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right) ∧ ∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right) → ∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right
+  Ambient
+    (Source, Target)
+  Objects
+    function : Source → Target
+    sourceRelation : LRA.Relation.Endorelation Source
+    targetRelation : LRA.Relation.Endorelation Target
+    law : PreservesAndReflectsRelation function sourceRelation targetRelation
+  Prove
+    ((∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)) ∧ (∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right)) → ∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right
 
 Logical form (Lean):
 
@@ -102,11 +118,19 @@ theorem PreservesAndReflectsRelation.reflects
 
 Predicate logic:
 
-  LRA.Function.Injective function
+  ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source} {targetRelation : LRA.Relation.Endorelation Target}, LRA.Morphism.RelationEmbedding function sourceRelation targetRelation → LRA.Function.Injective function
 
 Predicate logic (unfolded):
 
-  ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : Source → Source → Prop} {targetRelation : Target → Target → Prop}, (∀ (y : Target) (x₁ x₂ : Source), function x₁ = y → function x₂ = y → x₁ = x₂ ∧ (∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right) ∧ ∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right)) → ∀ (y : Target) (x₁ x₂ : Source), (function x₁ = y ∧ function x₂ = y) → x₁ = x₂
+  Ambient
+    (Source, Target)
+  Objects
+    function : Source → Target
+    sourceRelation : LRA.Relation.Endorelation Source
+    targetRelation : LRA.Relation.Endorelation Target
+    embedding : RelationEmbedding function sourceRelation targetRelation
+  Prove
+    ((∀ (y : Target) (x₁ x₂ : Source), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ ((∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)) ∧ (∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right))) → ∀ (y : Target) (x₁ x₂ : Source), (function x₁ = y ∧ function x₂ = y) → x₁ = x₂
 
 Logical form (Lean):
 
@@ -144,11 +168,19 @@ theorem RelationEmbedding.injective
 
 Predicate logic:
 
-  PreservesAndReflectsRelation function sourceRelation targetRelation
+  ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source} {targetRelation : LRA.Relation.Endorelation Target}, LRA.Morphism.RelationEmbedding function sourceRelation targetRelation → LRA.Morphism.PreservesAndReflectsRelation function sourceRelation targetRelation
 
 Predicate logic (unfolded):
 
-  ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : Source → Source → Prop} {targetRelation : Target → Target → Prop}, (∀ (y : Target) (x₁ x₂ : Source), function x₁ = y → function x₂ = y → x₁ = x₂ ∧ (∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right) ∧ ∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right)) → (∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right) ∧ ∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right)
+  Ambient
+    (Source, Target)
+  Objects
+    function : Source → Target
+    sourceRelation : LRA.Relation.Endorelation Source
+    targetRelation : LRA.Relation.Endorelation Target
+    embedding : RelationEmbedding function sourceRelation targetRelation
+  Prove
+    ((∀ (y : Target) (x₁ x₂ : Source), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ ((∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)) ∧ (∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right))) → ((∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)) ∧ (∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right))
 
 Logical form (Lean):
 
@@ -186,11 +218,19 @@ theorem RelationEmbedding.preserves_and_reflects
 
 Predicate logic:
 
-  PreservesRelation function sourceRelation targetRelation
+  ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source} {targetRelation : LRA.Relation.Endorelation Target}, LRA.Morphism.RelationEmbedding function sourceRelation targetRelation → LRA.Morphism.PreservesRelation function sourceRelation targetRelation
 
 Predicate logic (unfolded):
 
-  ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : Source → Source → Prop} {targetRelation : Target → Target → Prop}, (∀ (y : Target) (x₁ x₂ : Source), function x₁ = y → function x₂ = y → x₁ = x₂ ∧ (∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right) ∧ ∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right)) → ∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)
+  Ambient
+    (Source, Target)
+  Objects
+    function : Source → Target
+    sourceRelation : LRA.Relation.Endorelation Source
+    targetRelation : LRA.Relation.Endorelation Target
+    embedding : RelationEmbedding function sourceRelation targetRelation
+  Prove
+    ((∀ (y : Target) (x₁ x₂ : Source), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ ((∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)) ∧ (∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right))) → ∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)
 
 Logical form (Lean):
 
@@ -228,11 +268,19 @@ theorem RelationEmbedding.preserves
 
 Predicate logic:
 
-  ReflectsRelation function sourceRelation targetRelation
+  ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : LRA.Relation.Endorelation Source} {targetRelation : LRA.Relation.Endorelation Target}, LRA.Morphism.RelationEmbedding function sourceRelation targetRelation → LRA.Morphism.ReflectsRelation function sourceRelation targetRelation
 
 Predicate logic (unfolded):
 
-  ∀ {Source : Type u} {Target : Type v} {function : Source → Target} {sourceRelation : Source → Source → Prop} {targetRelation : Target → Target → Prop}, (∀ (y : Target) (x₁ x₂ : Source), function x₁ = y → function x₂ = y → x₁ = x₂ ∧ (∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right) ∧ ∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right)) → ∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right
+  Ambient
+    (Source, Target)
+  Objects
+    function : Source → Target
+    sourceRelation : LRA.Relation.Endorelation Source
+    targetRelation : LRA.Relation.Endorelation Target
+    embedding : RelationEmbedding function sourceRelation targetRelation
+  Prove
+    ((∀ (y : Target) (x₁ x₂ : Source), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ ((∀ (left right : Source), sourceRelation left right → targetRelation (function left) (function right)) ∧ (∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right))) → ∀ (left right : Source), targetRelation (function left) (function right) → sourceRelation left right
 
 Logical form (Lean):
 

@@ -13,7 +13,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain), Exists fun first => Exists fun second => (first = second → False ∧ function first = function second)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun first => Exists fun second => ((first = second → False) ∧ function first = function second)
 
 Logical form (Lean):
 
@@ -55,7 +60,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain), Exists fun output => ∀ (input : Domain), function input = output → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun output => ∀ (input : Domain), function input = output → False
 
 Logical form (Lean):
 
@@ -97,7 +107,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain), Or (Exists fun first => Exists fun second => (first = second → False ∧ function first = function second)) (Exists fun output => ∀ (input : Domain), function input = output → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Or (Exists fun first => Exists fun second => ((first = second → False) ∧ function first = function second)) (Exists fun output => ∀ (input : Domain), function input = output → False)
 
 Logical form (Lean):
 
@@ -135,11 +150,16 @@ def FailsBijective {Domain : Type u} {Codomain : Type v}
 
 Predicate logic:
 
-  HasCollision function ↔ ¬ Injective function
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.HasCollision ↔ ¬ function.Injective
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain), Exists fun first => Exists fun second => (first = second → False ∧ function first = function second) ↔ (∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂) → False
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+  Prove
+    function.HasCollision ↔ ¬ function.Injective
 
 Logical form (Lean):
 
@@ -177,11 +197,16 @@ theorem HasCollisionIffNotInjective {Domain : Type u} {Codomain : Type v}
 
 Predicate logic:
 
-  MissesValue function ↔ ¬ Surjective function
+  ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain), function.MissesValue ↔ ¬ function.Surjective
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain), Exists fun output => ∀ (input : Domain), function input = output → False ↔ (∀ (y : Codomain), Exists fun x => function x = y) → False
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+  Prove
+    function.MissesValue ↔ ¬ function.Surjective
 
 Logical form (Lean):
 

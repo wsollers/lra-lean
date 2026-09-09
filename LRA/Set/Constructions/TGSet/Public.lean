@@ -8,11 +8,16 @@ namespace LRA.Set.Constructions.TGSet
 
 Predicate logic:
 
-  (∀ A B ∈ LRA.Set.Constructions.TGSet), (forall x : LRA.Set.Constructions.TGSet, x ∈ A <-> x ∈ B) → A = B
+  ∀ (A B : LRA.Set.Constructions.TGSet), (∀ (x : LRA.Set.Constructions.TGSet), LRA.Set.Constructions.instMembershipTGSet.mem A x ↔ LRA.Set.Constructions.instMembershipTGSet.mem B x) → A = B
 
 Predicate logic (unfolded):
 
-  ∀ (A B : LRA.Set.Constructions.TGSet), (∀ (x : LRA.Set.Constructions.TGSet), LRA.Set.instMembershipTGSet.1 A x ↔ LRA.Set.instMembershipTGSet.1 B x) → A = B
+  Ambient
+    (implicit ambient)
+  Objects
+    A B : LRA.Set.Constructions.TGSet
+  Prove
+    (∀ (x : LRA.Set.Constructions.TGSet), LRA.Set.Constructions.instMembershipTGSet.mem A x ↔ LRA.Set.Constructions.instMembershipTGSet.mem B x) → A = B
 
 Logical form (Lean):
 

@@ -13,7 +13,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (setObject : SetObject) (a : Element), inst.1 setObject a
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    inst.1 setObject a
 
 Logical form (Lean):
 
@@ -57,7 +62,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (setObject : SetObject) (setClass : Element → Prop) (element : Element), inst.1 setObject element ↔ setClass element
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    element ∈ setObject ↔ setClass element
 
 Logical form (Lean):
 
@@ -101,7 +111,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (setClass : Element → Prop), Exists fun setObject => ∀ (element : Element), inst.1 setObject element ↔ setClass element
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun setObject => ∀ (element : Element), inst.1 setObject element ↔ setClass element
 
 Logical form (Lean):
 
@@ -145,7 +160,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (setClass : Element → Prop), (Exists fun setObject => ∀ (element : Element), inst.1 setObject element ↔ setClass element) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (Exists fun setObject => ∀ (element : Element), inst.1 setObject element ↔ setClass element) → False
 
 Logical form (Lean):
 

@@ -12,12 +12,12 @@ open LRA.Operation
 Predicate logic:
 
   def BooleanAndOperation : BinaryEndoOperation Bool :=
-  fun left right => left && right
+    fun left right => left && right
 
 Predicate logic (unfolded):
 
   def BooleanAndOperation : BinaryEndoOperation Bool :=
-  fun left right => left && right (source fallback; no compiled unfold data available)
+    fun left right => left && right (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -53,11 +53,16 @@ def BooleanAndOperation : BinaryEndoOperation Bool :=
 
 Predicate logic:
 
-  TwoSidedAbsorbing BooleanAndOperation false
+  LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing LRA.Operation.Laws.Absorbing.BooleanAndOperation Bool.false
 
 Predicate logic (unfolded):
 
-  (∀ (element : Bool), Bool.rec ((fun _ => Bool.false) Unit.unit) ((fun _ => element) Unit.unit) Bool.false = Bool.false ∧ ∀ (element : Bool), Bool.rec ((fun _ => Bool.false) Unit.unit) ((fun _ => Bool.false) Unit.unit) element = Bool.false)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (element : Bool), Bool.rec ((fun _ => Bool.false) Unit.unit) ((fun _ => element) Unit.unit) Bool.false = Bool.false) ∧ (∀ (element : Bool), Bool.rec ((fun _ => Bool.false) Unit.unit) ((fun _ => Bool.false) Unit.unit) element = Bool.false))
 
 Logical form (Lean):
 
@@ -94,12 +99,12 @@ theorem BooleanFalseIsTwoSidedAbsorbingForAnd :
 Predicate logic:
 
   def BooleanOrOperation : BinaryEndoOperation Bool :=
-  fun left right => left || right
+    fun left right => left || right
 
 Predicate logic (unfolded):
 
   def BooleanOrOperation : BinaryEndoOperation Bool :=
-  fun left right => left || right (source fallback; no compiled unfold data available)
+    fun left right => left || right (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -135,11 +140,16 @@ def BooleanOrOperation : BinaryEndoOperation Bool :=
 
 Predicate logic:
 
-  TwoSidedAbsorbing BooleanOrOperation true
+  LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing LRA.Operation.Laws.Absorbing.BooleanOrOperation Bool.true
 
 Predicate logic (unfolded):
 
-  (∀ (element : Bool), Bool.rec ((fun _ => element) Unit.unit) ((fun _ => Bool.true) Unit.unit) Bool.true = Bool.true ∧ ∀ (element : Bool), Bool.rec ((fun _ => Bool.true) Unit.unit) ((fun _ => Bool.true) Unit.unit) element = Bool.true)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (element : Bool), Bool.rec ((fun _ => element) Unit.unit) ((fun _ => Bool.true) Unit.unit) Bool.true = Bool.true) ∧ (∀ (element : Bool), Bool.rec ((fun _ => Bool.true) Unit.unit) ((fun _ => Bool.true) Unit.unit) element = Bool.true))
 
 Logical form (Lean):
 
@@ -182,12 +192,12 @@ open LRA.Operation
 Predicate logic:
 
   def BooleanOrOperation : BinaryEndoOperation Bool :=
-  fun left right => left || right
+    fun left right => left || right
 
 Predicate logic (unfolded):
 
   def BooleanOrOperation : BinaryEndoOperation Bool :=
-  fun left right => left || right (source fallback; no compiled unfold data available)
+    fun left right => left || right (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -224,12 +234,12 @@ def BooleanOrOperation : BinaryEndoOperation Bool :=
 Predicate logic:
 
   def BooleanAndOperation : BinaryEndoOperation Bool :=
-  fun left right => left && right
+    fun left right => left && right
 
 Predicate logic (unfolded):
 
   def BooleanAndOperation : BinaryEndoOperation Bool :=
-  fun left right => left && right (source fallback; no compiled unfold data available)
+    fun left right => left && right (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -265,11 +275,16 @@ def BooleanAndOperation : BinaryEndoOperation Bool :=
 
 Predicate logic:
 
-  MutualAbsorptionLaw BooleanOrOperation BooleanAndOperation
+  LRA.Operation.Laws.Absorption.MutualAbsorptionLaw LRA.Operation.Laws.Absorption.BooleanOrOperation LRA.Operation.Laws.Absorption.BooleanAndOperation
 
 Predicate logic (unfolded):
 
-  (∀ (left right : Bool), Bool.rec ((fun _ => LRA.Operation.Laws.Absorption.BooleanAndOperation left right) Unit.unit) ((fun _ => Bool.true) Unit.unit) left = left ∧ ∀ (left right : Bool), Bool.rec ((fun _ => Bool.false) Unit.unit) ((fun _ => LRA.Operation.Laws.Absorption.BooleanOrOperation left right) Unit.unit) left = left)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (left right : Bool), Bool.rec ((fun _ => LRA.Operation.Laws.Absorption.BooleanAndOperation left right) Unit.unit) ((fun _ => Bool.true) Unit.unit) left = left) ∧ (∀ (left right : Bool), Bool.rec ((fun _ => Bool.false) Unit.unit) ((fun _ => LRA.Operation.Laws.Absorption.BooleanOrOperation left right) Unit.unit) left = left))
 
 Logical form (Lean):
 
@@ -305,11 +320,16 @@ theorem BooleanOrAndMutualAbsorption :
 
 Predicate logic:
 
-  MutualAbsorptionLaw NaturalMaxOperation NaturalMinOperation
+  LRA.Operation.Laws.Absorption.MutualAbsorptionLaw LRA.Operation.Laws.Absorption.NaturalMaxOperation LRA.Operation.Laws.Absorption.NaturalMinOperation
 
 Predicate logic (unfolded):
 
-  (∀ (left right : Nat), Nat.instMax.1 left (left.min right) = left ∧ ∀ (left right : Nat), instMinNat.1 left (left.max right) = left)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (left right : Nat), Nat.instMax.1 left (left.min right) = left) ∧ (∀ (left right : Nat), instMinNat.1 left (left.max right) = left))
 
 Logical form (Lean):
 
@@ -351,11 +371,16 @@ open LRA.Operation
 
 Predicate logic:
 
-  Associative NaturalAddition
+  ∀ {Carrier : Type u_1} {NaturalAddition : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Associative.Associative NaturalAddition
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u_1} {NaturalAddition : Carrier → Carrier → Carrier} (first second third : Carrier), NaturalAddition (NaturalAddition first second) third = NaturalAddition first (NaturalAddition second third)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    NaturalAddition (NaturalAddition first second) third = NaturalAddition first (NaturalAddition second third)
 
 Logical form (Lean):
 
@@ -397,11 +422,16 @@ open LRA.Operation
 
 Predicate logic:
 
-  TwoSidedCancellative NaturalAddition
+  ∀ {Carrier : Type u_1} {NaturalAddition : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Cancellation.TwoSidedCancellative NaturalAddition
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u_1} {NaturalAddition : Carrier → Carrier → Carrier}, (∀ (fixed first second : Carrier), NaturalAddition fixed first = NaturalAddition fixed second → first = second ∧ ∀ (first second fixed : Carrier), NaturalAddition first fixed = NaturalAddition second fixed → first = second)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (fixed first second : Carrier), NaturalAddition fixed first = NaturalAddition fixed second → first = second) ∧ (∀ (first second fixed : Carrier), NaturalAddition first fixed = NaturalAddition second fixed → first = second))
 
 Logical form (Lean):
 
@@ -438,12 +468,12 @@ theorem NaturalAdditionTwoSidedCancellative :
 Predicate logic:
 
   def NaturalMultiplicationForRestrictedCancellation : BinaryEndoOperation Nat :=
-  fun left right => left * right
+    fun left right => left * right
 
 Predicate logic (unfolded):
 
   def NaturalMultiplicationForRestrictedCancellation : BinaryEndoOperation Nat :=
-  fun left right => left * right (source fallback; no compiled unfold data available)
+    fun left right => left * right (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -479,11 +509,16 @@ def NaturalMultiplicationForRestrictedCancellation : BinaryEndoOperation Nat :=
 
 Predicate logic:
 
-  LeftCancellativeOn fun fixed ∈ Nat => fixed ≠ 0 NaturalMultiplicationForRestrictedCancellation
+  LRA.Operation.Laws.Cancellation.LeftCancellativeOn (fun fixed => Ne fixed 0) LRA.Operation.Laws.Cancellation.NaturalMultiplicationForRestrictedCancellation
 
 Predicate logic (unfolded):
 
-  ∀ (fixed : Nat), (fixed = instOfNatNat 0.1 → False) → ∀ (first second : Nat), instHMul.1 fixed first = instHMul.1 fixed second → first = second
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (fixed = 0 → False) → ∀ (first second : Nat), { hMul := fun a b => instMulNat.mul a b }.hMul fixed first = { hMul := fun a b => instMulNat.mul a b }.hMul fixed second → first = second
 
 Logical form (Lean):
 
@@ -523,11 +558,16 @@ theorem NaturalMultiplicationLeftCancellativeOnNonzero :
 
 Predicate logic:
 
-  RightCancellativeOn fun fixed ∈ Nat => fixed ≠ 0 NaturalMultiplicationForRestrictedCancellation
+  LRA.Operation.Laws.Cancellation.RightCancellativeOn (fun fixed => Ne fixed 0) LRA.Operation.Laws.Cancellation.NaturalMultiplicationForRestrictedCancellation
 
 Predicate logic (unfolded):
 
-  ∀ (fixed : Nat), (fixed = instOfNatNat 0.1 → False) → ∀ (first second : Nat), instHMul.1 first fixed = instHMul.1 second fixed → first = second
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (fixed = 0 → False) → ∀ (first second : Nat), { hMul := fun a b => instMulNat.mul a b }.hMul first fixed = { hMul := fun a b => instMulNat.mul a b }.hMul second fixed → first = second
 
 Logical form (Lean):
 
@@ -573,11 +613,16 @@ open LRA.Operation
 
 Predicate logic:
 
-  BinaryEndoClosedOn fun _ ∈ Nat => True NaturalAddition
+  ∀ {NaturalAddition : LRA.Operation.BinaryEndoOperation Nat}, LRA.Operation.Laws.Closure.BinaryEndoClosedOn (fun x => True) NaturalAddition
 
 Predicate logic (unfolded):
 
-  ∀ {NaturalAddition : Nat → Nat → Nat} (left right : Nat), (True ∧ True) → (fun x => True) (NaturalAddition left right)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (True ∧ True) → (fun x => True) (NaturalAddition left right)
 
 Logical form (Lean):
 
@@ -619,11 +664,16 @@ open LRA.Operation
 
 Predicate logic:
 
-  Commutative NaturalAddition
+  ∀ {Carrier : Type u_1} {NaturalAddition : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Commutative.Commutative NaturalAddition
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u_1} {NaturalAddition : Carrier → Carrier → Carrier} (first second : Carrier), NaturalAddition first second = NaturalAddition second first
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    NaturalAddition first second = NaturalAddition second first
 
 Logical form (Lean):
 
@@ -665,11 +715,16 @@ open LRA.Operation
 
 Predicate logic:
 
-  TwoSidedDistributive NaturalMultiplication NaturalAddition
+  ∀ {Carrier : Type u_1} {NaturalMultiplication NaturalAddition : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Distributive.TwoSidedDistributive NaturalMultiplication NaturalAddition
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u_1} {NaturalMultiplication NaturalAddition : Carrier → Carrier → Carrier}, (∀ (left right third : Carrier), NaturalMultiplication left (NaturalAddition right third) = NaturalAddition (NaturalMultiplication left right) (NaturalMultiplication left third) ∧ ∀ (left right third : Carrier), NaturalMultiplication (NaturalAddition left right) third = NaturalAddition (NaturalMultiplication left third) (NaturalMultiplication right third))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (left right third : Carrier), NaturalMultiplication left (NaturalAddition right third) = NaturalAddition (NaturalMultiplication left right) (NaturalMultiplication left third)) ∧ (∀ (left right third : Carrier), NaturalMultiplication (NaturalAddition left right) third = NaturalAddition (NaturalMultiplication left third) (NaturalMultiplication right third)))
 
 Logical form (Lean):
 
@@ -712,12 +767,12 @@ open LRA.Operation
 Predicate logic:
 
   def BooleanOrOperation : BinaryEndoOperation Bool :=
-  fun left right => left || right
+    fun left right => left || right
 
 Predicate logic (unfolded):
 
   def BooleanOrOperation : BinaryEndoOperation Bool :=
-  fun left right => left || right (source fallback; no compiled unfold data available)
+    fun left right => left || right (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -753,11 +808,16 @@ def BooleanOrOperation : BinaryEndoOperation Bool :=
 
 Predicate logic:
 
-  Idempotent BooleanOrOperation
+  LRA.Operation.Laws.Idempotent.Idempotent LRA.Operation.Laws.Idempotent.BooleanOrOperation
 
 Predicate logic (unfolded):
 
-  ∀ (element : Bool), Bool.rec ((fun _ => element) Unit.unit) ((fun _ => Bool.true) Unit.unit) element = element
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Bool.rec ((fun _ => element) Unit.unit) ((fun _ => Bool.true) Unit.unit) element = element
 
 Logical form (Lean):
 
@@ -794,12 +854,12 @@ theorem BooleanOrIdempotent :
 Predicate logic:
 
   def BooleanAndOperation : BinaryEndoOperation Bool :=
-  fun left right => left && right
+    fun left right => left && right
 
 Predicate logic (unfolded):
 
   def BooleanAndOperation : BinaryEndoOperation Bool :=
-  fun left right => left && right (source fallback; no compiled unfold data available)
+    fun left right => left && right (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -835,11 +895,16 @@ def BooleanAndOperation : BinaryEndoOperation Bool :=
 
 Predicate logic:
 
-  Idempotent BooleanAndOperation
+  LRA.Operation.Laws.Idempotent.Idempotent LRA.Operation.Laws.Idempotent.BooleanAndOperation
 
 Predicate logic (unfolded):
 
-  ∀ (element : Bool), Bool.rec ((fun _ => Bool.false) Unit.unit) ((fun _ => element) Unit.unit) element = element
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Bool.rec ((fun _ => Bool.false) Unit.unit) ((fun _ => element) Unit.unit) element = element
 
 Logical form (Lean):
 
@@ -882,12 +947,12 @@ open LRA.Operation
 Predicate logic:
 
   def BooleanOrOperation : BinaryEndoOperation Bool :=
-  fun left right => left || right
+    fun left right => left || right
 
 Predicate logic (unfolded):
 
   def BooleanOrOperation : BinaryEndoOperation Bool :=
-  fun left right => left || right (source fallback; no compiled unfold data available)
+    fun left right => left || right (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -923,11 +988,16 @@ def BooleanOrOperation : BinaryEndoOperation Bool :=
 
 Predicate logic:
 
-  TwoSidedIdentity BooleanOrOperation false
+  LRA.Operation.Laws.Identity.TwoSidedIdentity LRA.Operation.Laws.Identity.BooleanOrOperation Bool.false
 
 Predicate logic (unfolded):
 
-  (∀ (element : Bool), Bool.rec ((fun _ => element) Unit.unit) ((fun _ => Bool.true) Unit.unit) Bool.false = element ∧ ∀ (element : Bool), Bool.rec ((fun _ => Bool.false) Unit.unit) ((fun _ => Bool.true) Unit.unit) element = element)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (element : Bool), Bool.rec ((fun _ => element) Unit.unit) ((fun _ => Bool.true) Unit.unit) Bool.false = element) ∧ (∀ (element : Bool), Bool.rec ((fun _ => Bool.false) Unit.unit) ((fun _ => Bool.true) Unit.unit) element = element))
 
 Logical form (Lean):
 
@@ -964,12 +1034,12 @@ theorem BooleanFalseIsTwoSidedIdentityForOr :
 Predicate logic:
 
   def BooleanAndOperation : BinaryEndoOperation Bool :=
-  fun left right => left && right
+    fun left right => left && right
 
 Predicate logic (unfolded):
 
   def BooleanAndOperation : BinaryEndoOperation Bool :=
-  fun left right => left && right (source fallback; no compiled unfold data available)
+    fun left right => left && right (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1005,11 +1075,16 @@ def BooleanAndOperation : BinaryEndoOperation Bool :=
 
 Predicate logic:
 
-  TwoSidedIdentity BooleanAndOperation true
+  LRA.Operation.Laws.Identity.TwoSidedIdentity LRA.Operation.Laws.Identity.BooleanAndOperation Bool.true
 
 Predicate logic (unfolded):
 
-  (∀ (element : Bool), Bool.rec ((fun _ => Bool.false) Unit.unit) ((fun _ => element) Unit.unit) Bool.true = element ∧ ∀ (element : Bool), Bool.rec ((fun _ => Bool.false) Unit.unit) ((fun _ => Bool.true) Unit.unit) element = element)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (element : Bool), Bool.rec ((fun _ => Bool.false) Unit.unit) ((fun _ => element) Unit.unit) Bool.true = element) ∧ (∀ (element : Bool), Bool.rec ((fun _ => Bool.false) Unit.unit) ((fun _ => Bool.true) Unit.unit) element = element))
 
 Logical form (Lean):
 
@@ -1052,12 +1127,12 @@ open LRA.Operation
 Predicate logic:
 
   def BooleanXorOperation : BinaryEndoOperation Bool :=
-  fun left right => Bool.xor left right
+    fun left right => Bool.xor left right
 
 Predicate logic (unfolded):
 
   def BooleanXorOperation : BinaryEndoOperation Bool :=
-  fun left right => Bool.xor left right (source fallback; no compiled unfold data available)
+    fun left right => Bool.xor left right (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1094,12 +1169,12 @@ def BooleanXorOperation : BinaryEndoOperation Bool :=
 Predicate logic:
 
   def BooleanXorInverse : UnaryEndoOperation Bool :=
-  fun element => element
+    fun element => element
 
 Predicate logic (unfolded):
 
   def BooleanXorInverse : UnaryEndoOperation Bool :=
-  fun element => element (source fallback; no compiled unfold data available)
+    fun element => element (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1135,11 +1210,16 @@ def BooleanXorInverse : UnaryEndoOperation Bool :=
 
 Predicate logic:
 
-  TwoSidedInverse BooleanXorOperation false BooleanXorInverse
+  LRA.Operation.Laws.Inverse.TwoSidedInverse LRA.Operation.Laws.Inverse.BooleanXorOperation Bool.false LRA.Operation.Laws.Inverse.BooleanXorInverse
 
 Predicate logic (unfolded):
 
-  (∀ (element : Bool), cond.match_1 (fun x => Bool) (instBEqOfDecidable.beq = LRA.Operation.Laws.Inverse.BooleanXorInverse element element) (fun _ => Bool.false) fun _ => Bool.true = Bool.false ∧ ∀ (element : Bool), cond.match_1 (fun x => Bool) (instBEqOfDecidable.beq = element(LRA.Operation.Laws.Inverse.BooleanXorInverse element)) (fun _ => Bool.false) fun _ => Bool.true = Bool.false)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (element : Bool), cond.match_1 (fun x => Bool) (instBEqOfDecidable.beq = LRA.Operation.Laws.Inverse.BooleanXorInverse element element) (fun _ => Bool.false) fun _ => Bool.true = Bool.false) ∧ (∀ (element : Bool), cond.match_1 (fun x => Bool) (instBEqOfDecidable.beq = element(LRA.Operation.Laws.Inverse.BooleanXorInverse element)) (fun _ => Bool.false) fun _ => Bool.true = Bool.false))
 
 Logical form (Lean):
 
@@ -1176,12 +1256,12 @@ theorem BooleanXorSelfInverse :
 Predicate logic:
 
   def IntegerAdditionForInverseExample : BinaryEndoOperation Int :=
-  fun left right => left + right
+    fun left right => left + right
 
 Predicate logic (unfolded):
 
   def IntegerAdditionForInverseExample : BinaryEndoOperation Int :=
-  fun left right => left + right (source fallback; no compiled unfold data available)
+    fun left right => left + right (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1218,12 +1298,12 @@ def IntegerAdditionForInverseExample : BinaryEndoOperation Int :=
 Predicate logic:
 
   def IntegerAdditiveInverse : UnaryEndoOperation Int :=
-  fun element => -element
+    fun element => -element
 
 Predicate logic (unfolded):
 
   def IntegerAdditiveInverse : UnaryEndoOperation Int :=
-  fun element => -element (source fallback; no compiled unfold data available)
+    fun element => -element (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1259,11 +1339,16 @@ def IntegerAdditiveInverse : UnaryEndoOperation Int :=
 
 Predicate logic:
 
-  TwoSidedInverse IntegerAdditionForInverseExample 0 IntegerAdditiveInverse
+  LRA.Operation.Laws.Inverse.TwoSidedInverse LRA.Operation.Laws.Inverse.IntegerAdditionForInverseExample 0 LRA.Operation.Laws.Inverse.IntegerAdditiveInverse
 
 Predicate logic (unfolded):
 
-  (∀ (element : Int), instHAdd.1 (Int.instNegInt.1 element) element = instOfNat.1 ∧ ∀ (element : Int), instHAdd.1 element (Int.instNegInt.1 element) = instOfNat.1)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (element : Int), { hAdd := fun a b => Int.instAdd.add a b }.hAdd (Int.instNegInt.neg element) element = 0) ∧ (∀ (element : Int), { hAdd := fun a b => Int.instAdd.add a b }.hAdd element (Int.instNegInt.neg element) = 0))
 
 Logical form (Lean):
 
@@ -1306,12 +1391,12 @@ open LRA.Operation
 Predicate logic:
 
   def NaturalMultiplicationForNilpotenceExample : BinaryEndoOperation Nat :=
-  fun left right => left * right
+    fun left right => left * right
 
 Predicate logic (unfolded):
 
   def NaturalMultiplicationForNilpotenceExample : BinaryEndoOperation Nat :=
-  fun left right => left * right (source fallback; no compiled unfold data available)
+    fun left right => left * right (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -1347,11 +1432,16 @@ def NaturalMultiplicationForNilpotenceExample : BinaryEndoOperation Nat :=
 
 Predicate logic:
 
-  NilpotentElement NaturalMultiplicationForNilpotenceExample 0 0
+  LRA.Operation.Laws.Nilpotent.NilpotentElement LRA.Operation.Laws.Nilpotent.NaturalMultiplicationForNilpotenceExample 0 0
 
 Predicate logic (unfolded):
 
-  Exists fun positiveExponent => LRA.Operation.Laws.Nilpotent.PositivePower LRA.Operation.Laws.Nilpotent.NaturalMultiplicationForNilpotenceExample (instOfNatNat 0).1 positiveExponent = instOfNatNat 0.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    Exists fun positiveExponent => LRA.Operation.Laws.Nilpotent.PositivePower LRA.Operation.Laws.Nilpotent.NaturalMultiplicationForNilpotenceExample 0 positiveExponent = 0
 
 Logical form (Lean):
 

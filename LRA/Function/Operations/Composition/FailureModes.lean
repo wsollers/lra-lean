@@ -16,7 +16,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} (inner : Domain → Middle) (outer : Middle → Codomain), (∀ (y : Codomain) (x₁ x₂ : Domain), outer (inner x₁) = y → outer (inner x₂) = y → x₁ = x₂ ∧ (∀ (y : Codomain) (x₁ x₂ : Middle), outer x₁ = y → outer x₂ = y → x₁ = x₂) → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (y : Codomain) (x₁ x₂ : Domain), outer (inner x₁) = y → outer (inner x₂) = y → x₁ = x₂) ∧ ((∀ (y : Codomain) (x₁ x₂ : Middle), outer x₁ = y → outer x₂ = y → x₁ = x₂) → False))
 
 Logical form (Lean):
 
@@ -60,7 +65,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} (inner : Domain → Middle) (outer : Middle → Codomain), (∀ (y : Codomain), Exists fun x => outer (inner x) = y ∧ (∀ (y : Middle), Exists fun x => inner x = y) → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (y : Codomain), Exists fun x => outer (inner x) = y) ∧ ((∀ (y : Middle), Exists fun x => inner x = y) → False))
 
 Logical form (Lean):
 
@@ -104,7 +114,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Middle : Type v} {Codomain : Type w} (inner : Domain → Middle) (outer : Middle → Codomain), ((∀ (y : Codomain) (x₁ x₂ : Domain), outer (inner x₁) = y → outer (inner x₂) = y → x₁ = x₂ ∧ ∀ (y : Codomain), Exists fun x => outer (inner x) = y) ∧ Or ((∀ (y : Middle), Exists fun x => inner x = y) → False) ((∀ (y : Codomain) (x₁ x₂ : Middle), outer x₁ = y → outer x₂ = y → x₁ = x₂) → False))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (((∀ (y : Codomain) (x₁ x₂ : Domain), outer (inner x₁) = y → outer (inner x₂) = y → x₁ = x₂) ∧ (∀ (y : Codomain), Exists fun x => outer (inner x) = y)) ∧ (Or ((∀ (y : Middle), Exists fun x => inner x = y) → False) ((∀ (y : Codomain) (x₁ x₂ : Middle), outer x₁ = y → outer x₂ = y → x₁ = x₂) → False)))
 
 Logical form (Lean):
 

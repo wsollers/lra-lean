@@ -11,11 +11,18 @@ universe u
 
 Predicate logic:
 
-  (∀ first second ∈ Carrier), operation first second = operation second first
+  ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Commutative.Commutative operation → ∀ (first second : Carrier), operation first second = operation second first
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {operation : Carrier → Carrier → Carrier}, (∀ (first second : Carrier), operation first second = operation second first) → ∀ (first second : Carrier), operation first second = operation second first
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    law : Commutative operation
+    first second : Carrier
+  Prove
+    (∀ (first second : Carrier), operation first second = operation second first) → ∀ (first second : Carrier), operation first second = operation second first
 
 Logical form (Lean):
 
@@ -57,11 +64,18 @@ theorem Commutative.apply {Carrier : Type u}
 
 Predicate logic:
 
-  (∀ first second ∈ Carrier), operation second first = operation first second
+  ∀ {Carrier : Type u} {operation : LRA.Operation.BinaryEndoOperation Carrier}, LRA.Operation.Laws.Commutative.Commutative operation → ∀ (first second : Carrier), operation second first = operation first second
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} {operation : Carrier → Carrier → Carrier}, (∀ (first second : Carrier), operation first second = operation second first) → ∀ (first second : Carrier), operation second first = operation first second
+  Ambient
+    (Carrier)
+  Objects
+    operation : BinaryEndoOperation Carrier
+    law : Commutative operation
+    first second : Carrier
+  Prove
+    (∀ (first second : Carrier), operation first second = operation second first) → ∀ (first second : Carrier), operation second first = operation first second
 
 Logical form (Lean):
 

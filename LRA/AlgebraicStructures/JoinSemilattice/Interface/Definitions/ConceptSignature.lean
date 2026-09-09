@@ -3,10 +3,48 @@ import LRA.UniversalAlgebra.InterpretedOperationBundles
 
 namespace LRA.AlgebraicStructures
 
-/-- The UA-level signature for a join-semilattice: one carrier, one binary
-operation (`join`), named distinctly from `Mul`/`Add` since — unlike every
-other subject in this tree — the operation here is never packaged as a type's
-`Mul`/`Add` instance (see `Interface/Laws/Definition.lean`'s doc comment). -/
+/--
+`JoinSemilatticeConceptSignature` The UA-level signature for a join-semilattice: one carrier, one binary operation (`join`), named distinctly from `Mul`/`Add` since — unlike every other subject in this tree — the operation here is never packaged as a type's `Mul`/`Add` instance (see `Interface/Laws/Definition.lean`'s doc comment).
+
+Predicate logic:
+
+  structure JoinSemilatticeConceptSignature extends
+      LRA.UniversalAlgebra.InterpretedOperationBundles.CarrierBundle where
+    join : LRA.Operation.BinaryOperation carrier
+
+Predicate logic (unfolded):
+
+  structure JoinSemilatticeConceptSignature extends
+      LRA.UniversalAlgebra.InterpretedOperationBundles.CarrierBundle where
+    join : LRA.Operation.BinaryOperation carrier (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+structure JoinSemilatticeConceptSignature extends
+    LRA.UniversalAlgebra.InterpretedOperationBundles.CarrierBundle where
+  join : LRA.Operation.BinaryOperation carrier
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
+-/
 structure JoinSemilatticeConceptSignature extends
     LRA.UniversalAlgebra.InterpretedOperationBundles.CarrierBundle where
   join : LRA.Operation.BinaryOperation carrier

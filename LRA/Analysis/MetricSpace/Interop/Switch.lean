@@ -11,19 +11,19 @@ Predicate logic:
 
   inductive MetricSpaceBackend where
 
-  | inducedFromMetricDefinition
+    | inducedFromMetricDefinition
 
-  | existingMathlibMetric
-  deriving DecidableEq, Repr
+    | existingMathlibMetric
+    deriving DecidableEq, Repr
 
 Predicate logic (unfolded):
 
   inductive MetricSpaceBackend where
 
-  | inducedFromMetricDefinition
+    | inducedFromMetricDefinition
 
-  | existingMathlibMetric
-  deriving DecidableEq, Repr (source fallback; no compiled unfold data available)
+    | existingMathlibMetric
+    deriving DecidableEq, Repr (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -68,12 +68,12 @@ inductive MetricSpaceBackend where
 Predicate logic:
 
   def DefaultMetricSpaceBackend : MetricSpaceBackend :=
-  .inducedFromMetricDefinition
+    .inducedFromMetricDefinition
 
 Predicate logic (unfolded):
 
   def DefaultMetricSpaceBackend : MetricSpaceBackend :=
-  .inducedFromMetricDefinition (source fallback; no compiled unfold data available)
+    .inducedFromMetricDefinition (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -110,14 +110,14 @@ def DefaultMetricSpaceBackend : MetricSpaceBackend :=
 Predicate logic:
 
   def UseTextbookMetricSpace {X : Type u} (metric : MetricDefinition X) :
-    MetricSpace X :=
-  metric.ToMathlibMetricSpace
+      MetricSpace X :=
+    metric.ToMathlibMetricSpace
 
 Predicate logic (unfolded):
 
   def UseTextbookMetricSpace {X : Type u} (metric : MetricDefinition X) :
-    MetricSpace X :=
-  metric.ToMathlibMetricSpace (source fallback; no compiled unfold data available)
+      MetricSpace X :=
+    metric.ToMathlibMetricSpace (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -158,16 +158,16 @@ def UseTextbookMetricSpace {X : Type u} (metric : MetricDefinition X) :
 Predicate logic:
 
   def UseExistingMathlibMetricSpace {X : Type u} [MetricSpace X]
-    (_metric : MetricDefinition X) :
-    MetricSpace X :=
-  inferInstance
+      (_metric : MetricDefinition X) :
+      MetricSpace X :=
+    inferInstance
 
 Predicate logic (unfolded):
 
   def UseExistingMathlibMetricSpace {X : Type u} [MetricSpace X]
-    (_metric : MetricDefinition X) :
-    MetricSpace X :=
-  inferInstance (source fallback; no compiled unfold data available)
+      (_metric : MetricDefinition X) :
+      MetricSpace X :=
+    inferInstance (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -210,24 +210,24 @@ def UseExistingMathlibMetricSpace {X : Type u} [MetricSpace X]
 Predicate logic:
 
   def SelectMathlibMetricSpace {X : Type u}
-    (backend : MetricSpaceBackend)
-    (metric : MetricDefinition X)
-    [existingMetricSpace : MetricSpace X] :
-    MetricSpace X :=
-  match backend with
-  | .inducedFromMetricDefinition => metric.ToMathlibMetricSpace
-  | .existingMathlibMetric => existingMetricSpace
+      (backend : MetricSpaceBackend)
+      (metric : MetricDefinition X)
+      [existingMetricSpace : MetricSpace X] :
+      MetricSpace X :=
+    match backend with
+    | .inducedFromMetricDefinition => metric.ToMathlibMetricSpace
+    | .existingMathlibMetric => existingMetricSpace
 
 Predicate logic (unfolded):
 
   def SelectMathlibMetricSpace {X : Type u}
-    (backend : MetricSpaceBackend)
-    (metric : MetricDefinition X)
-    [existingMetricSpace : MetricSpace X] :
-    MetricSpace X :=
-  match backend with
-  | .inducedFromMetricDefinition => metric.ToMathlibMetricSpace
-  | .existingMathlibMetric => existingMetricSpace (source fallback; no compiled unfold data available)
+      (backend : MetricSpaceBackend)
+      (metric : MetricDefinition X)
+      [existingMetricSpace : MetricSpace X] :
+      MetricSpace X :=
+    match backend with
+    | .inducedFromMetricDefinition => metric.ToMathlibMetricSpace
+    | .existingMathlibMetric => existingMetricSpace (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -277,11 +277,17 @@ def SelectMathlibMetricSpace {X : Type u}
 
 Predicate logic:
 
-  (∀ x y ∈ X), letI : MetricSpace X
+  ∀ {X : Type u} (metric : LRA.Analysis.MetricSpace.MetricDefinition X) [inst : MetricSpace X] (x y : X), (LRA.Analysis.MetricSpace.SelectMathlibMetricSpace LRA.Analysis.MetricSpace.MetricSpaceBackend.inducedFromMetricDefinition metric).dist x y = metric.distance x y
 
 Predicate logic (unfolded):
 
-  ∀ {X : Type u} (metric : LRA.Analysis.MetricSpace.MetricDefinition X) [inst : MetricSpace X] (x y : X), (LRA.Analysis.MetricSpace.SelectMathlibMetricSpace LRA.Analysis.MetricSpace.MetricSpaceBackend.inducedFromMetricDefinition metric).toDist.1 x y = metric.1 x y
+  Ambient
+    (X)
+  Objects
+    metric : MetricDefinition X
+    x y : X
+  Prove
+    (LRA.Analysis.MetricSpace.SelectMathlibMetricSpace LRA.Analysis.MetricSpace.MetricSpaceBackend.inducedFromMetricDefinition metric).toDist.1 x y = metric.1 x y
 
 Logical form (Lean):
 

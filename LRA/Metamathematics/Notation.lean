@@ -7,11 +7,16 @@ namespace LRA.Metamathematics
 
 Predicate logic:
 
-  forall proposition : Prop, proposition -> proposition
+  ∀ (proposition : Prop), proposition → proposition
 
 Predicate logic (unfolded):
 
-  ∀ (proposition : Prop), proposition → proposition
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    proposition → proposition
 
 Logical form (Lean):
 

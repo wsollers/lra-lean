@@ -10,16 +10,16 @@ universe u
 Predicate logic:
 
   structure Poset where
-  Carrier : Type u
-  NonStrictOrder : LRA.Relation.Endorelation Carrier
-  NonStrictOrderIsPartialOrder : LRA.Order.PartialOrder NonStrictOrder
+    Carrier : Type u
+    NonStrictOrder : LRA.Relation.Endorelation Carrier
+    NonStrictOrderIsPartialOrder : LRA.Order.PartialOrder NonStrictOrder
 
 Predicate logic (unfolded):
 
   structure Poset where
-  Carrier : Type u
-  NonStrictOrder : LRA.Relation.Endorelation Carrier
-  NonStrictOrderIsPartialOrder : LRA.Order.PartialOrder NonStrictOrder (source fallback; no compiled unfold data available)
+    Carrier : Type u
+    NonStrictOrder : LRA.Relation.Endorelation Carrier
+    NonStrictOrderIsPartialOrder : LRA.Order.PartialOrder NonStrictOrder (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

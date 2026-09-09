@@ -8,14 +8,14 @@ namespace LRA.AlgebraicStructures.Semiring.Interface.Signature
 Predicate logic:
 
   inductive SemiringFunctionSymbol where
-  | add
-  | mul
+    | add
+    | mul
 
 Predicate logic (unfolded):
 
   inductive SemiringFunctionSymbol where
-  | add
-  | mul (source fallback; no compiled unfold data available)
+    | add
+    | mul (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -92,14 +92,14 @@ def SemiringRelationSymbol : Type := Empty
 Predicate logic:
 
   inductive SemiringConstantSymbol where
-  | zero
-  | one
+    | zero
+    | one
 
 Predicate logic (unfolded):
 
   inductive SemiringConstantSymbol where
-  | zero
-  | one (source fallback; no compiled unfold data available)
+    | zero
+    | one (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -138,18 +138,18 @@ inductive SemiringConstantSymbol where
 Predicate logic:
 
   def SemiringFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
-  Symbol := SemiringFunctionSymbol
-  arity
-    | .add => 2
-    | .mul => 2
+    Symbol := SemiringFunctionSymbol
+    arity
+      | .add => 2
+      | .mul => 2
 
 Predicate logic (unfolded):
 
   def SemiringFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
-  Symbol := SemiringFunctionSymbol
-  arity
-    | .add => 2
-    | .mul => 2 (source fallback; no compiled unfold data available)
+    Symbol := SemiringFunctionSymbol
+    arity
+      | .add => 2
+      | .mul => 2 (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -192,14 +192,14 @@ def SemiringFirstOrderFunctions : LRA.Logic.ArityIndexedSymbols where
 Predicate logic:
 
   def SemiringFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
-  Symbol := SemiringRelationSymbol
-  arity := Empty.elim
+    Symbol := SemiringRelationSymbol
+    arity := Empty.elim
 
 Predicate logic (unfolded):
 
   def SemiringFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
-  Symbol := SemiringRelationSymbol
-  arity := Empty.elim (source fallback; no compiled unfold data available)
+    Symbol := SemiringRelationSymbol
+    arity := Empty.elim (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -238,16 +238,16 @@ def SemiringFirstOrderRelations : LRA.Logic.ArityIndexedSymbols where
 Predicate logic:
 
   def SemiringFirstOrderSignature : LRA.Logic.Signature where
-  Functions := SemiringFirstOrderFunctions
-  Relations := SemiringFirstOrderRelations
-  Constants := SemiringConstantSymbol
+    Functions := SemiringFirstOrderFunctions
+    Relations := SemiringFirstOrderRelations
+    Constants := SemiringConstantSymbol
 
 Predicate logic (unfolded):
 
   def SemiringFirstOrderSignature : LRA.Logic.Signature where
-  Functions := SemiringFirstOrderFunctions
-  Relations := SemiringFirstOrderRelations
-  Constants := SemiringConstantSymbol (source fallback; no compiled unfold data available)
+    Functions := SemiringFirstOrderFunctions
+    Relations := SemiringFirstOrderRelations
+    Constants := SemiringConstantSymbol (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

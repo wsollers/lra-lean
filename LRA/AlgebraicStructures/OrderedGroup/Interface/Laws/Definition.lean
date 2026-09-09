@@ -12,24 +12,24 @@ universe u
 Predicate logic:
 
   class MultiplicativeOrderCompatibilityLaws (R : Type u)
-    [Mul R] [LE R] : Prop where
-  MulLeMulLeft :
-    LRA.Order.LeftTranslationPreservesRelation
-      (fun a b : R => a <= b) (fun a b : R => a * b)
-  MulLeMulRight :
-    LRA.Order.RightTranslationPreservesRelation
-      (fun a b : R => a <= b) (fun a b : R => a * b)
+      [Mul R] [LE R] : Prop where
+    MulLeMulLeft :
+      LRA.Order.LeftTranslationPreservesRelation
+        (fun a b : R => a <= b) (fun a b : R => a * b)
+    MulLeMulRight :
+      LRA.Order.RightTranslationPreservesRelation
+        (fun a b : R => a <= b) (fun a b : R => a * b)
 
 Predicate logic (unfolded):
 
   class MultiplicativeOrderCompatibilityLaws (R : Type u)
-    [Mul R] [LE R] : Prop where
-  MulLeMulLeft :
-    LRA.Order.LeftTranslationPreservesRelation
-      (fun a b : R => a <= b) (fun a b : R => a * b)
-  MulLeMulRight :
-    LRA.Order.RightTranslationPreservesRelation
-      (fun a b : R => a <= b) (fun a b : R => a * b) (source fallback; no compiled unfold data available)
+      [Mul R] [LE R] : Prop where
+    MulLeMulLeft :
+      LRA.Order.LeftTranslationPreservesRelation
+        (fun a b : R => a <= b) (fun a b : R => a * b)
+    MulLeMulRight :
+      LRA.Order.RightTranslationPreservesRelation
+        (fun a b : R => a <= b) (fun a b : R => a * b) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -78,16 +78,16 @@ class MultiplicativeOrderCompatibilityLaws (R : Type u)
 Predicate logic:
 
   class abbrev OrderedGroupLaws (R : Type u)
-    [Mul R] [Inv R] [OfNat R 1] [LE R] [Nonempty R] : Prop :=
-  GroupLaws R, LRA.Order.PartialOrderLaws R,
-  MultiplicativeOrderCompatibilityLaws R
+      [Mul R] [Inv R] [OfNat R 1] [LE R] [Nonempty R] : Prop :=
+    GroupLaws R, LRA.Order.PartialOrderLaws R,
+    MultiplicativeOrderCompatibilityLaws R
 
 Predicate logic (unfolded):
 
   class abbrev OrderedGroupLaws (R : Type u)
-    [Mul R] [Inv R] [OfNat R 1] [LE R] [Nonempty R] : Prop :=
-  GroupLaws R, LRA.Order.PartialOrderLaws R,
-  MultiplicativeOrderCompatibilityLaws R (source fallback; no compiled unfold data available)
+      [Mul R] [Inv R] [OfNat R 1] [LE R] [Nonempty R] : Prop :=
+    GroupLaws R, LRA.Order.PartialOrderLaws R,
+    MultiplicativeOrderCompatibilityLaws R (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

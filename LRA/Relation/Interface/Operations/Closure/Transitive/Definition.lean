@@ -10,24 +10,24 @@ universe u
 Predicate logic:
 
   inductive TransitiveClosure {Alpha : Type u}
-    (relation : Endorelation Alpha) : Endorelation Alpha
-  | base {left right : Alpha} :
-      relation left right → TransitiveClosure relation left right
-  | trans {left middle right : Alpha} :
-      TransitiveClosure relation left middle →
-      TransitiveClosure relation middle right →
-      TransitiveClosure relation left right
+      (relation : Endorelation Alpha) : Endorelation Alpha
+    | base {left right : Alpha} :
+        relation left right → TransitiveClosure relation left right
+    | trans {left middle right : Alpha} :
+        TransitiveClosure relation left middle →
+        TransitiveClosure relation middle right →
+        TransitiveClosure relation left right
 
 Predicate logic (unfolded):
 
   inductive TransitiveClosure {Alpha : Type u}
-    (relation : Endorelation Alpha) : Endorelation Alpha
-  | base {left right : Alpha} :
-      relation left right → TransitiveClosure relation left right
-  | trans {left middle right : Alpha} :
-      TransitiveClosure relation left middle →
-      TransitiveClosure relation middle right →
-      TransitiveClosure relation left right (source fallback; no compiled unfold data available)
+      (relation : Endorelation Alpha) : Endorelation Alpha
+    | base {left right : Alpha} :
+        relation left right → TransitiveClosure relation left right
+    | trans {left middle right : Alpha} :
+        TransitiveClosure relation left middle →
+        TransitiveClosure relation middle right →
+        TransitiveClosure relation left right (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

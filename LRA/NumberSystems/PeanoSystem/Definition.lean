@@ -15,46 +15,46 @@ universe u v
 Predicate logic:
 
   structure PeanoSystem (Element : Type u) (SetObject : Type v)
-    [Membership Element SetObject] where
-  base : Element
-  successor : Element -> Element
-  one_not_successor :
-    forall element : Element,
-      successor element ≠ base
-  successor_injective :
-    forall first_element second_element : Element,
-      successor first_element = successor second_element ->
-      first_element = second_element
-  induction :
-    forall subset : SetObject,
-      base ∈ subset ->
-      (forall element : Element,
-        element ∈ subset ->
-        successor element ∈ subset) ->
+      [Membership Element SetObject] where
+    base : Element
+    successor : Element -> Element
+    one_not_successor :
       forall element : Element,
-        element ∈ subset
+        successor element ≠ base
+    successor_injective :
+      forall first_element second_element : Element,
+        successor first_element = successor second_element ->
+        first_element = second_element
+    induction :
+      forall subset : SetObject,
+        base ∈ subset ->
+        (forall element : Element,
+          element ∈ subset ->
+          successor element ∈ subset) ->
+        forall element : Element,
+          element ∈ subset
 
 Predicate logic (unfolded):
 
   structure PeanoSystem (Element : Type u) (SetObject : Type v)
-    [Membership Element SetObject] where
-  base : Element
-  successor : Element -> Element
-  one_not_successor :
-    forall element : Element,
-      successor element ≠ base
-  successor_injective :
-    forall first_element second_element : Element,
-      successor first_element = successor second_element ->
-      first_element = second_element
-  induction :
-    forall subset : SetObject,
-      base ∈ subset ->
-      (forall element : Element,
-        element ∈ subset ->
-        successor element ∈ subset) ->
+      [Membership Element SetObject] where
+    base : Element
+    successor : Element -> Element
+    one_not_successor :
       forall element : Element,
-        element ∈ subset (source fallback; no compiled unfold data available)
+        successor element ≠ base
+    successor_injective :
+      forall first_element second_element : Element,
+        successor first_element = successor second_element ->
+        first_element = second_element
+    induction :
+      forall subset : SetObject,
+        base ∈ subset ->
+        (forall element : Element,
+          element ∈ subset ->
+          successor element ∈ subset) ->
+        forall element : Element,
+          element ∈ subset (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -125,22 +125,22 @@ structure PeanoSystem (Element : Type u) (SetObject : Type v)
 Predicate logic:
 
   structure PredicateSetComprehensionAdequacy
-    (Element : Type u) (SetObject : Type v)
-    [Membership Element SetObject] where
-  Represent : Set Element -> SetObject
-  MembershipIff :
-    forall (predicate : Set Element) (element : Element),
-      element ∈ Represent predicate ↔ predicate element
+      (Element : Type u) (SetObject : Type v)
+      [Membership Element SetObject] where
+    Represent : Set Element -> SetObject
+    MembershipIff :
+      forall (predicate : Set Element) (element : Element),
+        element ∈ Represent predicate ↔ predicate element
 
 Predicate logic (unfolded):
 
   structure PredicateSetComprehensionAdequacy
-    (Element : Type u) (SetObject : Type v)
-    [Membership Element SetObject] where
-  Represent : Set Element -> SetObject
-  MembershipIff :
-    forall (predicate : Set Element) (element : Element),
-      element ∈ Represent predicate ↔ predicate element (source fallback; no compiled unfold data available)
+      (Element : Type u) (SetObject : Type v)
+      [Membership Element SetObject] where
+    Represent : Set Element -> SetObject
+    MembershipIff :
+      forall (predicate : Set Element) (element : Element),
+        element ∈ Represent predicate ↔ predicate element (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -233,7 +233,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (subset : SetObject) (element : Element), inst.1 subset element → inst.1 subset (ps.2 element)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    inst.1 subset element → inst.1 subset (ps.2 element)
 
 Logical form (Lean):
 
@@ -281,7 +286,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (subset : SetObject), (inst.1 subset ps.1 ∧ ∀ (element : Element), inst.1 subset element → inst.1 subset (ps.2 element))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (inst.1 subset ps.1 ∧ (∀ (element : Element), inst.1 subset element → inst.1 subset (ps.2 element)))
 
 Logical form (Lean):
 
@@ -323,11 +333,16 @@ def InductiveSubsetOfPeanoSystem
 
 Predicate logic:
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (predicate : Set Element), (predicate ps.base ∧ ∀ (element : Element), predicate element → predicate (ps.successor element)) → ∀ (element : Element), predicate element
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (predicate : Set Element), (predicate ps.base ∧ (∀ (element : Element), predicate element → predicate (ps.successor element))) → ∀ (element : Element), predicate element
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (predicate : Element → Prop), (predicate ps.1 ∧ ∀ (element : Element), predicate element → predicate (ps.2 element)) → ∀ (element : Element), predicate element
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (predicate ps.1 ∧ (∀ (element : Element), predicate element → predicate (ps.2 element))) → ∀ (element : Element), predicate element
 
 Logical form (Lean):
 
@@ -377,11 +392,17 @@ def FullPredicateInduction
 
 Predicate logic:
 
-  FullPredicateInduction ps
+  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (a : LRA.NumberSystems.PeanoSystem.PredicateSetComprehensionAdequacy Element SetObject), LRA.NumberSystems.PeanoSystem.FullPredicateInduction ps
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (ps : LRA.NumberSystems.PeanoSystem.PeanoSystem Element SetObject) (a : LRA.NumberSystems.PeanoSystem.PredicateSetComprehensionAdequacy Element SetObject) (predicate : Element → Prop), (predicate ps.1 ∧ ∀ (element : Element), predicate element → predicate (ps.2 element)) → ∀ (element : Element), predicate element
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    ps : PeanoSystem Element SetObject
+    adequacy : PredicateSetComprehensionAdequacy Element SetObject
+  Prove
+    (predicate ps.1 ∧ (∀ (element : Element), predicate element → predicate (ps.2 element))) → ∀ (element : Element), predicate element
 
 Logical form (Lean):
 

@@ -6,36 +6,98 @@ namespace LRA.Identity.Constructions.Axiomatic
 universe u
 
 /--
-`axiomaticEqualRfl` is the axiomatic construction's reflexivity law for
-in-house equality.
+`axiomaticEqualRfl` TODO
 
-Logical form:
+Predicate logic:
+
+  ∀ {Carrier : Type u} (x : Carrier), (LRA.Identity.Constructions.Axiomatic.instEqualityRelation Carrier).Equal x x
+
+Predicate logic (unfolded):
+
+  ∀ {Carrier : Type u} (x : Carrier), (LRA.Identity.Constructions.Axiomatic.instEqualityRelation Carrier).Equal x x
+
+Logical form (Lean):
 
 ```lean
 theorem axiomaticEqualRfl {Carrier : Type u} (x : Carrier) :
     @LRA.Identity.Equal Carrier (instEqualityRelation Carrier) x x
 ```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: TODO
+
 -/
 theorem axiomaticEqualRfl {Carrier : Type u} (x : Carrier) :
     @LRA.Identity.Equal Carrier (instEqualityRelation Carrier) x x := by
-  sorry
+  exact axiomaticIdentityReflexivity x
+
 
 /--
-`axiomaticIdentIsDiagonal` identifies axiomatic identity with axiomatic
-in-house equality. It does not identify axiomatic identity with Lean's native
-equality.
+`axiomaticIdentIsDiagonal` TODO
 
-Logical form:
+Predicate logic:
+
+  ∀ {Carrier : Type u} (x y : Carrier), LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x y ↔ (LRA.Identity.Constructions.Axiomatic.instEqualityRelation Carrier).Equal x y
+
+Predicate logic (unfolded):
+
+  ∀ {Carrier : Type u} (x y : Carrier), LRA.Identity.Constructions.Axiomatic.Ax_IdentityRelation x y ↔ (LRA.Identity.Constructions.Axiomatic.instEqualityRelation Carrier).Equal x y
+
+Logical form (Lean):
 
 ```lean
 theorem axiomaticIdentIsDiagonal {Carrier : Type u} (x y : Carrier) :
     Ax_IdentityRelation x y ↔
       @LRA.Identity.Equal Carrier (instEqualityRelation Carrier) x y
 ```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: constructor, .mp, .mpr
+
 -/
 theorem axiomaticIdentIsDiagonal {Carrier : Type u} (x y : Carrier) :
     Ax_IdentityRelation x y ↔
       @LRA.Identity.Equal Carrier (instEqualityRelation Carrier) x y := by
-  sorry
+  constructor
+  . -- mp ->
+    intro xIy
+
+    sorry
+
+  . -- mpr <-
+
+    intro xEy
+    sorry
+
 
 end LRA.Identity.Constructions.Axiomatic

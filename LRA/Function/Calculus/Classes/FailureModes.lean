@@ -16,7 +16,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (source : Domain → Prop), (∀ (element : Domain), source element → Exists fun y => (Exists fun x => (source x ∧ function x = y) ∧ function element = y) ∧ fun x => Exists fun y => (Exists fun x => (source x ∧ LRA.Function.Graph function x y) ∧ function x = y) = source → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (element : Domain), source element → Exists fun y => ((Exists fun x => (source x ∧ function x = y)) ∧ function element = y)) ∧ (fun x => Exists fun y => ((Exists fun x => (source x ∧ LRA.Function.Graph function x y)) ∧ function x = y) = source → False))
 
 Logical form (Lean):
 
@@ -64,7 +69,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain) (target : Codomain → Prop), (∀ (element : Codomain), (Exists fun x => (Exists fun y => (target y ∧ function x = y) ∧ function x = element)) → target element ∧ fun y => Exists fun x => (Exists fun y => (target y ∧ LRA.Function.Graph function x y) ∧ function x = y) = target → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (element : Codomain), (Exists fun x => ((Exists fun y => (target y ∧ function x = y)) ∧ function x = element)) → target element) ∧ (fun y => Exists fun x => ((Exists fun y => (target y ∧ LRA.Function.Graph function x y)) ∧ function x = y) = target → False))
 
 Logical form (Lean):
 
@@ -112,7 +122,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Domain : Type u} {Codomain : Type v} (function : Domain → Codomain), (∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂ ∧ (fun y => Exists fun x => (True ∧ function x = y) = funx => True) → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ ((fun y => Exists fun x => (True ∧ function x = y) = funx => True) → False))
 
 Logical form (Lean):
 
@@ -156,11 +171,16 @@ def EmptyIndexedIntersectionImageFailure
 
 Predicate logic:
 
-  EmptyIndexedIntersectionImageFailure fun n ∈ Nat => some n
+  LRA.Function.EmptyIndexedIntersectionImageFailure fun n => Option.some n
 
 Predicate logic (unfolded):
 
-  (∀ (y : Option Nat) (x₁ x₂ : Nat), (fun n => Option.some n) x₁ = y → (fun n => Option.some n) x₂ = y → x₁ = x₂ ∧ (fun y => Exists fun x => (True ∧ (fun n => Option.some n) x = y) = funx => True) → False)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (y : Option Nat) (x₁ x₂ : Nat), (fun n => Option.some n) x₁ = y → (fun n => Option.some n) x₂ = y → x₁ = x₂) ∧ ((fun y => Exists fun x => (True ∧ (fun n => Option.some n) x = y) = funx => True) → False))
 
 Logical form (Lean):
 

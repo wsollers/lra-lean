@@ -10,12 +10,12 @@ open LRA.Set.Constructions.ZFCSet.Axioms
 Predicate logic:
 
   noncomputable def TheInfinityWitness : LRA.Set.Constructions.ZFCSet :=
-  Classical.choose Infinity
+    Classical.choose Infinity
 
 Predicate logic (unfolded):
 
   noncomputable def TheInfinityWitness : LRA.Set.Constructions.ZFCSet :=
-  Classical.choose Infinity (source fallback; no compiled unfold data available)
+    Classical.choose Infinity (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -51,11 +51,16 @@ noncomputable def TheInfinityWitness : LRA.Set.Constructions.ZFCSet :=
 
 Predicate logic:
 
-  IsInductiveSet TheInfinityWitness
+  LRA.Set.Constructions.ZFCSet.Axioms.IsInductiveSet LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.TheInfinityWitness
 
 Predicate logic (unfolded):
 
-  (Exists fun empty => (LRA.Set.instMembershipZFCSet.1 LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.TheInfinityWitness empty ∧ ∀ (x : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.instMembershipZFCSet.1 empty x → False) ∧ ∀ (x : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.instMembershipZFCSet.1 LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.TheInfinityWitness x → Exists fun successor => (LRA.Set.instMembershipZFCSet.1 LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.TheInfinityWitness successor ∧ ∀ (w : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.instMembershipZFCSet.1 successor w ↔ Or (LRA.Set.instMembershipZFCSet.1 x w) (w = x)))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((Exists fun empty => (LRA.Set.Constructions.instMembershipZFCSet.1 LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.TheInfinityWitness empty ∧ (∀ (x : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.Constructions.instMembershipZFCSet.1 empty x → False))) ∧ (∀ (x : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.Constructions.instMembershipZFCSet.1 LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.TheInfinityWitness x → Exists fun successor => (LRA.Set.Constructions.instMembershipZFCSet.1 LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.TheInfinityWitness successor ∧ (∀ (w : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.Constructions.instMembershipZFCSet.1 successor w ↔ Or (LRA.Set.Constructions.instMembershipZFCSet.1 x w) (w = x)))))
 
 Logical form (Lean):
 
@@ -92,12 +97,12 @@ theorem TheInfinityWitnessIsInductiveSet :
 Predicate logic:
 
   noncomputable def VonNeumannSuccessor (x : LRA.Set.Constructions.ZFCSet) : LRA.Set.Constructions.ZFCSet :=
-  TheUnion x (TheSingleton x)
+    TheUnion x (TheSingleton x)
 
 Predicate logic (unfolded):
 
   noncomputable def VonNeumannSuccessor (x : LRA.Set.Constructions.ZFCSet) : LRA.Set.Constructions.ZFCSet :=
-  TheUnion x (TheSingleton x) (source fallback; no compiled unfold data available)
+    TheUnion x (TheSingleton x) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -133,11 +138,16 @@ noncomputable def VonNeumannSuccessor (x : LRA.Set.Constructions.ZFCSet) : LRA.S
 
 Predicate logic:
 
-  (∀ x ∈ LRA.Set.Constructions.ZFCSet), IsSuccessorOf x (VonNeumannSuccessor x)
+  ∀ (x : LRA.Set.Constructions.ZFCSet), LRA.Set.Constructions.ZFCSet.Axioms.IsSuccessorOf x (LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.VonNeumannSuccessor x)
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.Set.Constructions.ZFCSet) (w : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.instMembershipZFCSet.1 (Classical.indefiniteDescription (LRA.Set.Constructions.ZFCSet.Axioms.IsUnionOf (LRA.Set.Constructions.ZFCSet.Axioms.PairSet x (LRA.Set.Constructions.ZFCSet.Axioms.TheSingleton x))) ⋯).val w ↔ Or (LRA.Set.instMembershipZFCSet.1 x w) (w = x)
+  Ambient
+    (implicit ambient)
+  Objects
+    x : LRA.Set.Constructions.ZFCSet
+  Prove
+    LRA.Set.Constructions.instMembershipZFCSet.1 (Classical.indefiniteDescription (LRA.Set.Constructions.ZFCSet.Axioms.IsUnionOf (LRA.Set.Constructions.ZFCSet.Axioms.PairSet x (LRA.Set.Constructions.ZFCSet.Axioms.TheSingleton x))) ⋯).val w ↔ Or (LRA.Set.Constructions.instMembershipZFCSet.1 x w) (w = x)
 
 Logical form (Lean):
 
@@ -174,14 +184,14 @@ theorem VonNeumannSuccessorIsSuccessorOf (x : LRA.Set.Constructions.ZFCSet) :
 Predicate logic:
 
   noncomputable def Omega : LRA.Set.Constructions.ZFCSet :=
-  TheSeparatedSubset TheInfinityWitness
-    (fun x => ∀ B : LRA.Set.Constructions.ZFCSet, IsInductiveSet B → Subset B TheInfinityWitness → x ∈ B)
+    TheSeparatedSubset TheInfinityWitness
+      (fun x => ∀ B : LRA.Set.Constructions.ZFCSet, IsInductiveSet B → Subset B TheInfinityWitness → x ∈ B)
 
 Predicate logic (unfolded):
 
   noncomputable def Omega : LRA.Set.Constructions.ZFCSet :=
-  TheSeparatedSubset TheInfinityWitness
-    (fun x => ∀ B : LRA.Set.Constructions.ZFCSet, IsInductiveSet B → Subset B TheInfinityWitness → x ∈ B) (source fallback; no compiled unfold data available)
+    TheSeparatedSubset TheInfinityWitness
+      (fun x => ∀ B : LRA.Set.Constructions.ZFCSet, IsInductiveSet B → Subset B TheInfinityWitness → x ∈ B) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -219,11 +229,16 @@ noncomputable def Omega : LRA.Set.Constructions.ZFCSet :=
 
 Predicate logic:
 
-  IsInductiveSet Omega
+  LRA.Set.Constructions.ZFCSet.Axioms.IsInductiveSet LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.Omega
 
 Predicate logic (unfolded):
 
-  (Exists fun empty => (LRA.Set.instMembershipZFCSet.1 LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.Omega empty ∧ ∀ (x : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.instMembershipZFCSet.1 empty x → False) ∧ ∀ (x : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.instMembershipZFCSet.1 LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.Omega x → Exists fun successor => (LRA.Set.instMembershipZFCSet.1 LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.Omega successor ∧ ∀ (w : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.instMembershipZFCSet.1 successor w ↔ Or (LRA.Set.instMembershipZFCSet.1 x w) (w = x)))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((Exists fun empty => (LRA.Set.Constructions.instMembershipZFCSet.1 LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.Omega empty ∧ (∀ (x : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.Constructions.instMembershipZFCSet.1 empty x → False))) ∧ (∀ (x : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.Constructions.instMembershipZFCSet.1 LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.Omega x → Exists fun successor => (LRA.Set.Constructions.instMembershipZFCSet.1 LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.Omega successor ∧ (∀ (w : LRA.Set.Constructions.ZFCSet.Axioms.Set), LRA.Set.Constructions.instMembershipZFCSet.1 successor w ↔ Or (LRA.Set.Constructions.instMembershipZFCSet.1 x w) (w = x)))))
 
 Logical form (Lean):
 
@@ -257,11 +272,16 @@ theorem OmegaIsInductiveSet : IsInductiveSet Omega := by
 
 Predicate logic:
 
-  TheEmptySet ∈ Omega
+  LRA.Set.Constructions.instMembershipZFCSet.mem LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.Omega LRA.Set.Constructions.ZFCSet.Axioms.TheEmptySet
 
 Predicate logic (unfolded):
 
-  LRA.Set.instMembershipZFCSet.1 LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.Omega LRA.Set.Constructions.ZFCSet.Axioms.TheEmptySet
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.instMembershipZFCSet.1 LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.Omega LRA.Set.Constructions.ZFCSet.Axioms.TheEmptySet
 
 Logical form (Lean):
 
@@ -295,11 +315,16 @@ theorem TheEmptySetInOmega : TheEmptySet ∈ Omega := by
 
 Predicate logic:
 
-  ∀ x : LRA.Set.Constructions.ZFCSet, x ∈ Omega → VonNeumannSuccessor x ∈ Omega
+  ∀ (x : LRA.Set.Constructions.ZFCSet), LRA.Set.Constructions.instMembershipZFCSet.mem LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.Omega x → LRA.Set.Constructions.instMembershipZFCSet.mem LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.Omega (LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.VonNeumannSuccessor x)
 
 Predicate logic (unfolded):
 
-  ∀ (x : LRA.Set.Constructions.ZFCSet), LRA.Set.instMembershipZFCSet.1 LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.Omega x → LRA.Set.instMembershipZFCSet.1 LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.Omega (Classical.indefiniteDescription (LRA.Set.Constructions.ZFCSet.Axioms.IsUnionOf (LRA.Set.Constructions.ZFCSet.Axioms.PairSet x (LRA.Set.Constructions.ZFCSet.Axioms.TheSingleton x))) ⋯).1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Set.Constructions.instMembershipZFCSet.1 LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.Omega x → LRA.Set.Constructions.instMembershipZFCSet.1 LRA.NumberSystems.NaturalNumbers.Constructions.VonNeumann.Omega (Classical.indefiniteDescription (LRA.Set.Constructions.ZFCSet.Axioms.IsUnionOf (LRA.Set.Constructions.ZFCSet.Axioms.PairSet x (LRA.Set.Constructions.ZFCSet.Axioms.TheSingleton x))) ⋯).1
 
 Logical form (Lean):
 
@@ -377,12 +402,12 @@ instance (priority := high) : Membership NaturalElement LRA.Set.Constructions.ZF
 Predicate logic:
 
   noncomputable def NaturalZero : NaturalElement :=
-  ⟨TheEmptySet, TheEmptySetInOmega⟩
+    ⟨TheEmptySet, TheEmptySetInOmega⟩
 
 Predicate logic (unfolded):
 
   noncomputable def NaturalZero : NaturalElement :=
-  ⟨TheEmptySet, TheEmptySetInOmega⟩ (source fallback; no compiled unfold data available)
+    ⟨TheEmptySet, TheEmptySetInOmega⟩ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -419,12 +444,12 @@ noncomputable def NaturalZero : NaturalElement :=
 Predicate logic:
 
   noncomputable def NaturalSuccessor (element : NaturalElement) : NaturalElement :=
-  ⟨VonNeumannSuccessor element.val, OmegaClosedUnderSuccessor element.val element.property⟩
+    ⟨VonNeumannSuccessor element.val, OmegaClosedUnderSuccessor element.val element.property⟩
 
 Predicate logic (unfolded):
 
   noncomputable def NaturalSuccessor (element : NaturalElement) : NaturalElement :=
-  ⟨VonNeumannSuccessor element.val, OmegaClosedUnderSuccessor element.val element.property⟩ (source fallback; no compiled unfold data available)
+    ⟨VonNeumannSuccessor element.val, OmegaClosedUnderSuccessor element.val element.property⟩ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

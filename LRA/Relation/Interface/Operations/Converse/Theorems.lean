@@ -11,11 +11,16 @@ universe u v
 
 Predicate logic:
 
-  LeftTotal relation ↔ RightTotal (Converse relation)
+  ∀ {Alpha : Type u} {Beta : Type v} (relation : LRA.Relation.HeterogeneousBinaryRelation Alpha Beta), LRA.Relation.LeftTotal relation ↔ LRA.Relation.RightTotal (LRA.Relation.Converse relation)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {Beta : Type v} (relation : Alpha → Beta → Prop), ∀ (x : Alpha), Exists fun y => relation x y ↔ ∀ (y : Alpha), Exists fun x => relation y x
+  Ambient
+    (Alpha, Beta)
+  Objects
+    relation : HeterogeneousBinaryRelation Alpha Beta
+  Prove
+    LRA.Relation.LeftTotal relation ↔ LRA.Relation.RightTotal (LRA.Relation.Converse relation)
 
 Logical form (Lean):
 
@@ -55,11 +60,16 @@ theorem LeftTotalIffConverseRightTotal
 
 Predicate logic:
 
-  RightTotal relation ↔ LeftTotal (Converse relation)
+  ∀ {Alpha : Type u} {Beta : Type v} (relation : LRA.Relation.HeterogeneousBinaryRelation Alpha Beta), LRA.Relation.RightTotal relation ↔ LRA.Relation.LeftTotal (LRA.Relation.Converse relation)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {Beta : Type v} (relation : Alpha → Beta → Prop), ∀ (y : Beta), Exists fun x => relation x y ↔ ∀ (x : Beta), Exists fun y => relation y x
+  Ambient
+    (Alpha, Beta)
+  Objects
+    relation : HeterogeneousBinaryRelation Alpha Beta
+  Prove
+    LRA.Relation.RightTotal relation ↔ LRA.Relation.LeftTotal (LRA.Relation.Converse relation)
 
 Logical form (Lean):
 
@@ -99,11 +109,16 @@ theorem RightTotalIffConverseLeftTotal
 
 Predicate logic:
 
-  RightUnique relation ↔ LeftUnique (Converse relation)
+  ∀ {Alpha : Type u} {Beta : Type v} (relation : LRA.Relation.HeterogeneousBinaryRelation Alpha Beta), LRA.Relation.RightUnique relation ↔ LRA.Relation.LeftUnique (LRA.Relation.Converse relation)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {Beta : Type v} (relation : Alpha → Beta → Prop), ∀ (x : Alpha) (y₁ y₂ : Beta), relation x y₁ → relation x y₂ → y₁ = y₂ ↔ ∀ (y : Alpha) (x₁ x₂ : Beta), relation y x₁ → relation y x₂ → x₁ = x₂
+  Ambient
+    (Alpha, Beta)
+  Objects
+    relation : HeterogeneousBinaryRelation Alpha Beta
+  Prove
+    LRA.Relation.RightUnique relation ↔ LRA.Relation.LeftUnique (LRA.Relation.Converse relation)
 
 Logical form (Lean):
 
@@ -143,11 +158,16 @@ theorem RightUniqueIffConverseLeftUnique
 
 Predicate logic:
 
-  LeftUnique relation ↔ RightUnique (Converse relation)
+  ∀ {Alpha : Type u} {Beta : Type v} (relation : LRA.Relation.HeterogeneousBinaryRelation Alpha Beta), LRA.Relation.LeftUnique relation ↔ LRA.Relation.RightUnique (LRA.Relation.Converse relation)
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} {Beta : Type v} (relation : Alpha → Beta → Prop), ∀ (y : Beta) (x₁ x₂ : Alpha), relation x₁ y → relation x₂ y → x₁ = x₂ ↔ ∀ (x : Beta) (y₁ y₂ : Alpha), relation y₁ x → relation y₂ x → y₁ = y₂
+  Ambient
+    (Alpha, Beta)
+  Objects
+    relation : HeterogeneousBinaryRelation Alpha Beta
+  Prove
+    LRA.Relation.LeftUnique relation ↔ LRA.Relation.RightUnique (LRA.Relation.Converse relation)
 
 Logical form (Lean):
 
@@ -187,11 +207,16 @@ theorem LeftUniqueIffConverseRightUnique
 
 Predicate logic:
 
-  Converse (Converse relation) = relation
+  ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha), LRA.Relation.Converse (LRA.Relation.Converse relation) = relation
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (relation : Alpha → Alpha → Prop), fun y x => relation y x = relation
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+  Prove
+    fun y x => relation y x = relation
 
 Logical form (Lean):
 
@@ -231,11 +256,16 @@ theorem ConverseInvolutive
 
 Predicate logic:
 
-  Reflexive (Converse relation) ↔ Reflexive relation
+  ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha), LRA.Relation.Reflexive (LRA.Relation.Converse relation) ↔ LRA.Relation.Reflexive relation
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (relation : Alpha → Alpha → Prop), ∀ (x : Alpha), relation x x ↔ ∀ (x : Alpha), relation x x
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+  Prove
+    LRA.Relation.Reflexive (LRA.Relation.Converse relation) ↔ LRA.Relation.Reflexive relation
 
 Logical form (Lean):
 
@@ -275,11 +305,16 @@ theorem ReflexiveConverseIff
 
 Predicate logic:
 
-  Irreflexive (Converse relation) ↔ Irreflexive relation
+  ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha), LRA.Relation.Irreflexive (LRA.Relation.Converse relation) ↔ LRA.Relation.Irreflexive relation
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (relation : Alpha → Alpha → Prop), ∀ (x : Alpha), relation x x → False ↔ ∀ (x : Alpha), relation x x → False
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+  Prove
+    LRA.Relation.Irreflexive (LRA.Relation.Converse relation) ↔ LRA.Relation.Irreflexive relation
 
 Logical form (Lean):
 
@@ -319,11 +354,16 @@ theorem IrreflexiveConverseIff
 
 Predicate logic:
 
-  Transitive (Converse relation) ↔ Transitive relation
+  ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha), LRA.Relation.Transitive (LRA.Relation.Converse relation) ↔ LRA.Relation.Transitive relation
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (relation : Alpha → Alpha → Prop), ∀ (x y z : Alpha), relation y x → relation z y → relation z x ↔ ∀ (x y z : Alpha), relation x y → relation y z → relation x z
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+  Prove
+    LRA.Relation.Transitive (LRA.Relation.Converse relation) ↔ LRA.Relation.Transitive relation
 
 Logical form (Lean):
 
@@ -363,11 +403,16 @@ theorem TransitiveConverseIff
 
 Predicate logic:
 
-  Antisymmetric (Converse relation) ↔ Antisymmetric relation
+  ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha), LRA.Relation.Antisymmetric (LRA.Relation.Converse relation) ↔ LRA.Relation.Antisymmetric relation
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (relation : Alpha → Alpha → Prop), ∀ (x y : Alpha), relation y x → relation x y → x = y ↔ ∀ (x y : Alpha), relation x y → relation y x → x = y
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+  Prove
+    LRA.Relation.Antisymmetric (LRA.Relation.Converse relation) ↔ LRA.Relation.Antisymmetric relation
 
 Logical form (Lean):
 
@@ -407,11 +452,16 @@ theorem AntisymmetricConverseIff
 
 Predicate logic:
 
-  Total (Converse relation) ↔ Total relation
+  ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha), LRA.Relation.Total (LRA.Relation.Converse relation) ↔ LRA.Relation.Total relation
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (relation : Alpha → Alpha → Prop), ∀ (x y : Alpha), Or (relation y x) (relation x y) ↔ ∀ (x y : Alpha), Or (relation x y) (relation y x)
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+  Prove
+    LRA.Relation.Total (LRA.Relation.Converse relation) ↔ LRA.Relation.Total relation
 
 Logical form (Lean):
 
@@ -451,11 +501,16 @@ theorem TotalConverseIff
 
 Predicate logic:
 
-  Dense (Converse relation) ↔ Dense relation
+  ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha), LRA.Relation.Dense (LRA.Relation.Converse relation) ↔ LRA.Relation.Dense relation
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (relation : Alpha → Alpha → Prop), ∀ (x y : Alpha), relation y x → Exists fun z => (relation z x ∧ relation y z) ↔ ∀ (x y : Alpha), relation x y → Exists fun z => (relation x z ∧ relation z y)
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+  Prove
+    LRA.Relation.Dense (LRA.Relation.Converse relation) ↔ LRA.Relation.Dense relation
 
 Logical form (Lean):
 

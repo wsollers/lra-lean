@@ -12,18 +12,18 @@ syntax (name := corollary) (priority := default + 1) declModifiers
 Predicate logic:
 
   def expandCorollary : Macro := fun stx =>
-  let stx := stx.modifyArg 1 fun stx =>
-    let stx := stx.modifyArg 0 (mkAtomFrom · "theorem" (canonical := true))
-    stx.setKind ``Parser.Command.theorem
-  pure <| stx.setKind ``Parser.Command.declaration
+    let stx := stx.modifyArg 1 fun stx =>
+      let stx := stx.modifyArg 0 (mkAtomFrom · "theorem" (canonical := true))
+      stx.setKind ``Parser.Command.theorem
+    pure <| stx.setKind ``Parser.Command.declaration
 
 Predicate logic (unfolded):
 
   def expandCorollary : Macro := fun stx =>
-  let stx := stx.modifyArg 1 fun stx =>
-    let stx := stx.modifyArg 0 (mkAtomFrom · "theorem" (canonical := true))
-    stx.setKind ``Parser.Command.theorem
-  pure <| stx.setKind ``Parser.Command.declaration (source fallback; no compiled unfold data available)
+    let stx := stx.modifyArg 1 fun stx =>
+      let stx := stx.modifyArg 0 (mkAtomFrom · "theorem" (canonical := true))
+      stx.setKind ``Parser.Command.theorem
+    pure <| stx.setKind ``Parser.Command.declaration (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -69,18 +69,18 @@ syntax (name := proposition) (priority := default + 1) declModifiers
 Predicate logic:
 
   def expandProposition : Macro := fun stx =>
-  let stx := stx.modifyArg 1 fun stx =>
-    let stx := stx.modifyArg 0 (mkAtomFrom · "theorem" (canonical := true))
-    stx.setKind ``Parser.Command.theorem
-  pure <| stx.setKind ``Parser.Command.declaration
+    let stx := stx.modifyArg 1 fun stx =>
+      let stx := stx.modifyArg 0 (mkAtomFrom · "theorem" (canonical := true))
+      stx.setKind ``Parser.Command.theorem
+    pure <| stx.setKind ``Parser.Command.declaration
 
 Predicate logic (unfolded):
 
   def expandProposition : Macro := fun stx =>
-  let stx := stx.modifyArg 1 fun stx =>
-    let stx := stx.modifyArg 0 (mkAtomFrom · "theorem" (canonical := true))
-    stx.setKind ``Parser.Command.theorem
-  pure <| stx.setKind ``Parser.Command.declaration (source fallback; no compiled unfold data available)
+    let stx := stx.modifyArg 1 fun stx =>
+      let stx := stx.modifyArg 0 (mkAtomFrom · "theorem" (canonical := true))
+      stx.setKind ``Parser.Command.theorem
+    pure <| stx.setKind ``Parser.Command.declaration (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -124,11 +124,16 @@ namespace LRA.Metamathematics.DeclarationKeywords.SmokeTest
 
 Predicate logic:
 
-  (∀ a ∈ Nat), a + 0 = a
+  ∀ (a : Nat), instHAdd.hAdd a 0 = a
 
 Predicate logic (unfolded):
 
-  ∀ (a : Nat), instHAdd.1 a (instOfNatNat 0).1 = a
+  Ambient
+    (Nat)
+  Objects
+    a : Nat
+  Prove
+    { hAdd := fun a b => instAddNat.add a b }.hAdd a 0 = a
 
 Logical form (Lean):
 

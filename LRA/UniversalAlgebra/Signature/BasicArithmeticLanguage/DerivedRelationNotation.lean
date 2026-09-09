@@ -8,12 +8,12 @@ namespace LRA.UniversalAlgebra.Signature.BasicArithmeticLanguage
 Predicate logic:
 
   inductive DerivedRelationNotation where
-  | divisibility
+    | divisibility
 
 Predicate logic (unfolded):
 
   inductive DerivedRelationNotation where
-  | divisibility (source fallback; no compiled unfold data available)
+    | divisibility (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

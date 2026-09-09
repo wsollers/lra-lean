@@ -4,10 +4,45 @@ namespace LRA.AlgebraicStructures.Monoid.Examples
 
 universe u
 
-/-- The full transformation monoid on `S`: self-maps `S → S` under
-composition, with `id_S` as identity — `(Fun(S, S), ∘, id_S)`. Wrapped in a
-one-field structure so `*` means composition rather than colliding with any
-existing `Mul`/pointwise instance on the function type. -/
+/--
+`Transformations` The full transformation monoid on `S`: self-maps `S → S` under composition, with `id_S` as identity — `(Fun(S, S), ∘, id_S)`. Wrapped in a one-field structure so `*` means composition rather than colliding with any existing `Mul`/pointwise instance on the function type.
+
+Predicate logic:
+
+  structure Transformations (S : Type u) where
+    val : S → S
+
+Predicate logic (unfolded):
+
+  structure Transformations (S : Type u) where
+    val : S → S (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+structure Transformations (S : Type u) where
+  val : S → S
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro
+
+-/
 structure Transformations (S : Type u) where
   val : S → S
 

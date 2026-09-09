@@ -8,11 +8,16 @@ namespace LRA.NumberSystems.Integers.Mendelson
 
 Predicate logic:
 
-  (∀ positive_data ∈ PositiveNaturalPairData), ¬ positive_class positive_data { left := positive_data.one, right := positive_data.one }
+  ∀ (positive_data : LRA.NumberSystems.Integers.Mendelson.PositiveNaturalPairData), ¬ LRA.NumberSystems.Integers.Mendelson.positive_class positive_data { left := positive_data.one, right := positive_data.one }
 
 Predicate logic (unfolded):
 
-  ∀ (positive_data : LRA.NumberSystems.Integers.Mendelson.PositiveNaturalPairData), (positive_data.6 { left := positive_data.one, right := positive_data.one }.2 { left := positive_data.one, right := positive_data.one }.1 ∧ positive_data.4 { left := positive_data.one, right := positive_data.one }.1 { left := positive_data.one, right := positive_data.one }.2 = positive_data.4 { left := positive_data.one, right := positive_data.one }.1 { left := positive_data.one, right := positive_data.one }.2 → False) → False
+  Ambient
+    (implicit ambient)
+  Objects
+    positive_data : PositiveNaturalPairData
+  Prove
+    (positive_data.6 { left := positive_data.one, right := positive_data.one }.2 { left := positive_data.one, right := positive_data.one }.1 ∧ (positive_data.4 { left := positive_data.one, right := positive_data.one }.1 { left := positive_data.one, right := positive_data.one }.2 = positive_data.4 { left := positive_data.one, right := positive_data.one }.1 { left := positive_data.one, right := positive_data.one }.2 → False)) → False
 
 Logical form (Lean):
 

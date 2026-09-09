@@ -7,11 +7,17 @@ namespace LRA.Order.OrderedSets.Preorder
 
 Predicate logic:
 
-  (∀ element ∈ Carrier), preorder.relation element element
+  ∀ {Carrier : Type u} (preorder : LRA.Order.OrderedSets.Preorder.PreorderRelation Carrier) (element : Carrier), preorder.relation element element
 
 Predicate logic (unfolded):
 
-  ∀ {Carrier : Type u} (preorder : LRA.Order.OrderedSets.Preorder.PreorderRelation Carrier) (element : Carrier), preorder.1 element element
+  Ambient
+    (Carrier)
+  Objects
+    preorder : PreorderRelation Carrier
+    element : Carrier
+  Prove
+    preorder.1 element element
 
 Logical form (Lean):
 

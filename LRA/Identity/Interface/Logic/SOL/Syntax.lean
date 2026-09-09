@@ -6,12 +6,56 @@ namespace LRA.Identity.Logic.SOL
 open LRA.Logic
 open LRA.Logic.SecondOrder
 
-/-- `Biconditional` forms the second-order formula `left` iff `right`.
+/--
+`Biconditional` TODO
 
-Logical form:
+Predicate logic:
+
+  def Biconditional
+      {S : Signature} {Variable : Type}
+      {RelationVariable FunctionVariable : Nat -> Type}
+      (left right : Formula S Variable RelationVariable FunctionVariable) :
+      Formula S Variable RelationVariable FunctionVariable :=
+    Formula.and (.impl left right) (.impl right left)
+
+Predicate logic (unfolded):
+
+  def Biconditional
+      {S : Signature} {Variable : Type}
+      {RelationVariable FunctionVariable : Nat -> Type}
+      (left right : Formula S Variable RelationVariable FunctionVariable) :
+      Formula S Variable RelationVariable FunctionVariable :=
+    Formula.and (.impl left right) (.impl right left)
+
+Logical form (Lean):
+
 ```lean
-(left -> right) and (right -> left)
+def Biconditional
+    {S : Signature} {Variable : Type}
+    {RelationVariable FunctionVariable : Nat -> Type}
+    (left right : Formula S Variable RelationVariable FunctionVariable) :
+    Formula S Variable RelationVariable FunctionVariable :=
+  Formula.and (.impl left right) (.impl right left)
 ```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, unfold
+
 -/
 def Biconditional
     {S : Signature} {Variable : Type}
@@ -20,13 +64,65 @@ def Biconditional
     Formula S Variable RelationVariable FunctionVariable :=
   Formula.and (.impl left right) (.impl right left)
 
-/-- `LeibnizIndiscernibilityFormula` says that two object variables agree on
-every unary relation admitted by second-order quantification.
+/--
+`LeibnizIndiscernibilityFormula` TODO
 
-Logical form:
+Predicate logic:
+
+  def LeibnizIndiscernibilityFormula
+      {S : Signature} {Variable : Type}
+      {RelationVariable FunctionVariable : Nat -> Type}
+      (left right : Variable) (property : RelationVariable 1) :
+      Formula S Variable RelationVariable FunctionVariable :=
+    .forallRel property
+      (Biconditional
+        (.relationVar property (fun _ => .var left))
+        (.relationVar property (fun _ => .var right)))
+
+Predicate logic (unfolded):
+
+  def LeibnizIndiscernibilityFormula
+      {S : Signature} {Variable : Type}
+      {RelationVariable FunctionVariable : Nat -> Type}
+      (left right : Variable) (property : RelationVariable 1) :
+      Formula S Variable RelationVariable FunctionVariable :=
+    .forallRel property
+      (Biconditional
+        (.relationVar property (fun _ => .var left))
+        (.relationVar property (fun _ => .var right)))
+
+Logical form (Lean):
+
 ```lean
-forallRelation property, property left <-> property right
+def LeibnizIndiscernibilityFormula
+    {S : Signature} {Variable : Type}
+    {RelationVariable FunctionVariable : Nat -> Type}
+    (left right : Variable) (property : RelationVariable 1) :
+    Formula S Variable RelationVariable FunctionVariable :=
+  .forallRel property
+    (Biconditional
+      (.relationVar property (fun _ => .var left))
+      (.relationVar property (fun _ => .var right)))
 ```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, unfold
+
 -/
 def LeibnizIndiscernibilityFormula
     {S : Signature} {Variable : Type}
@@ -38,14 +134,59 @@ def LeibnizIndiscernibilityFormula
       (.relationVar property (fun _ => .var left))
       (.relationVar property (fun _ => .var right)))
 
-/-- `LeibnizIdentityFormula` identifies object-language equality with
-agreement on every unary second-order predicate.
+/--
+`LeibnizIdentityFormula` TODO
 
-Logical form:
+Predicate logic:
+
+  def LeibnizIdentityFormula
+      {S : Signature} {Variable : Type}
+      {RelationVariable FunctionVariable : Nat -> Type}
+      (left right : Variable) (property : RelationVariable 1) :
+      Formula S Variable RelationVariable FunctionVariable :=
+    Biconditional (.equal (.var left) (.var right))
+      (LeibnizIndiscernibilityFormula left right property)
+
+Predicate logic (unfolded):
+
+  def LeibnizIdentityFormula
+      {S : Signature} {Variable : Type}
+      {RelationVariable FunctionVariable : Nat -> Type}
+      (left right : Variable) (property : RelationVariable 1) :
+      Formula S Variable RelationVariable FunctionVariable :=
+    Biconditional (.equal (.var left) (.var right))
+      (LeibnizIndiscernibilityFormula left right property)
+
+Logical form (Lean):
+
 ```lean
-left = right <-> forallRelation property,
-  property left <-> property right
+def LeibnizIdentityFormula
+    {S : Signature} {Variable : Type}
+    {RelationVariable FunctionVariable : Nat -> Type}
+    (left right : Variable) (property : RelationVariable 1) :
+    Formula S Variable RelationVariable FunctionVariable :=
+  Biconditional (.equal (.var left) (.var right))
+    (LeibnizIndiscernibilityFormula left right property)
 ```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: intro, unfold
+
 -/
 def LeibnizIdentityFormula
     {S : Signature} {Variable : Type}

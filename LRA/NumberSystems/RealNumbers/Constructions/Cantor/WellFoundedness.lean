@@ -11,11 +11,17 @@ open LRA.NumberSystems.RealNumbers.Interface.ModelTheory
 
 Predicate logic:
 
-  (∀ rational_model ∈ RationalModel), (Carrier rational_model → Prop ∧ ∀ representative : NestedIntervalSequence rational_model, motive (Quotient.mk _ representative)) → ∀ value : Carrier rational_model, motive value
+  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (motive : LRA.NumberSystems.RealNumbers.Cantor.Carrier rational_model → Prop), (∀ (representative : LRA.NumberSystems.RealNumbers.Cantor.NestedIntervalSequence rational_model), motive (Quotient.mk (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid rational_model) representative)) → ∀ (value : LRA.NumberSystems.RealNumbers.Cantor.Carrier rational_model), motive value
 
 Predicate logic (unfolded):
 
-  ∀ (rational_model : LRA.NumberSystems.RationalNumbers.Interface.ModelTheory.RationalModel) (motive : Quot (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid rational_model).1 → Prop), (∀ (representative : LRA.NumberSystems.RealNumbers.Cantor.NestedIntervalSequence rational_model), motive (Quot.mk (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid rational_model).1 representative)) → ∀ (value : Quot (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid rational_model).1), motive value
+  Ambient
+    (implicit ambient)
+  Objects
+    rational_model : RationalModel
+    motive : Carrier rational_model → Prop
+  Prove
+    (∀ (representative : LRA.NumberSystems.RealNumbers.Cantor.NestedIntervalSequence rational_model), motive (Quot.mk (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid rational_model).1 representative)) → ∀ (value : Quot (LRA.NumberSystems.RealNumbers.Cantor.EndpointSetoid rational_model).1), motive value
 
 Logical form (Lean):
 

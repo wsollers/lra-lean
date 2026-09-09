@@ -20,7 +20,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] [inst_1 : LRA.Set.HasUniversal SetObject] (relation : Element → Element → Prop) (bottom : Element), (inst.1 inst_1.1 bottom ∧ ∀ (element : Element), inst.1 inst_1.1 element → relation bottom element)
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    (inst.1 inst_1.1 bottom ∧ (∀ (element : Element), inst.1 inst_1.1 element → relation bottom element))
 
 Logical form (Lean):
 

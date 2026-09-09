@@ -13,7 +13,12 @@ Predicate logic:
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (relation : Alpha → Alpha → Prop), (∀ (x : Alpha), relation x x ∧ (∀ (x y : Alpha), relation x y → relation y x → x = y ∧ ∀ (x y z : Alpha), relation x y → relation y z → relation x z))
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Alpha), relation x x) ∧ ((∀ (x y : Alpha), relation x y → relation y x → x = y) ∧ (∀ (x y z : Alpha), relation x y → relation y z → relation x z)))
 
 Logical form (Lean):
 
@@ -62,14 +67,14 @@ universe u
 Predicate logic:
 
   structure PartialOrderRelation (Carrier : Type u) where
-  relation : LRA.Order.OrderedSets.OrderRelation Carrier
-  relationIsPartialOrder : LRA.Order.PartialOrder relation
+    relation : LRA.Order.OrderedSets.OrderRelation Carrier
+    relationIsPartialOrder : LRA.Order.PartialOrder relation
 
 Predicate logic (unfolded):
 
   structure PartialOrderRelation (Carrier : Type u) where
-  relation : LRA.Order.OrderedSets.OrderRelation Carrier
-  relationIsPartialOrder : LRA.Order.PartialOrder relation (source fallback; no compiled unfold data available)
+    relation : LRA.Order.OrderedSets.OrderRelation Carrier
+    relationIsPartialOrder : LRA.Order.PartialOrder relation (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

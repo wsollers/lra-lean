@@ -12,12 +12,12 @@ namespace LRA.ModelTheory.Propositional
 Predicate logic:
 
   structure PropositionalModel (L : PropositionalLanguage) where
-  valuation : L.Atoms -> Bool
+    valuation : L.Atoms -> Bool
 
 Predicate logic (unfolded):
 
   structure PropositionalModel (L : PropositionalLanguage) where
-  valuation : L.Atoms -> Bool (source fallback; no compiled unfold data available)
+    valuation : L.Atoms -> Bool (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -53,11 +53,16 @@ structure PropositionalModel (L : PropositionalLanguage) where
 
 Predicate logic:
 
-  ∀ {L : LRA.ModelTheory.Propositional.PropositionalLanguage} (M : LRA.ModelTheory.Propositional.PropositionalModel L) (φ : LRA.ModelTheory.Propositional.Formula L), LRA.ModelTheory.Propositional.evaluate M.valuation φ = Bool.true
+  ∀ {L : LRA.Logic.Propositional.PropositionalLanguage} (M : LRA.ModelTheory.Propositional.PropositionalModel L) (φ : LRA.Logic.Propositional.Formula L), LRA.Logic.Propositional.evaluate M.valuation φ = Bool.true
 
 Predicate logic (unfolded):
 
-  ∀ {L : LRA.ModelTheory.Propositional.PropositionalLanguage} (M : LRA.ModelTheory.Propositional.PropositionalModel L) (φ : LRA.ModelTheory.Propositional.Formula L), LRA.ModelTheory.Propositional.evaluate M.1 φ = Bool.true
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    LRA.Logic.Propositional.evaluate M.1 φ = Bool.true
 
 Logical form (Lean):
 

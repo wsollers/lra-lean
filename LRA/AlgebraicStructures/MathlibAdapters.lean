@@ -13,18 +13,18 @@ universe u
 Predicate logic:
 
   def toMathlibCommRing (R : Type u)
-    [Add R] [Mul R] [Neg R] [Sub R] [OfNat R 0] [OfNat R 1]
-    [CommutativeRingLaws R] [SubtractionCompatibilityLaw R] :
-    CommRing R where
-  add
+      [Add R] [Mul R] [Neg R] [Sub R] [OfNat R 0] [OfNat R 1]
+      [CommutativeRingLaws R] [SubtractionCompatibilityLaw R] :
+      CommRing R where
+    add
 
 Predicate logic (unfolded):
 
   def toMathlibCommRing (R : Type u)
-    [Add R] [Mul R] [Neg R] [Sub R] [OfNat R 0] [OfNat R 1]
-    [CommutativeRingLaws R] [SubtractionCompatibilityLaw R] :
-    CommRing R where
-  add (source fallback; no compiled unfold data available)
+      [Add R] [Mul R] [Neg R] [Sub R] [OfNat R 0] [OfNat R 1]
+      [CommutativeRingLaws R] [SubtractionCompatibilityLaw R] :
+      CommRing R where
+    add (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -89,18 +89,18 @@ Related proof moves: unfold
 Predicate logic:
 
   noncomputable def toMathlibField (R : Type u)
-    [Add R] [Mul R] [Neg R] [Sub R] [Inv R] [Div R]
-    [OfNat R 0] [OfNat R 1]
-    [FieldLaws R] [SubtractionCompatibilityLaw R]
-    [DivisionCompatibilityLaw R] : Field R
+      [Add R] [Mul R] [Neg R] [Sub R] [Inv R] [Div R]
+      [OfNat R 0] [OfNat R 1]
+      [FieldLaws R] [SubtractionCompatibilityLaw R]
+      [DivisionCompatibilityLaw R] : Field R
 
 Predicate logic (unfolded):
 
   noncomputable def toMathlibField (R : Type u)
-    [Add R] [Mul R] [Neg R] [Sub R] [Inv R] [Div R]
-    [OfNat R 0] [OfNat R 1]
-    [FieldLaws R] [SubtractionCompatibilityLaw R]
-    [DivisionCompatibilityLaw R] : Field R (source fallback; no compiled unfold data available)
+      [Add R] [Mul R] [Neg R] [Sub R] [Inv R] [Div R]
+      [OfNat R 0] [OfNat R 1]
+      [FieldLaws R] [SubtractionCompatibilityLaw R]
+      [DivisionCompatibilityLaw R] : Field R (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

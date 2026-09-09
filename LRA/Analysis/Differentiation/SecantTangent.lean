@@ -9,12 +9,12 @@ namespace LRA.Analysis.Differentiation
 Predicate logic:
 
   noncomputable def SecantLine (f : ℝ → ℝ) (x₁ x₂ : ℝ) : ℝ → ℝ :=
-  fun x => f x₁ + (f x₂ - f x₁) / (x₂ - x₁) * (x - x₁)
+    fun x => f x₁ + (f x₂ - f x₁) / (x₂ - x₁) * (x - x₁)
 
 Predicate logic (unfolded):
 
   noncomputable def SecantLine (f : ℝ → ℝ) (x₁ x₂ : ℝ) : ℝ → ℝ :=
-  fun x => f x₁ + (f x₂ - f x₁) / (x₂ - x₁) * (x - x₁) (source fallback; no compiled unfold data available)
+    fun x => f x₁ + (f x₂ - f x₁) / (x₂ - x₁) * (x - x₁) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -51,12 +51,12 @@ noncomputable def SecantLine (f : ℝ → ℝ) (x₁ x₂ : ℝ) : ℝ → ℝ :
 Predicate logic:
 
   noncomputable def DifferenceQuotient (f : ℝ → ℝ) (c h : ℝ) : ℝ :=
-  (f (c + h) - f c) / h
+    (f (c + h) - f c) / h
 
 Predicate logic (unfolded):
 
   noncomputable def DifferenceQuotient (f : ℝ → ℝ) (c h : ℝ) : ℝ :=
-  (f (c + h) - f c) / h (source fallback; no compiled unfold data available)
+    (f (c + h) - f c) / h (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -93,12 +93,12 @@ noncomputable def DifferenceQuotient (f : ℝ → ℝ) (c h : ℝ) : ℝ :=
 Predicate logic:
 
   def TangentLine (f : ℝ → ℝ) (c fc' : ℝ) : ℝ → ℝ :=
-  fun x => f c + fc' * (x - c)
+    fun x => f c + fc' * (x - c)
 
 Predicate logic (unfolded):
 
   def TangentLine (f : ℝ → ℝ) (c fc' : ℝ) : ℝ → ℝ :=
-  fun x => f c + fc' * (x - c) (source fallback; no compiled unfold data available)
+    fun x => f c + fc' * (x - c) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

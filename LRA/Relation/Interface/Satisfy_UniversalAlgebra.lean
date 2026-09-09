@@ -13,11 +13,101 @@ namespace LRA.Relation
 
 universe u
 
+/--
+`GenericRelationAlgebraicSignature` TODO
+
+Predicate logic:
+
+  abbrev GenericRelationAlgebraicSignature : LRA.Identity.AlgebraicSignature where
+    OperationSymbol := LRA.Relation.UniversalAlgebra.RelationOperationSymbol
+    arity := LRA.Relation.UniversalAlgebra.relationOperationArity
+    ConstantSymbol := LRA.Relation.UniversalAlgebra.RelationConstantSymbol
+
+Predicate logic (unfolded):
+
+  abbrev GenericRelationAlgebraicSignature : LRA.Identity.AlgebraicSignature where
+    OperationSymbol := LRA.Relation.UniversalAlgebra.RelationOperationSymbol
+    arity := LRA.Relation.UniversalAlgebra.relationOperationArity
+    ConstantSymbol := LRA.Relation.UniversalAlgebra.RelationConstantSymbol (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+abbrev GenericRelationAlgebraicSignature : LRA.Identity.AlgebraicSignature where
+  OperationSymbol := LRA.Relation.UniversalAlgebra.RelationOperationSymbol
+  arity := LRA.Relation.UniversalAlgebra.relationOperationArity
+  ConstantSymbol := LRA.Relation.UniversalAlgebra.RelationConstantSymbol
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 abbrev GenericRelationAlgebraicSignature : LRA.Identity.AlgebraicSignature where
   OperationSymbol := LRA.Relation.UniversalAlgebra.RelationOperationSymbol
   arity := LRA.Relation.UniversalAlgebra.relationOperationArity
   ConstantSymbol := LRA.Relation.UniversalAlgebra.RelationConstantSymbol
 
+/--
+`genericAlgebra` TODO
+
+Predicate logic:
+
+  def genericAlgebra (Carrier : Type u) :
+      LRA.Identity.AlgebraicStructure
+        GenericRelationAlgebraicSignature where
+    Carrier
+
+Predicate logic (unfolded):
+
+  def genericAlgebra (Carrier : Type u) :
+      LRA.Identity.AlgebraicStructure
+        GenericRelationAlgebraicSignature where
+    Carrier (source fallback; no compiled unfold data available)
+
+Logical form (Lean):
+
+```lean
+def genericAlgebra (Carrier : Type u) :
+    LRA.Identity.AlgebraicStructure
+      GenericRelationAlgebraicSignature where
+  Carrier
+```
+
+Type-theoretic form:
+
+  TODO
+
+Proof use:
+
+  TODO
+
+After unfold / common proof state:
+
+  TODO
+
+Common confusions:
+
+  TODO
+
+Related proof moves: unfold
+
+-/
 def genericAlgebra (Carrier : Type u) :
     LRA.Identity.AlgebraicStructure
       GenericRelationAlgebraicSignature where

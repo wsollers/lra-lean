@@ -9,12 +9,12 @@ namespace LRA.EuclideanSpace
 Predicate logic:
 
   abbrev TarskiFormulaTheory (Variable : Type) :=
-  LRA.ModelTheory.FirstOrder.FormulaTheory TarskiFirstOrderSignature Variable
+    LRA.ModelTheory.FirstOrder.FormulaTheory TarskiFirstOrderSignature Variable
 
 Predicate logic (unfolded):
 
   abbrev TarskiFormulaTheory (Variable : Type) :=
-  LRA.ModelTheory.FirstOrder.FormulaTheory TarskiFirstOrderSignature Variable (source fallback; no compiled unfold data available)
+    LRA.ModelTheory.FirstOrder.FormulaTheory TarskiFirstOrderSignature Variable (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -51,12 +51,12 @@ abbrev TarskiFormulaTheory (Variable : Type) :=
 Predicate logic:
 
   abbrev TarskiTheory (Variable : Type) [DecidableEq Variable] :=
-  LRA.ModelTheory.FirstOrder.Theory TarskiFirstOrderSignature Variable
+    LRA.ModelTheory.FirstOrder.Theory TarskiFirstOrderSignature Variable
 
 Predicate logic (unfolded):
 
   abbrev TarskiTheory (Variable : Type) [DecidableEq Variable] :=
-  LRA.ModelTheory.FirstOrder.Theory TarskiFirstOrderSignature Variable (source fallback; no compiled unfold data available)
+    LRA.ModelTheory.FirstOrder.Theory TarskiFirstOrderSignature Variable (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -92,19 +92,25 @@ abbrev TarskiTheory (Variable : Type) [DecidableEq Variable] :=
 
 Predicate logic:
 
-  ∀ {Variable : Type} [inst : DecidableVariable] = Γ : LRA.EuclideanSpace.TarskiTheory Variable (a : LRA.EuclideanSpace.TarskiStructure) (assignment : Variable → a.Domain) (sentence : LRA.Logic.FirstOrder.Sentence LRA.EuclideanSpace.TarskiFirstOrderSignature Variable), Set.instMembership.mem Γ sentence → LRA.Logic.FirstOrder.Satisfies a assignment sentence.val
+  ∀ {S : LRA.Logic.Signature} {Variable : Type} [inst : DecidableVariable] = Γ : LRA.ModelTheory.FirstOrder.Theory S Variable (a : LRA.ModelTheory.FirstOrder.Model S) (assignment : Variable → a.Domain) (sentence : LRA.Logic.FirstOrder.Sentence S Variable), sentence ∈ Γ → LRA.Logic.FirstOrder.Satisfies a assignment sentence.val
 
 Predicate logic (unfolded):
 
-  ∀ {Variable : Type} [inst : (a b : Variable) → Decidable (a = b)] (Γ : (Subtype fun formula => LRA.Logic.FirstOrder.freeVariables formula = Finset.instEmptyCollection.1) → Prop) (a : LRA.EuclideanSpace.TarskiStructure) (assignment : Variable → a.1) (sentence : Subtype fun formula => LRA.Logic.FirstOrder.freeVariables formula = Finset.instEmptyCollection.1), Set.instMembership.1 Γ sentence → LRA.Logic.FirstOrder.Satisfies a assignment sentence.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    sentence ∈ Γ → LRA.Logic.FirstOrder.Satisfies a assignment sentence.1
 
 Logical form (Lean):
 
 ```lean
-abbrev TarskiStructuresOfTheory {Variable : Type} [DecidableEq Variable]
-    (Γ : TarskiTheory Variable) :
-    Set TarskiStructure :=
-  LRA.ModelTheory.FirstOrder.ModelsOfTheory Γ
+def ModelsOfTheory
+    {S : Signature} {Variable : Type} [DecidableEq Variable]
+    (Γ : Theory S Variable) :
+    Set (Model S) :=
+  fun M => ∀ assignment sentence, sentence ∈ Γ -> Satisfies M assignment sentence.val
 ```
 
 Type-theoretic form:
@@ -136,11 +142,16 @@ abbrev TarskiStructuresOfTheory {Variable : Type} [DecidableEq Variable]
 
 Predicate logic:
 
-  ∀ {Variable : Type} [inst : DecidableVariable] = M : LRA.EuclideanSpace.TarskiStructure (Γ : LRA.EuclideanSpace.TarskiTheory Variable) (assignment : Variable → M.Domain) (sentence : LRA.Logic.FirstOrder.Sentence LRA.EuclideanSpace.TarskiFirstOrderSignature Variable), Set.instMembership.mem Γ sentence → LRA.Logic.FirstOrder.Satisfies M assignment sentence.val
+  ∀ {Variable : Type} [inst : DecidableVariable] = M : LRA.EuclideanSpace.TarskiStructure (Γ : LRA.EuclideanSpace.TarskiTheory Variable) (assignment : Variable → M.Domain) (sentence : LRA.Logic.FirstOrder.Sentence LRA.EuclideanSpace.TarskiFirstOrderSignature Variable), sentence ∈ Γ → LRA.Logic.FirstOrder.Satisfies M assignment sentence.val
 
 Predicate logic (unfolded):
 
-  ∀ {Variable : Type} [inst : (a b : Variable) → Decidable (a = b)](M : LRA.EuclideanSpace.TarskiStructure) (Γ : (Subtype fun formula => LRA.Logic.FirstOrder.freeVariables formula = Finset.instEmptyCollection.1) → Prop) (assignment : Variable → M.1) (sentence : Subtype fun formula => LRA.Logic.FirstOrder.freeVariables formula = Finset.instEmptyCollection.1), Set.instMembership.1 Γ sentence → LRA.Logic.FirstOrder.Satisfies M assignment sentence.1
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    sentence ∈ Γ → LRA.Logic.FirstOrder.Satisfies M assignment sentence.1
 
 Logical form (Lean):
 
@@ -179,16 +190,16 @@ def IsTarskiModelOf {Variable : Type} [DecidableEq Variable]
 Predicate logic:
 
   structure TarskiModelOf {Variable : Type} [DecidableEq Variable]
-    (Γ : TarskiTheory Variable) where
-  toStructure : TarskiStructure
-  isModel : IsTarskiModelOf toStructure Γ
+      (Γ : TarskiTheory Variable) where
+    toStructure : TarskiStructure
+    isModel : IsTarskiModelOf toStructure Γ
 
 Predicate logic (unfolded):
 
   structure TarskiModelOf {Variable : Type} [DecidableEq Variable]
-    (Γ : TarskiTheory Variable) where
-  toStructure : TarskiStructure
-  isModel : IsTarskiModelOf toStructure Γ (source fallback; no compiled unfold data available)
+      (Γ : TarskiTheory Variable) where
+    toStructure : TarskiStructure
+    isModel : IsTarskiModelOf toStructure Γ (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 

@@ -14,28 +14,28 @@ universe u
 Predicate logic:
 
   structure Congruence {S : Signature} (M : Model.{u} S) where
-  rel : M.Domain → M.Domain → Prop
-  iseqv : Equivalence rel
-  compatible :
-    ∀ (functionSymbol : S.FunctionSymbol)
-      (leftArguments rightArguments :
-        Fin (S.functionArity functionSymbol) → M.Domain),
-      (∀ i, rel (leftArguments i) (rightArguments i)) →
-        rel (M.interpretFunction functionSymbol leftArguments)
-          (M.interpretFunction functionSymbol rightArguments)
+    rel : M.Domain → M.Domain → Prop
+    iseqv : Equivalence rel
+    compatible :
+      ∀ (functionSymbol : S.FunctionSymbol)
+        (leftArguments rightArguments :
+          Fin (S.functionArity functionSymbol) → M.Domain),
+        (∀ i, rel (leftArguments i) (rightArguments i)) →
+          rel (M.interpretFunction functionSymbol leftArguments)
+            (M.interpretFunction functionSymbol rightArguments)
 
 Predicate logic (unfolded):
 
   structure Congruence {S : Signature} (M : Model.{u} S) where
-  rel : M.Domain → M.Domain → Prop
-  iseqv : Equivalence rel
-  compatible :
-    ∀ (functionSymbol : S.FunctionSymbol)
-      (leftArguments rightArguments :
-        Fin (S.functionArity functionSymbol) → M.Domain),
-      (∀ i, rel (leftArguments i) (rightArguments i)) →
-        rel (M.interpretFunction functionSymbol leftArguments)
-          (M.interpretFunction functionSymbol rightArguments) (source fallback; no compiled unfold data available)
+    rel : M.Domain → M.Domain → Prop
+    iseqv : Equivalence rel
+    compatible :
+      ∀ (functionSymbol : S.FunctionSymbol)
+        (leftArguments rightArguments :
+          Fin (S.functionArity functionSymbol) → M.Domain),
+        (∀ i, rel (leftArguments i) (rightArguments i)) →
+          rel (M.interpretFunction functionSymbol leftArguments)
+            (M.interpretFunction functionSymbol rightArguments) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -88,32 +88,32 @@ structure Congruence {S : Signature} (M : Model.{u} S) where
 Predicate logic:
 
   noncomputable def quotientModel {S : Signature} {M : Model.{u} S}
-    (congruence : Congruence M) : Model.{u} S where
-  Domain := Quot congruence.rel
-  domainNonempty := ⟨Quot.mk _ (Classical.arbitrary M.Domain)⟩
-  interpretFunction := fun functionSymbol arguments =>
-    Quot.mk _ (M.interpretFunction functionSymbol
-      (fun i => Classical.choose (Quot.exists_rep (arguments i))))
-  interpretRelation := fun relationSymbol arguments =>
-    M.interpretRelation relationSymbol
-      (fun i => Classical.choose (Quot.exists_rep (arguments i)))
-  interpretConstant := fun constantSymbol =>
-    Quot.mk _ (M.interpretConstant constantSymbol)
+      (congruence : Congruence M) : Model.{u} S where
+    Domain := Quot congruence.rel
+    domainNonempty := ⟨Quot.mk _ (Classical.arbitrary M.Domain)⟩
+    interpretFunction := fun functionSymbol arguments =>
+      Quot.mk _ (M.interpretFunction functionSymbol
+        (fun i => Classical.choose (Quot.exists_rep (arguments i))))
+    interpretRelation := fun relationSymbol arguments =>
+      M.interpretRelation relationSymbol
+        (fun i => Classical.choose (Quot.exists_rep (arguments i)))
+    interpretConstant := fun constantSymbol =>
+      Quot.mk _ (M.interpretConstant constantSymbol)
 
 Predicate logic (unfolded):
 
   noncomputable def quotientModel {S : Signature} {M : Model.{u} S}
-    (congruence : Congruence M) : Model.{u} S where
-  Domain := Quot congruence.rel
-  domainNonempty := ⟨Quot.mk _ (Classical.arbitrary M.Domain)⟩
-  interpretFunction := fun functionSymbol arguments =>
-    Quot.mk _ (M.interpretFunction functionSymbol
-      (fun i => Classical.choose (Quot.exists_rep (arguments i))))
-  interpretRelation := fun relationSymbol arguments =>
-    M.interpretRelation relationSymbol
-      (fun i => Classical.choose (Quot.exists_rep (arguments i)))
-  interpretConstant := fun constantSymbol =>
-    Quot.mk _ (M.interpretConstant constantSymbol) (source fallback; no compiled unfold data available)
+      (congruence : Congruence M) : Model.{u} S where
+    Domain := Quot congruence.rel
+    domainNonempty := ⟨Quot.mk _ (Classical.arbitrary M.Domain)⟩
+    interpretFunction := fun functionSymbol arguments =>
+      Quot.mk _ (M.interpretFunction functionSymbol
+        (fun i => Classical.choose (Quot.exists_rep (arguments i))))
+    interpretRelation := fun relationSymbol arguments =>
+      M.interpretRelation relationSymbol
+        (fun i => Classical.choose (Quot.exists_rep (arguments i)))
+    interpretConstant := fun constantSymbol =>
+      Quot.mk _ (M.interpretConstant constantSymbol) (source fallback; no compiled unfold data available)
 
 Logical form (Lean):
 
@@ -169,11 +169,18 @@ noncomputable def quotientModel {S : Signature} {M : Model.{u} S}
 
 Predicate logic:
 
-  ∃ projection ∈ Homomorphism M (quotientModel congruence), ∀ element, projection.map element = Quot.mk _ element
+  ∀ {S : LRA.Logic.Signature} {M : LRA.ModelTheory.FirstOrder.Model S} (congruence : LRA.UniversalAlgebra.Congruence M), Exists fun projection => ∀ (element : M.Domain), projection.map element = Quot.mk congruence.rel element
 
 Predicate logic (unfolded):
 
-  ∀ {S : LRA.Logic.Signature} {M : LRA.ModelTheory.FirstOrder.Model S} (congruence : LRA.UniversalAlgebra.Congruence M), Exists fun projection => ∀ (element : M.1), projection.1 element = Quot.mk congruence.1 element
+  Ambient
+    (implicit ambient)
+  Objects
+    S : Signature
+    M : Model.{u} S
+    congruence : Congruence M
+  Prove
+    Exists fun projection => ∀ (element : M.1), projection.1 element = Quot.mk congruence.1 element
 
 Logical form (Lean):
 

@@ -7,11 +7,16 @@ namespace LRA.Set.Constructions.ZFCSet.Axioms
 
 Predicate logic:
 
-  (∀ A B ∈ ZFCSet), ∀ x ∈ ZFCSet, x ∈ A ↔ x ∈ B → A = B end LRA.Set.Constructions.ZFCSet.Axioms
+  ∀ (A B : LRA.Set.Constructions.ZFCSet), (∀ (x : LRA.Set.Constructions.ZFCSet), LRA.Set.Constructions.instMembershipZFCSet.mem A x ↔ LRA.Set.Constructions.instMembershipZFCSet.mem B x) → A = B
 
 Predicate logic (unfolded):
 
-  ∀ (A B : LRA.Set.Constructions.ZFCSet), (∀ (x : LRA.Set.Constructions.ZFCSet), LRA.Set.instMembershipZFCSet.1 A x ↔ LRA.Set.instMembershipZFCSet.1 B x) → A = B
+  Ambient
+    (implicit ambient)
+  Objects
+    A B : ZFCSet
+  Prove
+    (∀ (x : LRA.Set.Constructions.ZFCSet), LRA.Set.Constructions.instMembershipZFCSet.mem A x ↔ LRA.Set.Constructions.instMembershipZFCSet.mem B x) → A = B
 
 Logical form (Lean):
 

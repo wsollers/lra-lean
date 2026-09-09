@@ -10,11 +10,16 @@ universe u
 
 Predicate logic:
 
-  Transitive relation ↔ RelationIncluded (RelationComposition relation relation) relation
+  ∀ {Alpha : Type u} (relation : LRA.Relation.Endorelation Alpha), LRA.Relation.Transitive relation ↔ LRA.Relation.RelationIncluded (LRA.Relation.RelationComposition relation relation) relation
 
 Predicate logic (unfolded):
 
-  ∀ {Alpha : Type u} (relation : Alpha → Alpha → Prop), ∀ (x y z : Alpha), relation x y → relation y z → relation x z ↔ ∀ (x y : Alpha), (Exists fun middle => (relation x middle ∧ relation middle y)) → relation x y
+  Ambient
+    (Alpha)
+  Objects
+    relation : Endorelation Alpha
+  Prove
+    LRA.Relation.Transitive relation ↔ LRA.Relation.RelationIncluded (LRA.Relation.RelationComposition relation relation) relation
 
 Logical form (Lean):
 
