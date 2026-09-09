@@ -1,4 +1,5 @@
 import LRA.Identity.Laws.Identity
+import LRA.Identity.Laws.Model
 import LRA.Identity.Laws.Equality
 import LRA.Identity.Laws.Equivalence
 import LRA.Identity.Laws.Distinctness

@@ -2,15 +2,18 @@
 
 ## Status And Scope
 
-This document records the IECE architecture and the first implementation pass
-completed on 2026-09-07. It is based on direct inspection of the Lean sources,
-not `ProofsToDo.md`.
+This document records the IECE architecture, the first implementation pass
+completed on 2026-09-07, and the public-model consolidation completed on
+2026-09-09. It is based on direct inspection of the Lean sources, not
+`ProofsToDo.md`.
 
 The reorganization is now buildable. Generic identity declarations are owned
 by `Interface`, logical and model levels have explicit routes, construction
 certificates remain under `Constructions`, derived results remain under
-`Laws`, and cross-provider conversions remain under `Interop`. Proof bodies
-introduced by this pass are intentionally `sorry` by project-owner direction.
+`Laws`, and cross-provider conversions remain under `Interop`. Ordinary
+model-relative laws now use `LRA.Identity.IdentityModel`; FOL, Henkin SOL, and
+full SOL feed that boundary through named adapters. Proof bodies introduced by
+the original migration remain intentionally `sorry` by project-owner direction.
 
 IECE means four related but non-identical notions:
 
@@ -32,11 +35,11 @@ semantics.
 Logical level and construction are independent dimensions.
 
 ```text
-generic IECE interface at a stated logical/semantic level
-                         ↑
-             construction-local satisfaction certificate
-                         ↑
-               concrete construction or provider
+ordinary identity law
+        ↓ depends only on
+IdentityModel
+        ↑ named forgetful adapter
+FOL model | Henkin SOL model | full SOL model | concrete construction
 ```
 
 `Axiomatic` and `Mathlib` are constructions/providers. `FOL`, Henkin `SOL`,
@@ -45,24 +48,37 @@ satisfy several targets, so the logical levels must not be represented as
 competing top-level implementations or as multiple globally active
 `IdentityRelation` instances.
 
+`IdentityModel` is the ordinary theorem boundary, not another logical level.
+It is the smallest certified reduct shared by the logical presentations and
+concrete constructions: a carrier, identity relation, admissibility policy,
+identity theory, and admissibility of both identity fibers. A theorem whose
+proof needs only those fields belongs in `Laws/Model.lean` and must not mention
+how the model was obtained.
+
 The canonical public interface routes are now deliberately uniform:
 
 ```text
 Interface/
+├── Model.lean
 ├── ZeroOrder/{LStructure,Model,Theory}.lean
-├── FirstOrder/{LStructure,Model,Theory}.lean
-└── SecondOrder/{LStructure,Model,Theory}.lean
+├── FirstOrder/{LStructure,Model,Theory,Adapter}.lean
+└── SecondOrder/{LStructure,Model,Theory,Adapter}.lean
 ```
 
 For second order, `Model.lean` exposes both `HenkinModel` and `FullModel`, and
 `Theory.lean` exposes the corresponding `HenkinTheory` and `FullTheory`.
+`FirstOrder/Adapter.lean` and `SecondOrder/Adapter.lean` own the forgetful
+conversions to `IdentityModel`. Formula definability and Henkin predicate-domain
+membership are discharged or supplied at those boundaries rather than repeated
+in ordinary law files.
 Legacy `Interface/Logic/{ZOL,FOL,SOL}` and `Interface/ModelTheory/**` paths are
 compatibility or lower-level vocabulary routes; they are not the canonical
 three-level public topology.
 
 The ownership boundary is strict:
 
-- `Interface/**` declares generic language structures, models, and theories.
+- `Interface/**` declares generic language structures, models, theories, and
+  named forgetful adapters between its own model levels.
 - `Laws/**` contains only construction-independent consequences and the
   relationships between logical levels. It never imports a construction.
 - `Constructions/<Provider>/Axioms/**` owns provider assumptions plus only
@@ -72,7 +88,8 @@ The ownership boundary is strict:
   biconditional, equivalence, congruence, and logical-level relationships.
 - `Constructions/<Provider>/Satisfies/{ZeroOrder,FirstOrder,SecondOrder}.lean`
   packages the provider as a witness of the corresponding generic interface.
-- `Interop/**` owns explicit cross-provider adapters.
+- `Interop/**` owns cross-provider conversions and scoped provider selection;
+  it does not own forgetful conversion between identity-owned model levels.
 
 `Laws/ModelTheory.lean` is retained only as a compatibility route. Diagonal
 results are generic identity laws, while functions that package a relation as
@@ -85,6 +102,62 @@ SOL quantifies over its selected predicate domain. Consequently, reverse or
 cross-level implications are stated only with the required definability,
 separation, or all-predicates hypothesis.
 
+## Two Kinds Of Selection
+
+Identity has two selection mechanisms, and they serve different APIs.
+
+| Mechanism | Use | Selection point | Must remain hidden from |
+|---|---|---|---|
+| Scoped `IdentityRelation` provider | Generic notation and lightweight statements using `Ident x y` | `open scoped LRA.Identity.Interop.Providers.<Provider>` | Other provider scopes and global instance search |
+| Explicit `IdentityModel` value | Substantial model-relative laws and developments | A section variable, theorem parameter, or named construction adapter | Ordinary proofs after the model has been selected |
+
+A scoped provider is appropriate when the API is intentionally typeclass-shaped:
+
+```lean
+section
+
+open LRA.Identity
+open scoped LRA.Identity.Interop.Providers.Mathlib
+
+example {Carrier : Type} {x y : Carrier} (h : Ident x y) : Ident y x :=
+  LRA.Identity.Examples.ProviderSwitching.ProviderIdentitySymmetric Carrier h
+
+end
+```
+
+An explicit model is the default for reusable model-relative mathematics:
+
+```lean
+section
+
+variable (M : LRA.Identity.IdentityModel)
+variable {x y : M.Carrier}
+
+example (h : M.Identity x y) : M.Identity y x :=
+  M.IdentitySymmetric h
+
+end
+```
+
+The model itself may be selected with
+`FirstOrder.Model.ToIdentityModel`,
+`SecondOrder.HenkinModel.ToIdentityModel`,
+`SecondOrder.FullModel.ToIdentityModel`,
+`Constructions.Mathlib.NativeIdentityModel`, or
+`Constructions.Axiomatic.AxiomaticIdentityModel`. The first-order definability
+witness and Henkin fiber-membership witnesses appear only while constructing
+that value. They are not parameters of `IdentityModel.IdentitySymmetric` or of
+other ordinary model laws.
+
+`Interop.Providers.Default` is a fixed convenience provider backed by native
+Lean equality. It is not a dynamically rebindable project variable. Code that
+must survive a change of construction quantifies over `IdentityModel` or opens
+one provider scope locally; it does not attempt to mutate a global default.
+
+Model selection itself must not be installed as a global instance. Multiple
+FOL, Henkin, or full models can legitimately share a carrier, so global model
+instances would create ambiguity and make imports change theorem meaning.
+
 ## What The Current Code Gets Right
 
 1. `LRA/Identity.lean` retains the four necessary aggregate surfaces:
@@ -96,10 +169,14 @@ separation, or all-predicates hypothesis.
    `Constructions/Axiomatic` and `Constructions/Mathlib`.
 4. Provider selection is scoped and re-exported through `Interop/Providers`,
    avoiding unconditional global instance conflicts.
-5. The FOL syntax surface already contains equality and inequality atoms, and
+5. `Interface/Model.lean` supplies one construction-independent
+   `IdentityModel` boundary for ordinary laws, while model-specific conversion
+   obligations live in `FirstOrder/Adapter.lean` and
+   `SecondOrder/Adapter.lean`.
+6. The FOL syntax surface already contains equality and inequality atoms, and
    the generic model-theory library already distinguishes first-order models,
    Henkin second-order models, and full second-order models.
-6. The universal-algebra surface correctly treats congruence as a generic
+7. The universal-algebra surface correctly treats congruence as a generic
    equivalence relation compatible with operations, then proves identity to be
    a congruence.
 
@@ -253,7 +330,18 @@ LRA/Identity/
 ├── Interface.lean
 ├── Interface/
 │   ├── Identity.lean
+│   ├── Model.lean
 │   ├── Equality.lean
+│   ├── FirstOrder/
+│   │   ├── LStructure.lean
+│   │   ├── Model.lean
+│   │   ├── Theory.lean
+│   │   └── Adapter.lean
+│   ├── SecondOrder/
+│   │   ├── LStructure.lean
+│   │   ├── Model.lean
+│   │   ├── Theory.lean
+│   │   └── Adapter.lean
 │   ├── Syntax/
 │   │   ├── Identity.lean
 │   │   └── Congruence.lean
@@ -285,6 +373,7 @@ LRA/Identity/
 ├── Laws.lean
 ├── Laws/
 │   ├── Identity.lean
+│   ├── Model.lean
 │   ├── Equality.lean
 │   ├── Equivalence.lean
 │   ├── Congruence.lean
@@ -300,6 +389,7 @@ LRA/Identity/
 ├── Constructions/
 │   ├── Axiomatic/
 │   │   ├── Primitives.lean
+│   │   ├── Model.lean
 │   │   ├── Axioms/
 │   │   ├── Laws/
 │   │   └── Satisfies/
@@ -311,6 +401,7 @@ LRA/Identity/
 │   │       └── UniversalAlgebra.lean
 │   └── Mathlib/
 │       ├── Primitives.lean
+│       ├── Model.lean
 │       ├── Laws/
 │       └── Satisfies/
 │           ├── Generic.lean
@@ -322,7 +413,7 @@ LRA/Identity/
 ├── Interop.lean
 └── Interop/
     ├── Adapters.lean
-    ├── Providers/
+    ├── Providers/{Default,LRA,Mathlib}.lean
     └── Audit.lean
 ```
 
@@ -408,7 +499,8 @@ For both `Axiomatic` and `Mathlib`:
    theorems/structures for logical-level certificates;
 5. move `canonicalEqualityStructure` and other concrete `Eq` witnesses from
    `Interface/ModelTheory` to `Constructions/Mathlib/Satisfies`;
-6. normalize the namespace to `LRA.Identity.Constructions.<Construction>`.
+6. expose a named `IdentityModel` value for construction-independent laws;
+7. normalize the namespace to `LRA.Identity.Constructions.<Construction>`.
 
 No compatibility aliases were added for the former singular
 `LRA.Identity.Construction.*` namespace: direct repository search found no
@@ -433,6 +525,25 @@ per logical level:
    `Laws`.
 4. Add import tests demonstrating that choosing the Axiomatic provider does not
    also activate Mathlib identity, and conversely.
+5. Keep the project `Default` provider isolated and explicit; opening it is a
+   local choice and never rebinds Axiomatic or Mathlib model values.
+
+### Phase 7: Consolidate The Ordinary Model Boundary
+
+1. Use `LRA.Identity.IdentityModel` for laws that need a carrier, identity
+   relation, admissibility policy, identity theory, and admissible identity
+   fibers but do not care about logical presentation.
+2. Place ordinary consequences such as
+   `IdentityModel.IdentitySymmetric` in `Laws/Model.lean`.
+3. Keep FOL formula-definability proofs in the FOL semantic layer and consume
+   them in `FirstOrder/Adapter.lean`.
+4. Keep Henkin fiber-membership assumptions and full-SOL admissibility in
+   `SecondOrder/Adapter.lean`.
+5. Keep verbose construction and switching fixtures private under `test/`;
+   production examples should demonstrate only the intended public surface.
+6. Do not create FOL- and SOL-specific copies of every ordinary identity law.
+   Thin wrappers are justified only when their logical provenance is itself
+   part of the theorem being stated.
 
 ## Priority And Dependency Order
 
@@ -461,24 +572,28 @@ Each implementation phase should run:
 2. `python scripts/validate_structure.py --path LRA/Identity`;
 3. `lake build LRAIdentity`;
 4. focused compilation tests for Axiomatic-only, Mathlib-only, FOL, SOL-Henkin,
-   and SOL-full imports;
+   SOL-full, default-provider, and `IdentityModel` adapter imports;
 5. a regenerated direct-source `sorry` inventory.
 
-The Lean migration described by this document has been performed. FOL identity
-is tied to formula-definable predicates in a selected interpretation; SOL owns
-an explicit Leibniz formula with distinct Henkin and full satisfaction layers;
-Identity/Equality is factored through one generic contract; construction
-satisfaction matrices include generic, FOL, Henkin-SOL, full-SOL, equality, and
-universal-algebra targets; and isolated provider imports are build-tested.
-Proof completion is intentionally outside this migration.
+The Lean migration and public-model consolidation described by this document
+have been performed. FOL identity is tied to formula-definable predicates in a
+selected interpretation; SOL owns an explicit Leibniz formula with distinct
+Henkin and full satisfaction layers; Identity/Equality is factored through one
+generic contract; construction satisfaction matrices include generic, FOL,
+Henkin-SOL, full-SOL, equality, and universal-algebra targets; and ordinary
+model laws depend only on `IdentityModel`. Scoped providers and explicit model
+selection are tested independently. Proof completion is intentionally outside
+this migration.
 
-As verified on 2026-09-07:
+As verified after the `IdentityModel` consolidation on 2026-09-09:
 
 - `python scripts/validate_structure.py --path LRA/Identity` passes;
-- native `lake build LRAAll` and `lake build LRATests` pass;
+- native focused Identity builds and `lake build LRATests` pass;
 - `build.ps1 docker-build` and the containerized `build.ps1 build-all` pass;
 - no `Interface/**` or `Laws/**` module imports an Identity construction;
-- no Lean source still uses the former singular
-  `LRA.Identity.Construction.*` namespace; and
-- `LRA/Identity` contains 131 intentional `sorry` occurrences across 54 Lean
-  files.
+- no Lean source uses the retired `IdentityContext` or `ToIdentityContext`
+  names;
+- the FOL, Henkin, full-SOL, native, default, and axiomatic paths all prove the
+  same symmetry result after selection; and
+- the verbose cross-model construction fixture lives under `test/LRA/Identity`
+  rather than the production example surface.

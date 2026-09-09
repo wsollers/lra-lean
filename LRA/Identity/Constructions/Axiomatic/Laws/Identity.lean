@@ -44,8 +44,8 @@ Related proof moves: TODO
 -/
 theorem Reflexivity {Carrier : Type u} (x : Carrier) :
     Ax_IdentityRelation x x := by
-
-  sorry
+  have xRx := axiomaticIdentityRelation_isReflexive Carrier x
+  exact xRx
 
 /--
 `Symmetry` TODO
@@ -86,6 +86,7 @@ Related proof moves: TODO
 -/
 theorem Symmetry {Carrier : Type u} {x y : Carrier}
     (h : Ax_IdentityRelation x y) : Ax_IdentityRelation y x := by
+
   sorry
 
 /--

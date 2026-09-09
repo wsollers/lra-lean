@@ -76,7 +76,10 @@ lean_lib LRATests where
     `LRA.Morphism.FailureModesTest,
     `LRA.Analysis.Bounds.BoundsTests,
     `LRA.Identity.AxiomaticProviderIsolationTest,
+    `LRA.Identity.DefaultProviderIsolationTest,
     `LRA.Identity.MathlibProviderIsolationTest,
+    `LRA.Identity.ModelSwitchingTest,
+    `LRA.Identity.ProviderSwitchingTest,
     `LRA.VolumeIV.Learning.MetricTopologyAdapterTest,
     `LRA.VolumeIV.TopologicalSpaces.TopologyCompatibilityTest
   ]

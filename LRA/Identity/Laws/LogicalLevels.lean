@@ -52,7 +52,7 @@ theorem FirstOrderReflexivity
     {M : LRA.Identity.Interface.FirstOrder.Model L}
     (T : LRA.Identity.Interface.FirstOrder.Theory L Variable M) (x : M.interpretation.Domain) :
     M.Identity x x := by
-  sorry
+  exact T.reflexivity x
 
 /--
 `FirstOrderIndiscernibilityOfIdenticals` TODO
@@ -105,7 +105,43 @@ theorem FirstOrderIndiscernibilityOfIdenticals
     {x y : M.interpretation.Domain} (h : M.Identity x y) :
     forall P, LRA.Identity.Logic.FOL.FormulaDefinable Variable M.interpretation P ->
       P x -> P y := by
-  sorry
+  intro P hDefinable hPx
+  exact T.leibniz x y h P hDefinable hPx
+
+/--
+`FirstOrderIdentitySymmetric` derives symmetry of a first-order model's
+identity relation from reflexivity and Leibniz substitution for the definable
+identity fiber. Equivalently, the atomic formula `z Identity x` transports
+self-identity across `x Identity y` to give `y Identity x`.
+
+Logical form:
+
+```lean
+theorem FirstOrderIdentitySymmetric
+    {L : LRA.Identity.Interface.FirstOrder.LStructure}
+    {Variable : Type} [DecidableEq Variable]
+    (hasDistinctVariables : exists left right : Variable, left ≠ right)
+    {M : LRA.Identity.Interface.FirstOrder.Model L}
+    (T : LRA.Identity.Interface.FirstOrder.Theory L Variable M)
+    {x y : M.interpretation.Domain} (h : M.Identity x y) :
+    M.Identity y x
+```
+-/
+theorem FirstOrderIdentitySymmetric
+    {L : LRA.Identity.Interface.FirstOrder.LStructure}
+    {Variable : Type} [DecidableEq Variable]
+    (hasDistinctVariables : exists left right : Variable, left ≠ right)
+    {M : LRA.Identity.Interface.FirstOrder.Model L}
+    (T : LRA.Identity.Interface.FirstOrder.Theory L Variable M)
+    {x y : M.interpretation.Domain} (h : M.Identity x y) :
+    M.Identity y x := by
+  have hDefinable :
+      LRA.Identity.Logic.FOL.FormulaDefinable Variable M.interpretation
+        (fun value => M.Identity value x) :=
+    LRA.Identity.Interface.FirstOrder.IdentityFiberFormulaDefinable
+      hasDistinctVariables M x
+  have hxx : M.Identity x x := T.reflexivity x
+  exact T.leibniz x y h (fun value => M.Identity value x) hDefinable hxx
 
 /--
 `FullToHenkin` TODO

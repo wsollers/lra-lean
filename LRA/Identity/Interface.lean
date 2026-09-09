@@ -1,4 +1,5 @@
 import LRA.Identity.Interface.Identity
+import LRA.Identity.Interface.Model
 import LRA.Identity.Interface.Equality
 import LRA.Identity.Interface.Syntax
 import LRA.Identity.Interface.ZeroOrder

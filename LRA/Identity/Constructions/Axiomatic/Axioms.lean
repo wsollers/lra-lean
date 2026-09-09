@@ -9,6 +9,7 @@ import LRA.Identity.Constructions.Axiomatic.Axioms.Reflexivity.Satisfies
 import LRA.Identity.Constructions.Axiomatic.Axioms.FirstOrderLeibniz.Axiom
 import LRA.Identity.Constructions.Axiomatic.Axioms.FirstOrderLeibniz.Definitions
 import LRA.Identity.Constructions.Axiomatic.Axioms.FirstOrderLeibniz.Theorems
+import LRA.Identity.Constructions.Axiomatic.Axioms.FirstOrderLeibniz.Relationships
 import LRA.Identity.Constructions.Axiomatic.Axioms.SecondOrderLeibniz.Axiom
 import LRA.Identity.Constructions.Axiomatic.Axioms.SecondOrderLeibniz.Definitions
 import LRA.Identity.Constructions.Axiomatic.Axioms.SecondOrderLeibniz.Theorems

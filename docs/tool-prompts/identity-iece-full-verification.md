@@ -11,17 +11,27 @@ for declarations, proof status, ownership, or completeness. Treat the current
 architecture document as a claim to verify, not as authoritative evidence:
 `docs/architecture/identity-iece-architecture.md`.
 
-The intended architecture has two independent dimensions:
+The intended architecture has two independent dimensions plus one shared
+ordinary theorem boundary:
 
 1. logical or semantic level: generic, syntactic, propositional/ZOL, FOL,
    Henkin SOL, and full SOL;
-2. construction or provider: Axiomatic and Mathlib.
+2. construction or provider: Default, Axiomatic, and Mathlib.
+
+`LRA.Identity.IdentityModel` is the construction-independent reduct consumed
+by ordinary model-relative laws. FOL, Henkin, full-SOL, Mathlib, and axiomatic
+models reach it through named adapters or construction-owned model values.
+Scoped `IdentityRelation` providers are a separate mechanism used for the
+typeclass-shaped `Ident x y` API; model selection itself is explicit and must
+not be installed globally.
 
 `Interface` must own generic contracts and level-specific semantic targets.
 `Constructions/<Provider>` must own primitive construction data, genuine
 axioms, models, and proofs that the construction satisfies those interfaces.
 `Laws` must own consequences derived from generic interfaces.
-`Interop` must own cross-API adapters and provider exports. Do not recommend
+`Interop` must own cross-API adapters and provider exports. Identity-owned
+forgetful adapters from FOL and SOL models to `IdentityModel` remain beside
+their source model interfaces. Do not recommend
 renaming `Constructions` to `Realizations`; both `Constructions` and `Laws`
 are intentional architectural categories.
 
@@ -112,7 +122,8 @@ do not infer support from imports alone.
 
 ## 5. Lean formalization verification
 
-- Compile every Identity module and both provider-isolation tests.
+- Compile every Identity module, all three provider-isolation tests, and the
+  `IdentityModel` adapter-switching regression test.
 - Run `lake build LRAIdentity`, `lake build LRAAll`, and `lake build LRATests`.
 - Run the repository's Docker success gates: `build.ps1 docker-build` followed
   by `build.ps1 build-all` on Windows, or the documented equivalent elsewhere.
@@ -121,6 +132,8 @@ do not infer support from imports alone.
   provider activation, ambiguity between providers, and import minimality.
 - Search for stale declaration names and the singular
   `LRA.Identity.Construction.*` namespace throughout `LRA/` and `test/`.
+  Also confirm that retired `IdentityContext` and `ToIdentityContext` names do
+  not remain and that verbose semantic switching fixtures are private tests.
 - Count `sorry` occurrences directly in Identity `.lean` files and list the
   declarations containing them. `sorry` is intentional for this development
   phase and is not itself a defect; flag only missing, misplaced, accidental,

@@ -1,4 +1,5 @@
 import LRA.Identity.Constructions.Axiomatic.Laws.Primitive
+import LRA.Identity.Constructions.Axiomatic.Laws.FirstOrder
 import LRA.Identity.Constructions.Axiomatic.Laws.Equality
 import LRA.Identity.Constructions.Axiomatic.Laws.Identity
 import LRA.Identity.Constructions.Axiomatic.Laws.LogicalLevels

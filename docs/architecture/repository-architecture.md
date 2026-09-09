@@ -217,6 +217,14 @@ normally a reason to duplicate a construction. For example, a single identity
 construction may separately satisfy syntactic, propositional, first-order,
 full second-order, Henkin second-order, and universal-algebraic interfaces.
 
+Identity additionally separates provider selection from model selection.
+Scoped `IdentityRelation` providers support lightweight `Ident x y` notation;
+ordinary model-relative theorems quantify explicitly over
+`LRA.Identity.IdentityModel`. FOL, Henkin, full-SOL, Mathlib, and axiomatic
+objects enter those theorems through named adapters or construction-owned model
+values. Their definability and predicate-domain obligations do not propagate
+into ordinary law signatures, and model selection is never a global instance.
+
 ## Interop
 
 Interop belongs with the subject whose vocabulary is being bridged:

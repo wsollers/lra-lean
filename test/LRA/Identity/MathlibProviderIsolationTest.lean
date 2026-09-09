@@ -13,6 +13,6 @@ instance without importing the axiomatic provider.
 Logical form: `Ident element element`.
 -/
 example {Carrier : Type u} (element : Carrier) : Ident element element := by
-  sorry
+  exact IdentReflexive element
 
 end LRA.Identity.Tests.MathlibProviderIsolation
