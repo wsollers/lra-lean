@@ -125,10 +125,11 @@ Related proof moves: TODO
 
 -/
 theorem IdentSymmetric {x y : Carrier} (h : Ident x y) : Ident y x := by
-  have f := IdentRfl x
 
-  h.symm
-  sorry
+  let inst : IdentityRelation Carrier := inferInstance
+  have hx : Ident x x := IdentRfl x
+  have hswap : Ident y x := inst.IdentLeibniz h (fun t => Ident t x) hx
+  exact hswap
 
 /--
 `IdentTransitive` TODO
@@ -169,7 +170,10 @@ Related proof moves: TODO
 -/
 theorem IdentTransitive {x y z : Carrier}
     (hxy : Ident x y) (hyz : Ident y z) : Ident x z := by
-  sorry
+  let inst : IdentityRelation Carrier := inferInstance
+  have hswap : Ident x z := inst.IdentLeibniz hyz (fun t => Ident x t) hxy
+  exact hswap
+
 
 /--
 `IndiscernibilityOfIdenticals` TODO
@@ -210,7 +214,19 @@ Related proof moves: intro, constructor, .mp, .mpr
 -/
 theorem IndiscernibilityOfIdenticals {x y : Carrier} (h : Ident x y) :
     forall Property : Carrier -> Prop, Property x <-> Property y := by
-  sorry
+  let inst : IdentityRelation Carrier := inferInstance
+  intro arbProp
+  constructor
+  . -- mp
+    intro Px
+    exact inst.IdentLeibniz h arbProp Px
+
+  . -- mpr
+    intro Py
+    have yIx : Ident y x :=  IdentSymmetric h
+    exact inst.IdentLeibniz yIx arbProp Py
+
+
 
 /--
 `IdentityOfIndiscernibles` TODO
