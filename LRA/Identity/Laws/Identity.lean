@@ -269,7 +269,11 @@ Related proof moves: intro, constructor, .mp, .mpr
 theorem IdentityOfIndiscernibles {x y : Carrier}
     (h : forall Property : Carrier -> Prop, Property x <-> Property y) :
     Ident x y := by
-  sorry
+  let P : Carrier -> Prop := fun t => Ident x t
+  have hP : P x <-> P y := h P
+  have hx : P x := IdentRfl x
+  have hy : P y := hP.mp hx
+  exact hy
 
 /--
 `IdentLeibnizIff` TODO
@@ -310,7 +314,21 @@ Related proof moves: intro, constructor, .mp, .mpr
 -/
 theorem IdentLeibnizIff {x y : Carrier} :
     Ident x y <-> forall Property : Carrier -> Prop, Property x <-> Property y := by
-  sorry
+
+  constructor
+  . -- mp
+
+    intro hxIy
+    exact IndiscernibilityOfIdenticals hxIy
+
+  . -- mpr
+    let P : Carrier -> Prop := fun t => Ident x t
+    intro arbProp
+    have hP : P x <-> P y := arbProp P
+    have hx : P x := IdentRfl x
+    exact hP.mp hx
+
+
 
 /--
 `IsIdentityRelation.IsDiagonal` TODO
@@ -353,6 +371,7 @@ Related proof moves: intro, constructor, .mp, .mpr
 theorem IsIdentityRelation.IsDiagonal {Carrier : Type u}
     {R : Carrier -> Carrier -> Prop} (h : IsIdentityRelation R) :
     forall left right, R left right <-> EqualityDiagonal Carrier left right := by
+
   sorry
 
 /--
