@@ -38,6 +38,12 @@
       "path": "docs/tool-prompts/volume-aggregator-repopulation.md",
       "title": "Repopulate volume aggregators from LaTeX TOC",
       "purpose": "Regenerate root volume aggregator Lean files from the LaTeX table of contents order."
+    },
+    {
+      "id": "lean-proof-coach",
+      "path": "docs/tool-prompts/lean-proof-coach.md",
+      "title": "Coach a learner through a Lean proof state",
+      "purpose": "Explain theorem environments, binders, structures, typeclasses, and local goals without solving the learner's proof unless explicitly requested."
     }
   ]
 }

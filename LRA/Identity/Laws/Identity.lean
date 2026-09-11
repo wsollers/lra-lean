@@ -125,7 +125,6 @@ Related proof moves: TODO
 
 -/
 theorem IdentSymmetric {x y : Carrier} (h : Ident x y) : Ident y x := by
-
   let inst : IdentityRelation Carrier := inferInstance
   have hx : Ident x x := IdentRfl x
   have hswap : Ident y x := inst.IdentLeibniz h (fun t => Ident t x) hx
