@@ -735,8 +735,8 @@ theorem SourceIncludedInPreimageOfImageClass (source : SetClass Domain) :
     sorry
 
   . -- w
+    exact codomain
 
-    sorry
 
 
 /--
