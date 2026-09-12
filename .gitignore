@@ -130,6 +130,7 @@ desktop.ini
 
 # Repository-specific ignore rules
 /.lake
+/.ci-lake-build/
 /tmp/
 lean-decl-inventory.txt
 /site/
