@@ -726,7 +726,19 @@ Related proof moves: TODO
 theorem SourceIncludedInPreimageOfImageClass (source : SetClass Domain) :
     SetClass.Included source
       (PreimageClass function (ImageClass function source)) := by
-  sorry
+  intro domain
+  have codomain := function domain
+  intro e
+  constructor
+  . -- h
+
+    sorry
+
+  . -- w
+
+    sorry
+
+
 /--
 `ImageOfPreimageClassEqualsMeetWithRange` TODO
 
