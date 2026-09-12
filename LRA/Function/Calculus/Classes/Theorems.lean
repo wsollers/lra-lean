@@ -727,15 +727,20 @@ theorem SourceIncludedInPreimageOfImageClass (source : SetClass Domain) :
     SetClass.Included source
       (PreimageClass function (ImageClass function source)) := by
   intro domain
-  have codomain := function domain
+  have output := function domain
   intro e
+  refine ⟨function domain, ?_⟩
   constructor
-  . -- h
-
-    sorry
-
-  . -- w
-    exact codomain
+  . -- left
+    refine⟨domain, ?_⟩
+    constructor
+    . -- left.h
+      . -- left.h.left
+        exact e
+    . -- left.w
+      rfl
+  . -- right
+    rfl
 
 
 
