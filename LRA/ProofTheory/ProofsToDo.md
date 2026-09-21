@@ -147,7 +147,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    J.2.length.le 1
+    J.succedent.length.le 1
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./System/Takeuti/Judgement.lean`](./System/Takeuti/Judgement.lean)
@@ -164,7 +164,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Or (Exists fun A => (List.A ∈ J.1 ∧ LRA.ProofTheory.System.Takeuti.Formula.FreeVarOccurs a A)) (Exists fun A => (List.A ∈ J.2 ∧ LRA.ProofTheory.System.Takeuti.Formula.FreeVarOccurs a A))
+    Or (∃ A, (List.instMembership.mem J.antecedent A ∧ LRA.ProofTheory.System.Takeuti.Formula.FreeVarOccurs a A)) (∃ A, (List.instMembership.mem J.succedent A ∧ LRA.ProofTheory.System.Takeuti.Formula.FreeVarOccurs a A))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./System/Takeuti/Judgement.lean`](./System/Takeuti/Judgement.lean)
@@ -181,7 +181,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun A => J = { antecedent := List.cons A List.nil, succedent := List.cons A List.nil }
+    ∃ A, J = { antecedent := List.cons A List.nil, succedent := List.cons A List.nil }
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./System/Takeuti/Rule.lean`](./System/Takeuti/Rule.lean)
@@ -198,7 +198,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (LRA.ProofTheory.System.Takeuti.Rule uppers lower ∧ (instLENat.le lower.2.length 1 ∧ (∀ (upper : LRA.ProofTheory.System.Takeuti.Judgement L), List.upper ∈ uppers → instLENat.le upper.2.length 1)))
+    (LRA.ProofTheory.System.Takeuti.Rule uppers lower ∧ (instLENat.le lower.succedent.length 1 ∧ (∀ (upper : LRA.ProofTheory.System.Takeuti.Judgement L), List.instMembership.mem uppers upper → instLENat.le upper.succedent.length 1)))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./System/Takeuti/LJ.lean`](./System/Takeuti/LJ.lean)
@@ -215,7 +215,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun A => Exists fun leftAntecedent => Exists fun leftSuccedent => Exists fun rightAntecedent => Exists fun rightSuccedent => (uppers = List.cons { antecedent := leftAntecedent, succedent := instHAppendOfAppend.1 leftSuccedent (List.cons A List.nil) } (List.cons { antecedent := List.cons A rightAntecedent, succedent := rightSuccedent } List.nil) ∧ lower = { antecedent := instHAppendOfAppend.1 leftAntecedent rightAntecedent, succedent := instHAppendOfAppend.1 leftSuccedent rightSuccedent })
+    ∃ A, ∃ leftAntecedent, ∃ leftSuccedent, ∃ rightAntecedent, ∃ rightSuccedent, (uppers = List.cons { antecedent := leftAntecedent, succedent := instHAppendOfAppend.hAppend leftSuccedent (List.cons A List.nil) } (List.cons { antecedent := List.cons A rightAntecedent, succedent := rightSuccedent } List.nil) ∧ lower = { antecedent := instHAppendOfAppend.hAppend leftAntecedent rightAntecedent, succedent := instHAppendOfAppend.hAppend leftSuccedent rightSuccedent })
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./System/Takeuti/Cut.lean`](./System/Takeuti/Cut.lean)

@@ -14,105 +14,15 @@ the folder.
 **Progress:** 0/33 theorem-family entries completed since reset baseline `73e79b40` (Mass-sorry non-Logic proofs and regenerate todos).
 **Baseline reconciliation:** 0 still match baseline as `sorry`; 33 baseline entries were moved, renamed, or removed and are not auto-credited.
 
-**Snapshot:** 26/117 theorem-family entries currently completed (91 sorry remaining).
+**Snapshot:** 31/117 theorem-family entries currently completed (86 sorry remaining).
 
-**Inventory:** 117 theorem/lemma/corollary/proposition entries across 71 module(s) (26 completed, 91 sorry).
+**Inventory:** 117 theorem/lemma/corollary/proposition entries across 71 module(s) (31 completed, 86 sorry).
 **Excluded from counts:** 40 `instance` entries and 6 `axiom` entries.
 
 ## Open Work Queue
 
 Unfinished entries (`Sorry`, or `Unknown` in offline preview) are listed first so
 this section can be used as the actual proof queue.
-
-Name: IdentSymmetric
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] {x y : Carrier}, inst.Ident x y → inst.Ident y x
-Predicate logic (unfolded):
-  Ambient
-    (Carrier)
-  Objects
-    x y : Carrier
-    h : Ident x y
-  Prove
-    inst.Ident x y → inst.Ident y x
-Transliterated theorem: Ident y x
-Logical form (Lean): {x y : Carrier} (h : Ident x y) : Ident y x
-Source: [`./Laws/Identity.lean#L127`](./Laws/Identity.lean#L127)
-
-
-
-Name: IdentTransitive
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ {x y z : Carrier} (hxy : Ident x y) (hyz : Ident y z), Ident x z
-Predicate logic (unfolded):
-  Ambient
-    (Carrier)
-  Objects
-    x y z : Carrier
-    hxy : Ident x y
-    hyz : Ident y z
-  Prove
-    (inst.Ident x y ∧ inst.Ident y z) → inst.Ident x z
-Transliterated theorem: Ident x z
-Logical form (Lean): {x y z : Carrier} (hxy : Ident x y) (hyz : Ident y z) : Ident x z
-Source: [`./Laws/Identity.lean#L170`](./Laws/Identity.lean#L170)
-
-
-
-Name: IndiscernibilityOfIdenticals
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ {x y : Carrier} (h : Ident x y), forall Property : Carrier -> Prop, Property x <-> Property y
-Predicate logic (unfolded):
-  Ambient
-    (Carrier)
-  Objects
-    x y : Carrier
-    h : Ident x y
-  Prove
-    inst.Ident x y → ∀ (Property : Carrier → Prop), Property x ↔ Property y
-Transliterated theorem: forall Property : Carrier -> Prop, Property x <-> Property y
-Logical form (Lean): {x y : Carrier} (h : Ident x y) : forall Property : Carrier -> Prop, Property x <-> Property y
-Source: [`./Laws/Identity.lean#L211`](./Laws/Identity.lean#L211)
-
-
-
-Name: IdentityOfIndiscernibles
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ {x y : Carrier} (h : forall Property : Carrier -> Prop, Property x <-> Property y), Ident x y
-Predicate logic (unfolded):
-  Ambient
-    (Carrier)
-  Objects
-    x y : Carrier
-    h : forall Property : Carrier -> Prop, Property x <-> Property y
-  Prove
-    (∀ (Property : Carrier → Prop), Property x ↔ Property y) → inst.Ident x y
-Transliterated theorem: Ident x y
-Logical form (Lean): {x y : Carrier} (h : forall Property : Carrier -> Prop, Property x <-> Property y) : Ident x y
-Source: [`./Laws/Identity.lean#L253`](./Laws/Identity.lean#L253)
-
-
-
-Name: IdentLeibnizIff
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ {x y : Carrier}, Ident x y <-> forall Property : Carrier -> Prop, Property x <-> Property y
-Predicate logic (unfolded):
-  Ambient
-    (Carrier)
-  Objects
-    x y : Carrier
-  Prove
-    inst.Ident x y ↔ ∀ (Property : Carrier → Prop), Property x ↔ Property y
-Transliterated theorem: Ident x y <-> forall Property : Carrier -> Prop, Property x <-> Property y
-Logical form (Lean): {x y : Carrier} : Ident x y <-> forall Property : Carrier -> Prop, Property x <-> Property y
-Source: [`./Laws/Identity.lean#L295`](./Laws/Identity.lean#L295)
-
-
 
 Name: IsIdentityRelation.IsDiagonal
 Kind: Theorem
@@ -127,7 +37,7 @@ Predicate logic (unfolded):
     ((∀ (x : Carrier), R x x) ∧ (∀ (x y : Carrier), R x y → ∀ (P : Carrier → Prop), True → P x → P y)) → ∀ (left right : Carrier), R left right ↔ left = right
 Transliterated theorem: (IsIdentityRelation R) → forall left right, R left right <-> EqualityDiagonal Carrier left right
 Logical form (Lean): {Carrier : Type u} {R : Carrier -> Carrier -> Prop} (h : IsIdentityRelation R) : forall left right, R left right <-> EqualityDiagonal Carrier left right
-Source: [`./Laws/Identity.lean#L337`](./Laws/Identity.lean#L337)
+Source: [`./Laws/Identity.lean#L370`](./Laws/Identity.lean#L370)
 
 
 
@@ -144,7 +54,7 @@ Predicate logic (unfolded):
     ((∀ (x : Carrier), R x x) ∧ (∀ (x y : Carrier), R x y → ∀ (P : Carrier → Prop), True → P x → P y)) ↔ ∀ (left right : Carrier), R left right ↔ left = right
 Transliterated theorem: IsIdentityRelation R <-> forall left right, R left right <-> left = right
 Logical form (Lean): {Carrier : Type u} {R : Carrier -> Carrier -> Prop} : IsIdentityRelation R <-> forall left right, R left right <-> left = right
-Source: [`./Laws/Identity.lean#L380`](./Laws/Identity.lean#L380)
+Source: [`./Laws/Identity.lean#L414`](./Laws/Identity.lean#L414)
 
 
 
@@ -161,7 +71,7 @@ Predicate logic (unfolded):
     ((∀ (x : Carrier), R x x) ∧ (∀ (x y : Carrier), R x y → ∀ (P : Carrier → Prop), True → P x → P y)) ↔ R = LRA.Identity.EqualityDiagonal Carrier
 Transliterated theorem: IsIdentityRelation R <-> R = EqualityDiagonal Carrier
 Logical form (Lean): {Carrier : Type u} {R : Carrier -> Carrier -> Prop} : IsIdentityRelation R <-> R = EqualityDiagonal Carrier
-Source: [`./Laws/Identity.lean#L423`](./Laws/Identity.lean#L423)
+Source: [`./Laws/Identity.lean#L457`](./Laws/Identity.lean#L457)
 
 
 
@@ -178,7 +88,7 @@ Predicate logic (unfolded):
     S.equalityInterpretation left right ↔ left = right
 Transliterated theorem: forall left right, S.equalityInterpretation left right <-> EqualityDiagonal S.Carrier left right
 Logical form (Lean): (S : EqualityStructure.{u}) : forall left right, S.equalityInterpretation left right <-> EqualityDiagonal S.Carrier left right
-Source: [`./Laws/Identity.lean#L466`](./Laws/Identity.lean#L466)
+Source: [`./Laws/Identity.lean#L500`](./Laws/Identity.lean#L500)
 
 
 
@@ -2229,6 +2139,96 @@ Predicate logic (unfolded):
 Transliterated theorem: (∀ x ∈ Carrier), Ident x x
 Logical form (Lean): (x : Carrier) : Ident x x
 Source: [`./Laws/Identity.lean#L88`](./Laws/Identity.lean#L88)
+
+
+
+Name: IdentSymmetric
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} [inst : LRA.Identity.IdentityRelation Carrier] {x y : Carrier}, inst.Ident x y → inst.Ident y x
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    x y : Carrier
+    h : Ident x y
+  Prove
+    inst.Ident x y → inst.Ident y x
+Transliterated theorem: Ident y x
+Logical form (Lean): {x y : Carrier} (h : Ident x y) : Ident y x
+Source: [`./Laws/Identity.lean#L127`](./Laws/Identity.lean#L127)
+
+
+
+Name: IdentTransitive
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {x y z : Carrier} (hxy : Ident x y) (hyz : Ident y z), Ident x z
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    x y z : Carrier
+    hxy : Ident x y
+    hyz : Ident y z
+  Prove
+    (inst.Ident x y ∧ inst.Ident y z) → inst.Ident x z
+Transliterated theorem: Ident x z
+Logical form (Lean): {x y z : Carrier} (hxy : Ident x y) (hyz : Ident y z) : Ident x z
+Source: [`./Laws/Identity.lean#L170`](./Laws/Identity.lean#L170)
+
+
+
+Name: IndiscernibilityOfIdenticals
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {x y : Carrier} (h : Ident x y), forall Property : Carrier -> Prop, Property x <-> Property y
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    x y : Carrier
+    h : Ident x y
+  Prove
+    inst.Ident x y → ∀ (Property : Carrier → Prop), Property x ↔ Property y
+Transliterated theorem: forall Property : Carrier -> Prop, Property x <-> Property y
+Logical form (Lean): {x y : Carrier} (h : Ident x y) : forall Property : Carrier -> Prop, Property x <-> Property y
+Source: [`./Laws/Identity.lean#L214`](./Laws/Identity.lean#L214)
+
+
+
+Name: IdentityOfIndiscernibles
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {x y : Carrier} (h : forall Property : Carrier -> Prop, Property x <-> Property y), Ident x y
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    x y : Carrier
+    h : forall Property : Carrier -> Prop, Property x <-> Property y
+  Prove
+    (∀ (Property : Carrier → Prop), Property x ↔ Property y) → inst.Ident x y
+Transliterated theorem: Ident x y
+Logical form (Lean): {x y : Carrier} (h : forall Property : Carrier -> Prop, Property x <-> Property y) : Ident x y
+Source: [`./Laws/Identity.lean#L268`](./Laws/Identity.lean#L268)
+
+
+
+Name: IdentLeibnizIff
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {x y : Carrier}, Ident x y <-> forall Property : Carrier -> Prop, Property x <-> Property y
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    x y : Carrier
+  Prove
+    inst.Ident x y ↔ ∀ (Property : Carrier → Prop), Property x ↔ Property y
+Transliterated theorem: Ident x y <-> forall Property : Carrier -> Prop, Property x <-> Property y
+Logical form (Lean): {x y : Carrier} : Ident x y <-> forall Property : Carrier -> Prop, Property x <-> Property y
+Source: [`./Laws/Identity.lean#L314`](./Laws/Identity.lean#L314)
 
 
 

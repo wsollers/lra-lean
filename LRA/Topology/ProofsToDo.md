@@ -34,7 +34,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((∀ (S : (X → Prop) → Prop), (∀ (C : X → Prop), C ∈ S → IsClosed C) → IsClosed (Set.instInfSet.1 S)) ∧ ((∀ (C D : X → Prop), IsClosed C → IsClosed D → IsClosed (C ∪ D)) ∧ (IsClosed fun _a => True ∧ IsClosed Set.instEmptyCollection.1)))
+    ((∀ (S : Set (Set X)), (∀ (C : Set X), C ∈ S → IsClosed C) → IsClosed S.sInter) ∧ ((∀ (C D : Set X), IsClosed C → IsClosed D → IsClosed (C ∪ D)) ∧ (IsClosed Set.univ ∧ IsClosed Set.instEmptyCollection.emptyCollection)))
 Transliterated theorem: ∀ S ∈ Set (Set X, (∀ C ∈ S, IsClosed C) → IsClosed (⋂₀ S)) ∧ ∀ C D ∈ Set X, IsClosed C → IsClosed D → IsClosed (C ∪ D) ∧ IsClosed univ ∈ Set X ∧ IsClosed ∅ ∈ Set X
 Logical form (Lean): {X : Type u} [TopologicalSpace X] : (∀ S : Set (Set X), (∀ C ∈ S, IsClosed C) → IsClosed (⋂₀ S)) ∧ (∀ C D : Set X, IsClosed C → IsClosed D → IsClosed (C ∪ D)) ∧ IsClosed (univ : Set X) ∧ IsClosed (∅ : Set X)
 Source: [`./PointSetTopology/TopologicalSpace/Definition/Theorems.lean#L145`](./PointSetTopology/TopologicalSpace/Definition/Theorems.lean#L145)
@@ -69,7 +69,7 @@ Predicate logic (unfolded):
     A B : Set X
     subset : A ⊆ B
   Prove
-    { le := fun s₁ s₂ => ∀ ⦃a : X⦄, a ∈ s₁ → a ∈ s₂}.le A B → { le := fun s₁ s₂ => ∀ ⦃a : X⦄, a ∈ s₁ → a ∈ s₂}.le (Set.instInfSet.1 fun K => (({ le := fun s₁ s₂ => ∀ ⦃a : X⦄, a ∈ s₁ → a ∈ s₂}.le A K) ∧ IsClosed K)) (Set.instInfSet.1 fun K => (({ le := fun s₁ s₂ => ∀ ⦃a : X⦄, a ∈ s₁ → a ∈ s₂}.le B K) ∧ IsClosed K))
+    Set.instLE.le A B → Set.instLE.le (LRA.Topology.TopologicalClosureDefinition A) (LRA.Topology.TopologicalClosureDefinition B)
 Transliterated theorem: TopologicalClosureDefinition A ⊆ TopologicalClosureDefinition B
 Logical form (Lean): {X : Type u} [TopologicalSpace X] {A B : Set X} (subset : A ⊆ B) : TopologicalClosureDefinition A ⊆ TopologicalClosureDefinition B
 Source: [`./PointSetTopology/TopologicalSpace/Definition/Theorems.lean#L303`](./PointSetTopology/TopologicalSpace/Definition/Theorems.lean#L303)
@@ -87,7 +87,7 @@ Predicate logic (unfolded):
     topology : TopologyDefinition X
     U : Set X
   Prove
-    topology.ToMathlibTopologicalSpace.1 U ↔ topology.1 U
+    topology.ToMathlibTopologicalSpace.IsOpen U ↔ topology.IsOpen U
 Transliterated theorem: letI : _root_.TopologicalSpace X
 Logical form (Lean): {X : Type u} (topology : TopologyDefinition X) (U : Set X) : letI : _root_.TopologicalSpace X
 Source: [`./PointSetTopology/TopologicalSpace/Interop/Mathlib.lean#L113`](./PointSetTopology/TopologicalSpace/Interop/Mathlib.lean#L113)
@@ -104,7 +104,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (LRA.Topology.TopologyDefinition.FromMathlibTopologicalSpace X).1 U ↔ inst.1 U
+    (LRA.Topology.TopologyDefinition.FromMathlibTopologicalSpace X).IsOpen U ↔ inst.IsOpen U
 Transliterated theorem: IsCompatibleWithMathlibTopologicalSpace (TopologyDefinition.FromMathlibTopologicalSpace X)
 Logical form (Lean): {X : Type u} [_root_.TopologicalSpace X] : IsCompatibleWithMathlibTopologicalSpace (TopologyDefinition.FromMathlibTopologicalSpace X)
 Source: [`./PointSetTopology/TopologicalSpace/Interop/Mathlib.lean#L344`](./PointSetTopology/TopologicalSpace/Interop/Mathlib.lean#L344)
@@ -122,7 +122,7 @@ Predicate logic (unfolded):
     topology : TopologyDefinition X
     U : Set X
   Prove
-    (LRA.Topology.SelectMathlibTopologicalSpace LRA.Topology.TopologicalSpaceBackend.inducedFromTopologyDefinition topology).1 U ↔ topology.1 U
+    (LRA.Topology.SelectMathlibTopologicalSpace LRA.Topology.TopologicalSpaceBackend.inducedFromTopologyDefinition topology).IsOpen U ↔ topology.IsOpen U
 Transliterated theorem: letI : _root_.TopologicalSpace X
 Logical form (Lean): {X : Type u} (topology : TopologyDefinition X) [_root_.TopologicalSpace X] (U : Set X) : letI : _root_.TopologicalSpace X
 Source: [`./PointSetTopology/TopologicalSpace/Interop/Switch.lean#L323`](./PointSetTopology/TopologicalSpace/Interop/Switch.lean#L323)
@@ -149,7 +149,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    inst.1 (Set.instCompl.1 E)
+    inst.1 (Set.instCompl.compl E)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./PointSetTopology/TopologicalSpace/Definition/Theorems.lean`](./PointSetTopology/TopologicalSpace/Definition/Theorems.lean)
@@ -166,7 +166,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    t ∈ fun K => (({ le := fun s₁ s₂ => ∀ ⦃a : X⦄, a ∈ s₁ → a ∈ s₂}.le E K) ∧ IsClosed K) → a ∈ t
+    t ∈ setOf fun K => (Set.instLE.le E K ∧ IsClosed K) → a ∈ t
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./PointSetTopology/TopologicalSpace/Definition/Theorems.lean`](./PointSetTopology/TopologicalSpace/Definition/Theorems.lean)
@@ -183,7 +183,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    inst.1 (Set.instCompl.1 a)
+    inst.1 (Set.instCompl.compl a)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./PointSetTopology/TopologicalSpace/Definition/Theorems.lean`](./PointSetTopology/TopologicalSpace/Definition/Theorems.lean)
@@ -200,7 +200,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    topology.1 U ↔ inst.1 U
+    topology.IsOpen U ↔ inst.IsOpen U
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./PointSetTopology/TopologicalSpace/Interop/Mathlib.lean`](./PointSetTopology/TopologicalSpace/Interop/Mathlib.lean)

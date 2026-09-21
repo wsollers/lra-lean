@@ -33,7 +33,7 @@ Predicate logic (unfolded):
     M₁ M₂ : Model S
     iso : ModelIsomorphism M₁ M₂
   Prove
-    ((∀ ⦃a₁ a₂ : M₁.1⦄, iso.toModelEmbedding.1 a₁ = iso.toModelEmbedding.1 a₂ → a₁ = a₂) ∧ (∀ (b : M₂.1), Exists fun a => iso.toModelEmbedding.1 a = b))
+    ((∀ ⦃a₁ a₂ : M₁.Domain⦄, iso.toFun a₁ = iso.toFun a₂ → a₁ = a₂) ∧ (∀ (b : M₂.Domain), ∃ a, iso.toFun a = b))
 Transliterated theorem: Function.Bijective iso.toFun
 Logical form (Lean): {S : Signature} {M₁ M₂ : Model S} (iso : ModelIsomorphism M₁ M₂) : Function.Bijective iso.toFun
 Source: [`./Comparison/ModelIsomorphism.lean#L98`](./Comparison/ModelIsomorphism.lean#L98)
@@ -53,7 +53,7 @@ Predicate logic (unfolded):
     iso : ModelIsomorphism M₁ M₂
     x : M₁.Domain
   Prove
-    EquivLike.toFunLike.1 { toFun := iso.toModelEmbedding.1, invFun := fun b => (Classical.indefiniteDescription (fun x => iso.toFun x = b)⋯).1, left_inv := ⋯, right_inv := ⋯ } x = iso.toModelEmbedding.1 x
+    EquivLike.toFunLike.coe iso.toEquiv x = iso.toFun x
 Transliterated theorem: (∀ x ∈ M₁.Domain), iso.toEquiv x = iso.toFun x
 Logical form (Lean): {S : Signature} {M₁ M₂ : Model S} (iso : ModelIsomorphism M₁ M₂) (x : M₁.Domain) : iso.toEquiv x = iso.toFun x
 Source: [`./Comparison/ModelIsomorphismSymmetric.lean#L104`](./Comparison/ModelIsomorphismSymmetric.lean#L104)
@@ -70,7 +70,7 @@ Predicate logic (unfolded):
   Objects
     a b : Nat
   Prove
-    LRA.ModelTheory.FirstOrder.intOrderedRingModel.5 LRA.Logic.OrderedRingFunctionSymbol.mul fun i => Decidable.rec (fun h => (fun x => b) h) (fun h => (fun x => a) h) (Bool.casesOn (motive := fun x => i.val.beq 0 = x → (fun x => Decidable (i.val = 0))x) (i.val.beq 0) (fun h => Decidable.isFalse ⋯) (fun h => Decidable.isTrue ⋯) ⋯) = { hMul := fun a b => Int.instMul.mul a b }.hMul a b
+    LRA.ModelTheory.FirstOrder.intOrderedRingModel.interpretFunction LRA.Logic.OrderedRingFunctionSymbol.mul fun i => ite (i.val = 0)a b = instHMul.hMul a b
 Transliterated theorem: (∀ a b ∈ Nat), natMulMonoidModel.interpretFunction .mul (fun i => if i.val = 0 then a else b) = a * b
 Logical form (Lean): (a b : Nat) : natMulMonoidModel.interpretFunction .mul (fun i => if i.val = 0 then a else b) = a * b
 Source: [`./Examples.lean#L118`](./Examples.lean#L118)
@@ -87,7 +87,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.ModelTheory.FirstOrder.natMulMonoidModel.7 LRA.Logic.MonoidConstantSymbol.one = 1
+    LRA.ModelTheory.FirstOrder.natMulMonoidModel.interpretConstant LRA.Logic.MonoidConstantSymbol.one = 1
 Transliterated theorem: natMulMonoidModel.interpretConstant .one = 1 ∈ Nat
 Logical form (Lean): : natMulMonoidModel.interpretConstant .one = (1 : Nat)
 Source: [`./Examples.lean#L165`](./Examples.lean#L165)
@@ -104,7 +104,7 @@ Predicate logic (unfolded):
   Objects
     a b : Nat
   Prove
-    LRA.ModelTheory.FirstOrder.intOrderedRingModel.5 LRA.Logic.OrderedRingFunctionSymbol.add fun i => Decidable.rec (fun h => (fun x => b) h) (fun h => (fun x => a) h) (Bool.casesOn (motive := fun x => i.val.beq 0 = x → (fun x => Decidable (i.val = 0))x) (i.val.beq 0) (fun h => Decidable.isFalse ⋯) (fun h => Decidable.isTrue ⋯) ⋯) = { hAdd := fun a b => Int.instAdd.add a b }.hAdd a b
+    LRA.ModelTheory.FirstOrder.intOrderedRingModel.interpretFunction LRA.Logic.OrderedRingFunctionSymbol.add fun i => ite (i.val = 0)a b = instHAdd.hAdd a b
 Transliterated theorem: (∀ a b ∈ Nat), natAddMonoidModel.interpretFunction .add (fun i => if i.val = 0 then a else b) = a + b
 Logical form (Lean): (a b : Nat) : natAddMonoidModel.interpretFunction .add (fun i => if i.val = 0 then a else b) = a + b
 Source: [`./Examples.lean#L278`](./Examples.lean#L278)
@@ -121,7 +121,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.ModelTheory.FirstOrder.intOrderedRingModel.7 LRA.Logic.OrderedRingConstantSymbol.zero = 0
+    LRA.ModelTheory.FirstOrder.intOrderedRingModel.interpretConstant LRA.Logic.OrderedRingConstantSymbol.zero = 0
 Transliterated theorem: natAddMonoidModel.interpretConstant .zero = 0 ∈ Nat
 Logical form (Lean): : natAddMonoidModel.interpretConstant .zero = (0 : Nat)
 Source: [`./Examples.lean#L325`](./Examples.lean#L325)
@@ -138,7 +138,7 @@ Predicate logic (unfolded):
   Objects
     a b : Int
   Prove
-    LRA.ModelTheory.FirstOrder.natAddMonoidModel.5 LRA.Logic.AdditiveMonoidFunctionSymbol.add fun i => Decidable.rec (fun h => (fun x => b) h) (fun h => (fun x => a) h) (Bool.casesOn (motive := fun x => i.val.beq 0 = x → (fun x => Decidable (i.val = 0))x) (i.val.beq 0) (fun h => Decidable.isFalse ⋯) (fun h => Decidable.isTrue ⋯) ⋯) = { hAdd := fun a b => instAddNat.add a b }.hAdd a b
+    LRA.ModelTheory.FirstOrder.natAddMonoidModel.interpretFunction LRA.Logic.AdditiveMonoidFunctionSymbol.add fun i => ite (i.val = 0)a b = instHAdd.hAdd a b
 Transliterated theorem: (∀ a b ∈ Int), intOrderedRingModel.interpretFunction .add (fun i => if i.val = 0 then a else b) = a + b
 Logical form (Lean): (a b : Int) : intOrderedRingModel.interpretFunction .add (fun i => if i.val = 0 then a else b) = a + b
 Source: [`./Examples.lean#L454`](./Examples.lean#L454)
@@ -155,7 +155,7 @@ Predicate logic (unfolded):
   Objects
     a b : Int
   Prove
-    LRA.ModelTheory.FirstOrder.natMulMonoidModel.5 LRA.Logic.MonoidFunctionSymbol.mul fun i => Decidable.rec (fun h => (fun x => b) h) (fun h => (fun x => a) h) (Bool.casesOn (motive := fun x => i.val.beq 0 = x → (fun x => Decidable (i.val = 0))x) (i.val.beq 0) (fun h => Decidable.isFalse ⋯) (fun h => Decidable.isTrue ⋯) ⋯) = { hMul := fun a b => instMulNat.mul a b }.hMul a b
+    LRA.ModelTheory.FirstOrder.natMulMonoidModel.interpretFunction LRA.Logic.MonoidFunctionSymbol.mul fun i => ite (i.val = 0)a b = instHMul.hMul a b
 Transliterated theorem: (∀ a b ∈ Int), intOrderedRingModel.interpretFunction .mul (fun i => if i.val = 0 then a else b) = a * b
 Logical form (Lean): (a b : Int) : intOrderedRingModel.interpretFunction .mul (fun i => if i.val = 0 then a else b) = a * b
 Source: [`./Examples.lean#L503`](./Examples.lean#L503)
@@ -172,7 +172,7 @@ Predicate logic (unfolded):
   Objects
     a : Int
   Prove
-    LRA.ModelTheory.FirstOrder.intOrderedRingModel.5 LRA.Logic.OrderedRingFunctionSymbol.neg fun x => a = Int.instNegInt.neg a
+    LRA.ModelTheory.FirstOrder.intOrderedRingModel.interpretFunction LRA.Logic.OrderedRingFunctionSymbol.neg fun x => a = Int.instNegInt.neg a
 Transliterated theorem: (∀ a ∈ Int), intOrderedRingModel.interpretFunction .neg (fun _ => a) = -a
 Logical form (Lean): (a : Int) : intOrderedRingModel.interpretFunction .neg (fun _ => a) = -a
 Source: [`./Examples.lean#L551`](./Examples.lean#L551)
@@ -189,7 +189,7 @@ Predicate logic (unfolded):
   Objects
     a b : Int
   Prove
-    LRA.ModelTheory.FirstOrder.intOrderedRingModel.6 LRA.Logic.OrderedRingRelationSymbol.lt fun i => Decidable.rec (fun h => (fun x => b) h) (fun h => (fun x => a) h) (Bool.casesOn (motive := fun x => i.val.beq 0 = x → (fun x => Decidable (i.val = 0))x) (i.val.beq 0) (fun h => Decidable.isFalse ⋯) (fun h => Decidable.isTrue ⋯) ⋯) = Int.instLTInt.lt a b
+    LRA.ModelTheory.FirstOrder.intOrderedRingModel.interpretRelation LRA.Logic.OrderedRingRelationSymbol.lt fun i => ite (i.val = 0)a b = Int.instLTInt.lt a b
 Transliterated theorem: (∀ a b ∈ Int), intOrderedRingModel.interpretRelation .lt (fun i => if i.val = 0 then a else b) = (a < b)
 Logical form (Lean): (a b : Int) : intOrderedRingModel.interpretRelation .lt (fun i => if i.val = 0 then a else b) = (a < b)
 Source: [`./Examples.lean#L599`](./Examples.lean#L599)
@@ -206,7 +206,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.ModelTheory.FirstOrder.natAddMonoidModel.7 LRA.Logic.AdditiveMonoidConstantSymbol.zero = 0
+    LRA.ModelTheory.FirstOrder.natAddMonoidModel.interpretConstant LRA.Logic.AdditiveMonoidConstantSymbol.zero = 0
 Transliterated theorem: intOrderedRingModel.interpretConstant .zero = 0 ∈ Int
 Logical form (Lean): : intOrderedRingModel.interpretConstant .zero = (0 : Int)
 Source: [`./Examples.lean#L646`](./Examples.lean#L646)
@@ -223,7 +223,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.ModelTheory.FirstOrder.intOrderedRingModel.7 LRA.Logic.OrderedRingConstantSymbol.one = 1
+    LRA.ModelTheory.FirstOrder.intOrderedRingModel.interpretConstant LRA.Logic.OrderedRingConstantSymbol.one = 1
 Transliterated theorem: intOrderedRingModel.interpretConstant .one = 1 ∈ Int
 Logical form (Lean): : intOrderedRingModel.interpretConstant .one = (1 : Int)
 Source: [`./Examples.lean#L691`](./Examples.lean#L691)
@@ -240,7 +240,7 @@ Predicate logic (unfolded):
   Objects
     a b : Rat
   Prove
-    LRA.ModelTheory.FirstOrder.rOrderedRingModel.5 LRA.Logic.OrderedRingFunctionSymbol.add fun i => Decidable.rec (fun h => (fun x => b) h) (fun h => (fun x => a) h) (Bool.casesOn (motive := fun x => i.val.beq 0 = x → (fun x => Decidable (i.val = 0))x) (i.val.beq 0) (fun h => Decidable.isFalse ⋯) (fun h => Decidable.isTrue ⋯) ⋯) = { hAdd := fun a b => Real.instAdd.add a b }.hAdd a b
+    LRA.ModelTheory.FirstOrder.rOrderedRingModel.interpretFunction LRA.Logic.OrderedRingFunctionSymbol.add fun i => ite (i.val = 0)a b = instHAdd.hAdd a b
 Transliterated theorem: (∀ a b ∈ Rat), qOrderedRingModel.interpretFunction .add (fun i => if i.val = 0 then a else b) = a + b
 Logical form (Lean): (a b : Rat) : qOrderedRingModel.interpretFunction .add (fun i => if i.val = 0 then a else b) = a + b
 Source: [`./Comparison/Examples.lean#L141`](./Comparison/Examples.lean#L141)
@@ -257,7 +257,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.ModelTheory.FirstOrder.qOrderedRingModel.7 LRA.Logic.OrderedRingConstantSymbol.zero = 0
+    LRA.ModelTheory.FirstOrder.qOrderedRingModel.interpretConstant LRA.Logic.OrderedRingConstantSymbol.zero = 0
 Transliterated theorem: qOrderedRingModel.interpretConstant .zero = 0 ∈ Rat
 Logical form (Lean): : qOrderedRingModel.interpretConstant .zero = (0 : Rat)
 Source: [`./Comparison/Examples.lean#L188`](./Comparison/Examples.lean#L188)
@@ -274,7 +274,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.ModelTheory.FirstOrder.qOrderedRingModel.7 LRA.Logic.OrderedRingConstantSymbol.one = 1
+    LRA.ModelTheory.FirstOrder.qOrderedRingModel.interpretConstant LRA.Logic.OrderedRingConstantSymbol.one = 1
 Transliterated theorem: qOrderedRingModel.interpretConstant .one = 1 ∈ Rat
 Logical form (Lean): : qOrderedRingModel.interpretConstant .one = (1 : Rat)
 Source: [`./Comparison/Examples.lean#L233`](./Comparison/Examples.lean#L233)
@@ -291,7 +291,7 @@ Predicate logic (unfolded):
   Objects
     a b : Real
   Prove
-    LRA.ModelTheory.FirstOrder.qOrderedRingModel.5 LRA.Logic.OrderedRingFunctionSymbol.add fun i => Decidable.rec (fun h => (fun x => b) h) (fun h => (fun x => a) h) (Bool.casesOn (motive := fun x => i.val.beq 0 = x → (fun x => Decidable (i.val = 0))x) (i.val.beq 0) (fun h => Decidable.isFalse ⋯) (fun h => Decidable.isTrue ⋯) ⋯) = { hAdd := fun a b => Rat.instAdd.add a b }.hAdd a b
+    LRA.ModelTheory.FirstOrder.qOrderedRingModel.interpretFunction LRA.Logic.OrderedRingFunctionSymbol.add fun i => ite (i.val = 0)a b = instHAdd.hAdd a b
 Transliterated theorem: (∀ a b ∈ Real), rOrderedRingModel.interpretFunction .add (fun i => if i.val = 0 then a else b) = a + b
 Logical form (Lean): (a b : Real) : rOrderedRingModel.interpretFunction .add (fun i => if i.val = 0 then a else b) = a + b
 Source: [`./Comparison/Examples.lean#L362`](./Comparison/Examples.lean#L362)
@@ -308,7 +308,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.ModelTheory.FirstOrder.rOrderedRingModel.7 LRA.Logic.OrderedRingConstantSymbol.zero = 0
+    LRA.ModelTheory.FirstOrder.rOrderedRingModel.interpretConstant LRA.Logic.OrderedRingConstantSymbol.zero = 0
 Transliterated theorem: rOrderedRingModel.interpretConstant .zero = 0 ∈ Real
 Logical form (Lean): : rOrderedRingModel.interpretConstant .zero = (0 : Real)
 Source: [`./Comparison/Examples.lean#L409`](./Comparison/Examples.lean#L409)
@@ -325,7 +325,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.ModelTheory.FirstOrder.rOrderedRingModel.7 LRA.Logic.OrderedRingConstantSymbol.one = 1
+    LRA.ModelTheory.FirstOrder.rOrderedRingModel.interpretConstant LRA.Logic.OrderedRingConstantSymbol.one = 1
 Transliterated theorem: rOrderedRingModel.interpretConstant .one = 1 ∈ Real
 Logical form (Lean): : rOrderedRingModel.interpretConstant .one = (1 : Real)
 Source: [`./Comparison/Examples.lean#L454`](./Comparison/Examples.lean#L454)
@@ -342,7 +342,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.ModelTheory.FirstOrder.qToQIsomorphism.toModelEmbedding.1 = funa => a
+    LRA.ModelTheory.FirstOrder.qToQIsomorphism.toFun = id
 Transliterated theorem: qToQIsomorphism.toFun = id ∈ Rat -> Rat
 Logical form (Lean): : qToQIsomorphism.toFun = (id : Rat -> Rat)
 Source: [`./Comparison/Examples.lean#L747`](./Comparison/Examples.lean#L747)
@@ -359,7 +359,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.Logic.Propositional.evaluate LRA.ModelTheory.Propositional.testModel.1 LRA.ModelTheory.Propositional.testFormula = Bool.true
+    LRA.Logic.Propositional.evaluate LRA.ModelTheory.Propositional.testModel.valuation LRA.ModelTheory.Propositional.testFormula = Bool.true
 Transliterated theorem: testModel.satisfies testFormula
 Logical form (Lean): : testModel.satisfies testFormula
 Source: [`./Propositional/Examples.lean#L231`](./Propositional/Examples.lean#L231)
@@ -376,7 +376,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.ModelTheory.Propositional.modelAA ∈ fun M => LRA.Logic.Propositional.evaluate M.1 (LRA.Logic.Propositional.Formula.atom LRA.ModelTheory.Propositional.TestAtom.A) = Bool.true
+    LRA.ModelTheory.Propositional.modelAA ∈ LRA.ModelTheory.Propositional.modelClass (LRA.Logic.Propositional.Formula.atom LRA.ModelTheory.Propositional.TestAtom.A)
 Transliterated theorem: modelAA ∈ modelClass (Formula.atom TestAtom.A)
 Logical form (Lean): : modelAA ∈ modelClass (Formula.atom TestAtom.A)
 Source: [`./Propositional/ModelsAndTheoriesExamples.lean#L253`](./Propositional/ModelsAndTheoriesExamples.lean#L253)
@@ -393,7 +393,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.ModelTheory.Propositional.modelFF ∈ fun M => LRA.Logic.Propositional.evaluate M.1 (LRA.Logic.Propositional.Formula.atom LRA.ModelTheory.Propositional.TestAtom.A) = Bool.true → False
+    LRA.ModelTheory.Propositional.modelFF ∈ LRA.ModelTheory.Propositional.modelClass (LRA.Logic.Propositional.Formula.atom LRA.ModelTheory.Propositional.TestAtom.A) → False
 Transliterated theorem: modelFF ∉ modelClass (Formula.atom TestAtom.A)
 Logical form (Lean): : modelFF ∉ modelClass (Formula.atom TestAtom.A)
 Source: [`./Propositional/ModelsAndTheoriesExamples.lean#L298`](./Propositional/ModelsAndTheoriesExamples.lean#L298)
@@ -410,7 +410,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.Logic.Propositional.evaluate M.1 ((LRA.Logic.Propositional.Formula.atom LRA.ModelTheory.Propositional.TestAtom.A).neg.impl (LRA.Logic.Propositional.Formula.atom LRA.ModelTheory.Propositional.TestAtom.A).neg) = Bool.true
+    LRA.Logic.Propositional.evaluate M.valuation ((LRA.Logic.Propositional.Formula.atom LRA.ModelTheory.Propositional.TestAtom.A).or (LRA.Logic.Propositional.Formula.atom LRA.ModelTheory.Propositional.TestAtom.A).neg) = Bool.true
 Transliterated theorem: IsValid (Formula.or (Formula.atom TestAtom.A) (Formula.neg (Formula.atom TestAtom.A)))
 Logical form (Lean): : IsValid (Formula.or (Formula.atom TestAtom.A) (Formula.neg (Formula.atom TestAtom.A)))
 Source: [`./Propositional/ModelsAndTheoriesExamples.lean#L343`](./Propositional/ModelsAndTheoriesExamples.lean#L343)
@@ -427,7 +427,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun x => x ∈ fun M => ∀ (φ : LRA.Logic.Propositional.Formula LRA.ModelTheory.Propositional.testLanguage), φ ∈ Set.instInsert.insert (LRA.Logic.Propositional.Formula.atom LRA.ModelTheory.Propositional.TestAtom.A) (Set.instSingletonSet.singleton (LRA.Logic.Propositional.Formula.atom LRA.ModelTheory.Propositional.TestAtom.B)) → LRA.Logic.Propositional.evaluate M.valuation φ = Bool.true
+    ∃ x, x ∈ LRA.ModelTheory.Propositional.ModelsOfTheory (Set.instInsert.insert (LRA.Logic.Propositional.Formula.atom LRA.ModelTheory.Propositional.TestAtom.A) (Set.instSingletonSet.singleton (LRA.Logic.Propositional.Formula.atom LRA.ModelTheory.Propositional.TestAtom.B)))
 Transliterated theorem: IsSatisfiable {Formula.atom TestAtom.A, Formula.atom TestAtom.B} ∈ Set (Formula testLanguage)
 Logical form (Lean): : IsSatisfiable ({Formula.atom TestAtom.A, Formula.atom TestAtom.B} : Set (Formula testLanguage))
 Source: [`./Propositional/ModelsAndTheoriesExamples.lean#L388`](./Propositional/ModelsAndTheoriesExamples.lean#L388)
@@ -444,7 +444,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (Exists fun x => x) ∈ fun M => ∀ (φ : LRA.Logic.Propositional.Formula LRA.ModelTheory.Propositional.testLanguage), φ ∈ Set.instInsert.insert (LRA.Logic.Propositional.Formula.atom LRA.ModelTheory.Propositional.TestAtom.A) (Set.instSingletonSet.singleton (LRA.Logic.Propositional.Formula.atom LRA.ModelTheory.Propositional.TestAtom.A).neg) → M.satisfies φ → False
+    (∃ x, x) ∈ LRA.ModelTheory.Propositional.ModelsOfTheory (Set.instInsert.insert (LRA.Logic.Propositional.Formula.atom LRA.ModelTheory.Propositional.TestAtom.A) (Set.instSingletonSet.singleton (LRA.Logic.Propositional.Formula.atom LRA.ModelTheory.Propositional.TestAtom.A).neg)) → False
 Transliterated theorem: ¬ IsSatisfiable ({Formula.atom TestAtom.A, Formula.neg (Formula.atom TestAtom.A)} : Set (Formula testLanguage))
 Logical form (Lean): : ¬ IsSatisfiable ({Formula.atom TestAtom.A, Formula.neg (Formula.atom TestAtom.A)} : Set (Formula testLanguage))
 Source: [`./Propositional/ModelsAndTheoriesExamples.lean#L434`](./Propositional/ModelsAndTheoriesExamples.lean#L434)
@@ -461,7 +461,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    { le := fun s₁ s₂ => ∀ ⦃a : LRA.ModelTheory.Propositional.PropositionalModel LRA.ModelTheory.Propositional.testLanguage⦄, a ∈ s₁ → a ∈ s₂}.le (fun M => ∀ (φ : LRA.Logic.Propositional.Formula LRA.ModelTheory.Propositional.testLanguage), φ ∈ Set.instSingletonSet.1 ((LRA.Logic.Propositional.Formula.atom LRA.ModelTheory.Propositional.TestAtom.A).impl (LRA.Logic.Propositional.Formula.atom LRA.ModelTheory.Propositional.TestAtom.B).neg).neg → LRA.Logic.Propositional.evaluate M.1 φ = Bool.true) fun M => LRA.Logic.Propositional.evaluate M.1 (LRA.Logic.Propositional.Formula.atom LRA.ModelTheory.Propositional.TestAtom.A) = Bool.true
+    Set.instLE.le (LRA.ModelTheory.Propositional.ModelsOfTheory (Set.instSingletonSet.singleton ((LRA.Logic.Propositional.Formula.atom LRA.ModelTheory.Propositional.TestAtom.A).and (LRA.Logic.Propositional.Formula.atom LRA.ModelTheory.Propositional.TestAtom.B)))) (LRA.ModelTheory.Propositional.modelClass (LRA.Logic.Propositional.Formula.atom LRA.ModelTheory.Propositional.TestAtom.A))
 Transliterated theorem: ({Formula.and (Formula.atom TestAtom.A) (Formula.atom TestAtom.B)} : Set (Formula testLanguage)) ⊨ₜ (Formula.atom TestAtom.A)
 Logical form (Lean): : ({Formula.and (Formula.atom TestAtom.A) (Formula.atom TestAtom.B)} : Set (Formula testLanguage)) ⊨ₜ (Formula.atom TestAtom.A)
 Source: [`./Propositional/ModelsAndTheoriesExamples.lean#L481`](./Propositional/ModelsAndTheoriesExamples.lean#L481)
@@ -522,7 +522,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.Logic.Propositional.evaluate M.1 φ = Bool.true
+    LRA.Logic.Propositional.evaluate M.valuation φ = Bool.true
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Propositional/PropositionalModel.lean`](./Propositional/PropositionalModel.lean)
@@ -539,7 +539,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun x => x ∈ fun M => ∀ (φ : LRA.Logic.Propositional.Formula L), φ ∈ Γ → LRA.Logic.Propositional.evaluate M.1 φ = Bool.true
+    ∃ x, x ∈ LRA.ModelTheory.Propositional.ModelsOfTheory Γ
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Propositional/ModelsAndTheories.lean`](./Propositional/ModelsAndTheories.lean)
@@ -556,7 +556,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    a ∈ fun M => ∀ (φ : LRA.Logic.Propositional.Formula L), φ ∈ Γ → LRA.Logic.Propositional.evaluate M.1 φ = Bool.true → a ∈ fun M => LRA.Logic.Propositional.evaluate M.1 φ = Bool.true
+    a ∈ LRA.ModelTheory.Propositional.ModelsOfTheory Γ → a ∈ LRA.ModelTheory.Propositional.modelClass φ
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Propositional/ModelsAndTheories.lean`](./Propositional/ModelsAndTheories.lean)
@@ -573,7 +573,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    φ ∈ Γ → LRA.Logic.Propositional.evaluate a.1 φ = Bool.true
+    φ ∈ Γ → LRA.Logic.Propositional.evaluate a.valuation φ = Bool.true
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Propositional/ModelsAndTheories.lean`](./Propositional/ModelsAndTheories.lean)
@@ -590,7 +590,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    M ∈ K → LRA.Logic.Propositional.evaluate M.1 a = Bool.true
+    M ∈ K → LRA.Logic.Propositional.evaluate M.valuation a = Bool.true
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Propositional/ModelsAndTheories.lean`](./Propositional/ModelsAndTheories.lean)
@@ -607,7 +607,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.Logic.Propositional.evaluate M.1 φ = Bool.true
+    LRA.Logic.Propositional.evaluate M.valuation φ = Bool.true
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Propositional/ModelsAndTheories.lean`](./Propositional/ModelsAndTheories.lean)
@@ -624,7 +624,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.Logic.Propositional.evaluate a.1 φ = Bool.true
+    LRA.Logic.Propositional.evaluate a.valuation φ = Bool.true
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Propositional/ModelsAndTheories.lean`](./Propositional/ModelsAndTheories.lean)
@@ -641,7 +641,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    subset ∈ M.2
+    subset ∈ M.SecondOrderDomain
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./SecondOrderMonadic/HenkinModel.lean`](./SecondOrderMonadic/HenkinModel.lean)
@@ -675,7 +675,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    M ∈ fun M => ∀ (assignment : LRA.ModelTheory.SecondOrderMonadic.SOAssignment M Variable SetVariable) (φ : LRA.Logic.SecondOrderMonadic.SOFormula S Variable SetVariable), φ ∈ Γ → LRA.ModelTheory.SecondOrderMonadic.SOSatisfies M assignment φ → LRA.ModelTheory.SecondOrderMonadic.SOSatisfies M assignment φ
+    M ∈ LRA.ModelTheory.SecondOrderMonadic.ModelsOfFormulaTheory Γ → LRA.ModelTheory.SecondOrderMonadic.SOSatisfies M assignment φ
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Theory.lean`](./Theory.lean)
@@ -692,7 +692,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    M ∈ fun M => ∀ (assignment : Variable → M.1) (φ : LRA.Logic.FirstOrder.Formula S Variable), φ ∈ Γ → LRA.Logic.FirstOrder.Satisfies M assignment φ → LRA.Logic.FirstOrder.Satisfies M assignment φ
+    M ∈ LRA.ModelTheory.FirstOrder.ModelsOfFormulaTheory Γ → LRA.Logic.FirstOrder.Satisfies M assignment φ
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Theory.lean`](./Theory.lean)
@@ -709,7 +709,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    sentence ∈ Γ → LRA.Logic.FirstOrder.Satisfies a assignment sentence.1
+    sentence ∈ Γ → LRA.Logic.FirstOrder.Satisfies a assignment sentence.val
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Theory.lean`](./Theory.lean)
@@ -726,7 +726,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    M ∈ K → ∀ (assignment : Variable → M.1), LRA.Logic.FirstOrder.Satisfies M assignment a.1
+    M ∈ K → ∀ (assignment : Variable → M.Domain), LRA.Logic.FirstOrder.Satisfies M assignment a.val
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Theory.lean`](./Theory.lean)
@@ -777,7 +777,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((∀ (arity : Nat) (relation_ : (Fin arity → M.toInterpretation.1) → Prop), relation_ ∈ M.2 arity) ∧ (∀ (arity : Nat) (function_ : (Fin arity → M.toInterpretation.1) → M.toInterpretation.1), function_ ∈ M.3 arity))
+    ((∀ (arity : Nat) (relation_ : (Fin arity → M.Domain) → Prop), relation_ ∈ M.RelationDomain arity) ∧ (∀ (arity : Nat) (function_ : (Fin arity → M.Domain) → M.Domain), function_ ∈ M.FunctionDomain arity))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./SecondOrder/HenkinModel.lean`](./SecondOrder/HenkinModel.lean)
@@ -795,7 +795,7 @@ Predicate logic (unfolded):
     S : Signature
     M : FullModel S
   Prove
-    ((∀ (arity : Nat) (relation_ : (Fin arity → M.toHenkinModel.toInterpretation.1) → Prop), relation_ ∈ M.toHenkinModel.2 arity) ∧ (∀ (arity : Nat) (function_ : (Fin arity → M.toHenkinModel.toInterpretation.1) → M.toHenkinModel.toInterpretation.1), function_ ∈ M.toHenkinModel.3 arity))
+    ((∀ (arity : Nat) (relation_ : (Fin arity → M.toHenkinModel.Domain) → Prop), relation_ ∈ M.toHenkinModel.RelationDomain arity) ∧ (∀ (arity : Nat) (function_ : (Fin arity → M.toHenkinModel.Domain) → M.toHenkinModel.Domain), function_ ∈ M.toHenkinModel.FunctionDomain arity))
 Transliterated theorem: HasFullSecondOrderSemantics M.toHenkinModel
 Logical form (Lean): {S : Signature} (M : FullModel S) : HasFullSecondOrderSemantics M.toHenkinModel
 Source: [`./SecondOrder/FullModel.lean#L206`](./SecondOrder/FullModel.lean#L206)
@@ -847,7 +847,7 @@ Predicate logic (unfolded):
     S : Signature
     M : FullModel S
   Prove
-    subset ∈ M.toHenkinModel.2
+    subset ∈ M.toHenkinModel.SecondOrderDomain
 Transliterated theorem: HasFullSecondOrderSemantics M.toHenkinModel
 Logical form (Lean): {S : Signature} (M : FullModel S) : HasFullSecondOrderSemantics M.toHenkinModel
 Source: [`./SecondOrderMonadic/FullModel.lean#L203`](./SecondOrderMonadic/FullModel.lean#L203)

@@ -34,7 +34,7 @@ Predicate logic (unfolded):
   Objects
     S : LRA.Set.LRA_Set A
   Prove
-    ∈ S LRA.AlgebraicStructures.MagmaLaws (Subtype fun x => x) ∈ S
+    ((∀ (a b : A), a ∈ S → b ∈ S → instHMul.hMul a b ∈ S) ∧ Nonempty (Subtype fun x => x) ∈ S) → True
 Transliterated theorem: (∀ a b, a ∈ S → b ∈ S → a * b ∈ S) → letI
 Logical form (Lean): {A : Type u} [Mul A] {S : LRA.Set.LRA_Set A} (closed : ∀ a b, a ∈ S → b ∈ S → a * b ∈ S) [Nonempty {x // x ∈ S}] : letI
 Source: [`./Magma/Constructions/Set/ClosedSubset.lean#L103`](./Magma/Constructions/Set/ClosedSubset.lean#L103)
@@ -45,13 +45,7 @@ Name: instMagmaLaws
 Kind: Theorem
 State: Sorry
 Predicate logic: ∀ {M : Type u} [inst : Mul M] [inst_1 : Nonempty M], LRA.AlgebraicStructures.MagmaLaws M
-Predicate logic (unfolded):
-  Ambient
-    (implicit ambient)
-  Objects
-    (none)
-  Prove
-    LRA.AlgebraicStructures.MagmaLaws M
+Predicate logic (unfolded): ∀ {M : Type u} [inst : Mul M] [inst_1 : Nonempty M], LRA.AlgebraicStructures.MagmaLaws M [unfold error: unavailable]
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Magma/Constructions/Mathlib/Laws.lean`](./Magma/Constructions/Mathlib/Laws.lean)
@@ -68,7 +62,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.MultiplicativeSemigroupLaws R → ∀ (a b c : R), { hMul := fun a b => inst.mul a b }.hMul ({ hMul := fun a b => inst.mul a b }.hMul a b) c = { hMul := fun a b => inst.mul a b }.hMul a ({ hMul := fun a b => inst.mul a b }.hMul b c)
+    (Nonempty R ∧ (∀ (first second third : R), (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third))) → ∀ (a b c : R), instHMul.hMul (instHMul.hMul a b) c = instHMul.hMul a (instHMul.hMul b c)
 Transliterated theorem: ∀ a b c : R, (a * b) * c = a * (b * c)
 Logical form (Lean): [Mul R] [Nonempty R] [MultiplicativeSemigroupLaws R] : ∀ a b c : R, (a * b) * c = a * (b * c)
 Source: [`./Semigroup/Interface/Laws/Definition.lean#L99`](./Semigroup/Interface/Laws/Definition.lean#L99)
@@ -85,7 +79,7 @@ Predicate logic (unfolded):
   Objects
     S : LRA.Set.LRA_Set A
   Prove
-    LRA.AlgebraicStructures.MultiplicativeSemigroupLaws A → ∀ {S : A → Prop} (closed : ∀ (a b : A), a ∈ S → b ∈ S → { hMul := fun a b => inst.mul a b }.hMul a b ∈ S) [inst_2 : Nonempty (Subtype fun x => x)], ∈ S LRA.AlgebraicStructures.MultiplicativeSemigroupLaws (Subtype fun x => x) ∈ S
+    (Nonempty A ∧ (∀ (first second third : A), (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third))) → ∀ {S : LRA.Set.LRA_Set A} (closed : ∀ (a b : A), a ∈ S → b ∈ S → instHMul.hMul a b ∈ S), Nonempty (Subtype fun x => x) ∈ S → ∀ (first second third : Subtype fun x => x), ∈ S (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)
 Transliterated theorem: (∀ a b, a ∈ S → b ∈ S → a * b ∈ S) → letI
 Logical form (Lean): {A : Type u} [Mul A] [Nonempty A] [MultiplicativeSemigroupLaws A] {S : LRA.Set.LRA_Set A} (closed : ∀ a b, a ∈ S → b ∈ S → a * b ∈ S) [Nonempty {x // x ∈ S}] : letI
 Source: [`./Semigroup/Constructions/Set/ClosedSubset.lean#L54`](./Semigroup/Constructions/Set/ClosedSubset.lean#L54)
@@ -102,7 +96,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.MultiplicativeCommutativeLaws R → ∀ (a b : R), { hMul := fun a b => inst.mul a b }.hMul a b = { hMul := fun a b => inst.mul a b }.hMul b a
+    (∀ (first second : R), (fun a b => instHMul.hMul a b) first second = (fun a b => instHMul.hMul a b) second first) → ∀ (a b : R), instHMul.hMul a b = instHMul.hMul b a
 Transliterated theorem: ∀ a b : R, a * b = b * a
 Logical form (Lean): [Mul R] [MultiplicativeCommutativeLaws R] : ∀ a b : R, a * b = b * a
 Source: [`./CommutativeSemigroup/Interface/Laws/Definition.lean#L100`](./CommutativeSemigroup/Interface/Laws/Definition.lean#L100)
@@ -119,7 +113,7 @@ Predicate logic (unfolded):
   Objects
     S : LRA.Set.LRA_Set A
   Prove
-    LRA.AlgebraicStructures.CommutativeSemigroupLaws A → ∀ {S : A → Prop} (closed : ∀ (a b : A), a ∈ S → b ∈ S → { hMul := fun a b => inst.mul a b }.hMul a b ∈ S) [inst_2 : Nonempty (Subtype fun x => x)], ∈ S LRA.AlgebraicStructures.CommutativeSemigroupLaws (Subtype fun x => x) ∈ S
+    (Nonempty A ∧ ((∀ (first second third : A), (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ (∀ (first second : A), (fun a b => instHMul.hMul a b) first second = (fun a b => instHMul.hMul a b) second first))) → ∀ {S : LRA.Set.LRA_Set A} (closed : ∀ (a b : A), a ∈ S → b ∈ S → instHMul.hMul a b ∈ S), Nonempty (Subtype fun x => x) ∈ S → ((∀ (first second third : Subtype fun x => x), ∈ S (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ (∀ (first second : Subtype fun x => x), ∈ S (fun a b => instHMul.hMul a b) first second = (fun a b => instHMul.hMul a b) second first))
 Transliterated theorem: (∀ a b, a ∈ S → b ∈ S → a * b ∈ S) → letI
 Logical form (Lean): {A : Type u} [Mul A] [Nonempty A] [CommutativeSemigroupLaws A] {S : LRA.Set.LRA_Set A} (closed : ∀ a b, a ∈ S → b ∈ S → a * b ∈ S) [Nonempty {x // x ∈ S}] : letI
 Source: [`./CommutativeSemigroup/Constructions/Set/ClosedSubset.lean#L55`](./CommutativeSemigroup/Constructions/Set/ClosedSubset.lean#L55)
@@ -136,7 +130,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.CommutativeSemigroupLaws R
+    Nonempty R → ((∀ (first second third : R), (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ (∀ (first second : R), (fun a b => instHMul.hMul a b) first second = (fun a b => instHMul.hMul a b) second first))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./CommutativeSemigroup/Constructions/Mathlib/Laws.lean`](./CommutativeSemigroup/Constructions/Mathlib/Laws.lean)
@@ -153,7 +147,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.MultiplicativeIdentityLaws R → ∀ (a : R), { hMul := fun a b => inst.mul a b }.hMul 1 a = a
+    ((∀ (element : R), (fun a b => instHMul.hMul a b) 1 element = element) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element 1 = element)) → ∀ (a : R), instHMul.hMul 1 a = a
 Transliterated theorem: ∀ a : R, 1 * a = a
 Logical form (Lean): [Mul R] [OfNat R 1] [MultiplicativeIdentityLaws R] : ∀ a : R, 1 * a = a
 Source: [`./Monoid/Interface/Laws/Definition.lean#L150`](./Monoid/Interface/Laws/Definition.lean#L150)
@@ -170,7 +164,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.MultiplicativeIdentityLaws R → ∀ (a : R), { hMul := fun a b => inst.mul a b }.hMul a 1 = a
+    ((∀ (element : R), (fun a b => instHMul.hMul a b) 1 element = element) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element 1 = element)) → ∀ (a : R), instHMul.hMul a 1 = a
 Transliterated theorem: ∀ a : R, a * 1 = a
 Logical form (Lean): [Mul R] [OfNat R 1] [MultiplicativeIdentityLaws R] : ∀ a : R, a * 1 = a
 Source: [`./Monoid/Interface/Laws/Definition.lean#L195`](./Monoid/Interface/Laws/Definition.lean#L195)
@@ -204,7 +198,7 @@ Predicate logic (unfolded):
   Objects
     S : LRA.Set.LRA_Set A
   Prove
-    LRA.AlgebraicStructures.MonoidLaws A → ∀ {S : A → Prop} (closed : ∀ (a b : A), a ∈ S → b ∈ S → { hMul := fun a b => inst.mul a b }.hMul a b ∈ S) (hOne : 1), ∈ SLRA.AlgebraicStructures.MonoidLaws (Subtype fun x => x) ∈ S
+    (Nonempty A ∧ ((∀ (first second third : A), (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ ((∀ (element : A), (fun a b => instHMul.hMul a b) 1 element = element) ∧ (∀ (element : A), (fun a b => instHMul.hMul a b) element 1 = element)))) → ∀ {S : LRA.Set.LRA_Set A} (closed : ∀ (a b : A), a ∈ S → b ∈ S → instHMul.hMul a b ∈ S) (hOne : 1), ∈ S ((∀ (first second third : Subtype fun x => x), ∈ S (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ ((∀ (element : Subtype fun x => x), ∈ S (fun a b => instHMul.hMul a b) 1 element = element) ∧ (∀ (element : Subtype fun x => x), ∈ S (fun a b => instHMul.hMul a b) element 1 = element)))
 Transliterated theorem: (∀ a b, a ∈ S → b ∈ S → a * b ∈ S ∧ 1 ∈ A ∈ S) → letI
 Logical form (Lean): {A : Type u} [Mul A] [OfNat A 1] [Nonempty A] [MonoidLaws A] {S : LRA.Set.LRA_Set A} (closed : ∀ a b, a ∈ S → b ∈ S → a * b ∈ S) (hOne : (1 : A) ∈ S) : letI
 Source: [`./Monoid/Constructions/Set/ClosedSubset.lean#L152`](./Monoid/Constructions/Set/ClosedSubset.lean#L152)
@@ -221,7 +215,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.MonoidLaws R
+    Nonempty R → ((∀ (first second third : R), (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ ((∀ (element : R), (fun a b => instHMul.hMul a b) 1 element = element) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element 1 = element)))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Monoid/Constructions/Mathlib/Laws.lean`](./Monoid/Constructions/Mathlib/Laws.lean)
@@ -238,7 +232,7 @@ Predicate logic (unfolded):
   Objects
     S : LRA.Set.LRA_Set A
   Prove
-    LRA.AlgebraicStructures.CommutativeMonoidLaws A → ∀ {S : A → Prop} (closed : ∀ (a b : A), a ∈ S → b ∈ S → { hMul := fun a b => inst.mul a b }.hMul a b ∈ S) (hOne : 1), ∈ S LRA.AlgebraicStructures.CommutativeMonoidLaws (Subtype fun x => x) ∈ S
+    (Nonempty A ∧ ((∀ (first second third : A), (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ (((∀ (element : A), (fun a b => instHMul.hMul a b) 1 element = element) ∧ (∀ (element : A), (fun a b => instHMul.hMul a b) element 1 = element)) ∧ (∀ (first second : A), (fun a b => instHMul.hMul a b) first second = (fun a b => instHMul.hMul a b) second first)))) → ∀ {S : LRA.Set.LRA_Set A} (closed : ∀ (a b : A), a ∈ S → b ∈ S → instHMul.hMul a b ∈ S) (hOne : 1), ∈ S ((∀ (first second third : Subtype fun x => x), ∈ S (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ (((∀ (element : Subtype fun x => x), ∈ S (fun a b => instHMul.hMul a b) 1 element = element) ∧ (∀ (element : Subtype fun x => x), ∈ S (fun a b => instHMul.hMul a b) element 1 = element)) ∧ (∀ (first second : Subtype fun x => x), ∈ S (fun a b => instHMul.hMul a b) first second = (fun a b => instHMul.hMul a b) second first)))
 Transliterated theorem: (∀ a b, a ∈ S → b ∈ S → a * b ∈ S ∧ 1 ∈ A ∈ S) → letI
 Logical form (Lean): {A : Type u} [Mul A] [OfNat A 1] [Nonempty A] [CommutativeMonoidLaws A] {S : LRA.Set.LRA_Set A} (closed : ∀ a b, a ∈ S → b ∈ S → a * b ∈ S) (hOne : (1 : A) ∈ S) : letI
 Source: [`./CommutativeMonoid/Constructions/Set/ClosedSubset.lean#L57`](./CommutativeMonoid/Constructions/Set/ClosedSubset.lean#L57)
@@ -255,7 +249,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.CommutativeMonoidLaws R
+    Nonempty R → ((∀ (first second third : R), (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ (((∀ (element : R), (fun a b => instHMul.hMul a b) 1 element = element) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element 1 = element)) ∧ (∀ (first second : R), (fun a b => instHMul.hMul a b) first second = (fun a b => instHMul.hMul a b) second first)))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./CommutativeMonoid/Constructions/Mathlib/Laws.lean`](./CommutativeMonoid/Constructions/Mathlib/Laws.lean)
@@ -272,7 +266,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.MultiplicativeGroupInverseLaws R → ∀ (a : R), { hMul := fun a b => inst.mul a b }.hMul (inst_1.1 a) a = 1
+    ((∀ (element : R), (fun a b => instHMul.hMul a b) ((fun a => inst_1.inv a) element) element = 1) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element ((fun a => inst_1.inv a) element) = 1)) → ∀ (a : R), instHMul.hMul (inst_1.inv a) a = 1
 Transliterated theorem: ∀ a : R, a⁻¹ * a = 1
 Logical form (Lean): [Mul R] [Inv R] [OfNat R 1] [MultiplicativeGroupInverseLaws R] : ∀ a : R, a⁻¹ * a = 1
 Source: [`./Group/Interface/Laws/Definition.lean#L171`](./Group/Interface/Laws/Definition.lean#L171)
@@ -289,7 +283,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.MultiplicativeGroupInverseLaws R → ∀ (a : R), { hMul := fun a b => inst.mul a b }.hMul a (inst_1.1 a) = 1
+    ((∀ (element : R), (fun a b => instHMul.hMul a b) ((fun a => inst_1.inv a) element) element = 1) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element ((fun a => inst_1.inv a) element) = 1)) → ∀ (a : R), instHMul.hMul a (inst_1.inv a) = 1
 Transliterated theorem: ∀ a : R, a * a⁻¹ = 1
 Logical form (Lean): [Mul R] [Inv R] [OfNat R 1] [MultiplicativeGroupInverseLaws R] : ∀ a : R, a * a⁻¹ = 1
 Source: [`./Group/Interface/Laws/Definition.lean#L218`](./Group/Interface/Laws/Definition.lean#L218)
@@ -306,7 +300,7 @@ Predicate logic (unfolded):
   Objects
     S : LRA.Set.LRA_Set A
   Prove
-    LRA.AlgebraicStructures.MonoidLaws A → ∀ {S : A → Prop} (closed : ∀ (a b : A), a ∈ S → b ∈ S → { hMul := fun a b => inst.mul a b }.hMul a b ∈ S) (hOne : 1) ∈ S (hInvClosed : ∀ (a : A), a ∈ S → inst_1.1 a ∈ S), (∀ (a : A), a ∈ S → ({ hMul := fun a b => inst.mul a b }.hMul (inst_1.1 a) a = 1 ∧ { hMul := fun a b => inst.mul a b }.hMul a (inst_1.1 a) = 1)) → LRA.AlgebraicStructures.GroupLaws (Subtype fun x => x) ∈ S
+    (Nonempty A ∧ ((∀ (first second third : A), (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ ((∀ (element : A), (fun a b => instHMul.hMul a b) 1 element = element) ∧ (∀ (element : A), (fun a b => instHMul.hMul a b) element 1 = element)))) → ∀ {S : LRA.Set.LRA_Set A} (closed : ∀ (a b : A), a ∈ S → b ∈ S → instHMul.hMul a b ∈ S) (hOne : 1) ∈ S (hInvClosed : ∀ (a : A), a ∈ S → inst_1.inv a ∈ S), (∀ (a : A), a ∈ S → (instHMul.hMul (inst_1.inv a) a = 1 ∧ instHMul.hMul a (inst_1.inv a) = 1)) → ((∀ (first second third : Subtype fun x => x), ∈ S (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ (((∀ (element : Subtype fun x => x), ∈ S (fun a b => instHMul.hMul a b) 1 element = element) ∧ (∀ (element : Subtype fun x => x), ∈ S (fun a b => instHMul.hMul a b) element 1 = element)) ∧ ((∀ (element : Subtype fun x => x), ∈ S (fun a b => instHMul.hMul a b) ((fun a => (LRA.AlgebraicStructures.Group.Constructions.ClosedSubsetInv hInvClosed).inv a) element) element = 1) ∧ (∀ (element : Subtype fun x => x), ∈ S (fun a b => instHMul.hMul a b) element ((fun a => (LRA.AlgebraicStructures.Group.Constructions.ClosedSubsetInv hInvClosed).inv a) element) = 1))))
 Transliterated theorem: (∀ a b, a ∈ S → b ∈ S → a * b ∈ S ∧ 1 ∈ A ∈ S ∧ ∀ a, a ∈ S → a⁻¹ ∈ S ∧ ∀ a, a ∈ S → a⁻¹ * a = 1 ∧ a * a⁻¹ = 1) → letI
 Logical form (Lean): {A : Type u} [Mul A] [Inv A] [OfNat A 1] [Nonempty A] [MonoidLaws A] {S : LRA.Set.LRA_Set A} (closed : ∀ a b, a ∈ S → b ∈ S → a * b ∈ S) (hOne : (1 : A) ∈ S) (hInvClosed : ∀ a, a ∈ S → a⁻¹ ∈ S) (hInvCancel : ∀ a, a ∈ S → a⁻¹ * a = 1 ∧ a * a⁻¹ = 1) : letI
 Source: [`./Group/Constructions/Set/ClosedSubset.lean#L110`](./Group/Constructions/Set/ClosedSubset.lean#L110)
@@ -323,7 +317,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.GroupLaws R
+    Nonempty R → ((∀ (first second third : R), (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ (((∀ (element : R), (fun a b => instHMul.hMul a b) 1 element = element) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element 1 = element)) ∧ ((∀ (element : R), (fun a b => instHMul.hMul a b) ((fun a => inst.inv a) element) element = 1) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element ((fun a => inst.inv a) element) = 1))))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Group/Constructions/Mathlib/Laws.lean`](./Group/Constructions/Mathlib/Laws.lean)
@@ -340,7 +334,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.AdditiveSemigroupLaws R → ∀ (a b c : R), { hAdd := fun a b => inst.add a b }.hAdd ({ hAdd := fun a b => inst.add a b }.hAdd a b) c = { hAdd := fun a b => inst.add a b }.hAdd a ({ hAdd := fun a b => inst.add a b }.hAdd b c)
+    (Nonempty R ∧ (∀ (first second third : R), (fun a b => instHAdd.hAdd a b) ((fun a b => instHAdd.hAdd a b) first second) third = (fun a b => instHAdd.hAdd a b) first ((fun a b => instHAdd.hAdd a b) second third))) → ∀ (a b c : R), instHAdd.hAdd (instHAdd.hAdd a b) c = instHAdd.hAdd a (instHAdd.hAdd b c)
 Transliterated theorem: ∀ a b c : R, (a + b) + c = a + (b + c)
 Logical form (Lean): [Add R] [Nonempty R] [AdditiveSemigroupLaws R] : ∀ a b c : R, (a + b) + c = a + (b + c)
 Source: [`./AdditiveSemigroup/Interface/Laws/Definition.lean#L99`](./AdditiveSemigroup/Interface/Laws/Definition.lean#L99)
@@ -357,7 +351,7 @@ Predicate logic (unfolded):
   Objects
     S : LRA.Set.LRA_Set A
   Prove
-    LRA.AlgebraicStructures.AdditiveSemigroupLaws A → ∀ {S : A → Prop} (closed : ∀ (a b : A), a ∈ S → b ∈ S → { hAdd := fun a b => inst.add a b }.hAdd a b ∈ S) [inst_2 : Nonempty (Subtype fun x => x)], ∈ S LRA.AlgebraicStructures.AdditiveSemigroupLaws (Subtype fun x => x) ∈ S
+    (Nonempty A ∧ (∀ (first second third : A), (fun a b => instHAdd.hAdd a b) ((fun a b => instHAdd.hAdd a b) first second) third = (fun a b => instHAdd.hAdd a b) first ((fun a b => instHAdd.hAdd a b) second third))) → ∀ {S : LRA.Set.LRA_Set A} (closed : ∀ (a b : A), a ∈ S → b ∈ S → instHAdd.hAdd a b ∈ S), Nonempty (Subtype fun x => x) ∈ S → ∀ (first second third : Subtype fun x => x), ∈ S (fun a b => instHAdd.hAdd a b) ((fun a b => instHAdd.hAdd a b) first second) third = (fun a b => instHAdd.hAdd a b) first ((fun a b => instHAdd.hAdd a b) second third)
 Transliterated theorem: (∀ a b, a ∈ S → b ∈ S → a + b ∈ S) → letI
 Logical form (Lean): {A : Type u} [Add A] [Nonempty A] [AdditiveSemigroupLaws A] {S : LRA.Set.LRA_Set A} (closed : ∀ a b, a ∈ S → b ∈ S → a + b ∈ S) [Nonempty {x // x ∈ S}] : letI
 Source: [`./AdditiveSemigroup/Constructions/Set/ClosedSubset.lean#L100`](./AdditiveSemigroup/Constructions/Set/ClosedSubset.lean#L100)
@@ -374,7 +368,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.AdditiveSemigroupLaws R
+    Nonempty R → ∀ (first second third : R), (fun a b => instHAdd.hAdd a b) ((fun a b => instHAdd.hAdd a b) first second) third = (fun a b => instHAdd.hAdd a b) first ((fun a b => instHAdd.hAdd a b) second third)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./AdditiveSemigroup/Constructions/Mathlib/Laws.lean`](./AdditiveSemigroup/Constructions/Mathlib/Laws.lean)
@@ -391,7 +385,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.AdditiveCommutativeLaws R → ∀ (a b : R), { hAdd := fun a b => inst.add a b }.hAdd a b = { hAdd := fun a b => inst.add a b }.hAdd b a
+    (∀ (first second : R), (fun a b => instHAdd.hAdd a b) first second = (fun a b => instHAdd.hAdd a b) second first) → ∀ (a b : R), instHAdd.hAdd a b = instHAdd.hAdd b a
 Transliterated theorem: ∀ a b : R, a + b = b + a
 Logical form (Lean): [Add R] [AdditiveCommutativeLaws R] : ∀ a b : R, a + b = b + a
 Source: [`./AdditiveCommutativeSemigroup/Interface/Laws/Definition.lean#L100`](./AdditiveCommutativeSemigroup/Interface/Laws/Definition.lean#L100)
@@ -408,7 +402,7 @@ Predicate logic (unfolded):
   Objects
     S : LRA.Set.LRA_Set A
   Prove
-    LRA.AlgebraicStructures.AdditiveCommutativeSemigroupLaws A → ∀ {S : A → Prop} (closed : ∀ (a b : A), a ∈ S → b ∈ S → { hAdd := fun a b => inst.add a b }.hAdd a b ∈ S) [inst_2 : Nonempty (Subtype fun x => x)], ∈ S LRA.AlgebraicStructures.AdditiveCommutativeSemigroupLaws (Subtype fun x => x) ∈ S
+    (Nonempty A ∧ ((∀ (first second third : A), (fun a b => instHAdd.hAdd a b) ((fun a b => instHAdd.hAdd a b) first second) third = (fun a b => instHAdd.hAdd a b) first ((fun a b => instHAdd.hAdd a b) second third)) ∧ (∀ (first second : A), (fun a b => instHAdd.hAdd a b) first second = (fun a b => instHAdd.hAdd a b) second first))) → ∀ {S : LRA.Set.LRA_Set A} (closed : ∀ (a b : A), a ∈ S → b ∈ S → instHAdd.hAdd a b ∈ S), Nonempty (Subtype fun x => x) ∈ S → ((∀ (first second third : Subtype fun x => x), ∈ S (fun a b => instHAdd.hAdd a b) ((fun a b => instHAdd.hAdd a b) first second) third = (fun a b => instHAdd.hAdd a b) first ((fun a b => instHAdd.hAdd a b) second third)) ∧ (∀ (first second : Subtype fun x => x), ∈ S (fun a b => instHAdd.hAdd a b) first second = (fun a b => instHAdd.hAdd a b) second first))
 Transliterated theorem: (∀ a b, a ∈ S → b ∈ S → a + b ∈ S) → letI
 Logical form (Lean): {A : Type u} [Add A] [Nonempty A] [AdditiveCommutativeSemigroupLaws A] {S : LRA.Set.LRA_Set A} (closed : ∀ a b, a ∈ S → b ∈ S → a + b ∈ S) [Nonempty {x // x ∈ S}] : letI
 Source: [`./AdditiveCommutativeSemigroup/Constructions/Set/ClosedSubset.lean#L54`](./AdditiveCommutativeSemigroup/Constructions/Set/ClosedSubset.lean#L54)
@@ -425,7 +419,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.AdditiveCommutativeSemigroupLaws R
+    Nonempty R → ((∀ (first second third : R), (fun a b => instHAdd.hAdd a b) ((fun a b => instHAdd.hAdd a b) first second) third = (fun a b => instHAdd.hAdd a b) first ((fun a b => instHAdd.hAdd a b) second third)) ∧ (∀ (first second : R), (fun a b => instHAdd.hAdd a b) first second = (fun a b => instHAdd.hAdd a b) second first))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./AdditiveCommutativeSemigroup/Constructions/Mathlib/Laws.lean`](./AdditiveCommutativeSemigroup/Constructions/Mathlib/Laws.lean)
@@ -442,7 +436,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.AdditiveIdentityLaws R → ∀ (a : R), { hAdd := fun a b => inst.add a b }.hAdd 0 a = a
+    ((∀ (element : R), (fun a b => instHAdd.hAdd a b) 0 element = element) ∧ (∀ (element : R), (fun a b => instHAdd.hAdd a b) element 0 = element)) → ∀ (a : R), instHAdd.hAdd 0 a = a
 Transliterated theorem: ∀ a : R, 0 + a = a
 Logical form (Lean): [Add R] [OfNat R 0] [AdditiveIdentityLaws R] : ∀ a : R, 0 + a = a
 Source: [`./AdditiveMonoid/Interface/Laws/Definition.lean#L150`](./AdditiveMonoid/Interface/Laws/Definition.lean#L150)
@@ -459,7 +453,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.AdditiveIdentityLaws R → ∀ (a : R), { hAdd := fun a b => inst.add a b }.hAdd a 0 = a
+    ((∀ (element : R), (fun a b => instHAdd.hAdd a b) 0 element = element) ∧ (∀ (element : R), (fun a b => instHAdd.hAdd a b) element 0 = element)) → ∀ (a : R), instHAdd.hAdd a 0 = a
 Transliterated theorem: ∀ a : R, a + 0 = a
 Logical form (Lean): [Add R] [OfNat R 0] [AdditiveIdentityLaws R] : ∀ a : R, a + 0 = a
 Source: [`./AdditiveMonoid/Interface/Laws/Definition.lean#L195`](./AdditiveMonoid/Interface/Laws/Definition.lean#L195)
@@ -493,7 +487,7 @@ Predicate logic (unfolded):
   Objects
     S : LRA.Set.LRA_Set A
   Prove
-    LRA.AlgebraicStructures.AdditiveMonoidLaws A → ∀ {S : A → Prop} (closed : ∀ (a b : A), a ∈ S → b ∈ S → { hAdd := fun a b => inst.add a b }.hAdd a b ∈ S) (hZero : 0), ∈ S LRA.AlgebraicStructures.AdditiveMonoidLaws (Subtype fun x => x) ∈ S
+    (Nonempty A ∧ ((∀ (first second third : A), (fun a b => instHAdd.hAdd a b) ((fun a b => instHAdd.hAdd a b) first second) third = (fun a b => instHAdd.hAdd a b) first ((fun a b => instHAdd.hAdd a b) second third)) ∧ ((∀ (element : A), (fun a b => instHAdd.hAdd a b) 0 element = element) ∧ (∀ (element : A), (fun a b => instHAdd.hAdd a b) element 0 = element)))) → ∀ {S : LRA.Set.LRA_Set A} (closed : ∀ (a b : A), a ∈ S → b ∈ S → instHAdd.hAdd a b ∈ S) (hZero : 0), ∈ S ((∀ (first second third : Subtype fun x => x), ∈ S (fun a b => instHAdd.hAdd a b) ((fun a b => instHAdd.hAdd a b) first second) third = (fun a b => instHAdd.hAdd a b) first ((fun a b => instHAdd.hAdd a b) second third)) ∧ ((∀ (element : Subtype fun x => x), ∈ S (fun a b => instHAdd.hAdd a b) 0 element = element) ∧ (∀ (element : Subtype fun x => x), ∈ S (fun a b => instHAdd.hAdd a b) element 0 = element)))
 Transliterated theorem: (∀ a b, a ∈ S → b ∈ S → a + b ∈ S ∧ 0 ∈ A ∈ S) → letI
 Logical form (Lean): {A : Type u} [Add A] [OfNat A 0] [Nonempty A] [AdditiveMonoidLaws A] {S : LRA.Set.LRA_Set A} (closed : ∀ a b, a ∈ S → b ∈ S → a + b ∈ S) (hZero : (0 : A) ∈ S) : letI
 Source: [`./AdditiveMonoid/Constructions/Set/ClosedSubset.lean#L151`](./AdditiveMonoid/Constructions/Set/ClosedSubset.lean#L151)
@@ -510,7 +504,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.AdditiveMonoidLaws R
+    Nonempty R → ((∀ (first second third : R), (fun a b => instHAdd.hAdd a b) ((fun a b => instHAdd.hAdd a b) first second) third = (fun a b => instHAdd.hAdd a b) first ((fun a b => instHAdd.hAdd a b) second third)) ∧ ((∀ (element : R), (fun a b => instHAdd.hAdd a b) 0 element = element) ∧ (∀ (element : R), (fun a b => instHAdd.hAdd a b) element 0 = element)))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./AdditiveMonoid/Constructions/Mathlib/Laws.lean`](./AdditiveMonoid/Constructions/Mathlib/Laws.lean)
@@ -527,7 +521,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.AdditiveInverseLaws R → ∀ (a : R), { hAdd := fun a b => inst.add a b }.hAdd (inst_1.neg a) a = 0
+    ((∀ (element : R), (fun a b => instHAdd.hAdd a b) ((fun a => inst_1.neg a) element) element = 0) ∧ (∀ (element : R), (fun a b => instHAdd.hAdd a b) element ((fun a => inst_1.neg a) element) = 0)) → ∀ (a : R), instHAdd.hAdd (inst_1.neg a) a = 0
 Transliterated theorem: ∀ a : R, -a + a = 0
 Logical form (Lean): [Add R] [Neg R] [OfNat R 0] [AdditiveInverseLaws R] : ∀ a : R, -a + a = 0
 Source: [`./AdditiveGroup/Interface/Laws/Definition.lean#L213`](./AdditiveGroup/Interface/Laws/Definition.lean#L213)
@@ -544,7 +538,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.AdditiveInverseLaws R → ∀ (a : R), { hAdd := fun a b => inst.add a b }.hAdd a (inst_1.neg a) = 0
+    ((∀ (element : R), (fun a b => instHAdd.hAdd a b) ((fun a => inst_1.neg a) element) element = 0) ∧ (∀ (element : R), (fun a b => instHAdd.hAdd a b) element ((fun a => inst_1.neg a) element) = 0)) → ∀ (a : R), instHAdd.hAdd a (inst_1.neg a) = 0
 Transliterated theorem: ∀ a : R, a + -a = 0
 Logical form (Lean): [Add R] [Neg R] [OfNat R 0] [AdditiveInverseLaws R] : ∀ a : R, a + -a = 0
 Source: [`./AdditiveGroup/Interface/Laws/Definition.lean#L260`](./AdditiveGroup/Interface/Laws/Definition.lean#L260)
@@ -561,7 +555,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.SubtractionCompatibilityLaw R → ∀ (a b : R), { hSub := fun a b => inst.sub a b }.hSub a b = { hAdd := fun a b => inst_1.add a b }.hAdd a (inst_2.neg b)
+    (∀ (a b : R), instHSub.hSub a b = instHAdd.hAdd a (inst_2.neg b)) → ∀ (a b : R), instHSub.hSub a b = instHAdd.hAdd a (inst_2.neg b)
 Transliterated theorem: ∀ a b : R, a - b = a + -b
 Logical form (Lean): [Sub R] [Add R] [Neg R] [SubtractionCompatibilityLaw R] : ∀ a b : R, a - b = a + -b
 Source: [`./AdditiveGroup/Interface/Laws/Definition.lean#L307`](./AdditiveGroup/Interface/Laws/Definition.lean#L307)
@@ -578,7 +572,7 @@ Predicate logic (unfolded):
   Objects
     S : LRA.Set.LRA_Set A
   Prove
-    LRA.AlgebraicStructures.AdditiveMonoidLaws A → ∀ {S : A → Prop} (closed : ∀ (a b : A), a ∈ S → b ∈ S → { hAdd := fun a b => inst.add a b }.hAdd a b ∈ S) (hZero : 0) ∈ S (hNegClosed : ∀ (a : A), a ∈ S → inst_1.neg a ∈ S), (∀ (a : A), a ∈ S → ({ hAdd := fun a b => inst.add a b }.hAdd (inst_1.neg a) a = 0 ∧ { hAdd := fun a b => inst.add a b }.hAdd a (inst_1.neg a) = 0)) → LRA.AlgebraicStructures.AdditiveGroupLaws (Subtype fun x => x) ∈ S
+    (Nonempty A ∧ ((∀ (first second third : A), (fun a b => instHAdd.hAdd a b) ((fun a b => instHAdd.hAdd a b) first second) third = (fun a b => instHAdd.hAdd a b) first ((fun a b => instHAdd.hAdd a b) second third)) ∧ ((∀ (element : A), (fun a b => instHAdd.hAdd a b) 0 element = element) ∧ (∀ (element : A), (fun a b => instHAdd.hAdd a b) element 0 = element)))) → ∀ {S : LRA.Set.LRA_Set A} (closed : ∀ (a b : A), a ∈ S → b ∈ S → instHAdd.hAdd a b ∈ S) (hZero : 0) ∈ S (hNegClosed : ∀ (a : A), a ∈ S → inst_1.neg a ∈ S), (∀ (a : A), a ∈ S → (instHAdd.hAdd (inst_1.neg a) a = 0 ∧ instHAdd.hAdd a (inst_1.neg a) = 0)) → ((∀ (first second third : Subtype fun x => x), ∈ S (fun a b => instHAdd.hAdd a b) ((fun a b => instHAdd.hAdd a b) first second) third = (fun a b => instHAdd.hAdd a b) first ((fun a b => instHAdd.hAdd a b) second third)) ∧ (((∀ (element : Subtype fun x => x), ∈ S (fun a b => instHAdd.hAdd a b) 0 element = element) ∧ (∀ (element : Subtype fun x => x), ∈ S (fun a b => instHAdd.hAdd a b) element 0 = element)) ∧ ((∀ (element : Subtype fun x => x), ∈ S (fun a b => instHAdd.hAdd a b) ((fun a => (LRA.AlgebraicStructures.AdditiveGroup.Constructions.ClosedSubsetNeg hNegClosed).neg a) element) element = 0) ∧ (∀ (element : Subtype fun x => x), ∈ S (fun a b => instHAdd.hAdd a b) element ((fun a => (LRA.AlgebraicStructures.AdditiveGroup.Constructions.ClosedSubsetNeg hNegClosed).neg a) element) = 0))))
 Transliterated theorem: (∀ a b, a ∈ S → b ∈ S → a + b ∈ S ∧ 0 ∈ A ∈ S ∧ ∀ a, a ∈ S → -a ∈ S ∧ ∀ a, a ∈ S → -a + a = 0 ∧ a + -a = 0) → letI
 Logical form (Lean): {A : Type u} [Add A] [Neg A] [OfNat A 0] [Nonempty A] [AdditiveMonoidLaws A] {S : LRA.Set.LRA_Set A} (closed : ∀ a b, a ∈ S → b ∈ S → a + b ∈ S) (hZero : (0 : A) ∈ S) (hNegClosed : ∀ a, a ∈ S → -a ∈ S) (hNegCancel : ∀ a, a ∈ S → -a + a = 0 ∧ a + -a = 0) : letI
 Source: [`./AdditiveGroup/Constructions/Set/ClosedSubset.lean#L110`](./AdditiveGroup/Constructions/Set/ClosedSubset.lean#L110)
@@ -595,7 +589,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.AdditiveGroupLaws R
+    Nonempty R → ((∀ (first second third : R), (fun a b => instHAdd.hAdd a b) ((fun a b => instHAdd.hAdd a b) first second) third = (fun a b => instHAdd.hAdd a b) first ((fun a b => instHAdd.hAdd a b) second third)) ∧ (((∀ (element : R), (fun a b => instHAdd.hAdd a b) 0 element = element) ∧ (∀ (element : R), (fun a b => instHAdd.hAdd a b) element 0 = element)) ∧ ((∀ (element : R), (fun a b => instHAdd.hAdd a b) ((fun a => inst.neg a) element) element = 0) ∧ (∀ (element : R), (fun a b => instHAdd.hAdd a b) element ((fun a => inst.neg a) element) = 0))))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./AdditiveGroup/Constructions/Mathlib/Laws.lean`](./AdditiveGroup/Constructions/Mathlib/Laws.lean)
@@ -612,7 +606,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.AbelianGroupLaws R
+    Nonempty R → ((∀ (first second third : R), (fun a b => instHAdd.hAdd a b) ((fun a b => instHAdd.hAdd a b) first second) third = (fun a b => instHAdd.hAdd a b) first ((fun a b => instHAdd.hAdd a b) second third)) ∧ (((∀ (element : R), (fun a b => instHAdd.hAdd a b) 0 element = element) ∧ (∀ (element : R), (fun a b => instHAdd.hAdd a b) element 0 = element)) ∧ (((∀ (element : R), (fun a b => instHAdd.hAdd a b) ((fun a => inst.neg a) element) element = 0) ∧ (∀ (element : R), (fun a b => instHAdd.hAdd a b) element ((fun a => inst.neg a) element) = 0)) ∧ (∀ (first second : R), (fun a b => instHAdd.hAdd a b) first second = (fun a b => instHAdd.hAdd a b) second first))))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./AbelianGroup/Constructions/Mathlib/Laws.lean`](./AbelianGroup/Constructions/Mathlib/Laws.lean)
@@ -629,7 +623,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((∀ (first second third : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) first second) third = (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) first ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) second third)) ∧ ((∀ (first second : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) first second = (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) second first) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) element element = element)))
+    ((∀ (first second third : R), (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) ((fun x1 x2 => SemilatticeInf.toMin.min x1 x2) first second) third = (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) first ((fun x1 x2 => SemilatticeInf.toMin.min x1 x2) second third)) ∧ ((∀ (first second : R), (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) first second = (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) second first) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) element element = element)))
 Transliterated theorem: MeetSemilatticeLaws Carrier ∈ = R (· ⊓ ·)
 Logical form (Lean): {R : Type u} [SemilatticeInf R] : MeetSemilatticeLaws (Carrier := R) (· ⊓ ·)
 Source: [`./MeetSemilattice/Constructions/Mathlib/Laws.lean#L50`](./MeetSemilattice/Constructions/Mathlib/Laws.lean#L50)
@@ -665,7 +659,7 @@ Predicate logic (unfolded):
     meet : LRA.Operation.BinaryEndoOperation Carrier
     h : MeetSemilatticeLaws meet
   Prove
-    ((∀ (first second third : Carrier), meet (meet first second) third = meet first (meet second third)) ∧ ((∀ (first second : Carrier), meet first second = meet second first) ∧ (∀ (element : Carrier), meet element element = element))) → ∀ (left right : Carrier), Exists fun m => (meet m left = m ∧ (meet m right = m ∧ (∀ (lower : Carrier), meet lower left = lower → meet lower right = lower → meet lower m = lower)))
+    ((∀ (first second third : Carrier), meet (meet first second) third = meet first (meet second third)) ∧ ((∀ (first second : Carrier), meet first second = meet second first) ∧ (∀ (element : Carrier), meet element element = element))) → ∀ (left right : Carrier), ∃ m, (meet m left = m ∧ (meet m right = m ∧ (∀ (lower : Carrier), meet lower left = lower → meet lower right = lower → meet lower m = lower)))
 Transliterated theorem: ∀ left right, ∃ m, LRA.Order.Meet (InducedOrder meet) left right m
 Logical form (Lean): {Carrier : Type u} {meet : LRA.Operation.BinaryEndoOperation Carrier} (h : MeetSemilatticeLaws meet) : ∀ left right, ∃ m, LRA.Order.Meet (InducedOrder meet) left right m
 Source: [`./MeetSemilattice/Constructions/OrderTheoretic/InducedOrder.lean#L150`](./MeetSemilattice/Constructions/OrderTheoretic/InducedOrder.lean#L150)
@@ -683,7 +677,7 @@ Predicate logic (unfolded):
     meet : LRA.Operation.BinaryEndoOperation Carrier
     h : MeetSemilatticeLaws meet
   Prove
-    ((∀ (first second third : Carrier), meet (meet first second) third = meet first (meet second third)) ∧ ((∀ (first second : Carrier), meet first second = meet second first) ∧ (∀ (element : Carrier), meet element element = element))) → (((∀ (x : Carrier), meet x x = x) ∧ ((∀ (x y : Carrier), meet x y = x → meet y x = y → x = y) ∧ (∀ (x y z : Carrier), meet x y = x → meet y z = y → meet x z = x))) ∧ (∀ (left right : Carrier), Exists fun meet_1 => (meet meet_1 left = meet_1 ∧ (meet meet_1 right = meet_1 ∧ (∀ (lower : Carrier), meet lower left = lower → meet lower right = lower → meet lower meet_1 = lower)))))
+    ((∀ (first second third : Carrier), meet (meet first second) third = meet first (meet second third)) ∧ ((∀ (first second : Carrier), meet first second = meet second first) ∧ (∀ (element : Carrier), meet element element = element))) → (((∀ (x : Carrier), meet x x = x) ∧ ((∀ (x y : Carrier), meet x y = x → meet y x = y → x = y) ∧ (∀ (x y z : Carrier), meet x y = x → meet y z = y → meet x z = x))) ∧ (∀ (left right : Carrier), ∃ meet_1, (meet meet_1 left = meet_1 ∧ (meet meet_1 right = meet_1 ∧ (∀ (lower : Carrier), meet lower left = lower → meet lower right = lower → meet lower meet_1 = lower)))))
 Transliterated theorem: LRA.Order.MeetSemilattice (InducedOrder meet)
 Logical form (Lean): {Carrier : Type u} {meet : LRA.Operation.BinaryEndoOperation Carrier} (h : MeetSemilatticeLaws meet) : LRA.Order.MeetSemilattice (InducedOrder meet)
 Source: [`./MeetSemilattice/Constructions/OrderTheoretic/InducedOrder.lean#L200`](./MeetSemilattice/Constructions/OrderTheoretic/InducedOrder.lean#L200)
@@ -700,7 +694,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((∀ (first second third : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) first second) third = (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) first ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) second third)) ∧ ((∀ (first second : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) first second = (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) second first) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) element element = element)))
+    ((∀ (first second third : R), (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) ((fun x1 x2 => SemilatticeSup.toMax.max x1 x2) first second) third = (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) first ((fun x1 x2 => SemilatticeSup.toMax.max x1 x2) second third)) ∧ ((∀ (first second : R), (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) first second = (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) second first) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) element element = element)))
 Transliterated theorem: JoinSemilatticeLaws Carrier ∈ = R (· ⊔ ·)
 Logical form (Lean): {R : Type u} [SemilatticeSup R] : JoinSemilatticeLaws (Carrier := R) (· ⊔ ·)
 Source: [`./JoinSemilattice/Constructions/Mathlib/Laws.lean#L50`](./JoinSemilattice/Constructions/Mathlib/Laws.lean#L50)
@@ -736,7 +730,7 @@ Predicate logic (unfolded):
     join : LRA.Operation.BinaryEndoOperation Carrier
     h : JoinSemilatticeLaws join
   Prove
-    ((∀ (first second third : Carrier), join (join first second) third = join first (join second third)) ∧ ((∀ (first second : Carrier), join first second = join second first) ∧ (∀ (element : Carrier), join element element = element))) → ∀ (left right : Carrier), Exists fun j => (join left j = j ∧ (join right j = j ∧ (∀ (upper : Carrier), join left upper = upper → join right upper = upper → join j upper = upper)))
+    ((∀ (first second third : Carrier), join (join first second) third = join first (join second third)) ∧ ((∀ (first second : Carrier), join first second = join second first) ∧ (∀ (element : Carrier), join element element = element))) → ∀ (left right : Carrier), ∃ j, (join left j = j ∧ (join right j = j ∧ (∀ (upper : Carrier), join left upper = upper → join right upper = upper → join j upper = upper)))
 Transliterated theorem: ∀ left right, ∃ j, LRA.Order.Join (InducedOrder join) left right j
 Logical form (Lean): {Carrier : Type u} {join : LRA.Operation.BinaryEndoOperation Carrier} (h : JoinSemilatticeLaws join) : ∀ left right, ∃ j, LRA.Order.Join (InducedOrder join) left right j
 Source: [`./JoinSemilattice/Constructions/OrderTheoretic/InducedOrder.lean#L150`](./JoinSemilattice/Constructions/OrderTheoretic/InducedOrder.lean#L150)
@@ -754,7 +748,7 @@ Predicate logic (unfolded):
     join : LRA.Operation.BinaryEndoOperation Carrier
     h : JoinSemilatticeLaws join
   Prove
-    ((∀ (first second third : Carrier), join (join first second) third = join first (join second third)) ∧ ((∀ (first second : Carrier), join first second = join second first) ∧ (∀ (element : Carrier), join element element = element))) → (((∀ (x : Carrier), join x x = x) ∧ ((∀ (x y : Carrier), join x y = y → join y x = x → x = y) ∧ (∀ (x y z : Carrier), join x y = y → join y z = z → join x z = z))) ∧ (∀ (left right : Carrier), Exists fun join_1 => (join left join_1 = join_1 ∧ (join right join_1 = join_1 ∧ (∀ (upper : Carrier), join left upper = upper → join right upper = upper → join join_1 upper = upper)))))
+    ((∀ (first second third : Carrier), join (join first second) third = join first (join second third)) ∧ ((∀ (first second : Carrier), join first second = join second first) ∧ (∀ (element : Carrier), join element element = element))) → (((∀ (x : Carrier), join x x = x) ∧ ((∀ (x y : Carrier), join x y = y → join y x = x → x = y) ∧ (∀ (x y z : Carrier), join x y = y → join y z = z → join x z = z))) ∧ (∀ (left right : Carrier), ∃ join_1, (join left join_1 = join_1 ∧ (join right join_1 = join_1 ∧ (∀ (upper : Carrier), join left upper = upper → join right upper = upper → join join_1 upper = upper)))))
 Transliterated theorem: LRA.Order.JoinSemilattice (InducedOrder join)
 Logical form (Lean): {Carrier : Type u} {join : LRA.Operation.BinaryEndoOperation Carrier} (h : JoinSemilatticeLaws join) : LRA.Order.JoinSemilattice (InducedOrder join)
 Source: [`./JoinSemilattice/Constructions/OrderTheoretic/InducedOrder.lean#L200`](./JoinSemilattice/Constructions/OrderTheoretic/InducedOrder.lean#L200)
@@ -771,7 +765,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (((∀ (first second third : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) first second) third = (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) first ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) second third)) ∧ ((∀ (first second : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) first second = (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) second first) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) element element = element))) ∧ (((∀ (first second third : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) first second) third = (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) first ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) second third)) ∧ ((∀ (first second : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) first second = (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) second first) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) element element = element))) ∧ ((∀ (left right : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left right) = left) ∧ (∀ (left right : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left right) = left))))
+    (((∀ (first second third : R), (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) ((fun x1 x2 => SemilatticeSup.toMax.max x1 x2) first second) third = (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) first ((fun x1 x2 => SemilatticeSup.toMax.max x1 x2) second third)) ∧ ((∀ (first second : R), (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) first second = (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) second first) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) element element = element))) ∧ (((∀ (first second third : R), (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) ((fun x1 x2 => SemilatticeInf.toMin.min x1 x2) first second) third = (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) first ((fun x1 x2 => SemilatticeInf.toMin.min x1 x2) second third)) ∧ ((∀ (first second : R), (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) first second = (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) second first) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) element element = element))) ∧ ((∀ (left right : R), (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) left ((fun x1 x2 => SemilatticeInf.toMin.min x1 x2) left right) = left) ∧ (∀ (left right : R), (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) left ((fun x1 x2 => SemilatticeSup.toMax.max x1 x2) left right) = left))))
 Transliterated theorem: LatticeLaws Carrier ∈ = R (· ⊔ ·) (· ⊓ ·)
 Logical form (Lean): {R : Type u} [_root_.Lattice R] : LatticeLaws (Carrier := R) (· ⊔ ·) (· ⊓ ·)
 Source: [`./Lattice/Constructions/Mathlib/Laws.lean#L50`](./Lattice/Constructions/Mathlib/Laws.lean#L50)
@@ -788,7 +782,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((((∀ (first second third : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) first second) third = (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) first ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) second third)) ∧ ((∀ (first second : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) first second = (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) second first) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) element element = element))) ∧ (((∀ (first second third : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) first second) third = (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) first ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) second third)) ∧ ((∀ (first second : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) first second = (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) second first) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) element element = element))) ∧ ((∀ (left right : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left right) = left) ∧ (∀ (left right : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left right) = left)))) ∧ (((∀ (element : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) inst_1.toBot.1 element = element) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) element inst_1.toBot.1 = element)) ∧ ((∀ (element : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) inst_1.toTop.1 element = element) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) element inst_1.toTop.1 = element))))
+    ((((∀ (first second third : R), (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) ((fun x1 x2 => SemilatticeSup.toMax.max x1 x2) first second) third = (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) first ((fun x1 x2 => SemilatticeSup.toMax.max x1 x2) second third)) ∧ ((∀ (first second : R), (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) first second = (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) second first) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) element element = element))) ∧ (((∀ (first second third : R), (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) ((fun x1 x2 => SemilatticeInf.toMin.min x1 x2) first second) third = (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) first ((fun x1 x2 => SemilatticeInf.toMin.min x1 x2) second third)) ∧ ((∀ (first second : R), (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) first second = (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) second first) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) element element = element))) ∧ ((∀ (left right : R), (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) left ((fun x1 x2 => SemilatticeInf.toMin.min x1 x2) left right) = left) ∧ (∀ (left right : R), (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) left ((fun x1 x2 => SemilatticeSup.toMax.max x1 x2) left right) = left)))) ∧ (((∀ (element : R), (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) inst_1.bot element = element) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) element inst_1.bot = element)) ∧ ((∀ (element : R), (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) inst_1.top element = element) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) element inst_1.top = element))))
 Transliterated theorem: LRA.AlgebraicStructures.BoundedLatticeLaws Carrier ∈ = R (· ⊔ ·) (· ⊓ ·) ⊥ ⊤
 Logical form (Lean): {R : Type u} [_root_.Lattice R] [_root_.BoundedOrder R] : LRA.AlgebraicStructures.BoundedLatticeLaws (Carrier := R) (· ⊔ ·) (· ⊓ ·) ⊥ ⊤
 Source: [`./BoundedLattice/Constructions/Mathlib/Laws.lean#L52`](./BoundedLattice/Constructions/Mathlib/Laws.lean#L52)
@@ -805,7 +799,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((((∀ (first second third : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) first second) third = (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) first ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) second third)) ∧ ((∀ (first second : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) first second = (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) second first) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) element element = element))) ∧ (((∀ (first second third : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) first second) third = (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) first ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) second third)) ∧ ((∀ (first second : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) first second = (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) second first) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) element element = element))) ∧ ((∀ (left right : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left right) = left) ∧ (∀ (left right : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left right) = left)))) ∧ (((∀ (left right third : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) right third) = (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left right) ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left third)) ∧ (∀ (left right third : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left right) third = (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left third) ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) right third))) ∧ ((∀ (left right third : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) right third) = (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left right) ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left third)) ∧ (∀ (left right third : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left right) third = (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left third) ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) right third)))))
+    ((((∀ (first second third : R), (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) ((fun x1 x2 => SemilatticeSup.toMax.max x1 x2) first second) third = (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) first ((fun x1 x2 => SemilatticeSup.toMax.max x1 x2) second third)) ∧ ((∀ (first second : R), (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) first second = (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) second first) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) element element = element))) ∧ (((∀ (first second third : R), (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) ((fun x1 x2 => SemilatticeInf.toMin.min x1 x2) first second) third = (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) first ((fun x1 x2 => SemilatticeInf.toMin.min x1 x2) second third)) ∧ ((∀ (first second : R), (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) first second = (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) second first) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) element element = element))) ∧ ((∀ (left right : R), (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) left ((fun x1 x2 => SemilatticeInf.toMin.min x1 x2) left right) = left) ∧ (∀ (left right : R), (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) left ((fun x1 x2 => SemilatticeSup.toMax.max x1 x2) left right) = left)))) ∧ (((∀ (left right third : R), (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) left ((fun x1 x2 => SemilatticeInf.toMin.min x1 x2) right third) = (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) ((fun x1 x2 => SemilatticeSup.toMax.max x1 x2) left right) ((fun x1 x2 => SemilatticeSup.toMax.max x1 x2) left third)) ∧ (∀ (left right third : R), (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) ((fun x1 x2 => SemilatticeInf.toMin.min x1 x2) left right) third = (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) ((fun x1 x2 => SemilatticeSup.toMax.max x1 x2) left third) ((fun x1 x2 => SemilatticeSup.toMax.max x1 x2) right third))) ∧ ((∀ (left right third : R), (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) left ((fun x1 x2 => SemilatticeSup.toMax.max x1 x2) right third) = (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) ((fun x1 x2 => SemilatticeInf.toMin.min x1 x2) left right) ((fun x1 x2 => SemilatticeInf.toMin.min x1 x2) left third)) ∧ (∀ (left right third : R), (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) ((fun x1 x2 => SemilatticeSup.toMax.max x1 x2) left right) third = (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) ((fun x1 x2 => SemilatticeInf.toMin.min x1 x2) left third) ((fun x1 x2 => SemilatticeInf.toMin.min x1 x2) right third)))))
 Transliterated theorem: LRA.AlgebraicStructures.DistributiveLatticeLaws Carrier ∈ = R (· ⊔ ·) (· ⊓ ·)
 Logical form (Lean): {R : Type u} [_root_.DistribLattice R] : LRA.AlgebraicStructures.DistributiveLatticeLaws (Carrier := R) (· ⊔ ·) (· ⊓ ·)
 Source: [`./DistributiveLattice/Constructions/Mathlib/Laws.lean#L51`](./DistributiveLattice/Constructions/Mathlib/Laws.lean#L51)
@@ -822,7 +816,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (((((∀ (first second third : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) first second) third = (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) first ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) second third)) ∧ ((∀ (first second : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) first second = (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) second first) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) element element = element))) ∧ (((∀ (first second third : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) first second) third = (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) first ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) second third)) ∧ ((∀ (first second : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) first second = (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) second first) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) element element = element))) ∧ ((∀ (left right : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left right) = left) ∧ (∀ (left right : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left right) = left)))) ∧ (((∀ (element : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) inst.toBot.1 element = element) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) element inst.toBot.1 = element)) ∧ ((∀ (element : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) inst.toTop.1 element = element) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) element inst.toTop.1 = element)))) ∧ (((((∀ (first second third : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) first second) third = (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) first ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) second third)) ∧ ((∀ (first second : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) first second = (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) second first) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) element element = element))) ∧ (((∀ (first second third : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) first second) third = (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) first ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) second third)) ∧ ((∀ (first second : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) first second = (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) second first) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) element element = element))) ∧ ((∀ (left right : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left right) = left) ∧ (∀ (left right : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left right) = left)))) ∧ (((∀ (left right third : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) right third) = (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left right) ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left third)) ∧ (∀ (left right third : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left right) third = (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left third) ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) right third))) ∧ ((∀ (left right third : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) right third) = (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left right) ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left third)) ∧ (∀ (left right third : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) ((fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) left right) third = (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) left third) ((fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) right third))))) ∧ ((∀ (element : R), (fun x1 x2 => SemilatticeSup.toMax.1 x1 x2) element (inst.toCompl.1 element) = inst.toTop.1) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeInf.toMin.1 x1 x2) element (inst.toCompl.1 element) = inst.toBot.1))))
+    (((((∀ (first second third : R), (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) ((fun x1 x2 => SemilatticeSup.toMax.max x1 x2) first second) third = (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) first ((fun x1 x2 => SemilatticeSup.toMax.max x1 x2) second third)) ∧ ((∀ (first second : R), (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) first second = (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) second first) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) element element = element))) ∧ (((∀ (first second third : R), (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) ((fun x1 x2 => SemilatticeInf.toMin.min x1 x2) first second) third = (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) first ((fun x1 x2 => SemilatticeInf.toMin.min x1 x2) second third)) ∧ ((∀ (first second : R), (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) first second = (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) second first) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) element element = element))) ∧ ((∀ (left right : R), (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) left ((fun x1 x2 => SemilatticeInf.toMin.min x1 x2) left right) = left) ∧ (∀ (left right : R), (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) left ((fun x1 x2 => SemilatticeSup.toMax.max x1 x2) left right) = left)))) ∧ (((∀ (element : R), (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) inst.bot element = element) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) element inst.bot = element)) ∧ ((∀ (element : R), (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) inst.top element = element) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) element inst.top = element)))) ∧ (((((∀ (first second third : R), (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) ((fun x1 x2 => SemilatticeSup.toMax.max x1 x2) first second) third = (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) first ((fun x1 x2 => SemilatticeSup.toMax.max x1 x2) second third)) ∧ ((∀ (first second : R), (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) first second = (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) second first) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) element element = element))) ∧ (((∀ (first second third : R), (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) ((fun x1 x2 => SemilatticeInf.toMin.min x1 x2) first second) third = (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) first ((fun x1 x2 => SemilatticeInf.toMin.min x1 x2) second third)) ∧ ((∀ (first second : R), (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) first second = (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) second first) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) element element = element))) ∧ ((∀ (left right : R), (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) left ((fun x1 x2 => SemilatticeInf.toMin.min x1 x2) left right) = left) ∧ (∀ (left right : R), (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) left ((fun x1 x2 => SemilatticeSup.toMax.max x1 x2) left right) = left)))) ∧ (((∀ (left right third : R), (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) left ((fun x1 x2 => SemilatticeInf.toMin.min x1 x2) right third) = (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) ((fun x1 x2 => SemilatticeSup.toMax.max x1 x2) left right) ((fun x1 x2 => SemilatticeSup.toMax.max x1 x2) left third)) ∧ (∀ (left right third : R), (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) ((fun x1 x2 => SemilatticeInf.toMin.min x1 x2) left right) third = (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) ((fun x1 x2 => SemilatticeSup.toMax.max x1 x2) left third) ((fun x1 x2 => SemilatticeSup.toMax.max x1 x2) right third))) ∧ ((∀ (left right third : R), (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) left ((fun x1 x2 => SemilatticeSup.toMax.max x1 x2) right third) = (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) ((fun x1 x2 => SemilatticeInf.toMin.min x1 x2) left right) ((fun x1 x2 => SemilatticeInf.toMin.min x1 x2) left third)) ∧ (∀ (left right third : R), (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) ((fun x1 x2 => SemilatticeSup.toMax.max x1 x2) left right) third = (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) ((fun x1 x2 => SemilatticeInf.toMin.min x1 x2) left third) ((fun x1 x2 => SemilatticeInf.toMin.min x1 x2) right third))))) ∧ ((∀ (element : R), (fun x1 x2 => SemilatticeSup.toMax.max x1 x2) element (inst.compl element) = inst.top) ∧ (∀ (element : R), (fun x1 x2 => SemilatticeInf.toMin.min x1 x2) element (inst.compl element) = inst.bot))))
 Transliterated theorem: LRA.AlgebraicStructures.BooleanAlgebraLaws Carrier ∈ = R (· ⊔ ·) (· ⊓ ·) Compl.compl ⊥ ⊤
 Logical form (Lean): {R : Type u} [_root_.BooleanAlgebra R] : LRA.AlgebraicStructures.BooleanAlgebraLaws (Carrier := R) (· ⊔ ·) (· ⊓ ·) Compl.compl ⊥ ⊤
 Source: [`./BooleanAlgebra/Constructions/Mathlib/Laws.lean#L51`](./BooleanAlgebra/Constructions/Mathlib/Laws.lean#L51)
@@ -839,7 +833,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.DistributiveLaws R → ∀ (a b c : R), { hMul := fun a b => inst_1.mul a b }.hMul a ({ hAdd := fun a b => inst.add a b }.hAdd b c) = { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul a b) ({ hMul := fun a b => inst_1.mul a b }.hMul a c)
+    ((∀ (left right third : R), (fun a b => instHMul.hMul a b) left ((fun a b => instHAdd.hAdd a b) right third) = (fun a b => instHAdd.hAdd a b) ((fun a b => instHMul.hMul a b) left right) ((fun a b => instHMul.hMul a b) left third)) ∧ (∀ (left right third : R), (fun a b => instHMul.hMul a b) ((fun a b => instHAdd.hAdd a b) left right) third = (fun a b => instHAdd.hAdd a b) ((fun a b => instHMul.hMul a b) left third) ((fun a b => instHMul.hMul a b) right third))) → ∀ (a b c : R), instHMul.hMul a (instHAdd.hAdd b c) = instHAdd.hAdd (instHMul.hMul a b) (instHMul.hMul a c)
 Transliterated theorem: ∀ a b c : R, a * (b + c) = a * b + a * c
 Logical form (Lean): : ∀ a b c : R, a * (b + c) = a * b + a * c
 Source: [`./Semiring/Interface/Laws/Distributive.lean#L114`](./Semiring/Interface/Laws/Distributive.lean#L114)
@@ -856,7 +850,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.DistributiveLaws R → ∀ (a b c : R), { hMul := fun a b => inst_1.mul a b }.hMul ({ hAdd := fun a b => inst.add a b }.hAdd a b) c = { hAdd := fun a b => inst.add a b }.hAdd ({ hMul := fun a b => inst_1.mul a b }.hMul a c) ({ hMul := fun a b => inst_1.mul a b }.hMul b c)
+    ((∀ (left right third : R), (fun a b => instHMul.hMul a b) left ((fun a b => instHAdd.hAdd a b) right third) = (fun a b => instHAdd.hAdd a b) ((fun a b => instHMul.hMul a b) left right) ((fun a b => instHMul.hMul a b) left third)) ∧ (∀ (left right third : R), (fun a b => instHMul.hMul a b) ((fun a b => instHAdd.hAdd a b) left right) third = (fun a b => instHAdd.hAdd a b) ((fun a b => instHMul.hMul a b) left third) ((fun a b => instHMul.hMul a b) right third))) → ∀ (a b c : R), instHMul.hMul (instHAdd.hAdd a b) c = instHAdd.hAdd (instHMul.hMul a c) (instHMul.hMul b c)
 Transliterated theorem: ∀ a b c : R, (a + b) * c = a * c + b * c
 Logical form (Lean): : ∀ a b c : R, (a + b) * c = a * c + b * c
 Source: [`./Semiring/Interface/Laws/Distributive.lean#L157`](./Semiring/Interface/Laws/Distributive.lean#L157)
@@ -873,7 +867,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.ZeroAbsorbingLaws R → ∀ (a : R), { hMul := fun a b => inst.mul a b }.hMul 0 a = 0
+    ((∀ (element : R), (fun a b => instHMul.hMul a b) 0 element = 0) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element 0 = 0)) → ∀ (a : R), instHMul.hMul 0 a = 0
 Transliterated theorem: ∀ a : R, 0 * a = 0
 Logical form (Lean): [Mul R] [OfNat R 0] [ZeroAbsorbingLaws R] : ∀ a : R, 0 * a = 0
 Source: [`./Semiring/Interface/Laws/Definition.lean#L167`](./Semiring/Interface/Laws/Definition.lean#L167)
@@ -890,7 +884,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.ZeroAbsorbingLaws R → ∀ (a : R), { hMul := fun a b => inst.mul a b }.hMul a 0 = 0
+    ((∀ (element : R), (fun a b => instHMul.hMul a b) 0 element = 0) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element 0 = 0)) → ∀ (a : R), instHMul.hMul a 0 = 0
 Transliterated theorem: ∀ a : R, a * 0 = 0
 Logical form (Lean): [Mul R] [OfNat R 0] [ZeroAbsorbingLaws R] : ∀ a : R, a * 0 = 0
 Source: [`./Semiring/Interface/Laws/Definition.lean#L212`](./Semiring/Interface/Laws/Definition.lean#L212)
@@ -907,7 +901,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.SemiringLaws R
+    Nonempty R → ((∀ (first second third : R), (fun a b => instHAdd.hAdd a b) ((fun a b => instHAdd.hAdd a b) first second) third = (fun a b => instHAdd.hAdd a b) first ((fun a b => instHAdd.hAdd a b) second third)) ∧ (((∀ (element : R), (fun a b => instHAdd.hAdd a b) 0 element = element) ∧ (∀ (element : R), (fun a b => instHAdd.hAdd a b) element 0 = element)) ∧ ((∀ (first second : R), (fun a b => instHAdd.hAdd a b) first second = (fun a b => instHAdd.hAdd a b) second first) ∧ ((∀ (first second third : R), (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ (((∀ (element : R), (fun a b => instHMul.hMul a b) 1 element = element) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element 1 = element)) ∧ (((∀ (element : R), (fun a b => instHMul.hMul a b) 0 element = 0) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element 0 = 0)) ∧ ((∀ (left right third : R), (fun a b => instHMul.hMul a b) left ((fun a b => instHAdd.hAdd a b) right third) = (fun a b => instHAdd.hAdd a b) ((fun a b => instHMul.hMul a b) left right) ((fun a b => instHMul.hMul a b) left third)) ∧ (∀ (left right third : R), (fun a b => instHMul.hMul a b) ((fun a b => instHAdd.hAdd a b) left right) third = (fun a b => instHAdd.hAdd a b) ((fun a b => instHMul.hMul a b) left third) ((fun a b => instHMul.hMul a b) right third)))))))))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Semiring/Constructions/Mathlib/Laws.lean`](./Semiring/Constructions/Mathlib/Laws.lean)
@@ -924,7 +918,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.CommutativeSemiringLaws R
+    Nonempty R → ((∀ (first second third : R), (fun a b => instHAdd.hAdd a b) ((fun a b => instHAdd.hAdd a b) first second) third = (fun a b => instHAdd.hAdd a b) first ((fun a b => instHAdd.hAdd a b) second third)) ∧ (((∀ (element : R), (fun a b => instHAdd.hAdd a b) 0 element = element) ∧ (∀ (element : R), (fun a b => instHAdd.hAdd a b) element 0 = element)) ∧ ((∀ (first second : R), (fun a b => instHAdd.hAdd a b) first second = (fun a b => instHAdd.hAdd a b) second first) ∧ ((∀ (first second third : R), (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ (((∀ (element : R), (fun a b => instHMul.hMul a b) 1 element = element) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element 1 = element)) ∧ ((∀ (first second : R), (fun a b => instHMul.hMul a b) first second = (fun a b => instHMul.hMul a b) second first) ∧ (((∀ (element : R), (fun a b => instHMul.hMul a b) 0 element = 0) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element 0 = 0)) ∧ ((∀ (left right third : R), (fun a b => instHMul.hMul a b) left ((fun a b => instHAdd.hAdd a b) right third) = (fun a b => instHAdd.hAdd a b) ((fun a b => instHMul.hMul a b) left right) ((fun a b => instHMul.hMul a b) left third)) ∧ (∀ (left right third : R), (fun a b => instHMul.hMul a b) ((fun a b => instHAdd.hAdd a b) left right) third = (fun a b => instHAdd.hAdd a b) ((fun a b => instHMul.hMul a b) left third) ((fun a b => instHMul.hMul a b) right third))))))))))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./CommutativeSemiring/Constructions/Mathlib/Laws.lean`](./CommutativeSemiring/Constructions/Mathlib/Laws.lean)
@@ -941,7 +935,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.AdditiveCancellativeLaws R → ((∀ (fixed first second : R), (fun a b => { hAdd := fun a b => inst.add a b }.hAdd a b) fixed first = (fun a b => { hAdd := fun a b => inst.add a b }.hAdd a b) fixed second → first = second) ∧ (∀ (first second fixed : R), (fun a b => { hAdd := fun a b => inst.add a b }.hAdd a b) first fixed = (fun a b => { hAdd := fun a b => inst.add a b }.hAdd a b) second fixed → first = second))
+    ((∀ (fixed first second : R), (fun a b => instHAdd.hAdd a b) fixed first = (fun a b => instHAdd.hAdd a b) fixed second → first = second) ∧ (∀ (first second fixed : R), (fun a b => instHAdd.hAdd a b) first fixed = (fun a b => instHAdd.hAdd a b) second fixed → first = second)) → ((∀ (fixed first second : R), (fun a b => instHAdd.hAdd a b) fixed first = (fun a b => instHAdd.hAdd a b) fixed second → first = second) ∧ (∀ (first second fixed : R), (fun a b => instHAdd.hAdd a b) first fixed = (fun a b => instHAdd.hAdd a b) second fixed → first = second))
 Transliterated theorem: LRA.Operation.Laws.Cancellation.TwoSidedCancellative fun a b ∈ R => a + b
 Logical form (Lean): [Add R] [AdditiveCancellativeLaws R] : LRA.Operation.Laws.Cancellation.TwoSidedCancellative (fun a b : R => a + b)
 Source: [`./CommutativeSemiringWithoutZero/Interface/Laws/Definition.lean#L209`](./CommutativeSemiringWithoutZero/Interface/Laws/Definition.lean#L209)
@@ -958,7 +952,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.MultiplicativeCancellativeLaws R → ((∀ (fixed first second : R), (fun a b => { hMul := fun a b => inst.mul a b }.hMul a b) fixed first = (fun a b => { hMul := fun a b => inst.mul a b }.hMul a b) fixed second → first = second) ∧ (∀ (first second fixed : R), (fun a b => { hMul := fun a b => inst.mul a b }.hMul a b) first fixed = (fun a b => { hMul := fun a b => inst.mul a b }.hMul a b) second fixed → first = second))
+    ((∀ (fixed first second : R), (fun a b => instHMul.hMul a b) fixed first = (fun a b => instHMul.hMul a b) fixed second → first = second) ∧ (∀ (first second fixed : R), (fun a b => instHMul.hMul a b) first fixed = (fun a b => instHMul.hMul a b) second fixed → first = second)) → ((∀ (fixed first second : R), (fun a b => instHMul.hMul a b) fixed first = (fun a b => instHMul.hMul a b) fixed second → first = second) ∧ (∀ (first second fixed : R), (fun a b => instHMul.hMul a b) first fixed = (fun a b => instHMul.hMul a b) second fixed → first = second))
 Transliterated theorem: LRA.Operation.Laws.Cancellation.TwoSidedCancellative fun a b ∈ R => a * b
 Logical form (Lean): [Mul R] [MultiplicativeCancellativeLaws R] : LRA.Operation.Laws.Cancellation.TwoSidedCancellative (fun a b : R => a * b)
 Source: [`./CommutativeSemiringWithoutZero/Interface/Laws/Definition.lean#L254`](./CommutativeSemiringWithoutZero/Interface/Laws/Definition.lean#L254)
@@ -975,7 +969,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.RingLaws R
+    Nonempty R → ((∀ (first second third : R), (fun a b => instHAdd.hAdd a b) ((fun a b => instHAdd.hAdd a b) first second) third = (fun a b => instHAdd.hAdd a b) first ((fun a b => instHAdd.hAdd a b) second third)) ∧ (((∀ (element : R), (fun a b => instHAdd.hAdd a b) 0 element = element) ∧ (∀ (element : R), (fun a b => instHAdd.hAdd a b) element 0 = element)) ∧ (((∀ (element : R), (fun a b => instHAdd.hAdd a b) ((fun a => MulZeroClass.negZeroClass.neg a) element) element = 0) ∧ (∀ (element : R), (fun a b => instHAdd.hAdd a b) element ((fun a => MulZeroClass.negZeroClass.neg a) element) = 0)) ∧ ((∀ (first second : R), (fun a b => instHAdd.hAdd a b) first second = (fun a b => instHAdd.hAdd a b) second first) ∧ ((∀ (first second third : R), (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ (((∀ (element : R), (fun a b => instHMul.hMul a b) 1 element = element) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element 1 = element)) ∧ (((∀ (element : R), (fun a b => instHMul.hMul a b) 0 element = 0) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element 0 = 0)) ∧ ((∀ (left right third : R), (fun a b => instHMul.hMul a b) left ((fun a b => instHAdd.hAdd a b) right third) = (fun a b => instHAdd.hAdd a b) ((fun a b => instHMul.hMul a b) left right) ((fun a b => instHMul.hMul a b) left third)) ∧ (∀ (left right third : R), (fun a b => instHMul.hMul a b) ((fun a b => instHAdd.hAdd a b) left right) third = (fun a b => instHAdd.hAdd a b) ((fun a b => instHMul.hMul a b) left third) ((fun a b => instHMul.hMul a b) right third))))))))))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Ring/Constructions/Mathlib/Laws.lean`](./Ring/Constructions/Mathlib/Laws.lean)
@@ -992,7 +986,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.CommutativeRingLaws R
+    Nonempty R → ((∀ (first second third : R), (fun a b => instHAdd.hAdd a b) ((fun a b => instHAdd.hAdd a b) first second) third = (fun a b => instHAdd.hAdd a b) first ((fun a b => instHAdd.hAdd a b) second third)) ∧ (((∀ (element : R), (fun a b => instHAdd.hAdd a b) 0 element = element) ∧ (∀ (element : R), (fun a b => instHAdd.hAdd a b) element 0 = element)) ∧ (((∀ (element : R), (fun a b => instHAdd.hAdd a b) ((fun a => MulZeroClass.negZeroClass.neg a) element) element = 0) ∧ (∀ (element : R), (fun a b => instHAdd.hAdd a b) element ((fun a => MulZeroClass.negZeroClass.neg a) element) = 0)) ∧ ((∀ (first second : R), (fun a b => instHAdd.hAdd a b) first second = (fun a b => instHAdd.hAdd a b) second first) ∧ ((∀ (first second third : R), (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ (((∀ (element : R), (fun a b => instHMul.hMul a b) 1 element = element) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element 1 = element)) ∧ ((∀ (first second : R), (fun a b => instHMul.hMul a b) first second = (fun a b => instHMul.hMul a b) second first) ∧ (((∀ (element : R), (fun a b => instHMul.hMul a b) 0 element = 0) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element 0 = 0)) ∧ ((∀ (left right third : R), (fun a b => instHMul.hMul a b) left ((fun a b => instHAdd.hAdd a b) right third) = (fun a b => instHAdd.hAdd a b) ((fun a b => instHMul.hMul a b) left right) ((fun a b => instHMul.hMul a b) left third)) ∧ (∀ (left right third : R), (fun a b => instHMul.hMul a b) ((fun a b => instHAdd.hAdd a b) left right) third = (fun a b => instHAdd.hAdd a b) ((fun a b => instHMul.hMul a b) left third) ((fun a b => instHMul.hMul a b) right third)))))))))))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./CommutativeRing/Constructions/Mathlib/Laws.lean`](./CommutativeRing/Constructions/Mathlib/Laws.lean)
@@ -1009,7 +1003,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (LRA.AlgebraicStructures.NontrivialityLaw R ∧ 1 = 0) → False
+    ((1 = 0 → False) ∧ 1 = 0) → False
 Transliterated theorem: 1 ∈ R ≠ 0
 Logical form (Lean): [OfNat R 0] [OfNat R 1] [NontrivialityLaw R] : (1 : R) ≠ 0
 Source: [`./NontrivialRing/Interface/Laws/Definition.lean#L141`](./NontrivialRing/Interface/Laws/Definition.lean#L141)
@@ -1026,7 +1020,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    NeZero 1 → ∀ [inst_1 : Nonempty R], LRA.AlgebraicStructures.NontrivialRingLaws R
+    (NeZero 1 ∧ Nonempty R) → (((∀ (first second third : R), (fun a b => instHAdd.hAdd a b) ((fun a b => instHAdd.hAdd a b) first second) third = (fun a b => instHAdd.hAdd a b) first ((fun a b => instHAdd.hAdd a b) second third)) ∧ (((∀ (element : R), (fun a b => instHAdd.hAdd a b) 0 element = element) ∧ (∀ (element : R), (fun a b => instHAdd.hAdd a b) element 0 = element)) ∧ (((∀ (element : R), (fun a b => instHAdd.hAdd a b) ((fun a => MulZeroClass.negZeroClass.neg a) element) element = 0) ∧ (∀ (element : R), (fun a b => instHAdd.hAdd a b) element ((fun a => MulZeroClass.negZeroClass.neg a) element) = 0)) ∧ ((∀ (first second : R), (fun a b => instHAdd.hAdd a b) first second = (fun a b => instHAdd.hAdd a b) second first) ∧ ((∀ (first second third : R), (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ (((∀ (element : R), (fun a b => instHMul.hMul a b) 1 element = element) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element 1 = element)) ∧ (((∀ (element : R), (fun a b => instHMul.hMul a b) 0 element = 0) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element 0 = 0)) ∧ ((∀ (left right third : R), (fun a b => instHMul.hMul a b) left ((fun a b => instHAdd.hAdd a b) right third) = (fun a b => instHAdd.hAdd a b) ((fun a b => instHMul.hMul a b) left right) ((fun a b => instHMul.hMul a b) left third)) ∧ (∀ (left right third : R), (fun a b => instHMul.hMul a b) ((fun a b => instHAdd.hAdd a b) left right) third = (fun a b => instHAdd.hAdd a b) ((fun a b => instHMul.hMul a b) left third) ((fun a b => instHMul.hMul a b) right third)))))))))) ∧ (1 = 0 → False))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./NontrivialRing/Constructions/Mathlib/Laws.lean`](./NontrivialRing/Constructions/Mathlib/Laws.lean)
@@ -1043,7 +1037,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.NoZeroDivisorsLaw R → ∀ (a b : R), { hMul := fun a b => inst.mul a b }.hMul a b = 0 → Or (a = 0)(b = 0)
+    (∀ (a b : R), instHMul.hMul a b = 0 → Or (a = 0)(b = 0)) → ∀ (a b : R), instHMul.hMul a b = 0 → Or (a = 0)(b = 0)
 Transliterated theorem: ∀ a b : R, a * b = 0 → a = 0 ∨ b = 0
 Logical form (Lean): [Mul R] [OfNat R 0] [NoZeroDivisorsLaw R] : ∀ a b : R, a * b = 0 → a = 0 ∨ b = 0
 Source: [`./IntegralDomain/Interface/Laws/Definition.lean#L142`](./IntegralDomain/Interface/Laws/Definition.lean#L142)
@@ -1060,7 +1054,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    IsDomain R → ∀ [inst_1 : Nonempty R], LRA.AlgebraicStructures.IntegralDomainLaws R
+    (IsDomain R ∧ Nonempty R) → (((∀ (first second third : R), (fun a b => instHAdd.hAdd a b) ((fun a b => instHAdd.hAdd a b) first second) third = (fun a b => instHAdd.hAdd a b) first ((fun a b => instHAdd.hAdd a b) second third)) ∧ (((∀ (element : R), (fun a b => instHAdd.hAdd a b) 0 element = element) ∧ (∀ (element : R), (fun a b => instHAdd.hAdd a b) element 0 = element)) ∧ (((∀ (element : R), (fun a b => instHAdd.hAdd a b) ((fun a => SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg a) element) element = 0) ∧ (∀ (element : R), (fun a b => instHAdd.hAdd a b) element ((fun a => SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg a) element) = 0)) ∧ ((∀ (first second : R), (fun a b => instHAdd.hAdd a b) first second = (fun a b => instHAdd.hAdd a b) second first) ∧ ((∀ (first second third : R), (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ (((∀ (element : R), (fun a b => instHMul.hMul a b) 1 element = element) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element 1 = element)) ∧ ((∀ (first second : R), (fun a b => instHMul.hMul a b) first second = (fun a b => instHMul.hMul a b) second first) ∧ (((∀ (element : R), (fun a b => instHMul.hMul a b) 0 element = 0) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element 0 = 0)) ∧ ((∀ (left right third : R), (fun a b => instHMul.hMul a b) left ((fun a b => instHAdd.hAdd a b) right third) = (fun a b => instHAdd.hAdd a b) ((fun a b => instHMul.hMul a b) left right) ((fun a b => instHMul.hMul a b) left third)) ∧ (∀ (left right third : R), (fun a b => instHMul.hMul a b) ((fun a b => instHAdd.hAdd a b) left right) third = (fun a b => instHAdd.hAdd a b) ((fun a b => instHMul.hMul a b) left third) ((fun a b => instHMul.hMul a b) right third))))))))))) ∧ ((1 = 0 → False) ∧ (∀ (a b : R), instHMul.hMul a b = 0 → Or (a = 0)(b = 0))))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./IntegralDomain/Constructions/Mathlib/Laws.lean`](./IntegralDomain/Constructions/Mathlib/Laws.lean)
@@ -1077,7 +1071,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.MultiplicativeInverseLaws R → ∀ (a : R), (a = 0 → False) → { hMul := fun a b => inst.mul a b }.hMul a (inst_1.1 a) = 1
+    ((∀ (a : R), (a = 0 → False) → (fun x y => instHMul.hMul x y) a (inst_1.inv a) = 1) ∧ inst_1.inv 0 = 0) → ∀ (a : R), (a = 0 → False) → instHMul.hMul a (inst_1.inv a) = 1
 Transliterated theorem: ∀ a : R, a ≠ 0 → a * a⁻¹ = 1
 Logical form (Lean): [Mul R] [Inv R] [OfNat R 0] [OfNat R 1] [MultiplicativeInverseLaws R] : ∀ a : R, a ≠ 0 → a * a⁻¹ = 1
 Source: [`./DivisionRing/Interface/Laws/Definition.lean#L205`](./DivisionRing/Interface/Laws/Definition.lean#L205)
@@ -1094,7 +1088,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.MultiplicativeInverseLaws R → inst_1.1 0 = 0
+    ((∀ (a : R), (a = 0 → False) → (fun x y => instHMul.hMul x y) a (inst_1.inv a) = 1) ∧ inst_1.inv 0 = 0) → inst_1.inv 0 = 0
 Transliterated theorem: 0 ∈ R⁻¹ = 0
 Logical form (Lean): [Mul R] [Inv R] [OfNat R 0] [OfNat R 1] [MultiplicativeInverseLaws R] : (0 : R)⁻¹ = 0
 Source: [`./DivisionRing/Interface/Laws/Definition.lean#L252`](./DivisionRing/Interface/Laws/Definition.lean#L252)
@@ -1111,7 +1105,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.DivisionCompatibilityLaw R → ∀ (a b : R), { hDiv := fun a b => inst.div a b }.hDiv a b = { hMul := fun a b => inst_1.mul a b }.hMul a (inst_2.1 b)
+    (∀ (a b : R), instHDiv.hDiv a b = instHMul.hMul a (inst_2.inv b)) → ∀ (a b : R), instHDiv.hDiv a b = instHMul.hMul a (inst_2.inv b)
 Transliterated theorem: ∀ a b : R, a / b = a * b⁻¹
 Logical form (Lean): [Div R] [Mul R] [Inv R] [DivisionCompatibilityLaw R] : ∀ a b : R, a / b = a * b⁻¹
 Source: [`./DivisionRing/Interface/Laws/Definition.lean#L299`](./DivisionRing/Interface/Laws/Definition.lean#L299)
@@ -1128,7 +1122,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.DivisionRingLaws R
+    Nonempty R → (((∀ (first second third : R), (fun a b => instHAdd.hAdd a b) ((fun a b => instHAdd.hAdd a b) first second) third = (fun a b => instHAdd.hAdd a b) first ((fun a b => instHAdd.hAdd a b) second third)) ∧ (((∀ (element : R), (fun a b => instHAdd.hAdd a b) 0 element = element) ∧ (∀ (element : R), (fun a b => instHAdd.hAdd a b) element 0 = element)) ∧ (((∀ (element : R), (fun a b => instHAdd.hAdd a b) ((fun a => MulZeroClass.negZeroClass.neg a) element) element = 0) ∧ (∀ (element : R), (fun a b => instHAdd.hAdd a b) element ((fun a => MulZeroClass.negZeroClass.neg a) element) = 0)) ∧ ((∀ (first second : R), (fun a b => instHAdd.hAdd a b) first second = (fun a b => instHAdd.hAdd a b) second first) ∧ ((∀ (first second third : R), (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ (((∀ (element : R), (fun a b => instHMul.hMul a b) 1 element = element) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element 1 = element)) ∧ (((∀ (element : R), (fun a b => instHMul.hMul a b) 0 element = 0) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element 0 = 0)) ∧ ((∀ (left right third : R), (fun a b => instHMul.hMul a b) left ((fun a b => instHAdd.hAdd a b) right third) = (fun a b => instHAdd.hAdd a b) ((fun a b => instHMul.hMul a b) left right) ((fun a b => instHMul.hMul a b) left third)) ∧ (∀ (left right third : R), (fun a b => instHMul.hMul a b) ((fun a b => instHAdd.hAdd a b) left right) third = (fun a b => instHAdd.hAdd a b) ((fun a b => instHMul.hMul a b) left third) ((fun a b => instHMul.hMul a b) right third)))))))))) ∧ ((1 = 0 → False) ∧ ((∀ (a : R), (a = 0 → False) → (fun x y => instHMul.hMul x y) a (inst.toDivInvMonoid.inv a) = 1) ∧ inst.toDivInvMonoid.inv 0 = 0)))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./DivisionRing/Constructions/Mathlib/Laws.lean`](./DivisionRing/Constructions/Mathlib/Laws.lean)
@@ -1145,7 +1139,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.FieldLaws R
+    Nonempty R → ((((∀ (first second third : R), (fun a b => instHAdd.hAdd a b) ((fun a b => instHAdd.hAdd a b) first second) third = (fun a b => instHAdd.hAdd a b) first ((fun a b => instHAdd.hAdd a b) second third)) ∧ (((∀ (element : R), (fun a b => instHAdd.hAdd a b) 0 element = element) ∧ (∀ (element : R), (fun a b => instHAdd.hAdd a b) element 0 = element)) ∧ (((∀ (element : R), (fun a b => instHAdd.hAdd a b) ((fun a => MulZeroClass.negZeroClass.neg a) element) element = 0) ∧ (∀ (element : R), (fun a b => instHAdd.hAdd a b) element ((fun a => MulZeroClass.negZeroClass.neg a) element) = 0)) ∧ ((∀ (first second : R), (fun a b => instHAdd.hAdd a b) first second = (fun a b => instHAdd.hAdd a b) second first) ∧ ((∀ (first second third : R), (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ (((∀ (element : R), (fun a b => instHMul.hMul a b) 1 element = element) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element 1 = element)) ∧ (((∀ (element : R), (fun a b => instHMul.hMul a b) 0 element = 0) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element 0 = 0)) ∧ ((∀ (left right third : R), (fun a b => instHMul.hMul a b) left ((fun a b => instHAdd.hAdd a b) right third) = (fun a b => instHAdd.hAdd a b) ((fun a b => instHMul.hMul a b) left right) ((fun a b => instHMul.hMul a b) left third)) ∧ (∀ (left right third : R), (fun a b => instHMul.hMul a b) ((fun a b => instHAdd.hAdd a b) left right) third = (fun a b => instHAdd.hAdd a b) ((fun a b => instHMul.hMul a b) left third) ((fun a b => instHMul.hMul a b) right third)))))))))) ∧ ((1 = 0 → False) ∧ ((∀ (a : R), (a = 0 → False) → (fun x y => instHMul.hMul x y) a (inst.toDivisionRing.toDivInvMonoid.inv a) = 1) ∧ inst.toDivisionRing.toDivInvMonoid.inv 0 = 0))) ∧ (∀ (first second : R), (fun a b => instHMul.hMul a b) first second = (fun a b => instHMul.hMul a b) second first))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Field/Constructions/Mathlib/Laws.lean`](./Field/Constructions/Mathlib/Laws.lean)
@@ -1162,7 +1156,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    IsOrderedMonoid R → ∀ [inst_2 : Nonempty R], LRA.AlgebraicStructures.OrderedGroupLaws R
+    (IsOrderedMonoid R ∧ Nonempty R) → (((∀ (first second third : R), (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ (((∀ (element : R), (fun a b => instHMul.hMul a b) 1 element = element) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element 1 = element)) ∧ ((∀ (element : R), (fun a b => instHMul.hMul a b) ((fun a => DivisionMonoid.toDivInvOneMonoid.toInvOneClass.inv a) element) element = 1) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element ((fun a => DivisionMonoid.toDivInvOneMonoid.toInvOneClass.inv a) element) = 1)))) ∧ (((∀ (a : R), a ≤ a) ∧ ((∀ (a b : R), a ≤ b → b ≤ a → a = b) ∧ (∀ (a b c : R), a ≤ b → b ≤ c → a ≤ c))) ∧ ((∀ (fixed left right : R), left ≤ right → (fun a b => a ≤ b)((fun a b => instHMul.hMul a b) fixed left) ((fun a b => instHMul.hMul a b) fixed right)) ∧ (∀ (left right fixed : R), left ≤ right → (fun a b => a ≤ b)((fun a b => instHMul.hMul a b) left fixed) ((fun a b => instHMul.hMul a b) right fixed)))))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./OrderedGroup/Constructions/Mathlib/Laws.lean`](./OrderedGroup/Constructions/Mathlib/Laws.lean)
@@ -1179,7 +1173,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    IsOrderedMonoid R → ∀ [inst_2 : Nonempty R], LRA.AlgebraicStructures.LinearlyOrderedGroupLaws R
+    (IsOrderedMonoid R ∧ Nonempty R) → (((∀ (first second third : R), (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ (((∀ (element : R), (fun a b => instHMul.hMul a b) 1 element = element) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element 1 = element)) ∧ ((∀ (element : R), (fun a b => instHMul.hMul a b) ((fun a => DivisionMonoid.toDivInvOneMonoid.toInvOneClass.inv a) element) element = 1) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element ((fun a => DivisionMonoid.toDivInvOneMonoid.toInvOneClass.inv a) element) = 1)))) ∧ ((((∀ (a : R), instDistribLatticeOfLinearOrder.toSemilatticeInf.le a a) ∧ ((∀ (a b : R), instDistribLatticeOfLinearOrder.toSemilatticeInf.le a b → instDistribLatticeOfLinearOrder.toSemilatticeInf.le b a → a = b) ∧ (∀ (a b c : R), instDistribLatticeOfLinearOrder.toSemilatticeInf.le a b → instDistribLatticeOfLinearOrder.toSemilatticeInf.le b c → instDistribLatticeOfLinearOrder.toSemilatticeInf.le a c))) ∧ (∀ (a b : R), Or (instDistribLatticeOfLinearOrder.toSemilatticeInf.le a b) (instDistribLatticeOfLinearOrder.toSemilatticeInf.le b a))) ∧ ((∀ (fixed left right : R), instDistribLatticeOfLinearOrder.toSemilatticeInf.le left right → (fun a b => instDistribLatticeOfLinearOrder.toSemilatticeInf.le a b) ((fun a b => instHMul.hMul a b) fixed left) ((fun a b => instHMul.hMul a b) fixed right)) ∧ (∀ (left right fixed : R), instDistribLatticeOfLinearOrder.toSemilatticeInf.le left right → (fun a b => instDistribLatticeOfLinearOrder.toSemilatticeInf.le a b) ((fun a b => instHMul.hMul a b) left fixed) ((fun a b => instHMul.hMul a b) right fixed)))))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./LinearlyOrderedGroup/Constructions/Mathlib/Laws.lean`](./LinearlyOrderedGroup/Constructions/Mathlib/Laws.lean)
@@ -1196,7 +1190,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    IsOrderedRing R → ∀ [inst_2 : Nonempty R], LRA.AlgebraicStructures.OrderedSemiringLaws R
+    (IsOrderedRing R ∧ Nonempty R) → (((∀ (first second third : R), (fun a b => instHAdd.hAdd a b) ((fun a b => instHAdd.hAdd a b) first second) third = (fun a b => instHAdd.hAdd a b) first ((fun a b => instHAdd.hAdd a b) second third)) ∧ (((∀ (element : R), (fun a b => instHAdd.hAdd a b) 0 element = element) ∧ (∀ (element : R), (fun a b => instHAdd.hAdd a b) element 0 = element)) ∧ ((∀ (first second : R), (fun a b => instHAdd.hAdd a b) first second = (fun a b => instHAdd.hAdd a b) second first) ∧ ((∀ (first second third : R), (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ (((∀ (element : R), (fun a b => instHMul.hMul a b) 1 element = element) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element 1 = element)) ∧ (((∀ (element : R), (fun a b => instHMul.hMul a b) 0 element = 0) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element 0 = 0)) ∧ ((∀ (left right third : R), (fun a b => instHMul.hMul a b) left ((fun a b => instHAdd.hAdd a b) right third) = (fun a b => instHAdd.hAdd a b) ((fun a b => instHMul.hMul a b) left right) ((fun a b => instHMul.hMul a b) left third)) ∧ (∀ (left right third : R), (fun a b => instHMul.hMul a b) ((fun a b => instHAdd.hAdd a b) left right) third = (fun a b => instHAdd.hAdd a b) ((fun a b => instHMul.hMul a b) left third) ((fun a b => instHMul.hMul a b) right third))))))))) ∧ ((((∀ (a : R), instDistribLatticeOfLinearOrder.toSemilatticeInf.le a a) ∧ ((∀ (a b : R), instDistribLatticeOfLinearOrder.toSemilatticeInf.le a b → instDistribLatticeOfLinearOrder.toSemilatticeInf.le b a → a = b) ∧ (∀ (a b c : R), instDistribLatticeOfLinearOrder.toSemilatticeInf.le a b → instDistribLatticeOfLinearOrder.toSemilatticeInf.le b c → instDistribLatticeOfLinearOrder.toSemilatticeInf.le a c))) ∧ (∀ (a b : R), Or (instDistribLatticeOfLinearOrder.toSemilatticeInf.le a b) (instDistribLatticeOfLinearOrder.toSemilatticeInf.le b a))) ∧ (((∀ (a b : R), instDistribLatticeOfLinearOrder.toSemilatticeInf.le a b → ∀ (c : R), instDistribLatticeOfLinearOrder.toSemilatticeInf.le (instHAdd.hAdd c a) (instHAdd.hAdd c b)) ∧ (∀ (a b : R), instDistribLatticeOfLinearOrder.toSemilatticeInf.le a b → ∀ (c : R), instDistribLatticeOfLinearOrder.toSemilatticeInf.le (instHAdd.hAdd a c) (instHAdd.hAdd b c))) ∧ (∀ (a b : R), instDistribLatticeOfLinearOrder.toSemilatticeInf.le 0 a → instDistribLatticeOfLinearOrder.toSemilatticeInf.le 0 b → instDistribLatticeOfLinearOrder.toSemilatticeInf.le 0 (instHMul.hMul a b)))))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./OrderedSemiring/Constructions/Mathlib/Laws.lean`](./OrderedSemiring/Constructions/Mathlib/Laws.lean)
@@ -1213,7 +1207,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    IsOrderedRing R → ∀ [inst_2 : Nonempty R], LRA.AlgebraicStructures.OrderedRingLaws R
+    (IsOrderedRing R ∧ Nonempty R) → (((∀ (first second third : R), (fun a b => instHAdd.hAdd a b) ((fun a b => instHAdd.hAdd a b) first second) third = (fun a b => instHAdd.hAdd a b) first ((fun a b => instHAdd.hAdd a b) second third)) ∧ (((∀ (element : R), (fun a b => instHAdd.hAdd a b) 0 element = element) ∧ (∀ (element : R), (fun a b => instHAdd.hAdd a b) element 0 = element)) ∧ (((∀ (element : R), (fun a b => instHAdd.hAdd a b) ((fun a => SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg a) element) element = 0) ∧ (∀ (element : R), (fun a b => instHAdd.hAdd a b) element ((fun a => SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg a) element) = 0)) ∧ ((∀ (first second : R), (fun a b => instHAdd.hAdd a b) first second = (fun a b => instHAdd.hAdd a b) second first) ∧ ((∀ (first second third : R), (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ (((∀ (element : R), (fun a b => instHMul.hMul a b) 1 element = element) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element 1 = element)) ∧ (((∀ (element : R), (fun a b => instHMul.hMul a b) 0 element = 0) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element 0 = 0)) ∧ ((∀ (left right third : R), (fun a b => instHMul.hMul a b) left ((fun a b => instHAdd.hAdd a b) right third) = (fun a b => instHAdd.hAdd a b) ((fun a b => instHMul.hMul a b) left right) ((fun a b => instHMul.hMul a b) left third)) ∧ (∀ (left right third : R), (fun a b => instHMul.hMul a b) ((fun a b => instHAdd.hAdd a b) left right) third = (fun a b => instHAdd.hAdd a b) ((fun a b => instHMul.hMul a b) left third) ((fun a b => instHMul.hMul a b) right third)))))))))) ∧ (((∀ (a : R), a ≤ a) ∧ ((∀ (a b : R), a ≤ b → b ≤ a → a = b) ∧ (∀ (a b c : R), a ≤ b → b ≤ c → a ≤ c))) ∧ (((∀ (a b : R), a ≤ b → ∀ (c : R), instHAdd.hAdd c a ≤ instHAdd.hAdd c b) ∧ (∀ (a b : R), a ≤ b → ∀ (c : R), instHAdd.hAdd a c ≤ instHAdd.hAdd b c)) ∧ (∀ (a b : R), 0 ≤ a → 0 ≤ b → 0 ≤ instHMul.hMul a b))))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./OrderedRing/Constructions/Mathlib/Laws.lean`](./OrderedRing/Constructions/Mathlib/Laws.lean)
@@ -1230,7 +1224,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    IsStrictOrderedRing R → ∀ [inst_2 : Nonempty R], LRA.AlgebraicStructures.LinearlyOrderedRingLaws R
+    (IsStrictOrderedRing R ∧ Nonempty R) → (((∀ (first second third : R), (fun a b => instHAdd.hAdd a b) ((fun a b => instHAdd.hAdd a b) first second) third = (fun a b => instHAdd.hAdd a b) first ((fun a b => instHAdd.hAdd a b) second third)) ∧ (((∀ (element : R), (fun a b => instHAdd.hAdd a b) 0 element = element) ∧ (∀ (element : R), (fun a b => instHAdd.hAdd a b) element 0 = element)) ∧ (((∀ (element : R), (fun a b => instHAdd.hAdd a b) ((fun a => SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg a) element) element = 0) ∧ (∀ (element : R), (fun a b => instHAdd.hAdd a b) element ((fun a => SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg a) element) = 0)) ∧ ((∀ (first second : R), (fun a b => instHAdd.hAdd a b) first second = (fun a b => instHAdd.hAdd a b) second first) ∧ ((∀ (first second third : R), (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ (((∀ (element : R), (fun a b => instHMul.hMul a b) 1 element = element) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element 1 = element)) ∧ (((∀ (element : R), (fun a b => instHMul.hMul a b) 0 element = 0) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element 0 = 0)) ∧ ((∀ (left right third : R), (fun a b => instHMul.hMul a b) left ((fun a b => instHAdd.hAdd a b) right third) = (fun a b => instHAdd.hAdd a b) ((fun a b => instHMul.hMul a b) left right) ((fun a b => instHMul.hMul a b) left third)) ∧ (∀ (left right third : R), (fun a b => instHMul.hMul a b) ((fun a b => instHAdd.hAdd a b) left right) third = (fun a b => instHAdd.hAdd a b) ((fun a b => instHMul.hMul a b) left third) ((fun a b => instHMul.hMul a b) right third)))))))))) ∧ ((((∀ (a : R), instDistribLatticeOfLinearOrder.toSemilatticeInf.le a a) ∧ ((∀ (a b : R), instDistribLatticeOfLinearOrder.toSemilatticeInf.le a b → instDistribLatticeOfLinearOrder.toSemilatticeInf.le b a → a = b) ∧ (∀ (a b c : R), instDistribLatticeOfLinearOrder.toSemilatticeInf.le a b → instDistribLatticeOfLinearOrder.toSemilatticeInf.le b c → instDistribLatticeOfLinearOrder.toSemilatticeInf.le a c))) ∧ (∀ (a b : R), Or (instDistribLatticeOfLinearOrder.toSemilatticeInf.le a b) (instDistribLatticeOfLinearOrder.toSemilatticeInf.le b a))) ∧ (((∀ (a b : R), instDistribLatticeOfLinearOrder.toSemilatticeInf.le a b → ∀ (c : R), instDistribLatticeOfLinearOrder.toSemilatticeInf.le (instHAdd.hAdd c a) (instHAdd.hAdd c b)) ∧ (∀ (a b : R), instDistribLatticeOfLinearOrder.toSemilatticeInf.le a b → ∀ (c : R), instDistribLatticeOfLinearOrder.toSemilatticeInf.le (instHAdd.hAdd a c) (instHAdd.hAdd b c))) ∧ (∀ (a b : R), instDistribLatticeOfLinearOrder.toSemilatticeInf.le 0 a → instDistribLatticeOfLinearOrder.toSemilatticeInf.le 0 b → instDistribLatticeOfLinearOrder.toSemilatticeInf.le 0 (instHMul.hMul a b)))))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./LinearlyOrderedRing/Constructions/Mathlib/Laws.lean`](./LinearlyOrderedRing/Constructions/Mathlib/Laws.lean)
@@ -1247,7 +1241,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    IsStrictOrderedRing R → ∀ [inst_2 : Nonempty R], LRA.AlgebraicStructures.OrderedFieldLaws R
+    (IsStrictOrderedRing R ∧ Nonempty R) → (((((∀ (first second third : R), (fun a b => instHAdd.hAdd a b) ((fun a b => instHAdd.hAdd a b) first second) third = (fun a b => instHAdd.hAdd a b) first ((fun a b => instHAdd.hAdd a b) second third)) ∧ (((∀ (element : R), (fun a b => instHAdd.hAdd a b) 0 element = element) ∧ (∀ (element : R), (fun a b => instHAdd.hAdd a b) element 0 = element)) ∧ (((∀ (element : R), (fun a b => instHAdd.hAdd a b) ((fun a => SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg a) element) element = 0) ∧ (∀ (element : R), (fun a b => instHAdd.hAdd a b) element ((fun a => SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg a) element) = 0)) ∧ ((∀ (first second : R), (fun a b => instHAdd.hAdd a b) first second = (fun a b => instHAdd.hAdd a b) second first) ∧ ((∀ (first second third : R), (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ (((∀ (element : R), (fun a b => instHMul.hMul a b) 1 element = element) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element 1 = element)) ∧ (((∀ (element : R), (fun a b => instHMul.hMul a b) 0 element = 0) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element 0 = 0)) ∧ ((∀ (left right third : R), (fun a b => instHMul.hMul a b) left ((fun a b => instHAdd.hAdd a b) right third) = (fun a b => instHAdd.hAdd a b) ((fun a b => instHMul.hMul a b) left right) ((fun a b => instHMul.hMul a b) left third)) ∧ (∀ (left right third : R), (fun a b => instHMul.hMul a b) ((fun a b => instHAdd.hAdd a b) left right) third = (fun a b => instHAdd.hAdd a b) ((fun a b => instHMul.hMul a b) left third) ((fun a b => instHMul.hMul a b) right third)))))))))) ∧ ((1 = 0 → False) ∧ ((∀ (a : R), (a = 0 → False) → (fun x y => instHMul.hMul x y) a (DivisionMonoid.toDivInvOneMonoid.toInvOneClass.inv a) = 1) ∧ DivisionMonoid.toDivInvOneMonoid.toInvOneClass.inv 0 = 0))) ∧ (∀ (first second : R), (fun a b => instHMul.hMul a b) first second = (fun a b => instHMul.hMul a b) second first)) ∧ ((((∀ (a : R), instDistribLatticeOfLinearOrder.toSemilatticeInf.le a a) ∧ ((∀ (a b : R), instDistribLatticeOfLinearOrder.toSemilatticeInf.le a b → instDistribLatticeOfLinearOrder.toSemilatticeInf.le b a → a = b) ∧ (∀ (a b c : R), instDistribLatticeOfLinearOrder.toSemilatticeInf.le a b → instDistribLatticeOfLinearOrder.toSemilatticeInf.le b c → instDistribLatticeOfLinearOrder.toSemilatticeInf.le a c))) ∧ (∀ (a b : R), Or (instDistribLatticeOfLinearOrder.toSemilatticeInf.le a b) (instDistribLatticeOfLinearOrder.toSemilatticeInf.le b a))) ∧ (((∀ (a b : R), instDistribLatticeOfLinearOrder.toSemilatticeInf.le a b → ∀ (c : R), instDistribLatticeOfLinearOrder.toSemilatticeInf.le (instHAdd.hAdd c a) (instHAdd.hAdd c b)) ∧ (∀ (a b : R), instDistribLatticeOfLinearOrder.toSemilatticeInf.le a b → ∀ (c : R), instDistribLatticeOfLinearOrder.toSemilatticeInf.le (instHAdd.hAdd a c) (instHAdd.hAdd b c))) ∧ (∀ (a b : R), instDistribLatticeOfLinearOrder.toSemilatticeInf.le 0 a → instDistribLatticeOfLinearOrder.toSemilatticeInf.le 0 b → instDistribLatticeOfLinearOrder.toSemilatticeInf.le 0 (instHMul.hMul a b)))))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./OrderedField/Constructions/Mathlib/Laws.lean`](./OrderedField/Constructions/Mathlib/Laws.lean)
@@ -1264,7 +1258,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    IsStrictOrderedRing R → ∀ [inst_2 : Nonempty R], (LRA.AlgebraicStructures.OrderedFieldLaws R ∧ (LRA.Order.OrderCompletenessLaws R (R → Prop)))
+    (IsStrictOrderedRing R ∧ Nonempty R) → (((((LRA.Operation.Laws.Associative.Associative fun a b => instHAdd.hAdd a b ∧ ((LRA.Operation.Laws.Identity.LeftIdentity (fun a b => instHAdd.hAdd a b) 0 ∧ LRA.Operation.Laws.Identity.RightIdentity (fun a b => instHAdd.hAdd a b) 0) ∧ ((LRA.Operation.Laws.Inverse.LeftInverse (fun a b => instHAdd.hAdd a b) 0 fun a => SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg a ∧ LRA.Operation.Laws.Inverse.RightInverse (fun a b => instHAdd.hAdd a b) 0 fun a => SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg a) ∧ (LRA.Operation.Laws.Commutative.Commutative fun a b => instHAdd.hAdd a b ∧ (LRA.Operation.Laws.Associative.Associative fun a b => instHMul.hMul a b ∧ ((LRA.Operation.Laws.Identity.LeftIdentity (fun a b => instHMul.hMul a b) 1 ∧ LRA.Operation.Laws.Identity.RightIdentity (fun a b => instHMul.hMul a b) 1) ∧ ((LRA.Operation.Laws.Absorbing.LeftAbsorbing (fun a b => instHMul.hMul a b) 0 ∧ LRA.Operation.Laws.Absorbing.RightAbsorbing (fun a b => instHMul.hMul a b) 0) ∧ (LRA.Operation.Laws.Distributive.LeftDistributive (fun a b => instHMul.hMul a b) fun a b => instHAdd.hAdd a b ∧ LRA.Operation.Laws.Distributive.RightDistributive (fun a b => instHMul.hMul a b) fun a b => instHAdd.hAdd a b)))))))) ∧ (¬ 1 = 0 ∧ ((∀ (a : R), ¬ a = 0 → (fun x y => instHMul.hMul x y) a (DivisionMonoid.toDivInvOneMonoid.toInvOneClass.inv a) = 1) ∧ DivisionMonoid.toDivInvOneMonoid.toInvOneClass.inv 0 = 0))) ∧ (∀ (first second : R), (fun a b => instHMul.hMul a b) first second = (fun a b => instHMul.hMul a b) second first)) ∧ ((((∀ (a : R), ConditionallyCompleteLattice.toConditionallyCompletePartialOrder.le a a) ∧ ((∀ (a b : R), ConditionallyCompleteLattice.toConditionallyCompletePartialOrder.le a b → ConditionallyCompleteLattice.toConditionallyCompletePartialOrder.le b a → a = b) ∧ (∀ (a b c : R), ConditionallyCompleteLattice.toConditionallyCompletePartialOrder.le a b → ConditionallyCompleteLattice.toConditionallyCompletePartialOrder.le b c → ConditionallyCompleteLattice.toConditionallyCompletePartialOrder.le a c))) ∧ (∀ (a b : R), Or (ConditionallyCompleteLattice.toConditionallyCompletePartialOrder.le a b) (ConditionallyCompleteLattice.toConditionallyCompletePartialOrder.le b a))) ∧ (((∀ (a b : R), ConditionallyCompleteLattice.toConditionallyCompletePartialOrder.le a b → ∀ (c : R), ConditionallyCompleteLattice.toConditionallyCompletePartialOrder.le (instHAdd.hAdd c a) (instHAdd.hAdd c b)) ∧ (∀ (a b : R), ConditionallyCompleteLattice.toConditionallyCompletePartialOrder.le a b → ∀ (c : R), ConditionallyCompleteLattice.toConditionallyCompletePartialOrder.le (instHAdd.hAdd a c) (instHAdd.hAdd b c))) ∧ (∀ (a b : R), ConditionallyCompleteLattice.toConditionallyCompletePartialOrder.le 0 a → ConditionallyCompleteLattice.toConditionallyCompletePartialOrder.le 0 b → ConditionallyCompleteLattice.toConditionallyCompletePartialOrder.le 0 (instHMul.hMul a b))))) ∧ (∀ (subset : Set R), (∃ element, element) ∈ subset → (∃ bound, ∀ (element : R), element ∈ subset → (fun a b => ConditionallyCompleteLattice.toConditionallyCompletePartialOrder.le a b) element bound) → ∃ supremum, ((∀ (element : R), element ∈ subset → (fun a b => ConditionallyCompleteLattice.toConditionallyCompletePartialOrder.le a b) element supremum) ∧ (∀ (bound : R), (∀ (element : R), element ∈ subset → (fun a b => ConditionallyCompleteLattice.toConditionallyCompletePartialOrder.le a b) element bound) → (fun a b => ConditionallyCompleteLattice.toConditionallyCompletePartialOrder.le a b) supremum bound))))
 Transliterated theorem: CompleteOrderedFieldLaws R (Set R)
 Logical form (Lean): {R : Type u} [_root_.Field R] [_root_.ConditionallyCompleteLinearOrder R] [_root_.IsStrictOrderedRing R] [Nonempty R] : CompleteOrderedFieldLaws R (Set R)
 Source: [`./CompleteOrderedField/Constructions/Mathlib/Laws.lean#L55`](./CompleteOrderedField/Constructions/Mathlib/Laws.lean#L55)
@@ -1281,7 +1275,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.ArchimedeanLaw R → ∀ (x : R), inst_1.lt 0 x → ∀ (point : R), Exists fun element => (LRA.Set.Constructions.instMembershipTypeSet.1 (fun y => Exists fun n => y = LRA.AlgebraicStructures.IteratedSelfSum n x) element ∧ (fun x1 x2 => inst_1.lt x1 x2) point element)
+    (∀ (x : R), 0 < x → ∀ (point : R), ∃ element, (LRA.Set.Constructions.instMembershipTypeSet.mem (LRA.AlgebraicStructures.Multiples x) element ∧ (fun x1 x2 => x1 < x2)point element)) → ∀ (x : R), 0 < x → ∀ (point : R), ∃ element, (LRA.Set.Constructions.instMembershipTypeSet.mem (LRA.AlgebraicStructures.Multiples x) element ∧ (fun x1 x2 => x1 < x2)point element)
 Transliterated theorem: forall x : R, 0 < x -> LRA.Order.Cofinal · < · ∈ R → R → Prop (Multiples x)
 Logical form (Lean): [Add R] [LT R] [OfNat R 0] [ArchimedeanLaw R] : forall x : R, 0 < x -> LRA.Order.Cofinal (· < · : R → R → Prop) (Multiples x)
 Source: [`./Archimedean/Interface/Laws/Definition.lean#L196`](./Archimedean/Interface/Laws/Definition.lean#L196)
@@ -1299,7 +1293,7 @@ Predicate logic (unfolded):
     n : Nat
     x : R
   Prove
-    LRA.AlgebraicStructures.IteratedSelfSum n x = instHSMul.1 ({ hAdd := fun a b => instAddNat.add a b }.hAdd n 1) x
+    LRA.AlgebraicStructures.IteratedSelfSum n x = instHSMul.hSMul (instHAdd.hAdd n 1) x
 Transliterated theorem: (∀ n ∈ Nat ∀ x ∈ R), IteratedSelfSum n x = (n + 1) • x
 Logical form (Lean): {R : Type u} [AddMonoid R] (n : Nat) (x : R) : IteratedSelfSum n x = (n + 1) • x
 Source: [`./Archimedean/Constructions/Mathlib/Laws.lean#L51`](./Archimedean/Constructions/Mathlib/Laws.lean#L51)
@@ -1316,7 +1310,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (CovariantClass R R (fun x1 x2 => { hAdd := fun a b => inst.toAddCommSemigroup.toAddCommMagma.1.add a b }.hAdd x1 x2) fun x1 x2 => inst_1.toPreorder.2.lt x1 x2 ∧ Archimedean R) → LRA.AlgebraicStructures.ArchimedeanLaw R
+    (CovariantClass R R (fun x1 x2 => instHAdd.hAdd x1 x2) fun x1 x2 => x1 < x2 ∧ Archimedean R) → ∀ (x : R), 0 < x → ∀ (point : R), ∃ element, (LRA.Set.Constructions.instMembershipTypeSet.mem (LRA.AlgebraicStructures.Multiples x) element ∧ (fun x1 x2 => x1 < x2)point element)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Archimedean/Constructions/Mathlib/Laws.lean`](./Archimedean/Constructions/Mathlib/Laws.lean)
@@ -1333,7 +1327,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.SuccessorLaws R → ∀ (a : R), inst_1.1 (inst.1 a) = a
+    ((∀ (a : R), LRA.AlgebraicStructures.Pred (LRA.AlgebraicStructures.Succ a) = a) ∧ ((∀ (a : R), LRA.AlgebraicStructures.Succ (LRA.AlgebraicStructures.Pred a) = a) ∧ ((∀ (a b : R), LRA.AlgebraicStructures.Succ a = LRA.AlgebraicStructures.Succ b → a = b) ∧ (∀ (a b : R), LRA.AlgebraicStructures.Pred a = LRA.AlgebraicStructures.Pred b → a = b)))) → ∀ (a : R), LRA.AlgebraicStructures.Pred (LRA.AlgebraicStructures.Succ a) = a
 Transliterated theorem: ∀ a : R, Pred (Succ a) = a
 Logical form (Lean): [HasSuccessor R] [HasPredecessor R] [SuccessorLaws R] : ∀ a : R, Pred (Succ a) = a
 Source: [`./DiscreteInteger/Interface/Laws/Definition.lean#L489`](./DiscreteInteger/Interface/Laws/Definition.lean#L489)
@@ -1350,7 +1344,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.SuccessorLaws R → ∀ (a : R), inst.1 (inst_1.1 a) = a
+    ((∀ (a : R), LRA.AlgebraicStructures.Pred (LRA.AlgebraicStructures.Succ a) = a) ∧ ((∀ (a : R), LRA.AlgebraicStructures.Succ (LRA.AlgebraicStructures.Pred a) = a) ∧ ((∀ (a b : R), LRA.AlgebraicStructures.Succ a = LRA.AlgebraicStructures.Succ b → a = b) ∧ (∀ (a b : R), LRA.AlgebraicStructures.Pred a = LRA.AlgebraicStructures.Pred b → a = b)))) → ∀ (a : R), LRA.AlgebraicStructures.Succ (LRA.AlgebraicStructures.Pred a) = a
 Transliterated theorem: ∀ a : R, Succ (Pred a) = a
 Logical form (Lean): [HasSuccessor R] [HasPredecessor R] [SuccessorLaws R] : ∀ a : R, Succ (Pred a) = a
 Source: [`./DiscreteInteger/Interface/Laws/Definition.lean#L534`](./DiscreteInteger/Interface/Laws/Definition.lean#L534)
@@ -1367,7 +1361,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.SuccessorLaws R → ∀ (a b : R), inst.1 a = inst.1 b → a = b
+    ((∀ (a : R), LRA.AlgebraicStructures.Pred (LRA.AlgebraicStructures.Succ a) = a) ∧ ((∀ (a : R), LRA.AlgebraicStructures.Succ (LRA.AlgebraicStructures.Pred a) = a) ∧ ((∀ (a b : R), LRA.AlgebraicStructures.Succ a = LRA.AlgebraicStructures.Succ b → a = b) ∧ (∀ (a b : R), LRA.AlgebraicStructures.Pred a = LRA.AlgebraicStructures.Pred b → a = b)))) → ∀ (a b : R), LRA.AlgebraicStructures.Succ a = LRA.AlgebraicStructures.Succ b → a = b
 Transliterated theorem: ∀ a b : R, Succ a = Succ b → a = b
 Logical form (Lean): [HasSuccessor R] [HasPredecessor R] [SuccessorLaws R] : ∀ a b : R, Succ a = Succ b → a = b
 Source: [`./DiscreteInteger/Interface/Laws/Definition.lean#L580`](./DiscreteInteger/Interface/Laws/Definition.lean#L580)
@@ -1384,7 +1378,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.SuccessorLaws R → ∀ (a b : R), inst_1.1 a = inst_1.1 b → a = b
+    ((∀ (a : R), LRA.AlgebraicStructures.Pred (LRA.AlgebraicStructures.Succ a) = a) ∧ ((∀ (a : R), LRA.AlgebraicStructures.Succ (LRA.AlgebraicStructures.Pred a) = a) ∧ ((∀ (a b : R), LRA.AlgebraicStructures.Succ a = LRA.AlgebraicStructures.Succ b → a = b) ∧ (∀ (a b : R), LRA.AlgebraicStructures.Pred a = LRA.AlgebraicStructures.Pred b → a = b)))) → ∀ (a b : R), LRA.AlgebraicStructures.Pred a = LRA.AlgebraicStructures.Pred b → a = b
 Transliterated theorem: ∀ a b : R, Pred a = Pred b → a = b
 Logical form (Lean): [HasSuccessor R] [HasPredecessor R] [SuccessorLaws R] : ∀ a b : R, Pred a = Pred b → a = b
 Source: [`./DiscreteInteger/Interface/Laws/Definition.lean#L627`](./DiscreteInteger/Interface/Laws/Definition.lean#L627)
@@ -1401,7 +1395,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.SuccessorAdditionLaw R → ∀ (a : R), inst.1 a = { hAdd := fun a b => inst_1.add a b }.hAdd a 1
+    (∀ (a : R), LRA.AlgebraicStructures.Succ a = instHAdd.hAdd a 1) → ∀ (a : R), LRA.AlgebraicStructures.Succ a = instHAdd.hAdd a 1
 Transliterated theorem: ∀ a : R, Succ a = a + 1
 Logical form (Lean): [HasSuccessor R] [Add R] [OfNat R 1] [SuccessorAdditionLaw R] : ∀ a : R, Succ a = a + 1
 Source: [`./DiscreteInteger/Interface/Laws/Definition.lean#L674`](./DiscreteInteger/Interface/Laws/Definition.lean#L674)
@@ -1418,7 +1412,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.SuccessorMultiplicationLaws R → ∀ (a b : R), { hMul := fun a b => inst_3.mul a b }.hMul a (inst.1 b) = { hAdd := fun a b => inst_2.add a b }.hAdd ({ hMul := fun a b => inst_3.mul a b }.hMul a b) a
+    ((∀ (a b : R), instHMul.hMul a (LRA.AlgebraicStructures.Succ b) = instHAdd.hAdd (instHMul.hMul a b) a) ∧ (∀ (a b : R), instHMul.hMul a (LRA.AlgebraicStructures.Pred b) = instHAdd.hAdd (instHMul.hMul a b) (inst_4.neg a))) → ∀ (a b : R), instHMul.hMul a (LRA.AlgebraicStructures.Succ b) = instHAdd.hAdd (instHMul.hMul a b) a
 Transliterated theorem: ∀ a b : R, a * Succ b = a * b + a
 Logical form (Lean): [HasSuccessor R] [HasPredecessor R] [Add R] [Mul R] [Neg R] [SuccessorMultiplicationLaws R] : ∀ a b : R, a * Succ b = a * b + a
 Source: [`./DiscreteInteger/Interface/Laws/Definition.lean#L721`](./DiscreteInteger/Interface/Laws/Definition.lean#L721)
@@ -1435,7 +1429,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.SuccessorMultiplicationLaws R → ∀ (a b : R), { hMul := fun a b => inst_3.mul a b }.hMul a (inst_1.1 b) = { hAdd := fun a b => inst_2.add a b }.hAdd ({ hMul := fun a b => inst_3.mul a b }.hMul a b) (inst_4.neg a)
+    ((∀ (a b : R), instHMul.hMul a (LRA.AlgebraicStructures.Succ b) = instHAdd.hAdd (instHMul.hMul a b) a) ∧ (∀ (a b : R), instHMul.hMul a (LRA.AlgebraicStructures.Pred b) = instHAdd.hAdd (instHMul.hMul a b) (inst_4.neg a))) → ∀ (a b : R), instHMul.hMul a (LRA.AlgebraicStructures.Pred b) = instHAdd.hAdd (instHMul.hMul a b) (inst_4.neg a)
 Transliterated theorem: ∀ a b : R, a * Pred b = a * b + -a
 Logical form (Lean): [HasSuccessor R] [HasPredecessor R] [Add R] [Mul R] [Neg R] [SuccessorMultiplicationLaws R] : ∀ a b : R, a * Pred b = a * b + -a
 Source: [`./DiscreteInteger/Interface/Laws/Definition.lean#L768`](./DiscreteInteger/Interface/Laws/Definition.lean#L768)
@@ -1452,7 +1446,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.DiscretenessLaw R → ∀ (x : R) (n : Nat), (instLTNat.lt 0 n ∧ LRA.AlgebraicStructures.SuccIterate n x = x) → False
+    ((∀ (x : R) (n : Nat), instLTNat.lt 0 n → LRA.AlgebraicStructures.SuccIterate n x = x → False) ∧ (∀ (motive : R → Prop), motive 0 → (∀ (a : R), motive a → motive (LRA.AlgebraicStructures.Succ a)) → (∀ (a : R), motive a → motive (LRA.AlgebraicStructures.Pred a)) → ∀ (a : R), motive a)) → ∀ (x : R) (n : Nat), (instLTNat.lt 0 n ∧ LRA.AlgebraicStructures.SuccIterate n x = x) → False
 Transliterated theorem: ∀ x ∈ R n ∈ Nat, 0 < n → SuccIterate n x ≠ x
 Logical form (Lean): [HasSuccessor R] [HasPredecessor R] [OfNat R 0] [DiscretenessLaw R] : ∀ (x : R) (n : Nat), 0 < n → SuccIterate n x ≠ x
 Source: [`./DiscreteInteger/Interface/Laws/Definition.lean#L815`](./DiscreteInteger/Interface/Laws/Definition.lean#L815)
@@ -1469,7 +1463,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.DiscretenessLaw R → ∀ (motive : R → Prop), (motive 0 ∧ ((∀ (a : R), motive a → motive (inst.1 a)) ∧ (∀ (a : R), motive a → motive (inst_1.1 a)))) → ∀ (a : R), motive a
+    ((∀ (x : R) (n : Nat), instLTNat.lt 0 n → LRA.AlgebraicStructures.SuccIterate n x = x → False) ∧ (∀ (motive : R → Prop), motive 0 → (∀ (a : R), motive a → motive (LRA.AlgebraicStructures.Succ a)) → (∀ (a : R), motive a → motive (LRA.AlgebraicStructures.Pred a)) → ∀ (a : R), motive a)) → ∀ (motive : R → Prop), (motive 0 ∧ ((∀ (a : R), motive a → motive (LRA.AlgebraicStructures.Succ a)) ∧ (∀ (a : R), motive a → motive (LRA.AlgebraicStructures.Pred a)))) → ∀ (a : R), motive a
 Transliterated theorem: ∀ motive ∈ R → Prop, motive 0 → (∀ a, motive a → motive (Succ a)) → (∀ a, motive a → motive (Pred a)) → ∀ a, motive a
 Logical form (Lean): [HasSuccessor R] [HasPredecessor R] [OfNat R 0] [DiscretenessLaw R] : ∀ (motive : R → Prop), motive 0 → (∀ a, motive a → motive (Succ a)) → (∀ a, motive a → motive (Pred a)) → ∀ a, motive a
 Source: [`./DiscreteInteger/Interface/Laws/Definition.lean#L866`](./DiscreteInteger/Interface/Laws/Definition.lean#L866)
@@ -1486,7 +1480,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (a ∈ LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Examples.PositiveReals ∧ b ∈ LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Examples.PositiveReals) → { hAdd := fun a b => Real.instAdd.add a b }.hAdd a b ∈ LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Examples.PositiveReals
+    (a ∈ LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Examples.PositiveReals ∧ b ∈ LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Examples.PositiveReals) → instHAdd.hAdd a b ∈ LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Examples.PositiveReals
 Transliterated theorem: ∀ a b, a ∈ PositiveReals → b ∈ PositiveReals → a + b ∈ PositiveReals
 Logical form (Lean): : ∀ a b, a ∈ PositiveReals → b ∈ PositiveReals → a + b ∈ PositiveReals
 Source: [`./AdditiveCommutativeSemigroup/Examples/OpenIntervalUnderAddition.lean#L99`](./AdditiveCommutativeSemigroup/Examples/OpenIntervalUnderAddition.lean#L99)
@@ -1503,7 +1497,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.AdditiveCommutativeSemigroupLaws (Subtype fun x => x) ∈ LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Examples.PositiveReals
+    ((∀ (first second third : Subtype fun x => x), ∈ LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Examples.PositiveReals (fun a b => instHAdd.hAdd a b) ((fun a b => instHAdd.hAdd a b) first second) third = (fun a b => instHAdd.hAdd a b) first ((fun a b => instHAdd.hAdd a b) second third)) ∧ (∀ (first second : Subtype fun x => x), ∈ LRA.AlgebraicStructures.AdditiveCommutativeSemigroup.Examples.PositiveReals (fun a b => instHAdd.hAdd a b) first second = (fun a b => instHAdd.hAdd a b) second first))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./AdditiveCommutativeSemigroup/Examples/OpenIntervalUnderAddition.lean`](./AdditiveCommutativeSemigroup/Examples/OpenIntervalUnderAddition.lean)
@@ -1537,7 +1531,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (a ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.EvenIntegers ∧ b ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.EvenIntegers) → { hAdd := fun a b => Int.instAdd.add a b }.hAdd a b ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.EvenIntegers
+    (a ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.EvenIntegers ∧ b ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.EvenIntegers) → instHAdd.hAdd a b ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.EvenIntegers
 Transliterated theorem: ∀ a b, a ∈ EvenIntegers → b ∈ EvenIntegers → a + b ∈ EvenIntegers
 Logical form (Lean): : ∀ a b, a ∈ EvenIntegers → b ∈ EvenIntegers → a + b ∈ EvenIntegers
 Source: [`./AdditiveSemigroup/Examples/EvenIntegersUnderAddition.lean#L100`](./AdditiveSemigroup/Examples/EvenIntegersUnderAddition.lean#L100)
@@ -1554,7 +1548,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.AdditiveSemigroupLaws Int
+    (fun a b => instHAdd.hAdd a b) ((fun a b => instHAdd.hAdd a b) first second) third = (fun a b => instHAdd.hAdd a b) first ((fun a b => instHAdd.hAdd a b) second third)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./AdditiveSemigroup/Examples/EvenIntegersUnderAddition.lean`](./AdditiveSemigroup/Examples/EvenIntegersUnderAddition.lean)
@@ -1571,7 +1565,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.AdditiveSemigroupLaws (Subtype fun n => n) ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.EvenIntegers
+    ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.EvenIntegers (fun a b => instHAdd.hAdd a b) ((fun a b => instHAdd.hAdd a b) first second) third = (fun a b => instHAdd.hAdd a b) first ((fun a b => instHAdd.hAdd a b) second third)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./AdditiveSemigroup/Examples/EvenIntegersUnderAddition.lean`](./AdditiveSemigroup/Examples/EvenIntegersUnderAddition.lean)
@@ -1605,7 +1599,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (a ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveNaturals ∧ b ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveNaturals) → { hAdd := fun a b => instAddNat.add a b }.hAdd a b ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveNaturals
+    (a ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveNaturals ∧ b ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveNaturals) → instHAdd.hAdd a b ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveNaturals
 Transliterated theorem: ∀ a b, a ∈ PositiveNaturals → b ∈ PositiveNaturals → a + b ∈ PositiveNaturals
 Logical form (Lean): : ∀ a b, a ∈ PositiveNaturals → b ∈ PositiveNaturals → a + b ∈ PositiveNaturals
 Source: [`./AdditiveSemigroup/Examples/PositiveNaturalsUnderAddition.lean#L100`](./AdditiveSemigroup/Examples/PositiveNaturalsUnderAddition.lean#L100)
@@ -1622,7 +1616,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.AdditiveSemigroupLaws (Subtype fun n => n) ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveNaturals
+    ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveNaturals (fun a b => instHAdd.hAdd a b) ((fun a b => instHAdd.hAdd a b) first second) third = (fun a b => instHAdd.hAdd a b) first ((fun a b => instHAdd.hAdd a b) second third)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./AdditiveSemigroup/Examples/PositiveNaturalsUnderAddition.lean`](./AdditiveSemigroup/Examples/PositiveNaturalsUnderAddition.lean)
@@ -1639,7 +1633,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.AdditiveSemigroupLaws Nat
+    (fun a b => instHAdd.hAdd a b) ((fun a b => instHAdd.hAdd a b) first second) third = (fun a b => instHAdd.hAdd a b) first ((fun a b => instHAdd.hAdd a b) second third)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./AdditiveSemigroup/Examples/PositiveNaturalsUnderAddition.lean`](./AdditiveSemigroup/Examples/PositiveNaturalsUnderAddition.lean)
@@ -1673,7 +1667,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.AdditiveCommutativeLaws Nat
+    (fun a b => instHAdd.hAdd a b) first second = (fun a b => instHAdd.hAdd a b) second first
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./AdditiveCommutativeSemigroup/Examples/PositiveNaturalsUnderAddition.lean`](./AdditiveCommutativeSemigroup/Examples/PositiveNaturalsUnderAddition.lean)
@@ -1690,7 +1684,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.AdditiveCommutativeSemigroupLaws (Subtype fun n => n) ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveNaturals
+    ((∀ (first second third : Subtype fun n => n), ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveNaturals (fun a b => instHAdd.hAdd a b) ((fun a b => instHAdd.hAdd a b) first second) third = (fun a b => instHAdd.hAdd a b) first ((fun a b => instHAdd.hAdd a b) second third)) ∧ (∀ (first second : Subtype fun n => n), ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveNaturals (fun a b => instHAdd.hAdd a b) first second = (fun a b => instHAdd.hAdd a b) second first))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./AdditiveCommutativeSemigroup/Examples/PositiveNaturalsUnderAddition.lean`](./AdditiveCommutativeSemigroup/Examples/PositiveNaturalsUnderAddition.lean)
@@ -1707,7 +1701,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (Exists fun e => ((∀ (element : Subtype fun n => n), ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveNaturals (fun a b => { hAdd := fun a b => LRA.AlgebraicStructures.AdditiveSemigroup.Examples.instAddSubtypeNatMemLRA_SetPositiveNaturals.add a b }.hAdd a b) e element = element) ∧ (∀ (element : Subtype fun n => n), ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveNaturals (fun a b => { hAdd := fun a b => LRA.AlgebraicStructures.AdditiveSemigroup.Examples.instAddSubtypeNatMemLRA_SetPositiveNaturals.add a b }.hAdd a b) element e = element))) → False
+    (∃ e, ((∀ (element : Subtype fun n => n), ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveNaturals (fun a b => instHAdd.hAdd a b) e element = element) ∧ (∀ (element : Subtype fun n => n), ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveNaturals (fun a b => instHAdd.hAdd a b) element e = element))) → False
 Transliterated theorem: ¬ ∃ e ∈ {n // n ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveNaturals}, TwoSidedIdentity fun a b ∈ {n // n ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveNaturals} => a + b e
 Logical form (Lean): : ¬ ∃ e : {n // n ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveNaturals}, TwoSidedIdentity (fun a b : {n // n ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveNaturals} => a + b) e
 Source: [`./AdditiveMonoid/Failures/PositiveNaturalsHaveNoIdentity.lean#L53`](./AdditiveMonoid/Failures/PositiveNaturalsHaveNoIdentity.lean#L53)
@@ -1724,7 +1718,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (a ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveEvenNaturals ∧ b ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveEvenNaturals) → { hAdd := fun a b => instAddNat.add a b }.hAdd a b ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveEvenNaturals
+    (a ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveEvenNaturals ∧ b ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveEvenNaturals) → instHAdd.hAdd a b ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveEvenNaturals
 Transliterated theorem: ∀ a b, a ∈ PositiveEvenNaturals → b ∈ PositiveEvenNaturals → a + b ∈ PositiveEvenNaturals
 Logical form (Lean): : ∀ a b, a ∈ PositiveEvenNaturals → b ∈ PositiveEvenNaturals → a + b ∈ PositiveEvenNaturals
 Source: [`./AdditiveSemigroup/Examples/PositiveEvenNaturalsUnderAddition.lean#L100`](./AdditiveSemigroup/Examples/PositiveEvenNaturalsUnderAddition.lean#L100)
@@ -1758,7 +1752,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.AdditiveSemigroupLaws (Subtype fun n => n) ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveEvenNaturals
+    ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveEvenNaturals (fun a b => instHAdd.hAdd a b) ((fun a b => instHAdd.hAdd a b) first second) third = (fun a b => instHAdd.hAdd a b) first ((fun a b => instHAdd.hAdd a b) second third)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./AdditiveSemigroup/Examples/PositiveEvenNaturalsUnderAddition.lean`](./AdditiveSemigroup/Examples/PositiveEvenNaturalsUnderAddition.lean)
@@ -1775,7 +1769,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.AdditiveCommutativeSemigroupLaws (Subtype fun n => n) ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveEvenNaturals
+    ((∀ (first second third : Subtype fun n => n), ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveEvenNaturals (fun a b => instHAdd.hAdd a b) ((fun a b => instHAdd.hAdd a b) first second) third = (fun a b => instHAdd.hAdd a b) first ((fun a b => instHAdd.hAdd a b) second third)) ∧ (∀ (first second : Subtype fun n => n), ∈ LRA.AlgebraicStructures.AdditiveSemigroup.Examples.PositiveEvenNaturals (fun a b => instHAdd.hAdd a b) first second = (fun a b => instHAdd.hAdd a b) second first))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./AdditiveCommutativeSemigroup/Examples/PositiveEvenNaturalsUnderAddition.lean`](./AdditiveCommutativeSemigroup/Examples/PositiveEvenNaturalsUnderAddition.lean)
@@ -1793,7 +1787,7 @@ Predicate logic (unfolded):
     n : Nat
     a b : Divisors n
   Prove
-    Nat.instDvd.1 ({ hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul a.1 b.1) (a.1.gcd b.1)) n
+    Nat.instDvd.dvd (a.val.lcm b.val) n
 Transliterated theorem: Nat.lcm a.1 b.1 ∣ n
 Logical form (Lean): (a b : Divisors n) : Nat.lcm a.1 b.1 ∣ n
 Source: [`./BoundedLattice/Examples/DivisorLattice.lean#L88`](./BoundedLattice/Examples/DivisorLattice.lean#L88)
@@ -1811,7 +1805,7 @@ Predicate logic (unfolded):
     n : Nat
     a b : Divisors n
   Prove
-    Nat.instDvd.1 (a.1.gcd b.1) n
+    Nat.instDvd.dvd (a.val.gcd b.val) n
 Transliterated theorem: Nat.gcd a.1 b.1 ∣ n
 Logical form (Lean): (a b : Divisors n) : Nat.gcd a.1 b.1 ∣ n
 Source: [`./BoundedLattice/Examples/DivisorLattice.lean#L132`](./BoundedLattice/Examples/DivisorLattice.lean#L132)
@@ -1828,7 +1822,7 @@ Predicate logic (unfolded):
   Objects
     n : Nat
   Prove
-    ((((∀ (first second third : Subtype fun d => Nat.instDvd.1 d n), ⟨instHDiv.hDiv (instHMul.hMul (LRA.AlgebraicStructures.BoundedLattice.Examples.divisorJoin first second).val third.val) ((LRA.AlgebraicStructures.BoundedLattice.Examples.divisorJoin first second).val.gcd third.val), ⋯⟩ = ⟨instHDiv.hDiv (instHMul.hMul first.val (LRA.AlgebraicStructures.BoundedLattice.Examples.divisorJoin second third).val) (first.val.gcd (LRA.AlgebraicStructures.BoundedLattice.Examples.divisorJoin second third).val), ⋯⟩) ∧ ((∀ (first second : Subtype fun d => Nat.instDvd.1 d n), ⟨instHDiv.hDiv (instHMul.hMul first.val second.val) (first.val.gcd second.val), ⋯⟩ = ⟨instHDiv.hDiv (instHMul.hMul second.val first.val) (second.val.gcd first.val), ⋯⟩) ∧ (∀ (element : Subtype fun d => Nat.instDvd.1 d n), ⟨instHDiv.hDiv (instHMul.hMul element.val element.val) (element.val.gcd element.val), ⋯⟩ = element))) ∧ (((∀ (first second third : Subtype fun d => Nat.instDvd.1 d n), ⟨(LRA.AlgebraicStructures.BoundedLattice.Examples.divisorMeet first second).1.gcd third.1, ⋯⟩ = ⟨first.1.gcd (LRA.AlgebraicStructures.BoundedLattice.Examples.divisorMeet second third).1, ⋯⟩) ∧ ((∀ (first second : Subtype fun d => Nat.instDvd.1 d n), ⟨first.1.gcd second.1, ⋯⟩ = ⟨second.1.gcd first.1, ⋯⟩) ∧ (∀ (element : Subtype fun d => Nat.instDvd.1 d n), ⟨element.1.gcd element.1, ⋯⟩ = element))) ∧ ((∀ (left right : Subtype fun d => Nat.instDvd.1 d n), ⟨instHDiv.hDiv (instHMul.hMul left.val (LRA.AlgebraicStructures.BoundedLattice.Examples.divisorMeet left right).val) (left.val.gcd (LRA.AlgebraicStructures.BoundedLattice.Examples.divisorMeet left right).val), ⋯⟩ = left) ∧ (∀ (left right : Subtype fun d => Nat.instDvd.1 d n), ⟨left.1.gcd (LRA.AlgebraicStructures.BoundedLattice.Examples.divisorJoin left right).1, ⋯⟩ = left)))) ∧ (((∀ (element : Subtype fun d => Nat.instDvd.1 d n), ⟨{ hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul ⟨1, ⋯⟩.1 element.1) (⟨1, ⋯⟩.1.gcd element.1), ⋯⟩ = element) ∧ (∀ (element : Subtype fun d => Nat.instDvd.1 d n), ⟨{ hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul element.1 ⟨1, ⋯⟩.1) (element.1.gcd ⟨1, ⋯⟩.1), ⋯⟩ = element)) ∧ ((∀ (element : Subtype fun d => Nat.instDvd.1 d n), ⟨⟨n, ⋯⟩.1.gcd element.1, ⋯⟩ = element) ∧ (∀ (element : Subtype fun d => Nat.instDvd.1 d n), ⟨element.1.gcd ⟨n, ⋯⟩.1, ⋯⟩ = element))))
+    ((((∀ (first second third : LRA.AlgebraicStructures.BoundedLattice.Examples.Divisors n), LRA.AlgebraicStructures.BoundedLattice.Examples.divisorJoin (LRA.AlgebraicStructures.BoundedLattice.Examples.divisorJoin first second) third = LRA.AlgebraicStructures.BoundedLattice.Examples.divisorJoin first (LRA.AlgebraicStructures.BoundedLattice.Examples.divisorJoin second third)) ∧ ((∀ (first second : LRA.AlgebraicStructures.BoundedLattice.Examples.Divisors n), LRA.AlgebraicStructures.BoundedLattice.Examples.divisorJoin first second = LRA.AlgebraicStructures.BoundedLattice.Examples.divisorJoin second first) ∧ (∀ (element : LRA.AlgebraicStructures.BoundedLattice.Examples.Divisors n), LRA.AlgebraicStructures.BoundedLattice.Examples.divisorJoin element element = element))) ∧ (((∀ (first second third : LRA.AlgebraicStructures.BoundedLattice.Examples.Divisors n), LRA.AlgebraicStructures.BoundedLattice.Examples.divisorMeet (LRA.AlgebraicStructures.BoundedLattice.Examples.divisorMeet first second) third = LRA.AlgebraicStructures.BoundedLattice.Examples.divisorMeet first (LRA.AlgebraicStructures.BoundedLattice.Examples.divisorMeet second third)) ∧ ((∀ (first second : LRA.AlgebraicStructures.BoundedLattice.Examples.Divisors n), LRA.AlgebraicStructures.BoundedLattice.Examples.divisorMeet first second = LRA.AlgebraicStructures.BoundedLattice.Examples.divisorMeet second first) ∧ (∀ (element : LRA.AlgebraicStructures.BoundedLattice.Examples.Divisors n), LRA.AlgebraicStructures.BoundedLattice.Examples.divisorMeet element element = element))) ∧ ((∀ (left right : LRA.AlgebraicStructures.BoundedLattice.Examples.Divisors n), LRA.AlgebraicStructures.BoundedLattice.Examples.divisorJoin left (LRA.AlgebraicStructures.BoundedLattice.Examples.divisorMeet left right) = left) ∧ (∀ (left right : LRA.AlgebraicStructures.BoundedLattice.Examples.Divisors n), LRA.AlgebraicStructures.BoundedLattice.Examples.divisorMeet left (LRA.AlgebraicStructures.BoundedLattice.Examples.divisorJoin left right) = left)))) ∧ (((∀ (element : LRA.AlgebraicStructures.BoundedLattice.Examples.Divisors n), LRA.AlgebraicStructures.BoundedLattice.Examples.divisorJoin ⟨1, ⋯⟩ element = element) ∧ (∀ (element : LRA.AlgebraicStructures.BoundedLattice.Examples.Divisors n), LRA.AlgebraicStructures.BoundedLattice.Examples.divisorJoin element ⟨1, ⋯⟩ = element)) ∧ ((∀ (element : LRA.AlgebraicStructures.BoundedLattice.Examples.Divisors n), LRA.AlgebraicStructures.BoundedLattice.Examples.divisorMeet ⟨n, ⋯⟩ element = element) ∧ (∀ (element : LRA.AlgebraicStructures.BoundedLattice.Examples.Divisors n), LRA.AlgebraicStructures.BoundedLattice.Examples.divisorMeet element ⟨n, ⋯⟩ = element))))
 Transliterated theorem: LRA.AlgebraicStructures.BoundedLatticeLaws (divisorJoin n ∈ = n) (divisorMeet n ∈ = n) ⟨1, one_dvd n⟩ ∈ Divisors n ⟨n, dvd_refl n⟩ ∈ Divisors n
 Logical form (Lean): : LRA.AlgebraicStructures.BoundedLatticeLaws (divisorJoin (n := n)) (divisorMeet (n := n)) (⟨1, one_dvd n⟩ : Divisors n) (⟨n, dvd_refl n⟩ : Divisors n)
 Source: [`./BoundedLattice/Examples/DivisorLattice.lean#L253`](./BoundedLattice/Examples/DivisorLattice.lean#L253)
@@ -1845,7 +1839,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((((∀ (first second third : α → Prop), first ∪ second ∪ third = first ∪ second ∪ third) ∧ ((∀ (first second : α → Prop), first ∪ second = second ∪ first) ∧ (∀ (element : α → Prop), element ∪ element = element))) ∧ (((∀ (first second third : α → Prop), first ∩ second ∩ third = first ∩ second ∩ third) ∧ ((∀ (first second : α → Prop), first ∩ second = second ∩ first) ∧ (∀ (element : α → Prop), element ∩ element = element))) ∧ ((∀ (left right : α → Prop), left ∪ left ∩ right = left) ∧ (∀ (left right : α → Prop), left ∩ left ∪ right = left)))) ∧ (((∀ (element : α → Prop), Set.instEmptyCollection.1 ∪ element = element) ∧ (∀ (element : α → Prop), element ∪ Set.instEmptyCollection.1 = element)) ∧ ((∀ (element : α → Prop), fun _a => True ∩ element = element) ∧ (∀ (element : α → Prop), element ∩ fun_a => True = element))))
+    ((((∀ (first second third : LRA.Set.LRA_Set α), first ∪ second ∪ third = first ∪ second ∪ third) ∧ ((∀ (first second : LRA.Set.LRA_Set α), first ∪ second = second ∪ first) ∧ (∀ (element : LRA.Set.LRA_Set α), element ∪ element = element))) ∧ (((∀ (first second third : LRA.Set.LRA_Set α), first ∩ second ∩ third = first ∩ second ∩ third) ∧ ((∀ (first second : LRA.Set.LRA_Set α), first ∩ second = second ∩ first) ∧ (∀ (element : LRA.Set.LRA_Set α), element ∩ element = element))) ∧ ((∀ (left right : LRA.Set.LRA_Set α), left ∪ left ∩ right = left) ∧ (∀ (left right : LRA.Set.LRA_Set α), left ∩ left ∪ right = left)))) ∧ (((∀ (element : LRA.Set.LRA_Set α), Set.instEmptyCollection.emptyCollection ∪ element = element) ∧ (∀ (element : LRA.Set.LRA_Set α), element ∪ Set.instEmptyCollection.emptyCollection = element)) ∧ ((∀ (element : LRA.Set.LRA_Set α), Set.univ ∩ element = element) ∧ (∀ (element : LRA.Set.LRA_Set α), element ∩ Set.univ = element))))
 Transliterated theorem: LRA.AlgebraicStructures.BoundedLatticeLaws Union.union ∈ LRA.Set.LRA_Set α → LRA.Set.LRA_Set α → LRA.Set.LRA_Set α Inter.inter ∈ LRA.Set.LRA_Set α → LRA.Set.LRA_Set α → LRA.Set.LRA_Set α ∅ ∈ LRA.Set.LRA_Set α Set.univ ∈ LRA.Set.LRA_Set α
 Logical form (Lean): {α : Type u} : LRA.AlgebraicStructures.BoundedLatticeLaws (Union.union : LRA.Set.LRA_Set α → LRA.Set.LRA_Set α → LRA.Set.LRA_Set α) (Inter.inter : LRA.Set.LRA_Set α → LRA.Set.LRA_Set α → LRA.Set.LRA_Set α) (∅ : LRA.Set.LRA_Set α) (Set.univ : LRA.Set.LRA_Set α)
 Source: [`./BoundedLattice/Examples/PowerSetLattice.lean#L52`](./BoundedLattice/Examples/PowerSetLattice.lean#L52)
@@ -1862,7 +1856,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.CommutativeMonoidLaws (LRA.AlgebraicStructures.CommutativeMonoid.Examples.PowerSetUnderUnion α)
+    ((∀ (first second third : LRA.AlgebraicStructures.CommutativeMonoid.Examples.PowerSetUnderUnion α), (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ (((∀ (element : LRA.AlgebraicStructures.CommutativeMonoid.Examples.PowerSetUnderUnion α), (fun a b => instHMul.hMul a b) 1 element = element) ∧ (∀ (element : LRA.AlgebraicStructures.CommutativeMonoid.Examples.PowerSetUnderUnion α), (fun a b => instHMul.hMul a b) element 1 = element)) ∧ (∀ (first second : LRA.AlgebraicStructures.CommutativeMonoid.Examples.PowerSetUnderUnion α), (fun a b => instHMul.hMul a b) first second = (fun a b => instHMul.hMul a b) second first)))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./CommutativeMonoid/Examples/PowerSetUnderUnion.lean`](./CommutativeMonoid/Examples/PowerSetUnderUnion.lean)
@@ -1879,7 +1873,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.CommutativeSemigroupLaws LRA.AlgebraicStructures.CommutativeSemigroup.Examples.RealsUnderMin
+    ((∀ (first second third : LRA.AlgebraicStructures.CommutativeSemigroup.Examples.RealsUnderMin), (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ (∀ (first second : LRA.AlgebraicStructures.CommutativeSemigroup.Examples.RealsUnderMin), (fun a b => instHMul.hMul a b) first second = (fun a b => instHMul.hMul a b) second first))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./CommutativeSemigroup/Examples/MinMaxOnReals.lean`](./CommutativeSemigroup/Examples/MinMaxOnReals.lean)
@@ -1896,7 +1890,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.CommutativeSemigroupLaws LRA.AlgebraicStructures.CommutativeSemigroup.Examples.RealsUnderMax
+    ((∀ (first second third : LRA.AlgebraicStructures.CommutativeSemigroup.Examples.RealsUnderMax), (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ (∀ (first second : LRA.AlgebraicStructures.CommutativeSemigroup.Examples.RealsUnderMax), (fun a b => instHMul.hMul a b) first second = (fun a b => instHMul.hMul a b) second first))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./CommutativeSemigroup/Examples/MinMaxOnReals.lean`](./CommutativeSemigroup/Examples/MinMaxOnReals.lean)
@@ -1913,7 +1907,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (a ∈ LRA.AlgebraicStructures.CommutativeSemigroup.Examples.PositiveEvenNaturals ∧ b ∈ LRA.AlgebraicStructures.CommutativeSemigroup.Examples.PositiveEvenNaturals) → { hMul := fun a b => LRA.AlgebraicStructures.CommutativeSemigroup.Examples.instMulNaturalsUnderMultiplication.mul a b }.hMul a b ∈ LRA.AlgebraicStructures.CommutativeSemigroup.Examples.PositiveEvenNaturals
+    (a ∈ LRA.AlgebraicStructures.CommutativeSemigroup.Examples.PositiveEvenNaturals ∧ b ∈ LRA.AlgebraicStructures.CommutativeSemigroup.Examples.PositiveEvenNaturals) → instHMul.hMul a b ∈ LRA.AlgebraicStructures.CommutativeSemigroup.Examples.PositiveEvenNaturals
 Transliterated theorem: ∀ a b, a ∈ PositiveEvenNaturals → b ∈ PositiveEvenNaturals → a * b ∈ PositiveEvenNaturals
 Logical form (Lean): : ∀ a b, a ∈ PositiveEvenNaturals → b ∈ PositiveEvenNaturals → a * b ∈ PositiveEvenNaturals
 Source: [`./CommutativeSemigroup/Examples/PositiveEvenNaturalsUnderMultiplication.lean#L157`](./CommutativeSemigroup/Examples/PositiveEvenNaturalsUnderMultiplication.lean#L157)
@@ -1930,7 +1924,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.CommutativeSemigroupLaws LRA.AlgebraicStructures.CommutativeSemigroup.Examples.NaturalsUnderMultiplication
+    ((∀ (first second third : LRA.AlgebraicStructures.CommutativeSemigroup.Examples.NaturalsUnderMultiplication), (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ (∀ (first second : LRA.AlgebraicStructures.CommutativeSemigroup.Examples.NaturalsUnderMultiplication), (fun a b => instHMul.hMul a b) first second = (fun a b => instHMul.hMul a b) second first))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./CommutativeSemigroup/Examples/PositiveEvenNaturalsUnderMultiplication.lean`](./CommutativeSemigroup/Examples/PositiveEvenNaturalsUnderMultiplication.lean)
@@ -1947,7 +1941,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.CommutativeSemigroupLaws (Subtype fun n => n) ∈ LRA.AlgebraicStructures.CommutativeSemigroup.Examples.PositiveEvenNaturals
+    ((∀ (first second third : Subtype fun n => n), ∈ LRA.AlgebraicStructures.CommutativeSemigroup.Examples.PositiveEvenNaturals (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ (∀ (first second : Subtype fun n => n), ∈ LRA.AlgebraicStructures.CommutativeSemigroup.Examples.PositiveEvenNaturals (fun a b => instHMul.hMul a b) first second = (fun a b => instHMul.hMul a b) second first))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./CommutativeSemigroup/Examples/PositiveEvenNaturalsUnderMultiplication.lean`](./CommutativeSemigroup/Examples/PositiveEvenNaturalsUnderMultiplication.lean)
@@ -1964,7 +1958,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.CommutativeSemigroupLaws (LRA.AlgebraicStructures.CommutativeSemigroup.Examples.IntersectionSemilattice α)
+    ((∀ (first second third : LRA.AlgebraicStructures.CommutativeSemigroup.Examples.IntersectionSemilattice α), (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ (∀ (first second : LRA.AlgebraicStructures.CommutativeSemigroup.Examples.IntersectionSemilattice α), (fun a b => instHMul.hMul a b) first second = (fun a b => instHMul.hMul a b) second first))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./CommutativeSemigroup/Examples/Semilattices.lean`](./CommutativeSemigroup/Examples/Semilattices.lean)
@@ -1981,7 +1975,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.CommutativeSemigroupLaws (LRA.AlgebraicStructures.CommutativeSemigroup.Examples.UnionSemilattice α)
+    ((∀ (first second third : LRA.AlgebraicStructures.CommutativeSemigroup.Examples.UnionSemilattice α), (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ (∀ (first second : LRA.AlgebraicStructures.CommutativeSemigroup.Examples.UnionSemilattice α), (fun a b => instHMul.hMul a b) first second = (fun a b => instHMul.hMul a b) second first))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./CommutativeSemigroup/Examples/Semilattices.lean`](./CommutativeSemigroup/Examples/Semilattices.lean)
@@ -1998,7 +1992,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.SuccessorLaws Int
+    ((∀ (a : Int), LRA.AlgebraicStructures.Pred (LRA.AlgebraicStructures.Succ a) = a) ∧ ((∀ (a : Int), LRA.AlgebraicStructures.Succ (LRA.AlgebraicStructures.Pred a) = a) ∧ ((∀ (a b : Int), LRA.AlgebraicStructures.Succ a = LRA.AlgebraicStructures.Succ b → a = b) ∧ (∀ (a b : Int), LRA.AlgebraicStructures.Pred a = LRA.AlgebraicStructures.Pred b → a = b))))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./DiscreteInteger/Examples/Integers.lean`](./DiscreteInteger/Examples/Integers.lean)
@@ -2015,7 +2009,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.SuccessorAdditionLaw Int
+    LRA.AlgebraicStructures.Succ a = instHAdd.hAdd a 1
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./DiscreteInteger/Examples/Integers.lean`](./DiscreteInteger/Examples/Integers.lean)
@@ -2032,7 +2026,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.SuccessorMultiplicationLaws Int
+    ((∀ (a b : Int), instHMul.hMul a (LRA.AlgebraicStructures.Succ b) = instHAdd.hAdd (instHMul.hMul a b) a) ∧ (∀ (a b : Int), instHMul.hMul a (LRA.AlgebraicStructures.Pred b) = instHAdd.hAdd (instHMul.hMul a b) (Int.instNegInt.neg a)))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./DiscreteInteger/Examples/Integers.lean`](./DiscreteInteger/Examples/Integers.lean)
@@ -2049,7 +2043,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.DiscretenessLaw Int
+    ((∀ (x : Int) (n : Nat), instLTNat.lt 0 n → LRA.AlgebraicStructures.SuccIterate n x = x → False) ∧ (∀ (motive : Int → Prop), motive 0 → (∀ (a : Int), motive a → motive (LRA.AlgebraicStructures.Succ a)) → (∀ (a : Int), motive a → motive (LRA.AlgebraicStructures.Pred a)) → ∀ (a : Int), motive a))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./DiscreteInteger/Examples/Integers.lean`](./DiscreteInteger/Examples/Integers.lean)
@@ -2066,7 +2060,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((((∀ (first second third : Nat), { hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul (instHDiv.hDiv (instHMul.hMul first second) (first.gcd second)) third) ((instHDiv.hDiv (instHMul.hMul first second) (first.gcd second)).gcd third) = { hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul first (instHDiv.hDiv (instHMul.hMul second third) (second.gcd third))) (first.gcd (instHDiv.hDiv (instHMul.hMul second third) (second.gcd third)))) ∧ ((∀ (first second : Nat), { hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul first second) (first.gcd second) = { hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul second first) (second.gcd first)) ∧ (∀ (element : Nat), { hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul element element) (element.gcd element) = element))) ∧ (((∀ (first second third : Nat), (first.gcd second).gcd third = first.gcd (second.gcd third)) ∧ ((∀ (first second : Nat), first.gcd second = second.gcd first) ∧ (∀ (element : Nat), element.gcd element = element))) ∧ ((∀ (left right : Nat), { hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul left (left.gcd right)) (left.gcd (left.gcd right)) = left) ∧ (∀ (left right : Nat), left.gcd ({ hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul left right) (left.gcd right)) = left)))) ∧ (((∀ (left right third : Nat), { hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul left (right.gcd third)) (left.gcd (right.gcd third)) = ({ hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul left right) (left.gcd right)).gcd ({ hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul left third) (left.gcd third))) ∧ (∀ (left right third : Nat), { hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul (left.gcd right) third) ((left.gcd right).gcd third) = ({ hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul left third) (left.gcd third)).gcd ({ hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul right third) (right.gcd third)))) ∧ ((∀ (left right third : Nat), left.gcd ({ hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul right third) (right.gcd third)) = { hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul (left.gcd right) (left.gcd third)) ((left.gcd right).gcd (left.gcd third))) ∧ (∀ (left right third : Nat), ({ hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul left right) (left.gcd right)).gcd third = { hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul (left.gcd third) (right.gcd third)) ((left.gcd third).gcd (right.gcd third))))))
+    ((((∀ (first second third : Nat), (first.lcm second).lcm third = first.lcm (second.lcm third)) ∧ ((∀ (first second : Nat), first.lcm second = second.lcm first) ∧ (∀ (element : Nat), element.lcm element = element))) ∧ (((∀ (first second third : Nat), (first.gcd second).gcd third = first.gcd (second.gcd third)) ∧ ((∀ (first second : Nat), first.gcd second = second.gcd first) ∧ (∀ (element : Nat), element.gcd element = element))) ∧ ((∀ (left right : Nat), left.lcm (left.gcd right) = left) ∧ (∀ (left right : Nat), left.gcd (left.lcm right) = left)))) ∧ (((∀ (left right third : Nat), left.lcm (right.gcd third) = (left.lcm right).gcd (left.lcm third)) ∧ (∀ (left right third : Nat), (left.gcd right).lcm third = (left.lcm third).gcd (right.lcm third))) ∧ ((∀ (left right third : Nat), left.gcd (right.lcm third) = (left.gcd right).lcm (left.gcd third)) ∧ (∀ (left right third : Nat), (left.lcm right).gcd third = (left.gcd third).lcm (right.gcd third)))))
 Transliterated theorem: LRA.AlgebraicStructures.DistributiveLatticeLaws Nat.lcm Nat.gcd
 Logical form (Lean): : LRA.AlgebraicStructures.DistributiveLatticeLaws Nat.lcm Nat.gcd
 Source: [`./DistributiveLattice/Examples/DivisorLattice.lean#L48`](./DistributiveLattice/Examples/DivisorLattice.lean#L48)
@@ -2083,7 +2077,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((((∀ (first second third : α → Prop), first ∪ second ∪ third = first ∪ second ∪ third) ∧ ((∀ (first second : α → Prop), first ∪ second = second ∪ first) ∧ (∀ (element : α → Prop), element ∪ element = element))) ∧ (((∀ (first second third : α → Prop), first ∩ second ∩ third = first ∩ second ∩ third) ∧ ((∀ (first second : α → Prop), first ∩ second = second ∩ first) ∧ (∀ (element : α → Prop), element ∩ element = element))) ∧ ((∀ (left right : α → Prop), left ∪ left ∩ right = left) ∧ (∀ (left right : α → Prop), left ∩ left ∪ right = left)))) ∧ (((∀ (left right third : α → Prop), left ∪ right ∩ third = left ∪ right ∩ left ∪ third) ∧ (∀ (left right third : α → Prop), left ∩ right ∪ third = left ∪ third ∩ right ∪ third)) ∧ ((∀ (left right third : α → Prop), left ∩ right ∪ third = left ∩ right ∪ left ∩ third) ∧ (∀ (left right third : α → Prop), left ∪ right ∩ third = left ∩ third ∪ right ∩ third))))
+    ((((∀ (first second third : LRA.Set.LRA_Set α), first ∪ second ∪ third = first ∪ second ∪ third) ∧ ((∀ (first second : LRA.Set.LRA_Set α), first ∪ second = second ∪ first) ∧ (∀ (element : LRA.Set.LRA_Set α), element ∪ element = element))) ∧ (((∀ (first second third : LRA.Set.LRA_Set α), first ∩ second ∩ third = first ∩ second ∩ third) ∧ ((∀ (first second : LRA.Set.LRA_Set α), first ∩ second = second ∩ first) ∧ (∀ (element : LRA.Set.LRA_Set α), element ∩ element = element))) ∧ ((∀ (left right : LRA.Set.LRA_Set α), left ∪ left ∩ right = left) ∧ (∀ (left right : LRA.Set.LRA_Set α), left ∩ left ∪ right = left)))) ∧ (((∀ (left right third : LRA.Set.LRA_Set α), left ∪ right ∩ third = left ∪ right ∩ left ∪ third) ∧ (∀ (left right third : LRA.Set.LRA_Set α), left ∩ right ∪ third = left ∪ third ∩ right ∪ third)) ∧ ((∀ (left right third : LRA.Set.LRA_Set α), left ∩ right ∪ third = left ∩ right ∪ left ∩ third) ∧ (∀ (left right third : LRA.Set.LRA_Set α), left ∪ right ∩ third = left ∩ third ∪ right ∩ third))))
 Transliterated theorem: LRA.AlgebraicStructures.DistributiveLatticeLaws Union.union ∈ LRA.Set.LRA_Set α → LRA.Set.LRA_Set α → LRA.Set.LRA_Set α Inter.inter ∈ LRA.Set.LRA_Set α → LRA.Set.LRA_Set α → LRA.Set.LRA_Set α
 Logical form (Lean): {α : Type u} : LRA.AlgebraicStructures.DistributiveLatticeLaws (Union.union : LRA.Set.LRA_Set α → LRA.Set.LRA_Set α → LRA.Set.LRA_Set α) (Inter.inter : LRA.Set.LRA_Set α → LRA.Set.LRA_Set α → LRA.Set.LRA_Set α)
 Source: [`./DistributiveLattice/Examples/PowerSetLattice.lean#L51`](./DistributiveLattice/Examples/PowerSetLattice.lean#L51)
@@ -2100,7 +2094,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.GroupLaws LRA.AlgebraicStructures.Group.Examples.IntegersUnderAddition
+    ((∀ (first second third : LRA.AlgebraicStructures.Group.Examples.IntegersUnderAddition), (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ (((∀ (element : LRA.AlgebraicStructures.Group.Examples.IntegersUnderAddition), (fun a b => instHMul.hMul a b) 1 element = element) ∧ (∀ (element : LRA.AlgebraicStructures.Group.Examples.IntegersUnderAddition), (fun a b => instHMul.hMul a b) element 1 = element)) ∧ ((∀ (element : LRA.AlgebraicStructures.Group.Examples.IntegersUnderAddition), (fun a b => instHMul.hMul a b) ((fun a => LRA.AlgebraicStructures.Group.Examples.instInvIntegersUnderAddition.inv a) element) element = 1) ∧ (∀ (element : LRA.AlgebraicStructures.Group.Examples.IntegersUnderAddition), (fun a b => instHMul.hMul a b) element ((fun a => LRA.AlgebraicStructures.Group.Examples.instInvIntegersUnderAddition.inv a) element) = 1))))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Group/Examples/IntegersUnderAddition.lean`](./Group/Examples/IntegersUnderAddition.lean)
@@ -2117,7 +2111,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (a ∈ LRA.AlgebraicStructures.Group.Examples.NonzeroReals ∧ b ∈ LRA.AlgebraicStructures.Group.Examples.NonzeroReals) → { hMul := fun a b => Real.instMul.mul a b }.hMul a b ∈ LRA.AlgebraicStructures.Group.Examples.NonzeroReals
+    (a ∈ LRA.AlgebraicStructures.Group.Examples.NonzeroReals ∧ b ∈ LRA.AlgebraicStructures.Group.Examples.NonzeroReals) → instHMul.hMul a b ∈ LRA.AlgebraicStructures.Group.Examples.NonzeroReals
 Transliterated theorem: ∀ a b, a ∈ NonzeroReals → b ∈ NonzeroReals → a * b ∈ NonzeroReals
 Logical form (Lean): : ∀ a b, a ∈ NonzeroReals → b ∈ NonzeroReals → a * b ∈ NonzeroReals
 Source: [`./Group/Examples/NonzeroRealsUnderMultiplication.lean#L92`](./Group/Examples/NonzeroRealsUnderMultiplication.lean#L92)
@@ -2151,7 +2145,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    a ∈ LRA.AlgebraicStructures.Group.Examples.NonzeroReals → Real.instInv.1 a ∈ LRA.AlgebraicStructures.Group.Examples.NonzeroReals
+    a ∈ LRA.AlgebraicStructures.Group.Examples.NonzeroReals → Real.instInv.inv a ∈ LRA.AlgebraicStructures.Group.Examples.NonzeroReals
 Transliterated theorem: ∀ a, a ∈ NonzeroReals → a⁻¹ ∈ NonzeroReals
 Logical form (Lean): : ∀ a, a ∈ NonzeroReals → a⁻¹ ∈ NonzeroReals
 Source: [`./Group/Examples/NonzeroRealsUnderMultiplication.lean#L180`](./Group/Examples/NonzeroRealsUnderMultiplication.lean#L180)
@@ -2168,7 +2162,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    a ∈ LRA.AlgebraicStructures.Group.Examples.NonzeroReals → ({ hMul := fun a b => Real.instMul.mul a b }.hMul (Real.instInv.1 a) a = 1 ∧ { hMul := fun a b => Real.instMul.mul a b }.hMul a (Real.instInv.1 a) = 1)
+    a ∈ LRA.AlgebraicStructures.Group.Examples.NonzeroReals → (instHMul.hMul (Real.instInv.inv a) a = 1 ∧ instHMul.hMul a (Real.instInv.inv a) = 1)
 Transliterated theorem: ∀ a, a ∈ NonzeroReals → a⁻¹ * a = 1 ∧ a * a⁻¹ = 1
 Logical form (Lean): : ∀ a, a ∈ NonzeroReals → a⁻¹ * a = 1 ∧ a * a⁻¹ = 1
 Source: [`./Group/Examples/NonzeroRealsUnderMultiplication.lean#L225`](./Group/Examples/NonzeroRealsUnderMultiplication.lean#L225)
@@ -2185,7 +2179,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.GroupLaws (Subtype fun x => x) ∈ LRA.AlgebraicStructures.Group.Examples.NonzeroReals
+    ((∀ (first second third : Subtype fun x => x), ∈ LRA.AlgebraicStructures.Group.Examples.NonzeroReals (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ (((∀ (element : Subtype fun x => x), ∈ LRA.AlgebraicStructures.Group.Examples.NonzeroReals (fun a b => instHMul.hMul a b) 1 element = element) ∧ (∀ (element : Subtype fun x => x), ∈ LRA.AlgebraicStructures.Group.Examples.NonzeroReals (fun a b => instHMul.hMul a b) element 1 = element)) ∧ ((∀ (element : Subtype fun x => x), ∈ LRA.AlgebraicStructures.Group.Examples.NonzeroReals (fun a b => instHMul.hMul a b) ((fun a => LRA.AlgebraicStructures.Group.Examples.instInvSubtypeRealMemLRA_SetNonzeroReals.inv a) element) element = 1) ∧ (∀ (element : Subtype fun x => x), ∈ LRA.AlgebraicStructures.Group.Examples.NonzeroReals (fun a b => instHMul.hMul a b) element ((fun a => LRA.AlgebraicStructures.Group.Examples.instInvSubtypeRealMemLRA_SetNonzeroReals.inv a) element) = 1))))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Group/Examples/NonzeroRealsUnderMultiplication.lean`](./Group/Examples/NonzeroRealsUnderMultiplication.lean)
@@ -2202,7 +2196,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((∀ (first second third : α → Prop), first ∪ second ∪ third = first ∪ second ∪ third) ∧ ((∀ (first second : α → Prop), first ∪ second = second ∪ first) ∧ (∀ (element : α → Prop), element ∪ element = element)))
+    ((∀ (first second third : LRA.Set.LRA_Set α), first ∪ second ∪ third = first ∪ second ∪ third) ∧ ((∀ (first second : LRA.Set.LRA_Set α), first ∪ second = second ∪ first) ∧ (∀ (element : LRA.Set.LRA_Set α), element ∪ element = element)))
 Transliterated theorem: LRA.AlgebraicStructures.JoinSemilatticeLaws Union.union ∈ LRA.Set.LRA_Set α → LRA.Set.LRA_Set α → LRA.Set.LRA_Set α
 Logical form (Lean): {α : Type u} : LRA.AlgebraicStructures.JoinSemilatticeLaws (Union.union : LRA.Set.LRA_Set α → LRA.Set.LRA_Set α → LRA.Set.LRA_Set α)
 Source: [`./JoinSemilattice/Examples/UnionSemilattice.lean#L50`](./JoinSemilattice/Examples/UnionSemilattice.lean#L50)
@@ -2219,7 +2213,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (((∀ (first second third : Nat), { hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul ({ hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul first second) (first.gcd second)) third) (({ hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul first second) (first.gcd second)).gcd third) = { hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul first ({ hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul second third) (second.gcd third))) (first.gcd ({ hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul second third) (second.gcd third)))) ∧ ((∀ (first second : Nat), { hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul first second) (first.gcd second) = { hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul second first) (second.gcd first)) ∧ (∀ (element : Nat), { hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul element element) (element.gcd element) = element))) ∧ (((∀ (first second third : Nat), (first.gcd second).gcd third = first.gcd (second.gcd third)) ∧ ((∀ (first second : Nat), first.gcd second = second.gcd first) ∧ (∀ (element : Nat), element.gcd element = element))) ∧ ((∀ (left right : Nat), { hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul left (left.gcd right)) (left.gcd (left.gcd right)) = left) ∧ (∀ (left right : Nat), left.gcd ({ hDiv := fun a b => Nat.instDiv.div a b }.hDiv ({ hMul := fun a b => instMulNat.mul a b }.hMul left right) (left.gcd right)) = left))))
+    (((∀ (first second third : Nat), (first.lcm second).lcm third = first.lcm (second.lcm third)) ∧ ((∀ (first second : Nat), first.lcm second = second.lcm first) ∧ (∀ (element : Nat), element.lcm element = element))) ∧ (((∀ (first second third : Nat), (first.gcd second).gcd third = first.gcd (second.gcd third)) ∧ ((∀ (first second : Nat), first.gcd second = second.gcd first) ∧ (∀ (element : Nat), element.gcd element = element))) ∧ ((∀ (left right : Nat), left.lcm (left.gcd right) = left) ∧ (∀ (left right : Nat), left.gcd (left.lcm right) = left))))
 Transliterated theorem: LRA.AlgebraicStructures.LatticeLaws Nat.lcm Nat.gcd
 Logical form (Lean): : LRA.AlgebraicStructures.LatticeLaws Nat.lcm Nat.gcd
 Source: [`./Lattice/Examples/DivisibilityLattice.lean#L48`](./Lattice/Examples/DivisibilityLattice.lean#L48)
@@ -2236,7 +2230,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (((∀ (first second third : α → Prop), first ∪ second ∪ third = first ∪ second ∪ third) ∧ ((∀ (first second : α → Prop), first ∪ second = second ∪ first) ∧ (∀ (element : α → Prop), element ∪ element = element))) ∧ (((∀ (first second third : α → Prop), first ∩ second ∩ third = first ∩ second ∩ third) ∧ ((∀ (first second : α → Prop), first ∩ second = second ∩ first) ∧ (∀ (element : α → Prop), element ∩ element = element))) ∧ ((∀ (left right : α → Prop), left ∪ left ∩ right = left) ∧ (∀ (left right : α → Prop), left ∩ left ∪ right = left))))
+    (((∀ (first second third : LRA.Set.LRA_Set α), first ∪ second ∪ third = first ∪ second ∪ third) ∧ ((∀ (first second : LRA.Set.LRA_Set α), first ∪ second = second ∪ first) ∧ (∀ (element : LRA.Set.LRA_Set α), element ∪ element = element))) ∧ (((∀ (first second third : LRA.Set.LRA_Set α), first ∩ second ∩ third = first ∩ second ∩ third) ∧ ((∀ (first second : LRA.Set.LRA_Set α), first ∩ second = second ∩ first) ∧ (∀ (element : LRA.Set.LRA_Set α), element ∩ element = element))) ∧ ((∀ (left right : LRA.Set.LRA_Set α), left ∪ left ∩ right = left) ∧ (∀ (left right : LRA.Set.LRA_Set α), left ∩ left ∪ right = left))))
 Transliterated theorem: LRA.AlgebraicStructures.LatticeLaws Union.union ∈ LRA.Set.LRA_Set α → LRA.Set.LRA_Set α → LRA.Set.LRA_Set α Inter.inter ∈ LRA.Set.LRA_Set α → LRA.Set.LRA_Set α → LRA.Set.LRA_Set α
 Logical form (Lean): {α : Type u} : LRA.AlgebraicStructures.LatticeLaws (Union.union : LRA.Set.LRA_Set α → LRA.Set.LRA_Set α → LRA.Set.LRA_Set α) (Inter.inter : LRA.Set.LRA_Set α → LRA.Set.LRA_Set α → LRA.Set.LRA_Set α)
 Source: [`./Lattice/Examples/PowerSetLattice.lean#L51`](./Lattice/Examples/PowerSetLattice.lean#L51)
@@ -2253,7 +2247,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (∀ (a b c : LRA.AlgebraicStructures.Magma.Examples.IntegersUnderSubtraction), { hMul := fun a b => LRA.AlgebraicStructures.Magma.Examples.instMulIntegersUnderSubtraction.mul a b }.hMul ({ hMul := fun a b => LRA.AlgebraicStructures.Magma.Examples.instMulIntegersUnderSubtraction.mul a b }.hMul a b) c = { hMul := fun a b => LRA.AlgebraicStructures.Magma.Examples.instMulIntegersUnderSubtraction.mul a b }.hMul a ({ hMul := fun a b => LRA.AlgebraicStructures.Magma.Examples.instMulIntegersUnderSubtraction.mul a b }.hMul b c)) → False
+    (∀ (a b c : LRA.AlgebraicStructures.Magma.Examples.IntegersUnderSubtraction), instHMul.hMul (instHMul.hMul a b) c = instHMul.hMul a (instHMul.hMul b c)) → False
 Transliterated theorem: ¬ ∀ a b c : IntegersUnderSubtraction, (a * b) * c = a * (b * c)
 Logical form (Lean): : ¬ ∀ a b c : IntegersUnderSubtraction, (a * b) * c = a * (b * c)
 Source: [`./Magma/Examples/IntegersUnderSubtraction.lean#L96`](./Magma/Examples/IntegersUnderSubtraction.lean#L96)
@@ -2270,7 +2264,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (A ∈ LRA.AlgebraicStructures.Magma.Examples.NonemptyZFCSets ∧ B ∈ LRA.AlgebraicStructures.Magma.Examples.NonemptyZFCSets) → { hMul := fun a b => LRA.AlgebraicStructures.Magma.Examples.instMulZFCSet.mul a b }.hMul A B ∈ LRA.AlgebraicStructures.Magma.Examples.NonemptyZFCSets
+    (A ∈ LRA.AlgebraicStructures.Magma.Examples.NonemptyZFCSets ∧ B ∈ LRA.AlgebraicStructures.Magma.Examples.NonemptyZFCSets) → instHMul.hMul A B ∈ LRA.AlgebraicStructures.Magma.Examples.NonemptyZFCSets
 Transliterated theorem: ∀ A B, A ∈ NonemptyZFCSets → B ∈ NonemptyZFCSets → A * B ∈ NonemptyZFCSets
 Logical form (Lean): : ∀ A B, A ∈ NonemptyZFCSets → B ∈ NonemptyZFCSets → A * B ∈ NonemptyZFCSets
 Source: [`./Magma/Examples/NonemptyZFCSetsUnderUnion.lean#L104`](./Magma/Examples/NonemptyZFCSetsUnderUnion.lean#L104)
@@ -2287,7 +2281,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (a ∈ LRA.AlgebraicStructures.Magma.Examples.NonzeroReals ∧ b ∈ LRA.AlgebraicStructures.Magma.Examples.NonzeroReals) → { hMul := fun a b => LRA.AlgebraicStructures.Magma.Examples.instMulRealsUnderDivision.mul a b }.hMul a b ∈ LRA.AlgebraicStructures.Magma.Examples.NonzeroReals
+    (a ∈ LRA.AlgebraicStructures.Magma.Examples.NonzeroReals ∧ b ∈ LRA.AlgebraicStructures.Magma.Examples.NonzeroReals) → instHMul.hMul a b ∈ LRA.AlgebraicStructures.Magma.Examples.NonzeroReals
 Transliterated theorem: ∀ a b, a ∈ NonzeroReals → b ∈ NonzeroReals → a * b ∈ NonzeroReals
 Logical form (Lean): : ∀ a b, a ∈ NonzeroReals → b ∈ NonzeroReals → a * b ∈ NonzeroReals
 Source: [`./Magma/Examples/NonzeroRealsUnderDivision.lean#L140`](./Magma/Examples/NonzeroRealsUnderDivision.lean#L140)
@@ -2304,7 +2298,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.MagmaLaws (Subtype fun x => x) ∈ LRA.AlgebraicStructures.Magma.Examples.NonzeroReals
+    True
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Magma/Examples/NonzeroRealsUnderDivision.lean`](./Magma/Examples/NonzeroRealsUnderDivision.lean)
@@ -2321,7 +2315,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (∀ (a b c : LRA.AlgebraicStructures.Magma.Examples.RPS), { hMul := fun a b => LRA.AlgebraicStructures.Magma.Examples.instMulRPS.mul a b }.hMul ({ hMul := fun a b => LRA.AlgebraicStructures.Magma.Examples.instMulRPS.mul a b }.hMul a b) c = { hMul := fun a b => LRA.AlgebraicStructures.Magma.Examples.instMulRPS.mul a b }.hMul a ({ hMul := fun a b => LRA.AlgebraicStructures.Magma.Examples.instMulRPS.mul a b }.hMul b c)) → False
+    (∀ (a b c : LRA.AlgebraicStructures.Magma.Examples.RPS), instHMul.hMul (instHMul.hMul a b) c = instHMul.hMul a (instHMul.hMul b c)) → False
 Transliterated theorem: ¬ ∀ a b c : RPS, (a * b) * c = a * (b * c)
 Logical form (Lean): : ¬ ∀ a b c : RPS, (a * b) * c = a * (b * c)
 Source: [`./Magma/Examples/RockPaperScissors.lean#L154`](./Magma/Examples/RockPaperScissors.lean#L154)
@@ -2338,7 +2332,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (Exists fun e => ((∀ (element : LRA.AlgebraicStructures.Magma.Examples.RPS), (fun a b => { hMul := fun a b => LRA.AlgebraicStructures.Magma.Examples.instMulRPS.mul a b }.hMul a b) e element = element) ∧ (∀ (element : LRA.AlgebraicStructures.Magma.Examples.RPS), (fun a b => { hMul := fun a b => LRA.AlgebraicStructures.Magma.Examples.instMulRPS.mul a b }.hMul a b) element e = element))) → False
+    (∃ e, ((∀ (element : LRA.AlgebraicStructures.Magma.Examples.RPS), (fun a b => instHMul.hMul a b) e element = element) ∧ (∀ (element : LRA.AlgebraicStructures.Magma.Examples.RPS), (fun a b => instHMul.hMul a b) element e = element))) → False
 Transliterated theorem: ¬ ∃ e ∈ RPS, TwoSidedIdentity fun a b ∈ RPS => a * b e
 Logical form (Lean): : ¬ ∃ e : RPS, TwoSidedIdentity (fun a b : RPS => a * b) e
 Source: [`./Magma/Examples/IdentityNotRequired.lean#L50`](./Magma/Examples/IdentityNotRequired.lean#L50)
@@ -2372,7 +2366,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((∀ (first second third : α → Prop), first ∩ second ∩ third = first ∩ second ∩ third) ∧ ((∀ (first second : α → Prop), first ∩ second = second ∩ first) ∧ (∀ (element : α → Prop), element ∩ element = element)))
+    ((∀ (first second third : LRA.Set.LRA_Set α), first ∩ second ∩ third = first ∩ second ∩ third) ∧ ((∀ (first second : LRA.Set.LRA_Set α), first ∩ second = second ∩ first) ∧ (∀ (element : LRA.Set.LRA_Set α), element ∩ element = element)))
 Transliterated theorem: LRA.AlgebraicStructures.MeetSemilatticeLaws Inter.inter ∈ LRA.Set.LRA_Set α → LRA.Set.LRA_Set α → LRA.Set.LRA_Set α
 Logical form (Lean): {α : Type u} : LRA.AlgebraicStructures.MeetSemilatticeLaws (Inter.inter : LRA.Set.LRA_Set α → LRA.Set.LRA_Set α → LRA.Set.LRA_Set α)
 Source: [`./MeetSemilattice/Examples/IntersectionSemilattice.lean#L50`](./MeetSemilattice/Examples/IntersectionSemilattice.lean#L50)
@@ -2389,7 +2383,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.MonoidLaws (LRA.AlgebraicStructures.Monoid.Examples.Words Alphabet)
+    ((∀ (first second third : LRA.AlgebraicStructures.Monoid.Examples.Words Alphabet), (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ ((∀ (element : LRA.AlgebraicStructures.Monoid.Examples.Words Alphabet), (fun a b => instHMul.hMul a b) 1 element = element) ∧ (∀ (element : LRA.AlgebraicStructures.Monoid.Examples.Words Alphabet), (fun a b => instHMul.hMul a b) element 1 = element)))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Monoid/Examples/FreeMonoidOnWords.lean`](./Monoid/Examples/FreeMonoidOnWords.lean)
@@ -2406,7 +2400,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.MonoidLaws LRA.AlgebraicStructures.Monoid.Examples.NaturalNumbersUnderAddition
+    ((∀ (first second third : LRA.AlgebraicStructures.Monoid.Examples.NaturalNumbersUnderAddition), (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ ((∀ (element : LRA.AlgebraicStructures.Monoid.Examples.NaturalNumbersUnderAddition), (fun a b => instHMul.hMul a b) 1 element = element) ∧ (∀ (element : LRA.AlgebraicStructures.Monoid.Examples.NaturalNumbersUnderAddition), (fun a b => instHMul.hMul a b) element 1 = element)))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Monoid/Examples/NaturalNumbersUnderAddition.lean`](./Monoid/Examples/NaturalNumbersUnderAddition.lean)
@@ -2423,7 +2417,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.MultiplicativeCommutativeLaws LRA.AlgebraicStructures.Monoid.Examples.NaturalNumbersUnderAddition
+    (fun a b => instHMul.hMul a b) first second = (fun a b => instHMul.hMul a b) second first
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./CommutativeMonoid/Examples/NaturalNumbersUnderAddition.lean`](./CommutativeMonoid/Examples/NaturalNumbersUnderAddition.lean)
@@ -2440,7 +2434,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.CommutativeMonoidLaws LRA.AlgebraicStructures.Monoid.Examples.NaturalNumbersUnderAddition
+    ((∀ (first second third : LRA.AlgebraicStructures.Monoid.Examples.NaturalNumbersUnderAddition), (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ (((∀ (element : LRA.AlgebraicStructures.Monoid.Examples.NaturalNumbersUnderAddition), (fun a b => instHMul.hMul a b) 1 element = element) ∧ (∀ (element : LRA.AlgebraicStructures.Monoid.Examples.NaturalNumbersUnderAddition), (fun a b => instHMul.hMul a b) element 1 = element)) ∧ (∀ (first second : LRA.AlgebraicStructures.Monoid.Examples.NaturalNumbersUnderAddition), (fun a b => instHMul.hMul a b) first second = (fun a b => instHMul.hMul a b) second first)))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./CommutativeMonoid/Examples/NaturalNumbersUnderAddition.lean`](./CommutativeMonoid/Examples/NaturalNumbersUnderAddition.lean)
@@ -2457,7 +2451,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.MonoidLaws (LRA.AlgebraicStructures.Monoid.Examples.Transformations S)
+    ((∀ (first second third : LRA.AlgebraicStructures.Monoid.Examples.Transformations S), (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ ((∀ (element : LRA.AlgebraicStructures.Monoid.Examples.Transformations S), (fun a b => instHMul.hMul a b) 1 element = element) ∧ (∀ (element : LRA.AlgebraicStructures.Monoid.Examples.Transformations S), (fun a b => instHMul.hMul a b) element 1 = element)))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Monoid/Examples/TransformationMonoid.lean`](./Monoid/Examples/TransformationMonoid.lean)
@@ -2474,7 +2468,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (a ∈ LRA.AlgebraicStructures.Semigroup.Examples.EvenIntegers ∧ b ∈ LRA.AlgebraicStructures.Semigroup.Examples.EvenIntegers) → { hMul := fun a b => Int.instMul.mul a b }.hMul a b ∈ LRA.AlgebraicStructures.Semigroup.Examples.EvenIntegers
+    (a ∈ LRA.AlgebraicStructures.Semigroup.Examples.EvenIntegers ∧ b ∈ LRA.AlgebraicStructures.Semigroup.Examples.EvenIntegers) → instHMul.hMul a b ∈ LRA.AlgebraicStructures.Semigroup.Examples.EvenIntegers
 Transliterated theorem: ∀ a b, a ∈ EvenIntegers → b ∈ EvenIntegers → a * b ∈ EvenIntegers
 Logical form (Lean): : ∀ a b, a ∈ EvenIntegers → b ∈ EvenIntegers → a * b ∈ EvenIntegers
 Source: [`./Semigroup/Examples/EvenIntegersUnderMultiplication.lean#L101`](./Semigroup/Examples/EvenIntegersUnderMultiplication.lean#L101)
@@ -2491,7 +2485,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.MultiplicativeSemigroupLaws (Subtype fun n => n) ∈ LRA.AlgebraicStructures.Semigroup.Examples.EvenIntegers
+    ∈ LRA.AlgebraicStructures.Semigroup.Examples.EvenIntegers (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Semigroup/Examples/EvenIntegersUnderMultiplication.lean`](./Semigroup/Examples/EvenIntegersUnderMultiplication.lean)
@@ -2508,7 +2502,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((a ∈ fun l => l = List.nil → False) ∧ (b ∈ fun l => l = List.nil → False)) → { hMul := fun a b => { mul := fun x1 x2 => instHAppendOfAppend.1 x1 x2 }.mul a b }.hMul a b ∈ fun l => l = List.nil → False
+    (a ∈ LRA.AlgebraicStructures.Semigroup.Examples.NonemptyLists ∧ b ∈ LRA.AlgebraicStructures.Semigroup.Examples.NonemptyLists) → instHMul.hMul a b ∈ LRA.AlgebraicStructures.Semigroup.Examples.NonemptyLists
 Transliterated theorem: ∀ a b, a ∈ NonemptyLists → b ∈ NonemptyLists → a * b ∈ NonemptyLists ∈ LRA.Set.LRA_Set (List Alphabet)
 Logical form (Lean): : ∀ a b, a ∈ NonemptyLists → b ∈ NonemptyLists → a * b ∈ (NonemptyLists : LRA.Set.LRA_Set (List Alphabet))
 Source: [`./Semigroup/Examples/NonemptyListsUnderConcatenation.lean#L110`](./Semigroup/Examples/NonemptyListsUnderConcatenation.lean#L110)
@@ -2525,7 +2519,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (a ∈ LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegers ∧ b ∈ LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegers) → { hMul := fun a b => LRA.AlgebraicStructures.Semigroup.Examples.instMulNaturalsUnderAddition.mul a b }.hMul a b ∈ LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegers
+    (a ∈ LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegers ∧ b ∈ LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegers) → instHMul.hMul a b ∈ LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegers
 Transliterated theorem: ∀ a b, a ∈ PositiveIntegers → b ∈ PositiveIntegers → a * b ∈ PositiveIntegers
 Logical form (Lean): : ∀ a b, a ∈ PositiveIntegers → b ∈ PositiveIntegers → a * b ∈ PositiveIntegers
 Source: [`./Semigroup/Examples/PositiveIntegersUnderAddition.lean#L149`](./Semigroup/Examples/PositiveIntegersUnderAddition.lean#L149)
@@ -2542,7 +2536,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.CommutativeSemigroupLaws (Subtype fun n => n) ∈ LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegers
+    ((∀ (first second third : Subtype fun n => n), ∈ LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegers (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ (∀ (first second : Subtype fun n => n), ∈ LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegers (fun a b => instHMul.hMul a b) first second = (fun a b => instHMul.hMul a b) second first))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./CommutativeSemigroup/Examples/PositiveIntegersUnderAddition.lean`](./CommutativeSemigroup/Examples/PositiveIntegersUnderAddition.lean)
@@ -2559,7 +2553,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.MultiplicativeCommutativeLaws LRA.AlgebraicStructures.Semigroup.Examples.NaturalsUnderAddition
+    (fun a b => instHMul.hMul a b) first second = (fun a b => instHMul.hMul a b) second first
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./CommutativeSemigroup/Examples/PositiveIntegersUnderAddition.lean`](./CommutativeSemigroup/Examples/PositiveIntegersUnderAddition.lean)
@@ -2576,7 +2570,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (Exists fun e => ((∀ (element : Subtype fun n => n), ∈ LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegers (fun a b => { hMul := fun a b => LRA.AlgebraicStructures.Semigroup.Examples.instMulSubtypeNaturalsUnderAdditionMemLRA_SetPositiveIntegers.mul a b }.hMul a b) e element = element) ∧ (∀ (element : Subtype fun n => n), ∈ LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegers (fun a b => { hMul := fun a b => LRA.AlgebraicStructures.Semigroup.Examples.instMulSubtypeNaturalsUnderAdditionMemLRA_SetPositiveIntegers.mul a b }.hMul a b) element e = element))) → False
+    (∃ e, ((∀ (element : Subtype fun n => n), ∈ LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegers (fun a b => instHMul.hMul a b) e element = element) ∧ (∀ (element : Subtype fun n => n), ∈ LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegers (fun a b => instHMul.hMul a b) element e = element))) → False
 Transliterated theorem: ¬ ∃ e ∈ {n // n ∈ LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegers}, TwoSidedIdentity fun a b ∈ {n // n ∈ LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegers} => a * b e
 Logical form (Lean): : ¬ ∃ e : {n // n ∈ LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegers}, TwoSidedIdentity (fun a b : {n // n ∈ LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegers} => a * b) e
 Source: [`./Monoid/Failures/PositiveIntegersHaveNoIdentity.lean#L53`](./Monoid/Failures/PositiveIntegersHaveNoIdentity.lean#L53)
@@ -2593,7 +2587,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (Exists fun e => ((∀ (element : Subtype fun n => n), ∈ LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegers (fun a b => { hMul := fun a b => LRA.AlgebraicStructures.Semigroup.Examples.instMulSubtypeNaturalsUnderAdditionMemLRA_SetPositiveIntegers.mul a b }.hMul a b) e element = element) ∧ (∀ (element : Subtype fun n => n), ∈ LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegers (fun a b => { hMul := fun a b => LRA.AlgebraicStructures.Semigroup.Examples.instMulSubtypeNaturalsUnderAdditionMemLRA_SetPositiveIntegers.mul a b }.hMul a b) element e = element))) → False
+    (∃ e, ((∀ (element : Subtype fun n => n), ∈ LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegers (fun a b => instHMul.hMul a b) e element = element) ∧ (∀ (element : Subtype fun n => n), ∈ LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegers (fun a b => instHMul.hMul a b) element e = element))) → False
 Transliterated theorem: ¬ ∃ e ∈ {n // n ∈ PositiveIntegers}, TwoSidedIdentity fun a b ∈ {n // n ∈ PositiveIntegers} => a * b e
 Logical form (Lean): : ¬ ∃ e : {n // n ∈ PositiveIntegers}, TwoSidedIdentity (fun a b : {n // n ∈ PositiveIntegers} => a * b) e
 Source: [`./Semigroup/Examples/IdentityNotRequired.lean#L51`](./Semigroup/Examples/IdentityNotRequired.lean#L51)
@@ -2620,7 +2614,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.MultiplicativeSemigroupLaws R
+    Nonempty R → ∀ (first second third : R), (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Semigroup/Constructions/Mathlib/Laws.lean`](./Semigroup/Constructions/Mathlib/Laws.lean)
@@ -2773,7 +2767,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    value = signature.toZeroOneBundle.2 → False
+    value = signature.zero → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./OrderedField/Interface/ModelTheory/LStructure.lean`](./OrderedField/Interface/ModelTheory/LStructure.lean)
@@ -2790,7 +2784,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (LRA.AlgebraicStructures.OrderedFieldLaws R ∧ LRA.Order.OrderCompletenessLaws R SetObject)
+    Nonempty R → ((((((∀ (first second third : R), (fun a b => instHAdd.hAdd a b) ((fun a b => instHAdd.hAdd a b) first second) third = (fun a b => instHAdd.hAdd a b) first ((fun a b => instHAdd.hAdd a b) second third)) ∧ (((∀ (element : R), (fun a b => instHAdd.hAdd a b) 0 element = element) ∧ (∀ (element : R), (fun a b => instHAdd.hAdd a b) element 0 = element)) ∧ (((∀ (element : R), (fun a b => instHAdd.hAdd a b) ((fun a => inst_2.neg a) element) element = 0) ∧ (∀ (element : R), (fun a b => instHAdd.hAdd a b) element ((fun a => inst_2.neg a) element) = 0)) ∧ ((∀ (first second : R), (fun a b => instHAdd.hAdd a b) first second = (fun a b => instHAdd.hAdd a b) second first) ∧ ((∀ (first second third : R), (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)) ∧ (((∀ (element : R), (fun a b => instHMul.hMul a b) 1 element = element) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element 1 = element)) ∧ (((∀ (element : R), (fun a b => instHMul.hMul a b) 0 element = 0) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element 0 = 0)) ∧ ((∀ (left right third : R), (fun a b => instHMul.hMul a b) left ((fun a b => instHAdd.hAdd a b) right third) = (fun a b => instHAdd.hAdd a b) ((fun a b => instHMul.hMul a b) left right) ((fun a b => instHMul.hMul a b) left third)) ∧ (∀ (left right third : R), (fun a b => instHMul.hMul a b) ((fun a b => instHAdd.hAdd a b) left right) third = (fun a b => instHAdd.hAdd a b) ((fun a b => instHMul.hMul a b) left third) ((fun a b => instHMul.hMul a b) right third)))))))))) ∧ ((1 = 0 → False) ∧ ((∀ (a : R), (a = 0 → False) → (fun x y => instHMul.hMul x y) a (inst_3.inv a) = 1) ∧ inst_3.inv 0 = 0))) ∧ (∀ (first second : R), (fun a b => instHMul.hMul a b) first second = (fun a b => instHMul.hMul a b) second first)) ∧ ((((∀ (a : R), a ≤ a) ∧ ((∀ (a b : R), a ≤ b → b ≤ a → a = b) ∧ (∀ (a b c : R), a ≤ b → b ≤ c → a ≤ c))) ∧ (∀ (a b : R), Or (a ≤ b)(b ≤ a))) ∧ (((∀ (a b : R), a ≤ b → ∀ (c : R), instHAdd.hAdd c a ≤ instHAdd.hAdd c b) ∧ (∀ (a b : R), a ≤ b → ∀ (c : R), instHAdd.hAdd a c ≤ instHAdd.hAdd b c)) ∧ (∀ (a b : R), 0 ≤ a → 0 ≤ b → 0 ≤ instHMul.hMul a b)))) ∧ (∀ (subset : SetObject), (∃ element, element) ∈ subset → (∃ bound, ∀ (element : R), element ∈ subset → (fun a b => a ≤ b)element bound) → ∃ supremum, ((∀ (element : R), element ∈ subset → (fun a b => a ≤ b)element supremum) ∧ (∀ (bound : R), (∀ (element : R), element ∈ subset → (fun a b => a ≤ b)element bound) → (fun a b => a ≤ b)supremum bound))))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./CompleteOrderedField/Interface/Laws/Definition.lean`](./CompleteOrderedField/Interface/Laws/Definition.lean)
@@ -2807,7 +2801,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun n => a = LRA.AlgebraicStructures.IteratedSelfSum n x
+    ∃ n, a = LRA.AlgebraicStructures.IteratedSelfSum n x
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Archimedean/Interface/Laws/Definition.lean`](./Archimedean/Interface/Laws/Definition.lean)
@@ -2824,7 +2818,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.AdditiveInverseLaws R
+    ((∀ (element : R), (fun a b => instHAdd.hAdd a b) ((fun a => SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg a) element) element = 0) ∧ (∀ (element : R), (fun a b => instHAdd.hAdd a b) element ((fun a => SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg a) element) = 0))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./MathlibBridge.lean`](./MathlibBridge.lean)
@@ -2841,7 +2835,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.ZeroAbsorbingLaws R
+    ((∀ (element : R), (fun a b => instHMul.hMul a b) 0 element = 0) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element 0 = 0))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./MathlibBridge.lean`](./MathlibBridge.lean)
@@ -2858,7 +2852,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.AdditiveIdentityLaws R
+    ((∀ (element : R), (fun a b => instHAdd.hAdd a b) 0 element = element) ∧ (∀ (element : R), (fun a b => instHAdd.hAdd a b) element 0 = element))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./MathlibBridge.lean`](./MathlibBridge.lean)
@@ -2875,7 +2869,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.AdditiveCommutativeLaws R
+    (fun a b => instHAdd.hAdd a b) first second = (fun a b => instHAdd.hAdd a b) second first
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./MathlibBridge.lean`](./MathlibBridge.lean)
@@ -2892,7 +2886,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.DivisionCompatibilityLaw R
+    instHDiv.hDiv a b = instHMul.hMul a (inst.inv b)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./MathlibBridge.lean`](./MathlibBridge.lean)
@@ -2909,7 +2903,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    NoZeroDivisors R → LRA.AlgebraicStructures.NoZeroDivisorsLaw R
+    NoZeroDivisors R → ∀ (a b : R), instHMul.hMul a b = 0 → Or (a = 0)(b = 0)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./MathlibBridge.lean`](./MathlibBridge.lean)
@@ -2926,7 +2920,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.MultiplicativeIdentityLaws R
+    ((∀ (element : R), (fun a b => instHMul.hMul a b) 1 element = element) ∧ (∀ (element : R), (fun a b => instHMul.hMul a b) element 1 = element))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./MathlibBridge.lean`](./MathlibBridge.lean)
@@ -2943,7 +2937,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.DistributiveLaws R
+    ((∀ (left right third : R), (fun a b => instHMul.hMul a b) left ((fun a b => instHAdd.hAdd a b) right third) = (fun a b => instHAdd.hAdd a b) ((fun a b => instHMul.hMul a b) left right) ((fun a b => instHMul.hMul a b) left third)) ∧ (∀ (left right third : R), (fun a b => instHMul.hMul a b) ((fun a b => instHAdd.hAdd a b) left right) third = (fun a b => instHAdd.hAdd a b) ((fun a b => instHMul.hMul a b) left third) ((fun a b => instHMul.hMul a b) right third)))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./MathlibBridge.lean`](./MathlibBridge.lean)
@@ -2960,7 +2954,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.MultiplicativeInverseLaws R
+    ((∀ (a : R), (a = 0 → False) → (fun x y => instHMul.hMul x y) a (DivisionMonoid.toDivInvOneMonoid.toInvOneClass.inv a) = 1) ∧ DivisionMonoid.toDivInvOneMonoid.toInvOneClass.inv 0 = 0)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./MathlibBridge.lean`](./MathlibBridge.lean)
@@ -2977,7 +2971,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.MultiplicativeCommutativeLaws R
+    (fun a b => instHMul.hMul a b) first second = (fun a b => instHMul.hMul a b) second first
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./MathlibBridge.lean`](./MathlibBridge.lean)
@@ -2994,7 +2988,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.SubtractionCompatibilityLaw R
+    instHSub.hSub a b = instHAdd.hAdd a (SubtractionMonoid.toSubNegZeroMonoid.toNegZeroClass.neg b)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./MathlibBridge.lean`](./MathlibBridge.lean)
@@ -3028,7 +3022,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun r => a = { hAdd := fun a b => Int.instAdd.add a b }.hAdd r r
+    ∃ r, a = instHAdd.hAdd r r
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./AdditiveSemigroup/Examples/EvenIntegersUnderAddition.lean`](./AdditiveSemigroup/Examples/EvenIntegersUnderAddition.lean)
@@ -3062,7 +3056,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (instLTNat.lt 0 a ∧ Exists fun r => a = { hAdd := fun a b => instAddNat.add a b }.hAdd r r)
+    (instLTNat.lt 0 a ∧ (∃ r, a = instHAdd.hAdd r r))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./AdditiveSemigroup/Examples/PositiveEvenNaturalsUnderAddition.lean`](./AdditiveSemigroup/Examples/PositiveEvenNaturalsUnderAddition.lean)
@@ -3164,7 +3158,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (instLTNat.lt 0 a.1 ∧ Exists fun r => a.1 = { hAdd := fun a b => instAddNat.add a b }.hAdd r r)
+    (instLTNat.lt 0 a.val ∧ (∃ r, a.val = instHAdd.hAdd r r))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./CommutativeSemigroup/Examples/PositiveEvenNaturalsUnderMultiplication.lean`](./CommutativeSemigroup/Examples/PositiveEvenNaturalsUnderMultiplication.lean)
@@ -3283,7 +3277,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun x => LRA.Set.Constructions.instMembershipZFCSet.1 a x
+    ∃ x, LRA.Set.Constructions.instMembershipZFCSet.mem a x
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Magma/Examples/NonemptyZFCSetsUnderUnion.lean`](./Magma/Examples/NonemptyZFCSetsUnderUnion.lean)
@@ -3300,7 +3294,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    a.1 = 0 → False
+    a.val = 0 → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Magma/Examples/NonzeroRealsUnderDivision.lean`](./Magma/Examples/NonzeroRealsUnderDivision.lean)
@@ -3402,7 +3396,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun r => a = { hAdd := fun a b => Int.instAdd.add a b }.hAdd r r
+    ∃ r, a = instHAdd.hAdd r r
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Semigroup/Examples/EvenIntegersUnderMultiplication.lean`](./Semigroup/Examples/EvenIntegersUnderMultiplication.lean)
@@ -3436,7 +3430,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Nonempty Alphabet → LRA.AlgebraicStructures.MultiplicativeSemigroupLaws (List Alphabet)
+    Nonempty Alphabet → ∀ (first second third : List Alphabet), (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Semigroup/Examples/NonemptyListsUnderConcatenation.lean`](./Semigroup/Examples/NonemptyListsUnderConcatenation.lean)
@@ -3453,7 +3447,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Nonempty Alphabet → Nonempty (Subtype fun l => l) ∈ fun l => l = List.nil → False
+    Nonempty Alphabet → Nonempty (Subtype fun l => l) ∈ LRA.AlgebraicStructures.Semigroup.Examples.NonemptyLists
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Semigroup/Examples/NonemptyListsUnderConcatenation.lean`](./Semigroup/Examples/NonemptyListsUnderConcatenation.lean)
@@ -3504,7 +3498,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.MultiplicativeSemigroupLaws (Subtype fun l => l) ∈ fun l => l = List.nil → False
+    ∈ LRA.AlgebraicStructures.Semigroup.Examples.NonemptyLists (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Semigroup/Examples/NonemptyListsUnderConcatenation.lean`](./Semigroup/Examples/NonemptyListsUnderConcatenation.lean)
@@ -3555,7 +3549,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.MultiplicativeSemigroupLaws (Subtype fun n => n) ∈ LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegers
+    ∈ LRA.AlgebraicStructures.Semigroup.Examples.PositiveIntegers (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Semigroup/Examples/PositiveIntegersUnderAddition.lean`](./Semigroup/Examples/PositiveIntegersUnderAddition.lean)
@@ -3572,7 +3566,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.AlgebraicStructures.MultiplicativeSemigroupLaws LRA.AlgebraicStructures.Semigroup.Examples.NaturalsUnderAddition
+    (fun a b => instHMul.hMul a b) ((fun a b => instHMul.hMul a b) first second) third = (fun a b => instHMul.hMul a b) first ((fun a b => instHMul.hMul a b) second third)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Semigroup/Examples/PositiveIntegersUnderAddition.lean`](./Semigroup/Examples/PositiveIntegersUnderAddition.lean)
@@ -3589,7 +3583,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (Nat.succ 0).le a.1
+    (Nat.succ 0).le a.val
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Semigroup/Examples/PositiveIntegersUnderAddition.lean`](./Semigroup/Examples/PositiveIntegersUnderAddition.lean)

@@ -31,7 +31,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.Metamathematics.Notation.LogicalConnectives.2 LRA.Metamathematics.Notation.LogicalConnective.neg = 1
+    LRA.Metamathematics.Notation.LogicalConnectives.arity LRA.Metamathematics.Notation.LogicalConnective.neg = 1
 Transliterated theorem: LogicalConnectives.IsUnary .neg
 Logical form (Lean): : LogicalConnectives.IsUnary .neg
 Source: [`./Notation/LogicalSymbols.lean#L147`](./Notation/LogicalSymbols.lean#L147)
@@ -48,7 +48,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.Metamathematics.Notation.LogicalConnectives.2 LRA.Metamathematics.Notation.LogicalConnective.impl = 2
+    LRA.Metamathematics.Notation.LogicalConnectives.arity LRA.Metamathematics.Notation.LogicalConnective.impl = 2
 Transliterated theorem: LogicalConnectives.IsBinary .impl
 Logical form (Lean): : LogicalConnectives.IsBinary .impl
 Source: [`./Notation/LogicalSymbols.lean#L192`](./Notation/LogicalSymbols.lean#L192)
@@ -65,7 +65,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    LRA.Metamathematics.Notation.LogicalEqualitySymbols.2 LRA.Metamathematics.Notation.LogicalEquality.eq = 2
+    LRA.Metamathematics.Notation.LogicalEqualitySymbols.arity LRA.Metamathematics.Notation.LogicalEquality.eq = 2
 Transliterated theorem: LogicalEqualitySymbols.IsBinary .eq
 Logical form (Lean): : LogicalEqualitySymbols.IsBinary .eq
 Source: [`./Notation/LogicalSymbols.lean#L329`](./Notation/LogicalSymbols.lean#L329)
@@ -99,7 +99,7 @@ Predicate logic (unfolded):
   Objects
     a : Nat
   Prove
-    { hAdd := fun a b => instAddNat.add a b }.hAdd a 0 = a
+    instHAdd.hAdd a 0 = a
 Transliterated theorem: (∀ a ∈ Nat), a + 0 = a
 Logical form (Lean): (a : Nat) : a + 0 = a
 Source: [`./DeclarationKeywords.lean#L163`](./DeclarationKeywords.lean#L163)
@@ -116,7 +116,7 @@ Predicate logic (unfolded):
   Objects
     a b : Nat
   Prove
-    { hAdd := fun a b => instAddNat.add a b }.hAdd a b = { hAdd := fun a b => instAddNat.add a b }.hAdd b a
+    instHAdd.hAdd a b = instHAdd.hAdd b a
 Transliterated theorem: (∀ a b ∈ Nat), a + b = b + a
 Logical form (Lean): (a b : Nat) : a + b = b + a
 Source: [`./DeclarationKeywords.lean#L165`](./DeclarationKeywords.lean#L165)
@@ -133,7 +133,7 @@ Predicate logic (unfolded):
   Objects
     inst1 inst2 : SyntacticCategory Symbol
   Prove
-    Decidable.rec (fun h => (fun x => Bool.false) h) (fun h => (fun x => Bool.true) h) (inst1.1 x y) = Decidable.rec (fun h => (fun x => Bool.false) h) (fun h => (fun x => Bool.true) h) (inst2.1 x y)
+    Decidable.decide (x = y) = Decidable.decide (x = y)
 Transliterated theorem: ∀ x y : Symbol, @Decidable.decide (x = y) (inst1.decidableEquality x y) = @Decidable.decide (x = y) (inst2.decidableEquality x y)
 Logical form (Lean): {Symbol : Type u} (inst1 inst2 : SyntacticCategory Symbol) : ∀ x y : Symbol, @Decidable.decide (x = y) (inst1.decidableEquality x y) = @Decidable.decide (x = y) (inst2.decidableEquality x y)
 Source: [`./SyntacticCategory.lean#L132`](./SyntacticCategory.lean#L132)
@@ -262,7 +262,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun Expr => Exists fun Variable => Exists fun Term => Exists fun IsSafe => Exists fun substitute => Exists fun variableOccursFreelyIn => Exists fun freeVariablesOf => LRA.Metamathematics.SubstitutionSafety Expr Variable Term IsSafe substitute variableOccursFreelyIn freeVariablesOf
+    ∃ Expr, ∃ Variable, ∃ Term, ∃ IsSafe, ∃ substitute, ∃ variableOccursFreelyIn, ∃ freeVariablesOf, ∀ (e : Expr) (x : Variable) (t : Term) (y : Variable), IsSafe e x t → variableOccursFreelyIn y t → LRA.Metamathematics.instMembershipMetaCollection.mem (freeVariablesOf e) y → LRA.Metamathematics.instMembershipMetaCollection.mem (freeVariablesOf (substitute x t e)) y
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./SubstitutionSafety.lean`](./SubstitutionSafety.lean)
@@ -279,7 +279,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    pairing.2 Γ φ → pairing.1 Γ φ
+    pairing.Satisfies Γ φ → pairing.Provable Γ φ
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./MetatheoremTargets.lean`](./MetatheoremTargets.lean)
@@ -296,7 +296,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun Formula => Exists fun Theory => Exists fun pairing => ∀ (Γ : Theory) (φ : Formula), pairing.2 Γ φ → pairing.1 Γ φ
+    ∃ Formula, ∃ Theory, ∃ pairing, ∀ (Γ : Theory) (φ : Formula), pairing.Satisfies Γ φ → pairing.Provable Γ φ
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./MetatheoremTargets.lean`](./MetatheoremTargets.lean)
@@ -313,7 +313,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    pairing.1 Γ φ → pairing.2 Γ φ
+    pairing.Provable Γ φ → pairing.Satisfies Γ φ
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./MetatheoremTargets.lean`](./MetatheoremTargets.lean)
@@ -330,7 +330,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun Formula => Exists fun Theory => Exists fun pairing => ∀ (Γ : Theory) (φ : Formula), pairing.1 Γ φ → pairing.2 Γ φ
+    ∃ Formula, ∃ Theory, ∃ pairing, ∀ (Γ : Theory) (φ : Formula), pairing.Provable Γ φ → pairing.Satisfies Γ φ
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./MetatheoremTargets.lean`](./MetatheoremTargets.lean)

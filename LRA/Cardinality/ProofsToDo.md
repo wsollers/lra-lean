@@ -34,7 +34,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun f => ((∀ (y x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : A), Exists fun x => f x = y))
+    ∃ f, ((∀ (y x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : A), ∃ x, f x = y))
 Transliterated theorem: Equinumerous A A
 Logical form (Lean): (A : Type u) : Equinumerous A A
 Source: [`./Theorems.lean#L49`](./Theorems.lean#L49)
@@ -51,7 +51,7 @@ Predicate logic (unfolded):
   Objects
     equinumerous : Equinumerous A B
   Prove
-    (Exists fun f => ((∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : B), Exists fun x => f x = y))) → Exists fun f => ((∀ (y : A) (x₁ x₂ : B), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : A), Exists fun x => f x = y))
+    (∃ f, ((∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : B), ∃ x, f x = y))) → ∃ f, ((∀ (y : A) (x₁ x₂ : B), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : A), ∃ x, f x = y))
 Transliterated theorem: Equinumerous B A
 Logical form (Lean): (A : Type u) (B : Type v) (equinumerous : Equinumerous A B) : Equinumerous B A
 Source: [`./Theorems.lean#L93`](./Theorems.lean#L93)
@@ -69,7 +69,7 @@ Predicate logic (unfolded):
     firstEquinumerous : Equinumerous A B
     secondEquinumerous : Equinumerous B C
   Prove
-    ((Exists fun f => ((∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : B), Exists fun x => f x = y))) ∧ (Exists fun f => ((∀ (y : C) (x₁ x₂ : B), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : C), Exists fun x => f x = y)))) → Exists fun f => ((∀ (y : C) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : C), Exists fun x => f x = y))
+    ((∃ f, ((∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : B), ∃ x, f x = y))) ∧ (∃ f, ((∀ (y : C) (x₁ x₂ : B), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : C), ∃ x, f x = y)))) → ∃ f, ((∀ (y : C) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : C), ∃ x, f x = y))
 Transliterated theorem: Equinumerous A C
 Logical form (Lean): (A : Type u) (B : Type v) (C : Type w) (firstEquinumerous : Equinumerous A B) (secondEquinumerous : Equinumerous B C) : Equinumerous A C
 Source: [`./Theorems.lean#L140`](./Theorems.lean#L140)
@@ -86,7 +86,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun f => ∀ (y x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
+    ∃ f, ∀ (y x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
 Transliterated theorem: Dominates A A
 Logical form (Lean): (A : Type u) : Dominates A A
 Source: [`./Theorems.lean#L185`](./Theorems.lean#L185)
@@ -104,7 +104,7 @@ Predicate logic (unfolded):
     firstDominates : Dominates A B
     secondDominates : Dominates B C
   Prove
-    ((Exists fun f => ∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (Exists fun f => ∀ (y : C) (x₁ x₂ : B), f x₁ = y → f x₂ = y → x₁ = x₂)) → Exists fun f => ∀ (y : C) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
+    ((∃ f, ∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∃ f, ∀ (y : C) (x₁ x₂ : B), f x₁ = y → f x₂ = y → x₁ = x₂)) → ∃ f, ∀ (y : C) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
 Transliterated theorem: Dominates A C
 Logical form (Lean): (A : Type u) (B : Type v) (C : Type w) (firstDominates : Dominates A B) (secondDominates : Dominates B C) : Dominates A C
 Source: [`./Theorems.lean#L231`](./Theorems.lean#L231)
@@ -121,7 +121,7 @@ Predicate logic (unfolded):
   Objects
     equinumerous : Equinumerous A B
   Prove
-    (Exists fun f => ((∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : B), Exists fun x => f x = y))) → Exists fun f => ∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
+    (∃ f, ((∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : B), ∃ x, f x = y))) → ∃ f, ∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
 Transliterated theorem: Dominates A B
 Logical form (Lean): (A : Type u) (B : Type v) (equinumerous : Equinumerous A B) : Dominates A B
 Source: [`./Theorems.lean#L277`](./Theorems.lean#L277)
@@ -139,7 +139,7 @@ Predicate logic (unfolded):
     firstDominates : Dominates A B
     secondDominates : Dominates B A
   Prove
-    ((Exists fun f => ∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (Exists fun f => ∀ (y : A) (x₁ x₂ : B), f x₁ = y → f x₂ = y → x₁ = x₂)) → Exists fun f => ((∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : B), Exists fun x => f x = y))
+    ((∃ f, ∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∃ f, ∀ (y : A) (x₁ x₂ : B), f x₁ = y → f x₂ = y → x₁ = x₂)) → ∃ f, ((∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : B), ∃ x, f x = y))
 Transliterated theorem: Equinumerous A B
 Logical form (Lean): (A : Type u) (B : Type v) (firstDominates : Dominates A B) (secondDominates : Dominates B A) : Equinumerous A B
 Source: [`./Theorems.lean#L324`](./Theorems.lean#L324)
@@ -156,7 +156,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (Exists fun f => ∀ (y : A → Prop), Exists fun x => f x = y) → False
+    (∃ f, ∀ (y : A → Prop), ∃ x, f x = y) → False
 Transliterated theorem: ¬ ∃ f ∈ A → (A → Prop), LRA.Function.Surjective f
 Logical form (Lean): (A : Type u) : ¬ ∃ f : A → (A → Prop), LRA.Function.Surjective f
 Source: [`./Theorems.lean#L370`](./Theorems.lean#L370)
@@ -173,7 +173,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((Exists fun f => ∀ (y : A → Prop) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ ((Exists fun f => ((∀ (y : A → Prop) (x₁ x₂ : A), LRA.Function.Graph f x₁ y → LRA.Function.Graph f x₂ y → x₁ = x₂) ∧ (∀ (y : A → Prop), Exists fun x => LRA.Function.Graph f x y))) → False))
+    ((∃ f, ∀ (y : A → Prop) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ ((∃ f, ((∀ (y : A → Prop) (x₁ x₂ : A), LRA.Function.Graph f x₁ y → LRA.Function.Graph f x₂ y → x₁ = x₂) ∧ (∀ (y : A → Prop), ∃ x, LRA.Function.Graph f x y))) → False))
 Transliterated theorem: StrictlyDominates A (A → Prop)
 Logical form (Lean): (A : Type u) : StrictlyDominates A (A → Prop)
 Source: [`./Theorems.lean#L415`](./Theorems.lean#L415)
@@ -207,7 +207,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((Exists fun n => Exists fun f => ((∀ (y : Fin n) (x₁ x₂ : A), LRA.Function.Graph f x₁ y → LRA.Function.Graph f x₂ y → x₁ = x₂) ∧ (∀ (y : Fin n), Exists fun x => LRA.Function.Graph f x y))) ∧ ((Exists fun n => Exists fun f => (LRA.Function.Injective f ∧ LRA.Function.Surjective f)) → False)) → False
+    ((∃ n, ∃ f, ((∀ (y : Fin n) (x₁ x₂ : A), LRA.Function.Graph f x₁ y → LRA.Function.Graph f x₂ y → x₁ = x₂) ∧ (∀ (y : Fin n), ∃ x, LRA.Function.Graph f x y))) ∧ ((∃ n, ∃ f, (LRA.Function.Injective f ∧ LRA.Function.Surjective f)) → False)) → False
 Transliterated theorem: ¬ (IsFinite A ∧ IsInfinite A)
 Logical form (Lean): (A : Type u) : ¬ (IsFinite A ∧ IsInfinite A)
 Source: [`./Properties/Finiteness/Theorems.lean#L96`](./Properties/Finiteness/Theorems.lean#L96)
@@ -224,7 +224,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((Exists fun n => Exists fun f => ((∀ (y : Fin n) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Fin n), Exists fun x => f x = y))) ∧ (Exists fun f => ((∀ (y x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ ((∀ (y : A), Exists fun x => LRA.Function.Graph f x y) → False)))) → False
+    ((∃ n, ∃ f, ((∀ (y : Fin n) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Fin n), ∃ x, f x = y))) ∧ (∃ f, ((∀ (y x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ ((∀ (y : A), ∃ x, LRA.Function.Graph f x y) → False)))) → False
 Transliterated theorem: (IsFinite A) → IsDedekindFinite A
 Logical form (Lean): (A : Type u) (finite : IsFinite A) : IsDedekindFinite A
 Source: [`./Properties/Finiteness/Theorems.lean#L141`](./Properties/Finiteness/Theorems.lean#L141)
@@ -241,7 +241,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((Exists fun f => ((∀ (y x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ ((∀ (y : A), Exists fun x => f x = y) → False))) ∧ (Exists fun n => Exists fun f => (LRA.Relation.LeftUnique (LRA.Function.Graph f) ∧ LRA.Relation.RightTotal (LRA.Function.Graph f)))) → False
+    ((∃ f, ((∀ (y x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ ((∀ (y : A), ∃ x, f x = y) → False))) ∧ (∃ n, ∃ f, (LRA.Relation.LeftUnique (LRA.Function.Graph f) ∧ LRA.Relation.RightTotal (LRA.Function.Graph f)))) → False
 Transliterated theorem: (IsDedekindInfinite A) → IsInfinite A
 Logical form (Lean): (A : Type u) (dedekindInfinite : IsDedekindInfinite A) : IsInfinite A
 Source: [`./Properties/Finiteness/Theorems.lean#L186`](./Properties/Finiteness/Theorems.lean#L186)
@@ -258,7 +258,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((Exists fun n => Exists fun f => ((∀ (y : Fin n) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Fin n), Exists fun x => f x = y))) ∧ ((Exists fun n => Exists fun f => (LRA.Relation.LeftUnique (LRA.Function.Graph f) ∧ LRA.Relation.RightTotal (LRA.Function.Graph f))) → False)) → Exists fun f => ∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
+    ((∃ n, ∃ f, ((∀ (y : Fin n) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Fin n), ∃ x, f x = y))) ∧ ((∃ n, ∃ f, (LRA.Relation.LeftUnique (LRA.Function.Graph f) ∧ LRA.Relation.RightTotal (LRA.Function.Graph f))) → False)) → ∃ f, ∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
 Transliterated theorem: (IsFinite A ∧ IsInfinite B) → Dominates A B
 Logical form (Lean): (A : Type u) (B : Type v) (finiteA : IsFinite A) (infiniteB : IsInfinite B) : Dominates A B
 Source: [`./Properties/Finiteness/Theorems.lean#L231`](./Properties/Finiteness/Theorems.lean#L231)
@@ -275,7 +275,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (Exists fun n => Exists fun f => ((∀ (y : Fin n) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Fin n), Exists fun x => f x = y))) → Exists fun f => ∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
+    (∃ n, ∃ f, ((∀ (y : Fin n) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Fin n), ∃ x, f x = y))) → ∃ f, ∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
 Transliterated theorem: (IsFinite A) → IsCountable A
 Logical form (Lean): (A : Type u) (finite : IsFinite A) : IsCountable A
 Source: [`./Properties/Countability/Theorems.lean#L51`](./Properties/Countability/Theorems.lean#L51)
@@ -292,7 +292,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (Exists fun f => ((∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Nat), Exists fun x => f x = y))) → Exists fun f => ∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
+    (∃ f, ((∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Nat), ∃ x, f x = y))) → ∃ f, ∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
 Transliterated theorem: (IsCountablyInfinite A) → IsCountable A
 Logical form (Lean): (A : Type u) (countablyInfinite : IsCountablyInfinite A) : IsCountable A
 Source: [`./Properties/Countability/Theorems.lean#L96`](./Properties/Countability/Theorems.lean#L96)
@@ -309,7 +309,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((Exists fun f => ((∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Nat), Exists fun x => f x = y))) ∧ (Exists fun n => Exists fun f => (LRA.Relation.LeftUnique (LRA.Function.Graph f) ∧ LRA.Relation.RightTotal (LRA.Function.Graph f)))) → False
+    ((∃ f, ((∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Nat), ∃ x, f x = y))) ∧ (∃ n, ∃ f, (LRA.Relation.LeftUnique (LRA.Function.Graph f) ∧ LRA.Relation.RightTotal (LRA.Function.Graph f)))) → False
 Transliterated theorem: (IsCountablyInfinite A) → IsInfinite A
 Logical form (Lean): (A : Type u) (countablyInfinite : IsCountablyInfinite A) : IsInfinite A
 Source: [`./Properties/Countability/Theorems.lean#L141`](./Properties/Countability/Theorems.lean#L141)
@@ -343,7 +343,7 @@ Predicate logic (unfolded):
   Objects
     dominatesB : Dominates A B
   Prove
-    ((Exists fun f => ∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (Exists fun f => ∀ (y : Nat) (x₁ x₂ : B), f x₁ = y → f x₂ = y → x₁ = x₂)) → Exists fun f => ∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
+    ((∃ f, ∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∃ f, ∀ (y : Nat) (x₁ x₂ : B), f x₁ = y → f x₂ = y → x₁ = x₂)) → ∃ f, ∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
 Transliterated theorem: (IsCountable B) → IsCountable A
 Logical form (Lean): (A : Type u) (B : Type v) (dominatesB : Dominates A B) (countableB : IsCountable B) : IsCountable A
 Source: [`./Properties/Countability/Theorems.lean#L232`](./Properties/Countability/Theorems.lean#L232)
@@ -360,7 +360,7 @@ Predicate logic (unfolded):
   Objects
     family : Index → Type v
   Prove
-    ((Exists fun f => ∀ (y : Nat) (x₁ x₂ : Index), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (index : Index), Exists fun f => ∀ (y : Nat) (x₁ x₂ : family index), f x₁ = y → f x₂ = y → x₁ = x₂)) → Exists fun f => ∀ (y : Nat) (x₁ x₂ : Sigma family), f x₁ = y → f x₂ = y → x₁ = x₂
+    ((∃ f, ∀ (y : Nat) (x₁ x₂ : Index), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (index : Index), ∃ f, ∀ (y : Nat) (x₁ x₂ : family index), f x₁ = y → f x₂ = y → x₁ = x₂)) → ∃ f, ∀ (y : Nat) (x₁ x₂ : Sigma family), f x₁ = y → f x₂ = y → x₁ = x₂
 Transliterated theorem: (IsCountable Index ∧ ∀ index : Index, IsCountable (family index)) → IsCountable (Sigma family)
 Logical form (Lean): {Index : Type u} (family : Index → Type v) (countableIndex : IsCountable Index) (countableFibers : ∀ index : Index, IsCountable (family index)) : IsCountable (Sigma family)
 Source: [`./Properties/Countability/Theorems.lean#L281`](./Properties/Countability/Theorems.lean#L281)
@@ -387,7 +387,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun f => ∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
+    ∃ f, ∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Definition.lean`](./Definition.lean)
@@ -404,7 +404,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun f => ((∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : B), Exists fun x => f x = y))
+    ∃ f, ((∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : B), ∃ x, f x = y))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Definition.lean`](./Definition.lean)
@@ -421,7 +421,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((Exists fun f => ∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ ((Exists fun f => ((∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : B), Exists fun x => f x = y))) → False))
+    ((∃ f, ∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ ((∃ f, ((∀ (y : B) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : B), ∃ x, f x = y))) → False))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Definition.lean`](./Definition.lean)
@@ -438,7 +438,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (Exists fun n => Exists fun f => ((∀ (y : Fin n) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Fin n), Exists fun x => f x = y))) → False
+    (∃ n, ∃ f, ((∀ (y : Fin n) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Fin n), ∃ x, f x = y))) → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Properties/Finiteness/Definition.lean`](./Properties/Finiteness/Definition.lean)
@@ -455,7 +455,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun f => ((∀ (y x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ ((∀ (y : A), Exists fun x => f x = y) → False))
+    ∃ f, ((∀ (y x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ ((∀ (y : A), ∃ x, f x = y) → False))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Properties/Finiteness/Definition.lean`](./Properties/Finiteness/Definition.lean)
@@ -472,7 +472,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun n => Exists fun f => ((∀ (y : Fin n) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Fin n), Exists fun x => f x = y))
+    ∃ n, ∃ f, ((∀ (y : Fin n) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Fin n), ∃ x, f x = y))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Properties/Finiteness/Definition.lean`](./Properties/Finiteness/Definition.lean)
@@ -489,7 +489,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (Exists fun f => ((∀ (y x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ ((∀ (y : A), Exists fun x => f x = y) → False))) → False
+    (∃ f, ((∀ (y x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ ((∀ (y : A), ∃ x, f x = y) → False))) → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Properties/Finiteness/Definition.lean`](./Properties/Finiteness/Definition.lean)
@@ -506,7 +506,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun f => ((∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Nat), Exists fun x => f x = y))
+    ∃ f, ((∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Nat), ∃ x, f x = y))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Properties/Countability/Definition.lean`](./Properties/Countability/Definition.lean)
@@ -523,7 +523,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (Exists fun f => ∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) → False
+    (∃ f, ∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Properties/Countability/Definition.lean`](./Properties/Countability/Definition.lean)
@@ -540,7 +540,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun f => ∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
+    ∃ f, ∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Properties/Countability/Definition.lean`](./Properties/Countability/Definition.lean)

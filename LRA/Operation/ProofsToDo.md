@@ -34,7 +34,7 @@ Predicate logic (unfolded):
   Objects
     realization : Realization Carrier
   Prove
-    realization.spec.1 = realization.spec.1
+    realization.spec.add = realization.spec.add
 Transliterated theorem: realization.spec.add = realization.spec.add
 Logical form (Lean): {Carrier : Type u} (realization : Realization Carrier) : realization.spec.add = realization.spec.add
 Source: [`./Addition/Theorems.lean#L49`](./Addition/Theorems.lean#L49)
@@ -51,7 +51,7 @@ Predicate logic (unfolded):
   Objects
     laws : BaseLawExports Carrier
   Prove
-    laws.realization.spec.1 (laws.realization.spec.1 first second) third = laws.realization.spec.1 first (laws.realization.spec.1 second third)
+    laws.realization.spec.add (laws.realization.spec.add first second) third = laws.realization.spec.add first (laws.realization.spec.add second third)
 Transliterated theorem: LRA.Operation.Laws.Associative.Associative laws.realization.spec.add
 Logical form (Lean): {Carrier : Type u} (laws : BaseLawExports Carrier) : LRA.Operation.Laws.Associative.Associative laws.realization.spec.add
 Source: [`./Addition/Theorems.lean#L95`](./Addition/Theorems.lean#L95)
@@ -68,7 +68,7 @@ Predicate logic (unfolded):
   Objects
     laws : CommutativeLawExports Carrier
   Prove
-    laws.base.realization.spec.1 first second = laws.base.realization.spec.1 second first
+    laws.base.realization.spec.add first second = laws.base.realization.spec.add second first
 Transliterated theorem: LRA.Operation.Laws.Commutative.Commutative laws.base.realization.spec.add
 Logical form (Lean): {Carrier : Type u} (laws : CommutativeLawExports Carrier) : LRA.Operation.Laws.Commutative.Commutative laws.base.realization.spec.add
 Source: [`./Addition/Theorems.lean#L142`](./Addition/Theorems.lean#L142)
@@ -85,7 +85,7 @@ Predicate logic (unfolded):
   Objects
     laws : IdentityLawExports Carrier
   Prove
-    ((∀ (element : Carrier), laws.base.realization.spec.1 laws.2 element = element) ∧ (∀ (element : Carrier), laws.base.realization.spec.1 element laws.2 = element))
+    ((∀ (element : Carrier), laws.base.realization.spec.add laws.identity element = element) ∧ (∀ (element : Carrier), laws.base.realization.spec.add element laws.identity = element))
 Transliterated theorem: LRA.Operation.Laws.Identity.TwoSidedIdentity laws.base.realization.spec.add laws.identity
 Logical form (Lean): {Carrier : Type u} (laws : IdentityLawExports Carrier) : LRA.Operation.Laws.Identity.TwoSidedIdentity laws.base.realization.spec.add laws.identity
 Source: [`./Addition/Theorems.lean#L191`](./Addition/Theorems.lean#L191)
@@ -102,7 +102,7 @@ Predicate logic (unfolded):
   Objects
     laws : InverseLawExports Carrier
   Prove
-    ((∀ (element : Carrier), laws.identityLaws.base.realization.spec.1 (laws.2 element) element = laws.identityLaws.2) ∧ (∀ (element : Carrier), laws.identityLaws.base.realization.spec.1 element (laws.2 element) = laws.identityLaws.2))
+    ((∀ (element : Carrier), laws.identityLaws.base.realization.spec.add (laws.inverse element) element = laws.identityLaws.identity) ∧ (∀ (element : Carrier), laws.identityLaws.base.realization.spec.add element (laws.inverse element) = laws.identityLaws.identity))
 Transliterated theorem: LRA.Operation.Laws.Inverse.TwoSidedInverse laws.identityLaws.base.realization.spec.add laws.identityLaws.identity laws.inverse
 Logical form (Lean): {Carrier : Type u} (laws : InverseLawExports Carrier) : LRA.Operation.Laws.Inverse.TwoSidedInverse laws.identityLaws.base.realization.spec.add laws.identityLaws.identity laws.inverse
 Source: [`./Addition/Theorems.lean#L243`](./Addition/Theorems.lean#L243)
@@ -119,7 +119,7 @@ Predicate logic (unfolded):
   Objects
     laws : IdempotentLawExports Carrier
   Prove
-    laws.realization.spec.1 element element = element
+    laws.realization.spec.add element element = element
 Transliterated theorem: LRA.Operation.Laws.Idempotent.Idempotent laws.realization.spec.add
 Logical form (Lean): {Carrier : Type u} (laws : IdempotentLawExports Carrier) : LRA.Operation.Laws.Idempotent.Idempotent laws.realization.spec.add
 Source: [`./Addition/Theorems.lean#L293`](./Addition/Theorems.lean#L293)
@@ -136,7 +136,7 @@ Predicate logic (unfolded):
   Objects
     realization : Realization Carrier
   Prove
-    realization.spec.1 = realization.spec.1
+    realization.spec.mul = realization.spec.mul
 Transliterated theorem: realization.spec.mul = realization.spec.mul
 Logical form (Lean): {Carrier : Type u} (realization : Realization Carrier) : realization.spec.mul = realization.spec.mul
 Source: [`./Multiplication/Theorems.lean#L49`](./Multiplication/Theorems.lean#L49)
@@ -153,7 +153,7 @@ Predicate logic (unfolded):
   Objects
     laws : BaseLawExports Carrier
   Prove
-    laws.realization.spec.1 (laws.realization.spec.1 first second) third = laws.realization.spec.1 first (laws.realization.spec.1 second third)
+    laws.realization.spec.mul (laws.realization.spec.mul first second) third = laws.realization.spec.mul first (laws.realization.spec.mul second third)
 Transliterated theorem: LRA.Operation.Laws.Associative.Associative laws.realization.spec.mul
 Logical form (Lean): {Carrier : Type u} (laws : BaseLawExports Carrier) : LRA.Operation.Laws.Associative.Associative laws.realization.spec.mul
 Source: [`./Multiplication/Theorems.lean#L95`](./Multiplication/Theorems.lean#L95)
@@ -170,7 +170,7 @@ Predicate logic (unfolded):
   Objects
     laws : CommutativeLawExports Carrier
   Prove
-    laws.base.realization.spec.1 first second = laws.base.realization.spec.1 second first
+    laws.base.realization.spec.mul first second = laws.base.realization.spec.mul second first
 Transliterated theorem: LRA.Operation.Laws.Commutative.Commutative laws.base.realization.spec.mul
 Logical form (Lean): {Carrier : Type u} (laws : CommutativeLawExports Carrier) : LRA.Operation.Laws.Commutative.Commutative laws.base.realization.spec.mul
 Source: [`./Multiplication/Theorems.lean#L142`](./Multiplication/Theorems.lean#L142)
@@ -187,7 +187,7 @@ Predicate logic (unfolded):
   Objects
     laws : IdentityLawExports Carrier
   Prove
-    ((∀ (element : Carrier), laws.base.realization.spec.1 laws.2 element = element) ∧ (∀ (element : Carrier), laws.base.realization.spec.1 element laws.2 = element))
+    ((∀ (element : Carrier), laws.base.realization.spec.mul laws.identity element = element) ∧ (∀ (element : Carrier), laws.base.realization.spec.mul element laws.identity = element))
 Transliterated theorem: LRA.Operation.Laws.Identity.TwoSidedIdentity laws.base.realization.spec.mul laws.identity
 Logical form (Lean): {Carrier : Type u} (laws : IdentityLawExports Carrier) : LRA.Operation.Laws.Identity.TwoSidedIdentity laws.base.realization.spec.mul laws.identity
 Source: [`./Multiplication/Theorems.lean#L191`](./Multiplication/Theorems.lean#L191)
@@ -204,7 +204,7 @@ Predicate logic (unfolded):
   Objects
     laws : InverseLawExports Carrier
   Prove
-    ((∀ (element : Carrier), laws.identityLaws.base.realization.spec.1 (laws.2 element) element = laws.identityLaws.2) ∧ (∀ (element : Carrier), laws.identityLaws.base.realization.spec.1 element (laws.2 element) = laws.identityLaws.2))
+    ((∀ (element : Carrier), laws.identityLaws.base.realization.spec.mul (laws.inverse element) element = laws.identityLaws.identity) ∧ (∀ (element : Carrier), laws.identityLaws.base.realization.spec.mul element (laws.inverse element) = laws.identityLaws.identity))
 Transliterated theorem: LRA.Operation.Laws.Inverse.TwoSidedInverse laws.identityLaws.base.realization.spec.mul laws.identityLaws.identity laws.inverse
 Logical form (Lean): {Carrier : Type u} (laws : InverseLawExports Carrier) : LRA.Operation.Laws.Inverse.TwoSidedInverse laws.identityLaws.base.realization.spec.mul laws.identityLaws.identity laws.inverse
 Source: [`./Multiplication/Theorems.lean#L243`](./Multiplication/Theorems.lean#L243)
@@ -221,7 +221,7 @@ Predicate logic (unfolded):
   Objects
     laws : AbsorbingLawExports Carrier
   Prove
-    ((∀ (element : Carrier), laws.realization.spec.1 laws.2 element = laws.2) ∧ (∀ (element : Carrier), laws.realization.spec.1 element laws.2 = laws.2))
+    ((∀ (element : Carrier), laws.realization.spec.mul laws.absorber element = laws.absorber) ∧ (∀ (element : Carrier), laws.realization.spec.mul element laws.absorber = laws.absorber))
 Transliterated theorem: LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing laws.realization.spec.mul laws.absorber
 Logical form (Lean): {Carrier : Type u} (laws : AbsorbingLawExports Carrier) : LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing laws.realization.spec.mul laws.absorber
 Source: [`./Multiplication/Theorems.lean#L295`](./Multiplication/Theorems.lean#L295)
@@ -238,7 +238,7 @@ Predicate logic (unfolded):
   Objects
     laws : IdempotentLawExports Carrier
   Prove
-    laws.realization.spec.1 element element = element
+    laws.realization.spec.mul element element = element
 Transliterated theorem: LRA.Operation.Laws.Idempotent.Idempotent laws.realization.spec.mul
 Logical form (Lean): {Carrier : Type u} (laws : IdempotentLawExports Carrier) : LRA.Operation.Laws.Idempotent.Idempotent laws.realization.spec.mul
 Source: [`./Multiplication/Theorems.lean#L344`](./Multiplication/Theorems.lean#L344)
@@ -359,7 +359,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (∀ (left right : Nat), instHMod.1 left 2 = 1 → instHMod.1 right 2 = 1 → instHMod.1 (instHAdd.hAdd left right) 2 = 1) → False
+    (∀ (left right : Nat), instHMod.hMod left 2 = 1 → instHMod.hMod right 2 = 1 → instHMod.hMod (LRA.Operation.Laws.Closure.NaturalAdditionForClosureFailure left right) 2 = 1) → False
 Transliterated theorem: FailsBinaryClosedUnder OddNaturalCarrier OddNaturalCarrier OddNaturalCarrier NaturalAdditionForClosureFailure
 Logical form (Lean): : FailsBinaryClosedUnder OddNaturalCarrier OddNaturalCarrier OddNaturalCarrier NaturalAdditionForClosureFailure
 Source: [`./Laws/Closure/FailureModes.lean#L195`](./Laws/Closure/FailureModes.lean#L195)
@@ -490,7 +490,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (∀ (first second third : Nat), { hSub := fun a b => instSubNat.sub a b }.hSub ({ hSub := fun a b => instSubNat.sub a b }.hSub first second) third = { hSub := fun a b => instSubNat.sub a b }.hSub first ({ hSub := fun a b => instSubNat.sub a b }.hSub second third)) → False
+    (∀ (first second third : Nat), LRA.Operation.Laws.Associative.NaturalSubtraction (LRA.Operation.Laws.Associative.NaturalSubtraction first second) third = LRA.Operation.Laws.Associative.NaturalSubtraction first (LRA.Operation.Laws.Associative.NaturalSubtraction second third)) → False
 Transliterated theorem: FailsAssociative NaturalSubtraction
 Logical form (Lean): : FailsAssociative NaturalSubtraction
 Source: [`./Laws/Associative/FailureModes.lean#L140`](./Laws/Associative/FailureModes.lean#L140)
@@ -645,7 +645,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((∀ (element : Bool), element = element) ∧ ((∀ (element : Bool), Bool.false = element) → False))
+    ((∀ (element : Bool), LRA.Operation.Laws.Identity.BooleanSecondProjection Bool.false element = element) ∧ ((∀ (element : Bool), LRA.Operation.Laws.Identity.BooleanSecondProjection element Bool.false = element) → False))
 Transliterated theorem: LeftIdentity BooleanSecondProjection false ∧ FailsRightIdentity BooleanSecondProjection false
 Logical form (Lean): : LeftIdentity BooleanSecondProjection false ∧ FailsRightIdentity BooleanSecondProjection false
 Source: [`./Laws/Identity/FailureModes.lean#L234`](./Laws/Identity/FailureModes.lean#L234)
@@ -662,7 +662,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((∀ (element : Bool), element = element) ∧ ((∀ (element : Bool), Bool.false = element) → False))
+    ((∀ (element : Bool), LRA.Operation.Laws.Identity.BooleanFirstProjection element Bool.false = element) ∧ ((∀ (element : Bool), LRA.Operation.Laws.Identity.BooleanFirstProjection Bool.false element = element) → False))
 Transliterated theorem: RightIdentity BooleanFirstProjection false ∧ FailsLeftIdentity BooleanFirstProjection false
 Logical form (Lean): : RightIdentity BooleanFirstProjection false ∧ FailsLeftIdentity BooleanFirstProjection false
 Source: [`./Laws/Identity/FailureModes.lean#L281`](./Laws/Identity/FailureModes.lean#L281)
@@ -821,7 +821,7 @@ Predicate logic (unfolded):
     law : LeftInvertibleOn eligible operation identity
     eligible_element : eligible element
   Prove
-    ((∀ (element : Carrier), eligible element → Exists fun inverse => operation inverse element = identity) ∧ eligible element) → Exists fun inverse => operation inverse element = identity
+    ((∀ (element : Carrier), eligible element → ∃ inverse, operation inverse element = identity) ∧ eligible element) → ∃ inverse, operation inverse element = identity
 Transliterated theorem: ∃ inverse, LeftInverseOf operation identity element inverse
 Logical form (Lean): {Carrier : Type u} {eligible : Carrier → Prop} {operation : BinaryEndoOperation Carrier} {identity element : Carrier} (law : LeftInvertibleOn eligible operation identity) (eligible_element : eligible element) : ∃ inverse, LeftInverseOf operation identity element inverse
 Source: [`./Laws/Inverse/Theorems.lean#L446`](./Laws/Inverse/Theorems.lean#L446)
@@ -842,7 +842,7 @@ Predicate logic (unfolded):
     law : RightInvertibleOn eligible operation identity
     eligible_element : eligible element
   Prove
-    ((∀ (element : Carrier), eligible element → Exists fun inverse => operation element inverse = identity) ∧ eligible element) → Exists fun inverse => operation element inverse = identity
+    ((∀ (element : Carrier), eligible element → ∃ inverse, operation element inverse = identity) ∧ eligible element) → ∃ inverse, operation element inverse = identity
 Transliterated theorem: ∃ inverse, RightInverseOf operation identity element inverse
 Logical form (Lean): {Carrier : Type u} {eligible : Carrier → Prop} {operation : BinaryEndoOperation Carrier} {identity element : Carrier} (law : RightInvertibleOn eligible operation identity) (eligible_element : eligible element) : ∃ inverse, RightInverseOf operation identity element inverse
 Source: [`./Laws/Inverse/Theorems.lean#L505`](./Laws/Inverse/Theorems.lean#L505)
@@ -863,7 +863,7 @@ Predicate logic (unfolded):
     law : TwoSidedInvertibleOn eligible operation identity
     eligible_element : eligible element
   Prove
-    ((∀ (element : Carrier), eligible element → Exists fun inverse => (operation inverse element = identity ∧ operation element inverse = identity)) ∧ eligible element) → Exists fun inverse => (operation inverse element = identity ∧ operation element inverse = identity)
+    ((∀ (element : Carrier), eligible element → ∃ inverse, (operation inverse element = identity ∧ operation element inverse = identity)) ∧ eligible element) → ∃ inverse, (operation inverse element = identity ∧ operation element inverse = identity)
 Transliterated theorem: ∃ inverse, TwoSidedInverseOf operation identity element inverse
 Logical form (Lean): {Carrier : Type u} {eligible : Carrier → Prop} {operation : BinaryEndoOperation Carrier} {identity element : Carrier} (law : TwoSidedInvertibleOn eligible operation identity) (eligible_element : eligible element) : ∃ inverse, TwoSidedInverseOf operation identity element inverse
 Source: [`./Laws/Inverse/Theorems.lean#L564`](./Laws/Inverse/Theorems.lean#L564)
@@ -1173,7 +1173,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((∀ (element : Nat), { hAdd := fun a b => instAddNat.add a b }.hAdd 0 element = 0) ∧ (∀ (element : Nat), { hAdd := fun a b => instAddNat.add a b }.hAdd element 0 = 0)) → False
+    ((∀ (element : Nat), LRA.Operation.Laws.Inverse.NaturalAdditionForInverseFailure (LRA.Operation.Laws.Inverse.ConstantZeroNaturalInverseCandidate element) element = 0) ∧ (∀ (element : Nat), LRA.Operation.Laws.Inverse.NaturalAdditionForInverseFailure element (LRA.Operation.Laws.Inverse.ConstantZeroNaturalInverseCandidate element) = 0)) → False
 Transliterated theorem: FailsTwoSidedInverse NaturalAdditionForInverseFailure 0 ConstantZeroNaturalInverseCandidate
 Logical form (Lean): : FailsTwoSidedInverse NaturalAdditionForInverseFailure 0 ConstantZeroNaturalInverseCandidate
 Source: [`./Laws/Inverse/FailureModes.lean#L189`](./Laws/Inverse/FailureModes.lean#L189)
@@ -1190,7 +1190,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (Exists fun inverse => ((∀ (element : Nat), { hAdd := fun a b => instAddNat.add a b }.hAdd (inverse element) element = 0) ∧ (∀ (element : Nat), { hAdd := fun a b => instAddNat.add a b }.hAdd element (inverse element) = 0))) → False
+    (∃ inverse, ((∀ (element : Nat), LRA.Operation.Laws.Inverse.NaturalAdditionForInverseFailure (inverse element) element = 0) ∧ (∀ (element : Nat), LRA.Operation.Laws.Inverse.NaturalAdditionForInverseFailure element (inverse element) = 0))) → False
 Transliterated theorem: Not ∃ inverse ∈ UnaryEndoOperation Nat, TwoSidedInverse NaturalAdditionForInverseFailure 0 inverse
 Logical form (Lean): : Not (∃ inverse : UnaryEndoOperation Nat, TwoSidedInverse NaturalAdditionForInverseFailure 0 inverse)
 Source: [`./Laws/Inverse/FailureModes.lean#L239`](./Laws/Inverse/FailureModes.lean#L239)
@@ -1325,7 +1325,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (∀ (first second : Nat), { hSub := fun a b => instSubNat.sub a b }.hSub first second = { hSub := fun a b => instSubNat.sub a b }.hSub second first) → False
+    (∀ (first second : Nat), LRA.Operation.Laws.Commutative.NaturalSubtraction first second = LRA.Operation.Laws.Commutative.NaturalSubtraction second first) → False
 Transliterated theorem: FailsCommutative NaturalSubtraction
 Logical form (Lean): : FailsCommutative NaturalSubtraction
 Source: [`./Laws/Commutative/FailureModes.lean#L140`](./Laws/Commutative/FailureModes.lean#L140)
@@ -1480,7 +1480,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((∀ (element : Bool), Bool.false = Bool.false) ∧ ((∀ (element : Bool), element = Bool.false) → False))
+    ((∀ (element : Bool), LRA.Operation.Laws.Absorbing.BooleanFirstProjection Bool.false element = Bool.false) ∧ ((∀ (element : Bool), LRA.Operation.Laws.Absorbing.BooleanFirstProjection element Bool.false = Bool.false) → False))
 Transliterated theorem: LeftAbsorbing BooleanFirstProjection false ∧ FailsRightAbsorbing BooleanFirstProjection false
 Logical form (Lean): : LeftAbsorbing BooleanFirstProjection false ∧ FailsRightAbsorbing BooleanFirstProjection false
 Source: [`./Laws/Absorbing/FailureModes.lean#L234`](./Laws/Absorbing/FailureModes.lean#L234)
@@ -1497,7 +1497,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((∀ (element : Bool), Bool.false = Bool.false) ∧ ((∀ (element : Bool), element = Bool.false) → False))
+    ((∀ (element : Bool), LRA.Operation.Laws.Absorbing.BooleanSecondProjection element Bool.false = Bool.false) ∧ ((∀ (element : Bool), LRA.Operation.Laws.Absorbing.BooleanSecondProjection Bool.false element = Bool.false) → False))
 Transliterated theorem: RightAbsorbing BooleanSecondProjection false ∧ FailsLeftAbsorbing BooleanSecondProjection false
 Logical form (Lean): : RightAbsorbing BooleanSecondProjection false ∧ FailsLeftAbsorbing BooleanSecondProjection false
 Source: [`./Laws/Absorbing/FailureModes.lean#L281`](./Laws/Absorbing/FailureModes.lean#L281)
@@ -1881,7 +1881,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (∀ (fixed first second : Nat), { hMul := fun a b => instMulNat.mul a b }.hMul fixed first = { hMul := fun a b => instMulNat.mul a b }.hMul fixed second → first = second) → False
+    (∀ (fixed first second : Nat), LRA.Operation.Laws.Cancellation.NaturalMultiplication fixed first = LRA.Operation.Laws.Cancellation.NaturalMultiplication fixed second → first = second) → False
 Transliterated theorem: FailsLeftCancellative NaturalMultiplication
 Logical form (Lean): : FailsLeftCancellative NaturalMultiplication
 Source: [`./Laws/Cancellation/FailureModes.lean#L187`](./Laws/Cancellation/FailureModes.lean#L187)
@@ -1898,7 +1898,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (∀ (first second fixed : Nat), { hMul := fun a b => instMulNat.mul a b }.hMul first fixed = { hMul := fun a b => instMulNat.mul a b }.hMul second fixed → first = second) → False
+    (∀ (first second fixed : Nat), LRA.Operation.Laws.Cancellation.NaturalMultiplication first fixed = LRA.Operation.Laws.Cancellation.NaturalMultiplication second fixed → first = second) → False
 Transliterated theorem: FailsRightCancellative NaturalMultiplication
 Logical form (Lean): : FailsRightCancellative NaturalMultiplication
 Source: [`./Laws/Cancellation/FailureModes.lean#L232`](./Laws/Cancellation/FailureModes.lean#L232)
@@ -1915,7 +1915,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (∀ (first second : Nat), { hMul := fun a b => instMulNat.mul a b }.hMul 0 first = { hMul := fun a b => instMulNat.mul a b }.hMul 0 second → first = second) → False
+    (∀ (first second : Nat), LRA.Operation.Laws.Cancellation.NaturalMultiplication 0 first = LRA.Operation.Laws.Cancellation.NaturalMultiplication 0 second → first = second) → False
 Transliterated theorem: FailsLeftRegular NaturalMultiplication 0
 Logical form (Lean): : FailsLeftRegular NaturalMultiplication 0
 Source: [`./Laws/Cancellation/FailureModes.lean#L375`](./Laws/Cancellation/FailureModes.lean#L375)
@@ -1932,7 +1932,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (∀ (first second : Nat), { hMul := fun a b => instMulNat.mul a b }.hMul first 0 = { hMul := fun a b => instMulNat.mul a b }.hMul second 0 → first = second) → False
+    (∀ (first second : Nat), LRA.Operation.Laws.Cancellation.NaturalMultiplication first 0 = LRA.Operation.Laws.Cancellation.NaturalMultiplication second 0 → first = second) → False
 Transliterated theorem: FailsRightRegular NaturalMultiplication 0
 Logical form (Lean): : FailsRightRegular NaturalMultiplication 0
 Source: [`./Laws/Cancellation/FailureModes.lean#L420`](./Laws/Cancellation/FailureModes.lean#L420)
@@ -1987,7 +1987,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (∀ (element : Nat), { hAdd := fun a b => instAddNat.add a b }.hAdd element element = element) → False
+    (∀ (element : Nat), LRA.Operation.Laws.Idempotent.NaturalAddition element element = element) → False
 Transliterated theorem: FailsIdempotent NaturalAddition
 Logical form (Lean): : FailsIdempotent NaturalAddition
 Source: [`./Laws/Idempotent/FailureModes.lean#L140`](./Laws/Idempotent/FailureModes.lean#L140)
@@ -2058,7 +2058,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (((∀ (left right : Nat), { hAdd := fun a b => instAddNat.add a b }.hAdd left ({ hMul := fun a b => instMulNat.mul a b }.hMul left right) = left) → False) ∧ ((∀ (left right : Nat), { hMul := fun a b => instMulNat.mul a b }.hMul left ({ hAdd := fun a b => instAddNat.add a b }.hAdd left right) = left) → False))
+    (((∀ (left right : Nat), LRA.Operation.Laws.Absorption.NaturalAdditionOperation left (LRA.Operation.Laws.Absorption.NaturalMultiplicationOperation left right) = left) → False) ∧ ((∀ (left right : Nat), LRA.Operation.Laws.Absorption.NaturalMultiplicationOperation left (LRA.Operation.Laws.Absorption.NaturalAdditionOperation left right) = left) → False))
 Transliterated theorem: FailsAbsorptionLaw NaturalAdditionOperation NaturalMultiplicationOperation ∧ FailsAbsorptionLaw NaturalMultiplicationOperation NaturalAdditionOperation
 Logical form (Lean): : FailsAbsorptionLaw NaturalAdditionOperation NaturalMultiplicationOperation ∧ FailsAbsorptionLaw NaturalMultiplicationOperation NaturalAdditionOperation
 Source: [`./Laws/Absorption/FailureModes.lean#L315`](./Laws/Absorption/FailureModes.lean#L315)
@@ -2075,7 +2075,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (((∀ (element : Nat), { hMul := fun a b => instMulNat.mul a b }.hMul 0 element = 0) ∧ (∀ (element : Nat), { hMul := fun a b => instMulNat.mul a b }.hMul element 0 = 0)) ∧ ((∀ (left right : Nat), { hMul := fun a b => instMulNat.mul a b }.hMul left ({ hAdd := fun a b => instAddNat.add a b }.hAdd left right) = left) → False))
+    (((∀ (element : Nat), LRA.Operation.Laws.Absorption.NaturalMultiplicationOperation 0 element = 0) ∧ (∀ (element : Nat), LRA.Operation.Laws.Absorption.NaturalMultiplicationOperation element 0 = 0)) ∧ ((∀ (left right : Nat), LRA.Operation.Laws.Absorption.NaturalMultiplicationOperation left (LRA.Operation.Laws.Absorption.NaturalAdditionOperation left right) = left) → False))
 Transliterated theorem: LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing NaturalMultiplicationOperation 0 ∧ FailsAbsorptionLaw NaturalMultiplicationOperation NaturalAdditionOperation
 Logical form (Lean): : LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing NaturalMultiplicationOperation 0 ∧ FailsAbsorptionLaw NaturalMultiplicationOperation NaturalAdditionOperation
 Source: [`./Laws/Absorption/FailureModes.lean#L364`](./Laws/Absorption/FailureModes.lean#L364)
@@ -2092,7 +2092,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (((∀ (left right : Nat), Nat.instMax.1 left (left.min right) = left) ∧ (∀ (left right : Nat), instMinNat.1 left (left.max right) = left)) ∧ ((Exists fun absorber => ((∀ (element : Nat), Nat.instMax.1 absorber element = absorber) ∧ (∀ (element : Nat), Nat.instMax.1 element absorber = absorber))) → False))
+    (((∀ (left right : Nat), LRA.Operation.Laws.Absorption.NaturalMaxOperation left (LRA.Operation.Laws.Absorption.NaturalMinOperation left right) = left) ∧ (∀ (left right : Nat), LRA.Operation.Laws.Absorption.NaturalMinOperation left (LRA.Operation.Laws.Absorption.NaturalMaxOperation left right) = left)) ∧ ((∃ absorber, ((∀ (element : Nat), LRA.Operation.Laws.Absorption.NaturalMaxOperation absorber element = absorber) ∧ (∀ (element : Nat), LRA.Operation.Laws.Absorption.NaturalMaxOperation element absorber = absorber))) → False))
 Transliterated theorem: MutualAbsorptionLaw NaturalMaxOperation NaturalMinOperation ∧ Not ∃ absorber ∈ Nat, LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing NaturalMaxOperation absorber
 Logical form (Lean): : MutualAbsorptionLaw NaturalMaxOperation NaturalMinOperation ∧ Not (∃ absorber : Nat, LRA.Operation.Laws.Absorbing.TwoSidedAbsorbing NaturalMaxOperation absorber)
 Source: [`./Laws/Absorption/FailureModes.lean#L416`](./Laws/Absorption/FailureModes.lean#L416)
@@ -2240,7 +2240,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (∀ (left right third : Nat), { hAdd := fun a b => instAddNat.add a b }.hAdd left ({ hMul := fun a b => instMulNat.mul a b }.hMul right third) = { hMul := fun a b => instMulNat.mul a b }.hMul ({ hAdd := fun a b => instAddNat.add a b }.hAdd left right) ({ hAdd := fun a b => instAddNat.add a b }.hAdd left third)) → False
+    (∀ (left right third : Nat), LRA.Operation.Laws.Distributive.NaturalAdditionForDistributiveFailure left (LRA.Operation.Laws.Distributive.NaturalMultiplicationForDistributiveFailure right third) = LRA.Operation.Laws.Distributive.NaturalMultiplicationForDistributiveFailure (LRA.Operation.Laws.Distributive.NaturalAdditionForDistributiveFailure left right) (LRA.Operation.Laws.Distributive.NaturalAdditionForDistributiveFailure left third)) → False
 Transliterated theorem: FailsLeftDistributive NaturalAdditionForDistributiveFailure NaturalMultiplicationForDistributiveFailure
 Logical form (Lean): : FailsLeftDistributive NaturalAdditionForDistributiveFailure NaturalMultiplicationForDistributiveFailure
 Source: [`./Laws/Distributive/FailureModes.lean#L231`](./Laws/Distributive/FailureModes.lean#L231)
@@ -2257,7 +2257,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (∀ (left right third : Nat), { hAdd := fun a b => instAddNat.add a b }.hAdd ({ hMul := fun a b => instMulNat.mul a b }.hMul left right) third = { hMul := fun a b => instMulNat.mul a b }.hMul ({ hAdd := fun a b => instAddNat.add a b }.hAdd left third) ({ hAdd := fun a b => instAddNat.add a b }.hAdd right third)) → False
+    (∀ (left right third : Nat), LRA.Operation.Laws.Distributive.NaturalAdditionForDistributiveFailure (LRA.Operation.Laws.Distributive.NaturalMultiplicationForDistributiveFailure left right) third = LRA.Operation.Laws.Distributive.NaturalMultiplicationForDistributiveFailure (LRA.Operation.Laws.Distributive.NaturalAdditionForDistributiveFailure left third) (LRA.Operation.Laws.Distributive.NaturalAdditionForDistributiveFailure right third)) → False
 Transliterated theorem: FailsRightDistributive NaturalAdditionForDistributiveFailure NaturalMultiplicationForDistributiveFailure
 Logical form (Lean): : FailsRightDistributive NaturalAdditionForDistributiveFailure NaturalMultiplicationForDistributiveFailure
 Source: [`./Laws/Distributive/FailureModes.lean#L280`](./Laws/Distributive/FailureModes.lean#L280)
@@ -2276,7 +2276,7 @@ Predicate logic (unfolded):
     zero element : Carrier
     law : NilpotentElement operation zero element
   Prove
-    (Exists fun positiveExponent => LRA.Operation.Laws.Nilpotent.PositivePower operation element positiveExponent = zero) → Exists fun positiveExponent => LRA.Operation.Laws.Nilpotent.PositivePower operation element positiveExponent = zero
+    (∃ positiveExponent, LRA.Operation.Laws.Nilpotent.PositivePower operation element positiveExponent = zero) → ∃ positiveExponent, LRA.Operation.Laws.Nilpotent.PositivePower operation element positiveExponent = zero
 Transliterated theorem: ∃ positiveExponent ∈ Nat, PositivePower operation element positiveExponent = zero
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {zero element : Carrier} (law : NilpotentElement operation zero element) : ∃ positiveExponent : Nat, PositivePower operation element positiveExponent = zero
 Source: [`./Laws/Nilpotent/Theorems.lean#L57`](./Laws/Nilpotent/Theorems.lean#L57)
@@ -2369,7 +2369,7 @@ Predicate logic (unfolded):
     zero first second : Carrier
     law : NilpotentElement operation zero first
   Prove
-    (first = second ∧ Exists fun positiveExponent => LRA.Operation.Laws.Nilpotent.PositivePower operation first positiveExponent = zero) → Exists fun positiveExponent => LRA.Operation.Laws.Nilpotent.PositivePower operation second positiveExponent = zero
+    (first = second ∧ (∃ positiveExponent, LRA.Operation.Laws.Nilpotent.PositivePower operation first positiveExponent = zero)) → ∃ positiveExponent, LRA.Operation.Laws.Nilpotent.PositivePower operation second positiveExponent = zero
 Transliterated theorem: (first = second) → NilpotentElement operation zero second
 Logical form (Lean): {Carrier : Type u} {operation : BinaryEndoOperation Carrier} {zero first second : Carrier} (equal_elements : first = second) (law : NilpotentElement operation zero first) : NilpotentElement operation zero second
 Source: [`./Laws/Nilpotent/Relationships.lean#L57`](./Laws/Nilpotent/Relationships.lean#L57)
@@ -2386,7 +2386,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (Exists fun positiveExponent => LRA.Operation.Laws.Nilpotent.PositivePower LRA.Operation.Laws.Nilpotent.NaturalMultiplicationForNilpotenceFailure 1 positiveExponent = 0) → False
+    (∃ positiveExponent, LRA.Operation.Laws.Nilpotent.PositivePower LRA.Operation.Laws.Nilpotent.NaturalMultiplicationForNilpotenceFailure 1 positiveExponent = 0) → False
 Transliterated theorem: FailsNilpotentElement NaturalMultiplicationForNilpotenceFailure 0 1
 Logical form (Lean): : FailsNilpotentElement NaturalMultiplicationForNilpotenceFailure 0 1
 Source: [`./Laws/Nilpotent/FailureModes.lean#L142`](./Laws/Nilpotent/FailureModes.lean#L142)
@@ -2408,7 +2408,7 @@ Predicate logic (unfolded):
     operation : Representative → Representative → Representative
     proper : BinaryOperationIsProper invariant toRaw rawOperation setoid operation
   Prove
-    LRA.Operation.Laws.QuotientCompatible.BinaryOperationIsProper invariant toRaw rawOperation setoid operation → Exists fun quotient_operation => ∀ (first second : Representative), quotient_operation (Quot.mk setoid.1 first) (Quot.mk setoid.1 second) = Quot.mk setoid.1 (operation first second)
+    ((∀ (first second : Representative), invariant (rawOperation first second)) ∧ ((∀ (first second : Representative), toRaw (operation first second) = rawOperation first second) ∧ (∀ (first_representative first_replacement second_representative second_replacement : Representative), setoid.r first_representative first_replacement → setoid.r second_representative second_replacement → setoid.r (operation first_representative second_representative) (operation first_replacement second_replacement)))) → ∃ quotient_operation, ∀ (first second : Representative), quotient_operation (Quotient.mk setoid first) (Quotient.mk setoid second) = Quotient.mk setoid (operation first second)
 Transliterated theorem: ∃ quotient_operation ∈ Quotient setoid → Quotient setoid → Quotient setoid, ∀ first second : Representative, quotient_operation (Quotient.mk setoid first) (Quotient.mk setoid second) = Quotient.mk setoid (operation first second)
 Logical form (Lean): {Representative : Type} {Raw : Type} {invariant : Raw → Prop} {toRaw : Representative → Raw} {rawOperation : Representative → Representative → Raw} {setoid : Setoid Representative} {operation : Representative → Representative → Representative} (proper : BinaryOperationIsProper invariant toRaw rawOperation setoid operation) : ∃ quotient_operation : Quotient setoid → Quotient setoid → Quotient setoid, ∀ first second : Representative, quotient_operation (Quotient.mk setoid first) (Quotient.mk setoid second) = Quotient.mk setoid (operation first second)
 Source: [`./Laws/QuotientCompatible/Definition.lean#L154`](./Laws/QuotientCompatible/Definition.lean#L154)
@@ -2431,7 +2431,7 @@ Predicate logic (unfolded):
     _proper : BinaryOperationIsProper invariant toRaw rawOperation setoid operation
     first_candidate second_candidate : Quotient setoid → Quotient setoid → Quotient setoid
   Prove
-    LRA.Operation.Laws.QuotientCompatible.BinaryOperationIsProper invariant toRaw rawOperation setoid operation → ∀ (first_candidate second_candidate : Quot setoid.1 → Quot setoid.1 → Quot setoid.1), ((∀ (first second : Representative), first_candidate (Quot.mk setoid.1 first) (Quot.mk setoid.1 second) = Quot.mk setoid.1 (operation first second)) ∧ (∀ (first second : Representative), second_candidate (Quot.mk setoid.1 first) (Quot.mk setoid.1 second) = Quot.mk setoid.1 (operation first second))) → first_candidate = second_candidate
+    ((∀ (first second : Representative), invariant (rawOperation first second)) ∧ ((∀ (first second : Representative), toRaw (operation first second) = rawOperation first second) ∧ (∀ (first_representative first_replacement second_representative second_replacement : Representative), setoid.r first_representative first_replacement → setoid.r second_representative second_replacement → setoid.r (operation first_representative second_representative) (operation first_replacement second_replacement)))) → ∀ (first_candidate second_candidate : Quotient setoid → Quotient setoid → Quotient setoid), ((∀ (first second : Representative), first_candidate (Quotient.mk setoid first) (Quotient.mk setoid second) = Quotient.mk setoid (operation first second)) ∧ (∀ (first second : Representative), second_candidate (Quotient.mk setoid first) (Quotient.mk setoid second) = Quotient.mk setoid (operation first second))) → first_candidate = second_candidate
 Transliterated theorem: (∀ first second : Representative, first_candidate (Quotient.mk setoid first) (Quotient.mk setoid second) = Quotient.mk setoid (operation first second) ∧ ∀ first second : Representative, second_candidate (Quotient.mk setoid first) (Quotient.mk setoid second) = Quotient.mk setoid (operation first second)) → first_candidate = second_candidate
 Logical form (Lean): {Representative : Type} {Raw : Type} {invariant : Raw → Prop} {toRaw : Representative → Raw} {rawOperation : Representative → Representative → Raw} {setoid : Setoid Representative} {operation : Representative → Representative → Representative} (_proper : BinaryOperationIsProper invariant toRaw rawOperation setoid operation) (first_candidate second_candidate : Quotient setoid → Quotient setoid → Quotient setoid) (first_candidate_spec : ∀ first second : Representative, first_candidate (Quotient.mk setoid first) (Quotient.mk setoid second) = Quotient.mk setoid (operation first second)) (second_candidate_spec : ∀ first second : Representative, second_candidate (Quotient.mk setoid first) (Quotient.mk setoid second) = Quotient.mk setoid (operation first second)) : first_candidate = second_candidate
 Source: [`./Laws/QuotientCompatible/Definition.lean#L236`](./Laws/QuotientCompatible/Definition.lean#L236)
@@ -2467,7 +2467,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    fun input => first (second (third input)) = funinput => first (second (third input))
+    LRA.Operation.EndomapComposition Carrier (LRA.Operation.EndomapComposition Carrier first second) third = LRA.Operation.EndomapComposition Carrier first (LRA.Operation.EndomapComposition Carrier second third)
 Transliterated theorem: LRA.Operation.Laws.Associative.Associative (EndomapComposition Carrier)
 Logical form (Lean): (Carrier : Type u) : LRA.Operation.Laws.Associative.Associative (EndomapComposition Carrier)
 Source: [`./Theorems.lean#L56`](./Theorems.lean#L56)
@@ -2484,7 +2484,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((∀ (element : Carrier → Carrier), fun input => element input = element) ∧ (∀ (element : Carrier → Carrier), fun input => element input = element))
+    ((∀ (element : Carrier → Carrier), LRA.Operation.EndomapComposition Carrier (LRA.Operation.EndomapIdentity Carrier) element = element) ∧ (∀ (element : Carrier → Carrier), LRA.Operation.EndomapComposition Carrier element (LRA.Operation.EndomapIdentity Carrier) = element))
 Transliterated theorem: LRA.Operation.Laws.Identity.TwoSidedIdentity (EndomapComposition Carrier) (EndomapIdentity Carrier)
 Logical form (Lean): (Carrier : Type u) : LRA.Operation.Laws.Identity.TwoSidedIdentity (EndomapComposition Carrier) (EndomapIdentity Carrier)
 Source: [`./Theorems.lean#L104`](./Theorems.lean#L104)
@@ -2502,7 +2502,7 @@ Predicate logic (unfolded):
     map : Carrier → Carrier
     bijective : LRA.Function.Bijective map
   Prove
-    ((∀ (y x₁ x₂ : Carrier), map x₁ = y → map x₂ = y → x₁ = x₂) ∧ (∀ (y : Carrier), Exists fun x => map x = y)) → Exists fun inverse => (fun input => inverse (map input) = funinput => input ∧ fun input => map (inverse input) = funinput => input)
+    ((∀ (y x₁ x₂ : Carrier), map x₁ = y → map x₂ = y → x₁ = x₂) ∧ (∀ (y : Carrier), ∃ x, map x = y)) → ∃ inverse, (LRA.Operation.EndomapComposition Carrier inverse map = LRA.Operation.EndomapIdentity Carrier ∧ LRA.Operation.EndomapComposition Carrier map inverse = LRA.Operation.EndomapIdentity Carrier)
 Transliterated theorem: ∃ inverse ∈ Carrier → Carrier, EndomapComposition Carrier inverse map = EndomapIdentity Carrier ∧ EndomapComposition Carrier map inverse = EndomapIdentity Carrier
 Logical form (Lean): {Carrier : Type u} (map : Carrier → Carrier) (bijective : LRA.Function.Bijective map) : ∃ inverse : Carrier → Carrier, EndomapComposition Carrier inverse map = EndomapIdentity Carrier ∧ EndomapComposition Carrier map inverse = EndomapIdentity Carrier
 Source: [`./Theorems.lean#L157`](./Theorems.lean#L157)
@@ -2520,7 +2520,7 @@ Predicate logic (unfolded):
     operation : BinaryEndoOperation Codomain
     associative : LRA.Operation.Laws.Associative.Associative operation
   Prove
-    (∀ (first second third : Codomain), operation (operation first second) third = operation first (operation second third)) → ∀ (first second third : Domain → Codomain), fun input => operation (operation (first input) (second input)) (third input) = funinput => operation (first input) (operation (second input) (third input))
+    (∀ (first second third : Codomain), operation (operation first second) third = operation first (operation second third)) → ∀ (first second third : Domain → Codomain), LRA.Operation.PointwiseBinaryOperation operation (LRA.Operation.PointwiseBinaryOperation operation first second) third = LRA.Operation.PointwiseBinaryOperation operation first (LRA.Operation.PointwiseBinaryOperation operation second third)
 Transliterated theorem: LRA.Operation.Laws.Associative.Associative (PointwiseBinaryOperation Domain ∈ = Domain operation)
 Logical form (Lean): (operation : BinaryEndoOperation Codomain) (associative : LRA.Operation.Laws.Associative.Associative operation) : LRA.Operation.Laws.Associative.Associative (PointwiseBinaryOperation (Domain := Domain) operation)
 Source: [`./Theorems.lean#L218`](./Theorems.lean#L218)
@@ -2539,7 +2539,7 @@ Predicate logic (unfolded):
     identity : Codomain
     identityLaw : LRA.Operation.Laws.Identity.TwoSidedIdentity operation identity
   Prove
-    ((∀ (element : Codomain), operation identity element = element) ∧ (∀ (element : Codomain), operation element identity = element)) → ((∀ (element : Domain → Codomain), fun input => operation ((fun _input => identity) input) (element input) = element) ∧ (∀ (element : Domain → Codomain), fun input => operation (element input) ((fun _input => identity) input) = element))
+    ((∀ (element : Codomain), operation identity element = element) ∧ (∀ (element : Codomain), operation element identity = element)) → ((∀ (element : Domain → Codomain), LRA.Operation.PointwiseBinaryOperation operation (fun _input => identity) element = element) ∧ (∀ (element : Domain → Codomain), LRA.Operation.PointwiseBinaryOperation operation element fun _input => identity = element))
 Transliterated theorem: (∀ identity ∈ Codomain), LRA.Operation.Laws.Identity.TwoSidedIdentity (PointwiseBinaryOperation Domain ∈ = Domain operation) fun _input ∈ Domain => identity
 Logical form (Lean): (operation : BinaryEndoOperation Codomain) (identity : Codomain) (identityLaw : LRA.Operation.Laws.Identity.TwoSidedIdentity operation identity) : LRA.Operation.Laws.Identity.TwoSidedIdentity (PointwiseBinaryOperation (Domain := Domain) operation) (fun _input : Domain => identity)
 Source: [`./Theorems.lean#L275`](./Theorems.lean#L275)
@@ -2559,7 +2559,7 @@ Predicate logic (unfolded):
     inverse : UnaryEndoOperation Codomain
     inverseLaw : LRA.Operation.Laws.Inverse.TwoSidedInverse operation identity inverse
   Prove
-    ((∀ (element : Codomain), operation (inverse element) element = identity) ∧ (∀ (element : Codomain), operation element (inverse element) = identity)) → ((∀ (element : Domain → Codomain), fun input => operation (inverse (element input)) (element input) = fun_input => identity) ∧ (∀ (element : Domain → Codomain), fun input => operation (element input) (inverse (element input)) = fun_input => identity))
+    ((∀ (element : Codomain), operation (inverse element) element = identity) ∧ (∀ (element : Codomain), operation element (inverse element) = identity)) → ((∀ (element : Domain → Codomain), LRA.Operation.PointwiseBinaryOperation operation (LRA.Operation.PointwiseUnaryOperation inverse element) element = fun_input => identity) ∧ (∀ (element : Domain → Codomain), LRA.Operation.PointwiseBinaryOperation operation element (LRA.Operation.PointwiseUnaryOperation inverse element) = fun_input => identity))
 Transliterated theorem: (∀ identity ∈ Codomain), LRA.Operation.Laws.Inverse.TwoSidedInverse (PointwiseBinaryOperation Domain ∈ = Domain operation) fun _input ∈ Domain => identity (PointwiseUnaryOperation Domain ∈ = Domain inverse)
 Logical form (Lean): (operation : BinaryEndoOperation Codomain) (identity : Codomain) (inverse : UnaryEndoOperation Codomain) (inverseLaw : LRA.Operation.Laws.Inverse.TwoSidedInverse operation identity inverse) : LRA.Operation.Laws.Inverse.TwoSidedInverse (PointwiseBinaryOperation (Domain := Domain) operation) (fun _input : Domain => identity) (PointwiseUnaryOperation (Domain := Domain) inverse)
 Source: [`./Theorems.lean#L338`](./Theorems.lean#L338)
@@ -2579,7 +2579,7 @@ Predicate logic (unfolded):
     multiplicationIsAssociative : LRA.Operation.Laws.Associative.Associative multiplication
     identityIsTwoSided : LRA.Operation.Laws.Identity.TwoSidedIdentity multiplication identity
   Prove
-    ((∀ (first second third : Alpha), multiplication (multiplication first second) third = multiplication first (multiplication second third)) ∧ ((∀ (element : Alpha), multiplication identity element = element) ∧ (∀ (element : Alpha), multiplication element identity = element))) → ((∀ (x : Alpha), Exists fun witness => x = multiplication x witness) ∧ (∀ (x y z : Alpha), (Exists fun witness => y = multiplication x witness) → (Exists fun witness => z = multiplication y witness) → Exists fun witness => z = multiplication x witness))
+    ((∀ (first second third : Alpha), multiplication (multiplication first second) third = multiplication first (multiplication second third)) ∧ ((∀ (element : Alpha), multiplication identity element = element) ∧ (∀ (element : Alpha), multiplication element identity = element))) → ((∀ (x : Alpha), ∃ witness, x = multiplication x witness) ∧ (∀ (x y z : Alpha), (∃ witness, y = multiplication x witness) → (∃ witness, z = multiplication y witness) → ∃ witness, z = multiplication x witness))
 Transliterated theorem: LRA.Order.Preorder (Divides multiplication)
 Logical form (Lean): {Alpha : Type u} {multiplication : BinaryOperation Alpha} {identity : Alpha} (multiplicationIsAssociative : LRA.Operation.Laws.Associative.Associative multiplication) (identityIsTwoSided : LRA.Operation.Laws.Identity.TwoSidedIdentity multiplication identity) : LRA.Order.Preorder (Divides multiplication)
 Source: [`./Divisibility.lean#L164`](./Divisibility.lean#L164)
@@ -2596,7 +2596,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((∀ (element : Bool), Bool.rec ((fun _ => Bool.false) Unit.unit) ((fun _ => element) Unit.unit) Bool.false = Bool.false) ∧ (∀ (element : Bool), Bool.rec ((fun _ => Bool.false) Unit.unit) ((fun _ => Bool.false) Unit.unit) element = Bool.false))
+    ((∀ (element : Bool), LRA.Operation.Laws.Absorbing.BooleanAndOperation Bool.false element = Bool.false) ∧ (∀ (element : Bool), LRA.Operation.Laws.Absorbing.BooleanAndOperation element Bool.false = Bool.false))
 Transliterated theorem: TwoSidedAbsorbing BooleanAndOperation false
 Logical form (Lean): : TwoSidedAbsorbing BooleanAndOperation false
 Source: [`./Examples.lean#L93`](./Examples.lean#L93)
@@ -2613,7 +2613,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((∀ (element : Bool), Bool.rec ((fun _ => element) Unit.unit) ((fun _ => Bool.true) Unit.unit) Bool.true = Bool.true) ∧ (∀ (element : Bool), Bool.rec ((fun _ => Bool.true) Unit.unit) ((fun _ => Bool.true) Unit.unit) element = Bool.true))
+    ((∀ (element : Bool), LRA.Operation.Laws.Absorbing.BooleanOrOperation Bool.true element = Bool.true) ∧ (∀ (element : Bool), LRA.Operation.Laws.Absorbing.BooleanOrOperation element Bool.true = Bool.true))
 Transliterated theorem: TwoSidedAbsorbing BooleanOrOperation true
 Logical form (Lean): : TwoSidedAbsorbing BooleanOrOperation true
 Source: [`./Examples.lean#L180`](./Examples.lean#L180)
@@ -2630,7 +2630,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((∀ (left right : Bool), Bool.rec ((fun _ => LRA.Operation.Laws.Absorption.BooleanAndOperation left right) Unit.unit) ((fun _ => Bool.true) Unit.unit) left = left) ∧ (∀ (left right : Bool), Bool.rec ((fun _ => Bool.false) Unit.unit) ((fun _ => LRA.Operation.Laws.Absorption.BooleanOrOperation left right) Unit.unit) left = left))
+    ((∀ (left right : Bool), LRA.Operation.Laws.Absorption.BooleanOrOperation left (LRA.Operation.Laws.Absorption.BooleanAndOperation left right) = left) ∧ (∀ (left right : Bool), LRA.Operation.Laws.Absorption.BooleanAndOperation left (LRA.Operation.Laws.Absorption.BooleanOrOperation left right) = left))
 Transliterated theorem: MutualAbsorptionLaw BooleanOrOperation BooleanAndOperation
 Logical form (Lean): : MutualAbsorptionLaw BooleanOrOperation BooleanAndOperation
 Source: [`./Examples.lean#L315`](./Examples.lean#L315)
@@ -2647,7 +2647,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((∀ (left right : Nat), Nat.instMax.1 left (left.min right) = left) ∧ (∀ (left right : Nat), instMinNat.1 left (left.max right) = left))
+    ((∀ (left right : Nat), LRA.Operation.Laws.Absorption.NaturalMaxOperation left (LRA.Operation.Laws.Absorption.NaturalMinOperation left right) = left) ∧ (∀ (left right : Nat), LRA.Operation.Laws.Absorption.NaturalMinOperation left (LRA.Operation.Laws.Absorption.NaturalMaxOperation left right) = left))
 Transliterated theorem: MutualAbsorptionLaw NaturalMaxOperation NaturalMinOperation
 Logical form (Lean): : MutualAbsorptionLaw NaturalMaxOperation NaturalMinOperation
 Source: [`./Examples.lean#L360`](./Examples.lean#L360)
@@ -2698,7 +2698,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (fixed = 0 → False) → ∀ (first second : Nat), { hMul := fun a b => instMulNat.mul a b }.hMul fixed first = { hMul := fun a b => instMulNat.mul a b }.hMul fixed second → first = second
+    (fixed = 0 → False) → ∀ (first second : Nat), LRA.Operation.Laws.Cancellation.NaturalMultiplicationForRestrictedCancellation fixed first = LRA.Operation.Laws.Cancellation.NaturalMultiplicationForRestrictedCancellation fixed second → first = second
 Transliterated theorem: LeftCancellativeOn fun fixed ∈ Nat => fixed ≠ 0 NaturalMultiplicationForRestrictedCancellation
 Logical form (Lean): : LeftCancellativeOn (fun fixed : Nat => fixed ≠ 0) NaturalMultiplicationForRestrictedCancellation
 Source: [`./Examples.lean#L551`](./Examples.lean#L551)
@@ -2715,7 +2715,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (fixed = 0 → False) → ∀ (first second : Nat), { hMul := fun a b => instMulNat.mul a b }.hMul first fixed = { hMul := fun a b => instMulNat.mul a b }.hMul second fixed → first = second
+    (fixed = 0 → False) → ∀ (first second : Nat), LRA.Operation.Laws.Cancellation.NaturalMultiplicationForRestrictedCancellation first fixed = LRA.Operation.Laws.Cancellation.NaturalMultiplicationForRestrictedCancellation second fixed → first = second
 Transliterated theorem: RightCancellativeOn fun fixed ∈ Nat => fixed ≠ 0 NaturalMultiplicationForRestrictedCancellation
 Logical form (Lean): : RightCancellativeOn (fun fixed : Nat => fixed ≠ 0) NaturalMultiplicationForRestrictedCancellation
 Source: [`./Examples.lean#L600`](./Examples.lean#L600)
@@ -2783,7 +2783,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Bool.rec ((fun _ => element) Unit.unit) ((fun _ => Bool.true) Unit.unit) element = element
+    LRA.Operation.Laws.Idempotent.BooleanOrOperation element element = element
 Transliterated theorem: Idempotent BooleanOrOperation
 Logical form (Lean): : Idempotent BooleanOrOperation
 Source: [`./Examples.lean#L848`](./Examples.lean#L848)
@@ -2800,7 +2800,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Bool.rec ((fun _ => Bool.false) Unit.unit) ((fun _ => element) Unit.unit) element = element
+    LRA.Operation.Laws.Idempotent.BooleanAndOperation element element = element
 Transliterated theorem: Idempotent BooleanAndOperation
 Logical form (Lean): : Idempotent BooleanAndOperation
 Source: [`./Examples.lean#L935`](./Examples.lean#L935)
@@ -2817,7 +2817,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((∀ (element : Bool), Bool.rec ((fun _ => element) Unit.unit) ((fun _ => Bool.true) Unit.unit) Bool.false = element) ∧ (∀ (element : Bool), Bool.rec ((fun _ => Bool.false) Unit.unit) ((fun _ => Bool.true) Unit.unit) element = element))
+    ((∀ (element : Bool), LRA.Operation.Laws.Identity.BooleanOrOperation Bool.false element = element) ∧ (∀ (element : Bool), LRA.Operation.Laws.Identity.BooleanOrOperation element Bool.false = element))
 Transliterated theorem: TwoSidedIdentity BooleanOrOperation false
 Logical form (Lean): : TwoSidedIdentity BooleanOrOperation false
 Source: [`./Examples.lean#L1028`](./Examples.lean#L1028)
@@ -2834,7 +2834,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((∀ (element : Bool), Bool.rec ((fun _ => Bool.false) Unit.unit) ((fun _ => element) Unit.unit) Bool.true = element) ∧ (∀ (element : Bool), Bool.rec ((fun _ => Bool.false) Unit.unit) ((fun _ => Bool.true) Unit.unit) element = element))
+    ((∀ (element : Bool), LRA.Operation.Laws.Identity.BooleanAndOperation Bool.true element = element) ∧ (∀ (element : Bool), LRA.Operation.Laws.Identity.BooleanAndOperation element Bool.true = element))
 Transliterated theorem: TwoSidedIdentity BooleanAndOperation true
 Logical form (Lean): : TwoSidedIdentity BooleanAndOperation true
 Source: [`./Examples.lean#L1115`](./Examples.lean#L1115)
@@ -2851,7 +2851,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((∀ (element : Bool), cond.match_1 (fun x => Bool) (instBEqOfDecidable.beq = LRA.Operation.Laws.Inverse.BooleanXorInverse element element) (fun _ => Bool.false) fun _ => Bool.true = Bool.false) ∧ (∀ (element : Bool), cond.match_1 (fun x => Bool) (instBEqOfDecidable.beq = element(LRA.Operation.Laws.Inverse.BooleanXorInverse element)) (fun _ => Bool.false) fun _ => Bool.true = Bool.false))
+    ((∀ (element : Bool), LRA.Operation.Laws.Inverse.BooleanXorOperation (LRA.Operation.Laws.Inverse.BooleanXorInverse element) element = Bool.false) ∧ (∀ (element : Bool), LRA.Operation.Laws.Inverse.BooleanXorOperation element (LRA.Operation.Laws.Inverse.BooleanXorInverse element) = Bool.false))
 Transliterated theorem: TwoSidedInverse BooleanXorOperation false BooleanXorInverse
 Logical form (Lean): : TwoSidedInverse BooleanXorOperation false BooleanXorInverse
 Source: [`./Examples.lean#L1250`](./Examples.lean#L1250)
@@ -2868,7 +2868,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((∀ (element : Int), { hAdd := fun a b => Int.instAdd.add a b }.hAdd (Int.instNegInt.neg element) element = 0) ∧ (∀ (element : Int), { hAdd := fun a b => Int.instAdd.add a b }.hAdd element (Int.instNegInt.neg element) = 0))
+    ((∀ (element : Int), LRA.Operation.Laws.Inverse.IntegerAdditionForInverseExample (LRA.Operation.Laws.Inverse.IntegerAdditiveInverse element) element = 0) ∧ (∀ (element : Int), LRA.Operation.Laws.Inverse.IntegerAdditionForInverseExample element (LRA.Operation.Laws.Inverse.IntegerAdditiveInverse element) = 0))
 Transliterated theorem: TwoSidedInverse IntegerAdditionForInverseExample 0 IntegerAdditiveInverse
 Logical form (Lean): : TwoSidedInverse IntegerAdditionForInverseExample 0 IntegerAdditiveInverse
 Source: [`./Examples.lean#L1379`](./Examples.lean#L1379)
@@ -2885,7 +2885,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun positiveExponent => LRA.Operation.Laws.Nilpotent.PositivePower LRA.Operation.Laws.Nilpotent.NaturalMultiplicationForNilpotenceExample 0 positiveExponent = 0
+    ∃ positiveExponent, LRA.Operation.Laws.Nilpotent.PositivePower LRA.Operation.Laws.Nilpotent.NaturalMultiplicationForNilpotenceExample 0 positiveExponent = 0
 Transliterated theorem: NilpotentElement NaturalMultiplicationForNilpotenceExample 0 0
 Logical form (Lean): : NilpotentElement NaturalMultiplicationForNilpotenceExample 0 0
 Source: [`./Examples.lean#L1472`](./Examples.lean#L1472)
@@ -3167,7 +3167,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    eligible element → Exists fun inverse => (operation inverse element = identity ∧ operation element inverse = identity)
+    eligible element → ∃ inverse, (operation inverse element = identity ∧ operation element inverse = identity)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Laws/Inverse/Definition.lean`](./Laws/Inverse/Definition.lean)
@@ -3184,7 +3184,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    eligible element → Exists fun inverse => operation element inverse = identity
+    eligible element → ∃ inverse, operation element inverse = identity
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Laws/Inverse/Definition.lean`](./Laws/Inverse/Definition.lean)
@@ -3235,7 +3235,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    eligible element → Exists fun inverse => operation inverse element = identity
+    eligible element → ∃ inverse, operation inverse element = identity
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Laws/Inverse/Definition.lean`](./Laws/Inverse/Definition.lean)
@@ -3354,7 +3354,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    instHMod.1 number 2 = 1
+    instHMod.hMod number 2 = 1
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Laws/Closure/FailureModes.lean`](./Laws/Closure/FailureModes.lean)
@@ -3864,7 +3864,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun positiveExponent => LRA.Operation.Laws.Nilpotent.PositivePower operation element positiveExponent = zero
+    ∃ positiveExponent, LRA.Operation.Laws.Nilpotent.PositivePower operation element positiveExponent = zero
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Laws/Nilpotent/Definition.lean`](./Laws/Nilpotent/Definition.lean)
@@ -3881,7 +3881,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (Exists fun positiveExponent => LRA.Operation.Laws.Nilpotent.PositivePower operation element positiveExponent = zero) → False
+    (∃ positiveExponent, LRA.Operation.Laws.Nilpotent.PositivePower operation element positiveExponent = zero) → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Laws/Nilpotent/FailureModes.lean`](./Laws/Nilpotent/FailureModes.lean)
@@ -3898,7 +3898,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun witness => a_1 = multiplication a witness
+    ∃ witness, a_1 = multiplication a witness
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Divisibility.lean`](./Divisibility.lean)
@@ -3915,7 +3915,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (Exists fun witness => a_1 = multiplication a witness ∧ Exists fun witness => a = multiplication a_1 witness)
+    ((∃ witness, a_1 = multiplication a witness) ∧ (∃ witness, a = multiplication a_1 witness))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Divisibility.lean`](./Divisibility.lean)

@@ -45,7 +45,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (Exists fun n => Exists fun f => ((∀ (y : Fin n) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Fin n), Exists fun x => f x = y))) → False
+    (∃ n, ∃ f, ((∀ (y : Fin n) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Fin n), ∃ x, f x = y))) → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Finiteness/Definition.lean`](./Finiteness/Definition.lean)
@@ -62,7 +62,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun n => Exists fun f => ((∀ (y : Fin n) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Fin n), Exists fun x => f x = y))
+    ∃ n, ∃ f, ((∀ (y : Fin n) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Fin n), ∃ x, f x = y))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Finiteness/Definition.lean`](./Finiteness/Definition.lean)
@@ -79,7 +79,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (Exists fun f => ∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) → False
+    (∃ f, ∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Countability/Definition.lean`](./Countability/Definition.lean)
@@ -96,7 +96,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun f => ∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
+    ∃ f, ∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Countability/Definition.lean`](./Countability/Definition.lean)
@@ -113,7 +113,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun f => ((∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Nat), Exists fun x => f x = y))
+    ∃ f, ((∀ (y : Nat) (x₁ x₂ : A), f x₁ = y → f x₂ = y → x₁ = x₂) ∧ (∀ (y : Nat), ∃ x, f x = y))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Countability/Definition.lean`](./Countability/Definition.lean)

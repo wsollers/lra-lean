@@ -11,12 +11,12 @@ references. That gives a conservative repo-local work sequence, but it is
 **not** a theorem-level semantic dependency graph across unrelated topics in
 the folder.
 
-**Progress:** 0/102 theorem-family entries completed since reset baseline `73e79b40` (Mass-sorry non-Logic proofs and regenerate todos).
-**Baseline reconciliation:** 102 still match baseline as `sorry`; 0 baseline entries were moved, renamed, or removed and are not auto-credited.
+**Progress:** 1/102 theorem-family entries completed since reset baseline `73e79b40` (Mass-sorry non-Logic proofs and regenerate todos).
+**Baseline reconciliation:** 101 still match baseline as `sorry`; 0 baseline entries were moved, renamed, or removed and are not auto-credited.
 
-**Snapshot:** 1/106 theorem-family entries currently completed (105 sorry remaining).
+**Snapshot:** 2/106 theorem-family entries currently completed (104 sorry remaining).
 
-**Inventory:** 106 theorem/lemma/corollary/proposition entries across 28 module(s) (1 completed, 105 sorry).
+**Inventory:** 106 theorem/lemma/corollary/proposition entries across 28 module(s) (2 completed, 104 sorry).
 **Excluded from counts:** 55 `instance` entries and 0 `axiom` entries.
 
 ## Open Work Queue
@@ -36,7 +36,7 @@ Predicate logic (unfolded):
     satisfiesGeneric : genericTheory function
     input : Domain
   Prove
-    inst.1 function input (Classical.indefiniteDescription (LRA.Function.interpret function input) ⋯).1
+    inst.toFunctionRelation function input (LRA.Function.toFunction function satisfiesGeneric input)
 Transliterated theorem: (∀ function ∈ FunctionObject ∀ input ∈ Domain), interpret function input (toFunction function satisfiesGeneric input)
 Logical form (Lean): {FunctionObject : Type w} {Domain : Type u} {Codomain : Type v} [GenericSemantics FunctionObject Domain Codomain] (function : FunctionObject) (satisfiesGeneric : genericTheory function) (input : Domain) : interpret function input (toFunction function satisfiesGeneric input)
 Source: [`./Satisfy_Generic.lean#L283`](./Satisfy_Generic.lean#L283)
@@ -138,7 +138,7 @@ Predicate logic (unfolded):
   Objects
     function : LRA.Function Domain Codomain
   Prove
-    ((∀ (x : Domain), Exists fun y => function x = y) ∧ (∀ (x : Domain) (y₁ y₂ : Codomain), function x = y₁ → function x = y₂ → y₁ = y₂))
+    ((∀ (x : Domain), ∃ y, function x = y) ∧ (∀ (x : Domain) (y₁ y₂ : Codomain), function x = y₁ → function x = y₂ → y₁ = y₂))
 Transliterated theorem: IsFunctionRelation (Graph function)
 Logical form (Lean): {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) : IsFunctionRelation (Graph function)
 Source: [`./Properties/Theorems.lean#L314`](./Properties/Theorems.lean#L314)
@@ -206,7 +206,7 @@ Predicate logic (unfolded):
   Objects
     input : Carrier
   Prove
-    input = input
+    LRA.Function.IdentityFunction Carrier input = input
 Transliterated theorem: (∀ input ∈ Carrier), IdentityFunction Carrier input = input
 Logical form (Lean): {Carrier : Type u} (input : Carrier) : IdentityFunction Carrier input = input
 Source: [`./Canonical/Identity/Theorems.lean#L52`](./Canonical/Identity/Theorems.lean#L52)
@@ -223,7 +223,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (x₁ = y ∧ x₂ = y) → x₁ = x₂
+    (LRA.Function.IdentityFunction Carrier x₁ = y ∧ LRA.Function.IdentityFunction Carrier x₂ = y) → x₁ = x₂
 Transliterated theorem: Injective (IdentityFunction Carrier)
 Logical form (Lean): {Carrier : Type u} : Injective (IdentityFunction Carrier)
 Source: [`./Canonical/Identity/Theorems.lean#L98`](./Canonical/Identity/Theorems.lean#L98)
@@ -240,7 +240,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun x => x = y
+    ∃ x, LRA.Function.IdentityFunction Carrier x = y
 Transliterated theorem: Surjective (IdentityFunction Carrier)
 Logical form (Lean): {Carrier : Type u} : Surjective (IdentityFunction Carrier)
 Source: [`./Canonical/Identity/Theorems.lean#L143`](./Canonical/Identity/Theorems.lean#L143)
@@ -257,7 +257,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((∀ (y x₁ x₂ : Carrier), x₁ = y → x₂ = y → x₁ = x₂) ∧ (∀ (y : Carrier), Exists fun x => x = y))
+    ((∀ (y x₁ x₂ : Carrier), LRA.Function.IdentityFunction Carrier x₁ = y → LRA.Function.IdentityFunction Carrier x₂ = y → x₁ = x₂) ∧ (∀ (y : Carrier), ∃ x, LRA.Function.IdentityFunction Carrier x = y))
 Transliterated theorem: Bijective (IdentityFunction Carrier)
 Logical form (Lean): {Carrier : Type u} : Bijective (IdentityFunction Carrier)
 Source: [`./Canonical/Identity/Theorems.lean#L188`](./Canonical/Identity/Theorems.lean#L188)
@@ -274,7 +274,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((∀ (input : Carrier), input = input) ∧ (∀ (output : Carrier), output = output))
+    ((∀ (input : Carrier), LRA.Function.IdentityFunction Carrier (LRA.Function.IdentityFunction Carrier input) = input) ∧ (∀ (output : Carrier), LRA.Function.IdentityFunction Carrier (LRA.Function.IdentityFunction Carrier output) = output))
 Transliterated theorem: TwoSidedInverse (IdentityFunction Carrier) (IdentityFunction Carrier)
 Logical form (Lean): (Carrier : Type u) : TwoSidedInverse (IdentityFunction Carrier) (IdentityFunction Carrier)
 Source: [`./Canonical/Identity/Theorems.lean#L233`](./Canonical/Identity/Theorems.lean#L233)
@@ -293,7 +293,7 @@ Predicate logic (unfolded):
     inner : LRA.Function Domain Middle
     input : Domain
   Prove
-    outer (inner input) = outer (inner input)
+    outer.Compose inner input = outer (inner input)
 Transliterated theorem: (∀ input ∈ Domain), Compose outer inner input = outer (inner input)
 Logical form (Lean): {Domain : Type u} {Middle : Type v} {Codomain : Type w} (outer : LRA.Function Middle Codomain) (inner : LRA.Function Domain Middle) (input : Domain) : Compose outer inner input = outer (inner input)
 Source: [`./Operations/Composition/Theorems.lean#L58`](./Operations/Composition/Theorems.lean#L58)
@@ -310,7 +310,7 @@ Predicate logic (unfolded):
   Objects
     function : LRA.Function Domain Codomain
   Prove
-    fun input => function input = function
+    LRA.Function.Compose (LRA.Function.IdentityFunction Codomain) function = function
 Transliterated theorem: Compose (IdentityFunction Codomain) function = function
 Logical form (Lean): {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) : Compose (IdentityFunction Codomain) function = function
 Source: [`./Operations/Composition/Theorems.lean#L108`](./Operations/Composition/Theorems.lean#L108)
@@ -327,7 +327,7 @@ Predicate logic (unfolded):
   Objects
     function : LRA.Function Domain Codomain
   Prove
-    fun input => function input = function
+    function.Compose (LRA.Function.IdentityFunction Domain) = function
 Transliterated theorem: Compose function (IdentityFunction Domain) = function
 Logical form (Lean): {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) : Compose function (IdentityFunction Domain) = function
 Source: [`./Operations/Composition/Theorems.lean#L155`](./Operations/Composition/Theorems.lean#L155)
@@ -346,7 +346,7 @@ Predicate logic (unfolded):
     middle : LRA.Function Middle Later
     inner : LRA.Function Domain Middle
   Prove
-    fun input => outer (middle (inner input)) = funinput => outer (middle (inner input))
+    outer.Compose (middle.Compose inner) = (outer.Compose middle).Compose inner
 Transliterated theorem: Compose outer (Compose middle inner) = Compose (Compose outer middle) inner
 Logical form (Lean): {Domain : Type u} {Middle : Type v} {Later : Type w} {Codomain : Type x} (outer : LRA.Function Later Codomain) (middle : LRA.Function Middle Later) (inner : LRA.Function Domain Middle) : Compose outer (Compose middle inner) = Compose (Compose outer middle) inner
 Source: [`./Operations/Composition/Theorems.lean#L207`](./Operations/Composition/Theorems.lean#L207)
@@ -366,7 +366,7 @@ Predicate logic (unfolded):
     outerInjective : Injective outer
     innerInjective : Injective inner
   Prove
-    ((∀ (y : Codomain) (x₁ x₂ : Middle), outer x₁ = y → outer x₂ = y → x₁ = x₂) ∧ (∀ (y : Middle) (x₁ x₂ : Domain), inner x₁ = y → inner x₂ = y → x₁ = x₂)) → ∀ (y : Codomain) (x₁ x₂ : Domain), (outer (inner x₁) = y ∧ outer (inner x₂) = y) → x₁ = x₂
+    ((∀ (y : Codomain) (x₁ x₂ : Middle), outer x₁ = y → outer x₂ = y → x₁ = x₂) ∧ (∀ (y : Middle) (x₁ x₂ : Domain), inner x₁ = y → inner x₂ = y → x₁ = x₂)) → ∀ (y : Codomain) (x₁ x₂ : Domain), (outer.Compose inner x₁ = y ∧ outer.Compose inner x₂ = y) → x₁ = x₂
 Transliterated theorem: Injective (Compose outer inner)
 Logical form (Lean): (outerInjective : Injective outer) (innerInjective : Injective inner) : Injective (Compose outer inner)
 Source: [`./Operations/Composition/Theorems.lean#L266`](./Operations/Composition/Theorems.lean#L266)
@@ -386,7 +386,7 @@ Predicate logic (unfolded):
     outerSurjective : Surjective outer
     innerSurjective : Surjective inner
   Prove
-    ((∀ (y : Codomain), Exists fun x => outer x = y) ∧ (∀ (y : Middle), Exists fun x => inner x = y)) → ∀ (y : Codomain), Exists fun x => outer (inner x) = y
+    ((∀ (y : Codomain), ∃ x, outer x = y) ∧ (∀ (y : Middle), ∃ x, inner x = y)) → ∀ (y : Codomain), ∃ x, outer.Compose inner x = y
 Transliterated theorem: Surjective (Compose outer inner)
 Logical form (Lean): (outerSurjective : Surjective outer) (innerSurjective : Surjective inner) : Surjective (Compose outer inner)
 Source: [`./Operations/Composition/Theorems.lean#L316`](./Operations/Composition/Theorems.lean#L316)
@@ -406,7 +406,7 @@ Predicate logic (unfolded):
     outerBijective : Bijective outer
     innerBijective : Bijective inner
   Prove
-    (((∀ (y : Codomain) (x₁ x₂ : Middle), outer x₁ = y → outer x₂ = y → x₁ = x₂) ∧ (∀ (y : Codomain), Exists fun x => outer x = y)) ∧ ((∀ (y : Middle) (x₁ x₂ : Domain), inner x₁ = y → inner x₂ = y → x₁ = x₂) ∧ (∀ (y : Middle), Exists fun x => inner x = y))) → ((∀ (y : Codomain) (x₁ x₂ : Domain), outer (inner x₁) = y → outer (inner x₂) = y → x₁ = x₂) ∧ (∀ (y : Codomain), Exists fun x => outer (inner x) = y))
+    (((∀ (y : Codomain) (x₁ x₂ : Middle), outer x₁ = y → outer x₂ = y → x₁ = x₂) ∧ (∀ (y : Codomain), ∃ x, outer x = y)) ∧ ((∀ (y : Middle) (x₁ x₂ : Domain), inner x₁ = y → inner x₂ = y → x₁ = x₂) ∧ (∀ (y : Middle), ∃ x, inner x = y))) → ((∀ (y : Codomain) (x₁ x₂ : Domain), outer.Compose inner x₁ = y → outer.Compose inner x₂ = y → x₁ = x₂) ∧ (∀ (y : Codomain), ∃ x, outer.Compose inner x = y))
 Transliterated theorem: Bijective (Compose outer inner)
 Logical form (Lean): (outerBijective : Bijective outer) (innerBijective : Bijective inner) : Bijective (Compose outer inner)
 Source: [`./Operations/Composition/Theorems.lean#L366`](./Operations/Composition/Theorems.lean#L366)
@@ -425,7 +425,7 @@ Predicate logic (unfolded):
     inner : LRA.Function Domain Middle
     compositeInjective : Injective (Compose outer inner)
   Prove
-    (∀ (y : Codomain) (x₁ x₂ : Domain), outer (inner x₁) = y → outer (inner x₂) = y → x₁ = x₂) → ∀ (y : Middle) (x₁ x₂ : Domain), (inner x₁ = y ∧ inner x₂ = y) → x₁ = x₂
+    (∀ (y : Codomain) (x₁ x₂ : Domain), outer.Compose inner x₁ = y → outer.Compose inner x₂ = y → x₁ = x₂) → ∀ (y : Middle) (x₁ x₂ : Domain), (inner x₁ = y ∧ inner x₂ = y) → x₁ = x₂
 Transliterated theorem: Injective inner
 Logical form (Lean): (compositeInjective : Injective (Compose outer inner)) : Injective inner
 Source: [`./Operations/Composition/Theorems.lean#L415`](./Operations/Composition/Theorems.lean#L415)
@@ -444,7 +444,7 @@ Predicate logic (unfolded):
     inner : LRA.Function Domain Middle
     compositeSurjective : Surjective (Compose outer inner)
   Prove
-    (∀ (y : Codomain), Exists fun x => outer (inner x) = y) → ∀ (y : Codomain), Exists fun x => outer x = y
+    (∀ (y : Codomain), ∃ x, outer.Compose inner x = y) → ∀ (y : Codomain), ∃ x, outer x = y
 Transliterated theorem: Surjective outer
 Logical form (Lean): (compositeSurjective : Surjective (Compose outer inner)) : Surjective outer
 Source: [`./Operations/Composition/Theorems.lean#L464`](./Operations/Composition/Theorems.lean#L464)
@@ -468,7 +468,7 @@ Predicate logic (unfolded):
     outerLeftInverse : LeftInverse outer outerInverse
     innerLeftInverse : LeftInverse inner innerInverse
   Prove
-    ((∀ (input : Middle), outerInverse (outer input) = input) ∧ (∀ (input : Domain), innerInverse (inner input) = input)) → ∀ (input : Domain), innerInverse (outerInverse (outer (inner input))) = input
+    ((∀ (input : Middle), outerInverse (outer input) = input) ∧ (∀ (input : Domain), innerInverse (inner input) = input)) → ∀ (input : Domain), innerInverse.Compose outerInverse (outer.Compose inner input) = input
 Transliterated theorem: LeftInverse (Compose outer inner) (Compose innerInverse outerInverse)
 Logical form (Lean): (outerLeftInverse : LeftInverse outer outerInverse) (innerLeftInverse : LeftInverse inner innerInverse) : LeftInverse (Compose outer inner) (Compose innerInverse outerInverse)
 Source: [`./Operations/Composition/Theorems.lean#L529`](./Operations/Composition/Theorems.lean#L529)
@@ -492,7 +492,7 @@ Predicate logic (unfolded):
     outerRightInverse : RightInverse outer outerInverse
     innerRightInverse : RightInverse inner innerInverse
   Prove
-    ((∀ (output : Codomain), outer (outerInverse output) = output) ∧ (∀ (output : Middle), inner (innerInverse output) = output)) → ∀ (output : Codomain), outer (inner (innerInverse (outerInverse output))) = output
+    ((∀ (output : Codomain), outer (outerInverse output) = output) ∧ (∀ (output : Middle), inner (innerInverse output) = output)) → ∀ (output : Codomain), outer.Compose inner (innerInverse.Compose outerInverse output) = output
 Transliterated theorem: RightInverse (Compose outer inner) (Compose innerInverse outerInverse)
 Logical form (Lean): (outerRightInverse : RightInverse outer outerInverse) (innerRightInverse : RightInverse inner innerInverse) : RightInverse (Compose outer inner) (Compose innerInverse outerInverse)
 Source: [`./Operations/Composition/Theorems.lean#L585`](./Operations/Composition/Theorems.lean#L585)
@@ -516,7 +516,7 @@ Predicate logic (unfolded):
     outerTwoSided : TwoSidedInverse outer outerInverse
     innerTwoSided : TwoSidedInverse inner innerInverse
   Prove
-    (((∀ (input : Middle), outerInverse (outer input) = input) ∧ (∀ (output : Codomain), outer (outerInverse output) = output)) ∧ ((∀ (input : Domain), innerInverse (inner input) = input) ∧ (∀ (output : Middle), inner (innerInverse output) = output))) → ((∀ (input : Domain), innerInverse (outerInverse (outer (inner input))) = input) ∧ (∀ (output : Codomain), outer (inner (innerInverse (outerInverse output))) = output))
+    (((∀ (input : Middle), outerInverse (outer input) = input) ∧ (∀ (output : Codomain), outer (outerInverse output) = output)) ∧ ((∀ (input : Domain), innerInverse (inner input) = input) ∧ (∀ (output : Middle), inner (innerInverse output) = output))) → ((∀ (input : Domain), innerInverse.Compose outerInverse (outer.Compose inner input) = input) ∧ (∀ (output : Codomain), outer.Compose inner (innerInverse.Compose outerInverse output) = output))
 Transliterated theorem: TwoSidedInverse (Compose outer inner) (Compose innerInverse outerInverse)
 Logical form (Lean): (outerTwoSided : TwoSidedInverse outer outerInverse) (innerTwoSided : TwoSidedInverse inner innerInverse) : TwoSidedInverse (Compose outer inner) (Compose innerInverse outerInverse)
 Source: [`./Operations/Composition/Theorems.lean#L641`](./Operations/Composition/Theorems.lean#L641)
@@ -534,7 +534,7 @@ Predicate logic (unfolded):
     function : LRA.Function Domain Codomain
     bijective : Bijective function
   Prove
-    ((∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ (∀ (y : Codomain), Exists fun x => function x = y)) → Exists fun inverse => ((∀ (input : Domain), inverse (function input) = input) ∧ (∀ (output : Codomain), function (inverse output) = output))
+    ((∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ (∀ (y : Codomain), ∃ x, function x = y)) → ∃ inverse, ((∀ (input : Domain), inverse (function input) = input) ∧ (∀ (output : Codomain), function (inverse output) = output))
 Transliterated theorem: ∃ inverse ∈ LRA.Function Codomain Domain, TwoSidedInverse function inverse
 Logical form (Lean): {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (bijective : Bijective function) : ∃ inverse : LRA.Function Codomain Domain, TwoSidedInverse function inverse
 Source: [`./Operations/Inverse/Theorems.lean#L55`](./Operations/Inverse/Theorems.lean#L55)
@@ -553,7 +553,7 @@ Predicate logic (unfolded):
     inverse : LRA.Function Codomain Domain
     twoSided : TwoSidedInverse function inverse
   Prove
-    ((∀ (input : Domain), inverse (function input) = input) ∧ (∀ (output : Codomain), function (inverse output) = output)) → ((∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ (∀ (y : Codomain), Exists fun x => function x = y))
+    ((∀ (input : Domain), inverse (function input) = input) ∧ (∀ (output : Codomain), function (inverse output) = output)) → ((∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ (∀ (y : Codomain), ∃ x, function x = y))
 Transliterated theorem: Bijective function
 Logical form (Lean): {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (inverse : LRA.Function Codomain Domain) (twoSided : TwoSidedInverse function inverse) : Bijective function
 Source: [`./Operations/Inverse/Theorems.lean#L110`](./Operations/Inverse/Theorems.lean#L110)
@@ -593,7 +593,7 @@ Predicate logic (unfolded):
     leftInverse : LeftInverse function inverse
     source : SetClass Domain
   Prove
-    (∀ (input : Domain), inverse (function input) = input) → ∀ (source : Domain → Prop) (input : Domain), source input → inverse (function input) = input
+    (∀ (input : Domain), inverse (function input) = input) → ∀ (source : LRA.Set.SetClass Domain) (input : Domain), source input → inverse (function input) = input
 Transliterated theorem: LeftInverseOn function inverse source
 Logical form (Lean): (leftInverse : LeftInverse function inverse) (source : SetClass Domain) : LeftInverseOn function inverse source
 Source: [`./Operations/Inverse/Theorems.lean#L228`](./Operations/Inverse/Theorems.lean#L228)
@@ -613,7 +613,7 @@ Predicate logic (unfolded):
     rightInverse : RightInverse function inverse
     target : SetClass Codomain
   Prove
-    (∀ (output : Codomain), function (inverse output) = output) → ∀ (target : Codomain → Prop) (output : Codomain), target output → function (inverse output) = output
+    (∀ (output : Codomain), function (inverse output) = output) → ∀ (target : LRA.Set.SetClass Codomain) (output : Codomain), target output → function (inverse output) = output
 Transliterated theorem: RightInverseOn function inverse target
 Logical form (Lean): (rightInverse : RightInverse function inverse) (target : SetClass Codomain) : RightInverseOn function inverse target
 Source: [`./Operations/Inverse/Theorems.lean#L278`](./Operations/Inverse/Theorems.lean#L278)
@@ -634,7 +634,7 @@ Predicate logic (unfolded):
     source : SetClass Domain
     target : SetClass Codomain
   Prove
-    ((∀ (input : Domain), inverse (function input) = input) ∧ (∀ (output : Codomain), function (inverse output) = output)) → ∀ (source : Domain → Prop) (target : Codomain → Prop), ((∀ (input : Domain), source input → inverse (function input) = input) ∧ (∀ (output : Codomain), target output → function (inverse output) = output))
+    ((∀ (input : Domain), inverse (function input) = input) ∧ (∀ (output : Codomain), function (inverse output) = output)) → ∀ (source : LRA.Set.SetClass Domain) (target : LRA.Set.SetClass Codomain), ((∀ (input : Domain), source input → inverse (function input) = input) ∧ (∀ (output : Codomain), target output → function (inverse output) = output))
 Transliterated theorem: TwoSidedInverseOn function inverse source target
 Logical form (Lean): (twoSided : TwoSidedInverse function inverse) (source : SetClass Domain) (target : SetClass Codomain) : TwoSidedInverseOn function inverse source target
 Source: [`./Operations/Inverse/Theorems.lean#L330`](./Operations/Inverse/Theorems.lean#L330)
@@ -654,7 +654,7 @@ Predicate logic (unfolded):
     source : SetClass Domain
     leftInverse : LeftInverseOn function inverse source
   Prove
-    (∀ (input : Domain), source input → inverse (function input) = input) → ∀ (output : Codomain), (Exists fun x => (source x ∧ function x = output)) → function (inverse output) = output
+    (∀ (input : Domain), source input → inverse (function input) = input) → ∀ (output : Codomain), (∃ x, (source x ∧ function x = output)) → function (inverse output) = output
 Transliterated theorem: RightInverseOn function inverse (ImageClass function source)
 Logical form (Lean): (source : SetClass Domain) (leftInverse : LeftInverseOn function inverse source) : RightInverseOn function inverse (ImageClass function source)
 Source: [`./Operations/Inverse/Theorems.lean#L382`](./Operations/Inverse/Theorems.lean#L382)
@@ -674,7 +674,7 @@ Predicate logic (unfolded):
     source : SetClass Domain
     leftInverse : LeftInverseOn function inverse source
   Prove
-    (∀ (input : Domain), source input → inverse (function input) = input) → ((∀ (input : Domain), source input → inverse (function input) = input) ∧ (∀ (output : Codomain), (Exists fun x => (source x ∧ function x = output)) → function (inverse output) = output))
+    (∀ (input : Domain), source input → inverse (function input) = input) → ((∀ (input : Domain), source input → inverse (function input) = input) ∧ (∀ (output : Codomain), (∃ x, (source x ∧ function x = output)) → function (inverse output) = output))
 Transliterated theorem: TwoSidedInverseOn function inverse source (ImageClass function source)
 Logical form (Lean): (source : SetClass Domain) (leftInverse : LeftInverseOn function inverse source) : TwoSidedInverseOn function inverse source (ImageClass function source)
 Source: [`./Operations/Inverse/Theorems.lean#L434`](./Operations/Inverse/Theorems.lean#L434)
@@ -694,7 +694,7 @@ Predicate logic (unfolded):
     twoSided : TwoSidedInverse function inverse
     target : SetClass Codomain
   Prove
-    ((∀ (input : Domain), inverse (function input) = input) ∧ (∀ (output : Codomain), function (inverse output) = output)) → ∀ (target : Codomain → Prop), fun x => Exists fun y => (target y ∧ function x = y) = funy => Exists fun x => (target x ∧ inverse x = y)
+    ((∀ (input : Domain), inverse (function input) = input) ∧ (∀ (output : Codomain), function (inverse output) = output)) → ∀ (target : LRA.Set.SetClass Codomain), function.PreimageClass target = inverse.ImageClass target
 Transliterated theorem: PreimageClass function target = ImageClass inverse target
 Logical form (Lean): (twoSided : TwoSidedInverse function inverse) (target : SetClass Codomain) : PreimageClass function target = ImageClass inverse target
 Source: [`./Operations/Inverse/Theorems.lean#L485`](./Operations/Inverse/Theorems.lean#L485)
@@ -736,7 +736,7 @@ Predicate logic (unfolded):
     inverse : LRA.Function Codomain Domain
     rightInverse : RightInverse function inverse
   Prove
-    (∀ (output : Codomain), function (inverse output) = output) → ∀ (y : Codomain), Exists fun x => function x = y
+    (∀ (output : Codomain), function (inverse output) = output) → ∀ (y : Codomain), ∃ x, function x = y
 Transliterated theorem: Surjective function
 Logical form (Lean): (rightInverse : RightInverse function inverse) : Surjective function
 Source: [`./Operations/Inverse/Theorems.lean#L592`](./Operations/Inverse/Theorems.lean#L592)
@@ -757,7 +757,7 @@ Predicate logic (unfolded):
     inverse : LRA.Function Codomain Domain
     twoSided : TwoSidedInverse function inverse
   Prove
-    ((∀ (input : Domain), inverse (function input) = input) ∧ (∀ (output : Codomain), function (inverse output) = output)) → ((∀ (y : Domain) (x₁ x₂ : Codomain), inverse x₁ = y → inverse x₂ = y → x₁ = x₂) ∧ (∀ (y : Domain), Exists fun x => inverse x = y))
+    ((∀ (input : Domain), inverse (function input) = input) ∧ (∀ (output : Codomain), function (inverse output) = output)) → ((∀ (y : Domain) (x₁ x₂ : Codomain), inverse x₁ = y → inverse x₂ = y → x₁ = x₂) ∧ (∀ (y : Domain), ∃ x, inverse x = y))
 Transliterated theorem: Bijective inverse
 Logical form (Lean): (twoSided : TwoSidedInverse function inverse) : Bijective inverse
 Source: [`./Operations/Inverse/Theorems.lean#L641`](./Operations/Inverse/Theorems.lean#L641)
@@ -774,7 +774,7 @@ Predicate logic (unfolded):
   Objects
     function : BinaryFunction Left Right Codomain
   Prove
-    fun left right => function { fst := left, snd := right }.1 { fst := left, snd := right }.2 = function
+    LRA.Function.Curry (LRA.Function.Uncurry function) = function
 Transliterated theorem: Curry (Uncurry function) = function
 Logical form (Lean): {Left : Type u} {Right : Type v} {Codomain : Type w} (function : BinaryFunction Left Right Codomain) : Curry (Uncurry function) = function
 Source: [`./Operations/Product/Theorems.lean#L51`](./Operations/Product/Theorems.lean#L51)
@@ -791,7 +791,7 @@ Predicate logic (unfolded):
   Objects
     function : ProductDomainFunction Left Right Codomain
   Prove
-    fun pair => function { fst := pair.1, snd := pair.2 } = function
+    LRA.Function.Uncurry (LRA.Function.Curry function) = function
 Transliterated theorem: Uncurry (Curry function) = function
 Logical form (Lean): {Left : Type u} {Right : Type v} {Codomain : Type w} (function : ProductDomainFunction Left Right Codomain) : Uncurry (Curry function) = function
 Source: [`./Operations/Product/Theorems.lean#L100`](./Operations/Product/Theorems.lean#L100)
@@ -810,7 +810,7 @@ Predicate logic (unfolded):
     right : LRA.Function Domain RightCodomain
     input : Domain
   Prove
-    LRA.Function.Product left right input = .1(left input)
+    LRA.Function.FirstProjection LeftCodomain RightCodomain (left.Product right input) = left input
 Transliterated theorem: (∀ input ∈ Domain), FirstProjection LeftCodomain RightCodomain (Product left right input) = left input
 Logical form (Lean): {Domain : Type u} {LeftCodomain : Type v} {RightCodomain : Type w} (left : LRA.Function Domain LeftCodomain) (right : LRA.Function Domain RightCodomain) (input : Domain) : FirstProjection LeftCodomain RightCodomain (Product left right input) = left input
 Source: [`./Operations/Product/Theorems.lean#L154`](./Operations/Product/Theorems.lean#L154)
@@ -829,7 +829,7 @@ Predicate logic (unfolded):
     right : LRA.Function Domain RightCodomain
     input : Domain
   Prove
-    LRA.Function.Product left right input = .2(right input)
+    LRA.Function.SecondProjection LeftCodomain RightCodomain (left.Product right input) = right input
 Transliterated theorem: (∀ input ∈ Domain), SecondProjection LeftCodomain RightCodomain (Product left right input) = right input
 Logical form (Lean): {Domain : Type u} {LeftCodomain : Type v} {RightCodomain : Type w} (left : LRA.Function Domain LeftCodomain) (right : LRA.Function Domain RightCodomain) (input : Domain) : SecondProjection LeftCodomain RightCodomain (Product left right input) = right input
 Source: [`./Operations/Product/Theorems.lean#L211`](./Operations/Product/Theorems.lean#L211)
@@ -847,7 +847,7 @@ Predicate logic (unfolded):
     function : LRA.Function Domain Codomain
     input : Domain
   Prove
-    Exists fun y => function input = y
+    ∃ y, function input = y
 Transliterated theorem: (∀ input ∈ Domain), DomainClass function input
 Logical form (Lean): {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (input : Domain) : DomainClass function input
 Source: [`./Calculus/Classes/Theorems.lean#L55`](./Calculus/Classes/Theorems.lean#L55)
@@ -864,7 +864,7 @@ Predicate logic (unfolded):
   Objects
     function : LRA.Function Domain Codomain
   Prove
-    ((∀ (x : Domain), Exists fun output => (function x = output ∧ function x = output)) ∧ ((∀ (x y : Domain), (Exists fun output => (function x = output ∧ function y = output)) → Exists fun output => (function y = output ∧ function x = output)) ∧ (∀ (x y z : Domain), (Exists fun output => (function x = output ∧ function y = output)) → (Exists fun output => (function y = output ∧ function z = output)) → Exists fun output => (function x = output ∧ function z = output))))
+    ((∀ (x : Domain), ∃ output, (function x = output ∧ function x = output)) ∧ ((∀ (x y : Domain), (∃ output, (function x = output ∧ function y = output)) → ∃ output, (function y = output ∧ function x = output)) ∧ (∀ (x y z : Domain), (∃ output, (function x = output ∧ function y = output)) → (∃ output, (function y = output ∧ function z = output)) → ∃ output, (function x = output ∧ function z = output))))
 Transliterated theorem: LRA.Relation.EquivalenceRelation (KernelRelation function)
 Logical form (Lean): {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) : LRA.Relation.EquivalenceRelation (KernelRelation function)
 Source: [`./Calculus/Classes/Theorems.lean#L103`](./Calculus/Classes/Theorems.lean#L103)
@@ -899,7 +899,7 @@ Predicate logic (unfolded):
     function : LRA.Function Domain Codomain
     left right : SetClass Codomain
   Prove
-    fun x => Exists fun y => ((left y ∧ right y) ∧ function x = y) = funelement => ((Exists fun y => (left y ∧ function element = y)) ∧ (Exists fun y => (right y ∧ function element = y)))
+    function.PreimageClass (left.Intersection right) = (function.PreimageClass left).Intersection (function.PreimageClass right)
 Transliterated theorem: PreimageClass function (SetClass.Intersection left right) = SetClass.Intersection (PreimageClass function left) (PreimageClass function right)
 Logical form (Lean): (left right : SetClass Codomain) : PreimageClass function (SetClass.Intersection left right) = SetClass.Intersection (PreimageClass function left) (PreimageClass function right)
 Source: [`./Calculus/Classes/Theorems.lean#L210`](./Calculus/Classes/Theorems.lean#L210)
@@ -917,7 +917,7 @@ Predicate logic (unfolded):
     function : LRA.Function Domain Codomain
     left right : SetClass Codomain
   Prove
-    fun x => Exists fun y => ((left y ∧ (right y → False)) ∧ function x = y) = funelement => ((Exists fun y => (left y ∧ function element = y)) ∧ ((Exists fun y => (right y ∧ function element = y)) → False))
+    function.PreimageClass (left.Difference right) = (function.PreimageClass left).Difference (function.PreimageClass right)
 Transliterated theorem: PreimageClass function (SetClass.Difference left right) = SetClass.Difference (PreimageClass function left) (PreimageClass function right)
 Logical form (Lean): (left right : SetClass Codomain) : PreimageClass function (SetClass.Difference left right) = SetClass.Difference (PreimageClass function left) (PreimageClass function right)
 Source: [`./Calculus/Classes/Theorems.lean#L260`](./Calculus/Classes/Theorems.lean#L260)
@@ -935,7 +935,7 @@ Predicate logic (unfolded):
     function : LRA.Function Domain Codomain
     target : SetClass Codomain
   Prove
-    fun x => Exists fun y => ((target y → False) ∧ function x = y) = funelement => (Exists fun y => (target y ∧ function element = y)) → False
+    function.PreimageClass target.Complement = function.PreimageClass target.Complement
 Transliterated theorem: PreimageClass function (SetClass.Complement target) = SetClass.Complement (PreimageClass function target)
 Logical form (Lean): (target : SetClass Codomain) : PreimageClass function (SetClass.Complement target) = SetClass.Complement (PreimageClass function target)
 Source: [`./Calculus/Classes/Theorems.lean#L309`](./Calculus/Classes/Theorems.lean#L309)
@@ -953,7 +953,7 @@ Predicate logic (unfolded):
     function : LRA.Function Domain Codomain
     left right : SetClass Codomain
   Prove
-    fun x => Exists fun y => ((Or ((left y ∧ (right y → False))) ((right y ∧ (left y → False)))) ∧ function x = y) = funelement => Or (((Exists fun y => (left y ∧ function element = y)) ∧ ((Exists fun y => (right y ∧ function element = y)) → False))) (((Exists fun y => (right y ∧ function element = y)) ∧ ((Exists fun y => (left y ∧ function element = y)) → False)))
+    function.PreimageClass ((left.Difference right).Union (right.Difference left)) = ((function.PreimageClass left).Difference (function.PreimageClass right)).Union ((function.PreimageClass right).Difference (function.PreimageClass left))
 Transliterated theorem: PreimageClass function (SetClass.Union (SetClass.Difference left right) (SetClass.Difference right left)) = SetClass.Union (SetClass.Difference (PreimageClass function left) (PreimageClass function right)) (SetClass.Difference (PreimageClass function right) (PreimageClass function left))
 Logical form (Lean): (left right : SetClass Codomain) : PreimageClass function (SetClass.Union (SetClass.Difference left right) (SetClass.Difference right left)) = SetClass.Union (SetClass.Difference (PreimageClass function left) (PreimageClass function right)) (SetClass.Difference (PreimageClass function right) (PreimageClass function left))
 Source: [`./Calculus/Classes/Theorems.lean#L363`](./Calculus/Classes/Theorems.lean#L363)
@@ -971,7 +971,7 @@ Predicate logic (unfolded):
     function : LRA.Function Domain Codomain
     left middle right : SetClass Codomain
   Prove
-    fun x => Exists fun y => ((left y ∧ (Or (middle y) (right y) → False)) ∧ function x = y) = funelement => ((Exists fun y => (left y ∧ function element = y)) ∧ (Or (Exists fun y => (middle y ∧ function element = y)) (Exists fun y => (right y ∧ function element = y)) → False))
+    function.PreimageClass (left.Difference (middle.Union right)) = (function.PreimageClass left).Difference ((function.PreimageClass middle).Union (function.PreimageClass right))
 Transliterated theorem: PreimageClass function (SetClass.Difference left (SetClass.Union middle right)) = SetClass.Difference (PreimageClass function left) (SetClass.Union (PreimageClass function middle) (PreimageClass function right))
 Logical form (Lean): (left middle right : SetClass Codomain) : PreimageClass function (SetClass.Difference left (SetClass.Union middle right)) = SetClass.Difference (PreimageClass function left) (SetClass.Union (PreimageClass function middle) (PreimageClass function right))
 Source: [`./Calculus/Classes/Theorems.lean#L420`](./Calculus/Classes/Theorems.lean#L420)
@@ -988,7 +988,7 @@ Predicate logic (unfolded):
   Objects
     function : LRA.Function Domain Codomain
   Prove
-    fun x => Exists fun y => (True ∧ function x = y) = funx => True
+    function.PreimageClass LRA.Set.SetClass.Universal = LRA.Set.SetClass.Universal
 Transliterated theorem: PreimageClass function SetClass.Universal ∈ SetClass Codomain = SetClass.Universal ∈ SetClass Domain
 Logical form (Lean): : PreimageClass function (SetClass.Universal : SetClass Codomain) = (SetClass.Universal : SetClass Domain)
 Source: [`./Calculus/Classes/Theorems.lean#L470`](./Calculus/Classes/Theorems.lean#L470)
@@ -1006,7 +1006,7 @@ Predicate logic (unfolded):
     function : LRA.Function Domain Codomain
     family : Index → SetClass Codomain
   Prove
-    fun x => Exists fun y => (((fun output => ∀ (index : Index), family index output) y) ∧ function x = y) = funinput => ∀ (index : Index), Exists fun y => (family index y ∧ function input = y)
+    function.PreimageClass fun output => ∀ (index : Index), family index output = funinput => ∀ (index : Index), ∃ y, (family index y ∧ function input = y)
 Transliterated theorem: PreimageClass function (fun output => ∀ index, family index output) = (fun input => ∀ index, PreimageClass function (family index) input)
 Logical form (Lean): {Index : Type w} (family : Index → SetClass Codomain) : PreimageClass function (fun output => ∀ index, family index output) = (fun input => ∀ index, PreimageClass function (family index) input)
 Source: [`./Calculus/Classes/Theorems.lean#L519`](./Calculus/Classes/Theorems.lean#L519)
@@ -1024,7 +1024,7 @@ Predicate logic (unfolded):
     function : LRA.Function Domain Codomain
     family : Nat → SetClass Codomain
   Prove
-    fun x => Exists fun y => (((fun output => ∀ (index : Nat), family index output) y) ∧ function x = y) = funinput => ∀ (index : Nat), Exists fun y => (family index y ∧ function input = y)
+    function.PreimageClass fun output => ∀ (index : Nat), family index output = funinput => ∀ (index : Nat), ∃ y, (family index y ∧ function input = y)
 Transliterated theorem: PreimageClass function (fun output => ∀ index, family index output) = (fun input => ∀ index, PreimageClass function (family index) input)
 Logical form (Lean): (family : Nat → SetClass Codomain) : PreimageClass function (fun output => ∀ index, family index output) = (fun input => ∀ index, PreimageClass function (family index) input)
 Source: [`./Calculus/Classes/Theorems.lean#L568`](./Calculus/Classes/Theorems.lean#L568)
@@ -1063,29 +1063,10 @@ Predicate logic (unfolded):
     function : LRA.Function Domain Codomain
     target : SetClass Codomain
   Prove
-    (Exists fun x => ((Exists fun y => (target y ∧ function x = y)) ∧ function x = element)) → target element
+    (∃ x, ((∃ y, (target y ∧ function x = y)) ∧ function x = element)) → target element
 Transliterated theorem: SetClass.Included (ImageClass function (PreimageClass function target)) target
 Logical form (Lean): (target : SetClass Codomain) : SetClass.Included (ImageClass function (PreimageClass function target)) target
 Source: [`./Calculus/Classes/Theorems.lean#L677`](./Calculus/Classes/Theorems.lean#L677)
-
-
-
-Name: SourceIncludedInPreimageOfImageClass
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (source : LRA.Set.SetClass Domain),   source.Included (function.PreimageClass (function.ImageClass source))
-Predicate logic (unfolded):
-  Ambient
-    (Domain, Codomain)
-  Objects
-    function : LRA.Function Domain Codomain
-    function : LRA.Function Domain Codomain
-    source : SetClass Domain
-  Prove
-    source element → Exists fun y => ((Exists fun x => (source x ∧ function x = y)) ∧ function element = y)
-Transliterated theorem: SetClass.Included source (PreimageClass function (ImageClass function source))
-Logical form (Lean): (source : SetClass Domain) : SetClass.Included source (PreimageClass function (ImageClass function source))
-Source: [`./Calculus/Classes/Theorems.lean#L726`](./Calculus/Classes/Theorems.lean#L726)
 
 
 
@@ -1101,10 +1082,10 @@ Predicate logic (unfolded):
     function : LRA.Function Domain Codomain
     target : SetClass Codomain
   Prove
-    fun y => Exists fun x => ((Exists fun y => (target y ∧ function x = y)) ∧ function x = y) = funelement => (target element ∧ Exists fun x => function x = element)
+    function.ImageClass (function.PreimageClass target) = target.Intersection function.RangeClass
 Transliterated theorem: ImageClass function (PreimageClass function target) = SetClass.Intersection target (RangeClass function)
 Logical form (Lean): (target : SetClass Codomain) : ImageClass function (PreimageClass function target) = SetClass.Intersection target (RangeClass function)
-Source: [`./Calculus/Classes/Theorems.lean#L775`](./Calculus/Classes/Theorems.lean#L775)
+Source: [`./Calculus/Classes/Theorems.lean#L792`](./Calculus/Classes/Theorems.lean#L792)
 
 
 
@@ -1121,10 +1102,10 @@ Predicate logic (unfolded):
     target : SetClass Codomain
     insideRange : SetClass.Included target (RangeClass function)
   Prove
-    (∀ (element : Codomain), target element → Exists fun x => function x = element) → fun y => Exists fun x => ((Exists fun y => (target y ∧ function x = y)) ∧ function x = y) = target
+    (∀ (element : Codomain), target element → ∃ x, function x = element) → function.ImageClass (function.PreimageClass target) = target
 Transliterated theorem: ImageClass function (PreimageClass function target) = target
 Logical form (Lean): (target : SetClass Codomain) (insideRange : SetClass.Included target (RangeClass function)) : ImageClass function (PreimageClass function target) = target
-Source: [`./Calculus/Classes/Theorems.lean#L825`](./Calculus/Classes/Theorems.lean#L825)
+Source: [`./Calculus/Classes/Theorems.lean#L842`](./Calculus/Classes/Theorems.lean#L842)
 
 
 
@@ -1144,7 +1125,7 @@ Predicate logic (unfolded):
     MapsIntoClass function source target ↔ SetClass.Included (ImageClass function source) target
 Transliterated theorem: MapsIntoClass function source target ↔ SetClass.Included (ImageClass function source) target
 Logical form (Lean): (source : SetClass Domain) (target : SetClass Codomain) : MapsIntoClass function source target ↔ SetClass.Included (ImageClass function source) target
-Source: [`./Calculus/Classes/Theorems.lean#L876`](./Calculus/Classes/Theorems.lean#L876)
+Source: [`./Calculus/Classes/Theorems.lean#L893`](./Calculus/Classes/Theorems.lean#L893)
 
 
 
@@ -1164,7 +1145,7 @@ Predicate logic (unfolded):
     MapsIntoClass function source target ↔ SetClass.Included source (PreimageClass function target)
 Transliterated theorem: MapsIntoClass function source target ↔ SetClass.Included source (PreimageClass function target)
 Logical form (Lean): (source : SetClass Domain) (target : SetClass Codomain) : MapsIntoClass function source target ↔ SetClass.Included source (PreimageClass function target)
-Source: [`./Calculus/Classes/Theorems.lean#L928`](./Calculus/Classes/Theorems.lean#L928)
+Source: [`./Calculus/Classes/Theorems.lean#L945`](./Calculus/Classes/Theorems.lean#L945)
 
 
 
@@ -1182,10 +1163,10 @@ Predicate logic (unfolded):
     injective : Injective function
     left right : SetClass Domain
   Prove
-    (∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂) → ∀ (left right : Domain → Prop), fun y => Exists fun x => ((left x ∧ right x) ∧ function x = y) = funelement => ((Exists fun x => (left x ∧ function x = element)) ∧ (Exists fun x => (right x ∧ function x = element)))
+    (∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂) → ∀ (left right : LRA.Set.SetClass Domain), function.ImageClass (left.Intersection right) = (function.ImageClass left).Intersection (function.ImageClass right)
 Transliterated theorem: ImageClass function (SetClass.Intersection left right) = SetClass.Intersection (ImageClass function left) (ImageClass function right)
 Logical form (Lean): (injective : Injective function) (left right : SetClass Domain) : ImageClass function (SetClass.Intersection left right) = SetClass.Intersection (ImageClass function left) (ImageClass function right)
-Source: [`./Calculus/Classes/Theorems.lean#L990`](./Calculus/Classes/Theorems.lean#L990)
+Source: [`./Calculus/Classes/Theorems.lean#L1007`](./Calculus/Classes/Theorems.lean#L1007)
 
 
 
@@ -1203,10 +1184,10 @@ Predicate logic (unfolded):
     injective : Injective function
     left right : SetClass Domain
   Prove
-    (∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂) → ∀ (left right : Domain → Prop), fun y => Exists fun x => ((left x ∧ (right x → False)) ∧ function x = y) = funelement => ((Exists fun x => (left x ∧ function x = element)) ∧ ((Exists fun x => (right x ∧ function x = element)) → False))
+    (∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂) → ∀ (left right : LRA.Set.SetClass Domain), function.ImageClass (left.Difference right) = (function.ImageClass left).Difference (function.ImageClass right)
 Transliterated theorem: ImageClass function (SetClass.Difference left right) = SetClass.Difference (ImageClass function left) (ImageClass function right)
 Logical form (Lean): (injective : Injective function) (left right : SetClass Domain) : ImageClass function (SetClass.Difference left right) = SetClass.Difference (ImageClass function left) (ImageClass function right)
-Source: [`./Calculus/Classes/Theorems.lean#L1045`](./Calculus/Classes/Theorems.lean#L1045)
+Source: [`./Calculus/Classes/Theorems.lean#L1062`](./Calculus/Classes/Theorems.lean#L1062)
 
 
 
@@ -1224,10 +1205,10 @@ Predicate logic (unfolded):
     injective : Injective function
     family : Index → SetClass Domain
   Prove
-    (Nonempty Index ∧ (∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂)) → ∀ (family : Index → Domain → Prop), fun y => Exists fun x => (((fun input => ∀ (index : Index), family index input) x) ∧ function x = y) = funoutput => ∀ (index : Index), Exists fun x => (family index x ∧ function x = output)
+    (Nonempty Index ∧ (∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂)) → ∀ (family : Index → LRA.Set.SetClass Domain), function.ImageClass fun input => ∀ (index : Index), family index input = funoutput => ∀ (index : Index), ∃ x, (family index x ∧ function x = output)
 Transliterated theorem: ImageClass function (fun input => ∀ index, family index input) = (fun output => ∀ index, ImageClass function (family index) output)
 Logical form (Lean): {Index : Type w} [Nonempty Index] (injective : Injective function) (family : Index → SetClass Domain) : ImageClass function (fun input => ∀ index, family index input) = (fun output => ∀ index, ImageClass function (family index) output)
-Source: [`./Calculus/Classes/Theorems.lean#L1099`](./Calculus/Classes/Theorems.lean#L1099)
+Source: [`./Calculus/Classes/Theorems.lean#L1116`](./Calculus/Classes/Theorems.lean#L1116)
 
 
 
@@ -1245,10 +1226,10 @@ Predicate logic (unfolded):
     injective : Injective function
     family : Nat → SetClass Domain
   Prove
-    (∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂) → ∀ (family : Nat → Domain → Prop), fun y => Exists fun x => (((fun input => ∀ (index : Nat), family index input) x) ∧ function x = y) = funoutput => ∀ (index : Nat), Exists fun x => (family index x ∧ function x = output)
+    (∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂) → ∀ (family : Nat → LRA.Set.SetClass Domain), function.ImageClass fun input => ∀ (index : Nat), family index input = funoutput => ∀ (index : Nat), ∃ x, (family index x ∧ function x = output)
 Transliterated theorem: ImageClass function (fun input => ∀ index, family index input) = (fun output => ∀ index, ImageClass function (family index) output)
 Logical form (Lean): (injective : Injective function) (family : Nat → SetClass Domain) : ImageClass function (fun input => ∀ index, family index input) = (fun output => ∀ index, ImageClass function (family index) output)
-Source: [`./Calculus/Classes/Theorems.lean#L1152`](./Calculus/Classes/Theorems.lean#L1152)
+Source: [`./Calculus/Classes/Theorems.lean#L1169`](./Calculus/Classes/Theorems.lean#L1169)
 
 
 
@@ -1268,10 +1249,10 @@ Predicate logic (unfolded):
     output : Codomain
     firstInput secondInput : Domain
   Prove
-    (∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂) → ∀ (source : Domain → Prop) (output : Codomain) (firstInput secondInput : Domain), ((source firstInput ∧ function firstInput = output) ∧ (source secondInput ∧ function secondInput = output)) → firstInput = secondInput
+    (∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂) → ∀ (source : LRA.Set.SetClass Domain) (output : Codomain) (firstInput secondInput : Domain), ((source firstInput ∧ function firstInput = output) ∧ (source secondInput ∧ function secondInput = output)) → firstInput = secondInput
 Transliterated theorem: (∀ output ∈ Codomain ∀ firstInput secondInput ∈ Domain), (source firstInput ∧ function firstInput = output ∧ source secondInput ∧ function secondInput = output) → firstInput = secondInput
 Logical form (Lean): (injective : Injective function) (source : SetClass Domain) (output : Codomain) (firstInput secondInput : Domain) (firstWitness : source firstInput ∧ function firstInput = output) (secondWitness : source secondInput ∧ function secondInput = output) : firstInput = secondInput
-Source: [`./Calculus/Classes/Theorems.lean#L1209`](./Calculus/Classes/Theorems.lean#L1209)
+Source: [`./Calculus/Classes/Theorems.lean#L1226`](./Calculus/Classes/Theorems.lean#L1226)
 
 
 
@@ -1289,10 +1270,10 @@ Predicate logic (unfolded):
     injective : Injective function
     source : SetClass Domain
   Prove
-    (∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂) → ∀ (source : Domain → Prop), fun x => Exists fun y => ((Exists fun x => (source x ∧ function x = y)) ∧ function x = y) = source
+    (∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂) → ∀ (source : LRA.Set.SetClass Domain), function.PreimageClass (function.ImageClass source) = source
 Transliterated theorem: PreimageClass function (ImageClass function source) = source
 Logical form (Lean): (injective : Injective function) (source : SetClass Domain) : PreimageClass function (ImageClass function source) = source
-Source: [`./Calculus/Classes/Theorems.lean#L1263`](./Calculus/Classes/Theorems.lean#L1263)
+Source: [`./Calculus/Classes/Theorems.lean#L1280`](./Calculus/Classes/Theorems.lean#L1280)
 
 
 
@@ -1310,10 +1291,10 @@ Predicate logic (unfolded):
     surjective : Surjective function
     target : SetClass Codomain
   Prove
-    (∀ (y : Codomain), Exists fun x => function x = y) → ∀ (target : Codomain → Prop), fun y => Exists fun x => ((Exists fun y => (target y ∧ function x = y)) ∧ function x = y) = target
+    (∀ (y : Codomain), ∃ x, function x = y) → ∀ (target : LRA.Set.SetClass Codomain), function.ImageClass (function.PreimageClass target) = target
 Transliterated theorem: ImageClass function (PreimageClass function target) = target
 Logical form (Lean): (surjective : Surjective function) (target : SetClass Codomain) : ImageClass function (PreimageClass function target) = target
-Source: [`./Calculus/Classes/Theorems.lean#L1314`](./Calculus/Classes/Theorems.lean#L1314)
+Source: [`./Calculus/Classes/Theorems.lean#L1331`](./Calculus/Classes/Theorems.lean#L1331)
 
 
 
@@ -1329,10 +1310,10 @@ Predicate logic (unfolded):
     function : LRA.Function Domain Codomain
     function : LRA.Function Domain Codomain
   Prove
-    (∀ (output : Codomain), Exists fun x => (True ∧ function x = output)) → ∀ (y : Codomain), Exists fun x => function x = y
+    (∀ (output : Codomain), ∃ x, (True ∧ function x = output)) → ∀ (y : Codomain), ∃ x, function x = y
 Transliterated theorem: (∀ output : Codomain, ImageClass function SetClass.Universal ∈ SetClass Domain output) → Surjective function
 Logical form (Lean): (covers : ∀ output : Codomain, ImageClass function (SetClass.Universal : SetClass Domain) output) : Surjective function
-Source: [`./Calculus/Classes/Theorems.lean#L1364`](./Calculus/Classes/Theorems.lean#L1364)
+Source: [`./Calculus/Classes/Theorems.lean#L1381`](./Calculus/Classes/Theorems.lean#L1381)
 
 
 
@@ -1353,7 +1334,7 @@ Predicate logic (unfolded):
     FiberClass function (function representative) input ↔ KernelRelation function input representative
 Transliterated theorem: (∀ representative input ∈ Domain), FiberClass function (function representative) input ↔ KernelRelation function input representative
 Logical form (Lean): (representative input : Domain) : FiberClass function (function representative) input ↔ KernelRelation function input representative
-Source: [`./Calculus/Classes/Theorems.lean#L1425`](./Calculus/Classes/Theorems.lean#L1425)
+Source: [`./Calculus/Classes/Theorems.lean#L1442`](./Calculus/Classes/Theorems.lean#L1442)
 
 
 
@@ -1371,10 +1352,10 @@ Predicate logic (unfolded):
     function : LRA.Function Domain Codomain
     output : Codomain
   Prove
-    (function input = output ∧ (Exists fun output => (function input = output ∧ function fiberMate = output))) → function fiberMate = output
+    (function input = output ∧ (∃ output, (function input = output ∧ function fiberMate = output))) → function fiberMate = output
 Transliterated theorem: (∀ output ∈ Codomain), SaturatedBy (FiberClass function output) function
 Logical form (Lean): (output : Codomain) : SaturatedBy (FiberClass function output) function
-Source: [`./Calculus/Classes/Theorems.lean#L1476`](./Calculus/Classes/Theorems.lean#L1476)
+Source: [`./Calculus/Classes/Theorems.lean#L1493`](./Calculus/Classes/Theorems.lean#L1493)
 
 
 
@@ -1392,10 +1373,10 @@ Predicate logic (unfolded):
     function : LRA.Function Domain Codomain
     representative : Domain
   Prove
-    fun x => function x = function representative = funinput => Exists fun output => (function input = output ∧ function representative = output)
+    function.FiberClass (function representative) = funinput => ∃ output, (function input = output ∧ function representative = output)
 Transliterated theorem: (∀ representative ∈ Domain), FiberClass function (function representative) = (fun input => KernelRelation function input representative)
 Logical form (Lean): (representative : Domain) : FiberClass function (function representative) = (fun input => KernelRelation function input representative)
-Source: [`./Calculus/Classes/Theorems.lean#L1527`](./Calculus/Classes/Theorems.lean#L1527)
+Source: [`./Calculus/Classes/Theorems.lean#L1544`](./Calculus/Classes/Theorems.lean#L1544)
 
 
 
@@ -1416,7 +1397,7 @@ Predicate logic (unfolded):
     function input = function representative → function input = function representative
 Transliterated theorem: (∀ representative ∈ Domain), KernelClassMapsTo function (FiberClass function (function representative)) (function representative)
 Logical form (Lean): (representative : Domain) : KernelClassMapsTo function (FiberClass function (function representative)) (function representative)
-Source: [`./Calculus/Classes/Theorems.lean#L1627`](./Calculus/Classes/Theorems.lean#L1627)
+Source: [`./Calculus/Classes/Theorems.lean#L1644`](./Calculus/Classes/Theorems.lean#L1644)
 
 
 
@@ -1437,10 +1418,10 @@ Predicate logic (unfolded):
     firstMapsTo : KernelClassMapsTo function classOfInputs firstOutput
     secondMapsTo : KernelClassMapsTo function classOfInputs secondOutput
   Prove
-    (Exists fun input => classOfInputs input ∧ ((∀ (input : Domain), classOfInputs input → function input = firstOutput) ∧ (∀ (input : Domain), classOfInputs input → function input = secondOutput))) → firstOutput = secondOutput
+    ((∃ input, classOfInputs input) ∧ ((∀ (input : Domain), classOfInputs input → function input = firstOutput) ∧ (∀ (input : Domain), classOfInputs input → function input = secondOutput))) → firstOutput = secondOutput
 Transliterated theorem: (∀ firstOutput secondOutput ∈ Codomain), (∃ input, classOfInputs input) → firstOutput = secondOutput
 Logical form (Lean): (classOfInputs : SetClass Domain) (firstOutput secondOutput : Codomain) (inhabited : ∃ input, classOfInputs input) (firstMapsTo : KernelClassMapsTo function classOfInputs firstOutput) (secondMapsTo : KernelClassMapsTo function classOfInputs secondOutput) : firstOutput = secondOutput
-Source: [`./Calculus/Classes/Theorems.lean#L1685`](./Calculus/Classes/Theorems.lean#L1685)
+Source: [`./Calculus/Classes/Theorems.lean#L1702`](./Calculus/Classes/Theorems.lean#L1702)
 
 
 
@@ -1459,10 +1440,10 @@ Predicate logic (unfolded):
     output : Codomain
     inRange : RangeClass function output
   Prove
-    (Exists fun x => function x = output) → Exists fun classOfInputs => (Exists fun input => classOfInputs input ∧ (∀ (input : Domain), classOfInputs input → function input = output))
+    (∃ x, function x = output) → ∃ classOfInputs, ((∃ input, classOfInputs input) ∧ (∀ (input : Domain), classOfInputs input → function input = output))
 Transliterated theorem: (∀ output ∈ Codomain), ∃ classOfInputs ∈ SetClass Domain, (∃ input, classOfInputs input) ∧ KernelClassMapsTo function classOfInputs output
 Logical form (Lean): (output : Codomain) (inRange : RangeClass function output) : ∃ classOfInputs : SetClass Domain, (∃ input, classOfInputs input) ∧ KernelClassMapsTo function classOfInputs output
-Source: [`./Calculus/Classes/Theorems.lean#L1742`](./Calculus/Classes/Theorems.lean#L1742)
+Source: [`./Calculus/Classes/Theorems.lean#L1759`](./Calculus/Classes/Theorems.lean#L1759)
 
 
 
@@ -1481,10 +1462,10 @@ Predicate logic (unfolded):
     leftInput rightInput : Domain
     kernelRelated : KernelRelation function leftInput rightInput
   Prove
-    (Exists fun output => (function leftInput = output ∧ function rightInput = output)) → function leftInput = function rightInput
+    (∃ output, (function leftInput = output ∧ function rightInput = output)) → function leftInput = function rightInput
 Transliterated theorem: (∀ leftInput rightInput ∈ Domain), function leftInput = function rightInput
 Logical form (Lean): (leftInput rightInput : Domain) (kernelRelated : KernelRelation function leftInput rightInput) : function leftInput = function rightInput
-Source: [`./Calculus/Classes/Theorems.lean#L1797`](./Calculus/Classes/Theorems.lean#L1797)
+Source: [`./Calculus/Classes/Theorems.lean#L1814`](./Calculus/Classes/Theorems.lean#L1814)
 
 
 
@@ -1631,7 +1612,7 @@ Predicate logic (unfolded):
     original : LRA.Function Domain Codomain
     inclusion : LRA.Function Subdomain Domain
   Prove
-    original (inclusion input) = original (inclusion input)
+    original.Restriction inclusion input = original (inclusion input)
 Transliterated theorem: RestrictsTo (Restriction original inclusion) original inclusion
 Logical form (Lean): : RestrictsTo (Restriction original inclusion) original inclusion
 Source: [`./Calculus/Restriction/Theorems.lean#L56`](./Calculus/Restriction/Theorems.lean#L56)
@@ -1649,7 +1630,7 @@ Predicate logic (unfolded):
     original : LRA.Function Domain Codomain
     inclusion : LRA.Function Subdomain Domain
   Prove
-    fun input => original (inclusion input) = funinput => original (inclusion input)
+    original.Restriction inclusion = original.Compose inclusion
 Transliterated theorem: Restriction original inclusion = Compose original inclusion
 Logical form (Lean): : Restriction original inclusion = Compose original inclusion
 Source: [`./Calculus/Restriction/Theorems.lean#L102`](./Calculus/Restriction/Theorems.lean#L102)
@@ -1669,7 +1650,7 @@ Predicate logic (unfolded):
     originalInjective : Injective original
     inclusionInjective : Injective inclusion
   Prove
-    ((∀ (y : Codomain) (x₁ x₂ : Domain), original x₁ = y → original x₂ = y → x₁ = x₂) ∧ (∀ (y : Domain) (x₁ x₂ : Subdomain), inclusion x₁ = y → inclusion x₂ = y → x₁ = x₂)) → ∀ (y : Codomain) (x₁ x₂ : Subdomain), (original (inclusion x₁) = y ∧ original (inclusion x₂) = y) → x₁ = x₂
+    ((∀ (y : Codomain) (x₁ x₂ : Domain), original x₁ = y → original x₂ = y → x₁ = x₂) ∧ (∀ (y : Domain) (x₁ x₂ : Subdomain), inclusion x₁ = y → inclusion x₂ = y → x₁ = x₂)) → ∀ (y : Codomain) (x₁ x₂ : Subdomain), (original.Restriction inclusion x₁ = y ∧ original.Restriction inclusion x₂ = y) → x₁ = x₂
 Transliterated theorem: Injective (Restriction original inclusion)
 Logical form (Lean): (originalInjective : Injective original) (inclusionInjective : Injective inclusion) : Injective (Restriction original inclusion)
 Source: [`./Calculus/Restriction/Theorems.lean#L152`](./Calculus/Restriction/Theorems.lean#L152)
@@ -1689,7 +1670,7 @@ Predicate logic (unfolded):
     originalSurjective : Surjective original
     inclusionSurjective : Surjective inclusion
   Prove
-    ((∀ (y : Codomain), Exists fun x => original x = y) ∧ (∀ (y : Domain), Exists fun x => inclusion x = y)) → ∀ (y : Codomain), Exists fun x => original (inclusion x) = y
+    ((∀ (y : Codomain), ∃ x, original x = y) ∧ (∀ (y : Domain), ∃ x, inclusion x = y)) → ∀ (y : Codomain), ∃ x, original.Restriction inclusion x = y
 Transliterated theorem: Surjective (Restriction original inclusion)
 Logical form (Lean): (originalSurjective : Surjective original) (inclusionSurjective : Surjective inclusion) : Surjective (Restriction original inclusion)
 Source: [`./Calculus/Restriction/Theorems.lean#L204`](./Calculus/Restriction/Theorems.lean#L204)
@@ -1742,7 +1723,7 @@ Predicate logic (unfolded):
     relation : SetTheoreticRelation LeftElement RightElement Pair LeftDomainObject RightDomainObject GraphObject
     member : Pair
   Prove
-    inst_3.1 relation.triple.3 member → Exists fun left => Exists fun right => (member = inst.1 left right ∧ (inst_1.1 relation.triple.1 left ∧ inst_2.1 relation.triple.2 right))
+    member ∈ relation.triple.graph → ∃ left, ∃ right, (member = LRA.Set.OrderedPair left right ∧ (left ∈ relation.triple.leftDomain ∧ right ∈ relation.triple.rightDomain))
 Transliterated theorem: (∀ member ∈ Pair), (member ∈ relation.triple.graph) → ∃ left ∈ LeftElement right ∈ RightElement, member = OrderedPair left right ∧ left ∈ relation.triple.leftDomain ∧ right ∈ relation.triple.rightDomain
 Logical form (Lean): {LeftElement RightElement Pair : Type u} {LeftDomainObject : Type v} {RightDomainObject : Type w} {GraphObject : Type x} [HasPairing LeftElement RightElement Pair] [Membership LeftElement LeftDomainObject] [Membership RightElement RightDomainObject] [Membership Pair GraphObject] (relation : SetTheoreticRelation LeftElement RightElement Pair LeftDomainObject RightDomainObject GraphObject) (member : Pair) (memberInGraph : member ∈ relation.triple.graph) : ∃ (left : LeftElement) (right : RightElement), member = OrderedPair left right ∧ left ∈ relation.triple.leftDomain ∧ right ∈ relation.triple.rightDomain
 Source: [`./SetTheoretic/Theorems.lean#L66`](./SetTheoretic/Theorems.lean#L66)
@@ -1760,7 +1741,7 @@ Predicate logic (unfolded):
     setFunction : SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject GraphObject
     input : DomainElement
   Prove
-    inst_1.1 setFunction.triple.1 input → Exists fun output => (inst_2.1 setFunction.triple.2 output ∧ inst_3.1 setFunction.triple.3 (inst.1 input output))
+    input ∈ setFunction.triple.domain → ∃ output, (output ∈ setFunction.triple.codomain ∧ LRA.Set.OrderedPair input output ∈ setFunction.triple.graph)
 Transliterated theorem: (∀ input ∈ DomainElement), (input ∈ setFunction.triple.domain) → ∃ output ∈ CodomainElement, output ∈ setFunction.triple.codomain ∧ Relates setFunction.triple.graph input output
 Logical form (Lean): {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x} [HasPairing DomainElement CodomainElement Pair] [Membership DomainElement DomainObject] [Membership CodomainElement CodomainObject] [Membership Pair GraphObject] (setFunction : SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject GraphObject) (input : DomainElement) (inputInDomain : input ∈ setFunction.triple.domain) : ∃ output : CodomainElement, output ∈ setFunction.triple.codomain ∧ Relates setFunction.triple.graph input output
 Source: [`./SetTheoretic/Theorems.lean#L139`](./SetTheoretic/Theorems.lean#L139)
@@ -1781,7 +1762,7 @@ Predicate logic (unfolded):
     firstEvaluation : Relates setFunction.triple.graph input firstOutput
     secondEvaluation : Relates setFunction.triple.graph input secondOutput
   Prove
-    (inst_3.1 setFunction.triple.3 (inst.1 input firstOutput) ∧ inst_3.1 setFunction.triple.3 (inst.1 input secondOutput)) → firstOutput = secondOutput
+    (LRA.Set.OrderedPair input firstOutput ∈ setFunction.triple.graph ∧ LRA.Set.OrderedPair input secondOutput ∈ setFunction.triple.graph) → firstOutput = secondOutput
 Transliterated theorem: (∀ input ∈ DomainElement ∀ firstOutput secondOutput ∈ CodomainElement), firstOutput = secondOutput
 Logical form (Lean): {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x} [HasPairing DomainElement CodomainElement Pair] [Membership DomainElement DomainObject] [Membership CodomainElement CodomainObject] [Membership Pair GraphObject] (setFunction : SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject GraphObject) (input : DomainElement) (firstOutput secondOutput : CodomainElement) (firstEvaluation : Relates setFunction.triple.graph input firstOutput) (secondEvaluation : Relates setFunction.triple.graph input secondOutput) : firstOutput = secondOutput
 Source: [`./SetTheoretic/Theorems.lean#L214`](./SetTheoretic/Theorems.lean#L214)
@@ -1798,7 +1779,7 @@ Predicate logic (unfolded):
   Objects
     left right : SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject GraphObject
   Prove
-    (left.triple.1 = right.triple.1 ∧ (left.triple.2 = right.triple.2 ∧ left.triple.3 = right.triple.3)) → left = right
+    (left.triple.domain = right.triple.domain ∧ (left.triple.codomain = right.triple.codomain ∧ left.triple.graph = right.triple.graph)) → left = right
 Transliterated theorem: (left.triple.domain = right.triple.domain ∧ left.triple.codomain = right.triple.codomain ∧ left.triple.graph = right.triple.graph) → left = right
 Logical form (Lean): {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x} [HasPairing DomainElement CodomainElement Pair] [Membership DomainElement DomainObject] [Membership CodomainElement CodomainObject] [Membership Pair GraphObject] {left right : SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject GraphObject} (sameDomain : left.triple.domain = right.triple.domain) (sameCodomain : left.triple.codomain = right.triple.codomain) (sameGraph : left.triple.graph = right.triple.graph) : left = right
 Source: [`./SetTheoretic/Theorems.lean#L284`](./SetTheoretic/Theorems.lean#L284)
@@ -1815,7 +1796,7 @@ Predicate logic (unfolded):
   Objects
     triple : SetTheoreticFunctionTriple DomainObject CodomainObject GraphObject
   Prove
-    ((∀ (member : Pair), inst_3.1 triple.3 member → Exists fun input => Exists fun output => (member = inst.1 input output ∧ (inst_1.1 triple.1 input ∧ inst_2.1 triple.2 output))) ∧ ((∀ (input : DomainElement), inst_1.1 triple.1 input → Exists fun output => (inst_2.1 triple.2 output ∧ inst_3.1 triple.3 (inst.1 input output))) ∧ (∀ (input : DomainElement) (firstOutput secondOutput : CodomainElement), inst_3.1 triple.3 (inst.1 input firstOutput) → inst_3.1 triple.3 (inst.1 input secondOutput) → firstOutput = secondOutput))) → ∀ (input : DomainElement) (firstOutput secondOutput : CodomainElement), (inst_3.1 triple.3 (inst.1 input firstOutput) ∧ inst_3.1 triple.3 (inst.1 input secondOutput)) → firstOutput = secondOutput
+    ((∀ (member : Pair), member ∈ triple.graph → ∃ input, ∃ output, (member = LRA.Set.OrderedPair input output ∧ (input ∈ triple.domain ∧ output ∈ triple.codomain))) ∧ ((∀ (input : DomainElement), input ∈ triple.domain → ∃ output, (output ∈ triple.codomain ∧ LRA.Set.OrderedPair input output ∈ triple.graph)) ∧ (∀ (input : DomainElement) (firstOutput secondOutput : CodomainElement), LRA.Set.OrderedPair input firstOutput ∈ triple.graph → LRA.Set.OrderedPair input secondOutput ∈ triple.graph → firstOutput = secondOutput))) → ∀ (input : DomainElement) (firstOutput secondOutput : CodomainElement), (LRA.Set.OrderedPair input firstOutput ∈ triple.graph ∧ LRA.Set.OrderedPair input secondOutput ∈ triple.graph) → firstOutput = secondOutput
 Transliterated theorem: (IsSetTheoreticFunction DomainElement ∈ = DomainElement CodomainElement ∈ = CodomainElement Pair ∈ = Pair triple) → IsSingleValued DomainElement CodomainElement triple.graph
 Logical form (Lean): {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x} [HasPairing DomainElement CodomainElement Pair] [Membership DomainElement DomainObject] [Membership CodomainElement CodomainObject] [Membership Pair GraphObject] {triple : SetTheoreticFunctionTriple DomainObject CodomainObject GraphObject} (isFunction : IsSetTheoreticFunction (DomainElement := DomainElement) (CodomainElement := CodomainElement) (Pair := Pair) triple) : IsSingleValued DomainElement CodomainElement triple.graph
 Source: [`./SetTheoretic/Relationships.lean#L68`](./SetTheoretic/Relationships.lean#L68)
@@ -1832,7 +1813,7 @@ Predicate logic (unfolded):
   Objects
     function : SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject GraphObject
   Prove
-    (inst_3.1 function.triple.3 (inst.1 input firstOutput) ∧ inst_3.1 function.triple.3 (inst.1 input secondOutput)) → firstOutput = secondOutput
+    (LRA.Set.OrderedPair input firstOutput ∈ function.triple.graph ∧ LRA.Set.OrderedPair input secondOutput ∈ function.triple.graph) → firstOutput = secondOutput
 Transliterated theorem: IsSingleValued DomainElement CodomainElement function.triple.graph
 Logical form (Lean): {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x} [HasPairing DomainElement CodomainElement Pair] [Membership DomainElement DomainObject] [Membership CodomainElement CodomainObject] [Membership Pair GraphObject] (function : SetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject GraphObject) : IsSingleValued DomainElement CodomainElement function.triple.graph
 Source: [`./SetTheoretic/Relationships.lean#L137`](./SetTheoretic/Relationships.lean#L137)
@@ -1872,7 +1853,7 @@ Predicate logic (unfolded):
   Objects
     function : TotalSetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject GraphObject
   Prove
-    ((∀ (x : DomainElement), Exists fun y => LRA.Function.Constructions.LRA.SetTheoreticFunction.instGenericSemanticsTotalSetTheoreticFunction.1 function x y) ∧ (∀ (x : DomainElement) (y₁ y₂ : CodomainElement), LRA.Function.Constructions.LRA.SetTheoreticFunction.instGenericSemanticsTotalSetTheoreticFunction.1 function x y₁ → LRA.Function.Constructions.LRA.SetTheoreticFunction.instGenericSemanticsTotalSetTheoreticFunction.1 function x y₂ → y₁ = y₂))
+    ((∀ (x : DomainElement), ∃ y, LRA.Function.Constructions.LRA.SetTheoreticFunction.instGenericSemanticsTotalSetTheoreticFunction.toFunctionRelation function x y) ∧ (∀ (x : DomainElement) (y₁ y₂ : CodomainElement), LRA.Function.Constructions.LRA.SetTheoreticFunction.instGenericSemanticsTotalSetTheoreticFunction.toFunctionRelation function x y₁ → LRA.Function.Constructions.LRA.SetTheoreticFunction.instGenericSemanticsTotalSetTheoreticFunction.toFunctionRelation function x y₂ → y₁ = y₂))
 Transliterated theorem: LRA.Function.genericTheory function
 Logical form (Lean): {DomainElement CodomainElement Pair : Type u} {DomainObject : Type v} {CodomainObject : Type w} {GraphObject : Type x} [HasPairing DomainElement CodomainElement Pair] [Membership DomainElement DomainObject] [Membership CodomainElement CodomainObject] [Membership Pair GraphObject] (function : TotalSetTheoreticFunction DomainElement CodomainElement Pair DomainObject CodomainObject GraphObject) : LRA.Function.genericTheory function
 Source: [`./Constructions/LRA/SetTheoreticFunction/Satisfy_Generic.lean#L168`](./Constructions/LRA/SetTheoreticFunction/Satisfy_Generic.lean#L168)
@@ -1889,7 +1870,7 @@ Predicate logic (unfolded):
   Objects
     function : LRA.Function Domain Codomain
   Prove
-    ((∀ (x : Domain), Exists fun y => LRA.Function.Constructions.Mathlib.NativeFunction.instGenericSemantics.1 function x y) ∧ (∀ (x : Domain) (y₁ y₂ : Codomain), LRA.Function.Constructions.Mathlib.NativeFunction.instGenericSemantics.1 function x y₁ → LRA.Function.Constructions.Mathlib.NativeFunction.instGenericSemantics.1 function x y₂ → y₁ = y₂))
+    ((∀ (x : Domain), ∃ y, LRA.Function.Constructions.Mathlib.NativeFunction.instGenericSemantics.toFunctionRelation function x y) ∧ (∀ (x : Domain) (y₁ y₂ : Codomain), LRA.Function.Constructions.Mathlib.NativeFunction.instGenericSemantics.toFunctionRelation function x y₁ → LRA.Function.Constructions.Mathlib.NativeFunction.instGenericSemantics.toFunctionRelation function x y₂ → y₁ = y₂))
 Transliterated theorem: LRA.Function.genericTheory function
 Logical form (Lean): {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) : LRA.Function.genericTheory function
 Source: [`./Constructions/Mathlib/NativeFunction/Satisfy_Generic.lean#L56`](./Constructions/Mathlib/NativeFunction/Satisfy_Generic.lean#L56)
@@ -1906,7 +1887,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((∀ (y : Option Nat) (x₁ x₂ : Nat), (fun n => Option.some n) x₁ = y → (fun n => Option.some n) x₂ = y → x₁ = x₂) ∧ ((fun y => Exists fun x => (True ∧ (fun n => Option.some n) x = y) = funx => True) → False))
+    ((∀ (y : Option Nat) (x₁ x₂ : Nat), (fun n => Option.some n) x₁ = y → (fun n => Option.some n) x₂ = y → x₁ = x₂) ∧ (LRA.Function.ImageClass (fun n => Option.some n) LRA.Set.SetClass.Universal = LRA.Set.SetClass.Universal → False))
 Transliterated theorem: EmptyIndexedIntersectionImageFailure fun n ∈ Nat => some n
 Logical form (Lean): : EmptyIndexedIntersectionImageFailure (fun n : Nat => some n)
 Source: [`./Calculus/Classes/FailureModes.lean#L211`](./Calculus/Classes/FailureModes.lean#L211)
@@ -1957,7 +1938,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun first => Exists fun second => ((first = second → False) ∧ Unit.unit = Unit.unit)
+    ∃ first, ∃ second, ((first = second → False) ∧ LRA.Function.Examples.collapse first = LRA.Function.Examples.collapse second)
 Transliterated theorem: HasCollision collapse
 Logical form (Lean): : HasCollision collapse
 Source: [`./Examples/FailureModes.lean#L47`](./Examples/FailureModes.lean#L47)
@@ -1974,7 +1955,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (∀ (y : Unit) (x₁ x₂ : Bool), Unit.unit = y → Unit.unit = y → x₁ = x₂) → False
+    (∀ (y : Unit) (x₁ x₂ : Bool), LRA.Function.Examples.collapse x₁ = y → LRA.Function.Examples.collapse x₂ = y → x₁ = x₂) → False
 Transliterated theorem: ¬ Injective collapse
 Logical form (Lean): : ¬ Injective collapse
 Source: [`./Examples/FailureModes.lean#L90`](./Examples/FailureModes.lean#L90)
@@ -1991,7 +1972,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun output => ∀ (input : Nat), input.succ = output → False
+    ∃ output, ∀ (input : Nat), LRA.Function.Examples.shift input = output → False
 Transliterated theorem: MissesValue shift
 Logical form (Lean): : MissesValue shift
 Source: [`./Examples/FailureModes.lean#L133`](./Examples/FailureModes.lean#L133)
@@ -2008,7 +1989,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (∀ (y : Nat), Exists fun x => x.succ = y) → False
+    (∀ (y : Nat), ∃ x, LRA.Function.Examples.shift x = y) → False
 Transliterated theorem: ¬ Surjective shift
 Logical form (Lean): : ¬ Surjective shift
 Source: [`./Examples/FailureModes.lean#L176`](./Examples/FailureModes.lean#L176)
@@ -2069,7 +2050,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun y => relation x y
+    ∃ y, relation x y
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Definition.lean`](./Definition.lean)
@@ -2086,7 +2067,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((∀ (x : Domain), Exists fun y => relation x y) ∧ (∀ (x : Domain) (y₁ y₂ : Codomain), relation x y₁ → relation x y₂ → y₁ = y₂))
+    ((∀ (x : Domain), ∃ y, relation x y) ∧ (∀ (x : Domain) (y₁ y₂ : Codomain), relation x y₁ → relation x y₂ → y₁ = y₂))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Definition.lean`](./Definition.lean)
@@ -2103,7 +2084,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((∀ (x : Domain), Exists fun y => inst.1 function x y) ∧ (∀ (x : Domain) (y₁ y₂ : Codomain), inst.1 function x y₁ → inst.1 function x y₂ → y₁ = y₂))
+    ((∀ (x : Domain), ∃ y, inst.toFunctionRelation function x y) ∧ (∀ (x : Domain) (y₁ y₂ : Codomain), inst.toFunctionRelation function x y₁ → inst.toFunctionRelation function x y₂ → y₁ = y₂))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Satisfy_Generic.lean`](./Satisfy_Generic.lean)
@@ -2154,7 +2135,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ (∀ (y : Codomain), Exists fun x => function x = y))
+    ((∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ (∀ (y : Codomain), ∃ x, function x = y))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Properties/Definition.lean`](./Properties/Definition.lean)
@@ -2171,7 +2152,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun x => function x = y
+    ∃ x, function x = y
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Properties/Definition.lean`](./Properties/Definition.lean)
@@ -2205,7 +2186,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun output => (function a = output ∧ function a_1 = output)
+    ∃ output, (function a = output ∧ function a_1 = output)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Calculus/Classes/Definition.lean`](./Calculus/Classes/Definition.lean)
@@ -2222,7 +2203,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    preimage input ↔ Exists fun y => (target y ∧ function input = y)
+    preimage input ↔ ∃ y, (target y ∧ function input = y)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Calculus/Classes/Definition.lean`](./Calculus/Classes/Definition.lean)
@@ -2239,7 +2220,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun y => (target y ∧ function a = y)
+    ∃ y, (target y ∧ function a = y)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Calculus/Classes/Definition.lean`](./Calculus/Classes/Definition.lean)
@@ -2256,7 +2237,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun y => function a = y
+    ∃ y, function a = y
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Calculus/Classes/Definition.lean`](./Calculus/Classes/Definition.lean)
@@ -2273,7 +2254,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (subset input ∧ (Exists fun output => (function input = output ∧ function fiberMate = output))) → subset fiberMate
+    (subset input ∧ (∃ output, (function input = output ∧ function fiberMate = output))) → subset fiberMate
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Calculus/Classes/Definition.lean`](./Calculus/Classes/Definition.lean)
@@ -2307,7 +2288,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    image output ↔ Exists fun x => (source x ∧ function x = output)
+    image output ↔ ∃ x, (source x ∧ function x = output)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Calculus/Classes/Definition.lean`](./Calculus/Classes/Definition.lean)
@@ -2341,7 +2322,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun x => function x = a
+    ∃ x, function x = a
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Calculus/Classes/Definition.lean`](./Calculus/Classes/Definition.lean)
@@ -2375,7 +2356,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun x => (source x ∧ function x = a)
+    ∃ x, (source x ∧ function x = a)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Calculus/Classes/Definition.lean`](./Calculus/Classes/Definition.lean)
@@ -2545,10 +2526,29 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun defined => function.2 a defined = a_1
+    ∃ defined, function.value a defined = a_1
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Structures/PartialFunction/Definition.lean`](./Structures/PartialFunction/Definition.lean)
+
+
+
+Name: SourceIncludedInPreimageOfImageClass
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {Domain : Type u} {Codomain : Type v} (function : LRA.Function Domain Codomain) (source : LRA.Set.SetClass Domain),   source.Included (function.PreimageClass (function.ImageClass source))
+Predicate logic (unfolded):
+  Ambient
+    (Domain, Codomain)
+  Objects
+    function : LRA.Function Domain Codomain
+    function : LRA.Function Domain Codomain
+    source : SetClass Domain
+  Prove
+    source element → ∃ y, ((∃ x, (source x ∧ function x = y)) ∧ function element = y)
+Transliterated theorem: SetClass.Included source (PreimageClass function (ImageClass function source))
+Logical form (Lean): (source : SetClass Domain) : SetClass.Included source (PreimageClass function (ImageClass function source))
+Source: [`./Calculus/Classes/Theorems.lean#L726`](./Calculus/Classes/Theorems.lean#L726)
 
 
 
@@ -2664,7 +2664,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun values => ∀ (value : Codomain), List.value ∈ values ↔ Exists fun x => (source x ∧ function x = value)
+    ∃ values, ∀ (value : Codomain), List.instMembership.mem values value ↔ ∃ x, (source x ∧ function x = value)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Calculus/Finiteness/Definition.lean`](./Calculus/Finiteness/Definition.lean)
@@ -2681,7 +2681,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun values => ∀ (value : Element), List.value ∈ values ↔ selected value
+    ∃ values, ∀ (value : Element), List.instMembership.mem values value ↔ selected value
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Calculus/Finiteness/Definition.lean`](./Calculus/Finiteness/Definition.lean)
@@ -2698,7 +2698,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun values => ∀ (value : Codomain), List.value ∈ values ↔ Exists fun x => function x = value
+    ∃ values, ∀ (value : Codomain), List.instMembership.mem values value ↔ ∃ x, function x = value
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Calculus/Finiteness/Definition.lean`](./Calculus/Finiteness/Definition.lean)
@@ -2715,7 +2715,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    List.value ∈ values ↔ selected value
+    List.instMembership.mem values value ↔ selected value
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Calculus/Finiteness/Definition.lean`](./Calculus/Finiteness/Definition.lean)
@@ -2732,7 +2732,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    inst_3.1 triple.3 member → Exists fun left => Exists fun right => (member = inst.1 left right ∧ (inst_1.1 triple.1 left ∧ inst_2.1 triple.2 right))
+    member ∈ triple.graph → ∃ left, ∃ right, (member = LRA.Set.OrderedPair left right ∧ (left ∈ triple.leftDomain ∧ right ∈ triple.rightDomain))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./SetTheoretic/Definition.lean`](./SetTheoretic/Definition.lean)
@@ -2749,7 +2749,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((∀ (member : Pair), inst_3.1 triple.3 member → Exists fun input => Exists fun output => (member = inst.1 input output ∧ (inst_1.1 triple.1 input ∧ inst_2.1 triple.2 output))) ∧ ((∀ (input : DomainElement), inst_1.1 triple.1 input → Exists fun output => (inst_2.1 triple.2 output ∧ inst_3.1 triple.3 (inst.1 input output))) ∧ (∀ (input : DomainElement) (firstOutput secondOutput : CodomainElement), inst_3.1 triple.3 (inst.1 input firstOutput) → inst_3.1 triple.3 (inst.1 input secondOutput) → firstOutput = secondOutput)))
+    ((∀ (member : Pair), member ∈ triple.graph → ∃ input, ∃ output, (member = LRA.Set.OrderedPair input output ∧ (input ∈ triple.domain ∧ output ∈ triple.codomain))) ∧ ((∀ (input : DomainElement), input ∈ triple.domain → ∃ output, (output ∈ triple.codomain ∧ LRA.Set.OrderedPair input output ∈ triple.graph)) ∧ (∀ (input : DomainElement) (firstOutput secondOutput : CodomainElement), LRA.Set.OrderedPair input firstOutput ∈ triple.graph → LRA.Set.OrderedPair input secondOutput ∈ triple.graph → firstOutput = secondOutput)))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./SetTheoretic/Definition.lean`](./SetTheoretic/Definition.lean)
@@ -2766,7 +2766,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    left = right ↔ (left.triple.1 = right.triple.1 ∧ (left.triple.2 = right.triple.2 ∧ left.triple.3 = right.triple.3))
+    left = right ↔ (left.triple.domain = right.triple.domain ∧ (left.triple.codomain = right.triple.codomain ∧ left.triple.graph = right.triple.graph))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./SetTheoretic/Theorems.lean`](./SetTheoretic/Theorems.lean)
@@ -2783,7 +2783,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ ((fun y => Exists fun x => (True ∧ function x = y) = funx => True) → False))
+    ((∀ (y : Codomain) (x₁ x₂ : Domain), function x₁ = y → function x₂ = y → x₁ = x₂) ∧ (function.ImageClass LRA.Set.SetClass.Universal = LRA.Set.SetClass.Universal → False))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Calculus/Classes/FailureModes.lean`](./Calculus/Classes/FailureModes.lean)
@@ -2800,7 +2800,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((∀ (element : Domain), source element → Exists fun y => ((Exists fun x => (source x ∧ function x = y)) ∧ function element = y)) ∧ (fun x => Exists fun y => ((Exists fun x => (source x ∧ LRA.Function.Graph function x y)) ∧ function x = y) = source → False))
+    ((∀ (element : Domain), source element → ∃ y, ((∃ x, (source x ∧ function x = y)) ∧ function element = y)) ∧ (function.PreimageClass (function.ImageClass source) = source → False))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Calculus/Classes/FailureModes.lean`](./Calculus/Classes/FailureModes.lean)
@@ -2817,7 +2817,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((∀ (element : Codomain), (Exists fun x => ((Exists fun y => (target y ∧ function x = y)) ∧ function x = element)) → target element) ∧ (fun y => Exists fun x => ((Exists fun y => (target y ∧ LRA.Function.Graph function x y)) ∧ function x = y) = target → False))
+    ((∀ (element : Codomain), (∃ x, ((∃ y, (target y ∧ function x = y)) ∧ function x = element)) → target element) ∧ (function.ImageClass (function.PreimageClass target) = target → False))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Calculus/Classes/FailureModes.lean`](./Calculus/Classes/FailureModes.lean)
@@ -2834,7 +2834,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun first => Exists fun second => ((first = second → False) ∧ ((∀ (input : SmallDomain), first (inclusion input) = original input) ∧ (∀ (input : SmallDomain), second (inclusion input) = original input)))
+    ∃ first, ∃ second, ((first = second → False) ∧ ((∀ (input : SmallDomain), first (inclusion input) = original input) ∧ (∀ (input : SmallDomain), second (inclusion input) = original input)))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Calculus/Restriction/FailureModes.lean`](./Calculus/Restriction/FailureModes.lean)
@@ -2851,7 +2851,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    (((∀ (y : Codomain) (x₁ x₂ : Domain), outer (inner x₁) = y → outer (inner x₂) = y → x₁ = x₂) ∧ (∀ (y : Codomain), Exists fun x => outer (inner x) = y)) ∧ (Or ((∀ (y : Middle), Exists fun x => inner x = y) → False) ((∀ (y : Codomain) (x₁ x₂ : Middle), outer x₁ = y → outer x₂ = y → x₁ = x₂) → False)))
+    (((∀ (y : Codomain) (x₁ x₂ : Domain), outer.Compose inner x₁ = y → outer.Compose inner x₂ = y → x₁ = x₂) ∧ (∀ (y : Codomain), ∃ x, outer.Compose inner x = y)) ∧ (Or ((∀ (y : Middle), ∃ x, inner x = y) → False) ((∀ (y : Codomain) (x₁ x₂ : Middle), outer x₁ = y → outer x₂ = y → x₁ = x₂) → False)))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Operations/Composition/FailureModes.lean`](./Operations/Composition/FailureModes.lean)
@@ -2868,7 +2868,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((∀ (y : Codomain) (x₁ x₂ : Domain), outer (inner x₁) = y → outer (inner x₂) = y → x₁ = x₂) ∧ ((∀ (y : Codomain) (x₁ x₂ : Middle), outer x₁ = y → outer x₂ = y → x₁ = x₂) → False))
+    ((∀ (y : Codomain) (x₁ x₂ : Domain), outer.Compose inner x₁ = y → outer.Compose inner x₂ = y → x₁ = x₂) ∧ ((∀ (y : Codomain) (x₁ x₂ : Middle), outer x₁ = y → outer x₂ = y → x₁ = x₂) → False))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Operations/Composition/FailureModes.lean`](./Operations/Composition/FailureModes.lean)
@@ -2885,7 +2885,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    ((∀ (y : Codomain), Exists fun x => outer (inner x) = y) ∧ ((∀ (y : Middle), Exists fun x => inner x = y) → False))
+    ((∀ (y : Codomain), ∃ x, outer.Compose inner x = y) ∧ ((∀ (y : Middle), ∃ x, inner x = y) → False))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Operations/Composition/FailureModes.lean`](./Operations/Composition/FailureModes.lean)
@@ -2902,7 +2902,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun first => Exists fun second => ((first = second → False) ∧ ((∀ (input : Domain), first (function input) = input) ∧ (∀ (input : Domain), second (function input) = input)))
+    ∃ first, ∃ second, ((first = second → False) ∧ ((∀ (input : Domain), first (function input) = input) ∧ (∀ (input : Domain), second (function input) = input)))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Operations/Inverse/FailureModes.lean`](./Operations/Inverse/FailureModes.lean)
@@ -2919,7 +2919,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun first => Exists fun second => ((first = second → False) ∧ ((∀ (output : Codomain), function (first output) = output) ∧ (∀ (output : Codomain), function (second output) = output)))
+    ∃ first, ∃ second, ((first = second → False) ∧ ((∀ (output : Codomain), function (first output) = output) ∧ (∀ (output : Codomain), function (second output) = output)))
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Operations/Inverse/FailureModes.lean`](./Operations/Inverse/FailureModes.lean)
@@ -2936,7 +2936,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Or (Exists fun first => Exists fun second => ((first = second → False) ∧ function first = function second)) (Exists fun output => ∀ (input : Domain), function input = output → False)
+    Or (∃ first, ∃ second, ((first = second → False) ∧ function first = function second)) (∃ output, ∀ (input : Domain), function input = output → False)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Properties/FailureModes.lean`](./Properties/FailureModes.lean)
@@ -2953,7 +2953,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun first => Exists fun second => ((first = second → False) ∧ function first = function second)
+    ∃ first, ∃ second, ((first = second → False) ∧ function first = function second)
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Properties/FailureModes.lean`](./Properties/FailureModes.lean)
@@ -2970,7 +2970,7 @@ Predicate logic (unfolded):
   Objects
     (none)
   Prove
-    Exists fun output => ∀ (input : Domain), function input = output → False
+    ∃ output, ∀ (input : Domain), function input = output → False
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Properties/FailureModes.lean`](./Properties/FailureModes.lean)
