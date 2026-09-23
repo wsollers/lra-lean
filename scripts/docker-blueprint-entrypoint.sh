@@ -65,9 +65,9 @@ case "$command_name" in
     build_blueprint_existing
     ;;
   docs)
+    build_docgen
     build_inputs_when_available
     build_blueprint_existing
-    build_docgen
     python3 scripts/build-repository-site.py
     mkdir -p site/blueprint
     cp -R blueprint/web/. site/blueprint/

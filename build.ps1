@@ -248,7 +248,6 @@ function Invoke-BlueprintExisting {
 function Invoke-Docs {
     Write-Step "Generating repository documentation site"
     if ($Native) {
-        Invoke-Blueprint
         Push-Location (Join-Path $SrcDir 'docbuild')
         try {
             $env:MATHLIB_NO_CACHE_ON_UPDATE = '1'
@@ -260,6 +259,7 @@ function Invoke-Docs {
             Remove-Item Env:\MATHLIB_NO_CACHE_ON_UPDATE -ErrorAction SilentlyContinue
             Pop-Location
         }
+        Invoke-Blueprint
         $python = Get-Command python -ErrorAction SilentlyContinue
         if (-not $python) {
             $python = Get-Command py -ErrorAction SilentlyContinue

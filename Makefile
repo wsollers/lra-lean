@@ -144,9 +144,9 @@ endif
 .PHONY: docs
 docs:  ## Build repository site and attach Blueprint output
 ifdef NATIVE
-	$(MAKE) blueprint NATIVE=1
 	cd docbuild && MATHLIB_NO_CACHE_ON_UPDATE=1 lake update doc-gen4
 	cd docbuild && lake build LRA:docs
+	$(MAKE) blueprint NATIVE=1
 	python3 scripts/build-repository-site.py
 	mkdir -p site/blueprint
 	cp -R blueprint/web/. site/blueprint/
