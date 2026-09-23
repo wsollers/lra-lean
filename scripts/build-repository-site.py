@@ -18,6 +18,8 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 SITE = ROOT / "site"
 BLUEPRINT_WEB = ROOT / "blueprint" / "web" / "index.html"
 BLUEPRINT_PDF = ROOT / "blueprint" / "print" / "print.pdf"
+BLUEPRINT_DEP_GRAPH = ROOT / "blueprint" / "web" / "dep_graph_document.html"
+DOCGEN_INDEX = ROOT / "docbuild" / ".lake" / "build" / "doc" / "index.html"
 REPOSITORY_URL = "https://github.com/wsollers/lra-lean"
 
 EXCLUDED_MARKDOWN = {
@@ -46,6 +48,16 @@ def page(title: str, body: str, *, depth: int = 0) -> str:
     blueprint_link = (
         f'    <a href="{prefix}blueprint/index.html">Blueprint</a>\n'
         if BLUEPRINT_WEB.exists()
+        else ""
+    )
+    dep_graph_link = (
+        f'    <a href="{prefix}blueprint/dep_graph_document.html">Dependency graph</a>\n'
+        if BLUEPRINT_DEP_GRAPH.exists()
+        else ""
+    )
+    docs_link = (
+        f'    <a href="{prefix}docs/index.html">Documentation</a>\n'
+        if DOCGEN_INDEX.exists()
         else ""
     )
     mermaid_script = (
@@ -89,6 +101,8 @@ def page(title: str, body: str, *, depth: int = 0) -> str:
     <a href="{prefix}markdown/index.html">Markdown</a>
     <a href="{prefix}lean/index.html">Lean modules</a>
 {blueprint_link.rstrip()}
+{dep_graph_link.rstrip()}
+{docs_link.rstrip()}
     <a href="{REPOSITORY_URL}">GitHub</a>
   </nav>
 </header>
@@ -281,8 +295,12 @@ def write_indexes(markdown: list[pathlib.Path], lean: list[pathlib.Path]) -> Non
     blueprint_items = ""
     if BLUEPRINT_WEB.exists():
         blueprint_items += '  <li><a href="blueprint/index.html">Lean Blueprint</a></li>\n'
+    if BLUEPRINT_DEP_GRAPH.exists():
+        blueprint_items += '  <li><a href="blueprint/dep_graph_document.html">Blueprint dependency graph</a></li>\n'
     if BLUEPRINT_PDF.exists():
         blueprint_items += '  <li><a href="lra-blueprint.pdf">Lean Blueprint PDF</a></li>\n'
+    if DOCGEN_INDEX.exists():
+        blueprint_items += '  <li><a href="docs/index.html">Lean theorem and definition documentation</a></li>\n'
     home_body = f"""
 <p>This site is generated directly from the tracked repository. It mirrors the actual Markdown files and the <code>LRA/</code> Lean module hierarchy; there is no separate invented mathematical outline.</p>
 <section><h2>Repository views</h2>

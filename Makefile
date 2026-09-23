@@ -145,12 +145,16 @@ endif
 docs:  ## Build repository site and attach Blueprint output
 ifdef NATIVE
 	$(MAKE) blueprint NATIVE=1
+	cd docbuild && MATHLIB_NO_CACHE_ON_UPDATE=1 lake update doc-gen4
+	cd docbuild && lake build LRA:docs
 	python3 scripts/build-repository-site.py
 	mkdir -p site/blueprint
 	cp -R blueprint/web/. site/blueprint/
-	cp blueprint/print/print.pdf site/number-systems-blueprint.pdf
+	cp blueprint/print/print.pdf site/lra-blueprint.pdf
+	mkdir -p site/docs
+	cp -R docbuild/.lake/build/doc/. site/docs/
 else
-	docker run --rm -v $(SRC_DIR):/workspace -w /workspace $(BLUEPRINT_IMAGE) docs
+	docker run --rm -v $(SRC_DIR):/workspace -w /workspace $(DOC_IMAGE) bash scripts/docker-blueprint-entrypoint.sh docs
 endif
 	@echo "✓ Documentation site generated in site/"
 

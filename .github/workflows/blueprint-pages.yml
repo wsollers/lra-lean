@@ -51,8 +51,8 @@ jobs:
           docker run --rm \
             -v "$PWD:/workspace" \
             -w /workspace \
-            lra-lean-blueprint \
-            docs
+            lra-lean-docs \
+            bash scripts/docker-blueprint-entrypoint.sh docs
 
       - name: Configure GitHub Pages
         if: github.event_name != 'pull_request'

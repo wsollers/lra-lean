@@ -249,6 +249,17 @@ function Invoke-Docs {
     Write-Step "Generating repository documentation site"
     if ($Native) {
         Invoke-Blueprint
+        Push-Location (Join-Path $SrcDir 'docbuild')
+        try {
+            $env:MATHLIB_NO_CACHE_ON_UPDATE = '1'
+            lake update doc-gen4
+            if ($LASTEXITCODE -ne 0) { throw "docbuild lake update failed" }
+            lake build 'LRA:docs'
+            if ($LASTEXITCODE -ne 0) { throw "doc-gen4 build failed" }
+        } finally {
+            Remove-Item Env:\MATHLIB_NO_CACHE_ON_UPDATE -ErrorAction SilentlyContinue
+            Pop-Location
+        }
         $python = Get-Command python -ErrorAction SilentlyContinue
         if (-not $python) {
             $python = Get-Command py -ErrorAction SilentlyContinue
@@ -262,8 +273,14 @@ function Invoke-Docs {
         New-Item -ItemType Directory -Force -Path $siteBlueprint | Out-Null
         Copy-Item -Recurse -Force -Path (Join-Path $SrcDir 'blueprint\web\*') -Destination $siteBlueprint
         Copy-Item -Force -Path (Join-Path $SrcDir 'blueprint\print\print.pdf') -Destination (Join-Path $SrcDir 'site\lra-blueprint.pdf')
+        $siteDocs = Join-Path $SrcDir 'site\docs'
+        New-Item -ItemType Directory -Force -Path $siteDocs | Out-Null
+        Copy-Item -Recurse -Force -Path (Join-Path $SrcDir 'docbuild\.lake\build\doc\*') -Destination $siteDocs
     } else {
-        Invoke-BlueprintDocker 'docs'
+        docker run --rm -v "${SrcDir}:/workspace" -w /workspace $DOC_IMAGE bash scripts/docker-blueprint-entrypoint.sh docs
+        if ($LASTEXITCODE -ne 0) {
+            throw "Command failed: docker run --rm -v ${SrcDir}:/workspace -w /workspace $DOC_IMAGE bash scripts/docker-blueprint-entrypoint.sh docs"
+        }
     }
     Write-Ok "Documentation site generated in site/"
 }

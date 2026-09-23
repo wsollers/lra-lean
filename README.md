@@ -125,6 +125,21 @@ When `docs/number-systems` is not available in the checkout, the container
 skips number-system input regeneration and still emits Lean-driven volume
 Blueprint chapters from `LRA/`.
 
+The Pages documentation build publishes the same artifact family used by
+Lean Blueprint projects such as infinity-cosmos:
+
+- `site/blueprint/` — the Blueprint web output, including
+  `dep_graph_document.html`
+- `site/lra-blueprint.pdf` — the Blueprint PDF
+- `site/docs/` — doc-gen4 theorem and definition pages generated from `LRA`
+
+Run the full site build with:
+
+```powershell
+.\build.ps1 docker-docs-build
+.\build.ps1 docs
+```
+
 ## Relationship to monorepo
 
 This repo is a standalone Lean workspace. The monorepo (`Learning-Real-Analysis`) references it for context but does not build it. Lean files live here and only here.

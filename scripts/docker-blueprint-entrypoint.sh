@@ -11,7 +11,7 @@ Commands:
   inputs              Generate Blueprint input files from the current Lean tree.
   blueprint           Generate inputs, then build the Blueprint PDF and web outputs.
   blueprint-existing  Build the existing Blueprint PDF and web outputs only.
-  docs                Build Blueprint outputs and the repository site.
+  docs                Build Blueprint, doc-gen4 output, and the repository site.
   shell               Open an interactive shell in the container.
 EOF
 }
@@ -38,6 +38,18 @@ build_blueprint_existing() {
   leanblueprint web
 }
 
+build_docgen() {
+  require_repo_root
+  if [[ ! -f "docbuild/lakefile.toml" ]]; then
+    echo "error: docbuild/lakefile.toml not found" >&2
+    exit 2
+  fi
+  if [[ ! -f "docbuild/lake-manifest.json" ]]; then
+    (cd docbuild && MATHLIB_NO_CACHE_ON_UPDATE=1 lake update doc-gen4)
+  fi
+  (cd docbuild && lake build LRA:docs)
+}
+
 case "$command_name" in
   -h|--help|help)
     usage
@@ -55,10 +67,13 @@ case "$command_name" in
   docs)
     build_inputs_when_available
     build_blueprint_existing
+    build_docgen
     python3 scripts/build-repository-site.py
     mkdir -p site/blueprint
     cp -R blueprint/web/. site/blueprint/
     cp blueprint/print/print.pdf site/lra-blueprint.pdf
+    mkdir -p site/docs
+    cp -R docbuild/.lake/build/doc/. site/docs/
     ;;
   shell)
     exec bash

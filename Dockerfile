@@ -59,9 +59,12 @@ CMD ["bash"]
 FROM lean-build AS documentation-build
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
     python3 \
     python3-pip \
     python3-venv \
+    dvisvgm \
+    ghostscript \
     graphviz \
     libgraphviz-dev \
     pkg-config \
