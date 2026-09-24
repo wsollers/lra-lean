@@ -156,7 +156,16 @@ theorem CollectionUnionMembership
     (collection : Collection) (x : Element) :
     x ∈ HasCollectionUnion.collectionUnion collection ↔
       ∃ B : SetObject, B ∈ collection ∧ x ∈ B := by
-  sorry
+  constructor
+  . --
+    intro h_b_in_collection
+    have h_x_collection_iff := CollectionMembershipLaws.CollectionUnionMembership collection
+    rw [h_x_collection_iff] at h_b_in_collection
+    exact h_b_in_collection
+  . --
+    intro h_B_in_collection
+    have h_x_collection_iff := CollectionMembershipLaws.CollectionUnionMembership collection
+    exact (h_x_collection_iff x).mpr h_B_in_collection
 
 /--
 `CollectionIntersectionMembership` TODO
@@ -211,7 +220,21 @@ theorem CollectionIntersectionMembership
     (collectionNonempty : ∃ B : SetObject, B ∈ collection) :
     x ∈ HasCollectionIntersection.collectionIntersection collection ↔
       ∀ B : SetObject, B ∈ collection → x ∈ B := by
-  sorry
+  constructor
+  · -- Forward direction (→): If x is in the intersection, it belongs to all sets in the collection
+    intro h_x_in_inter
+    have h_inter_iff := CollectionMembershipLaws.CollectionIntersectionMembership collection
+    intro B h_B_in_coll
+    have h_all := (h_inter_iff x collectionNonempty).mp h_x_in_inter
+    exact h_all B h_B_in_coll
+
+  · -- Reverse direction (←): If x belongs to all sets in the collection, it is in the intersection
+    intro h_forall_in_B
+    have h_inter_iff := CollectionMembershipLaws.CollectionIntersectionMembership collection
+    have h_inter_iff_x := h_inter_iff x collectionNonempty
+    exact h_inter_iff_x.mpr h_forall_in_B
+
+
 
 end Wrappers
 

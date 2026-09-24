@@ -429,7 +429,18 @@ theorem CountableIntersectionMembership
     (family : Nat → SetObject) (x : Element) :
     x ∈ HasCountableIntersection.countableIntersection family ↔
       ∀ index, x ∈ family index := by
-  sorry
+  constructor
+  . --
+    intro h_has_countable_int
+    have h_has_countable_int_iff := CountableMembershipLaws.CountableIntersectionMembership family
+    rw [← h_has_countable_int_iff]
+    exact h_has_countable_int
+  . --
+    intro h_x_in_index
+    have h_has_countable_int_iff := CountableMembershipLaws.CountableIntersectionMembership family
+    rw [h_has_countable_int_iff]
+    exact h_x_in_index
+
 
 end Wrappers
 
