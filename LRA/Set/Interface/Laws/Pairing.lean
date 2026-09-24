@@ -117,14 +117,25 @@ theorem PairInjective {Left Right Pair : Type u}
     ∀ (firstLeft secondLeft : Left) (firstRight secondRight : Right),
       OrderedPair firstLeft firstRight =
           OrderedPair secondLeft secondRight ↔
-        firstLeft = secondLeft ∧ firstRight = secondRight :=
-  sorry
+        firstLeft = secondLeft ∧ firstRight = secondRight := by
+  intro l1 l2
+  intro r1 r2
+  exact PairingLaws.PairInjective l1 l2 r1 r2
+
+
 
 instance instProdPairingLaws {Left Right : Type u} :
     PairingLaws Left Right (Left × Right) where
   PairInjective := by
-    sorry
+    intro firstLeft secondLeft firstRight secondRight
+    constructor
+    · intro h
+      cases h
+      exact ⟨rfl, rfl⟩
+    · intro h
+      rcases h with ⟨hLeft, hRight⟩
+      cases hLeft
+      cases hRight
+      rfl
 
 end LRA.Set
-
-

@@ -229,7 +229,16 @@ theorem IndexedUnionMembership
     [IndexedMembershipLaws Element SetObject]
     {Index : Type w} (family : Index → SetObject) (x : Element) :
     x ∈ HasIndexedUnion.indexedUnion family ↔ ∃ index, x ∈ family index := by
-  sorry
+  constructor
+  · intro h_x_in_union
+    have indexed_union_membership_iff :=
+      IndexedMembershipLaws.IndexedUnionMembership family x
+    exact indexed_union_membership_iff.mp h_x_in_union
+  · intro h_exists_index
+    have indexed_union_membership_iff :=
+      IndexedMembershipLaws.IndexedUnionMembership family x
+    exact indexed_union_membership_iff.mpr h_exists_index
+
 
 /--
 `IndexedIntersectionMembership` TODO
@@ -286,7 +295,19 @@ theorem IndexedIntersectionMembership
     {Index : Type w} (family : Index → SetObject) (x : Element) :
     x ∈ HasIndexedIntersection.indexedIntersection family ↔
       ∀ index, x ∈ family index := by
-  sorry
+
+  constructor
+  . --
+    intro h_x_in_indexed_intersection
+    have indexed_intersection_membership_iff :=
+      IndexedMembershipLaws.IndexedIntersectionMembership family x
+    --intro uindex
+    exact indexed_intersection_membership_iff.mp h_x_in_indexed_intersection
+  . --
+    have indexed_intersection_membership_iff :=
+      IndexedMembershipLaws.IndexedIntersectionMembership family x
+
+    exact indexed_intersection_membership_iff.symm.mp
 
 /--
 `CountableUnionMembership` TODO
@@ -343,7 +364,15 @@ theorem CountableUnionMembership
     (family : Nat → SetObject) (x : Element) :
     x ∈ HasCountableUnion.countableUnion family ↔
       ∃ index, x ∈ family index := by
-  sorry
+  constructor
+  . --
+    intro h_x_in_countable_union
+    exact (CountableMembershipLaws.CountableUnionMembership family x).mp
+      h_x_in_countable_union
+  . --
+    intro h_exists_index
+    exact (CountableMembershipLaws.CountableUnionMembership family x).mpr
+      h_exists_index
 
 /--
 `CountableIntersectionMembership` TODO
