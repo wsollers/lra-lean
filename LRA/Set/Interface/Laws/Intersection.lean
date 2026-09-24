@@ -121,7 +121,7 @@ Related proof moves: intro
 
 -/
 theorem IntersectionCommutative : ∀ A B : α, A ∩ B = B ∩ A :=
-  sorry
+  IntersectionLaws.IntersectionCommutative
 
 /--
 `IntersectionAssociative` TODO
@@ -167,7 +167,7 @@ Related proof moves: intro
 -/
 theorem IntersectionAssociative :
     ∀ A B C : α, (A ∩ B) ∩ C = A ∩ (B ∩ C) :=
-  sorry
+  IntersectionLaws.IntersectionAssociative
 
 /--
 `EmptyIntersection` TODO
@@ -211,7 +211,7 @@ Related proof moves: intro
 
 -/
 theorem EmptyIntersection : ∀ A : α, (∅ : α) ∩ A = (∅ : α) :=
-  sorry
+  IntersectionLaws.EmptyIntersection
 
 /--
 `IntersectionEmpty` TODO
@@ -255,7 +255,7 @@ Related proof moves: intro
 
 -/
 theorem IntersectionEmpty : ∀ A : α, A ∩ (∅ : α) = (∅ : α) :=
-  sorry
+  IntersectionLaws.IntersectionEmpty
 
 /--
 `IntersectionIdempotent` TODO
@@ -299,7 +299,7 @@ Related proof moves: intro
 
 -/
 theorem IntersectionIdempotent : ∀ A : α, A ∩ A = A :=
-  sorry
+  IntersectionLaws.IntersectionIdempotent
 
 /--
 `IntersectionMonotone` TODO
@@ -345,7 +345,7 @@ Related proof moves: intro
 -/
 theorem IntersectionMonotone :
     ∀ A₁ A₂ B₁ B₂ : α, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∩ B₁ ⊆ A₂ ∩ B₂ :=
-  sorry
+  IntersectionLaws.IntersectionMonotone
 
 /--
 `SubsetIffIntersectionEqLeft` TODO
@@ -389,8 +389,7 @@ Related proof moves: intro, constructor, .mp, .mpr
 
 -/
 theorem SubsetIffIntersectionEqLeft : ∀ A B : α, A ⊆ B ↔ A ∩ B = A :=
-  sorry
+  IntersectionLaws.SubsetIffIntersectionEqLeft
 
 end LRA.Set
-
 

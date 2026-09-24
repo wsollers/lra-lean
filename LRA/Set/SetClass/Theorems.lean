@@ -51,7 +51,8 @@ Related proof moves: intro, constructor, .mp, .mpr
 theorem SetClassExtensionality {α : Type u} {left right : SetClass α}
     (sameMembers : ∀ element, left element ↔ right element) :
     left = right := by
-  sorry
+  funext element
+  exact propext (sameMembers element)
 
 /--
 `SetRepresentsItsClass` TODO
@@ -101,6 +102,7 @@ theorem SetRepresentsItsClass {Element : Type u} {SetObject : Type v}
     [Membership Element SetObject]
     (setObject : SetObject) :
     Represents setObject (ClassOfSet setObject) := by
-  sorry
+  intro element
+  rfl
 
 end LRA.Set

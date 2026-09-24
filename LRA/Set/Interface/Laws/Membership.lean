@@ -424,8 +424,7 @@ theorem SetExtensionality
     [Membership Element SetObject] [ExtensionalityLaw Element SetObject]
     {A B : SetObject} (sameMembers : ∀ x : Element, x ∈ A ↔ x ∈ B) :
     A = B := by
-
-  sorry
+  exact ExtensionalityLaw.SetExtensionality sameMembers
 
 /--
 `EmptyMembership` TODO
@@ -477,7 +476,7 @@ theorem EmptyMembership
     [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject]
     [MembershipLaws Element SetObject] :
     ∀ x : Element, x ∉ (∅ : SetObject) := by
-  sorry
+  exact MembershipLaws.EmptyMembership
 
 /--
 `UnionMembership` TODO
@@ -529,7 +528,7 @@ theorem UnionMembership
     [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject]
     [MembershipLaws Element SetObject] :
     ∀ (A B : SetObject) (x : Element), x ∈ A ∪ B ↔ x ∈ A ∨ x ∈ B := by
-  sorry
+  exact MembershipLaws.UnionMembership
 
 /--
 `IntersectionMembership` TODO
@@ -581,7 +580,7 @@ theorem IntersectionMembership
     [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject]
     [MembershipLaws Element SetObject] :
     ∀ (A B : SetObject) (x : Element), x ∈ A ∩ B ↔ x ∈ A ∧ x ∈ B := by
-  sorry
+  exact MembershipLaws.IntersectionMembership
 
 /--
 `DifferenceMembership` TODO
@@ -633,7 +632,7 @@ theorem DifferenceMembership
     [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject]
     [MembershipLaws Element SetObject] :
     ∀ (A B : SetObject) (x : Element), x ∈ A \ B ↔ x ∈ A ∧ x ∉ B := by
-  sorry
+  exact MembershipLaws.DifferenceMembership
 
 /--
 `SubsetIffAllMembers` TODO
@@ -685,7 +684,7 @@ theorem SubsetIffAllMembers
     [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject]
     [MembershipLaws Element SetObject] :
     ∀ A B : SetObject, A ⊆ B ↔ ∀ x : Element, x ∈ A → x ∈ B := by
-  sorry
+  exact MembershipLaws.SubsetIffAllMembers
 
 /--
 `SeparationMembership` TODO
@@ -737,7 +736,7 @@ theorem SeparationMembership
     [SeparationLaws Element SetObject] :
     ∀ (A : SetObject) (property : Element → Prop) (x : Element),
       x ∈ HasSeparation.separation A property ↔ x ∈ A ∧ property x := by
-  sorry
+  exact SeparationLaws.SeparationMembership
 
 /--
 `UniversalMembership` TODO
@@ -787,7 +786,7 @@ theorem UniversalMembership
     [Membership Element SetObject] [HasUniversal SetObject]
     [HasComplement SetObject] [UniversalMembershipLaws Element SetObject] :
     ∀ x : Element, x ∈ (𝒰 : SetObject) := by
-  sorry
+  exact UniversalMembershipLaws.UniversalMembership
 
 /--
 `ComplementMembership` TODO
@@ -837,7 +836,7 @@ theorem ComplementMembership
     [Membership Element SetObject] [HasUniversal SetObject]
     [HasComplement SetObject] [UniversalMembershipLaws Element SetObject] :
     ∀ (A : SetObject) (x : Element), x ∈ Aᶜ ↔ x ∉ A := by
-  sorry
+  exact UniversalMembershipLaws.ComplementMembership
 
 /--
 `SymmetricDifferenceMembership` TODO
@@ -889,7 +888,7 @@ theorem SymmetricDifferenceMembership
     [SymmDiffMembershipLaws Element SetObject] :
     ∀ (A B : SetObject) (x : Element),
       x ∈ A ∆ B ↔ (x ∈ A ∧ x ∉ B) ∨ (x ∈ B ∧ x ∉ A) := by
-  sorry
+  exact SymmDiffMembershipLaws.SymmetricDifferenceMembership
 
 /--
 `PowersetMembership` TODO
@@ -941,7 +940,7 @@ theorem PowersetMembership {SetObject : Type u} {Collection : Type v}
     [HasPowerset SetObject Collection]
     [PowersetMembershipLaws SetObject Collection] :
     ∀ A B : SetObject, B ∈ (HasPowerset.powerset A : Collection) ↔ B ⊆ A := by
-  sorry
+  exact PowersetMembershipLaws.PowersetMembership
 
 end Wrappers
 

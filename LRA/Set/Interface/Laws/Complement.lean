@@ -140,7 +140,7 @@ Related proof moves: intro
 -/
 theorem DoubleComplement : ∀ A : α, Aᶜᶜ = A :=
   by
-  sorry
+  exact ComplementLaws.DoubleComplement
 
 /--
 `ComplementEmpty` TODO
@@ -185,7 +185,7 @@ Related proof moves: TODO
 -/
 theorem ComplementEmpty : (∅ : α)ᶜ = (𝒰 : α) :=
   by
-  sorry
+  exact ComplementLaws.ComplementEmpty
 
 /--
 `ComplementUniversal` TODO
@@ -230,7 +230,7 @@ Related proof moves: TODO
 -/
 theorem ComplementUniversal : (𝒰 : α)ᶜ = (∅ : α) :=
   by
-  sorry
+  exact ComplementLaws.ComplementUniversal
 
 /--
 `UnionComplement` TODO
@@ -275,7 +275,7 @@ Related proof moves: intro
 -/
 theorem UnionComplement : ∀ A : α, A ∪ Aᶜ = (𝒰 : α) :=
   by
-  sorry
+  exact ComplementLaws.UnionComplement
 
 /--
 `IntersectionComplement` TODO
@@ -320,7 +320,7 @@ Related proof moves: intro
 -/
 theorem IntersectionComplement : ∀ A : α, A ∩ Aᶜ = (∅ : α) :=
   by
-  sorry
+  exact ComplementLaws.IntersectionComplement
 
 /--
 `DeMorganUnion` TODO
@@ -365,7 +365,7 @@ Related proof moves: intro
 -/
 theorem DeMorganUnion : ∀ A B : α, (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ :=
   by
-  sorry
+  exact ComplementLaws.DeMorganUnion
 
 /--
 `DeMorganIntersection` TODO
@@ -410,7 +410,7 @@ Related proof moves: intro
 -/
 theorem DeMorganIntersection : ∀ A B : α, (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ :=
   by
-  sorry
+  exact ComplementLaws.DeMorganIntersection
 
 /--
 `DifferenceAsIntersectionComplement` TODO
@@ -457,7 +457,7 @@ Related proof moves: intro
 theorem DifferenceAsIntersectionComplement :
     ∀ A B : α, A \ B = A ∩ Bᶜ :=
   by
-  sorry
+  exact ComplementLaws.DifferenceAsIntersectionComplement
 
 /--
 `DifferenceUniversal` TODO
@@ -502,7 +502,7 @@ Related proof moves: intro
 -/
 theorem DifferenceUniversal : ∀ A : α, A \ (𝒰 : α) = (∅ : α) :=
   by
-  sorry
+  exact ComplementLaws.DifferenceUniversal
 
 /--
 `UniversalDifference` TODO
@@ -547,7 +547,7 @@ Related proof moves: intro
 -/
 theorem UniversalDifference : ∀ A : α, (𝒰 : α) \ A = Aᶜ :=
   by
-  sorry
+  exact ComplementLaws.UniversalDifference
 
 /--
 `Dual` TODO
@@ -631,7 +631,30 @@ Related proof moves: intro, constructor, .mp, .mpr
 -/
 theorem DualAntitone [HasSubset α] [UnionLaws α] [IntersectionLaws α] :
     ∀ A B : α, A ⊆ B ↔ Dual B ⊆ Dual A := by
-  sorry
+  intro A B
+  constructor
+  · intro ASubsetB
+    exact (UnionLaws.SubsetIffUnionEqRight (Dual B) (Dual A)).mpr (by
+      unfold Dual
+      calc
+        Bᶜ ∪ Aᶜ = (B ∩ A)ᶜ := (ComplementLaws.DeMorganIntersection B A).symm
+        _ = (A ∩ B)ᶜ := by rw [IntersectionLaws.IntersectionCommutative B A]
+        _ = Aᶜ := by
+          rw [(IntersectionLaws.SubsetIffIntersectionEqLeft A B).mp ASubsetB])
+  · intro dualSubset
+    exact (IntersectionLaws.SubsetIffIntersectionEqLeft A B).mpr (by
+      have unionComplements :
+          Bᶜ ∪ Aᶜ = Aᶜ :=
+        (UnionLaws.SubsetIffUnionEqRight Bᶜ Aᶜ).mp dualSubset
+      unfold Dual at dualSubset
+      calc
+        A ∩ B = (Aᶜ ∪ Bᶜ)ᶜ := by
+          rw [← ComplementLaws.DeMorganIntersection A B]
+          exact (ComplementLaws.DoubleComplement (A ∩ B)).symm
+        _ = (Bᶜ ∪ Aᶜ)ᶜ := by
+          rw [UnionLaws.UnionCommutative Aᶜ Bᶜ]
+        _ = (Aᶜ)ᶜ := by rw [unionComplements]
+        _ = A := ComplementLaws.DoubleComplement A)
 
 /--
 `DualUnion` TODO
@@ -676,7 +699,7 @@ Related proof moves: intro
 -/
 theorem DualUnion : ∀ A B : α, Dual (A ∪ B) = Dual A ∩ Dual B :=
   by
-    sorry
+    exact ComplementLaws.DeMorganUnion
 
 /--
 `DualIntersection` TODO
@@ -721,7 +744,7 @@ Related proof moves: intro
 -/
 theorem DualIntersection : ∀ A B : α, Dual (A ∩ B) = Dual A ∪ Dual B :=
   by
-    sorry
+    exact ComplementLaws.DeMorganIntersection
 
 /--
 `DualInvolutive` TODO
@@ -766,6 +789,6 @@ Related proof moves: intro
 -/
 theorem DualInvolutive : ∀ A : α, Dual (Dual A) = A :=
   by
-    sorry
+    exact ComplementLaws.DoubleComplement
 
 end LRA.Set

@@ -121,7 +121,7 @@ Related proof moves: intro
 
 -/
 theorem UnionCommutative : ∀ A B : α, A ∪ B = B ∪ A := by
-  sorry
+  exact UnionLaws.UnionCommutative
 
 /--
 `UnionAssociative` TODO
@@ -165,7 +165,7 @@ Related proof moves: intro
 
 -/
 theorem UnionAssociative : ∀ A B C : α, (A ∪ B) ∪ C = A ∪ (B ∪ C) := by
-  sorry
+  exact UnionLaws.UnionAssociative
 
 /--
 `EmptyUnion` TODO
@@ -209,7 +209,7 @@ Related proof moves: intro
 
 -/
 theorem EmptyUnion : ∀ A : α, (∅ : α) ∪ A = A := by
-  sorry
+  exact UnionLaws.EmptyUnion
 
 /--
 `UnionEmpty` TODO
@@ -253,7 +253,7 @@ Related proof moves: intro
 
 -/
 theorem UnionEmpty : ∀ A : α, A ∪ (∅ : α) = A := by
-  sorry
+  exact UnionLaws.UnionEmpty
 
 /--
 `UnionIdempotent` TODO
@@ -297,7 +297,7 @@ Related proof moves: intro
 
 -/
 theorem UnionIdempotent : ∀ A : α, A ∪ A = A := by
-  sorry
+  exact UnionLaws.UnionIdempotent
 
 /--
 `UnionMonotone` TODO
@@ -343,7 +343,7 @@ Related proof moves: intro
 -/
 theorem UnionMonotone :
     ∀ A₁ A₂ B₁ B₂ : α, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∪ B₁ ⊆ A₂ ∪ B₂ := by
-  sorry
+  exact UnionLaws.UnionMonotone
 
 /--
 `SubsetIffUnionEqRight` TODO
@@ -387,6 +387,6 @@ Related proof moves: intro, constructor, .mp, .mpr
 
 -/
 theorem SubsetIffUnionEqRight : ∀ A B : α, A ⊆ B ↔ A ∪ B = B := by
-  sorry
+  exact UnionLaws.SubsetIffUnionEqRight
 
 end LRA.Set

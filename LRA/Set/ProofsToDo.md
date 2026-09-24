@@ -11,205 +11,18 @@ references. That gives a conservative repo-local work sequence, but it is
 **not** a theorem-level semantic dependency graph across unrelated topics in
 the folder.
 
-**Progress:** 0/531 theorem-family entries completed since reset baseline `73e79b40` (Mass-sorry non-Logic proofs and regenerate todos).
-**Baseline reconciliation:** 157 still match baseline as `sorry`; 374 baseline entries were moved, renamed, or removed and are not auto-credited.
+**Progress:** 68/531 theorem-family entries completed since reset baseline `73e79b40` (Mass-sorry non-Logic proofs and regenerate todos).
+**Baseline reconciliation:** 89 still match baseline as `sorry`; 374 baseline entries were moved, renamed, or removed and are not auto-credited.
 
-**Snapshot:** 8/627 theorem-family entries currently completed (619 sorry remaining).
+**Snapshot:** 76/627 theorem-family entries currently completed (551 sorry remaining).
 
-**Inventory:** 627 theorem/lemma/corollary/proposition entries across 169 module(s) (8 completed, 619 sorry).
+**Inventory:** 627 theorem/lemma/corollary/proposition entries across 169 module(s) (76 completed, 551 sorry).
 **Excluded from counts:** 153 `instance` entries and 52 `axiom` entries.
 
 ## Open Work Queue
 
 Unfinished entries (`Sorry`, or `Unknown` in offline preview) are listed first so
 this section can be used as the actual proof queue.
-
-Name: SetExtensionality
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [Membership Element SetObject] [ExtensionalityLaw Element SetObject] {A B : SetObject} (sameMembers : ∀ x : Element, x ∈ A ↔ x ∈ B), A = B
-Predicate logic (unfolded):
-  Ambient
-    (Element, SetObject, ∈)
-  Objects
-    A B : SetObject
-  Prove
-    A = B
-Transliterated theorem: (∀ A B ∈ U), (∀ x : Element, x ∈ A ↔ x ∈ B) → A = B
-Logical form (Lean): [Membership Element SetObject] [ExtensionalityLaw Element SetObject] {A B : SetObject} (sameMembers : ∀ x : Element, x ∈ A ↔ x ∈ B) : A = B
-Source: [`./Interface/Laws/Membership.lean#L423`](./Interface/Laws/Membership.lean#L423)
-
-
-
-Name: EmptyMembership
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [MembershipLaws Element SetObject], ∀ x : Element, x ∉ (∅ : SetObject)
-Predicate logic (unfolded):
-  Ambient
-    (Element, SetObject, ∈)
-  Objects
-    (none)
-  Prove
-    ((∀ (x : Element), x ∈ inst_4.emptyCollection → False) ∧ ((∀ (A B : SetObject) (x : Element), x ∈ A ∪ B ↔ Or (x) ∈ A(x) ∈ B) ∧ ((∀ (A B : SetObject) (x : Element), x ∈ A ∩ B ↔ (x ∈ A ∧ x ∈ B)) ∧ ((∀ (A B : SetObject) (x : Element), x ∈ A \ B ↔ (x ∈ A ∧ (x ∈ B → False))) ∧ (∀ (A B : SetObject), inst_5.Subset A B ↔ ∀ (x : Element), x ∈ A → x ∈ B))))) → ∀ (x : Element), x ∈ inst_4.emptyCollection → False
-Transliterated theorem: ∀ x : Element, x ∉ ∅ ∈ SetObject
-Logical form (Lean): [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [MembershipLaws Element SetObject] : ∀ x : Element, x ∉ (∅ : SetObject)
-Source: [`./Interface/Laws/Membership.lean#L475`](./Interface/Laws/Membership.lean#L475)
-
-
-
-Name: UnionMembership
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [MembershipLaws Element SetObject], ∀ (A B : SetObject) (x : Element), x ∈ A ∪ B ↔ x ∈ A ∨ x ∈ B
-Predicate logic (unfolded):
-  Ambient
-    (Element, SetObject, ∈)
-  Objects
-    (none)
-  Prove
-    ∀ (A B : SetObject) (x : Element), x ∈ A ∪ B ↔ x ∈ A ∨ x ∈ B
-Transliterated theorem: ∀ A B ∈ SetObject x ∈ Element, x ∈ A ∪ B ↔ x ∈ A ∨ x ∈ B
-Logical form (Lean): [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [MembershipLaws Element SetObject] : ∀ (A B : SetObject) (x : Element), x ∈ A ∪ B ↔ x ∈ A ∨ x ∈ B
-Source: [`./Interface/Laws/Membership.lean#L527`](./Interface/Laws/Membership.lean#L527)
-
-
-
-Name: IntersectionMembership
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [MembershipLaws Element SetObject], ∀ (A B : SetObject) (x : Element), x ∈ A ∩ B ↔ x ∈ A ∧ x ∈ B
-Predicate logic (unfolded):
-  Ambient
-    (Element, SetObject, ∈)
-  Objects
-    (none)
-  Prove
-    ∀ (A B : SetObject) (x : Element), x ∈ A ∩ B ↔ x ∈ A ∧ x ∈ B
-Transliterated theorem: ∀ A B ∈ SetObject x ∈ Element, x ∈ A ∩ B ↔ x ∈ A ∧ x ∈ B
-Logical form (Lean): [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [MembershipLaws Element SetObject] : ∀ (A B : SetObject) (x : Element), x ∈ A ∩ B ↔ x ∈ A ∧ x ∈ B
-Source: [`./Interface/Laws/Membership.lean#L579`](./Interface/Laws/Membership.lean#L579)
-
-
-
-Name: DifferenceMembership
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [MembershipLaws Element SetObject], ∀ (A B : SetObject) (x : Element), x ∈ A \ B ↔ x ∈ A ∧ x ∉ B
-Predicate logic (unfolded):
-  Ambient
-    (Element, SetObject, ∈)
-  Objects
-    (none)
-  Prove
-    ∀ (A B : SetObject) (x : Element), x ∈ A \ B ↔ x ∈ A ∧ x ∉ B
-Transliterated theorem: ∀ A B ∈ SetObject x ∈ Element, x ∈ A \ B ↔ x ∈ A ∧ x ∉ B
-Logical form (Lean): [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [MembershipLaws Element SetObject] : ∀ (A B : SetObject) (x : Element), x ∈ A \ B ↔ x ∈ A ∧ x ∉ B
-Source: [`./Interface/Laws/Membership.lean#L631`](./Interface/Laws/Membership.lean#L631)
-
-
-
-Name: SubsetIffAllMembers
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [MembershipLaws Element SetObject], ∀ A B : SetObject, A ⊆ B ↔ ∀ x : Element, x ∈ A → x ∈ B
-Predicate logic (unfolded):
-  Ambient
-    (Element, SetObject, ∈)
-  Objects
-    (none)
-  Prove
-    ∀ A B : SetObject, A ⊆ B ↔ ∀ x : Element, x ∈ A → x ∈ B
-Transliterated theorem: ∀ A B : SetObject, A ⊆ B ↔ ∀ x : Element, x ∈ A → x ∈ B
-Logical form (Lean): [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [MembershipLaws Element SetObject] : ∀ A B : SetObject, A ⊆ B ↔ ∀ x : Element, x ∈ A → x ∈ B
-Source: [`./Interface/Laws/Membership.lean#L683`](./Interface/Laws/Membership.lean#L683)
-
-
-
-Name: SeparationMembership
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [Membership Element SetObject] [HasSeparation Element SetObject] [SeparationLaws Element SetObject], ∀ (A : SetObject) (property : Element → Prop) (x : Element), x ∈ HasSeparation.separation A property ↔ x ∈ A ∧ property x
-Predicate logic (unfolded):
-  Ambient
-    (Element, SetObject, ∈)
-  Objects
-    (none)
-  Prove
-    ∀ (A : SetObject) (property : Element → Prop) (x : Element), x ∈ HasSeparation.separation A property ↔ x ∈ A ∧ property x
-Transliterated theorem: ∀ A ∈ SetObject property ∈ Element → Prop x ∈ Element, x ∈ HasSeparation.separation A property ↔ x ∈ A ∧ property x
-Logical form (Lean): [Membership Element SetObject] [HasSeparation Element SetObject] [SeparationLaws Element SetObject] : ∀ (A : SetObject) (property : Element → Prop) (x : Element), x ∈ HasSeparation.separation A property ↔ x ∈ A ∧ property x
-Source: [`./Interface/Laws/Membership.lean#L735`](./Interface/Laws/Membership.lean#L735)
-
-
-
-Name: UniversalMembership
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [Membership Element SetObject] [HasUniversal SetObject] [HasComplement SetObject] [UniversalMembershipLaws Element SetObject], ∀ x : Element, x ∈ (𝒰 : SetObject)
-Predicate logic (unfolded):
-  Ambient
-    (Element, SetObject, ∈)
-  Objects
-    (none)
-  Prove
-    ((∀ (x : Element), x ∈ inst_1.universal) ∧ (∀ (A : SetObject) (x : Element), x ∈ inst_2.complement A ↔ x ∈ A → False)) → ∀ (x : Element), x ∈ inst_1.universal
-Transliterated theorem: ∀ x : Element, x ∈ 𝒰 ∈ SetObject
-Logical form (Lean): [Membership Element SetObject] [HasUniversal SetObject] [HasComplement SetObject] [UniversalMembershipLaws Element SetObject] : ∀ x : Element, x ∈ (𝒰 : SetObject)
-Source: [`./Interface/Laws/Membership.lean#L786`](./Interface/Laws/Membership.lean#L786)
-
-
-
-Name: ComplementMembership
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [Membership Element SetObject] [HasUniversal SetObject] [HasComplement SetObject] [UniversalMembershipLaws Element SetObject], ∀ (A : SetObject) (x : Element), x ∈ Aᶜ ↔ x ∉ A
-Predicate logic (unfolded):
-  Ambient
-    (Element, SetObject, ∈)
-  Objects
-    (none)
-  Prove
-    ∀ (A : SetObject) (x : Element), x ∈ Aᶜ ↔ x ∉ A
-Transliterated theorem: ∀ A ∈ SetObject x ∈ Element, x ∈ Aᶜ ↔ x ∉ A
-Logical form (Lean): [Membership Element SetObject] [HasUniversal SetObject] [HasComplement SetObject] [UniversalMembershipLaws Element SetObject] : ∀ (A : SetObject) (x : Element), x ∈ Aᶜ ↔ x ∉ A
-Source: [`./Interface/Laws/Membership.lean#L836`](./Interface/Laws/Membership.lean#L836)
-
-
-
-Name: SymmetricDifferenceMembership
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [Membership Element SetObject] [HasSymmDiff SetObject] [SymmDiffMembershipLaws Element SetObject], ∀ (A B : SetObject) (x : Element), x ∈ A ∆ B ↔ (x ∈ A ∧ x ∉ B) ∨ (x ∈ B ∧ x ∉ A)
-Predicate logic (unfolded):
-  Ambient
-    (Element, SetObject, ∈)
-  Objects
-    (none)
-  Prove
-    ∀ (A B : SetObject) (x : Element), x ∈ A ∆ B ↔ (x ∈ A ∧ x ∉ B) ∨ (x ∈ B ∧ x ∉ A)
-Transliterated theorem: ∀ A B ∈ SetObject x ∈ Element, x ∈ A ∆ B ↔ (x ∈ A ∧ x ∉ B) ∨ (x ∈ B ∧ x ∉ A)
-Logical form (Lean): [Membership Element SetObject] [HasSymmDiff SetObject] [SymmDiffMembershipLaws Element SetObject] : ∀ (A B : SetObject) (x : Element), x ∈ A ∆ B ↔ (x ∈ A ∧ x ∉ B) ∨ (x ∈ B ∧ x ∉ A)
-Source: [`./Interface/Laws/Membership.lean#L887`](./Interface/Laws/Membership.lean#L887)
-
-
-
-Name: PowersetMembership
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ {SetObject : Type u} {Collection : Type v} [Membership SetObject Collection] [HasSubset SetObject] [HasPowerset SetObject Collection] [PowersetMembershipLaws SetObject Collection], ∀ A B : SetObject, B ∈ (HasPowerset.powerset A : Collection) ↔ B ⊆ A
-Predicate logic (unfolded):
-  Ambient
-    (Element, SetObject, Collection, ∈)
-  Objects
-    (none)
-  Prove
-    ∀ A B : SetObject, B ∈ (HasPowerset.powerset A : Collection) ↔ B ⊆ A
-Transliterated theorem: ∀ A B : SetObject, B ∈ HasPowerset.powerset A ∈ Collection ↔ B ⊆ A
-Logical form (Lean): {SetObject : Type u} {Collection : Type v} [Membership SetObject Collection] [HasSubset SetObject] [HasPowerset SetObject Collection] [PowersetMembershipLaws SetObject Collection] : ∀ A B : SetObject, B ∈ (HasPowerset.powerset A : Collection) ↔ B ⊆ A
-Source: [`./Interface/Laws/Membership.lean#L939`](./Interface/Laws/Membership.lean#L939)
-
-
 
 Name: PairInjective
 Kind: Theorem
@@ -242,703 +55,6 @@ Predicate logic (unfolded):
 Transliterated theorem: PairingLaws Left Right (Left × Right) where PairInjective
 Logical form (Lean): {Left Right : Type u} : PairingLaws Left Right (Left × Right) where PairInjective
 Source: [`./Interface/Laws/Pairing.lean#L123`](./Interface/Laws/Pairing.lean#L123)
-
-
-
-Name: UnionCommutative
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A B : α, A ∪ B = B ∪ A
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A B : α), A ∪ B = B ∪ A) ∧ ((∀ (A B C : α), A ∪ B ∪ C = A ∪ B ∪ C) ∧ ((∀ (A : α), inst_1.emptyCollection ∪ A = A) ∧ ((∀ (A : α), A ∪ inst_1.emptyCollection = A) ∧ ((∀ (A : α), A ∪ A = A) ∧ ((∀ (A₁ A₂ B₁ B₂ : α), inst_2.Subset A₁ A₂ → inst_2.Subset B₁ B₂ → inst_2.Subset (A₁ ∪ B₁)(A₂ ∪ B₂)) ∧ (∀ (A B : α), inst_2.Subset A B ↔ A ∪ B = B))))))) → ∀ (A B : α), A ∪ B = B ∪ A
-Transliterated theorem: ∀ A B : α, A ∪ B = B ∪ A
-Logical form (Lean): : ∀ A B : α, A ∪ B = B ∪ A
-Source: [`./Interface/Laws/Union.lean#L123`](./Interface/Laws/Union.lean#L123)
-
-
-
-Name: UnionAssociative
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A B C : α, (A ∪ B) ∪ C = A ∪ (B ∪ C)
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A B : α), A ∪ B = B ∪ A) ∧ ((∀ (A B C : α), A ∪ B ∪ C = A ∪ B ∪ C) ∧ ((∀ (A : α), inst_1.emptyCollection ∪ A = A) ∧ ((∀ (A : α), A ∪ inst_1.emptyCollection = A) ∧ ((∀ (A : α), A ∪ A = A) ∧ ((∀ (A₁ A₂ B₁ B₂ : α), inst_2.Subset A₁ A₂ → inst_2.Subset B₁ B₂ → inst_2.Subset (A₁ ∪ B₁)(A₂ ∪ B₂)) ∧ (∀ (A B : α), inst_2.Subset A B ↔ A ∪ B = B))))))) → ∀ (A B C : α), A ∪ B ∪ C = A ∪ B ∪ C
-Transliterated theorem: ∀ A B C : α, (A ∪ B) ∪ C = A ∪ (B ∪ C)
-Logical form (Lean): : ∀ A B C : α, (A ∪ B) ∪ C = A ∪ (B ∪ C)
-Source: [`./Interface/Laws/Union.lean#L167`](./Interface/Laws/Union.lean#L167)
-
-
-
-Name: EmptyUnion
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A : α, (∅ : α) ∪ A = A
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A B : α), A ∪ B = B ∪ A) ∧ ((∀ (A B C : α), A ∪ B ∪ C = A ∪ B ∪ C) ∧ ((∀ (A : α), inst_1.emptyCollection ∪ A = A) ∧ ((∀ (A : α), A ∪ inst_1.emptyCollection = A) ∧ ((∀ (A : α), A ∪ A = A) ∧ ((∀ (A₁ A₂ B₁ B₂ : α), inst_2.Subset A₁ A₂ → inst_2.Subset B₁ B₂ → inst_2.Subset (A₁ ∪ B₁)(A₂ ∪ B₂)) ∧ (∀ (A B : α), inst_2.Subset A B ↔ A ∪ B = B))))))) → ∀ (A : α), inst_1.emptyCollection ∪ A = A
-Transliterated theorem: ∀ A : α, ∅ ∈ α ∪ A = A
-Logical form (Lean): : ∀ A : α, (∅ : α) ∪ A = A
-Source: [`./Interface/Laws/Union.lean#L211`](./Interface/Laws/Union.lean#L211)
-
-
-
-Name: UnionEmpty
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A : α, A ∪ (∅ : α) = A
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A B : α), A ∪ B = B ∪ A) ∧ ((∀ (A B C : α), A ∪ B ∪ C = A ∪ B ∪ C) ∧ ((∀ (A : α), inst_1.emptyCollection ∪ A = A) ∧ ((∀ (A : α), A ∪ inst_1.emptyCollection = A) ∧ ((∀ (A : α), A ∪ A = A) ∧ ((∀ (A₁ A₂ B₁ B₂ : α), inst_2.Subset A₁ A₂ → inst_2.Subset B₁ B₂ → inst_2.Subset (A₁ ∪ B₁)(A₂ ∪ B₂)) ∧ (∀ (A B : α), inst_2.Subset A B ↔ A ∪ B = B))))))) → ∀ (A : α), A ∪ inst_1.emptyCollection = A
-Transliterated theorem: ∀ A : α, A ∪ ∅ ∈ α = A
-Logical form (Lean): : ∀ A : α, A ∪ (∅ : α) = A
-Source: [`./Interface/Laws/Union.lean#L255`](./Interface/Laws/Union.lean#L255)
-
-
-
-Name: UnionIdempotent
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A : α, A ∪ A = A
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A B : α), A ∪ B = B ∪ A) ∧ ((∀ (A B C : α), A ∪ B ∪ C = A ∪ B ∪ C) ∧ ((∀ (A : α), inst_1.emptyCollection ∪ A = A) ∧ ((∀ (A : α), A ∪ inst_1.emptyCollection = A) ∧ ((∀ (A : α), A ∪ A = A) ∧ ((∀ (A₁ A₂ B₁ B₂ : α), inst_2.Subset A₁ A₂ → inst_2.Subset B₁ B₂ → inst_2.Subset (A₁ ∪ B₁)(A₂ ∪ B₂)) ∧ (∀ (A B : α), inst_2.Subset A B ↔ A ∪ B = B))))))) → ∀ (A : α), A ∪ A = A
-Transliterated theorem: ∀ A : α, A ∪ A = A
-Logical form (Lean): : ∀ A : α, A ∪ A = A
-Source: [`./Interface/Laws/Union.lean#L299`](./Interface/Laws/Union.lean#L299)
-
-
-
-Name: UnionMonotone
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A₁ A₂ B₁ B₂ : α, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∪ B₁ ⊆ A₂ ∪ B₂
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A B : α), A ∪ B = B ∪ A) ∧ ((∀ (A B C : α), A ∪ B ∪ C = A ∪ B ∪ C) ∧ ((∀ (A : α), inst_1.emptyCollection ∪ A = A) ∧ ((∀ (A : α), A ∪ inst_1.emptyCollection = A) ∧ ((∀ (A : α), A ∪ A = A) ∧ ((∀ (A₁ A₂ B₁ B₂ : α), inst_2.Subset A₁ A₂ → inst_2.Subset B₁ B₂ → inst_2.Subset (A₁ ∪ B₁)(A₂ ∪ B₂)) ∧ (∀ (A B : α), inst_2.Subset A B ↔ A ∪ B = B))))))) → ∀ (A₁ A₂ B₁ B₂ : α), (inst_2.Subset A₁ A₂ ∧ inst_2.Subset B₁ B₂) → inst_2.Subset (A₁ ∪ B₁)(A₂ ∪ B₂)
-Transliterated theorem: ∀ A₁ A₂ B₁ B₂ : α, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∪ B₁ ⊆ A₂ ∪ B₂
-Logical form (Lean): : ∀ A₁ A₂ B₁ B₂ : α, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∪ B₁ ⊆ A₂ ∪ B₂
-Source: [`./Interface/Laws/Union.lean#L344`](./Interface/Laws/Union.lean#L344)
-
-
-
-Name: SubsetIffUnionEqRight
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A B : α, A ⊆ B ↔ A ∪ B = B
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    A ⊆ B ↔ A ∪ B = B
-Transliterated theorem: ∀ A B : α, A ⊆ B ↔ A ∪ B = B
-Logical form (Lean): : ∀ A B : α, A ⊆ B ↔ A ∪ B = B
-Source: [`./Interface/Laws/Union.lean#L389`](./Interface/Laws/Union.lean#L389)
-
-
-
-Name: IntersectionCommutative
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A B : α, A ∩ B = B ∩ A
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A B : α), A ∩ B = B ∩ A) ∧ ((∀ (A B C : α), A ∩ B ∩ C = A ∩ B ∩ C) ∧ ((∀ (A : α), inst_1.emptyCollection ∩ A = inst_1.emptyCollection) ∧ ((∀ (A : α), A ∩ inst_1.emptyCollection = inst_1.emptyCollection) ∧ ((∀ (A : α), A ∩ A = A) ∧ ((∀ (A₁ A₂ B₁ B₂ : α), inst_2.Subset A₁ A₂ → inst_2.Subset B₁ B₂ → inst_2.Subset (A₁ ∩ B₁)(A₂ ∩ B₂)) ∧ (∀ (A B : α), inst_2.Subset A B ↔ A ∩ B = A))))))) → ∀ (A B : α), A ∩ B = B ∩ A
-Transliterated theorem: ∀ A B : α, A ∩ B = B ∩ A
-Logical form (Lean): : ∀ A B : α, A ∩ B = B ∩ A
-Source: [`./Interface/Laws/Intersection.lean#L123`](./Interface/Laws/Intersection.lean#L123)
-
-
-
-Name: IntersectionAssociative
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A B C : α, (A ∩ B) ∩ C = A ∩ (B ∩ C)
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A B : α), A ∩ B = B ∩ A) ∧ ((∀ (A B C : α), A ∩ B ∩ C = A ∩ B ∩ C) ∧ ((∀ (A : α), inst_1.emptyCollection ∩ A = inst_1.emptyCollection) ∧ ((∀ (A : α), A ∩ inst_1.emptyCollection = inst_1.emptyCollection) ∧ ((∀ (A : α), A ∩ A = A) ∧ ((∀ (A₁ A₂ B₁ B₂ : α), inst_2.Subset A₁ A₂ → inst_2.Subset B₁ B₂ → inst_2.Subset (A₁ ∩ B₁)(A₂ ∩ B₂)) ∧ (∀ (A B : α), inst_2.Subset A B ↔ A ∩ B = A))))))) → ∀ (A B C : α), A ∩ B ∩ C = A ∩ B ∩ C
-Transliterated theorem: ∀ A B C : α, (A ∩ B) ∩ C = A ∩ (B ∩ C)
-Logical form (Lean): : ∀ A B C : α, (A ∩ B) ∩ C = A ∩ (B ∩ C)
-Source: [`./Interface/Laws/Intersection.lean#L168`](./Interface/Laws/Intersection.lean#L168)
-
-
-
-Name: EmptyIntersection
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A : α, (∅ : α) ∩ A = (∅ : α)
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A B : α), A ∩ B = B ∩ A) ∧ ((∀ (A B C : α), A ∩ B ∩ C = A ∩ B ∩ C) ∧ ((∀ (A : α), inst_1.emptyCollection ∩ A = inst_1.emptyCollection) ∧ ((∀ (A : α), A ∩ inst_1.emptyCollection = inst_1.emptyCollection) ∧ ((∀ (A : α), A ∩ A = A) ∧ ((∀ (A₁ A₂ B₁ B₂ : α), inst_2.Subset A₁ A₂ → inst_2.Subset B₁ B₂ → inst_2.Subset (A₁ ∩ B₁)(A₂ ∩ B₂)) ∧ (∀ (A B : α), inst_2.Subset A B ↔ A ∩ B = A))))))) → ∀ (A : α), inst_1.emptyCollection ∩ A = inst_1.emptyCollection
-Transliterated theorem: ∀ A : α, ∅ ∈ α ∩ A = ∅ ∈ α
-Logical form (Lean): : ∀ A : α, (∅ : α) ∩ A = (∅ : α)
-Source: [`./Interface/Laws/Intersection.lean#L213`](./Interface/Laws/Intersection.lean#L213)
-
-
-
-Name: IntersectionEmpty
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A : α, A ∩ (∅ : α) = (∅ : α)
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A B : α), A ∩ B = B ∩ A) ∧ ((∀ (A B C : α), A ∩ B ∩ C = A ∩ B ∩ C) ∧ ((∀ (A : α), inst_1.emptyCollection ∩ A = inst_1.emptyCollection) ∧ ((∀ (A : α), A ∩ inst_1.emptyCollection = inst_1.emptyCollection) ∧ ((∀ (A : α), A ∩ A = A) ∧ ((∀ (A₁ A₂ B₁ B₂ : α), inst_2.Subset A₁ A₂ → inst_2.Subset B₁ B₂ → inst_2.Subset (A₁ ∩ B₁)(A₂ ∩ B₂)) ∧ (∀ (A B : α), inst_2.Subset A B ↔ A ∩ B = A))))))) → ∀ (A : α), A ∩ inst_1.emptyCollection = inst_1.emptyCollection
-Transliterated theorem: ∀ A : α, A ∩ ∅ ∈ α = ∅ ∈ α
-Logical form (Lean): : ∀ A : α, A ∩ (∅ : α) = (∅ : α)
-Source: [`./Interface/Laws/Intersection.lean#L257`](./Interface/Laws/Intersection.lean#L257)
-
-
-
-Name: IntersectionIdempotent
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A : α, A ∩ A = A
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A B : α), A ∩ B = B ∩ A) ∧ ((∀ (A B C : α), A ∩ B ∩ C = A ∩ B ∩ C) ∧ ((∀ (A : α), inst_1.emptyCollection ∩ A = inst_1.emptyCollection) ∧ ((∀ (A : α), A ∩ inst_1.emptyCollection = inst_1.emptyCollection) ∧ ((∀ (A : α), A ∩ A = A) ∧ ((∀ (A₁ A₂ B₁ B₂ : α), inst_2.Subset A₁ A₂ → inst_2.Subset B₁ B₂ → inst_2.Subset (A₁ ∩ B₁)(A₂ ∩ B₂)) ∧ (∀ (A B : α), inst_2.Subset A B ↔ A ∩ B = A))))))) → ∀ (A : α), A ∩ A = A
-Transliterated theorem: ∀ A : α, A ∩ A = A
-Logical form (Lean): : ∀ A : α, A ∩ A = A
-Source: [`./Interface/Laws/Intersection.lean#L301`](./Interface/Laws/Intersection.lean#L301)
-
-
-
-Name: IntersectionMonotone
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A₁ A₂ B₁ B₂ : α, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∩ B₁ ⊆ A₂ ∩ B₂
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A B : α), A ∩ B = B ∩ A) ∧ ((∀ (A B C : α), A ∩ B ∩ C = A ∩ B ∩ C) ∧ ((∀ (A : α), inst_1.emptyCollection ∩ A = inst_1.emptyCollection) ∧ ((∀ (A : α), A ∩ inst_1.emptyCollection = inst_1.emptyCollection) ∧ ((∀ (A : α), A ∩ A = A) ∧ ((∀ (A₁ A₂ B₁ B₂ : α), inst_2.Subset A₁ A₂ → inst_2.Subset B₁ B₂ → inst_2.Subset (A₁ ∩ B₁)(A₂ ∩ B₂)) ∧ (∀ (A B : α), inst_2.Subset A B ↔ A ∩ B = A))))))) → ∀ (A₁ A₂ B₁ B₂ : α), (inst_2.Subset A₁ A₂ ∧ inst_2.Subset B₁ B₂) → inst_2.Subset (A₁ ∩ B₁)(A₂ ∩ B₂)
-Transliterated theorem: ∀ A₁ A₂ B₁ B₂ : α, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∩ B₁ ⊆ A₂ ∩ B₂
-Logical form (Lean): : ∀ A₁ A₂ B₁ B₂ : α, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∩ B₁ ⊆ A₂ ∩ B₂
-Source: [`./Interface/Laws/Intersection.lean#L346`](./Interface/Laws/Intersection.lean#L346)
-
-
-
-Name: SubsetIffIntersectionEqLeft
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A B : α, A ⊆ B ↔ A ∩ B = A
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    A ⊆ B ↔ A ∩ B = A
-Transliterated theorem: ∀ A B : α, A ⊆ B ↔ A ∩ B = A
-Logical form (Lean): : ∀ A B : α, A ⊆ B ↔ A ∩ B = A
-Source: [`./Interface/Laws/Intersection.lean#L391`](./Interface/Laws/Intersection.lean#L391)
-
-
-
-Name: SubsetReflexive
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ {α : Type u} [inst : HasSubset α], LRA.Set.SubsetLaws α → ∀ (A : α), inst.Subset A A
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A : α), inst.Subset A A) ∧ ((∀ (A B C : α), inst.Subset A B → inst.Subset B C → inst.Subset A C) ∧ (∀ (A B : α), A = B ↔ (inst.Subset A B ∧ inst.Subset B A)))) → ∀ (A : α), inst.Subset A A
-Transliterated theorem: ∀ A : α, A ⊆ A
-Logical form (Lean): : ∀ A : α, A ⊆ A
-Source: [`./Interface/Laws/Subset.lean#L98`](./Interface/Laws/Subset.lean#L98)
-
-
-
-Name: SubsetTransitive
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A B C : α, A ⊆ B → B ⊆ C → A ⊆ C
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A : α), inst.Subset A A) ∧ ((∀ (A B C : α), inst.Subset A B → inst.Subset B C → inst.Subset A C) ∧ (∀ (A B : α), A = B ↔ (inst.Subset A B ∧ inst.Subset B A)))) → ∀ (A B C : α), (inst.Subset A B ∧ inst.Subset B C) → inst.Subset A C
-Transliterated theorem: ∀ A B C : α, A ⊆ B → B ⊆ C → A ⊆ C
-Logical form (Lean): : ∀ A B C : α, A ⊆ B → B ⊆ C → A ⊆ C
-Source: [`./Interface/Laws/Subset.lean#L145`](./Interface/Laws/Subset.lean#L145)
-
-
-
-Name: SetEqualityIffMutualSubset
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A B : α, A = B ↔ A ⊆ B ∧ B ⊆ A
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    A = B ↔ A ⊆ B ∧ B ⊆ A
-Transliterated theorem: ∀ A B : α, A = B ↔ A ⊆ B ∧ B ⊆ A
-Logical form (Lean): : ∀ A B : α, A = B ↔ A ⊆ B ∧ B ⊆ A
-Source: [`./Interface/Laws/Subset.lean#L189`](./Interface/Laws/Subset.lean#L189)
-
-
-
-Name: DifferenceMonotoneLeft
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A₁ A₂ B : α, A₁ ⊆ A₂ → A₁ \ B ⊆ A₂ \ B
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A₁ A₂ B : α), inst_4.Subset A₁ A₂ → inst_4.Subset (A₁ \ B)(A₂ \ B)) ∧ ((∀ (A B₁ B₂ : α), inst_4.Subset B₁ B₂ → inst_4.Subset (A \ B₂)(A \ B₁)) ∧ ((∀ (A : α), A \ inst_3.emptyCollection = A) ∧ ((∀ (A : α), inst_3.emptyCollection \ A = inst_3.emptyCollection) ∧ ((∀ (A : α), A \ A = inst_3.emptyCollection) ∧ ((∀ (A B C : α), A \ B ∪ C = A \ B ∩ A \ C) ∧ ((∀ (A B C : α), A \ B ∩ C = A \ B ∪ A \ C) ∧ ((∀ (A B C : α), A ∪ B \ C = A \ C ∪ B \ C) ∧ ((∀ (A B C : α), A ∩ B \ C = A \ C ∩ B \ C) ∧ ((∀ (A B : α), inst_4.Subset (A \ B)A) ∧ (∀ (A B : α), A \ B ∩ B = inst_3.emptyCollection))))))))))) → ∀ (A₁ A₂ B : α), inst_4.Subset A₁ A₂ → inst_4.Subset (A₁ \ B)(A₂ \ B)
-Transliterated theorem: ∀ A₁ A₂ B : α, A₁ ⊆ A₂ → A₁ \ B ⊆ A₂ \ B
-Logical form (Lean): : ∀ A₁ A₂ B : α, A₁ ⊆ A₂ → A₁ \ B ⊆ A₂ \ B
-Source: [`./Interface/Laws/Difference.lean#L157`](./Interface/Laws/Difference.lean#L157)
-
-
-
-Name: DifferenceAntitoneRight
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A B₁ B₂ : α, B₁ ⊆ B₂ → A \ B₂ ⊆ A \ B₁
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A₁ A₂ B : α), inst_4.Subset A₁ A₂ → inst_4.Subset (A₁ \ B)(A₂ \ B)) ∧ ((∀ (A B₁ B₂ : α), inst_4.Subset B₁ B₂ → inst_4.Subset (A \ B₂)(A \ B₁)) ∧ ((∀ (A : α), A \ inst_3.emptyCollection = A) ∧ ((∀ (A : α), inst_3.emptyCollection \ A = inst_3.emptyCollection) ∧ ((∀ (A : α), A \ A = inst_3.emptyCollection) ∧ ((∀ (A B C : α), A \ B ∪ C = A \ B ∩ A \ C) ∧ ((∀ (A B C : α), A \ B ∩ C = A \ B ∪ A \ C) ∧ ((∀ (A B C : α), A ∪ B \ C = A \ C ∪ B \ C) ∧ ((∀ (A B C : α), A ∩ B \ C = A \ C ∩ B \ C) ∧ ((∀ (A B : α), inst_4.Subset (A \ B)A) ∧ (∀ (A B : α), A \ B ∩ B = inst_3.emptyCollection))))))))))) → ∀ (A B₁ B₂ : α), inst_4.Subset B₁ B₂ → inst_4.Subset (A \ B₂)(A \ B₁)
-Transliterated theorem: ∀ A B₁ B₂ : α, B₁ ⊆ B₂ → A \ B₂ ⊆ A \ B₁
-Logical form (Lean): : ∀ A B₁ B₂ : α, B₁ ⊆ B₂ → A \ B₂ ⊆ A \ B₁
-Source: [`./Interface/Laws/Difference.lean#L203`](./Interface/Laws/Difference.lean#L203)
-
-
-
-Name: DifferenceEmpty
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A : α, A \ (∅ : α) = A
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A₁ A₂ B : α), inst_4.Subset A₁ A₂ → inst_4.Subset (A₁ \ B)(A₂ \ B)) ∧ ((∀ (A B₁ B₂ : α), inst_4.Subset B₁ B₂ → inst_4.Subset (A \ B₂)(A \ B₁)) ∧ ((∀ (A : α), A \ inst_3.emptyCollection = A) ∧ ((∀ (A : α), inst_3.emptyCollection \ A = inst_3.emptyCollection) ∧ ((∀ (A : α), A \ A = inst_3.emptyCollection) ∧ ((∀ (A B C : α), A \ B ∪ C = A \ B ∩ A \ C) ∧ ((∀ (A B C : α), A \ B ∩ C = A \ B ∪ A \ C) ∧ ((∀ (A B C : α), A ∪ B \ C = A \ C ∪ B \ C) ∧ ((∀ (A B C : α), A ∩ B \ C = A \ C ∩ B \ C) ∧ ((∀ (A B : α), inst_4.Subset (A \ B)A) ∧ (∀ (A B : α), A \ B ∩ B = inst_3.emptyCollection))))))))))) → ∀ (A : α), A \ inst_3.emptyCollection = A
-Transliterated theorem: ∀ A : α, A \ ∅ ∈ α = A
-Logical form (Lean): : ∀ A : α, A \ (∅ : α) = A
-Source: [`./Interface/Laws/Difference.lean#L248`](./Interface/Laws/Difference.lean#L248)
-
-
-
-Name: EmptyDifference
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A : α, (∅ : α) \ A = (∅ : α)
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A₁ A₂ B : α), inst_4.Subset A₁ A₂ → inst_4.Subset (A₁ \ B)(A₂ \ B)) ∧ ((∀ (A B₁ B₂ : α), inst_4.Subset B₁ B₂ → inst_4.Subset (A \ B₂)(A \ B₁)) ∧ ((∀ (A : α), A \ inst_3.emptyCollection = A) ∧ ((∀ (A : α), inst_3.emptyCollection \ A = inst_3.emptyCollection) ∧ ((∀ (A : α), A \ A = inst_3.emptyCollection) ∧ ((∀ (A B C : α), A \ B ∪ C = A \ B ∩ A \ C) ∧ ((∀ (A B C : α), A \ B ∩ C = A \ B ∪ A \ C) ∧ ((∀ (A B C : α), A ∪ B \ C = A \ C ∪ B \ C) ∧ ((∀ (A B C : α), A ∩ B \ C = A \ C ∩ B \ C) ∧ ((∀ (A B : α), inst_4.Subset (A \ B)A) ∧ (∀ (A B : α), A \ B ∩ B = inst_3.emptyCollection))))))))))) → ∀ (A : α), inst_3.emptyCollection \ A = inst_3.emptyCollection
-Transliterated theorem: ∀ A : α, ∅ ∈ α \ A = ∅ ∈ α
-Logical form (Lean): : ∀ A : α, (∅ : α) \ A = (∅ : α)
-Source: [`./Interface/Laws/Difference.lean#L292`](./Interface/Laws/Difference.lean#L292)
-
-
-
-Name: DifferenceSelf
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A : α, A \ A = (∅ : α)
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A₁ A₂ B : α), inst_4.Subset A₁ A₂ → inst_4.Subset (A₁ \ B)(A₂ \ B)) ∧ ((∀ (A B₁ B₂ : α), inst_4.Subset B₁ B₂ → inst_4.Subset (A \ B₂)(A \ B₁)) ∧ ((∀ (A : α), A \ inst_3.emptyCollection = A) ∧ ((∀ (A : α), inst_3.emptyCollection \ A = inst_3.emptyCollection) ∧ ((∀ (A : α), A \ A = inst_3.emptyCollection) ∧ ((∀ (A B C : α), A \ B ∪ C = A \ B ∩ A \ C) ∧ ((∀ (A B C : α), A \ B ∩ C = A \ B ∪ A \ C) ∧ ((∀ (A B C : α), A ∪ B \ C = A \ C ∪ B \ C) ∧ ((∀ (A B C : α), A ∩ B \ C = A \ C ∩ B \ C) ∧ ((∀ (A B : α), inst_4.Subset (A \ B)A) ∧ (∀ (A B : α), A \ B ∩ B = inst_3.emptyCollection))))))))))) → ∀ (A : α), A \ A = inst_3.emptyCollection
-Transliterated theorem: ∀ A : α, A \ A = ∅ ∈ α
-Logical form (Lean): : ∀ A : α, A \ A = (∅ : α)
-Source: [`./Interface/Laws/Difference.lean#L336`](./Interface/Laws/Difference.lean#L336)
-
-
-
-Name: DifferenceUnion
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A B C : α, A \ (B ∪ C) = (A \ B) ∩ (A \ C)
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A₁ A₂ B : α), inst_4.Subset A₁ A₂ → inst_4.Subset (A₁ \ B)(A₂ \ B)) ∧ ((∀ (A B₁ B₂ : α), inst_4.Subset B₁ B₂ → inst_4.Subset (A \ B₂)(A \ B₁)) ∧ ((∀ (A : α), A \ inst_3.emptyCollection = A) ∧ ((∀ (A : α), inst_3.emptyCollection \ A = inst_3.emptyCollection) ∧ ((∀ (A : α), A \ A = inst_3.emptyCollection) ∧ ((∀ (A B C : α), A \ B ∪ C = A \ B ∩ A \ C) ∧ ((∀ (A B C : α), A \ B ∩ C = A \ B ∪ A \ C) ∧ ((∀ (A B C : α), A ∪ B \ C = A \ C ∪ B \ C) ∧ ((∀ (A B C : α), A ∩ B \ C = A \ C ∩ B \ C) ∧ ((∀ (A B : α), inst_4.Subset (A \ B)A) ∧ (∀ (A B : α), A \ B ∩ B = inst_3.emptyCollection))))))))))) → ∀ (A B C : α), A \ B ∪ C = A \ B ∩ A \ C
-Transliterated theorem: ∀ A B C : α, A \ (B ∪ C) = (A \ B) ∩ (A \ C)
-Logical form (Lean): : ∀ A B C : α, A \ (B ∪ C) = (A \ B) ∩ (A \ C)
-Source: [`./Interface/Laws/Difference.lean#L381`](./Interface/Laws/Difference.lean#L381)
-
-
-
-Name: DifferenceIntersection
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A B C : α, A \ (B ∩ C) = (A \ B) ∪ (A \ C)
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A₁ A₂ B : α), inst_4.Subset A₁ A₂ → inst_4.Subset (A₁ \ B)(A₂ \ B)) ∧ ((∀ (A B₁ B₂ : α), inst_4.Subset B₁ B₂ → inst_4.Subset (A \ B₂)(A \ B₁)) ∧ ((∀ (A : α), A \ inst_3.emptyCollection = A) ∧ ((∀ (A : α), inst_3.emptyCollection \ A = inst_3.emptyCollection) ∧ ((∀ (A : α), A \ A = inst_3.emptyCollection) ∧ ((∀ (A B C : α), A \ B ∪ C = A \ B ∩ A \ C) ∧ ((∀ (A B C : α), A \ B ∩ C = A \ B ∪ A \ C) ∧ ((∀ (A B C : α), A ∪ B \ C = A \ C ∪ B \ C) ∧ ((∀ (A B C : α), A ∩ B \ C = A \ C ∩ B \ C) ∧ ((∀ (A B : α), inst_4.Subset (A \ B)A) ∧ (∀ (A B : α), A \ B ∩ B = inst_3.emptyCollection))))))))))) → ∀ (A B C : α), A \ B ∩ C = A \ B ∪ A \ C
-Transliterated theorem: ∀ A B C : α, A \ (B ∩ C) = (A \ B) ∪ (A \ C)
-Logical form (Lean): : ∀ A B C : α, A \ (B ∩ C) = (A \ B) ∪ (A \ C)
-Source: [`./Interface/Laws/Difference.lean#L427`](./Interface/Laws/Difference.lean#L427)
-
-
-
-Name: UnionDifferenceDistributes
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A B C : α, (A ∪ B) \ C = (A \ C) ∪ (B \ C)
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A₁ A₂ B : α), inst_4.Subset A₁ A₂ → inst_4.Subset (A₁ \ B)(A₂ \ B)) ∧ ((∀ (A B₁ B₂ : α), inst_4.Subset B₁ B₂ → inst_4.Subset (A \ B₂)(A \ B₁)) ∧ ((∀ (A : α), A \ inst_3.emptyCollection = A) ∧ ((∀ (A : α), inst_3.emptyCollection \ A = inst_3.emptyCollection) ∧ ((∀ (A : α), A \ A = inst_3.emptyCollection) ∧ ((∀ (A B C : α), A \ B ∪ C = A \ B ∩ A \ C) ∧ ((∀ (A B C : α), A \ B ∩ C = A \ B ∪ A \ C) ∧ ((∀ (A B C : α), A ∪ B \ C = A \ C ∪ B \ C) ∧ ((∀ (A B C : α), A ∩ B \ C = A \ C ∩ B \ C) ∧ ((∀ (A B : α), inst_4.Subset (A \ B)A) ∧ (∀ (A B : α), A \ B ∩ B = inst_3.emptyCollection))))))))))) → ∀ (A B C : α), A ∪ B \ C = A \ C ∪ B \ C
-Transliterated theorem: ∀ A B C : α, (A ∪ B) \ C = (A \ C) ∪ (B \ C)
-Logical form (Lean): : ∀ A B C : α, (A ∪ B) \ C = (A \ C) ∪ (B \ C)
-Source: [`./Interface/Laws/Difference.lean#L473`](./Interface/Laws/Difference.lean#L473)
-
-
-
-Name: IntersectionDifferenceDistributes
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A B C : α, (A ∩ B) \ C = (A \ C) ∩ (B \ C)
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A₁ A₂ B : α), inst_4.Subset A₁ A₂ → inst_4.Subset (A₁ \ B)(A₂ \ B)) ∧ ((∀ (A B₁ B₂ : α), inst_4.Subset B₁ B₂ → inst_4.Subset (A \ B₂)(A \ B₁)) ∧ ((∀ (A : α), A \ inst_3.emptyCollection = A) ∧ ((∀ (A : α), inst_3.emptyCollection \ A = inst_3.emptyCollection) ∧ ((∀ (A : α), A \ A = inst_3.emptyCollection) ∧ ((∀ (A B C : α), A \ B ∪ C = A \ B ∩ A \ C) ∧ ((∀ (A B C : α), A \ B ∩ C = A \ B ∪ A \ C) ∧ ((∀ (A B C : α), A ∪ B \ C = A \ C ∪ B \ C) ∧ ((∀ (A B C : α), A ∩ B \ C = A \ C ∩ B \ C) ∧ ((∀ (A B : α), inst_4.Subset (A \ B)A) ∧ (∀ (A B : α), A \ B ∩ B = inst_3.emptyCollection))))))))))) → ∀ (A B C : α), A ∩ B \ C = A \ C ∩ B \ C
-Transliterated theorem: ∀ A B C : α, (A ∩ B) \ C = (A \ C) ∩ (B \ C)
-Logical form (Lean): : ∀ A B C : α, (A ∩ B) \ C = (A \ C) ∩ (B \ C)
-Source: [`./Interface/Laws/Difference.lean#L519`](./Interface/Laws/Difference.lean#L519)
-
-
-
-Name: DifferenceSubsetLeft
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A B : α, A \ B ⊆ A
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A₁ A₂ B : α), inst_4.Subset A₁ A₂ → inst_4.Subset (A₁ \ B)(A₂ \ B)) ∧ ((∀ (A B₁ B₂ : α), inst_4.Subset B₁ B₂ → inst_4.Subset (A \ B₂)(A \ B₁)) ∧ ((∀ (A : α), A \ inst_3.emptyCollection = A) ∧ ((∀ (A : α), inst_3.emptyCollection \ A = inst_3.emptyCollection) ∧ ((∀ (A : α), A \ A = inst_3.emptyCollection) ∧ ((∀ (A B C : α), A \ B ∪ C = A \ B ∩ A \ C) ∧ ((∀ (A B C : α), A \ B ∩ C = A \ B ∪ A \ C) ∧ ((∀ (A B C : α), A ∪ B \ C = A \ C ∪ B \ C) ∧ ((∀ (A B C : α), A ∩ B \ C = A \ C ∩ B \ C) ∧ ((∀ (A B : α), inst_4.Subset (A \ B)A) ∧ (∀ (A B : α), A \ B ∩ B = inst_3.emptyCollection))))))))))) → ∀ (A B : α), inst_4.Subset (A \ B)A
-Transliterated theorem: ∀ A B : α, A \ B ⊆ A
-Logical form (Lean): : ∀ A B : α, A \ B ⊆ A
-Source: [`./Interface/Laws/Difference.lean#L564`](./Interface/Laws/Difference.lean#L564)
-
-
-
-Name: DifferenceDisjointRight
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A B : α, (A \ B) ∩ B = (∅ : α)
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A₁ A₂ B : α), inst_4.Subset A₁ A₂ → inst_4.Subset (A₁ \ B)(A₂ \ B)) ∧ ((∀ (A B₁ B₂ : α), inst_4.Subset B₁ B₂ → inst_4.Subset (A \ B₂)(A \ B₁)) ∧ ((∀ (A : α), A \ inst_3.emptyCollection = A) ∧ ((∀ (A : α), inst_3.emptyCollection \ A = inst_3.emptyCollection) ∧ ((∀ (A : α), A \ A = inst_3.emptyCollection) ∧ ((∀ (A B C : α), A \ B ∪ C = A \ B ∩ A \ C) ∧ ((∀ (A B C : α), A \ B ∩ C = A \ B ∪ A \ C) ∧ ((∀ (A B C : α), A ∪ B \ C = A \ C ∪ B \ C) ∧ ((∀ (A B C : α), A ∩ B \ C = A \ C ∩ B \ C) ∧ ((∀ (A B : α), inst_4.Subset (A \ B)A) ∧ (∀ (A B : α), A \ B ∩ B = inst_3.emptyCollection))))))))))) → ∀ (A B : α), A \ B ∩ B = inst_3.emptyCollection
-Transliterated theorem: ∀ A B : α, (A \ B) ∩ B = ∅ ∈ α
-Logical form (Lean): : ∀ A B : α, (A \ B) ∩ B = (∅ : α)
-Source: [`./Interface/Laws/Difference.lean#L609`](./Interface/Laws/Difference.lean#L609)
-
-
-
-Name: SymmetricDifferenceAsUnionDifferences
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A B : α, A ∆ B = (A \ B) ∪ (B \ A)
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A B : α), inst.symmDiff A B = A \ B ∪ B \ A) ∧ ((∀ (A B : α), inst.symmDiff A B = A ∪ B \ A ∩ B) ∧ ((∀ (A B : α), inst.symmDiff A B = inst.symmDiff B A) ∧ ((∀ (A B C : α), inst.symmDiff (inst.symmDiff A B) C = inst.symmDiff A (inst.symmDiff B C)) ∧ ((∀ (A : α), inst.symmDiff A inst_4.emptyCollection = A) ∧ ((∀ (A : α), inst.symmDiff inst_4.emptyCollection A = A) ∧ ((∀ (A : α), inst.symmDiff A A = inst_4.emptyCollection) ∧ ((∀ (A B : α), inst.symmDiff A B = inst_4.emptyCollection ↔ A = B) ∧ (∀ (A B : α), inst_5.Subset (inst.symmDiff A B) (A ∪ B)))))))))) → ∀ (A B : α), inst.symmDiff A B = A \ B ∪ B \ A
-Transliterated theorem: ∀ A B : α, A ∆ B = (A \ B) ∪ (B \ A)
-Logical form (Lean): : ∀ A B : α, A ∆ B = (A \ B) ∪ (B \ A)
-Source: [`./Interface/Laws/SymmetricDifference.lean#L152`](./Interface/Laws/SymmetricDifference.lean#L152)
-
-
-
-Name: SymmetricDifferenceAsUnionDifferenceIntersection
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A B : α, A ∆ B = (A ∪ B) \ (A ∩ B)
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A B : α), inst.symmDiff A B = A \ B ∪ B \ A) ∧ ((∀ (A B : α), inst.symmDiff A B = A ∪ B \ A ∩ B) ∧ ((∀ (A B : α), inst.symmDiff A B = inst.symmDiff B A) ∧ ((∀ (A B C : α), inst.symmDiff (inst.symmDiff A B) C = inst.symmDiff A (inst.symmDiff B C)) ∧ ((∀ (A : α), inst.symmDiff A inst_4.emptyCollection = A) ∧ ((∀ (A : α), inst.symmDiff inst_4.emptyCollection A = A) ∧ ((∀ (A : α), inst.symmDiff A A = inst_4.emptyCollection) ∧ ((∀ (A B : α), inst.symmDiff A B = inst_4.emptyCollection ↔ A = B) ∧ (∀ (A B : α), inst_5.Subset (inst.symmDiff A B) (A ∪ B)))))))))) → ∀ (A B : α), inst.symmDiff A B = A ∪ B \ A ∩ B
-Transliterated theorem: ∀ A B : α, A ∆ B = (A ∪ B) \ (A ∩ B)
-Logical form (Lean): : ∀ A B : α, A ∆ B = (A ∪ B) \ (A ∩ B)
-Source: [`./Interface/Laws/SymmetricDifference.lean#L198`](./Interface/Laws/SymmetricDifference.lean#L198)
-
-
-
-Name: SymmetricDifferenceCommutative
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A B : α, A ∆ B = B ∆ A
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A B : α), inst.symmDiff A B = A \ B ∪ B \ A) ∧ ((∀ (A B : α), inst.symmDiff A B = A ∪ B \ A ∩ B) ∧ ((∀ (A B : α), inst.symmDiff A B = inst.symmDiff B A) ∧ ((∀ (A B C : α), inst.symmDiff (inst.symmDiff A B) C = inst.symmDiff A (inst.symmDiff B C)) ∧ ((∀ (A : α), inst.symmDiff A inst_4.emptyCollection = A) ∧ ((∀ (A : α), inst.symmDiff inst_4.emptyCollection A = A) ∧ ((∀ (A : α), inst.symmDiff A A = inst_4.emptyCollection) ∧ ((∀ (A B : α), inst.symmDiff A B = inst_4.emptyCollection ↔ A = B) ∧ (∀ (A B : α), inst_5.Subset (inst.symmDiff A B) (A ∪ B)))))))))) → ∀ (A B : α), inst.symmDiff A B = inst.symmDiff B A
-Transliterated theorem: ∀ A B : α, A ∆ B = B ∆ A
-Logical form (Lean): : ∀ A B : α, A ∆ B = B ∆ A
-Source: [`./Interface/Laws/SymmetricDifference.lean#L243`](./Interface/Laws/SymmetricDifference.lean#L243)
-
-
-
-Name: SymmetricDifferenceAssociative
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A B C : α, (A ∆ B) ∆ C = A ∆ (B ∆ C)
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A B : α), inst.symmDiff A B = A \ B ∪ B \ A) ∧ ((∀ (A B : α), inst.symmDiff A B = A ∪ B \ A ∩ B) ∧ ((∀ (A B : α), inst.symmDiff A B = inst.symmDiff B A) ∧ ((∀ (A B C : α), inst.symmDiff (inst.symmDiff A B) C = inst.symmDiff A (inst.symmDiff B C)) ∧ ((∀ (A : α), inst.symmDiff A inst_4.emptyCollection = A) ∧ ((∀ (A : α), inst.symmDiff inst_4.emptyCollection A = A) ∧ ((∀ (A : α), inst.symmDiff A A = inst_4.emptyCollection) ∧ ((∀ (A B : α), inst.symmDiff A B = inst_4.emptyCollection ↔ A = B) ∧ (∀ (A B : α), inst_5.Subset (inst.symmDiff A B) (A ∪ B)))))))))) → ∀ (A B C : α), inst.symmDiff (inst.symmDiff A B) C = inst.symmDiff A (inst.symmDiff B C)
-Transliterated theorem: ∀ A B C : α, (A ∆ B) ∆ C = A ∆ (B ∆ C)
-Logical form (Lean): : ∀ A B C : α, (A ∆ B) ∆ C = A ∆ (B ∆ C)
-Source: [`./Interface/Laws/SymmetricDifference.lean#L288`](./Interface/Laws/SymmetricDifference.lean#L288)
-
-
-
-Name: SymmetricDifferenceEmpty
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A : α, A ∆ (∅ : α) = A
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A B : α), inst.symmDiff A B = A \ B ∪ B \ A) ∧ ((∀ (A B : α), inst.symmDiff A B = A ∪ B \ A ∩ B) ∧ ((∀ (A B : α), inst.symmDiff A B = inst.symmDiff B A) ∧ ((∀ (A B C : α), inst.symmDiff (inst.symmDiff A B) C = inst.symmDiff A (inst.symmDiff B C)) ∧ ((∀ (A : α), inst.symmDiff A inst_4.emptyCollection = A) ∧ ((∀ (A : α), inst.symmDiff inst_4.emptyCollection A = A) ∧ ((∀ (A : α), inst.symmDiff A A = inst_4.emptyCollection) ∧ ((∀ (A B : α), inst.symmDiff A B = inst_4.emptyCollection ↔ A = B) ∧ (∀ (A B : α), inst_5.Subset (inst.symmDiff A B) (A ∪ B)))))))))) → ∀ (A : α), inst.symmDiff A inst_4.emptyCollection = A
-Transliterated theorem: ∀ A : α, A ∆ ∅ ∈ α = A
-Logical form (Lean): : ∀ A : α, A ∆ (∅ : α) = A
-Source: [`./Interface/Laws/SymmetricDifference.lean#L333`](./Interface/Laws/SymmetricDifference.lean#L333)
-
-
-
-Name: EmptySymmetricDifference
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A : α, (∅ : α) ∆ A = A
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A B : α), inst.symmDiff A B = A \ B ∪ B \ A) ∧ ((∀ (A B : α), inst.symmDiff A B = A ∪ B \ A ∩ B) ∧ ((∀ (A B : α), inst.symmDiff A B = inst.symmDiff B A) ∧ ((∀ (A B C : α), inst.symmDiff (inst.symmDiff A B) C = inst.symmDiff A (inst.symmDiff B C)) ∧ ((∀ (A : α), inst.symmDiff A inst_4.emptyCollection = A) ∧ ((∀ (A : α), inst.symmDiff inst_4.emptyCollection A = A) ∧ ((∀ (A : α), inst.symmDiff A A = inst_4.emptyCollection) ∧ ((∀ (A B : α), inst.symmDiff A B = inst_4.emptyCollection ↔ A = B) ∧ (∀ (A B : α), inst_5.Subset (inst.symmDiff A B) (A ∪ B)))))))))) → ∀ (A : α), inst.symmDiff inst_4.emptyCollection A = A
-Transliterated theorem: ∀ A : α, ∅ ∈ α ∆ A = A
-Logical form (Lean): : ∀ A : α, (∅ : α) ∆ A = A
-Source: [`./Interface/Laws/SymmetricDifference.lean#L377`](./Interface/Laws/SymmetricDifference.lean#L377)
-
-
-
-Name: SymmetricDifferenceSelf
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A : α, A ∆ A = (∅ : α)
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A B : α), inst.symmDiff A B = A \ B ∪ B \ A) ∧ ((∀ (A B : α), inst.symmDiff A B = A ∪ B \ A ∩ B) ∧ ((∀ (A B : α), inst.symmDiff A B = inst.symmDiff B A) ∧ ((∀ (A B C : α), inst.symmDiff (inst.symmDiff A B) C = inst.symmDiff A (inst.symmDiff B C)) ∧ ((∀ (A : α), inst.symmDiff A inst_4.emptyCollection = A) ∧ ((∀ (A : α), inst.symmDiff inst_4.emptyCollection A = A) ∧ ((∀ (A : α), inst.symmDiff A A = inst_4.emptyCollection) ∧ ((∀ (A B : α), inst.symmDiff A B = inst_4.emptyCollection ↔ A = B) ∧ (∀ (A B : α), inst_5.Subset (inst.symmDiff A B) (A ∪ B)))))))))) → ∀ (A : α), inst.symmDiff A A = inst_4.emptyCollection
-Transliterated theorem: ∀ A : α, A ∆ A = ∅ ∈ α
-Logical form (Lean): : ∀ A : α, A ∆ A = (∅ : α)
-Source: [`./Interface/Laws/SymmetricDifference.lean#L421`](./Interface/Laws/SymmetricDifference.lean#L421)
-
-
-
-Name: SymmetricDifferenceEqEmptyIff
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A B : α, A ∆ B = (∅ : α) ↔ A = B
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    A ∆ B = (∅ : α) ↔ A = B
-Transliterated theorem: ∀ A B : α, A ∆ B = ∅ ∈ α ↔ A = B
-Logical form (Lean): : ∀ A B : α, A ∆ B = (∅ : α) ↔ A = B
-Source: [`./Interface/Laws/SymmetricDifference.lean#L466`](./Interface/Laws/SymmetricDifference.lean#L466)
-
-
-
-Name: SymmetricDifferenceSubsetUnion
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A B : α, A ∆ B ⊆ A ∪ B
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A B : α), inst.symmDiff A B = A \ B ∪ B \ A) ∧ ((∀ (A B : α), inst.symmDiff A B = A ∪ B \ A ∩ B) ∧ ((∀ (A B : α), inst.symmDiff A B = inst.symmDiff B A) ∧ ((∀ (A B C : α), inst.symmDiff (inst.symmDiff A B) C = inst.symmDiff A (inst.symmDiff B C)) ∧ ((∀ (A : α), inst.symmDiff A inst_4.emptyCollection = A) ∧ ((∀ (A : α), inst.symmDiff inst_4.emptyCollection A = A) ∧ ((∀ (A : α), inst.symmDiff A A = inst_4.emptyCollection) ∧ ((∀ (A B : α), inst.symmDiff A B = inst_4.emptyCollection ↔ A = B) ∧ (∀ (A B : α), inst_5.Subset (inst.symmDiff A B) (A ∪ B)))))))))) → ∀ (A B : α), inst_5.Subset (inst.symmDiff A B) (A ∪ B)
-Transliterated theorem: ∀ A B : α, A ∆ B ⊆ A ∪ B
-Logical form (Lean): : ∀ A B : α, A ∆ B ⊆ A ∪ B
-Source: [`./Interface/Laws/SymmetricDifference.lean#L511`](./Interface/Laws/SymmetricDifference.lean#L511)
-
-
-
-Name: IntersectionDistributesOverUnion
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A B C : α, A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A B C : α), A ∩ B ∪ C = A ∩ B ∪ A ∩ C) ∧ ((∀ (A B C : α), A ∪ B ∩ C = A ∪ B ∩ A ∪ C) ∧ ((∀ (A B : α), A ∪ A ∩ B = A) ∧ (∀ (A B : α), A ∩ A ∪ B = A)))) → ∀ (A B C : α), A ∩ B ∪ C = A ∩ B ∪ A ∩ C
-Transliterated theorem: ∀ A B C : α, A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)
-Logical form (Lean): : ∀ A B C : α, A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)
-Source: [`./Interface/Laws/Distributivity.lean#L111`](./Interface/Laws/Distributivity.lean#L111)
-
-
-
-Name: UnionDistributesOverIntersection
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A B C : α, A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A B C : α), A ∩ B ∪ C = A ∩ B ∪ A ∩ C) ∧ ((∀ (A B C : α), A ∪ B ∩ C = A ∪ B ∩ A ∪ C) ∧ ((∀ (A B : α), A ∪ A ∩ B = A) ∧ (∀ (A B : α), A ∩ A ∪ B = A)))) → ∀ (A B C : α), A ∪ B ∩ C = A ∪ B ∩ A ∪ C
-Transliterated theorem: ∀ A B C : α, A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)
-Logical form (Lean): : ∀ A B C : α, A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)
-Source: [`./Interface/Laws/Distributivity.lean#L157`](./Interface/Laws/Distributivity.lean#L157)
-
-
-
-Name: AbsorptionUnionIntersection
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A B : α, A ∪ (A ∩ B) = A
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A B C : α), A ∩ B ∪ C = A ∩ B ∪ A ∩ C) ∧ ((∀ (A B C : α), A ∪ B ∩ C = A ∪ B ∩ A ∪ C) ∧ ((∀ (A B : α), A ∪ A ∩ B = A) ∧ (∀ (A B : α), A ∩ A ∪ B = A)))) → ∀ (A B : α), A ∪ A ∩ B = A
-Transliterated theorem: ∀ A B : α, A ∪ (A ∩ B) = A
-Logical form (Lean): : ∀ A B : α, A ∪ (A ∩ B) = A
-Source: [`./Interface/Laws/Distributivity.lean#L202`](./Interface/Laws/Distributivity.lean#L202)
-
-
-
-Name: AbsorptionIntersectionUnion
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A B : α, A ∩ (A ∪ B) = A
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A B C : α), A ∩ B ∪ C = A ∩ B ∪ A ∩ C) ∧ ((∀ (A B C : α), A ∪ B ∩ C = A ∪ B ∩ A ∪ C) ∧ ((∀ (A B : α), A ∪ A ∩ B = A) ∧ (∀ (A B : α), A ∩ A ∪ B = A)))) → ∀ (A B : α), A ∩ A ∪ B = A
-Transliterated theorem: ∀ A B : α, A ∩ (A ∪ B) = A
-Logical form (Lean): : ∀ A B : α, A ∩ (A ∪ B) = A
-Source: [`./Interface/Laws/Distributivity.lean#L246`](./Interface/Laws/Distributivity.lean#L246)
 
 
 
@@ -1047,244 +163,6 @@ Predicate logic (unfolded):
 Transliterated theorem: (∀ collection ∈ Collection ∀ x ∈ Element), (∃ B ∈ SetObject, B ∈ collection) → x ∈ HasCollectionIntersection.collectionIntersection collection ↔ ∀ B : SetObject, B ∈ collection → x ∈ B
 Logical form (Lean): [CollectionMembershipLaws Element SetObject Collection] (collection : Collection) (x : Element) (collectionNonempty : ∃ B : SetObject, B ∈ collection) : x ∈ HasCollectionIntersection.collectionIntersection collection ↔ ∀ B : SetObject, B ∈ collection → x ∈ B
 Source: [`./Interface/Laws/Families.lean#L208`](./Interface/Laws/Families.lean#L208)
-
-
-
-Name: DoubleComplement
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A : α, Aᶜᶜ = A
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A : α), inst.complement (inst.complement A) = A) ∧ (inst.complement inst_5.emptyCollection = inst_1.universal ∧ (inst.complement inst_1.universal = inst_5.emptyCollection ∧ ((∀ (A : α), A ∪ inst.complement A = inst_1.universal) ∧ ((∀ (A : α), A ∩ inst.complement A = inst_5.emptyCollection) ∧ ((∀ (A B : α), inst.complement (A ∪ B) = inst.complement A ∩ inst.complement B) ∧ ((∀ (A B : α), inst.complement (A ∩ B) = inst.complement A ∪ inst.complement B) ∧ ((∀ (A B : α), A \ B = A ∩ inst.complement B) ∧ ((∀ (A : α), A \ inst_1.universal = inst_5.emptyCollection) ∧ (∀ (A : α), inst_1.universal \ A = inst.complement A)))))))))) → ∀ (A : α), inst.complement (inst.complement A) = A
-Transliterated theorem: ∀ A : α, Aᶜᶜ = A
-Logical form (Lean): : ∀ A : α, Aᶜᶜ = A
-Source: [`./Interface/Laws/Complement.lean#L141`](./Interface/Laws/Complement.lean#L141)
-
-
-
-Name: ComplementEmpty
-Kind: Theorem
-State: Sorry
-Predicate logic: (∅ : α)ᶜ = (𝒰 : α)
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A : α), inst.complement (inst.complement A) = A) ∧ (inst.complement inst_5.emptyCollection = inst_1.universal ∧ (inst.complement inst_1.universal = inst_5.emptyCollection ∧ ((∀ (A : α), A ∪ inst.complement A = inst_1.universal) ∧ ((∀ (A : α), A ∩ inst.complement A = inst_5.emptyCollection) ∧ ((∀ (A B : α), inst.complement (A ∪ B) = inst.complement A ∩ inst.complement B) ∧ ((∀ (A B : α), inst.complement (A ∩ B) = inst.complement A ∪ inst.complement B) ∧ ((∀ (A B : α), A \ B = A ∩ inst.complement B) ∧ ((∀ (A : α), A \ inst_1.universal = inst_5.emptyCollection) ∧ (∀ (A : α), inst_1.universal \ A = inst.complement A)))))))))) → inst.complement inst_5.emptyCollection = inst_1.universal
-Transliterated theorem: ∅ ∈ αᶜ = 𝒰 ∈ α
-Logical form (Lean): : (∅ : α)ᶜ = (𝒰 : α)
-Source: [`./Interface/Laws/Complement.lean#L186`](./Interface/Laws/Complement.lean#L186)
-
-
-
-Name: ComplementUniversal
-Kind: Theorem
-State: Sorry
-Predicate logic: (𝒰 : α)ᶜ = (∅ : α)
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A : α), inst.complement (inst.complement A) = A) ∧ (inst.complement inst_5.emptyCollection = inst_1.universal ∧ (inst.complement inst_1.universal = inst_5.emptyCollection ∧ ((∀ (A : α), A ∪ inst.complement A = inst_1.universal) ∧ ((∀ (A : α), A ∩ inst.complement A = inst_5.emptyCollection) ∧ ((∀ (A B : α), inst.complement (A ∪ B) = inst.complement A ∩ inst.complement B) ∧ ((∀ (A B : α), inst.complement (A ∩ B) = inst.complement A ∪ inst.complement B) ∧ ((∀ (A B : α), A \ B = A ∩ inst.complement B) ∧ ((∀ (A : α), A \ inst_1.universal = inst_5.emptyCollection) ∧ (∀ (A : α), inst_1.universal \ A = inst.complement A)))))))))) → inst.complement inst_1.universal = inst_5.emptyCollection
-Transliterated theorem: 𝒰 ∈ αᶜ = ∅ ∈ α
-Logical form (Lean): : (𝒰 : α)ᶜ = (∅ : α)
-Source: [`./Interface/Laws/Complement.lean#L231`](./Interface/Laws/Complement.lean#L231)
-
-
-
-Name: UnionComplement
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A : α, A ∪ Aᶜ = (𝒰 : α)
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A : α), inst.complement (inst.complement A) = A) ∧ (inst.complement inst_5.emptyCollection = inst_1.universal ∧ (inst.complement inst_1.universal = inst_5.emptyCollection ∧ ((∀ (A : α), A ∪ inst.complement A = inst_1.universal) ∧ ((∀ (A : α), A ∩ inst.complement A = inst_5.emptyCollection) ∧ ((∀ (A B : α), inst.complement (A ∪ B) = inst.complement A ∩ inst.complement B) ∧ ((∀ (A B : α), inst.complement (A ∩ B) = inst.complement A ∪ inst.complement B) ∧ ((∀ (A B : α), A \ B = A ∩ inst.complement B) ∧ ((∀ (A : α), A \ inst_1.universal = inst_5.emptyCollection) ∧ (∀ (A : α), inst_1.universal \ A = inst.complement A)))))))))) → ∀ (A : α), A ∪ inst.complement A = inst_1.universal
-Transliterated theorem: ∀ A : α, A ∪ Aᶜ = 𝒰 ∈ α
-Logical form (Lean): : ∀ A : α, A ∪ Aᶜ = (𝒰 : α)
-Source: [`./Interface/Laws/Complement.lean#L276`](./Interface/Laws/Complement.lean#L276)
-
-
-
-Name: IntersectionComplement
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A : α, A ∩ Aᶜ = (∅ : α)
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A : α), inst.complement (inst.complement A) = A) ∧ (inst.complement inst_5.emptyCollection = inst_1.universal ∧ (inst.complement inst_1.universal = inst_5.emptyCollection ∧ ((∀ (A : α), A ∪ inst.complement A = inst_1.universal) ∧ ((∀ (A : α), A ∩ inst.complement A = inst_5.emptyCollection) ∧ ((∀ (A B : α), inst.complement (A ∪ B) = inst.complement A ∩ inst.complement B) ∧ ((∀ (A B : α), inst.complement (A ∩ B) = inst.complement A ∪ inst.complement B) ∧ ((∀ (A B : α), A \ B = A ∩ inst.complement B) ∧ ((∀ (A : α), A \ inst_1.universal = inst_5.emptyCollection) ∧ (∀ (A : α), inst_1.universal \ A = inst.complement A)))))))))) → ∀ (A : α), A ∩ inst.complement A = inst_5.emptyCollection
-Transliterated theorem: ∀ A : α, A ∩ Aᶜ = ∅ ∈ α
-Logical form (Lean): : ∀ A : α, A ∩ Aᶜ = (∅ : α)
-Source: [`./Interface/Laws/Complement.lean#L321`](./Interface/Laws/Complement.lean#L321)
-
-
-
-Name: DeMorganUnion
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A B : α, (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A : α), inst.complement (inst.complement A) = A) ∧ (inst.complement inst_5.emptyCollection = inst_1.universal ∧ (inst.complement inst_1.universal = inst_5.emptyCollection ∧ ((∀ (A : α), A ∪ inst.complement A = inst_1.universal) ∧ ((∀ (A : α), A ∩ inst.complement A = inst_5.emptyCollection) ∧ ((∀ (A B : α), inst.complement (A ∪ B) = inst.complement A ∩ inst.complement B) ∧ ((∀ (A B : α), inst.complement (A ∩ B) = inst.complement A ∪ inst.complement B) ∧ ((∀ (A B : α), A \ B = A ∩ inst.complement B) ∧ ((∀ (A : α), A \ inst_1.universal = inst_5.emptyCollection) ∧ (∀ (A : α), inst_1.universal \ A = inst.complement A)))))))))) → ∀ (A B : α), inst.complement (A ∪ B) = inst.complement A ∩ inst.complement B
-Transliterated theorem: ∀ A B : α, (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ
-Logical form (Lean): : ∀ A B : α, (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ
-Source: [`./Interface/Laws/Complement.lean#L366`](./Interface/Laws/Complement.lean#L366)
-
-
-
-Name: DeMorganIntersection
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A B : α, (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A : α), inst.complement (inst.complement A) = A) ∧ (inst.complement inst_5.emptyCollection = inst_1.universal ∧ (inst.complement inst_1.universal = inst_5.emptyCollection ∧ ((∀ (A : α), A ∪ inst.complement A = inst_1.universal) ∧ ((∀ (A : α), A ∩ inst.complement A = inst_5.emptyCollection) ∧ ((∀ (A B : α), inst.complement (A ∪ B) = inst.complement A ∩ inst.complement B) ∧ ((∀ (A B : α), inst.complement (A ∩ B) = inst.complement A ∪ inst.complement B) ∧ ((∀ (A B : α), A \ B = A ∩ inst.complement B) ∧ ((∀ (A : α), A \ inst_1.universal = inst_5.emptyCollection) ∧ (∀ (A : α), inst_1.universal \ A = inst.complement A)))))))))) → ∀ (A B : α), inst.complement (A ∩ B) = inst.complement A ∪ inst.complement B
-Transliterated theorem: ∀ A B : α, (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ
-Logical form (Lean): : ∀ A B : α, (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ
-Source: [`./Interface/Laws/Complement.lean#L411`](./Interface/Laws/Complement.lean#L411)
-
-
-
-Name: DifferenceAsIntersectionComplement
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A B : α, A \ B = A ∩ Bᶜ
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A : α), inst.complement (inst.complement A) = A) ∧ (inst.complement inst_5.emptyCollection = inst_1.universal ∧ (inst.complement inst_1.universal = inst_5.emptyCollection ∧ ((∀ (A : α), A ∪ inst.complement A = inst_1.universal) ∧ ((∀ (A : α), A ∩ inst.complement A = inst_5.emptyCollection) ∧ ((∀ (A B : α), inst.complement (A ∪ B) = inst.complement A ∩ inst.complement B) ∧ ((∀ (A B : α), inst.complement (A ∩ B) = inst.complement A ∪ inst.complement B) ∧ ((∀ (A B : α), A \ B = A ∩ inst.complement B) ∧ ((∀ (A : α), A \ inst_1.universal = inst_5.emptyCollection) ∧ (∀ (A : α), inst_1.universal \ A = inst.complement A)))))))))) → ∀ (A B : α), A \ B = A ∩ inst.complement B
-Transliterated theorem: ∀ A B : α, A \ B = A ∩ Bᶜ
-Logical form (Lean): : ∀ A B : α, A \ B = A ∩ Bᶜ
-Source: [`./Interface/Laws/Complement.lean#L457`](./Interface/Laws/Complement.lean#L457)
-
-
-
-Name: DifferenceUniversal
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A : α, A \ (𝒰 : α) = (∅ : α)
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A : α), inst.complement (inst.complement A) = A) ∧ (inst.complement inst_5.emptyCollection = inst_1.universal ∧ (inst.complement inst_1.universal = inst_5.emptyCollection ∧ ((∀ (A : α), A ∪ inst.complement A = inst_1.universal) ∧ ((∀ (A : α), A ∩ inst.complement A = inst_5.emptyCollection) ∧ ((∀ (A B : α), inst.complement (A ∪ B) = inst.complement A ∩ inst.complement B) ∧ ((∀ (A B : α), inst.complement (A ∩ B) = inst.complement A ∪ inst.complement B) ∧ ((∀ (A B : α), A \ B = A ∩ inst.complement B) ∧ ((∀ (A : α), A \ inst_1.universal = inst_5.emptyCollection) ∧ (∀ (A : α), inst_1.universal \ A = inst.complement A)))))))))) → ∀ (A : α), A \ inst_1.universal = inst_5.emptyCollection
-Transliterated theorem: ∀ A : α, A \ 𝒰 ∈ α = ∅ ∈ α
-Logical form (Lean): : ∀ A : α, A \ (𝒰 : α) = (∅ : α)
-Source: [`./Interface/Laws/Complement.lean#L503`](./Interface/Laws/Complement.lean#L503)
-
-
-
-Name: UniversalDifference
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A : α, (𝒰 : α) \ A = Aᶜ
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A : α), inst.complement (inst.complement A) = A) ∧ (inst.complement inst_5.emptyCollection = inst_1.universal ∧ (inst.complement inst_1.universal = inst_5.emptyCollection ∧ ((∀ (A : α), A ∪ inst.complement A = inst_1.universal) ∧ ((∀ (A : α), A ∩ inst.complement A = inst_5.emptyCollection) ∧ ((∀ (A B : α), inst.complement (A ∪ B) = inst.complement A ∩ inst.complement B) ∧ ((∀ (A B : α), inst.complement (A ∩ B) = inst.complement A ∪ inst.complement B) ∧ ((∀ (A B : α), A \ B = A ∩ inst.complement B) ∧ ((∀ (A : α), A \ inst_1.universal = inst_5.emptyCollection) ∧ (∀ (A : α), inst_1.universal \ A = inst.complement A)))))))))) → ∀ (A : α), inst_1.universal \ A = inst.complement A
-Transliterated theorem: ∀ A : α, 𝒰 ∈ α \ A = Aᶜ
-Logical form (Lean): : ∀ A : α, (𝒰 : α) \ A = Aᶜ
-Source: [`./Interface/Laws/Complement.lean#L548`](./Interface/Laws/Complement.lean#L548)
-
-
-
-Name: DualAntitone
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [HasSubset α] [UnionLaws α] [IntersectionLaws α], ∀ A B : α, A ⊆ B ↔ Dual B ⊆ Dual A
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ∀ A B : α, A ⊆ B ↔ Dual B ⊆ Dual A
-Transliterated theorem: ∀ A B : α, A ⊆ B ↔ Dual B ⊆ Dual A
-Logical form (Lean): [HasSubset α] [UnionLaws α] [IntersectionLaws α] : ∀ A B : α, A ⊆ B ↔ Dual B ⊆ Dual A
-Source: [`./Interface/Laws/Complement.lean#L632`](./Interface/Laws/Complement.lean#L632)
-
-
-
-Name: DualUnion
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A B : α, Dual (A ∪ B) = Dual A ∩ Dual B
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A : α), inst.complement (inst.complement A) = A) ∧ (inst.complement inst_5.emptyCollection = inst_1.universal ∧ (inst.complement inst_1.universal = inst_5.emptyCollection ∧ ((∀ (A : α), A ∪ inst.complement A = inst_1.universal) ∧ ((∀ (A : α), A ∩ inst.complement A = inst_5.emptyCollection) ∧ ((∀ (A B : α), inst.complement (A ∪ B) = inst.complement A ∩ inst.complement B) ∧ ((∀ (A B : α), inst.complement (A ∩ B) = inst.complement A ∪ inst.complement B) ∧ ((∀ (A B : α), A \ B = A ∩ inst.complement B) ∧ ((∀ (A : α), A \ inst_1.universal = inst_5.emptyCollection) ∧ (∀ (A : α), inst_1.universal \ A = inst.complement A)))))))))) → ∀ (A B : α), LRA.Set.Dual (A ∪ B) = LRA.Set.Dual A ∩ LRA.Set.Dual B
-Transliterated theorem: ∀ A B : α, Dual (A ∪ B) = Dual A ∩ Dual B
-Logical form (Lean): : ∀ A B : α, Dual (A ∪ B) = Dual A ∩ Dual B
-Source: [`./Interface/Laws/Complement.lean#L677`](./Interface/Laws/Complement.lean#L677)
-
-
-
-Name: DualIntersection
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A B : α, Dual (A ∩ B) = Dual A ∪ Dual B
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A : α), inst.complement (inst.complement A) = A) ∧ (inst.complement inst_5.emptyCollection = inst_1.universal ∧ (inst.complement inst_1.universal = inst_5.emptyCollection ∧ ((∀ (A : α), A ∪ inst.complement A = inst_1.universal) ∧ ((∀ (A : α), A ∩ inst.complement A = inst_5.emptyCollection) ∧ ((∀ (A B : α), inst.complement (A ∪ B) = inst.complement A ∩ inst.complement B) ∧ ((∀ (A B : α), inst.complement (A ∩ B) = inst.complement A ∪ inst.complement B) ∧ ((∀ (A B : α), A \ B = A ∩ inst.complement B) ∧ ((∀ (A : α), A \ inst_1.universal = inst_5.emptyCollection) ∧ (∀ (A : α), inst_1.universal \ A = inst.complement A)))))))))) → ∀ (A B : α), LRA.Set.Dual (A ∩ B) = LRA.Set.Dual A ∪ LRA.Set.Dual B
-Transliterated theorem: ∀ A B : α, Dual (A ∩ B) = Dual A ∪ Dual B
-Logical form (Lean): : ∀ A B : α, Dual (A ∩ B) = Dual A ∪ Dual B
-Source: [`./Interface/Laws/Complement.lean#L722`](./Interface/Laws/Complement.lean#L722)
-
-
-
-Name: DualInvolutive
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ A : α, Dual (Dual A) = A
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    (none)
-  Prove
-    ((∀ (A : α), inst.complement (inst.complement A) = A) ∧ (inst.complement inst_5.emptyCollection = inst_1.universal ∧ (inst.complement inst_1.universal = inst_5.emptyCollection ∧ ((∀ (A : α), A ∪ inst.complement A = inst_1.universal) ∧ ((∀ (A : α), A ∩ inst.complement A = inst_5.emptyCollection) ∧ ((∀ (A B : α), inst.complement (A ∪ B) = inst.complement A ∩ inst.complement B) ∧ ((∀ (A B : α), inst.complement (A ∩ B) = inst.complement A ∪ inst.complement B) ∧ ((∀ (A B : α), A \ B = A ∩ inst.complement B) ∧ ((∀ (A : α), A \ inst_1.universal = inst_5.emptyCollection) ∧ (∀ (A : α), inst_1.universal \ A = inst.complement A)))))))))) → ∀ (A : α), LRA.Set.Dual (LRA.Set.Dual A) = A
-Transliterated theorem: ∀ A : α, Dual (Dual A) = A
-Logical form (Lean): : ∀ A : α, Dual (Dual A) = A
-Source: [`./Interface/Laws/Complement.lean#L767`](./Interface/Laws/Complement.lean#L767)
 
 
 
@@ -2413,40 +1291,6 @@ Predicate logic (unfolded):
 Transliterated theorem: Satisfies M assignment (orF φ ψ) ↔ (Satisfies M assignment φ ∨ Satisfies M assignment ψ)
 Logical form (Lean): {M : Model MembershipSignature} {assignment : Nat → M.Domain} {φ ψ : Formula MembershipSignature Nat} : Satisfies M assignment (orF φ ψ) ↔ (Satisfies M assignment φ ∨ Satisfies M assignment ψ)
 Source: [`./Interface/ModelTheory/SatisfactionLemmas.lean#L112`](./Interface/ModelTheory/SatisfactionLemmas.lean#L112)
-
-
-
-Name: SetClassExtensionality
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ {α : Type u} {left right : SetClass α} (sameMembers : ∀ element, left element ↔ right element), left = right
-Predicate logic (unfolded):
-  Ambient
-    (α)
-  Objects
-    left right : SetClass α
-  Prove
-    left = right
-Transliterated theorem: (∀ element, left element ↔ right element) → left = right
-Logical form (Lean): {α : Type u} {left right : SetClass α} (sameMembers : ∀ element, left element ↔ right element) : left = right
-Source: [`./SetClass/Theorems.lean#L51`](./SetClass/Theorems.lean#L51)
-
-
-
-Name: SetRepresentsItsClass
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (setObject : SetObject),   LRA.Set.Represents setObject (LRA.Set.ClassOfSet setObject)
-Predicate logic (unfolded):
-  Ambient
-    (Element, SetObject, ∈)
-  Objects
-    setObject : SetObject
-  Prove
-    element ∈ setObject ↔ element ∈ setObject
-Transliterated theorem: (∀ A ∈ U), Represents A (ClassOfSet A)
-Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] (setObject : SetObject) : Represents setObject (ClassOfSet setObject)
-Source: [`./SetClass/Theorems.lean#L100`](./SetClass/Theorems.lean#L100)
 
 
 
@@ -11764,6 +10608,1128 @@ Source: [`./Interface/Definitions/RelationSets.lean`](./Interface/Definitions/Re
 
 
 
+Name: SetExtensionality
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ [Membership Element SetObject] [ExtensionalityLaw Element SetObject] {A B : SetObject} (sameMembers : ∀ x : Element, x ∈ A ↔ x ∈ B), A = B
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    A B : SetObject
+  Prove
+    A = B
+Transliterated theorem: (∀ A B ∈ U), (∀ x : Element, x ∈ A ↔ x ∈ B) → A = B
+Logical form (Lean): [Membership Element SetObject] [ExtensionalityLaw Element SetObject] {A B : SetObject} (sameMembers : ∀ x : Element, x ∈ A ↔ x ∈ B) : A = B
+Source: [`./Interface/Laws/Membership.lean#L423`](./Interface/Laws/Membership.lean#L423)
+
+
+
+Name: EmptyMembership
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [MembershipLaws Element SetObject], ∀ x : Element, x ∉ (∅ : SetObject)
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Element), x ∈ inst_4.emptyCollection → False) ∧ ((∀ (A B : SetObject) (x : Element), x ∈ A ∪ B ↔ Or (x) ∈ A(x) ∈ B) ∧ ((∀ (A B : SetObject) (x : Element), x ∈ A ∩ B ↔ (x ∈ A ∧ x ∈ B)) ∧ ((∀ (A B : SetObject) (x : Element), x ∈ A \ B ↔ (x ∈ A ∧ (x ∈ B → False))) ∧ (∀ (A B : SetObject), inst_5.Subset A B ↔ ∀ (x : Element), x ∈ A → x ∈ B))))) → ∀ (x : Element), x ∈ inst_4.emptyCollection → False
+Transliterated theorem: ∀ x : Element, x ∉ ∅ ∈ SetObject
+Logical form (Lean): [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [MembershipLaws Element SetObject] : ∀ x : Element, x ∉ (∅ : SetObject)
+Source: [`./Interface/Laws/Membership.lean#L474`](./Interface/Laws/Membership.lean#L474)
+
+
+
+Name: UnionMembership
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [MembershipLaws Element SetObject], ∀ (A B : SetObject) (x : Element), x ∈ A ∪ B ↔ x ∈ A ∨ x ∈ B
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    (none)
+  Prove
+    ∀ (A B : SetObject) (x : Element), x ∈ A ∪ B ↔ x ∈ A ∨ x ∈ B
+Transliterated theorem: ∀ A B ∈ SetObject x ∈ Element, x ∈ A ∪ B ↔ x ∈ A ∨ x ∈ B
+Logical form (Lean): [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [MembershipLaws Element SetObject] : ∀ (A B : SetObject) (x : Element), x ∈ A ∪ B ↔ x ∈ A ∨ x ∈ B
+Source: [`./Interface/Laws/Membership.lean#L526`](./Interface/Laws/Membership.lean#L526)
+
+
+
+Name: IntersectionMembership
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [MembershipLaws Element SetObject], ∀ (A B : SetObject) (x : Element), x ∈ A ∩ B ↔ x ∈ A ∧ x ∈ B
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    (none)
+  Prove
+    ∀ (A B : SetObject) (x : Element), x ∈ A ∩ B ↔ x ∈ A ∧ x ∈ B
+Transliterated theorem: ∀ A B ∈ SetObject x ∈ Element, x ∈ A ∩ B ↔ x ∈ A ∧ x ∈ B
+Logical form (Lean): [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [MembershipLaws Element SetObject] : ∀ (A B : SetObject) (x : Element), x ∈ A ∩ B ↔ x ∈ A ∧ x ∈ B
+Source: [`./Interface/Laws/Membership.lean#L578`](./Interface/Laws/Membership.lean#L578)
+
+
+
+Name: DifferenceMembership
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [MembershipLaws Element SetObject], ∀ (A B : SetObject) (x : Element), x ∈ A \ B ↔ x ∈ A ∧ x ∉ B
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    (none)
+  Prove
+    ∀ (A B : SetObject) (x : Element), x ∈ A \ B ↔ x ∈ A ∧ x ∉ B
+Transliterated theorem: ∀ A B ∈ SetObject x ∈ Element, x ∈ A \ B ↔ x ∈ A ∧ x ∉ B
+Logical form (Lean): [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [MembershipLaws Element SetObject] : ∀ (A B : SetObject) (x : Element), x ∈ A \ B ↔ x ∈ A ∧ x ∉ B
+Source: [`./Interface/Laws/Membership.lean#L630`](./Interface/Laws/Membership.lean#L630)
+
+
+
+Name: SubsetIffAllMembers
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [MembershipLaws Element SetObject], ∀ A B : SetObject, A ⊆ B ↔ ∀ x : Element, x ∈ A → x ∈ B
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    (none)
+  Prove
+    ∀ A B : SetObject, A ⊆ B ↔ ∀ x : Element, x ∈ A → x ∈ B
+Transliterated theorem: ∀ A B : SetObject, A ⊆ B ↔ ∀ x : Element, x ∈ A → x ∈ B
+Logical form (Lean): [Membership Element SetObject] [Union SetObject] [Inter SetObject] [SDiff SetObject] [EmptyCollection SetObject] [HasSubset SetObject] [MembershipLaws Element SetObject] : ∀ A B : SetObject, A ⊆ B ↔ ∀ x : Element, x ∈ A → x ∈ B
+Source: [`./Interface/Laws/Membership.lean#L682`](./Interface/Laws/Membership.lean#L682)
+
+
+
+Name: SeparationMembership
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ [Membership Element SetObject] [HasSeparation Element SetObject] [SeparationLaws Element SetObject], ∀ (A : SetObject) (property : Element → Prop) (x : Element), x ∈ HasSeparation.separation A property ↔ x ∈ A ∧ property x
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    (none)
+  Prove
+    ∀ (A : SetObject) (property : Element → Prop) (x : Element), x ∈ HasSeparation.separation A property ↔ x ∈ A ∧ property x
+Transliterated theorem: ∀ A ∈ SetObject property ∈ Element → Prop x ∈ Element, x ∈ HasSeparation.separation A property ↔ x ∈ A ∧ property x
+Logical form (Lean): [Membership Element SetObject] [HasSeparation Element SetObject] [SeparationLaws Element SetObject] : ∀ (A : SetObject) (property : Element → Prop) (x : Element), x ∈ HasSeparation.separation A property ↔ x ∈ A ∧ property x
+Source: [`./Interface/Laws/Membership.lean#L734`](./Interface/Laws/Membership.lean#L734)
+
+
+
+Name: UniversalMembership
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ [Membership Element SetObject] [HasUniversal SetObject] [HasComplement SetObject] [UniversalMembershipLaws Element SetObject], ∀ x : Element, x ∈ (𝒰 : SetObject)
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    (none)
+  Prove
+    ((∀ (x : Element), x ∈ inst_1.universal) ∧ (∀ (A : SetObject) (x : Element), x ∈ inst_2.complement A ↔ x ∈ A → False)) → ∀ (x : Element), x ∈ inst_1.universal
+Transliterated theorem: ∀ x : Element, x ∈ 𝒰 ∈ SetObject
+Logical form (Lean): [Membership Element SetObject] [HasUniversal SetObject] [HasComplement SetObject] [UniversalMembershipLaws Element SetObject] : ∀ x : Element, x ∈ (𝒰 : SetObject)
+Source: [`./Interface/Laws/Membership.lean#L785`](./Interface/Laws/Membership.lean#L785)
+
+
+
+Name: ComplementMembership
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ [Membership Element SetObject] [HasUniversal SetObject] [HasComplement SetObject] [UniversalMembershipLaws Element SetObject], ∀ (A : SetObject) (x : Element), x ∈ Aᶜ ↔ x ∉ A
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    (none)
+  Prove
+    ∀ (A : SetObject) (x : Element), x ∈ Aᶜ ↔ x ∉ A
+Transliterated theorem: ∀ A ∈ SetObject x ∈ Element, x ∈ Aᶜ ↔ x ∉ A
+Logical form (Lean): [Membership Element SetObject] [HasUniversal SetObject] [HasComplement SetObject] [UniversalMembershipLaws Element SetObject] : ∀ (A : SetObject) (x : Element), x ∈ Aᶜ ↔ x ∉ A
+Source: [`./Interface/Laws/Membership.lean#L835`](./Interface/Laws/Membership.lean#L835)
+
+
+
+Name: SymmetricDifferenceMembership
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ [Membership Element SetObject] [HasSymmDiff SetObject] [SymmDiffMembershipLaws Element SetObject], ∀ (A B : SetObject) (x : Element), x ∈ A ∆ B ↔ (x ∈ A ∧ x ∉ B) ∨ (x ∈ B ∧ x ∉ A)
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    (none)
+  Prove
+    ∀ (A B : SetObject) (x : Element), x ∈ A ∆ B ↔ (x ∈ A ∧ x ∉ B) ∨ (x ∈ B ∧ x ∉ A)
+Transliterated theorem: ∀ A B ∈ SetObject x ∈ Element, x ∈ A ∆ B ↔ (x ∈ A ∧ x ∉ B) ∨ (x ∈ B ∧ x ∉ A)
+Logical form (Lean): [Membership Element SetObject] [HasSymmDiff SetObject] [SymmDiffMembershipLaws Element SetObject] : ∀ (A B : SetObject) (x : Element), x ∈ A ∆ B ↔ (x ∈ A ∧ x ∉ B) ∨ (x ∈ B ∧ x ∉ A)
+Source: [`./Interface/Laws/Membership.lean#L886`](./Interface/Laws/Membership.lean#L886)
+
+
+
+Name: PowersetMembership
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {SetObject : Type u} {Collection : Type v} [Membership SetObject Collection] [HasSubset SetObject] [HasPowerset SetObject Collection] [PowersetMembershipLaws SetObject Collection], ∀ A B : SetObject, B ∈ (HasPowerset.powerset A : Collection) ↔ B ⊆ A
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, Collection, ∈)
+  Objects
+    (none)
+  Prove
+    ∀ A B : SetObject, B ∈ (HasPowerset.powerset A : Collection) ↔ B ⊆ A
+Transliterated theorem: ∀ A B : SetObject, B ∈ HasPowerset.powerset A ∈ Collection ↔ B ⊆ A
+Logical form (Lean): {SetObject : Type u} {Collection : Type v} [Membership SetObject Collection] [HasSubset SetObject] [HasPowerset SetObject Collection] [PowersetMembershipLaws SetObject Collection] : ∀ A B : SetObject, B ∈ (HasPowerset.powerset A : Collection) ↔ B ⊆ A
+Source: [`./Interface/Laws/Membership.lean#L938`](./Interface/Laws/Membership.lean#L938)
+
+
+
+Name: UnionCommutative
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A B : α, A ∪ B = B ∪ A
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A B : α), A ∪ B = B ∪ A) ∧ ((∀ (A B C : α), A ∪ B ∪ C = A ∪ B ∪ C) ∧ ((∀ (A : α), inst_1.emptyCollection ∪ A = A) ∧ ((∀ (A : α), A ∪ inst_1.emptyCollection = A) ∧ ((∀ (A : α), A ∪ A = A) ∧ ((∀ (A₁ A₂ B₁ B₂ : α), inst_2.Subset A₁ A₂ → inst_2.Subset B₁ B₂ → inst_2.Subset (A₁ ∪ B₁)(A₂ ∪ B₂)) ∧ (∀ (A B : α), inst_2.Subset A B ↔ A ∪ B = B))))))) → ∀ (A B : α), A ∪ B = B ∪ A
+Transliterated theorem: ∀ A B : α, A ∪ B = B ∪ A
+Logical form (Lean): : ∀ A B : α, A ∪ B = B ∪ A
+Source: [`./Interface/Laws/Union.lean#L123`](./Interface/Laws/Union.lean#L123)
+
+
+
+Name: UnionAssociative
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A B C : α, (A ∪ B) ∪ C = A ∪ (B ∪ C)
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A B : α), A ∪ B = B ∪ A) ∧ ((∀ (A B C : α), A ∪ B ∪ C = A ∪ B ∪ C) ∧ ((∀ (A : α), inst_1.emptyCollection ∪ A = A) ∧ ((∀ (A : α), A ∪ inst_1.emptyCollection = A) ∧ ((∀ (A : α), A ∪ A = A) ∧ ((∀ (A₁ A₂ B₁ B₂ : α), inst_2.Subset A₁ A₂ → inst_2.Subset B₁ B₂ → inst_2.Subset (A₁ ∪ B₁)(A₂ ∪ B₂)) ∧ (∀ (A B : α), inst_2.Subset A B ↔ A ∪ B = B))))))) → ∀ (A B C : α), A ∪ B ∪ C = A ∪ B ∪ C
+Transliterated theorem: ∀ A B C : α, (A ∪ B) ∪ C = A ∪ (B ∪ C)
+Logical form (Lean): : ∀ A B C : α, (A ∪ B) ∪ C = A ∪ (B ∪ C)
+Source: [`./Interface/Laws/Union.lean#L167`](./Interface/Laws/Union.lean#L167)
+
+
+
+Name: EmptyUnion
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A : α, (∅ : α) ∪ A = A
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A B : α), A ∪ B = B ∪ A) ∧ ((∀ (A B C : α), A ∪ B ∪ C = A ∪ B ∪ C) ∧ ((∀ (A : α), inst_1.emptyCollection ∪ A = A) ∧ ((∀ (A : α), A ∪ inst_1.emptyCollection = A) ∧ ((∀ (A : α), A ∪ A = A) ∧ ((∀ (A₁ A₂ B₁ B₂ : α), inst_2.Subset A₁ A₂ → inst_2.Subset B₁ B₂ → inst_2.Subset (A₁ ∪ B₁)(A₂ ∪ B₂)) ∧ (∀ (A B : α), inst_2.Subset A B ↔ A ∪ B = B))))))) → ∀ (A : α), inst_1.emptyCollection ∪ A = A
+Transliterated theorem: ∀ A : α, ∅ ∈ α ∪ A = A
+Logical form (Lean): : ∀ A : α, (∅ : α) ∪ A = A
+Source: [`./Interface/Laws/Union.lean#L211`](./Interface/Laws/Union.lean#L211)
+
+
+
+Name: UnionEmpty
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A : α, A ∪ (∅ : α) = A
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A B : α), A ∪ B = B ∪ A) ∧ ((∀ (A B C : α), A ∪ B ∪ C = A ∪ B ∪ C) ∧ ((∀ (A : α), inst_1.emptyCollection ∪ A = A) ∧ ((∀ (A : α), A ∪ inst_1.emptyCollection = A) ∧ ((∀ (A : α), A ∪ A = A) ∧ ((∀ (A₁ A₂ B₁ B₂ : α), inst_2.Subset A₁ A₂ → inst_2.Subset B₁ B₂ → inst_2.Subset (A₁ ∪ B₁)(A₂ ∪ B₂)) ∧ (∀ (A B : α), inst_2.Subset A B ↔ A ∪ B = B))))))) → ∀ (A : α), A ∪ inst_1.emptyCollection = A
+Transliterated theorem: ∀ A : α, A ∪ ∅ ∈ α = A
+Logical form (Lean): : ∀ A : α, A ∪ (∅ : α) = A
+Source: [`./Interface/Laws/Union.lean#L255`](./Interface/Laws/Union.lean#L255)
+
+
+
+Name: UnionIdempotent
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A : α, A ∪ A = A
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A B : α), A ∪ B = B ∪ A) ∧ ((∀ (A B C : α), A ∪ B ∪ C = A ∪ B ∪ C) ∧ ((∀ (A : α), inst_1.emptyCollection ∪ A = A) ∧ ((∀ (A : α), A ∪ inst_1.emptyCollection = A) ∧ ((∀ (A : α), A ∪ A = A) ∧ ((∀ (A₁ A₂ B₁ B₂ : α), inst_2.Subset A₁ A₂ → inst_2.Subset B₁ B₂ → inst_2.Subset (A₁ ∪ B₁)(A₂ ∪ B₂)) ∧ (∀ (A B : α), inst_2.Subset A B ↔ A ∪ B = B))))))) → ∀ (A : α), A ∪ A = A
+Transliterated theorem: ∀ A : α, A ∪ A = A
+Logical form (Lean): : ∀ A : α, A ∪ A = A
+Source: [`./Interface/Laws/Union.lean#L299`](./Interface/Laws/Union.lean#L299)
+
+
+
+Name: UnionMonotone
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A₁ A₂ B₁ B₂ : α, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∪ B₁ ⊆ A₂ ∪ B₂
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A B : α), A ∪ B = B ∪ A) ∧ ((∀ (A B C : α), A ∪ B ∪ C = A ∪ B ∪ C) ∧ ((∀ (A : α), inst_1.emptyCollection ∪ A = A) ∧ ((∀ (A : α), A ∪ inst_1.emptyCollection = A) ∧ ((∀ (A : α), A ∪ A = A) ∧ ((∀ (A₁ A₂ B₁ B₂ : α), inst_2.Subset A₁ A₂ → inst_2.Subset B₁ B₂ → inst_2.Subset (A₁ ∪ B₁)(A₂ ∪ B₂)) ∧ (∀ (A B : α), inst_2.Subset A B ↔ A ∪ B = B))))))) → ∀ (A₁ A₂ B₁ B₂ : α), (inst_2.Subset A₁ A₂ ∧ inst_2.Subset B₁ B₂) → inst_2.Subset (A₁ ∪ B₁)(A₂ ∪ B₂)
+Transliterated theorem: ∀ A₁ A₂ B₁ B₂ : α, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∪ B₁ ⊆ A₂ ∪ B₂
+Logical form (Lean): : ∀ A₁ A₂ B₁ B₂ : α, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∪ B₁ ⊆ A₂ ∪ B₂
+Source: [`./Interface/Laws/Union.lean#L344`](./Interface/Laws/Union.lean#L344)
+
+
+
+Name: SubsetIffUnionEqRight
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A B : α, A ⊆ B ↔ A ∪ B = B
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    A ⊆ B ↔ A ∪ B = B
+Transliterated theorem: ∀ A B : α, A ⊆ B ↔ A ∪ B = B
+Logical form (Lean): : ∀ A B : α, A ⊆ B ↔ A ∪ B = B
+Source: [`./Interface/Laws/Union.lean#L389`](./Interface/Laws/Union.lean#L389)
+
+
+
+Name: IntersectionCommutative
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A B : α, A ∩ B = B ∩ A
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A B : α), A ∩ B = B ∩ A) ∧ ((∀ (A B C : α), A ∩ B ∩ C = A ∩ B ∩ C) ∧ ((∀ (A : α), inst_1.emptyCollection ∩ A = inst_1.emptyCollection) ∧ ((∀ (A : α), A ∩ inst_1.emptyCollection = inst_1.emptyCollection) ∧ ((∀ (A : α), A ∩ A = A) ∧ ((∀ (A₁ A₂ B₁ B₂ : α), inst_2.Subset A₁ A₂ → inst_2.Subset B₁ B₂ → inst_2.Subset (A₁ ∩ B₁)(A₂ ∩ B₂)) ∧ (∀ (A B : α), inst_2.Subset A B ↔ A ∩ B = A))))))) → ∀ (A B : α), A ∩ B = B ∩ A
+Transliterated theorem: ∀ A B : α, A ∩ B = B ∩ A
+Logical form (Lean): : ∀ A B : α, A ∩ B = B ∩ A
+Source: [`./Interface/Laws/Intersection.lean#L123`](./Interface/Laws/Intersection.lean#L123)
+
+
+
+Name: IntersectionAssociative
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A B C : α, (A ∩ B) ∩ C = A ∩ (B ∩ C)
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A B : α), A ∩ B = B ∩ A) ∧ ((∀ (A B C : α), A ∩ B ∩ C = A ∩ B ∩ C) ∧ ((∀ (A : α), inst_1.emptyCollection ∩ A = inst_1.emptyCollection) ∧ ((∀ (A : α), A ∩ inst_1.emptyCollection = inst_1.emptyCollection) ∧ ((∀ (A : α), A ∩ A = A) ∧ ((∀ (A₁ A₂ B₁ B₂ : α), inst_2.Subset A₁ A₂ → inst_2.Subset B₁ B₂ → inst_2.Subset (A₁ ∩ B₁)(A₂ ∩ B₂)) ∧ (∀ (A B : α), inst_2.Subset A B ↔ A ∩ B = A))))))) → ∀ (A B C : α), A ∩ B ∩ C = A ∩ B ∩ C
+Transliterated theorem: ∀ A B C : α, (A ∩ B) ∩ C = A ∩ (B ∩ C)
+Logical form (Lean): : ∀ A B C : α, (A ∩ B) ∩ C = A ∩ (B ∩ C)
+Source: [`./Interface/Laws/Intersection.lean#L168`](./Interface/Laws/Intersection.lean#L168)
+
+
+
+Name: EmptyIntersection
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A : α, (∅ : α) ∩ A = (∅ : α)
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A B : α), A ∩ B = B ∩ A) ∧ ((∀ (A B C : α), A ∩ B ∩ C = A ∩ B ∩ C) ∧ ((∀ (A : α), inst_1.emptyCollection ∩ A = inst_1.emptyCollection) ∧ ((∀ (A : α), A ∩ inst_1.emptyCollection = inst_1.emptyCollection) ∧ ((∀ (A : α), A ∩ A = A) ∧ ((∀ (A₁ A₂ B₁ B₂ : α), inst_2.Subset A₁ A₂ → inst_2.Subset B₁ B₂ → inst_2.Subset (A₁ ∩ B₁)(A₂ ∩ B₂)) ∧ (∀ (A B : α), inst_2.Subset A B ↔ A ∩ B = A))))))) → ∀ (A : α), inst_1.emptyCollection ∩ A = inst_1.emptyCollection
+Transliterated theorem: ∀ A : α, ∅ ∈ α ∩ A = ∅ ∈ α
+Logical form (Lean): : ∀ A : α, (∅ : α) ∩ A = (∅ : α)
+Source: [`./Interface/Laws/Intersection.lean#L213`](./Interface/Laws/Intersection.lean#L213)
+
+
+
+Name: IntersectionEmpty
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A : α, A ∩ (∅ : α) = (∅ : α)
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A B : α), A ∩ B = B ∩ A) ∧ ((∀ (A B C : α), A ∩ B ∩ C = A ∩ B ∩ C) ∧ ((∀ (A : α), inst_1.emptyCollection ∩ A = inst_1.emptyCollection) ∧ ((∀ (A : α), A ∩ inst_1.emptyCollection = inst_1.emptyCollection) ∧ ((∀ (A : α), A ∩ A = A) ∧ ((∀ (A₁ A₂ B₁ B₂ : α), inst_2.Subset A₁ A₂ → inst_2.Subset B₁ B₂ → inst_2.Subset (A₁ ∩ B₁)(A₂ ∩ B₂)) ∧ (∀ (A B : α), inst_2.Subset A B ↔ A ∩ B = A))))))) → ∀ (A : α), A ∩ inst_1.emptyCollection = inst_1.emptyCollection
+Transliterated theorem: ∀ A : α, A ∩ ∅ ∈ α = ∅ ∈ α
+Logical form (Lean): : ∀ A : α, A ∩ (∅ : α) = (∅ : α)
+Source: [`./Interface/Laws/Intersection.lean#L257`](./Interface/Laws/Intersection.lean#L257)
+
+
+
+Name: IntersectionIdempotent
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A : α, A ∩ A = A
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A B : α), A ∩ B = B ∩ A) ∧ ((∀ (A B C : α), A ∩ B ∩ C = A ∩ B ∩ C) ∧ ((∀ (A : α), inst_1.emptyCollection ∩ A = inst_1.emptyCollection) ∧ ((∀ (A : α), A ∩ inst_1.emptyCollection = inst_1.emptyCollection) ∧ ((∀ (A : α), A ∩ A = A) ∧ ((∀ (A₁ A₂ B₁ B₂ : α), inst_2.Subset A₁ A₂ → inst_2.Subset B₁ B₂ → inst_2.Subset (A₁ ∩ B₁)(A₂ ∩ B₂)) ∧ (∀ (A B : α), inst_2.Subset A B ↔ A ∩ B = A))))))) → ∀ (A : α), A ∩ A = A
+Transliterated theorem: ∀ A : α, A ∩ A = A
+Logical form (Lean): : ∀ A : α, A ∩ A = A
+Source: [`./Interface/Laws/Intersection.lean#L301`](./Interface/Laws/Intersection.lean#L301)
+
+
+
+Name: IntersectionMonotone
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A₁ A₂ B₁ B₂ : α, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∩ B₁ ⊆ A₂ ∩ B₂
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A B : α), A ∩ B = B ∩ A) ∧ ((∀ (A B C : α), A ∩ B ∩ C = A ∩ B ∩ C) ∧ ((∀ (A : α), inst_1.emptyCollection ∩ A = inst_1.emptyCollection) ∧ ((∀ (A : α), A ∩ inst_1.emptyCollection = inst_1.emptyCollection) ∧ ((∀ (A : α), A ∩ A = A) ∧ ((∀ (A₁ A₂ B₁ B₂ : α), inst_2.Subset A₁ A₂ → inst_2.Subset B₁ B₂ → inst_2.Subset (A₁ ∩ B₁)(A₂ ∩ B₂)) ∧ (∀ (A B : α), inst_2.Subset A B ↔ A ∩ B = A))))))) → ∀ (A₁ A₂ B₁ B₂ : α), (inst_2.Subset A₁ A₂ ∧ inst_2.Subset B₁ B₂) → inst_2.Subset (A₁ ∩ B₁)(A₂ ∩ B₂)
+Transliterated theorem: ∀ A₁ A₂ B₁ B₂ : α, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∩ B₁ ⊆ A₂ ∩ B₂
+Logical form (Lean): : ∀ A₁ A₂ B₁ B₂ : α, A₁ ⊆ A₂ → B₁ ⊆ B₂ → A₁ ∩ B₁ ⊆ A₂ ∩ B₂
+Source: [`./Interface/Laws/Intersection.lean#L346`](./Interface/Laws/Intersection.lean#L346)
+
+
+
+Name: SubsetIffIntersectionEqLeft
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A B : α, A ⊆ B ↔ A ∩ B = A
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    A ⊆ B ↔ A ∩ B = A
+Transliterated theorem: ∀ A B : α, A ⊆ B ↔ A ∩ B = A
+Logical form (Lean): : ∀ A B : α, A ⊆ B ↔ A ∩ B = A
+Source: [`./Interface/Laws/Intersection.lean#L391`](./Interface/Laws/Intersection.lean#L391)
+
+
+
+Name: SubsetReflexive
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {α : Type u} [inst : HasSubset α], LRA.Set.SubsetLaws α → ∀ (A : α), inst.Subset A A
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A : α), inst.Subset A A) ∧ ((∀ (A B C : α), inst.Subset A B → inst.Subset B C → inst.Subset A C) ∧ (∀ (A B : α), A = B ↔ (inst.Subset A B ∧ inst.Subset B A)))) → ∀ (A : α), inst.Subset A A
+Transliterated theorem: ∀ A : α, A ⊆ A
+Logical form (Lean): : ∀ A : α, A ⊆ A
+Source: [`./Interface/Laws/Subset.lean#L98`](./Interface/Laws/Subset.lean#L98)
+
+
+
+Name: SubsetTransitive
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A B C : α, A ⊆ B → B ⊆ C → A ⊆ C
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A : α), inst.Subset A A) ∧ ((∀ (A B C : α), inst.Subset A B → inst.Subset B C → inst.Subset A C) ∧ (∀ (A B : α), A = B ↔ (inst.Subset A B ∧ inst.Subset B A)))) → ∀ (A B C : α), (inst.Subset A B ∧ inst.Subset B C) → inst.Subset A C
+Transliterated theorem: ∀ A B C : α, A ⊆ B → B ⊆ C → A ⊆ C
+Logical form (Lean): : ∀ A B C : α, A ⊆ B → B ⊆ C → A ⊆ C
+Source: [`./Interface/Laws/Subset.lean#L145`](./Interface/Laws/Subset.lean#L145)
+
+
+
+Name: SetEqualityIffMutualSubset
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A B : α, A = B ↔ A ⊆ B ∧ B ⊆ A
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    A = B ↔ A ⊆ B ∧ B ⊆ A
+Transliterated theorem: ∀ A B : α, A = B ↔ A ⊆ B ∧ B ⊆ A
+Logical form (Lean): : ∀ A B : α, A = B ↔ A ⊆ B ∧ B ⊆ A
+Source: [`./Interface/Laws/Subset.lean#L189`](./Interface/Laws/Subset.lean#L189)
+
+
+
+Name: DifferenceMonotoneLeft
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A₁ A₂ B : α, A₁ ⊆ A₂ → A₁ \ B ⊆ A₂ \ B
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A₁ A₂ B : α), inst_4.Subset A₁ A₂ → inst_4.Subset (A₁ \ B)(A₂ \ B)) ∧ ((∀ (A B₁ B₂ : α), inst_4.Subset B₁ B₂ → inst_4.Subset (A \ B₂)(A \ B₁)) ∧ ((∀ (A : α), A \ inst_3.emptyCollection = A) ∧ ((∀ (A : α), inst_3.emptyCollection \ A = inst_3.emptyCollection) ∧ ((∀ (A : α), A \ A = inst_3.emptyCollection) ∧ ((∀ (A B C : α), A \ B ∪ C = A \ B ∩ A \ C) ∧ ((∀ (A B C : α), A \ B ∩ C = A \ B ∪ A \ C) ∧ ((∀ (A B C : α), A ∪ B \ C = A \ C ∪ B \ C) ∧ ((∀ (A B C : α), A ∩ B \ C = A \ C ∩ B \ C) ∧ ((∀ (A B : α), inst_4.Subset (A \ B)A) ∧ (∀ (A B : α), A \ B ∩ B = inst_3.emptyCollection))))))))))) → ∀ (A₁ A₂ B : α), inst_4.Subset A₁ A₂ → inst_4.Subset (A₁ \ B)(A₂ \ B)
+Transliterated theorem: ∀ A₁ A₂ B : α, A₁ ⊆ A₂ → A₁ \ B ⊆ A₂ \ B
+Logical form (Lean): : ∀ A₁ A₂ B : α, A₁ ⊆ A₂ → A₁ \ B ⊆ A₂ \ B
+Source: [`./Interface/Laws/Difference.lean#L157`](./Interface/Laws/Difference.lean#L157)
+
+
+
+Name: DifferenceAntitoneRight
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A B₁ B₂ : α, B₁ ⊆ B₂ → A \ B₂ ⊆ A \ B₁
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A₁ A₂ B : α), inst_4.Subset A₁ A₂ → inst_4.Subset (A₁ \ B)(A₂ \ B)) ∧ ((∀ (A B₁ B₂ : α), inst_4.Subset B₁ B₂ → inst_4.Subset (A \ B₂)(A \ B₁)) ∧ ((∀ (A : α), A \ inst_3.emptyCollection = A) ∧ ((∀ (A : α), inst_3.emptyCollection \ A = inst_3.emptyCollection) ∧ ((∀ (A : α), A \ A = inst_3.emptyCollection) ∧ ((∀ (A B C : α), A \ B ∪ C = A \ B ∩ A \ C) ∧ ((∀ (A B C : α), A \ B ∩ C = A \ B ∪ A \ C) ∧ ((∀ (A B C : α), A ∪ B \ C = A \ C ∪ B \ C) ∧ ((∀ (A B C : α), A ∩ B \ C = A \ C ∩ B \ C) ∧ ((∀ (A B : α), inst_4.Subset (A \ B)A) ∧ (∀ (A B : α), A \ B ∩ B = inst_3.emptyCollection))))))))))) → ∀ (A B₁ B₂ : α), inst_4.Subset B₁ B₂ → inst_4.Subset (A \ B₂)(A \ B₁)
+Transliterated theorem: ∀ A B₁ B₂ : α, B₁ ⊆ B₂ → A \ B₂ ⊆ A \ B₁
+Logical form (Lean): : ∀ A B₁ B₂ : α, B₁ ⊆ B₂ → A \ B₂ ⊆ A \ B₁
+Source: [`./Interface/Laws/Difference.lean#L203`](./Interface/Laws/Difference.lean#L203)
+
+
+
+Name: DifferenceEmpty
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A : α, A \ (∅ : α) = A
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A₁ A₂ B : α), inst_4.Subset A₁ A₂ → inst_4.Subset (A₁ \ B)(A₂ \ B)) ∧ ((∀ (A B₁ B₂ : α), inst_4.Subset B₁ B₂ → inst_4.Subset (A \ B₂)(A \ B₁)) ∧ ((∀ (A : α), A \ inst_3.emptyCollection = A) ∧ ((∀ (A : α), inst_3.emptyCollection \ A = inst_3.emptyCollection) ∧ ((∀ (A : α), A \ A = inst_3.emptyCollection) ∧ ((∀ (A B C : α), A \ B ∪ C = A \ B ∩ A \ C) ∧ ((∀ (A B C : α), A \ B ∩ C = A \ B ∪ A \ C) ∧ ((∀ (A B C : α), A ∪ B \ C = A \ C ∪ B \ C) ∧ ((∀ (A B C : α), A ∩ B \ C = A \ C ∩ B \ C) ∧ ((∀ (A B : α), inst_4.Subset (A \ B)A) ∧ (∀ (A B : α), A \ B ∩ B = inst_3.emptyCollection))))))))))) → ∀ (A : α), A \ inst_3.emptyCollection = A
+Transliterated theorem: ∀ A : α, A \ ∅ ∈ α = A
+Logical form (Lean): : ∀ A : α, A \ (∅ : α) = A
+Source: [`./Interface/Laws/Difference.lean#L248`](./Interface/Laws/Difference.lean#L248)
+
+
+
+Name: EmptyDifference
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A : α, (∅ : α) \ A = (∅ : α)
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A₁ A₂ B : α), inst_4.Subset A₁ A₂ → inst_4.Subset (A₁ \ B)(A₂ \ B)) ∧ ((∀ (A B₁ B₂ : α), inst_4.Subset B₁ B₂ → inst_4.Subset (A \ B₂)(A \ B₁)) ∧ ((∀ (A : α), A \ inst_3.emptyCollection = A) ∧ ((∀ (A : α), inst_3.emptyCollection \ A = inst_3.emptyCollection) ∧ ((∀ (A : α), A \ A = inst_3.emptyCollection) ∧ ((∀ (A B C : α), A \ B ∪ C = A \ B ∩ A \ C) ∧ ((∀ (A B C : α), A \ B ∩ C = A \ B ∪ A \ C) ∧ ((∀ (A B C : α), A ∪ B \ C = A \ C ∪ B \ C) ∧ ((∀ (A B C : α), A ∩ B \ C = A \ C ∩ B \ C) ∧ ((∀ (A B : α), inst_4.Subset (A \ B)A) ∧ (∀ (A B : α), A \ B ∩ B = inst_3.emptyCollection))))))))))) → ∀ (A : α), inst_3.emptyCollection \ A = inst_3.emptyCollection
+Transliterated theorem: ∀ A : α, ∅ ∈ α \ A = ∅ ∈ α
+Logical form (Lean): : ∀ A : α, (∅ : α) \ A = (∅ : α)
+Source: [`./Interface/Laws/Difference.lean#L292`](./Interface/Laws/Difference.lean#L292)
+
+
+
+Name: DifferenceSelf
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A : α, A \ A = (∅ : α)
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A₁ A₂ B : α), inst_4.Subset A₁ A₂ → inst_4.Subset (A₁ \ B)(A₂ \ B)) ∧ ((∀ (A B₁ B₂ : α), inst_4.Subset B₁ B₂ → inst_4.Subset (A \ B₂)(A \ B₁)) ∧ ((∀ (A : α), A \ inst_3.emptyCollection = A) ∧ ((∀ (A : α), inst_3.emptyCollection \ A = inst_3.emptyCollection) ∧ ((∀ (A : α), A \ A = inst_3.emptyCollection) ∧ ((∀ (A B C : α), A \ B ∪ C = A \ B ∩ A \ C) ∧ ((∀ (A B C : α), A \ B ∩ C = A \ B ∪ A \ C) ∧ ((∀ (A B C : α), A ∪ B \ C = A \ C ∪ B \ C) ∧ ((∀ (A B C : α), A ∩ B \ C = A \ C ∩ B \ C) ∧ ((∀ (A B : α), inst_4.Subset (A \ B)A) ∧ (∀ (A B : α), A \ B ∩ B = inst_3.emptyCollection))))))))))) → ∀ (A : α), A \ A = inst_3.emptyCollection
+Transliterated theorem: ∀ A : α, A \ A = ∅ ∈ α
+Logical form (Lean): : ∀ A : α, A \ A = (∅ : α)
+Source: [`./Interface/Laws/Difference.lean#L336`](./Interface/Laws/Difference.lean#L336)
+
+
+
+Name: DifferenceUnion
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A B C : α, A \ (B ∪ C) = (A \ B) ∩ (A \ C)
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A₁ A₂ B : α), inst_4.Subset A₁ A₂ → inst_4.Subset (A₁ \ B)(A₂ \ B)) ∧ ((∀ (A B₁ B₂ : α), inst_4.Subset B₁ B₂ → inst_4.Subset (A \ B₂)(A \ B₁)) ∧ ((∀ (A : α), A \ inst_3.emptyCollection = A) ∧ ((∀ (A : α), inst_3.emptyCollection \ A = inst_3.emptyCollection) ∧ ((∀ (A : α), A \ A = inst_3.emptyCollection) ∧ ((∀ (A B C : α), A \ B ∪ C = A \ B ∩ A \ C) ∧ ((∀ (A B C : α), A \ B ∩ C = A \ B ∪ A \ C) ∧ ((∀ (A B C : α), A ∪ B \ C = A \ C ∪ B \ C) ∧ ((∀ (A B C : α), A ∩ B \ C = A \ C ∩ B \ C) ∧ ((∀ (A B : α), inst_4.Subset (A \ B)A) ∧ (∀ (A B : α), A \ B ∩ B = inst_3.emptyCollection))))))))))) → ∀ (A B C : α), A \ B ∪ C = A \ B ∩ A \ C
+Transliterated theorem: ∀ A B C : α, A \ (B ∪ C) = (A \ B) ∩ (A \ C)
+Logical form (Lean): : ∀ A B C : α, A \ (B ∪ C) = (A \ B) ∩ (A \ C)
+Source: [`./Interface/Laws/Difference.lean#L381`](./Interface/Laws/Difference.lean#L381)
+
+
+
+Name: DifferenceIntersection
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A B C : α, A \ (B ∩ C) = (A \ B) ∪ (A \ C)
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A₁ A₂ B : α), inst_4.Subset A₁ A₂ → inst_4.Subset (A₁ \ B)(A₂ \ B)) ∧ ((∀ (A B₁ B₂ : α), inst_4.Subset B₁ B₂ → inst_4.Subset (A \ B₂)(A \ B₁)) ∧ ((∀ (A : α), A \ inst_3.emptyCollection = A) ∧ ((∀ (A : α), inst_3.emptyCollection \ A = inst_3.emptyCollection) ∧ ((∀ (A : α), A \ A = inst_3.emptyCollection) ∧ ((∀ (A B C : α), A \ B ∪ C = A \ B ∩ A \ C) ∧ ((∀ (A B C : α), A \ B ∩ C = A \ B ∪ A \ C) ∧ ((∀ (A B C : α), A ∪ B \ C = A \ C ∪ B \ C) ∧ ((∀ (A B C : α), A ∩ B \ C = A \ C ∩ B \ C) ∧ ((∀ (A B : α), inst_4.Subset (A \ B)A) ∧ (∀ (A B : α), A \ B ∩ B = inst_3.emptyCollection))))))))))) → ∀ (A B C : α), A \ B ∩ C = A \ B ∪ A \ C
+Transliterated theorem: ∀ A B C : α, A \ (B ∩ C) = (A \ B) ∪ (A \ C)
+Logical form (Lean): : ∀ A B C : α, A \ (B ∩ C) = (A \ B) ∪ (A \ C)
+Source: [`./Interface/Laws/Difference.lean#L427`](./Interface/Laws/Difference.lean#L427)
+
+
+
+Name: UnionDifferenceDistributes
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A B C : α, (A ∪ B) \ C = (A \ C) ∪ (B \ C)
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A₁ A₂ B : α), inst_4.Subset A₁ A₂ → inst_4.Subset (A₁ \ B)(A₂ \ B)) ∧ ((∀ (A B₁ B₂ : α), inst_4.Subset B₁ B₂ → inst_4.Subset (A \ B₂)(A \ B₁)) ∧ ((∀ (A : α), A \ inst_3.emptyCollection = A) ∧ ((∀ (A : α), inst_3.emptyCollection \ A = inst_3.emptyCollection) ∧ ((∀ (A : α), A \ A = inst_3.emptyCollection) ∧ ((∀ (A B C : α), A \ B ∪ C = A \ B ∩ A \ C) ∧ ((∀ (A B C : α), A \ B ∩ C = A \ B ∪ A \ C) ∧ ((∀ (A B C : α), A ∪ B \ C = A \ C ∪ B \ C) ∧ ((∀ (A B C : α), A ∩ B \ C = A \ C ∩ B \ C) ∧ ((∀ (A B : α), inst_4.Subset (A \ B)A) ∧ (∀ (A B : α), A \ B ∩ B = inst_3.emptyCollection))))))))))) → ∀ (A B C : α), A ∪ B \ C = A \ C ∪ B \ C
+Transliterated theorem: ∀ A B C : α, (A ∪ B) \ C = (A \ C) ∪ (B \ C)
+Logical form (Lean): : ∀ A B C : α, (A ∪ B) \ C = (A \ C) ∪ (B \ C)
+Source: [`./Interface/Laws/Difference.lean#L473`](./Interface/Laws/Difference.lean#L473)
+
+
+
+Name: IntersectionDifferenceDistributes
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A B C : α, (A ∩ B) \ C = (A \ C) ∩ (B \ C)
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A₁ A₂ B : α), inst_4.Subset A₁ A₂ → inst_4.Subset (A₁ \ B)(A₂ \ B)) ∧ ((∀ (A B₁ B₂ : α), inst_4.Subset B₁ B₂ → inst_4.Subset (A \ B₂)(A \ B₁)) ∧ ((∀ (A : α), A \ inst_3.emptyCollection = A) ∧ ((∀ (A : α), inst_3.emptyCollection \ A = inst_3.emptyCollection) ∧ ((∀ (A : α), A \ A = inst_3.emptyCollection) ∧ ((∀ (A B C : α), A \ B ∪ C = A \ B ∩ A \ C) ∧ ((∀ (A B C : α), A \ B ∩ C = A \ B ∪ A \ C) ∧ ((∀ (A B C : α), A ∪ B \ C = A \ C ∪ B \ C) ∧ ((∀ (A B C : α), A ∩ B \ C = A \ C ∩ B \ C) ∧ ((∀ (A B : α), inst_4.Subset (A \ B)A) ∧ (∀ (A B : α), A \ B ∩ B = inst_3.emptyCollection))))))))))) → ∀ (A B C : α), A ∩ B \ C = A \ C ∩ B \ C
+Transliterated theorem: ∀ A B C : α, (A ∩ B) \ C = (A \ C) ∩ (B \ C)
+Logical form (Lean): : ∀ A B C : α, (A ∩ B) \ C = (A \ C) ∩ (B \ C)
+Source: [`./Interface/Laws/Difference.lean#L519`](./Interface/Laws/Difference.lean#L519)
+
+
+
+Name: DifferenceSubsetLeft
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A B : α, A \ B ⊆ A
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A₁ A₂ B : α), inst_4.Subset A₁ A₂ → inst_4.Subset (A₁ \ B)(A₂ \ B)) ∧ ((∀ (A B₁ B₂ : α), inst_4.Subset B₁ B₂ → inst_4.Subset (A \ B₂)(A \ B₁)) ∧ ((∀ (A : α), A \ inst_3.emptyCollection = A) ∧ ((∀ (A : α), inst_3.emptyCollection \ A = inst_3.emptyCollection) ∧ ((∀ (A : α), A \ A = inst_3.emptyCollection) ∧ ((∀ (A B C : α), A \ B ∪ C = A \ B ∩ A \ C) ∧ ((∀ (A B C : α), A \ B ∩ C = A \ B ∪ A \ C) ∧ ((∀ (A B C : α), A ∪ B \ C = A \ C ∪ B \ C) ∧ ((∀ (A B C : α), A ∩ B \ C = A \ C ∩ B \ C) ∧ ((∀ (A B : α), inst_4.Subset (A \ B)A) ∧ (∀ (A B : α), A \ B ∩ B = inst_3.emptyCollection))))))))))) → ∀ (A B : α), inst_4.Subset (A \ B)A
+Transliterated theorem: ∀ A B : α, A \ B ⊆ A
+Logical form (Lean): : ∀ A B : α, A \ B ⊆ A
+Source: [`./Interface/Laws/Difference.lean#L564`](./Interface/Laws/Difference.lean#L564)
+
+
+
+Name: DifferenceDisjointRight
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A B : α, (A \ B) ∩ B = (∅ : α)
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A₁ A₂ B : α), inst_4.Subset A₁ A₂ → inst_4.Subset (A₁ \ B)(A₂ \ B)) ∧ ((∀ (A B₁ B₂ : α), inst_4.Subset B₁ B₂ → inst_4.Subset (A \ B₂)(A \ B₁)) ∧ ((∀ (A : α), A \ inst_3.emptyCollection = A) ∧ ((∀ (A : α), inst_3.emptyCollection \ A = inst_3.emptyCollection) ∧ ((∀ (A : α), A \ A = inst_3.emptyCollection) ∧ ((∀ (A B C : α), A \ B ∪ C = A \ B ∩ A \ C) ∧ ((∀ (A B C : α), A \ B ∩ C = A \ B ∪ A \ C) ∧ ((∀ (A B C : α), A ∪ B \ C = A \ C ∪ B \ C) ∧ ((∀ (A B C : α), A ∩ B \ C = A \ C ∩ B \ C) ∧ ((∀ (A B : α), inst_4.Subset (A \ B)A) ∧ (∀ (A B : α), A \ B ∩ B = inst_3.emptyCollection))))))))))) → ∀ (A B : α), A \ B ∩ B = inst_3.emptyCollection
+Transliterated theorem: ∀ A B : α, (A \ B) ∩ B = ∅ ∈ α
+Logical form (Lean): : ∀ A B : α, (A \ B) ∩ B = (∅ : α)
+Source: [`./Interface/Laws/Difference.lean#L609`](./Interface/Laws/Difference.lean#L609)
+
+
+
+Name: SymmetricDifferenceAsUnionDifferences
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A B : α, A ∆ B = (A \ B) ∪ (B \ A)
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A B : α), inst.symmDiff A B = A \ B ∪ B \ A) ∧ ((∀ (A B : α), inst.symmDiff A B = A ∪ B \ A ∩ B) ∧ ((∀ (A B : α), inst.symmDiff A B = inst.symmDiff B A) ∧ ((∀ (A B C : α), inst.symmDiff (inst.symmDiff A B) C = inst.symmDiff A (inst.symmDiff B C)) ∧ ((∀ (A : α), inst.symmDiff A inst_4.emptyCollection = A) ∧ ((∀ (A : α), inst.symmDiff inst_4.emptyCollection A = A) ∧ ((∀ (A : α), inst.symmDiff A A = inst_4.emptyCollection) ∧ ((∀ (A B : α), inst.symmDiff A B = inst_4.emptyCollection ↔ A = B) ∧ (∀ (A B : α), inst_5.Subset (inst.symmDiff A B) (A ∪ B)))))))))) → ∀ (A B : α), inst.symmDiff A B = A \ B ∪ B \ A
+Transliterated theorem: ∀ A B : α, A ∆ B = (A \ B) ∪ (B \ A)
+Logical form (Lean): : ∀ A B : α, A ∆ B = (A \ B) ∪ (B \ A)
+Source: [`./Interface/Laws/SymmetricDifference.lean#L152`](./Interface/Laws/SymmetricDifference.lean#L152)
+
+
+
+Name: SymmetricDifferenceAsUnionDifferenceIntersection
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A B : α, A ∆ B = (A ∪ B) \ (A ∩ B)
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A B : α), inst.symmDiff A B = A \ B ∪ B \ A) ∧ ((∀ (A B : α), inst.symmDiff A B = A ∪ B \ A ∩ B) ∧ ((∀ (A B : α), inst.symmDiff A B = inst.symmDiff B A) ∧ ((∀ (A B C : α), inst.symmDiff (inst.symmDiff A B) C = inst.symmDiff A (inst.symmDiff B C)) ∧ ((∀ (A : α), inst.symmDiff A inst_4.emptyCollection = A) ∧ ((∀ (A : α), inst.symmDiff inst_4.emptyCollection A = A) ∧ ((∀ (A : α), inst.symmDiff A A = inst_4.emptyCollection) ∧ ((∀ (A B : α), inst.symmDiff A B = inst_4.emptyCollection ↔ A = B) ∧ (∀ (A B : α), inst_5.Subset (inst.symmDiff A B) (A ∪ B)))))))))) → ∀ (A B : α), inst.symmDiff A B = A ∪ B \ A ∩ B
+Transliterated theorem: ∀ A B : α, A ∆ B = (A ∪ B) \ (A ∩ B)
+Logical form (Lean): : ∀ A B : α, A ∆ B = (A ∪ B) \ (A ∩ B)
+Source: [`./Interface/Laws/SymmetricDifference.lean#L198`](./Interface/Laws/SymmetricDifference.lean#L198)
+
+
+
+Name: SymmetricDifferenceCommutative
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A B : α, A ∆ B = B ∆ A
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A B : α), inst.symmDiff A B = A \ B ∪ B \ A) ∧ ((∀ (A B : α), inst.symmDiff A B = A ∪ B \ A ∩ B) ∧ ((∀ (A B : α), inst.symmDiff A B = inst.symmDiff B A) ∧ ((∀ (A B C : α), inst.symmDiff (inst.symmDiff A B) C = inst.symmDiff A (inst.symmDiff B C)) ∧ ((∀ (A : α), inst.symmDiff A inst_4.emptyCollection = A) ∧ ((∀ (A : α), inst.symmDiff inst_4.emptyCollection A = A) ∧ ((∀ (A : α), inst.symmDiff A A = inst_4.emptyCollection) ∧ ((∀ (A B : α), inst.symmDiff A B = inst_4.emptyCollection ↔ A = B) ∧ (∀ (A B : α), inst_5.Subset (inst.symmDiff A B) (A ∪ B)))))))))) → ∀ (A B : α), inst.symmDiff A B = inst.symmDiff B A
+Transliterated theorem: ∀ A B : α, A ∆ B = B ∆ A
+Logical form (Lean): : ∀ A B : α, A ∆ B = B ∆ A
+Source: [`./Interface/Laws/SymmetricDifference.lean#L243`](./Interface/Laws/SymmetricDifference.lean#L243)
+
+
+
+Name: SymmetricDifferenceAssociative
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A B C : α, (A ∆ B) ∆ C = A ∆ (B ∆ C)
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A B : α), inst.symmDiff A B = A \ B ∪ B \ A) ∧ ((∀ (A B : α), inst.symmDiff A B = A ∪ B \ A ∩ B) ∧ ((∀ (A B : α), inst.symmDiff A B = inst.symmDiff B A) ∧ ((∀ (A B C : α), inst.symmDiff (inst.symmDiff A B) C = inst.symmDiff A (inst.symmDiff B C)) ∧ ((∀ (A : α), inst.symmDiff A inst_4.emptyCollection = A) ∧ ((∀ (A : α), inst.symmDiff inst_4.emptyCollection A = A) ∧ ((∀ (A : α), inst.symmDiff A A = inst_4.emptyCollection) ∧ ((∀ (A B : α), inst.symmDiff A B = inst_4.emptyCollection ↔ A = B) ∧ (∀ (A B : α), inst_5.Subset (inst.symmDiff A B) (A ∪ B)))))))))) → ∀ (A B C : α), inst.symmDiff (inst.symmDiff A B) C = inst.symmDiff A (inst.symmDiff B C)
+Transliterated theorem: ∀ A B C : α, (A ∆ B) ∆ C = A ∆ (B ∆ C)
+Logical form (Lean): : ∀ A B C : α, (A ∆ B) ∆ C = A ∆ (B ∆ C)
+Source: [`./Interface/Laws/SymmetricDifference.lean#L288`](./Interface/Laws/SymmetricDifference.lean#L288)
+
+
+
+Name: SymmetricDifferenceEmpty
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A : α, A ∆ (∅ : α) = A
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A B : α), inst.symmDiff A B = A \ B ∪ B \ A) ∧ ((∀ (A B : α), inst.symmDiff A B = A ∪ B \ A ∩ B) ∧ ((∀ (A B : α), inst.symmDiff A B = inst.symmDiff B A) ∧ ((∀ (A B C : α), inst.symmDiff (inst.symmDiff A B) C = inst.symmDiff A (inst.symmDiff B C)) ∧ ((∀ (A : α), inst.symmDiff A inst_4.emptyCollection = A) ∧ ((∀ (A : α), inst.symmDiff inst_4.emptyCollection A = A) ∧ ((∀ (A : α), inst.symmDiff A A = inst_4.emptyCollection) ∧ ((∀ (A B : α), inst.symmDiff A B = inst_4.emptyCollection ↔ A = B) ∧ (∀ (A B : α), inst_5.Subset (inst.symmDiff A B) (A ∪ B)))))))))) → ∀ (A : α), inst.symmDiff A inst_4.emptyCollection = A
+Transliterated theorem: ∀ A : α, A ∆ ∅ ∈ α = A
+Logical form (Lean): : ∀ A : α, A ∆ (∅ : α) = A
+Source: [`./Interface/Laws/SymmetricDifference.lean#L333`](./Interface/Laws/SymmetricDifference.lean#L333)
+
+
+
+Name: EmptySymmetricDifference
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A : α, (∅ : α) ∆ A = A
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A B : α), inst.symmDiff A B = A \ B ∪ B \ A) ∧ ((∀ (A B : α), inst.symmDiff A B = A ∪ B \ A ∩ B) ∧ ((∀ (A B : α), inst.symmDiff A B = inst.symmDiff B A) ∧ ((∀ (A B C : α), inst.symmDiff (inst.symmDiff A B) C = inst.symmDiff A (inst.symmDiff B C)) ∧ ((∀ (A : α), inst.symmDiff A inst_4.emptyCollection = A) ∧ ((∀ (A : α), inst.symmDiff inst_4.emptyCollection A = A) ∧ ((∀ (A : α), inst.symmDiff A A = inst_4.emptyCollection) ∧ ((∀ (A B : α), inst.symmDiff A B = inst_4.emptyCollection ↔ A = B) ∧ (∀ (A B : α), inst_5.Subset (inst.symmDiff A B) (A ∪ B)))))))))) → ∀ (A : α), inst.symmDiff inst_4.emptyCollection A = A
+Transliterated theorem: ∀ A : α, ∅ ∈ α ∆ A = A
+Logical form (Lean): : ∀ A : α, (∅ : α) ∆ A = A
+Source: [`./Interface/Laws/SymmetricDifference.lean#L377`](./Interface/Laws/SymmetricDifference.lean#L377)
+
+
+
+Name: SymmetricDifferenceSelf
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A : α, A ∆ A = (∅ : α)
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A B : α), inst.symmDiff A B = A \ B ∪ B \ A) ∧ ((∀ (A B : α), inst.symmDiff A B = A ∪ B \ A ∩ B) ∧ ((∀ (A B : α), inst.symmDiff A B = inst.symmDiff B A) ∧ ((∀ (A B C : α), inst.symmDiff (inst.symmDiff A B) C = inst.symmDiff A (inst.symmDiff B C)) ∧ ((∀ (A : α), inst.symmDiff A inst_4.emptyCollection = A) ∧ ((∀ (A : α), inst.symmDiff inst_4.emptyCollection A = A) ∧ ((∀ (A : α), inst.symmDiff A A = inst_4.emptyCollection) ∧ ((∀ (A B : α), inst.symmDiff A B = inst_4.emptyCollection ↔ A = B) ∧ (∀ (A B : α), inst_5.Subset (inst.symmDiff A B) (A ∪ B)))))))))) → ∀ (A : α), inst.symmDiff A A = inst_4.emptyCollection
+Transliterated theorem: ∀ A : α, A ∆ A = ∅ ∈ α
+Logical form (Lean): : ∀ A : α, A ∆ A = (∅ : α)
+Source: [`./Interface/Laws/SymmetricDifference.lean#L421`](./Interface/Laws/SymmetricDifference.lean#L421)
+
+
+
+Name: SymmetricDifferenceEqEmptyIff
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A B : α, A ∆ B = (∅ : α) ↔ A = B
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    A ∆ B = (∅ : α) ↔ A = B
+Transliterated theorem: ∀ A B : α, A ∆ B = ∅ ∈ α ↔ A = B
+Logical form (Lean): : ∀ A B : α, A ∆ B = (∅ : α) ↔ A = B
+Source: [`./Interface/Laws/SymmetricDifference.lean#L466`](./Interface/Laws/SymmetricDifference.lean#L466)
+
+
+
+Name: SymmetricDifferenceSubsetUnion
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A B : α, A ∆ B ⊆ A ∪ B
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A B : α), inst.symmDiff A B = A \ B ∪ B \ A) ∧ ((∀ (A B : α), inst.symmDiff A B = A ∪ B \ A ∩ B) ∧ ((∀ (A B : α), inst.symmDiff A B = inst.symmDiff B A) ∧ ((∀ (A B C : α), inst.symmDiff (inst.symmDiff A B) C = inst.symmDiff A (inst.symmDiff B C)) ∧ ((∀ (A : α), inst.symmDiff A inst_4.emptyCollection = A) ∧ ((∀ (A : α), inst.symmDiff inst_4.emptyCollection A = A) ∧ ((∀ (A : α), inst.symmDiff A A = inst_4.emptyCollection) ∧ ((∀ (A B : α), inst.symmDiff A B = inst_4.emptyCollection ↔ A = B) ∧ (∀ (A B : α), inst_5.Subset (inst.symmDiff A B) (A ∪ B)))))))))) → ∀ (A B : α), inst_5.Subset (inst.symmDiff A B) (A ∪ B)
+Transliterated theorem: ∀ A B : α, A ∆ B ⊆ A ∪ B
+Logical form (Lean): : ∀ A B : α, A ∆ B ⊆ A ∪ B
+Source: [`./Interface/Laws/SymmetricDifference.lean#L511`](./Interface/Laws/SymmetricDifference.lean#L511)
+
+
+
+Name: IntersectionDistributesOverUnion
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A B C : α, A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A B C : α), A ∩ B ∪ C = A ∩ B ∪ A ∩ C) ∧ ((∀ (A B C : α), A ∪ B ∩ C = A ∪ B ∩ A ∪ C) ∧ ((∀ (A B : α), A ∪ A ∩ B = A) ∧ (∀ (A B : α), A ∩ A ∪ B = A)))) → ∀ (A B C : α), A ∩ B ∪ C = A ∩ B ∪ A ∩ C
+Transliterated theorem: ∀ A B C : α, A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)
+Logical form (Lean): : ∀ A B C : α, A ∩ (B ∪ C) = (A ∩ B) ∪ (A ∩ C)
+Source: [`./Interface/Laws/Distributivity.lean#L111`](./Interface/Laws/Distributivity.lean#L111)
+
+
+
+Name: UnionDistributesOverIntersection
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A B C : α, A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A B C : α), A ∩ B ∪ C = A ∩ B ∪ A ∩ C) ∧ ((∀ (A B C : α), A ∪ B ∩ C = A ∪ B ∩ A ∪ C) ∧ ((∀ (A B : α), A ∪ A ∩ B = A) ∧ (∀ (A B : α), A ∩ A ∪ B = A)))) → ∀ (A B C : α), A ∪ B ∩ C = A ∪ B ∩ A ∪ C
+Transliterated theorem: ∀ A B C : α, A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)
+Logical form (Lean): : ∀ A B C : α, A ∪ (B ∩ C) = (A ∪ B) ∩ (A ∪ C)
+Source: [`./Interface/Laws/Distributivity.lean#L157`](./Interface/Laws/Distributivity.lean#L157)
+
+
+
+Name: AbsorptionUnionIntersection
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A B : α, A ∪ (A ∩ B) = A
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A B C : α), A ∩ B ∪ C = A ∩ B ∪ A ∩ C) ∧ ((∀ (A B C : α), A ∪ B ∩ C = A ∪ B ∩ A ∪ C) ∧ ((∀ (A B : α), A ∪ A ∩ B = A) ∧ (∀ (A B : α), A ∩ A ∪ B = A)))) → ∀ (A B : α), A ∪ A ∩ B = A
+Transliterated theorem: ∀ A B : α, A ∪ (A ∩ B) = A
+Logical form (Lean): : ∀ A B : α, A ∪ (A ∩ B) = A
+Source: [`./Interface/Laws/Distributivity.lean#L202`](./Interface/Laws/Distributivity.lean#L202)
+
+
+
+Name: AbsorptionIntersectionUnion
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A B : α, A ∩ (A ∪ B) = A
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A B C : α), A ∩ B ∪ C = A ∩ B ∪ A ∩ C) ∧ ((∀ (A B C : α), A ∪ B ∩ C = A ∪ B ∩ A ∪ C) ∧ ((∀ (A B : α), A ∪ A ∩ B = A) ∧ (∀ (A B : α), A ∩ A ∪ B = A)))) → ∀ (A B : α), A ∩ A ∪ B = A
+Transliterated theorem: ∀ A B : α, A ∩ (A ∪ B) = A
+Logical form (Lean): : ∀ A B : α, A ∩ (A ∪ B) = A
+Source: [`./Interface/Laws/Distributivity.lean#L246`](./Interface/Laws/Distributivity.lean#L246)
+
+
+
+Name: DoubleComplement
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A : α, Aᶜᶜ = A
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A : α), inst.complement (inst.complement A) = A) ∧ (inst.complement inst_5.emptyCollection = inst_1.universal ∧ (inst.complement inst_1.universal = inst_5.emptyCollection ∧ ((∀ (A : α), A ∪ inst.complement A = inst_1.universal) ∧ ((∀ (A : α), A ∩ inst.complement A = inst_5.emptyCollection) ∧ ((∀ (A B : α), inst.complement (A ∪ B) = inst.complement A ∩ inst.complement B) ∧ ((∀ (A B : α), inst.complement (A ∩ B) = inst.complement A ∪ inst.complement B) ∧ ((∀ (A B : α), A \ B = A ∩ inst.complement B) ∧ ((∀ (A : α), A \ inst_1.universal = inst_5.emptyCollection) ∧ (∀ (A : α), inst_1.universal \ A = inst.complement A)))))))))) → ∀ (A : α), inst.complement (inst.complement A) = A
+Transliterated theorem: ∀ A : α, Aᶜᶜ = A
+Logical form (Lean): : ∀ A : α, Aᶜᶜ = A
+Source: [`./Interface/Laws/Complement.lean#L141`](./Interface/Laws/Complement.lean#L141)
+
+
+
+Name: ComplementEmpty
+Kind: Theorem
+State: Completed
+Predicate logic: (∅ : α)ᶜ = (𝒰 : α)
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A : α), inst.complement (inst.complement A) = A) ∧ (inst.complement inst_5.emptyCollection = inst_1.universal ∧ (inst.complement inst_1.universal = inst_5.emptyCollection ∧ ((∀ (A : α), A ∪ inst.complement A = inst_1.universal) ∧ ((∀ (A : α), A ∩ inst.complement A = inst_5.emptyCollection) ∧ ((∀ (A B : α), inst.complement (A ∪ B) = inst.complement A ∩ inst.complement B) ∧ ((∀ (A B : α), inst.complement (A ∩ B) = inst.complement A ∪ inst.complement B) ∧ ((∀ (A B : α), A \ B = A ∩ inst.complement B) ∧ ((∀ (A : α), A \ inst_1.universal = inst_5.emptyCollection) ∧ (∀ (A : α), inst_1.universal \ A = inst.complement A)))))))))) → inst.complement inst_5.emptyCollection = inst_1.universal
+Transliterated theorem: ∅ ∈ αᶜ = 𝒰 ∈ α
+Logical form (Lean): : (∅ : α)ᶜ = (𝒰 : α)
+Source: [`./Interface/Laws/Complement.lean#L186`](./Interface/Laws/Complement.lean#L186)
+
+
+
+Name: ComplementUniversal
+Kind: Theorem
+State: Completed
+Predicate logic: (𝒰 : α)ᶜ = (∅ : α)
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A : α), inst.complement (inst.complement A) = A) ∧ (inst.complement inst_5.emptyCollection = inst_1.universal ∧ (inst.complement inst_1.universal = inst_5.emptyCollection ∧ ((∀ (A : α), A ∪ inst.complement A = inst_1.universal) ∧ ((∀ (A : α), A ∩ inst.complement A = inst_5.emptyCollection) ∧ ((∀ (A B : α), inst.complement (A ∪ B) = inst.complement A ∩ inst.complement B) ∧ ((∀ (A B : α), inst.complement (A ∩ B) = inst.complement A ∪ inst.complement B) ∧ ((∀ (A B : α), A \ B = A ∩ inst.complement B) ∧ ((∀ (A : α), A \ inst_1.universal = inst_5.emptyCollection) ∧ (∀ (A : α), inst_1.universal \ A = inst.complement A)))))))))) → inst.complement inst_1.universal = inst_5.emptyCollection
+Transliterated theorem: 𝒰 ∈ αᶜ = ∅ ∈ α
+Logical form (Lean): : (𝒰 : α)ᶜ = (∅ : α)
+Source: [`./Interface/Laws/Complement.lean#L231`](./Interface/Laws/Complement.lean#L231)
+
+
+
+Name: UnionComplement
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A : α, A ∪ Aᶜ = (𝒰 : α)
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A : α), inst.complement (inst.complement A) = A) ∧ (inst.complement inst_5.emptyCollection = inst_1.universal ∧ (inst.complement inst_1.universal = inst_5.emptyCollection ∧ ((∀ (A : α), A ∪ inst.complement A = inst_1.universal) ∧ ((∀ (A : α), A ∩ inst.complement A = inst_5.emptyCollection) ∧ ((∀ (A B : α), inst.complement (A ∪ B) = inst.complement A ∩ inst.complement B) ∧ ((∀ (A B : α), inst.complement (A ∩ B) = inst.complement A ∪ inst.complement B) ∧ ((∀ (A B : α), A \ B = A ∩ inst.complement B) ∧ ((∀ (A : α), A \ inst_1.universal = inst_5.emptyCollection) ∧ (∀ (A : α), inst_1.universal \ A = inst.complement A)))))))))) → ∀ (A : α), A ∪ inst.complement A = inst_1.universal
+Transliterated theorem: ∀ A : α, A ∪ Aᶜ = 𝒰 ∈ α
+Logical form (Lean): : ∀ A : α, A ∪ Aᶜ = (𝒰 : α)
+Source: [`./Interface/Laws/Complement.lean#L276`](./Interface/Laws/Complement.lean#L276)
+
+
+
+Name: IntersectionComplement
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A : α, A ∩ Aᶜ = (∅ : α)
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A : α), inst.complement (inst.complement A) = A) ∧ (inst.complement inst_5.emptyCollection = inst_1.universal ∧ (inst.complement inst_1.universal = inst_5.emptyCollection ∧ ((∀ (A : α), A ∪ inst.complement A = inst_1.universal) ∧ ((∀ (A : α), A ∩ inst.complement A = inst_5.emptyCollection) ∧ ((∀ (A B : α), inst.complement (A ∪ B) = inst.complement A ∩ inst.complement B) ∧ ((∀ (A B : α), inst.complement (A ∩ B) = inst.complement A ∪ inst.complement B) ∧ ((∀ (A B : α), A \ B = A ∩ inst.complement B) ∧ ((∀ (A : α), A \ inst_1.universal = inst_5.emptyCollection) ∧ (∀ (A : α), inst_1.universal \ A = inst.complement A)))))))))) → ∀ (A : α), A ∩ inst.complement A = inst_5.emptyCollection
+Transliterated theorem: ∀ A : α, A ∩ Aᶜ = ∅ ∈ α
+Logical form (Lean): : ∀ A : α, A ∩ Aᶜ = (∅ : α)
+Source: [`./Interface/Laws/Complement.lean#L321`](./Interface/Laws/Complement.lean#L321)
+
+
+
+Name: DeMorganUnion
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A B : α, (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A : α), inst.complement (inst.complement A) = A) ∧ (inst.complement inst_5.emptyCollection = inst_1.universal ∧ (inst.complement inst_1.universal = inst_5.emptyCollection ∧ ((∀ (A : α), A ∪ inst.complement A = inst_1.universal) ∧ ((∀ (A : α), A ∩ inst.complement A = inst_5.emptyCollection) ∧ ((∀ (A B : α), inst.complement (A ∪ B) = inst.complement A ∩ inst.complement B) ∧ ((∀ (A B : α), inst.complement (A ∩ B) = inst.complement A ∪ inst.complement B) ∧ ((∀ (A B : α), A \ B = A ∩ inst.complement B) ∧ ((∀ (A : α), A \ inst_1.universal = inst_5.emptyCollection) ∧ (∀ (A : α), inst_1.universal \ A = inst.complement A)))))))))) → ∀ (A B : α), inst.complement (A ∪ B) = inst.complement A ∩ inst.complement B
+Transliterated theorem: ∀ A B : α, (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ
+Logical form (Lean): : ∀ A B : α, (A ∪ B)ᶜ = Aᶜ ∩ Bᶜ
+Source: [`./Interface/Laws/Complement.lean#L366`](./Interface/Laws/Complement.lean#L366)
+
+
+
+Name: DeMorganIntersection
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A B : α, (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A : α), inst.complement (inst.complement A) = A) ∧ (inst.complement inst_5.emptyCollection = inst_1.universal ∧ (inst.complement inst_1.universal = inst_5.emptyCollection ∧ ((∀ (A : α), A ∪ inst.complement A = inst_1.universal) ∧ ((∀ (A : α), A ∩ inst.complement A = inst_5.emptyCollection) ∧ ((∀ (A B : α), inst.complement (A ∪ B) = inst.complement A ∩ inst.complement B) ∧ ((∀ (A B : α), inst.complement (A ∩ B) = inst.complement A ∪ inst.complement B) ∧ ((∀ (A B : α), A \ B = A ∩ inst.complement B) ∧ ((∀ (A : α), A \ inst_1.universal = inst_5.emptyCollection) ∧ (∀ (A : α), inst_1.universal \ A = inst.complement A)))))))))) → ∀ (A B : α), inst.complement (A ∩ B) = inst.complement A ∪ inst.complement B
+Transliterated theorem: ∀ A B : α, (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ
+Logical form (Lean): : ∀ A B : α, (A ∩ B)ᶜ = Aᶜ ∪ Bᶜ
+Source: [`./Interface/Laws/Complement.lean#L411`](./Interface/Laws/Complement.lean#L411)
+
+
+
+Name: DifferenceAsIntersectionComplement
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A B : α, A \ B = A ∩ Bᶜ
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A : α), inst.complement (inst.complement A) = A) ∧ (inst.complement inst_5.emptyCollection = inst_1.universal ∧ (inst.complement inst_1.universal = inst_5.emptyCollection ∧ ((∀ (A : α), A ∪ inst.complement A = inst_1.universal) ∧ ((∀ (A : α), A ∩ inst.complement A = inst_5.emptyCollection) ∧ ((∀ (A B : α), inst.complement (A ∪ B) = inst.complement A ∩ inst.complement B) ∧ ((∀ (A B : α), inst.complement (A ∩ B) = inst.complement A ∪ inst.complement B) ∧ ((∀ (A B : α), A \ B = A ∩ inst.complement B) ∧ ((∀ (A : α), A \ inst_1.universal = inst_5.emptyCollection) ∧ (∀ (A : α), inst_1.universal \ A = inst.complement A)))))))))) → ∀ (A B : α), A \ B = A ∩ inst.complement B
+Transliterated theorem: ∀ A B : α, A \ B = A ∩ Bᶜ
+Logical form (Lean): : ∀ A B : α, A \ B = A ∩ Bᶜ
+Source: [`./Interface/Laws/Complement.lean#L457`](./Interface/Laws/Complement.lean#L457)
+
+
+
+Name: DifferenceUniversal
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A : α, A \ (𝒰 : α) = (∅ : α)
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A : α), inst.complement (inst.complement A) = A) ∧ (inst.complement inst_5.emptyCollection = inst_1.universal ∧ (inst.complement inst_1.universal = inst_5.emptyCollection ∧ ((∀ (A : α), A ∪ inst.complement A = inst_1.universal) ∧ ((∀ (A : α), A ∩ inst.complement A = inst_5.emptyCollection) ∧ ((∀ (A B : α), inst.complement (A ∪ B) = inst.complement A ∩ inst.complement B) ∧ ((∀ (A B : α), inst.complement (A ∩ B) = inst.complement A ∪ inst.complement B) ∧ ((∀ (A B : α), A \ B = A ∩ inst.complement B) ∧ ((∀ (A : α), A \ inst_1.universal = inst_5.emptyCollection) ∧ (∀ (A : α), inst_1.universal \ A = inst.complement A)))))))))) → ∀ (A : α), A \ inst_1.universal = inst_5.emptyCollection
+Transliterated theorem: ∀ A : α, A \ 𝒰 ∈ α = ∅ ∈ α
+Logical form (Lean): : ∀ A : α, A \ (𝒰 : α) = (∅ : α)
+Source: [`./Interface/Laws/Complement.lean#L503`](./Interface/Laws/Complement.lean#L503)
+
+
+
+Name: UniversalDifference
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A : α, (𝒰 : α) \ A = Aᶜ
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A : α), inst.complement (inst.complement A) = A) ∧ (inst.complement inst_5.emptyCollection = inst_1.universal ∧ (inst.complement inst_1.universal = inst_5.emptyCollection ∧ ((∀ (A : α), A ∪ inst.complement A = inst_1.universal) ∧ ((∀ (A : α), A ∩ inst.complement A = inst_5.emptyCollection) ∧ ((∀ (A B : α), inst.complement (A ∪ B) = inst.complement A ∩ inst.complement B) ∧ ((∀ (A B : α), inst.complement (A ∩ B) = inst.complement A ∪ inst.complement B) ∧ ((∀ (A B : α), A \ B = A ∩ inst.complement B) ∧ ((∀ (A : α), A \ inst_1.universal = inst_5.emptyCollection) ∧ (∀ (A : α), inst_1.universal \ A = inst.complement A)))))))))) → ∀ (A : α), inst_1.universal \ A = inst.complement A
+Transliterated theorem: ∀ A : α, 𝒰 ∈ α \ A = Aᶜ
+Logical form (Lean): : ∀ A : α, (𝒰 : α) \ A = Aᶜ
+Source: [`./Interface/Laws/Complement.lean#L548`](./Interface/Laws/Complement.lean#L548)
+
+
+
+Name: DualAntitone
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ [HasSubset α] [UnionLaws α] [IntersectionLaws α], ∀ A B : α, A ⊆ B ↔ Dual B ⊆ Dual A
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ∀ A B : α, A ⊆ B ↔ Dual B ⊆ Dual A
+Transliterated theorem: ∀ A B : α, A ⊆ B ↔ Dual B ⊆ Dual A
+Logical form (Lean): [HasSubset α] [UnionLaws α] [IntersectionLaws α] : ∀ A B : α, A ⊆ B ↔ Dual B ⊆ Dual A
+Source: [`./Interface/Laws/Complement.lean#L632`](./Interface/Laws/Complement.lean#L632)
+
+
+
+Name: DualUnion
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A B : α, Dual (A ∪ B) = Dual A ∩ Dual B
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A : α), inst.complement (inst.complement A) = A) ∧ (inst.complement inst_5.emptyCollection = inst_1.universal ∧ (inst.complement inst_1.universal = inst_5.emptyCollection ∧ ((∀ (A : α), A ∪ inst.complement A = inst_1.universal) ∧ ((∀ (A : α), A ∩ inst.complement A = inst_5.emptyCollection) ∧ ((∀ (A B : α), inst.complement (A ∪ B) = inst.complement A ∩ inst.complement B) ∧ ((∀ (A B : α), inst.complement (A ∩ B) = inst.complement A ∪ inst.complement B) ∧ ((∀ (A B : α), A \ B = A ∩ inst.complement B) ∧ ((∀ (A : α), A \ inst_1.universal = inst_5.emptyCollection) ∧ (∀ (A : α), inst_1.universal \ A = inst.complement A)))))))))) → ∀ (A B : α), LRA.Set.Dual (A ∪ B) = LRA.Set.Dual A ∩ LRA.Set.Dual B
+Transliterated theorem: ∀ A B : α, Dual (A ∪ B) = Dual A ∩ Dual B
+Logical form (Lean): : ∀ A B : α, Dual (A ∪ B) = Dual A ∩ Dual B
+Source: [`./Interface/Laws/Complement.lean#L700`](./Interface/Laws/Complement.lean#L700)
+
+
+
+Name: DualIntersection
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A B : α, Dual (A ∩ B) = Dual A ∪ Dual B
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A : α), inst.complement (inst.complement A) = A) ∧ (inst.complement inst_5.emptyCollection = inst_1.universal ∧ (inst.complement inst_1.universal = inst_5.emptyCollection ∧ ((∀ (A : α), A ∪ inst.complement A = inst_1.universal) ∧ ((∀ (A : α), A ∩ inst.complement A = inst_5.emptyCollection) ∧ ((∀ (A B : α), inst.complement (A ∪ B) = inst.complement A ∩ inst.complement B) ∧ ((∀ (A B : α), inst.complement (A ∩ B) = inst.complement A ∪ inst.complement B) ∧ ((∀ (A B : α), A \ B = A ∩ inst.complement B) ∧ ((∀ (A : α), A \ inst_1.universal = inst_5.emptyCollection) ∧ (∀ (A : α), inst_1.universal \ A = inst.complement A)))))))))) → ∀ (A B : α), LRA.Set.Dual (A ∩ B) = LRA.Set.Dual A ∪ LRA.Set.Dual B
+Transliterated theorem: ∀ A B : α, Dual (A ∩ B) = Dual A ∪ Dual B
+Logical form (Lean): : ∀ A B : α, Dual (A ∩ B) = Dual A ∪ Dual B
+Source: [`./Interface/Laws/Complement.lean#L745`](./Interface/Laws/Complement.lean#L745)
+
+
+
+Name: DualInvolutive
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ A : α, Dual (Dual A) = A
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    (none)
+  Prove
+    ((∀ (A : α), inst.complement (inst.complement A) = A) ∧ (inst.complement inst_5.emptyCollection = inst_1.universal ∧ (inst.complement inst_1.universal = inst_5.emptyCollection ∧ ((∀ (A : α), A ∪ inst.complement A = inst_1.universal) ∧ ((∀ (A : α), A ∩ inst.complement A = inst_5.emptyCollection) ∧ ((∀ (A B : α), inst.complement (A ∪ B) = inst.complement A ∩ inst.complement B) ∧ ((∀ (A B : α), inst.complement (A ∩ B) = inst.complement A ∪ inst.complement B) ∧ ((∀ (A B : α), A \ B = A ∩ inst.complement B) ∧ ((∀ (A : α), A \ inst_1.universal = inst_5.emptyCollection) ∧ (∀ (A : α), inst_1.universal \ A = inst.complement A)))))))))) → ∀ (A : α), LRA.Set.Dual (LRA.Set.Dual A) = A
+Transliterated theorem: ∀ A : α, Dual (Dual A) = A
+Logical form (Lean): : ∀ A : α, Dual (Dual A) = A
+Source: [`./Interface/Laws/Complement.lean#L790`](./Interface/Laws/Complement.lean#L790)
+
+
+
 Name: BelongsToClass
 Kind: Instance
 State: Completed
@@ -11965,6 +11931,40 @@ Predicate logic (unfolded):
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./SetClass/Representation.lean`](./SetClass/Representation.lean)
+
+
+
+Name: SetClassExtensionality
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {α : Type u} {left right : SetClass α} (sameMembers : ∀ element, left element ↔ right element), left = right
+Predicate logic (unfolded):
+  Ambient
+    (α)
+  Objects
+    left right : SetClass α
+  Prove
+    left = right
+Transliterated theorem: (∀ element, left element ↔ right element) → left = right
+Logical form (Lean): {α : Type u} {left right : SetClass α} (sameMembers : ∀ element, left element ↔ right element) : left = right
+Source: [`./SetClass/Theorems.lean#L51`](./SetClass/Theorems.lean#L51)
+
+
+
+Name: SetRepresentsItsClass
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {Element : Type u} {SetObject : Type v} [inst : Membership Element SetObject] (setObject : SetObject),   LRA.Set.Represents setObject (LRA.Set.ClassOfSet setObject)
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    setObject : SetObject
+  Prove
+    element ∈ setObject ↔ element ∈ setObject
+Transliterated theorem: (∀ A ∈ U), Represents A (ClassOfSet A)
+Logical form (Lean): {Element : Type u} {SetObject : Type v} [Membership Element SetObject] (setObject : SetObject) : Represents setObject (ClassOfSet setObject)
+Source: [`./SetClass/Theorems.lean#L101`](./SetClass/Theorems.lean#L101)
 
 
 

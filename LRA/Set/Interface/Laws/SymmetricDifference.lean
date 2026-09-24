@@ -151,7 +151,7 @@ Related proof moves: intro
 -/
 theorem SymmetricDifferenceAsUnionDifferences :
     ∀ A B : α, A ∆ B = (A \ B) ∪ (B \ A) :=
-  sorry
+  SymmDiffLaws.SymmetricDifferenceAsUnionDifferences
 
 /--
 `SymmetricDifferenceAsUnionDifferenceIntersection` TODO
@@ -197,7 +197,7 @@ Related proof moves: intro
 -/
 theorem SymmetricDifferenceAsUnionDifferenceIntersection :
     ∀ A B : α, A ∆ B = (A ∪ B) \ (A ∩ B) :=
-  sorry
+  SymmDiffLaws.SymmetricDifferenceAsUnionDifferenceIntersection
 
 /--
 `SymmetricDifferenceCommutative` TODO
@@ -241,7 +241,7 @@ Related proof moves: intro
 
 -/
 theorem SymmetricDifferenceCommutative : ∀ A B : α, A ∆ B = B ∆ A :=
-  sorry
+  SymmDiffLaws.SymmetricDifferenceCommutative
 
 /--
 `SymmetricDifferenceAssociative` TODO
@@ -287,7 +287,7 @@ Related proof moves: intro
 -/
 theorem SymmetricDifferenceAssociative :
     ∀ A B C : α, (A ∆ B) ∆ C = A ∆ (B ∆ C) :=
-  sorry
+  SymmDiffLaws.SymmetricDifferenceAssociative
 
 /--
 `SymmetricDifferenceEmpty` TODO
@@ -331,7 +331,7 @@ Related proof moves: intro
 
 -/
 theorem SymmetricDifferenceEmpty : ∀ A : α, A ∆ (∅ : α) = A :=
-  sorry
+  SymmDiffLaws.SymmetricDifferenceEmpty
 
 /--
 `EmptySymmetricDifference` TODO
@@ -375,7 +375,7 @@ Related proof moves: intro
 
 -/
 theorem EmptySymmetricDifference : ∀ A : α, (∅ : α) ∆ A = A :=
-  sorry
+  SymmDiffLaws.EmptySymmetricDifference
 
 /--
 `SymmetricDifferenceSelf` TODO
@@ -419,7 +419,7 @@ Related proof moves: intro
 
 -/
 theorem SymmetricDifferenceSelf : ∀ A : α, A ∆ A = (∅ : α) :=
-  sorry
+  SymmDiffLaws.SymmetricDifferenceSelf
 
 /--
 `SymmetricDifferenceEqEmptyIff` TODO
@@ -465,7 +465,7 @@ Related proof moves: intro, constructor, .mp, .mpr
 -/
 theorem SymmetricDifferenceEqEmptyIff :
     ∀ A B : α, A ∆ B = (∅ : α) ↔ A = B :=
-  sorry
+  SymmDiffLaws.SymmetricDifferenceEqEmptyIff
 
 /--
 `SymmetricDifferenceSubsetUnion` TODO
@@ -509,8 +509,7 @@ Related proof moves: intro
 
 -/
 theorem SymmetricDifferenceSubsetUnion : ∀ A B : α, A ∆ B ⊆ A ∪ B :=
-  sorry
+  SymmDiffLaws.SymmetricDifferenceSubsetUnion
 
 end LRA.Set
-
 
