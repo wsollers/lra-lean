@@ -370,8 +370,36 @@ Related proof moves: intro, constructor, .mp, .mpr
 theorem IsIdentityRelation.IsDiagonal {Carrier : Type u}
     {R : Carrier -> Carrier -> Prop} (h : IsIdentityRelation R) :
     forall left right, R left right <-> EqualityDiagonal Carrier left right := by
+  intro l r
+  constructor
+  . --
+    intro h_lRr
+    unfold EqualityDiagonal
+    -- Step 1: Define the predicate "being equal to l"
+    let P_lEr : Carrier → Prop := fun x => l = x
 
-  sorry
+    -- Step 2: Show that P_lEr is admissible (which is just `True`)
+    have h_adm : FullLeibniz Carrier P_lEr := trivial
+
+    -- Step 3: Show that P_lEr holds for l (which is `l = l`)
+    have h_Pl : P_lEr l := rfl
+
+    -- Step 4: Extract the Leibniz property from h for the pair (l, r)
+    have h_subst := h.leibniz l r h_lRr
+
+    -- Step 5: Specialize the Leibniz property to our predicate P
+    have h_step := h_subst P_lEr h_adm
+
+    -- Step 6: Conclude P_lEr r, which is definitionally `l = r`
+    exact h_step h_Pl
+  . --
+    intro h_diag_equal
+
+    have h_eq : l = r := h_diag_equal
+    rw [h_eq]
+    exact h.reflexive r
+
+
 
 /--
 `IsIdentityRelation.IffForallIffEquality` TODO
@@ -412,9 +440,31 @@ Related proof moves: intro, constructor, .mp, .mpr
 
 -/
 theorem IsIdentityRelation.IffForallIffEquality {Carrier : Type u}
-    {R : Carrier -> Carrier -> Prop} :
-    IsIdentityRelation R <-> forall left right, R left right <-> left = right := by
-  sorry
+    {R : Carrier → Carrier → Prop} :
+    IsIdentityRelation R ↔ ∀ left right, R left right ↔ left = right := by
+  constructor
+  · -- Forward direction (→)
+    intro h_identrelation left right
+    constructor
+    · -- R left right → left = right
+      intro h_R
+      exact h_identrelation.leibniz left right h_R (fun x => left = x) trivial rfl
+    · -- left = right → R left right
+      intro h_eq
+      rw [h_eq]
+      exact h_identrelation.reflexive right
+  · -- Reverse direction (←)
+    intro h_iff
+    constructor
+    · -- Reflexivity: ∀ x, R x x
+      intro x
+      exact (h_iff x x).mpr rfl
+    · -- Leibniz property
+      intro x y h_R P _h_adm h_Px
+      have h_eq : x = y := (h_iff x y).mp h_R
+      rw [← h_eq]
+      exact h_Px
+
 
 /--
 `IsIdentityRelation.IffEqualityDiagonal` TODO
@@ -455,51 +505,27 @@ Related proof moves: intro, constructor, .mp, .mpr
 
 -/
 theorem IsIdentityRelation.IffEqualityDiagonal {Carrier : Type u}
-    {R : Carrier -> Carrier -> Prop} :
-    IsIdentityRelation R <-> R = EqualityDiagonal Carrier := by
-  sorry
+    {R : Carrier → Carrier → Prop} :
+    IsIdentityRelation R ↔ R = EqualityDiagonal Carrier := by
+  constructor
+  · intro h_id
+    ext left right
+    have h_iff := (IsIdentityRelation.IffForallIffEquality.mp h_id) left right
+    -- EqualityDiagonal Carrier left right is definitionally left = right
+    exact h_iff
+  · intro h_eq
+    rw [h_eq]
+    rw [IsIdentityRelation.IffForallIffEquality]
+    intro left right
+    rfl
 
-/--
-`EqualityStructure.IsDiagonal` TODO
-
-Predicate logic:
-
-  ∀ (S : LRA.Identity.EqualityStructure) (left right : S.Carrier), S.equalityInterpretation left right ↔ LRA.Identity.EqualityDiagonal S.Carrier left right
-
-Predicate logic (unfolded):
-
-  ∀ (S : LRA.Identity.EqualityStructure) (left right : S.Carrier), S.equalityInterpretation left right ↔ left = right
-
-Logical form (Lean):
-
-```lean
 theorem EqualityStructure.IsDiagonal (S : EqualityStructure.{u}) :
-    forall left right,
-      S.equalityInterpretation left right <-> EqualityDiagonal S.Carrier left right
-```
+    ∀ left right,
+      S.equalityInterpretation left right ↔ EqualityDiagonal S.Carrier left right := by
+  intro left right
+  have h_id : IsIdentityRelation S.equalityInterpretation := S.satisfiesIdentityTheory
+  exact (IsIdentityRelation.IffForallIffEquality.mp h_id) left right
 
-Type-theoretic form:
 
-  TODO
-
-Proof use:
-
-  TODO
-
-After unfold / common proof state:
-
-  TODO
-
-Common confusions:
-
-  TODO
-
-Related proof moves: intro, constructor, .mp, .mpr
-
--/
-theorem EqualityStructure.IsDiagonal (S : EqualityStructure.{u}) :
-    forall left right,
-      S.equalityInterpretation left right <-> EqualityDiagonal S.Carrier left right := by
-  sorry
 
 end LRA.Identity
