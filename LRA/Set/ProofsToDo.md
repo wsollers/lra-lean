@@ -11,160 +11,18 @@ references. That gives a conservative repo-local work sequence, but it is
 **not** a theorem-level semantic dependency graph across unrelated topics in
 the folder.
 
-**Progress:** 68/531 theorem-family entries completed since reset baseline `73e79b40` (Mass-sorry non-Logic proofs and regenerate todos).
-**Baseline reconciliation:** 89 still match baseline as `sorry`; 374 baseline entries were moved, renamed, or removed and are not auto-credited.
+**Progress:** 75/531 theorem-family entries completed since reset baseline `73e79b40` (Mass-sorry non-Logic proofs and regenerate todos).
+**Baseline reconciliation:** 82 still match baseline as `sorry`; 374 baseline entries were moved, renamed, or removed and are not auto-credited.
 
-**Snapshot:** 76/627 theorem-family entries currently completed (551 sorry remaining).
+**Snapshot:** 83/627 theorem-family entries currently completed (544 sorry remaining).
 
-**Inventory:** 627 theorem/lemma/corollary/proposition entries across 169 module(s) (76 completed, 551 sorry).
+**Inventory:** 627 theorem/lemma/corollary/proposition entries across 169 module(s) (83 completed, 544 sorry).
 **Excluded from counts:** 153 `instance` entries and 52 `axiom` entries.
 
 ## Open Work Queue
 
 Unfinished entries (`Sorry`, or `Unknown` in offline preview) are listed first so
 this section can be used as the actual proof queue.
-
-Name: PairInjective
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ {Left Right Pair : Type u} [HasPairing Left Right Pair] [PairingLaws Left Right Pair], ∀ (firstLeft secondLeft : Left) (firstRight secondRight : Right), OrderedPair firstLeft firstRight = OrderedPair secondLeft secondRight ↔ firstLeft = secondLeft ∧ firstRight = secondRight
-Predicate logic (unfolded):
-  Ambient
-    (Left, Right, Pair)
-  Objects
-    (none)
-  Prove
-    ∀ (firstLeft secondLeft : Left) (firstRight secondRight : Right), OrderedPair firstLeft firstRight = OrderedPair secondLeft secondRight ↔ firstLeft = secondLeft ∧ firstRight = secondRight
-Transliterated theorem: ∀ firstLeft secondLeft ∈ Left firstRight secondRight ∈ Right, OrderedPair firstLeft firstRight = OrderedPair secondLeft secondRight ↔ firstLeft = secondLeft ∧ firstRight = secondRight
-Logical form (Lean): {Left Right Pair : Type u} [HasPairing Left Right Pair] [PairingLaws Left Right Pair] : ∀ (firstLeft secondLeft : Left) (firstRight secondRight : Right), OrderedPair firstLeft firstRight = OrderedPair secondLeft secondRight ↔ firstLeft = secondLeft ∧ firstRight = secondRight
-Source: [`./Interface/Laws/Pairing.lean#L115`](./Interface/Laws/Pairing.lean#L115)
-
-
-
-Name: instProdPairingLaws
-Kind: Instance
-State: Sorry
-Predicate logic: ∀ {Left Right : Type u}, LRA.Set.PairingLaws Left Right (Prod Left Right)
-Predicate logic (unfolded):
-  Ambient
-    (Left, Right)
-  Objects
-    (none)
-  Prove
-    LRA.Set.OrderedPair firstLeft firstRight = LRA.Set.OrderedPair secondLeft secondRight ↔ (firstLeft = secondLeft ∧ firstRight = secondRight)
-Transliterated theorem: PairingLaws Left Right (Left × Right) where PairInjective
-Logical form (Lean): {Left Right : Type u} : PairingLaws Left Right (Left × Right) where PairInjective
-Source: [`./Interface/Laws/Pairing.lean#L123`](./Interface/Laws/Pairing.lean#L123)
-
-
-
-Name: IndexedUnionMembership
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [Membership Element SetObject] [HasIndexedUnion SetObject] [HasIndexedIntersection SetObject] [IndexedMembershipLaws Element SetObject] {Index : Type w} (family : Index → SetObject) (x : Element), x ∈ HasIndexedUnion.indexedUnion family ↔ ∃ index, x ∈ family index
-Predicate logic (unfolded):
-  Ambient
-    (Element, SetObject, Index, ∈)
-  Objects
-    family : Index → SetObject
-    x : Element
-  Prove
-    x ∈ HasIndexedUnion.indexedUnion family ↔ ∃ index, x ∈ family index
-Transliterated theorem: (∀ x ∈ Element), x ∈ HasIndexedUnion.indexedUnion family ↔ ∃ index, x ∈ family index
-Logical form (Lean): [Membership Element SetObject] [HasIndexedUnion SetObject] [HasIndexedIntersection SetObject] [IndexedMembershipLaws Element SetObject] {Index : Type w} (family : Index → SetObject) (x : Element) : x ∈ HasIndexedUnion.indexedUnion family ↔ ∃ index, x ∈ family index
-Source: [`./Interface/Laws/Indexed.lean#L226`](./Interface/Laws/Indexed.lean#L226)
-
-
-
-Name: IndexedIntersectionMembership
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [Membership Element SetObject] [HasIndexedUnion SetObject] [HasIndexedIntersection SetObject] [IndexedMembershipLaws Element SetObject] {Index : Type w} (family : Index → SetObject) (x : Element), x ∈ HasIndexedIntersection.indexedIntersection family ↔ ∀ index, x ∈ family index
-Predicate logic (unfolded):
-  Ambient
-    (Element, SetObject, Index, ∈)
-  Objects
-    family : Index → SetObject
-    x : Element
-  Prove
-    x ∈ HasIndexedIntersection.indexedIntersection family ↔ ∀ index, x ∈ family index
-Transliterated theorem: (∀ x ∈ Element), x ∈ HasIndexedIntersection.indexedIntersection family ↔ ∀ index, x ∈ family index
-Logical form (Lean): [Membership Element SetObject] [HasIndexedUnion SetObject] [HasIndexedIntersection SetObject] [IndexedMembershipLaws Element SetObject] {Index : Type w} (family : Index → SetObject) (x : Element) : x ∈ HasIndexedIntersection.indexedIntersection family ↔ ∀ index, x ∈ family index
-Source: [`./Interface/Laws/Indexed.lean#L282`](./Interface/Laws/Indexed.lean#L282)
-
-
-
-Name: CountableUnionMembership
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [Membership Element SetObject] [HasCountableUnion SetObject] [HasCountableIntersection SetObject] [CountableMembershipLaws Element SetObject] (family : Nat → SetObject) (x : Element), x ∈ HasCountableUnion.countableUnion family ↔ ∃ index, x ∈ family index
-Predicate logic (unfolded):
-  Ambient
-    (Element, SetObject, ∈)
-  Objects
-    family : Nat → SetObject
-    x : Element
-  Prove
-    x ∈ HasCountableUnion.countableUnion family ↔ ∃ index, x ∈ family index
-Transliterated theorem: (∀ x ∈ Element), x ∈ HasCountableUnion.countableUnion family ↔ ∃ index, x ∈ family index
-Logical form (Lean): [Membership Element SetObject] [HasCountableUnion SetObject] [HasCountableIntersection SetObject] [CountableMembershipLaws Element SetObject] (family : Nat → SetObject) (x : Element) : x ∈ HasCountableUnion.countableUnion family ↔ ∃ index, x ∈ family index
-Source: [`./Interface/Laws/Indexed.lean#L339`](./Interface/Laws/Indexed.lean#L339)
-
-
-
-Name: CountableIntersectionMembership
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [Membership Element SetObject] [HasCountableUnion SetObject] [HasCountableIntersection SetObject] [CountableMembershipLaws Element SetObject] (family : Nat → SetObject) (x : Element), x ∈ HasCountableIntersection.countableIntersection family ↔ ∀ index, x ∈ family index
-Predicate logic (unfolded):
-  Ambient
-    (Element, SetObject, ∈)
-  Objects
-    family : Nat → SetObject
-    x : Element
-  Prove
-    x ∈ HasCountableIntersection.countableIntersection family ↔ ∀ index, x ∈ family index
-Transliterated theorem: (∀ x ∈ Element), x ∈ HasCountableIntersection.countableIntersection family ↔ ∀ index, x ∈ family index
-Logical form (Lean): [Membership Element SetObject] [HasCountableUnion SetObject] [HasCountableIntersection SetObject] [CountableMembershipLaws Element SetObject] (family : Nat → SetObject) (x : Element) : x ∈ HasCountableIntersection.countableIntersection family ↔ ∀ index, x ∈ family index
-Source: [`./Interface/Laws/Indexed.lean#L396`](./Interface/Laws/Indexed.lean#L396)
-
-
-
-Name: CollectionUnionMembership
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [CollectionMembershipLaws Element SetObject Collection] (collection : Collection) (x : Element), x ∈ HasCollectionUnion.collectionUnion collection ↔ ∃ B : SetObject, B ∈ collection ∧ x ∈ B
-Predicate logic (unfolded):
-  Ambient
-    (Element, SetObject, Collection, ∈)
-  Objects
-    collection : Collection
-    x : Element
-  Prove
-    x ∈ HasCollectionUnion.collectionUnion collection ↔ ∃ B : SetObject, B ∈ collection ∧ x ∈ B
-Transliterated theorem: (∀ collection ∈ Collection ∀ x ∈ Element), x ∈ HasCollectionUnion.collectionUnion collection ↔ ∃ B ∈ SetObject, B ∈ collection ∧ x ∈ B
-Logical form (Lean): [CollectionMembershipLaws Element SetObject Collection] (collection : Collection) (x : Element) : x ∈ HasCollectionUnion.collectionUnion collection ↔ ∃ B : SetObject, B ∈ collection ∧ x ∈ B
-Source: [`./Interface/Laws/Families.lean#L154`](./Interface/Laws/Families.lean#L154)
-
-
-
-Name: CollectionIntersectionMembership
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ [CollectionMembershipLaws Element SetObject Collection] (collection : Collection) (x : Element) (collectionNonempty : ∃ B : SetObject, B ∈ collection), x ∈ HasCollectionIntersection.collectionIntersection collection ↔ ∀ B : SetObject, B ∈ collection → x ∈ B
-Predicate logic (unfolded):
-  Ambient
-    (Element, SetObject, Collection, ∈)
-  Objects
-    collection : Collection
-    x : Element
-  Prove
-    x ∈ HasCollectionIntersection.collectionIntersection collection ↔ ∀ B : SetObject, B ∈ collection → x ∈ B
-Transliterated theorem: (∀ collection ∈ Collection ∀ x ∈ Element), (∃ B ∈ SetObject, B ∈ collection) → x ∈ HasCollectionIntersection.collectionIntersection collection ↔ ∀ B : SetObject, B ∈ collection → x ∈ B
-Logical form (Lean): [CollectionMembershipLaws Element SetObject Collection] (collection : Collection) (x : Element) (collectionNonempty : ∃ B : SetObject, B ∈ collection) : x ∈ HasCollectionIntersection.collectionIntersection collection ↔ ∀ B : SetObject, B ∈ collection → x ∈ B
-Source: [`./Interface/Laws/Families.lean#L208`](./Interface/Laws/Families.lean#L208)
-
-
 
 Name: RelatesUnion
 Kind: Theorem
@@ -10795,6 +10653,40 @@ Source: [`./Interface/Laws/Membership.lean#L938`](./Interface/Laws/Membership.le
 
 
 
+Name: PairInjective
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {Left Right Pair : Type u} [HasPairing Left Right Pair] [PairingLaws Left Right Pair], ∀ (firstLeft secondLeft : Left) (firstRight secondRight : Right), OrderedPair firstLeft firstRight = OrderedPair secondLeft secondRight ↔ firstLeft = secondLeft ∧ firstRight = secondRight
+Predicate logic (unfolded):
+  Ambient
+    (Left, Right, Pair)
+  Objects
+    (none)
+  Prove
+    ∀ (firstLeft secondLeft : Left) (firstRight secondRight : Right), OrderedPair firstLeft firstRight = OrderedPair secondLeft secondRight ↔ firstLeft = secondLeft ∧ firstRight = secondRight
+Transliterated theorem: ∀ firstLeft secondLeft ∈ Left firstRight secondRight ∈ Right, OrderedPair firstLeft firstRight = OrderedPair secondLeft secondRight ↔ firstLeft = secondLeft ∧ firstRight = secondRight
+Logical form (Lean): {Left Right Pair : Type u} [HasPairing Left Right Pair] [PairingLaws Left Right Pair] : ∀ (firstLeft secondLeft : Left) (firstRight secondRight : Right), OrderedPair firstLeft firstRight = OrderedPair secondLeft secondRight ↔ firstLeft = secondLeft ∧ firstRight = secondRight
+Source: [`./Interface/Laws/Pairing.lean#L115`](./Interface/Laws/Pairing.lean#L115)
+
+
+
+Name: instProdPairingLaws
+Kind: Instance
+State: Completed
+Predicate logic: ∀ {Left Right : Type u}, LRA.Set.PairingLaws Left Right (Prod Left Right)
+Predicate logic (unfolded):
+  Ambient
+    (Left, Right)
+  Objects
+    (none)
+  Prove
+    LRA.Set.OrderedPair firstLeft firstRight = LRA.Set.OrderedPair secondLeft secondRight ↔ (firstLeft = secondLeft ∧ firstRight = secondRight)
+Transliterated theorem: PairingLaws Left Right (Left × Right) where PairInjective
+Logical form (Lean): {Left Right : Type u} : PairingLaws Left Right (Left × Right) where PairInjective
+Source: [`./Interface/Laws/Pairing.lean#L127`](./Interface/Laws/Pairing.lean#L127)
+
+
+
 Name: UnionCommutative
 Kind: Theorem
 State: Completed
@@ -11489,6 +11381,114 @@ Predicate logic (unfolded):
 Transliterated theorem: ∀ A B : α, A ∩ (A ∪ B) = A
 Logical form (Lean): : ∀ A B : α, A ∩ (A ∪ B) = A
 Source: [`./Interface/Laws/Distributivity.lean#L246`](./Interface/Laws/Distributivity.lean#L246)
+
+
+
+Name: IndexedUnionMembership
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ [Membership Element SetObject] [HasIndexedUnion SetObject] [HasIndexedIntersection SetObject] [IndexedMembershipLaws Element SetObject] {Index : Type w} (family : Index → SetObject) (x : Element), x ∈ HasIndexedUnion.indexedUnion family ↔ ∃ index, x ∈ family index
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, Index, ∈)
+  Objects
+    family : Index → SetObject
+    x : Element
+  Prove
+    x ∈ HasIndexedUnion.indexedUnion family ↔ ∃ index, x ∈ family index
+Transliterated theorem: (∀ x ∈ Element), x ∈ HasIndexedUnion.indexedUnion family ↔ ∃ index, x ∈ family index
+Logical form (Lean): [Membership Element SetObject] [HasIndexedUnion SetObject] [HasIndexedIntersection SetObject] [IndexedMembershipLaws Element SetObject] {Index : Type w} (family : Index → SetObject) (x : Element) : x ∈ HasIndexedUnion.indexedUnion family ↔ ∃ index, x ∈ family index
+Source: [`./Interface/Laws/Indexed.lean#L226`](./Interface/Laws/Indexed.lean#L226)
+
+
+
+Name: IndexedIntersectionMembership
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ [Membership Element SetObject] [HasIndexedUnion SetObject] [HasIndexedIntersection SetObject] [IndexedMembershipLaws Element SetObject] {Index : Type w} (family : Index → SetObject) (x : Element), x ∈ HasIndexedIntersection.indexedIntersection family ↔ ∀ index, x ∈ family index
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, Index, ∈)
+  Objects
+    family : Index → SetObject
+    x : Element
+  Prove
+    x ∈ HasIndexedIntersection.indexedIntersection family ↔ ∀ index, x ∈ family index
+Transliterated theorem: (∀ x ∈ Element), x ∈ HasIndexedIntersection.indexedIntersection family ↔ ∀ index, x ∈ family index
+Logical form (Lean): [Membership Element SetObject] [HasIndexedUnion SetObject] [HasIndexedIntersection SetObject] [IndexedMembershipLaws Element SetObject] {Index : Type w} (family : Index → SetObject) (x : Element) : x ∈ HasIndexedIntersection.indexedIntersection family ↔ ∀ index, x ∈ family index
+Source: [`./Interface/Laws/Indexed.lean#L291`](./Interface/Laws/Indexed.lean#L291)
+
+
+
+Name: CountableUnionMembership
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ [Membership Element SetObject] [HasCountableUnion SetObject] [HasCountableIntersection SetObject] [CountableMembershipLaws Element SetObject] (family : Nat → SetObject) (x : Element), x ∈ HasCountableUnion.countableUnion family ↔ ∃ index, x ∈ family index
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    family : Nat → SetObject
+    x : Element
+  Prove
+    x ∈ HasCountableUnion.countableUnion family ↔ ∃ index, x ∈ family index
+Transliterated theorem: (∀ x ∈ Element), x ∈ HasCountableUnion.countableUnion family ↔ ∃ index, x ∈ family index
+Logical form (Lean): [Membership Element SetObject] [HasCountableUnion SetObject] [HasCountableIntersection SetObject] [CountableMembershipLaws Element SetObject] (family : Nat → SetObject) (x : Element) : x ∈ HasCountableUnion.countableUnion family ↔ ∃ index, x ∈ family index
+Source: [`./Interface/Laws/Indexed.lean#L360`](./Interface/Laws/Indexed.lean#L360)
+
+
+
+Name: CountableIntersectionMembership
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ [Membership Element SetObject] [HasCountableUnion SetObject] [HasCountableIntersection SetObject] [CountableMembershipLaws Element SetObject] (family : Nat → SetObject) (x : Element), x ∈ HasCountableIntersection.countableIntersection family ↔ ∀ index, x ∈ family index
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, ∈)
+  Objects
+    family : Nat → SetObject
+    x : Element
+  Prove
+    x ∈ HasCountableIntersection.countableIntersection family ↔ ∀ index, x ∈ family index
+Transliterated theorem: (∀ x ∈ Element), x ∈ HasCountableIntersection.countableIntersection family ↔ ∀ index, x ∈ family index
+Logical form (Lean): [Membership Element SetObject] [HasCountableUnion SetObject] [HasCountableIntersection SetObject] [CountableMembershipLaws Element SetObject] (family : Nat → SetObject) (x : Element) : x ∈ HasCountableIntersection.countableIntersection family ↔ ∀ index, x ∈ family index
+Source: [`./Interface/Laws/Indexed.lean#L425`](./Interface/Laws/Indexed.lean#L425)
+
+
+
+Name: CollectionUnionMembership
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ [CollectionMembershipLaws Element SetObject Collection] (collection : Collection) (x : Element), x ∈ HasCollectionUnion.collectionUnion collection ↔ ∃ B : SetObject, B ∈ collection ∧ x ∈ B
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, Collection, ∈)
+  Objects
+    collection : Collection
+    x : Element
+  Prove
+    x ∈ HasCollectionUnion.collectionUnion collection ↔ ∃ B : SetObject, B ∈ collection ∧ x ∈ B
+Transliterated theorem: (∀ collection ∈ Collection ∀ x ∈ Element), x ∈ HasCollectionUnion.collectionUnion collection ↔ ∃ B ∈ SetObject, B ∈ collection ∧ x ∈ B
+Logical form (Lean): [CollectionMembershipLaws Element SetObject Collection] (collection : Collection) (x : Element) : x ∈ HasCollectionUnion.collectionUnion collection ↔ ∃ B : SetObject, B ∈ collection ∧ x ∈ B
+Source: [`./Interface/Laws/Families.lean#L154`](./Interface/Laws/Families.lean#L154)
+
+
+
+Name: CollectionIntersectionMembership
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ [CollectionMembershipLaws Element SetObject Collection] (collection : Collection) (x : Element) (collectionNonempty : ∃ B : SetObject, B ∈ collection), x ∈ HasCollectionIntersection.collectionIntersection collection ↔ ∀ B : SetObject, B ∈ collection → x ∈ B
+Predicate logic (unfolded):
+  Ambient
+    (Element, SetObject, Collection, ∈)
+  Objects
+    collection : Collection
+    x : Element
+  Prove
+    x ∈ HasCollectionIntersection.collectionIntersection collection ↔ ∀ B : SetObject, B ∈ collection → x ∈ B
+Transliterated theorem: (∀ collection ∈ Collection ∀ x ∈ Element), (∃ B ∈ SetObject, B ∈ collection) → x ∈ HasCollectionIntersection.collectionIntersection collection ↔ ∀ B : SetObject, B ∈ collection → x ∈ B
+Logical form (Lean): [CollectionMembershipLaws Element SetObject Collection] (collection : Collection) (x : Element) (collectionNonempty : ∃ B : SetObject, B ∈ collection) : x ∈ HasCollectionIntersection.collectionIntersection collection ↔ ∀ B : SetObject, B ∈ collection → x ∈ B
+Source: [`./Interface/Laws/Families.lean#L217`](./Interface/Laws/Families.lean#L217)
 
 
 

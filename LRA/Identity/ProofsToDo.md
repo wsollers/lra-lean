@@ -14,83 +14,15 @@ the folder.
 **Progress:** 0/33 theorem-family entries completed since reset baseline `73e79b40` (Mass-sorry non-Logic proofs and regenerate todos).
 **Baseline reconciliation:** 0 still match baseline as `sorry`; 33 baseline entries were moved, renamed, or removed and are not auto-credited.
 
-**Snapshot:** 31/117 theorem-family entries currently completed (86 sorry remaining).
+**Snapshot:** 36/118 theorem-family entries currently completed (82 sorry remaining).
 
-**Inventory:** 117 theorem/lemma/corollary/proposition entries across 71 module(s) (31 completed, 86 sorry).
-**Excluded from counts:** 40 `instance` entries and 6 `axiom` entries.
+**Inventory:** 118 theorem/lemma/corollary/proposition entries across 72 module(s) (36 completed, 82 sorry).
+**Excluded from counts:** 41 `instance` entries and 6 `axiom` entries.
 
 ## Open Work Queue
 
 Unfinished entries (`Sorry`, or `Unknown` in offline preview) are listed first so
 this section can be used as the actual proof queue.
-
-Name: IsIdentityRelation.IsDiagonal
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {R : Carrier -> Carrier -> Prop} (h : IsIdentityRelation R), forall left right, R left right <-> EqualityDiagonal Carrier left right
-Predicate logic (unfolded):
-  Ambient
-    (Carrier)
-  Objects
-    R : Carrier -> Carrier -> Prop
-  Prove
-    ((∀ (x : Carrier), R x x) ∧ (∀ (x y : Carrier), R x y → ∀ (P : Carrier → Prop), True → P x → P y)) → ∀ (left right : Carrier), R left right ↔ left = right
-Transliterated theorem: (IsIdentityRelation R) → forall left right, R left right <-> EqualityDiagonal Carrier left right
-Logical form (Lean): {Carrier : Type u} {R : Carrier -> Carrier -> Prop} (h : IsIdentityRelation R) : forall left right, R left right <-> EqualityDiagonal Carrier left right
-Source: [`./Laws/Identity.lean#L370`](./Laws/Identity.lean#L370)
-
-
-
-Name: IsIdentityRelation.IffForallIffEquality
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {R : Carrier -> Carrier -> Prop}, IsIdentityRelation R <-> forall left right, R left right <-> left = right
-Predicate logic (unfolded):
-  Ambient
-    (Carrier)
-  Objects
-    R : Carrier -> Carrier -> Prop
-  Prove
-    ((∀ (x : Carrier), R x x) ∧ (∀ (x y : Carrier), R x y → ∀ (P : Carrier → Prop), True → P x → P y)) ↔ ∀ (left right : Carrier), R left right ↔ left = right
-Transliterated theorem: IsIdentityRelation R <-> forall left right, R left right <-> left = right
-Logical form (Lean): {Carrier : Type u} {R : Carrier -> Carrier -> Prop} : IsIdentityRelation R <-> forall left right, R left right <-> left = right
-Source: [`./Laws/Identity.lean#L414`](./Laws/Identity.lean#L414)
-
-
-
-Name: IsIdentityRelation.IffEqualityDiagonal
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ {Carrier : Type u} {R : Carrier -> Carrier -> Prop}, IsIdentityRelation R <-> R = EqualityDiagonal Carrier
-Predicate logic (unfolded):
-  Ambient
-    (Carrier)
-  Objects
-    R : Carrier -> Carrier -> Prop
-  Prove
-    ((∀ (x : Carrier), R x x) ∧ (∀ (x y : Carrier), R x y → ∀ (P : Carrier → Prop), True → P x → P y)) ↔ R = LRA.Identity.EqualityDiagonal Carrier
-Transliterated theorem: IsIdentityRelation R <-> R = EqualityDiagonal Carrier
-Logical form (Lean): {Carrier : Type u} {R : Carrier -> Carrier -> Prop} : IsIdentityRelation R <-> R = EqualityDiagonal Carrier
-Source: [`./Laws/Identity.lean#L457`](./Laws/Identity.lean#L457)
-
-
-
-Name: EqualityStructure.IsDiagonal
-Kind: Theorem
-State: Sorry
-Predicate logic: ∀ (S : EqualityStructure.{u}), forall left right, S.equalityInterpretation left right <-> EqualityDiagonal S.Carrier left right
-Predicate logic (unfolded):
-  Ambient
-    (Carrier)
-  Objects
-    S : EqualityStructure.{u}
-  Prove
-    S.equalityInterpretation left right ↔ left = right
-Transliterated theorem: forall left right, S.equalityInterpretation left right <-> EqualityDiagonal S.Carrier left right
-Logical form (Lean): (S : EqualityStructure.{u}) : forall left right, S.equalityInterpretation left right <-> EqualityDiagonal S.Carrier left right
-Source: [`./Laws/Identity.lean#L500`](./Laws/Identity.lean#L500)
-
-
 
 Name: axiomaticIdentTransitive
 Kind: Theorem
@@ -2232,6 +2164,74 @@ Source: [`./Laws/Identity.lean#L314`](./Laws/Identity.lean#L314)
 
 
 
+Name: IsIdentityRelation.IsDiagonal
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} {R : Carrier -> Carrier -> Prop} (h : IsIdentityRelation R), forall left right, R left right <-> EqualityDiagonal Carrier left right
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    R : Carrier -> Carrier -> Prop
+  Prove
+    ((∀ (x : Carrier), R x x) ∧ (∀ (x y : Carrier), R x y → ∀ (P : Carrier → Prop), True → P x → P y)) → ∀ (left right : Carrier), R left right ↔ left = right
+Transliterated theorem: (IsIdentityRelation R) → forall left right, R left right <-> EqualityDiagonal Carrier left right
+Logical form (Lean): {Carrier : Type u} {R : Carrier -> Carrier -> Prop} (h : IsIdentityRelation R) : forall left right, R left right <-> EqualityDiagonal Carrier left right
+Source: [`./Laws/Identity.lean#L370`](./Laws/Identity.lean#L370)
+
+
+
+Name: IsIdentityRelation.IffForallIffEquality
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} {R : Carrier → Carrier → Prop}, IsIdentityRelation R ↔ ∀ left right, R left right ↔ left = right
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    R : Carrier → Carrier → Prop
+  Prove
+    IsIdentityRelation R ↔ ∀ left right, R left right ↔ left = right
+Transliterated theorem: IsIdentityRelation R ↔ ∀ left right, R left right ↔ left = right
+Logical form (Lean): {Carrier : Type u} {R : Carrier → Carrier → Prop} : IsIdentityRelation R ↔ ∀ left right, R left right ↔ left = right
+Source: [`./Laws/Identity.lean#L442`](./Laws/Identity.lean#L442)
+
+
+
+Name: IsIdentityRelation.IffEqualityDiagonal
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ {Carrier : Type u} {R : Carrier → Carrier → Prop}, IsIdentityRelation R ↔ R = EqualityDiagonal Carrier
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    R : Carrier → Carrier → Prop
+  Prove
+    IsIdentityRelation R ↔ R = EqualityDiagonal Carrier
+Transliterated theorem: IsIdentityRelation R ↔ R = EqualityDiagonal Carrier
+Logical form (Lean): {Carrier : Type u} {R : Carrier → Carrier → Prop} : IsIdentityRelation R ↔ R = EqualityDiagonal Carrier
+Source: [`./Laws/Identity.lean#L507`](./Laws/Identity.lean#L507)
+
+
+
+Name: EqualityStructure.IsDiagonal
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ (S : EqualityStructure.{u}), ∀ left right, S.equalityInterpretation left right ↔ EqualityDiagonal S.Carrier left right
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    S : EqualityStructure.{u}
+  Prove
+    ∀ left right, S.equalityInterpretation left right ↔ EqualityDiagonal S.Carrier left right
+Transliterated theorem: ∀ left right, S.equalityInterpretation left right ↔ EqualityDiagonal S.Carrier left right
+Logical form (Lean): (S : EqualityStructure.{u}) : ∀ left right, S.equalityInterpretation left right ↔ EqualityDiagonal S.Carrier left right
+Source: [`./Laws/Identity.lean#L522`](./Laws/Identity.lean#L522)
+
+
+
 Name: axiomaticIdentRfl
 Kind: Theorem
 State: Completed
@@ -2928,3 +2928,37 @@ Predicate logic (unfolded):
 Transliterated theorem: (signature unavailable)
 Logical form (Lean): (signature unavailable -- not found by source scan)
 Source: [`./Laws/Witnesses.lean`](./Laws/Witnesses.lean)
+
+
+
+Name: ProviderIdentitySymmetric
+Kind: Theorem
+State: Completed
+Predicate logic: ∀ (Carrier : Type u) [inst : LRA.Identity.IdentityRelation Carrier],   LRA.Identity.Examples.ProviderSwitching.ProviderIdentitySymmetryStatement Carrier
+Predicate logic (unfolded):
+  Ambient
+    (Carrier)
+  Objects
+    (none)
+  Prove
+    inst.Ident x y → inst.Ident y x
+Transliterated theorem: ProviderIdentitySymmetryStatement Carrier
+Logical form (Lean): (Carrier : Type u) [IdentityRelation Carrier] : ProviderIdentitySymmetryStatement Carrier
+Source: [`./Examples/ProviderSwitching.lean#L37`](./Examples/ProviderSwitching.lean#L37)
+
+
+
+Name: ProviderIdentitySymmetryStatement
+Kind: Instance
+State: Completed
+Predicate logic: ∀ (Carrier : Type u) [inst : LRA.Identity.IdentityRelation Carrier] ⦃x y : Carrier⦄, inst.Ident x y → inst.Ident y x
+Predicate logic (unfolded):
+  Ambient
+    (implicit ambient)
+  Objects
+    (none)
+  Prove
+    inst.Ident x y → inst.Ident y x
+Transliterated theorem: (signature unavailable)
+Logical form (Lean): (signature unavailable -- not found by source scan)
+Source: [`./Examples/ProviderSwitching.lean`](./Examples/ProviderSwitching.lean)
