@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LRA proof map</title>
+  <link rel="stylesheet" href="proof-map.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../index.html">Learning Real Analysis — Lean</a>
+    <nav aria-label="Repository views">
+      <a href="../lean/index.html">Lean modules</a>
+      <a href="../docs/index.html">Documentation</a>
+      <a href="../blueprint/index.html">Blueprint</a>
+      <a href="https://github.com/wsollers/lra-lean">GitHub</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="title-row">
+      <div>
+        <h1>Proof map</h1>
+        <p>Explore compiled declarations and their direct Lean dependencies.</p>
+      </div>
+      <div class="summary" id="summary" aria-live="polite">Loading compiled graph…</div>
+    </div>
+
+    <form class="controls" id="controls" role="search">
+      <label>Find a declaration
+        <input id="search" type="search" placeholder="e.g. IsSupremum" autocomplete="off" list="search-results">
+        <datalist id="search-results"></datalist>
+      </label>
+      <label>Kind
+        <select id="kind-filter"><option value="all">All kinds</option></select>
+      </label>
+      <label>Status
+        <select id="status-filter">
+          <option value="all">All statuses</option>
+          <option value="checked">Checked</option>
+          <option value="pending">Proof pending</option>
+        </select>
+      </label>
+      <button type="submit">Show result</button>
+      <button id="reset-view" type="button" class="quiet">Reset view</button>
+    </form>
+
+    <nav class="breadcrumbs" id="breadcrumbs" aria-label="Proof map level"></nav>
+
+    <div class="workspace">
+      <section class="graph-panel" aria-labelledby="graph-heading">
+        <div class="graph-heading">
+          <div>
+            <h2 id="graph-heading">Subject areas</h2>
+            <p id="graph-help">Select an area to inspect its modules. Drag to pan and use the wheel to zoom.</p>
+          </div>
+          <div class="legend" aria-label="Graph legend">
+            <span><i class="node-key"></i> declaration group</span>
+            <span><i class="statement-key"></i> statement dependency</span>
+            <span><i class="proof-key"></i> proof dependency</span>
+          </div>
+        </div>
+        <div class="canvas-wrap" id="canvas-wrap">
+          <canvas id="graph" width="1200" height="760" aria-label="Interactive declaration dependency graph"></canvas>
+          <div id="graph-status" class="graph-status" role="status"></div>
+        </div>
+      </section>
+
+      <aside class="detail-panel" aria-labelledby="detail-heading">
+        <h2 id="detail-heading">Selection</h2>
+        <div id="detail"><p>Select a node to inspect it.</p></div>
+        <h3>Visible nodes</h3>
+        <div id="node-list" class="node-list"></div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="proof-map.js"></script>
+</body>
+</html>

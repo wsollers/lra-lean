@@ -130,6 +130,7 @@ Lean Blueprint projects such as infinity-cosmos:
 
 - `site/blueprint/` — the Blueprint web output, including
   `dep_graph_document.html`
+- `site/proof-map/` — the interactive compiled-declaration dependency map
 - `site/lra-blueprint.pdf` — the Blueprint PDF
 - `site/docs/` — doc-gen4 theorem and definition pages generated from `LRA`
 

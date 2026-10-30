@@ -65,7 +65,10 @@ case "$command_name" in
     build_blueprint_existing
     ;;
   docs)
+    git config --global --add safe.directory "$PWD"
+    rm -f .lake/lakefile.olean .lake/lakefile.olean.trace
     build_docgen
+    lake env lean --run scripts/DumpProofMap.lean --output build/proof-map.json
     build_inputs_when_available
     build_blueprint_existing
     python3 scripts/build-repository-site.py

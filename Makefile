@@ -146,6 +146,7 @@ docs:  ## Build repository site and attach Blueprint output
 ifdef NATIVE
 	cd docbuild && MATHLIB_NO_CACHE_ON_UPDATE=1 lake update doc-gen4
 	cd docbuild && lake build LRA:docs
+	lake env lean --run scripts/DumpProofMap.lean --output build/proof-map.json
 	$(MAKE) blueprint NATIVE=1
 	python3 scripts/build-repository-site.py
 	mkdir -p site/blueprint

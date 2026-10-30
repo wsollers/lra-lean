@@ -260,6 +260,7 @@ function Invoke-Docs {
             Pop-Location
         }
         Invoke-Blueprint
+        Invoke-DocsRun @('lake', 'env', 'lean', '--run', 'scripts/DumpProofMap.lean', '--output', 'build/proof-map.json')
         $python = Get-Command python -ErrorAction SilentlyContinue
         if (-not $python) {
             $python = Get-Command py -ErrorAction SilentlyContinue

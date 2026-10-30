@@ -20,6 +20,8 @@ BLUEPRINT_WEB = ROOT / "blueprint" / "web" / "index.html"
 BLUEPRINT_PDF = ROOT / "blueprint" / "print" / "print.pdf"
 BLUEPRINT_DEP_GRAPH = ROOT / "blueprint" / "web" / "dep_graph_document.html"
 DOCGEN_INDEX = ROOT / "docbuild" / ".lake" / "build" / "doc" / "index.html"
+PROOF_MAP_SOURCE = ROOT / "web" / "proof-map"
+PROOF_MAP_DATA = ROOT / "build" / "proof-map.json"
 REPOSITORY_URL = "https://github.com/wsollers/lra-lean"
 
 EXCLUDED_MARKDOWN = {
@@ -58,6 +60,11 @@ def page(title: str, body: str, *, depth: int = 0) -> str:
     docs_link = (
         f'    <a href="{prefix}docs/index.html">Documentation</a>\n'
         if DOCGEN_INDEX.exists()
+        else ""
+    )
+    proof_map_link = (
+        f'    <a href="{prefix}proof-map/index.html">Proof map</a>\n'
+        if PROOF_MAP_SOURCE.exists() and PROOF_MAP_DATA.exists()
         else ""
     )
     mermaid_script = (
@@ -100,6 +107,7 @@ def page(title: str, body: str, *, depth: int = 0) -> str:
     <a href="{prefix}index.html">Home</a>
     <a href="{prefix}markdown/index.html">Markdown</a>
     <a href="{prefix}lean/index.html">Lean modules</a>
+{proof_map_link.rstrip()}
 {blueprint_link.rstrip()}
 {dep_graph_link.rstrip()}
 {docs_link.rstrip()}
@@ -301,6 +309,8 @@ def write_indexes(markdown: list[pathlib.Path], lean: list[pathlib.Path]) -> Non
         blueprint_items += '  <li><a href="lra-blueprint.pdf">Lean Blueprint PDF</a></li>\n'
     if DOCGEN_INDEX.exists():
         blueprint_items += '  <li><a href="docs/index.html">Lean theorem and definition documentation</a></li>\n'
+    if PROOF_MAP_SOURCE.exists() and PROOF_MAP_DATA.exists():
+        blueprint_items += '  <li><a href="proof-map/index.html">Interactive declaration dependency proof map</a></li>\n'
     home_body = f"""
 <p>This site is generated directly from the tracked repository. It mirrors the actual Markdown files and the <code>LRA/</code> Lean module hierarchy; there is no separate invented mathematical outline.</p>
 <section><h2>Repository views</h2>
@@ -312,6 +322,17 @@ def write_indexes(markdown: list[pathlib.Path], lean: list[pathlib.Path]) -> Non
 </ul></section>
 """
     (SITE / "index.html").write_text(page("Learning Real Analysis — Lean", home_body), encoding="utf-8")
+
+
+def write_proof_map() -> None:
+    if not PROOF_MAP_SOURCE.exists():
+        return
+    if not PROOF_MAP_DATA.exists():
+        print("Proof-map data is absent; skipping the interactive proof map.")
+        return
+    target = SITE / "proof-map"
+    shutil.copytree(PROOF_MAP_SOURCE, target)
+    shutil.copy2(PROOF_MAP_DATA, target / "data.json")
 
 
 def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
@@ -328,6 +349,7 @@ def main(argv: list[str] | None = None) -> int:
     SITE.mkdir(parents=True)
     markdown = markdown_files()
     lean = lean_files()
+    write_proof_map()
     write_markdown_pages(markdown)
     write_lean_pages(lean)
     write_indexes(markdown, lean)
